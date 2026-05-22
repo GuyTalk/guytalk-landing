@@ -198,6 +198,28 @@
   .ticker-mark { color: var(--accent); font-weight: 500; opacity: 0.85; }
   .ticker-up { color: var(--green); }
   .ticker-down { color: var(--red); }
+  .ticker-sport {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+  .ticker-label {
+    padding: 9px 20px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ticker-label-sub { font-weight: 500; opacity: 0.5; }
+  .ticker-divider { color: var(--border-light); padding: 0 4px; }
   @keyframes scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -499,28 +521,28 @@
     </div>
 
     <div class="ticker-wrap">
-      <div class="ticker">
+      <div class="ticker-label">Today's Brief <span class="ticker-label-sub">Markets · Results</span></div>
+      <div class="ticker" id="ticker-track">
+        <!-- fallback content shown if API unavailable -->
         <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-up">+2.41%</span></div>
         <div class="ticker-item"><span class="ticker-sym">SPY</span><span class="ticker-up">+0.62%</span></div>
         <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">−1.18%</span></div>
         <div class="ticker-item"><span class="ticker-sym">TSLA</span><span class="ticker-up">+3.07%</span></div>
-        <div class="ticker-item"><span class="ticker-sym">LAKERS</span><span class="ticker-down">L 112–118</span></div>
-        <div class="ticker-item"><span class="ticker-sym">CELTICS</span><span class="ticker-up">W 121–104</span></div>
         <div class="ticker-item"><span class="ticker-sym">ETH</span><span class="ticker-up">+0.94%</span></div>
-        <div class="ticker-item"><span class="ticker-sym">QQQ</span><span class="ticker-up">+1.08%</span></div>
-        <div class="ticker-item"><span class="ticker-sym">YANKEES</span><span class="ticker-up">W 6–3</span></div>
-        <div class="ticker-item"><span class="ticker-sym">AAPL</span><span class="ticker-down">−0.42%</span></div>
+        <div class="ticker-item"><span class="ticker-divider">—</span></div>
+        <div class="ticker-item"><span class="ticker-sport">CAVS 125  PISTONS 94  · GAME 7</span></div>
+        <div class="ticker-item"><span class="ticker-sport">CELTICS LEAD ECF  1–0</span></div>
+        <div class="ticker-item"><span class="ticker-sport">YANKEES W  6–3</span></div>
         <!-- duplicate for seamless loop -->
         <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-up">+2.41%</span></div>
         <div class="ticker-item"><span class="ticker-sym">SPY</span><span class="ticker-up">+0.62%</span></div>
         <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">−1.18%</span></div>
         <div class="ticker-item"><span class="ticker-sym">TSLA</span><span class="ticker-up">+3.07%</span></div>
-        <div class="ticker-item"><span class="ticker-sym">LAKERS</span><span class="ticker-down">L 112–118</span></div>
-        <div class="ticker-item"><span class="ticker-sym">CELTICS</span><span class="ticker-up">W 121–104</span></div>
         <div class="ticker-item"><span class="ticker-sym">ETH</span><span class="ticker-up">+0.94%</span></div>
-        <div class="ticker-item"><span class="ticker-sym">QQQ</span><span class="ticker-up">+1.08%</span></div>
-        <div class="ticker-item"><span class="ticker-sym">YANKEES</span><span class="ticker-up">W 6–3</span></div>
-        <div class="ticker-item"><span class="ticker-sym">AAPL</span><span class="ticker-down">−0.42%</span></div>
+        <div class="ticker-item"><span class="ticker-divider">—</span></div>
+        <div class="ticker-item"><span class="ticker-sport">CAVS 125  PISTONS 94  · GAME 7</span></div>
+        <div class="ticker-item"><span class="ticker-sport">CELTICS LEAD ECF  1–0</span></div>
+        <div class="ticker-item"><span class="ticker-sport">YANKEES W  6–3</span></div>
       </div>
     </div>
   </div>
@@ -669,5 +691,36 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  async function loadTicker() {
+    var track = document.getElementById('ticker-track');
+    if (!track) return;
+    try {
+      var res = await fetch('/api/ticker');
+      if (!res.ok) throw new Error();
+      var data = await res.json();
+      var markets = data.markets || [];
+      var sports = data.sports || [];
+
+      var mktHtml = markets.map(function (m) {
+        return '<div class="ticker-item"><span class="ticker-sym">' + m.sym + '</span>' +
+          '<span class="ticker-' + m.dir + '">' + (m.dir === 'up' ? '+' : '−') + m.change + '%</span></div>';
+      }).join('');
+
+      var sptHtml = sports.map(function (s) {
+        return '<div class="ticker-item"><span class="ticker-sport">' + s.label + '</span></div>';
+      }).join('');
+
+      var sep = '<div class="ticker-item"><span class="ticker-divider">—</span></div>';
+      var full = mktHtml + sep + sptHtml;
+      track.innerHTML = full + full;
+    } catch (e) {
+      // API unavailable — fallback HTML already rendered, nothing to do
+    }
+  }
+  loadTicker();
+})();
+</script>
 </body>
 </html>
