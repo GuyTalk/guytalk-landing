@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GuyTalk — Sports. Markets. Culture. In five minutes.</title>
+<meta name="description" content="The daily brief on sports, markets, and culture — built for guys who'd rather not scroll. Five minutes a day. No clickbait, no grindset.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1322;
+    --bg-gradient: radial-gradient(ellipse 80% 50% at 50% -15%, rgba(61,126,255,0.06), transparent 65%);
+    --surface: #131D30;
+    --surface-2: #1A2640;
+    --border: #1F2B43;
+    --border-light: #2A3A58;
+    --text: #F2F4F7;
+    --text-secondary: #8B96AB;
+    --accent: #3D7EFF;
+    --accent-hover: #5B95FF;
+    --accent-muted: #1E3A6B;
+    --green: #2BD96A;
+    --red: #FF4D4D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    background-image: var(--bg-gradient);
+    background-repeat: no-repeat;
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11, 19, 34, 0.7);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; max-width: 1120px; margin: 0 auto;
+  }
+  .wordmark {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+  }
+  .wordmark .dot { color: var(--accent); }
+  .nav-cta {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600; font-size: 14px;
+    padding: 9px 16px;
+    background: var(--accent);
+    color: white;
+    border-radius: 8px;
+    transition: background 0.15s ease;
+  }
+  .nav-cta:hover { background: var(--accent-hover); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 96px 0 80px;
+    text-align: center;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+  .pill-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+  h1 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: clamp(40px, 7vw, 76px);
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    margin-bottom: 24px;
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h1 .accent { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 19px);
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  /* Email form */
+  .email-form {
+    display: flex; gap: 8px;
+    max-width: 460px;
+    margin: 0 auto 16px;
+    padding: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: border-color 0.15s ease;
+  }
+  .email-form:focus-within { border-color: var(--accent); }
+  .email-form input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    padding: 12px 14px;
+    outline: none;
+  }
+  .email-form input::placeholder { color: var(--text-secondary); }
+  .email-form button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px 22px;
+    border-radius: 9px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+  }
+  .email-form button:hover { background: var(--accent-hover); }
+  .form-hint {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .beehiiv-form-wrap {
+    max-width: 540px;
+    margin: 0 auto 16px;
+    min-height: 60px;
+  }
+  .beehiiv-form-wrap iframe {
+    width: 100% !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  /* ---------- TICKER STRIP ---------- */
+  .ticker-wrap {
+    margin-top: 56px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-wrap::before,
+  .ticker-wrap::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2;
+    pointer-events: none;
+  }
+  .ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--surface), transparent); }
+  .ticker-wrap::after { right: 0; background: linear-gradient(270deg, var(--surface), transparent); }
+  .ticker {
+    display: flex;
+    gap: 36px;
+    padding: 14px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+  }
+  .ticker-item { display: flex; gap: 8px; align-items: baseline; }
+  .ticker-sym { color: var(--text); font-weight: 600; }
+  .ticker-mark { color: var(--accent); font-weight: 500; opacity: 0.85; }
+  .ticker-up { color: var(--green); }
+  .ticker-down { color: var(--red); }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker { animation: none; }
+  }
+
+  /* ---------- SOCIAL PROOF STRIP ---------- */
+  .proof {
+    margin: 64px auto 0;
+    max-width: 720px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .proof-stat {
+    display: flex; align-items: baseline; gap: 8px;
+    font-family: 'Inter Tight', sans-serif;
+  }
+  .proof-stat .num {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* ---------- SECTION ---------- */
+  section { padding: 80px 0; }
+  .section-eyebrow {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .section-title {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 42px);
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: 16px;
+    max-width: 760px;
+    margin-left: auto; margin-right: auto;
+  }
+  .section-sub {
+    color: var(--text-secondary);
+    font-size: 17px;
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 56px;
+  }
+
+  /* ---------- WHAT YOU GET ---------- */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .feature {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .feature:hover {
+    border-color: var(--border-light);
+    transform: translateY(-2px);
+  }
+  .feature-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  .feature h3 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+  .feature p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* ---------- SAMPLE BRIEF ---------- */
+  .brief-section { background: linear-gradient(180deg, transparent, rgba(61,126,255,0.03), transparent); }
+  .brief-mock {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    max-width: 720px;
+    margin: 0 auto;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(61,126,255,0.05);
+  }
+  .brief-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .brief-date {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-secondary);
+  }
+  .brief-issue {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+  }
+  .brief-body { padding: 28px 24px; }
+  .brief-greeting {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .brief-intro { color: var(--text-secondary); margin-bottom: 28px; font-size: 15px; }
+  .brief-story {
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+  }
+  .brief-story:first-of-type { border-top: none; padding-top: 0; }
+  .brief-cat {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .brief-headline {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .brief-snippet {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ---------- FOUNDER NOTE ---------- */
+  .founder {
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 40px;
+  }
+  .founder-head {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 24px;
+  }
+  .founder-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #2451BD);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+  }
+  .founder-name {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .founder-role {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .founder p {
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .founder p:last-child { margin-bottom: 0; color: var(--text-secondary); }
+
+  /* ---------- CLOSING CTA ---------- */
+  .closing {
+    text-align: center;
+    padding: 96px 0;
+  }
+  .closing h2 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+  .closing p {
+    color: var(--text-secondary);
+    font-size: 17px;
+    margin-bottom: 32px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 40px 0 32px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-socials { display: flex; gap: 16px; }
+  .footer-socials a:hover { color: var(--text); }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width: 600px) {
+    .container { padding: 0 16px; }
+    .hero { padding: 64px 0 48px; }
+    section { padding: 56px 0; }
+    .feature { padding: 22px; }
+    .brief-body { padding: 22px 18px; }
+    .founder { padding: 28px 22px; }
+    .email-form { flex-direction: column; }
+    .email-form button { width: 100%; padding: 14px; }
+    .beehiiv-form-wrap { max-width: 100%; }
+    .ticker { gap: 24px; font-size: 12px; }
+  }
+</style>
+<!-- PostHog analytics -->
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8', {api_host:'https://us.i.posthog.com', person_profiles:'identified_only'});
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="wordmark">GuyTalk<span class="dot">.</span></div>
+    <a href="#waitlist" class="nav-cta">Get early access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="waitlist">
+  <div class="container">
+    <div class="pill">
+      <span class="pill-dot"></span>
+      Launching soon · waitlist open
+    </div>
+    <h1>Sports. Markets. Culture.<br><span class="accent">In five minutes.</span></h1>
+    <p class="hero-sub">The daily brief for guys who'd rather not scroll. Everything worth knowing, written sharp and short. No clickbait. No grindset.</p>
+    <div class="beehiiv-form-wrap">
+      <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d"></script>
+    </div>
+    <div class="form-hint">Free · Daily brief · Launching soon</div>
+
+    <div class="proof">
+      <div class="proof-stat"><span class="num">Daily brief</span></div>
+      <span style="opacity:.3">·</span>
+      <div class="proof-stat"><span class="num">Live alerts</span></div>
+      <span style="opacity:.3">·</span>
+      <div class="proof-stat"><span class="num">App coming</span></div>
+    </div>
+
+    <div class="ticker-wrap">
+      <div class="ticker">
+        <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-up">+2.41%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">SPY</span><span class="ticker-up">+0.62%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">−1.18%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">TSLA</span><span class="ticker-up">+3.07%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">LAKERS</span><span class="ticker-down">L 112–118</span></div>
+        <div class="ticker-item"><span class="ticker-sym">CELTICS</span><span class="ticker-up">W 121–104</span></div>
+        <div class="ticker-item"><span class="ticker-sym">ETH</span><span class="ticker-up">+0.94%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">QQQ</span><span class="ticker-up">+1.08%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">YANKEES</span><span class="ticker-up">W 6–3</span></div>
+        <div class="ticker-item"><span class="ticker-sym">AAPL</span><span class="ticker-down">−0.42%</span></div>
+        <!-- duplicate for seamless loop -->
+        <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-up">+2.41%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">SPY</span><span class="ticker-up">+0.62%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">−1.18%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">TSLA</span><span class="ticker-up">+3.07%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">LAKERS</span><span class="ticker-down">L 112–118</span></div>
+        <div class="ticker-item"><span class="ticker-sym">CELTICS</span><span class="ticker-up">W 121–104</span></div>
+        <div class="ticker-item"><span class="ticker-sym">ETH</span><span class="ticker-up">+0.94%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">QQQ</span><span class="ticker-up">+1.08%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">YANKEES</span><span class="ticker-up">W 6–3</span></div>
+        <div class="ticker-item"><span class="ticker-sym">AAPL</span><span class="ticker-down">−0.42%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow">What you get</div>
+    <h2 class="section-title">Sharper than your group chat.</h2>
+    <p class="section-sub">Built for guys who want to feel informed without losing their morning to the feed.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <h3>Markets, decoded</h3>
+        <p>The stocks, crypto, and macro moves that actually mattered — in plain English, never finance-speak.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>Sports without the noise</h3>
+        <p>Last night's results, today's storylines, and the takes worth bringing up at the bar. No hot-take cesspool.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 11 2-2-2-2"/><path d="M11 13h4"/><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/></svg>
+        </div>
+        <h3>What the internet's arguing about</h3>
+        <p>The clips, posts, and takes everyone's reacting to — so you're never the last one to hear about it.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <h3>Before-you-go-out alerts</h3>
+        <p>Thursday through Saturday, a quick rundown of tonight's games, storylines, and what every group chat is talking about. Walk in sharp.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Five minutes. Max.</h3>
+        <p>We respect your time. If you can read a tweet thread, you can read a GuyTalk brief — and walk away knowing more.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h3>A real point of view</h3>
+        <p>Not aggregated slop. We have opinions, we say them, and we'll tell you when something is overhyped.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE BRIEF -->
+<section class="brief-section">
+  <div class="container">
+    <div class="section-eyebrow">A taste</div>
+    <h2 class="section-title">Here's what a brief looks like.</h2>
+    <p class="section-sub">Quick scan. Real substance. Done before your coffee's cool.</p>
+
+    <div class="brief-mock">
+      <div class="brief-header">
+        <div class="brief-date">Friday · May 16, 2026</div>
+        <div class="brief-issue">ISSUE #047</div>
+      </div>
+      <div class="brief-body">
+        <div class="brief-greeting">Three things you missed.</div>
+        <div class="brief-intro">Markets ripped, the East finals are locked in, and one CEO tweet is running every group chat. Let's go.</div>
+
+        <div class="brief-story">
+          <div class="brief-cat">Markets</div>
+          <div class="brief-headline">Nvidia rips past $4T as AI spend keeps climbing</div>
+          <div class="brief-snippet">Capex guidance from MSFT, GOOG, and META all up sharply. Nvidia's still the only one selling shovels — and it shows.</div>
+        </div>
+
+        <div class="brief-story">
+          <div class="brief-cat">Sports</div>
+          <div class="brief-headline">Lakers collapse. Celtics roll. East finals locked.</div>
+          <div class="brief-snippet">LeBron dropped 38 and it wasn't enough. Tatum went for 42 on 14 shots. The East is over. The West is a coin flip.</div>
+        </div>
+
+        <div class="brief-story">
+          <div class="brief-cat">Culture</div>
+          <div class="brief-headline">The one tweet everyone's arguing about today</div>
+          <div class="brief-snippet">A 14-second clip, a podcast take, and one CEO tweet. Here's what's actually going on and why your group chat won't shut up.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER NOTE -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow">Why we're building this</div>
+    <h2 class="section-title">A note from the founder.</h2>
+    <p class="section-sub">&nbsp;</p>
+
+    <div class="founder">
+      <div class="founder-head">
+        <div class="founder-avatar">J</div>
+        <div>
+          <div class="founder-name">Jake Williams</div>
+          <div class="founder-role">Founder · GuyTalk</div>
+        </div>
+      </div>
+      <p>I was spending two hours a day scrolling — and somehow still felt like I was behind. ESPN had garbage takes. Morning Brew talked finance like I was a banker. Twitter was a war zone. Nothing was made for me.</p>
+      <p>GuyTalk is the brief I wanted: sports, markets, and culture, written sharp, kept short, with a real point of view. Built for guys who want to walk into the day informed — not exhausted.</p>
+      <p>If that sounds like you, join the waitlist below. We're launching soon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="closing">
+  <div class="container">
+    <h2>Get sharper.<br>Five minutes at a time.</h2>
+    <p>Join the waitlist. Be first to get the brief.</p>
+    <div class="beehiiv-form-wrap">
+      <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d"></script>
+    </div>
+    <div class="form-hint" style="margin-top:14px">Free forever · No spam · Unsubscribe anytime</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <span class="wordmark" style="font-size:16px">GuyTalk<span class="dot">.</span></span>
+        <span style="margin-left:14px">© 2026</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://instagram.com/guytalkmedia" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://x.com/guytalkmedia" target="_blank" rel="noopener">X</a>
+        <a href="https://tiktok.com/@guytalkmedia" target="_blank" rel="noopener">TikTok</a>
+        <a href="mailto:guytalkdaily@gmail.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

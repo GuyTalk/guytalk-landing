@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GuyTalk — Brand Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1322;
+    --surface: #131D30;
+    --surface-2: #1A2640;
+    --border: #1F2B43;
+    --text: #F2F4F7;
+    --text-secondary: #8B96AB;
+    --accent: #3D7EFF;
+    --accent-hover: #5B95FF;
+    --accent-muted: #1E3A6B;
+    --green: #2BD96A;
+    --red: #FF4D4D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.5;
+    padding: 48px 24px 80px;
+    min-height: 100vh;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Top wordmark */
+  .wordmark {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+  .wordmark .dot { color: var(--accent); }
+  .subhead {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 56px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 56px; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  /* Color swatches */
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .swatch {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .swatch-color { height: 80px; }
+  .swatch-meta { padding: 12px 14px; }
+  .swatch-name { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .swatch-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+
+  /* Type system */
+  .type-row {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .type-row:last-child { border-bottom: none; }
+  .type-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+  }
+  .display-1 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 56px;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+  }
+  .display-2 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+  .heading {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+  }
+  .body-text { font-size: 16px; color: var(--text); }
+  .meta-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  /* Hero mockup */
+  .hero-mock {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 56px 48px;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .hero-title {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 64px;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 20px;
+    max-width: 600px;
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    max-width: 520px;
+  }
+  .cta-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px 24px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--text-secondary); }
+
+  /* Brief cards */
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.15s ease;
+  }
+  .card:hover { border-color: var(--accent-muted); }
+  .card-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .card-title {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .card-snippet {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .card-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+
+  /* Ticker strip */
+  .ticker {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 20px;
+    display: flex;
+    gap: 32px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .ticker-item { display: flex; gap: 8px; white-space: nowrap; align-items: baseline; }
+  .ticker-sym { color: var(--text); }
+  .ticker-up { color: var(--green); }
+  .ticker-down { color: var(--red); }
+
+  /* Logo lockups */
+  .logo-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .logo-tile {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px 24px;
+    text-align: center;
+  }
+  .logo-tile-light { background: #F2F4F7; }
+  .logo-tile-light .logo-text { color: #0B1322; }
+  .logo-text {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: -0.03em;
+  }
+  .logo-mark {
+    width: 64px;
+    height: 64px;
+    background: #0B1322;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: -0.04em;
+  }
+  .logo-mark .accent { color: var(--accent); }
+  .logo-caption {
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+  }
+
+  /* Tagline showcase */
+  .tagline-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 12px;
+  }
+  .tagline-block.primary { border-color: var(--accent-muted); background: linear-gradient(180deg, rgba(61,126,255,0.05), transparent); }
+  .tagline-text {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .tagline-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 32px 16px 64px; }
+    .hero-mock { padding: 32px 24px; }
+    .hero-title { font-size: 40px; }
+    .display-1 { font-size: 40px; }
+    .type-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="wordmark">GuyTalk<span class="dot">.</span></div>
+  <div class="subhead">Brand foundation v0.1 — visual preview</div>
+
+  <!-- HERO MOCKUP -->
+  <div class="section">
+    <div class="section-label">01 — Hero in context</div>
+    <div class="hero-mock">
+      <div class="hero-eyebrow">The Daily Brief</div>
+      <h1 class="hero-title">Five minutes. Everything you need.</h1>
+      <p class="hero-sub">The daily brief on sports, markets, and culture — built for guys who'd rather not scroll.</p>
+      <div class="cta-row">
+        <button class="btn btn-primary">Join the waitlist</button>
+        <button class="btn btn-ghost">See a sample brief →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="section">
+    <div class="section-label">02 — Live ticker strip</div>
+    <div class="ticker">
+      <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-up">+2.41%</span></div>
+      <div class="ticker-item"><span class="ticker-sym">SPY</span><span class="ticker-up">+0.62%</span></div>
+      <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">−1.18%</span></div>
+      <div class="ticker-item"><span class="ticker-sym">TSLA</span><span class="ticker-up">+3.07%</span></div>
+      <div class="ticker-item"><span class="ticker-sym">LAKERS</span><span class="ticker-down">L 112-118</span></div>
+      <div class="ticker-item"><span class="ticker-sym">CELTICS</span><span class="ticker-up">W 121-104</span></div>
+    </div>
+  </div>
+
+  <!-- BRIEF CARDS -->
+  <div class="section">
+    <div class="section-label">03 — Brief cards</div>
+    <div class="grid-cards">
+      <div class="card">
+        <div class="card-cat">Markets</div>
+        <h3 class="card-title">Nvidia rips past $4T as AI spend keeps climbing</h3>
+        <p class="card-snippet">Cloud capex guidance from MSFT, GOOG, META all up. Nvidia is the only one selling shovels.</p>
+        <div class="card-foot"><span>2 min read</span><span>06:42 AM</span></div>
+      </div>
+      <div class="card">
+        <div class="card-cat">Sports</div>
+        <h3 class="card-title">Lakers collapse, Celtics roll. East finals locked in.</h3>
+        <p class="card-snippet">LeBron's 38 wasn't enough. Tatum dropped 42 on 14 shots. East is over.</p>
+        <div class="card-foot"><span>90 sec read</span><span>06:42 AM</span></div>
+      </div>
+      <div class="card">
+        <div class="card-cat">Culture</div>
+        <h3 class="card-title">What everyone's actually arguing about online today</h3>
+        <p class="card-snippet">A 14-second clip, a podcast take, and one CEO tweet are running every group chat right now.</p>
+        <div class="card-foot"><span>3 min read</span><span>06:42 AM</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLOR PALETTE -->
+  <div class="section">
+    <div class="section-label">04 — Color palette</div>
+    <div class="palette">
+      <div class="swatch"><div class="swatch-color" style="background:#0B1322;border-bottom:1px solid var(--border)"></div><div class="swatch-meta"><div class="swatch-name">Background</div><div class="swatch-hex">#0B1322</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#131D30"></div><div class="swatch-meta"><div class="swatch-name">Surface</div><div class="swatch-hex">#131D30</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#1A2640"></div><div class="swatch-meta"><div class="swatch-name">Surface Elevated</div><div class="swatch-hex">#1A2640</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#1F2B43"></div><div class="swatch-meta"><div class="swatch-name">Border</div><div class="swatch-hex">#1F2B43</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#F2F4F7"></div><div class="swatch-meta"><div class="swatch-name">Text Primary</div><div class="swatch-hex">#F2F4F7</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#8B96AB"></div><div class="swatch-meta"><div class="swatch-name">Text Secondary</div><div class="swatch-hex">#8B96AB</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#3D7EFF"></div><div class="swatch-meta"><div class="swatch-name">Accent Blue</div><div class="swatch-hex">#3D7EFF</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#5B95FF"></div><div class="swatch-meta"><div class="swatch-name">Accent Hover</div><div class="swatch-hex">#5B95FF</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#1E3A6B"></div><div class="swatch-meta"><div class="swatch-name">Accent Muted</div><div class="swatch-hex">#1E3A6B</div></div></div>
+    </div>
+  </div>
+
+  <!-- TYPE SYSTEM -->
+  <div class="section">
+    <div class="section-label">05 — Type system</div>
+    <div>
+      <div class="type-row">
+        <div class="type-label">Display / 56<br>Inter Tight 800</div>
+        <div class="display-1">Sharper than your group chat.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Display / 36<br>Inter Tight 700</div>
+        <div class="display-2">Sports. Markets. Culture. In five minutes.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Heading / 22<br>Inter Tight 600</div>
+        <div class="heading">Nvidia rips past $4T as AI spend keeps climbing.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Body / 16<br>Inter 400</div>
+        <div class="body-text">Five minutes a day. Everything worth knowing across sports, markets, and culture — written for guys who'd rather not scroll. No clickbait, no grindset, no filler.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Mono / 13<br>JetBrains Mono</div>
+        <div class="meta-text">06:42 AM · 2 MIN READ · ISSUE #047</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGO LOCKUPS -->
+  <div class="section">
+    <div class="section-label">06 — Logo directions</div>
+    <div class="logo-row">
+      <div class="logo-tile">
+        <div class="logo-text">GuyTalk</div>
+        <div class="logo-caption">Wordmark — flat</div>
+      </div>
+      <div class="logo-tile">
+        <div class="logo-text">GuyTalk<span style="color:var(--accent)">.</span></div>
+        <div class="logo-caption">Wordmark — blue dot (recommended)</div>
+      </div>
+      <div class="logo-tile">
+        <div class="logo-mark">g<span class="accent">.</span></div>
+        <div class="logo-caption">App icon — monogram</div>
+      </div>
+      <div class="logo-tile logo-tile-light">
+        <div class="logo-text">GuyTalk<span style="color:#3D7EFF">.</span></div>
+        <div class="logo-caption" style="color:#666">Light context</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAGLINES -->
+  <div class="section">
+    <div class="section-label">07 — Taglines</div>
+    <div class="tagline-block primary">
+      <div class="tagline-text">Sports. Markets. Culture. In five minutes.</div>
+      <div class="tagline-note">PRIMARY — Descriptive · Use on landing page hero</div>
+    </div>
+    <div class="tagline-block">
+      <div class="tagline-text">Sharper than your group chat.</div>
+      <div class="tagline-note">SECONDARY — Punchy · Use for ads, social, IG bio</div>
+    </div>
+    <div class="tagline-block">
+      <div class="tagline-text">Be in the know. Skip the noise.</div>
+      <div class="tagline-note">ALTERNATE — Holds for email subject lines or web copy</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>GuyTalk · Brand Foundation v0.1</div>
+    <div style="font-family:'JetBrains Mono',monospace">MAY 2026</div>
+  </div>
+
+</div>
+</body>
+</html>

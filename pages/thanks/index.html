@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're in. — GuyTalk</title>
+<meta name="description" content="Welcome to GuyTalk. Confirm your email to lock in your subscription.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1322;
+    --bg-gradient: radial-gradient(ellipse 80% 50% at 50% -15%, rgba(61,126,255,0.06), transparent 65%);
+    --surface: #131D30;
+    --surface-2: #1A2640;
+    --border: #1F2B43;
+    --border-light: #2A3A58;
+    --text: #F2F4F7;
+    --text-secondary: #8B96AB;
+    --accent: #3D7EFF;
+    --accent-hover: #5B95FF;
+    --green: #2BD96A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    background-image: var(--bg-gradient);
+    background-repeat: no-repeat;
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: var(--accent); text-decoration: none; transition: color 0.15s ease; }
+  a:hover { color: var(--accent-hover); }
+
+  /* NAV */
+  nav {
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px; max-width: 1120px; margin: 0 auto;
+  }
+  .wordmark {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+  .wordmark .dot { color: var(--accent); }
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .nav-link:hover { color: var(--text); }
+
+  /* MAIN */
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 24px;
+  }
+  .container {
+    max-width: 640px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .check-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 16px;
+    background: rgba(43, 217, 106, 0.08);
+    border: 1px solid rgba(43, 217, 106, 0.25);
+    border-radius: 999px;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--green);
+    margin-bottom: 28px;
+  }
+  .check-pill svg { width: 14px; height: 14px; }
+
+  h1 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: clamp(44px, 7vw, 76px);
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    margin-bottom: 20px;
+  }
+  h1 .accent { color: var(--accent); }
+
+  .lede {
+    font-size: clamp(16px, 2vw, 19px);
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin: 0 auto 40px;
+  }
+  .lede strong { color: var(--text); font-weight: 600; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: left;
+    margin-bottom: 28px;
+  }
+  .card-title {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .card p { color: var(--text-secondary); font-size: 15px; margin-bottom: 8px; }
+  .card p:last-child { margin-bottom: 0; }
+  .card .muted { font-size: 13px; color: var(--text-secondary); opacity: 0.7; margin-top: 12px; }
+
+  .next-list {
+    text-align: left;
+    margin-bottom: 28px;
+  }
+  .next-list h3 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .next-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: var(--text);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .next-item:hover { border-color: var(--border-light); }
+  .next-num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .next-item .body { flex: 1; }
+  .next-item .body strong { color: var(--text); }
+  .next-item .body span { color: var(--text-secondary); font-size: 14px; display: block; margin-top: 2px; }
+
+  .signoff {
+    margin-top: 36px;
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+  .signoff .name {
+    color: var(--text);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 24px;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .footer-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-socials { display: flex; gap: 18px; }
+  .footer-socials a { color: var(--text-secondary); }
+  .footer-socials a:hover { color: var(--text); }
+
+  @media (max-width: 600px) {
+    main { padding: 48px 20px; }
+    .container { max-width: 100%; }
+    h1 { font-size: 44px; }
+    .card { padding: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span></a>
+    <a href="/" class="nav-link">← Back to home</a>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+
+    <div class="check-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      You're on the list
+    </div>
+
+    <h1>You're <span class="accent">in.</span></h1>
+
+    <p class="lede">Welcome to GuyTalk. One quick step before you're locked in — <strong>check your inbox for a confirmation email</strong> and click the link inside. (Check Promotions or Spam if it's not in your main inbox.)</p>
+
+    <div class="card">
+      <div class="card-title">Here's what you signed up for</div>
+      <p>Sports, markets, and culture in five minutes a day. Written sharp. Kept short. With a real point of view. Built for guys who want to feel informed without losing their morning to the feed.</p>
+      <p class="muted">First real issue lands in the next few weeks. You're early — you get to shape what this becomes.</p>
+    </div>
+
+    <div class="next-list">
+      <h3>Three things while you wait</h3>
+
+      <a href="https://twitter.com/intent/tweet?text=Just%20joined%20the%20GuyTalk%20waitlist.%20Sports%2C%20markets%2C%20and%20culture%20in%205%20minutes%20a%20day.%20https%3A%2F%2Fguytalkmedia.com" target="_blank" rel="noopener" class="next-item">
+        <div class="next-num">1</div>
+        <div class="body">
+          <strong>Forward this to one friend</strong>
+          <span>Click to share on X — or just text them the link.</span>
+        </div>
+      </a>
+
+      <a href="https://instagram.com/guytalkmedia" target="_blank" rel="noopener" class="next-item">
+        <div class="next-num">2</div>
+        <div class="body">
+          <strong>Follow us</strong>
+          <span>Instagram · X · TikTok — @guytalkmedia everywhere.</span>
+        </div>
+      </a>
+
+      <a href="mailto:guytalkdaily@gmail.com?subject=What%20I%20want%20covered" class="next-item">
+        <div class="next-num">3</div>
+        <div class="body">
+          <strong>Tell me what you want covered</strong>
+          <span>Hit reply on the confirmation email — or click here to write me directly. I read every email.</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="signoff">
+      Talk soon.
+      <span class="name">— Jake, Founder</span>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <span class="wordmark" style="font-size:16px">GuyTalk<span class="dot">.</span></span>
+      <span style="margin-left:14px">© 2026</span>
+    </div>
+    <div class="footer-socials">
+      <a href="https://instagram.com/guytalkmedia" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://x.com/guytalkmedia" target="_blank" rel="noopener">X</a>
+      <a href="https://tiktok.com/@guytalkmedia" target="_blank" rel="noopener">TikTok</a>
+      <a href="mailto:guytalkdaily@gmail.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

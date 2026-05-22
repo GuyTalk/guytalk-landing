@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Brief · #001 — GuyTalk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1322;
+    --bg-grad: radial-gradient(ellipse 70% 40% at 50% -10%, rgba(61,126,255,0.05), transparent 65%);
+    --surface: #131D30;
+    --surface-2: #1A2640;
+    --border: #1F2B43;
+    --border-light: #2A3A58;
+    --text: #F2F4F7;
+    --text-secondary: #8B96AB;
+    --text-tertiary: #6E7A91;
+    --accent: #3D7EFF;
+    --accent-hover: #5B95FF;
+    --green: #2BD96A;
+    --red: #FF4D4D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    background-image: var(--bg-grad);
+    background-repeat: no-repeat;
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s ease; }
+  a:hover { border-bottom-color: var(--accent); }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11, 19, 34, 0.78);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; max-width: 720px; margin: 0 auto;
+  }
+  .wordmark { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.03em; }
+  .wordmark .dot { color: var(--accent); }
+  .nav-meta { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
+
+  /* ARTICLE */
+  article {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  /* HEADER */
+  .pretitle {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 600;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
+  }
+  .pretitle-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+  h1.issue-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 44px; line-height: 1.08; letter-spacing: -0.035em;
+    margin-bottom: 14px;
+  }
+  .deck {
+    font-size: 18px; color: var(--text-secondary);
+    margin-bottom: 28px; font-weight: 400;
+  }
+  .meta-row {
+    display: flex; gap: 14px; align-items: center;
+    font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 13px;
+    color: var(--text-tertiary); letter-spacing: 0.04em;
+    padding-bottom: 28px; border-bottom: 1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .meta-row .sep { color: var(--border-light); }
+
+  /* TL;DR */
+  .tldr {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 44px;
+  }
+  .tldr-label {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .tldr ul { list-style: none; }
+  .tldr li {
+    display: flex; gap: 12px; padding: 6px 0;
+    font-size: 15px; line-height: 1.5;
+  }
+  .tag {
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    font-size: 10px; letter-spacing: 0.08em;
+    color: var(--accent);
+    padding: 4px 8px; border: 1px solid var(--border-light);
+    border-radius: 4px; height: fit-content;
+    text-transform: uppercase;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .tag-link { border-bottom: 0; }
+  .tag-link:hover { border-bottom: 0; }
+  .tag-link:hover .tag {
+    background: rgba(61, 126, 255, 0.12);
+    border-color: var(--accent);
+    color: var(--accent-hover);
+  }
+
+  /* SECTIONS */
+  section { margin-top: 52px; }
+  h2 {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
+    padding-bottom: 14px; border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 24px; line-height: 1.2; letter-spacing: -0.02em;
+    margin: 28px 0 12px;
+  }
+  h3:first-of-type { margin-top: 0; }
+  p { margin: 0 0 14px; }
+
+  /* INLINE MINI-CALLOUTS (Why it matters / What to bring up) */
+  .detail-list {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+  }
+  .detail-list li {
+    padding: 6px 0;
+    font-size: 15.5px;
+    line-height: 1.55;
+    display: flex; gap: 10px;
+  }
+  .detail-list li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 3px;
+    background: var(--border-light);
+    border-radius: 2px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  .detail-list .label {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    color: var(--text); margin-right: 4px;
+  }
+
+  /* TICKER */
+  .ticker {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0;
+    margin: 24px 0;
+    color: var(--text);
+    overflow: hidden;
+  }
+  .ticker-header {
+    padding: 16px 22px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  }
+  .ticker-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .ticker-subtitle {
+    font-family: 'JetBrains Mono', monospace; font-weight: 500;
+    font-size: 11.5px; color: var(--text-tertiary); letter-spacing: 0.02em;
+  }
+  .ticker-body { padding: 8px 22px 16px; font-family: 'JetBrains Mono', monospace; }
+  .ticker-cols, .ticker-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 0.8fr 0.9fr;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 13.5px;
+    align-items: baseline;
+  }
+  .ticker-cols {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+  .ticker-cols .th {
+    font-family: 'Inter Tight', sans-serif; font-weight: 600;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+  .ticker-cols .th:nth-child(n+2) { text-align: right; }
+  .ticker-row .name { color: var(--text); font-weight: 600; }
+  .ticker-row .val,
+  .ticker-row .day,
+  .ticker-row .week { text-align: right; }
+  .ticker-row .val { color: var(--text); }
+  .ticker-row .week { color: var(--text-secondary); }
+  .ticker-row .down { color: var(--red); }
+  .ticker-row .up { color: var(--green); }
+  .ticker-divider {
+    height: 1px; background: var(--border); margin: 10px 0 6px;
+  }
+
+  /* AROUND THE INTERNET */
+  .ati { list-style: none; counter-reset: ati; }
+  .ati li {
+    counter-increment: ati;
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 32px 1fr; gap: 14px;
+  }
+  .ati li:first-child { border-top: 0; padding-top: 4px; }
+  .ati li::before {
+    content: counter(ati, decimal-leading-zero);
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    font-size: 13px; color: var(--accent); padding-top: 4px;
+  }
+  .ati .ati-head {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 18px; line-height: 1.3; margin-bottom: 4px;
+  }
+  .ati .ati-body { font-size: 15.5px; color: var(--text-secondary); line-height: 1.55; }
+  .ati .ati-body em { color: var(--text); font-style: italic; }
+
+  /* SHARP TAKE */
+  .sharp-take {
+    margin-top: 52px;
+    padding: 28px 24px;
+    border-left: 3px solid var(--accent);
+    background: rgba(61,126,255,0.04);
+    border-radius: 0 12px 12px 0;
+  }
+  .sharp-take h2 {
+    border: 0; padding: 0; margin-bottom: 14px;
+  }
+  .sharp-take p { font-size: 16px; color: var(--text); }
+
+  /* NUMBERS WORTH STEALING */
+  .numbers {
+    margin-top: 36px;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--border);
+  }
+  .numbers h2 {
+    border: 0; padding: 0; margin-bottom: 16px;
+  }
+  .numbers-list { list-style: none; }
+  .numbers-list li {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15.5px; line-height: 1.5;
+  }
+  .numbers-list li:last-child { border-bottom: 0; }
+  .numbers-list .num {
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    font-size: 13px; color: var(--accent);
+    letter-spacing: 0.04em; padding-top: 2px;
+  }
+  .numbers-list .num-body strong {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    color: var(--text);
+  }
+
+  /* FOOTER */
+  footer {
+    max-width: 680px; margin: 0 auto;
+    padding: 36px 24px 72px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: white;
+    padding: 12px 20px; border-radius: 8px;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
+    border-bottom: 0;
+  }
+  .footer-cta:hover { background: var(--accent-hover); border-bottom: 0; }
+  .footer-meta { color: var(--text-tertiary); font-size: 13.5px; margin-top: 20px; }
+  .footer-sig { font-family: 'Inter Tight', sans-serif; font-weight: 700; color: var(--text); margin-top: 14px; }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    h1.issue-title { font-size: 34px; }
+    h3 { font-size: 21px; }
+    .ticker-row { grid-template-columns: 90px 1fr 80px 80px; font-size: 12.5px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="wordmark">GuyTalk<span class="dot">.</span></div>
+    <div class="nav-meta">The Brief · #001</div>
+  </div>
+</nav>
+
+<article>
+
+  <div class="pretitle"><span class="pretitle-dot"></span> Monday, May 18, 2026</div>
+  <h1 class="issue-title">Game 7, Game 1, and a market that just blinked.</h1>
+  <p class="deck">Five minutes. Everything you need.</p>
+  <div class="meta-row">
+    <span>5 MIN READ</span>
+    <span class="sep">·</span>
+    <span>SPORTS · MARKETS · CULTURE</span>
+  </div>
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <div class="tldr-label">TL;DR</div>
+    <ul>
+      <li><a href="#sports" class="tag-link"><span class="tag">Hoops</span></a> <span><a href="https://www.espn.com/nba/team/_/name/det/detroit-pistons">Pistons</a> host <a href="https://www.espn.com/nba/team/_/name/cle/cleveland-cavaliers">Cavs</a> in Game 7 tonight. Detroit −4.5 at home.</span></li>
+      <li><a href="#sports" class="tag-link"><span class="tag">Hoops</span></a> <span><a href="https://www.espn.com/nba/team/_/name/sa/san-antonio-spurs">Spurs</a> vs <a href="https://www.espn.com/nba/team/_/name/okc/oklahoma-city-thunder">Thunder</a> WCF tips off Monday. Thunder −260 to win series.</span></li>
+      <li><a href="#markets" class="tag-link"><span class="tag">Markets</span></a> <span>S&amp;P −1.24% Friday, but +0.3% on the week. 6th straight winning week.</span></li>
+      <li><a href="#oil" class="tag-link"><span class="tag">Energy</span></a> <span>Oil cleared $109 on the US–Iran deal. Inflation watch is back on.</span></li>
+      <li><a href="#culture" class="tag-link"><span class="tag">Tech</span></a> <span>Google scrapped the Chromebook brand. New "Googlebook" line ships in September.</span></li>
+    </ul>
+  </div>
+
+  <!-- SPORTS -->
+  <section id="sports">
+    <h2>Sports</h2>
+
+    <h3>Game 7. Tonight. Pistons-Cavs.</h3>
+    <p><a href="https://www.espn.com/nba/player/_/id/4432166/cade-cunningham">Cade Cunningham</a> (21 pts, 8 ast in Game 6) and <a href="https://www.espn.com/nba/player/_/id/4683046/jalen-duren">Jalen Duren</a> (15 pts, 11 reb) forced this. Now Detroit gets it at home.</p>
+    <ul class="detail-list">
+      <li><span><span class="label">Line:</span>Pistons −4.5, total 205.5 (<a href="https://www.fanduel.com/research/pistons-vs-cavaliers-prediction-nba-odds-spread-best-bets-for-eastern-semifinals-5-17-2026">FanDuel</a>)</span></li>
+      <li><span><span class="label">Money line:</span>DET −190 / CLE +160</span></li>
+      <li><span><span class="label">Why it matters:</span>Detroit hasn't been to a Conference Finals since the <em>2008 "Goin' to Work" era</em>. Cade has a chance to bury that ghost tonight. Cavs lose this and Mitchell's window starts to feel different.</span></li>
+      <li><span><span class="label">Winner gets:</span>Knicks in the Eastern Conference Finals.</span></li>
+      <li><span><span class="label">What to bring up:</span>"Detroit's 5–2 at home this postseason. Cleveland is 1–5 on the road." That's the whole story.</span></li>
+    </ul>
+
+    <h3>Spurs vs Thunder. WCF starts Monday.</h3>
+    <p><a href="https://www.espn.com/nba/player/_/id/4845367/stephon-castle">Stephon Castle</a> put up <strong>32 / 11 / 6</strong> in the closeout. A 21-year-old reigning Rookie of the Year going Game 6 hero. He plays next to <a href="https://www.espn.com/nba/player/_/id/5104157/victor-wembanyama">Victor Wembanyama</a>. That's the future of the league on one roster.</p>
+    <ul class="detail-list">
+      <li><span><span class="label">Series odds:</span>OKC −260 / SAS +210 (<a href="https://dknetwork.draftkings.com/2026/05/16/opening-odds-for-spurs-vs-thunder-2026-nba-playoffs-western-conference-finals/">DraftKings</a>)</span></li>
+      <li><span><span class="label">Most likely:</span>Thunder in 7 (+310)</span></li>
+      <li><span><span class="label">Why it matters:</span>Thunder are the <em>defending champs</em>, 8–0 in these playoffs, <a href="https://www.espn.com/nba/player/_/id/4278073/shai-gilgeous-alexander">SGA</a> trying to go back-to-back. Spurs haven't been in a WCF since 2017 (Kawhi era). Youth vs. young dynasty.</span></li>
+      <li><span><span class="label">The angle nobody's talking about:</span>San Antonio went 4–1 vs OKC in the regular season and has the postseason's #1 defense. Don't pencil in the Thunder.</span></li>
+      <li><span><span class="label">What to bring up:</span>"Spurs covered four of five spreads against OKC this year." Easy bar bet.</span></li>
+    </ul>
+
+    <h3>Around the league</h3>
+    <ul class="detail-list">
+      <li><span><span class="label">NHL:</span>Conference Finals locked in this week. Stars vs Hurricanes most likely.</span></li>
+      <li><span><span class="label">F1:</span>Imola Sunday. Verstappen chasing.</span></li>
+      <li><span><span class="label">Golf:</span>PGA Championship in the books.</span></li>
+    </ul>
+  </section>
+
+  <!-- MARKETS -->
+  <section id="markets">
+    <h2>Markets</h2>
+
+    <p><strong>The week in one line:</strong> Six up weeks in a row. Then a Friday dump.</p>
+
+    <h3>Tech got punched.</h3>
+    <p>Intel −6%. AMD −5.7%. Micron −6.6%. Nvidia −4.4%. Profit-taking after a hot run, dragged down by rising yields. <a href="https://www.cerebras.ai/">Cerebras</a> — fresh off a <strong>+68% IPO pop Thursday</strong> — gave back 10% Friday. When chips run that hard, they correct hard.</p>
+
+    <h3 id="oil">Oil at $109 changes the math.</h3>
+    <p>The US–Iran deal sent crude north of $100 for the first time in years.</p>
+    <ul class="detail-list">
+      <li><span><span class="label">Higher oil →</span>higher gas prices → higher inflation prints</span></li>
+      <li><span><span class="label">Higher inflation →</span>the Fed <em>can't</em> cut rates as fast as the market wants</span></li>
+      <li><span><span class="label">Higher rates →</span>tech valuations get squeezed</span></li>
+      <li><span><span class="label">Result:</span>Energy stocks rip. Consumer names sweat.</span></li>
+    </ul>
+
+    <div class="ticker">
+      <div class="ticker-header">
+        <div class="ticker-title">Markets at the close</div>
+        <div class="ticker-subtitle">Friday, May 15, 2026</div>
+      </div>
+      <div class="ticker-body">
+        <div class="ticker-cols">
+          <span class="th">Index</span>
+          <span class="th">Last</span>
+          <span class="th">Day</span>
+          <span class="th">Week</span>
+        </div>
+        <div class="ticker-row"><span class="name">S&amp;P 500</span><span class="val">7,408.50</span><span class="day down">−1.24%</span><span class="week up">+0.30%</span></div>
+        <div class="ticker-row"><span class="name">Nasdaq</span><span class="val">26,225.14</span><span class="day down">−1.54%</span><span class="week up">+0.30%</span></div>
+        <div class="ticker-row"><span class="name">Dow</span><span class="val">49,526.17</span><span class="day down">−1.07%</span><span class="week down">−0.05%</span></div>
+
+        <div class="ticker-divider"></div>
+
+        <div class="ticker-cols">
+          <span class="th">Other</span>
+          <span class="th">Last</span>
+          <span class="th">Move</span>
+          <span class="th"></span>
+        </div>
+        <div class="ticker-row"><span class="name">10Y Yield</span><span class="val">4.62%</span><span class="day up">↑</span><span class="week"></span></div>
+        <div class="ticker-row"><span class="name">WTI Crude</span><span class="val">$109.04</span><span class="day up">↑</span><span class="week"></span></div>
+        <div class="ticker-row"><span class="name">Bitcoin</span><span class="val">~$82,300</span><span class="day down">↓</span><span class="week"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AROUND THE INTERNET -->
+  <section id="culture">
+    <h2>Around the Internet</h2>
+    <ol class="ati">
+      <li>
+        <div>
+          <div class="ati-head">Google killed the Chromebook.</div>
+          <div class="ati-body">Sort of. The "Googlebook" line (May 13 launch) replaces the brand entirely — Android-based, Gemini baked in, Acer/ASUS/Dell/HP/Lenovo on board, shipping September. Whether this works is the next 12 months' story in laptops.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="ati-head">The "Devil Wears Prada" trend.</div>
+          <div class="ati-body"><em>"…and Emily — that's all."</em> It's everywhere. If you're trying to be charming around a girl who's on TikTok all day (so, all of them), at least know the reference. Don't perform it.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="ati-head">Ronaldo broken on the bench.</div>
+          <div class="ati-body">Al Nassr drew 1–1 vs Al Hilal after keeper Bento gave up a 98th-minute equalizer. Cameras caught Cristiano alone, head down, staring at the dirt. The internet had a field day. If you're talking soccer this week, this is the moment.</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- SHARP TAKE -->
+  <div class="sharp-take">
+    <h2>The Sharp Take</h2>
+    <p>The market is up six weeks in a row and tech still corrected. The Spurs just made the WCF in year two of the Wemby era. The Thunder are defending a title. Detroit is one win from a Conference Finals trip that felt impossible 18 months ago.</p>
+    <p>A lot is changing fast. The teams you wrote off are good again. The market that felt unstoppable just showed you it's not. Pay attention. Don't overreact.</p>
+  </div>
+
+  <!-- NUMBERS WORTH STEALING -->
+  <section class="numbers">
+    <h2>Numbers worth stealing.</h2>
+    <ol class="numbers-list">
+      <li>
+        <span class="num">01</span>
+        <span class="num-body"><strong>Cerebras was +68% Thursday, −10% Friday.</strong> The AI IPO trade still works. The easy money doesn't.</span>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <span class="num-body"><strong>The Spurs went 4–1 vs the Thunder in the regular season.</strong> The series price (OKC −260) doesn't reflect that.</span>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <span class="num-body"><strong>Wemby is 22. Castle is 21.</strong> The Spurs aren't on a timeline — they're the timeline.</span>
+      </li>
+    </ol>
+  </section>
+
+</article>
+
+<footer>
+  <a href="https://www.guytalkmedia.com" class="footer-cta">Get tomorrow's brief →</a>
+  <div class="footer-meta">Got forwarded this? Subscribe at guytalkmedia.com. Reply with anything you want covered.</div>
+  <div class="footer-sig">— GuyTalk.</div>
+</footer>
+
+</body>
+</html>
