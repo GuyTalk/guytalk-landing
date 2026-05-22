@@ -190,9 +190,13 @@
     font-size: 13px;
     font-weight: 500;
     white-space: nowrap;
-    width: max-content;
-    animation: scroll 40s linear infinite;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
   }
+  .ticker::-webkit-scrollbar { display: none; }
   .ticker-item { display: flex; gap: 8px; align-items: baseline; }
   .ticker-sym { color: var(--text); font-weight: 600; }
   .ticker-mark { color: var(--accent); font-weight: 500; opacity: 0.85; }
@@ -220,13 +224,6 @@
   }
   .ticker-label-sub { font-weight: 500; opacity: 0.5; }
   .ticker-divider { color: var(--border-light); padding: 0 4px; }
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .ticker { animation: none; }
-  }
 
   /* ---------- SOCIAL PROOF STRIP ---------- */
   .proof {
@@ -693,9 +690,76 @@
 
 <script>
 (function () {
+  var ticker = document.getElementById('ticker-track');
+  if (!ticker) return;
+
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var SPEED = reducedMotion ? 0 : 0.6; // px per frame
+  var halfWidth = 0;
+  var paused = false;
+  var isDragging = false;
+  var startX = 0;
+  var startScroll = 0;
+
+  // ── Auto-scroll loop ─────────────────────────────────────────────
+  function step() {
+    if (!paused && halfWidth > 0) {
+      ticker.scrollLeft += SPEED;
+      if (ticker.scrollLeft >= halfWidth) ticker.scrollLeft -= halfWidth;
+    }
+    requestAnimationFrame(step);
+  }
+
+  function initScroll() {
+    halfWidth = ticker.scrollWidth / 2;
+    step();
+  }
+
+  // ── Desktop: pause on hover ───────────────────────────────────────
+  ticker.addEventListener('mouseenter', function () { paused = true; });
+  ticker.addEventListener('mouseleave', function () {
+    if (!isDragging) paused = false;
+  });
+
+  // ── Desktop: drag to scrub ────────────────────────────────────────
+  ticker.addEventListener('mousedown', function (e) {
+    isDragging = true;
+    paused = true;
+    startX = e.clientX;
+    startScroll = ticker.scrollLeft;
+    ticker.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', function (e) {
+    if (!isDragging) return;
+    var next = startScroll + (startX - e.clientX);
+    // Keep within the first copy so the loop stays seamless
+    if (halfWidth > 0) {
+      next = ((next % halfWidth) + halfWidth) % halfWidth;
+    }
+    ticker.scrollLeft = next;
+  });
+
+  document.addEventListener('mouseup', function () {
+    if (!isDragging) return;
+    isDragging = false;
+    paused = false;
+    ticker.style.cursor = '';
+  });
+
+  // ── Mobile: pause during touch, let native scroll move the strip ──
+  ticker.addEventListener('touchstart', function () {
+    paused = true;
+  }, { passive: true });
+
+  ticker.addEventListener('touchend', function () {
+    // Short delay so momentum scroll can settle before auto-scroll resumes
+    setTimeout(function () { paused = false; }, 800);
+  }, { passive: true });
+
+  // ── Load live data then start scrolling ───────────────────────────
   async function loadTicker() {
-    var track = document.getElementById('ticker-track');
-    if (!track) return;
     try {
       var res = await fetch('/api/ticker');
       if (!res.ok) throw new Error();
@@ -714,11 +778,13 @@
 
       var sep = '<div class="ticker-item"><span class="ticker-divider">—</span></div>';
       var full = mktHtml + sep + sptHtml;
-      track.innerHTML = full + full;
+      ticker.innerHTML = full + full;
     } catch (e) {
-      // API unavailable — fallback HTML already rendered, nothing to do
+      // API unavailable — fallback HTML already in DOM, use it as-is
     }
+    initScroll();
   }
+
   loadTicker();
 })();
 </script>
