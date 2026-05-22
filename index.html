@@ -24,6 +24,8 @@
     --accent-muted: #1E3A6B;
     --green: #2BD96A;
     --red: #FF4D4D;
+    --amber: #F5A623;
+    --amber-muted: rgba(245,166,35,0.08);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -37,6 +39,20 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
+
+  /* Film-grain texture overlay — adds material depth */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9000;
+    opacity: 0.032;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 300px 300px;
+    mix-blend-mode: overlay;
+  }
+
   .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
   a { color: inherit; text-decoration: none; }
 
@@ -44,14 +60,19 @@
   .fade-up {
     opacity: 0;
     transform: translateY(22px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.55s ease, transform 0.55s ease;
   }
   .fade-up.is-visible { opacity: 1; transform: translateY(0); }
   .bento-card.fade-up:nth-child(2) { transition-delay: 0.07s; }
   .bento-card.fade-up:nth-child(3) { transition-delay: 0.14s; }
-  .bento-card.fade-up:nth-child(4) { transition-delay: 0.07s; }
-  .bento-card.fade-up:nth-child(5) { transition-delay: 0.14s; }
-  .bento-card.fade-up:nth-child(6) { transition-delay: 0.05s; }
+  .bento-card.fade-up:nth-child(4) { transition-delay: 0.21s; }
+  .bento-card.fade-up:nth-child(5) { transition-delay: 0.10s; }
+  .bento-card.fade-up:nth-child(6) { transition-delay: 0.18s; }
+  /* Chat message stagger */
+  .chat-msg.fade-up:nth-child(1) { transition-delay: 0.00s; }
+  .chat-msg.fade-up:nth-child(2) { transition-delay: 0.13s; }
+  .chat-msg.fade-up:nth-child(3) { transition-delay: 0.27s; }
+  .chat-msg.fade-up:nth-child(4) { transition-delay: 0.43s; }
 
   /* ---------- NAV ---------- */
   nav {
@@ -60,6 +81,11 @@
     backdrop-filter: saturate(180%) blur(16px);
     -webkit-backdrop-filter: saturate(180%) blur(16px);
     border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  nav.scrolled {
+    box-shadow: 0 1px 0 rgba(61,126,255,0.1), 0 4px 24px rgba(0,0,0,0.3);
+    border-bottom-color: rgba(61,126,255,0.08);
   }
   .nav-inner {
     display: flex; align-items: center; justify-content: space-between;
@@ -76,9 +102,13 @@
     padding: 9px 18px;
     background: var(--accent); color: white;
     border-radius: 8px;
-    transition: background 0.15s ease, transform 0.15s ease;
+    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.2s ease;
   }
-  .nav-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .nav-cta:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 0 22px rgba(61,126,255,0.45), 0 4px 12px rgba(0,0,0,0.2);
+  }
 
   /* ---------- HERO ---------- */
   .hero { padding: 88px 0 72px; text-align: center; }
@@ -130,7 +160,7 @@
     line-height: 1.7;
   }
 
-  /* ---------- TICKER (in hero, above form) ---------- */
+  /* ---------- TICKER ---------- */
   .ticker-wrap {
     margin-bottom: 44px;
     background: var(--surface);
@@ -138,6 +168,7 @@
     border-radius: 12px;
     overflow: hidden;
     position: relative;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
   }
   .ticker-wrap::before,
   .ticker-wrap::after {
@@ -238,14 +269,20 @@
 
   .bento-card {
     background: var(--surface);
+    background-image: radial-gradient(
+      400px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+      rgba(61,126,255,0.07),
+      transparent 60%
+    );
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 4px 16px rgba(0,0,0,0.2);
   }
   .bento-card:hover {
-    border-color: rgba(61,126,255,0.28);
-    box-shadow: 0 0 0 1px rgba(61,126,255,0.07), 0 12px 40px rgba(0,0,0,0.25);
+    border-color: rgba(61,126,255,0.22);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(61,126,255,0.06), 0 16px 48px rgba(0,0,0,0.28);
     transform: translateY(-2px);
   }
   .bento-cat {
@@ -254,6 +291,7 @@
     text-transform: uppercase; letter-spacing: 0.2em;
     color: var(--accent); margin-bottom: 14px;
   }
+  .bento-cat-amber { color: var(--amber); }
   .bento-card h3 {
     font-family: 'Inter Tight', sans-serif;
     font-weight: 700; font-size: 19px;
@@ -272,7 +310,6 @@
     border-radius: 4px; color: var(--accent);
   }
 
-  /* Big card split layout */
   .bento-big { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
   .bento-big-text h3 { font-size: clamp(20px, 2.2vw, 28px); line-height: 1.15; margin-bottom: 12px; }
   .bento-big-text p  { font-size: 15px; line-height: 1.7; }
@@ -296,22 +333,196 @@
     text-transform: uppercase; letter-spacing: 0.15em;
     color: var(--accent); padding-top: 2px;
   }
+  .bento-preview-cat-amber { color: var(--amber); }
   .bento-preview-line { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
 
-  /* ---------- NOT FOR YOU ---------- */
-  .not-for-you {
-    padding: 60px 0;
+  /* ---------- BILLBOARD MANIFESTO ---------- */
+  .billboard {
+    padding: 80px 0 0;
     border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
   }
-  .nfy-inner { max-width: 700px; margin: 0 auto; text-align: center; }
-  .nfy-text {
+  .billboard-inner { max-width: 880px; }
+  .billboard-text {
     font-family: 'Inter Tight', sans-serif;
-    font-size: clamp(18px, 2.2vw, 26px);
-    font-weight: 600; letter-spacing: -0.02em; line-height: 1.65;
+    font-weight: 900;
+    font-size: clamp(30px, 5.2vw, 66px);
+    letter-spacing: -0.04em;
+    line-height: 1.02;
   }
-  .nfy-text .dim    { color: var(--text-secondary); font-weight: 500; }
-  .nfy-text .strong { color: var(--text); }
+  .billboard-dim {
+    display: block;
+    color: rgba(242,244,247,0.17);
+    transition: color 0.35s ease;
+  }
+  .billboard-dim:hover { color: rgba(242,244,247,0.4); }
+  .billboard-bright {
+    display: block;
+    color: var(--text);
+    margin-top: 0.2em;
+  }
+  .billboard-bright .bb-accent { color: var(--accent); }
+
+  /* ---------- GROUP CHAT SECTION ---------- */
+  .chat-section {
+    padding: 60px 0 88px;
+    position: relative;
+    overflow: hidden;
+  }
+  .chat-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 600px;
+    background: radial-gradient(ellipse at center, rgba(61,126,255,0.06), transparent 70%);
+    pointer-events: none;
+  }
+  .chat-heading {
+    text-align: center;
+    margin-bottom: 44px;
+    position: relative;
+  }
+  .chat-live-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.22em;
+    color: var(--green);
+    margin-bottom: 18px;
+  }
+  .chat-live-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  .chat-heading h2 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 900;
+    font-size: clamp(28px, 4.2vw, 52px);
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    margin-bottom: 12px;
+  }
+  .chat-heading p {
+    color: var(--text-secondary);
+    font-size: 17px;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .chat-window {
+    max-width: 580px; margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.05),
+      0 40px 100px rgba(0,0,0,0.45),
+      0 0 0 1px rgba(61,126,255,0.05),
+      0 0 80px rgba(61,126,255,0.05);
+    position: relative;
+  }
+  .chat-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255,255,255,0.015);
+  }
+  .chat-avatars { display: flex; }
+  .chat-avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 2px solid var(--surface);
+    margin-left: -8px;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700; font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; flex-shrink: 0; line-height: 1;
+  }
+  .chat-avatar:first-child { margin-left: 0; }
+  .ca-blue   { background: #3D7EFF; }
+  .ca-green  { background: #1DB954; }
+  .ca-amber  { background: #F5A623; }
+  .ca-purple { background: #7C3AED; }
+  .chat-meta { flex: 1; }
+  .chat-group-name {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700; font-size: 15px;
+    display: block; letter-spacing: -0.01em;
+  }
+  .chat-online { font-size: 12px; color: var(--green); display: block; margin-top: 1px; }
+
+  .chat-messages { padding: 22px 20px; display: flex; flex-direction: column; gap: 14px; }
+  .chat-msg { display: flex; flex-direction: column; max-width: 78%; }
+  .chat-msg--left  { align-self: flex-start; }
+  .chat-msg--right { align-self: flex-end; }
+  .chat-msg--brand { align-self: flex-start; max-width: 88%; }
+
+  .chat-sender {
+    font-size: 10px; color: var(--text-secondary);
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 5px; padding-left: 14px;
+  }
+  .chat-bubble {
+    padding: 11px 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-light);
+    border-radius: 4px 18px 18px 18px;
+    font-size: 15px; line-height: 1.5; color: var(--text);
+  }
+  .chat-bubble--right {
+    background: rgba(61,126,255,0.11);
+    border-color: rgba(61,126,255,0.2);
+    border-radius: 18px 4px 18px 18px;
+  }
+  .chat-bubble--culture {
+    border-color: rgba(245,166,35,0.24);
+    background: rgba(245,166,35,0.07);
+  }
+  .chat-bubble--brand {
+    background: linear-gradient(140deg, rgba(61,126,255,0.13), rgba(61,126,255,0.06));
+    border-color: rgba(61,126,255,0.28);
+    border-radius: 4px 18px 18px 18px;
+    padding: 16px 18px;
+  }
+  .chat-gt-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--accent); display: block; margin-bottom: 7px;
+  }
+  .chat-bubble--brand .chat-text {
+    font-size: 15px; line-height: 1.55; color: var(--text);
+    display: block; margin-bottom: 12px;
+  }
+  .chat-brief-cta {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700; font-size: 14px; color: var(--accent);
+    letter-spacing: -0.01em;
+    transition: color 0.15s ease, gap 0.15s ease;
+  }
+  .chat-brief-cta:hover { color: var(--accent-hover); gap: 8px; }
+  .chat-typing {
+    padding: 13px 20px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+    color: var(--text-secondary); font-size: 13px;
+  }
+  .typing-dots { display: flex; gap: 3px; align-items: center; }
+  .typing-dots span {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--text-secondary);
+    animation: typing-bounce 1.4s ease-in-out infinite;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: 0.16s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.32s; }
+  @keyframes typing-bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
+    30% { transform: translateY(-4px); opacity: 0.9; }
+  }
 
   /* ---------- SAMPLE BRIEF ---------- */
   .brief-section { background: linear-gradient(180deg, transparent, rgba(61,126,255,0.025), transparent); }
@@ -320,12 +531,13 @@
     border: 1px solid var(--border);
     border-radius: 18px; overflow: hidden;
     max-width: 720px; margin: 0 auto;
-    box-shadow: 0 28px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(61,126,255,0.06);
+    box-shadow: 0 28px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(61,126,255,0.06), inset 0 1px 0 rgba(255,255,255,0.04);
   }
   .brief-header {
     padding: 20px 24px; border-bottom: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 8px;
+    background: rgba(255,255,255,0.01);
   }
   .brief-date {
     font-family: 'Inter Tight', sans-serif;
@@ -353,18 +565,30 @@
     text-transform: uppercase; letter-spacing: 0.18em;
     color: var(--accent); margin-bottom: 8px;
   }
+  .brief-cat-amber { color: var(--amber); }
   .brief-headline {
     font-family: 'Inter Tight', sans-serif;
     font-weight: 600; font-size: 17px;
     letter-spacing: -0.01em; margin-bottom: 6px; line-height: 1.3;
   }
   .brief-snippet { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .brief-story:last-child .brief-snippet::after {
+    content: '▍';
+    font-size: 11px; color: var(--accent);
+    animation: cursor-blink 1.2s step-end infinite;
+    margin-left: 2px; vertical-align: middle;
+  }
 
   /* ---------- FOUNDER ---------- */
   .founder {
     max-width: 640px; margin: 0 auto;
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 18px; padding: 40px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 4px 20px rgba(0,0,0,0.2);
   }
   .founder-head { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
   .founder-avatar {
@@ -374,6 +598,7 @@
     font-family: 'Inter Tight', sans-serif;
     font-weight: 700; font-size: 18px; color: white;
     flex-shrink: 0;
+    box-shadow: 0 0 18px rgba(61,126,255,0.3);
   }
   .founder-name { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 16px; }
   .founder-role {
@@ -385,13 +610,31 @@
   .founder p:last-child { margin-bottom: 0; color: var(--text-secondary); }
 
   /* ---------- CLOSING CTA ---------- */
-  .closing { text-align: center; padding: 100px 0; }
+  .closing {
+    text-align: center;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 500px;
+    background: radial-gradient(ellipse at center, rgba(61,126,255,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .closing > .container { position: relative; }
   .closing h2 {
     font-family: 'Inter Tight', sans-serif;
-    font-weight: 900; font-size: clamp(34px, 5.5vw, 64px);
-    letter-spacing: -0.04em; line-height: 1.0; margin-bottom: 18px;
+    font-weight: 900; font-size: clamp(36px, 6vw, 72px);
+    letter-spacing: -0.045em; line-height: 1.0; margin-bottom: 18px;
   }
-  .closing h2 .accent { color: var(--accent); }
+  .closing h2 .accent {
+    color: var(--accent);
+    text-shadow: 0 0 40px rgba(61,126,255,0.3);
+  }
   .closing > .container > p { color: var(--text-secondary); font-size: 18px; margin-bottom: 36px; }
 
   /* ---------- FOOTER ---------- */
@@ -422,8 +665,11 @@
     .founder { padding: 28px 22px; }
     .beehiiv-form-wrap { max-width: 100%; }
     .ticker { gap: 24px; font-size: 12px; }
-    .not-for-you { padding: 44px 0; }
-    .nfy-text { font-size: 18px; text-align: left; }
+    .billboard { padding: 56px 0 0; }
+    .billboard-text { font-size: clamp(26px, 7.5vw, 40px); }
+    .chat-msg, .chat-msg--brand { max-width: 92%; }
+    .chat-section { padding: 44px 0 64px; }
+    .closing { padding: 80px 0; }
     .section-eyebrow::before, .section-eyebrow::after { display: none; }
   }
 </style>
@@ -464,7 +710,7 @@
       No takes. No noise. Just what you need to walk into the day knowing more than the room.
     </p>
 
-    <!-- TICKER — shown before the ask so visitors see the product first -->
+    <!-- TICKER -->
     <div class="ticker-wrap">
       <div class="ticker-label">What's Moving <span class="ticker-label-sub">Markets · Sports</span></div>
       <div class="ticker" id="ticker-track">
@@ -489,7 +735,7 @@
       </div>
     </div>
 
-    <!-- SIGNUP — below the ticker, after the product has been shown -->
+    <!-- SIGNUP -->
     <div id="signup" class="beehiiv-form-wrap">
       <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d"></script>
     </div>
@@ -515,7 +761,6 @@
 
     <div class="bento">
 
-      <!-- Big card: full-width with inline brief preview -->
       <div class="bento-card bento-full fade-up">
         <div class="bento-big">
           <div class="bento-big-text">
@@ -533,35 +778,31 @@
               <span class="bento-preview-line">Yields ripped. Tech got punished. Here's the chain reaction in three sentences.</span>
             </div>
             <div class="bento-preview-item">
-              <span class="bento-preview-cat">Culture</span>
+              <span class="bento-preview-cat bento-preview-cat-amber">Culture</span>
               <span class="bento-preview-line">The tweet breaking everyone's timeline right now. Context: 30 seconds.</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Sports card -->
       <div class="bento-card bento-third fade-up">
         <div class="bento-cat">Sports</div>
         <h3>Last night's results. Tonight's storylines.</h3>
         <p>Scores, standings, and the one angle worth bringing up — without the box score dump. Know what happened and why it matters before anyone brings it up.</p>
       </div>
 
-      <!-- Markets card -->
       <div class="bento-card bento-third fade-up">
         <div class="bento-cat">Markets</div>
         <h3>The moves that mattered. In plain English.</h3>
         <p>Stocks, crypto, and macro — explained without the finance-speak. Whether you're watching your portfolio or just want to hold your own in the conversation.</p>
       </div>
 
-      <!-- Culture card -->
       <div class="bento-card bento-third fade-up">
-        <div class="bento-cat">Culture</div>
+        <div class="bento-cat bento-cat-amber">Culture</div>
         <h3>What everyone's arguing about today.</h3>
         <p>The tweet, the clip, the take. We tell you what it is, why people care, and the correct read — so you're never the last one to hear about it.</p>
       </div>
 
-      <!-- Before you go out -->
       <div class="bento-card bento-half fade-up">
         <div class="bento-cat">Coming soon</div>
         <h3>Before you go out.</h3>
@@ -569,7 +810,6 @@
         <span class="bento-tag">In development</span>
       </div>
 
-      <!-- Five minutes -->
       <div class="bento-card bento-half fade-up">
         <div class="bento-cat">Always</div>
         <h3>Five minutes. No exceptions.</h3>
@@ -581,14 +821,71 @@
   </div>
 </section>
 
-<!-- NOT FOR EVERYONE -->
-<div class="not-for-you">
+<!-- BILLBOARD MANIFESTO -->
+<div class="billboard">
   <div class="container">
-    <div class="nfy-inner">
-      <p class="nfy-text">
-        <span class="dim">ESPN yells. Morning Brew is for bankers. Your feed is a war zone.</span><br>
-        <span class="strong">GuyTalk is for the guy who has five minutes — and wants to walk out knowing more than the room.</span>
+    <div class="billboard-inner">
+      <p class="billboard-text">
+        <span class="billboard-dim">ESPN yells.</span>
+        <span class="billboard-dim">Morning Brew is for bankers.</span>
+        <span class="billboard-dim">Your feed is a war zone.</span>
+        <span class="billboard-bright">We built something <span class="bb-accent">different.</span></span>
       </p>
+    </div>
+  </div>
+</div>
+
+<!-- GROUP CHAT — the alive moment -->
+<div class="chat-section">
+  <div class="container">
+    <div class="chat-heading">
+      <div class="chat-live-badge">
+        <span class="chat-live-dot"></span>
+        What's in the group chat
+      </div>
+      <h2>Three stories.<br>Before anyone asks.</h2>
+      <p>Every morning, GuyTalk has the answers before the conversation starts.</p>
+    </div>
+
+    <div class="chat-window">
+      <div class="chat-header">
+        <div class="chat-avatars">
+          <div class="chat-avatar ca-blue">J</div>
+          <div class="chat-avatar ca-green">M</div>
+          <div class="chat-avatar ca-amber">A</div>
+          <div class="chat-avatar ca-purple">R</div>
+        </div>
+        <div class="chat-meta">
+          <span class="chat-group-name">The Boys</span>
+          <span class="chat-online">4 active now</span>
+        </div>
+      </div>
+
+      <div class="chat-messages">
+        <div class="chat-msg chat-msg--left fade-up">
+          <div class="chat-sender">Jake</div>
+          <div class="chat-bubble">SGA dropped 40 last night. Series is basically over.</div>
+        </div>
+        <div class="chat-msg chat-msg--right fade-up">
+          <div class="chat-bubble chat-bubble--right">bro Nvidia hit $4 trillion today. insane</div>
+        </div>
+        <div class="chat-msg chat-msg--left fade-up">
+          <div class="chat-sender">Alex</div>
+          <div class="chat-bubble chat-bubble--culture">did you guys see that CEO tweet?? 💀 everyone's going crazy</div>
+        </div>
+        <div class="chat-msg chat-msg--brand fade-up">
+          <div class="chat-bubble chat-bubble--brand">
+            <span class="chat-gt-tag">GuyTalk · Today's Brief</span>
+            <span class="chat-text">All three in your inbox. Sports, markets, and culture — sharp, in five minutes.</span>
+            <a href="#signup" class="chat-brief-cta">Read today's brief →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-typing">
+        <span class="typing-dots"><span></span><span></span><span></span></span>
+        3 more stories in today's brief...
+      </div>
     </div>
   </div>
 </div>
@@ -622,7 +919,7 @@
         </div>
 
         <div class="brief-story">
-          <div class="brief-cat">Culture</div>
+          <div class="brief-cat brief-cat-amber">Culture</div>
           <div class="brief-headline">The one tweet everyone's screenshot-ing today</div>
           <div class="brief-snippet">A 14-second clip, a podcast take, and one CEO post. Here's what's actually going on — and why your group chat won't shut up about it.</div>
         </div>
@@ -686,12 +983,31 @@
 <script>
 (function () {
 
+  // ── Nav scroll glow ───────────────────────────────────────────────
+  var nav = document.querySelector('nav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ── Bento card mouse-follow radial highlight ──────────────────────
+  document.querySelectorAll('.bento-card').forEach(function (card) {
+    card.addEventListener('mousemove', function (e) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--mouse-y', (e.clientY - r.top)  + 'px');
+    });
+    card.addEventListener('mouseleave', function () {
+      card.style.setProperty('--mouse-x', '-500px');
+      card.style.setProperty('--mouse-y', '-500px');
+    });
+  });
+
   // ── Scroll-triggered fade-ups ─────────────────────────────────────
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target); // fire once
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
@@ -725,11 +1041,9 @@
     step();
   }
 
-  // Desktop: pause on hover
   ticker.addEventListener('mouseenter', function () { paused = true; });
   ticker.addEventListener('mouseleave', function () { if (!isDragging) paused = false; });
 
-  // Desktop: drag to scrub
   ticker.addEventListener('mousedown', function (e) {
     isDragging = true; paused = true;
     startX = e.clientX; startScroll = ticker.scrollLeft;
@@ -748,13 +1062,11 @@
     ticker.style.cursor = '';
   });
 
-  // Mobile: pause during touch, resume after momentum settles
   ticker.addEventListener('touchstart', function () { paused = true; }, { passive: true });
   ticker.addEventListener('touchend',   function () {
     setTimeout(function () { paused = false; }, 800);
   }, { passive: true });
 
-  // Load live data, then start scroll
   async function loadTicker() {
     try {
       var res = await fetch('/api/ticker');
