@@ -163,6 +163,11 @@ async function main() {
   console.log(`\n  Preview:  open brief/${slug}/index.html`);
   console.log(`  Deploy:   git add . && git commit -m "Add ${slug}" && git push`);
   console.log(`${line()}\n`);
+
+  // --open flag: launch in default browser (used by npm run brief:review and launchd)
+  if (process.argv.includes('--open')) {
+    require('child_process').execSync(`open "${htmlPath}"`);
+  }
 }
 
 main().catch(err => {

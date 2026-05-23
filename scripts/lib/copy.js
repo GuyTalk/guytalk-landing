@@ -57,13 +57,16 @@ Context: ${ctx}`,
     const gamesText = sports.map(g => {
       const w = g.home.winner ? g.home : g.away;
       const l = g.home.winner ? g.away : g.home;
-      return `${g.note || g.name}: ${w.team} ${w.score}, ${l.team} ${l.score} (${g.status})`;
+      let line = `${g.note || g.name}: ${w.team} ${w.score}, ${l.team} ${l.score} (${g.status})`;
+      if (g.seriesNote) line += ` [Series: ${g.seriesNote}]`;
+      return line;
     }).join('\n');
 
     results.sportsAngle = await ask(
       `Write 2–3 sentences as the opening paragraph for the Sports section.
 Last night's games:\n${gamesText}
-Lead with the most important result. Name the best player. End with what Game X sets up.`,
+Lead with the most important result. Name the best player. End with what the next game sets up.
+CRITICAL: Only state a series record if it is explicitly given above in [Series: ...] brackets. Never guess or infer a series record that isn't provided.`,
       250
     );
   }
@@ -112,7 +115,9 @@ function buildContext({ sports, markets, golf }) {
     parts.push(sports.map(g => {
       const w = g.home.winner ? g.home : g.away;
       const l = g.home.winner ? g.away : g.home;
-      return `${g.note || g.shortName}: ${w.team} ${w.score}–${l.team} ${l.score}`;
+      let s = `${g.note || g.shortName}: ${w.team} ${w.score}–${l.team} ${l.score}`;
+      if (g.seriesNote) s += ` (${g.seriesNote})`;
+      return s;
     }).join('; '));
   }
   if (golf?.leaders?.[0]) {

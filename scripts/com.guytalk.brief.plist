@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+  <!-- Unique identifier for this agent -->
+  <key>Label</key>
+  <string>com.guytalk.brief</string>
+
+  <!-- What to run: bash → run-brief.sh -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/jakewilliams/Desktop/Claude/Projects/GuyTalk/scripts/run-brief.sh</string>
+  </array>
+
+  <!-- Run every day at 7:00 AM local time -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>7</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <!-- Do NOT run automatically when the plist is first loaded -->
+  <key>RunAtLoad</key>
+  <false/>
+
+  <!-- launchd-level stdout/stderr (shell script also writes its own dated log) -->
+  <key>StandardOutPath</key>
+  <string>/Users/jakewilliams/Desktop/Claude/Projects/GuyTalk/logs/launchd-stdout.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/jakewilliams/Desktop/Claude/Projects/GuyTalk/logs/launchd-stderr.log</string>
+
+  <!-- Ensure PATH includes Homebrew so the node lookup in run-brief.sh works -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    <key>HOME</key>
+    <string>/Users/jakewilliams</string>
+  </dict>
+
+</dict>
+</plist>

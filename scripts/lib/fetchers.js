@@ -2,6 +2,13 @@
 
 const { TICKERS, FETCH_TICKERS } = require('./db');
 
+function orderSuffix(n) {
+  if (n === 1) return '1st';
+  if (n === 2) return '2nd';
+  if (n === 3) return '3rd';
+  return `${n}th`;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // ESPN: NBA scores for a given date (YYYYMMDD string, defaults to yesterday)
 // ─────────────────────────────────────────────────────────────────────────────
@@ -29,6 +36,7 @@ async function fetchNBA(dateStr) {
       shortName: ev.shortName,
       status: comp.status?.type?.description || 'Final',
       note: comp.notes?.[0]?.headline || '',
+      seriesNote: comp.series?.summary || '',   // e.g. "OKC leads series 2-1"
       home: {
         team: home.team?.displayName || '',
         abbrev: home.team?.abbreviation || '',
@@ -90,31 +98,40 @@ async function fetchGolf() {
     'https://site.api.espn.com/apis/site/v2/sports/golf/pga/scoreboard',
   ];
 
-  for (const url of endpoints) {
-    try {
-      const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
-      if (!res.ok) continue;
-      const data = await res.json();
-      const ev = data.events?.[0];
-      if (!ev) continue;
+  // Only try the scoreboard — leaderboard endpoint consistently returns 404
+  const url = 'https://site.api.espn.com/apis/site/v2/sports/golf/pga/scoreboard';
+  try {
+    const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const ev = data.events?.[0];
+    if (!ev) return null;
 
-      const leaders = (ev.competitors || ev.athletes || []).slice(0, 10).map(c => ({
-        name:   c.athlete?.displayName || c.displayName || 'Unknown',
-        espnId: c.athlete?.id || c.id,
-        score:  c.score?.displayValue || c.linescores?.reduce((s, r) => s + (r.value || 0), 0) || 'E',
-        pos:    c.status?.position?.displayName || c.position?.displayName || '--',
-      }));
+    // Competitors live under competitions[0], sorted by order (1 = leader)
+    const comp = ev.competitions?.[0];
+    const statusDetail = comp?.status?.type?.detail || ev.status?.type?.description || '';
+    const statusState  = ev.status?.type?.state || 'pre';
 
-      return {
-        name:   ev.name || 'PGA Tour',
-        venue:  ev.venue?.fullName || '',
-        status: ev.status?.type?.description || '',
-        round:  ev.status?.period || null,
-        leaders,
-      };
-    } catch (_) {
-      continue;
-    }
+    const leaders = (comp?.competitors || [])
+      .sort((a, b) => (a.order || 99) - (b.order || 99))
+      .slice(0, 10)
+      .map((c, i) => ({
+        name:   c.athlete?.displayName || 'Unknown',
+        espnId: c.athlete?.id,
+        score:  c.score || 'E',
+        pos:    orderSuffix(c.order || i + 1),
+      }))
+      .filter(c => c.name !== 'Unknown');
+
+    return {
+      name:        ev.name || 'PGA Tour',
+      venue:       ev.venue?.fullName || '',
+      status:      statusDetail,
+      statusState,                                // 'pre' | 'in' | 'post'
+      leaders,
+    };
+  } catch (_) {
+    return null;
   }
 
   return null;

@@ -130,12 +130,18 @@ function buildTldr({ sports, markets, golf }) {
     });
   }
 
-  // Golf bullet — auto from ESPN data
-  if (golf?.leaders?.[0]) {
+  // Golf bullet — auto from ESPN data if tournament is in progress
+  const golfLive = golf?.statusState === 'in' || golf?.statusState === 'post';
+  if (golf && golfLive && golf.leaders?.[0]) {
     const l = golf.leaders[0];
     items.push({
       tag: 'Golf', anchor: '#golf',
-      html: `${playerLink(l.name)} leads ${esc(golf.name)} at ${esc(l.score)}. <!-- REPLACE: Add context note -->`,
+      html: `${playerLink(l.name)} leads ${esc(golf.name)} at ${esc(l.score)} (${esc(golf.status || 'In Progress')}). <!-- REPLACE: Add one-line context -->`,
+    });
+  } else if (golf && !golfLive) {
+    items.push({
+      tag: 'Golf', anchor: '#golf',
+      html: `${esc(golf.name)} starts this week. REPLACE: Field preview in one line.`,
     });
   } else {
     items.push({
@@ -314,35 +320,45 @@ ${rows}
 function buildGolf({ golf, copy }) {
   let leaderboardHtml;
 
-  if (golf?.leaders?.length) {
+  const golfInProgress = golf?.statusState === 'in' || golf?.statusState === 'post';
+
+  if (golf && golfInProgress && golf.leaders?.length) {
     const top5 = golf.leaders.slice(0, 5);
-    const leaderName = top5[0].name;
-    const leaderScore = top5[0].score;
+    const leader = top5[0];
     const leaderLineHtml = top5.map(p =>
       `${playerLink(p.name)} ${esc(p.score)} (${esc(p.pos)})`
     ).join(', ');
+    const roundLabel = golf.status || 'In Progress';
+    const aiNote = copy?.golfNote
+      ? `<p>${esc(copy.golfNote)}</p>`
+      : `<p>REPLACE: 1–2 sentences on the leader and what the tournament means heading into the weekend.</p>`;
 
     leaderboardHtml = `
-    <h3>${esc(golf.name)}: ${playerLink(leaderName)} leads at ${esc(leaderScore)}.</h3>
+    <h3>${esc(golf.name)}: ${playerLink(leader.name)} leads at ${esc(leader.score)}.</h3>
 
-    <p><!-- AI golf note: ${esc(copy?.golfNote || 'Fill in a 2-sentence note on the leader and the tournament stakes.')} --></p>
-    <p>REPLACE: Add your take on the tournament. Why does it matter? What's the storyline heading into the weekend?</p>
+    ${aiNote}
 
     <ul class="detail-list">
-      <li><span><span class="dl-label">Leaderboard (${esc(golf.status || 'current')}):</span>${leaderLineHtml}. <!-- Verify at espn.com/golf before publishing --></span></li>
-      <li><span><span class="dl-label">Why it matters:</span>REPLACE: What makes this tournament count — major points, field quality, historic venue, narrative.</span></li>
+      <li><span><span class="dl-label">Leaderboard (${esc(roundLabel)}):</span>${leaderLineHtml}. <!-- Verify at espn.com/golf --></span></li>
+      <li><span><span class="dl-label">Why it matters:</span>REPLACE: What makes this event count — field quality, FedEx Cup points, historic venue.</span></li>
       <li><span><span class="dl-label">TV schedule:</span>REPLACE: "Saturday R3: TIME ET, NETWORK. Sunday R4: TIME ET, NETWORK."</span></li>
-      <li><span><span class="dl-label">What to bring up:</span>REPLACE: One specific, inside-knowledge fact about the leader or this course. Not just a stat.</span></li>
+      <li><span><span class="dl-label">What to bring up:</span>REPLACE: One inside-knowledge fact about the leader or the course.</span></li>
     </ul>
 
     <div class="angle-box">
       <span class="angle-label">TV Schedule</span>
-      <p class="angle-text">REPLACE: "Saturday Round 3: TIME ET, Golf Channel / Peacock. Sunday Round 4: TIME ET, NBC / Peacock."</p>
+      <p class="angle-text">REPLACE: "Saturday Round 3: TIME ET, Golf Channel / Peacock. Sunday Round 4: TIME ET, NBC."</p>
     </div>`;
+
+  } else if (golf && !golfInProgress) {
+    leaderboardHtml = `
+    <h3>${esc(golf.name)} — starts this week.</h3>
+    <p>REPLACE: Field preview, key players to watch, venue info. Tournament hasn't started yet.</p>`;
+
   } else {
     leaderboardHtml = `
     <h3>REPLACE: Golf headline — tournament name + leader.</h3>
-    <p>REPLACE: No active tournament data found. Add manually.</p>`;
+    <p>REPLACE: No active tournament data. Add manually from espn.com/golf.</p>`;
   }
 
   return `  <section class="brief-section" id="golf">

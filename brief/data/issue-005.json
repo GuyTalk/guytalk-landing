@@ -2,7 +2,7 @@
   "num": 5,
   "slug": "issue-005",
   "date": "Saturday, May 23, 2026",
-  "title": "REPLACE: Issue headline — max 12 words, no colons.",
+  "title": "Thunder up 2-1. Kim in charge at Byron Nelson. Markets holding steady.",
   "deck": "Five minutes. Everything you need.",
   "sports": [
     {
@@ -11,6 +11,7 @@
       "shortName": "OKC @ SA",
       "status": "Final",
       "note": "West Finals - Game 3",
+      "seriesNote": "OKC leads series 2-1",
       "home": {
         "team": "San Antonio Spurs",
         "abbrev": "SA",
@@ -25,73 +26,167 @@
       }
     }
   ],
-  "markets": null,
+  "markets": {
+    "SPY": {
+      "price": 745.66,
+      "prevClose": 742.72,
+      "dayChange": 2.94,
+      "dayChangePct": 0.3958
+    },
+    "QQQ": {
+      "price": 717.56,
+      "prevClose": 714.51,
+      "dayChange": 3.05,
+      "dayChangePct": 0.4269
+    },
+    "NVDA": {
+      "price": 215.35,
+      "prevClose": 219.51,
+      "dayChange": -4.16,
+      "dayChangePct": -1.8951
+    },
+    "TSLA": {
+      "price": 426.03,
+      "prevClose": 417.85,
+      "dayChange": 8.18,
+      "dayChangePct": 1.9576
+    },
+    "MSFT": {
+      "price": 418.59,
+      "prevClose": 419.09,
+      "dayChange": -0.5,
+      "dayChangePct": -0.1193
+    },
+    "AAPL": {
+      "price": 308.84,
+      "prevClose": 304.99,
+      "dayChange": 3.85,
+      "dayChangePct": 1.2623
+    },
+    "BTC": {
+      "price": 75430.3,
+      "prevClose": 76970.35,
+      "dayChange": -1540.05,
+      "dayChangePct": -2.0008
+    }
+  },
   "golf": {
     "name": "THE CJ CUP Byron Nelson",
     "venue": "",
-    "status": "In Progress",
-    "round": null,
-    "leaders": []
+    "status": "Round 3 - In Progress",
+    "statusState": "in",
+    "leaders": [
+      {
+        "name": "Si Woo Kim",
+        "score": "-19",
+        "pos": "1st"
+      },
+      {
+        "name": "Zach Bauchou",
+        "score": "-15",
+        "pos": "2nd"
+      },
+      {
+        "name": "Jackson Suber",
+        "score": "-15",
+        "pos": "3rd"
+      },
+      {
+        "name": "Wyndham Clark",
+        "score": "-14",
+        "pos": "4th"
+      },
+      {
+        "name": "Sungjae Im",
+        "score": "-14",
+        "pos": "5th"
+      },
+      {
+        "name": "Scottie Scheffler",
+        "score": "-14",
+        "pos": "6th"
+      },
+      {
+        "name": "Stephan Jaeger",
+        "score": "-13",
+        "pos": "7th"
+      },
+      {
+        "name": "Brooks Koepka",
+        "score": "-13",
+        "pos": "8th"
+      },
+      {
+        "name": "Chan Kim",
+        "score": "-13",
+        "pos": "9th"
+      },
+      {
+        "name": "Tom Hoge",
+        "score": "-13",
+        "pos": "10th"
+      }
+    ]
   },
   "trending": [
     {
       "title": "Daily Discussion Thread + Game Thread Index | Playoffs",
       "url": "https://reddit.com/r/nba/comments/1tlisil/daily_discussion_thread_game_thread_index_playoffs/",
-      "score": 4,
+      "score": 6,
       "source": "r/nba"
     },
     {
       "title": "Daily Discussion Thread + Game Thread Index | Playoffs",
       "url": "https://reddit.com/r/nba/comments/1tjn5hq/daily_discussion_thread_game_thread_index_playoffs/",
-      "score": 3,
+      "score": 2,
       "source": "r/nba"
     },
     {
       "title": "Breaking: 25 year old Yam Madar, who was drafted by the Celtics in 2020, has agreed to a deal with LSU to play for their College Basketball Team for a reported package of 5 million dollars per season.",
       "url": "https://reddit.com/r/nba/comments/1tlhhzb/breaking_25_year_old_yam_madar_who_was_drafted_by/",
-      "score": 1228,
-      "source": "r/nba"
-    },
-    {
-      "title": "A Spurs fan is dressed up as the SGA bubble wrap for tonight's game.",
-      "url": "https://reddit.com/r/nba/comments/1tl06gj/a_spurs_fan_is_dressed_up_as_the_sga_bubble_wrap/",
-      "score": 12520,
+      "score": 2012,
       "source": "r/nba"
     },
     {
       "title": "[Highlight] Jared McCain bodies Victor Wembanyama, Wembanyama’s head snaps back as if he were elbowed in the face",
       "url": "https://reddit.com/r/nba/comments/1tler3x/highlight_jared_mccain_bodies_victor_wembanyama/",
-      "score": 1003,
+      "score": 1387,
+      "source": "r/nba"
+    },
+    {
+      "title": "A Spurs fan is dressed up as the SGA bubble wrap for tonight's game.",
+      "url": "https://reddit.com/r/nba/comments/1tl06gj/a_spurs_fan_is_dressed_up_as_the_sga_bubble_wrap/",
+      "score": 12744,
       "source": "r/nba"
     },
     {
       "title": "Poll: Summer Goals 2026",
       "url": "https://reddit.com/r/golf/comments/1tjuety/poll_summer_goals_2026/",
-      "score": 3,
+      "score": 2,
       "source": "r/golf"
     },
     {
       "title": "[PGA] CJ CUP Byron Nelson 2026",
       "url": "https://reddit.com/r/golf/comments/1tildxb/pga_cj_cup_byron_nelson_2026/",
-      "score": 15,
-      "source": "r/golf"
-    },
-    {
-      "title": "Anyone ever seen this before, ball went through the tree and now got a stick stuck in it tried pulling it no chance",
-      "url": "https://reddit.com/r/golf/comments/1tld0rt/anyone_ever_seen_this_before_ball_went_through/",
-      "score": 1177,
+      "score": 14,
       "source": "r/golf"
     },
     {
       "title": "Putting Tutorial by Bryson Dechambeau",
       "url": "https://reddit.com/r/golf/comments/1tljbde/putting_tutorial_by_bryson_dechambeau/",
-      "score": 297,
+      "score": 606,
+      "source": "r/golf"
+    },
+    {
+      "title": "Anyone ever seen this before, ball went through the tree and now got a stick stuck in it tried pulling it no chance",
+      "url": "https://reddit.com/r/golf/comments/1tld0rt/anyone_ever_seen_this_before_ball_went_through/",
+      "score": 1407,
       "source": "r/golf"
     },
     {
       "title": "Just as he drew it up…",
       "url": "https://reddit.com/r/golf/comments/1tlf5ao/just_as_he_drew_it_up/",
-      "score": 302,
+      "score": 356,
       "source": "r/golf"
     },
     {
@@ -109,51 +204,111 @@
     {
       "title": "How does one avoid SpaceX as a passive investor?",
       "url": "https://reddit.com/r/investing/comments/1tl9tck/how_does_one_avoid_spacex_as_a_passive_investor/",
-      "score": 277,
-      "source": "r/investing"
-    },
-    {
-      "title": "4 month update on Reddit's favourite stock picks",
-      "url": "https://reddit.com/r/investing/comments/1tky1vr/4_month_update_on_reddits_favourite_stock_picks/",
-      "score": 155,
+      "score": 346,
       "source": "r/investing"
     },
     {
       "title": "People who bought stocks early when they were still risky, unpopular, or getting hated on, what made you buy?",
       "url": "https://reddit.com/r/investing/comments/1tl2zwr/people_who_bought_stocks_early_when_they_were/",
-      "score": 79,
+      "score": 87,
+      "source": "r/investing"
+    },
+    {
+      "title": "4 month update on Reddit's favourite stock picks",
+      "url": "https://reddit.com/r/investing/comments/1tky1vr/4_month_update_on_reddits_favourite_stock_picks/",
+      "score": 158,
       "source": "r/investing"
     },
     {
       "title": "Full video of the monologue Jimmy Kimmel got cancelled for",
       "url": "https://reddit.com/r/entertainment/comments/1nk2i7r/full_video_of_the_monologue_jimmy_kimmel_got/",
-      "score": 529,
+      "score": 530,
       "source": "r/entertainment"
     },
     {
       "title": "Hello! I’m Graham Norton, host of The Neighbourhood. Ask Me Anything!",
       "url": "https://reddit.com/r/entertainment/comments/1ssvpeq/hello_im_graham_norton_host_of_the_neighbourhood/",
-      "score": 892,
+      "score": 891,
       "source": "r/entertainment"
     },
     {
       "title": "Stephen Colbert Hosted a Public Access TV Show in Michigan After Signing Off CBS: “I Am Grateful To Be Here Before They Also Get Acquired By Paramount.”",
       "url": "https://reddit.com/r/entertainment/comments/1tlg15w/stephen_colbert_hosted_a_public_access_tv_show_in/",
-      "score": 1256,
+      "score": 1809,
       "source": "r/entertainment"
     },
     {
       "title": "South Park guys confirm they turned the show into a season-long Trump burn out of spite",
       "url": "https://reddit.com/r/entertainment/comments/1tl28ub/south_park_guys_confirm_they_turned_the_show_into/",
-      "score": 3383,
+      "score": 3703,
       "source": "r/entertainment"
     },
     {
-      "title": "The 'South Park' creators shared that the White House melting down over the show has only fueled them further to continue roasting Trump.",
-      "url": "https://reddit.com/r/entertainment/comments/1tkrbgc/the_south_park_creators_shared_that_the_white/",
-      "score": 13963,
+      "title": "Trump Shares A.I. Video of Him Literally Tossing Stephen Colbert Into a Dumpster",
+      "url": "https://reddit.com/r/entertainment/comments/1tl34on/trump_shares_ai_video_of_him_literally_tossing/",
+      "score": 2683,
       "source": "r/entertainment"
+    },
+    {
+      "title": "Danny Go! star Daniel Coleman announces passing of 14-year-old son - USA Today",
+      "url": "https://www.usatoday.com/story/entertainment/celebrities/2026/05/22/daniel-coleman-danny-go-14-year-old-son-dies/90215484007/",
+      "description": "Daniel Coleman's 14-year-old son Isaac died on May 21 after a battle with stage 3 mouth cancer.",
+      "source": "USA Today"
+    },
+    {
+      "title": "‘Star Wars: Mandalorian And Grogu’ Force-Pulls In $12M Thursday Night Previews – Box Office - Deadline",
+      "url": "http://deadline.com/2026/05/box-office-mandalorian-and-grogu-1236918713/",
+      "description": "'Star Wars: Mandalorian and Grogu' posted around $12M in Thursday night previews at the domestic box office.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Trump Celebrates Colbert’s Exit From CBS, Says of Other Late Night Hosts “May They All Rest in Peace!” - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/tv/tv-news/trump-celebrates-colbert-cancelation-threatens-late-night-1236604262/",
+      "description": "The president posted that Colbert's ouster is the \"beginning of the end\" for late night TV.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "'Peaky Blinders': Charlie Heaton Revealed As Tommy Shelby Son Charles - Deadline",
+      "url": "http://deadline.com/2026/05/peaky-blinders-charlie-heaton-tommy-shelby-son-stranger-things-1236918907/",
+      "description": "Charlie Heaton in 'Peaky Blinders' will play Tommy Shelby's son Charles in the BBC and Netflix series, with a first look image revealing more today.",
+      "source": "Deadline"
+    },
+    {
+      "title": "French Open 2026: Aryna Sabalenka cuts short news conference as top players protest over Grand Slam prize money - BBC",
+      "url": "https://www.bbc.com/sport/tennis/articles/ce3pg95djdeo",
+      "description": "Leading players, including Aryna Sabalenka, Coco Gauff and Jannik Sinner, limit their French Open media duties to 15 minutes in a row over prize money.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Kyle Busch Became Unresponsive in Chevrolet Racing Simulator Before Sudden Death; NASCAR Not Cancelling Coca-Cola 600 - Yahoo Sports",
+      "url": "https://sports.yahoo.com/articles/kyle-busch-became-unresponsive-chevrolet-142852079.html",
+      "description": "The details surrounding Kyle Busch’s sudden death are becoming even more difficult for the racing world to process. According to multiple people familiar...",
+      "source": "Yahoo Entertainment"
+    },
+    {
+      "title": "MLB Insider: What could the Detroit Tigers get in a Tarik Skubal trade? - FanSided",
+      "url": "https://fansided.com/mlb/mlb-insider-what-could-the-detroit-tigers-get-in-a-tarik-skubal-trade",
+      "description": "Robert Murray spoke with three MLB executives about what it would take to get Tarik Skubal away from the Detroit Tigers.",
+      "source": "FanSided"
+    },
+    {
+      "title": "Rico Verhoeven explains why he chose boxing Oleksandr Usyk over UFC offer, plans to ‘shock the world’ - MMA Fighting",
+      "url": "https://www.mmafighting.com/boxing/489761/rico-verhoeven-explains-decision-why-he-chose-boxing-oleksandr-usyk-over-ufc-offer-plans-to-shock-the-world",
+      "description": "Rico Verhoeven had a lot of options after leaving GLORY but the chance to fight Oleksandr Usyk was too good to pass up.",
+      "source": "MMA Fighting"
+    },
+    {
+      "title": "Giants’ Roy Robertson-Harris suffers torn Achilles at OTAs - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/giants-roy-robertson-harris-suffers-torn-achilles-at-otas",
+      "description": "The Giants have lost a key member of their defensive line during Organized Team Activities.",
+      "source": "NBCSports.com"
     }
   ],
-  "copy": null
+  "copy": {
+    "title": "Thunder up 2-1. Kim in charge at Byron Nelson. Markets holding steady.",
+    "sportsAngle": "# SPORTS\n\nOklahoma City's defense suffocated San Antonio last night, with Shai Gilgeous-Alexander dropping 34 points in a 123-108 West Finals blowout that gave OKC a 2-1 series lead. The Thunder's perimeter pressure broke the Spurs' rhythm early and never let up. Game 4 becomes San Antonio's must-win before heading home down 3-1.\n\n---\n\n*Bring to a dinner table: \"OKC's switching everything on defense—even Gilgeous-Alexander is guarding role players. Pop doesn't have an answer yet.\"*",
+    "marketsTake": "**Markets**\n\nThe market barely moved today, but the internals tell you everything: mega-cap tech is cracking while everything else holds steady, which means money's rotating out of the \"seven stocks that own the S&P\" into actual breadth. Watch the Fed's next move—if inflation data stays sticky, the market's comfortable-looking 0.4% rally disappears fast.",
+    "golfNote": "Si Woo Kim's -19 lead at Byron Nelson is real; he's not cruising on soft conditions.",
+    "sharpTake": "# Sharp Take\n\nThunder are running. OKC's perimeter defense suffocated San Antonio's spacing in Game 3—Shai Gilgeous-Alexander (32 points, 8 assists) turned the series into a coronation. This isn't close anymore. Markets stayed flat (SPY +0.4%), which means money's waiting for clarity on rate cuts, not running on weekend noise. Si Woo Kim's leading the CJ Cup at 19-under, which is the kind of scorching pace that makes you wonder if he's actually human or just a really committed golf robot.\n\nThe Yam Madar-to-LSU deal ($5M annually) is the real story nobody's talking about yet. A 25-year-old going back to college for a nine-figure contract signals something broken about NIL math, but it also signals LSU's serious about winning now. Don't sleep on that program. Clear your Saturday for the Thunder-Spurs Game 4 and the C"
+  }
 }

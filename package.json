@@ -4,6 +4,7 @@
   "description": "GuyTalk daily brief generator",
   "scripts": {
     "brief": "node scripts/generate-brief.js",
+    "brief:review": "node scripts/generate-brief.js --open",
     "install:brief": "npm install"
   },
   "dependencies": {
