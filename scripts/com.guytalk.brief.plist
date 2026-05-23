@@ -11,7 +11,7 @@
   <key>ProgramArguments</key>
   <array>
     <string>/bin/bash</string>
-    <string>/Users/jakewilliams/Desktop/Claude/Projects/GuyTalk/scripts/run-brief.sh</string>
+    <string>/Users/jakewilliams/Projects/GuyTalk/scripts/run-brief.sh</string>
   </array>
 
   <!-- Run every day at 7:00 AM local time -->
@@ -29,9 +29,9 @@
 
   <!-- launchd-level stdout/stderr (shell script also writes its own dated log) -->
   <key>StandardOutPath</key>
-  <string>/Users/jakewilliams/Desktop/Claude/Projects/GuyTalk/logs/launchd-stdout.log</string>
+  <string>/Users/jakewilliams/Projects/GuyTalk/logs/launchd-stdout.log</string>
   <key>StandardErrorPath</key>
-  <string>/Users/jakewilliams/Desktop/Claude/Projects/GuyTalk/logs/launchd-stderr.log</string>
+  <string>/Users/jakewilliams/Projects/GuyTalk/logs/launchd-stderr.log</string>
 
   <!-- Ensure PATH includes Homebrew so the node lookup in run-brief.sh works -->
   <key>EnvironmentVariables</key>

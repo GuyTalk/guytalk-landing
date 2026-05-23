@@ -5,7 +5,7 @@
 # Logs go to: logs/brief-YYYY-MM-DD.log
 # ─────────────────────────────────────────────────────────────────────────────
 
-PROJECT_DIR="/Users/jakewilliams/Desktop/Claude/Projects/GuyTalk"
+PROJECT_DIR="/Users/jakewilliams/Projects/GuyTalk"
 LOG_DIR="$PROJECT_DIR/logs"
 LOG_FILE="$LOG_DIR/brief-$(date +%Y-%m-%d).log"
 
