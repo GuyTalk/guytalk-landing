@@ -253,18 +253,25 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(61,126,255,0.06), 0 16px 48px rgba(0,0,0,0.28);
     transform: translateY(-2px);
   }
+  /* Coming-soon card: blue default, amber spring-pop on hover */
   .bento-card--soon {
-    border-color: rgba(245,166,35,0.18);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 4px 16px rgba(0,0,0,0.2), 0 0 0 1px rgba(245,166,35,0.07);
+    transition: border-color 0.25s ease, box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   .bento-card--soon:hover {
-    border-color: rgba(245,166,35,0.32);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(245,166,35,0.12), 0 16px 48px rgba(0,0,0,0.28), 0 0 36px rgba(245,166,35,0.07);
+    border-color: rgba(245,166,35,0.42);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05),
+                0 0 0 1px rgba(245,166,35,0.14),
+                0 28px 64px rgba(0,0,0,0.38),
+                0 0 52px rgba(245,166,35,0.11);
+    transform: translateY(-10px) scale(1.01);
   }
-  .bento-card--soon .bento-cat { color: var(--amber); }
-  .bento-card--soon .bento-tag {
-    background: rgba(245,166,35,0.1);
-    border-color: rgba(245,166,35,0.22); color: var(--amber);
+  .bento-card--soon .bento-cat  { transition: color 0.22s ease; }
+  .bento-card--soon:hover .bento-cat { color: var(--amber); }
+  .bento-card--soon .bento-tag  { transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease; }
+  .bento-card--soon:hover .bento-tag {
+    background: rgba(245,166,35,0.12);
+    border-color: rgba(245,166,35,0.3);
+    color: var(--amber);
   }
   .bento-cat {
     font-family: 'JetBrains Mono', monospace;
@@ -659,6 +666,47 @@
   .closing h2 .accent { color: var(--accent); text-shadow: 0 0 40px rgba(61,126,255,0.3); }
   .closing > .container > p { color: var(--text-secondary); font-size: 18px; margin-bottom: 36px; }
 
+  /* ---------- SCROLL PROGRESS BAR ---------- */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 2px; width: 0%; z-index: 200;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    box-shadow: 0 0 10px rgba(61,126,255,0.55), 0 0 3px rgba(61,126,255,0.8);
+    transition: width 0.08s linear;
+    pointer-events: none;
+  }
+
+  /* ---------- SIDE SECTION DOTS ---------- */
+  .scroll-nav {
+    position: fixed; right: 22px; top: 50%;
+    transform: translateY(-50%);
+    z-index: 100; display: flex; flex-direction: column;
+    align-items: center; gap: 10px;
+  }
+  .scroll-nav::before {
+    content: '';
+    position: absolute; top: 5px; bottom: 5px;
+    left: 50%; transform: translateX(-50%);
+    width: 1px;
+    background: rgba(255,255,255,0.07);
+    pointer-events: none;
+  }
+  .scroll-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.14);
+    cursor: pointer; position: relative; z-index: 1;
+    transition: background 0.3s ease, transform 0.3s ease,
+                border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .scroll-dot:hover { background: rgba(255,255,255,0.35); border-color: rgba(255,255,255,0.35); transform: scale(1.3); }
+  .scroll-dot.active {
+    background: var(--accent); border-color: var(--accent);
+    transform: scale(1.5);
+    box-shadow: 0 0 8px rgba(61,126,255,0.6);
+  }
+  @media (max-width: 1100px) { .scroll-nav { display: none; } }
+
   /* ---------- FOOTER ---------- */
   footer {
     padding: 40px 0 32px; border-top: 1px solid var(--border);
@@ -706,6 +754,20 @@
 </head>
 <body>
 
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Side section nav dots -->
+<nav class="scroll-nav" aria-hidden="true" id="scrollNav">
+  <div class="scroll-dot active" data-index="0" title="Top"></div>
+  <div class="scroll-dot" data-index="1" title="What's Inside"></div>
+  <div class="scroll-dot" data-index="2" title="Why GuyTalk"></div>
+  <div class="scroll-dot" data-index="3" title="Group Chat"></div>
+  <div class="scroll-dot" data-index="4" title="Sample Brief"></div>
+  <div class="scroll-dot" data-index="5" title="The App"></div>
+  <div class="scroll-dot" data-index="6" title="Founder"></div>
+</nav>
+
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
@@ -715,7 +777,7 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" data-nav="0">
   <div class="container">
     <div class="pill">
       <span class="pill-dot"></span>
@@ -771,7 +833,7 @@
 </section>
 
 <!-- WHAT'S INSIDE -->
-<section>
+<section data-nav="1">
   <div class="container">
     <div class="section-eyebrow">What's inside</div>
     <h2 class="section-title">Sharper than your group chat.</h2>
@@ -838,7 +900,7 @@
 </section>
 
 <!-- BILLBOARD MANIFESTO -->
-<div class="billboard">
+<div class="billboard" data-nav="2">
   <div class="container">
     <div class="billboard-inner">
       <p class="billboard-text">
@@ -866,9 +928,9 @@
       </div>
       <div class="diff-card fade-up">
         <div class="diff-label">The business newsletters</div>
-        <h3>Great product. Wrong audience.</h3>
-        <p>Morning Brew built something impressive — but its audience is broad: finance, tech, business, wellness, all ages. If sports matter as much to you as the S&P, and you want a real take instead of a summary, they weren't thinking about you. We were.</p>
-        <div class="diff-pov">Built for guys like you. Specifically.</div>
+        <h3>They cover some of the week.</h3>
+        <p>Markets and business — covered well. But sports, culture, and the stuff your group chat actually talks about? That's outside the lane. GuyTalk was built for the guy who wants all three, not a pick-one situation.</p>
+        <div class="diff-pov">All three verticals. Every morning.</div>
       </div>
       <div class="diff-card fade-up">
         <div class="diff-label">The algorithm</div>
@@ -881,7 +943,7 @@
 </div>
 
 <!-- GROUP CHAT -->
-<div class="chat-section">
+<div class="chat-section" data-nav="3">
   <div class="container">
     <div class="chat-heading">
       <div class="chat-live-badge">
@@ -934,7 +996,7 @@
 </div>
 
 <!-- SAMPLE BRIEF -->
-<section class="brief-section">
+<section class="brief-section" data-nav="4">
   <div class="container">
     <div class="section-eyebrow">From the brief</div>
     <h2 class="section-title">Five minutes. Here's one.</h2>
@@ -970,7 +1032,7 @@
 </section>
 
 <!-- APP PREVIEW -->
-<section class="app-section">
+<section class="app-section" data-nav="5">
   <div class="container">
     <div class="app-inner">
       <div class="app-text fade-up">
@@ -1034,7 +1096,7 @@
 </section>
 
 <!-- FOUNDER NOTE -->
-<section>
+<section data-nav="6">
   <div class="container">
     <div class="section-eyebrow">Why I built this</div>
     <h2 class="section-title">Straight from the founder.</h2>
@@ -1086,6 +1148,38 @@
 
 <script>
 (function () {
+
+  // Scroll progress bar
+  var progressBar = document.getElementById('scrollProgress');
+  function updateProgress() {
+    var total = document.documentElement.scrollHeight - window.innerHeight;
+    if (total > 0) progressBar.style.width = ((window.scrollY / total) * 100) + '%';
+  }
+
+  // Side nav dots
+  var navSections = Array.from(document.querySelectorAll('[data-nav]'));
+  var dots = Array.from(document.querySelectorAll('.scroll-dot'));
+  function updateDots() {
+    var mid = window.scrollY + window.innerHeight * 0.45;
+    var current = 0;
+    navSections.forEach(function (sec, i) {
+      if (sec.getBoundingClientRect().top + window.scrollY <= mid) current = i;
+    });
+    dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+  }
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      var i = parseInt(dot.getAttribute('data-index'), 10);
+      if (navSections[i]) navSections[i].scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  window.addEventListener('scroll', function () {
+    updateProgress();
+    updateDots();
+  }, { passive: true });
+  updateProgress();
+  updateDots();
 
   // Nav scroll glow
   var nav = document.querySelector('nav');
