@@ -1,0 +1,179 @@
+{
+  "_comment": "GuyTalk Brief — Issue Data Schema v1.0",
+  "_workflow": "Fill this JSON each morning, then paste content into /brief/issue-00X/index.html using the template.",
+  "_future": "A generator script can read this JSON and auto-produce the HTML. Current setup is manual for speed.",
+
+  "issue": 4,
+  "date": "Friday, May 23, 2026",
+  "slug": "issue-004",
+  "title": "Both series tied. Scheffler leads at The Memorial. Weekend's stacked.",
+  "deck": "Five minutes. Everything you need going into the weekend.",
+  "url": "/brief/issue-004/",
+
+  "tldr": [
+    {
+      "tag": "Sports",
+      "tag_color": "amber",
+      "text": "Knicks-Cavs ECF tied 1-1. Game 3 Saturday at MSG. Mitchell vs Brunson, round three.",
+      "anchor": "#sports"
+    },
+    {
+      "tag": "Sports",
+      "tag_color": "amber",
+      "text": "Thunder-Spurs WCF tied 1-1. Wemby stole Game 2. Game 3 in San Antonio Saturday.",
+      "anchor": "#sports"
+    },
+    {
+      "tag": "Markets",
+      "tag_color": "amber",
+      "text": "S&P +0.8% on the week. NVDA holding near $1,080. Memorial Day week = light volume ahead.",
+      "anchor": "#markets"
+    },
+    {
+      "tag": "Golf",
+      "tag_color": "amber",
+      "text": "Scottie Scheffler leads The Memorial at Muirfield Village through Round 2. Watch Sunday.",
+      "anchor": "#golf"
+    },
+    {
+      "tag": "Culture",
+      "tag_color": "amber",
+      "text": "Weekend watch list: one show, one movie, and the brand everyone's wearing at the course.",
+      "anchor": "#culture"
+    }
+  ],
+
+  "sections": {
+    "sports": {
+      "stories": [
+        {
+          "headline": "ECF tied 1-1. Brunson owned Game 1. Mitchell answered in Game 2.",
+          "game_1": {
+            "home": "Knicks",
+            "away": "Cavs",
+            "home_score": 113,
+            "away_score": 104,
+            "status": "Final",
+            "label": "ECF Game 1"
+          },
+          "game_2": {
+            "home": "Knicks",
+            "away": "Cavs",
+            "home_score": 104,
+            "away_score": 112,
+            "status": "Final",
+            "label": "ECF Game 2"
+          },
+          "key_stats": {
+            "game1_brunson": "33 pts, 8 ast, 12/21 FG",
+            "game1_mitchell": "18 pts, 7/22 FG",
+            "game2_mitchell": "36 pts, 11/21 FG",
+            "game2_brunson": "21 pts"
+          },
+          "angle": "Mitchell's 7/22 in Game 1 is the number to remember. He's never gone back-to-back bad in a series. Game 2 confirmed that.",
+          "next_game": "Game 3 · Saturday · MSG · 8:30pm ET"
+        },
+        {
+          "headline": "Wemby stole Game 2 in OKC. Series tied heading to San Antonio.",
+          "game_1_result": "Thunder 118, Spurs 104 — SGA 38 pts",
+          "game_2_result": "Spurs 108, Thunder 102 — Castle 29, Wemby 22/12",
+          "next_game": "Game 3 · Saturday · San Antonio · 8:30pm ET",
+          "angle": "San Antonio hasn't hosted a WCF game since 2017. The AT&T Center will be the loudest building in the country Saturday night."
+        }
+      ]
+    },
+
+    "markets": {
+      "week_summary": "S&P +0.8%. NVDA holding. Memorial Day volume warning.",
+      "key_story": "Light data week. Consumer confidence Wednesday is the main watch. Memorial Day week historically runs 25% below normal volume — don't overweight moves.",
+      "tickers": [
+        { "symbol": "SPY",  "name": "S&P 500",    "price": "7,561",  "day": "+0.4%",  "week": "+0.8%",  "dir": "up" },
+        { "symbol": "QQQ",  "name": "Nasdaq",      "price": "26,880", "day": "+0.6%",  "week": "+1.1%",  "dir": "up" },
+        { "symbol": "NVDA", "name": "Nvidia",      "price": "$1,082", "day": "-0.3%",  "week": "-0.4%",  "dir": "dn" },
+        { "symbol": "TSLA", "name": "Tesla",       "price": "$318",   "day": "+1.2%",  "week": "+3.8%",  "dir": "up" },
+        { "symbol": "BTC",  "name": "Bitcoin",     "price": "$97.4K", "day": "+2.1%",  "week": "+1.4%",  "dir": "up" },
+        { "symbol": "10Y",  "name": "10Y Yield",   "price": "4.54%",  "day": "-0.03",  "week": "-0.08",  "dir": "dn" }
+      ],
+      "morningstar_base_url": "https://www.morningstar.com/stocks/xnas"
+    },
+
+    "golf": {
+      "tournament": "The Memorial Tournament",
+      "venue": "Muirfield Village Golf Club · Dublin, OH",
+      "host": "Jack Nicklaus",
+      "dates": "May 22–26, 2026",
+      "leaderboard_placeholder": "REPLACE WITH ACTUAL LEADERBOARD BEFORE PUBLISH",
+      "featured_player": "Scottie Scheffler",
+      "featured_player_espn": "https://www.espn.com/golf/player/_/id/4686091/scottie-scheffler",
+      "product_feature": {
+        "brand": "Peter Millar",
+        "item": "Crown Sport Polo",
+        "price": "$115",
+        "url": "https://www.petermillar.com/collections/mens-sport-polo-shirts",
+        "image_placeholder": "/assets/images/peter-millar-crown-sport-polo.jpg"
+      },
+      "other_brands": [
+        { "name": "Rhoback", "url": "https://rhoback.com" },
+        { "name": "TravisMathew", "url": "https://www.travismathew.com" },
+        { "name": "Holderness & Bourne", "url": "https://holdernessandbourne.com" }
+      ]
+    },
+
+    "culture": [
+      {
+        "headline": "Jensen Huang on building Nvidia: the full Tim Ferriss interview",
+        "source": "Podcast · The Tim Ferriss Show",
+        "url": "https://tim.blog",
+        "body": "3.5 hours, worth 3x speed. The part about surviving near-bankruptcy in the 90s is the part your group chat will quote. Huang's framework for how to hire — 'Give people projects they can't finish' — is the one line that'll stick.",
+        "angle": "If you run anything, watch it. If you don't, watch it anyway."
+      },
+      {
+        "headline": "REPLACE: Add this week's actual viral story here",
+        "source": "REPLACE: Source name",
+        "url": "#",
+        "body": "REPLACE: 2-3 sentences in GuyTalk voice. What happened, why people care, what the correct read is. No hot takes for the sake of it.",
+        "angle": "REPLACE: One line your reader can use in conversation."
+      },
+      {
+        "headline": "Memorial Day weekend: what's worth your time",
+        "source": "Streaming",
+        "url": "https://www.netflix.com",
+        "body": "REPLACE: Add the actual Netflix/HBO/etc. drop for this weekend. One show, one movie, one sentence each.",
+        "angle": "REPLACE: The rec."
+      }
+    ],
+
+    "the_rec": {
+      "title": "18Birdies — the only golf app worth keeping on your phone",
+      "type": "App · Free (Premium $9.99/mo)",
+      "url": "https://www.18birdies.com",
+      "body": "GPS rangefinder, stat tracking, digital scorecard, and a handicap system that actually works. The free tier is legitimately good — you don't need the paid version unless you're obsessive. Download it before your next round and you'll wonder why you didn't have it earlier.",
+      "image_placeholder": "/assets/images/18birdies-app.jpg"
+    },
+
+    "sharp_take": "Both Conference Finals are tied at 1. Scheffler's chasing another major trophy on Sunday. It's Memorial Day weekend. This is the most sport per square inch of any three-day stretch before July 4th. Clear Saturday afternoon. If someone asks you to do something else, the answer is no."
+  },
+
+  "_player_links": {
+    "_note": "Use these ESPN URLs when linking player names in the HTML",
+    "Shai Gilgeous-Alexander": "https://www.espn.com/nba/player/_/id/4278073/shai-gilgeous-alexander",
+    "Donovan Mitchell": "https://www.espn.com/nba/player/_/id/3908809/donovan-mitchell",
+    "Jalen Brunson": "https://www.espn.com/nba/player/_/id/3934672/jalen-brunson",
+    "Stephon Castle": "https://www.espn.com/nba/player/_/id/4845367/stephon-castle",
+    "Victor Wembanyama": "https://www.espn.com/nba/player/_/id/5104157/victor-wembanyama",
+    "Scottie Scheffler": "https://www.espn.com/golf/player/_/id/4686091/scottie-scheffler"
+  },
+
+  "_ticker_links": {
+    "_note": "Use these Morningstar URLs when linking tickers in the HTML",
+    "NVDA": "https://www.morningstar.com/stocks/xnas/nvda/quote",
+    "MSFT": "https://www.morningstar.com/stocks/xnas/msft/quote",
+    "GOOGL": "https://www.morningstar.com/stocks/xnas/googl/quote",
+    "META": "https://www.morningstar.com/stocks/xnas/meta/quote",
+    "TSLA": "https://www.morningstar.com/stocks/xnas/tsla/quote",
+    "AAPL": "https://www.morningstar.com/stocks/xnas/aapl/quote",
+    "SPY": "https://www.morningstar.com/etfs/arcx/spy/quote",
+    "QQQ": "https://www.morningstar.com/etfs/arcx/qqq/quote",
+    "BTC": "https://www.morningstar.com/funds/xnas/gbtc/quote"
+  }
+}
