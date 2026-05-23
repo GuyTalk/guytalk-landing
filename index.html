@@ -11,8 +11,9 @@
 <style>
   :root {
     --bg: #0B1322;
-    --bg-gradient: radial-gradient(ellipse 90% 55% at 50% -5%, rgba(61,126,255,0.09), transparent 60%);
-    --bg-gradient-2: radial-gradient(ellipse 50% 35% at 82% 72%, rgba(61,126,255,0.04), transparent 55%);
+    --bg-gradient:   radial-gradient(ellipse 90% 55% at 50% -5%,  rgba(61,126,255,0.12), transparent 60%);
+    --bg-gradient-2: radial-gradient(ellipse 50% 35% at 85% 75%,  rgba(61,126,255,0.05), transparent 55%);
+    --bg-gradient-3: radial-gradient(ellipse 40% 30% at 12% 100%, rgba(61,126,255,0.04), transparent 60%);
     --surface: #131D30;
     --surface-2: #1A2640;
     --border: #1F2B43;
@@ -31,7 +32,7 @@
   html { scroll-behavior: smooth; }
   body {
     background: var(--bg);
-    background-image: var(--bg-gradient), var(--bg-gradient-2);
+    background-image: var(--bg-gradient), var(--bg-gradient-2), var(--bg-gradient-3);
     background-repeat: no-repeat;
     color: var(--text);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -40,13 +41,11 @@
     overflow-x: hidden;
   }
 
-  /* Film-grain texture overlay — adds material depth */
+  /* Film-grain texture */
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9000;
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 9000;
     opacity: 0.032;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 300px 300px;
@@ -58,8 +57,7 @@
 
   /* ---------- SCROLL ANIMATIONS ---------- */
   .fade-up {
-    opacity: 0;
-    transform: translateY(22px);
+    opacity: 0; transform: translateY(22px);
     transition: opacity 0.55s ease, transform 0.55s ease;
   }
   .fade-up.is-visible { opacity: 1; transform: translateY(0); }
@@ -68,18 +66,20 @@
   .bento-card.fade-up:nth-child(4) { transition-delay: 0.21s; }
   .bento-card.fade-up:nth-child(5) { transition-delay: 0.10s; }
   .bento-card.fade-up:nth-child(6) { transition-delay: 0.18s; }
-  /* Chat message stagger */
   .chat-msg.fade-up:nth-child(1) { transition-delay: 0.00s; }
   .chat-msg.fade-up:nth-child(2) { transition-delay: 0.13s; }
   .chat-msg.fade-up:nth-child(3) { transition-delay: 0.27s; }
   .chat-msg.fade-up:nth-child(4) { transition-delay: 0.43s; }
+  .diff-card.fade-up:nth-child(1) { transition-delay: 0.00s; }
+  .diff-card.fade-up:nth-child(2) { transition-delay: 0.10s; }
+  .diff-card.fade-up:nth-child(3) { transition-delay: 0.20s; }
 
   /* ---------- NAV ---------- */
   nav {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(11, 19, 34, 0.75);
-    backdrop-filter: saturate(180%) blur(16px);
-    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    background: rgba(11,19,34,0.78);
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
     border-bottom: 1px solid var(--border);
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
   }
@@ -105,14 +105,12 @@
     transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.2s ease;
   }
   .nav-cta:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
+    background: var(--accent-hover); transform: translateY(-1px);
     box-shadow: 0 0 22px rgba(61,126,255,0.45), 0 4px 12px rgba(0,0,0,0.2);
   }
 
   /* ---------- HERO ---------- */
   .hero { padding: 88px 0 72px; text-align: center; }
-
   .pill {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 7px 14px;
@@ -133,45 +131,33 @@
     0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--accent); }
     50%       { opacity: 0.55; box-shadow: 0 0 3px var(--accent); }
   }
-
   h1 {
     font-family: 'Inter Tight', sans-serif;
     font-weight: 900;
     font-size: clamp(52px, 8.5vw, 96px);
-    letter-spacing: -0.05em;
-    line-height: 0.93;
+    letter-spacing: -0.05em; line-height: 0.93;
     margin-bottom: 32px;
   }
   h1 .h1-accent {
     display: block;
     font-size: clamp(26px, 4vw, 50px);
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -0.03em;
-    margin-top: 16px;
-    line-height: 1.1;
+    font-weight: 700; color: var(--accent);
+    letter-spacing: -0.03em; margin-top: 16px; line-height: 1.1;
   }
-
   .hero-sub {
     font-size: clamp(16px, 1.8vw, 18px);
     color: var(--text-secondary);
-    max-width: 540px;
-    margin: 0 auto 48px;
-    line-height: 1.7;
+    max-width: 500px; margin: 0 auto 48px; line-height: 1.7;
   }
 
   /* ---------- TICKER ---------- */
   .ticker-wrap {
     margin-bottom: 44px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; position: relative;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
   }
-  .ticker-wrap::before,
-  .ticker-wrap::after {
+  .ticker-wrap::before, .ticker-wrap::after {
     content: ""; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2;
     pointer-events: none;
   }
@@ -182,25 +168,20 @@
     padding: 14px 20px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px; font-weight: 500;
-    white-space: nowrap;
-    overflow-x: scroll; scrollbar-width: none;
-    cursor: grab;
-    user-select: none; -webkit-user-select: none;
+    white-space: nowrap; overflow-x: scroll; scrollbar-width: none;
+    cursor: grab; user-select: none; -webkit-user-select: none;
   }
   .ticker::-webkit-scrollbar { display: none; }
   .ticker-item   { display: flex; gap: 8px; align-items: baseline; }
   .ticker-sym    { color: var(--text); font-weight: 600; }
-  .ticker-mark   { color: var(--accent); font-weight: 500; opacity: 0.85; }
   .ticker-up     { color: var(--green); }
   .ticker-down   { color: var(--red); }
   .ticker-sport  {
     font-family: 'Inter Tight', sans-serif;
-    font-weight: 600; font-size: 12px;
-    color: var(--text); letter-spacing: 0.01em;
+    font-weight: 600; font-size: 12px; color: var(--text); letter-spacing: 0.01em;
   }
   .ticker-label  {
-    padding: 9px 20px;
-    border-bottom: 1px solid var(--border);
+    padding: 9px 20px; border-bottom: 1px solid var(--border);
     font-family: 'Inter Tight', sans-serif;
     font-weight: 700; font-size: 10px;
     text-transform: uppercase; letter-spacing: 0.18em;
@@ -214,10 +195,8 @@
   .beehiiv-form-wrap { max-width: 540px; margin: 0 auto 12px; min-height: 60px; }
   .beehiiv-form-wrap iframe { width: 100% !important; border: none !important; background: transparent !important; }
   .form-hint { font-size: 13px; color: var(--text-secondary); }
-
   .proof {
-    margin: 36px auto 0;
-    max-width: 480px;
+    margin: 36px auto 0; max-width: 480px;
     display: flex; align-items: center; justify-content: center;
     gap: 18px; flex-wrap: wrap;
     color: var(--text-secondary); font-size: 13px;
@@ -235,12 +214,10 @@
     font-family: 'Inter Tight', sans-serif;
     font-weight: 700; font-size: 11px;
     text-transform: uppercase; letter-spacing: 0.22em;
-    color: var(--accent);
-    margin-bottom: 16px;
+    color: var(--accent); margin-bottom: 16px;
     display: flex; align-items: center; justify-content: center; gap: 10px;
   }
-  .section-eyebrow::before,
-  .section-eyebrow::after {
+  .section-eyebrow::before, .section-eyebrow::after {
     content: ''; width: 16px; height: 2px;
     background: var(--accent); opacity: 0.45; flex-shrink: 0;
   }
@@ -253,30 +230,21 @@
   }
   .section-sub {
     color: var(--text-secondary); font-size: 17px;
-    text-align: center; max-width: 540px;
-    margin: 0 auto 56px;
+    text-align: center; max-width: 540px; margin: 0 auto 56px;
   }
 
   /* ---------- BENTO GRID ---------- */
-  .bento {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-  }
+  .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
   .bento-full  { grid-column: 1 / -1; }
   .bento-third { grid-column: span 2; }
   .bento-half  { grid-column: span 3; }
-
   .bento-card {
     background: var(--surface);
     background-image: radial-gradient(
       400px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-      rgba(61,126,255,0.07),
-      transparent 60%
+      rgba(61,126,255,0.07), transparent 60%
     );
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
+    border: 1px solid var(--border); border-radius: 16px; padding: 28px;
     transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 4px 16px rgba(0,0,0,0.2);
   }
@@ -285,15 +253,6 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(61,126,255,0.06), 0 16px 48px rgba(0,0,0,0.28);
     transform: translateY(-2px);
   }
-  .bento-cat {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.2em;
-    color: var(--accent); margin-bottom: 14px;
-  }
-  .bento-cat-amber { color: var(--amber); }
-
-  /* Coming soon card — amber glow treatment */
   .bento-card--soon {
     border-color: rgba(245,166,35,0.18);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 4px 16px rgba(0,0,0,0.2), 0 0 0 1px rgba(245,166,35,0.07);
@@ -305,14 +264,19 @@
   .bento-card--soon .bento-cat { color: var(--amber); }
   .bento-card--soon .bento-tag {
     background: rgba(245,166,35,0.1);
-    border-color: rgba(245,166,35,0.22);
-    color: var(--amber);
+    border-color: rgba(245,166,35,0.22); color: var(--amber);
   }
+  .bento-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .bento-cat-amber { color: var(--amber); }
   .bento-card h3 {
     font-family: 'Inter Tight', sans-serif;
     font-weight: 700; font-size: 19px;
-    letter-spacing: -0.02em; line-height: 1.2;
-    margin-bottom: 10px;
+    letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px;
   }
   .bento-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
   .bento-card .bento-tag {
@@ -321,138 +285,133 @@
     font-size: 9px; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.14em;
     padding: 4px 10px;
-    background: rgba(61,126,255,0.1);
-    border: 1px solid rgba(61,126,255,0.18);
+    background: rgba(61,126,255,0.1); border: 1px solid rgba(61,126,255,0.18);
     border-radius: 4px; color: var(--accent);
   }
-
   .bento-big { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
   .bento-big-text h3 { font-size: clamp(20px, 2.2vw, 28px); line-height: 1.15; margin-bottom: 12px; }
   .bento-big-text p  { font-size: 15px; line-height: 1.7; }
-
   .bento-preview {
-    background: var(--surface-2);
-    border: 1px solid var(--border-light);
+    background: var(--surface-2); border: 1px solid var(--border-light);
     border-radius: 12px; overflow: hidden;
   }
   .bento-preview-item {
-    padding: 13px 18px;
-    border-bottom: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 64px 1fr;
-    gap: 12px; align-items: start;
+    padding: 13px 18px; border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: start;
   }
   .bento-preview-item:last-child { border-bottom: none; }
   .bento-preview-cat {
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.15em;
-    color: var(--accent); padding-top: 2px;
+    color: var(--amber); padding-top: 2px;
   }
-  .bento-preview-cat-amber { color: var(--amber); }
   .bento-preview-line { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
 
-  /* ---------- BILLBOARD MANIFESTO ---------- */
-  .billboard {
-    padding: 80px 0 0;
-    border-top: 1px solid var(--border);
-  }
+  /* ---------- BILLBOARD ---------- */
+  .billboard { padding: 80px 0 0; border-top: 1px solid var(--border); }
   .billboard-inner { max-width: 880px; }
   .billboard-text {
     font-family: 'Inter Tight', sans-serif;
-    font-weight: 900;
-    font-size: clamp(30px, 5.2vw, 66px);
-    letter-spacing: -0.04em;
-    line-height: 1.02;
+    font-weight: 900; font-size: clamp(30px, 5.2vw, 66px);
+    letter-spacing: -0.04em; line-height: 1.02;
   }
   .billboard-dim {
-    display: block;
-    color: rgba(242,244,247,0.17);
+    display: block; color: rgba(242,244,247,0.17);
     transition: color 0.35s ease;
   }
   .billboard-dim:hover { color: rgba(242,244,247,0.4); }
-  .billboard-bright {
-    display: block;
-    color: var(--text);
-    margin-top: 0.2em;
-  }
+  .billboard-bright { display: block; color: var(--text); margin-top: 0.2em; }
   .billboard-bright .bb-accent { color: var(--accent); }
 
-  /* ---------- GROUP CHAT SECTION ---------- */
-  .chat-section {
-    padding: 60px 0 88px;
-    position: relative;
-    overflow: hidden;
+  /* ---------- DIFFERENTIATION SECTION ---------- */
+  .diff-section { padding: 56px 0 80px; }
+  .diff-section .section-eyebrow { margin-bottom: 40px; }
+  .diff-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
   }
+  .diff-card {
+    background: var(--bg); padding: 36px 28px;
+    transition: background 0.2s ease;
+  }
+  .diff-card:hover { background: rgba(255,255,255,0.012); }
+  .diff-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--text-secondary); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .diff-label::before {
+    content: '';
+    display: inline-block; width: 8px; height: 1px;
+    background: var(--text-secondary); opacity: 0.4;
+  }
+  .diff-card h3 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700; font-size: 19px;
+    letter-spacing: -0.02em; line-height: 1.2;
+    margin-bottom: 14px; color: var(--text);
+  }
+  .diff-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.72; }
+  .diff-pov {
+    margin-top: 22px; padding-top: 18px;
+    border-top: 1px solid var(--border);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700; font-size: 13px; color: var(--accent);
+    letter-spacing: -0.01em;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .diff-pov::before { content: '→'; }
+
+  /* ---------- GROUP CHAT ---------- */
+  .chat-section { padding: 60px 0 88px; position: relative; overflow: hidden; }
   .chat-section::before {
     content: '';
-    position: absolute;
-    top: 50%; left: 50%;
+    position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     width: 800px; height: 600px;
     background: radial-gradient(ellipse at center, rgba(61,126,255,0.06), transparent 70%);
     pointer-events: none;
   }
-  .chat-heading {
-    text-align: center;
-    margin-bottom: 44px;
-    position: relative;
-  }
+  .chat-heading { text-align: center; margin-bottom: 44px; position: relative; }
   .chat-live-badge {
     display: inline-flex; align-items: center; gap: 8px;
     font-family: 'Inter Tight', sans-serif;
     font-weight: 700; font-size: 11px;
     text-transform: uppercase; letter-spacing: 0.22em;
-    color: var(--green);
-    margin-bottom: 18px;
+    color: var(--green); margin-bottom: 18px;
   }
   .chat-live-dot {
     width: 7px; height: 7px; border-radius: 50%;
-    background: var(--green);
-    box-shadow: 0 0 10px var(--green);
+    background: var(--green); box-shadow: 0 0 10px var(--green);
     animation: pulse-dot 2s ease-in-out infinite;
   }
   .chat-heading h2 {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 900;
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
     font-size: clamp(28px, 4.2vw, 52px);
-    letter-spacing: -0.04em;
-    line-height: 1.0;
-    margin-bottom: 12px;
+    letter-spacing: -0.04em; line-height: 1.0; margin-bottom: 12px;
   }
-  .chat-heading p {
-    color: var(--text-secondary);
-    font-size: 17px;
-    max-width: 400px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
+  .chat-heading p { color: var(--text-secondary); font-size: 17px; max-width: 400px; margin: 0 auto; line-height: 1.6; }
   .chat-window {
     max-width: 580px; margin: 0 auto;
-    background: var(--surface);
-    border: 1px solid var(--border-light);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.05),
-      0 40px 100px rgba(0,0,0,0.45),
-      0 0 0 1px rgba(61,126,255,0.05),
-      0 0 80px rgba(61,126,255,0.05);
+    background: var(--surface); border: 1px solid var(--border-light); border-radius: 20px; overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 40px 100px rgba(0,0,0,0.45), 0 0 0 1px rgba(61,126,255,0.05), 0 0 80px rgba(61,126,255,0.05);
     position: relative;
   }
   .chat-header {
-    padding: 15px 20px;
-    border-bottom: 1px solid var(--border);
+    padding: 15px 20px; border-bottom: 1px solid var(--border);
     display: flex; align-items: center; gap: 12px;
     background: rgba(255,255,255,0.015);
   }
   .chat-avatars { display: flex; }
   .chat-avatar {
     width: 30px; height: 30px; border-radius: 50%;
-    border: 2px solid var(--surface);
-    margin-left: -8px;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: 12px;
+    border: 2px solid var(--surface); margin-left: -8px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 12px;
     display: flex; align-items: center; justify-content: center;
     color: white; flex-shrink: 0; line-height: 1;
   }
@@ -462,19 +421,13 @@
   .ca-amber  { background: #F5A623; }
   .ca-purple { background: #7C3AED; }
   .chat-meta { flex: 1; }
-  .chat-group-name {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: 15px;
-    display: block; letter-spacing: -0.01em;
-  }
+  .chat-group-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px; display: block; letter-spacing: -0.01em; }
   .chat-online { font-size: 12px; color: var(--green); display: block; margin-top: 1px; }
-
   .chat-messages { padding: 22px 20px; display: flex; flex-direction: column; gap: 14px; }
   .chat-msg { display: flex; flex-direction: column; max-width: 78%; }
   .chat-msg--left  { align-self: flex-start; }
   .chat-msg--right { align-self: flex-end; }
   .chat-msg--brand { align-self: flex-start; max-width: 88%; }
-
   .chat-sender {
     font-size: 10px; color: var(--text-secondary);
     font-family: 'Inter Tight', sans-serif; font-weight: 700;
@@ -482,26 +435,19 @@
     margin-bottom: 5px; padding-left: 14px;
   }
   .chat-bubble {
-    padding: 11px 16px;
-    background: var(--surface-2);
+    padding: 11px 16px; background: var(--surface-2);
     border: 1px solid var(--border-light);
     border-radius: 4px 18px 18px 18px;
     font-size: 15px; line-height: 1.5; color: var(--text);
   }
   .chat-bubble--right {
-    background: rgba(61,126,255,0.11);
-    border-color: rgba(61,126,255,0.2);
+    background: rgba(61,126,255,0.11); border-color: rgba(61,126,255,0.2);
     border-radius: 18px 4px 18px 18px;
   }
-  .chat-bubble--culture {
-    border-color: rgba(245,166,35,0.24);
-    background: rgba(245,166,35,0.07);
-  }
+  .chat-bubble--culture { border-color: rgba(245,166,35,0.24); background: rgba(245,166,35,0.07); }
   .chat-bubble--brand {
     background: linear-gradient(140deg, rgba(61,126,255,0.13), rgba(61,126,255,0.06));
-    border-color: rgba(61,126,255,0.28);
-    border-radius: 4px 18px 18px 18px;
-    padding: 16px 18px;
+    border-color: rgba(61,126,255,0.28); border-radius: 4px 18px 18px 18px; padding: 16px 18px;
   }
   .chat-gt-tag {
     font-family: 'JetBrains Mono', monospace;
@@ -509,28 +455,22 @@
     text-transform: uppercase; letter-spacing: 0.18em;
     color: var(--accent); display: block; margin-bottom: 7px;
   }
-  .chat-bubble--brand .chat-text {
-    font-size: 15px; line-height: 1.55; color: var(--text);
-    display: block; margin-bottom: 12px;
-  }
+  .chat-bubble--brand .chat-text { font-size: 15px; line-height: 1.55; color: var(--text); display: block; margin-bottom: 12px; }
   .chat-brief-cta {
     display: inline-flex; align-items: center; gap: 5px;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: 14px; color: var(--accent);
-    letter-spacing: -0.01em;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px;
+    color: var(--accent); letter-spacing: -0.01em;
     transition: color 0.15s ease, gap 0.15s ease;
   }
   .chat-brief-cta:hover { color: var(--accent-hover); gap: 8px; }
   .chat-typing {
-    padding: 13px 20px;
-    border-top: 1px solid var(--border);
+    padding: 13px 20px; border-top: 1px solid var(--border);
     display: flex; align-items: center; gap: 10px;
     color: var(--text-secondary); font-size: 13px;
   }
   .typing-dots { display: flex; gap: 3px; align-items: center; }
   .typing-dots span {
-    width: 5px; height: 5px; border-radius: 50%;
-    background: var(--text-secondary);
+    width: 5px; height: 5px; border-radius: 50%; background: var(--text-secondary);
     animation: typing-bounce 1.4s ease-in-out infinite;
   }
   .typing-dots span:nth-child(2) { animation-delay: 0.16s; }
@@ -543,67 +483,148 @@
   /* ---------- SAMPLE BRIEF ---------- */
   .brief-section { background: linear-gradient(180deg, transparent, rgba(61,126,255,0.025), transparent); }
   .brief-mock {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px; overflow: hidden;
     max-width: 720px; margin: 0 auto;
     box-shadow: 0 28px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(61,126,255,0.06), inset 0 1px 0 rgba(255,255,255,0.04);
   }
   .brief-header {
     padding: 20px 24px; border-bottom: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 8px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
     background: rgba(255,255,255,0.01);
   }
-  .brief-date {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 600; font-size: 13px;
-    text-transform: uppercase; letter-spacing: 0.14em;
-    color: var(--text-secondary);
-  }
-  .brief-issue {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; font-weight: 600;
-    color: var(--accent); letter-spacing: 0.1em;
-  }
+  .brief-date { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-secondary); }
+  .brief-issue { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.1em; }
   .brief-body { padding: 28px 24px; }
-  .brief-greeting {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: 26px;
-    letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px;
-  }
+  .brief-greeting { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px; }
   .brief-intro { color: var(--text-secondary); margin-bottom: 28px; font-size: 15px; }
   .brief-story { padding: 16px 0; border-top: 1px solid var(--border); }
   .brief-story:first-of-type { border-top: none; padding-top: 0; }
   .brief-cat {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.18em;
-    color: var(--accent); margin-bottom: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.18em; color: var(--amber); margin-bottom: 8px;
   }
-  .brief-cat-amber { color: var(--amber); }
-  .brief-headline {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 600; font-size: 17px;
-    letter-spacing: -0.01em; margin-bottom: 6px; line-height: 1.3;
-  }
+  .brief-headline { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; margin-bottom: 6px; line-height: 1.3; }
   .brief-snippet { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
-  @keyframes cursor-blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
+  @keyframes cursor-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   .brief-story:last-child .brief-snippet::after {
-    content: '▍';
-    font-size: 11px; color: var(--accent);
+    content: '▍'; font-size: 11px; color: var(--accent);
     animation: cursor-blink 1.2s step-end infinite;
     margin-left: 2px; vertical-align: middle;
   }
 
+  /* ---------- APP SECTION ---------- */
+  .app-section {
+    padding: 80px 0; border-top: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .app-section::before {
+    content: '';
+    position: absolute; top: 50%; right: -100px;
+    transform: translateY(-50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse at center, rgba(61,126,255,0.05), transparent 70%);
+    pointer-events: none;
+  }
+  .app-inner {
+    display: grid; grid-template-columns: 1fr 280px;
+    gap: 80px; align-items: center; position: relative;
+  }
+  .app-eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 16px;
+  }
+  .app-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: clamp(32px, 4vw, 50px);
+    letter-spacing: -0.04em; line-height: 1.0; margin-bottom: 14px;
+  }
+  .app-sub { font-size: 17px; color: var(--text-secondary); line-height: 1.65; max-width: 460px; margin-bottom: 40px; }
+  .app-features { display: flex; flex-direction: column; gap: 2px; }
+  .app-feat {
+    padding: 18px 0 18px 20px;
+    border-left: 2px solid rgba(61,126,255,0.18);
+    position: relative; transition: border-color 0.25s ease;
+  }
+  .app-feat::before {
+    content: ''; position: absolute; left: -2px; top: 0; bottom: 0; width: 2px;
+    background: var(--accent); transform: scaleY(0); transform-origin: top;
+    transition: transform 0.3s ease;
+  }
+  .app-feat:hover { border-color: transparent; }
+  .app-feat:hover::before { transform: scaleY(1); }
+  .app-feat + .app-feat { margin-top: 4px; }
+  .app-feat-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px;
+    letter-spacing: -0.01em; margin-bottom: 5px; color: var(--text);
+  }
+  .app-feat-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* CSS Phone Mockup */
+  .phone-frame {
+    width: 240px; height: 490px;
+    background: #090F1D;
+    border-radius: 38px;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 6px rgba(255,255,255,0.02), inset 0 1px 0 rgba(255,255,255,0.06);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    margin: 0 auto;
+  }
+  .phone-notch {
+    width: 72px; height: 22px;
+    background: #090F1D;
+    border-radius: 0 0 14px 14px;
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 2;
+    border: 1.5px solid rgba(255,255,255,0.07); border-top: none;
+  }
+  .phone-screen {
+    flex: 1; display: flex; flex-direction: column;
+    padding: 30px 14px 14px; overflow: hidden;
+  }
+  .phone-hd {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
+  }
+  .phone-wm {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 14px;
+    letter-spacing: -0.03em; color: var(--text);
+  }
+  .phone-wm .dot { color: var(--accent); }
+  .phone-time { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-secondary); }
+  .phone-notif {
+    background: rgba(61,126,255,0.1); border: 1px solid rgba(61,126,255,0.2);
+    border-radius: 12px; padding: 10px 12px;
+    display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px;
+  }
+  .phone-notif-icon {
+    width: 26px; height: 26px; background: var(--accent); border-radius: 6px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 9px; color: white;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; letter-spacing: -0.02em;
+  }
+  .phone-notif-from { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
+  .phone-notif-body { font-size: 10px; color: var(--text-secondary); line-height: 1.45; }
+  .phone-brief { display: flex; flex-direction: column; flex: 1; }
+  .phone-brief-item {
+    padding: 9px 0; border-bottom: 1px solid rgba(31,43,67,0.8);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .phone-brief-item:first-child { border-top: 1px solid rgba(31,43,67,0.8); }
+  .phone-cat {
+    font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.16em; color: var(--amber);
+  }
+  .phone-hl { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px; line-height: 1.3; color: var(--text); }
+  .phone-read-btn {
+    margin-top: 12px; padding: 9px;
+    background: var(--accent); border-radius: 8px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px; color: white;
+    text-align: center;
+  }
+  .phone-home { height: 3px; width: 64px; background: rgba(255,255,255,0.18); border-radius: 2px; margin: 10px auto 6px; }
+
   /* ---------- FOUNDER ---------- */
   .founder {
     max-width: 640px; margin: 0 auto;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 18px; padding: 40px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 40px;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 4px 20px rgba(0,0,0,0.2);
   }
   .founder-head { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
@@ -611,31 +632,19 @@
     width: 48px; height: 48px; border-radius: 50%;
     background: linear-gradient(135deg, var(--accent), #2451BD);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: 18px; color: white;
-    flex-shrink: 0;
-    box-shadow: 0 0 18px rgba(61,126,255,0.3);
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 18px; color: white;
+    flex-shrink: 0; box-shadow: 0 0 18px rgba(61,126,255,0.3);
   }
   .founder-name { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 16px; }
-  .founder-role {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; color: var(--text-secondary);
-    text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px;
-  }
+  .founder-role { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
   .founder p { color: var(--text); font-size: 16px; line-height: 1.7; margin-bottom: 14px; }
   .founder p:last-child { margin-bottom: 0; color: var(--text-secondary); }
 
   /* ---------- CLOSING CTA ---------- */
-  .closing {
-    text-align: center;
-    padding: 120px 0;
-    position: relative;
-    overflow: hidden;
-  }
+  .closing { text-align: center; padding: 120px 0; position: relative; overflow: hidden; }
   .closing::before {
     content: '';
-    position: absolute;
-    top: 50%; left: 50%;
+    position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     width: 700px; height: 500px;
     background: radial-gradient(ellipse at center, rgba(61,126,255,0.08), transparent 70%);
@@ -647,10 +656,7 @@
     font-weight: 900; font-size: clamp(36px, 6vw, 72px);
     letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 24px;
   }
-  .closing h2 .accent {
-    color: var(--accent);
-    text-shadow: 0 0 40px rgba(61,126,255,0.3);
-  }
+  .closing h2 .accent { color: var(--accent); text-shadow: 0 0 40px rgba(61,126,255,0.3); }
   .closing > .container > p { color: var(--text-secondary); font-size: 18px; margin-bottom: 36px; }
 
   /* ---------- FOOTER ---------- */
@@ -670,6 +676,9 @@
     .bento-half  { grid-column: 1 / -1; }
     .bento-big   { grid-template-columns: 1fr; }
     .bento-preview { display: none; }
+    .diff-grid { grid-template-columns: 1fr; }
+    .app-inner { grid-template-columns: 1fr; gap: 48px; }
+    .phone-frame { display: none; }
   }
   @media (max-width: 600px) {
     .container { padding: 0 16px; }
@@ -691,7 +700,7 @@
 </style>
 <!-- PostHog analytics -->
 <script>
-  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init me ws ys ps bs capture je Di ks register register_once register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
   posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8', {api_host:'https://us.i.posthog.com', person_profiles:'identified_only'});
 </script>
 </head>
@@ -708,22 +717,17 @@
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-
     <div class="pill">
       <span class="pill-dot"></span>
       Daily Brief · Sports + Markets + Culture
     </div>
-
     <h1>
-      Sports.<br>
-      Markets.<br>
-      Culture.<br>
+      Sports.<br>Markets.<br>Culture.<br>
       <span class="h1-accent">In five minutes.</span>
     </h1>
-
     <p class="hero-sub">
-      Every morning, three stories that actually matter — written sharp, kept short.
-      No takes. No noise. Just what you need to walk into the day knowing more than the room.
+      Three stories. Written sharp. Done before your first coffee.<br>
+      Built for guys who want to know more than the room — without losing an hour to find out.
     </p>
 
     <!-- TICKER -->
@@ -756,19 +760,17 @@
       <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d"></script>
     </div>
     <div class="form-hint">Free · No spam · Unsubscribe anytime</div>
-
     <div class="proof">
       <div class="proof-stat"><span class="num">5 min</span><span>read</span></div>
       <span class="proof-sep">·</span>
       <div class="proof-stat"><span class="num">Free</span><span>forever</span></div>
       <span class="proof-sep">·</span>
-      <div class="proof-stat"><span class="num">App</span><span>in development</span></div>
+      <div class="proof-stat"><span class="num">No</span><span>algorithm</span></div>
     </div>
-
   </div>
 </section>
 
-<!-- WHAT'S INSIDE — bento grid -->
+<!-- WHAT'S INSIDE -->
 <section>
   <div class="container">
     <div class="section-eyebrow">What's inside</div>
@@ -776,7 +778,6 @@
     <p class="section-sub">Three verticals. One sharp take. Done before your first coffee.</p>
 
     <div class="bento">
-
       <div class="bento-card bento-full fade-up">
         <div class="bento-big">
           <div class="bento-big-text">
@@ -786,15 +787,15 @@
           </div>
           <div class="bento-preview">
             <div class="bento-preview-item">
-              <span class="bento-preview-cat bento-preview-cat-amber">Sports</span>
+              <span class="bento-preview-cat">Sports</span>
               <span class="bento-preview-line">Thunder lead WCF 1–0 after OT. SGA dropped 40. Here's the one stat that explains the series.</span>
             </div>
             <div class="bento-preview-item">
-              <span class="bento-preview-cat bento-preview-cat-amber">Markets</span>
+              <span class="bento-preview-cat">Markets</span>
               <span class="bento-preview-line">Yields ripped. Tech got punished. Here's the chain reaction in three sentences.</span>
             </div>
             <div class="bento-preview-item">
-              <span class="bento-preview-cat bento-preview-cat-amber">Culture</span>
+              <span class="bento-preview-cat">Culture</span>
               <span class="bento-preview-line">The tweet breaking everyone's timeline right now. Context: 30 seconds.</span>
             </div>
           </div>
@@ -832,7 +833,6 @@
         <p>We cut everything that doesn't clear that bar. If it doesn't make the brief, it doesn't exist. You get in, you get out, you know more than you did. That's the whole model.</p>
         <span class="bento-tag">Free forever</span>
       </div>
-
     </div>
   </div>
 </section>
@@ -842,16 +842,45 @@
   <div class="container">
     <div class="billboard-inner">
       <p class="billboard-text">
-        <span class="billboard-dim">ESPN yells.</span>
-        <span class="billboard-dim">Morning Brew is for bankers.</span>
-        <span class="billboard-dim">Your feed is a war zone.</span>
-        <span class="billboard-bright">We built something <span class="bb-accent">different.</span></span>
+        <span class="billboard-dim">ESPN never stops talking.</span>
+        <span class="billboard-dim">Morning Brew covers everything.</span>
+        <span class="billboard-dim">Your feed has no filter.</span>
+        <span class="billboard-bright">GuyTalk <span class="bb-accent">cuts through it.</span></span>
       </p>
     </div>
   </div>
 </div>
 
-<!-- GROUP CHAT — the alive moment -->
+<!-- WHY NOT THEM -->
+<div class="diff-section">
+  <div class="container">
+    <div class="section-eyebrow">Built different</div>
+    <h2 class="section-title" style="margin-bottom:40px">The brief other newsletters didn't build.</h2>
+
+    <div class="diff-grid">
+      <div class="diff-card fade-up">
+        <div class="diff-label">The sports channels</div>
+        <h3>All noise, no signal.</h3>
+        <p>60 takes on the same play. A new hot take every hour. Analysis of the analysis. You leave knowing more words — but not actually more. GuyTalk gives you one story, one context, one stat that changes how you see the week.</p>
+        <div class="diff-pov">One story. The right one.</div>
+      </div>
+      <div class="diff-card fade-up">
+        <div class="diff-label">The business newsletters</div>
+        <h3>Great product. Wrong audience.</h3>
+        <p>Morning Brew built something impressive — but its audience is broad: finance, tech, business, wellness, all ages. If sports matter as much to you as the S&P, and you want a real take instead of a summary, they weren't thinking about you. We were.</p>
+        <div class="diff-pov">Built for guys like you. Specifically.</div>
+      </div>
+      <div class="diff-card fade-up">
+        <div class="diff-label">The algorithm</div>
+        <h3>Engineered to keep you scrolling.</h3>
+        <p>Your feed isn't trying to inform you — it's trying to retain you. Every swipe is a win for the platform, not for you. GuyTalk has one goal: get you in, get you sharp, get you out. In five minutes. No feed. No loop.</p>
+        <div class="diff-pov">In, sharp, out. Every morning.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GROUP CHAT -->
 <div class="chat-section">
   <div class="container">
     <div class="chat-heading">
@@ -876,7 +905,6 @@
           <span class="chat-online">4 active now</span>
         </div>
       </div>
-
       <div class="chat-messages">
         <div class="chat-msg chat-msg--left fade-up">
           <div class="chat-sender">Jake</div>
@@ -887,7 +915,7 @@
         </div>
         <div class="chat-msg chat-msg--left fade-up">
           <div class="chat-sender">Alex</div>
-          <div class="chat-bubble chat-bubble--culture">did you guys see that CEO tweet?? 💀 everyone's going crazy</div>
+          <div class="chat-bubble chat-bubble--culture">did you guys see that CEO tweet?? everyone's going crazy</div>
         </div>
         <div class="chat-msg chat-msg--brand fade-up">
           <div class="chat-bubble chat-bubble--brand">
@@ -897,7 +925,6 @@
           </div>
         </div>
       </div>
-
       <div class="chat-typing">
         <span class="typing-dots"><span></span><span></span><span></span></span>
         3 more stories in today's brief...
@@ -923,22 +950,84 @@
         <div class="brief-intro">Markets ripped, the East finals are locked in, and one CEO tweet is running every group chat. Let's go.</div>
 
         <div class="brief-story">
-          <div class="brief-cat brief-cat-amber">Markets</div>
+          <div class="brief-cat">Markets</div>
           <div class="brief-headline">Nvidia rips past $4T as AI spend keeps climbing</div>
           <div class="brief-snippet">Capex guidance from MSFT, GOOG, and META all up sharply. Nvidia's still the only one selling shovels — and it shows.</div>
         </div>
-
         <div class="brief-story">
-          <div class="brief-cat brief-cat-amber">Sports</div>
+          <div class="brief-cat">Sports</div>
           <div class="brief-headline">Cavs blow out Pistons in Game 7. ECF is set.</div>
           <div class="brief-snippet">31-point margin. Cade disappeared. Mitchell closed. Cleveland walks into MSG as the hot team. Knicks fans either love this or they're terrified.</div>
         </div>
-
         <div class="brief-story">
-          <div class="brief-cat brief-cat-amber">Culture</div>
+          <div class="brief-cat">Culture</div>
           <div class="brief-headline">The one tweet everyone's screenshot-ing today</div>
           <div class="brief-snippet">A 14-second clip, a podcast take, and one CEO post. Here's what's actually going on — and why your group chat won't shut up about it.</div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP PREVIEW -->
+<section class="app-section">
+  <div class="container">
+    <div class="app-inner">
+      <div class="app-text fade-up">
+        <div class="app-eyebrow">In Development</div>
+        <h2 class="app-title">The GuyTalk App.</h2>
+        <p class="app-sub">Your brief, your teams, your stocks — in one place. Built to get you out in five minutes and designed around your actual life.</p>
+        <div class="app-features">
+          <div class="app-feat">
+            <div class="app-feat-title">Push alerts when stories drop</div>
+            <div class="app-feat-desc">No notification spam. Just the brief — the moment it's ready, when you want it.</div>
+          </div>
+          <div class="app-feat">
+            <div class="app-feat-title">Your teams. Your stocks.</div>
+            <div class="app-feat-desc">Follow specific franchises, individual stocks, or crypto. Get context around what you actually track.</div>
+          </div>
+          <div class="app-feat">
+            <div class="app-feat-title">Swipe to read. Nothing else.</div>
+            <div class="app-feat-desc">Designed to get you out in five. No infinite scroll. No algorithm deciding what you see next.</div>
+          </div>
+          <div class="app-feat">
+            <div class="app-feat-title">Offline. Always.</div>
+            <div class="app-feat-desc">Save issues. Read anywhere. Own your information without a Wi-Fi requirement.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-frame fade-up">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-hd">
+            <span class="phone-wm">GuyTalk<span class="dot">.</span></span>
+            <span class="phone-time">9:41</span>
+          </div>
+          <div class="phone-notif">
+            <div class="phone-notif-icon">GT</div>
+            <div>
+              <div class="phone-notif-from">GuyTalk · now</div>
+              <div class="phone-notif-body">Today's brief is ready. SGA dropped 40. Nvidia past $4T. That CEO tweet — explained.</div>
+            </div>
+          </div>
+          <div class="phone-brief">
+            <div class="phone-brief-item">
+              <span class="phone-cat">Markets</span>
+              <span class="phone-hl">Nvidia crosses $4T. AI spend accelerates.</span>
+            </div>
+            <div class="phone-brief-item">
+              <span class="phone-cat">Sports</span>
+              <span class="phone-hl">SGA drops 40. Thunder in control of series.</span>
+            </div>
+            <div class="phone-brief-item">
+              <span class="phone-cat">Culture</span>
+              <span class="phone-hl">The CEO tweet everyone's screenshot-ing.</span>
+            </div>
+          </div>
+          <div class="phone-read-btn">Read today's brief →</div>
+        </div>
+        <div class="phone-home"></div>
       </div>
     </div>
   </div>
@@ -959,9 +1048,8 @@
           <div class="founder-role">Founder · GuyTalk</div>
         </div>
       </div>
-      <p>I was spending two hours a day scrolling — and somehow still felt like I was behind. ESPN had garbage takes. Morning Brew talked finance like I was a banker. Twitter was a war zone. Nothing was made for me.</p>
-      <p>GuyTalk is the brief I wanted: sports, markets, and culture, written sharp, kept short, with a real point of view. Built for guys who want to walk into the day informed — not exhausted.</p>
-      <p>If that sounds like you, join below. We're launching soon and spots are limited.</p>
+      <p>GuyTalk is the brief I wanted: sports, markets, and culture — written sharp, kept short, with a real point of view. Not a summary. An actual take, from someone who read everything and filtered it down to what matters.</p>
+      <p>Built for guys who want to walk into the day informed, not exhausted. If that sounds like you, join below. We're launching soon and spots are limited.</p>
     </div>
   </div>
 </section>
@@ -999,13 +1087,13 @@
 <script>
 (function () {
 
-  // ── Nav scroll glow ───────────────────────────────────────────────
+  // Nav scroll glow
   var nav = document.querySelector('nav');
   window.addEventListener('scroll', function () {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
-  // ── Bento card mouse-follow radial highlight ──────────────────────
+  // Bento card mouse-follow radial
   document.querySelectorAll('.bento-card').forEach(function (card) {
     card.addEventListener('mousemove', function (e) {
       var r = card.getBoundingClientRect();
@@ -1018,7 +1106,7 @@
     });
   });
 
-  // ── Scroll-triggered fade-ups ─────────────────────────────────────
+  // Scroll-triggered fade-ups
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
@@ -1032,17 +1120,13 @@
     observer.observe(el);
   });
 
-  // ── Ticker ────────────────────────────────────────────────────────
+  // Ticker
   var ticker = document.getElementById('ticker-track');
   if (!ticker) return;
 
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var SPEED = reducedMotion ? 0 : 0.6;
-  var halfWidth = 0;
-  var paused = false;
-  var isDragging = false;
-  var startX = 0;
-  var startScroll = 0;
+  var halfWidth = 0, paused = false, isDragging = false, startX = 0, startScroll = 0;
 
   function step() {
     if (!paused && halfWidth > 0) {
@@ -1051,20 +1135,14 @@
     }
     requestAnimationFrame(step);
   }
-
-  function initScroll() {
-    halfWidth = ticker.scrollWidth / 2;
-    step();
-  }
+  function initScroll() { halfWidth = ticker.scrollWidth / 2; step(); }
 
   ticker.addEventListener('mouseenter', function () { paused = true; });
   ticker.addEventListener('mouseleave', function () { if (!isDragging) paused = false; });
-
   ticker.addEventListener('mousedown', function (e) {
     isDragging = true; paused = true;
     startX = e.clientX; startScroll = ticker.scrollLeft;
-    ticker.style.cursor = 'grabbing';
-    e.preventDefault();
+    ticker.style.cursor = 'grabbing'; e.preventDefault();
   });
   document.addEventListener('mousemove', function (e) {
     if (!isDragging) return;
@@ -1074,38 +1152,28 @@
   });
   document.addEventListener('mouseup', function () {
     if (!isDragging) return;
-    isDragging = false; paused = false;
-    ticker.style.cursor = '';
+    isDragging = false; paused = false; ticker.style.cursor = '';
   });
-
   ticker.addEventListener('touchstart', function () { paused = true; }, { passive: true });
-  ticker.addEventListener('touchend',   function () {
-    setTimeout(function () { paused = false; }, 800);
-  }, { passive: true });
+  ticker.addEventListener('touchend', function () { setTimeout(function () { paused = false; }, 800); }, { passive: true });
 
   async function loadTicker() {
     try {
       var res = await fetch('/api/ticker');
       if (!res.ok) throw new Error();
       var data = await res.json();
-      var markets = data.markets || [];
-      var sports  = data.sports  || [];
-
+      var markets = data.markets || [], sports = data.sports || [];
       var mktHtml = markets.map(function (m) {
         return '<div class="ticker-item"><span class="ticker-sym">' + m.sym + '</span>' +
           '<span class="ticker-' + m.dir + '">' + (m.dir === 'up' ? '+' : '−') + m.change + '%</span></div>';
       }).join('');
-
       var sptHtml = sports.map(function (s) {
         return '<div class="ticker-item"><span class="ticker-sport">' + s.label + '</span></div>';
       }).join('');
-
-      var sep  = '<div class="ticker-item"><span class="ticker-divider">—</span></div>';
+      var sep = '<div class="ticker-item"><span class="ticker-divider">—</span></div>';
       var full = mktHtml + sep + sptHtml;
       ticker.innerHTML = full + full;
-    } catch (e) {
-      // fallback HTML already in DOM
-    }
+    } catch (e) { /* fallback HTML already in DOM */ }
     initScroll();
   }
 
