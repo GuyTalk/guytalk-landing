@@ -1,0 +1,13 @@
+{
+  "name": "guytalk",
+  "version": "1.0.0",
+  "description": "GuyTalk daily brief generator",
+  "scripts": {
+    "brief": "node scripts/generate-brief.js",
+    "install:brief": "npm install"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": ">=0.26.0",
+    "dotenv": "^16.4.7"
+  }
+}
