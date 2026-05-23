@@ -666,7 +666,14 @@
     text-align: center; flex-shrink: 0;
   }
   /* Screen indicator dots */
-  .phone-dots { display: flex; gap: 5px; justify-content: center; padding: 6px 0 2px; flex-shrink: 0; }
+  .phone-controls { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 5px 0 2px; flex-shrink: 0; }
+  .phone-ctrl-btn {
+    background: none; border: none; cursor: pointer;
+    color: rgba(255,255,255,0.28); font-size: 20px; line-height: 1;
+    padding: 0 2px; transition: color 0.15s ease;
+  }
+  .phone-ctrl-btn:hover { color: var(--accent); }
+  .phone-dots { display: flex; gap: 5px; justify-content: center; flex-shrink: 0; }
   .phone-dot { height: 4px; width: 4px; border-radius: 2px; background: rgba(255,255,255,0.18); transition: background 0.3s ease, width 0.3s ease; }
   .phone-dot-active { background: var(--accent); width: 14px; }
   .phone-home { height: 3px; width: 64px; background: rgba(255,255,255,0.18); border-radius: 2px; margin: 6px auto 4px; flex-shrink: 0; }
@@ -1071,17 +1078,17 @@
         <div class="brief-greeting">Three things you missed.</div>
         <div class="brief-intro">Markets ripped, the East finals are locked in, and one CEO tweet is running every group chat. Let's go.</div>
 
-        <a class="brief-story" href="https://guytalk-newsletter-a34ac1.beehiiv.com/" target="_blank" rel="noopener">
+        <a class="brief-story" href="https://guytalk-newsletter-a34ac1.beehiiv.com/p/wtf-is-peter-millar-and-why-is-everyone-wearing-it-a76ae2c189776a57" target="_blank" rel="noopener">
           <div class="brief-cat">Markets</div>
           <div class="brief-headline">Nvidia rips past $4T as AI spend keeps climbing</div>
           <div class="brief-snippet">Capex guidance from MSFT, GOOG, and META all up sharply. Nvidia's still the only one selling shovels — and it shows.</div>
         </a>
-        <a class="brief-story" href="https://guytalk-newsletter-a34ac1.beehiiv.com/" target="_blank" rel="noopener">
+        <a class="brief-story" href="https://guytalk-newsletter-a34ac1.beehiiv.com/p/wtf-is-peter-millar-and-why-is-everyone-wearing-it-a76ae2c189776a57" target="_blank" rel="noopener">
           <div class="brief-cat">Sports</div>
           <div class="brief-headline">Cavs blow out Pistons in Game 7. ECF is set.</div>
           <div class="brief-snippet">31-point margin. Cade disappeared. Mitchell closed. Cleveland walks into MSG as the hot team. Knicks fans either love this or they're terrified.</div>
         </a>
-        <a class="brief-story" href="https://guytalk-newsletter-a34ac1.beehiiv.com/" target="_blank" rel="noopener">
+        <a class="brief-story" href="https://guytalk-newsletter-a34ac1.beehiiv.com/p/wtf-is-peter-millar-and-why-is-everyone-wearing-it-a76ae2c189776a57" target="_blank" rel="noopener">
           <div class="brief-cat">Culture</div>
           <div class="brief-headline">The one tweet everyone's screenshot-ing today</div>
           <div class="brief-snippet">A 14-second clip, a podcast take, and one CEO post. Here's what's actually going on — and why your group chat won't shut up about it.</div>
@@ -1194,10 +1201,14 @@
             </div>
           </div>
         </div>
-        <div class="phone-dots" id="phoneDots">
-          <div class="phone-dot phone-dot-active"></div>
-          <div class="phone-dot"></div>
-          <div class="phone-dot"></div>
+        <div class="phone-controls">
+          <button class="phone-ctrl-btn" id="phonePrev" aria-label="Previous screen">&#8249;</button>
+          <div class="phone-dots" id="phoneDots">
+            <div class="phone-dot phone-dot-active"></div>
+            <div class="phone-dot"></div>
+            <div class="phone-dot"></div>
+          </div>
+          <button class="phone-ctrl-btn" id="phoneNext" aria-label="Next screen">&#8250;</button>
         </div>
         <div class="phone-home"></div>
       </div>
@@ -1383,11 +1394,13 @@
 
   loadTicker();
 
-  // Animated phone mockup — cycles through 3 screens every 3.2s
+  // Animated phone mockup
   var phoneTrack = document.getElementById('phoneSlidesTrack');
   if (phoneTrack) {
     var phoneDotEls = document.querySelectorAll('.phone-dot');
     var currentSlide = 0;
+    var phonePaused = false;
+
     function goToSlide(n) {
       currentSlide = ((n % 3) + 3) % 3;
       phoneTrack.style.transform = 'translateX(-' + (currentSlide * 33.333) + '%)';
@@ -1395,7 +1408,21 @@
         d.classList.toggle('phone-dot-active', i === currentSlide);
       });
     }
-    setInterval(function () { goToSlide(currentSlide + 1); }, 3200);
+
+    // Pause on hover
+    var phoneFrame = document.getElementById('phoneFrame');
+    if (phoneFrame) {
+      phoneFrame.addEventListener('mouseenter', function () { phonePaused = true; });
+      phoneFrame.addEventListener('mouseleave', function () { phonePaused = false; });
+    }
+
+    // Manual arrow controls
+    var prevBtn = document.getElementById('phonePrev');
+    var nextBtn = document.getElementById('phoneNext');
+    if (prevBtn) prevBtn.addEventListener('click', function () { goToSlide(currentSlide - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goToSlide(currentSlide + 1); });
+
+    setInterval(function () { if (!phonePaused) goToSlide(currentSlide + 1); }, 3200);
   }
 
 })();
