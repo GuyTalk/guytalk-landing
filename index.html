@@ -504,8 +504,15 @@
   .brief-body { padding: 28px 24px; }
   .brief-greeting { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px; }
   .brief-intro { color: var(--text-secondary); margin-bottom: 28px; font-size: 15px; }
-  .brief-story { padding: 16px 0; border-top: 1px solid var(--border); }
+  .brief-story {
+    padding: 16px 0; border-top: 1px solid var(--border);
+    display: block; transition: background 0.18s ease;
+    border-radius: 6px; margin: 0 -8px; padding-left: 8px; padding-right: 8px;
+  }
   .brief-story:first-of-type { border-top: none; padding-top: 0; }
+  .brief-story:hover { background: rgba(255,255,255,0.025); cursor: pointer; }
+  .brief-story:hover .brief-headline { color: var(--accent-hover); }
+  .brief-headline { transition: color 0.18s ease; }
   .brief-cat {
     font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.18em; color: var(--amber); margin-bottom: 8px;
@@ -566,67 +573,120 @@
   }
   .app-feat-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
 
-  /* CSS Phone Mockup */
+  /* CSS Phone Mockup — animated */
   .phone-frame {
-    width: 240px; height: 490px;
-    background: #090F1D;
-    border-radius: 38px;
-    border: 1.5px solid rgba(255,255,255,0.1);
+    width: 240px; height: 490px; background: #090F1D;
+    border-radius: 38px; border: 1.5px solid rgba(255,255,255,0.1);
     box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 6px rgba(255,255,255,0.02), inset 0 1px 0 rgba(255,255,255,0.06);
     position: relative; overflow: hidden;
-    display: flex; flex-direction: column;
-    margin: 0 auto;
+    display: flex; flex-direction: column; margin: 0 auto;
   }
   .phone-notch {
-    width: 72px; height: 22px;
-    background: #090F1D;
+    width: 72px; height: 22px; background: #090F1D;
     border-radius: 0 0 14px 14px;
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 2;
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 3;
     border: 1.5px solid rgba(255,255,255,0.07); border-top: none;
   }
-  .phone-screen {
-    flex: 1; display: flex; flex-direction: column;
-    padding: 30px 14px 14px; overflow: hidden;
+  /* Status bar — always visible above slides */
+  .phone-statusbar {
+    flex-shrink: 0; padding: 28px 14px 6px;
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative; z-index: 2;
+    background: #090F1D;
   }
-  .phone-hd {
-    display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
-  }
-  .phone-wm {
-    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 14px;
-    letter-spacing: -0.03em; color: var(--text);
-  }
+  .phone-wm { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: -0.03em; color: var(--text); }
   .phone-wm .dot { color: var(--accent); }
   .phone-time { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-secondary); }
+  /* Slide container */
+  .phone-overflow { flex: 1; overflow: hidden; position: relative; }
+  .phone-slides-track {
+    display: flex; width: 300%; height: 100%;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .phone-slide {
+    flex: 1; height: 100%; padding: 8px 14px 6px;
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  /* Screen labels / nav */
+  .phone-slide-label {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: -0.01em; color: var(--text); margin-bottom: 10px;
+  }
+  .phone-back {
+    font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px;
+    color: var(--accent); margin-bottom: 8px; letter-spacing: -0.01em;
+  }
+  /* Notification card */
   .phone-notif {
     background: rgba(61,126,255,0.1); border: 1px solid rgba(61,126,255,0.2);
-    border-radius: 12px; padding: 10px 12px;
-    display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px;
+    border-radius: 10px; padding: 9px 11px;
+    display: flex; gap: 9px; align-items: flex-start; margin-bottom: 12px;
   }
   .phone-notif-icon {
-    width: 26px; height: 26px; background: var(--accent); border-radius: 6px;
-    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 9px; color: white;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0; letter-spacing: -0.02em;
+    width: 24px; height: 24px; background: var(--accent); border-radius: 6px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 8px; color: white;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
-  .phone-notif-from { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
-  .phone-notif-body { font-size: 10px; color: var(--text-secondary); line-height: 1.45; }
-  .phone-brief { display: flex; flex-direction: column; flex: 1; }
+  .phone-notif-from { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  .phone-notif-body { font-size: 10px; color: var(--text-secondary); line-height: 1.4; }
+  /* Brief list items */
   .phone-brief-item {
-    padding: 9px 0; border-bottom: 1px solid rgba(31,43,67,0.8);
-    display: flex; flex-direction: column; gap: 3px;
+    padding: 8px 0; border-bottom: 1px solid rgba(31,43,67,0.8);
+    display: flex; flex-direction: column; gap: 3px; flex-shrink: 0;
   }
   .phone-brief-item:first-child { border-top: 1px solid rgba(31,43,67,0.8); }
-  .phone-cat {
-    font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.16em; color: var(--amber);
-  }
+  .phone-cat { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--amber); }
   .phone-hl { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px; line-height: 1.3; color: var(--text); }
-  .phone-read-btn {
-    margin-top: 12px; padding: 9px;
+  /* Story detail (screen 2) */
+  .phone-story-cat { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--amber); margin-bottom: 6px; }
+  .phone-story-hl { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 8px; color: var(--text); }
+  .phone-story-body { font-size: 10px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 10px; flex: 1; }
+  .phone-stats {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 12px; display: flex; gap: 12px; flex-shrink: 0;
+  }
+  .phone-stat { display: flex; flex-direction: column; gap: 1px; }
+  .phone-stat-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--text); }
+  .phone-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); }
+  /* Markets screen (screen 3) */
+  .phone-mkt-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid rgba(31,43,67,0.8);
+  }
+  .phone-mkt-sym { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: var(--text); }
+  .phone-mkt-chg { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; }
+  .phone-mkt-chg.up { color: var(--green); }
+  .phone-mkt-chg.dn { color: var(--red); }
+  .phone-mkt-take { font-size: 10px; color: var(--text-secondary); line-height: 1.5; margin-top: 10px; flex: 1; }
+  /* Read button */
+  .phone-btn {
+    margin-top: auto; padding: 9px;
     background: var(--accent); border-radius: 8px;
     font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px; color: white;
-    text-align: center;
+    text-align: center; flex-shrink: 0;
   }
-  .phone-home { height: 3px; width: 64px; background: rgba(255,255,255,0.18); border-radius: 2px; margin: 10px auto 6px; }
+  /* Screen indicator dots */
+  .phone-dots { display: flex; gap: 5px; justify-content: center; padding: 6px 0 2px; flex-shrink: 0; }
+  .phone-dot { height: 4px; width: 4px; border-radius: 2px; background: rgba(255,255,255,0.18); transition: background 0.3s ease, width 0.3s ease; }
+  .phone-dot-active { background: var(--accent); width: 14px; }
+  .phone-home { height: 3px; width: 64px; background: rgba(255,255,255,0.18); border-radius: 2px; margin: 6px auto 4px; flex-shrink: 0; }
+
+  /* Scroll nav — always-visible section labels */
+  .scroll-dot { position: relative; }
+  .scroll-dot::after {
+    content: attr(data-label);
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%; transform: translateY(-50%);
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 10px; font-weight: 600; white-space: nowrap;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: rgba(242,244,247,0.2);
+    pointer-events: none;
+    transition: color 0.25s ease;
+  }
+  .scroll-dot:hover::after { color: rgba(242,244,247,0.5); }
+  .scroll-dot.active::after { color: var(--text); }
 
   /* ---------- FOUNDER ---------- */
   .founder {
@@ -759,13 +819,13 @@
 
 <!-- Side section nav dots -->
 <nav class="scroll-nav" aria-hidden="true" id="scrollNav">
-  <div class="scroll-dot active" data-index="0" title="Top"></div>
-  <div class="scroll-dot" data-index="1" title="What's Inside"></div>
-  <div class="scroll-dot" data-index="2" title="Why GuyTalk"></div>
-  <div class="scroll-dot" data-index="3" title="Group Chat"></div>
-  <div class="scroll-dot" data-index="4" title="Sample Brief"></div>
-  <div class="scroll-dot" data-index="5" title="The App"></div>
-  <div class="scroll-dot" data-index="6" title="Founder"></div>
+  <div class="scroll-dot active" data-index="0" data-label="Top" title="Top"></div>
+  <div class="scroll-dot" data-index="1" data-label="What's Inside" title="What's Inside"></div>
+  <div class="scroll-dot" data-index="2" data-label="Why GuyTalk" title="Why GuyTalk"></div>
+  <div class="scroll-dot" data-index="3" data-label="Group Chat" title="Group Chat"></div>
+  <div class="scroll-dot" data-index="4" data-label="Sample Brief" title="Sample Brief"></div>
+  <div class="scroll-dot" data-index="5" data-label="The App" title="The App"></div>
+  <div class="scroll-dot" data-index="6" data-label="Founder" title="Founder"></div>
 </nav>
 
 <!-- NAV -->
@@ -1011,21 +1071,21 @@
         <div class="brief-greeting">Three things you missed.</div>
         <div class="brief-intro">Markets ripped, the East finals are locked in, and one CEO tweet is running every group chat. Let's go.</div>
 
-        <div class="brief-story">
+        <a class="brief-story" href="https://guytalk-newsletter-a34ac1.beehiiv.com/" target="_blank" rel="noopener">
           <div class="brief-cat">Markets</div>
           <div class="brief-headline">Nvidia rips past $4T as AI spend keeps climbing</div>
           <div class="brief-snippet">Capex guidance from MSFT, GOOG, and META all up sharply. Nvidia's still the only one selling shovels — and it shows.</div>
-        </div>
-        <div class="brief-story">
+        </a>
+        <a class="brief-story" href="https://guytalk-newsletter-a34ac1.beehiiv.com/" target="_blank" rel="noopener">
           <div class="brief-cat">Sports</div>
           <div class="brief-headline">Cavs blow out Pistons in Game 7. ECF is set.</div>
           <div class="brief-snippet">31-point margin. Cade disappeared. Mitchell closed. Cleveland walks into MSG as the hot team. Knicks fans either love this or they're terrified.</div>
-        </div>
-        <div class="brief-story">
+        </a>
+        <a class="brief-story" href="https://guytalk-newsletter-a34ac1.beehiiv.com/" target="_blank" rel="noopener">
           <div class="brief-cat">Culture</div>
           <div class="brief-headline">The one tweet everyone's screenshot-ing today</div>
           <div class="brief-snippet">A 14-second clip, a podcast take, and one CEO post. Here's what's actually going on — and why your group chat won't shut up about it.</div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -1059,35 +1119,85 @@
         </div>
       </div>
 
-      <div class="phone-frame fade-up">
+      <div class="phone-frame fade-up" id="phoneFrame">
         <div class="phone-notch"></div>
-        <div class="phone-screen">
-          <div class="phone-hd">
-            <span class="phone-wm">GuyTalk<span class="dot">.</span></span>
-            <span class="phone-time">9:41</span>
-          </div>
-          <div class="phone-notif">
-            <div class="phone-notif-icon">GT</div>
-            <div>
-              <div class="phone-notif-from">GuyTalk · now</div>
-              <div class="phone-notif-body">Today's brief is ready. SGA dropped 40. Nvidia past $4T. That CEO tweet — explained.</div>
+        <div class="phone-statusbar">
+          <span class="phone-wm">GuyTalk<span class="dot">.</span></span>
+          <span class="phone-time">9:41</span>
+        </div>
+        <div class="phone-overflow">
+          <div class="phone-slides-track" id="phoneSlidesTrack">
+            <!-- Screen 1: Daily brief home -->
+            <div class="phone-slide">
+              <div class="phone-notif">
+                <div class="phone-notif-icon">GT</div>
+                <div>
+                  <div class="phone-notif-from">GuyTalk · now</div>
+                  <div class="phone-notif-body">Today's brief is ready. SGA 40 pts. Nvidia past $4T. That CEO tweet — explained.</div>
+                </div>
+              </div>
+              <div class="phone-brief-item">
+                <span class="phone-cat">Markets</span>
+                <span class="phone-hl">Nvidia crosses $4T. AI spend accelerates.</span>
+              </div>
+              <div class="phone-brief-item">
+                <span class="phone-cat">Sports</span>
+                <span class="phone-hl">SGA drops 40. Thunder in control of series.</span>
+              </div>
+              <div class="phone-brief-item">
+                <span class="phone-cat">Culture</span>
+                <span class="phone-hl">The CEO tweet everyone's screenshot-ing.</span>
+              </div>
+              <div class="phone-btn">Read today's brief →</div>
+            </div>
+            <!-- Screen 2: Sports story detail -->
+            <div class="phone-slide">
+              <div class="phone-back">← Sports</div>
+              <div class="phone-story-cat">Sports</div>
+              <div class="phone-story-hl">SGA drops 40 as Thunder take series control</div>
+              <div class="phone-story-body">Oklahoma City goes up 2–0. Gilgeous-Alexander was unstoppable — 40 points, 8 assists, no help needed. The Spurs had no answer and now face must-win territory.</div>
+              <div class="phone-stats">
+                <div class="phone-stat">
+                  <div class="phone-stat-num">40</div>
+                  <div class="phone-stat-lbl">PTS</div>
+                </div>
+                <div class="phone-stat">
+                  <div class="phone-stat-num">8</div>
+                  <div class="phone-stat-lbl">AST</div>
+                </div>
+                <div class="phone-stat">
+                  <div class="phone-stat-num">+21</div>
+                  <div class="phone-stat-lbl">+/−</div>
+                </div>
+              </div>
+            </div>
+            <!-- Screen 3: Markets view -->
+            <div class="phone-slide">
+              <div class="phone-slide-label">Markets</div>
+              <div class="phone-mkt-row">
+                <span class="phone-mkt-sym">NVDA</span>
+                <span class="phone-mkt-chg up">+2.41%</span>
+              </div>
+              <div class="phone-mkt-row">
+                <span class="phone-mkt-sym">TSLA</span>
+                <span class="phone-mkt-chg up">+3.07%</span>
+              </div>
+              <div class="phone-mkt-row">
+                <span class="phone-mkt-sym">BTC</span>
+                <span class="phone-mkt-chg dn">−1.18%</span>
+              </div>
+              <div class="phone-mkt-row">
+                <span class="phone-mkt-sym">SPY</span>
+                <span class="phone-mkt-chg up">+0.62%</span>
+              </div>
+              <div class="phone-mkt-take">Nvidia leads on AI capex momentum. Tech broadly higher after Fed hold. BTC pulling back off recent highs — watch $95K as support.</div>
             </div>
           </div>
-          <div class="phone-brief">
-            <div class="phone-brief-item">
-              <span class="phone-cat">Markets</span>
-              <span class="phone-hl">Nvidia crosses $4T. AI spend accelerates.</span>
-            </div>
-            <div class="phone-brief-item">
-              <span class="phone-cat">Sports</span>
-              <span class="phone-hl">SGA drops 40. Thunder in control of series.</span>
-            </div>
-            <div class="phone-brief-item">
-              <span class="phone-cat">Culture</span>
-              <span class="phone-hl">The CEO tweet everyone's screenshot-ing.</span>
-            </div>
-          </div>
-          <div class="phone-read-btn">Read today's brief →</div>
+        </div>
+        <div class="phone-dots" id="phoneDots">
+          <div class="phone-dot phone-dot-active"></div>
+          <div class="phone-dot"></div>
+          <div class="phone-dot"></div>
         </div>
         <div class="phone-home"></div>
       </div>
@@ -1272,6 +1382,22 @@
   }
 
   loadTicker();
+
+  // Animated phone mockup — cycles through 3 screens every 3.2s
+  var phoneTrack = document.getElementById('phoneSlidesTrack');
+  if (phoneTrack) {
+    var phoneDotEls = document.querySelectorAll('.phone-dot');
+    var currentSlide = 0;
+    function goToSlide(n) {
+      currentSlide = ((n % 3) + 3) % 3;
+      phoneTrack.style.transform = 'translateX(-' + (currentSlide * 33.333) + '%)';
+      phoneDotEls.forEach(function (d, i) {
+        d.classList.toggle('phone-dot-active', i === currentSlide);
+      });
+    }
+    setInterval(function () { goToSlide(currentSlide + 1); }, 3200);
+  }
+
 })();
 </script>
 </body>
