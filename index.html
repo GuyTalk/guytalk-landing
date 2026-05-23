@@ -292,6 +292,22 @@
     color: var(--accent); margin-bottom: 14px;
   }
   .bento-cat-amber { color: var(--amber); }
+
+  /* Coming soon card — amber glow treatment */
+  .bento-card--soon {
+    border-color: rgba(245,166,35,0.18);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 4px 16px rgba(0,0,0,0.2), 0 0 0 1px rgba(245,166,35,0.07);
+  }
+  .bento-card--soon:hover {
+    border-color: rgba(245,166,35,0.32);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(245,166,35,0.12), 0 16px 48px rgba(0,0,0,0.28), 0 0 36px rgba(245,166,35,0.07);
+  }
+  .bento-card--soon .bento-cat { color: var(--amber); }
+  .bento-card--soon .bento-tag {
+    background: rgba(245,166,35,0.1);
+    border-color: rgba(245,166,35,0.22);
+    color: var(--amber);
+  }
   .bento-card h3 {
     font-family: 'Inter Tight', sans-serif;
     font-weight: 700; font-size: 19px;
@@ -629,7 +645,7 @@
   .closing h2 {
     font-family: 'Inter Tight', sans-serif;
     font-weight: 900; font-size: clamp(36px, 6vw, 72px);
-    letter-spacing: -0.045em; line-height: 1.0; margin-bottom: 18px;
+    letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 24px;
   }
   .closing h2 .accent {
     color: var(--accent);
@@ -770,11 +786,11 @@
           </div>
           <div class="bento-preview">
             <div class="bento-preview-item">
-              <span class="bento-preview-cat">Sports</span>
+              <span class="bento-preview-cat bento-preview-cat-amber">Sports</span>
               <span class="bento-preview-line">Thunder lead WCF 1–0 after OT. SGA dropped 40. Here's the one stat that explains the series.</span>
             </div>
             <div class="bento-preview-item">
-              <span class="bento-preview-cat">Markets</span>
+              <span class="bento-preview-cat bento-preview-cat-amber">Markets</span>
               <span class="bento-preview-line">Yields ripped. Tech got punished. Here's the chain reaction in three sentences.</span>
             </div>
             <div class="bento-preview-item">
@@ -786,13 +802,13 @@
       </div>
 
       <div class="bento-card bento-third fade-up">
-        <div class="bento-cat">Sports</div>
+        <div class="bento-cat bento-cat-amber">Sports</div>
         <h3>Last night's results. Tonight's storylines.</h3>
         <p>Scores, standings, and the one angle worth bringing up — without the box score dump. Know what happened and why it matters before anyone brings it up.</p>
       </div>
 
       <div class="bento-card bento-third fade-up">
-        <div class="bento-cat">Markets</div>
+        <div class="bento-cat bento-cat-amber">Markets</div>
         <h3>The moves that mattered. In plain English.</h3>
         <p>Stocks, crypto, and macro — explained without the finance-speak. Whether you're watching your portfolio or just want to hold your own in the conversation.</p>
       </div>
@@ -803,7 +819,7 @@
         <p>The tweet, the clip, the take. We tell you what it is, why people care, and the correct read — so you're never the last one to hear about it.</p>
       </div>
 
-      <div class="bento-card bento-half fade-up">
+      <div class="bento-card bento-half bento-card--soon fade-up">
         <div class="bento-cat">Coming soon</div>
         <h3>Before you go out.</h3>
         <p>Thursday through Saturday evenings: tonight's big games, what everyone will be talking about, and one sharp take to walk in with. The pre-game brief you didn't know you needed.</p>
@@ -907,13 +923,13 @@
         <div class="brief-intro">Markets ripped, the East finals are locked in, and one CEO tweet is running every group chat. Let's go.</div>
 
         <div class="brief-story">
-          <div class="brief-cat">Markets</div>
+          <div class="brief-cat brief-cat-amber">Markets</div>
           <div class="brief-headline">Nvidia rips past $4T as AI spend keeps climbing</div>
           <div class="brief-snippet">Capex guidance from MSFT, GOOG, and META all up sharply. Nvidia's still the only one selling shovels — and it shows.</div>
         </div>
 
         <div class="brief-story">
-          <div class="brief-cat">Sports</div>
+          <div class="brief-cat brief-cat-amber">Sports</div>
           <div class="brief-headline">Cavs blow out Pistons in Game 7. ECF is set.</div>
           <div class="brief-snippet">31-point margin. Cade disappeared. Mitchell closed. Cleveland walks into MSG as the hot team. Knicks fans either love this or they're terrified.</div>
         </div>
