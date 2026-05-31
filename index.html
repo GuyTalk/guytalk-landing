@@ -3,36 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GuyTalk — Sports. Markets. Culture. In five minutes.</title>
-<meta name="description" content="The daily brief on sports, markets, and culture — built for guys who'd rather not scroll. Five minutes a day. No clickbait, no grindset.">
-<link rel="preconnect" href="https://fonts.googleapiscom">
+<title>GuyTalk — Walk in knowing.</title>
+<meta name="description" content="GuyTalk is your daily relevance brief — sports, markets, and culture. Know what happened, why it matters, and what to bring up. Free. Five minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0B1322;
-    --bg-gradient:   radial-gradient(ellipse 90% 55% at 50% -5%,  rgba(61,126,255,0.12), transparent 60%);
-    --bg-gradient-2: radial-gradient(ellipse 50% 35% at 85% 75%,  rgba(61,126,255,0.05), transparent 55%);
-    --bg-gradient-3: radial-gradient(ellipse 40% 30% at 12% 100%, rgba(61,126,255,0.04), transparent 60%);
-    --surface: #131D30;
-    --surface-2: #1A2640;
-    --border: #1F2B43;
-    --border-light: #2A3A58;
-    --text: #F2F4F7;
-    --text-secondary: #8B96AB;
-    --accent: #3D7EFF;
-    --accent-hover: #5B95FF;
-    --accent-muted: #1E3A6B;
-    --green: #2BD96A;
-    --red: #FF4D4D;
-    --amber: #F5A623;
-    --amber-muted: rgba(245,166,35,0.08);
+    --bg: #F9F8F5;
+    --bg-gradient: radial-gradient(ellipse 90% 45% at 50% -5%, rgba(43,111,255,0.05), transparent 60%);
+    --surface: #FFFFFF;
+    --surface-2: #F2F0EB;
+    --border: #E5E2DB;
+    --border-light: #D4D0C8;
+    --text: #0F1724;
+    --text-secondary: #6E6862;
+    --accent: #2B6FFF;
+    --accent-hover: #1A5CEF;
+    --accent-muted: #EBF1FF;
+    --green: #16A34A;
+    --red: #DC2626;
+    --amber: #B87C35;
+    --amber-muted: rgba(184,124,53,0.08);
+    --sports: #16A34A;
+    --sports-muted: rgba(22,163,74,0.07);
+    --culture: #C2410C;
+    --culture-muted: rgba(194,65,12,0.07);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
     background: var(--bg);
-    background-image: var(--bg-gradient), var(--bg-gradient-2), var(--bg-gradient-3);
+    background-image: var(--bg-gradient);
     background-repeat: no-repeat;
     color: var(--text);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -40,52 +42,41 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-
-  /* Film-grain texture */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    pointer-events: none; z-index: 9000;
-    opacity: 0.032;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 300px 300px;
-    mix-blend-mode: overlay;
-  }
-
   .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
   a { color: inherit; text-decoration: none; }
 
-  /* ---------- SCROLL ANIMATIONS ---------- */
+  /* SCROLL ANIMATIONS */
   .fade-up {
-    opacity: 0; transform: translateY(22px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
   .fade-up.is-visible { opacity: 1; transform: translateY(0); }
-  .bento-card.fade-up:nth-child(2) { transition-delay: 0.07s; }
-  .bento-card.fade-up:nth-child(3) { transition-delay: 0.14s; }
-  .bento-card.fade-up:nth-child(4) { transition-delay: 0.21s; }
-  .bento-card.fade-up:nth-child(5) { transition-delay: 0.10s; }
-  .bento-card.fade-up:nth-child(6) { transition-delay: 0.18s; }
-  .chat-msg.fade-up:nth-child(1) { transition-delay: 0.00s; }
-  .chat-msg.fade-up:nth-child(2) { transition-delay: 0.13s; }
-  .chat-msg.fade-up:nth-child(3) { transition-delay: 0.27s; }
-  .chat-msg.fade-up:nth-child(4) { transition-delay: 0.43s; }
-  .diff-card.fade-up:nth-child(1) { transition-delay: 0.00s; }
-  .diff-card.fade-up:nth-child(2) { transition-delay: 0.10s; }
-  .diff-card.fade-up:nth-child(3) { transition-delay: 0.20s; }
+  .scenario-card.fade-up:nth-child(1) { transition-delay: 0.00s; }
+  .scenario-card.fade-up:nth-child(2) { transition-delay: 0.08s; }
+  .scenario-card.fade-up:nth-child(3) { transition-delay: 0.16s; }
+  .scenario-card.fade-up:nth-child(4) { transition-delay: 0.06s; }
+  .scenario-card.fade-up:nth-child(5) { transition-delay: 0.14s; }
+  .msg-row.fade-up:nth-child(2) { transition-delay: 0.12s; }
+  .msg-row.fade-up:nth-child(3) { transition-delay: 0.24s; }
+  .msg-row.fade-up:nth-child(4) { transition-delay: 0.36s; }
+  .msg-row.fade-up:nth-child(5) { transition-delay: 0.48s; }
+  .msg-gt-row.fade-up { transition-delay: 0.65s; }
+  .fw-step.fade-up:nth-child(1) { transition-delay: 0.00s; }
+  .fw-step.fade-up:nth-child(2) { transition-delay: 0.08s; }
+  .fw-step.fade-up:nth-child(3) { transition-delay: 0.16s; }
 
-  /* ---------- NAV ---------- */
+  /* NAV */
   nav {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(11,19,34,0.78);
+    background: rgba(249,248,245,0.9);
     backdrop-filter: saturate(180%) blur(18px);
     -webkit-backdrop-filter: saturate(180%) blur(18px);
     border-bottom: 1px solid var(--border);
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
   }
   nav.scrolled {
-    box-shadow: 0 1px 0 rgba(61,126,255,0.1), 0 4px 24px rgba(0,0,0,0.3);
-    border-bottom-color: rgba(61,126,255,0.08);
+    box-shadow: 0 1px 0 rgba(43,111,255,0.06), 0 4px 20px rgba(0,0,0,0.06);
+    border-bottom-color: var(--border-light);
   }
   .nav-inner {
     display: flex; align-items: center; justify-content: space-between;
@@ -93,391 +84,265 @@
   }
   .wordmark {
     font-family: 'Inter Tight', sans-serif;
-    font-weight: 800; font-size: 22px; letter-spacing: -0.03em;
+    font-weight: 800; font-size: 22px; letter-spacing: -0.03em; color: var(--text);
   }
   .wordmark .dot { color: var(--accent); }
   .nav-cta {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600; font-size: 14px;
-    padding: 9px 18px;
-    background: var(--accent); color: white;
-    border-radius: 8px;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
+    padding: 9px 18px; background: var(--accent); color: white; border-radius: 8px;
     transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.2s ease;
   }
   .nav-cta:hover {
     background: var(--accent-hover); transform: translateY(-1px);
-    box-shadow: 0 0 22px rgba(61,126,255,0.45), 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 0 20px rgba(43,111,255,0.25), 0 4px 12px rgba(0,0,0,0.08);
   }
 
-  /* ---------- HERO ---------- */
-  .hero { padding: 88px 0 72px; text-align: center; }
+  /* HERO */
+  .hero { padding: 96px 0 72px; text-align: center; }
   .pill {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 7px 14px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border-light);
-    border-radius: 999px;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 600; font-size: 12px;
-    text-transform: uppercase; letter-spacing: 0.12em;
-    color: var(--text); margin-bottom: 40px;
+    padding: 7px 14px; background: var(--accent-muted);
+    border: 1px solid rgba(43,111,255,0.18); border-radius: 999px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 40px;
   }
   .pill-dot {
     width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent); box-shadow: 0 0 8px var(--accent);
+    background: var(--accent); box-shadow: 0 0 8px rgba(43,111,255,0.5);
     animation: pulse-dot 2.2s ease-in-out infinite;
   }
   @keyframes pulse-dot {
-    0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--accent); }
-    50%       { opacity: 0.55; box-shadow: 0 0 3px var(--accent); }
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(43,111,255,0.5); }
+    50%       { opacity: 0.55; box-shadow: 0 0 3px rgba(43,111,255,0.25); }
   }
   h1 {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 900;
-    font-size: clamp(52px, 8.5vw, 96px);
-    letter-spacing: -0.05em; line-height: 0.93;
-    margin-bottom: 32px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: clamp(52px, 9vw, 104px);
+    letter-spacing: -0.05em; line-height: 0.92;
+    margin-bottom: 28px; color: var(--text);
   }
-  h1 .h1-accent {
-    display: block;
-    font-size: clamp(26px, 4vw, 50px);
-    font-weight: 700; color: var(--accent);
-    letter-spacing: -0.03em; margin-top: 16px; line-height: 1.1;
-  }
+  h1 .h1-line { display: block; }
+  h1 .h1-accent { color: var(--accent); }
   .hero-sub {
-    font-size: clamp(16px, 1.8vw, 18px);
-    color: var(--text-secondary);
-    max-width: 500px; margin: 0 auto 48px; line-height: 1.7;
+    font-size: clamp(16px, 1.8vw, 18px); color: var(--text-secondary);
+    max-width: 520px; margin: 0 auto 48px; line-height: 1.72;
   }
+  .hero-sub strong { color: var(--text); font-weight: 600; }
 
-  /* ---------- TICKER ---------- */
+  /* TICKER — enhanced */
   .ticker-wrap {
-    margin-bottom: 44px;
-    background: var(--surface); border: 1px solid var(--border);
+    margin-bottom: 48px; background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
     border-radius: 12px; overflow: hidden; position: relative;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
   }
   .ticker-wrap::before, .ticker-wrap::after {
-    content: ""; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2;
-    pointer-events: none;
+    content: ""; position: absolute; top: 0; bottom: 0; width: 64px; z-index: 2; pointer-events: none;
   }
-  .ticker-wrap::before { left: 0;  background: linear-gradient(90deg,  var(--surface), transparent); }
+  .ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--surface), transparent); }
   .ticker-wrap::after  { right: 0; background: linear-gradient(270deg, var(--surface), transparent); }
+  .ticker-hdr {
+    padding: 10px 20px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--surface-2);
+  }
+  .ticker-live {
+    display: flex; align-items: center; gap: 7px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.2em; color: var(--green);
+  }
+  .ticker-live-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green); box-shadow: 0 0 7px rgba(22,163,74,0.55);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  .ticker-hdr-cats {
+    display: flex; gap: 12px; align-items: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+  }
+  .tkc-markets { color: var(--accent); }
+  .tkc-sports  { color: var(--sports); }
+  .tkc-sep { opacity: 0.3; font-size: 11px; }
   .ticker {
-    display: flex; gap: 36px;
-    padding: 14px 20px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px; font-weight: 500;
+    display: flex; gap: 36px; padding: 14px 20px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13.5px; font-weight: 500;
     white-space: nowrap; overflow-x: scroll; scrollbar-width: none;
     cursor: grab; user-select: none; -webkit-user-select: none;
   }
   .ticker::-webkit-scrollbar { display: none; }
   .ticker-item   { display: flex; gap: 8px; align-items: baseline; }
-  .ticker-sym    { color: var(--text); font-weight: 600; }
-  .ticker-up     { color: var(--green); }
-  .ticker-down   { color: var(--red); }
+  .ticker-sym    { color: var(--text); font-weight: 700; }
+  .ticker-up     { color: var(--sports); font-weight: 600; }
+  .ticker-down   { color: var(--red); font-weight: 600; }
   .ticker-sport  {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 600; font-size: 12px; color: var(--text); letter-spacing: 0.01em;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 12.5px;
+    color: var(--text); letter-spacing: 0.01em;
   }
-  .ticker-label  {
-    padding: 9px 20px; border-bottom: 1px solid var(--border);
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: 10px;
-    text-transform: uppercase; letter-spacing: 0.18em;
-    color: var(--text-secondary);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .ticker-label-sub { font-weight: 500; opacity: 0.5; }
-  .ticker-divider { color: var(--border-light); padding: 0 4px; }
+  .ticker-divider { color: var(--border-light); font-size: 16px; line-height: 1; }
 
-  /* ---------- FORM & PROOF ---------- */
+  /* FORM & PROOF */
   .beehiiv-form-wrap { max-width: 540px; margin: 0 auto 12px; min-height: 60px; }
   .beehiiv-form-wrap iframe { width: 100% !important; border: none !important; background: transparent !important; }
   .form-hint { font-size: 13px; color: var(--text-secondary); }
   .proof {
     margin: 36px auto 0; max-width: 480px;
     display: flex; align-items: center; justify-content: center;
-    gap: 18px; flex-wrap: wrap;
-    color: var(--text-secondary); font-size: 13px;
+    gap: 18px; flex-wrap: wrap; color: var(--text-secondary); font-size: 13px;
   }
   .proof-stat { display: flex; align-items: baseline; gap: 6px; }
   .proof-stat .num {
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text); font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+    font-family: 'JetBrains Mono', monospace; color: var(--text);
+    font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
   }
-  .proof-sep { opacity: 0.2; }
+  .proof-sep { opacity: 0.3; }
 
-  /* ---------- SECTION SHARED ---------- */
+  /* SECTION SHARED */
   section { padding: 80px 0; }
   .section-eyebrow {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 0.22em;
-    color: var(--accent); margin-bottom: 16px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.22em; color: var(--accent);
+    margin-bottom: 16px;
     display: flex; align-items: center; justify-content: center; gap: 10px;
   }
   .section-eyebrow::before, .section-eyebrow::after {
-    content: ''; width: 16px; height: 2px;
-    background: var(--accent); opacity: 0.45; flex-shrink: 0;
+    content: ''; width: 16px; height: 2px; background: var(--accent); opacity: 0.4; flex-shrink: 0;
   }
   .section-title {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: clamp(28px, 3.8vw, 44px);
-    letter-spacing: -0.03em; line-height: 1.08;
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: clamp(28px, 3.8vw, 44px); letter-spacing: -0.03em; line-height: 1.08;
     text-align: center; margin-bottom: 16px;
-    max-width: 760px; margin-left: auto; margin-right: auto;
+    max-width: 760px; margin-left: auto; margin-right: auto; color: var(--text);
   }
   .section-sub {
     color: var(--text-secondary); font-size: 17px;
-    text-align: center; max-width: 540px; margin: 0 auto 56px;
+    text-align: center; max-width: 540px; margin: 0 auto 56px; line-height: 1.65;
   }
 
-  /* ---------- BENTO GRID ---------- */
-  .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
-  .bento-full  { grid-column: 1 / -1; }
-  .bento-third { grid-column: span 2; }
-  .bento-half  { grid-column: span 3; }
-  .bento-card {
-    background: var(--surface);
-    background-image: radial-gradient(
-      400px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-      rgba(61,126,255,0.07), transparent 60%
-    );
-    border: 1px solid var(--border); border-radius: 16px; padding: 28px;
-    transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 4px 16px rgba(0,0,0,0.2);
-  }
-  .bento-card:hover {
-    border-color: rgba(61,126,255,0.22);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 0 0 1px rgba(61,126,255,0.06), 0 16px 48px rgba(0,0,0,0.28);
-    transform: translateY(-2px);
-  }
-  /* Coming-soon card: blue default, amber spring-pop on hover */
-  .bento-card--soon {
-    transition: border-color 0.25s ease, box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  .bento-card--soon:hover {
-    border-color: rgba(245,166,35,0.42);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05),
-                0 0 0 1px rgba(245,166,35,0.14),
-                0 28px 64px rgba(0,0,0,0.38),
-                0 0 52px rgba(245,166,35,0.11);
-    transform: translateY(-10px) scale(1.01);
-  }
-  .bento-card--soon .bento-cat  { transition: color 0.22s ease; }
-  .bento-card--soon:hover .bento-cat { color: var(--amber); }
-  .bento-card--soon .bento-tag  { transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease; }
-  .bento-card--soon:hover .bento-tag {
-    background: rgba(245,166,35,0.12);
-    border-color: rgba(245,166,35,0.3);
-    color: var(--amber);
-  }
-  .bento-cat {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.2em;
-    color: var(--accent); margin-bottom: 14px;
-  }
-  .bento-cat-amber { color: var(--amber); }
-  .bento-card h3 {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: 19px;
-    letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px;
-  }
-  .bento-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
-  .bento-card .bento-tag {
-    display: inline-block; margin-top: 18px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.14em;
-    padding: 4px 10px;
-    background: rgba(61,126,255,0.1); border: 1px solid rgba(61,126,255,0.18);
-    border-radius: 4px; color: var(--accent);
-  }
-  .bento-big { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
-  .bento-big-text h3 { font-size: clamp(20px, 2.2vw, 28px); line-height: 1.15; margin-bottom: 12px; }
-  .bento-big-text p  { font-size: 15px; line-height: 1.7; }
-  .bento-preview {
-    background: var(--surface-2); border: 1px solid var(--border-light);
-    border-radius: 12px; overflow: hidden;
-  }
-  .bento-preview-item {
-    padding: 13px 18px; border-bottom: 1px solid var(--border);
-    display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: start;
-  }
-  .bento-preview-item:last-child { border-bottom: none; }
-  .bento-preview-cat {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.15em;
-    color: var(--amber); padding-top: 2px;
-  }
-  .bento-preview-line { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
-
-  /* ---------- BILLBOARD ---------- */
-  .billboard { padding: 80px 0 0; border-top: 1px solid var(--border); }
-  .billboard-inner { max-width: 880px; }
-  .billboard-text {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 900; font-size: clamp(30px, 5.2vw, 66px);
-    letter-spacing: -0.04em; line-height: 1.02;
-  }
-  .billboard-dim {
-    display: block; color: rgba(242,244,247,0.17);
-    transition: color 0.35s ease;
-  }
-  .billboard-dim:hover { color: rgba(242,244,247,0.4); }
-  .billboard-bright { display: block; color: var(--text); margin-top: 0.2em; }
-  .billboard-bright .bb-accent { color: var(--accent); }
-
-  /* ---------- DIFFERENTIATION SECTION ---------- */
-  .diff-section { padding: 56px 0 80px; }
-  .diff-section .section-eyebrow { margin-bottom: 40px; }
-  .diff-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
-  }
-  .diff-card {
-    background: var(--bg); padding: 36px 28px;
-    transition: background 0.2s ease;
-  }
-  .diff-card:hover { background: rgba(255,255,255,0.012); }
-  .diff-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.2em;
-    color: var(--text-secondary); margin-bottom: 14px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .diff-label::before {
-    content: '';
-    display: inline-block; width: 8px; height: 1px;
-    background: var(--text-secondary); opacity: 0.4;
-  }
-  .diff-card h3 {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: 19px;
-    letter-spacing: -0.02em; line-height: 1.2;
-    margin-bottom: 14px; color: var(--text);
-  }
-  .diff-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.72; }
-  .diff-pov {
-    margin-top: 22px; padding-top: 18px;
-    border-top: 1px solid var(--border);
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: 13px; color: var(--accent);
-    letter-spacing: -0.01em;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .diff-pov::before { content: '→'; }
-
-  /* ---------- GROUP CHAT ---------- */
-  .chat-section { padding: 60px 0 88px; position: relative; overflow: hidden; }
-  .chat-section::before {
-    content: '';
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 800px; height: 600px;
-    background: radial-gradient(ellipse at center, rgba(61,126,255,0.06), transparent 70%);
-    pointer-events: none;
-  }
-  .chat-heading { text-align: center; margin-bottom: 44px; position: relative; }
+  /* GROUP CHAT */
+  .chat-section { padding: 72px 0; border-top: 1px solid var(--border); position: relative; overflow: hidden; }
+  .chat-intro { text-align: center; margin-bottom: 52px; }
   .chat-live-badge {
     display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 0.22em;
-    color: var(--green); margin-bottom: 18px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.22em; color: var(--green); margin-bottom: 18px;
   }
   .chat-live-dot {
     width: 7px; height: 7px; border-radius: 50%;
-    background: var(--green); box-shadow: 0 0 10px var(--green);
+    background: var(--green); box-shadow: 0 0 8px rgba(22,163,74,0.45);
     animation: pulse-dot 2s ease-in-out infinite;
   }
-  .chat-heading h2 {
+  .chat-intro h2 {
     font-family: 'Inter Tight', sans-serif; font-weight: 900;
-    font-size: clamp(28px, 4.2vw, 52px);
-    letter-spacing: -0.04em; line-height: 1.0; margin-bottom: 12px;
+    font-size: clamp(28px, 4.2vw, 52px); letter-spacing: -0.04em;
+    line-height: 1.0; margin-bottom: 12px; color: var(--text);
   }
-  .chat-heading p { color: var(--text-secondary); font-size: 17px; max-width: 400px; margin: 0 auto; line-height: 1.6; }
-  .chat-window {
-    max-width: 580px; margin: 0 auto;
-    background: var(--surface); border: 1px solid var(--border-light); border-radius: 20px; overflow: hidden;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 40px 100px rgba(0,0,0,0.45), 0 0 0 1px rgba(61,126,255,0.05), 0 0 80px rgba(61,126,255,0.05);
-    position: relative;
+  .chat-intro p { color: var(--text-secondary); font-size: 17px; max-width: 400px; margin: 0 auto; line-height: 1.6; }
+
+  /* Chat window */
+  .chat-win {
+    max-width: 520px; margin: 0 auto;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.09), 0 4px 16px rgba(0,0,0,0.04);
   }
-  .chat-header {
-    padding: 15px 20px; border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 12px;
-    background: rgba(255,255,255,0.015);
+  .chat-topbar {
+    padding: 13px 18px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px; background: var(--surface-2);
   }
-  .chat-avatars { display: flex; }
-  .chat-avatar {
-    width: 30px; height: 30px; border-radius: 50%;
-    border: 2px solid var(--surface); margin-left: -8px;
-    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 12px;
+  .chat-avs { display: flex; }
+  .chat-av {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid var(--surface); margin-left: -7px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 10px;
     display: flex; align-items: center; justify-content: center;
     color: white; flex-shrink: 0; line-height: 1;
   }
-  .chat-avatar:first-child { margin-left: 0; }
-  .ca-blue   { background: #3D7EFF; }
-  .ca-green  { background: #1DB954; }
-  .ca-amber  { background: #F5A623; }
-  .ca-purple { background: #7C3AED; }
-  .chat-meta { flex: 1; }
-  .chat-group-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px; display: block; letter-spacing: -0.01em; }
-  .chat-online { font-size: 12px; color: var(--green); display: block; margin-top: 1px; }
-  .chat-messages { padding: 22px 20px; display: flex; flex-direction: column; gap: 14px; }
-  .chat-msg { display: flex; flex-direction: column; max-width: 78%; }
-  .chat-msg--left  { align-self: flex-start; }
-  .chat-msg--right { align-self: flex-end; }
-  .chat-msg--brand { align-self: flex-start; max-width: 88%; }
-  .chat-sender {
-    font-size: 10px; color: var(--text-secondary);
-    font-family: 'Inter Tight', sans-serif; font-weight: 700;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    margin-bottom: 5px; padding-left: 14px;
+  .chat-av:first-child { margin-left: 0; }
+  .av-b { background: #2B6FFF; }
+  .av-g { background: #16A34A; }
+  .av-a { background: #C17E2B; }
+  .av-p { background: #7C3AED; }
+  .chat-topbar-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px; display: block; letter-spacing: -0.01em; color: var(--text); }
+  .chat-topbar-sub { font-size: 12px; color: var(--green); display: block; margin-top: 1px; }
+
+  /* Message feed */
+  .chat-feed { padding: 20px 16px; display: flex; flex-direction: column; gap: 2px; background: var(--bg); }
+  .msg-ts {
+    text-align: center; font-size: 11px; color: var(--text-secondary);
+    margin: 6px 0 14px; opacity: 0.65; font-family: 'Inter', sans-serif;
   }
-  .chat-bubble {
-    padding: 11px 16px; background: var(--surface-2);
-    border: 1px solid var(--border-light);
-    border-radius: 4px 18px 18px 18px;
-    font-size: 15px; line-height: 1.5; color: var(--text);
+  .msg-row { margin-bottom: 10px; }
+  .msg-sender {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; padding-left: 4px;
   }
-  .chat-bubble--right {
-    background: rgba(61,126,255,0.11); border-color: rgba(61,126,255,0.2);
-    border-radius: 18px 4px 18px 18px;
+  .ms-j { color: #2B6FFF; }
+  .ms-a { color: #C17E2B; }
+  .ms-r { color: #7C3AED; }
+  .ms-m { color: #16A34A; }
+  .msg-bubs { display: flex; flex-direction: column; gap: 3px; align-items: flex-start; }
+  .msg-bub {
+    padding: 9px 14px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 3px 16px 16px 16px;
+    font-size: 14px; line-height: 1.45; color: var(--text);
+    max-width: 80%; width: fit-content;
   }
-  .chat-bubble--culture { border-color: rgba(245,166,35,0.24); background: rgba(245,166,35,0.07); }
-  .chat-bubble--brand {
-    background: linear-gradient(140deg, rgba(61,126,255,0.13), rgba(61,126,255,0.06));
-    border-color: rgba(61,126,255,0.28); border-radius: 4px 18px 18px 18px; padding: 16px 18px;
+  .msg-bub + .msg-bub { border-radius: 3px 16px 16px 16px; }
+  .msg-bub:last-child:not(:first-child) { border-radius: 3px 16px 16px 4px; }
+
+  /* GuyTalk card */
+  .msg-gt-row { margin-top: 16px; margin-bottom: 4px; }
+  .msg-gt-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent);
+    margin-bottom: 7px; padding-left: 4px;
+    display: flex; align-items: center; gap: 7px;
   }
-  .chat-gt-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.18em;
-    color: var(--accent); display: block; margin-bottom: 7px;
+  .msg-gt-label::before { content: ''; width: 14px; height: 1px; background: var(--accent); opacity: 0.45; }
+  .msg-gt-card {
+    background: var(--surface); border: 1px solid rgba(43,111,255,0.2);
+    border-radius: 3px 16px 16px 16px; overflow: hidden;
+    max-width: 92%;
+    box-shadow: 0 4px 20px rgba(43,111,255,0.07);
   }
-  .chat-bubble--brand .chat-text { font-size: 15px; line-height: 1.55; color: var(--text); display: block; margin-bottom: 12px; }
-  .chat-brief-cta {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px;
-    color: var(--accent); letter-spacing: -0.01em;
-    transition: color 0.15s ease, gap 0.15s ease;
+  .msg-gt-hdr {
+    padding: 11px 16px; background: var(--accent);
+    display: flex; justify-content: space-between; align-items: center;
   }
-  .chat-brief-cta:hover { color: var(--accent-hover); gap: 8px; }
-  .chat-typing {
-    padding: 13px 20px; border-top: 1px solid var(--border);
-    display: flex; align-items: center; gap: 10px;
-    color: var(--text-secondary); font-size: 13px;
+  .msg-gt-hdr-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: white;
+  }
+  .msg-gt-hdr-issue {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: rgba(255,255,255,0.6); letter-spacing: 0.06em;
+  }
+  .msg-gt-body { padding: 13px 16px; display: flex; flex-direction: column; gap: 9px; }
+  .msg-gt-item {
+    font-size: 13px; color: var(--text); line-height: 1.45;
+    display: flex; gap: 9px; align-items: baseline;
+  }
+  .msg-gt-item::before { content: '→'; color: var(--accent); font-size: 11px; flex-shrink: 0; }
+  .msg-gt-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 16px; border-top: 1px solid var(--border);
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; color: var(--accent);
+    transition: background 0.15s ease;
+  }
+  .msg-gt-foot:hover { background: var(--accent-muted); }
+  .msg-gt-foot::after { content: '→'; }
+
+  /* Chat typing / bottom bar */
+  .chat-typing-row {
+    padding: 11px 18px; border-top: 1px solid var(--border); background: var(--bg);
+    display: flex; align-items: center; gap: 8px;
+    color: var(--text-secondary); font-size: 12px; font-family: 'Inter', sans-serif;
   }
   .typing-dots { display: flex; gap: 3px; align-items: center; }
   .typing-dots span {
-    width: 5px; height: 5px; border-radius: 50%; background: var(--text-secondary);
+    width: 4px; height: 4px; border-radius: 50%; background: var(--text-secondary);
     animation: typing-bounce 1.4s ease-in-out infinite;
   }
   .typing-dots span:nth-child(2) { animation-delay: 0.16s; }
@@ -486,312 +351,267 @@
     0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
     30% { transform: translateY(-4px); opacity: 0.9; }
   }
+  .chat-bottombar {
+    padding: 10px 14px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px; background: var(--surface-2);
+  }
+  .chat-input-mock {
+    flex: 1; padding: 8px 14px; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 20px; font-size: 13px; color: var(--text-secondary); font-family: 'Inter', sans-serif;
+  }
+  .chat-send-btn {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--accent);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    color: white; font-size: 13px; font-weight: 700;
+  }
 
-  /* ---------- SAMPLE BRIEF ---------- */
-  .brief-section { background: linear-gradient(180deg, transparent, rgba(61,126,255,0.025), transparent); }
+  /* SCENARIOS */
+  .scenarios { padding: 80px 0; border-top: 1px solid var(--border); }
+  .scenarios-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .scenario-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; position: relative; overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
+  }
+  .scenario-card--third { grid-column: span 2; }
+  .scenario-card--half  { grid-column: span 3; }
+  .scenario-card::before {
+    content: ''; position: absolute; left: 0; top: 16px; bottom: 16px;
+    width: 3px; border-radius: 0 2px 2px 0;
+    opacity: 0; transform: scaleY(0.5);
+    transition: opacity 0.2s ease, transform 0.25s ease;
+  }
+  .scenario-card--markets::before { background: var(--accent); }
+  .scenario-card--sports::before  { background: var(--sports); }
+  .scenario-card--culture::before { background: var(--culture); }
+  .scenario-card--golf::before    { background: var(--amber); }
+  .scenario-card:hover { border-color: rgba(43,111,255,0.2); box-shadow: 0 8px 32px rgba(0,0,0,0.07); transform: translateY(-2px); }
+  .scenario-card--sports:hover  { border-color: rgba(22,163,74,0.22); }
+  .scenario-card--culture:hover { border-color: rgba(194,65,12,0.22); }
+  .scenario-card--golf:hover    { border-color: rgba(184,124,53,0.22); }
+  .scenario-card:hover::before  { opacity: 1; transform: scaleY(1); }
+  .scenario-context {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-secondary);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .s-icon { font-size: 13px; line-height: 1; }
+  .scenario-quote {
+    font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 16px;
+    letter-spacing: -0.02em; line-height: 1.38; color: var(--text); margin-bottom: 20px;
+  }
+  .scenario-quote::before { content: '\201C'; }
+  .scenario-quote::after  { content: '\201D'; }
+  .scenario-source {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.16em;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .scenario-source::before { content: '↗'; font-size: 9px; }
+  .sc-src--markets { color: var(--accent); }
+  .sc-src--sports  { color: var(--sports); }
+  .sc-src--culture { color: var(--culture); }
+  .sc-src--golf    { color: var(--amber); }
+
+  /* FRAMEWORK */
+  .framework { padding: 80px 0; border-top: 1px solid var(--border); }
+  .fw-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  }
+  .fw-step {
+    background: var(--surface); padding: 44px 36px;
+    transition: background 0.2s ease;
+  }
+  .fw-step:hover { background: rgba(43,111,255,0.014); }
+  .fw-num {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: 72px; letter-spacing: -0.06em; line-height: 1;
+    color: rgba(15,23,36,0.05); margin-bottom: 16px; user-select: none;
+  }
+  .fw-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: clamp(20px, 2.2vw, 26px); letter-spacing: -0.03em;
+    line-height: 1.1; margin-bottom: 14px; color: var(--text);
+  }
+  .fw-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.72; margin-bottom: 24px; }
+  .fw-eg {
+    font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 13px;
+    color: var(--text); line-height: 1.5; font-style: italic;
+    padding: 14px 16px; background: var(--surface-2); border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+  .fw-eg--sports  { border-left-color: var(--sports); }
+  .fw-eg--culture { border-left-color: var(--culture); }
+
+  /* SAMPLE BRIEF */
+  .brief-section { background: linear-gradient(180deg, transparent, rgba(43,111,255,0.015), transparent); }
   .brief-mock {
     background: var(--surface); border: 1px solid var(--border); border-radius: 18px; overflow: hidden;
     max-width: 720px; margin: 0 auto;
-    box-shadow: 0 28px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(61,126,255,0.06), inset 0 1px 0 rgba(255,255,255,0.04);
+    box-shadow: 0 16px 60px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
   }
   .brief-header {
     padding: 20px 24px; border-bottom: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
-    background: rgba(255,255,255,0.01);
+    background: var(--surface-2);
   }
   .brief-date { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-secondary); }
   .brief-issue { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.1em; }
   .brief-body { padding: 28px 24px; }
-  .brief-greeting { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px; }
+  .brief-greeting { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px; color: var(--text); }
   .brief-intro { color: var(--text-secondary); margin-bottom: 28px; font-size: 15px; }
   .brief-story {
-    padding: 16px 0; border-top: 1px solid var(--border);
-    display: block; transition: background 0.18s ease;
+    padding: 18px 0; border-top: 1px solid var(--border); display: block;
     border-radius: 6px; margin: 0 -8px; padding-left: 8px; padding-right: 8px;
+    transition: background 0.18s ease;
   }
   .brief-story:first-of-type { border-top: none; padding-top: 0; }
-  .brief-story:hover { background: rgba(255,255,255,0.025); cursor: pointer; }
-  .brief-story:hover .brief-headline { color: var(--accent-hover); }
-  .brief-headline { transition: color 0.18s ease; }
+  .brief-story:hover { background: rgba(43,111,255,0.03); cursor: pointer; }
+  .brief-story:hover .brief-headline { color: var(--accent); }
   .brief-cat {
     font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.18em; color: var(--amber); margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 8px;
   }
-  .brief-headline { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; margin-bottom: 6px; line-height: 1.3; }
-  .brief-snippet { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
-  @keyframes cursor-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-  .brief-story:last-child .brief-snippet::after {
-    content: '▍'; font-size: 11px; color: var(--accent);
-    animation: cursor-blink 1.2s step-end infinite;
-    margin-left: 2px; vertical-align: middle;
+  .bc-sports  { color: var(--sports); }
+  .bc-markets { color: var(--accent); }
+  .bc-culture { color: var(--culture); }
+  .bc-golf    { color: var(--amber); }
+  .brief-headline {
+    font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 17px;
+    letter-spacing: -0.01em; margin-bottom: 6px; line-height: 1.3;
+    color: var(--text); transition: color 0.18s ease;
+  }
+  .brief-snippet { font-size: 14px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 10px; }
+  .brief-bring {
+    display: inline-flex; align-items: baseline; gap: 7px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 13px;
+    padding: 5px 11px; border-radius: 6px; line-height: 1.4;
+    border: 1px solid transparent;
+  }
+  .bb-sports  { background: var(--sports-muted); border-color: rgba(22,163,74,0.15); color: #0d6b34; }
+  .bb-markets { background: var(--accent-muted); border-color: rgba(43,111,255,0.14); color: var(--accent); }
+  .bb-culture { background: var(--culture-muted); border-color: rgba(194,65,12,0.15); color: var(--culture); }
+  .bb-golf    { background: var(--amber-muted); border-color: rgba(184,124,53,0.15); color: var(--amber); }
+  .brief-bring-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.16em; opacity: 0.7; flex-shrink: 0;
   }
 
-  /* ---------- APP SECTION ---------- */
+  /* APP SECTION */
   .app-section {
-    padding: 80px 0; border-top: 1px solid var(--border);
-    position: relative; overflow: hidden;
+    padding: 80px 0; border-top: 1px solid var(--border); position: relative; overflow: hidden;
   }
   .app-section::before {
-    content: '';
-    position: absolute; top: 50%; right: -100px;
-    transform: translateY(-50%);
+    content: ''; position: absolute; top: 50%; right: -100px; transform: translateY(-50%);
     width: 500px; height: 500px;
-    background: radial-gradient(ellipse at center, rgba(61,126,255,0.05), transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(43,111,255,0.04), transparent 70%);
     pointer-events: none;
   }
-  .app-inner {
-    display: grid; grid-template-columns: 1fr 280px;
-    gap: 80px; align-items: center; position: relative;
-  }
-  .app-eyebrow {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 16px;
-  }
-  .app-title {
-    font-family: 'Inter Tight', sans-serif; font-weight: 900;
-    font-size: clamp(32px, 4vw, 50px);
-    letter-spacing: -0.04em; line-height: 1.0; margin-bottom: 14px;
-  }
+  .app-inner { display: grid; grid-template-columns: 1fr 280px; gap: 80px; align-items: center; position: relative; }
+  .app-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 16px; }
+  .app-title { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: clamp(32px, 4vw, 50px); letter-spacing: -0.04em; line-height: 1.0; margin-bottom: 14px; color: var(--text); }
   .app-sub { font-size: 17px; color: var(--text-secondary); line-height: 1.65; max-width: 460px; margin-bottom: 40px; }
   .app-features { display: flex; flex-direction: column; gap: 2px; }
-  .app-feat {
-    padding: 18px 0 18px 20px;
-    border-left: 2px solid rgba(61,126,255,0.18);
-    position: relative; transition: border-color 0.25s ease;
-  }
-  .app-feat::before {
-    content: ''; position: absolute; left: -2px; top: 0; bottom: 0; width: 2px;
-    background: var(--accent); transform: scaleY(0); transform-origin: top;
-    transition: transform 0.3s ease;
-  }
+  .app-feat { padding: 18px 0 18px 20px; border-left: 2px solid rgba(43,111,255,0.15); position: relative; transition: border-color 0.25s ease; }
+  .app-feat::before { content: ''; position: absolute; left: -2px; top: 0; bottom: 0; width: 2px; background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform 0.3s ease; }
   .app-feat:hover { border-color: transparent; }
   .app-feat:hover::before { transform: scaleY(1); }
   .app-feat + .app-feat { margin-top: 4px; }
-  .app-feat-title {
-    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px;
-    letter-spacing: -0.01em; margin-bottom: 5px; color: var(--text);
-  }
+  .app-feat-title { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; margin-bottom: 5px; color: var(--text); }
   .app-feat-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
 
-  /* CSS Phone Mockup — animated */
+  /* PHONE — keep dark */
   .phone-frame {
-    width: 240px; height: 490px; background: #090F1D;
-    border-radius: 38px; border: 1.5px solid rgba(255,255,255,0.1);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 6px rgba(255,255,255,0.02), inset 0 1px 0 rgba(255,255,255,0.06);
-    position: relative; overflow: hidden;
-    display: flex; flex-direction: column; margin: 0 auto;
+    width: 240px; height: 490px; background: #0A0F1E;
+    border-radius: 38px; border: 1.5px solid rgba(255,255,255,0.08);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.18), 0 0 0 6px rgba(0,0,0,0.04), 0 8px 32px rgba(43,111,255,0.08);
+    position: relative; overflow: hidden; display: flex; flex-direction: column; margin: 0 auto;
   }
-  .phone-notch {
-    width: 72px; height: 22px; background: #090F1D;
-    border-radius: 0 0 14px 14px;
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 3;
-    border: 1.5px solid rgba(255,255,255,0.07); border-top: none;
-  }
-  /* Status bar — always visible above slides */
-  .phone-statusbar {
-    flex-shrink: 0; padding: 28px 14px 6px;
-    display: flex; justify-content: space-between; align-items: center;
-    position: relative; z-index: 2;
-    background: #090F1D;
-  }
-  .phone-wm { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: -0.03em; color: var(--text); }
-  .phone-wm .dot { color: var(--accent); }
-  .phone-time { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-secondary); }
-  /* Slide container */
+  .phone-notch { width: 72px; height: 22px; background: #0A0F1E; border-radius: 0 0 14px 14px; position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 3; border: 1.5px solid rgba(255,255,255,0.06); border-top: none; }
+  .phone-statusbar { flex-shrink: 0; padding: 28px 14px 6px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; background: #0A0F1E; }
+  .phone-wm { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: -0.03em; color: #F2F4F7; }
+  .phone-wm .dot { color: #2B6FFF; }
+  .phone-time { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(242,244,247,0.5); }
   .phone-overflow { flex: 1; overflow: hidden; position: relative; }
-  .phone-slides-track {
-    display: flex; width: 300%; height: 100%;
-    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .phone-slide {
-    flex: 1; height: 100%; padding: 8px 14px 6px;
-    display: flex; flex-direction: column; overflow: hidden;
-  }
-  /* Screen labels / nav */
-  .phone-slide-label {
-    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px;
-    letter-spacing: -0.01em; color: var(--text); margin-bottom: 10px;
-  }
-  .phone-back {
-    font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px;
-    color: var(--accent); margin-bottom: 8px; letter-spacing: -0.01em;
-  }
-  /* Notification card */
-  .phone-notif {
-    background: rgba(61,126,255,0.1); border: 1px solid rgba(61,126,255,0.2);
-    border-radius: 10px; padding: 9px 11px;
-    display: flex; gap: 9px; align-items: flex-start; margin-bottom: 12px;
-  }
-  .phone-notif-icon {
-    width: 24px; height: 24px; background: var(--accent); border-radius: 6px;
-    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 8px; color: white;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .phone-notif-from { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
-  .phone-notif-body { font-size: 10px; color: var(--text-secondary); line-height: 1.4; }
-  /* Brief list items */
-  .phone-brief-item {
-    padding: 8px 0; border-bottom: 1px solid rgba(31,43,67,0.8);
-    display: flex; flex-direction: column; gap: 3px; flex-shrink: 0;
-  }
-  .phone-brief-item:first-child { border-top: 1px solid rgba(31,43,67,0.8); }
-  .phone-cat { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--amber); }
-  .phone-hl { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px; line-height: 1.3; color: var(--text); }
-  /* Story detail (screen 2) */
-  .phone-story-cat { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--amber); margin-bottom: 6px; }
-  .phone-story-hl { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 8px; color: var(--text); }
-  .phone-story-body { font-size: 10px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 10px; flex: 1; }
-  .phone-stats {
-    background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
-    padding: 8px 12px; display: flex; gap: 12px; flex-shrink: 0;
-  }
+  .phone-slides-track { display: flex; width: 300%; height: 100%; transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
+  .phone-slide { flex: 1; height: 100%; padding: 8px 14px 6px; display: flex; flex-direction: column; overflow: hidden; }
+  .phone-slide-label { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -0.01em; color: #F2F4F7; margin-bottom: 10px; }
+  .phone-back { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px; color: #2B6FFF; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .phone-notif { background: rgba(43,111,255,0.12); border: 1px solid rgba(43,111,255,0.22); border-radius: 10px; padding: 9px 11px; display: flex; gap: 9px; align-items: flex-start; margin-bottom: 12px; }
+  .phone-notif-icon { width: 24px; height: 24px; background: #2B6FFF; border-radius: 6px; font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 8px; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .phone-notif-from { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #2B6FFF; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  .phone-notif-body { font-size: 10px; color: rgba(242,244,247,0.65); line-height: 1.4; }
+  .phone-brief-item { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
+  .phone-brief-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+  .phone-cat { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #C17E2B; }
+  .phone-hl { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px; line-height: 1.3; color: #F2F4F7; }
+  .phone-story-cat { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #C17E2B; margin-bottom: 6px; }
+  .phone-story-hl { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 8px; color: #F2F4F7; }
+  .phone-story-body { font-size: 10px; color: rgba(242,244,247,0.6); line-height: 1.55; margin-bottom: 10px; flex: 1; }
+  .phone-stats { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px; display: flex; gap: 12px; flex-shrink: 0; }
   .phone-stat { display: flex; flex-direction: column; gap: 1px; }
-  .phone-stat-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--text); }
-  .phone-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); }
-  /* Markets screen (screen 3) */
-  .phone-mkt-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 8px 0; border-bottom: 1px solid rgba(31,43,67,0.8);
-  }
-  .phone-mkt-sym { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: var(--text); }
+  .phone-stat-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: #F2F4F7; }
+  .phone-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(242,244,247,0.45); }
+  .phone-mkt-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .phone-mkt-sym { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: #F2F4F7; }
   .phone-mkt-chg { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; }
-  .phone-mkt-chg.up { color: var(--green); }
-  .phone-mkt-chg.dn { color: var(--red); }
-  .phone-mkt-take { font-size: 10px; color: var(--text-secondary); line-height: 1.5; margin-top: 10px; flex: 1; }
-  /* Read button */
-  .phone-btn {
-    margin-top: auto; padding: 9px;
-    background: var(--accent); border-radius: 8px;
-    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px; color: white;
-    text-align: center; flex-shrink: 0;
-  }
-  /* Screen indicator dots */
-  .phone-controls { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 5px 0 2px; flex-shrink: 0; }
-  .phone-ctrl-btn {
-    background: none; border: none; cursor: pointer;
-    color: rgba(255,255,255,0.28); font-size: 20px; line-height: 1;
-    padding: 0 2px; transition: color 0.15s ease;
-  }
-  .phone-ctrl-btn:hover { color: var(--accent); }
+  .phone-mkt-chg.up { color: #4ADE80; }
+  .phone-mkt-chg.dn { color: #F87171; }
+  .phone-mkt-take { font-size: 10px; color: rgba(242,244,247,0.55); line-height: 1.5; margin-top: 10px; flex: 1; }
+  .phone-btn { margin-top: auto; padding: 9px; background: #2B6FFF; border-radius: 8px; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px; color: white; text-align: center; flex-shrink: 0; }
+  .phone-controls { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 5px 0 2px; flex-shrink: 0; background: #0A0F1E; }
+  .phone-ctrl-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.22); font-size: 20px; line-height: 1; padding: 0 2px; transition: color 0.15s ease; }
+  .phone-ctrl-btn:hover { color: #2B6FFF; }
   .phone-dots { display: flex; gap: 5px; justify-content: center; flex-shrink: 0; }
-  .phone-dot { height: 4px; width: 4px; border-radius: 2px; background: rgba(255,255,255,0.18); transition: background 0.3s ease, width 0.3s ease; }
-  .phone-dot-active { background: var(--accent); width: 14px; }
-  .phone-home { height: 3px; width: 64px; background: rgba(255,255,255,0.18); border-radius: 2px; margin: 6px auto 4px; flex-shrink: 0; }
+  .phone-dot { height: 4px; width: 4px; border-radius: 2px; background: rgba(255,255,255,0.15); transition: background 0.3s ease, width 0.3s ease; }
+  .phone-dot-active { background: #2B6FFF; width: 14px; }
+  .phone-home { height: 3px; width: 64px; background: rgba(255,255,255,0.15); border-radius: 2px; margin: 6px auto 4px; flex-shrink: 0; }
 
-  /* Scroll nav — always-visible section labels */
-  .scroll-dot { position: relative; }
-  .scroll-dot::after {
-    content: attr(data-label);
-    position: absolute;
-    right: calc(100% + 10px);
-    top: 50%; transform: translateY(-50%);
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 10px; font-weight: 600; white-space: nowrap;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: rgba(242,244,247,0.2);
-    pointer-events: none;
-    transition: color 0.25s ease;
-  }
-  .scroll-dot:hover::after { color: rgba(242,244,247,0.5); }
-  .scroll-dot.active::after { color: var(--text); }
+  /* SCROLL PROGRESS */
+  .scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; width: 0%; z-index: 200; background: linear-gradient(90deg, var(--accent), var(--accent-hover)); box-shadow: 0 0 8px rgba(43,111,255,0.35); transition: width 0.08s linear; pointer-events: none; }
 
-  /* ---------- FOUNDER ---------- */
-  .founder {
-    max-width: 640px; margin: 0 auto;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 40px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 4px 20px rgba(0,0,0,0.2);
-  }
+  /* SIDE NAV DOTS */
+  .scroll-nav { position: fixed; right: 22px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .scroll-nav::before { content: ''; position: absolute; top: 5px; bottom: 5px; left: 50%; transform: translateX(-50%); width: 1px; background: var(--border); pointer-events: none; }
+  .scroll-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-light); border: 1px solid var(--border-light); cursor: pointer; position: relative; z-index: 1; transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+  .scroll-dot::after { content: attr(data-label); position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 600; white-space: nowrap; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); opacity: 0.4; pointer-events: none; transition: opacity 0.25s ease; }
+  .scroll-dot:hover { background: var(--text-secondary); border-color: var(--text-secondary); transform: scale(1.3); }
+  .scroll-dot:hover::after { opacity: 0.85; }
+  .scroll-dot.active { background: var(--accent); border-color: var(--accent); transform: scale(1.5); box-shadow: 0 0 8px rgba(43,111,255,0.35); }
+  .scroll-dot.active::after { opacity: 1; color: var(--text); }
+  @media (max-width: 1100px) { .scroll-nav { display: none; } }
+
+  /* FOUNDER */
+  .founder { max-width: 640px; margin: 0 auto; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
   .founder-head { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
-  .founder-avatar {
-    width: 48px; height: 48px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #2451BD);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 18px; color: white;
-    flex-shrink: 0; box-shadow: 0 0 18px rgba(61,126,255,0.3);
-  }
-  .founder-name { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 16px; }
+  .founder-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #1A5CEF); display: flex; align-items: center; justify-content: center; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 18px; color: white; flex-shrink: 0; box-shadow: 0 0 20px rgba(43,111,255,0.2); }
+  .founder-name { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 16px; color: var(--text); }
   .founder-role { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
   .founder p { color: var(--text); font-size: 16px; line-height: 1.7; margin-bottom: 14px; }
   .founder p:last-child { margin-bottom: 0; color: var(--text-secondary); }
 
-  /* ---------- CLOSING CTA ---------- */
+  /* CLOSING CTA */
   .closing { text-align: center; padding: 120px 0; position: relative; overflow: hidden; }
-  .closing::before {
-    content: '';
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px; height: 500px;
-    background: radial-gradient(ellipse at center, rgba(61,126,255,0.08), transparent 70%);
-    pointer-events: none;
-  }
+  .closing::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 500px; background: radial-gradient(ellipse at center, rgba(43,111,255,0.05), transparent 70%); pointer-events: none; }
   .closing > .container { position: relative; }
-  .closing h2 {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 900; font-size: clamp(36px, 6vw, 72px);
-    letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 24px;
-  }
-  .closing h2 .accent { color: var(--accent); text-shadow: 0 0 40px rgba(61,126,255,0.3); }
+  .closing h2 { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: clamp(36px, 6vw, 72px); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 24px; color: var(--text); }
+  .closing h2 .accent { color: var(--accent); }
   .closing > .container > p { color: var(--text-secondary); font-size: 18px; margin-bottom: 36px; }
 
-  /* ---------- SCROLL PROGRESS BAR ---------- */
-  .scroll-progress {
-    position: fixed; top: 0; left: 0; right: 0;
-    height: 2px; width: 0%; z-index: 200;
-    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
-    box-shadow: 0 0 10px rgba(61,126,255,0.55), 0 0 3px rgba(61,126,255,0.8);
-    transition: width 0.08s linear;
-    pointer-events: none;
-  }
-
-  /* ---------- SIDE SECTION DOTS ---------- */
-  .scroll-nav {
-    position: fixed; right: 22px; top: 50%;
-    transform: translateY(-50%);
-    z-index: 100; display: flex; flex-direction: column;
-    align-items: center; gap: 10px;
-  }
-  .scroll-nav::before {
-    content: '';
-    position: absolute; top: 5px; bottom: 5px;
-    left: 50%; transform: translateX(-50%);
-    width: 1px;
-    background: rgba(255,255,255,0.07);
-    pointer-events: none;
-  }
-  .scroll-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: rgba(255,255,255,0.14);
-    border: 1px solid rgba(255,255,255,0.14);
-    cursor: pointer; position: relative; z-index: 1;
-    transition: background 0.3s ease, transform 0.3s ease,
-                border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  .scroll-dot:hover { background: rgba(255,255,255,0.35); border-color: rgba(255,255,255,0.35); transform: scale(1.3); }
-  .scroll-dot.active {
-    background: var(--accent); border-color: var(--accent);
-    transform: scale(1.5);
-    box-shadow: 0 0 8px rgba(61,126,255,0.6);
-  }
-  @media (max-width: 1100px) { .scroll-nav { display: none; } }
-
-  /* ---------- FOOTER ---------- */
-  footer {
-    padding: 40px 0 32px; border-top: 1px solid var(--border);
-    color: var(--text-secondary); font-size: 13px;
-  }
+  /* FOOTER */
+  footer { padding: 40px 0 32px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 13px; background: var(--surface-2); }
   .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
   .footer-socials { display: flex; gap: 16px; }
   .footer-socials a:hover { color: var(--text); }
 
-  /* ---------- MOBILE ---------- */
+  /* RESPONSIVE */
   @media (max-width: 900px) {
-    .bento { grid-template-columns: repeat(2, 1fr); }
-    .bento-full  { grid-column: 1 / -1; }
-    .bento-third { grid-column: span 1; }
-    .bento-half  { grid-column: 1 / -1; }
-    .bento-big   { grid-template-columns: 1fr; }
-    .bento-preview { display: none; }
-    .diff-grid { grid-template-columns: 1fr; }
+    .scenarios-grid { grid-template-columns: repeat(2, 1fr); }
+    .scenario-card--third, .scenario-card--half { grid-column: span 1; }
+    .fw-grid { grid-template-columns: 1fr; }
+    .fw-step + .fw-step { border-top: 2px solid var(--border); }
     .app-inner { grid-template-columns: 1fr; gap: 48px; }
     .phone-frame { display: none; }
   }
@@ -799,157 +619,39 @@
     .container { padding: 0 16px; }
     .hero { padding: 60px 0 48px; }
     section { padding: 56px 0; }
-    .bento { grid-template-columns: 1fr; gap: 8px; }
-    .bento-full, .bento-third, .bento-half { grid-column: 1 / -1; }
+    .chat-section { padding: 52px 0; }
+    .scenarios { padding: 56px 0; }
+    .framework { padding: 56px 0; }
+    .scenarios-grid { grid-template-columns: 1fr; }
+    .scenario-card--third, .scenario-card--half { grid-column: 1 / -1; }
     .brief-body { padding: 22px 18px; }
     .founder { padding: 28px 22px; }
     .beehiiv-form-wrap { max-width: 100%; }
     .ticker { gap: 24px; font-size: 12px; }
-    .billboard { padding: 56px 0 0; }
-    .billboard-text { font-size: clamp(26px, 7.5vw, 40px); }
-    .chat-msg, .chat-msg--brand { max-width: 92%; }
-    .chat-section { padding: 44px 0 64px; }
     .closing { padding: 80px 0; }
     .section-eyebrow::before, .section-eyebrow::after { display: none; }
   }
-
-    /* ============================================================
-       GUYTALK — Visual Polish v2
-       Section Separation · Hierarchy · Premium Card Depth
-       ============================================================ */
-
-    /* NEW TOKENS */
-    :root {
-          --bg-alt:     #0D1829;
-          --gold:       #B89650;
-          --gold-muted: rgba(184, 150, 80, 0.07);
-    }
-
-    /* SECTION SPACING — 80px to 100px */
-    section { padding: 100px 0; }
-    section.hero { padding: 88px 0 80px; }
-    .diff-section { padding-top: 72px; padding-bottom: 100px; }
-
-    /* ALTERNATING BACKGROUNDS */
-    body > section:nth-of-type(2) {
-          background:
-                  radial-gradient(ellipse 65% 55% at 50% 35%, rgba(61,126,255,0.055), transparent 68%),
-                  var(--bg-alt);
-    }
-    .chat-section {
-          background:
-                  radial-gradient(ellipse 75% 65% at 50% 50%, rgba(61,126,255,0.055), transparent 70%),
-                  var(--bg-alt);
-    }
-    .app-section {
-          background:
-                  radial-gradient(ellipse 55% 70% at 82% 55%, rgba(61,126,255,0.05), transparent 65%),
-                  var(--bg-alt);
-    }
-    body > section:nth-of-type(5) {
-          background:
-                  radial-gradient(ellipse 50% 55% at 25% 50%, rgba(61,126,255,0.04), transparent 65%),
-                  var(--bg-alt);
-    }
-
-    /* SECTION SEPARATOR LINES */
-    body > section:nth-of-type(2),
-    body > section:nth-of-type(3),
-    body > section:nth-of-type(5),
-    .closing,
-    .diff-section {
-          border-top: 1px solid;
-          border-image: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.06) 80%, transparent 100%) 1;
-    }
-    .closing {
-          border-image: linear-gradient(90deg, transparent 0%, rgba(61,126,255,0.15) 25%, rgba(61,126,255,0.22) 50%, rgba(61,126,255,0.15) 75%, transparent 100%) 1;
-    }
-    .app-section { border-top-color: var(--border-light); }
-    .chat-section::before {
-          position: absolute; top: 0; left: 0; right: 0;
-          width: 100%; height: 1px;
-          background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.06) 80%, transparent 100%);
-          transform: none;
-    }
-    .chat-heading { position: relative; }
-    .chat-heading::before {
-          content: ''; position: absolute;
-          top: 50%; left: 50%; transform: translate(-50%, -50%);
-          width: 640px; height: 440px;
-          background: radial-gradient(ellipse at center, rgba(61,126,255,0.065), transparent 65%);
-          pointer-events: none; z-index: -1;
-    }
-
-    /* SECTION HEADINGS */
-    .section-eyebrow { margin-bottom: 22px; letter-spacing: 0.25em; }
-    .section-eyebrow::before, .section-eyebrow::after {
-          width: 20px;
-          background: linear-gradient(90deg, var(--accent), var(--gold));
-          opacity: 0.5;
-    }
-    .section-title { font-size: clamp(30px, 4vw, 48px); margin-bottom: 22px; }
-    .section-sub { margin: 0 auto 68px; font-size: 17.5px; line-height: 1.72; }
-
-    /* BENTO CARDS */
-    .bento-card {
-          padding: 32px;
-          border-color: var(--border-light);
-          box-shadow: inset 0 1px 0 rgba(255,255,255,0.055), 0 4px 12px rgba(0,0,0,0.2), 0 8px 32px rgba(0,0,0,0.2);
-    }
-    .bento-card:hover {
-          border-color: rgba(61,126,255,0.3);
-          transform: translateY(-3px);
-          box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 0 0 1px rgba(61,126,255,0.08), 0 8px 24px rgba(0,0,0,0.24), 0 24px 64px rgba(0,0,0,0.28), 0 0 48px rgba(61,126,255,0.07);
-    }
-    .bento-card h3 { font-size: 20px; margin-bottom: 12px; }
-    .bento-card p  { font-size: 14.5px; line-height: 1.68; }
-
-    /* DIFF CARDS */
-    .diff-card { padding: 40px 32px; }
-    .diff-card:hover { background: rgba(255,255,255,0.018); }
-    .diff-card h3 { font-size: 20px; }
-    .diff-grid { border-color: var(--border-light); box-shadow: inset 0 1px 0 rgba(255,255,255,0.025), 0 4px 24px rgba(0,0,0,0.18); }
-
-    /* BRIEF MOCK */
-    .brief-mock { box-shadow: 0 0 0 1px rgba(61,126,255,0.09), 0 32px 96px rgba(0,0,0,0.48), inset 0 1px 0 rgba(255,255,255,0.055); }
-    .brief-section { background: linear-gradient(180deg, transparent 0%, rgba(61,126,255,0.025) 50%, transparent 100%); }
-
-    /* CHAT WINDOW */
-    .chat-window { box-shadow: inset 0 1px 0 rgba(255,255,255,0.065), 0 0 0 1px rgba(61,126,255,0.07), 0 48px 120px rgba(0,0,0,0.52), 0 0 80px rgba(61,126,255,0.065); }
-
-    /* GOLD ACCENT — coming-soon card */
-    .bento-card--soon { border-color: rgba(184,150,80,0.14); }
-    .bento-card--soon:hover { border-color: rgba(245,166,35,0.45); }
-
-    /* APP + FOOTER + CLOSING */
-    .app-feat { border-left-color: rgba(61,126,255,0.22); }
-    .closing { padding-top: 112px; padding-bottom: 112px; }
-    footer { border-top: 1px solid var(--border); }
-    .billboard .section-eyebrow { margin-bottom: 28px; }
 </style>
 <!-- PostHog analytics -->
 <script>
-  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init me ws ys ps bs capture je Di ks register register_once register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
   posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8', {api_host:'https://us.i.posthog.com', person_profiles:'identified_only'});
 </script>
 </head>
 <body>
 
-<!-- Scroll progress bar -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- Side section nav dots -->
 <nav class="scroll-nav" aria-hidden="true" id="scrollNav">
-  <div class="scroll-dot active" data-index="0" data-label="Top" title="Top"></div>
-  <div class="scroll-dot" data-index="1" data-label="What's Inside" title="What's Inside"></div>
-  <div class="scroll-dot" data-index="2" data-label="Why GuyTalk" title="Why GuyTalk"></div>
-  <div class="scroll-dot" data-index="3" data-label="Group Chat" title="Group Chat"></div>
-  <div class="scroll-dot" data-index="4" data-label="Sample Brief" title="Sample Brief"></div>
-  <div class="scroll-dot" data-index="5" data-label="The App" title="The App"></div>
-  <div class="scroll-dot" data-index="6" data-label="Founder" title="Founder"></div>
+  <div class="scroll-dot active" data-index="0" data-label="Top"          title="Top"></div>
+  <div class="scroll-dot"        data-index="1" data-label="Group Chat"    title="Group Chat"></div>
+  <div class="scroll-dot"        data-index="2" data-label="Where It Works" title="Where It Works"></div>
+  <div class="scroll-dot"        data-index="3" data-label="How It Works"  title="How It Works"></div>
+  <div class="scroll-dot"        data-index="4" data-label="The Brief"     title="The Brief"></div>
+  <div class="scroll-dot"        data-index="5" data-label="The App"       title="The App"></div>
+  <div class="scroll-dot"        data-index="6" data-label="Founder"       title="Founder"></div>
 </nav>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <div class="wordmark">GuyTalk<span class="dot">.</span></div>
@@ -962,20 +664,26 @@
   <div class="container">
     <div class="pill">
       <span class="pill-dot"></span>
-      Daily Brief · Sports + Markets + Culture
+      The Relevance Brief · Free · 5 Min
     </div>
     <h1>
-      Sports.<br>Markets.<br>Culture.<br>
-      <span class="h1-accent">In five minutes.</span>
+      <span class="h1-line">Walk in</span>
+      <span class="h1-line h1-accent">knowing.</span>
     </h1>
     <p class="hero-sub">
-      Three stories. Written sharp. Done before your first coffee.<br>
-      Built for guys who want to know more than the room — without losing an hour to find out.
+      GuyTalk tells you <strong>what happened</strong>, <strong>why it matters</strong>, and <strong>what to bring up</strong> — so you're never the last guy to know.
     </p>
 
     <!-- TICKER -->
     <div class="ticker-wrap">
-      <div class="ticker-label">What's Moving <span class="ticker-label-sub">Markets · Sports</span></div>
+      <div class="ticker-hdr">
+        <span class="ticker-live"><span class="ticker-live-dot"></span>Live</span>
+        <span class="ticker-hdr-cats">
+          <span class="tkc-markets">Markets</span>
+          <span class="tkc-sep">·</span>
+          <span class="tkc-sports">Sports</span>
+        </span>
+      </div>
       <div class="ticker" id="ticker-track">
         <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-up">+2.41%</span></div>
         <div class="ticker-item"><span class="ticker-sym">SPY</span><span class="ticker-up">+0.62%</span></div>
@@ -998,7 +706,6 @@
       </div>
     </div>
 
-    <!-- SIGNUP -->
     <div id="signup" class="beehiiv-form-wrap">
       <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d"></script>
     </div>
@@ -1013,175 +720,171 @@
   </div>
 </section>
 
-<!-- WHAT'S INSIDE -->
-<section data-nav="1">
+<!-- GROUP CHAT — rebuilt -->
+<div class="chat-section" data-nav="1">
   <div class="container">
-    <div class="section-eyebrow">What's inside</div>
-    <h2 class="section-title">Sharper than your group chat.</h2>
-    <p class="section-sub">Three verticals. One sharp take. Done before your first coffee.</p>
+    <div class="chat-intro">
+      <div class="chat-live-badge">
+        <span class="chat-live-dot"></span>
+        Happening right now
+      </div>
+      <h2>Already in your group chat.</h2>
+      <p>Every morning, GuyTalk covers the three things your guys are going to bring up — before they bring them up.</p>
+    </div>
 
-    <div class="bento">
-      <div class="bento-card bento-full fade-up">
-        <div class="bento-big">
-          <div class="bento-big-text">
-            <div class="bento-cat">The daily format</div>
-            <h3>Three stories. A sharp take. Five minutes.</h3>
-            <p>Sports, markets, and culture — the stuff that comes up when you're with people. Written like a friend who reads everything and tells you only what matters. No padding. No hot takes for the sake of it.</p>
+    <div class="chat-win">
+      <div class="chat-topbar">
+        <div class="chat-avs">
+          <div class="chat-av av-b">J</div>
+          <div class="chat-av av-g">M</div>
+          <div class="chat-av av-a">A</div>
+          <div class="chat-av av-p">R</div>
+        </div>
+        <div>
+          <span class="chat-topbar-name">The Boys</span>
+          <span class="chat-topbar-sub">4 active now</span>
+        </div>
+      </div>
+
+      <div class="chat-feed">
+        <div class="msg-ts">Today, 8:14 AM</div>
+
+        <div class="msg-row fade-up">
+          <div class="msg-sender ms-j">Jake</div>
+          <div class="msg-bubs">
+            <div class="msg-bub">SGA dropped 40 lol</div>
+            <div class="msg-bub">series is basically over</div>
           </div>
-          <div class="bento-preview">
-            <div class="bento-preview-item">
-              <span class="bento-preview-cat">Sports</span>
-              <span class="bento-preview-line">Thunder lead WCF 1–0 after OT. SGA dropped 40. Here's the one stat that explains the series.</span>
+        </div>
+
+        <div class="msg-row fade-up">
+          <div class="msg-sender ms-a">Alex</div>
+          <div class="msg-bubs">
+            <div class="msg-bub">Nvidia at $4T is actually insane</div>
+          </div>
+        </div>
+
+        <div class="msg-row fade-up">
+          <div class="msg-sender ms-r">Ryan</div>
+          <div class="msg-bubs">
+            <div class="msg-bub">did you guys see that CEO tweet</div>
+          </div>
+        </div>
+
+        <div class="msg-row fade-up">
+          <div class="msg-sender ms-m">Mark</div>
+          <div class="msg-bubs">
+            <div class="msg-bub">bro everyone's losing it rn</div>
+          </div>
+        </div>
+
+        <div class="msg-gt-row fade-up">
+          <div class="msg-gt-label">GuyTalk · Today's Brief</div>
+          <div class="msg-gt-card">
+            <div class="msg-gt-hdr">
+              <span class="msg-gt-hdr-title">Today's Brief</span>
+              <span class="msg-gt-hdr-issue">May 30, 2026</span>
             </div>
-            <div class="bento-preview-item">
-              <span class="bento-preview-cat">Markets</span>
-              <span class="bento-preview-line">Yields ripped. Tech got punished. Here's the chain reaction in three sentences.</span>
+            <div class="msg-gt-body">
+              <div class="msg-gt-item">Why OKC isn't as locked up as everyone thinks</div>
+              <div class="msg-gt-item">What's actually driving Nvidia past $4T</div>
+              <div class="msg-gt-item">That CEO tweet — context in 60 seconds</div>
+              <div class="msg-gt-item">What people are actually saying about all of it</div>
             </div>
-            <div class="bento-preview-item">
-              <span class="bento-preview-cat">Culture</span>
-              <span class="bento-preview-line">The tweet breaking everyone's timeline right now. Context: 30 seconds.</span>
-            </div>
+            <a href="#signup" class="msg-gt-foot">Read today's brief</a>
           </div>
         </div>
       </div>
 
-      <div class="bento-card bento-third fade-up">
-        <div class="bento-cat bento-cat-amber">Sports</div>
-        <h3>Last night's results. Tonight's storylines.</h3>
-        <p>Scores, standings, and the one angle worth bringing up — without the box score dump. Know what happened and why it matters before anyone brings it up.</p>
+      <div class="chat-typing-row">
+        <span class="typing-dots"><span></span><span></span><span></span></span>
+        Jake is typing...
+      </div>
+      <div class="chat-bottombar">
+        <div class="chat-input-mock">Message...</div>
+        <div class="chat-send-btn">↑</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENARIOS -->
+<section class="scenarios" data-nav="2">
+  <div class="container">
+    <div class="section-eyebrow">The social utility</div>
+    <h2 class="section-title">Know what to say in any room.</h2>
+    <p class="section-sub">Not just the group chat. Every conversation you'll have today — before you have it.</p>
+
+    <div class="scenarios-grid">
+      <div class="scenario-card scenario-card--third scenario-card--markets fade-up">
+        <div class="scenario-context"><span class="s-icon">💼</span> The Office</div>
+        <div class="scenario-quote">Did you catch what yields did yesterday? That's why the whole sector got sold this morning.</div>
+        <div class="scenario-source sc-src--markets">From the Markets Brief</div>
       </div>
 
-      <div class="bento-card bento-third fade-up">
-        <div class="bento-cat bento-cat-amber">Markets</div>
-        <h3>The moves that mattered. In plain English.</h3>
-        <p>Stocks, crypto, and macro — explained without the finance-speak. Whether you're watching your portfolio or just want to hold your own in the conversation.</p>
+      <div class="scenario-card scenario-card--third scenario-card--sports fade-up">
+        <div class="scenario-context"><span class="s-icon">💬</span> The Group Chat</div>
+        <div class="scenario-quote">SGA dropped 40 and 8. Thunder lead 2–0. Series is basically over.</div>
+        <div class="scenario-source sc-src--sports">From the Sports Brief</div>
       </div>
 
-      <div class="bento-card bento-third fade-up">
-        <div class="bento-cat bento-cat-amber">Culture</div>
-        <h3>What everyone's arguing about today.</h3>
-        <p>The tweet, the clip, the take. We tell you what it is, why people care, and the correct read — so you're never the last one to hear about it.</p>
+      <div class="scenario-card scenario-card--third scenario-card--culture fade-up">
+        <div class="scenario-context"><span class="s-icon">🍺</span> The Happy Hour</div>
+        <div class="scenario-quote">That CEO tweet everyone's losing their mind about? Here's what actually happened.</div>
+        <div class="scenario-source sc-src--culture">From the Culture Brief</div>
       </div>
 
-      <div class="bento-card bento-half bento-card--soon fade-up">
-        <div class="bento-cat">Coming soon</div>
-        <h3>Before you go out.</h3>
-        <p>Thursday through Saturday evenings: tonight's big games, what everyone will be talking about, and one sharp take to walk in with. The pre-game brief you didn't know you needed.</p>
-        <span class="bento-tag">In development</span>
+      <div class="scenario-card scenario-card--half scenario-card--golf fade-up">
+        <div class="scenario-context"><span class="s-icon">⛳</span> The Golf Course</div>
+        <div class="scenario-quote">Scheffler's sitting 4 shots clear at The Memorial. If you're not watching Sunday, you're doing the weekend wrong.</div>
+        <div class="scenario-source sc-src--golf">From the Weekend Brief</div>
       </div>
 
-      <div class="bento-card bento-half fade-up">
-        <div class="bento-cat">Always</div>
-        <h3>Five minutes. No exceptions.</h3>
-        <p>We cut everything that doesn't clear that bar. If it doesn't make the brief, it doesn't exist. You get in, you get out, you know more than you did. That's the whole model.</p>
-        <span class="bento-tag">Free forever</span>
+      <div class="scenario-card scenario-card--half scenario-card--markets fade-up">
+        <div class="scenario-context"><span class="s-icon">🤝</span> The Networking Event</div>
+        <div class="scenario-quote">Nvidia crossed $4 trillion this week. The AI infrastructure story isn't slowing down — and the market knows it.</div>
+        <div class="scenario-source sc-src--markets">From the Markets Brief</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BILLBOARD MANIFESTO -->
-<div class="billboard" data-nav="2">
+<!-- FRAMEWORK -->
+<section class="framework" data-nav="3">
   <div class="container">
-    <div class="billboard-inner">
-      <p class="billboard-text">
-        <span class="billboard-dim">ESPN never stops talking.</span>
-        <span class="billboard-dim">Morning Brew covers everything.</span>
-        <span class="billboard-dim">Your feed has no filter.</span>
-        <span class="billboard-bright">GuyTalk <span class="bb-accent">cuts through it.</span></span>
-      </p>
-    </div>
-  </div>
-</div>
+    <div class="section-eyebrow">The framework</div>
+    <h2 class="section-title">Every story. Three layers.</h2>
+    <p class="section-sub">GuyTalk takes what happened and gives you the context, the stakes, and the take — every time.</p>
 
-<!-- WHY NOT THEM -->
-<div class="diff-section">
-  <div class="container">
-    <div class="section-eyebrow">Built different</div>
-    <h2 class="section-title" style="margin-bottom:40px">The brief other newsletters didn't build.</h2>
-
-    <div class="diff-grid">
-      <div class="diff-card fade-up">
-        <div class="diff-label">The sports channels</div>
-        <h3>All noise, no signal.</h3>
-        <p>60 takes on the same play. A new hot take every hour. Analysis of the analysis. You leave knowing more words — but not actually more. GuyTalk gives you one story, one context, one stat that changes how you see the week.</p>
-        <div class="diff-pov">One story. The right one.</div>
+    <div class="fw-grid">
+      <div class="fw-step fade-up">
+        <div class="fw-num">01</div>
+        <div class="fw-title">What happened.</div>
+        <div class="fw-desc">Every story starts with a clean account of what actually went down. Sharp, direct, no spin. You read it, you know it.</div>
+        <div class="fw-eg">"Nvidia crossed $4 trillion in market cap this week."</div>
       </div>
-      <div class="diff-card fade-up">
-        <div class="diff-label">The business newsletters</div>
-        <h3>They cover some of the week.</h3>
-        <p>Markets and business — covered well. But sports, culture, and the stuff your group chat actually talks about? That's outside the lane. GuyTalk was built for the guy who wants all three, not a pick-one situation.</p>
-        <div class="diff-pov">All three verticals. Every morning.</div>
+      <div class="fw-step fade-up">
+        <div class="fw-num">02</div>
+        <div class="fw-title">Why it matters.</div>
+        <div class="fw-desc">Not just the news — the context that makes it relevant to your actual conversations. Why this story, why now, why you should care.</div>
+        <div class="fw-eg fw-eg--culture">"It's not just a stock move. Every major tech company guided AI capex higher — Nvidia is the only one selling the shovels."</div>
       </div>
-      <div class="diff-card fade-up">
-        <div class="diff-label">The algorithm</div>
-        <h3>Engineered to keep you scrolling.</h3>
-        <p>Your feed isn't trying to inform you — it's trying to retain you. Every swipe is a win for the platform, not for you. GuyTalk has one goal: get you in, get you sharp, get you out. In five minutes. No feed. No loop.</p>
-        <div class="diff-pov">In, sharp, out. Every morning.</div>
+      <div class="fw-step fade-up">
+        <div class="fw-num">03</div>
+        <div class="fw-title">What to bring up.</div>
+        <div class="fw-desc">The office take. The bar argument. The group chat angle. We hand you the angle that lands in any conversation — so you walk in ready.</div>
+        <div class="fw-eg fw-eg--sports">"The real story isn't Nvidia's price. It's that Microsoft, Google, and Meta are all still accelerating infrastructure spend. That's what's driving it."</div>
       </div>
     </div>
   </div>
-</div>
-
-<!-- GROUP CHAT -->
-<div class="chat-section" data-nav="3">
-  <div class="container">
-    <div class="chat-heading">
-      <div class="chat-live-badge">
-        <span class="chat-live-dot"></span>
-        What's in the group chat
-      </div>
-      <h2>Three stories.<br>Before anyone asks.</h2>
-      <p>Every morning, GuyTalk has the answers before the conversation starts.</p>
-    </div>
-
-    <div class="chat-window">
-      <div class="chat-header">
-        <div class="chat-avatars">
-          <div class="chat-avatar ca-blue">J</div>
-          <div class="chat-avatar ca-green">M</div>
-          <div class="chat-avatar ca-amber">A</div>
-          <div class="chat-avatar ca-purple">R</div>
-        </div>
-        <div class="chat-meta">
-          <span class="chat-group-name">The Boys</span>
-          <span class="chat-online">4 active now</span>
-        </div>
-      </div>
-      <div class="chat-messages">
-        <div class="chat-msg chat-msg--left fade-up">
-          <div class="chat-sender">Jake</div>
-          <div class="chat-bubble">SGA dropped 40 last night. Series is basically over.</div>
-        </div>
-        <div class="chat-msg chat-msg--right fade-up">
-          <div class="chat-bubble chat-bubble--right">bro Nvidia hit $4 trillion today. insane</div>
-        </div>
-        <div class="chat-msg chat-msg--left fade-up">
-          <div class="chat-sender">Alex</div>
-          <div class="chat-bubble chat-bubble--culture">did you guys see that CEO tweet?? everyone's going crazy</div>
-        </div>
-        <div class="chat-msg chat-msg--brand fade-up">
-          <div class="chat-bubble chat-bubble--brand">
-            <span class="chat-gt-tag">GuyTalk · Today's Brief</span>
-            <span class="chat-text">All three in your inbox. Sports, markets, and culture — sharp, in five minutes.</span>
-            <a href="#signup" class="chat-brief-cta">Read today's brief →</a>
-          </div>
-        </div>
-      </div>
-      <div class="chat-typing">
-        <span class="typing-dots"><span></span><span></span><span></span></span>
-        3 more stories in today's brief...
-      </div>
-    </div>
-  </div>
-</div>
+</section>
 
 <!-- SAMPLE BRIEF -->
 <section class="brief-section" data-nav="4">
   <div class="container">
     <div class="section-eyebrow">From the brief</div>
     <h2 class="section-title">Five minutes. Here's one.</h2>
-    <p class="section-sub">Quick scan. Real substance. Done before your coffee's cool.</p>
+    <p class="section-sub">Quick scan. Real substance. The take that makes you the most informed guy in the room.</p>
 
     <div class="brief-mock fade-up">
       <div class="brief-header">
@@ -1190,22 +893,27 @@
       </div>
       <div class="brief-body">
         <div class="brief-greeting">This weekend's everything.</div>
-        <div class="brief-intro">Both Conference Finals are tied 1-1. Scheffler leads The Memorial. S&P had a good week. Here's all of it.</div>
+        <div class="brief-intro">Both Conference Finals are tied 1-1. Scheffler leads The Memorial. S&P had a solid week. Here's all of it.</div>
 
         <a class="brief-story" href="/brief/issue-004/#sports" target="_blank" rel="noopener">
-          <div class="brief-cat">Sports</div>
+          <div class="brief-cat bc-sports">Sports</div>
           <div class="brief-headline">Both series tied at 1. Mitchell answered Brunson. Wemby stole Game 2.</div>
           <div class="brief-snippet">Knicks-Cavs and Thunder-Spurs both head into the weekend locked at 1-1. Game 3s Saturday night. The AT&T Center will be the loudest building in the country.</div>
+          <div class="brief-bring bb-sports"><span class="brief-bring-label">Bring up →</span> "Both series are a coin flip. The Spurs home crowd in Game 3 is the X-factor."</div>
         </a>
+
         <a class="brief-story" href="/brief/issue-004/#markets" target="_blank" rel="noopener">
-          <div class="brief-cat">Markets</div>
+          <div class="brief-cat bc-markets">Markets</div>
           <div class="brief-headline">S&P +0.8% on the week. NVDA holding near $1,080.</div>
           <div class="brief-snippet">Light data week ahead — Memorial Day volume runs 25% below normal. Don't overweight any moves you see Monday. Consumer confidence Wednesday is the one to watch.</div>
+          <div class="brief-bring bb-markets"><span class="brief-bring-label">Office take →</span> "Thin holiday volume — don't read too much into any move Monday."</div>
         </a>
+
         <a class="brief-story" href="/brief/issue-004/#golf" target="_blank" rel="noopener">
-          <div class="brief-cat">Golf</div>
+          <div class="brief-cat bc-golf">Golf</div>
           <div class="brief-headline">Scheffler leads The Memorial through Round 2.</div>
           <div class="brief-snippet">Muirfield Village. Jack's tournament. Scottie in front. If you're not watching Sunday you're doing the weekend wrong.</div>
+          <div class="brief-bring bb-golf"><span class="brief-bring-label">Bring up →</span> "Scheffler's up 4 at The Memorial. It's a foregone conclusion at this point."</div>
         </a>
       </div>
     </div>
@@ -1248,7 +956,6 @@
         </div>
         <div class="phone-overflow">
           <div class="phone-slides-track" id="phoneSlidesTrack">
-            <!-- Screen 1: Daily brief home -->
             <div class="phone-slide">
               <div class="phone-notif">
                 <div class="phone-notif-icon">GT</div>
@@ -1257,60 +964,28 @@
                   <div class="phone-notif-body">Today's brief is ready. SGA 40 pts. Nvidia past $4T. That CEO tweet — explained.</div>
                 </div>
               </div>
-              <div class="phone-brief-item">
-                <span class="phone-cat">Markets</span>
-                <span class="phone-hl">Nvidia crosses $4T. AI spend accelerates.</span>
-              </div>
-              <div class="phone-brief-item">
-                <span class="phone-cat">Sports</span>
-                <span class="phone-hl">SGA drops 40. Thunder in control of series.</span>
-              </div>
-              <div class="phone-brief-item">
-                <span class="phone-cat">Culture</span>
-                <span class="phone-hl">The CEO tweet everyone's screenshot-ing.</span>
-              </div>
+              <div class="phone-brief-item"><span class="phone-cat">Markets</span><span class="phone-hl">Nvidia crosses $4T. AI spend accelerates.</span></div>
+              <div class="phone-brief-item"><span class="phone-cat">Sports</span><span class="phone-hl">SGA drops 40. Thunder in control.</span></div>
+              <div class="phone-brief-item"><span class="phone-cat">Culture</span><span class="phone-hl">The CEO tweet everyone's screenshot-ing.</span></div>
               <div class="phone-btn">Read today's brief →</div>
             </div>
-            <!-- Screen 2: Sports story detail -->
             <div class="phone-slide">
               <div class="phone-back">← Sports</div>
               <div class="phone-story-cat">Sports</div>
               <div class="phone-story-hl">SGA drops 40 as Thunder take series control</div>
               <div class="phone-story-body">Oklahoma City goes up 2–0. Gilgeous-Alexander was unstoppable — 40 points, 8 assists, no help needed. The Spurs had no answer and now face must-win territory.</div>
               <div class="phone-stats">
-                <div class="phone-stat">
-                  <div class="phone-stat-num">40</div>
-                  <div class="phone-stat-lbl">PTS</div>
-                </div>
-                <div class="phone-stat">
-                  <div class="phone-stat-num">8</div>
-                  <div class="phone-stat-lbl">AST</div>
-                </div>
-                <div class="phone-stat">
-                  <div class="phone-stat-num">+21</div>
-                  <div class="phone-stat-lbl">+/−</div>
-                </div>
+                <div class="phone-stat"><div class="phone-stat-num">40</div><div class="phone-stat-lbl">PTS</div></div>
+                <div class="phone-stat"><div class="phone-stat-num">8</div><div class="phone-stat-lbl">AST</div></div>
+                <div class="phone-stat"><div class="phone-stat-num">+21</div><div class="phone-stat-lbl">+/−</div></div>
               </div>
             </div>
-            <!-- Screen 3: Markets view -->
             <div class="phone-slide">
               <div class="phone-slide-label">Markets</div>
-              <div class="phone-mkt-row">
-                <span class="phone-mkt-sym">NVDA</span>
-                <span class="phone-mkt-chg up">+2.41%</span>
-              </div>
-              <div class="phone-mkt-row">
-                <span class="phone-mkt-sym">TSLA</span>
-                <span class="phone-mkt-chg up">+3.07%</span>
-              </div>
-              <div class="phone-mkt-row">
-                <span class="phone-mkt-sym">BTC</span>
-                <span class="phone-mkt-chg dn">−1.18%</span>
-              </div>
-              <div class="phone-mkt-row">
-                <span class="phone-mkt-sym">SPY</span>
-                <span class="phone-mkt-chg up">+0.62%</span>
-              </div>
+              <div class="phone-mkt-row"><span class="phone-mkt-sym">NVDA</span><span class="phone-mkt-chg up">+2.41%</span></div>
+              <div class="phone-mkt-row"><span class="phone-mkt-sym">TSLA</span><span class="phone-mkt-chg up">+3.07%</span></div>
+              <div class="phone-mkt-row"><span class="phone-mkt-sym">BTC</span><span class="phone-mkt-chg dn">−1.18%</span></div>
+              <div class="phone-mkt-row"><span class="phone-mkt-sym">SPY</span><span class="phone-mkt-chg up">+0.62%</span></div>
               <div class="phone-mkt-take">Nvidia leads on AI capex momentum. Tech broadly higher after Fed hold. BTC pulling back off recent highs — watch $95K as support.</div>
             </div>
           </div>
@@ -1345,8 +1020,9 @@
           <div class="founder-role">Founder · GuyTalk</div>
         </div>
       </div>
-      <p>GuyTalk is the brief I wanted: sports, markets, and culture — written sharp, kept short, with a real point of view. Not a summary. An actual take, from someone who read everything and filtered it down to what matters.</p>
-      <p>Built for guys who want to walk into the day informed, not exhausted. If that sounds like you, join below. We're launching soon and spots are limited.</p>
+      <p>I was spending two hours a day scrolling — and somehow still felt like I was behind. ESPN had endless hot takes. Morning Brew talked finance like I was a banker. Twitter was a war zone. Nothing was built for me.</p>
+      <p>GuyTalk is the brief I wanted: the stuff that actually comes up when you're with people — sports, markets, culture — written sharp, kept short, with a real point of view. Not a summary. An actual take, from someone who read everything and filtered it down to what matters.</p>
+      <p>Built for guys who want to walk into the day informed, not exhausted. If that sounds like you, join below.</p>
     </div>
   </div>
 </section>
@@ -1416,24 +1092,11 @@
   updateProgress();
   updateDots();
 
-  // Nav scroll glow
-  var nav = document.querySelector('nav');
+  // Nav scroll shadow
+  var mainNav = document.querySelector('nav:not(.scroll-nav)');
   window.addEventListener('scroll', function () {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
+    mainNav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
-
-  // Bento card mouse-follow radial
-  document.querySelectorAll('.bento-card').forEach(function (card) {
-    card.addEventListener('mousemove', function (e) {
-      var r = card.getBoundingClientRect();
-      card.style.setProperty('--mouse-x', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--mouse-y', (e.clientY - r.top)  + 'px');
-    });
-    card.addEventListener('mouseleave', function () {
-      card.style.setProperty('--mouse-x', '-500px');
-      card.style.setProperty('--mouse-y', '-500px');
-    });
-  });
 
   // Scroll-triggered fade-ups
   var observer = new IntersectionObserver(function (entries) {
@@ -1444,15 +1107,11 @@
       }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-
-  document.querySelectorAll('.fade-up').forEach(function (el) {
-    observer.observe(el);
-  });
+  document.querySelectorAll('.fade-up').forEach(function (el) { observer.observe(el); });
 
   // Ticker
   var ticker = document.getElementById('ticker-track');
   if (!ticker) return;
-
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var SPEED = reducedMotion ? 0 : 0.6;
   var halfWidth = 0, paused = false, isDragging = false, startX = 0, startScroll = 0;
@@ -1469,8 +1128,7 @@
   ticker.addEventListener('mouseenter', function () { paused = true; });
   ticker.addEventListener('mouseleave', function () { if (!isDragging) paused = false; });
   ticker.addEventListener('mousedown', function (e) {
-    isDragging = true; paused = true;
-    startX = e.clientX; startScroll = ticker.scrollLeft;
+    isDragging = true; paused = true; startX = e.clientX; startScroll = ticker.scrollLeft;
     ticker.style.cursor = 'grabbing'; e.preventDefault();
   });
   document.addEventListener('mousemove', function (e) {
@@ -1505,37 +1163,27 @@
     } catch (e) { /* fallback HTML already in DOM */ }
     initScroll();
   }
-
   loadTicker();
 
-  // Animated phone mockup
+  // Phone mockup
   var phoneTrack = document.getElementById('phoneSlidesTrack');
   if (phoneTrack) {
     var phoneDotEls = document.querySelectorAll('.phone-dot');
-    var currentSlide = 0;
-    var phonePaused = false;
-
+    var currentSlide = 0, phonePaused = false;
     function goToSlide(n) {
       currentSlide = ((n % 3) + 3) % 3;
       phoneTrack.style.transform = 'translateX(-' + (currentSlide * 33.333) + '%)';
-      phoneDotEls.forEach(function (d, i) {
-        d.classList.toggle('phone-dot-active', i === currentSlide);
-      });
+      phoneDotEls.forEach(function (d, i) { d.classList.toggle('phone-dot-active', i === currentSlide); });
     }
-
-    // Pause on hover
     var phoneFrame = document.getElementById('phoneFrame');
     if (phoneFrame) {
       phoneFrame.addEventListener('mouseenter', function () { phonePaused = true; });
       phoneFrame.addEventListener('mouseleave', function () { phonePaused = false; });
     }
-
-    // Manual arrow controls
     var prevBtn = document.getElementById('phonePrev');
     var nextBtn = document.getElementById('phoneNext');
     if (prevBtn) prevBtn.addEventListener('click', function () { goToSlide(currentSlide - 1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { goToSlide(currentSlide + 1); });
-
     setInterval(function () { if (!phonePaused) goToSlide(currentSlide + 1); }, 3200);
   }
 
