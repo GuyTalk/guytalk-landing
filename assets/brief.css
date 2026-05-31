@@ -1,30 +1,30 @@
 /* ================================================================
-   GuyTalk Brief — Shared Stylesheet v1.0
+   GuyTalk Brief — Shared Stylesheet v2.0 (light theme)
    Usage: <link rel="stylesheet" href="/assets/brief.css">
-
-   HOW TO USE:
-   1. Every new brief HTML file links this stylesheet
-   2. Never edit this file to change one issue's look — it affects all
-   3. To add a new section type, add CSS here + document it below
+   Matches landing page design system exactly.
    ================================================================ */
 
 /* ---- VARIABLES ---- */
 :root {
-  --bg:            #0B1322;
-  --bg-grad:       radial-gradient(ellipse 70% 40% at 50% -10%, rgba(61,126,255,0.05), transparent 65%);
-  --surface:       #131D30;
-  --surface-2:     #1A2640;
-  --border:        #1F2B43;
-  --border-light:  #2A3A58;
-  --text:          #F2F4F7;
-  --text-2:        #8B96AB;
-  --text-3:        #6E7A91;
-  --accent:        #3D7EFF;
-  --accent-h:      #5B95FF;
-  --amber:         #F5A623;
-  --amber-muted:   rgba(245,166,35,0.08);
-  --green:         #2BD96A;
-  --red:           #FF4D4D;
+  --bg:            #F9F8F5;
+  --bg-grad:       radial-gradient(ellipse 70% 40% at 50% -10%, rgba(43,111,255,0.04), transparent 65%);
+  --surface:       #FFFFFF;
+  --surface-2:     #F2F0EB;
+  --border:        #E5E2DB;
+  --border-light:  #D4D0C8;
+  --text:          #0F1724;
+  --text-2:        #6E6862;
+  --text-3:        #9E9891;
+  --accent:        #2B6FFF;
+  --accent-h:      #1A5CEF;
+  --accent-muted:  #EBF1FF;
+  --amber:         #B87C35;
+  --amber-muted:   rgba(184,124,53,0.08);
+  --green:         #16A34A;
+  --green-muted:   rgba(22,163,74,0.07);
+  --red:           #DC2626;
+  --sports:        #16A34A;
+  --culture:       #C2410C;
   --r:             12px;
   --r-lg:          16px;
   --max-w:         680px;
@@ -54,10 +54,11 @@ em { font-style: italic; }
    ================================================================ */
 .brief-nav {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(11,19,34,0.84);
+  background: rgba(249,248,245,0.92);
   backdrop-filter: saturate(180%) blur(14px);
   -webkit-backdrop-filter: saturate(180%) blur(14px);
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
 }
 .brief-nav-inner {
   display: flex; align-items: center; justify-content: space-between;
@@ -77,9 +78,9 @@ em { font-style: italic; }
 .brief-cta {
   font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px;
   padding: 7px 14px; background: var(--accent); color: white;
-  border-radius: 7px; border-bottom: 0; transition: background 0.15s ease;
+  border-radius: 7px; border-bottom: 0; transition: background 0.15s ease, transform 0.15s ease;
 }
-.brief-cta:hover { background: var(--accent-h); border-bottom: 0; }
+.brief-cta:hover { background: var(--accent-h); border-bottom: 0; transform: translateY(-1px); }
 
 /* ================================================================
    ARTICLE LAYOUT
@@ -95,7 +96,12 @@ em { font-style: italic; }
 }
 .brief-pretitle-dot {
   width: 6px; height: 6px; border-radius: 50%;
-  background: var(--accent); box-shadow: 0 0 10px var(--accent);
+  background: var(--accent); box-shadow: 0 0 10px rgba(43,111,255,0.4);
+  animation: pulse-dot 2.2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(43,111,255,0.45); }
+  50%       { opacity: 0.6; box-shadow: 0 0 3px rgba(43,111,255,0.2); }
 }
 .brief-title {
   font-family: 'Inter Tight', sans-serif; font-weight: 800;
@@ -117,6 +123,7 @@ em { font-style: italic; }
 .tldr {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--r-lg); padding: 22px 24px; margin-bottom: 48px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
 .tldr-label {
   font-family: 'Inter Tight', sans-serif; font-weight: 700;
@@ -133,32 +140,36 @@ em { font-style: italic; }
 .tldr-item a { color: var(--text-2); border-bottom: 0; }
 .tldr-item a:hover { color: var(--accent); }
 
-/* ---- Tag chips (inside TL;DR and elsewhere) ---- */
+/* ---- Tag chips ---- */
 .tag {
   flex-shrink: 0; font-family: 'JetBrains Mono', monospace;
   font-weight: 600; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 4px 8px; border: 1px solid var(--border-light); border-radius: 4px;
+  padding: 4px 8px; border: 1px solid var(--border); border-radius: 4px;
   height: fit-content; transition: background 0.15s ease, border-color 0.15s ease;
 }
-.tag-blue   { color: var(--accent);  border-color: rgba(61,126,255,0.28); }
-.tag-amber  { color: var(--amber);   border-color: rgba(245,166,35,0.28); }
-.tag-green  { color: var(--green);   border-color: rgba(43,217,106,0.28); }
+.tag-blue   { color: var(--accent);  border-color: rgba(43,111,255,0.28);  background: var(--accent-muted); }
+.tag-amber  { color: var(--amber);   border-color: rgba(184,124,53,0.28);  background: var(--amber-muted); }
+.tag-green  { color: var(--sports);  border-color: rgba(22,163,74,0.28);   background: var(--green-muted); }
 .tag-link   { border-bottom: 0; }
 .tag-link:hover { border-bottom: 0; }
-.tag-link:hover .tag-blue  { background: rgba(61,126,255,0.1);  border-color: var(--accent); }
-.tag-link:hover .tag-amber { background: var(--amber-muted);    border-color: var(--amber); }
+.tag-link:hover .tag-blue  { background: rgba(43,111,255,0.12); border-color: var(--accent); }
+.tag-link:hover .tag-amber { background: rgba(184,124,53,0.14); border-color: var(--amber); }
+.tag-link:hover .tag-green { background: rgba(22,163,74,0.12);  border-color: var(--sports); }
 
 /* ================================================================
    SECTIONS
-   Usage: <section class="brief-section" id="sports">
    ================================================================ */
 .brief-section { margin-top: 56px; }
 .section-label {
   font-family: 'Inter Tight', sans-serif; font-weight: 800;
   font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--amber); margin-bottom: 22px;
-  padding-bottom: 14px; border-bottom: 1px solid var(--border);
+  padding-bottom: 14px; border-bottom: 2px solid var(--border);
 }
+.section-label.sl-sports  { color: var(--sports); border-color: rgba(22,163,74,0.25); }
+.section-label.sl-markets { color: var(--accent);  border-color: rgba(43,111,255,0.25); }
+.section-label.sl-culture { color: var(--culture); border-color: rgba(194,65,12,0.25); }
+.section-label.sl-golf    { color: var(--amber);   border-color: rgba(184,124,53,0.25); }
 .brief-section h3 {
   font-family: 'Inter Tight', sans-serif; font-weight: 700;
   font-size: 23px; line-height: 1.2; letter-spacing: -0.02em;
@@ -167,24 +178,19 @@ em { font-style: italic; }
 .brief-section h3:first-of-type { margin-top: 0; }
 
 /* ================================================================
-   INLINE LINKS — Athletes + Tickers
-   These blend into the prose but are clearly clickable
+   INLINE LINKS
    ================================================================ */
-/* Player name — use for athletes. Links to ESPN profile */
-.player { color: var(--text); font-weight: 600; border-bottom: 1px dashed rgba(61,126,255,0.35); transition: color 0.15s ease; }
+.player { color: var(--text); font-weight: 600; border-bottom: 1px dashed rgba(43,111,255,0.35); transition: color 0.15s ease; }
 .player:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-/* Ticker symbol — use for stocks. Links to Morningstar */
-.ticker { font-family: 'JetBrains Mono', monospace; font-size: 0.88em; font-weight: 600; color: var(--text); border-bottom: 1px dashed rgba(61,126,255,0.35); letter-spacing: 0.02em; }
+.ticker { font-family: 'JetBrains Mono', monospace; font-size: 0.88em; font-weight: 600; color: var(--text); border-bottom: 1px dashed rgba(43,111,255,0.35); letter-spacing: 0.02em; }
 .ticker:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-/* Brand name — use for companies/products. Links to brand site */
-.brand { color: var(--amber); font-weight: 600; border-bottom: 1px dashed rgba(245,166,35,0.35); }
+.brand { color: var(--amber); font-weight: 600; border-bottom: 1px dashed rgba(184,124,53,0.35); }
 .brand:hover { color: var(--amber); opacity: 0.8; border-bottom-color: var(--amber); }
 
 /* ================================================================
    DETAIL LIST
-   The left-bar bullet list used throughout briefs
    ================================================================ */
 .detail-list { list-style: none; margin: 16px 0 0; padding: 0; }
 .detail-list li {
@@ -199,10 +205,10 @@ em { font-style: italic; }
 .dl-label { font-family: 'Inter Tight', sans-serif; font-weight: 700; color: var(--text); margin-right: 4px; }
 
 /* ================================================================
-   ANGLE CALLOUT — "What to bring up" / "Group chat angle"
+   ANGLE CALLOUT
    ================================================================ */
 .angle-box {
-  background: var(--surface-2); border: 1px solid var(--border-light);
+  background: var(--surface-2); border: 1px solid var(--border);
   border-radius: var(--r); padding: 14px 18px; margin-top: 16px;
 }
 .angle-label {
@@ -213,26 +219,26 @@ em { font-style: italic; }
 .angle-text { font-size: 15px; color: var(--text); line-height: 1.58; }
 
 /* ================================================================
-   SCOREBOARD — Game result card
-   Usage: show score, teams, and status for NBA/NHL/etc. games
+   SCOREBOARD
    ================================================================ */
 .scoreboard {
-  background: var(--surface-2); border: 1px solid var(--border-light);
+  background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--r); padding: 18px 22px; margin: 22px 0;
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .score-side { min-width: 110px; }
 .score-side.right { text-align: right; }
 .score-team { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px; color: var(--text); }
 .score-team.loser { color: var(--text-3); }
-.score-num { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 34px; letter-spacing: -0.02em; line-height: 1; }
+.score-num { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 34px; letter-spacing: -0.02em; line-height: 1; color: var(--text); }
 .score-num.loser { color: var(--text-3); }
 .score-center { text-align: center; flex-shrink: 0; }
 .score-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
 .score-badge { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
 
 /* ================================================================
-   STAT BLOCK — 3-up number callout
+   STAT BLOCK
    ================================================================ */
 .stat-block {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -252,19 +258,20 @@ em { font-style: italic; }
 
 /* ================================================================
    MARKET TICKER TABLE
-   Columns: Asset · Price · Day % · Week %
    ================================================================ */
 .mkt-table {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--r); overflow: hidden; margin: 24px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .mkt-table-hd {
   padding: 14px 22px 12px; border-bottom: 1px solid var(--border);
   display: flex; align-items: baseline; justify-content: space-between;
+  background: var(--surface-2);
 }
 .mkt-table-title {
   font-family: 'Inter Tight', sans-serif; font-weight: 700;
-  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber);
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
 }
 .mkt-table-sub { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); }
 .mkt-table-body { padding: 8px 22px 14px; font-family: 'JetBrains Mono', monospace; }
@@ -288,19 +295,6 @@ em { font-style: italic; }
 
 /* ================================================================
    IMAGE MODULE
-   Drop a clean image inside an article with optional caption.
-   Usage:
-     <div class="brief-img">
-       <!-- REPLACE: swap src with real image path -->
-       <img src="/assets/images/your-image.jpg" alt="Description">
-       <div class="brief-img-cap">Caption text here.</div>
-     </div>
-
-   For placeholder (no image yet):
-     <div class="brief-img">
-       <div class="brief-img-ph">Add image: 1200×675px recommended</div>
-       <div class="brief-img-cap">Caption here</div>
-     </div>
    ================================================================ */
 .brief-img {
   border-radius: var(--r-lg); overflow: hidden; margin: 24px 0;
@@ -317,30 +311,15 @@ em { font-style: italic; }
 
 /* ================================================================
    PRODUCT CARD
-   Featured item: clothing, gear, app, book, etc.
-   Usage:
-     <div class="product-card">
-       <div class="product-img">
-         <!-- REPLACE: swap with real product image -->
-         <div class="product-img-ph">Product photo</div>
-       </div>
-       <div class="product-info">
-         <div class="product-brand">Brand Name</div>
-         <div class="product-name">Item Name</div>
-         <p class="product-desc">Why it's worth it...</p>
-         <span class="product-price">$XXX</span>
-         <a href="URL" class="product-link">Shop now →</a>
-       </div>
-     </div>
    ================================================================ */
 .product-card {
   display: grid; grid-template-columns: 150px 1fr;
   gap: 22px; align-items: start;
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--r-lg); padding: 22px; margin: 24px 0;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.product-card:hover { border-color: rgba(245,166,35,0.25); }
+.product-card:hover { border-color: rgba(184,124,53,0.3); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
 .product-img { border-radius: 10px; overflow: hidden; background: var(--surface-2); }
 .product-img img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
 .product-img-ph {
@@ -372,12 +351,11 @@ em { font-style: italic; }
 .product-link:hover { gap: 9px; border-bottom: 0; opacity: 0.8; }
 
 /* ================================================================
-   THE REC — Bottom-of-brief recommendation box
-   One sharp pick per issue: app, show, gear, restaurant, etc.
+   THE REC
    ================================================================ */
 .brief-rec {
-  background: linear-gradient(135deg, rgba(61,126,255,0.07), rgba(61,126,255,0.02));
-  border: 1px solid rgba(61,126,255,0.18);
+  background: var(--accent-muted);
+  border: 1px solid rgba(43,111,255,0.16);
   border-radius: var(--r-lg); padding: 24px; margin-top: 0;
 }
 .rec-label {
@@ -398,7 +376,7 @@ em { font-style: italic; }
 .rec-link:hover { gap: 9px; border-bottom: 0; }
 
 /* ================================================================
-   CULTURE LIST (numbered, like "Around the Internet")
+   CULTURE LIST
    ================================================================ */
 .culture-list { list-style: none; counter-reset: clist; }
 .culture-item {
@@ -424,12 +402,12 @@ em { font-style: italic; }
 .culture-body strong { color: var(--text); }
 
 /* ================================================================
-   SHARP TAKE — Closing section
+   SHARP TAKE
    ================================================================ */
 .sharp-take {
   margin-top: 52px; padding: 26px 24px;
   border-left: 3px solid var(--accent);
-  background: rgba(61,126,255,0.035);
+  background: var(--accent-muted);
   border-radius: 0 var(--r) var(--r) 0;
 }
 .sharp-take-label {
@@ -441,7 +419,7 @@ em { font-style: italic; }
 .sharp-take p:last-child { margin-bottom: 0; color: var(--text-2); font-size: 15px; }
 
 /* ================================================================
-   NUMBERS WORTH STEALING — optional fun stats section
+   NUMBERS WORTH STEALING
    ================================================================ */
 .numbers-list { list-style: none; }
 .numbers-item {
@@ -472,9 +450,10 @@ em { font-style: italic; }
   background: var(--accent); color: white;
   padding: 12px 22px; border-radius: 8px;
   font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
-  border-bottom: 0; transition: background 0.15s ease;
+  border-bottom: 0; transition: background 0.15s ease, transform 0.15s ease;
+  box-shadow: 0 4px 14px rgba(43,111,255,0.25);
 }
-.footer-cta:hover { background: var(--accent-h); border-bottom: 0; }
+.footer-cta:hover { background: var(--accent-h); border-bottom: 0; transform: translateY(-1px); }
 .footer-meta { color: var(--text-3); font-size: 13.5px; margin-top: 20px; line-height: 1.65; }
 .footer-sig { font-family: 'Inter Tight', sans-serif; font-weight: 700; color: var(--text); margin-top: 14px; }
 .footer-nav { display: flex; gap: 20px; margin-top: 24px; flex-wrap: wrap; }

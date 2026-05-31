@@ -55,7 +55,7 @@ cd "$PROJECT_DIR" || exit 1
 "$NODE" scripts/generate-brief.js 2>&1 | tee -a "$LOG_FILE"
 GEN_EXIT=${PIPESTATUS[0]}
 
-# ── On success: open brief in browser and notify ──────────────────────────────
+# ── On success: publish to website + send email ───────────────────────────────
 if [ "$GEN_EXIT" -eq 0 ]; then
   LATEST_DIR=$(ls -d "$PROJECT_DIR/brief/issue-"??? 2>/dev/null | sort | tail -1)
 
@@ -63,11 +63,51 @@ if [ "$GEN_EXIT" -eq 0 ]; then
     ISSUE=$(basename "$LATEST_DIR")
     HTML="$LATEST_DIR/index.html"
 
+    # Open in browser for a quick visual review
     open "$HTML"
-
-    osascript -e "display notification \"${ISSUE} draft ready — review before pushing\" with title \"GuyTalk Brief ✓\" subtitle \"Opened in browser\""
     echo "" >> "$LOG_FILE"
-    echo "   ✓ Opened: $HTML" >> "$LOG_FILE"
+    echo "   ✓ Generated: $HTML" >> "$LOG_FILE"
+
+    # ── Auto-publish: commit + push → Vercel deploys automatically ─────────────
+    echo "" >> "$LOG_FILE"
+    echo "   📤 Publishing to website..." >> "$LOG_FILE"
+
+    cd "$PROJECT_DIR" || exit 1
+
+    git add brief/ assets/ index.html 2>&1 | tee -a "$LOG_FILE"
+    git commit -m "Brief: ${ISSUE} — $(date '+%B %d, %Y')" 2>&1 | tee -a "$LOG_FILE"
+    GIT_EXIT=${PIPESTATUS[0]}
+
+    if [ "$GIT_EXIT" -eq 0 ]; then
+      git push origin main 2>&1 | tee -a "$LOG_FILE"
+      PUSH_EXIT=${PIPESTATUS[0]}
+
+      if [ "$PUSH_EXIT" -eq 0 ]; then
+        echo "   ✓ Pushed — Vercel deploying..." >> "$LOG_FILE"
+
+        # ── Send Beehiiv email ──────────────────────────────────────────────────
+        echo "" >> "$LOG_FILE"
+        echo "   📬 Sending email to subscribers..." >> "$LOG_FILE"
+
+        "$NODE" "$PROJECT_DIR/scripts/send-brief.js" 2>&1 | tee -a "$LOG_FILE"
+        EMAIL_EXIT=${PIPESTATUS[0]}
+
+        if [ "$EMAIL_EXIT" -eq 0 ]; then
+          echo "   ✓ Email sent" >> "$LOG_FILE"
+          osascript -e "display notification \"${ISSUE} live — email sent to subscribers\" with title \"GuyTalk Brief ✓\" subtitle \"Deployed + emailed\""
+        else
+          echo "   ⚠  Email failed — check BEEHIIV_API_KEY in .env.local" >> "$LOG_FILE"
+          osascript -e "display notification \"${ISSUE} deployed but email failed — check logs\" with title \"GuyTalk Brief ⚠\" subtitle \"Add BEEHIIV_API_KEY to .env.local\""
+        fi
+
+      else
+        echo "   ✗ Git push failed" >> "$LOG_FILE"
+        osascript -e "display notification \"${ISSUE} generated but push failed — check logs\" with title \"GuyTalk Brief ⚠\" subtitle \"Git push error\""
+      fi
+    else
+      echo "   ✗ Git commit failed (nothing to commit?)" >> "$LOG_FILE"
+      osascript -e "display notification \"${ISSUE} generated, nothing to commit\" with title \"GuyTalk Brief ✓\" subtitle \"Already up to date\""
+    fi
   fi
 
 # ── On failure: notify with log location ─────────────────────────────────────
