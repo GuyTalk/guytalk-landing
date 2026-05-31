@@ -137,24 +137,25 @@
     border-radius: 12px; overflow: hidden; position: relative;
     box-shadow: 0 4px 24px rgba(0,0,0,0.06);
   }
-  .ticker-wrap::before, .ticker-wrap::after {
+  .ticker-body { position: relative; }
+  .ticker-body::before, .ticker-body::after {
     content: ""; position: absolute; top: 0; bottom: 0; width: 64px; z-index: 2; pointer-events: none;
   }
-  .ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--surface), transparent); }
-  .ticker-wrap::after  { right: 0; background: linear-gradient(270deg, var(--surface), transparent); }
+  .ticker-body::before { left: 0; background: linear-gradient(90deg, var(--surface), transparent); }
+  .ticker-body::after  { right: 0; background: linear-gradient(270deg, var(--surface), transparent); }
   .ticker-hdr {
-    padding: 10px 20px; border-bottom: 1px solid var(--border);
+    padding: 10px 20px; border-bottom: 1px solid rgba(255,255,255,0.12);
     display: flex; align-items: center; justify-content: space-between;
-    background: var(--surface-2);
+    background: var(--accent);
   }
   .ticker-live {
     display: flex; align-items: center; gap: 7px;
     font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.2em; color: var(--green);
+    text-transform: uppercase; letter-spacing: 0.2em; color: white;
   }
   .ticker-live-dot {
     width: 6px; height: 6px; border-radius: 50%;
-    background: var(--green); box-shadow: 0 0 7px rgba(22,163,74,0.55);
+    background: #4ADE80; box-shadow: 0 0 8px rgba(74,222,128,0.75);
     animation: pulse-dot 2s ease-in-out infinite;
   }
   .ticker-hdr-cats {
@@ -162,9 +163,9 @@
     font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.18em;
   }
-  .tkc-markets { color: var(--accent); }
-  .tkc-sports  { color: var(--sports); }
-  .tkc-sep { opacity: 0.3; font-size: 11px; }
+  .tkc-markets { color: rgba(255,255,255,0.7); }
+  .tkc-sports  { color: white; }
+  .tkc-sep { opacity: 0.35; font-size: 11px; color: white; }
   .ticker {
     display: flex; gap: 36px; padding: 14px 20px;
     font-family: 'JetBrains Mono', monospace; font-size: 13.5px; font-weight: 500;
@@ -522,52 +523,55 @@
   .app-feat-title { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; margin-bottom: 5px; color: var(--text); }
   .app-feat-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
 
-  /* PHONE — keep dark */
+  /* PHONE — light theme */
   .phone-frame {
-    width: 240px; height: 490px; background: #0A0F1E;
-    border-radius: 38px; border: 1.5px solid rgba(255,255,255,0.08);
-    box-shadow: 0 32px 80px rgba(0,0,0,0.18), 0 0 0 6px rgba(0,0,0,0.04), 0 8px 32px rgba(43,111,255,0.08);
+    width: 240px; height: 490px; background: var(--surface);
+    border-radius: 38px; border: 1.5px solid var(--border);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.10), 0 4px 16px rgba(43,111,255,0.06);
     position: relative; overflow: hidden; display: flex; flex-direction: column; margin: 0 auto;
   }
-  .phone-notch { width: 72px; height: 22px; background: #0A0F1E; border-radius: 0 0 14px 14px; position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 3; border: 1.5px solid rgba(255,255,255,0.06); border-top: none; }
-  .phone-statusbar { flex-shrink: 0; padding: 28px 14px 6px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; background: #0A0F1E; }
-  .phone-wm { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: -0.03em; color: #F2F4F7; }
-  .phone-wm .dot { color: #2B6FFF; }
-  .phone-time { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(242,244,247,0.5); }
-  .phone-overflow { flex: 1; overflow: hidden; position: relative; }
+  .phone-notch { width: 72px; height: 22px; background: var(--surface); border-radius: 0 0 14px 14px; position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 3; border: 1.5px solid var(--border); border-top: none; }
+  .phone-statusbar { flex-shrink: 0; padding: 28px 14px 6px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; background: var(--surface); }
+  .phone-wm { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: -0.03em; color: var(--text); }
+  .phone-wm .dot { color: var(--accent); }
+  .phone-time { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-secondary); }
+  .phone-overflow { flex: 1; overflow: hidden; position: relative; background: var(--surface); }
   .phone-slides-track { display: flex; width: 300%; height: 100%; transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
-  .phone-slide { flex: 1; height: 100%; padding: 8px 14px 6px; display: flex; flex-direction: column; overflow: hidden; }
-  .phone-slide-label { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -0.01em; color: #F2F4F7; margin-bottom: 10px; }
-  .phone-back { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px; color: #2B6FFF; margin-bottom: 8px; letter-spacing: -0.01em; }
-  .phone-notif { background: rgba(43,111,255,0.12); border: 1px solid rgba(43,111,255,0.22); border-radius: 10px; padding: 9px 11px; display: flex; gap: 9px; align-items: flex-start; margin-bottom: 12px; }
-  .phone-notif-icon { width: 24px; height: 24px; background: #2B6FFF; border-radius: 6px; font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 8px; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .phone-notif-from { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #2B6FFF; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
-  .phone-notif-body { font-size: 10px; color: rgba(242,244,247,0.65); line-height: 1.4; }
-  .phone-brief-item { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
-  .phone-brief-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
-  .phone-cat { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #C17E2B; }
-  .phone-hl { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px; line-height: 1.3; color: #F2F4F7; }
-  .phone-story-cat { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: #C17E2B; margin-bottom: 6px; }
-  .phone-story-hl { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 8px; color: #F2F4F7; }
-  .phone-story-body { font-size: 10px; color: rgba(242,244,247,0.6); line-height: 1.55; margin-bottom: 10px; flex: 1; }
-  .phone-stats { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px; display: flex; gap: 12px; flex-shrink: 0; }
+  .phone-slide { flex: 1; height: 100%; padding: 8px 14px 6px; display: flex; flex-direction: column; overflow: hidden; background: var(--surface); }
+  .phone-slide-label { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -0.01em; color: var(--text); margin-bottom: 10px; }
+  .phone-back { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px; color: var(--accent); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .phone-notif { background: var(--accent-muted); border: 1px solid rgba(43,111,255,0.18); border-radius: 10px; padding: 9px 11px; display: flex; gap: 9px; align-items: flex-start; margin-bottom: 12px; }
+  .phone-notif-icon { width: 24px; height: 24px; background: var(--accent); border-radius: 6px; font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 8px; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .phone-notif-from { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  .phone-notif-body { font-size: 10px; color: var(--text-secondary); line-height: 1.4; }
+  .phone-brief-item { padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
+  .phone-brief-item:first-child { border-top: 1px solid var(--border); }
+  .phone-cat { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--amber); }
+  .phone-cat-markets { color: var(--accent); }
+  .phone-cat-sports  { color: var(--sports); }
+  .phone-cat-culture { color: var(--culture); }
+  .phone-hl { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px; line-height: 1.3; color: var(--text); }
+  .phone-story-cat { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--sports); margin-bottom: 6px; }
+  .phone-story-hl { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 8px; color: var(--text); }
+  .phone-story-body { font-size: 10px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 10px; flex: 1; }
+  .phone-stats { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; display: flex; gap: 12px; flex-shrink: 0; }
   .phone-stat { display: flex; flex-direction: column; gap: 1px; }
-  .phone-stat-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: #F2F4F7; }
-  .phone-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(242,244,247,0.45); }
-  .phone-mkt-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .phone-mkt-sym { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: #F2F4F7; }
+  .phone-stat-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--text); }
+  .phone-stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); }
+  .phone-mkt-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .phone-mkt-sym { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: var(--text); }
   .phone-mkt-chg { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; }
-  .phone-mkt-chg.up { color: #4ADE80; }
-  .phone-mkt-chg.dn { color: #F87171; }
-  .phone-mkt-take { font-size: 10px; color: rgba(242,244,247,0.55); line-height: 1.5; margin-top: 10px; flex: 1; }
-  .phone-btn { margin-top: auto; padding: 9px; background: #2B6FFF; border-radius: 8px; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px; color: white; text-align: center; flex-shrink: 0; }
-  .phone-controls { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 5px 0 2px; flex-shrink: 0; background: #0A0F1E; }
-  .phone-ctrl-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.22); font-size: 20px; line-height: 1; padding: 0 2px; transition: color 0.15s ease; }
-  .phone-ctrl-btn:hover { color: #2B6FFF; }
+  .phone-mkt-chg.up { color: var(--sports); }
+  .phone-mkt-chg.dn { color: var(--red); }
+  .phone-mkt-take { font-size: 10px; color: var(--text-secondary); line-height: 1.5; margin-top: 10px; flex: 1; }
+  .phone-btn { margin-top: auto; padding: 9px; background: var(--accent); border-radius: 8px; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px; color: white; text-align: center; flex-shrink: 0; }
+  .phone-controls { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 5px 0 2px; flex-shrink: 0; background: var(--surface); border-top: 1px solid var(--border); }
+  .phone-ctrl-btn { background: none; border: none; cursor: pointer; color: var(--border-light); font-size: 20px; line-height: 1; padding: 0 2px; transition: color 0.15s ease; }
+  .phone-ctrl-btn:hover { color: var(--accent); }
   .phone-dots { display: flex; gap: 5px; justify-content: center; flex-shrink: 0; }
-  .phone-dot { height: 4px; width: 4px; border-radius: 2px; background: rgba(255,255,255,0.15); transition: background 0.3s ease, width 0.3s ease; }
-  .phone-dot-active { background: #2B6FFF; width: 14px; }
-  .phone-home { height: 3px; width: 64px; background: rgba(255,255,255,0.15); border-radius: 2px; margin: 6px auto 4px; flex-shrink: 0; }
+  .phone-dot { height: 4px; width: 4px; border-radius: 2px; background: var(--border-light); transition: background 0.3s ease, width 0.3s ease; }
+  .phone-dot-active { background: var(--accent); width: 14px; }
+  .phone-home { height: 3px; width: 64px; background: var(--border); border-radius: 2px; margin: 6px auto 4px; flex-shrink: 0; }
 
   /* SCROLL PROGRESS */
   .scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; width: 0%; z-index: 200; background: linear-gradient(90deg, var(--accent), var(--accent-hover)); box-shadow: 0 0 8px rgba(43,111,255,0.35); transition: width 0.08s linear; pointer-events: none; }
@@ -643,11 +647,11 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <nav class="scroll-nav" aria-hidden="true" id="scrollNav">
-  <div class="scroll-dot active" data-index="0" data-label="Top"          title="Top"></div>
-  <div class="scroll-dot"        data-index="1" data-label="Group Chat"    title="Group Chat"></div>
-  <div class="scroll-dot"        data-index="2" data-label="Where It Works" title="Where It Works"></div>
-  <div class="scroll-dot"        data-index="3" data-label="How It Works"  title="How It Works"></div>
-  <div class="scroll-dot"        data-index="4" data-label="The Brief"     title="The Brief"></div>
+  <div class="scroll-dot active" data-index="0" data-label="Top"           title="Top"></div>
+  <div class="scroll-dot"        data-index="1" data-label="Where It Works" title="Where It Works"></div>
+  <div class="scroll-dot"        data-index="2" data-label="The Brief"     title="The Brief"></div>
+  <div class="scroll-dot"        data-index="3" data-label="Group Chat"    title="Group Chat"></div>
+  <div class="scroll-dot"        data-index="4" data-label="How It Works"  title="How It Works"></div>
   <div class="scroll-dot"        data-index="5" data-label="The App"       title="The App"></div>
   <div class="scroll-dot"        data-index="6" data-label="Founder"       title="Founder"></div>
 </nav>
@@ -684,7 +688,7 @@
           <span class="tkc-sports">Sports</span>
         </span>
       </div>
-      <div class="ticker" id="ticker-track">
+      <div class="ticker-body"><div class="ticker" id="ticker-track">
         <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-up">+2.41%</span></div>
         <div class="ticker-item"><span class="ticker-sym">SPY</span><span class="ticker-up">+0.62%</span></div>
         <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">−1.18%</span></div>
@@ -703,11 +707,11 @@
         <div class="ticker-item"><span class="ticker-sport">CAVS 125  PISTONS 94  · GAME 7</span></div>
         <div class="ticker-item"><span class="ticker-sport">CELTICS LEAD ECF  1–0</span></div>
         <div class="ticker-item"><span class="ticker-sport">YANKEES W  6–3</span></div>
-      </div>
+      </div></div>
     </div>
 
     <div id="signup" class="beehiiv-form-wrap">
-      <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d"></script>
+      <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d" data-background-color="transparent"></script>
     </div>
     <div class="form-hint">Free · No spam · Unsubscribe anytime</div>
     <div class="proof">
@@ -720,8 +724,90 @@
   </div>
 </section>
 
-<!-- GROUP CHAT — rebuilt -->
-<div class="chat-section" data-nav="1">
+<!-- SCENARIOS -->
+<section class="scenarios" data-nav="1">
+  <div class="container">
+    <div class="section-eyebrow">The social utility</div>
+    <h2 class="section-title">Know what to say in any room.</h2>
+    <p class="section-sub">Not just the group chat. Every conversation you'll have today — before you have it.</p>
+
+    <div class="scenarios-grid">
+      <div class="scenario-card scenario-card--third scenario-card--markets fade-up">
+        <div class="scenario-context"><span class="s-icon">💼</span> The Office</div>
+        <div class="scenario-quote">Did you catch what yields did yesterday? That's why the whole sector got sold this morning.</div>
+        <div class="scenario-source sc-src--markets">From the Markets Brief</div>
+      </div>
+
+      <div class="scenario-card scenario-card--third scenario-card--sports fade-up">
+        <div class="scenario-context"><span class="s-icon">💬</span> The Group Chat</div>
+        <div class="scenario-quote">SGA dropped 40 and 8. Thunder lead 2–0. Series is basically over.</div>
+        <div class="scenario-source sc-src--sports">From the Sports Brief</div>
+      </div>
+
+      <div class="scenario-card scenario-card--third scenario-card--culture fade-up">
+        <div class="scenario-context"><span class="s-icon">🍺</span> The Happy Hour</div>
+        <div class="scenario-quote">That CEO tweet everyone's losing their mind about? Here's what actually happened.</div>
+        <div class="scenario-source sc-src--culture">From the Culture Brief</div>
+      </div>
+
+      <div class="scenario-card scenario-card--half scenario-card--golf fade-up">
+        <div class="scenario-context"><span class="s-icon">⛳</span> The Golf Course</div>
+        <div class="scenario-quote">Scheffler's sitting 4 shots clear at The Memorial. If you're not watching Sunday, you're doing the weekend wrong.</div>
+        <div class="scenario-source sc-src--golf">From the Weekend Brief</div>
+      </div>
+
+      <div class="scenario-card scenario-card--half scenario-card--markets fade-up">
+        <div class="scenario-context"><span class="s-icon">🤝</span> The Networking Event</div>
+        <div class="scenario-quote">Nvidia crossed $4 trillion this week. The AI infrastructure story isn't slowing down — and the market knows it.</div>
+        <div class="scenario-source sc-src--markets">From the Markets Brief</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE BRIEF -->
+<section class="brief-section" id="brief" data-nav="2">
+  <div class="container">
+    <div class="section-eyebrow">From the brief</div>
+    <h2 class="section-title">Five minutes. Here's one.</h2>
+    <p class="section-sub">Quick scan. Real substance. The take that makes you the most informed guy in the room.</p>
+
+    <div class="brief-mock fade-up">
+      <div class="brief-header">
+        <div class="brief-date">Tuesday · May 20, 2026</div>
+        <div class="brief-issue">ISSUE #003</div>
+      </div>
+      <div class="brief-body">
+        <div class="brief-greeting">This weekend's everything.</div>
+        <div class="brief-intro">Both Conference Finals are tied 1-1. Scheffler leads The Memorial. S&P had a solid week. Here's all of it.</div>
+
+        <a class="brief-story" href="/brief/issue-004/#sports" target="_blank" rel="noopener">
+          <div class="brief-cat bc-sports">Sports</div>
+          <div class="brief-headline">Both series tied at 1. Mitchell answered Brunson. Wemby stole Game 2.</div>
+          <div class="brief-snippet">Knicks-Cavs and Thunder-Spurs both head into the weekend locked at 1-1. Game 3s Saturday night. The AT&T Center will be the loudest building in the country.</div>
+          <div class="brief-bring bb-sports"><span class="brief-bring-label">Bring up →</span> "Both series are a coin flip. The Spurs home crowd in Game 3 is the X-factor."</div>
+        </a>
+
+        <a class="brief-story" href="/brief/issue-004/#markets" target="_blank" rel="noopener">
+          <div class="brief-cat bc-markets">Markets</div>
+          <div class="brief-headline">S&P +0.8% on the week. NVDA holding near $1,080.</div>
+          <div class="brief-snippet">Light data week ahead — Memorial Day volume runs 25% below normal. Don't overweight any moves you see Monday. Consumer confidence Wednesday is the one to watch.</div>
+          <div class="brief-bring bb-markets"><span class="brief-bring-label">Office take →</span> "Thin holiday volume — don't read too much into any move Monday."</div>
+        </a>
+
+        <a class="brief-story" href="/brief/issue-004/#golf" target="_blank" rel="noopener">
+          <div class="brief-cat bc-golf">Golf</div>
+          <div class="brief-headline">Scheffler leads The Memorial through Round 2.</div>
+          <div class="brief-snippet">Muirfield Village. Jack's tournament. Scottie in front. If you're not watching Sunday you're doing the weekend wrong.</div>
+          <div class="brief-bring bb-golf"><span class="brief-bring-label">Bring up →</span> "Scheffler's up 4 at The Memorial. It's a foregone conclusion at this point."</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GROUP CHAT -->
+<div class="chat-section" data-nav="3">
   <div class="container">
     <div class="chat-intro">
       <div class="chat-live-badge">
@@ -791,7 +877,7 @@
               <div class="msg-gt-item">That CEO tweet — context in 60 seconds</div>
               <div class="msg-gt-item">What people are actually saying about all of it</div>
             </div>
-            <a href="#signup" class="msg-gt-foot">Read today's brief</a>
+            <a href="#brief" class="msg-gt-foot">Read today's brief</a>
           </div>
         </div>
       </div>
@@ -808,49 +894,8 @@
   </div>
 </div>
 
-<!-- SCENARIOS -->
-<section class="scenarios" data-nav="2">
-  <div class="container">
-    <div class="section-eyebrow">The social utility</div>
-    <h2 class="section-title">Know what to say in any room.</h2>
-    <p class="section-sub">Not just the group chat. Every conversation you'll have today — before you have it.</p>
-
-    <div class="scenarios-grid">
-      <div class="scenario-card scenario-card--third scenario-card--markets fade-up">
-        <div class="scenario-context"><span class="s-icon">💼</span> The Office</div>
-        <div class="scenario-quote">Did you catch what yields did yesterday? That's why the whole sector got sold this morning.</div>
-        <div class="scenario-source sc-src--markets">From the Markets Brief</div>
-      </div>
-
-      <div class="scenario-card scenario-card--third scenario-card--sports fade-up">
-        <div class="scenario-context"><span class="s-icon">💬</span> The Group Chat</div>
-        <div class="scenario-quote">SGA dropped 40 and 8. Thunder lead 2–0. Series is basically over.</div>
-        <div class="scenario-source sc-src--sports">From the Sports Brief</div>
-      </div>
-
-      <div class="scenario-card scenario-card--third scenario-card--culture fade-up">
-        <div class="scenario-context"><span class="s-icon">🍺</span> The Happy Hour</div>
-        <div class="scenario-quote">That CEO tweet everyone's losing their mind about? Here's what actually happened.</div>
-        <div class="scenario-source sc-src--culture">From the Culture Brief</div>
-      </div>
-
-      <div class="scenario-card scenario-card--half scenario-card--golf fade-up">
-        <div class="scenario-context"><span class="s-icon">⛳</span> The Golf Course</div>
-        <div class="scenario-quote">Scheffler's sitting 4 shots clear at The Memorial. If you're not watching Sunday, you're doing the weekend wrong.</div>
-        <div class="scenario-source sc-src--golf">From the Weekend Brief</div>
-      </div>
-
-      <div class="scenario-card scenario-card--half scenario-card--markets fade-up">
-        <div class="scenario-context"><span class="s-icon">🤝</span> The Networking Event</div>
-        <div class="scenario-quote">Nvidia crossed $4 trillion this week. The AI infrastructure story isn't slowing down — and the market knows it.</div>
-        <div class="scenario-source sc-src--markets">From the Markets Brief</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FRAMEWORK -->
-<section class="framework" data-nav="3">
+<section class="framework" data-nav="4">
   <div class="container">
     <div class="section-eyebrow">The framework</div>
     <h2 class="section-title">Every story. Three layers.</h2>
@@ -874,47 +919,6 @@
         <div class="fw-title">What to bring up.</div>
         <div class="fw-desc">The office take. The bar argument. The group chat angle. We hand you the angle that lands in any conversation — so you walk in ready.</div>
         <div class="fw-eg fw-eg--sports">"The real story isn't Nvidia's price. It's that Microsoft, Google, and Meta are all still accelerating infrastructure spend. That's what's driving it."</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SAMPLE BRIEF -->
-<section class="brief-section" data-nav="4">
-  <div class="container">
-    <div class="section-eyebrow">From the brief</div>
-    <h2 class="section-title">Five minutes. Here's one.</h2>
-    <p class="section-sub">Quick scan. Real substance. The take that makes you the most informed guy in the room.</p>
-
-    <div class="brief-mock fade-up">
-      <div class="brief-header">
-        <div class="brief-date">Tuesday · May 20, 2026</div>
-        <div class="brief-issue">ISSUE #003</div>
-      </div>
-      <div class="brief-body">
-        <div class="brief-greeting">This weekend's everything.</div>
-        <div class="brief-intro">Both Conference Finals are tied 1-1. Scheffler leads The Memorial. S&P had a solid week. Here's all of it.</div>
-
-        <a class="brief-story" href="/brief/issue-004/#sports" target="_blank" rel="noopener">
-          <div class="brief-cat bc-sports">Sports</div>
-          <div class="brief-headline">Both series tied at 1. Mitchell answered Brunson. Wemby stole Game 2.</div>
-          <div class="brief-snippet">Knicks-Cavs and Thunder-Spurs both head into the weekend locked at 1-1. Game 3s Saturday night. The AT&T Center will be the loudest building in the country.</div>
-          <div class="brief-bring bb-sports"><span class="brief-bring-label">Bring up →</span> "Both series are a coin flip. The Spurs home crowd in Game 3 is the X-factor."</div>
-        </a>
-
-        <a class="brief-story" href="/brief/issue-004/#markets" target="_blank" rel="noopener">
-          <div class="brief-cat bc-markets">Markets</div>
-          <div class="brief-headline">S&P +0.8% on the week. NVDA holding near $1,080.</div>
-          <div class="brief-snippet">Light data week ahead — Memorial Day volume runs 25% below normal. Don't overweight any moves you see Monday. Consumer confidence Wednesday is the one to watch.</div>
-          <div class="brief-bring bb-markets"><span class="brief-bring-label">Office take →</span> "Thin holiday volume — don't read too much into any move Monday."</div>
-        </a>
-
-        <a class="brief-story" href="/brief/issue-004/#golf" target="_blank" rel="noopener">
-          <div class="brief-cat bc-golf">Golf</div>
-          <div class="brief-headline">Scheffler leads The Memorial through Round 2.</div>
-          <div class="brief-snippet">Muirfield Village. Jack's tournament. Scottie in front. If you're not watching Sunday you're doing the weekend wrong.</div>
-          <div class="brief-bring bb-golf"><span class="brief-bring-label">Bring up →</span> "Scheffler's up 4 at The Memorial. It's a foregone conclusion at this point."</div>
-        </a>
       </div>
     </div>
   </div>
@@ -964,9 +968,9 @@
                   <div class="phone-notif-body">Today's brief is ready. SGA 40 pts. Nvidia past $4T. That CEO tweet — explained.</div>
                 </div>
               </div>
-              <div class="phone-brief-item"><span class="phone-cat">Markets</span><span class="phone-hl">Nvidia crosses $4T. AI spend accelerates.</span></div>
-              <div class="phone-brief-item"><span class="phone-cat">Sports</span><span class="phone-hl">SGA drops 40. Thunder in control.</span></div>
-              <div class="phone-brief-item"><span class="phone-cat">Culture</span><span class="phone-hl">The CEO tweet everyone's screenshot-ing.</span></div>
+              <div class="phone-brief-item"><span class="phone-cat phone-cat-markets">Markets</span><span class="phone-hl">Nvidia crosses $4T. AI spend accelerates.</span></div>
+              <div class="phone-brief-item"><span class="phone-cat phone-cat-sports">Sports</span><span class="phone-hl">SGA drops 40. Thunder in control.</span></div>
+              <div class="phone-brief-item"><span class="phone-cat phone-cat-culture">Culture</span><span class="phone-hl">The CEO tweet everyone's screenshot-ing.</span></div>
               <div class="phone-btn">Read today's brief →</div>
             </div>
             <div class="phone-slide">
@@ -1033,7 +1037,7 @@
     <h2>Don't be the last guy<br><span class="accent">to know.</span></h2>
     <p>The brief is free. Five minutes. No catch.</p>
     <div class="beehiiv-form-wrap">
-      <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d"></script>
+      <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d" data-background-color="transparent"></script>
     </div>
     <div class="form-hint" style="margin-top:14px">Free forever · No spam · Unsubscribe anytime</div>
   </div>
