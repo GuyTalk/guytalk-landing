@@ -46,9 +46,13 @@ async function getSubscribers() {
 }
 
 // ── Build email HTML ─────────────────────────────────────────────────────────
-function buildEmailHtml(data, slug) {
-  const briefUrl = `${SITE_URL}/brief/${slug}/`;
-  const num      = String(data.num).padStart(3, '0');
+// unsubEmail: subscriber's email, used to build Beehiiv unsubscribe link
+function buildEmailHtml(data, slug, unsubEmail) {
+  const briefUrl  = `${SITE_URL}/brief/${slug}/`;
+  const num       = String(data.num).padStart(3, '0');
+  const unsubUrl  = unsubEmail
+    ? `https://app.beehiiv.com/unsubscribe?email=${encodeURIComponent(unsubEmail)}&pub_id=${PUB_ID}`
+    : `${SITE_URL}/unsubscribe/`;
 
   const bullets = [];
   if (data.sports?.length) {
@@ -135,10 +139,13 @@ function buildEmailHtml(data, slug) {
   <tr>
     <td style="padding:24px 0 0;text-align:center;">
       <p style="font-size:12px;color:#9E9891;margin:0 0 6px;">
-        You're receiving this because you subscribed to GuyTalk.
+        You're receiving this because you subscribed to GuyTalk.<br>
+        GuyTalk Media · 2261 Market St #5640 · San Francisco, CA 94114
       </p>
       <p style="font-size:12px;color:#9E9891;margin:0;">
         <a href="${SITE_URL}" style="color:#9E9891;text-decoration:underline;">guytalkmedia.com</a>
+        &nbsp;·&nbsp;
+        <a href="${unsubUrl}" style="color:#9E9891;text-decoration:underline;">Unsubscribe</a>
       </p>
     </td>
   </tr>
@@ -222,7 +229,6 @@ module.exports = async (req, res) => {
   const { data, slug } = brief;
   const num     = String(data.num).padStart(3, '0');
   const subject = `GuyTalk #${num} — ${data.title}`;
-  const html    = buildEmailHtml(data, slug);
 
   // Fetch subscribers
   let emails;
@@ -238,9 +244,10 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Send via Resend (batch — one API call per email to maintain individual addressing)
+  // Send via Resend — one call per subscriber so each gets a personalized unsubscribe link
   let sent = 0, failed = 0;
   for (const email of emails) {
+    const html = buildEmailHtml(data, slug, email);
     try {
       const r = await fetch('https://api.resend.com/emails', {
         method: 'POST',
