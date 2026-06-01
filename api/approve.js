@@ -197,8 +197,12 @@ module.exports = async (req, res) => {
 
   // Validate token
   const token = req.query.token;
+  if (!APPROVAL_TOKEN) {
+    res.status(500).send(errorPage('APPROVAL_TOKEN env var not set on server. Check Vercel → Settings → Environment Variables → make sure it is enabled for Production.'));
+    return;
+  }
   if (!token || token !== APPROVAL_TOKEN) {
-    res.status(403).send(errorPage('Invalid or missing approval token.'));
+    res.status(403).send(errorPage(`Token mismatch. Expected ${APPROVAL_TOKEN.length} chars, got ${token ? token.length : 0}. Re-copy the token from .env.local into Vercel.`));
     return;
   }
 
