@@ -1,27 +1,62 @@
 #!/usr/bin/env node
 'use strict';
-// GuyTalk — Beehiiv Email Sender
-// Reads the latest brief, creates a Beehiiv post, and sends it to all subscribers.
-// Requires: BEEHIIV_API_KEY in .env.local
-// Run: node scripts/send-brief.js [--issue issue-016] [--dry-run]
+// GuyTalk — Daily Brief Email Sender
+// Pulls active subscribers from Beehiiv, sends the brief via Gmail SMTP.
+//
+// SETUP (one-time):
+//   1. Enable 2FA on guytalkdaily@gmail.com (myaccount.google.com → Security)
+//   2. Create an App Password: myaccount.google.com → Security → App Passwords
+//      → Select "Mail" + "Other (GuyTalk)" → Copy the 16-char password
+//   3. Add to .env.local:  GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx
+//
+// Run:  node scripts/send-brief.js
+//       node scripts/send-brief.js --dry-run    (preview HTML, no send)
+//       node scripts/send-brief.js --issue issue-014  (specific issue)
 
 require('dotenv').config({ path: '.env.local' });
 
-const fs   = require('fs');
-const path = require('path');
+const fs          = require('fs');
+const path        = require('path');
+const nodemailer  = require('nodemailer');
 
-const API_KEY  = process.env.BEEHIIV_API_KEY;
-const PUB_ID   = 'd4c6a5c9-3ff9-4986-b17a-9e5650d915be';
-const SITE_URL = 'https://guytalk.com';
-const ROOT     = path.join(__dirname, '..');
-const DRY_RUN  = process.argv.includes('--dry-run');
-const FORCED_ISSUE = (() => {
+const BEEHIIV_API_KEY  = process.env.BEEHIIV_API_KEY;
+const GMAIL_USER       = 'guytalkdaily@gmail.com';
+const GMAIL_APP_PASS   = process.env.GMAIL_APP_PASSWORD;
+const PUB_ID           = 'pub_d4c6a5c9-3ff9-4986-b17a-9e5650d915be';
+const SITE_URL         = 'https://www.guytalkmedia.com';
+const ROOT             = path.join(__dirname, '..');
+const DRY_RUN          = process.argv.includes('--dry-run');
+const FORCED_ISSUE     = (() => {
   const idx = process.argv.indexOf('--issue');
   return idx !== -1 ? process.argv[idx + 1] : null;
 })();
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Helpers
+// Beehiiv: fetch all active subscriber emails
+// ─────────────────────────────────────────────────────────────────────────────
+async function getSubscribers() {
+  const emails = [];
+  let page = 1;
+  while (true) {
+    const res = await fetch(
+      `https://api.beehiiv.com/v2/publications/${PUB_ID}/subscriptions?status=active&per_page=100&page=${page}`,
+      { headers: { 'Authorization': `Bearer ${BEEHIIV_API_KEY}` } }
+    );
+    const json = await res.json();
+    if (!res.ok) throw new Error(`Beehiiv subscriptions → ${res.status}: ${JSON.stringify(json)}`);
+
+    const subs = json.data || json.subscriptions || [];
+    subs.forEach(s => { if (s.email) emails.push(s.email); });
+
+    const totalPages = json.total_pages ?? json.pagination?.total_pages ?? 1;
+    if (page >= totalPages) break;
+    page++;
+  }
+  return emails;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Issue helpers
 // ─────────────────────────────────────────────────────────────────────────────
 function getLatestSlug() {
   if (FORCED_ISSUE) return FORCED_ISSUE;
@@ -36,155 +71,127 @@ function readData(slug) {
   return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : null;
 }
 
-function readHtml(slug) {
-  const p = path.join(ROOT, 'brief', slug, 'index.html');
-  return fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : null;
-}
-
-async function beehiiv(method, endpoint, body) {
-  const url = `https://api.beehiiv.com/v2${endpoint}`;
-  const res = await fetch(url, {
-    method,
-    headers: {
-      'Authorization': `Bearer ${API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  const json = await res.json();
-  if (!res.ok) throw new Error(`Beehiiv ${method} ${endpoint} → ${res.status}: ${JSON.stringify(json)}`);
-  return json;
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
-// Build email HTML
-// Clean, inline-style email that renders well across clients.
+// Build email HTML (inline styles for email client compatibility)
 // ─────────────────────────────────────────────────────────────────────────────
 function buildEmailHtml(data, slug) {
   const briefUrl  = `${SITE_URL}/brief/${slug}/`;
-  const signupUrl = `${SITE_URL}/#signup`;
   const num       = String(data.num).padStart(3, '0');
 
-  // Extract TL;DR bullets from the sports/markets/golf data for the preview
   const bullets = [];
-
-  if (data.sports && data.sports.length > 0) {
+  if (data.sports?.length) {
     const g = data.sports[0];
-    bullets.push(`<b>Sports:</b> ${g.shortName || g.awayTeam + ' vs ' + g.homeTeam}`);
+    bullets.push(`<b style="color:#0F1724">Sports:</b> ${g.shortName || `${g.awayTeam} vs ${g.homeTeam}`}`);
   }
   if (data.markets) {
-    const spyKey = Object.keys(data.markets).find(k => k === 'SPY' || k === 'spy');
-    if (spyKey && data.markets[spyKey]?.dayChange) {
+    const spyKey = Object.keys(data.markets).find(k => k.toUpperCase() === 'SPY');
+    if (spyKey && data.markets[spyKey]?.dayChange != null) {
       const chg = data.markets[spyKey].dayChange;
-      const dir = chg >= 0 ? '+' : '';
-      bullets.push(`<b>Markets:</b> S&amp;P 500 ${dir}${chg}% on the day`);
+      bullets.push(`<b style="color:#0F1724">Markets:</b> S&amp;P 500 ${chg >= 0 ? '+' : ''}${chg}% today`);
     }
   }
-  if (data.golf && data.golf.name) {
+  if (data.golf?.name) {
     const leader = data.golf.leaders?.[0];
-    if (leader) bullets.push(`<b>Golf:</b> ${leader.name} leads ${data.golf.name}`);
-    else bullets.push(`<b>Golf:</b> ${data.golf.name} underway`);
+    bullets.push(leader
+      ? `<b style="color:#0F1724">Golf:</b> ${leader.name} leads ${data.golf.name}`
+      : `<b style="color:#0F1724">Golf:</b> ${data.golf.name} underway`);
   }
 
   const bulletsHtml = bullets.length
     ? bullets.map(b => `
-      <tr>
-        <td style="padding: 7px 0; font-size: 15px; line-height: 1.5; color: #6E6862; border-top: 1px solid #E5E2DB;">
-          <span style="color: #2B6FFF; font-weight: 700; margin-right: 6px;">→</span>${b}
-        </td>
-      </tr>`).join('')
-    : `<tr><td style="padding:7px 0; color:#6E6862; font-size:15px;">Full brief ready — click below to read.</td></tr>`;
+        <tr>
+          <td style="padding:8px 0;font-size:15px;line-height:1.55;color:#6E6862;border-top:1px solid #E5E2DB;">
+            <span style="color:#2B6FFF;font-weight:700;margin-right:6px;">→</span>${b}
+          </td>
+        </tr>`).join('')
+    : `<tr><td style="padding:8px 0;color:#6E6862;font-size:15px;">Full brief ready — click below to read.</td></tr>`;
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${data.title}</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GuyTalk #${num}</title>
 </head>
-<body style="margin:0;padding:0;background:#F9F8F5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;">
+<body style="margin:0;padding:0;background:#F9F8F5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#F9F8F5;">
+<tr><td align="center" style="padding:32px 16px 64px;">
+<table width="100%" style="max-width:580px;" cellpadding="0" cellspacing="0">
 
-<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background:#F9F8F5;">
-<tr><td align="center" style="padding: 32px 16px 64px;">
+  <!-- Wordmark row -->
+  <tr>
+    <td style="padding:0 0 20px;">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="font-weight:800;font-size:20px;letter-spacing:-0.03em;color:#0F1724;">
+            GuyTalk<span style="color:#2B6FFF;">.</span>
+          </td>
+          <td align="right" style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:#9E9891;">
+            Issue #${num}
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
 
-  <!-- Card wrapper -->
-  <table width="100%" style="max-width:600px;" cellpadding="0" cellspacing="0">
+  <!-- Card -->
+  <tr>
+    <td style="background:#FFFFFF;border:1px solid #E5E2DB;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
 
-    <!-- Nav bar -->
-    <tr>
-      <td style="padding: 0 0 24px;">
-        <table width="100%" cellpadding="0" cellspacing="0">
+      <!-- Blue header -->
+      <div style="background:#2B6FFF;padding:14px 28px;">
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:rgba(255,255,255,0.75);">${data.date}</span>
+      </div>
+
+      <!-- Body -->
+      <div style="padding:28px 28px 24px;">
+
+        <!-- Headline -->
+        <p style="font-weight:800;font-size:27px;line-height:1.12;letter-spacing:-0.025em;color:#0F1724;margin:0 0 10px;">
+          ${data.title}
+        </p>
+        <p style="font-size:16px;color:#6E6862;margin:0 0 24px;line-height:1.6;">
+          Five minutes. Everything you need.
+        </p>
+
+        <!-- Quick look -->
+        <div style="background:#F2F0EB;border-radius:10px;padding:16px 18px;margin-bottom:24px;">
+          <p style="font-weight:700;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#2B6FFF;margin:0 0 10px;">
+            Quick look
+          </p>
+          <table width="100%" cellpadding="0" cellspacing="0">
+            ${bulletsHtml}
+          </table>
+        </div>
+
+        <!-- CTA button -->
+        <table cellpadding="0" cellspacing="0">
           <tr>
-            <td style="font-family:'Inter Tight',-apple-system,sans-serif; font-weight:800; font-size:20px; letter-spacing:-0.03em; color:#0F1724;">
-              GuyTalk<span style="color:#2B6FFF;">.</span>
-            </td>
-            <td align="right" style="font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.14em; color:#9E9891;">
-              Issue #${num}
+            <td style="background:#2B6FFF;border-radius:10px;box-shadow:0 4px 14px rgba(43,111,255,0.28);">
+              <a href="${briefUrl}" style="display:inline-block;padding:14px 28px;font-weight:700;font-size:15px;color:#FFFFFF;text-decoration:none;letter-spacing:-0.01em;">
+                Read today's brief →
+              </a>
             </td>
           </tr>
         </table>
-      </td>
-    </tr>
 
-    <!-- Header card -->
-    <tr>
-      <td style="background:#FFFFFF; border:1px solid #E5E2DB; border-radius:16px; overflow:hidden; padding:0; box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+      </div>
+    </td>
+  </tr>
 
-        <!-- Blue top bar -->
-        <div style="background:#2B6FFF; padding:12px 24px;">
-          <span style="font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.18em; color:rgba(255,255,255,0.75);">${data.date}</span>
-        </div>
+  <!-- Footer -->
+  <tr>
+    <td style="padding:24px 0 0;text-align:center;">
+      <p style="font-size:12px;color:#9E9891;margin:0 0 6px;line-height:1.6;">
+        You're receiving this because you subscribed to GuyTalk.
+      </p>
+      <p style="font-size:12px;color:#9E9891;margin:0;">
+        <a href="${SITE_URL}" style="color:#9E9891;text-decoration:underline;">guytalkmedia.com</a>
+      </p>
+    </td>
+  </tr>
 
-        <!-- Content -->
-        <div style="padding:28px 28px 24px;">
-          <p style="font-family:'Inter Tight',-apple-system,sans-serif; font-weight:800; font-size:28px; line-height:1.12; letter-spacing:-0.03em; color:#0F1724; margin:0 0 12px;">
-            ${data.title}
-          </p>
-          <p style="font-size:16px; color:#6E6862; margin:0 0 24px; line-height:1.6;">
-            Five minutes. Everything you need.
-          </p>
-
-          <!-- TL;DR -->
-          <div style="background:#F2F0EB; border-radius:10px; padding:16px 18px; margin-bottom:24px;">
-            <p style="font-family:'Inter Tight',-apple-system,sans-serif; font-weight:700; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#2B6FFF; margin:0 0 12px;">
-              Quick look
-            </p>
-            <table width="100%" cellpadding="0" cellspacing="0">
-              ${bulletsHtml}
-            </table>
-          </div>
-
-          <!-- CTA -->
-          <table cellpadding="0" cellspacing="0">
-            <tr>
-              <td style="border-radius:10px; background:#2B6FFF; box-shadow:0 4px 14px rgba(43,111,255,0.3);">
-                <a href="${briefUrl}" style="display:inline-block; padding:14px 26px; font-family:'Inter Tight',-apple-system,sans-serif; font-weight:700; font-size:15px; color:#FFFFFF; text-decoration:none; letter-spacing:-0.01em;">
-                  Read today's brief →
-                </a>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </td>
-    </tr>
-
-    <!-- Footer -->
-    <tr>
-      <td style="padding: 28px 0 0;">
-        <p style="font-size:12px; color:#9E9891; line-height:1.6; margin:0 0 8px; text-align:center;">
-          You're receiving this because you subscribed to GuyTalk.
-        </p>
-        <p style="font-size:12px; color:#9E9891; text-align:center; margin:0;">
-          <a href="${SITE_URL}" style="color:#9E9891;">guytalk.com</a>
-          &nbsp;·&nbsp;
-          <a href="${signupUrl}" style="color:#9E9891;">Subscribe</a>
-          &nbsp;·&nbsp;
-          <a href="{{unsubscribe_url}}" style="color:#9E9891;">Unsubscribe</a>
-        </p>
-      </td>
-    </tr>
-
-  </table>
+</table>
 </td></tr>
 </table>
 </body>
@@ -195,10 +202,9 @@ function buildEmailHtml(data, slug) {
 // Main
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
-  if (!API_KEY) {
-    console.error('\n❌ BEEHIIV_API_KEY not set in .env.local');
-    console.error('   Get it: beehiiv.com → Settings → API → Generate key');
-    console.error('   Then add: BEEHIIV_API_KEY=your_key_here\n');
+  // Guard: API keys
+  if (!BEEHIIV_API_KEY) {
+    console.error('\n❌ BEEHIIV_API_KEY not set in .env.local\n');
     process.exit(1);
   }
 
@@ -207,61 +213,76 @@ async function main() {
 
   const data = readData(slug);
   if (!data) {
-    console.error(`❌ No data file found: brief/data/${slug}.json`);
+    console.error(`❌ No data file: brief/data/${slug}.json`);
     process.exit(1);
   }
 
   const num     = String(data.num).padStart(3, '0');
   const subject = `GuyTalk #${num} — ${data.title}`;
-  const preview = `${data.date} · Five minutes. Everything you need.`;
+  const html    = buildEmailHtml(data, slug);
 
-  console.log(`\n📬 Sending brief to Beehiiv...`);
-  console.log(`   Issue:   ${slug}`);
-  console.log(`   Subject: ${subject}`);
-
-  const emailHtml = buildEmailHtml(data, slug);
-
+  // Dry run — write preview and exit
   if (DRY_RUN) {
     const outPath = path.join(ROOT, 'logs', `email-preview-${slug}.html`);
     fs.mkdirSync(path.join(ROOT, 'logs'), { recursive: true });
-    fs.writeFileSync(outPath, emailHtml);
-    console.log(`\n   🔍 Dry run — email HTML saved to: logs/email-preview-${slug}.html`);
-    console.log('   No post created.\n');
+    fs.writeFileSync(outPath, html);
+    console.log(`\n✅ Dry run complete`);
+    console.log(`   Email preview: logs/email-preview-${slug}.html`);
+    console.log(`   Open it: open logs/email-preview-${slug}.html\n`);
     return;
   }
 
-  // 1. Create draft post
-  console.log('   Creating Beehiiv post...');
-  const post = await beehiiv('POST', `/publications/${PUB_ID}/posts`, {
-    platform:      'email',
-    status:        'draft',
-    subject:       subject,
-    preview_text:  preview,
-    subtitle:      preview,
-    content: {
-      free:    emailHtml,
-      premium: emailHtml,
-    },
-    audience:      'free',
-    send_at:       null,
+  // Guard: Gmail app password
+  if (!GMAIL_APP_PASS) {
+    console.error('\n❌ GMAIL_APP_PASSWORD not set in .env.local');
+    console.error('   1. Enable 2FA: myaccount.google.com → Security → 2-Step Verification');
+    console.error('   2. Create App Password: myaccount.google.com → Security → App Passwords');
+    console.error('   3. Add to .env.local: GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx\n');
+    process.exit(1);
+  }
+
+  // Fetch subscriber list
+  console.log(`\n📬 Sending ${slug} to subscribers...`);
+  console.log('   Fetching subscriber list from Beehiiv...');
+  const emails = await getSubscribers();
+  console.log(`   ✓ ${emails.length} active subscriber(s)`);
+
+  if (emails.length === 0) {
+    console.log('   No active subscribers — nothing sent.\n');
+    return;
+  }
+
+  // Set up Gmail transport
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: { user: GMAIL_USER, pass: GMAIL_APP_PASS },
   });
 
-  const postId = post.data?.id;
-  if (!postId) throw new Error(`No post ID returned: ${JSON.stringify(post)}`);
-  console.log(`   ✓ Draft created: ${postId}`);
+  // Send to each subscriber
+  console.log(`   Sending "${subject}"...`);
+  let sent = 0, failed = 0;
+  for (const email of emails) {
+    try {
+      await transporter.sendMail({
+        from:    `GuyTalk <${GMAIL_USER}>`,
+        to:      email,
+        subject: subject,
+        html:    html,
+      });
+      sent++;
+      console.log(`   ✓ ${email}`);
+    } catch (err) {
+      failed++;
+      console.error(`   ✗ ${email}: ${err.message}`);
+    }
+  }
 
-  // 2. Confirm (send immediately)
-  console.log('   Sending to subscribers...');
-  await beehiiv('POST', `/publications/${PUB_ID}/posts/${postId}/status`, {
-    status: 'confirmed',
-  });
-
-  console.log(`   ✓ Sent — ${slug} is live in subscribers' inboxes`);
-  console.log(`   🔗 Brief URL: ${SITE_URL}/brief/${slug}/\n`);
+  console.log(`\n   ✅ Done — ${sent} sent, ${failed} failed`);
+  console.log(`   Brief URL: ${SITE_URL}/brief/${slug}/\n`);
 }
 
 main().catch(err => {
-  console.error(`\n❌ Error: ${err.message}`);
+  console.error(`\n❌ ${err.message}`);
   if (process.env.DEBUG) console.error(err.stack);
   process.exit(1);
 });

@@ -63,26 +63,53 @@ async function fetchMarkets() {
 
   const results = {};
 
+  // Fetch daily candle for past 10 days — gives us both day % and week %
+  const now     = Math.floor(Date.now() / 1000);
+  const tenDaysAgo = now - 10 * 24 * 60 * 60;
+
   for (const sym of FETCH_TICKERS) {
     const cfg = TICKERS[sym];
     if (!cfg?.finnhub) continue;
 
     try {
-      const encoded = encodeURIComponent(cfg.finnhub);
-      const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encoded}&token=${key}`);
-      if (!res.ok) { results[sym] = null; continue; }
-      const q = await res.json();
+      const encoded   = encodeURIComponent(cfg.finnhub);
+      const isCrypto  = cfg.finnhub.includes(':');
+
+      // Quote for real-time price + day change
+      const quoteRes = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encoded}&token=${key}`);
+      const q = quoteRes.ok ? await quoteRes.json() : {};
+
+      // Candle for weekly %
+      await new Promise(r => setTimeout(r, 120));
+      const candleBase = isCrypto ? 'crypto/candle' : 'stock/candle';
+      const candleRes  = await fetch(
+        `https://finnhub.io/api/v1/${candleBase}?symbol=${encoded}&resolution=D&from=${tenDaysAgo}&to=${now}&token=${key}`
+      );
+      let weekChangePct = null;
+      if (candleRes.ok) {
+        const c = await candleRes.json();
+        if (c.s === 'ok' && c.c?.length >= 2) {
+          // Week = current close vs. close from 5 trading sessions ago (or earliest available)
+          const closes    = c.c;
+          const weekStart = closes[Math.max(0, closes.length - 6)]; // ~5 sessions back
+          const latest    = closes[closes.length - 1];
+          if (weekStart && weekStart !== 0) {
+            weekChangePct = ((latest - weekStart) / weekStart) * 100;
+          }
+        }
+      }
+
       results[sym] = {
         price:        q.c  ?? null,
         prevClose:    q.pc ?? null,
         dayChange:    q.d  ?? null,
         dayChangePct: q.dp ?? null,
+        weekChangePct,
       };
     } catch (_) {
       results[sym] = null;
     }
 
-    // Stay well under Finnhub's 60 req/min free-tier limit
     await new Promise(r => setTimeout(r, 220));
   }
 

@@ -37,15 +37,17 @@ function line(char = '─', len = 44) { return char.repeat(len); }
 // Main
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
-  const issueNum = getNextIssueNum();
-  const today    = new Date();
-  const date     = formatDate(today);
-  const slug     = `issue-${pad(issueNum)}`;
+  const isPreview = process.argv.includes('--preview');
+  const issueNum  = getNextIssueNum();
+  const today     = new Date();
+  const date      = formatDate(today);
+  const slug      = isPreview ? 'preview' : `issue-${pad(issueNum)}`;
 
   console.log(`\n${line('═')}`);
-  console.log(`  GuyTalk Brief Generator`);
-  console.log(`  Issue #${pad(issueNum)} · ${date}`);
+  console.log(`  GuyTalk Brief Generator${isPreview ? ' · PREVIEW MODE' : ''}`);
+  console.log(`  ${isPreview ? 'Preview' : `Issue #${pad(issueNum)}`} · ${date}`);
   console.log(`${line('═')}\n`);
+  if (isPreview) console.log('  ⚡ Preview mode — saves to brief/preview/ only. Nothing published.\n');
 
   // ── Fetch data ─────────────────────────────────────────────────────────────
   console.log('📡 Fetching data...');
@@ -115,7 +117,7 @@ async function main() {
   fs.writeFileSync(jsonPath, JSON.stringify(issueData, null, 2));
   console.log(`   ✓ brief/data/${slug}.json`);
 
-  // HTML file
+  // HTML file — preview always writes to brief/preview/, issues to brief/issue-NNN/
   const htmlDir  = path.join(BRIEF_DIR, slug);
   if (!fs.existsSync(htmlDir)) fs.mkdirSync(htmlDir, { recursive: true });
   const htmlPath = path.join(htmlDir, 'index.html');
@@ -124,48 +126,44 @@ async function main() {
 
   // ── Review checklist ───────────────────────────────────────────────────────
   console.log(`\n${line()}`);
-  console.log('  ✅ REVIEW CHECKLIST — complete before pushing:');
+  console.log('  ✅ REVIEW CHECKLIST — scan before it goes live:');
   console.log(line());
 
   const checks = [];
 
-  // Auto-filled items that need verification
-  if (sports?.length)     checks.push(`□ [VERIFY] Sports scoreboards — confirm scores on ESPN`);
-  else                    checks.push(`□ [FILL]   Sports — no game data. Add scores manually`);
+  if (sports?.length)     checks.push(`□ [VERIFY] Sports scoreboards — confirm scores match ESPN`);
+  else                    checks.push(`□ [WARN]   No NBA game data found — sports section shows placeholder`);
 
   if (golf?.leaders?.[0]) checks.push(`□ [VERIFY] Golf leaderboard — verify ${golf.leaders[0].name} still leads`);
-  else                    checks.push(`□ [FILL]   Golf leaderboard — no tournament data found`);
+  else if (golf)          checks.push(`□ [INFO]   Golf: ${golf.name} not yet in progress`);
+  else                    checks.push(`□ [WARN]   No golf data — section shows no active tournament`);
 
-  if (markets)            checks.push(`□ [VERIFY] Market prices auto-filled — fill in [WEEK%] for each row`);
-  else                    checks.push(`□ [FILL]   Market prices — no Finnhub data. Add FINNHUB_API_KEY`);
+  if (markets)            checks.push(`□ [VERIFY] Market prices + weekly % auto-filled — spot-check SPY/QQQ`);
+  else                    checks.push(`□ [WARN]   No market data — add FINNHUB_API_KEY to .env.local`);
 
-  // Manual items
-  checks.push(`□ [FILL]   Markets: headline + 2nd paragraph + detail list items`);
-  checks.push(`□ [FILL]   Culture: all 3 items (suggestions in HTML comments)`);
-  checks.push(`□ [FILL]   The Rec: swap in this week's recommendation`);
-  checks.push(`□ [FILL]   Product card in Golf section: brand, name, desc, URL, image`);
-  checks.push(`□ [ADD]    Product image → /assets/images/PRODUCT-NAME.jpg`);
+  if (copy) {
+    checks.push(`□ [REVIEW] AI copy generated — scan sports angle, culture stories, sharp take`);
+    if (!copy.culture?.length)  checks.push(`□ [WARN]   Culture section may be sparse — check trending data quality`);
+  } else {
+    checks.push(`□ [WARN]   No AI copy (missing ANTHROPIC_API_KEY) — briefs will be thin`);
+  }
 
-  if (copy)               checks.push(`□ [REVIEW] AI copy: sports angle, markets take, sharp take`);
-  else                    checks.push(`□ [FILL]   All REPLACE markers — no AI copy generated`);
-
-  // TL;DR
-  checks.push(`□ [REVIEW] TL;DR bullets — add player names + links to sports bullets`);
-
-  // Numbers
-  checks.push(`□ [REVIEW] Numbers Worth Stealing — fill in context for auto-generated stats`);
-
-  // Landing page
-  checks.push(`□ [UPDATE] index.html — update 3 brief-story links from current issue to /${slug}/`);
+  checks.push(`□ [UPDATE] index.html — update brief-story links to /${slug}/`);
 
   checks.forEach(c => console.log(`  ${c}`));
 
-  console.log(`\n  Preview:  open brief/${slug}/index.html`);
-  console.log(`  Deploy:   git add . && git commit -m "Add ${slug}" && git push`);
+  if (isPreview) {
+    console.log(`\n  📄 File saved: ~/Projects/GuyTalk/brief/preview/index.html`);
+    console.log(`  🌐 Open:       open ~/Projects/GuyTalk/brief/preview/index.html`);
+    console.log(`  ✋ Not an issue — nothing will be published until you run npm run brief`);
+  } else {
+    console.log(`\n  Preview:  open brief/${slug}/index.html`);
+    console.log(`  Deploy:   git add . && git commit -m "Add ${slug}" && git push`);
+  }
   console.log(`${line()}\n`);
 
-  // --open flag: launch in default browser (used by npm run brief:review and launchd)
-  if (process.argv.includes('--open')) {
+  // auto-open: --preview always opens, --open flag also opens (used by brief:review and launchd)
+  if (isPreview || process.argv.includes('--open')) {
     require('child_process').execSync(`open "${htmlPath}"`);
   }
 }

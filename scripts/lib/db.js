@@ -132,4 +132,130 @@ function fmtPct(n) {
   return `${sign}${n.toFixed(1)}%`;
 }
 
-module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, esc, playerLink, tickerLink, fmtPrice, fmtPct };
+// ─────────────────────────────────────────────────────────────────────────────
+// Rotating product feature for Golf + Lifestyle section
+// Pick via: PRODUCTS[issueNum % PRODUCTS.length]
+// ─────────────────────────────────────────────────────────────────────────────
+const PRODUCTS = [
+  {
+    brand: 'Peter Millar',
+    name: 'Crown Sport Performance Quarter-Zip',
+    desc: `Peter Millar's go-to for the range and the club. Four-way stretch moves with you, the DWR finish handles light rain, and the chest zip keeps you from committing to one temperature for 18 holes. Built for the guy who goes from the back nine straight to the back patio. <a href="https://www.petermillar.com/collections/mens-quarter-zips" class="brand">Shop Peter Millar →</a>`,
+    price: '$145',
+    url: 'https://www.petermillar.com/collections/mens-quarter-zips',
+    cta: 'Shop Peter Millar',
+  },
+  {
+    brand: 'Rhoback',
+    name: 'Voltaic Performance Polo',
+    desc: `Rhoback solved something the big brands haven't: a polo that's actually comfortable at 88 degrees on the 14th hole. Four-way stretch, moisture-wicking, and it doesn't look like athletic wear. The Voltaic works on the course and anywhere you go after. <a href="https://rhoback.com/collections/mens-polos" class="brand">Shop Rhoback →</a>`,
+    price: '$98',
+    url: 'https://rhoback.com/collections/mens-polos',
+    cta: 'Shop Rhoback',
+  },
+  {
+    brand: 'TravisMathew',
+    name: 'Coto Performance Polo',
+    desc: `TravisMathew's most dialed-in polo. Cut slim without being restrictive, holds its shape through a full round, and comes in colors that don't look like they belong at a corporate outing. Hard to beat at $85. <a href="https://www.travismathew.com/collections/mens-polos" class="brand">Shop TravisMathew →</a>`,
+    price: '$85',
+    url: 'https://www.travismathew.com/collections/mens-polos',
+    cta: 'Shop TravisMathew',
+  },
+  {
+    brand: 'Holderness & Bourne',
+    name: 'The Barstool Polo',
+    desc: `H&B makes the best-looking polo in golf apparel, full stop. The Barstool is slim-fit pique — proper enough for a member-guest but won't embarrass you at the airport. The button and collar details are actually good. Worth the premium. <a href="https://holdernessandbourne.com/collections/mens-polo-shirts" class="brand">Shop H&B →</a>`,
+    price: '$125',
+    url: 'https://holdernessandbourne.com/collections/mens-polo-shirts',
+    cta: 'Shop H&B',
+  },
+  {
+    brand: 'FootJoy',
+    name: 'Pro/SL Golf Shoe',
+    desc: `The best-selling golf shoe on tour for a reason. Waterproof, spikeless, and stable on courses with real elevation. The carbon rubber outsole outlasts most competitors at this price point. Buy them once and stop thinking about golf shoes. <a href="https://www.footjoy.com/collections/mens-golf-shoes/pro-sl" class="brand">Shop FootJoy →</a>`,
+    price: '$170',
+    url: 'https://www.footjoy.com/collections/mens-golf-shoes/pro-sl',
+    cta: 'Shop FootJoy',
+  },
+  {
+    brand: 'Titleist',
+    name: 'Pro V1 Golf Balls',
+    desc: `If you're shooting under 90 consistently, you should be on a Pro V1. The performance difference between a quality ball and a random sleeve is measurable — consistent flight, soft feel around the greens, and durability that earns the price. A dozen lasts longer than you think. <a href="https://www.titleist.com/golf-balls/pro-v1" class="brand">Shop Titleist →</a>`,
+    price: '$55/dozen',
+    url: 'https://www.titleist.com/golf-balls/pro-v1',
+    cta: 'Shop Titleist',
+  },
+  {
+    brand: 'Sun Day Red',
+    name: 'Performance Polo',
+    desc: `Tiger's brand, and the quality shows it. Sun Day Red hits a sweet spot: the technical performance of athletic wear with a silhouette that doesn't look like an Under Armour ad. Subtle colorblocking, clean fit. Still underrated because it launched without a tour win attached. <a href="https://sundayred.com/collections/mens-polos" class="brand">Shop Sun Day Red →</a>`,
+    price: '$118',
+    url: 'https://sundayred.com/collections/mens-polos',
+    cta: 'Shop Sun Day Red',
+  },
+  {
+    brand: 'Malbon Golf',
+    name: 'Terry Cloth Bucket Hat',
+    desc: `Malbon is what golf streetwear looks like when it has actual taste. The bucket hat is lightweight, UPF 50+, and won't make you look like you're trying too hard. Worn by everyone from PGA Tour caddies to guys who haven't picked up a club in three years. Add it before the summer rounds hit. <a href="https://malbongolf.com/collections/hats" class="brand">Shop Malbon →</a>`,
+    price: '$52',
+    url: 'https://malbongolf.com/collections/hats',
+    cta: 'Shop Malbon',
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Rotating "The Rec" picks — apps, gear, books, services
+// Pick via: RECS[(issueNum + 3) % RECS.length]  (offset from PRODUCTS)
+// ─────────────────────────────────────────────────────────────────────────────
+const RECS = [
+  {
+    title: 'Whoop 4.0 — the fitness tracker that actually tells you something.',
+    body: `Whoop skips step-counter gimmicks and tracks recovery, strain, and sleep quality. The daily recovery score — a real number based on HRV, resting heart rate, and sleep stages — is accurate enough to adjust your schedule around. If it says 35%, take the easy morning. It's usually right. No screen, no distraction, and the membership includes the hardware.`,
+    url: 'https://www.whoop.com',
+    cta: 'Try Whoop →',
+  },
+  {
+    title: 'Audible — stop carrying unread books and start finishing them.',
+    body: `If your commute, gym time, or morning walk is dead air, Audible solves it. One credit a month for any audiobook — the real investment is having a structured reason to use the 40 minutes you already have. The GuyTalk pick this week: anything by Michael Lewis or Ryan Holiday. Both hold up on repeat.`,
+    url: 'https://www.audible.com/ep/freetrial',
+    cta: 'Start Audible →',
+  },
+  {
+    title: 'Levels — continuous glucose monitoring for people without diabetes.',
+    body: `Levels puts a CGM sensor on your arm and shows what your blood sugar does in real time. The insight most people get in week one: that "healthy" food is causing major spikes. Worth one month as an experiment. You'll change two or three things and keep them changed for good. The data pays for itself.`,
+    url: 'https://www.levelshealth.com',
+    cta: 'Try Levels →',
+  },
+  {
+    title: 'Oura Ring Gen 3 — the sleep tracker that fits in your lifestyle.',
+    body: `Oura is the Whoop alternative for guys who don't want a wristband. The ring tracks sleep stages, body temperature, and readiness, and the daily score is accurate enough that you'll start scheduling around it. Battery lasts 5–7 days. It looks like a regular ring. Worth it if you've ever woken up after 8 hours and still felt awful.`,
+    url: 'https://ouraring.com',
+    cta: 'Try Oura →',
+  },
+  {
+    title: 'Bose QuietComfort 45 — best noise-cancelling for the price right now.',
+    body: `Sony and Apple get the press, but Bose is still the quietest on a plane. The QC45 isn't the newest model — which means it's $100 cheaper than a year ago. Battery is 24 hours, the fit is comfortable for long hauls, and the noise cancellation mid-flight is genuinely different from the competition. Buy them before your next trip.`,
+    url: 'https://www.bose.com/c/headphones',
+    cta: 'Shop Bose →',
+  },
+  {
+    title: 'Eight Sleep Pod 4 — the mattress cover that fixes your sleep temperature.',
+    body: `Most sleep problems are temperature problems. Eight Sleep actively cools or heats each side of the bed throughout the night based on your sleep stage — the cooling function alone is worth it for anyone who runs hot. Recovery scores improve measurably within the first week for most users. Expensive but cheaper than bad sleep compounding.`,
+    url: 'https://www.eightsleep.com',
+    cta: 'Try Eight Sleep →',
+  },
+  {
+    title: 'Hatch Restore 2 — the sunrise alarm clock that actually works.',
+    body: `The Hatch Restore gradually brightens 30 minutes before your alarm, which means you wake up at the end of a sleep cycle instead of being jolted out of one. Sounds small, but the difference in how you feel in the first hour is immediate. Also doubles as a sound machine and reading light. Replace your phone alarm with this.`,
+    url: 'https://www.hatch.co/restore',
+    cta: 'Try Hatch →',
+  },
+  {
+    title: 'AG1 (Athletic Greens) — the supplement that replaces the stack you forget to take.',
+    body: `One scoop covers vitamins, minerals, and adaptogens that most guys buy separately and skip half the time. The main argument for it: you take it because it's on your counter and it tastes fine. The argument against: $79/month. If you're already spending that on supplements you forget, it pays for itself in consistency alone.`,
+    url: 'https://drinkag1.com',
+    cta: 'Try AG1 →',
+  },
+];
+
+module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, PRODUCTS, RECS, esc, playerLink, tickerLink, fmtPrice, fmtPct };

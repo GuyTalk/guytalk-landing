@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": ">=0.26.0",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "nodemailer": "^8.0.10",
+    "resend": "^6.12.4"
   }
 }

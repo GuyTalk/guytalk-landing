@@ -85,20 +85,11 @@ if [ "$GEN_EXIT" -eq 0 ]; then
       if [ "$PUSH_EXIT" -eq 0 ]; then
         echo "   ✓ Pushed — Vercel deploying..." >> "$LOG_FILE"
 
-        # ── Send Beehiiv email ──────────────────────────────────────────────────
-        echo "" >> "$LOG_FILE"
-        echo "   📬 Sending email to subscribers..." >> "$LOG_FILE"
+        # ── Send review email to Jake's phone ──────────────────────────────────
+        echo "   📱 Sending review notification..." >> "$LOG_FILE"
+        "$NODE" "$PROJECT_DIR/scripts/notify-review.js" 2>&1 | tee -a "$LOG_FILE"
 
-        "$NODE" "$PROJECT_DIR/scripts/send-brief.js" 2>&1 | tee -a "$LOG_FILE"
-        EMAIL_EXIT=${PIPESTATUS[0]}
-
-        if [ "$EMAIL_EXIT" -eq 0 ]; then
-          echo "   ✓ Email sent" >> "$LOG_FILE"
-          osascript -e "display notification \"${ISSUE} live — email sent to subscribers\" with title \"GuyTalk Brief ✓\" subtitle \"Deployed + emailed\""
-        else
-          echo "   ⚠  Email failed — check BEEHIIV_API_KEY in .env.local" >> "$LOG_FILE"
-          osascript -e "display notification \"${ISSUE} deployed but email failed — check logs\" with title \"GuyTalk Brief ⚠\" subtitle \"Add BEEHIIV_API_KEY to .env.local\""
-        fi
+        osascript -e "display notification \"${ISSUE} live — review email sent to your phone\" with title \"GuyTalk Brief ✓\" subtitle \"Tap approve to send to subscribers\""
 
       else
         echo "   ✗ Git push failed" >> "$LOG_FILE"
