@@ -9,6 +9,7 @@ const path = require('path');
 const { fetchNBA, fetchMLB, fetchMarkets, fetchGolf, fetchTrending } = require('./lib/fetchers');
 const { generateCopy }                                      = require('./lib/copy');
 const { buildHtml }                                         = require('./lib/html');
+const { buildArchive }                                      = require('./lib/archive');
 
 const ROOT      = path.join(__dirname, '..');
 const BRIEF_DIR = path.join(ROOT, 'brief');
@@ -138,6 +139,16 @@ async function main() {
   fs.writeFileSync(htmlPath, buildHtml(issueData));
   console.log(`   ✓ brief/${slug}/index.html`);
 
+  // Archive index
+  if (!isPreview) {
+    try {
+      buildArchive(ROOT);
+      console.log(`   ✓ briefs/index.html (archive updated)`);
+    } catch (e) {
+      console.log(`   ⚠  Archive build failed: ${e.message}`);
+    }
+  }
+
   // ── Review checklist ───────────────────────────────────────────────────────
   console.log(`\n${line()}`);
   console.log('  ✅ REVIEW CHECKLIST — scan before it goes live:');
@@ -162,7 +173,7 @@ async function main() {
     checks.push(`□ [WARN]   No AI copy (missing ANTHROPIC_API_KEY) — briefs will be thin`);
   }
 
-  checks.push(`□ [UPDATE] index.html — update brief-story links to /${slug}/`);
+  checks.push(`□ [AUTO]   briefs/index.html archive updated automatically`);
 
   checks.forEach(c => console.log(`  ${c}`));
 

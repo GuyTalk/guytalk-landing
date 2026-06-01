@@ -244,27 +244,38 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Send via Resend — one call per subscriber so each gets a personalized unsubscribe link
+  // Build per-subscriber payloads (each has personalized unsubscribe URL)
+  const payloads = emails.map(email => ({
+    from:    FROM_EMAIL,
+    to:      email,
+    subject: subject,
+    html:    buildEmailHtml(data, slug, email),
+  }));
+
+  // Send via Resend batch API — max 100 per call, one HTTP request per batch
+  const BATCH = 100;
   let sent = 0, failed = 0;
-  for (const email of emails) {
-    const html = buildEmailHtml(data, slug, email);
+  for (let i = 0; i < payloads.length; i += BATCH) {
+    const batch = payloads.slice(i, i + BATCH);
     try {
-      const r = await fetch('https://api.resend.com/emails', {
+      const r = await fetch('https://api.resend.com/emails/batch', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${RESEND_API_KEY}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          from:    FROM_EMAIL,
-          to:      email,
-          subject: subject,
-          html:    html,
-        }),
+        body: JSON.stringify(batch),
       });
-      if (r.ok) { sent++; } else { failed++; }
+      if (r.ok) {
+        const result = await r.json();
+        const data   = Array.isArray(result?.data) ? result.data : [];
+        sent   += data.filter(e => e?.id).length;
+        failed += batch.length - data.filter(e => e?.id).length;
+      } else {
+        failed += batch.length;
+      }
     } catch (_) {
-      failed++;
+      failed += batch.length;
     }
   }
 

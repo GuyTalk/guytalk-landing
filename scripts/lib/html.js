@@ -2,6 +2,17 @@
 
 const { BRIEF_ROWS, TICKERS, PRODUCTS, RECS, esc, playerLink, tickerLink, fmtPrice, fmtPct } = require('./db');
 
+// Render AI prose (possibly multi-paragraph) into proper <p> tags
+function renderParas(text, fallback = '') {
+  if (!text) return fallback ? `<p>${fallback}</p>` : '';
+  return text
+    .split(/\n{2,}/)
+    .map(p => p.trim())
+    .filter(Boolean)
+    .map(p => `<p>${esc(p)}</p>`)
+    .join('\n    ');
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Entry point — returns the full HTML string for a brief issue
 // ─────────────────────────────────────────────────────────────────────────────
@@ -18,6 +29,17 @@ function buildHtml(issue) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Brief · ${label} — GuyTalk</title>
 <meta name="description" content="${esc(title)} — GuyTalk Issue ${label}.">
+<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="https://www.guytalkmedia.com/brief/${slug}/">
+<meta property="og:title"       content="${esc(title)}">
+<meta property="og:description" content="GuyTalk Issue ${label} — sports, markets, golf, and culture in five minutes.">
+<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
+<meta property="og:site_name"   content="GuyTalk">
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:site"        content="@guytalkmedia">
+<meta name="twitter:title"       content="${esc(title)}">
+<meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -78,6 +100,7 @@ ${buildNumbers(issue)}
   <p class="footer-sig">— Jake, GuyTalk</p>
   <div class="footer-nav">
     <a href="/">Home</a>
+    <a href="/briefs/">All Issues</a>
     ${prevSlug ? `<a href="/brief/${prevSlug}/">Issue ${prevLabel}</a>` : ''}
     <a href="mailto:guytalkdaily@gmail.com">Reply to Jake</a>
   </div>
@@ -157,12 +180,10 @@ ${items.slice(0, 5).map(item => `      <li class="tldr-item">
 // ─────────────────────────────────────────────────────────────────────────────
 function buildSports({ sports, copy }) {
   if (!sports?.length) {
-    const sharpTakeText = copy?.sharpTake || '';
     return `  <section class="brief-section" id="sports">
-    <div class="section-label">Sports</div>
+    <div class="section-label sl-sports">Sports</div>
     <h3>Off day — weekend recap.</h3>
-    <p>${esc(copy?.sportsAngle || 'No games last night. Here\'s what happened over the weekend.')}</p>
-    ${sharpTakeText ? `<p>${esc(sharpTakeText.split('\n')[0] || '')}</p>` : ''}
+    ${renderParas(copy?.sportsAngle, 'No games last night.')}
   </section>`;
   }
 
@@ -180,7 +201,7 @@ function buildSports({ sports, copy }) {
       </div>
       <div class="score-center">
         <div class="score-meta">${esc(metaText)}</div>
-        <div class="score-badge">${esc(w.abbrev)} Win</div>
+        <div class="score-badge">${esc(w.abbrev || w.team.split(' ').pop())} Win</div>
       </div>
       <div class="score-side right">
         <div class="score-team${awayLoser ? ' loser' : ''}">${esc(g.away.team)}</div>
@@ -189,11 +210,9 @@ function buildSports({ sports, copy }) {
     </div>`;
 
     if (i === 0) {
-      const angleText = copy?.sportsAngle || 'Full recap inside.';
       const d = copy?.sportsDetail || {};
-
-      const keyNumber       = d.keyNumber       || `${esc(w.team)} take the win.`;
-      const seriesSituation = d.seriesSituation || (g.seriesNote ? esc(g.seriesNote) : 'Series continues.');
+      const keyNumber       = d.keyNumber       || `${w.team} take the win.`;
+      const seriesSituation = d.seriesSituation || (g.seriesNote ? g.seriesNote : 'Series continues.');
       const howToWatch      = d.howToWatch      || 'Check ESPN for next game details.';
       const groupChat       = d.groupChatAngle  || 'Full series breakdown at ESPN.com.';
 
@@ -202,12 +221,12 @@ function buildSports({ sports, copy }) {
 
 ${scoreboard}
 
-    <p>${esc(angleText)}</p>
+    ${renderParas(copy?.sportsAngle, `${w.team} win.`)}
 
     <ul class="detail-list">
-      <li><span><span class="dl-label">Key number:</span>${esc(keyNumber)}</span></li>
-      <li><span><span class="dl-label">Series situation:</span>${esc(seriesSituation)}</span></li>
-      <li><span><span class="dl-label">How to watch:</span>${esc(howToWatch)}</span></li>
+      <li><span><span class="dl-label">Key number:</span> ${esc(keyNumber)}</span></li>
+      <li><span><span class="dl-label">Series situation:</span> ${esc(seriesSituation)}</span></li>
+      <li><span><span class="dl-label">How to watch:</span> ${esc(howToWatch)}</span></li>
     </ul>
 
     <div class="angle-box">
@@ -216,17 +235,17 @@ ${scoreboard}
     </div>`;
     }
 
-    const extraNote = copy?.sportsAdditional?.[i - 1] || `${esc(w.team)} win, ${esc(w.score)}–${esc(l.score)}.`;
+    const extraNote = copy?.sportsAdditional?.[i - 1] || `${w.team} win, ${w.score}–${l.score}.`;
     return `
     <h3>${esc(g.note || g.name)}</h3>
 
 ${scoreboard}
 
-    <p>${esc(extraNote)}</p>`;
+    ${renderParas(extraNote, '')}`;
   });
 
   return `  <section class="brief-section" id="sports">
-    <div class="section-label">Sports</div>
+    <div class="section-label sl-sports">Sports</div>
 ${gameBlocks.join('\n')}
   </section>`;
 }
@@ -272,13 +291,13 @@ function buildMarkets({ markets, copy, date }) {
   }).join('\n');
 
   return `  <section class="brief-section" id="markets">
-    <div class="section-label">Markets</div>
+    <div class="section-label sl-markets">Markets</div>
 
     <h3>${esc(headline)}</h3>
 
-    <p>${esc(openingPara)}</p>
+    ${renderParas(openingPara, 'Market data below.')}
 
-    <p>${esc(secondPara)}</p>
+    ${renderParas(secondPara, '')}
 
     <div class="mkt-table">
       <div class="mkt-table-hd">
@@ -363,7 +382,7 @@ function buildGolf({ golf, copy, num }) {
   const product = PRODUCTS[num % PRODUCTS.length];
 
   return `  <section class="brief-section" id="golf">
-    <div class="section-label">Golf + Lifestyle</div>
+    <div class="section-label sl-golf">Golf + Lifestyle</div>
 ${leaderboardHtml}
 
     <h3>The product worth knowing about.</h3>
@@ -395,7 +414,7 @@ function buildCulture({ copy }) {
 
   if (!items?.length || !Array.isArray(items)) {
     return `  <section class="brief-section" id="culture">
-    <div class="section-label">Culture</div>
+    <div class="section-label sl-culture">Culture</div>
     <p>Culture picks are being updated — check back shortly.</p>
   </section>`;
   }
@@ -410,7 +429,7 @@ function buildCulture({ copy }) {
       </li>`).join('');
 
   return `  <section class="brief-section" id="culture">
-    <div class="section-label">Culture</div>
+    <div class="section-label sl-culture">Culture</div>
     <ul class="culture-list">
 ${itemsHtml}
     </ul>
@@ -424,7 +443,7 @@ function buildRec({ num }) {
   const rec = RECS[(num + 3) % RECS.length];
 
   return `  <section class="brief-section" id="the-rec">
-    <div class="section-label">The Rec</div>
+    <div class="section-label sl-markets">The Rec</div>
 
     <div class="brief-rec">
       <div class="rec-label">This week's pick</div>

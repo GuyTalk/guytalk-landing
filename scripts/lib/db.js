@@ -40,6 +40,12 @@ const PLAYERS = {
   'Bryson DeChambeau':         { sport: 'golf', id: '3470310',  slug: 'bryson-dechambeau' },
   'Tony Finau':                { sport: 'golf', id: '4848696',  slug: 'tony-finau' },
   'Max Homa':                  { sport: 'golf', id: '4848704',  slug: 'max-homa' },
+  'Russell Henley':            { sport: 'golf', id: '4848715',  slug: 'russell-henley' },
+  'Eric Cole':                 { sport: 'golf', id: '10122',    slug: 'eric-cole' },
+  'Ben Griffin':               { sport: 'golf', id: '5769',     slug: 'ben-griffin' },
+  'Ludvig Aberg':              { sport: 'golf', id: '9999001',  slug: 'ludvig-aberg' },
+  'Shane Lowry':               { sport: 'golf', id: '3139',     slug: 'shane-lowry' },
+  'Tommy Fleetwood':           { sport: 'golf', id: '1225',     slug: 'tommy-fleetwood' },
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -202,12 +208,12 @@ const PRODUCTS = [
   },
   {
     brand: 'Malbon Golf',
-    name: 'Terry Cloth Bucket Hat',
+    name: 'Malbon Bucket Hat',
     desc: `Malbon is what golf streetwear looks like when it has actual taste. The bucket hat is lightweight, UPF 50+, and won't make you look like you're trying too hard. Worn by everyone from PGA Tour caddies to guys who haven't picked up a club in three years. Add it before the summer rounds hit. <a href="https://malbon.com/collections/hats" class="brand">Shop Malbon →</a>`,
     price: '$52',
-    url: 'https://malbon.com/collections/hats',
+    url: 'https://malbon.com/products/malbon-bucket-hat-black',
     cta: 'Shop Malbon',
-    imageUrl: null,
+    imageUrl: 'https://malbon.com/cdn/shop/files/M-9426-BLK.png?crop=center&height=800&v=1753723097&width=720',
   },
 ];
 

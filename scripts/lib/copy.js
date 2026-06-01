@@ -1,18 +1,41 @@
 'use strict';
 
-const BRAND_VOICE = `You write for GuyTalk: a daily brief for men aged 25–45 who want to stay sharp on sports, markets, golf, and culture without wading through noise.
+const TODAY = new Date().toLocaleDateString('en-US', {
+  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+});
+
+const BRAND_VOICE = `You write for GuyTalk: a daily brief for men aged 25–45 on sports, markets, golf, and culture.
+Today's date: ${TODAY}.
 
 Voice rules:
 - Direct and confident. No hedging. No "it seems like" or "you might want to."
 - Short sentences. Active voice. Maximum 3 sentences per paragraph.
 - Name specific people, teams, and numbers. Never "a CEO," "a player," "sources say."
-- End each sports/markets section with one line the reader can bring up in conversation — something specific, not obvious.
 - Dry wit is welcome. Forced humor is not.
 - No hot takes for shock value. Be right.
 - Sports: write for guys who watched the game. Don't explain who Brunson is.
 - Markets: clear, not jargon-heavy. Readers have 401(k)s and watch the tape.
 - Golf: assume they play. No birdie definitions.
-- Culture: what happened, what it means, what the correct take is. Not "both sides."`;
+- Culture: what happened, what it means, what the correct take is. Not "both sides."
+
+CRITICAL FORMAT RULES — violations will break the layout:
+- Plain prose ONLY. Zero markdown. No # headers, no ** bold, no * italic, no - bullets, no --- dividers.
+- Never start a response with a section label like "Sports:" or "Markets:".
+- Write in complete sentences. No sentence fragments used as style.`;
+
+// Strip any markdown that slips through despite instructions
+function clean(text) {
+  if (!text) return text;
+  return text
+    .replace(/^#{1,6}\s+.*/gm, '')          // # headers
+    .replace(/\*\*(.*?)\*\*/gs, '$1')        // **bold**
+    .replace(/\*(.*?)\*/gs, '$1')            // *italic*
+    .replace(/^[-*]\s+/gm, '')              // bullet list items
+    .replace(/^---+$/gm, '')                // horizontal rules
+    .replace(/^\s*(Sports|Markets|Golf|Culture|GuyTalk)\s*:\s*/i, '') // stray section labels
+    .replace(/\n{3,}/g, '\n\n')             // collapse excess blank lines
+    .trim();
+}
 
 function parseJson(raw) {
   if (!raw) return null;
@@ -78,7 +101,7 @@ async function generateCopy({ sports, markets, golf, trending }) {
     .map((t, i) => `${i + 1}. [${t.source}] ${t.title}`)
     .join('\n');
 
-  const mainGame  = sports?.[0];
+  const mainGame   = sports?.[0];
   const extraGames = sports?.slice(1) || [];
 
   // ── All calls in parallel ─────────────────────────────────────────────────
@@ -98,36 +121,36 @@ async function generateCopy({ sports, markets, golf, trending }) {
 
     // 1. Brief headline
     ask(
-      `Write the headline for today's GuyTalk issue. Max 12 words. No quotes, no "Issue #", no colons.
-Style: "Both series tied. Scheffler leads at The Memorial. Weekend's stacked."
+      `Write the headline for today's GuyTalk issue. Max 12 words. Plain text only — no quotes, no colons, no markdown.
+Style examples: "Both series tied. Scheffler leads at The Memorial. Weekend's stacked."
 Context: ${ctx}`,
       80
     ),
 
-    // 2. Sports opening paragraph (main game, or weekend recap if no games)
+    // 2. Sports opening paragraph
     mainGame
       ? ask(
-          `Write 2–3 sentences opening the Sports section.
-Last night's games:\n${gamesText}
-Lead with the most important result. Name the best player. End with what this sets up.
-CRITICAL: Only state a series record if explicitly given in [Series: ...] brackets. Never infer one.`,
-          250
+          `Write 2–3 sentences opening the Sports section. Plain prose only — no markdown, no headers, no labels.
+Games:\n${gamesText}
+Lead with the most important result. Name the best player with their actual stat line. End with what this sets up next.
+CRITICAL: Only cite a series record if explicitly given in [Series: ...] brackets. Never guess or infer series records.`,
+          200
         )
       : ask(
-          `Write 2–3 sentences for the Sports section of a Monday morning brief — no games were played last night.
-Recap the most notable sports story from this past weekend based on what you know. Be specific: name teams, players, scores if possible.
-GuyTalk voice: direct, confident. End with what to watch for this week.
+          `Write 2–3 sentences for the Sports section — no games last night. Plain prose only, no markdown.
+Recap the most notable sports story from this past weekend. Be specific: real team names, real players, real scores you know happened.
+End with what to watch for this week.
 Context: ${ctx}${trendText ? `\nTrending: ${trendText}` : ''}`,
-          250
+          200
         ),
 
     // 3. Markets opening paragraph
     markets && mktText
       ? ask(
-          `Write 2 sentences opening the Markets section.
-Today's closes: ${mktText}
-What's the main story? What should readers watch going into next week?`,
-          200
+          `Write 2 sentences opening the Markets section. Plain prose only — no markdown, no headers.
+Data: ${mktText}
+What's the main story? What's the one thing to watch next week?`,
+          180
         )
       : Promise.resolve(null),
 
@@ -135,31 +158,31 @@ What's the main story? What should readers watch going into next week?`,
     golf?.leaders?.[0]
       ? ask(
           golf.statusState === 'post'
-            ? `One sentence — max 20 words — about ${golf.leaders[0].name} winning ${golf.name} at ${golf.leaders[0].score}. GuyTalk voice: direct, knowledgeable, confident. Use past tense — tournament is over.`
-            : `One sentence — max 20 words — about ${golf.leaders[0].name} leading ${golf.name} at ${golf.leaders[0].score}. GuyTalk voice: direct, knowledgeable, confident.`,
+            ? `One sentence, max 20 words, about ${golf.leaders[0].name} winning ${golf.name} at ${golf.leaders[0].score}. Past tense. Plain text — no markdown.`
+            : `One sentence, max 20 words, about ${golf.leaders[0].name} leading ${golf.name} at ${golf.leaders[0].score}. Plain text — no markdown.`,
           60
         )
       : Promise.resolve(null),
 
     // 5. Sharp Take (closing)
     ask(
-      `Write the "Sharp Take" closing section. Two short paragraphs synthesizing the day/weekend.
-End with one action line ("Clear Saturday afternoon. If someone asks, the answer is no." energy — specific to this issue).
-Plain prose only — no markdown, no headers, no bullet points, no dashes.
+      `Write the "Sharp Take" closing section — two short paragraphs synthesizing today.
+End with one punchy action line specific to what happened today ("Clear Saturday afternoon. If someone asks, the answer is no." energy).
+Plain prose ONLY — absolutely no markdown, no headers, no asterisks, no bullets, no labels.
 Context: ${ctx}${trendText ? `\nTrending: ${trendText}` : ''}`,
-      250
+      260
     ),
 
-    // 6. Sports detail items (JSON)
+    // 6. Sports detail (JSON)
     mainGame
       ? ask(
-          `GuyTalk voice. Main game: ${gamesText.split('\n')[0]}
-Return ONLY valid JSON (no markdown) with these exact keys:
+          `GuyTalk voice. Game: ${gamesText.split('\n')[0]}
+Return ONLY valid JSON, no markdown, no code fences:
 {
-  "keyNumber": "The defining stat — specific player did X on Y.",
-  "seriesSituation": "${mainGame.seriesNote ? `Series: ${mainGame.seriesNote}. ` : ''}Next game context — date, venue, what this result means.",
-  "howToWatch": "Game label · Day · Venue · Approximate time ET · Likely network (ESPN/ABC/TNT for NBA).",
-  "groupChatAngle": "One inside-knowledge fact about these teams or players. Drop-it-once energy — specific, not obvious."
+  "keyNumber": "The defining stat — specific player, specific number.",
+  "seriesSituation": "${mainGame.seriesNote ? `Series: ${mainGame.seriesNote}. ` : ''}Next game context — what this result means going forward.",
+  "howToWatch": "Game label · Day · Venue · Time ET · Network.",
+  "groupChatAngle": "One inside-knowledge fact. Drop-it-once energy — specific, not obvious."
 }`,
           400
         )
@@ -169,13 +192,13 @@ Return ONLY valid JSON (no markdown) with these exact keys:
     markets && mktText
       ? ask(
           `GuyTalk voice. Market data: ${mktText}
-Return ONLY valid JSON (no markdown):
+Return ONLY valid JSON, no markdown, no code fences:
 {
-  "headline": "One-line headline capturing today's market story. Max 10 words.",
-  "secondPara": "One forward-looking sentence — specific upcoming event, data release, or earnings that matters next week.",
-  "watchNextWeek": "The one data point or event that will move markets. Specific: name the date and what to expect.",
-  "tradeToWatch": "One ticker showing notable behavior right now. What it's doing and why it matters.",
-  "bringUp": "One portable market fact — specific number, true, conversational. Something to say at dinner."
+  "headline": "One-line market story headline. Max 10 words.",
+  "secondPara": "One forward-looking sentence — specific upcoming event or data release that matters.",
+  "watchNextWeek": "The one thing that moves markets next week. Name the date.",
+  "tradeToWatch": "One ticker with notable behavior. What it's doing and why it matters.",
+  "bringUp": "One specific market fact — a real number, conversational, something to say at dinner."
 }`,
           450
         )
@@ -185,61 +208,59 @@ Return ONLY valid JSON (no markdown):
     golf?.leaders?.[0]
       ? ask(
           golf.statusState === 'post'
-            ? `GuyTalk voice. FINAL RESULTS — ${golf.name} is over. Winner: ${golf.leaders[0].name} at ${golf.leaders[0].score}.
+            ? `GuyTalk voice. FINAL — ${golf.name} complete. Winner: ${golf.leaders[0].name} at ${golf.leaders[0].score}.
 Final leaderboard: ${golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ')}.
-Return ONLY valid JSON (no markdown):
+Return ONLY valid JSON, no markdown, no code fences:
 {
-  "whyItMatters": "What this win means for ${golf.leaders[0].name} — season trajectory, major chances, FedEx Cup impact. One concrete sentence.",
-  "recap": "One sentence on how the final round played out. Was it a wire-to-wire win, a collapse, a Sunday charge? Specific.",
-  "bringUp": "One inside-knowledge fact about the winner or the course. Something specific, not obvious.",
-  "groupChatAngle": "One drop-it-once insight. Something that sounds like you watched every round."
+  "whyItMatters": "What this win means — season trajectory, FedEx Cup, major chances. One concrete sentence.",
+  "recap": "How the final round played out — wire-to-wire, collapse, Sunday charge? Specific.",
+  "bringUp": "One inside-knowledge fact about the winner or course. Specific, not obvious.",
+  "groupChatAngle": "One drop-it-once insight. Sounds like you watched every round."
 }`
             : `GuyTalk voice. Tournament: ${golf.name}. Status: ${golf.status}.
 Leaderboard: ${golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ')}.
-Return ONLY valid JSON (no markdown):
+Return ONLY valid JSON, no markdown, no code fences:
 {
   "whyItMatters": "Field quality, FedEx Cup points, historic venue — one concrete sentence.",
-  "tvSchedule": "Approximate broadcast info based on typical PGA Tour TV deal. Format: 'Round 3: TIME ET, Golf Channel/Peacock. Round 4: TIME ET, NBC/CBS.'",
-  "bringUp": "One inside-knowledge fact about the leader or the course. Specific.",
-  "groupChatAngle": "Drop-it-once insight about the leader or field. Something that sounds like you've been watching."
+  "tvSchedule": "Broadcast info: 'Round 3: TIME ET, Golf Channel/Peacock. Round 4: TIME ET, NBC/CBS.'",
+  "bringUp": "One inside-knowledge fact about the leader or course. Specific.",
+  "groupChatAngle": "Drop-it-once insight about the leader or field. Sounds like you've been watching."
 }`,
           400
         )
       : Promise.resolve(null),
 
-    // 9. Culture — 3 items from trending (JSON array)
+    // 9. Culture (JSON array)
     ask(
-      `GuyTalk culture section. Write 3 culture items for men aged 25–45.
-Return ONLY a valid JSON array (no markdown), exactly 3 objects:
+      `GuyTalk culture section. Write 3 items for men 25–45.
+Return ONLY a valid JSON array, no markdown, no code fences, exactly 3 objects:
 [
-  {"head": "Specific headline — name the person/company/moment", "source": "Platform · Source Name", "body": "3–4 sentences. What happened exactly. Why people care. The correct take — not both sides, one right answer. End with one line the reader can use in conversation."},
-  {...},
-  {"head": "This weekend: [actual title]", "source": "Netflix / HBO / Theater · Genre", "body": "What it is, who made it, who it's for. One sentence on why it's worth your time. Don't oversell."}
+  {"head": "Specific headline — name the real person/company/moment", "source": "Platform · Source", "body": "3–4 sentences. What happened. Why it matters. The correct take — one right answer, not both sides. End with one line the reader drops in conversation."},
+  {"head": "Specific headline", "source": "Platform · Source", "body": "Same format as above."},
+  {"head": "This weekend: [real title currently available]", "source": "Netflix / HBO / Theater · Genre", "body": "What it is, who made it, who it's for. One sentence why it's worth your time. Don't oversell."}
 ]
-The third item MUST be a weekend entertainment pick (movie, show, or event currently available).
-Prioritize sports/business/culture crossovers for items 1 and 2.
-
-Trending stories to draw from:
-${trendText || 'No trending data available — use your judgment on major current events in sports, business, and entertainment.'}`,
+Item 3 must be a real currently-available movie, show, or event.
+Items 1–2: prioritize sports/business/culture crossovers.
+Trending stories: ${trendText || 'No data — use your judgment on major current events.'}`,
       900
     ),
 
     // 10. Numbers context (JSON array)
     ask(
-      `GuyTalk voice. Return ONLY a valid JSON array (no markdown), 3 objects:
-[{"context": "2 sentences — what this number means in context and why the reader should care."}]
+      `GuyTalk voice. Return ONLY a valid JSON array, no markdown, no code fences, exactly 3 objects:
+[{"context": "2 sentences on what this number means and why the reader should care. Specific."}]
 
-Numbers from today:
-${mainGame ? `Score: ${mainGame.home.score}–${mainGame.away.score} (${mainGame.note || mainGame.shortName})` : ''}
-${markets?.SPY?.dayChangePct !== undefined ? `SPY: ${markets.SPY.dayChangePct >= 0 ? '+' : ''}${markets.SPY.dayChangePct.toFixed(1)}% on the day` : ''}
-${golf?.leaders?.[0] ? `${golf.leaders[0].name} at ${golf.leaders[0].score}, ${golf.name}` : ''}`,
+Numbers:
+${mainGame ? `${mainGame.home.score}–${mainGame.away.score} (${mainGame.note || mainGame.shortName})` : ''}
+${markets?.SPY?.dayChangePct !== undefined ? `SPY ${markets.SPY.dayChangePct >= 0 ? '+' : ''}${markets.SPY.dayChangePct.toFixed(1)}% today` : ''}
+${golf?.leaders?.[0] ? `${golf.leaders[0].name} ${golf.leaders[0].score}, ${golf.name}` : ''}`,
       350
     ),
 
-    // 11. Additional game notes (text, separated by |||)
+    // 11. Additional game notes (plain text, separated by |||)
     extraGames.length
       ? ask(
-          `GuyTalk voice. Write a brief 2–3 sentence note for each game below. Separate game notes with "|||". Key player, key moment, what's next.
+          `GuyTalk voice. Write 2–3 sentence notes for each game below. Plain prose — no markdown. Separate game notes with "|||".
 ${extraGames.map(g => {
   const w = g.home.winner ? g.home : g.away;
   const l = g.home.winner ? g.away : g.home;
@@ -253,17 +274,17 @@ ${extraGames.map(g => {
   const get = r => r.status === 'fulfilled' ? r.value : null;
 
   return {
-    title:           get(titleR),
-    sportsAngle:     get(sportsAngleR),
-    marketsTake:     get(marketsTakeR),
-    golfNote:        get(golfNoteR),
-    sharpTake:       get(sharpTakeR),
-    sportsDetail:    parseJson(get(sportsDetailR)),
-    marketsDetail:   parseJson(get(marketsDetailR)),
-    golfDetail:      parseJson(get(golfDetailR)),
-    culture:         parseJson(get(cultureR)),
-    numbersContext:  parseJson(get(numbersR)),
-    sportsAdditional: get(extraGamesR)?.split('|||').map(s => s.trim()).filter(Boolean) || [],
+    title:            clean(get(titleR)),
+    sportsAngle:      clean(get(sportsAngleR)),
+    marketsTake:      clean(get(marketsTakeR)),
+    golfNote:         clean(get(golfNoteR)),
+    sharpTake:        clean(get(sharpTakeR)),
+    sportsDetail:     parseJson(get(sportsDetailR)),
+    marketsDetail:    parseJson(get(marketsDetailR)),
+    golfDetail:       parseJson(get(golfDetailR)),
+    culture:          parseJson(get(cultureR)),
+    numbersContext:   parseJson(get(numbersR)),
+    sportsAdditional: get(extraGamesR)?.split('|||').map(s => clean(s)).filter(Boolean) || [],
   };
 }
 
@@ -279,7 +300,8 @@ function buildContext({ sports, markets, golf }) {
     }).join('; '));
   }
   if (golf?.leaders?.[0]) {
-    parts.push(`Golf: ${golf.name} — ${golf.leaders[0].name} leads at ${golf.leaders[0].score}`);
+    const verb = golf.statusState === 'post' ? 'won' : 'leads';
+    parts.push(`Golf: ${golf.name} — ${golf.leaders[0].name} ${verb} at ${golf.leaders[0].score}`);
   }
   if (markets) {
     const spy = markets.SPY;

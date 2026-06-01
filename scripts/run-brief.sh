@@ -81,7 +81,7 @@ if [ "$GEN_EXIT" -eq 0 ]; then
 
     cd "$PROJECT_DIR" || exit 1
 
-    git add brief/ assets/ index.html 2>&1 | tee -a "$LOG_FILE"
+    git add brief/ assets/ briefs/ index.html 2>&1 | tee -a "$LOG_FILE"
     git commit -m "Brief: ${ISSUE} — $(date '+%B %d, %Y')" 2>&1 | tee -a "$LOG_FILE"
     GIT_EXIT=${PIPESTATUS[0]}
 

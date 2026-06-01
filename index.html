@@ -5,6 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GuyTalk — Walk in knowing.</title>
 <meta name="description" content="GuyTalk is your daily relevance brief — sports, markets, and culture. Know what happened, why it matters, and what to bring up. Free. Five minutes.">
+
+<!-- Favicon -->
+<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/logo/guytalk-icon.svg">
+
+<!-- Open Graph -->
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://www.guytalkmedia.com/">
+<meta property="og:title"       content="GuyTalk — Walk in knowing.">
+<meta property="og:description" content="The daily brief for guys who want to stay sharp. Sports, markets, golf, and culture — five minutes a day, free forever.">
+<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name"   content="GuyTalk">
+
+<!-- Twitter / X -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:site"        content="@guytalkmedia">
+<meta name="twitter:title"       content="GuyTalk — Walk in knowing.">
+<meta name="twitter:description" content="The daily brief for guys who want to stay sharp. Sports, markets, golf, and culture — five minutes a day, free forever.">
+<meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -680,7 +702,10 @@
 <nav>
   <div class="nav-inner">
     <div class="wordmark">GuyTalk<span class="dot">.</span></div>
-    <a href="#signup" class="nav-cta">Get the brief →</a>
+    <div style="display:flex;align-items:center;gap:20px;">
+      <a href="/briefs/" style="font-size:14px;font-weight:600;color:var(--text-secondary);">Archive</a>
+      <a href="#signup" class="nav-cta">Get the brief →</a>
+    </div>
   </div>
 </nav>
 
@@ -734,7 +759,7 @@
     <div id="signup" class="beehiiv-form-wrap">
       <form class="gt-signup" onsubmit="handleSignup(event, this)">
         <input type="email" name="email" placeholder="Enter your email" required class="gt-email-input" autocomplete="email">
-        <button type="submit" class="gt-email-btn">Get Early Access</button>
+        <button type="submit" class="gt-email-btn">Subscribe Free</button>
       </form>
       <div class="gt-signup-success" style="display:none">
         <div class="gt-success-msg">You're in — check your inbox tomorrow morning.</div>
@@ -1066,7 +1091,7 @@
     <div class="beehiiv-form-wrap">
       <form class="gt-signup" onsubmit="handleSignup(event, this)">
         <input type="email" name="email" placeholder="Enter your email" required class="gt-email-input" autocomplete="email">
-        <button type="submit" class="gt-email-btn">Get Early Access</button>
+        <button type="submit" class="gt-email-btn">Subscribe Free</button>
       </form>
       <div class="gt-signup-success" style="display:none">
         <div class="gt-success-msg">You're in — check your inbox tomorrow morning.</div>
@@ -1085,6 +1110,7 @@
         <span style="margin-left:14px">© 2026</span>
       </div>
       <div class="footer-socials">
+        <a href="/briefs/">Archive</a>
         <a href="https://instagram.com/guytalkmedia" target="_blank" rel="noopener">Instagram</a>
         <a href="https://x.com/guytalkmedia" target="_blank" rel="noopener">X</a>
         <a href="https://tiktok.com/@guytalkmedia" target="_blank" rel="noopener">TikTok</a>
