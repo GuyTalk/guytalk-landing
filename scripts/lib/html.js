@@ -470,29 +470,30 @@ function buildNumbers({ sports, markets, golf, copy }) {
   if (sports?.length) {
     const g = sports[0];
     const note = g.note || g.shortName;
-    const ctx = ctxArr?.[0]?.context || `${esc(note)} final score.`;
+    const rawCtx = ctxArr?.[0]?.context || `${note} final score.`;
     items.push({
       num: `${g.home.score}–${g.away.score}`,
-      html: `<strong>${esc(note)}.</strong> ${esc(ctx)}`,
+      html: `<strong>${esc(note)}.</strong> ${esc(rawCtx.replace(/&amp;/g, '&'))}`,
     });
   }
 
   if (markets?.SPY?.dayChangePct !== undefined && markets.SPY.dayChangePct !== null) {
     const pct = markets.SPY.dayChangePct;
     const dir = pct >= 0 ? 'gain' : 'drop';
-    const ctx = ctxArr?.[1]?.context || `S&amp;P 500 closed ${dir === 'gain' ? 'higher' : 'lower'} on the day.`;
+    const rawCtx = ctxArr?.[1]?.context || `S&P 500 closed ${dir === 'gain' ? 'higher' : 'lower'} on the day.`;
     items.push({
       num: `${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%`,
-      html: `<strong>S&amp;P 500 ${dir} today.</strong> ${esc(ctx)}`,
+      html: `<strong>S&amp;P 500 ${dir} today.</strong> ${esc(rawCtx.replace(/&amp;/g, '&'))}`,
     });
   }
 
   if (golf?.leaders?.[0]) {
     const l = golf.leaders[0];
-    const ctx = ctxArr?.[2]?.context || `${esc(l.name)} leads ${esc(golf.name)}.`;
+    const isFinished = golf.statusState === 'post';
+    const rawCtx = ctxArr?.[2]?.context || `${l.name} ${isFinished ? 'won' : 'leads'} ${golf.name}.`;
     items.push({
       num: l.score,
-      html: `<strong>${esc(l.name)}, ${esc(golf.name)}.</strong> ${esc(ctx)}`,
+      html: `<strong>${esc(l.name)}, ${esc(golf.name)}.</strong> ${esc(rawCtx.replace(/&amp;/g, '&'))}`,
     });
   }
 
