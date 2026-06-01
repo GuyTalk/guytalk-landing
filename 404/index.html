@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found — GuyTalk</title>
+<meta name="description" content="This page doesn't exist, but GuyTalk does. The daily brief for guys who want to stay sharp.">
+<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F9F8F5; --surface: #FFFFFF; --border: #E5E2DB;
+    --text: #0F1724; --text-2: #6E6862; --text-3: #9E9891;
+    --accent: #2B6FFF; --accent-h: #1A5CEF; --accent-muted: #EBF1FF;
+  }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.55; -webkit-font-smoothing: antialiased;
+    display: flex; flex-direction: column;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  nav {
+    border-bottom: 1px solid var(--border); padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .wordmark { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.03em; }
+  .wordmark .dot { color: var(--accent); }
+  .nav-cta {
+    font-weight: 600; font-size: 13px; padding: 7px 14px;
+    background: var(--accent); color: white; border-radius: 7px; transition: background 0.15s;
+  }
+  .nav-cta:hover { background: var(--accent-h); }
+
+  .four-wrap {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    padding: 48px 24px; text-align: center;
+  }
+  .four-inner { max-width: 520px; }
+  .four-code {
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  .four-num {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 120px; letter-spacing: -0.06em; line-height: 1;
+    color: var(--text); margin-bottom: 0;
+    background: linear-gradient(135deg, var(--text), rgba(15,23,36,0.4));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .four-headline {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 24px; letter-spacing: -0.02em; color: var(--text);
+    margin-bottom: 12px;
+  }
+  .four-sub { font-size: 16px; color: var(--text-2); margin-bottom: 36px; line-height: 1.55; }
+  .four-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 12px 24px; background: var(--accent); color: white;
+    border-radius: 9px; font-weight: 700; font-size: 14px;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent-h); transform: translateY(-1px); }
+  .btn-secondary {
+    padding: 12px 24px; background: var(--surface); color: var(--text);
+    border: 1.5px solid var(--border); border-radius: 9px; font-weight: 600; font-size: 14px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--text-2); transform: translateY(-1px); }
+
+  .four-divider { margin: 40px 0; border: none; border-top: 1px solid var(--border); }
+  .four-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+  .four-links a { font-size: 14px; color: var(--text-3); transition: color 0.15s; }
+  .four-links a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="wordmark">GuyTalk<span class="dot">.</span></a>
+  <a href="/#signup" class="nav-cta">Subscribe Free →</a>
+</nav>
+
+<div class="four-wrap">
+  <div class="four-inner">
+    <div class="four-code">Error 404</div>
+    <div class="four-num">404</div>
+    <h1 class="four-headline">Nothing to see here.</h1>
+    <p class="four-sub">This page doesn't exist — but the brief does, every morning before 8am. Let's get you back on track.</p>
+    <div class="four-actions">
+      <a href="/" class="btn-primary">Back to GuyTalk →</a>
+      <a href="/briefs/" class="btn-secondary">Browse Archive</a>
+    </div>
+    <hr class="four-divider">
+    <div class="four-links">
+      <a href="/about/">About</a>
+      <a href="/reviews/">Reviews</a>
+      <a href="mailto:guytalkdaily@gmail.com">Contact</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

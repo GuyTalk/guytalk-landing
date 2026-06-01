@@ -15,7 +15,14 @@ function buildArchive(rootDir) {
 
   const issues = files.map(f => {
     try {
-      return JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8'));
+      const d = JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8'));
+      // Derive num from filename if missing in data
+      if (!d.num) {
+        const m = f.match(/issue-(\d+)\.json/);
+        if (m) d.num = parseInt(m[1], 10);
+      }
+      if (!d.slug) d.slug = f.replace('.json', '');
+      return d;
     } catch (_) { return null; }
   }).filter(Boolean);
 

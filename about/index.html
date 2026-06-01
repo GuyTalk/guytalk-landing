@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — GuyTalk</title>
+<meta name="description" content="GuyTalk is the daily brief that keeps guys sharp on sports, markets, golf, and culture. Here's who's behind it and why we built it.">
+<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<meta property="og:title"       content="About GuyTalk">
+<meta property="og:description" content="The daily brief for guys who want to stay sharp. Here's who's behind it.">
+<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
+<meta property="og:url"         content="https://www.guytalkmedia.com/about/">
+<meta name="twitter:card"       content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F9F8F5; --surface: #FFFFFF; --border: #E5E2DB; --border-light: #D4D0C8;
+    --text: #0F1724; --text-2: #6E6862; --text-3: #9E9891;
+    --accent: #2B6FFF; --accent-h: #1A5CEF; --accent-muted: #EBF1FF;
+    --amber: #B87C35; --amber-muted: rgba(184,124,53,0.08);
+    --green: #16A34A;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  p { color: var(--text-2); margin-bottom: 20px; }
+  strong { color: var(--text); font-weight: 700; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(249,248,245,0.92);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; max-width: 900px; margin: 0 auto;
+  }
+  .wordmark { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.03em; color: var(--text); }
+  .wordmark .dot { color: var(--accent); }
+  .nav-links { display: flex; align-items: center; gap: 24px; }
+  .nav-link { font-size: 14px; font-weight: 500; color: var(--text-2); }
+  .nav-link:hover { color: var(--text); text-decoration: none; }
+  .nav-cta {
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px;
+    padding: 7px 14px; background: var(--accent); color: white; border-radius: 7px;
+    transition: background 0.15s ease;
+  }
+  .nav-cta:hover { background: var(--accent-h); text-decoration: none; }
+
+  /* LAYOUT */
+  .page-wrap { max-width: 700px; margin: 0 auto; padding: 64px 24px 100px; }
+
+  /* HERO */
+  .page-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-weight: 600;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px; display: block;
+  }
+  .page-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: 52px; letter-spacing: -0.04em; line-height: 1.04;
+    color: var(--text); margin-bottom: 20px;
+  }
+  .page-lead { font-size: 20px; color: var(--text-2); line-height: 1.6; margin-bottom: 48px; }
+  .divider { height: 1px; background: var(--border); margin: 48px 0; }
+
+  /* FOUNDER SECTION */
+  .founder-block {
+    display: grid; grid-template-columns: 140px 1fr; gap: 32px;
+    align-items: start; margin-bottom: 48px;
+  }
+  .founder-avatar {
+    width: 140px; height: 140px; border-radius: 16px;
+    background: linear-gradient(135deg, #0F1724 0%, #1a2d50 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .founder-avatar-text {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: 52px; color: #F9F8F5; letter-spacing: -2px;
+  }
+  .founder-avatar-dot { color: var(--accent); }
+  .founder-name {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 22px; letter-spacing: -0.02em; color: var(--text); margin-bottom: 4px;
+  }
+  .founder-role {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .founder-bio { font-size: 15.5px; color: var(--text-2); line-height: 1.65; }
+
+  /* STAT ROW */
+  .stat-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 14px;
+    overflow: hidden; margin: 40px 0;
+  }
+  .stat-cell { background: var(--surface); padding: 24px 20px; }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    font-size: 30px; letter-spacing: -0.03em; color: var(--accent);
+    line-height: 1; margin-bottom: 6px;
+  }
+  .stat-label { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 13px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* SECTION HEADING */
+  .section-head {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 28px; letter-spacing: -0.025em; color: var(--text);
+    margin-bottom: 16px; margin-top: 48px;
+  }
+
+  /* PILLAR LIST */
+  .pillar-list { list-style: none; margin: 24px 0; }
+  .pillar-item {
+    display: flex; gap: 16px; padding: 18px 0;
+    border-top: 1px solid var(--border);
+  }
+  .pillar-item:last-child { border-bottom: 1px solid var(--border); }
+  .pillar-icon {
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 9px;
+    background: var(--accent-muted); display: flex; align-items: center; justify-content: center;
+    font-size: 17px; margin-top: 2px;
+  }
+  .pillar-title { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 16px; color: var(--text); margin-bottom: 4px; }
+  .pillar-body { font-size: 15px; color: var(--text-2); line-height: 1.6; }
+
+  /* VALUES */
+  .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .value-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
+  }
+  .value-card-label {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 14px; color: var(--text); margin-bottom: 6px;
+  }
+  .value-card-body { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+
+  /* CTA BLOCK */
+  .cta-block {
+    margin-top: 56px; padding: 40px 36px; text-align: center;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .cta-headline { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.025em; color: var(--text); margin-bottom: 10px; }
+  .cta-sub { font-size: 16px; color: var(--text-2); margin-bottom: 28px; }
+  .cta-form { display: flex; gap: 10px; max-width: 400px; margin: 0 auto; }
+  .cta-input {
+    flex: 1; padding: 12px 16px; border: 1.5px solid var(--border);
+    border-radius: 9px; font-size: 15px; font-family: inherit;
+    background: var(--bg); outline: none; transition: border-color 0.15s ease;
+  }
+  .cta-input:focus { border-color: rgba(43,111,255,0.45); }
+  .cta-btn {
+    padding: 12px 22px; background: var(--accent); color: white;
+    border: none; border-radius: 9px; font-family: inherit;
+    font-weight: 700; font-size: 14px; cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .cta-btn:hover { background: var(--accent-h); transform: translateY(-1px); }
+  .cta-hint { font-size: 12px; color: var(--text-3); margin-top: 10px; }
+  .cta-success { display: none; font-size: 15px; color: var(--green); font-weight: 600; margin-top: 10px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border); padding: 32px 24px 48px;
+    max-width: 900px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-brand { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.03em; color: var(--text); }
+  .footer-brand .dot { color: var(--accent); }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.15s ease; }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 600px) {
+    .page-title { font-size: 36px; }
+    .page-lead { font-size: 17px; }
+    .founder-block { grid-template-columns: 1fr; }
+    .founder-avatar { width: 100px; height: 100px; }
+    .values-grid { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: 1fr; }
+    .cta-form { flex-direction: column; }
+    .nav-links .nav-link { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="/about/" class="nav-link">About</a>
+      <a href="/reviews/" class="nav-link">Reviews</a>
+      <a href="/briefs/" class="nav-link">Archive</a>
+      <a href="/#signup" class="nav-cta">Subscribe Free →</a>
+    </div>
+  </div>
+</nav>
+
+<main class="page-wrap">
+
+  <span class="page-eyebrow">Who We Are</span>
+  <h1 class="page-title">Built for the guy who wants to stay sharp.</h1>
+  <p class="page-lead">GuyTalk is a daily brief on sports, markets, golf, and culture — written for guys who want to know what's happening, why it matters, and exactly what to say about it. Five minutes. Free. Every morning.</p>
+
+  <div class="stat-row">
+    <div class="stat-cell">
+      <div class="stat-num">17+</div>
+      <div class="stat-label">Issues published</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">5 min</div>
+      <div class="stat-label">To read each issue</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Topics covered daily</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 class="section-head">The founder</h2>
+
+  <div class="founder-block">
+    <div class="founder-avatar">
+      <span class="founder-avatar-text">J<span class="founder-avatar-dot">.</span></span>
+    </div>
+    <div>
+      <div class="founder-name">Jake Williams</div>
+      <div class="founder-role">Founder, GuyTalk</div>
+      <p class="founder-bio">I built GuyTalk because I kept finding myself in the same spot — walking into conversations about the market, the game, or some culture moment and only half-knowing what had happened. I didn't want a 40-minute podcast or a wall of headlines. I wanted someone to just tell me the thing, give me the right take, and let me get on with my day.</p>
+      <p class="founder-bio">GuyTalk is that. One brief. Sports, markets, golf, and culture — written like a guy who actually follows all four, not a content team filling column inches. Every issue goes out under my name because I actually read it before it does.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 class="section-head">What's in every issue</h2>
+
+  <ul class="pillar-list">
+    <li class="pillar-item">
+      <div class="pillar-icon">🏀</div>
+      <div>
+        <div class="pillar-title">Sports</div>
+        <p class="pillar-body">Last night's results with the actual context — who played well, what it means for the series, and one fact your group chat doesn't have yet. NBA, NFL, MLB, college — whatever's relevant that morning.</p>
+      </div>
+    </li>
+    <li class="pillar-item">
+      <div class="pillar-icon">📈</div>
+      <div>
+        <div class="pillar-title">Markets</div>
+        <p class="pillar-body">SPY, QQQ, individual names that moved, and the one macro event to watch next week. Written for guys with 401(k)s who want to sound like they track the tape — not for finance Twitter.</p>
+      </div>
+    </li>
+    <li class="pillar-item">
+      <div class="pillar-icon">⛳</div>
+      <div>
+        <div class="pillar-title">Golf</div>
+        <p class="pillar-body">Live leaderboard updates, what the round means, and the one inside-knowledge fact that makes you sound like you watched every shot. Assumes you play.</p>
+      </div>
+    </li>
+    <li class="pillar-item">
+      <div class="pillar-icon">🎬</div>
+      <div>
+        <div class="pillar-title">Culture</div>
+        <p class="pillar-body">Three items worth knowing — a sports-business crossover, a story everyone's talking about, and a weekend watch pick. We take a position. No "both sides" takes.</p>
+      </div>
+    </li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <h2 class="section-head">How we operate</h2>
+
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-card-label">No noise</div>
+      <p class="value-card-body">We cover four things. We don't cover politics, celebrity gossip, or anything you already saw on Twitter. If it's not relevant to the four pillars, it's not in the brief.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-card-label">One right take</div>
+      <p class="value-card-body">We tell you the correct read on a situation. Not both sides. Not "some say." The take that holds up when you bring it up in conversation.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-card-label">Always free</div>
+      <p class="value-card-body">GuyTalk is free and will stay free. We fund it through product recommendations — things we'd actually use, not paid placements for things we wouldn't.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-card-label">Built for 5 minutes</div>
+      <p class="value-card-body">Every issue is designed to be read in the time it takes to drink your first cup of coffee. We don't pad. If we can say it in two sentences, we use two sentences.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="cta-block">
+    <div class="cta-headline">Read it tomorrow morning.</div>
+    <p class="cta-sub">Free. In your inbox before 8am. Takes 5 minutes.</p>
+    <form class="cta-form" onsubmit="handleSignup(event, this)">
+      <input type="email" name="email" placeholder="Your email" required class="cta-input" autocomplete="email">
+      <button type="submit" class="cta-btn">Subscribe Free</button>
+    </form>
+    <div class="cta-success" id="ctaSuccess">You're in. See you tomorrow morning.</div>
+    <p class="cta-hint">Free forever · No spam · Unsubscribe anytime</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">GuyTalk<span class="dot">.</span></div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/reviews/">Reviews</a>
+    <a href="/briefs/">Archive</a>
+    <a href="https://instagram.com/guytalkmedia" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://x.com/guytalkmedia" target="_blank" rel="noopener">X</a>
+    <a href="mailto:guytalkdaily@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+window.handleSignup = function(e, form) {
+  e.preventDefault();
+  var email = form.querySelector('input[type="email"]').value.trim();
+  if (!email) return;
+  form.style.display = 'none';
+  document.getElementById('ctaSuccess').style.display = 'block';
+  var fd = new FormData();
+  fd.append('email', email);
+  fetch('https://subscribe-forms.beehiiv.com/api/v3/forms/88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d/subscriptions', {
+    method: 'POST', mode: 'no-cors', body: fd
+  }).catch(function() {});
+};
+</script>
+</body>
+</html>

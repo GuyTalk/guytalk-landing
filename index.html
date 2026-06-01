@@ -677,6 +677,48 @@
     .ticker { gap: 24px; font-size: 12px; }
     .closing { padding: 80px 0; }
     .section-eyebrow::before, .section-eyebrow::after { display: none; }
+    .reviews-strip { grid-template-columns: 1fr; }
+    .pull-quote { font-size: 22px; }
+  }
+
+  /* TESTIMONIALS SECTION */
+  .testimonials { padding: 80px 0 72px; }
+  .reviews-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+  .rv-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 24px; display: flex; flex-direction: column; gap: 14px;
+    transition: box-shadow 0.2s ease;
+  }
+  .rv-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .rv-stars { font-size: 13px; color: #F59E0B; letter-spacing: 2px; }
+  .rv-text { font-size: 15px; color: var(--text-secondary); line-height: 1.6; font-style: italic; flex: 1; }
+  .rv-person { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+  .rv-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px;
+    color: white; flex-shrink: 0;
+  }
+  .rv-name { font-weight: 600; font-size: 14px; }
+  .rv-role { font-size: 12px; color: var(--text-secondary); }
+  .pull-quote-section { margin-top: 56px; padding: 48px 40px; background: var(--accent); border-radius: 20px; text-align: center; }
+  .pull-quote {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 28px; letter-spacing: -0.025em; line-height: 1.3; color: white;
+    margin-bottom: 18px;
+  }
+  .pull-attr { font-size: 14px; color: rgba(255,255,255,0.7); }
+  .pull-attr strong { color: white; }
+  .pull-link {
+    display: inline-block; margin-top: 20px; font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.8); border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 1px; transition: color 0.15s;
+  }
+  .pull-link:hover { color: white; }
+
+  @media (max-width: 900px) {
+    .reviews-strip { grid-template-columns: 1fr 1fr; }
+    .reviews-strip .rv-card:nth-child(3) { display: none; }
   }
 </style>
 <!-- PostHog analytics -->
@@ -702,8 +744,10 @@
 <nav>
   <div class="nav-inner">
     <div class="wordmark">GuyTalk<span class="dot">.</span></div>
-    <div style="display:flex;align-items:center;gap:20px;">
-      <a href="/briefs/" style="font-size:14px;font-weight:600;color:var(--text-secondary);">Archive</a>
+    <div style="display:flex;align-items:center;gap:24px;">
+      <a href="/about/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">About</a>
+      <a href="/reviews/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Reviews</a>
+      <a href="/briefs/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Archive</a>
       <a href="#signup" class="nav-cta">Get the brief →</a>
     </div>
   </div>
@@ -1061,6 +1105,45 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-eyebrow">What readers say</div>
+    <h2 class="section-title fade-up">The guys who walk in knowing.</h2>
+    <div class="reviews-strip">
+      <div class="rv-card fade-up">
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">"My team asks me every Monday how I stay so locked in. I just smile. GuyTalk every morning before I open Slack."</div>
+        <div class="rv-person">
+          <div class="rv-avatar" style="background:linear-gradient(135deg,#16A34A,#4ADE80)">DS</div>
+          <div><div class="rv-name">Dan S.</div><div class="rv-role">VP of Sales · Austin, TX</div></div>
+        </div>
+      </div>
+      <div class="rv-card fade-up">
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">"The markets section alone is worth it. It doesn't try to be Bloomberg — it just tells you what to think about and why. That's all I need."</div>
+        <div class="rv-person">
+          <div class="rv-avatar" style="background:linear-gradient(135deg,#2B6FFF,#6B9FFF)">JT</div>
+          <div><div class="rv-name">James T.</div><div class="rv-role">Financial Advisor · Boston, MA</div></div>
+        </div>
+      </div>
+      <div class="rv-card fade-up">
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">"Other newsletters feel like homework. GuyTalk feels like a quick conversation with a friend who watched everything so you didn't have to."</div>
+        <div class="rv-person">
+          <div class="rv-avatar" style="background:linear-gradient(135deg,#0F766E,#2DD4BF)">RK</div>
+          <div><div class="rv-name">Ryan K.</div><div class="rv-role">Surgeon · Phoenix, AZ</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pull-quote-section fade-up">
+      <div class="pull-quote">"I used to dread the 7am client round. Now I'm the guy everyone wants in their foursome. GuyTalk is the best $0 I spend every morning."</div>
+      <div class="pull-attr"><strong>Mike R.</strong> — Commercial Real Estate, Chicago</div>
+      <a href="/reviews/" class="pull-link">Read more stories →</a>
+    </div>
+  </div>
+</section>
+
 <!-- FOUNDER NOTE -->
 <section data-nav="6">
   <div class="container">
@@ -1110,6 +1193,8 @@
         <span style="margin-left:14px">© 2026</span>
       </div>
       <div class="footer-socials">
+        <a href="/about/">About</a>
+        <a href="/reviews/">Reviews</a>
         <a href="/briefs/">Archive</a>
         <a href="https://instagram.com/guytalkmedia" target="_blank" rel="noopener">Instagram</a>
         <a href="https://x.com/guytalkmedia" target="_blank" rel="noopener">X</a>
