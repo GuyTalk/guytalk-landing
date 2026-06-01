@@ -6,7 +6,7 @@ require('dotenv').config({ path: '.env.local' });
 const fs   = require('fs');
 const path = require('path');
 
-const { fetchNBA, fetchMarkets, fetchGolf, fetchTrending } = require('./lib/fetchers');
+const { fetchNBA, fetchMLB, fetchMarkets, fetchGolf, fetchTrending } = require('./lib/fetchers');
 const { generateCopy }                                      = require('./lib/copy');
 const { buildHtml }                                         = require('./lib/html');
 
@@ -59,13 +59,27 @@ async function main() {
     fetchTrending(),
   ]);
 
-  const sports   = sportsResult.status   === 'fulfilled' ? sportsResult.value   : null;
+  let sports     = sportsResult.status   === 'fulfilled' ? sportsResult.value   : null;
   const markets  = marketsResult.status  === 'fulfilled' ? marketsResult.value  : null;
   const golf     = golfResult.status     === 'fulfilled' ? golfResult.value     : null;
   const trending = trendingResult.status === 'fulfilled' ? trendingResult.value : null;
 
-  if (sports?.length)      console.log(`   ✓ NBA: ${sports.length} game(s) — ${sports.map(g => g.shortName).join(', ')}`);
-  else                     console.log(`   ⚠  NBA: no data${sportsResult.reason ? ` (${sportsResult.reason.message})` : ''}`);
+  if (sports?.length) {
+    console.log(`   ✓ NBA: ${sports.length} game(s) — ${sports.map(g => g.shortName).join(', ')}`);
+  } else {
+    console.log(`   ⚠  NBA: no data — trying MLB...`);
+    try {
+      const mlb = await fetchMLB();
+      if (mlb?.length) {
+        sports = mlb;
+        console.log(`   ✓ MLB: ${mlb.length} game(s) — ${mlb.map(g => g.shortName).join(', ')}`);
+      } else {
+        console.log(`   ⚠  MLB: no data either — sports section will show placeholder`);
+      }
+    } catch (e) {
+      console.log(`   ⚠  MLB fetch failed: ${e.message}`);
+    }
+  }
 
   if (markets)             console.log(`   ✓ Markets: ${Object.keys(markets).filter(k => markets[k]?.price).length} tickers`);
   else                     console.log(`   ⚠  Markets: no data — add FINNHUB_API_KEY to .env.local`);

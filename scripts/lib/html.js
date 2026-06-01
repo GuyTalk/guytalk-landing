@@ -103,8 +103,12 @@ function buildTldr({ sports, markets, golf, copy }) {
     });
   });
 
-  while (items.filter(i => i.tag === 'Sports').length < 2) {
-    items.push({ tag: 'Sports', anchor: '#sports', html: 'No game data available.' });
+  const sportsCount = items.filter(i => i.tag === 'Sports').length;
+  if (sportsCount === 0) {
+    items.push({ tag: 'Sports', anchor: '#sports', html: 'No games last night — check the schedule.' });
+    items.push({ tag: 'Sports', anchor: '#sports', html: 'Weekend recap inside.' });
+  } else if (sportsCount === 1) {
+    items.push({ tag: 'Sports', anchor: '#sports', html: 'More scores inside.' });
   }
 
   if (markets?.SPY?.dayChangePct !== null && markets?.SPY?.dayChangePct !== undefined) {
@@ -121,9 +125,10 @@ function buildTldr({ sports, markets, golf, copy }) {
   const golfLive = golf?.statusState === 'in' || golf?.statusState === 'post';
   if (golf && golfLive && golf.leaders?.[0]) {
     const l = golf.leaders[0];
+    const golfVerb = golf.statusState === 'post' ? 'wins' : 'leads';
     items.push({
       tag: 'Golf', anchor: '#golf',
-      html: `${playerLink(l.name)} leads ${esc(golf.name)} at ${esc(l.score)} (${esc(golf.status || 'In Progress')}).`,
+      html: `${playerLink(l.name)} ${golfVerb} ${esc(golf.name)} at ${esc(l.score)} (${esc(golf.status || 'Final')}).`,
     });
   } else if (golf && !golfLive) {
     items.push({ tag: 'Golf', anchor: '#golf', html: `${esc(golf.name)} tees off this week.` });
@@ -152,10 +157,12 @@ ${items.slice(0, 5).map(item => `      <li class="tldr-item">
 // ─────────────────────────────────────────────────────────────────────────────
 function buildSports({ sports, copy }) {
   if (!sports?.length) {
+    const sharpTakeText = copy?.sharpTake || '';
     return `  <section class="brief-section" id="sports">
     <div class="section-label">Sports</div>
-    <h3>No games scheduled.</h3>
-    <p>Check back tomorrow — the schedule resumes soon.</p>
+    <h3>Off day — weekend recap.</h3>
+    <p>${esc(copy?.sportsAngle || 'No games last night. Here\'s what happened over the weekend.')}</p>
+    ${sharpTakeText ? `<p>${esc(sharpTakeText.split('\n')[0] || '')}</p>` : ''}
   </section>`;
   }
 
@@ -312,21 +319,27 @@ function buildGolf({ golf, copy, num }) {
       `${playerLink(p.name)} ${esc(p.score)} (${esc(p.pos)})`
     ).join(', ');
 
-    const aiNote      = copy?.golfNote      || `${esc(leader.name)} holds the lead at ${esc(leader.score)}.`;
+    const isFinished  = golf.statusState === 'post';
+    const aiNote      = copy?.golfNote      || (isFinished ? `${esc(leader.name)} wins ${esc(golf.name)} at ${esc(leader.score)}.` : `${esc(leader.name)} holds the lead at ${esc(leader.score)}.`);
     const whyMatters  = gd.whyItMatters     || `${esc(golf.name)} carries full FedEx Cup points.`;
-    const tvSchedule  = gd.tvSchedule       || 'Round 3: Golf Channel/Peacock. Round 4: NBC/CBS. Check local listings.';
-    const bringUp     = gd.bringUp          || `${esc(leader.name)} leads at ${esc(leader.score)}.`;
-    const groupChat   = gd.groupChatAngle   || `Watch ${esc(leader.name)} this weekend.`;
+    const bringUp     = gd.bringUp          || `${esc(leader.name)} ${isFinished ? 'won' : 'leads'} at ${esc(leader.score)}.`;
+    const groupChat   = gd.groupChatAngle   || `${isFinished ? `${esc(leader.name)} took it.` : `Watch ${esc(leader.name)} this weekend.`}`;
+    const heading     = isFinished
+      ? `${esc(golf.name)}: ${playerLink(leader.name)} wins at ${esc(leader.score)}.`
+      : `${esc(golf.name)}: ${playerLink(leader.name)} leads at ${esc(leader.score)}.`;
+    const thirdDetail = isFinished
+      ? `<li><span><span class="dl-label">How it happened:</span>${esc(gd.recap || `${esc(leader.name)} closed out ${esc(golf.name)} in the final round.`)}</span></li>`
+      : `<li><span><span class="dl-label">TV schedule:</span>${esc(gd.tvSchedule || 'Golf Channel/Peacock · NBC/CBS. Check local listings.')}</span></li>`;
 
     leaderboardHtml = `
-    <h3>${esc(golf.name)}: ${playerLink(leader.name)} leads at ${esc(leader.score)}.</h3>
+    <h3>${heading}</h3>
 
     <p>${esc(aiNote)}</p>
 
     <ul class="detail-list">
-      <li><span><span class="dl-label">Leaderboard (${esc(golf.status || 'In Progress')}):</span>${leaderLineHtml}.</span></li>
+      <li><span><span class="dl-label">Leaderboard (${esc(golf.status || 'Final')}):</span>${leaderLineHtml}.</span></li>
       <li><span><span class="dl-label">Why it matters:</span>${esc(whyMatters)}</span></li>
-      <li><span><span class="dl-label">TV schedule:</span>${esc(tvSchedule)}</span></li>
+      ${thirdDetail}
       <li><span><span class="dl-label">What to bring up:</span>${esc(bringUp)}</span></li>
     </ul>
 
@@ -357,7 +370,9 @@ ${leaderboardHtml}
 
     <div class="product-card">
       <div class="product-img">
-        <div class="product-img-ph" style="display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);text-align:center;padding:20px;">${esc(product.brand)}</div>
+        ${product.imageUrl
+          ? `<img src="${esc(product.imageUrl)}" alt="${esc(product.name)}" loading="lazy">`
+          : `<div class="product-img-ph">${esc(product.brand)}</div>`}
       </div>
       <div class="product-info">
         <div class="product-brand">${esc(product.brand)}</div>

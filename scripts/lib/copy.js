@@ -104,7 +104,7 @@ Context: ${ctx}`,
       80
     ),
 
-    // 2. Sports opening paragraph (main game)
+    // 2. Sports opening paragraph (main game, or weekend recap if no games)
     mainGame
       ? ask(
           `Write 2–3 sentences opening the Sports section.
@@ -113,7 +113,13 @@ Lead with the most important result. Name the best player. End with what this se
 CRITICAL: Only state a series record if explicitly given in [Series: ...] brackets. Never infer one.`,
           250
         )
-      : Promise.resolve(null),
+      : ask(
+          `Write 2–3 sentences for the Sports section of a Monday morning brief — no games were played last night.
+Recap the most notable sports story from this past weekend based on what you know. Be specific: name teams, players, scores if possible.
+GuyTalk voice: direct, confident. End with what to watch for this week.
+Context: ${ctx}${trendText ? `\nTrending: ${trendText}` : ''}`,
+          250
+        ),
 
     // 3. Markets opening paragraph
     markets && mktText
@@ -128,7 +134,9 @@ What's the main story? What should readers watch going into next week?`,
     // 4. Golf one-liner
     golf?.leaders?.[0]
       ? ask(
-          `One sentence — max 20 words — about ${golf.leaders[0].name} leading ${golf.name} at ${golf.leaders[0].score}. GuyTalk voice: direct, knowledgeable, confident.`,
+          golf.statusState === 'post'
+            ? `One sentence — max 20 words — about ${golf.leaders[0].name} winning ${golf.name} at ${golf.leaders[0].score}. GuyTalk voice: direct, knowledgeable, confident. Use past tense — tournament is over.`
+            : `One sentence — max 20 words — about ${golf.leaders[0].name} leading ${golf.name} at ${golf.leaders[0].score}. GuyTalk voice: direct, knowledgeable, confident.`,
           60
         )
       : Promise.resolve(null),
@@ -176,7 +184,17 @@ Return ONLY valid JSON (no markdown):
     // 8. Golf detail (JSON)
     golf?.leaders?.[0]
       ? ask(
-          `GuyTalk voice. Tournament: ${golf.name}. Status: ${golf.status}.
+          golf.statusState === 'post'
+            ? `GuyTalk voice. FINAL RESULTS — ${golf.name} is over. Winner: ${golf.leaders[0].name} at ${golf.leaders[0].score}.
+Final leaderboard: ${golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ')}.
+Return ONLY valid JSON (no markdown):
+{
+  "whyItMatters": "What this win means for ${golf.leaders[0].name} — season trajectory, major chances, FedEx Cup impact. One concrete sentence.",
+  "recap": "One sentence on how the final round played out. Was it a wire-to-wire win, a collapse, a Sunday charge? Specific.",
+  "bringUp": "One inside-knowledge fact about the winner or the course. Something specific, not obvious.",
+  "groupChatAngle": "One drop-it-once insight. Something that sounds like you watched every round."
+}`
+            : `GuyTalk voice. Tournament: ${golf.name}. Status: ${golf.status}.
 Leaderboard: ${golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ')}.
 Return ONLY valid JSON (no markdown):
 {

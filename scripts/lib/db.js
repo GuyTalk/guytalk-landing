@@ -144,6 +144,7 @@ const PRODUCTS = [
     price: '$145',
     url: 'https://www.petermillar.com/collections/mens-quarter-zips',
     cta: 'Shop Peter Millar',
+    imageUrl: null,
   },
   {
     brand: 'Rhoback',
@@ -152,6 +153,7 @@ const PRODUCTS = [
     price: '$98',
     url: 'https://rhoback.com/collections/mens-polos',
     cta: 'Shop Rhoback',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/1366/9275/files/POLOS_9c9327dc-59dc-4def-9fd9-b7af830b9a7e.jpg?v=1778262716',
   },
   {
     brand: 'TravisMathew',
@@ -160,6 +162,7 @@ const PRODUCTS = [
     price: '$85',
     url: 'https://www.travismathew.com/collections/mens-polos',
     cta: 'Shop TravisMathew',
+    imageUrl: 'https://travismathew.com/cdn/shop/files/Dual_Polos_2x2_7dee8cf1-6848-4531-b3bb-9e5ede7df671.jpg?v=1774466563',
   },
   {
     brand: 'Holderness & Bourne',
@@ -168,6 +171,7 @@ const PRODUCTS = [
     price: '$125',
     url: 'https://holdernessandbourne.com/collections/mens-polo-shirts',
     cta: 'Shop H&B',
+    imageUrl: 'https://holdernessandbourne.com/cdn/shop/files/S26_Homepage_Header_Performance_Polos_1000x.png?v=1774032939',
   },
   {
     brand: 'FootJoy',
@@ -176,6 +180,7 @@ const PRODUCTS = [
     price: '$170',
     url: 'https://www.footjoy.com/collections/mens-golf-shoes/pro-sl',
     cta: 'Shop FootJoy',
+    imageUrl: null,
   },
   {
     brand: 'Titleist',
@@ -184,6 +189,7 @@ const PRODUCTS = [
     price: '$55/dozen',
     url: 'https://www.titleist.com/golf-balls/pro-v1',
     cta: 'Shop Titleist',
+    imageUrl: null,
   },
   {
     brand: 'Sun Day Red',
@@ -192,14 +198,16 @@ const PRODUCTS = [
     price: '$118',
     url: 'https://sundayred.com/collections/mens-polos',
     cta: 'Shop Sun Day Red',
+    imageUrl: null,
   },
   {
     brand: 'Malbon Golf',
     name: 'Terry Cloth Bucket Hat',
-    desc: `Malbon is what golf streetwear looks like when it has actual taste. The bucket hat is lightweight, UPF 50+, and won't make you look like you're trying too hard. Worn by everyone from PGA Tour caddies to guys who haven't picked up a club in three years. Add it before the summer rounds hit. <a href="https://malbongolf.com/collections/hats" class="brand">Shop Malbon →</a>`,
+    desc: `Malbon is what golf streetwear looks like when it has actual taste. The bucket hat is lightweight, UPF 50+, and won't make you look like you're trying too hard. Worn by everyone from PGA Tour caddies to guys who haven't picked up a club in three years. Add it before the summer rounds hit. <a href="https://malbon.com/collections/hats" class="brand">Shop Malbon →</a>`,
     price: '$52',
-    url: 'https://malbongolf.com/collections/hats',
+    url: 'https://malbon.com/collections/hats',
     cta: 'Shop Malbon',
+    imageUrl: null,
   },
 ];
 

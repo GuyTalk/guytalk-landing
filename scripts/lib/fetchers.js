@@ -10,33 +10,22 @@ function orderSuffix(n) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ESPN: NBA scores for a given date (YYYYMMDD string, defaults to yesterday)
+// ESPN: NBA scores — tries yesterday, then 2 and 3 days back if empty
 // ─────────────────────────────────────────────────────────────────────────────
-async function fetchNBA(dateStr) {
-  if (!dateStr) {
-    const d = new Date();
-    d.setDate(d.getDate() - 1);
-    dateStr = d.toISOString().slice(0, 10).replace(/-/g, '');
-  }
-
-  const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${dateStr}`;
-  const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
-  if (!res.ok) throw new Error(`ESPN NBA ${res.status}`);
-  const data = await res.json();
-
+function parseESPNGames(data, sport = 'NBA') {
   return (data.events || []).map(ev => {
     const comp = ev.competitions[0];
     const home = comp.competitors.find(c => c.homeAway === 'home') || {};
     const away = comp.competitors.find(c => c.homeAway === 'away') || {};
     const homeWon = home.winner === true;
-
     return {
       id: ev.id,
       name: ev.name,
       shortName: ev.shortName,
       status: comp.status?.type?.description || 'Final',
       note: comp.notes?.[0]?.headline || '',
-      seriesNote: comp.series?.summary || '',   // e.g. "OKC leads series 2-1"
+      seriesNote: comp.series?.summary || '',
+      sport,
       home: {
         team: home.team?.displayName || '',
         abbrev: home.team?.abbreviation || '',
@@ -51,6 +40,54 @@ async function fetchNBA(dateStr) {
       },
     };
   });
+}
+
+async function fetchNBA(dateStr) {
+  const tryDate = async (ds) => {
+    const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${ds}`;
+    const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return parseESPNGames(data, 'NBA');
+  };
+
+  if (dateStr) return tryDate(dateStr);
+
+  // No date given — try yesterday, then 2 days back, then 3 days back
+  for (let daysBack = 1; daysBack <= 3; daysBack++) {
+    const d = new Date();
+    d.setDate(d.getDate() - daysBack);
+    const ds = d.toISOString().slice(0, 10).replace(/-/g, '');
+    const games = await tryDate(ds);
+    if (games.length) return games;
+  }
+  return [];
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ESPN: MLB scores for yesterday (fallback when no NBA games)
+// Returns top 3 most notable games (by score activity)
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchMLB() {
+  for (let daysBack = 1; daysBack <= 2; daysBack++) {
+    const d = new Date();
+    d.setDate(d.getDate() - daysBack);
+    const ds = d.toISOString().slice(0, 10).replace(/-/g, '');
+    try {
+      const url = `https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=${ds}`;
+      const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+      if (!res.ok) continue;
+      const data = await res.json();
+      const games = parseESPNGames(data, 'MLB');
+      if (games.length) {
+        // Return top 3 highest-scoring games
+        return games
+          .sort((a, b) => (parseInt(b.home.score) + parseInt(b.away.score)) - (parseInt(a.home.score) + parseInt(a.away.score)))
+          .slice(0, 3);
+      }
+    } catch (_) {}
+  }
+  return [];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -215,4 +252,4 @@ async function fetchTrending() {
   return items;
 }
 
-module.exports = { fetchNBA, fetchMarkets, fetchGolf, fetchTrending };
+module.exports = { fetchNBA, fetchMLB, fetchMarkets, fetchGolf, fetchTrending };
