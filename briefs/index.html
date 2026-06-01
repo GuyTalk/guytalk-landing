@@ -86,10 +86,52 @@
   .ar-date { font-size: 13px; color: var(--text-3); white-space: nowrap; text-align: right; }
   .ar-arrow { color: var(--border-light); font-size: 18px; transition: color 0.12s ease, transform 0.15s ease; }
 
+  /* Subscribe CTA */
+  .archive-cta-block {
+    margin: 52px 0 0; padding: 36px 32px; text-align: center;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .archive-cta-label {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px;
+  }
+  .archive-cta-headline {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 28px; letter-spacing: -0.025em; color: var(--text);
+    margin-bottom: 8px;
+  }
+  .archive-cta-sub { font-size: 16px; color: var(--text-2); margin-bottom: 24px; }
+  .archive-cta-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; }
+  .archive-cta-input {
+    flex: 1; padding: 12px 16px; border: 1.5px solid var(--border);
+    border-radius: 9px; font-size: 15px; font-family: inherit;
+    background: var(--bg); color: var(--text); outline: none;
+    transition: border-color 0.15s ease;
+  }
+  .archive-cta-input:focus { border-color: rgba(43,111,255,0.45); }
+  .archive-cta-btn {
+    padding: 12px 22px; background: var(--accent); color: white;
+    border: none; border-radius: 9px; font-family: inherit;
+    font-weight: 700; font-size: 14px; cursor: pointer; white-space: nowrap;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .archive-cta-btn:hover { background: var(--accent-h); transform: translateY(-1px); }
+  .archive-cta-hint { font-size: 12px; color: var(--text-3); margin-top: 10px; }
+  .archive-cta-success { display: none; font-size: 15px; color: var(--accent); font-weight: 600; margin-top: 10px; }
+
   /* Footer */
-  footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; }
-  footer p { font-size: 13px; color: var(--text-3); margin-bottom: 6px; }
-  footer a { color: var(--accent); }
+  footer {
+    border-top: 1px solid var(--border); padding: 32px 24px 48px;
+    max-width: 760px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-brand { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.03em; color: var(--text); }
+  .footer-brand .dot { color: var(--accent); }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.15s ease; }
+  .footer-links a:hover { color: var(--text); }
 
   @media (max-width: 600px) {
     .archive-title { font-size: 30px; }
@@ -200,12 +242,45 @@
         <span class="ar-arrow">→</span>
       </a>
   </div>
+
+  <div class="archive-cta-block">
+    <div class="archive-cta-label">Free · Daily · 5 Minutes</div>
+    <div class="archive-cta-headline">Get it in your inbox.</div>
+    <p class="archive-cta-sub">Sports, markets, golf, and culture — every morning before 8am.</p>
+    <form class="archive-cta-form" onsubmit="handleSignup(event, this)">
+      <input type="email" name="email" placeholder="Enter your email" required class="archive-cta-input" autocomplete="email">
+      <button type="submit" class="archive-cta-btn">Subscribe Free</button>
+    </form>
+    <div class="archive-cta-success" id="archiveSuccess">You're in. Check your inbox tomorrow morning.</div>
+    <p class="archive-cta-hint">Free forever · No spam · Unsubscribe anytime</p>
+  </div>
 </main>
 
 <footer>
-  <p>GuyTalk — the daily brief for guys who want to stay sharp.</p>
-  <p><a href="/">Home</a> · <a href="/#signup">Subscribe</a> · <a href="mailto:guytalkdaily@gmail.com">Contact</a></p>
+  <div class="footer-brand">GuyTalk<span class="dot">.</span></div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="https://instagram.com/guytalkmedia" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://x.com/guytalkmedia" target="_blank" rel="noopener">X</a>
+    <a href="https://tiktok.com/@guytalkmedia" target="_blank" rel="noopener">TikTok</a>
+    <a href="mailto:guytalkdaily@gmail.com">Contact</a>
+  </div>
 </footer>
+
+<script>
+window.handleSignup = function(e, form) {
+  e.preventDefault();
+  var email = form.querySelector('input[type="email"]').value.trim();
+  if (!email) return;
+  form.style.display = 'none';
+  document.getElementById('archiveSuccess').style.display = 'block';
+  var fd = new FormData();
+  fd.append('email', email);
+  fetch('https://subscribe-forms.beehiiv.com/api/v3/forms/88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d/subscriptions', {
+    method: 'POST', mode: 'no-cors', body: fd
+  }).catch(function() {});
+};
+</script>
 
 </body>
 </html>
