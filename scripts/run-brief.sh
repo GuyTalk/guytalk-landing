@@ -68,6 +68,13 @@ if [ "$GEN_EXIT" -eq 0 ]; then
     echo "" >> "$LOG_FILE"
     echo "   ✓ Generated: $HTML" >> "$LOG_FILE"
 
+    # ── Auto-update landing page brief-story links ────────────────────────────
+    PREV_ISSUE=$(ls -d "$PROJECT_DIR/brief/issue-"??? 2>/dev/null | sort | tail -2 | head -1 | xargs basename 2>/dev/null)
+    if [ -n "$PREV_ISSUE" ] && [ "$PREV_ISSUE" != "$ISSUE" ]; then
+      sed -i '' "s|brief/${PREV_ISSUE}/|brief/${ISSUE}/|g" "$PROJECT_DIR/index.html" 2>/dev/null
+      echo "   ✓ index.html updated: ${PREV_ISSUE} → ${ISSUE}" >> "$LOG_FILE"
+    fi
+
     # ── Auto-publish: commit + push → Vercel deploys automatically ─────────────
     echo "" >> "$LOG_FILE"
     echo "   📤 Publishing to website..." >> "$LOG_FILE"
