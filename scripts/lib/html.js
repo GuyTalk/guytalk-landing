@@ -72,7 +72,27 @@ function buildSeoDesc(issue) {
   return pieces.slice(0, 4).join(' ');
 }
 
-function buildHtml(issue) {
+function buildMoreIssues(relatedIssues) {
+  if (!relatedIssues?.length) return '';
+  const items = relatedIssues.slice(0, 3).map(r => {
+    const rSlug  = r.slug || `issue-${String(r.num).padStart(3, '0')}`;
+    const rLabel = `#${String(r.num).padStart(3, '0')}`;
+    const rTitle = r.title || 'GuyTalk Brief';
+    const rDate  = r.date  || '';
+    return `  <a href="/brief/${esc(rSlug)}/" class="more-issue-card">
+    <span class="mi-num">${esc(rLabel)}</span>
+    <span class="mi-title">${esc(rTitle)}</span>
+    <span class="mi-date">${esc(rDate)}</span>
+  </a>`;
+  }).join('\n');
+  return `<div class="more-issues-block">
+  <div class="more-issues-label">More issues</div>
+${items}
+  <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
+</div>`;
+}
+
+function buildHtml(issue, relatedIssues) {
   const { num, slug, date, title, deck, sports, markets, golf, f1, worldCup, upcoming, gameMetas, trending, copy } = issue;
   const label = `#${String(num).padStart(3, '0')}`;
   const prevSlug = num > 1 ? `issue-${String(num - 1).padStart(3, '0')}` : null;
@@ -175,6 +195,8 @@ ${buildSharpTake(issue)}
 ${buildNumbers(issue)}
 
 </article>
+
+${buildMoreIssues(relatedIssues)}
 
 <div class="brief-subscribe-block">
   <div class="bsb-label">Free · Daily · 5 Minutes</div>

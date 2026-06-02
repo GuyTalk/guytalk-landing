@@ -55,6 +55,12 @@ async function regenAll() {
   console.log(`  GuyTalk Brief Regenerator${regenCopy ? ' · WITH AI COPY' : ' · HTML only'}`);
   console.log(`  ${files.length} issue(s) found`);
   console.log(`${'═'.repeat(44)}\n`);
+
+  // Pre-load all issues sorted by num (for related-issues links)
+  const allIssuesSorted = files.sort().map(f => {
+    try { return JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8')); } catch (_) { return null; }
+  }).filter(Boolean).sort((a, b) => (b.num || 0) - (a.num || 0));
+
   for (const file of files.sort()) {
     const jsonPath = path.join(dataDir, file);
     const issueData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
@@ -72,9 +78,11 @@ async function regenAll() {
         console.log(`     ⚠  Copy failed: ${e.message}`);
       }
     }
+    // 3 most recent other issues for "more issues" section
+    const related = allIssuesSorted.filter(d => d.num !== issueData.num).slice(0, 3);
     const htmlDir  = path.join(__dirname, '..', 'brief', slug);
     if (!fs.existsSync(htmlDir)) fs.mkdirSync(htmlDir, { recursive: true });
-    fs.writeFileSync(path.join(htmlDir, 'index.html'), buildHtml(issueData));
+    fs.writeFileSync(path.join(htmlDir, 'index.html'), buildHtml(issueData, related));
     console.log(`  ✓ ${slug}/index.html rebuilt`);
   }
   try {
@@ -250,7 +258,18 @@ async function main() {
   const htmlDir  = path.join(BRIEF_DIR, slug);
   if (!fs.existsSync(htmlDir)) fs.mkdirSync(htmlDir, { recursive: true });
   const htmlPath = path.join(htmlDir, 'index.html');
-  fs.writeFileSync(htmlPath, buildHtml(issueData));
+  // Load 3 most recent other issues for "more issues" section
+  const relatedForNew = (() => {
+    try {
+      return fs.readdirSync(dataDir)
+        .filter(f => f.endsWith('.json') && f.startsWith('issue-') && !f.includes(slug))
+        .map(f => { try { return JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8')); } catch(_){return null;} })
+        .filter(Boolean)
+        .sort((a,b) => (b.num||0)-(a.num||0))
+        .slice(0, 3);
+    } catch(_) { return []; }
+  })();
+  fs.writeFileSync(htmlPath, buildHtml(issueData, relatedForNew));
   console.log(`   ✓ brief/${slug}/index.html`);
 
   // Archive index
