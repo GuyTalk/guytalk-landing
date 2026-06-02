@@ -10,6 +10,8 @@
     "brief:regen:copy": "node scripts/generate-brief.js --regen --copy",
     "send": "node scripts/send-brief.js",
     "send:dry": "node scripts/send-brief.js --dry-run",
+    "social:queue": "node scripts/queue-social-posts.js",
+    "social:dry": "node scripts/queue-social-posts.js --dry-run",
     "install:brief": "npm install"
   },
   "dependencies": {
