@@ -178,7 +178,7 @@ ${golf?.leaders?.[0] ? `Golf: ${golf.leaders[0].name} ${golf.statusState === 'po
 ${f1Text ? `${f1Text}` : ''}
 ${upcomingText ? upcomingText : ''}
 CRITICAL: Only name players whose stats appear in the CONFIRMED line above. Never invent stats.`,
-          220
+          400
         )
       : ask(
           `Write 2–3 punchy sentences for the Sports section. No games last night — write a preview/context piece instead. Plain prose only, no markdown.
@@ -189,7 +189,7 @@ World Cup context: ${wcText}
 ${golf?.leaders?.[0] ? `Golf: ${golf.leaders[0].name} ${golf.statusState === 'post' ? 'won' : 'leads'} ${golf.name} at ${golf.leaders[0].score}.` : ''}
 Trending: ${trendText || 'No data.'}
 Name real athletes. Be specific about what's upcoming and when. No invented results or future events described as if they happened.`,
-          220
+          400
         ),
 
     // 3. Markets opening paragraph
@@ -198,7 +198,7 @@ Name real athletes. Be specific about what's upcoming and when. No invented resu
           `Write 2 punchy sentences opening the Markets section. Plain prose only — no markdown, no headers.
 Data: ${mktText}
 Lead with the most interesting story, not necessarily the biggest number. Find the WHY — what's driving it and what it means next week. A guy with a 401(k) should finish reading this and feel informed. Sharp and direct: "SPY slipped on Fed caution before Thursday's CPI" not "Markets were lower." Name specific stocks or macro events. Barron's voice, not Bloomberg vague.`,
-          180
+          300
         )
       : Promise.resolve(null),
 
@@ -229,7 +229,7 @@ Return ONLY valid JSON, no markdown, no code fences:
 
 Rules: Do not use the word 'ultimately.' Pick ONE story for p1, don't recap everything. Make bullets feel like items you'd screenshot. No filler.
 Context: ${ctx}${trendText ? `\nTrending: ${trendText}` : ''}`,
-      450
+      700
     ),
 
     // 6. Sports detail (JSON) — only when we have a real game

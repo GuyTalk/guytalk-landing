@@ -88,6 +88,30 @@ async function regenAll() {
   console.log('  Done. Deploy: git add . && git commit -m "Regen all briefs" && git push\n');
 }
 
+// Auto-generate a brief title from raw data when AI title generation fails
+function autoTitle({ sports, golf, f1, worldCup, upcoming }) {
+  const parts = [];
+  if (sports?.length) {
+    const g = sports[0];
+    const w = g.home.winner ? g.home : g.away;
+    const l = g.home.winner ? g.away : g.home;
+    parts.push(`${w.team} beat ${l.team} ${w.score}–${l.score}.`);
+  } else if (upcoming?.length) {
+    const g = upcoming[0];
+    parts.push(`${g.shortName} ${g.daysAhead === 0 ? 'tips off today' : 'tomorrow'}.`);
+  }
+  if (golf?.leaders?.[0]) {
+    const l = golf.leaders[0];
+    parts.push(`${l.name} leads ${golf.name?.replace(/^the /i, '')}.`);
+  }
+  if (f1?.name) {
+    parts.push(`${f1.name} this weekend.`);
+  } else if (worldCup?.length) {
+    parts.push('World Cup action underway.');
+  }
+  return parts.slice(0, 3).join(' ') || 'GuyTalk Daily Brief.';
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Main
 // ─────────────────────────────────────────────────────────────────────────────
@@ -199,7 +223,7 @@ async function main() {
     num:     issueNum,
     slug,
     date,
-    title:   copy?.title || 'REPLACE: Issue headline — max 12 words, no colons.',
+    title:   copy?.title || autoTitle({ sports, golf, f1, worldCup, upcoming }),
     deck:    'Five minutes. Everything you need.',
     sports,
     markets,

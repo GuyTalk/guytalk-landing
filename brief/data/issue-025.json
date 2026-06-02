@@ -1,0 +1,385 @@
+{
+  "num": 25,
+  "slug": "issue-025",
+  "date": "Tuesday, June 2, 2026",
+  "title": "Brewers demolish Giants in blowout. Knicks arrive in San Antonio tomorrow. World Cup countdown begins.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815580",
+      "name": "Detroit Tigers at Tampa Bay Rays",
+      "shortName": "DET @ TB",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Tampa Bay Rays",
+        "abbrev": "TB",
+        "score": "9",
+        "winner": false
+      },
+      "away": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "10",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815584",
+      "name": "San Francisco Giants at Milwaukee Brewers",
+      "shortName": "SF @ MIL",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "16",
+        "winner": true
+      },
+      "away": {
+        "team": "San Francisco Giants",
+        "abbrev": "SF",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815586",
+      "name": "Colorado Rockies at Los Angeles Angels",
+      "shortName": "COL @ LAA",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Los Angeles Angels",
+        "abbrev": "LAA",
+        "score": "8",
+        "winner": false
+      },
+      "away": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "9",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 759.5,
+      "prevClose": 758.54,
+      "dayChange": 0.96,
+      "dayChangePct": 0.1266,
+      "weekChangePct": null
+    },
+    "QQQ": {
+      "price": 745.98,
+      "prevClose": 742.74,
+      "dayChange": 3.24,
+      "dayChangePct": 0.4362,
+      "weekChangePct": null
+    },
+    "NVDA": {
+      "price": 222.43,
+      "prevClose": 224.36,
+      "dayChange": -1.93,
+      "dayChangePct": -0.8602,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 423.34,
+      "prevClose": 415.88,
+      "dayChange": 7.46,
+      "dayChangePct": 1.7938,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 441.34,
+      "prevClose": 460.52,
+      "dayChange": -19.18,
+      "dayChangePct": -4.1649,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 314.79,
+      "prevClose": 306.31,
+      "dayChange": 8.48,
+      "dayChangePct": 2.7684,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 67192.01,
+      "prevClose": 71552.33,
+      "dayChange": -4360.32,
+      "dayChangePct": -6.0939,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 434.48,
+      "prevClose": 465.96,
+      "dayChange": -31.48,
+      "dayChangePct": -6.7559,
+      "weekChangePct": null
+    },
+    "10Y": {
+      "price": 4.455,
+      "prevClose": 4.474999904632568,
+      "dayChange": -0.01999990463256829,
+      "dayChangePct": -0.44692525271037814,
+      "weekChangePct": -0.8457607447022558
+    }
+  },
+  "golf": {
+    "name": "the Memorial Tournament pres. by Workday",
+    "venue": "",
+    "status": "Thu, June 3rd at 12:00 AM EDT",
+    "statusState": "pre",
+    "leaders": [
+      {
+        "name": "Brian Campbell",
+        "score": "E",
+        "pos": "1st"
+      },
+      {
+        "name": "Pierceson Coody",
+        "score": "E",
+        "pos": "2nd"
+      },
+      {
+        "name": "Ryan Fox",
+        "score": "E",
+        "pos": "3rd"
+      },
+      {
+        "name": "Daniel Berger",
+        "score": "E",
+        "pos": "4th"
+      },
+      {
+        "name": "Jason Day",
+        "score": "E",
+        "pos": "5th"
+      },
+      {
+        "name": "Jordan Spieth",
+        "score": "E",
+        "pos": "6th"
+      },
+      {
+        "name": "Billy Horschel",
+        "score": "E",
+        "pos": "7th"
+      },
+      {
+        "name": "Sam Stevens",
+        "score": "E",
+        "pos": "8th"
+      },
+      {
+        "name": "J.T. Poston",
+        "score": "E",
+        "pos": "9th"
+      },
+      {
+        "name": "Ryo Hisatsune",
+        "score": "E",
+        "pos": "10th"
+      }
+    ]
+  },
+  "f1": {
+    "name": "Monaco Grand Prix",
+    "shortName": "Monaco GP",
+    "venue": "",
+    "status": "Scheduled",
+    "statusState": "pre",
+    "results": []
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "401859963",
+      "name": "New York Knicks at San Antonio Spurs",
+      "shortName": "NY @ SA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 1",
+      "seriesNote": "Series starts 6/3",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    }
+  ],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Love Island USA removes Beaverton contestant before season premiere over alleged slur use - KATU",
+      "url": "https://katu.com/news/local/love-island-usa-removes-contestant-ahead-of-season-premiere-over-alleged-slur-use-vasana-montgomery-salon-beaverton-salem-oregon",
+      "description": "A 25-year-old hair salon owner from Beaverton, Oregon who was cast in season 8 of Love Island USA has been removed from the show after social media videos surfa",
+      "source": "KATU"
+    },
+    {
+      "title": "Taylor Swift Unveils Original Song Written For ‘Toy Story 5’ - Deadline",
+      "url": "http://deadline.com/2026/06/taylor-swift-toy-story-5-song-i-knew-it-i-knew-you-1236932132/",
+      "description": "Taylor Swift has penned an original song for the fifth film in Disney Pixar's 'Toy Story' franchise.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Sega’s ‘Streets of Rage’ Movie Sets ‘Sonic the Hedgehog’ Writers Pat Casey and Josh Miller; Jeymes Samuel to Direct for Lionsgate (EXCLUSIVE) - Variety",
+      "url": "https://variety.com/2026/film/news/streets-of-rage-movie-writers-director-lionsgate-1236764037/",
+      "description": "The film adaptation of Sega's iconic \"Streets of Rage\" video game is alive and well at Lionsgate and has found its new writers and a director.",
+      "source": "Variety"
+    },
+    {
+      "title": "Body of ‘Alaskan Bush People’ star Matt Brown found in Washington state river - NBC News",
+      "url": "https://www.nbcnews.com/news/us-news/body-alaskan-bush-people-star-matt-brown-found-washington-state-river-rcna347803",
+      "description": "A body pulled from a Washington state river has been identified as that of “Alaskan Bush People” cast member Matt Brown",
+      "source": "NBC News"
+    },
+    {
+      "title": "Dua Lipa and actor Callum Turner are married - AP News",
+      "url": "https://apnews.com/article/dua-lipa-callum-turner-wedding-married-4827f600ec3445534a5dba169edecfbd",
+      "description": "Dua Lipa and actor Callum Turner are married, according to local officials in London. They tied the knot Sunday at Old Marylebone Town Hall. Photos of the couple leaving the ceremony circulated on social media, showing Lipa in a white skirt suit by Schiaparel…",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Browns will trade Myles Garrett to the Rams for Jared Verse and more - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/browns-will-trade-myles-garrett-to-the-rams-for-jared-verse-and-more",
+      "description": "The 2025 defensive player of the year gets a shot at a Super Bowl.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Game's Greatest Legends Headline 2027 NFF College Football Hall of Fame Ballot - National Football Foundation",
+      "url": "https://footballfoundation.org/news/2026/6/1/games-greatest-legends-headline-2027-nff-college-football-hall-of-fame-ballot.aspx",
+      "description": "<strong>IRVING, Texas (June 1, 2026) – </strong>The National Football Foundation (NFF) announced today the names on the 2027 Ballot under consideration for induction into the NFF College Football Hall of Fame. The 2027 ballot includes 80 players and nine coac…",
+      "source": "Footballfoundation.org"
+    },
+    {
+      "title": "Raymond Berry, Hall of Fame wide receiver and Patriots coach, dies at the age of 93 - AP News",
+      "url": "https://apnews.com/article/raymond-berry-dies-colts-f8488f395f03470c8a5010eb2b331b89",
+      "description": "Raymond Berry, the Hall of Fame wide receiver who became the favorite target for Baltimore quarterback Johnny Unitas and later coached the New England Patriots, has died. Berry was 93. The Pro Football Hall of Fame announced Monday that he died May 25. Berry …",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Reds Place Elly De La Cruz On Injured List, Promote Edwin Arroyo - MLB Trade Rumors",
+      "url": "https://www.mlbtraderumors.com/2026/06/reds-place-elly-de-la-cruz-on-injured-list-promote-edwin-arroyo.html",
+      "description": "The Reds placed their superstar shortstop on the IL and called up a top prospect for his MLB debut. MLB Trade Rumors has the details you need.",
+      "source": "MLB Trade Rumors"
+    }
+  ],
+  "copy": {
+    "title": "Brewers demolish Giants in blowout. Knicks arrive in San Antonio tomorrow. World Cup countdown begins.",
+    "sportsAngle": "The Tigers clawed back from behind last night to edge Tampa Bay 10-9 — the kind of one-run finish that feels closer than it was, mostly because both teams traded punches all game. Detroit's the hungrier team right now, and it showed when it mattered. Meanwhile, Milwaukee turned their matchup with San Francisco into a bloodbath, 16-2, which is less a baseball game and more a statement. The Rockies also sneaked past the Angels 9-8 in a nail-biter that probably felt worse for LA than it should have.\n\nWhat's actually interesting is the texture of these wins. The Tigers beat a team they're chasing; the Brewers announced themselves; the Rockies got lucky. Three different stories, three different implications for the stretch run.\n\nOn the golf course, Brian Campbell's still near the top of the Memorial Tournament leaderboard at even par — he's not pulling away, but he's not fading either, which is the kind of position that can turn into",
+    "marketsTake": "Stock market shrugged through another Tuesday, but the real story is hiding in the wreckage: mega-cap tech is fragmenting, and nobody's agreed on which names deserve the multiple anymore. SPY eked out 0.1% while the Nasdaq (QQQ +0.4%) stayed afloat thanks to Apple's 2.8% pop — the one mega-cap that's actually printing money from its current valuation — but MSFT cratered 4.2%, NVDA fell 0.9%, and DELL got absolutely torched down 6.8%, which tells you the AI upgrade cycle is either hitting pause or repricing lower.\n\nHere's what matters for your 401(k): the 10-year yield dropped 0.4% today and 0.8% on the week, which",
+    "golfNote": "Brian Campbell sits atop Muirfield Village, chasing his first PGA Tour win this week.",
+    "sharpTake": null,
+    "sportsDetail": {
+      "keyNumber": "Tigers scraped together 10 runs without blowing anyone away — that's the kind of grind-it-out win that actually sticks in September. Tampa Bay had their chances and couldn't cash them. One-run games are coin flips; Detroit won the coin flip.",
+      "seriesSituation": "Series tied up. Both teams leaving runs on the field. This is the kind of series that gets decided by who stops beating themselves first — and right now, nobody's figured it out yet.",
+      "howToWatch": "Tigers at Rays · Wednesday, June 3 · Tampa Bay · Time TBA · Network TBA",
+      "groupChatAngle": "One-run finishes don't feel like wins when you're down by three in the eighth. They feel like survival. Detroit survived. That matters more than the scoreline right now."
+    },
+    "marketsDetail": {
+      "headline": "Microsoft's worst day in months signals tech rotation risk",
+      "secondPara": "Watch for the Fed's preferred inflation gauge (PCE) on Thursday — any surprise on the upside could extend the selling in mega-cap growth stocks.",
+      "stockSpotlight": "MSFT -4.2% — this isn't noise. When the largest mega-cap stumbles this hard on a day the Nasdaq rallies, it means rotational money is actively leaving software and cloud for cheaper sectors. Watch if it holds above yesterday's lows tomorrow.",
+      "watchNextWeek": "Thursday's PCE inflation print will tell us whether the Fed's patient stance still holds water — a hot read could break the fragile rally in growth stocks that's been propping up QQQ gains.",
+      "bringUp": "Apple's up 2.8% while Microsoft's down 4.2 on the same day. That 7-point spread isn't coincidence — it's the market quietly telling you which mega-cap it still trusts with your money."
+    },
+    "golfDetail": {
+      "whyItMatters": "Memorial is the PGA Tour's blue-chip event — a FedEx Cup points windfall before the playoffs, and Muirfield Village is the kind of course that separates thinkers from swingers.",
+      "tvSchedule": "Round 1 & 2: Thursday-Friday, coverage times TBA on Golf Channel/Peacock. Final round: Sunday on NBC/CBS.",
+      "bringUp": "Brian Campbell's sitting at even par leading a field where five guys are bunched right behind him — this thing's wide open heading into the weekend, which almost never happens at a Jack Nicklaus course.",
+      "groupChatAngle": "The fact that Campbell, Coody, Fox, Berger, and Day are all tied means nobody's found the secret sauce yet. That's either the setup for a runaway Sunday or absolute chaos. Probably chaos."
+    },
+    "culture": [
+      {
+        "head": "Dua Lipa and Callum Turner Are Married",
+        "source": "Associated Press · Entertainment",
+        "body": "The singer and the 'Fantastic Beasts' actor got married — no massive media circus, which honestly tracks for both of them. Lipa's been keeping her personal life relatively buttoned up while her album cycle ran, and Turner's the type who actually avoids the red carpet circus. This is the kind of low-key A-list move that feels increasingly rare, which probably means it actually happened because they wanted it to, not because Instagram demanded content."
+      },
+      {
+        "head": "Taylor Swift Wrote a Song for 'Toy Story 5'",
+        "source": "Deadline · Film & Music",
+        "body": "Swift penned an original track for Pixar's fifth installment in the franchise — the kind of career move that only happens when you're untouchable and the studio wants something that feels culturally significant. She's done this before (remember 'Safe & Sound' for the Hunger Games?), but it's a reminder that she can pivot from touring stadiums to crafting emotional movie moments without breaking stride. If the song hits, it'll be everywhere by fall."
+      },
+      {
+        "head": "Watch this: Deadpool & Wolverine",
+        "source": "Theater · Action",
+        "body": "Ryan Reynolds and Hugh Jackman finally share a screen in the MCU's first hard-R Marvel movie, directed by Shawn Levy. It's the blockbuster event that's been guaranteed to print money since the casting news dropped, and unlike most hyped team-ups, this one actually earned the hype."
+      }
+    ],
+    "numbersContext": [
+      {
+        "context": "Detroit walked out of Tampa with a one-run win — the kind of game that either builds momentum or masks a deeper problem depending on who you ask. In a division fight, these single-run decisions pile up fast, and the Tigers just made sure this one went their way."
+      },
+      {
+        "context": "SPY barely moved, which is its own message when you're watching for it. The market's in that holding pattern where nobody's confident enough to push hard in either direction — good time to check what's actually in your portfolio instead of chasing the daily noise."
+      },
+      {
+        "context": "Campbell's leading the Memorial, which means he's the guy to chase heading into the weekend at Muirfield Village. It's one of the Tour's oldest and most selective events — the kind of course that rewards precision over flash, and if he's got it this week, that tells you something about his form going into the summer stretch."
+      }
+    ],
+    "sportsAdditional": [
+      "San Francisco Giants at Milwaukee Brewers: Milwaukee Brewers 16–San Francisco Giants 2\n\nMilwaukee came to play — the kind of game where you wonder if the Giants' pitching staff even showed up or just sent a memo. Sixteen runs is the kind of number that doesn't require a tape review; it requires an explanation to your fantasy league chat about why you started a guy pitching for a team that lost 16–2.",
+      "Colorado Rockies at Los Angeles Angels: Colorado Rockies 9–Los Angeles Angels 8\n\nOne-run games are what keep you watching baseball instead of checking your phone every 30 seconds, and this one had the Angels one swing away from stealing it back. Colorado held on — barely — which means the Angels walked out of this one thinking they left points on the table rather than celebrating a loss that felt winnable."
+    ],
+    "f1Detail": {
+      "headline": "Monaco separates the sharp from the overconfident.",
+      "angle": "Monaco doesn't forgive mistakes — one wall, one lockup, and you're done. The 2026 championship contenders arrive here with everything to prove on a circuit that rewards precision over pure pace, and we'll finally see who's mentally built for a title fight.",
+      "bringUp": "Monaco hasn't had a safety car finish in years. If someone crashes out early, the field essentially locks in. Strategy becomes almost irrelevant — driver skill and nerve are the only currency that matters.",
+      "championship": "The points leader heads into Monaco with a target on his back, and every driver behind him knows this is the race where mental mistakes can swing the championship. Three weeks of racing have set the tone; Monaco will expose who's actually ready for the fight.",
+      "pick": "Root for the guy running third in points — he's hungry enough to take risks but experienced enough not to panic, which is exactly what Monaco demands."
+    }
+  }
+}
