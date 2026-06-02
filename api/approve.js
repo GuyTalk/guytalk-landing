@@ -2,9 +2,10 @@
 // Called when Jake taps "Send to subscribers" from the review email on his phone.
 // Validates token → fetches subscribers → sends emails via Resend.
 
-const fs     = require('fs');
-const path   = require('path');
-const crypto = require('crypto');
+const fs          = require('fs');
+const path        = require('path');
+const crypto      = require('crypto');
+const { TwitterApi } = require('twitter-api-v2');
 
 function safeTokenEqual(a, b) {
   if (typeof a !== 'string' || typeof b !== 'string') return false;
@@ -20,9 +21,50 @@ function safeTokenEqual(a, b) {
 const RESEND_API_KEY  = process.env.RESEND_API_KEY;
 const APPROVAL_TOKEN  = process.env.APPROVAL_TOKEN;
 const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
+const X_API_KEY       = process.env.X_API_KEY;
+const X_API_SECRET    = process.env.X_API_KEY_SECRET;
+const X_ACCESS_TOKEN  = process.env.X_ACCESS_TOKEN;
+const X_ACCESS_SECRET = process.env.X_ACCESS_TOKEN_SECRET;
 const PUB_ID          = 'pub_d4c6a5c9-3ff9-4986-b17a-9e5650d915be';
 const SITE_URL        = 'https://www.guytalkmedia.com';
 const FROM_EMAIL      = process.env.FROM_EMAIL || 'GuyTalk <onboarding@resend.dev>';
+
+// ── Post to X after approval ─────────────────────────────────────────────────
+async function postToX(data, slug) {
+  if (!X_API_KEY || !X_API_SECRET || !X_ACCESS_TOKEN || !X_ACCESS_SECRET) return;
+  try {
+    const client   = new TwitterApi({ appKey: X_API_KEY, appSecret: X_API_SECRET, accessToken: X_ACCESS_TOKEN, accessSecret: X_ACCESS_SECRET });
+    const num      = String(data.num).padStart(3, '0');
+    const briefUrl = `${SITE_URL}/brief/${slug}/`;
+
+    const bullets = [];
+    if (data.sports?.length) {
+      const g = data.sports[0];
+      const w = g.home?.winner ? g.home : g.away;
+      const l = g.home?.winner ? g.away : g.home;
+      bullets.push(`Sports: ${g.shortName || g.note} — ${w?.team} ${w?.score}, ${l?.team} ${l?.score}`);
+    }
+    if (data.markets?.SPY?.dayChangePct != null) {
+      const chg = data.markets.SPY.dayChangePct;
+      bullets.push(`Markets: S&P 500 ${chg >= 0 ? '+' : ''}${chg.toFixed(1)}% today`);
+    }
+    if (data.golf?.leaders?.[0]) {
+      const golfVerb = data.golf.statusState === 'post' ? 'wins' : 'leads';
+      bullets.push(`Golf: ${data.golf.leaders[0].name} ${golfVerb} ${data.golf.name}`);
+    } else if (data.f1?.name) {
+      const f1Str = data.f1.results?.[0]?.driver
+        ? `${data.f1.results[0].driver} wins ${data.f1.shortName || data.f1.name}`
+        : `${data.f1.shortName || data.f1.name} this weekend`;
+      bullets.push(`F1: ${f1Str}`);
+    }
+
+    const bulletLines = bullets.slice(0, 3).map(b => `→ ${b}`).join('\n');
+    const tweet = `GuyTalk #${num} is live.\n\n${bulletLines}\n\nRead it → ${briefUrl}`;
+    await client.v2.tweet(tweet.slice(0, 280));
+  } catch (_) {
+    // X post failure never blocks email delivery
+  }
+}
 
 // ── Get latest brief data from deployed filesystem ──────────────────────────
 function getLatestBrief() {
@@ -165,7 +207,7 @@ function buildEmailHtml(data, slug, unsubEmail) {
     <td style="padding:24px 0 0;text-align:center;">
       <p style="font-size:12px;color:#9E9891;margin:0 0 6px;">
         You're receiving this because you subscribed to GuyTalk.<br>
-        GuyTalk Media · 2261 Market St #5640 · San Francisco, CA 94114
+        GuyTalk · guytalkmedia.com
       </p>
       <p style="font-size:12px;color:#9E9891;margin:0;">
         <a href="${SITE_URL}" style="color:#9E9891;text-decoration:underline;">guytalkmedia.com</a>
@@ -303,6 +345,9 @@ module.exports = async (req, res) => {
       failed += batch.length;
     }
   }
+
+  // Post to X (non-blocking — failure won't affect email delivery result)
+  await postToX(data, slug);
 
   res.status(200).send(sentPage(sent, failed, slug));
 };
