@@ -643,6 +643,36 @@ em { font-style: italic; }
 .upcoming-finals .upcoming-series { color: rgba(255,255,255,0.6); }
 .upcoming-finals .upcoming-link { color: #6B9FFF; }
 
+/* World Cup preview banner */
+.wc-preview-banner {
+  background: linear-gradient(135deg, #0a2a1a 0%, #1a4a2a 50%, #0a1a2a 100%);
+  border: 1px solid rgba(34,197,94,0.3);
+  border-radius: var(--r-lg);
+  padding: 24px 20px;
+  margin: 0 0 24px;
+  text-align: center;
+}
+.wc-banner-hosts { font-size: 32px; margin-bottom: 10px; letter-spacing: 8px; }
+.wc-banner-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 800; font-size: 18px; color: #fff; margin-bottom: 4px;
+}
+.wc-banner-sub { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 18px; }
+.wc-banner-stats {
+  display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
+}
+.wc-stat {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.wc-stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700; font-size: 22px; color: #4ade80;
+}
+.wc-stat-lbl {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+}
+
 /* ================================================================
    RESPONSIVE
    ================================================================ */

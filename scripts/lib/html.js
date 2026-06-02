@@ -543,8 +543,9 @@ function buildGolfBlock({ golf, copy }) {
 
   const gd = copy?.golfDetail || {};
   const golfInProgress = golf?.statusState === 'in' || golf?.statusState === 'post';
+  const hasLeaders = golf?.leaders?.length > 0;
 
-  if (golf && golfInProgress && golf.leaders?.length) {
+  if (golf && (golfInProgress || hasLeaders) && hasLeaders) {
     const top5 = golf.leaders.slice(0, 5);
     const leader = top5[0];
     const leaderLineHtml = top5.map(p =>
@@ -564,8 +565,25 @@ function buildGolfBlock({ golf, copy }) {
       ? `<li><span><span class="dl-label">How it happened:</span>${esc(gd.recap || `${esc(leader.name)} closed out ${esc(golf.name)} in the final round.`)}</span></li>`
       : `<li><span><span class="dl-label">TV schedule:</span>${esc(gd.tvSchedule || 'Golf Channel/Peacock · NBC/CBS. Check local listings.')}</span></li>`;
 
+    // Course image for known venues
+    const golfImg = (() => {
+      const name = (golf.name || '').toLowerCase();
+      if (name.includes('memorial')) {
+        return `<div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Muirfield_Village_Golf_Club.jpg/1280px-Muirfield_Village_Golf_Club.jpg" alt="Muirfield Village Golf Club — host of the Memorial Tournament" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Muirfield Village Golf Club · Dublin, Ohio · Jack Nicklaus' design · Host of the Memorial Tournament</div></div>`;
+      }
+      if (name.includes('masters')) {
+        return `<div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Augusta_National_Golf_Club_drone%2C_aerial_view.jpg/1280px-Augusta_National_Golf_Club_drone%2C_aerial_view.jpg" alt="Augusta National Golf Club" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Augusta National Golf Club · Augusta, Georgia · Host of The Masters</div></div>`;
+      }
+      if (name.includes('us open') || name.includes('u.s. open')) {
+        return `<div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Oakmont_Country_Club_aerial_view.jpg/1280px-Oakmont_Country_Club_aerial_view.jpg" alt="US Open golf course" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">U.S. Open Golf Championship</div></div>`;
+      }
+      return '';
+    })();
+
     return `
     <h3>${heading}</h3>
+
+    ${golfImg}
 
     <p>${esc(aiNote)}</p>
 
@@ -822,6 +840,21 @@ function buildWorldCupBlock({ worldCup }) {
     const next = upcoming[0];
     return `  <section class="brief-section" id="worldcup">
     <div class="section-label sl-culture">World Cup 2026</div>
+    <div class="wc-preview-banner">
+      <div class="wc-banner-hosts">
+        <span class="wc-flag">🇺🇸</span>
+        <span class="wc-flag">🇨🇦</span>
+        <span class="wc-flag">🇲🇽</span>
+      </div>
+      <div class="wc-banner-title">FIFA World Cup 2026</div>
+      <div class="wc-banner-sub">June 11 — July 19 · USA / Canada / Mexico</div>
+      <div class="wc-banner-stats">
+        <div class="wc-stat"><span class="wc-stat-num">48</span><span class="wc-stat-lbl">Teams</span></div>
+        <div class="wc-stat"><span class="wc-stat-num">104</span><span class="wc-stat-lbl">Matches</span></div>
+        <div class="wc-stat"><span class="wc-stat-num">16</span><span class="wc-stat-lbl">Venues</span></div>
+        <div class="wc-stat"><span class="wc-stat-num">9</span><span class="wc-stat-lbl">Days Away</span></div>
+      </div>
+    </div>
     <h3>The World Cup opens June 11.</h3>
     <p>48 teams. 104 matches. USA, Canada, and Mexico host the first expanded World Cup. The opening match: ${esc(next.away.team)} vs ${esc(next.home.team)}. USA plays June 12 at SoFi Stadium against Paraguay. This is the biggest sporting event on the planet and it's happening in your backyard.</p>
     <ul class="detail-list">
