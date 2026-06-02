@@ -129,18 +129,35 @@ async function main() {
   console.log(`  GuyTalk Social Queue${dryRun ? ' · DRY RUN' : ''}`);
   console.log(`${'═'.repeat(44)}\n`);
 
-  // Load issue JSON files
+  // Load issue JSON files — deduplicated by date (same logic as archive)
   const dataDir = path.join(__dirname, '..', 'brief', 'data');
-  let files = fs.readdirSync(dataDir)
+  const allFiles = fs.readdirSync(dataDir)
     .filter(f => f.endsWith('.json') && f.startsWith('issue-'))
     .sort();
 
+  let files;
   if (single) {
-    files = files.filter(f => f.includes(single));
+    files = allFiles.filter(f => f.includes(single));
     if (!files.length) { console.error(`No data file for issue "${single}"`); process.exit(1); }
   } else {
-    // Only queue the most recent 8 published issues (those in the archive)
-    files = files.slice(-8);
+    // Deduplicate by date (keep highest issue number per date), drop REPLACE placeholders
+    const allIssues = allFiles.map(f => {
+      try { const d = JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8')); return { f, d }; }
+      catch (_) { return null; }
+    }).filter(x => x && x.d.title && !x.d.title.startsWith('REPLACE'));
+
+    const byDate = new Map();
+    for (const { f, d } of allIssues) {
+      const key = d.date || f;
+      const existing = byDate.get(key);
+      if (!existing || (d.num || 0) > (existing.d.num || 0)) byDate.set(key, { f, d });
+    }
+    // Most recent 8 unique issues
+    files = Array.from(byDate.values())
+      .sort((a, b) => (b.d.num || 0) - (a.d.num || 0))
+      .slice(0, 8)
+      .sort((a, b) => (a.d.num || 0) - (b.d.num || 0))
+      .map(x => x.f);
   }
 
   // Get Buffer profiles (skip in dry-run)
