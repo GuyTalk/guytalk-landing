@@ -509,6 +509,13 @@ window.handleContact = function(e) {
   var mailto = 'mailto:guytalkdaily@gmail.com'
     + '?subject=' + encodeURIComponent('GuyTalk Partnership Inquiry — ' + (data.get('brand') || 'Brand'))
     + '&body=' + encodeURIComponent(body);
+  if (window.posthog) {
+    posthog.capture('advertise_inquiry', {
+      brand: data.get('brand') || '',
+      placement: data.get('placement') || '',
+      email: data.get('email') || '',
+    });
+  }
   window.location.href = mailto;
   form.style.display = 'none';
   document.getElementById('formSuccess').style.display = 'block';

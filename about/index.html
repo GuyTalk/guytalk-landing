@@ -342,6 +342,10 @@ window.handleSignup = function(e, form) {
   if (!email) return;
   form.style.display = 'none';
   document.getElementById('ctaSuccess').style.display = 'block';
+  if (window.posthog) {
+    posthog.identify(email, { email: email });
+    posthog.capture('email_signup', { email: email, source: 'about' });
+  }
   var fd = new FormData();
   fd.append('email', email);
   fetch('https://subscribe-forms.beehiiv.com/api/v3/forms/88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d/subscriptions', {
