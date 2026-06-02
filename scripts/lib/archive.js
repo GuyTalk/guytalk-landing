@@ -379,14 +379,25 @@ window.handleSignup = function(e, form) {
     { loc: '/advertise/', changefreq: 'monthly', priority: '0.8' },
     { loc: '/privacy/', changefreq: 'yearly', priority: '0.3' },
   ];
-  const briefUrls = issues.map(d => ({
-    loc: `/brief/${d.slug || `issue-${String(d.num).padStart(3, '0')}`}/`,
-    changefreq: 'never',
-    priority: '0.6',
-  }));
-  const allUrls = [...staticUrls, ...briefUrls];
+  const today = new Date().toISOString().slice(0, 10);
+  const briefUrls = issues.map(d => {
+    let lastmod = today;
+    if (d.date) {
+      try { lastmod = new Date(d.date).toISOString().slice(0, 10); } catch (_) {}
+    }
+    return {
+      loc: `/brief/${d.slug || `issue-${String(d.num).padStart(3, '0')}`}/`,
+      changefreq: 'never',
+      priority: d === issues[0] ? '0.8' : '0.6',
+      lastmod,
+    };
+  });
+  const allUrls = [
+    ...staticUrls.map(u => ({ ...u, lastmod: today })),
+    ...briefUrls,
+  ];
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${
-    allUrls.map(u => `  <url>\n    <loc>https://www.guytalkmedia.com${u.loc}</loc>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`).join('\n')
+    allUrls.map(u => `  <url>\n    <loc>https://www.guytalkmedia.com${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`).join('\n')
   }\n</urlset>\n`;
   fs.writeFileSync(sitemapPath, sitemapXml, 'utf8');
 }
