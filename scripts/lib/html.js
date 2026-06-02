@@ -198,7 +198,7 @@ ${buildNumbers(issue)}
   <div class="footer-nav">
     <a href="/">Home</a>
     <a href="/briefs/">All Issues</a>
-    ${prevSlug ? `<a href="/brief/${prevSlug}/">Issue ${prevLabel}</a>` : ''}
+    ${prevSlug ? `<a href="/brief/${prevSlug}/">← Issue ${prevLabel}</a>` : ''}
     <a href="mailto:guytalkdaily@gmail.com">Reply to Jake</a>
   </div>
 </footer>
@@ -225,11 +225,20 @@ window.handleBriefSignup = function(e, form) {
   var bar = document.getElementById('readingProgress');
   var article = document.getElementById('briefArticle');
   if (!bar || !article) return;
+  var fired80 = false, fired100 = false;
   function update() {
     var rect = article.getBoundingClientRect();
     var total = article.offsetHeight - window.innerHeight;
     var pct = total > 0 ? Math.min(100, Math.max(0, (-rect.top / total) * 100)) : 0;
     bar.style.width = pct + '%';
+    if (!fired80 && pct >= 80) {
+      fired80 = true;
+      if (window.posthog) posthog.capture('brief_read', { issue: '${slug}', depth: '80pct' });
+    }
+    if (!fired100 && pct >= 99) {
+      fired100 = true;
+      if (window.posthog) posthog.capture('brief_read', { issue: '${slug}', depth: '100pct' });
+    }
   }
   window.addEventListener('scroll', update, { passive: true });
   update();
