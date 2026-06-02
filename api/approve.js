@@ -31,36 +31,43 @@ const SITE_URL        = 'https://www.guytalkmedia.com';
 const FROM_EMAIL      = process.env.FROM_EMAIL || 'GuyTalk <onboarding@resend.dev>';
 
 // ── Post to X after approval ─────────────────────────────────────────────────
+function buildSocialBullets(data) {
+  // Prefer the AI-generated sharp take bullets (more readable) over raw score data
+  const aiB = data.copy?.sharpTake?.bullets;
+  if (Array.isArray(aiB) && aiB.length >= 2) return aiB.slice(0, 3);
+
+  // Fallback: build from raw data
+  const bullets = [];
+  if (data.sports?.length) {
+    const g = data.sports[0];
+    const w = g.home?.winner ? g.home : g.away;
+    const l = g.home?.winner ? g.away : g.home;
+    bullets.push(`${g.shortName || g.note} — ${w?.team} ${w?.score}, ${l?.team} ${l?.score}`);
+  }
+  if (data.markets?.SPY?.dayChangePct != null) {
+    const chg = data.markets.SPY.dayChangePct;
+    bullets.push(`S&P 500 ${chg >= 0 ? '+' : ''}${chg.toFixed(1)}% today`);
+  }
+  if (data.golf?.leaders?.[0]) {
+    const golfVerb = data.golf.statusState === 'post' ? 'wins' : 'leads';
+    bullets.push(`${data.golf.leaders[0].name} ${golfVerb} ${data.golf.name}`);
+  } else if (data.f1?.name) {
+    bullets.push(data.f1.results?.[0]?.driver
+      ? `${data.f1.results[0].driver} wins ${data.f1.shortName || data.f1.name}`
+      : `${data.f1.shortName || data.f1.name} this weekend`);
+  }
+  return bullets.slice(0, 3);
+}
+
 async function postToX(data, slug) {
   if (!X_API_KEY || !X_API_SECRET || !X_ACCESS_TOKEN || !X_ACCESS_SECRET) return;
   try {
     const client   = new TwitterApi({ appKey: X_API_KEY, appSecret: X_API_SECRET, accessToken: X_ACCESS_TOKEN, accessSecret: X_ACCESS_SECRET });
     const num      = String(data.num).padStart(3, '0');
     const briefUrl = `${SITE_URL}/brief/${slug}/`;
-
-    const bullets = [];
-    if (data.sports?.length) {
-      const g = data.sports[0];
-      const w = g.home?.winner ? g.home : g.away;
-      const l = g.home?.winner ? g.away : g.home;
-      bullets.push(`Sports: ${g.shortName || g.note} — ${w?.team} ${w?.score}, ${l?.team} ${l?.score}`);
-    }
-    if (data.markets?.SPY?.dayChangePct != null) {
-      const chg = data.markets.SPY.dayChangePct;
-      bullets.push(`Markets: S&P 500 ${chg >= 0 ? '+' : ''}${chg.toFixed(1)}% today`);
-    }
-    if (data.golf?.leaders?.[0]) {
-      const golfVerb = data.golf.statusState === 'post' ? 'wins' : 'leads';
-      bullets.push(`Golf: ${data.golf.leaders[0].name} ${golfVerb} ${data.golf.name}`);
-    } else if (data.f1?.name) {
-      const f1Str = data.f1.results?.[0]?.driver
-        ? `${data.f1.results[0].driver} wins ${data.f1.shortName || data.f1.name}`
-        : `${data.f1.shortName || data.f1.name} this weekend`;
-      bullets.push(`F1: ${f1Str}`);
-    }
-
-    const bulletLines = bullets.slice(0, 3).map(b => `→ ${b}`).join('\n');
-    const tweet = `GuyTalk #${num} is live.\n\n${bulletLines}\n\nRead it → ${briefUrl}`;
+    const bullets  = buildSocialBullets(data);
+    const bulletLines = bullets.map(b => `→ ${b}`).join('\n');
+    const tweet = `GuyTalk #${num}\n\n${bulletLines}\n\n${briefUrl}`;
     await client.v2.tweet(tweet.slice(0, 280));
   } catch (_) {
     // X post failure never blocks email delivery
@@ -83,30 +90,11 @@ async function postToBuffer(data, slug) {
     );
     if (!targets.length) return;
 
-    const num      = String(data.num).padStart(3, '0');
     const briefUrl = `${SITE_URL}/brief/${slug}/`;
-    const bullets  = [];
-    if (data.sports?.length) {
-      const g = data.sports[0];
-      const w = g.home?.winner ? g.home : g.away;
-      const l = g.home?.winner ? g.away : g.home;
-      bullets.push(`${g.shortName || g.note} — ${w?.team} ${w?.score}, ${l?.team} ${l?.score}`);
-    }
-    if (data.markets?.SPY?.dayChangePct != null) {
-      const chg = data.markets.SPY.dayChangePct;
-      bullets.push(`S&P 500 ${chg >= 0 ? '+' : ''}${chg.toFixed(1)}% today`);
-    }
-    if (data.golf?.leaders?.[0]) {
-      const verb = data.golf.statusState === 'post' ? 'wins' : 'leads';
-      bullets.push(`${data.golf.leaders[0].name} ${verb} ${data.golf.name}`);
-    } else if (data.f1?.name) {
-      bullets.push(data.f1.results?.[0]?.driver
-        ? `${data.f1.results[0].driver} wins ${data.f1.shortName || data.f1.name}`
-        : `${data.f1.shortName || data.f1.name} this weekend`);
-    }
-
-    const bulletLines = bullets.slice(0, 3).map(b => `→ ${b}`).join('\n');
-    const text = `GuyTalk #${num} is live.\n\n${bulletLines}\n\nFive minutes. Everything you need.\nLink in bio 👉 ${briefUrl}\n\n#GuyTalk #Sports #Markets #Golf #Newsletter`;
+    const bullets  = buildSocialBullets(data);
+    const bulletLines = bullets.map(b => `▸ ${b}`).join('\n');
+    const tags = '#GuyTalk #DailyBrief #Sports #Markets #Golf #NBA #F1 #MensLifestyle';
+    const text = `${data.title}\n\nHere's what you need to know:\n\n${bulletLines}\n\nLink in bio 👆 — ${briefUrl}\n\n${tags}`;
 
     const params = new URLSearchParams();
     params.append('access_token', BUFFER_API_KEY);

@@ -277,6 +277,27 @@ window.handleSignup = function(e, form) {
 
   if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
+
+  // Auto-update sitemap.xml
+  const sitemapPath = path.join(rootDir, 'sitemap.xml');
+  const staticUrls = [
+    { loc: '/', changefreq: 'daily', priority: '1.0' },
+    { loc: '/briefs/', changefreq: 'daily', priority: '0.9' },
+    { loc: '/about/', changefreq: 'monthly', priority: '0.7' },
+    { loc: '/reviews/', changefreq: 'weekly', priority: '0.7' },
+    { loc: '/advertise/', changefreq: 'monthly', priority: '0.8' },
+    { loc: '/privacy/', changefreq: 'yearly', priority: '0.3' },
+  ];
+  const briefUrls = issues.map(d => ({
+    loc: `/brief/${d.slug || `issue-${String(d.num).padStart(3, '0')}`}/`,
+    changefreq: 'never',
+    priority: '0.6',
+  }));
+  const allUrls = [...staticUrls, ...briefUrls];
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${
+    allUrls.map(u => `  <url>\n    <loc>https://www.guytalkmedia.com${u.loc}</loc>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`).join('\n')
+  }\n</urlset>\n`;
+  fs.writeFileSync(sitemapPath, sitemapXml, 'utf8');
 }
 
 function escHtml(str) {
