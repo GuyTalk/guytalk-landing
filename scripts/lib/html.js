@@ -63,6 +63,9 @@ function buildHtml(issue) {
 <meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
 <link rel="canonical"            href="https://www.guytalkmedia.com/brief/${slug}/">
 ${prevSlug ? `<link rel="prev" href="https://www.guytalkmedia.com/brief/${prevSlug}/">` : ''}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":${JSON.stringify(title)},"description":"GuyTalk Issue ${label} — sports, markets, and culture in five minutes.","url":"https://www.guytalkmedia.com/brief/${slug}/","image":"https://www.guytalkmedia.com/assets/og-card.png","publisher":{"@type":"Organization","name":"GuyTalk","logo":{"@type":"ImageObject","url":"https://www.guytalkmedia.com/assets/logo/guytalk-icon.svg"}},"author":{"@type":"Person","name":"Jake Williams"},"datePublished":"${new Date().toISOString().slice(0,10)}"}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">

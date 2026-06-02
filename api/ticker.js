@@ -16,10 +16,10 @@ const SYMBOLS = [
 
 // Manual fallback — shown when ESPN returns no games or the fetch fails
 const SPORTS_FALLBACK = [
-  { label: 'CAVS BLOW OUT PISTONS IN GAME 7' },
-  { label: 'CELTICS STEAL GAME 1 AT MSG' },
-  { label: 'THUNDER HOLD OFF SPURS IN GAME 1' },
-  { label: 'YANKEES WALK OFF IN 9TH' },
+  { label: 'NBA FINALS  · KNICKS VS SPURS  GAME 1 TOMORROW' },
+  { label: 'MLB  · TIGERS 10  RAYS 9  · BREWERS 16  GIANTS 2' },
+  { label: 'F1 MONACO GRAND PRIX  · THIS WEEKEND' },
+  { label: 'WORLD CUP 2026  · OPENS JUNE 11' },
 ];
 
 const ESPN_LEAGUES = [
