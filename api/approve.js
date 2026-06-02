@@ -25,6 +25,7 @@ const X_API_KEY       = process.env.X_API_KEY;
 const X_API_SECRET    = process.env.X_API_KEY_SECRET;
 const X_ACCESS_TOKEN  = process.env.X_ACCESS_TOKEN;
 const X_ACCESS_SECRET = process.env.X_ACCESS_TOKEN_SECRET;
+const BUFFER_API_KEY  = process.env.BUFFER_API_KEY;
 const PUB_ID          = 'pub_d4c6a5c9-3ff9-4986-b17a-9e5650d915be';
 const SITE_URL        = 'https://www.guytalkmedia.com';
 const FROM_EMAIL      = process.env.FROM_EMAIL || 'GuyTalk <onboarding@resend.dev>';
@@ -63,6 +64,63 @@ async function postToX(data, slug) {
     await client.v2.tweet(tweet.slice(0, 280));
   } catch (_) {
     // X post failure never blocks email delivery
+  }
+}
+
+// ── Post to Buffer queue (Instagram + TikTok) ───────────────────────────────
+async function postToBuffer(data, slug) {
+  if (!BUFFER_API_KEY) return;
+  try {
+    const profilesRes = await fetch(
+      `https://api.bufferapp.com/1/profiles.json?access_token=${BUFFER_API_KEY}`
+    );
+    if (!profilesRes.ok) return;
+    const profiles = await profilesRes.json();
+    if (!Array.isArray(profiles)) return;
+
+    const targets = profiles.filter(p =>
+      p.service === 'instagram' || p.service === 'tiktok'
+    );
+    if (!targets.length) return;
+
+    const num      = String(data.num).padStart(3, '0');
+    const briefUrl = `${SITE_URL}/brief/${slug}/`;
+    const bullets  = [];
+    if (data.sports?.length) {
+      const g = data.sports[0];
+      const w = g.home?.winner ? g.home : g.away;
+      const l = g.home?.winner ? g.away : g.home;
+      bullets.push(`${g.shortName || g.note} — ${w?.team} ${w?.score}, ${l?.team} ${l?.score}`);
+    }
+    if (data.markets?.SPY?.dayChangePct != null) {
+      const chg = data.markets.SPY.dayChangePct;
+      bullets.push(`S&P 500 ${chg >= 0 ? '+' : ''}${chg.toFixed(1)}% today`);
+    }
+    if (data.golf?.leaders?.[0]) {
+      const verb = data.golf.statusState === 'post' ? 'wins' : 'leads';
+      bullets.push(`${data.golf.leaders[0].name} ${verb} ${data.golf.name}`);
+    } else if (data.f1?.name) {
+      bullets.push(data.f1.results?.[0]?.driver
+        ? `${data.f1.results[0].driver} wins ${data.f1.shortName || data.f1.name}`
+        : `${data.f1.shortName || data.f1.name} this weekend`);
+    }
+
+    const bulletLines = bullets.slice(0, 3).map(b => `→ ${b}`).join('\n');
+    const text = `GuyTalk #${num} is live.\n\n${bulletLines}\n\nFive minutes. Everything you need.\nLink in bio 👉 ${briefUrl}\n\n#GuyTalk #Sports #Markets #Golf #Newsletter`;
+
+    const params = new URLSearchParams();
+    params.append('access_token', BUFFER_API_KEY);
+    targets.forEach(p => params.append('profile_ids[]', p.id));
+    params.append('text', text.slice(0, 2200));
+    params.append('shorten', 'true');
+
+    await fetch('https://api.bufferapp.com/1/updates/create.json', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body:    params.toString(),
+    });
+  } catch (_) {
+    // Buffer failure never blocks email delivery
   }
 }
 
@@ -346,8 +404,8 @@ module.exports = async (req, res) => {
     }
   }
 
-  // Post to X (non-blocking — failure won't affect email delivery result)
-  await postToX(data, slug);
+  // Post to X and queue to Buffer for Instagram/TikTok (non-blocking)
+  await Promise.all([postToX(data, slug), postToBuffer(data, slug)]);
 
   res.status(200).send(sentPage(sent, failed, slug));
 };

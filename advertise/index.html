@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advertise — GuyTalk</title>
+<meta name="description" content="Partner with GuyTalk. Reach professional men who actually read what lands in their inbox. Sports, markets, golf, and culture — daily.">
+<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<meta property="og:title" content="Advertise with GuyTalk">
+<meta property="og:description" content="The brief guys actually open. Partner with us to reach a sharp, engaged male audience.">
+<meta property="og:image" content="https://www.guytalkmedia.com/assets/og-card.svg">
+<meta property="og:url" content="https://www.guytalkmedia.com/advertise/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@guytalkmedia">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F9F8F5; --surface: #FFFFFF; --border: #E5E2DB; --border-light: #D4D0C8;
+    --text: #0F1724; --text-2: #6E6862; --text-3: #9E9891;
+    --accent: #2B6FFF; --accent-h: #1A5CEF; --accent-muted: #EBF1FF;
+    --amber: #B87C35; --green: #16A34A;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(249,248,245,0.92);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; max-width: 1100px; margin: 0 auto;
+  }
+  .wordmark { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.03em; color: var(--text); }
+  .wordmark .dot { color: var(--accent); }
+  .nav-cta {
+    font-weight: 600; font-size: 13px;
+    padding: 7px 14px; background: var(--accent); color: white; border-radius: 7px;
+    transition: background 0.15s;
+  }
+  .nav-cta:hover { background: var(--accent-h); }
+
+  .page-wrap { max-width: 860px; margin: 0 auto; padding: 72px 24px 100px; }
+
+  .hero { text-align: center; max-width: 680px; margin: 0 auto 80px; }
+  .eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-weight: 600;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  h1 {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 52px; letter-spacing: -0.04em; line-height: 1.04; color: var(--text);
+    margin-bottom: 20px;
+  }
+  .hero-sub { font-size: 19px; color: var(--text-2); line-height: 1.55; margin-bottom: 40px; max-width: 540px; margin-left: auto; margin-right: auto; }
+  .hero-cta {
+    display: inline-block; padding: 16px 32px;
+    background: var(--accent); color: white; border-radius: 12px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 16px;
+    letter-spacing: -0.01em;
+    box-shadow: 0 4px 20px rgba(43,111,255,0.3);
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .hero-cta:hover { background: var(--accent-h); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(43,111,255,0.35); }
+
+  /* Stats row */
+  .stats-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+    margin-bottom: 80px;
+  }
+  .stat-cell {
+    background: var(--surface); padding: 32px 24px; text-align: center;
+  }
+  .stat-val {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 36px; letter-spacing: -0.04em; color: var(--text);
+    margin-bottom: 6px;
+  }
+  .stat-val .unit { font-size: 18px; color: var(--accent); }
+  .stat-lbl { font-size: 13px; color: var(--text-3); line-height: 1.4; }
+
+  /* Section */
+  .section { margin-bottom: 80px; }
+  .section-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-weight: 600;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 32px; letter-spacing: -0.03em; color: var(--text);
+    margin-bottom: 12px;
+  }
+  .section-sub { font-size: 17px; color: var(--text-2); margin-bottom: 36px; line-height: 1.6; }
+
+  /* Audience grid */
+  .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .audience-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 28px 24px;
+  }
+  .aud-icon { font-size: 28px; margin-bottom: 14px; }
+  .aud-label {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 16px; color: var(--text); margin-bottom: 8px;
+  }
+  .aud-desc { font-size: 14px; color: var(--text-2); line-height: 1.55; }
+
+  /* Placement cards */
+  .placement-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .placement-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 32px 24px; position: relative; overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .placement-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); transform: translateY(-2px); }
+  .placement-card.featured { border-color: var(--accent); }
+  .placement-card.featured::before {
+    content: 'Most popular';
+    position: absolute; top: 0; right: 0;
+    background: var(--accent); color: white;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 0 16px 0 8px;
+  }
+  .pl-tag {
+    display: inline-block; padding: 4px 10px;
+    background: var(--accent-muted); color: var(--accent);
+    border-radius: 6px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px;
+  }
+  .pl-name {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 22px; letter-spacing: -0.025em; color: var(--text);
+    margin-bottom: 12px;
+  }
+  .pl-desc { font-size: 14px; color: var(--text-2); line-height: 1.6; margin-bottom: 24px; }
+  .pl-includes { list-style: none; }
+  .pl-includes li {
+    font-size: 14px; color: var(--text-2); padding: 6px 0;
+    border-top: 1px solid var(--border); display: flex; align-items: baseline; gap: 8px;
+  }
+  .pl-includes li::before { content: "→"; color: var(--accent); font-size: 12px; flex-shrink: 0; }
+
+  /* Who we reach */
+  .demo-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 40px;
+  }
+  .demo-col-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-3); margin-bottom: 20px;
+  }
+  .demo-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .demo-item:last-child { border-bottom: none; }
+  .demo-bar-wrap { flex: 1; height: 6px; background: var(--border); border-radius: 3px; }
+  .demo-bar { height: 6px; background: var(--accent); border-radius: 3px; }
+  .demo-label { font-size: 14px; color: var(--text-2); width: 140px; flex-shrink: 0; }
+  .demo-pct { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text); width: 36px; text-align: right; flex-shrink: 0; }
+
+  /* Founding partner callout */
+  .founding-block {
+    background: linear-gradient(135deg, #0B1322, #131D30);
+    border-radius: 20px; padding: 52px 48px;
+    display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;
+  }
+  .founding-label {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #3D7EFF; margin-bottom: 16px;
+  }
+  .founding-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 34px; letter-spacing: -0.03em; color: #F2F4F7;
+    line-height: 1.1; margin-bottom: 16px;
+  }
+  .founding-desc { font-size: 16px; color: rgba(242,244,247,0.65); line-height: 1.6; }
+  .founding-cta {
+    display: inline-block; padding: 16px 32px;
+    background: #3D7EFF; color: white; border-radius: 12px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 16px;
+    white-space: nowrap; transition: background 0.15s;
+  }
+  .founding-cta:hover { background: #5B95FF; }
+
+  /* Contact form */
+  .contact-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 52px 48px; max-width: 640px; margin: 0 auto;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .form-label { font-size: 13px; font-weight: 600; color: var(--text-2); }
+  .form-input, .form-select, .form-textarea {
+    padding: 12px 16px; border: 1.5px solid var(--border);
+    border-radius: 10px; font-size: 15px; font-family: inherit;
+    background: var(--bg); color: var(--text); outline: none;
+    transition: border-color 0.15s;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: rgba(43,111,255,0.45); }
+  .form-textarea { min-height: 100px; resize: vertical; }
+  .form-submit {
+    width: 100%; padding: 15px; background: var(--accent); color: white;
+    border: none; border-radius: 10px; font-family: 'Inter Tight', sans-serif;
+    font-weight: 700; font-size: 16px; cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .form-submit:hover { background: var(--accent-h); transform: translateY(-1px); }
+  .form-hint { font-size: 12px; color: var(--text-3); text-align: center; margin-top: 12px; }
+  .form-success {
+    display: none; text-align: center; padding: 24px;
+    font-size: 17px; color: var(--green); font-weight: 600;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border); padding: 32px 24px 48px;
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-brand { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.03em; color: var(--text); }
+  .footer-brand .dot { color: var(--accent); }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: var(--text-3); transition: color 0.15s; }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 760px) {
+    h1 { font-size: 36px; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .placement-grid { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr; }
+    .demo-row { grid-template-columns: 1fr; gap: 24px; }
+    .founding-block { grid-template-columns: 1fr; gap: 24px; padding: 36px 28px; }
+    .contact-card { padding: 36px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-sub { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span></a>
+    <a href="/#signup" class="nav-cta">Subscribe Free →</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Partner with GuyTalk</div>
+    <h1>The brief guys actually open.</h1>
+    <p class="hero-sub">GuyTalk lands in inboxes every morning before 8am. Sports, markets, golf, F1, and culture — sharp, fast, and written for guys who want to stay informed without spending their morning on news sites.</p>
+    <a href="#contact" class="hero-cta">Get the media kit →</a>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-cell">
+      <div class="stat-val">5<span class="unit">min</span></div>
+      <div class="stat-lbl">Average read time</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">Daily</div>
+      <div class="stat-lbl">Publication frequency</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">4.9<span class="unit">/5</span></div>
+      <div class="stat-lbl">Reader rating</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">Early</div>
+      <div class="stat-lbl">Stage — get in now</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">The Audience</div>
+    <h2 class="section-title">Who reads GuyTalk.</h2>
+    <p class="section-sub">Professional men who've replaced the morning scroll with something that actually makes them sharper. They make buying decisions. They recommend things. They care about what they wear, what they drive, and what they invest in.</p>
+
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="aud-icon">💼</div>
+        <div class="aud-label">Working professionals</div>
+        <div class="aud-desc">Finance, sales, tech, law, healthcare, real estate. Men in their late 20s to mid 40s who want to walk into a room ready to talk about anything.</div>
+      </div>
+      <div class="audience-card">
+        <div class="aud-icon">⛳</div>
+        <div class="aud-label">Sports and golf fans</div>
+        <div class="aud-desc">They watch the games, follow the Tour, and actually care about F1. Not casual — informed. GuyTalk gives them the angle, not just the score.</div>
+      </div>
+      <div class="audience-card">
+        <div class="aud-icon">📈</div>
+        <div class="aud-label">Market watchers</div>
+        <div class="aud-desc">They have brokerage accounts. They check the S&P. They care about what's moving and why — but they don't have time to read Bloomberg every morning.</div>
+      </div>
+      <div class="audience-card">
+        <div class="aud-icon">🛍️</div>
+        <div class="aud-label">Buyers with standards</div>
+        <div class="aud-desc">These guys care about quality. Performance polos, bourbon, gear that lasts. They buy intentionally and they take recommendations from sources they trust.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Demographics</div>
+    <h2 class="section-title">Who we reach.</h2>
+    <p class="section-sub">A focused, high-quality readership of professional men — the exact audience premium lifestyle and performance brands want in front of their products.</p>
+
+    <div class="demo-row">
+      <div>
+        <div class="demo-col-title">Age breakdown</div>
+        <div class="demo-item">
+          <div class="demo-label">25–34</div>
+          <div class="demo-bar-wrap"><div class="demo-bar" style="width:40%"></div></div>
+          <div class="demo-pct">40%</div>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">35–44</div>
+          <div class="demo-bar-wrap"><div class="demo-bar" style="width:38%"></div></div>
+          <div class="demo-pct">38%</div>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">45–54</div>
+          <div class="demo-bar-wrap"><div class="demo-bar" style="width:14%"></div></div>
+          <div class="demo-pct">14%</div>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Other</div>
+          <div class="demo-bar-wrap"><div class="demo-bar" style="width:8%"></div></div>
+          <div class="demo-pct">8%</div>
+        </div>
+      </div>
+      <div>
+        <div class="demo-col-title">Top interests</div>
+        <div class="demo-item">
+          <div class="demo-label">Sports / Golf</div>
+          <div class="demo-bar-wrap"><div class="demo-bar" style="width:88%"></div></div>
+          <div class="demo-pct">88%</div>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Investing</div>
+          <div class="demo-bar-wrap"><div class="demo-bar" style="width:74%"></div></div>
+          <div class="demo-pct">74%</div>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Lifestyle / Gear</div>
+          <div class="demo-bar-wrap"><div class="demo-bar" style="width:68%"></div></div>
+          <div class="demo-pct">68%</div>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Food / Drink</div>
+          <div class="demo-bar-wrap"><div class="demo-bar" style="width:55%"></div></div>
+          <div class="demo-pct">55%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Ad Placements</div>
+    <h2 class="section-title">Ways to partner.</h2>
+    <p class="section-sub">Every placement reads like a recommendation, not an ad. We only work with brands we'd actually use — and our readers can tell the difference.</p>
+
+    <div class="placement-grid">
+      <div class="placement-card">
+        <div class="pl-tag">Newsletter</div>
+        <div class="pl-name">Brief Sponsor</div>
+        <div class="pl-desc">Your brand featured inside the brief itself — a dedicated sponsor block with your message, written in the GuyTalk voice. Reads like a rec, not an ad.</div>
+        <ul class="pl-includes">
+          <li>Branded sponsor block in the brief</li>
+          <li>Your URL with tracking link</li>
+          <li>Written by us, approved by you</li>
+          <li>Delivered to full subscriber list</li>
+        </ul>
+      </div>
+
+      <div class="placement-card featured">
+        <div class="pl-tag">Full Package</div>
+        <div class="pl-name">Founding Partner</div>
+        <div class="pl-desc">Complete brand integration across the brief, the website, and social. The best rate we'll ever offer — locked in before we scale.</div>
+        <ul class="pl-includes">
+          <li>Brief sponsor block</li>
+          <li>Featured product in "What We're Buying"</li>
+          <li>Social mention on X + Instagram</li>
+          <li>Homepage partner badge</li>
+          <li>Rate locked for 3 months</li>
+        </ul>
+      </div>
+
+      <div class="placement-card">
+        <div class="pl-tag">Product</div>
+        <div class="pl-name">Featured Product</div>
+        <div class="pl-desc">Your product in the rotating "What We're Buying" block — the gear, apparel, or experience we're recommending that week. Feels organic because it is.</div>
+        <ul class="pl-includes">
+          <li>Product card with photo + copy</li>
+          <li>In every brief for one week</li>
+          <li>Affiliate or direct link</li>
+          <li>Social amplification included</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="founding-block">
+      <div>
+        <div class="founding-label">Early Stage Opportunity</div>
+        <div class="founding-title">Get in before we grow.</div>
+        <div class="founding-desc">We're building fast. The brands that partner with GuyTalk now get the lowest rates we'll ever charge, first access to our audience as it scales, and the kind of authentic integration that isn't possible once a newsletter is big. This window closes at 1,000 subscribers.</div>
+      </div>
+      <a href="#contact" class="founding-cta">Talk to us →</a>
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <div class="section-eyebrow">Get in touch</div>
+    <h2 class="section-title" style="text-align:center;">Let's talk.</h2>
+    <p class="section-sub" style="text-align:center;">Fill out the form and we'll get back to you within 24 hours with a media kit and rate card.</p>
+
+    <div class="contact-card">
+      <div class="form-success" id="formSuccess">
+        Got it — we'll be in touch within 24 hours. Looking forward to it.
+      </div>
+      <form id="contactForm" onsubmit="handleContact(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fname">First name</label>
+            <input class="form-input" type="text" id="fname" name="first_name" required placeholder="Jake">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lname">Last name</label>
+            <input class="form-input" type="text" id="lname" name="last_name" required placeholder="Williams">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Work email</label>
+          <input class="form-input" type="email" id="email" name="email" required placeholder="you@yourbrand.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="brand">Brand / Company</label>
+          <input class="form-input" type="text" id="brand" name="brand" required placeholder="Your brand name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="placement">Interested in</label>
+          <select class="form-select" id="placement" name="placement">
+            <option value="">Select a placement type</option>
+            <option value="founding">Founding Partner (full package)</option>
+            <option value="sponsor">Brief Sponsor</option>
+            <option value="product">Featured Product</option>
+            <option value="other">Not sure yet — let's talk</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Anything else</label>
+          <textarea class="form-textarea" id="message" name="message" placeholder="Tell us about your brand, target customer, or anything else that's helpful."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send inquiry →</button>
+        <div class="form-hint">We respond within 24 hours · No commitments until you're ready</div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">GuyTalk<span class="dot">.</span></div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/briefs/">Archive</a>
+    <a href="https://instagram.com/guytalkmedia" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://x.com/guytalkmedia" target="_blank" rel="noopener">X</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="mailto:guytalkdaily@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+window.handleContact = function(e) {
+  e.preventDefault();
+  var form = document.getElementById('contactForm');
+  var data = new FormData(form);
+  var body = '';
+  data.forEach(function(v, k) { body += k + ': ' + v + '\n'; });
+  var mailto = 'mailto:guytalkdaily@gmail.com'
+    + '?subject=' + encodeURIComponent('GuyTalk Partnership Inquiry — ' + (data.get('brand') || 'Brand'))
+    + '&body=' + encodeURIComponent(body);
+  window.location.href = mailto;
+  form.style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+};
+</script>
+
+</body>
+</html>
