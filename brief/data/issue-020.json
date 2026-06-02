@@ -1,0 +1,370 @@
+{
+  "num": 20,
+  "slug": "issue-020",
+  "date": "Tuesday, June 2, 2026",
+  "title": "Wembanyama debuts in Finals tomorrow. Henley wins Schwab. World Cup in nine days.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815580",
+      "name": "Detroit Tigers at Tampa Bay Rays",
+      "shortName": "DET @ TB",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Tampa Bay Rays",
+        "abbrev": "TB",
+        "score": "9",
+        "winner": false
+      },
+      "away": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "10",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815584",
+      "name": "San Francisco Giants at Milwaukee Brewers",
+      "shortName": "SF @ MIL",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "16",
+        "winner": true
+      },
+      "away": {
+        "team": "San Francisco Giants",
+        "abbrev": "SF",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815586",
+      "name": "Colorado Rockies at Los Angeles Angels",
+      "shortName": "COL @ LAA",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Los Angeles Angels",
+        "abbrev": "LAA",
+        "score": "8",
+        "winner": false
+      },
+      "away": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "9",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 758.54,
+      "prevClose": 756.48,
+      "dayChange": 2.06,
+      "dayChangePct": 0.2723,
+      "weekChangePct": null
+    },
+    "QQQ": {
+      "price": 742.74,
+      "prevClose": 738.31,
+      "dayChange": 4.43,
+      "dayChangePct": 0.6,
+      "weekChangePct": null
+    },
+    "NVDA": {
+      "price": 224.36,
+      "prevClose": 211.14,
+      "dayChange": 13.22,
+      "dayChangePct": 6.2612,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 415.88,
+      "prevClose": 435.79,
+      "dayChange": -19.91,
+      "dayChangePct": -4.5687,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 460.52,
+      "prevClose": 450.24,
+      "dayChange": 10.28,
+      "dayChangePct": 2.2832,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 306.31,
+      "prevClose": 312.06,
+      "dayChange": -5.75,
+      "dayChangePct": -1.8426,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 69255.01,
+      "prevClose": 72101.73,
+      "dayChange": -2846.72,
+      "dayChangePct": -3.9482,
+      "weekChangePct": null
+    }
+  },
+  "golf": {
+    "name": "Charles Schwab Challenge",
+    "venue": "",
+    "status": "Final",
+    "statusState": "post",
+    "leaders": [
+      {
+        "name": "Russell Henley",
+        "score": "-13",
+        "pos": "1st"
+      },
+      {
+        "name": "Eric Cole",
+        "score": "-12",
+        "pos": "2nd"
+      },
+      {
+        "name": "Ben Griffin",
+        "score": "-11",
+        "pos": "3rd"
+      },
+      {
+        "name": "Alex Smalley",
+        "score": "-11",
+        "pos": "4th"
+      },
+      {
+        "name": "Mac Meissner",
+        "score": "-11",
+        "pos": "5th"
+      },
+      {
+        "name": "Gary Woodland",
+        "score": "-10",
+        "pos": "6th"
+      },
+      {
+        "name": "Nico Echavarria",
+        "score": "-10",
+        "pos": "7th"
+      },
+      {
+        "name": "Michael Brennan",
+        "score": "-10",
+        "pos": "8th"
+      },
+      {
+        "name": "J.J. Spaun",
+        "score": "-10",
+        "pos": "9th"
+      },
+      {
+        "name": "Steven Fisk",
+        "score": "-9",
+        "pos": "10th"
+      }
+    ]
+  },
+  "f1": {
+    "name": "Monaco Grand Prix",
+    "shortName": "Monaco GP",
+    "venue": "",
+    "status": "Scheduled",
+    "statusState": "pre",
+    "results": []
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "401859963",
+      "name": "New York Knicks at San Antonio Spurs",
+      "shortName": "NY @ SA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 1",
+      "seriesNote": "Series starts 6/3",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    }
+  ],
+  "trending": [
+    {
+      "title": "Sydney Sweeney Has 3-Word Response to Euphoria Critics - Yahoo",
+      "url": "https://www.mandatory.com/news/1782755-sydney-sweeney-responds-euphoria-critics-instagram",
+      "description": "Sydney Sweeney delivered a befitting three-word response to critics of her hit TV show Euphoria. Sweeney shared a lengthy carousel on Instagram with a simple...",
+      "source": "Mandatory"
+    },
+    {
+      "title": "Mackenzie Phillips opens up about wild cocaine-fueled sitcom days with co-star - Page Six",
+      "url": "https://www.foxnews.com/entertainment/mackenzie-phillips-says-valerie-bertinelli-drank-wine-cocaine-sitcom-breaks",
+      "description": "Phillips notes ‘One Day at a Time’ co-star Bertinelli ‘talks about it openly’ and says her co-star did not have the same addiction she did",
+      "source": "Fox News"
+    },
+    {
+      "title": "Sam Levinson Defends That Major Death in ‘Euphoria’ Season 3 Finale: “It Just Felt Like an Honest Ending” - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/tv/tv-news/sam-levinson-defends-major-death-euphoria-season-3-finale-1236610149/",
+      "description": "Shortly after the third season's shocking finale was released, Levinson and HBO confirmed the series would not return for season four and that it concluded with Sunday's night episode.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Horoscope for Monday, June 01, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/06/01/horoscopes-today-monday-june-01-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Body of ‘Alaskan Bush People’ star Matt Brown found in Washington state river - NBC News",
+      "url": "https://www.nbcnews.com/news/us-news/body-alaskan-bush-people-star-matt-brown-found-washington-state-river-rcna347803",
+      "description": "A body pulled from a Washington state river has been identified as that of “Alaskan Bush People” cast member Matt Brown",
+      "source": "NBC News"
+    },
+    {
+      "title": "2026 NCAA baseball tournament: Bracket, schedule, scores for the Men’s College World Series - NCAA.com",
+      "url": "https://www.ncaa.com/news/baseball/article/2026-06-01/2026-ncaa-baseball-tournament-bracket-schedule-scores-mens-college-world-series",
+      "description": "Here is what you need to know about the 2026 NCAA DI baseball tournament, including the bracket, scores and schedule for the Men's College World Series.",
+      "source": "NCAA.com"
+    },
+    {
+      "title": "Three Observations from Germany’s smooth 4-0 friendly win over Finland - Bavarian Football Works",
+      "url": "https://www.bavarianfootballworks.com/fifa-world-cup/209824/match-analysis-observations-friendly-germany-finland-4-0",
+      "description": "Germany made light work of Finland in a World Cup tune-up.",
+      "source": "Bavarian Football Works"
+    },
+    {
+      "title": "As trade looms, A.J. Brown is absent from Twitter - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/as-trade-looms-a-j-brown-is-absent-from-twitter",
+      "description": "It's trading day (potentially) for Eagles receiver A.J.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "French Open fines Paraguay's Vallejo $65K for sexist ump remark - ESPN",
+      "url": "https://www.espn.com/tennis/story/_/id/48937284/french-open-fines-paraguay-vallejo-65k-sexist-ump-remark",
+      "description": "Paraguay's Adolfo Daniel Vallejo has been ordered to pay half his French Open prize money, roughly $65,000, for saying his second-round match should not have been umpired by a woman.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Madden Monday: Carmen Mlodzinski’s anger is justified. His actions are not - TribLIVE.com",
+      "url": "https://triblive.com/sports/madden-monday-carmen-mlodzinskis-anger-is-justified-his-actions-are-not/",
+      "description": null,
+      "source": "TribLIVE"
+    }
+  ],
+  "copy": {
+    "title": "Wembanyama debuts in Finals tomorrow. Henley wins Schwab. World Cup in nine days.",
+    "sportsAngle": "The Tigers outlasted the Rays 10–9 in Tampa, while the Brewers demolished the Giants 16–2 in Milwaukee. The Rockies edged the Angels 9–8 in Los Angeles.\n\nRussell Henley won the Charles Schwab Challenge at 13 under, capturing the PGA Tour event.\n\nThe NBA Finals begin tomorrow night with New York visiting San Antonio for Game 1. Monaco's Formula 1 Grand Prix is also on the calendar this week. The 2026 FIFA World Cup kicks off June 11.",
+    "marketsTake": "The S&P 500 edged higher on Tuesday while the Nasdaq outpaced it, but the session's real story was the split personality of mega-cap tech: Nvidia surged 6.3 percent on AI chip demand while Tesla cratered 4.6 percent on demand concerns. Microsoft and Apple diverged sharply—Microsoft up 2.3 percent, Apple down 1.8 percent—suggesting investors are rotating out of consumer hardware and into AI infrastructure plays.\n\nBitcoin fell 3.9 percent, trailing the broader equity rally and signaling that risk-on sentiment doesn't automatically lift crypto. The Nasdaq's 0.6 percent gain masked deep divergences, which means breadth is narrowing and concentration risk is real. Watch next week for inflation data and Fed commentary; if those prints accelerate, this",
+    "golfNote": "Russell Henley won the Charles Schwab Challenge at 13-under par.",
+    "sharpTake": "Detroit's bullpen nearly blew a four-run lead yesterday, but the Tigers held on 10-9 over Tampa Bay. The Rays clawed back to make it tight late, but couldn't finish the job. This is the kind of win that matters less for the final score than for how it was won—Detroit's relief corps can't keep giving away leads like that.\n\nMilwaukee demolished San Francisco 16-2, the kind of blowout where individual performances don't matter much. The Brewers' bats showed up, the Giants' didn't, and the game was over by the third inning. Colorado edged Los Angeles 9-8 in a game that had the feel of a mid-June slugfest when both teams still believed.\n\nThe NBA Finals tip off tomorrow night: New York at San Antonio, Game 1. The Spurs will be favored at home. Everything else is noise until the opening tip.\n\nRussell Henley won the Charles Schwab Challenge at 13-under. It's early June golf—solid field, solid play, nothing more to examine.\n\nThe S&P 500 ticked up 0.3 percent on a quiet Tuesday. Volume is",
+    "sportsDetail": {
+      "keyNumber": "Tigers scored 10 runs in a one-run win over Tampa Bay. Detroit's offense stayed alive in what looked like a close game down the stretch.",
+      "seriesSituation": "Tigers grabbed a win on the road against the Rays. Next matchup continues their series in Tampa.",
+      "howToWatch": "Detroit Tigers at Tampa Bay Rays · Tuesday, June 2 · Tropicana Field · Time TBA · Check MLB schedule for broadcast",
+      "groupChatAngle": "A 10–9 final means both teams brought it offensively. In June, that kind of run-heavy game usually signals neither bullpen locked in — something to monitor if these teams see each other again in September."
+    },
+    "marketsDetail": {
+      "headline": "Nvidia surges on AI chip demand; Tesla slides on margin fears.",
+      "secondPara": "Fed speakers hit the calendar Wednesday and Thursday, and any hint of rate-cut timing will move equities and crypto in real time.",
+      "watchNextWeek": "Jobs report Friday, June 6 — if unemployment ticks up, growth stocks get hammered; if it stays tight, the Fed stays patient.",
+      "tradeToWatch": "NVDA +6.3% today on nothing but momentum and fund positioning ahead of earnings season; that kind of move on zero news tells you where money is actually flowing.",
+      "bringUp": "Bitcoin down 3.9% while stocks rally — the usual correlation broke, which means institutional holders are rotating out of crypto into equities for the first time in weeks."
+    },
+    "golfDetail": {
+      "whyItMatters": "Henley's fourth PGA Tour win this season puts him squarely in major contention heading into the U.S. Open at Pinehurst in two weeks, and he's locked into the FedEx Cup playoffs conversation with real momentum.",
+      "recap": "Henley finished 13-under at Colonial, holding off Eric Cole who carded 12-under. A three-way tie for third between Griffin, Smalley, and Meissner at 11-under meant the back nine separated the field—Henley's ball-striking down the stretch closed the deal.",
+      "bringUp": "Colonial's rough is historically punishing, but Henley's iron play through the middle rounds kept him out of it entirely. That's a skill that travels to Pinehurst's native rough.",
+      "groupChatAngle": "Cole played clean golf all week and still lost by a shot. That's how sharp Henley's been lately—he's not just winning, he's beating good fields in tight finishes."
+    },
+    "culture": [
+      {
+        "head": "A.J. Brown goes silent on X as Eagles trade talk heats up",
+        "source": "NBC Sports",
+        "body": "The star receiver has vanished from Twitter amid speculation about a potential deal, a stark move for a guy usually active online. Radio silence from a marquee player typically signals either contract negotiations behind closed doors or frustration with the organization—sometimes both. The Eagles have leverage but also urgency; Brown's 2026 cap hit is substantial and his absence from the timeline is the loudest statement he could make. When your best weapon stops posting, your front office is either working or your locker room is fractured."
+      },
+      {
+        "head": "French Open fines Paraguay's Vallejo $65K for sexist umpire comment",
+        "source": "ESPN",
+        "body": "Vallejo got handed a massive financial penalty for remarks directed at an official during his match, one of the largest fines the tournament has issued for on-court conduct. The Grand Slams are finally enforcing standards beyond just tantrums; personal attacks on officials now carry consequences that actually sting. This sets a clear marker for Wimbledon and the US Open coming up. The men's game needed this more than it needed another code violation for racquet abuse."
+      },
+      {
+        "head": "This weekend: Inside Out 2",
+        "source": "Theater · Animated Drama",
+        "body": "Pixar's sequel follows Riley's emotions navigating teenage years, expanding the cast and emotional complexity of the original. It's a rare blockbuster that works for both kids and adults without talking down to either. If you've got a teenager or you remember what anxiety actually felt like, this lands."
+      }
+    ],
+    "numbersContext": [
+      {
+        "context": "Detroit won 9–10 in Tampa Bay yesterday, a one-run loss that keeps the Tigers in the AL East hunt but wastes another close opportunity. The margin matters: winning those games is how you make October, and Detroit has left several on the table already this season."
+      },
+      {
+        "context": "The S&P 500 is up 0.3% today on modest positive momentum, holding near recent highs with no major economic data or Fed move driving it. For guys with baseline equity exposure in their 401(k)s, this is a quiet tape—not a catalyst day, just steady."
+      },
+      {
+        "context": "Russell Henley shot -13 at the Charles Schwab Challenge, a strong performance at one of the PGA Tour's toughest events. He's in contention but not leading—the leaderboard is bunched up and the tournament is still live heading into the back nine."
+      }
+    ],
+    "sportsAdditional": [
+      "Milwaukee dismantled San Francisco 16-2 in a game that stopped being competitive around the third inning. The Brewers' offense was relentless, and the Giants' pitching had no answer.",
+      "Colorado edged Los Angeles 9-8 in a tight matchup that came down to late innings. The Rockies' offense was just enough to hold off an Angels team that made it close."
+    ],
+    "f1Detail": null
+  }
+}

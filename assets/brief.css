@@ -461,21 +461,71 @@ em { font-style: italic; }
 .footer-nav a:hover { color: var(--text); border-bottom: 0; }
 
 /* ================================================================
+   READING PROGRESS BAR
+   ================================================================ */
+.reading-progress {
+  position: fixed; top: 0; left: 0; z-index: 100;
+  height: 3px; width: 0%; background: var(--accent);
+  transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ================================================================
+   SECTION JUMP NAV (mobile-first quick links)
+   ================================================================ */
+.section-jump {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin: 0 0 36px;
+}
+.sj-link {
+  font-family: 'Inter Tight', sans-serif; font-weight: 600;
+  font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 6px 12px; border-radius: 20px;
+  border: 1px solid var(--border); color: var(--text-2);
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+.sj-link:hover { background: var(--accent-muted); color: var(--accent); border-color: rgba(43,111,255,0.25); border-bottom-color: rgba(43,111,255,0.25); }
+
+/* ================================================================
    RESPONSIVE
    ================================================================ */
 @media (max-width: 600px) {
   body { font-size: 16px; }
-  .brief-title { font-size: 30px; }
-  .brief-section h3 { font-size: 21px; }
-  .brief-article { padding: 36px 18px 60px; }
-  .brief-nav-inner { padding: 14px 18px; }
+  .brief-title { font-size: 28px; line-height: 1.1; }
+  .brief-deck { font-size: 16px; }
+  .brief-section h3 { font-size: 20px; margin: 24px 0 10px; }
+  .brief-article { padding: 28px 16px 60px; }
+  .brief-nav-inner { padding: 12px 16px; }
   .brief-nav-issue { display: none; }
+  .brief-cta { font-size: 12px; padding: 6px 12px; }
+  .brief-meta { gap: 10px; font-size: 12px; margin-bottom: 28px; }
+  .brief-section { margin-top: 40px; }
+  .section-jump { gap: 6px; margin-bottom: 28px; }
+  .sj-link { font-size: 11px; padding: 5px 10px; }
+  .tldr { padding: 16px 16px; margin-bottom: 36px; }
+  .tldr-item { font-size: 14.5px; gap: 10px; padding: 9px 0; }
   .product-card { grid-template-columns: 1fr; }
-  .product-img { max-height: 220px; aspect-ratio: 16/9; }
+  .product-img { max-height: 200px; aspect-ratio: 16/9; }
   .product-img img, .product-img-ph { aspect-ratio: 16/9; }
   .stat-num { font-size: 22px; }
-  .mkt-cols, .mkt-row { grid-template-columns: 90px 1fr 68px 68px; font-size: 12px; gap: 6px; }
-  .mkt-table-body { padding: 8px 14px 12px; }
-  .scoreboard { flex-direction: column; align-items: stretch; text-align: center; }
-  .score-side.right { text-align: center; }
+  .mkt-cols, .mkt-row { grid-template-columns: 88px 1fr 62px 62px; font-size: 12px; gap: 4px; }
+  .mkt-table-body { padding: 8px 12px 12px; }
+  .scoreboard { flex-direction: column; align-items: stretch; text-align: center; gap: 10px; }
+  .score-side { min-width: unset; display: flex; justify-content: space-between; align-items: center; }
+  .score-side.right { text-align: left; flex-direction: row-reverse; }
+  .score-num { font-size: 28px; }
+  .score-center { padding: 4px 0; }
+  .detail-list li { font-size: 15px; gap: 10px; }
+  .angle-box { padding: 12px 14px; }
+  .angle-text { font-size: 14.5px; }
+  .culture-head { font-size: 17px; }
+  .culture-body { font-size: 14.5px; }
+  .sharp-take { padding: 20px 16px; }
+  .sharp-take p { font-size: 15.5px; }
+  .numbers-item { gap: 12px; }
+  .brief-footer { padding: 28px 16px 56px; }
+  .footer-nav { gap: 14px; }
+  .footer-nav a { font-size: 13px; padding: 4px 0; }
 }
