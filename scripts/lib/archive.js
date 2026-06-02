@@ -117,7 +117,7 @@ function buildArchive(rootDir) {
       );
       // Update all links in the brief mock to point to latest issue
       indexHtml = indexHtml.replace(
-        /href="\/brief\/issue-\d+\/(#[a-z]+)"/g,
+        /href="\/brief\/issue-\d+\/(#[a-z0-9]+)"/g,
         `href="/brief/${latestSlug}/$1"`
       );
       // Update ticker with latest sports + market data
