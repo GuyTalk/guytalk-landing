@@ -682,6 +682,7 @@ function buildF1Block({ f1, copy }) {
     const preAngle = fd.angle || `The ${esc(f1.name)} takes place ${esc(f1.venue ? `at ${f1.venue}` : 'this weekend')}. One of the marquee events on the F1 calendar — race day is Sunday.`;
     const preBringUp = fd.bringUp || '';
     const preChamp = fd.championship || '';
+    const prePick = fd.pick || '';
     return `  <section class="brief-section" id="f1">
     <div class="section-label sl-sports">Formula 1</div>
     <h3>${esc(preHeadline)}</h3>
@@ -689,6 +690,7 @@ function buildF1Block({ f1, copy }) {
     <ul class="detail-list">
       <li><span><span class="dl-label">Race:</span>${esc(f1.name)}${f1.venue ? ` · ${esc(f1.venue)}` : ''} · Sunday</span></li>
       <li><span><span class="dl-label">Watch:</span>ESPN / ABC · Race day coverage begins ~9am ET</span></li>
+      ${prePick ? `<li><span><span class="dl-label">Driver to watch:</span>${esc(prePick)}</span></li>` : ''}
       ${preBringUp ? `<li><span><span class="dl-label">What to bring up:</span>${esc(preBringUp)}</span></li>` : ''}
       ${preChamp ? `<li><span><span class="dl-label">Championship:</span>${esc(preChamp)}</span></li>` : ''}
     </ul>
@@ -707,6 +709,7 @@ function buildF1Block({ f1, copy }) {
   const angle = fd.angle || '';
   const bringUp = fd.bringUp || '';
   const champ = fd.championship || '';
+  const pick = fd.pick || '';
 
   return `  <section class="brief-section" id="f1">
     <div class="section-label sl-sports">Formula 1</div>
@@ -714,6 +717,7 @@ function buildF1Block({ f1, copy }) {
     ${renderParas(angle, '')}
     <ul class="detail-list">
       <li><span><span class="dl-label">Result:</span>${leaderboardHtml}.</span></li>
+      ${pick ? `<li><span><span class="dl-label">Driver to watch:</span>${esc(pick)}</span></li>` : ''}
       ${bringUp ? `<li><span><span class="dl-label">What to bring up:</span>${esc(bringUp)}</span></li>` : ''}
       ${champ ? `<li><span><span class="dl-label">Championship:</span>${esc(champ)}</span></li>` : ''}
     </ul>

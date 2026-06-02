@@ -336,7 +336,8 @@ ${extraGames.map(g => {
               '  "headline": "One punchy sentence about the race result. Max 12 words.",\n' +
               '  "angle": "2 sentences: the key story. Only use facts given above — no invented lap times.",\n' +
               '  "bringUp": "One inside-knowledge fact about the race, driver, or championship battle.",\n' +
-              '  "championship": "Championship standings context: who leads the title, by how many points, and what\'s next."\n' +
+              '  "championship": "Championship standings context: who leads the title, by how many points, and what\'s next.",\n' +
+              '  "pick": "The driver who stood out beyond the podium — who drove well, made a move, or is worth watching next race. 1 opinionated sentence."\n' +
               '}',
               350
             );
@@ -350,7 +351,8 @@ ${extraGames.map(g => {
               '  "headline": "One sentence about why this race matters. Max 12 words.",\n' +
               '  "angle": "2 sentences: the story to watch — championship battle, unique circuit, key rivalries. Be specific about real drivers and teams in the 2026 season.",\n' +
               '  "bringUp": "One inside-knowledge fact about Monaco or the current F1 season standings.",\n' +
-              '  "championship": "Who currently leads the 2026 F1 Drivers Championship and by how much. Name real drivers."\n' +
+              '  "championship": "Describe the championship battle storyline heading into this race — who are the top contenders and what\'s at stake. 1-2 sentences, use driver names you know.",\n' +
+              '  "pick": "The driver to root for this race and why — opinionated, 1 sentence. Not just the obvious favorite."\n' +
               '}',
               350
             );

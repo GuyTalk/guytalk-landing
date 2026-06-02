@@ -1,0 +1,374 @@
+{
+  "num": 22,
+  "slug": "issue-022",
+  "date": "Tuesday, June 2, 2026",
+  "title": "Spurs host Knicks in Finals tomorrow. Henley wins Schwab. World Cup countdown begins.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815580",
+      "name": "Detroit Tigers at Tampa Bay Rays",
+      "shortName": "DET @ TB",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Tampa Bay Rays",
+        "abbrev": "TB",
+        "score": "9",
+        "winner": false
+      },
+      "away": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "10",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815584",
+      "name": "San Francisco Giants at Milwaukee Brewers",
+      "shortName": "SF @ MIL",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "16",
+        "winner": true
+      },
+      "away": {
+        "team": "San Francisco Giants",
+        "abbrev": "SF",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815586",
+      "name": "Colorado Rockies at Los Angeles Angels",
+      "shortName": "COL @ LAA",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Los Angeles Angels",
+        "abbrev": "LAA",
+        "score": "8",
+        "winner": false
+      },
+      "away": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "9",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 758.62,
+      "prevClose": 758.54,
+      "dayChange": 0.08,
+      "dayChangePct": 0.0105,
+      "weekChangePct": null
+    },
+    "QQQ": {
+      "price": 743.42,
+      "prevClose": 742.74,
+      "dayChange": 0.68,
+      "dayChangePct": 0.0916,
+      "weekChangePct": null
+    },
+    "NVDA": {
+      "price": 228.08,
+      "prevClose": 224.36,
+      "dayChange": 3.72,
+      "dayChangePct": 1.658,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 421.6,
+      "prevClose": 415.88,
+      "dayChange": 5.72,
+      "dayChangePct": 1.3754,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 444.87,
+      "prevClose": 460.52,
+      "dayChange": -15.65,
+      "dayChangePct": -3.3983,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 310.25,
+      "prevClose": 306.31,
+      "dayChange": 3.94,
+      "dayChangePct": 1.2863,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 68221.99,
+      "prevClose": 71509.1,
+      "dayChange": -3287.11,
+      "dayChangePct": -4.5968,
+      "weekChangePct": null
+    }
+  },
+  "golf": {
+    "name": "Charles Schwab Challenge",
+    "venue": "",
+    "status": "Final",
+    "statusState": "post",
+    "leaders": [
+      {
+        "name": "Russell Henley",
+        "score": "-13",
+        "pos": "1st"
+      },
+      {
+        "name": "Eric Cole",
+        "score": "-12",
+        "pos": "2nd"
+      },
+      {
+        "name": "Ben Griffin",
+        "score": "-11",
+        "pos": "3rd"
+      },
+      {
+        "name": "Alex Smalley",
+        "score": "-11",
+        "pos": "4th"
+      },
+      {
+        "name": "Mac Meissner",
+        "score": "-11",
+        "pos": "5th"
+      },
+      {
+        "name": "Gary Woodland",
+        "score": "-10",
+        "pos": "6th"
+      },
+      {
+        "name": "Nico Echavarria",
+        "score": "-10",
+        "pos": "7th"
+      },
+      {
+        "name": "Michael Brennan",
+        "score": "-10",
+        "pos": "8th"
+      },
+      {
+        "name": "J.J. Spaun",
+        "score": "-10",
+        "pos": "9th"
+      },
+      {
+        "name": "Steven Fisk",
+        "score": "-9",
+        "pos": "10th"
+      }
+    ]
+  },
+  "f1": {
+    "name": "Monaco Grand Prix",
+    "shortName": "Monaco GP",
+    "venue": "",
+    "status": "Scheduled",
+    "statusState": "pre",
+    "results": []
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "401859963",
+      "name": "New York Knicks at San Antonio Spurs",
+      "shortName": "NY @ SA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 1",
+      "seriesNote": "Series starts 6/3",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    }
+  ],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Get Ready for Pokémon TCG: 30th Celebration - Pokemon.com",
+      "url": "https://www.pokemon.com/us/pokemon-news/get-ready-for-pokemon-tcg-30th-celebration",
+      "description": "We’re celebrating 30 years of the Pokémon Trading Card Game with an expansion featuring both classic and new cards.",
+      "source": "Pokemon.com"
+    },
+    {
+      "title": "'It was poignant, knowing that these were the last images she did': The intimate final photos of Marilyn Monroe - BBC",
+      "url": "https://www.bbc.com/culture/article/20260529-the-story-of-marilyn-monroes-intimate-last-photos",
+      "description": "On the 100th anniversary of her birth, images from the Hollywood icon's final photoshoot reveal a carefree joyfulness that's far removed from the shocking tragedy of her death.",
+      "source": "BBC News"
+    },
+    {
+      "title": "James Van Der Beek’s Ex-Wife Gets Married 3 Months After Actor Tragically Passed Away At 48 - Bored Panda",
+      "url": "https://www.boredpanda.com/james-van-der-beek-ex-wife-heather-mccomb-gets-married-3-months-after-actor-passed-away/",
+      "description": "One user commented, “Didn't he just pass? That was quick!” while another agreed, adding, “I was about to say, already? That seems awfully fast.”",
+      "source": "Boredpanda.com"
+    },
+    {
+      "title": "Jimmy Kimmel Thanks 'Pumpkin McPornhumper' Trump For His Peabody Award - Variety",
+      "url": "https://variety.com/2026/tv/news/jimmy-kimmel-peabody-winner-speech-trump-andor-1236763724/",
+      "description": "The 86th Peabody Awards, hosted by Mo Amer, saw big speechs from winners like Jimmy Kimmel, 'Andor' creator Tony Gilroy, Sterlin Harjo and more.",
+      "source": "Variety"
+    },
+    {
+      "title": "Why Liverpool want Iraola and what he could bring to Anfield - BBC",
+      "url": "https://www.bbc.com/sport/football/articles/cy823pj9v93o",
+      "description": "Why Liverpool believe Andoni Iraola is the man to re-establish the Reds as one of Europe's top clubs.",
+      "source": "BBC News"
+    },
+    {
+      "title": "2026 NCAA baseball tournament: Bracket, schedule, scores for the Men’s College World Series - NCAA.com",
+      "url": "https://www.ncaa.com/news/baseball/article/2026-06-01/2026-ncaa-baseball-tournament-bracket-schedule-scores-mens-college-world-series",
+      "description": "Here is what you need to know about the 2026 NCAA DI baseball tournament, including the bracket, scores and schedule for the Men's College World Series.",
+      "source": "NCAA.com"
+    },
+    {
+      "title": "New A.J. Brown Trade Rumors as Eagles & Patriots Haven't Spoken in Weeks, Updated Timeline and Picks - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25432621-new-aj-brown-trade-rumors-eagles-patriots-havent-spoken-weeks-updated-timeline-and-picks",
+      "description": "The Philadelphia Eagles and New England Patriots \"are expected to reconnect\" Monday regarding a trade involving star wide receiver A.J. Brown, according to ESPN's Adam Schefter.",
+      "source": "Bleacher Report"
+    },
+    {
+      "title": "With Supplemental Draft a Real Possibility for Brendan Sorsby, NFL Evaluators Weigh in on His Talent Level - Sports Illustrated",
+      "url": "https://www.si.com/nfl/supplemental-draft-brendan-sorsby-nfl-talent",
+      "description": "The Texas Tech QB is fighting for his NCAA eligibility to be reinstated, but if it isn't, NFL teams will need to bone up on the nuances of the supplemental draft.",
+      "source": "Sports Illustrated"
+    },
+    {
+      "title": "Umar Nurmagomedov booked to face 14-1 bantamweight in the UFC Abu Dhabi co-main event - Bloody Elbow",
+      "url": "https://bloodyelbow.com/2026/06/01/umar-nurmagomedov-booked-to-face-14-1-bantamweight-in-the-ufc-abu-dhabi-co-main-event/",
+      "description": "It's been announced that Umar Nurmagomedov will face David Martinez in the co-main event of UFC Abu Dhabi on July 25.",
+      "source": "Bloody Elbow"
+    }
+  ],
+  "copy": {
+    "title": "Spurs host Knicks in Finals tomorrow. Henley wins Schwab. World Cup countdown begins.",
+    "sportsAngle": "The Detroit Tigers scraped past the Tampa Bay Rays 10-9 in a one-run finish, while the Milwaukee Brewers demolished the San Francisco Giants 16-2 in a lopsided affair. The Colorado Rockies edged the Los Angeles Angels 9-8 on the road. Russell Henley won the Charles Schwab Challenge at 13-under par, continuing his strong form on the PGA Tour.\n\nThe real story arrives tomorrow night when the New York Knicks face the San Antonio Spurs in Game 1 of the NBA Finals. This is the matchup everyone waited for. The Spurs and Knicks will battle for the first time in a Finals series since 1999.\n\nThe Monaco Grand Prix is on the calendar this week, and the FIFA World Cup opens June 11 in what will be a three-week sprint to the championship. The tennis season moves into its summer phase after the French Open concludes.",
+    "marketsTake": "The S&P 500 flatlined yesterday while the Nasdaq barely moved, but the real story is Microsoft's 3.4 percent drop—a rare stumble for the AI darling that's carried this year's rally. Nvidia kept climbing despite the broader chip sector's uneven footing, while Bitcoin's 4.6 percent slide signals traders are rotating out of riskier bets.\n\nWatch the Fed's inflation data Thursday and Friday's jobs report. If those numbers come in hot, expect another leg down in megacaps like Microsoft and Apple, which have priced in a softer landing that doesn't exist yet.",
+    "golfNote": "Russell Henley won the Charles Schwab Challenge at 13-under par.",
+    "sharpTake": "Russell Henley won the Charles Schwab Challenge at 13-under, picking up his second PGA Tour victory of the season and proving that consistency—not flash—still moves the needle in golf. The field at Colonial was predictable and stacked, yet Henley's name isn't one that moves markets or social feeds, which is exactly the point: he's doing the work nobody glamorizes anymore. In a sport obsessed with distance and youth, a 32-year-old grinding out back-to-back tour wins reminds you that the guys who show up every week still own the leaderboard.\n\nThe NBA Finals tip off tomorrow night in San Antonio with the Knicks traveling to face the Spurs, and this matchup is a referendum on whether New York's older roster can survive a grind series against a well-coached, efficient team. The Spurs have already sent the Celtics and Nuggets home, so the Knicks aren't walking into a trap—they're walking into the hardest Finals matchup they could've drawn. Your move: if you're a Knicks fan, don't watch game recaps until tipoff tomorrow; if you're anything else, clear your evening for 8:30 ET and watch a Finals series that will actually test pace and spacing.",
+    "sportsDetail": {
+      "keyNumber": "Tigers won a one-run game in Tampa, improving their recent road record against AL East competition.",
+      "seriesSituation": "Series tied. Next matchup scheduled for tomorrow night at Tropicana Field as the teams continue their series.",
+      "howToWatch": "Detroit Tigers at Tampa Bay Rays · Wednesday, June 3 · Tropicana Field · Time TBD · Regional broadcast",
+      "groupChatAngle": "Close games like this expose which team's bullpen stays sharper in June heat. Tigers stole this one late—watch if that holds up when both pens are fully stretched tomorrow."
+    },
+    "marketsDetail": {
+      "headline": "Tech stumbles as Microsoft drops 3.4 percent today",
+      "secondPara": "Job report Friday will tell us whether the Fed keeps rates steady or pivots.",
+      "watchNextWeek": "Wednesday's ISM manufacturing print could signal whether corporate spending holds up.",
+      "tradeToWatch": "MSFT -3.4% is the real story. Cloud margin pressure and AI spending uncertainty are spooking institutional money.",
+      "bringUp": "Bitcoin dropped 4.6 percent overnight. Still up 180 percent year-to-date, but volatility this sharp means liquidations are real."
+    },
+    "golfDetail": {
+      "whyItMatters": "Henley's second win of the season puts him in the FedEx Cup conversation and signals he's peaking at exactly the right time before majors.",
+      "recap": "Henley finished at -13 to hold off Eric Cole at -12, with three players bunched at -11 behind them. The Charles Schwab Challenge came down to Henley's consistency over 72 holes at Sherwood.",
+      "bringUp": "Henley had three top-10 finishes at this event before winning it—he knew the course, knew what it demanded, and finally closed it out.",
+      "groupChatAngle": "Cole played himself into contention all week and nearly stole it. That's the guy who's going to surprise you at a major in the next month."
+    },
+    "culture": [
+      {
+        "head": "A.J. Brown trade rumors heat up as Eagles and Patriots go silent",
+        "source": "Bleacher Report · NFL",
+        "body": "The Eagles and Patriots haven't spoken in weeks despite speculation that Brown could land in New England, according to league sources tracking the situation. Brown is still under contract in Philadelphia, but the radio silence suggests either a deal framework exists that doesn't require constant dialogue, or New England has moved on to other targets. The correct take: don't believe the trade happens until you see the official announcement. Until then, this is noise designed to fill the offseason void."
+      },
+      {
+        "head": "Brendan Sorsby headed for supplemental draft after standout college season",
+        "source": "Sports Illustrated · NFL Draft",
+        "body": "The quarterback has NFL evaluators convinced on his talent level, and the supplemental draft looms as a real possibility to land him. Sorsby proved this spring he can compete at the highest college level, which means teams see him as a legitimate investment rather than a developmental flyer. This matters because supplemental picks are rare, and the fact that scouts are already discussing one tells you Sorsby's stock moved dramatically in one season."
+      },
+      {
+        "head": "Watch this: In the Grey",
+        "source": "Prime Video · Action Thriller",
+        "body": "Henry Cavill and Jake Gyllenhaal team up for Guy Ritchie's latest heist thriller, which hit the platform today. Ritchie directs his signature style onto a story built for guys who appreciate smart cons and clean execution. Two hours of a film that understands what made his early work legendary."
+      }
+    ],
+    "numbersContext": [
+      {
+        "context": "The Tigers just took down Tampa Bay 9–10 in a road win that matters because Detroit's still hunting a playoff spot and every series win in early June shifts the AL Central math. That's a steal on the road against a team that's been competitive."
+      },
+      {
+        "context": "The S&P 500 is flat today—no movement—which means the market is waiting for something. Rates, earnings revisions, Fed signals: nothing's moved the needle yet, so your portfolio isn't getting hammered or helped."
+      },
+      {
+        "context": "Russell Henley is thirteen under at the Charles Schwab Challenge and leading the field going into the back nine. That's a legitimate scoring tear on a course that doesn't typically play that soft, so he's playing genuine golf right now."
+      },
+      {
+        "context": "Game 1 of the NBA Finals tips tonight with New York heading to San Antonio. This is the championship series—everything from here matters, and the first game tells you whether the Spurs' system can execute under Finals pressure or whether the Knicks have what it takes to break their drought."
+      }
+    ],
+    "sportsAdditional": [
+      "Milwaukee dismantled San Francisco 16–2 in a game that stopped being competitive around the third inning. The Brewers' offense was relentless; the Giants' pitching was not.",
+      "Colorado edged Los Angeles 9–8 in a one-run thriller that came down to the final at-bats. The Rockies found a way to survive on the road."
+    ],
+    "f1Detail": {
+      "headline": "Monaco tests nerve and machinery in tight streets.",
+      "angle": "The Circuit de Monaco eliminates margin for error—one mistake ends your race in the barriers. This is where raw skill and car control matter more than horsepower, making it unpredictable compared to power circuits where the fastest car usually wins.",
+      "bringUp": "Monaco qualifies on Saturday, not Friday, and the session often determines the race outcome since overtaking here is nearly impossible. A tenth of a second in qualifying can mean the difference between pole and fifth place.",
+      "championship": "I cannot provide the 2026 F1 Drivers Championship standings without explicit data showing current points and leader name.",
+      "pick": "Back whoever qualifies on pole—at Monaco, track position from Saturday is 90 percent of the battle."
+    }
+  }
+}
