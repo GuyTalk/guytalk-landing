@@ -222,8 +222,8 @@ Lead with the most interesting story, not necessarily the biggest number. Find t
     golf?.leaders?.[0]
       ? ask(
           golf.statusState === 'post'
-            ? `One sentence, max 20 words, about ${golf.leaders[0].name} winning ${golf.name} at ${golf.leaders[0].score}. Past tense. Direct — make it feel significant, not just a recap. Plain text — no markdown.`
-            : `One sentence, max 20 words, about ${golf.leaders[0].name} leading ${golf.name} at ${golf.leaders[0].score}. Present tense, forward-looking energy. Plain text — no markdown.`,
+            ? `CONFIRMED DATA from live ESPN feed: ${golf.leaders[0].name} won ${golf.name} at ${golf.leaders[0].score}. Write exactly one sentence (max 20 words) about this. Past tense. Make it feel significant. Plain text only — no markdown, no refusals.`
+            : `CONFIRMED DATA from live ESPN feed: ${golf.leaders[0].name} leads ${golf.name} at ${golf.leaders[0].score}. Write exactly one sentence (max 20 words) about this. Present tense, forward-looking energy. Plain text only — no markdown, no refusals.`,
           60
         )
       : golf?.name
@@ -320,21 +320,26 @@ Return ONLY valid JSON, no markdown, no code fences:
     // 9. Culture (JSON array)
     ask(
       `GuyTalk culture section. Write 3 items for men 25–45. Today is ${TODAY}.
-Return ONLY a valid JSON array, no markdown, no code fences, exactly 3 objects:
-[
-  {"head": "Specific headline — name the real person/company/moment. No generic labels.", "source": "Platform · Source", "body": "3–4 sentences. Lead with the specific thing that happened — no windup. Give the real take: what it means for the people involved, why anyone should care, and one line the reader drops in conversation tonight. Vary your sentence length. The last sentence should land."},
-  {"head": "Specific headline", "source": "Platform · Source", "body": "Same style — lead with the thing, give the take, end with something repeatable."},
-  {"head": "Watch this: [exact real title]", "source": "Netflix/HBO/Theater · Genre", "body": "Two sentences. First: what it is and who made it. Second: the one thing that makes it worth the time — be specific (the performance, the twist, the scene everyone's talking about). Don't oversell. Don't say 'a must-watch' or 'gripping'."}
-]
 
-Item 3: MUST be a specific, currently available title in theaters or streaming as of ${TODAY}. Guy-oriented (action, thriller, heist, sports doc, war, crime, sci-fi, prestige drama). Absolutely no rom-coms or kids films.
+CRITICAL RULE: Each object in the array MUST have its "head", "source", and "body" all about the SAME story. Do NOT split a story across objects. Write each object completely before moving to the next.
 
-Items 1–2:
-- Prioritize stories from the Trending data below if they're real and specific
-- If no trending data: cover real news that's top of mind for men 25-45 in June 2026 — tech, business, celebrity, sports business, gear, health
-- NEVER invent trade rumors, coaching hires, or contract news that isn't in the data
-- A story that's actually true and slightly surprising beats a sports rumor you invented
-- Each item should feel like different territory — don't do two sports business stories
+Return ONLY a valid JSON array, no markdown, no code fences, exactly 3 objects. Write them in this order — complete each one fully before starting the next:
+
+ITEM 1: Pick the first story from the trending data. Write "head" (headline), then "source" (platform · outlet), then "body" (3–4 sentences about THAT SAME story — lead with the specific thing that happened, give the take, end with one line to drop in conversation tonight).
+
+ITEM 2: Pick the second story from the trending data (different territory from item 1). Write "head", "source", "body" — all three about THAT SAME story.
+
+ITEM 3 (streaming/theater pick) — STRICT RULES:
+- "head" must be "Watch this: [exact title]"
+- "source" must be the streaming service or theater
+- "body" must be about THAT SAME title — two sentences max: what it is and the ONE thing that makes it worth the time
+- BANNED: animated, kids, family, rom-com, musical, Disney/Pixar/DreamWorks titles
+- ALLOWED: action, thriller, heist, sports doc, war, crime, sci-fi, prestige drama
+- Good examples: Sinners, The Accountant 2, Zero Day, The Brutalist, The Day of the Jackal, Black Bag
+
+Items 1–2 rules:
+- Only use stories confirmed in the Trending data below — never invent trades, hirings, or contracts
+- Each item should be different territory (don't do two sports business stories)
 Trending: ${trendText || 'No trending data — use your best knowledge of June 2026 current events.'}`,
       900
     ),
