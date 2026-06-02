@@ -33,6 +33,22 @@ HALLUCINATION RULES (non-negotiable — violations create misinformation):
 - Timing: today is ${TODAY}. Past events are past. Future events are future. Never describe scheduled events as if they happened.
 - If only team-level data is available, describe the team result. Do not name individual players or invent stats.
 
+BANNED WORDS AND PHRASES (never use these — they're AI tells):
+- "pivotal", "groundbreaking", "game-changer", "seismic", "monumental", "historic" (unless genuinely historic)
+- "at the end of the day", "it's worth noting", "to be clear", "make no mistake"
+- "delve", "leverage" (as a verb), "nuanced", "ecosystem" (for companies), "narrative"
+- Never start a sentence with "Ultimately," "Interestingly," "Notably," or "It's important to note"
+- Never use "speaks to" (as in "this speaks to the larger issue")
+- No passive voice: "was won by" → "won it"
+- No weak openers: "There is...", "It is...", "This was..."
+
+GOOD OPENERS (rotate these, or invent similar):
+- Start mid-action: "Wemby finished with 28." not "In a game that saw..."
+- Challenge assumptions: "Here's what everyone is getting wrong about this."
+- Give the number first: "16-2. That's how badly Milwaukee hit."
+- Name the feeling: "Every Knicks fan over 30 just exhaled."
+- Time reference: "First time since 1999."
+
 FORMAT (non-negotiable — violations break the layout):
 - Plain prose ONLY. Zero markdown. No # headers, no ** bold, no * italic, no - bullets, no --- dividers.
 - Never open with a section label like "Sports:" or "Markets:".
@@ -306,20 +322,20 @@ Return ONLY valid JSON, no markdown, no code fences:
       `GuyTalk culture section. Write 3 items for men 25–45. Today is ${TODAY}.
 Return ONLY a valid JSON array, no markdown, no code fences, exactly 3 objects:
 [
-  {"head": "Specific headline — name the real person/company/moment", "source": "Platform · Source", "body": "3–4 sentences. What happened. Why it matters. The correct take — not 'both sides.' End with one line the reader drops in conversation tonight."},
-  {"head": "Specific headline", "source": "Platform · Source", "body": "Same format."},
-  {"head": "Watch this: [real title]", "source": "Streaming service or Theater · Genre", "body": "What it is, who made it, who it's for. One sentence on why it earns two hours without overselling it."}
+  {"head": "Specific headline — name the real person/company/moment. No generic labels.", "source": "Platform · Source", "body": "3–4 sentences. Lead with the specific thing that happened — no windup. Give the real take: what it means for the people involved, why anyone should care, and one line the reader drops in conversation tonight. Vary your sentence length. The last sentence should land."},
+  {"head": "Specific headline", "source": "Platform · Source", "body": "Same style — lead with the thing, give the take, end with something repeatable."},
+  {"head": "Watch this: [exact real title]", "source": "Netflix/HBO/Theater · Genre", "body": "Two sentences. First: what it is and who made it. Second: the one thing that makes it worth the time — be specific (the performance, the twist, the scene everyone's talking about). Don't oversell. Don't say 'a must-watch' or 'gripping'."}
 ]
 
-Item 3: MUST be a real, currently available movie or show (in theaters or streaming as of ${TODAY}) — guy-oriented: action, thriller, heist, sports doc, war, crime, sci-fi. No rom-coms or animated kids films.
+Item 3: MUST be a specific, currently available title in theaters or streaming as of ${TODAY}. Guy-oriented (action, thriller, heist, sports doc, war, crime, sci-fi, prestige drama). Absolutely no rom-coms or kids films.
 
-Items 1–2: STRICT RULES:
-- Use stories from the Trending data provided below IF available. Prioritize those.
-- If trending data is thin, cover real tech/business/culture news from ${TODAY} — things like a major CEO decision, a product launch, a sports business story.
-- DO NOT invent sports trade rumors, coaching hires, or contract news that aren't in the trending data. These change daily and you will get them wrong.
-- DO NOT reference events from 2024 as if they're current news. Always ground to today's date: ${TODAY}.
-- A story about money, gear, food, travel, or men's health is better than a hallucinated sports rumor.
-Trending: ${trendText || 'No trending data — use real current events from your knowledge for June 2026.'}`,
+Items 1–2:
+- Prioritize stories from the Trending data below if they're real and specific
+- If no trending data: cover real news that's top of mind for men 25-45 in June 2026 — tech, business, celebrity, sports business, gear, health
+- NEVER invent trade rumors, coaching hires, or contract news that isn't in the data
+- A story that's actually true and slightly surprising beats a sports rumor you invented
+- Each item should feel like different territory — don't do two sports business stories
+Trending: ${trendText || 'No trending data — use your best knowledge of June 2026 current events.'}`,
       900
     ),
 
