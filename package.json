@@ -8,6 +8,8 @@
     "brief:review": "node scripts/generate-brief.js --open",
     "brief:regen": "node scripts/generate-brief.js --regen",
     "brief:regen:copy": "node scripts/generate-brief.js --regen --copy",
+    "brief:qa": "node scripts/qa-brief.js",
+    "brief:ship": "node scripts/generate-brief.js && node scripts/qa-brief.js",
     "send": "node scripts/send-brief.js",
     "send:dry": "node scripts/send-brief.js --dry-run",
     "social:queue": "node scripts/queue-social-posts.js",
