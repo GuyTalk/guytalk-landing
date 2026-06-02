@@ -421,12 +421,12 @@ function buildUpcomingGameCard(game) {
 function buildMarkets({ markets, copy, date }) {
   const md = copy?.marketsDetail || {};
 
-  const headline    = md.headline    || 'Markets wrap.';
-  const openingPara = copy?.marketsTake || 'Market data below.';
-  const secondPara  = md.secondPara  || 'Watch for key economic data next week.';
-  const watchNext   = md.watchNextWeek || 'Monitor upcoming Fed commentary and economic releases.';
-  const tradeWatch  = md.tradeToWatch  || 'Check earnings calendars for standouts next week.';
-  const bringUp     = md.bringUp       || `SPY closed at ${markets?.SPY?.price ? fmtPrice('SPY', markets.SPY.price) : 'N/A'}.`;
+  const headline      = md.headline       || 'Markets wrap.';
+  const openingPara   = copy?.marketsTake  || 'Market data below.';
+  const secondPara    = md.secondPara     || 'Watch for key economic data next week.';
+  const stockSpot     = md.stockSpotlight || md.tradeToWatch || '';
+  const watchNext     = md.watchNextWeek  || 'Monitor upcoming Fed commentary and economic releases.';
+  const bringUp       = md.bringUp        || `SPY closed at ${markets?.SPY?.price ? fmtPrice('SPY', markets.SPY.price) : 'N/A'}.`;
 
   const rows = BRIEF_ROWS.map(row => {
     if (row.type === 'divider') return '        <div class="mkt-div"></div>';
@@ -481,8 +481,8 @@ ${rows}
     </div>
 
     <ul class="detail-list">
+      ${stockSpot ? `<li><span><span class="dl-label">Stock spotlight:</span>${esc(stockSpot)}</span></li>` : ''}
       <li><span><span class="dl-label">Watch next week:</span>${esc(watchNext)}</span></li>
-      <li><span><span class="dl-label">Trade to watch:</span>${esc(tradeWatch)}</span></li>
       <li><span><span class="dl-label">What to bring up:</span>${esc(bringUp)}</span></li>
     </ul>
   </section>`;
@@ -594,24 +594,30 @@ function buildRec({ num }) {
 // Sharp Take
 // ─────────────────────────────────────────────────────────────────────────────
 function buildSharpTake({ copy }) {
-  const content = copy?.sharpTake
-    ? copy.sharpTake
-        // Strip markdown artifacts
-        .replace(/^#+\s.*$/gm, '')
-        .replace(/^---+$/gm, '')
-        .replace(/\*\*(.*?)\*\*/g, '$1')
-        .replace(/^- /gm, '')
-        .trim()
-        .split(/\n{2,}/)
-        .map(p => p.trim())
-        .filter(Boolean)
-        .map(p => `    <p>${esc(p)}</p>`)
-        .join('\n')
-    : `    <p>The week had its moments. Check back tomorrow.</p>`;
+  const st = copy?.sharpTake;
+  let parasHtml = `    <p>The week had its moments. Check back tomorrow.</p>`;
+  let bulletsHtml = '';
+
+  if (st && typeof st === 'object') {
+    const paras = [st.p1, st.p2].filter(Boolean).map(p => `    <p>${esc(p)}</p>`).join('\n');
+    parasHtml = paras || parasHtml;
+    if (Array.isArray(st.bullets) && st.bullets.length) {
+      bulletsHtml = `
+    <ul class="sharp-bullets">
+${st.bullets.map(b => `      <li>${esc(b)}</li>`).join('\n')}
+    </ul>`;
+    }
+  } else if (typeof st === 'string' && st) {
+    parasHtml = st
+      .replace(/^#+\s.*$/gm, '').replace(/^---+$/gm, '')
+      .replace(/\*\*(.*?)\*\*/g, '$1').replace(/^- /gm, '')
+      .trim().split(/\n{2,}/).map(p => p.trim()).filter(Boolean)
+      .map(p => `    <p>${esc(p)}</p>`).join('\n');
+  }
 
   return `  <div class="sharp-take">
     <div class="sharp-take-label">The Sharp Take</div>
-${content}
+${parasHtml}${bulletsHtml}
   </div>`;
 }
 
@@ -683,8 +689,14 @@ function buildF1Block({ f1, copy }) {
     const preBringUp = fd.bringUp || '';
     const preChamp = fd.championship || '';
     const prePick = fd.pick || '';
+    const monacoImg = f1.name?.toLowerCase().includes('monaco')
+      ? `    <div class="brief-img">
+      <img src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1280,q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Monaco.jpg" alt="Monaco Grand Prix" loading="lazy" onerror="this.closest('.brief-img').remove()">
+      <div class="brief-img-cap">Monaco Grand Prix · Circuit de Monaco · Race day Sunday</div>
+    </div>` : '';
     return `  <section class="brief-section" id="f1">
     <div class="section-label sl-sports">Formula 1</div>
+${monacoImg}
     <h3>${esc(preHeadline)}</h3>
     ${renderParas(preAngle, '')}
     <ul class="detail-list">

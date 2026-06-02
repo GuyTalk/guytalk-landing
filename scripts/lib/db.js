@@ -81,7 +81,7 @@ const TICKERS = {
   'META': { name: 'Meta',      finnhub: 'META',             ms: 'stocks/xnas/meta/quote',     display: 'META' },
   'AMZN': { name: 'Amazon',    finnhub: 'AMZN',             ms: 'stocks/xnas/amzn/quote',     display: 'AMZN' },
   'BTC':  { name: 'Bitcoin',   finnhub: 'BINANCE:BTCUSDT',  ms: 'funds/xnas/gbtc/quote',      display: 'Bitcoin' },
-  '10Y':  { name: '10Y Yield', finnhub: null,               ms: null,                         display: '10Y Yield' },
+  'DELL': { name: 'Dell',      finnhub: 'DELL',             ms: 'stocks/xnys/dell/quote',     display: 'DELL' },
 };
 
 // Which tickers appear in the brief table, in order, with dividers
@@ -91,13 +91,14 @@ const BRIEF_ROWS = [
   { type: 'divider' },
   { type: 'ticker', key: 'NVDA' },
   { type: 'ticker', key: 'TSLA' },
+  { type: 'ticker', key: 'MSFT' },
   { type: 'divider' },
   { type: 'ticker', key: 'BTC' },
-  { type: 'ticker', key: '10Y' },
+  { type: 'ticker', key: 'DELL' },
 ];
 
 // Which tickers to fetch from Finnhub
-const FETCH_TICKERS = ['SPY', 'QQQ', 'NVDA', 'TSLA', 'MSFT', 'AAPL', 'BTC'];
+const FETCH_TICKERS = ['SPY', 'QQQ', 'NVDA', 'TSLA', 'MSFT', 'AAPL', 'BTC', 'DELL'];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helper: HTML-escape a string

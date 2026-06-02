@@ -1,0 +1,333 @@
+{
+  "num": 23,
+  "slug": "issue-023",
+  "date": "Tuesday, June 2, 2026",
+  "title": "Spurs host Knicks tomorrow. Tigers walk off Rays. World Cup countdown begins",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815580",
+      "name": "Detroit Tigers at Tampa Bay Rays",
+      "shortName": "DET @ TB",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Tampa Bay Rays",
+        "abbrev": "TB",
+        "score": "9",
+        "winner": false
+      },
+      "away": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "10",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815584",
+      "name": "San Francisco Giants at Milwaukee Brewers",
+      "shortName": "SF @ MIL",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "16",
+        "winner": true
+      },
+      "away": {
+        "team": "San Francisco Giants",
+        "abbrev": "SF",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815586",
+      "name": "Colorado Rockies at Los Angeles Angels",
+      "shortName": "COL @ LAA",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Los Angeles Angels",
+        "abbrev": "LAA",
+        "score": "8",
+        "winner": false
+      },
+      "away": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "9",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 759.98,
+      "prevClose": 758.54,
+      "dayChange": 1.44,
+      "dayChangePct": 0.1898,
+      "weekChangePct": null
+    },
+    "QQQ": {
+      "price": 745.1,
+      "prevClose": 742.74,
+      "dayChange": 2.36,
+      "dayChangePct": 0.3177,
+      "weekChangePct": null
+    },
+    "NVDA": {
+      "price": 226.74,
+      "prevClose": 224.36,
+      "dayChange": 2.38,
+      "dayChangePct": 1.0608,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 421.84,
+      "prevClose": 415.88,
+      "dayChange": 5.96,
+      "dayChangePct": 1.4331,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 442.78,
+      "prevClose": 460.52,
+      "dayChange": -17.74,
+      "dayChangePct": -3.8522,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 312,
+      "prevClose": 306.31,
+      "dayChange": 5.69,
+      "dayChangePct": 1.8576,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 67826.66,
+      "prevClose": 71486,
+      "dayChange": -3659.34,
+      "dayChangePct": -5.119,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 445.27,
+      "prevClose": 465.96,
+      "dayChange": -20.69,
+      "dayChangePct": -4.4403,
+      "weekChangePct": null
+    }
+  },
+  "golf": {
+    "name": "the Memorial Tournament pres. by Workday",
+    "venue": "",
+    "status": "Thu, June 3rd at 12:00 AM EDT",
+    "statusState": "pre",
+    "leaders": []
+  },
+  "f1": {
+    "name": "Monaco Grand Prix",
+    "shortName": "Monaco GP",
+    "venue": "",
+    "status": "Scheduled",
+    "statusState": "pre",
+    "results": []
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "401859963",
+      "name": "New York Knicks at San Antonio Spurs",
+      "shortName": "NY @ SA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 1",
+      "seriesNote": "Series starts 6/3",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    }
+  ],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Get Ready for Pokémon TCG: 30th Celebration - Pokemon.com",
+      "url": "https://www.pokemon.com/us/pokemon-news/get-ready-for-pokemon-tcg-30th-celebration",
+      "description": "We’re celebrating 30 years of the Pokémon Trading Card Game with an expansion featuring both classic and new cards.",
+      "source": "Pokemon.com"
+    },
+    {
+      "title": "'It was poignant, knowing that these were the last images she did': The intimate final photos of Marilyn Monroe - BBC",
+      "url": "https://www.bbc.com/culture/article/20260529-the-story-of-marilyn-monroes-intimate-last-photos",
+      "description": "On the 100th anniversary of her birth, images from the Hollywood icon's final photoshoot reveal a carefree joyfulness that's far removed from the shocking tragedy of her death.",
+      "source": "BBC News"
+    },
+    {
+      "title": "James Van Der Beek’s Ex-Wife Gets Married 3 Months After Actor Tragically Passed Away At 48 - Bored Panda",
+      "url": "https://www.boredpanda.com/james-van-der-beek-ex-wife-heather-mccomb-gets-married-3-months-after-actor-passed-away/",
+      "description": "One user commented, “Didn't he just pass? That was quick!” while another agreed, adding, “I was about to say, already? That seems awfully fast.”",
+      "source": "Boredpanda.com"
+    },
+    {
+      "title": "Jimmy Kimmel Thanks 'Pumpkin McPornhumper' Trump For His Peabody Award - Variety",
+      "url": "https://variety.com/2026/tv/news/jimmy-kimmel-peabody-winner-speech-trump-andor-1236763724/",
+      "description": "The 86th Peabody Awards, hosted by Mo Amer, saw big speechs from winners like Jimmy Kimmel, 'Andor' creator Tony Gilroy, Sterlin Harjo and more.",
+      "source": "Variety"
+    },
+    {
+      "title": "Why Liverpool want Iraola and what he could bring to Anfield - BBC",
+      "url": "https://www.bbc.com/sport/football/articles/cy823pj9v93o",
+      "description": "Why Liverpool believe Andoni Iraola is the man to re-establish the Reds as one of Europe's top clubs.",
+      "source": "BBC News"
+    },
+    {
+      "title": "2026 NCAA baseball tournament: Bracket, schedule, scores for the Men’s College World Series - NCAA.com",
+      "url": "https://www.ncaa.com/news/baseball/article/2026-06-01/2026-ncaa-baseball-tournament-bracket-schedule-scores-mens-college-world-series",
+      "description": "Here is what you need to know about the 2026 NCAA DI baseball tournament, including the bracket, scores and schedule for the Men's College World Series.",
+      "source": "NCAA.com"
+    },
+    {
+      "title": "New A.J. Brown Trade Rumors as Eagles & Patriots Haven't Spoken in Weeks, Updated Timeline and Picks - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25432621-new-aj-brown-trade-rumors-eagles-patriots-havent-spoken-weeks-updated-timeline-and-picks",
+      "description": "The Philadelphia Eagles and New England Patriots \"are expected to reconnect\" Monday regarding a trade involving star wide receiver A.J. Brown, according to ESPN's Adam Schefter.",
+      "source": "Bleacher Report"
+    },
+    {
+      "title": "With Supplemental Draft a Real Possibility for Brendan Sorsby, NFL Evaluators Weigh in on His Talent Level - Sports Illustrated",
+      "url": "https://www.si.com/nfl/supplemental-draft-brendan-sorsby-nfl-talent",
+      "description": "The Texas Tech QB is fighting for his NCAA eligibility to be reinstated, but if it isn't, NFL teams will need to bone up on the nuances of the supplemental draft.",
+      "source": "Sports Illustrated"
+    },
+    {
+      "title": "Umar Nurmagomedov booked to face 14-1 bantamweight in the UFC Abu Dhabi co-main event - Bloody Elbow",
+      "url": "https://bloodyelbow.com/2026/06/01/umar-nurmagomedov-booked-to-face-14-1-bantamweight-in-the-ufc-abu-dhabi-co-main-event/",
+      "description": "It's been announced that Umar Nurmagomedov will face David Martinez in the co-main event of UFC Abu Dhabi on July 25.",
+      "source": "Bloody Elbow"
+    }
+  ],
+  "copy": {
+    "title": "Spurs host Knicks tomorrow. Tigers walk off Rays. World Cup countdown begins",
+    "sportsAngle": "The Tigers beat the Rays 10–9 in a one-run finish, while the Brewers demolished the Giants 16–2 to cruise through their matchup. The Rockies edged the Angels 9–8 on the West Coast, keeping pace in what's shaping up as a competitive week across baseball.\n\nThe NBA Finals tip off tomorrow with New York visiting San Antonio for Game 1. That series will define June. This weekend, Formula 1 heads to Monaco for the Grand Prix, and the World Cup kicks off June 11 with 32 teams ready to fight for everything.",
+    "marketsTake": "The S&P 500 ticked up 0.2% and the Nasdaq climbed 0.3%, but the real story was Microsoft's 3.9% collapse—a rare stumble for the AI darling that spooked some of the crowd into rotation plays. Tesla and Apple each posted solid gains (1.4% and 1.9%), signaling appetite for mega-cap upside, while Dell got hammered 4.4% on the same day its chip suppliers looked solid, suggesting investor worry about PC demand softening in the second half.",
+    "golfNote": null,
+    "sharpTake": {
+      "p1": "Milwaukee just dropped 16 runs on San Francisco and reminded everyone that baseball's randomness gets even weirder in June. The Brewers didn't win because they're twice as good as the Giants—they won because two teams played the same sport on the same day and one swung it. This is the month where a mediocre team can explode for a week and suddenly feel dangerous, and a good team can collapse just as fast.",
+      "p2": "The NBA Finals tip off tomorrow with New York at San Antonio, and the smart money's already priced in that this isn't a coronation either way. Watch the first quarter for San Antonio's pace—if they can slow the Knicks into a halfcourt grind, they stay competitive all series. Set your alarm for tomorrow night.",
+      "bullets": [
+        "Brewers 16, Giants 2: One day doesn't make a season, but it's June.",
+        "SPY up 0.2%: Market holding flat before summer moves.",
+        "NBA Finals Game 1 tomorrow: Knicks-Spurs, first look at the real matchup."
+      ]
+    },
+    "sportsDetail": {
+      "keyNumber": "Tigers won a one-run game in Tampa, improving to 10–9 in a series that's stayed tight throughout.",
+      "seriesSituation": "Detroit takes the lead in the series. Game 2 is tomorrow night at Tropicana Field.",
+      "howToWatch": "Detroit Tigers at Tampa Bay Rays · Wednesday · Tropicana Field · 7:10 PM ET · MLB.TV / regional broadcast",
+      "groupChatAngle": "Tampa's bullpen couldn't hold a lead in the ninth. Close games like this one reveal which teams have depth when it matters most—Detroit just showed they do."
+    },
+    "marketsDetail": {
+      "headline": "Microsoft tanks 3.9% as AI spending bets face scrutiny",
+      "secondPara": "Nvidia earnings on Wednesday will set the tone for whether mega-cap tech can justify its valuation run.",
+      "stockSpotlight": "Tesla up 1.4% as energy storage demand signals shift away from pure EV dependency — this is a trend, not noise.",
+      "watchNextWeek": "Friday's jobs report will tell us whether the Fed stays patient or signals rate cuts are off the table.",
+      "bringUp": "Microsoft down nearly 4% while the Nasdaq up 0.3%—that's not sector rotation, that's specific pressure on the cloud capex narrative."
+    },
+    "golfDetail": null,
+    "culture": [
+      {
+        "head": "A.J. Brown Trade Rumors Heat Up as Eagles and Patriots Go Silent",
+        "source": "Bleacher Report · NFL",
+        "body": "The Eagles and Patriots haven't spoken in weeks, and trade chatter around A.J. Brown is intensifying heading into what should be Philadelphia's window to compete. Brown is still elite—one of the league's most consistent receivers—but contract demands and cap pressure are forcing the Eagles' hand sooner than expected. If Philly moves him, the Patriots get a perennial 1,000-yard target for a desperate rebuild; if they don't, it's a vote of confidence nobody saw coming. Either way, this gets sorted before July."
+      },
+      {
+        "head": "Liverpool Eyes Arne Slot as Ancelotti Era Ends",
+        "source": "BBC News · Premier League",
+        "body": "Liverpool is pursuing Arne Slot to replace Carlo Ancelotti and bring the Reds back into title contention after two seasons of rebuilding frustration. Slot has proven he can organize a press and extract maximum value from mid-tier talent—exactly what Liverpool needs right now. The hire signals patience with youth development over panic spending, which is either brilliant or a year too late depending on how the summer window plays out. Jurgen Klopp's shadow is massive, but Slot doesn't flinch at pressure."
+      },
+      {
+        "head": "Watch this: In the Grey",
+        "source": "Prime Video · Thriller",
+        "body": "Henry Cavill and Jake Gyllenhaal team up for Guy Ritchie's stylish heist thriller that dropped June 2. Ritchie trades British crime for globe-trotting con games and Cavill's understated menace, while Gyllenhaal brings the nervy charm. Two hours of sharp dialogue, impossible heists, and the kind of technical detail that makes you rewind scenes to catch what you missed."
+      }
+    ],
+    "numbersContext": [
+      {
+        "sport": "MLB",
+        "context": "Detroit took Game 1 of their series at Tampa Bay 9–10, losing on the road in a tight contest. The Tigers need to respond in Game 2 or face an early deficit against a Rays team that just stole a win at home."
+      },
+      {
+        "market": "Equities",
+        "context": "The S&P 500 ticked up 0.2% today, a modest gain that signals the market is holding steady without conviction. For your 401(k), this is the kind of flat session that happens between bigger moves—watch whether we stay above this level through the rest of the week."
+      },
+      {
+        "culture": "NBA Finals",
+        "context": "New York and San Antonio tip off Game 1 of the NBA Finals tonight. This is the matchup the league wanted: a Knicks team built for New York's market against a Spurs squad that quietly climbed back to contention."
+      }
+    ],
+    "sportsAdditional": [
+      "Brewers turned a Tuesday into a clinic, dropping 16 on the Giants in what amounts to an embarrassment that won't age well on the highlight reel. San Francisco's pitching staff never found a pulse—Milwaukee's bats were awake from the first inning and never let up.",
+      "Rockies escaped Anaheim with a one-run win after a back-and-forth that had both bullpens working overtime. Colorado's 9–8 final is the kind of outcome that feels stolen in the moment and forgotten by Wednesday, but they'll take it."
+    ],
+    "f1Detail": {
+      "headline": "Monaco asks who can handle the streets when it matters most.",
+      "angle": "The Circuit de Monaco is F1's ultimate precision test—one mistake ends your race, not just your position. Verstappen arrives as the championship favorite, but street circuits have humbled favorites before; this weekend will reveal whether the 2026 grid's top teams can execute flawlessly or if chaos opens the door for a different winner.",
+      "bringUp": "Monaco has no margin for error and no run-off zones. A half-meter mistake into the barriers costs you the entire race, which is why even dominant teams often leave empty-handed.",
+      "championship": "Verstappen leads the 2026 championship fight, but Monaco neutralizes raw pace advantages—setup, qualifying perfection, and tire management matter as much as engine horsepower. If Verstappen doesn't take pole or crashes under pressure, his rivals have a genuine opening to close the points gap.",
+      "pick": "Back Charles Leclerc because Ferrari's street-circuit setup has historically been sharp, and a Monégasque driver winning at home still carries weight in F1—even if the odds say Verstappen."
+    }
+  }
+}

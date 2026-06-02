@@ -192,7 +192,7 @@ Do NOT invent game results or stats that haven't happened yet.`,
       ? ask(
           `Write 2 sentences opening the Markets section. Plain prose only — no markdown, no headers.
 Data: ${mktText}
-What's the main story? What's the one thing to watch next week?`,
+Lead with the biggest move or most notable story. Name a specific stock or macro theme. Give the WHY, not just the number. Sharp and direct — Barron's voice, not Bloomberg vague.`,
           180
         )
       : Promise.resolve(null),
@@ -207,18 +207,21 @@ What's the main story? What's the one thing to watch next week?`,
         )
       : Promise.resolve(null),
 
-    // 5. Sharp Take (closing)
+    // 5. Sharp Take (closing) — JSON with prose + key bullets
     ask(
-      `Write the "Sharp Take" — EXACTLY TWO paragraphs. That means TWO paragraph breaks and no more. Plain prose ONLY — no markdown.
+      `Write the "Sharp Take" for today's GuyTalk brief.
+Return ONLY valid JSON, no markdown, no code fences:
+{
+  "p1": "EXACTLY 3-4 sentences. Pick the ONE biggest story and give the non-obvious take. A point of view, not a score recap. Something the reader thinks 'exactly' when they read it. Be specific to what happened today.",
+  "p2": "EXACTLY 2-3 sentences. Connect today to a real insight the reader can use. End with ONE punchy action line specific to today — example energy: 'Clear your Saturday. Monaco doesn't get better on replay.' No generic advice.",
+  "bullets": ["Key takeaway 1 in 12 words or less", "Key takeaway 2 in 12 words or less", "Key takeaway 3 in 12 words or less"]
+}
 
-Paragraph 1 (3-4 sentences): Pick the ONE biggest story today and give the non-obvious take on it. Not a score recap — a point of view. Something the reader thinks "exactly" when they read it. Be specific to what actually happened today.
-
-Paragraph 2 (2-3 sentences): Connect something from today — sports, markets, culture — to a real insight the reader can use. End with ONE punchy action line specific to today. Example energy: "Clear your Saturday. Monaco doesn't get better on replay." Do NOT end with generic advice.
-
-Do not use the word "ultimately." Do not recap every game — pick one story.
+bullets = the 3 most important things from today: one sports, one markets/money, one to-watch. Punchy, specific, no filler.
+Do not use the word 'ultimately.' Pick ONE story for p1 — do not recap everything.
 
 Context: ${ctx}${trendText ? `\nTrending: ${trendText}` : ''}`,
-      350
+      450
     ),
 
     // 6. Sports detail (JSON) — only when we have a real game
@@ -240,16 +243,16 @@ Return ONLY valid JSON, no markdown, no code fences:
     // 7. Markets detail (JSON)
     markets && mktText
       ? ask(
-          `GuyTalk voice. Market data: ${mktText}
+          `GuyTalk voice. Market data today: ${mktText}
 Return ONLY valid JSON, no markdown, no code fences:
 {
-  "headline": "One-line market story headline. Max 10 words.",
-  "secondPara": "One forward-looking sentence — specific upcoming event or data release that matters.",
-  "watchNextWeek": "The one thing that moves markets next week. Name the date.",
-  "tradeToWatch": "One ticker with notable behavior. What it's doing and why it matters.",
-  "bringUp": "One specific market fact — a real number, conversational, something to say at dinner."
+  "headline": "One punchy market story from today. Name a stock or macro event — not just SPY. Max 10 words.",
+  "secondPara": "One forward-looking sentence — name a specific upcoming catalyst (data print, Fed meeting, earnings). Include the day of the week.",
+  "stockSpotlight": "Pick the most interesting individual stock from today's data. Name it, give the move%, and one sharp sentence on what's driving it — is this a trend or a blip? Be direct.",
+  "watchNextWeek": "The one macro event or print that traders are watching. Name the day and exactly what the number could mean for the market.",
+  "bringUp": "One specific, quotable market fact using a real number from today. The kind of thing you'd drop at dinner — not obvious, slightly surprising."
 }`,
-          450
+          500
         )
       : Promise.resolve(null),
 
@@ -368,7 +371,7 @@ ${extraGames.map(g => {
     sportsAngle:      clean(get(sportsAngleR)),
     marketsTake:      clean(get(marketsTakeR)),
     golfNote:         clean(get(golfNoteR)),
-    sharpTake:        clean(get(sharpTakeR)),
+    sharpTake:        parseJson(get(sharpTakeR)),
     sportsDetail:     parseJson(get(sportsDetailR)),
     marketsDetail:    parseJson(get(marketsDetailR)),
     golfDetail:       parseJson(get(golfDetailR)),

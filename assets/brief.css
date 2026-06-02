@@ -416,7 +416,19 @@ em { font-style: italic; }
   color: var(--accent); margin-bottom: 14px;
 }
 .sharp-take p { font-size: 16px; color: var(--text); margin-bottom: 12px; line-height: 1.65; }
-.sharp-take p:last-child { margin-bottom: 0; color: var(--text-2); font-size: 15px; }
+.sharp-take p:last-of-type { margin-bottom: 0; color: var(--text-2); font-size: 15px; }
+.sharp-bullets {
+  margin: 18px 0 0; padding: 0; list-style: none;
+  border-top: 1px solid rgba(43,111,255,0.15); padding-top: 14px;
+}
+.sharp-bullets li {
+  font-family: 'Inter Tight', sans-serif; font-weight: 600;
+  font-size: 14px; color: var(--text); line-height: 1.4;
+  padding: 6px 0; border-bottom: 1px solid rgba(43,111,255,0.08);
+  display: flex; align-items: baseline; gap: 8px;
+}
+.sharp-bullets li:last-child { border-bottom: none; }
+.sharp-bullets li::before { content: "→"; color: var(--accent); font-size: 12px; flex-shrink: 0; }
 
 /* ================================================================
    NUMBERS WORTH STEALING
