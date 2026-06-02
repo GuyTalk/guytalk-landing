@@ -80,8 +80,9 @@ const TICKERS = {
   'AAPL': { name: 'Apple',     finnhub: 'AAPL',             ms: 'stocks/xnas/aapl/quote',     display: 'AAPL' },
   'META': { name: 'Meta',      finnhub: 'META',             ms: 'stocks/xnas/meta/quote',     display: 'META' },
   'AMZN': { name: 'Amazon',    finnhub: 'AMZN',             ms: 'stocks/xnas/amzn/quote',     display: 'AMZN' },
-  'BTC':  { name: 'Bitcoin',   finnhub: 'BINANCE:BTCUSDT',  ms: 'funds/xnas/gbtc/quote',      display: 'Bitcoin' },
-  'DELL': { name: 'Dell',      finnhub: 'DELL',             ms: 'stocks/xnys/dell/quote',     display: 'DELL' },
+  'BTC':  { name: 'Bitcoin',       finnhub: 'BINANCE:BTCUSDT',  ms: 'funds/xnas/gbtc/quote',  display: 'Bitcoin' },
+  'DELL': { name: 'Dell',          finnhub: 'DELL',             ms: 'stocks/xnys/dell/quote', display: 'DELL' },
+  '10Y':  { name: '10Y Yield',     finnhub: null,               ms: null,                     display: '10Y Yield', yahoo: '%5ETNX' },
 };
 
 // Which tickers appear in the brief table, in order, with dividers
@@ -95,6 +96,8 @@ const BRIEF_ROWS = [
   { type: 'divider' },
   { type: 'ticker', key: 'BTC' },
   { type: 'ticker', key: 'DELL' },
+  { type: 'divider' },
+  { type: 'ticker', key: '10Y' },
 ];
 
 // Which tickers to fetch from Finnhub
@@ -139,16 +142,15 @@ function tickerLink(symbol) {
 // ─────────────────────────────────────────────────────────────────────────────
 function fmtPrice(symbol, price) {
   if (price === null || price === undefined || price === 0) return '[PRICE]';
+  if (symbol === '10Y') return `${price.toFixed(2)}%`;
   if (symbol === 'BTC') {
     return price > 10000 ? `$${(price / 1000).toFixed(1)}K` : `$${price.toFixed(0)}`;
   }
   if (price >= 1000) {
     return `$${price.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
   }
-  if (price >= 100) {
-    return `$${price.toFixed(2)}`;
-  }
-  return `${price.toFixed(2)}%`; // 10Y yield and similar
+  if (price >= 100) return `$${price.toFixed(2)}`;
+  return `$${price.toFixed(2)}`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

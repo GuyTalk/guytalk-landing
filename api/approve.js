@@ -2,8 +2,20 @@
 // Called when Jake taps "Send to subscribers" from the review email on his phone.
 // Validates token → fetches subscribers → sends emails via Resend.
 
-const fs   = require('fs');
-const path = require('path');
+const fs     = require('fs');
+const path   = require('path');
+const crypto = require('crypto');
+
+function safeTokenEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string') return false;
+  const bufA = Buffer.from(a);
+  const bufB = Buffer.from(b);
+  if (bufA.length !== bufB.length) {
+    crypto.timingSafeEqual(Buffer.alloc(bufA.length), Buffer.alloc(bufA.length));
+    return false;
+  }
+  return crypto.timingSafeEqual(bufA, bufB);
+}
 
 const RESEND_API_KEY  = process.env.RESEND_API_KEY;
 const APPROVAL_TOKEN  = process.env.APPROVAL_TOKEN;
@@ -221,7 +233,7 @@ module.exports = async (req, res) => {
     res.status(500).send(errorPage('Server misconfiguration. Check Vercel environment variables.'));
     return;
   }
-  if (!token || token !== APPROVAL_TOKEN) {
+  if (!token || !safeTokenEqual(token, APPROVAL_TOKEN)) {
     res.status(403).send(errorPage('Invalid or missing approval token.'));
     return;
   }

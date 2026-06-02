@@ -45,6 +45,21 @@ function buildArchive(rootDir) {
     fs.writeFileSync(aboutPath, aboutHtml, 'utf8');
   }
 
+  // Update homepage "Today's Brief" nav link to latest issue
+  const latest = issues[0];
+  if (latest) {
+    const latestSlug = latest.slug || `issue-${String(latest.num).padStart(3, '0')}`;
+    const indexPath = path.join(rootDir, 'index.html');
+    if (fs.existsSync(indexPath)) {
+      let indexHtml = fs.readFileSync(indexPath, 'utf8');
+      indexHtml = indexHtml.replace(
+        /href="\/brief\/issue-\d+\/"([^>]*)>Today's Brief/,
+        `href="/brief/${latestSlug}/"$1>Today's Brief`
+      );
+      fs.writeFileSync(indexPath, indexHtml, 'utf8');
+    }
+  }
+
   const rows = issues.map(d => {
     const num  = String(d.num).padStart(3, '0');
     const slug = d.slug || `issue-${num}`;

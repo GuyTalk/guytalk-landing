@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — GuyTalk</title>
+<meta name="description" content="How GuyTalk collects, uses, and protects your information. We keep it simple: your email, nothing else.">
+<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<meta property="og:title" content="Privacy Policy — GuyTalk">
+<meta property="og:description" content="How GuyTalk handles your data. Short version: we only have your email, we don't sell it, you can leave anytime.">
+<meta property="og:url" content="https://www.guytalkmedia.com/privacy/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F9F8F5;
+    --surface: #FFFFFF;
+    --border: #E5E2DB;
+    --border-light: #D4D0C8;
+    --text: #0F1724;
+    --text-2: #6E6862;
+    --text-3: #9E9891;
+    --accent: #2B6FFF;
+    --accent-h: #1A5CEF;
+    --accent-muted: #EBF1FF;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(249,248,245,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .wordmark {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+  .wordmark .dot { color: var(--accent); }
+  .nav-cta {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 7px 14px;
+    background: var(--accent);
+    color: white;
+    border-radius: 7px;
+    transition: background 0.15s ease;
+  }
+  .nav-cta:hover { background: var(--accent-h); text-decoration: none; }
+
+  /* LAYOUT */
+  .page-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 64px 24px 100px;
+  }
+
+  /* HEADER */
+  .page-eyebrow {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .page-title {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+    letter-spacing: -0.04em;
+    line-height: 1.04;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .page-meta {
+    font-size: 14px;
+    color: var(--text-3);
+    margin-bottom: 12px;
+  }
+  .page-lead {
+    font-size: 19px;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 0;
+    padding: 24px;
+    background: var(--accent-muted);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    margin-top: 32px;
+  }
+  .page-lead strong { color: var(--text); }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 48px 0; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 40px; }
+
+  h2 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 14px;
+    margin-top: 48px;
+  }
+  h2:first-of-type { margin-top: 0; }
+
+  p {
+    color: var(--text-2);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--text); font-weight: 600; }
+
+  /* DATA TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 15px;
+  }
+  .data-table th {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    text-align: left;
+    padding: 10px 16px;
+    background: var(--bg);
+    border-bottom: 2px solid var(--border);
+  }
+  .data-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-2);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .data-table td:first-child {
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table-wrap {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    background: var(--surface);
+  }
+
+  /* CALLOUT */
+  .callout {
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin: 24px 0;
+    font-size: 15.5px;
+    color: var(--text-2);
+  }
+  .callout strong { color: var(--text); }
+  .callout p { margin-bottom: 8px; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* CONTACT BLOCK */
+  .contact-block {
+    margin-top: 56px;
+    padding: 36px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-align: center;
+  }
+  .contact-block h2 {
+    margin-top: 0;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .contact-block p { font-size: 16px; color: var(--text-2); }
+  .contact-link {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 22px;
+    background: var(--accent);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.15s ease;
+  }
+  .contact-link:hover { background: var(--accent-h); text-decoration: none; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px 48px;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-brand {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+  .footer-brand .dot { color: var(--accent); }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-3);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 600px) {
+    .page-title { font-size: 34px; }
+    .page-lead { font-size: 16px; }
+    .data-table td:first-child { white-space: normal; }
+    .contact-block { padding: 24px 20px; }
+    footer { padding: 24px 20px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span></a>
+    <a href="/#signup" class="nav-cta">Get the brief →</a>
+  </div>
+</nav>
+
+<main class="page-wrap">
+
+  <span class="page-eyebrow">Legal</span>
+  <h1 class="page-title">Privacy Policy</h1>
+  <p class="page-meta">Last updated: June 2026 &nbsp;·&nbsp; GuyTalk Media, San Francisco, CA</p>
+
+  <div class="page-lead">
+    <strong>The short version:</strong> We only collect your email address. We use it to send you the GuyTalk brief. We don't sell it, share it for advertising purposes, or do anything sketchy with it. You can leave whenever you want with one click.
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>Who we are</h2>
+  <p>GuyTalk is operated by <strong>GuyTalk Media</strong>, located at 2261 Market St #5640, San Francisco, CA 94114. If you have any questions about this policy, you can reach us at <a href="mailto:guytalkdaily@gmail.com">guytalkdaily@gmail.com</a>.</p>
+
+  <h2>What we collect</h2>
+  <p>When you subscribe to the GuyTalk brief, we collect your <strong>email address</strong>. That's it. We don't ask for your name, phone number, location, or any other personal information.</p>
+  <p>We may also collect basic usage data about how you interact with our website (like which pages you visit and whether you clicked the signup form). This is aggregate analytics data — it's not tied to you personally.</p>
+
+  <h2>How we use your data</h2>
+  <p>Your email address is used for one thing: <strong>sending you the GuyTalk daily brief</strong>. We may also send occasional product-related announcements (like if we launch a new feature or have an update about the newsletter). We won't bombard you with anything outside the brief itself.</p>
+  <p>We use your email to maintain your subscription, manage unsubscribe requests, and comply with legal requirements like CAN-SPAM.</p>
+
+  <h2>Third-party services</h2>
+  <p>Running a newsletter requires a few trusted tools. Here's exactly what we use and why each one has access to your data:</p>
+
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>What they handle</th>
+          <th>Your data involved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Beehiiv</td>
+          <td>Email delivery and subscriber management. Beehiiv is the platform that sends the brief to your inbox and manages your subscription preferences.</td>
+          <td>Email address, subscription status, engagement data (opens, clicks)</td>
+        </tr>
+        <tr>
+          <td>Resend</td>
+          <td>Transactional email — things like confirmation emails when you subscribe.</td>
+          <td>Email address</td>
+        </tr>
+        <tr>
+          <td>PostHog</td>
+          <td>Product analytics on our website. We use PostHog to understand which pages are being visited and whether people are signing up. We only track page views and signup events.</td>
+          <td>Anonymous page view data, signup events. No personally identifiable information is passed to PostHog.</td>
+        </tr>
+        <tr>
+          <td>Finnhub</td>
+          <td>Market data used to generate the markets section of the brief (stock prices, index data). This runs entirely server-side when we build each issue.</td>
+          <td>None — Finnhub never receives any user data.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Each of these services has its own privacy policy. We choose partners that take data privacy seriously, but we'd encourage you to review their policies if you'd like to understand how they operate.</p>
+
+  <h2>We do not sell your data</h2>
+  <p>We will never sell, rent, or trade your email address or any other personal information to third parties for marketing purposes. Full stop.</p>
+
+  <h2>How to unsubscribe</h2>
+  <p>Every email we send includes an unsubscribe link at the bottom. Click it and you'll be removed immediately — no waiting period, no confirmation hoops. You can also email us at <a href="mailto:guytalkdaily@gmail.com">guytalkdaily@gmail.com</a> and we'll remove you manually within 24 hours.</p>
+
+  <div class="callout">
+    <p><strong>CAN-SPAM compliance:</strong> Every GuyTalk email includes our physical mailing address (GuyTalk Media, 2261 Market St #5640, San Francisco, CA 94114), a clear identification that it's a commercial message, and an easy one-click unsubscribe mechanism.</p>
+  </div>
+
+  <h2>Data retention</h2>
+  <p>We keep your email address for as long as you're subscribed. When you unsubscribe, your data is removed from our active subscriber list. Beehiiv may retain anonymized engagement data (like historical open rates) for analytics purposes in accordance with their own data retention policies.</p>
+
+  <h2>California residents (CCPA)</h2>
+  <p>If you're a California resident, you have specific rights under the California Consumer Privacy Act (CCPA):</p>
+  <p><strong>Right to know:</strong> You can request information about what personal data we hold about you and how we use it.</p>
+  <p><strong>Right to delete:</strong> You can request that we delete your personal data. To do this, email us at <a href="mailto:guytalkdaily@gmail.com">guytalkdaily@gmail.com</a> with the subject line "Delete my data."</p>
+  <p><strong>Right to opt out of sale:</strong> We don't sell personal data, so there's nothing to opt out of here.</p>
+  <p><strong>Right to non-discrimination:</strong> Exercising any of these rights won't affect the service you receive.</p>
+
+  <h2>Security</h2>
+  <p>We take reasonable steps to protect your information. Our email infrastructure (Beehiiv, Resend) uses industry-standard security practices including encryption in transit. That said, no method of transmission over the internet is 100% secure. If you have specific security concerns, reach out at <a href="mailto:guytalkdaily@gmail.com">guytalkdaily@gmail.com</a>.</p>
+
+  <h2>Children's privacy</h2>
+  <p>GuyTalk is not directed at children under 13. We do not knowingly collect personal information from anyone under 13. If you believe we have inadvertently collected information from a child, please contact us and we will remove it promptly.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If we make meaningful changes to this privacy policy, we'll update the "Last updated" date at the top of this page. For significant changes, we may also send a note in the brief. Continuing to use GuyTalk after changes are posted constitutes acceptance of the updated policy.</p>
+
+  <div class="contact-block">
+    <h2>Questions?</h2>
+    <p>We're easy to reach. If something in this policy is unclear or you have a request about your data, just send us an email. We actually read them.</p>
+    <a href="mailto:guytalkdaily@gmail.com" class="contact-link">guytalkdaily@gmail.com</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">GuyTalk<span class="dot">.</span></div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/briefs/">Archive</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="mailto:guytalkdaily@gmail.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -307,6 +307,26 @@ async function fetchMarkets() {
     await new Promise(r => setTimeout(r, 220));
   }
 
+  // 10Y Treasury yield via Yahoo Finance (^TNX) — no API key required
+  try {
+    const yRes = await fetch(
+      'https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=6d',
+      { headers: { 'User-Agent': 'Mozilla/5.0' } }
+    );
+    if (yRes.ok) {
+      const yj = await yRes.json();
+      const result = yj?.chart?.result?.[0];
+      const closes = result?.indicators?.quote?.[0]?.close?.filter(v => v != null) || [];
+      const meta = result?.meta || {};
+      const price = meta.regularMarketPrice ?? closes[closes.length - 1] ?? null;
+      const prevClose = meta.previousClose ?? closes[closes.length - 2] ?? null;
+      const dayChangePct = (price && prevClose) ? ((price - prevClose) / prevClose) * 100 : null;
+      const weekStart = closes[Math.max(0, closes.length - 6)];
+      const weekChangePct = (weekStart && price) ? ((price - weekStart) / weekStart) * 100 : null;
+      results['10Y'] = { price, prevClose, dayChange: price && prevClose ? price - prevClose : null, dayChangePct, weekChangePct };
+    }
+  } catch (_) {}
+
   return results;
 }
 

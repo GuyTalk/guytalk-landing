@@ -1,17 +1,27 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-"functions": {
-    "api/approve.js": { "maxDuration": 60 }
+  "functions": {
+    "api/approve.js": { "maxDuration": 60 },
+    "api/ticker.js":  { "maxDuration": 15 }
   },
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options",  "value": "nosniff" },
-        { "key": "X-Frame-Options",          "value": "DENY" },
-        { "key": "Referrer-Policy",          "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy",       "value": "camera=(), microphone=(), geolocation=()" }
+        { "key": "X-Content-Type-Options",       "value": "nosniff" },
+        { "key": "X-Frame-Options",              "value": "DENY" },
+        { "key": "X-XSS-Protection",             "value": "1; mode=block" },
+        { "key": "Referrer-Policy",              "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy",           "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "Strict-Transport-Security",    "value": "max-age=63072000; includeSubDomains; preload" }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin",  "value": "https://www.guytalkmedia.com" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET" }
       ]
     }
   ]

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unsubscribed — GuyTalk</title>
+<meta name="description" content="You've been removed from the GuyTalk list. Thanks for reading while you did.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F9F8F5;
+    --surface: #FFFFFF;
+    --border: #E5E2DB;
+    --border-light: #D4D0C8;
+    --text: #0F1724;
+    --text-2: #6E6862;
+    --text-3: #9E9891;
+    --accent: #2B6FFF;
+    --accent-h: #1A5CEF;
+    --accent-muted: #EBF1FF;
+    --green: #16A34A;
+    --green-muted: rgba(22,163,74,0.07);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  p { color: var(--text-2); line-height: 1.7; }
+  strong { color: var(--text); font-weight: 600; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(249,248,245,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .wordmark {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+  .wordmark .dot { color: var(--accent); }
+  .nav-cta {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 7px 14px;
+    background: var(--accent);
+    color: white;
+    border-radius: 7px;
+    transition: background 0.15s ease;
+  }
+  .nav-cta:hover { background: var(--accent-h); text-decoration: none; }
+
+  /* MAIN */
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 100px;
+  }
+
+  .container {
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* ICON */
+  .unsub-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    font-size: 30px;
+  }
+
+  /* HEADLINE */
+  .headline {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+    letter-spacing: -0.04em;
+    line-height: 1.04;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .subhead {
+    font-size: 18px;
+    color: var(--text-2);
+    line-height: 1.6;
+    max-width: 440px;
+    margin: 0 auto 40px;
+  }
+
+  /* STATUS PILL */
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    background: var(--green-muted);
+    border: 1px solid rgba(22,163,74,0.2);
+    border-radius: 999px;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--green);
+    margin-bottom: 28px;
+  }
+  .status-pill svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+  }
+
+  /* STILL GETTING EMAILS */
+  .help-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .help-card-title {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .help-card p {
+    font-size: 15px;
+    color: var(--text-2);
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+  .help-card a {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* ARCHIVE CTA */
+  .archive-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    text-align: left;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .archive-block:hover {
+    border-color: var(--border-light);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-decoration: none;
+  }
+  .archive-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--accent-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  .archive-text-title {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .archive-text-sub {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.5;
+  }
+  .archive-arrow {
+    margin-left: auto;
+    color: var(--text-3);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* SIGNOFF */
+  .signoff {
+    margin-top: 44px;
+    font-size: 15px;
+    color: var(--text-3);
+    line-height: 1.6;
+  }
+  .signoff strong {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-2);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px 48px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-brand {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+  .footer-brand .dot { color: var(--accent); }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-3);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 600px) {
+    main { padding: 56px 20px 80px; }
+    .headline { font-size: 36px; }
+    .subhead { font-size: 16px; }
+    .archive-block { gap: 14px; }
+    .archive-arrow { display: none; }
+    footer { padding: 24px 20px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span></a>
+    <a href="/#signup" class="nav-cta">Get the brief →</a>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+
+    <div class="status-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      Unsubscribed
+    </div>
+
+    <h1 class="headline">We'll miss you.</h1>
+    <p class="subhead">You've been removed from the GuyTalk list. No more emails from us. Thanks for reading while you did — it genuinely means a lot.</p>
+
+    <div class="help-card">
+      <div class="help-card-title">Still getting emails?</div>
+      <p>Unsubscribes usually take effect within 24 hours. If you're still receiving the brief after that, shoot us an email at <a href="mailto:guytalkdaily@gmail.com">guytalkdaily@gmail.com</a> and we'll sort it out manually right away.</p>
+    </div>
+
+    <a href="/briefs/" class="archive-block">
+      <div class="archive-icon">📋</div>
+      <div>
+        <div class="archive-text-title">The archive is still open</div>
+        <div class="archive-text-sub">No subscription required. Read any past issue whenever you want.</div>
+      </div>
+      <div class="archive-arrow">→</div>
+    </a>
+
+    <div class="signoff">
+      Take care out there.
+      <strong>— Jake, GuyTalk</strong>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-brand">GuyTalk<span class="dot">.</span></div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/briefs/">Archive</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="mailto:guytalkdaily@gmail.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
