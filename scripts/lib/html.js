@@ -34,6 +34,10 @@ function espnRecapUrl(gameId, sport) {
   return `https://www.espn.com/${s}/recap/_/gameId/${gameId}`;
 }
 
+function isoDate(dateStr) {
+  try { return new Date(dateStr).toISOString().slice(0, 10); } catch { return new Date().toISOString().slice(0, 10); }
+}
+
 function buildHtml(issue) {
   const { num, slug, date, title, deck, sports, markets, golf, f1, worldCup, upcoming, gameMetas, trending, copy } = issue;
   const label = `#${String(num).padStart(3, '0')}`;
@@ -64,7 +68,7 @@ function buildHtml(issue) {
 <link rel="canonical"            href="https://www.guytalkmedia.com/brief/${slug}/">
 ${prevSlug ? `<link rel="prev" href="https://www.guytalkmedia.com/brief/${prevSlug}/">` : ''}
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":${JSON.stringify(title)},"description":"GuyTalk Issue ${label} — sports, markets, and culture in five minutes.","url":"https://www.guytalkmedia.com/brief/${slug}/","image":"https://www.guytalkmedia.com/assets/og-card.png","publisher":{"@type":"Organization","name":"GuyTalk","logo":{"@type":"ImageObject","url":"https://www.guytalkmedia.com/assets/logo/guytalk-icon.svg"}},"author":{"@type":"Person","name":"Jake Williams"},"datePublished":"${new Date().toISOString().slice(0,10)}"}
+{"@context":"https://schema.org","@type":"Article","headline":${JSON.stringify(title)},"description":"GuyTalk Issue ${label} — sports, markets, and culture in five minutes.","url":"https://www.guytalkmedia.com/brief/${slug}/","image":"https://www.guytalkmedia.com/assets/og-card.png","publisher":{"@type":"Organization","name":"GuyTalk","logo":{"@type":"ImageObject","url":"https://www.guytalkmedia.com/assets/logo/guytalk-icon.svg"}},"author":{"@type":"Person","name":"Jake Williams"},"datePublished":"${isoDate(date)}"}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
