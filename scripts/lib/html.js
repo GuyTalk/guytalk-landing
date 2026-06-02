@@ -33,7 +33,7 @@ function buildHtml(issue) {
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="https://www.guytalkmedia.com/brief/${slug}/">
 <meta property="og:title"       content="${esc(title)}">
-<meta property="og:description" content="GuyTalk Issue ${label} — sports, markets, golf, and culture in five minutes.">
+<meta property="og:description" content="GuyTalk Issue ${label} — sports, markets, and culture in five minutes.">
 <meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
 <meta property="og:site_name"   content="GuyTalk">
 <meta name="twitter:card"        content="summary_large_image">
@@ -70,7 +70,7 @@ function buildHtml(issue) {
     <span class="sep">·</span>
     <span>ISSUE ${label}</span>
     <span class="sep">·</span>
-    <span>SPORTS · MARKETS · GOLF · CULTURE</span>
+    <span>SPORTS · MARKETS · CULTURE</span>
   </div>
 
 ${buildTldr(issue)}
@@ -78,8 +78,6 @@ ${buildTldr(issue)}
 ${buildSports(issue)}
 
 ${buildMarkets(issue)}
-
-${buildGolf(issue)}
 
 ${buildCulture(issue)}
 
@@ -94,7 +92,7 @@ ${buildNumbers(issue)}
 <footer class="brief-footer">
   <a href="/#signup" class="footer-cta">Get the brief free →</a>
   <p class="footer-meta">
-    You're reading GuyTalk — the daily brief on sports, markets, golf, and culture.<br>
+    You're reading GuyTalk — the daily brief on sports, markets, and culture.<br>
     Five minutes a day. Free forever. No algorithm.
   </p>
   <p class="footer-sig">— Jake, GuyTalk</p>
@@ -150,13 +148,11 @@ function buildTldr({ sports, markets, golf, copy }) {
     const l = golf.leaders[0];
     const golfVerb = golf.statusState === 'post' ? 'wins' : 'leads';
     items.push({
-      tag: 'Golf', anchor: '#golf',
+      tag: 'Sports', anchor: '#sports',
       html: `${playerLink(l.name)} ${golfVerb} ${esc(golf.name)} at ${esc(l.score)} (${esc(golf.status || 'Final')}).`,
     });
   } else if (golf && !golfLive) {
-    items.push({ tag: 'Golf', anchor: '#golf', html: `${esc(golf.name)} tees off this week.` });
-  } else {
-    items.push({ tag: 'Golf', anchor: '#golf', html: 'No active PGA Tour event.' });
+    items.push({ tag: 'Sports', anchor: '#sports', html: `${esc(golf.name)} tees off this week.` });
   }
 
   const cultureBullet = copy?.culture?.[0]?.head
@@ -178,12 +174,33 @@ ${items.slice(0, 5).map(item => `      <li class="tldr-item">
 // ─────────────────────────────────────────────────────────────────────────────
 // Sports
 // ─────────────────────────────────────────────────────────────────────────────
-function buildSports({ sports, copy }) {
+function buildSports({ sports, copy, golf, num }) {
+  const golfBlock = buildGolfBlock({ golf, copy });
+  const product = PRODUCTS[num % PRODUCTS.length];
+  const productCard = `
+    <h3>The gear pick.</h3>
+    <div class="product-card">
+      <div class="product-img">
+        ${product.imageUrl
+          ? `<img src="${esc(product.imageUrl)}" alt="${esc(product.name)}" loading="lazy">`
+          : `<div class="product-img-ph">${esc(product.brand)}</div>`}
+      </div>
+      <div class="product-info">
+        <div class="product-brand">${esc(product.brand)}</div>
+        <div class="product-name">${esc(product.name)}</div>
+        <p class="product-desc">${product.desc}</p>
+        <span class="product-price">${esc(product.price)}</span>
+        <a href="${esc(product.url)}" target="_blank" rel="noopener" class="product-link">${esc(product.cta)} →</a>
+      </div>
+    </div>`;
+
   if (!sports?.length) {
     return `  <section class="brief-section" id="sports">
     <div class="section-label sl-sports">Sports</div>
     <h3>Off day — weekend recap.</h3>
     ${renderParas(copy?.sportsAngle, 'No games last night.')}
+${golfBlock}
+${productCard}
   </section>`;
   }
 
@@ -247,6 +264,8 @@ ${scoreboard}
   return `  <section class="brief-section" id="sports">
     <div class="section-label sl-sports">Sports</div>
 ${gameBlocks.join('\n')}
+${golfBlock}
+${productCard}
   </section>`;
 }
 
@@ -324,11 +343,12 @@ ${rows}
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Golf + Lifestyle
+// Golf block — embedded inside Sports section (no separate section wrapper)
 // ─────────────────────────────────────────────────────────────────────────────
-function buildGolf({ golf, copy, num }) {
+function buildGolfBlock({ golf, copy }) {
+  if (!golf) return '';
+
   const gd = copy?.golfDetail || {};
-  let leaderboardHtml;
   const golfInProgress = golf?.statusState === 'in' || golf?.statusState === 'post';
 
   if (golf && golfInProgress && golf.leaders?.length) {
@@ -350,7 +370,7 @@ function buildGolf({ golf, copy, num }) {
       ? `<li><span><span class="dl-label">How it happened:</span>${esc(gd.recap || `${esc(leader.name)} closed out ${esc(golf.name)} in the final round.`)}</span></li>`
       : `<li><span><span class="dl-label">TV schedule:</span>${esc(gd.tvSchedule || 'Golf Channel/Peacock · NBC/CBS. Check local listings.')}</span></li>`;
 
-    leaderboardHtml = `
+    return `
     <h3>${heading}</h3>
 
     <p>${esc(aiNote)}</p>
@@ -368,42 +388,12 @@ function buildGolf({ golf, copy, num }) {
     </div>`;
 
   } else if (golf && !golfInProgress) {
-    leaderboardHtml = `
+    return `
     <h3>${esc(golf.name)} — tees off this week.</h3>
-    <p>${gd.whyItMatters || `${esc(golf.name)} is the featured event this week on the PGA Tour.`} ${gd.bringUp || 'Watch for the early rounds to set the weekend field.'}</p>`;
-
-  } else {
-    leaderboardHtml = `
-    <h3>No active tournament this week.</h3>
-    <p>The PGA Tour schedule resumes next week. Check <a href="https://www.pgatour.com/schedule" class="brand">pgatour.com</a> for upcoming events.</p>`;
+    <p>${gd.whyItMatters || `${esc(golf.name)} is the featured PGA Tour event this week.`} ${gd.bringUp || 'Watch for the early rounds to set the weekend field.'}</p>`;
   }
 
-  // Product card — rotate by issue number
-  const product = PRODUCTS[num % PRODUCTS.length];
-
-  return `  <section class="brief-section" id="golf">
-    <div class="section-label sl-golf">Golf + Lifestyle</div>
-${leaderboardHtml}
-
-    <h3>The product worth knowing about.</h3>
-
-    <div class="product-card">
-      <div class="product-img">
-        ${product.imageUrl
-          ? `<img src="${esc(product.imageUrl)}" alt="${esc(product.name)}" loading="lazy">`
-          : `<div class="product-img-ph">${esc(product.brand)}</div>`}
-      </div>
-      <div class="product-info">
-        <div class="product-brand">${esc(product.brand)}</div>
-        <div class="product-name">${esc(product.name)}</div>
-        <p class="product-desc">${product.desc}</p>
-        <span class="product-price">${esc(product.price)}</span>
-        <a href="${esc(product.url)}" target="_blank" rel="noopener" class="product-link">${esc(product.cta)} →</a>
-      </div>
-    </div>
-
-    <p style="font-size:14px; color:var(--text-3);">Other brands worth knowing: <a href="https://www.petermillar.com" class="brand">Peter Millar</a>, <a href="https://rhoback.com" class="brand">Rhoback</a>, <a href="https://www.travismathew.com" class="brand">TravisMathew</a>, <a href="https://holdernessandbourne.com" class="brand">Holderness &amp; Bourne</a>.</p>
-  </section>`;
+  return '';
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

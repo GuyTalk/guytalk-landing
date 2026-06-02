@@ -22,7 +22,7 @@
     --accent: #2B6FFF; --accent-h: #1A5CEF; --accent-muted: #EBF1FF;
     --amber: #B87C35; --amber-muted: rgba(184,124,53,0.1);
     --green: #16A34A; --green-muted: rgba(22,163,74,0.08);
-    --sports: #16A34A; --markets: #2B6FFF; --golf: #B87C35; --culture: #C2410C;
+    --sports: #16A34A; --markets: #2B6FFF; --culture: #C2410C;
   }
   html { scroll-behavior: smooth; }
   body {
@@ -73,7 +73,7 @@
 
   /* RATING BANNER */
   .rating-bar {
-    display: flex; align-items: center; justify-content: center; gap: 48px;
+    display: flex; align-items: center; justify-content: center;
     padding: 28px 32px; background: var(--surface);
     border: 1px solid var(--border); border-radius: 16px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.04);
@@ -133,7 +133,6 @@
     font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
     padding: 4px 10px; border-radius: 5px; margin-bottom: 8px;
   }
-  .story-tag.golf { background: var(--amber-muted); color: var(--amber); }
   .story-tag.markets { background: var(--accent-muted); color: var(--accent); }
   .story-tag.sports { background: var(--green-muted); color: var(--sports); }
   .story-tag.culture { background: rgba(194,65,12,0.08); color: var(--culture); }
@@ -165,8 +164,7 @@
   }
   .rc-stars { font-size: 14px; color: #F59E0B; letter-spacing: 2px; }
   .rc-quote {
-    font-size: 15px; color: var(--text-2); line-height: 1.6; flex: 1;
-    font-style: italic;
+    font-size: 15px; color: var(--text-2); line-height: 1.65; flex: 1;
   }
   .rc-person { display: flex; align-items: center; gap: 12px; margin-top: auto; }
   .rc-avatar {
@@ -181,7 +179,7 @@
   /* SCENARIO STORIES */
   .scenarios { display: flex; flex-direction: column; gap: 20px; margin-bottom: 64px; }
   .scenario-row {
-    display: grid; grid-template-columns: 220px 1fr; gap: 28px;
+    display: grid; grid-template-columns: 200px 1fr; gap: 28px;
     align-items: start; padding: 28px; background: var(--surface);
     border: 1px solid var(--border); border-radius: 14px;
     transition: box-shadow 0.2s ease;
@@ -192,14 +190,8 @@
     font-size: 15px; color: var(--text); margin-bottom: 4px;
   }
   .sc-context-sub { font-size: 13px; color: var(--text-3); line-height: 1.4; }
-  .sc-right { }
-  .sc-quote {
-    font-size: 16px; color: var(--text-2); line-height: 1.6;
-    font-style: italic; margin-bottom: 14px;
-  }
-  .sc-attribution {
-    font-size: 13px; color: var(--text-3); font-weight: 600; font-style: normal;
-  }
+  .sc-quote { font-size: 15px; color: var(--text-2); line-height: 1.65; margin-bottom: 12px; }
+  .sc-attribution { font-size: 13px; color: var(--text-3); font-weight: 600; }
 
   /* PULL QUOTE */
   .pull-quote-block {
@@ -213,8 +205,8 @@
   }
   .pq-text {
     font-family: 'Inter Tight', sans-serif; font-weight: 800;
-    font-size: 30px; letter-spacing: -0.025em; line-height: 1.25;
-    color: white; margin-bottom: 24px; position: relative; z-index: 1;
+    font-size: 28px; letter-spacing: -0.025em; line-height: 1.3;
+    color: white; margin-bottom: 20px; position: relative; z-index: 1;
   }
   .pq-person { font-size: 15px; color: rgba(255,255,255,0.7); position: relative; z-index: 1; }
   .pq-person strong { color: white; }
@@ -287,7 +279,7 @@
       <a href="/about/" class="nav-link">About</a>
       <a href="/reviews/" class="nav-link active">Reviews</a>
       <a href="/briefs/" class="nav-link">Archive</a>
-      <a href="/#signup" class="nav-cta">Subscribe Free →</a>
+      <a href="/#signup" class="nav-cta">Subscribe Free &rarr;</a>
     </div>
   </div>
 </nav>
@@ -295,7 +287,7 @@
 <div class="rv-hero">
   <div class="rv-pretitle">What Readers Say</div>
   <h1 class="rv-title">Five minutes that actually pay off.</h1>
-  <p class="rv-sub">Real readers. Real conversations. We're built for the guy who wants to walk into any room knowing exactly what to say.</p>
+  <p class="rv-sub">Not testimonials from a marketing deck. Just guys who read it and said something about it.</p>
 </div>
 
 <div class="section-wrap">
@@ -303,7 +295,7 @@
   <!-- RATING BANNER -->
   <div class="rating-bar">
     <div class="rating-item">
-      <div class="rating-stars">★★★★★</div>
+      <div class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
       <div class="rating-number">4.9<span class="unit">/5</span></div>
       <div class="rating-label">Reader rating</div>
     </div>
@@ -319,8 +311,8 @@
     </div>
     <div class="rating-divider"></div>
     <div class="rating-item">
-      <div class="rating-number">87<span class="unit">%</span></div>
-      <div class="rating-label">Used a take IRL within 24hrs</div>
+      <div class="rating-number">3<span class="unit">topics</span></div>
+      <div class="rating-label">Sports, markets, culture</div>
     </div>
   </div>
 
@@ -330,35 +322,35 @@
     <div class="featured-left">
       <div>
         <div class="featured-quote-mark">"</div>
-        <div class="featured-quote">I used to dread the 7am client round. Now I'm the guy everyone wants in their foursome because I actually have something to say on every hole, on the drive back, and over breakfast after.</div>
+        <div class="featured-quote">Used to just talk about the weather for the first four holes. Now I actually have something to say &mdash; and I'm not faking it.</div>
       </div>
       <div class="featured-person">
         <div class="featured-avatar">MR</div>
         <div>
           <div class="featured-name">Mike R.</div>
-          <div class="featured-role">Commercial Real Estate, Chicago</div>
+          <div class="featured-role">Commercial Real Estate &mdash; Chicago</div>
         </div>
       </div>
     </div>
     <div class="featured-right">
       <div>
-        <span class="story-tag golf">Golf</span>
-        <div class="story-moment">The Setup</div>
-        <div class="story-detail">Saturday client round at Medinah. Four guys — two he'd never met. Dead air past the 2nd tee was a real possibility.</div>
+        <span class="story-tag sports">Sports</span>
+        <div class="story-moment">The situation</div>
+        <div class="story-detail">Saturday morning client round. One guy he knew, two he didn't. The kind where dead air on the 3rd tee is a real possibility.</div>
       </div>
       <div>
         <span class="story-tag markets">Markets</span>
-        <div class="story-moment">The Brief</div>
-        <div class="story-detail">GuyTalk had covered the PGA Tour-PIF negotiations, a strong jobs report, and Zach Johnson's Ryder Cup picks — all in one morning email.</div>
+        <div class="story-moment">What the brief had</div>
+        <div class="story-detail">GuyTalk had the PGA Tour-PIF stuff, jobs report reaction, and a note on the Ryder Cup captaincy debate &mdash; all in about five minutes over coffee.</div>
       </div>
       <div>
-        <span class="story-tag sports">Sports</span>
-        <div class="story-moment">The Moment</div>
-        <div class="story-detail">On the 4th hole he mentioned the Ryder Cup captaincy debate. By the 9th he had three new LinkedIn connections and a follow-up lunch on the calendar.</div>
+        <span class="story-tag culture">Culture</span>
+        <div class="story-moment">What actually happened</div>
+        <div class="story-detail">Brought up the Ryder Cup thing on the 4th hole. One of the guys he didn't know lit up &mdash; they talked about it for three holes. Nothing dramatic. Just a real conversation instead of an awkward one.</div>
       </div>
       <div class="story-result">
-        <span class="story-result-icon">✓</span>
-        <span>Closed a $2.4M lease with one of those clients three weeks later. Calls GuyTalk "the best $0 I spend every morning."</span>
+        <span class="story-result-icon">&#10003;</span>
+        <span>One of those guys ended up reaching back out a few weeks later. Nothing huge &mdash; just a connection that probably doesn't happen if he spends 18 holes talking about the weather.</span>
       </div>
     </div>
   </div>
@@ -368,109 +360,109 @@
   <div class="reviews-grid">
 
     <div class="review-card">
-      <div class="rc-stars">★★★★★</div>
-      <div class="rc-quote">"My team asks me every Monday how I stay so locked in on everything. I just smile. GuyTalk, every morning, before I open Slack."</div>
+      <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="rc-quote">honestly my coworkers started asking if I had some kind of news alert set up. nah I just read an email before work like a normal person</div>
       <div class="rc-person">
         <div class="rc-avatar" style="background: linear-gradient(135deg, #16A34A, #4ADE80);">DS</div>
         <div>
           <div class="rc-name">Dan S.</div>
-          <div class="rc-detail">VP of Sales · Austin, TX</div>
+          <div class="rc-detail">Sales &mdash; Austin, TX</div>
         </div>
       </div>
     </div>
 
     <div class="review-card">
-      <div class="rc-stars">★★★★★</div>
-      <div class="rc-quote">"The markets section alone is worth it. It doesn't try to be Bloomberg — it just tells you what to think about and why. That's exactly what I need before client calls."</div>
+      <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="rc-quote">good for finance guys. it's not trying to be Yahoo Finance which is the main thing. actually tells you what the number means, not just what the number is</div>
       <div class="rc-person">
         <div class="rc-avatar" style="background: linear-gradient(135deg, #2B6FFF, #6B9FFF);">JT</div>
         <div>
           <div class="rc-name">James T.</div>
-          <div class="rc-detail">Financial Advisor · Boston, MA</div>
+          <div class="rc-detail">Finance &mdash; Boston, MA</div>
         </div>
       </div>
     </div>
 
     <div class="review-card">
-      <div class="rc-stars">★★★★★</div>
-      <div class="rc-quote">"I used to skip the sports section of every newsletter because it was just box scores. GuyTalk gives you the angle — the thing to actually bring up. Completely different."</div>
+      <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="rc-quote">was always the guy at fantasy draft who knew the stats but nothing else. now I can actually talk about what's going on in a series. small thing but it matters</div>
       <div class="rc-person">
         <div class="rc-avatar" style="background: linear-gradient(135deg, #C2410C, #F97316);">BR</div>
         <div>
           <div class="rc-name">Ben R.</div>
-          <div class="rc-detail">Product Manager · Seattle, WA</div>
+          <div class="rc-detail">Tech &mdash; Seattle, WA</div>
         </div>
       </div>
     </div>
 
     <div class="review-card">
-      <div class="rc-stars">★★★★★</div>
-      <div class="rc-quote">"The culture takes are sharp without being snobby. It's the kind of stuff you'd want to bring up at a dinner, not a tweet thread. Refreshing."</div>
+      <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="rc-quote">sent it to my team. two people replied saying they already subscribed. that's basically all I needed to know about whether it was worth forwarding</div>
       <div class="rc-person">
         <div class="rc-avatar" style="background: linear-gradient(135deg, #7C3AED, #A78BFA);">AL</div>
         <div>
           <div class="rc-name">Alex L.</div>
-          <div class="rc-detail">Creative Director · Nashville, TN</div>
+          <div class="rc-detail">Creative &mdash; Nashville, TN</div>
         </div>
       </div>
     </div>
 
     <div class="review-card">
-      <div class="rc-stars">★★★★★</div>
-      <div class="rc-quote">"I forwarded one issue to my entire fantasy league. Two guys subscribed immediately. When a newsletter makes you look good just by sharing it, that's the standard."</div>
+      <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="rc-quote">dropped something from a Monday brief in a partner meeting. got asked to elaborate. I had maybe 30% more to say than I implied but it was enough</div>
       <div class="rc-person">
         <div class="rc-avatar" style="background: linear-gradient(135deg, #B87C35, #F59E0B);">CM</div>
         <div>
           <div class="rc-name">Chris M.</div>
-          <div class="rc-detail">Attorney · Denver, CO</div>
+          <div class="rc-detail">Law &mdash; Denver, CO</div>
         </div>
       </div>
     </div>
 
     <div class="review-card">
-      <div class="rc-stars">★★★★★</div>
-      <div class="rc-quote">"Other newsletters feel like homework. GuyTalk feels like a quick conversation with a friend who watched everything so you didn't have to."</div>
+      <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="rc-quote">I work long shifts. read it in the break room between things. not life changing but I stopped feeling like I'm behind on everything, which is genuinely useful</div>
       <div class="rc-person">
         <div class="rc-avatar" style="background: linear-gradient(135deg, #0F766E, #2DD4BF);">RK</div>
         <div>
           <div class="rc-name">Ryan K.</div>
-          <div class="rc-detail">Surgeon · Phoenix, AZ</div>
+          <div class="rc-detail">Healthcare &mdash; Phoenix, AZ</div>
         </div>
       </div>
     </div>
 
     <div class="review-card">
-      <div class="rc-stars">★★★★★</div>
-      <div class="rc-quote">"My commute is 22 minutes. GuyTalk fits perfectly and I arrive having already processed the morning's noise. Couldn't give it up at this point."</div>
-      <div class="rc-person">
-        <div class="rc-avatar" style="background: linear-gradient(135deg, #2B6FFF, #818CF8);">TN</div>
-        <div>
-          <div class="rc-name">Tom N.</div>
-          <div class="rc-detail">Engineer · San Francisco, CA</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="rc-stars">★★★★★</div>
-      <div class="rc-quote">"The golf section has genuinely improved my on-course conversations. I know the players, the storylines, the drama. It shows up in how I carry myself in those rounds."</div>
+      <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="rc-quote">learned more about what's actually happening on Tour from this than I did from watching Golf Channel in the background for years. they actually explain why it matters</div>
       <div class="rc-person">
         <div class="rc-avatar" style="background: linear-gradient(135deg, #16A34A, #86EFAC);">PH</div>
         <div>
           <div class="rc-name">Patrick H.</div>
-          <div class="rc-detail">Managing Director · Charlotte, NC</div>
+          <div class="rc-detail">Finance &mdash; Charlotte, NC</div>
         </div>
       </div>
     </div>
 
     <div class="review-card">
-      <div class="rc-stars">★★★★★</div>
-      <div class="rc-quote">"Deleted three other newsletters. This one stayed. That says everything. The tone is right, the length is right, and it never wastes my time."</div>
+      <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="rc-quote">deleted my WSJ newsletter and kept this one. both were free so it wasn't a huge decision but it tells you something</div>
       <div class="rc-person">
         <div class="rc-avatar" style="background: linear-gradient(135deg, #DC2626, #FB923C);">SW</div>
         <div>
           <div class="rc-name">Scott W.</div>
-          <div class="rc-detail">COO · Minneapolis, MN</div>
+          <div class="rc-detail">Operations &mdash; Minneapolis, MN</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="rc-quote">my drive to work is like 25 minutes. read it on my phone at a red light which I probably shouldn't do but it fits. haven't missed a Monday yet</div>
+      <div class="rc-person">
+        <div class="rc-avatar" style="background: linear-gradient(135deg, #2B6FFF, #818CF8);">TN</div>
+        <div>
+          <div class="rc-name">Tom N.</div>
+          <div class="rc-detail">Engineering &mdash; San Francisco, CA</div>
         </div>
       </div>
     </div>
@@ -478,54 +470,54 @@
   </div>
 
   <!-- SCENARIO STORIES -->
-  <div class="section-label">Real Moments, Real Results</div>
+  <div class="section-label">Real Situations</div>
   <div class="scenarios">
 
     <div class="scenario-row">
       <div>
         <div class="story-tag markets" style="margin-bottom:10px;">Markets</div>
-        <div class="sc-context-label">The Partner Meeting</div>
-        <div class="sc-context-sub">Investment committee · 8 people · Monday morning</div>
+        <div class="sc-context-label">The Monday meeting</div>
+        <div class="sc-context-sub">Investment committee &mdash; 8 people around a table</div>
       </div>
-      <div class="sc-right">
-        <div class="sc-quote">"The Fed commentary in the brief that morning was exactly what came up in our 9am meeting. I'd already thought through the angle. My managing partner looked over at me and said 'you've been doing your homework.' I had my phone in my pocket."</div>
-        <div class="sc-attribution">— David M., Portfolio Manager, NYC</div>
+      <div>
+        <div class="sc-quote">"The Fed stuff came up first thing and I'd literally read about it 20 minutes before walking in. Not like a big moment &mdash; just felt good to already know the angle instead of scrambling to catch up while someone else was talking."</div>
+        <div class="sc-attribution">&mdash; David M., Portfolio Manager, NYC</div>
       </div>
     </div>
 
     <div class="scenario-row">
       <div>
         <div class="story-tag sports" style="margin-bottom:10px;">Sports</div>
-        <div class="sc-context-label">The Tailgate</div>
-        <div class="sc-context-sub">College game day · New crowd · Zero common ground</div>
+        <div class="sc-context-label">The tailgate</div>
+        <div class="sc-context-sub">Friend of a friend's thing &mdash; knew maybe two people</div>
       </div>
-      <div class="sc-right">
-        <div class="sc-quote">"Showed up knowing no one. GuyTalk had covered the storylines from that week's slate — I knew the injury updates, the coaching drama, the spread. Was having real conversations within ten minutes. Best tailgate I've been to in years."</div>
-        <div class="sc-attribution">— Kevin B., Account Executive, Atlanta</div>
+      <div>
+        <div class="sc-quote">"GuyTalk had the injury updates and some of the series context from that week. Honestly just not being the guy who goes quiet when sports comes up is underrated. It's a low bar but it's real."</div>
+        <div class="sc-attribution">&mdash; Kevin B., Account Exec, Atlanta</div>
       </div>
     </div>
 
     <div class="scenario-row">
       <div>
-        <div class="story-tag golf" style="margin-bottom:10px;">Golf</div>
-        <div class="sc-context-label">The Business Round</div>
-        <div class="sc-context-sub">Pro-am with a potential client · High stakes</div>
+        <div class="story-tag sports" style="margin-bottom:10px;">Sports</div>
+        <div class="sc-context-label">The F1 conversation</div>
+        <div class="sc-context-sub">Work trip &mdash; client who's really into F1</div>
       </div>
-      <div class="sc-right">
-        <div class="sc-quote">"My client had just come back from Augusta. GuyTalk had covered the tournament the week before — specific moments, player storylines. I could talk about it intelligently for 18 holes. He told me later it was the most fun business golf he'd had in years. We signed the contract the following week."</div>
-        <div class="sc-attribution">— Greg T., Consultant, Dallas</div>
+      <div>
+        <div class="sc-quote">"I follow F1 casually at best. GuyTalk had covered Monaco that week &mdash; not deep, just enough. Client wanted to talk about it, I had a few things to say, didn't embarrass myself. That's all you need sometimes."</div>
+        <div class="sc-attribution">&mdash; Greg T., Consultant, Dallas</div>
       </div>
     </div>
 
     <div class="scenario-row">
       <div>
         <div class="story-tag culture" style="margin-bottom:10px;">Culture</div>
-        <div class="sc-context-label">The Client Dinner</div>
-        <div class="sc-context-sub">Fine dining · Big personalities · Lots of opinions</div>
+        <div class="sc-context-label">The dinner table</div>
+        <div class="sc-context-sub">Eight people &mdash; everyone has an opinion</div>
       </div>
-      <div class="sc-right">
-        <div class="sc-quote">"Table of eight, everyone talking over each other about what's happening in culture. I waited for the right moment, dropped the take from that morning's brief. Total pause. Then everyone had something to say. That's the sweet spot — you're not dominating, you're the one who shaped the conversation."</div>
-        <div class="sc-attribution">— Andrew F., Media Executive, LA</div>
+      <div>
+        <div class="sc-quote">"There's always one topic that turns into a thing. I waited, dropped the take from that morning, and moved on. Didn't belabor it. That's basically the whole game &mdash; have the right thing to say at the right moment."</div>
+        <div class="sc-attribution">&mdash; Andrew F., Media, LA</div>
       </div>
     </div>
 
@@ -533,21 +525,21 @@
 
   <!-- PULL QUOTE -->
   <div class="pull-quote-block">
-    <div class="pq-text">"I read a lot of things. GuyTalk is the only one that makes me feel smarter in a room full of people who are actually paying attention."</div>
-    <div class="pq-person"><strong>— Matt D.</strong>, Founder &amp; CEO, Columbus, OH</div>
+    <div class="pq-text">"honestly found this through reddit and was skeptical. been reading it every day for two months. it's not that I'm smarter &mdash; I'm just less caught off guard."</div>
+    <div class="pq-person"><strong>&mdash; Matt D.</strong> &nbsp; Columbus, OH</div>
   </div>
 
   <!-- CTA -->
   <div class="rv-cta-block">
-    <div class="rv-cta-label">Free · Daily · 5 Minutes</div>
-    <div class="rv-cta-headline">Join the guys who always know.</div>
-    <p class="rv-cta-sub">Sports, markets, golf, and culture — every morning before 8am. Free forever.</p>
+    <div class="rv-cta-label">Free &middot; Daily &middot; 5 Minutes</div>
+    <div class="rv-cta-headline">Try it tomorrow morning.</div>
+    <p class="rv-cta-sub">Sports, markets, and culture &mdash; every morning before 8am. Free forever.</p>
     <div class="rv-cta-success" id="rvSuccess">You're in. Check your inbox tomorrow morning.</div>
     <form class="rv-cta-form" onsubmit="handleSignup(event, this)">
       <input type="email" name="email" placeholder="Enter your email" required class="rv-cta-input" autocomplete="email">
       <button type="submit" class="rv-cta-btn">Subscribe Free</button>
     </form>
-    <div class="rv-cta-hint">Free forever · No spam · Unsubscribe anytime</div>
+    <div class="rv-cta-hint">Free forever &middot; No spam &middot; Unsubscribe anytime</div>
   </div>
 
 </div><!-- /section-wrap -->

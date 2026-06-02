@@ -4,8 +4,11 @@ const TODAY = new Date().toLocaleDateString('en-US', {
   weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
 });
 
-const BRAND_VOICE = `You write for GuyTalk: a daily brief for men aged 25–45 on sports, markets, golf, and culture.
+const BRAND_VOICE = `You write for GuyTalk: a daily brief for men aged 25–45 on sports, markets, and culture.
 Today's date: ${TODAY}.
+
+Sports covers everything: NFL, NBA, MLB, NHL, PGA Tour, F1, Grand Slam tennis, UFC, and any major sporting moment.
+Golf is sports. F1 is sports. Tennis is sports. Cover whatever is actually happening.
 
 Voice rules:
 - Direct and confident. No hedging. No "it seems like" or "you might want to."
@@ -13,9 +16,8 @@ Voice rules:
 - Name specific people, teams, and numbers. Never "a CEO," "a player," "sources say."
 - Dry wit is welcome. Forced humor is not.
 - No hot takes for shock value. Be right.
-- Sports: write for guys who watched the game. Don't explain who Brunson is.
+- Sports: write for guys who watched the game. Don't explain who Brunson or Verstappen is.
 - Markets: clear, not jargon-heavy. Readers have 401(k)s and watch the tape.
-- Golf: assume they play. No birdie definitions.
 - Culture: what happened, what it means, what the correct take is. Not "both sides."
 
 CRITICAL FORMAT RULES — violations will break the layout:
@@ -127,19 +129,23 @@ Context: ${ctx}`,
       80
     ),
 
-    // 2. Sports opening paragraph
+    // 2. Sports opening paragraph — covers NBA/NFL/MLB/NHL/PGA/F1/tennis/UFC
     mainGame
       ? ask(
           `Write 2–3 sentences opening the Sports section. Plain prose only — no markdown, no headers, no labels.
 Games:\n${gamesText}
+${golf?.leaders?.[0] ? `Golf: ${golf.leaders[0].name} ${golf.statusState === 'post' ? 'won' : 'leads'} ${golf.name} at ${golf.leaders[0].score}.` : ''}
 Lead with the most important result. Name the best player with their actual stat line. End with what this sets up next.
+If golf or another major sport (F1, tennis) is happening, weave it in naturally.
 CRITICAL: Only cite a series record if explicitly given in [Series: ...] brackets. Never guess or infer series records.`,
           200
         )
       : ask(
           `Write 2–3 sentences for the Sports section — no games last night. Plain prose only, no markdown.
-Recap the most notable sports story from this past weekend. Be specific: real team names, real players, real scores you know happened.
-End with what to watch for this week.
+Sports is broad: NBA, NFL, MLB, NHL, PGA Tour, F1, Grand Slam tennis, UFC — cover what's actually happening.
+${golf?.leaders?.[0] ? `Golf: ${golf.leaders[0].name} ${golf.statusState === 'post' ? 'won' : 'leads'} ${golf.name} at ${golf.leaders[0].score}.` : ''}
+Recap the most notable sports story right now. Be specific: real names, real scores, real stakes.
+End with what to watch for next.
 Context: ${ctx}${trendText ? `\nTrending: ${trendText}` : ''}`,
           200
         ),
