@@ -60,31 +60,51 @@ function httpGet(url) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Build caption for Instagram / TikTok
+// Build caption for Instagram / TikTok / X
 // ─────────────────────────────────────────────────────────────────────────────
 function buildCaption(issue, platform) {
-  const { title, copy, slug, date } = issue;
+  const { title, copy, slug, date, sports, markets, golf, upcoming } = issue;
   const bullets = copy?.sharpTake?.bullets || [];
   const briefUrl = `${BASE_URL}/brief/${slug}/`;
 
+  // Build a punchy hook from bullet content or raw data
+  const hook = (() => {
+    if (bullets[0]) return bullets[0];
+    if (sports?.length) {
+      const g = sports[0];
+      const w = g.home?.winner ? g.home : g.away;
+      const l = g.home?.winner ? g.away : g.home;
+      return `${w.team} ${w.score}–${l.score} over ${l.team}. ${g.seriesNote || ''}`.trim();
+    }
+    if (upcoming?.length) return `${upcoming[0].note || upcoming[0].shortName} tips off ${upcoming[0].daysAhead <= 1 ? 'tomorrow' : 'this week'}.`;
+    return 'Five minutes. Everything you need.';
+  })();
+
   // Bullets block
   const bulletLines = bullets.slice(0, 3)
-    .map(b => `▸ ${b}`)
+    .map(b => `→ ${b}`)
     .join('\n');
 
-  // Hashtags
-  const tags = [
-    '#GuyTalk', '#DailyBrief', '#MorningRead',
-    '#Sports', '#Markets', '#StockMarket',
-    '#Golf', '#NBA', '#F1', '#Soccer',
-    '#MensLifestyle', '#FinanceTips',
-  ].join(' ');
+  // Dynamic tags based on content
+  const coreTags = ['#GuyTalk', '#DailyBrief', '#MorningRead'];
+  const sportsTags = sports?.length ? ['#Sports', '#NBA'] : upcoming?.length ? ['#NBAFinals', '#NBA'] : ['#Sports'];
+  const marketsTags = markets?.SPY ? ['#Markets', '#Investing'] : [];
+  const golfTags = golf?.leaders?.[0] ? ['#Golf', '#PGATour'] : [];
+  const f1Tags = issue.f1?.name ? ['#F1', '#Formula1'] : [];
+  const allTags = [...coreTags, ...sportsTags, ...marketsTags, ...golfTags, ...f1Tags, '#MensLifestyle'].join(' ');
 
-  if (platform === 'tiktok') {
-    return `${title}\n\n${bulletLines || 'Full brief at the link in bio'}\n\nLink in bio 👆\n\n${tags}`.trim();
+  if (platform === 'x') {
+    // X: concise, punchy, character-limited (280). No link (already has card preview).
+    const shortBullet = bullets[0] ? `\n\n${bullets[0]}` : '';
+    return `${title}${shortBullet}\n\nguytalkmedia.com/brief/${slug}/`.trim();
   }
 
-  return `${title}\n\nHere's what you need to know:\n\n${bulletLines || '▸ Full breakdown inside.'}\n\nLink in bio 👆 — ${briefUrl}\n\n${tags}`.trim();
+  if (platform === 'tiktok') {
+    return `${hook}\n\n${title}\n\n${bulletLines || '→ Full breakdown in bio'}\n\nLink in bio 👆\n\n${allTags}`.trim();
+  }
+
+  // Instagram
+  return `${hook}\n\n${title}\n\n${bulletLines || '→ Full brief at the link.'}\n\nLink in bio 👆 — ${briefUrl}\n\n${allTags}`.trim();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -111,11 +131,12 @@ async function getProfiles() {
   const res = await httpGet(`https://api.bufferapp.com/1/profiles.json?access_token=${BUFFER_API_KEY}`);
   if (res.status !== 200 || !Array.isArray(res.body)) {
     console.error('❌  Could not fetch Buffer profiles:', res.status, res.body);
-    return { instagram: null, tiktok: null };
+    return { instagram: null, tiktok: null, twitter: null };
   }
   const instagram = res.body.find(p => p.service === 'instagram');
   const tiktok    = res.body.find(p => p.service === 'tiktok');
-  return { instagram, tiktok };
+  const twitter   = res.body.find(p => p.service === 'twitter');
+  return { instagram, tiktok, twitter };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -161,17 +182,19 @@ async function main() {
   }
 
   // Get Buffer profiles (skip in dry-run)
-  let instagram = null, tiktok = null;
+  let instagram = null, tiktok = null, twitter = null;
   if (!dryRun) {
     const profiles = await getProfiles();
     instagram = profiles.instagram;
     tiktok    = profiles.tiktok;
-    if (!instagram && !tiktok) {
-      console.error('❌  No Instagram or TikTok profiles found in Buffer');
+    twitter   = profiles.twitter;
+    if (!instagram && !tiktok && !twitter) {
+      console.error('❌  No Instagram, TikTok, or X profiles found in Buffer');
       process.exit(1);
     }
     if (instagram) console.log(`  ✓ Instagram: ${instagram.formatted_username || instagram._id}`);
     if (tiktok)    console.log(`  ✓ TikTok:    ${tiktok.formatted_username   || tiktok._id}`);
+    if (twitter)   console.log(`  ✓ X:         ${twitter.formatted_username  || twitter._id}`);
   } else {
     console.log('  ℹ  Dry-run — skipping Buffer profile fetch');
   }
@@ -203,6 +226,7 @@ async function main() {
 
     const igCaption  = buildCaption(issue, 'instagram');
     const ttCaption  = buildCaption(issue, 'tiktok');
+    const xCaption   = buildCaption(issue, 'x');
     const scheduled  = slots[slotIdx] || null;
     slotIdx++;
 
@@ -212,6 +236,7 @@ async function main() {
     if (dryRun) {
       console.log(`     [DRY RUN] Instagram: ${igCaption.slice(0, 80)}...`);
       console.log(`     [DRY RUN] TikTok:    ${ttCaption.slice(0, 80)}...`);
+      console.log(`     [DRY RUN] X:         ${xCaption.slice(0, 80)}...`);
       console.log('');
       continue;
     }
@@ -231,6 +256,15 @@ async function main() {
         console.log(`     ✓ TikTok queued (${r.status})`);
       } catch (e) {
         console.log(`     ⚠  TikTok failed: ${e.message}`);
+      }
+    }
+
+    if (twitter) {
+      try {
+        const r = await queueToBuffer(twitter._id, xCaption, scheduled);
+        console.log(`     ✓ X queued (${r.status})`);
+      } catch (e) {
+        console.log(`     ⚠  X failed: ${e.message}`);
       }
     }
 
