@@ -55,12 +55,12 @@ function buildHtml(issue) {
 <meta property="og:url"         content="https://www.guytalkmedia.com/brief/${slug}/">
 <meta property="og:title"       content="${esc(title)}">
 <meta property="og:description" content="GuyTalk Issue ${label} — sports, markets, and culture in five minutes.">
-<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
+<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
 <meta property="og:site_name"   content="GuyTalk">
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:site"        content="@guytalkmedia">
 <meta name="twitter:title"       content="${esc(title)}">
-<meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
+<meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
 <link rel="canonical"            href="https://www.guytalkmedia.com/brief/${slug}/">
 ${prevSlug ? `<link rel="prev" href="https://www.guytalkmedia.com/brief/${prevSlug}/">` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">

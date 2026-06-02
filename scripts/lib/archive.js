@@ -100,7 +100,7 @@ function buildArchive(rootDir) {
 <link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
 <meta property="og:title"       content="GuyTalk Archive">
 <meta property="og:description" content="Every GuyTalk brief — browse all issues.">
-<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
+<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
