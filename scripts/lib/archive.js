@@ -132,6 +132,13 @@ function buildArchive(rootDir) {
           `$1\n        ${tickerItems}\n        ${tickerItems}\n      </div></div>\n    </div>`
         );
       }
+      // Update GuyTalk chat card date
+      if (latest.date) {
+        indexHtml = indexHtml.replace(
+          /(<span class="msg-gt-hdr-issue">)[^<]+(<\/span>)/,
+          `$1${latest.date}$2`
+        );
+      }
       fs.writeFileSync(indexPath, indexHtml, 'utf8');
     }
   }
