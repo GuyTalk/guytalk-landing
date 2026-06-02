@@ -44,7 +44,11 @@ function buildTickerItems(issue) {
   if (issue.golf?.leaders?.[0]) {
     const l = issue.golf.leaders[0];
     const status = issue.golf.statusState === 'post' ? 'WINS' : 'LEADS';
-    items.push(`<div class="ticker-item"><span class="ticker-sport">${l.name.toUpperCase()} ${status}  ${l.score}</span></div>`);
+    const scoreLabel = l.score === 'E' ? 'EVEN' : l.score;
+    const rawName = issue.golf.shortName || issue.golf.name || '';
+    // Keep ticker labels short — strip "pres. by ..." suffix and truncate
+    const golfName = rawName.replace(/pres\. by .*/i, '').replace(/presented by .*/i, '').trim().toUpperCase();
+    items.push(`<div class="ticker-item"><span class="ticker-sport">${l.name.toUpperCase()} ${status}  ${golfName}  AT ${scoreLabel}</span></div>`);
   }
   return items.length > 2 ? items.join('\n        ') : null;
 }
