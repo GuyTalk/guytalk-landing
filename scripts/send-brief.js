@@ -78,34 +78,34 @@ function buildEmailHtml(data, slug) {
   const briefUrl  = `${SITE_URL}/brief/${slug}/`;
   const num       = String(data.num).padStart(3, '0');
 
-  const bullets = [];
-  if (data.sports?.length) {
-    const g = data.sports[0];
-    const w = g.home?.winner ? g.home : g.away;
-    const l = g.home?.winner ? g.away : g.home;
-    bullets.push(`<b style="color:#0F1724">Sports:</b> ${g.note || g.shortName} — ${w?.team} ${w?.score}, ${l?.team} ${l?.score}`);
-  }
-  if (data.markets?.SPY?.dayChangePct != null) {
-    const chg = data.markets.SPY.dayChangePct;
-    bullets.push(`<b style="color:#0F1724">Markets:</b> S&amp;P 500 ${chg >= 0 ? '+' : ''}${chg.toFixed(1)}% today`);
-  }
-  if (data.golf?.leaders?.[0]) {
-    const leader = data.golf.leaders[0];
-    const golfVerb = data.golf.statusState === 'post' ? 'wins' : 'leads';
-    bullets.push(`<b style="color:#0F1724">Golf:</b> ${leader.name} ${golfVerb} ${data.golf.name} at ${leader.score}`);
-  }
-  if (data.f1?.name) {
-    const f1Str = data.f1.results?.[0]?.driver
-      ? `${data.f1.results[0].driver} wins ${data.f1.shortName || data.f1.name}`
-      : `${data.f1.shortName || data.f1.name} — this weekend`;
-    bullets.push(`<b style="color:#0F1724">F1:</b> ${f1Str}`);
-  }
-  if (data.worldCup?.length) {
-    const active = data.worldCup.find(m => m.statusState === 'in' || m.statusState === 'post');
-    const wcStr = active
-      ? `${active.away.team} vs ${active.home.team} — ${active.away.score}–${active.home.score}`
-      : 'FIFA World Cup 2026 opens June 11';
-    bullets.push(`<b style="color:#0F1724">World Cup:</b> ${wcStr}`);
+  // Prefer AI sharp-take bullets — they're more compelling than raw scores
+  let bullets = [];
+  const aiBullets = data.copy?.sharpTake?.bullets;
+  if (Array.isArray(aiBullets) && aiBullets.length >= 2) {
+    bullets = aiBullets.slice(0, 3).map(b => `<span style="color:#0F1724">${b}</span>`);
+  } else {
+    // Fallback: build from raw data
+    if (data.sports?.length) {
+      const g = data.sports[0];
+      const w = g.home?.winner ? g.home : g.away;
+      const l = g.home?.winner ? g.away : g.home;
+      bullets.push(`<b style="color:#0F1724">Sports:</b> ${g.note || g.shortName} — ${w?.team} ${w?.score}, ${l?.team} ${l?.score}`);
+    }
+    if (data.markets?.SPY?.dayChangePct != null) {
+      const chg = data.markets.SPY.dayChangePct;
+      bullets.push(`<b style="color:#0F1724">Markets:</b> S&amp;P 500 ${chg >= 0 ? '+' : ''}${chg.toFixed(1)}% today`);
+    }
+    if (data.golf?.leaders?.[0]) {
+      const leader = data.golf.leaders[0];
+      const golfVerb = data.golf.statusState === 'post' ? 'wins' : 'leads';
+      bullets.push(`<b style="color:#0F1724">Golf:</b> ${leader.name} ${golfVerb} ${data.golf.name} at ${leader.score}`);
+    }
+    if (data.f1?.name) {
+      const f1Str = data.f1.results?.[0]?.driver
+        ? `${data.f1.results[0].driver} wins ${data.f1.shortName || data.f1.name}`
+        : `${data.f1.shortName || data.f1.name} — this weekend`;
+      bullets.push(`<b style="color:#0F1724">F1:</b> ${f1Str}`);
+    }
   }
 
   const bulletsHtml = bullets.length
@@ -196,8 +196,13 @@ function buildEmailHtml(data, slug) {
       <p style="font-size:12px;color:#9E9891;margin:0 0 6px;line-height:1.6;">
         You're receiving this because you subscribed to GuyTalk.
       </p>
-      <p style="font-size:12px;color:#9E9891;margin:0;">
+      <p style="font-size:12px;color:#9E9891;margin:0 0 6px;">
         <a href="${SITE_URL}" style="color:#9E9891;text-decoration:underline;">guytalkmedia.com</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.guytalkmedia.com/unsubscribe/" style="color:#9E9891;text-decoration:underline;">Unsubscribe</a>
+      </p>
+      <p style="font-size:11px;color:#B8B4AC;margin:0;">
+        GuyTalk · PO Box (coming soon) · United States
       </p>
     </td>
   </tr>
