@@ -13,10 +13,9 @@ function buildArchive(rootDir) {
     .sort()
     .reverse(); // newest first
 
-  const issues = files.map(f => {
+  const allIssues = files.map(f => {
     try {
       const d = JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8'));
-      // Derive num from filename if missing in data
       if (!d.num) {
         const m = f.match(/issue-(\d+)\.json/);
         if (m) d.num = parseInt(m[1], 10);
@@ -25,6 +24,26 @@ function buildArchive(rootDir) {
       return d;
     } catch (_) { return null; }
   }).filter(Boolean);
+
+  // Drop placeholder/test issues and keep only the latest issue per date
+  const filtered = allIssues.filter(d => d.title && !d.title.startsWith('REPLACE'));
+  const byDate = new Map();
+  for (const d of filtered) {
+    const key = d.date || '';
+    if (!byDate.has(key) || d.num > byDate.get(key).num) byDate.set(key, d);
+  }
+  const issues = Array.from(byDate.values()).sort((a, b) => b.num - a.num);
+
+  // Update about page issue count
+  const aboutPath = path.join(rootDir, 'about', 'index.html');
+  if (fs.existsSync(aboutPath)) {
+    let aboutHtml = fs.readFileSync(aboutPath, 'utf8');
+    aboutHtml = aboutHtml.replace(
+      /(<div class="stat-num">)\d+\+?(<\/div>\s*<div class="stat-label">Issues published)/,
+      `$1${issues.length}+$2`
+    );
+    fs.writeFileSync(aboutPath, aboutHtml, 'utf8');
+  }
 
   const rows = issues.map(d => {
     const num  = String(d.num).padStart(3, '0');
