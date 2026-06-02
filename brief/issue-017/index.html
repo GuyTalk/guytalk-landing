@@ -5,12 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Brief · #017 — GuyTalk</title>
 <meta name="description" content="Spurs steal West Finals. Henley leads at Schwab. Markets tread water. — GuyTalk Issue #017.">
+<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="https://www.guytalkmedia.com/brief/issue-017/">
+<meta property="og:title"       content="Spurs steal West Finals. Henley leads at Schwab. Markets tread water.">
+<meta property="og:description" content="GuyTalk Issue #017 — sports, markets, and culture in five minutes.">
+<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
+<meta property="og:site_name"   content="GuyTalk">
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:site"        content="@guytalkmedia">
+<meta name="twitter:title"       content="Spurs steal West Finals. Henley leads at Schwab. Markets tread water.">
+<meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/brief.css">
 </head>
 <body>
+
+<div class="reading-progress" id="readingProgress"></div>
 
 <nav class="brief-nav">
   <div class="brief-nav-inner">
@@ -22,7 +35,7 @@
   </div>
 </nav>
 
-<article class="brief-article">
+<article class="brief-article" id="briefArticle">
 
   <div class="brief-pretitle">
     <span class="brief-pretitle-dot"></span>
@@ -35,8 +48,15 @@
     <span class="sep">·</span>
     <span>ISSUE #017</span>
     <span class="sep">·</span>
-    <span>SPORTS · MARKETS · GOLF · CULTURE</span>
+    <span>SPORTS · MARKETS · CULTURE</span>
   </div>
+
+  <nav class="section-jump" aria-label="Jump to section">
+    <a href="#sports" class="sj-link">Sports</a>
+    <a href="#markets" class="sj-link">Markets</a>
+    <a href="#culture" class="sj-link">Culture</a>
+    <a href="#sharp-take" class="sj-link">Take</a>
+  </nav>
 
   <div class="tldr">
     <div class="tldr-label">TL;DR — Five things to know</div>
@@ -50,12 +70,12 @@
         <span>More scores inside.</span>
       </li>
       <li class="tldr-item">
-        <a href="#markets" class="tag-link"><span class="tag tag-amber">Markets</span></a>
+        <a href="#markets" class="tag-link"><span class="tag tag-blue">Markets</span></a>
         <span><a href="https://www.morningstar.com/etfs/arcx/spy/quote" class="ticker">SPY</a> up +0.1% on the day.</span>
       </li>
       <li class="tldr-item">
-        <a href="#golf" class="tag-link"><span class="tag tag-amber">Golf</span></a>
-        <span><span class="player">Russell Henley</span> wins Charles Schwab Challenge at -13 (Final).</span>
+        <a href="#sports" class="tag-link"><span class="tag tag-amber">Sports</span></a>
+        <span><a href="https://www.espn.com/golf/player/_/id/4848715/russell-henley" class="player">Russell Henley</a> wins Charles Schwab Challenge at -13 (Final).</span>
       </li>
       <li class="tldr-item">
         <a href="#culture" class="tag-link"><span class="tag tag-amber">Culture</span></a>
@@ -65,12 +85,13 @@
   </div>
 
   <section class="brief-section" id="sports">
-    <div class="section-label">Sports</div>
+    <div class="section-label sl-sports">Sports</div>
 
     <h3>West Finals - Game 7</h3>
 
     <div class="scoreboard">
       <div class="score-side">
+        <img src="https://a.espncdn.com/i/teamlogos/nba/500/okc.png" class="score-logo loser" alt="OKC" loading="lazy" onerror="this.style.display='none'">
         <div class="score-team loser">Oklahoma City Thunder</div>
         <div class="score-num loser">103</div>
       </div>
@@ -81,39 +102,74 @@
       <div class="score-side right">
         <div class="score-team">San Antonio Spurs</div>
         <div class="score-num">111</div>
+        <img src="https://a.espncdn.com/i/teamlogos/nba/500/sa.png" class="score-logo" alt="SA" loading="lazy" onerror="this.style.display='none'">
       </div>
     </div>
 
-    <p># GuyTalk: Sports
+    <div class="highlights-card">
+      <span class="hl-label">Best Moments</span>
+      <div class="hl-links">
+        <a href="https://www.espn.com/nba/recap/_/gameId/401873203" target="_blank" rel="noopener" class="hl-btn">▶ Watch on ESPN</a>
+        <a href="https://www.youtube.com/results?search_query=San%20Antonio%20Spurs%20vs%20Oklahoma%20City%20Thunder%20highlights" target="_blank" rel="noopener" class="hl-btn hl-btn-yt">YouTube Highlights</a>
+      </div>
+    </div>
 
-The Spurs are back. Tim Duncan closed out Oklahoma City 111–103 in Game 7, a masterclass in half-court execution that reminded everyone why San Antonio's been the West's most reliable operator for two decades. This sets up a Finals matchup against whoever emerges from the East—and Duncan's proven he can still impose his will on any big man on the planet.
-
-**Conversation starter:** Duncan's +18 in the deciding game at age 38—that's not nostalgia, that's just dominance on a schedule.</p>
+    <p># GuyTalk: Sports</p>
+    <p>The Spurs are back. Tim Duncan closed out Oklahoma City 111–103 in Game 7, a masterclass in half-court execution that reminded everyone why San Antonio's been the West's most reliable operator for two decades. This sets up a Finals matchup against whoever emerges from the East—and Duncan's proven he can still impose his will on any big man on the planet.</p>
+    <p>**Conversation starter:** Duncan's +18 in the deciding game at age 38—that's not nostalgia, that's just dominance on a schedule.</p>
 
     <ul class="detail-list">
-      <li><span><span class="dl-label">Key number:</span>Tony Parker hit 6 of 9 threes and finished with 27 points. OKC's perimeter defense collapsed in the fourth quarter.</span></li>
-      <li><span><span class="dl-label">Series situation:</span>Spurs advance to the Finals with a 4-3 series win. San Antonio survives a Game 7 grinder in Oklahoma City and heads to face Miami (or LeBron's team) starting June 6th. This was the kind of series that ages you—five games decided by four points or fewer.</span></li>
-      <li><span><span class="dl-label">How to watch:</span>West Finals · Game 7 · Chesapeake Energy Arena, OKC · Final (completed) · TNT broadcast.</span></li>
+      <li><span><span class="dl-label">Key number:</span> Tony Parker hit 6 of 9 threes and finished with 27 points. OKC's perimeter defense collapsed in the fourth quarter.</span></li>
+      <li><span><span class="dl-label">Series:</span> Spurs advance to the Finals with a 4-3 series win. San Antonio survives a Game 7 grinder in Oklahoma City and heads to face Miami (or LeBron's team) starting June 6th. This was the kind of series that ages you—five games decided by four points or fewer.</span></li>
+      <li><span><span class="dl-label">How to watch:</span> West Finals · Game 7 · Chesapeake Energy Arena, OKC · Final (completed) · TNT broadcast.</span></li>
     </ul>
 
     <div class="angle-box">
       <span class="angle-label">Group Chat Angle</span>
       <p class="angle-text">Parker's threes weren't lucky. Popovich ran him off screens in the fourth specifically because OKC had no answer for a point guard shooting over their bigs. That's the Spurs' entire playbook in one detail.</p>
     </div>
+
+
+    <h3>Charles Schwab Challenge: <a href="https://www.espn.com/golf/player/_/id/4848715/russell-henley" class="player">Russell Henley</a> wins at -13.</h3>
+
+    <p>Henley's ball-striking was surgical; -13 isn't winning the lottery, it's executing the plan.</p>
+
+    <ul class="detail-list">
+      <li><span><span class="dl-label">Leaderboard (Final):</span><a href="https://www.espn.com/golf/player/_/id/4848715/russell-henley" class="player">Russell Henley</a> -13 (1st), <a href="https://www.espn.com/golf/player/_/id/10122/eric-cole" class="player">Eric Cole</a> -12 (2nd), <a href="https://www.espn.com/golf/player/_/id/5769/ben-griffin" class="player">Ben Griffin</a> -11 (3rd), <span class="player">Alex Smalley</span> -11 (4th), <span class="player">Mac Meissner</span> -11 (5th).</span></li>
+      <li><span><span class="dl-label">Why it matters:</span>Henley's second win of the season puts him in the top 10 of the FedEx Cup race and validates his iron play as a legitimate major-tournament weapon heading into the U.S. Open.</span></li>
+      <li><span><span class="dl-label">How it happened:</span>Henley held the 54-hole lead and closed with a 69 to finish at -13, holding off Eric Cole's late push that got Cole to -12 but never closer.</span></li>
+      <li><span><span class="dl-label">What to bring up:</span>Henley's ball-striking numbers this week were elite—he ranked top-5 in strokes gained approach—which is the exact skill set that wins at Pinehurst and Torrey Pines.</span></li>
+    </ul>
+
+    <div class="angle-box">
+      <span class="angle-label">Group Chat Angle</span>
+      <p class="angle-text">Cole went low again (he's 4-for-4 finishing inside the top 5 this season) but lost another one he had in reach; at some point you have to wonder if it's just not clicking on Sundays.</p>
+    </div>
+
+    <h3>The gear pick.</h3>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://www.carlsgolfland.com/media/catalog/product/cache/d69ef9f06ed26ee571b3d9d7a80a892a/2/0/2025_titleist_pro_v1_golf_balls_dozen_box_hero.jpg" alt="Pro V1 Golf Balls" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Titleist</div>
+        <div class="product-name">Pro V1 Golf Balls</div>
+        <p class="product-desc">If you're shooting under 90 consistently, you should be on a Pro V1. The performance difference between a quality ball and a random sleeve is measurable — consistent flight, soft feel around the greens, and durability that earns the price. A dozen lasts longer than you think. <a href="https://www.titleist.com/golf-balls/pro-v1" class="brand">Shop Titleist →</a></p>
+        <span class="product-price">$55/dozen</span>
+        <a href="https://www.titleist.com/golf-balls/pro-v1" target="_blank" rel="noopener" class="product-link">Shop Titleist →</a>
+      </div>
+    </div>
   </section>
 
   <section class="brief-section" id="markets">
-    <div class="section-label">Markets</div>
+    <div class="section-label sl-markets">Markets</div>
 
     <h3>Nvidia surges while Tesla craters on earnings fears</h3>
 
-    <p>**Markets**
-
-Nvidia's 4.1% pop on fresh AI chip demand couldn't drag the broader market anywhere—SPY eked out a 0.1% gain while the Mag Seven fractured, with Microsoft and Nvidia rallying hard against Apple and Tesla's stumbles. The real story isn't the index; it's that investors are picking winners inside the winners, which usually precedes a market reset when they guess wrong.
-
-Watch the Fed's next move on rates going into next week—a hawkish surprise would hammer growth stocks that just benefited from the Nvidia momentum, while any dovish signal sends the whole thing higher. Bitcoin's 3.5% drop is the canary: when crypto folds this cleanly on a risk-on day, positioning is tighter than the headlines suggest.
-
-*Tell someone: &quot;Microsoft's up 2.3% but the Mag Seven's splintering—Nvidia and</p>
+    <p>**Markets**</p>
+    <p>Nvidia's 4.1% pop on fresh AI chip demand couldn't drag the broader market anywhere—SPY eked out a 0.1% gain while the Mag Seven fractured, with Microsoft and Nvidia rallying hard against Apple and Tesla's stumbles. The real story isn't the index; it's that investors are picking winners inside the winners, which usually precedes a market reset when they guess wrong.</p>
+    <p>Watch the Fed's next move on rates going into next week—a hawkish surprise would hammer growth stocks that just benefited from the Nvidia momentum, while any dovish signal sends the whole thing higher. Bitcoin's 3.5% drop is the canary: when crypto folds this cleanly on a risk-on day, positioning is tighter than the headlines suggest.</p>
+    <p>*Tell someone: &quot;Microsoft's up 2.3% but the Mag Seven's splintering—Nvidia and</p>
 
     <p>Tesla reports earnings Thursday after hours—watch for margin compression and FSD adoption numbers, which will set the tone for whether Musk's valuation holds.</p>
 
@@ -154,6 +210,12 @@ Watch the Fed's next move on rates going into next week—a hawkish surprise wou
           <div class="m-day dn">-3.3%</div>
           <div class="m-wk ">—</div>
         </div>
+        <div class="mkt-row">
+          <div class="m-name"><a href="https://www.morningstar.com/stocks/xnas/msft/quote" class="ticker">MSFT</a></div>
+          <div class="m-val">$460.48</div>
+          <div class="m-day up">+2.3%</div>
+          <div class="m-wk ">—</div>
+        </div>
         <div class="mkt-div"></div>
         <div class="mkt-row">
           <div class="m-name"><a href="https://www.morningstar.com/funds/xnas/gbtc/quote" class="ticker">Bitcoin</a></div>
@@ -161,6 +223,13 @@ Watch the Fed's next move on rates going into next week—a hawkish surprise wou
           <div class="m-day dn">-3.5%</div>
           <div class="m-wk ">—</div>
         </div>
+        <div class="mkt-row">
+          <div class="m-name"><a href="https://www.morningstar.com/stocks/xnys/dell/quote" class="ticker">DELL</a></div>
+          <div class="m-val">—</div>
+          <div class="m-day ">—</div>
+          <div class="m-wk ">—</div>
+        </div>
+        <div class="mkt-div"></div>
         <div class="mkt-row">
           <div class="m-name">10Y Yield</div>
           <div class="m-val">—</div>
@@ -171,51 +240,18 @@ Watch the Fed's next move on rates going into next week—a hawkish surprise wou
     </div>
 
     <ul class="detail-list">
+      <li><span><span class="dl-label">Stock spotlight:</span>NVDA +4.1% while the broader market flatlines—Jensen Huang's chip demand thesis is still intact despite macro noise, and institutional money is rotating into semiconductor strength ahead of potential AI capex cycles.</span></li>
       <li><span><span class="dl-label">Watch next week:</span>Thursday 4pm ET: Tesla Q3 earnings call. Margin guidance and delivery forecast will determine if the stock finds support or breaks lower.</span></li>
-      <li><span><span class="dl-label">Trade to watch:</span>NVDA +4.1% while the broader market flatlines—Jensen Huang's chip demand thesis is still intact despite macro noise, and institutional money is rotating into semiconductor strength ahead of potential AI capex cycles.</span></li>
       <li><span><span class="dl-label">What to bring up:</span>Nvidia's up 4 percent while Tesla's down 3.3 and the S&amp;P barely moved—that's not a market, that's a sector rotation into chips and away from EV execution risk.</span></li>
     </ul>
   </section>
 
-  <section class="brief-section" id="golf">
-    <div class="section-label">Golf + Lifestyle</div>
 
-    <h3>Charles Schwab Challenge: <span class="player">Russell Henley</span> wins at -13.</h3>
 
-    <p>Henley's ball-striking was surgical; -13 isn't winning the lottery, it's executing the plan.</p>
 
-    <ul class="detail-list">
-      <li><span><span class="dl-label">Leaderboard (Final):</span><span class="player">Russell Henley</span> -13 (1st), <span class="player">Eric Cole</span> -12 (2nd), <span class="player">Ben Griffin</span> -11 (3rd), <span class="player">Alex Smalley</span> -11 (4th), <span class="player">Mac Meissner</span> -11 (5th).</span></li>
-      <li><span><span class="dl-label">Why it matters:</span>Henley's second win of the season puts him in the top 10 of the FedEx Cup race and validates his iron play as a legitimate major-tournament weapon heading into the U.S. Open.</span></li>
-      <li><span><span class="dl-label">How it happened:</span>Henley held the 54-hole lead and closed with a 69 to finish at -13, holding off Eric Cole's late push that got Cole to -12 but never closer.</span></li>
-      <li><span><span class="dl-label">What to bring up:</span>Henley's ball-striking numbers this week were elite—he ranked top-5 in strokes gained approach—which is the exact skill set that wins at Pinehurst and Torrey Pines.</span></li>
-    </ul>
-
-    <div class="angle-box">
-      <span class="angle-label">Group Chat Angle</span>
-      <p class="angle-text">Cole went low again (he's 4-for-4 finishing inside the top 5 this season) but lost another one he had in reach; at some point you have to wonder if it's just not clicking on Sundays.</p>
-    </div>
-
-    <h3>The product worth knowing about.</h3>
-
-    <div class="product-card">
-      <div class="product-img">
-        <img src="https://cdn.shopify.com/s/files/1/1366/9275/files/POLOS_9c9327dc-59dc-4def-9fd9-b7af830b9a7e.jpg?v=1778262716" alt="Voltaic Performance Polo" loading="lazy">
-      </div>
-      <div class="product-info">
-        <div class="product-brand">Rhoback</div>
-        <div class="product-name">Voltaic Performance Polo</div>
-        <p class="product-desc">Rhoback solved something the big brands haven't: a polo that's actually comfortable at 88 degrees on the 14th hole. Four-way stretch, moisture-wicking, and it doesn't look like athletic wear. The Voltaic works on the course and anywhere you go after. <a href="https://rhoback.com/collections/mens-polos" class="brand">Shop Rhoback →</a></p>
-        <span class="product-price">$98</span>
-        <a href="https://rhoback.com/collections/mens-polos" target="_blank" rel="noopener" class="product-link">Shop Rhoback →</a>
-      </div>
-    </div>
-
-    <p style="font-size:14px; color:var(--text-3);">Other brands worth knowing: <a href="https://www.petermillar.com" class="brand">Peter Millar</a>, <a href="https://rhoback.com" class="brand">Rhoback</a>, <a href="https://www.travismathew.com" class="brand">TravisMathew</a>, <a href="https://holdernessandbourne.com" class="brand">Holderness &amp; Bourne</a>.</p>
-  </section>
 
   <section class="brief-section" id="culture">
-    <div class="section-label">Culture</div>
+    <div class="section-label sl-culture">Culture</div>
     <ul class="culture-list">
 
       <li class="culture-item">
@@ -243,13 +279,13 @@ Watch the Fed's next move on rates going into next week—a hawkish surprise wou
   </section>
 
   <section class="brief-section" id="the-rec">
-    <div class="section-label">The Rec</div>
+    <div class="section-label sl-markets">The Rec</div>
 
     <div class="brief-rec">
       <div class="rec-label">This week's pick</div>
-      <div class="rec-title">Bose QuietComfort 45 — best noise-cancelling for the price right now.</div>
-      <p class="rec-body">Sony and Apple get the press, but Bose is still the quietest on a plane. The QC45 isn't the newest model — which means it's $100 cheaper than a year ago. Battery is 24 hours, the fit is comfortable for long hauls, and the noise cancellation mid-flight is genuinely different from the competition. Buy them before your next trip.</p>
-      <a href="https://www.bose.com/c/headphones" target="_blank" rel="noopener" class="rec-link">Shop Bose →</a>
+      <div class="rec-title">Peloton App — the gym you'll actually use when you're traveling.</div>
+      <p class="rec-body">Forget the bike — the Peloton app without hardware costs $13/month and gives you strength training, outdoor run coaching, yoga, and stretching content that's legitimately better than what most gym PTs program. The strength library alone is worth it. Download it before any hotel stay and you'll stop skipping workouts on the road.</p>
+      <a href="https://www.onepeloton.com/app" target="_blank" rel="noopener" class="rec-link">Try Peloton App →</a>
     </div>
   </section>
 
@@ -264,7 +300,7 @@ Watch the Fed's next move on rates going into next week—a hawkish surprise wou
     <div class="section-label">Numbers worth stealing</div>
     <ul class="numbers-list">
       <li class="numbers-item">
-        <div class="n-num">103–111</div>
+        <div class="n-num">111–103</div>
         <div><strong>West Finals - Game 7.</strong> The Celtics just punched their ticket to the Finals by closing out Denver in Denver. This is what a championship team looks like when it matters—Boston's defense suffocated the Nuggets' role players in the fourth quarter and made Jokic work for every bucket.</div>
       </li>
       <li class="numbers-item">
@@ -283,16 +319,33 @@ Watch the Fed's next move on rates going into next week—a hawkish surprise wou
 <footer class="brief-footer">
   <a href="/#signup" class="footer-cta">Get the brief free →</a>
   <p class="footer-meta">
-    You're reading GuyTalk — the daily brief on sports, markets, golf, and culture.<br>
+    You're reading GuyTalk — the daily brief on sports, markets, and culture.<br>
     Five minutes a day. Free forever. No algorithm.
   </p>
   <p class="footer-sig">— Jake, GuyTalk</p>
   <div class="footer-nav">
     <a href="/">Home</a>
+    <a href="/briefs/">All Issues</a>
     <a href="/brief/issue-016/">Issue #016</a>
     <a href="mailto:guytalkdaily@gmail.com">Reply to Jake</a>
   </div>
 </footer>
+
+<script>
+(function() {
+  var bar = document.getElementById('readingProgress');
+  var article = document.getElementById('briefArticle');
+  if (!bar || !article) return;
+  function update() {
+    var rect = article.getBoundingClientRect();
+    var total = article.offsetHeight - window.innerHeight;
+    var pct = total > 0 ? Math.min(100, Math.max(0, (-rect.top / total) * 100)) : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
 
 </body>
 </html>

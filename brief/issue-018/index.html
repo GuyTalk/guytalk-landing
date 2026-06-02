@@ -23,6 +23,8 @@
 </head>
 <body>
 
+<div class="reading-progress" id="readingProgress"></div>
+
 <nav class="brief-nav">
   <div class="brief-nav-inner">
     <a href="/" class="brief-wordmark">GuyTalk<span class="dot">.</span></a>
@@ -33,7 +35,7 @@
   </div>
 </nav>
 
-<article class="brief-article">
+<article class="brief-article" id="briefArticle">
 
   <div class="brief-pretitle">
     <span class="brief-pretitle-dot"></span>
@@ -49,6 +51,13 @@
     <span>SPORTS · MARKETS · CULTURE</span>
   </div>
 
+  <nav class="section-jump" aria-label="Jump to section">
+    <a href="#sports" class="sj-link">Sports</a>
+    <a href="#markets" class="sj-link">Markets</a>
+    <a href="#culture" class="sj-link">Culture</a>
+    <a href="#sharp-take" class="sj-link">Take</a>
+  </nav>
+
   <div class="tldr">
     <div class="tldr-label">TL;DR — Five things to know</div>
     <ul class="tldr-list">
@@ -61,7 +70,7 @@
         <span>More scores inside.</span>
       </li>
       <li class="tldr-item">
-        <a href="#markets" class="tag-link"><span class="tag tag-amber">Markets</span></a>
+        <a href="#markets" class="tag-link"><span class="tag tag-blue">Markets</span></a>
         <span><a href="https://www.morningstar.com/etfs/arcx/spy/quote" class="ticker">SPY</a> up +0.3% on the day.</span>
       </li>
       <li class="tldr-item">
@@ -82,6 +91,7 @@
 
     <div class="scoreboard">
       <div class="score-side">
+        <img src="https://a.espncdn.com/i/teamlogos/nba/500/okc.png" class="score-logo loser" alt="OKC" loading="lazy" onerror="this.style.display='none'">
         <div class="score-team loser">Oklahoma City Thunder</div>
         <div class="score-num loser">103</div>
       </div>
@@ -92,6 +102,15 @@
       <div class="score-side right">
         <div class="score-team">San Antonio Spurs</div>
         <div class="score-num">111</div>
+        <img src="https://a.espncdn.com/i/teamlogos/nba/500/sa.png" class="score-logo" alt="SA" loading="lazy" onerror="this.style.display='none'">
+      </div>
+    </div>
+
+    <div class="highlights-card">
+      <span class="hl-label">Best Moments</span>
+      <div class="hl-links">
+        <a href="https://www.espn.com/nba/recap/_/gameId/401873203" target="_blank" rel="noopener" class="hl-btn">▶ Watch on ESPN</a>
+        <a href="https://www.youtube.com/results?search_query=San%20Antonio%20Spurs%20vs%20Oklahoma%20City%20Thunder%20highlights" target="_blank" rel="noopener" class="hl-btn hl-btn-yt">YouTube Highlights</a>
       </div>
     </div>
 
@@ -100,7 +119,7 @@
 
     <ul class="detail-list">
       <li><span><span class="dl-label">Key number:</span> Tim Duncan: 28 points, 14 rebounds, 3 blocks in 41 minutes. Outplayed Kevin Durant in the final quarter when it mattered.</span></li>
-      <li><span><span class="dl-label">Series situation:</span> Spurs advance to the Finals after taking down the Thunder in seven. San Antonio's defense clamped OKC in the fourth quarter—held them to 18 points in the final 12 minutes. Duncan's veteran poise and Gregg Popovich's adjustments on pick-and-roll coverage won the series.</span></li>
+      <li><span><span class="dl-label">Series:</span> Spurs advance to the Finals after taking down the Thunder in seven. San Antonio's defense clamped OKC in the fourth quarter—held them to 18 points in the final 12 minutes. Duncan's veteran poise and Gregg Popovich's adjustments on pick-and-roll coverage won the series.</span></li>
       <li><span><span class="dl-label">How to watch:</span> West Finals Game 7 · Tuesday, June 2 · San Antonio AT&amp;T Center · 9:15 PM ET · ESPN.</span></li>
     </ul>
 
@@ -108,6 +127,7 @@
       <span class="angle-label">Group Chat Angle</span>
       <p class="angle-text">The Spurs ran a box-and-one defense in the final 4 minutes with five guys basically playing keep-away from Durant. Pop invented it. Works every time when you have a guy who won't break under pressure—that guy was Duncan.</p>
     </div>
+
 
     <h3>Charles Schwab Challenge: <a href="https://www.espn.com/golf/player/_/id/4848715/russell-henley" class="player">Russell Henley</a> wins at -13.</h3>
 
@@ -128,14 +148,14 @@
     <h3>The gear pick.</h3>
     <div class="product-card">
       <div class="product-img">
-        <img src="https://travismathew.com/cdn/shop/files/Dual_Polos_2x2_7dee8cf1-6848-4531-b3bb-9e5ede7df671.jpg?v=1774466563" alt="Coto Performance Polo" loading="lazy">
+        <img src="https://linksoul.com/cdn/shop/files/ls1419-atlantic.jpg" alt="Coast Highway Polo" loading="lazy">
       </div>
       <div class="product-info">
-        <div class="product-brand">TravisMathew</div>
-        <div class="product-name">Coto Performance Polo</div>
-        <p class="product-desc">TravisMathew's most dialed-in polo. Cut slim without being restrictive, holds its shape through a full round, and comes in colors that don't look like they belong at a corporate outing. Hard to beat at $85. <a href="https://www.travismathew.com/collections/mens-polos" class="brand">Shop TravisMathew →</a></p>
-        <span class="product-price">$85</span>
-        <a href="https://www.travismathew.com/collections/mens-polos" target="_blank" rel="noopener" class="product-link">Shop TravisMathew →</a>
+        <div class="product-brand">Linksoul</div>
+        <div class="product-name">Coast Highway Polo</div>
+        <p class="product-desc">Linksoul builds golf shirts for guys who actually want to wear them off the course. The Coast Highway is a mid-weight performance polo — comfortable stretch, clean drape, and colorways that don't scream "golf." Cult following on the West Coast tour scene for a reason. <a href="https://linksoul.com/collections/mens-polo-shirts" class="brand">Shop Linksoul →</a></p>
+        <span class="product-price">$92</span>
+        <a href="https://linksoul.com/collections/mens-polo-shirts" target="_blank" rel="noopener" class="product-link">Shop Linksoul →</a>
       </div>
     </div>
   </section>
@@ -187,6 +207,12 @@
           <div class="m-day dn">-4.6%</div>
           <div class="m-wk ">—</div>
         </div>
+        <div class="mkt-row">
+          <div class="m-name"><a href="https://www.morningstar.com/stocks/xnas/msft/quote" class="ticker">MSFT</a></div>
+          <div class="m-val">$460.52</div>
+          <div class="m-day up">+2.3%</div>
+          <div class="m-wk ">—</div>
+        </div>
         <div class="mkt-div"></div>
         <div class="mkt-row">
           <div class="m-name"><a href="https://www.morningstar.com/funds/xnas/gbtc/quote" class="ticker">Bitcoin</a></div>
@@ -194,6 +220,13 @@
           <div class="m-day dn">-4.3%</div>
           <div class="m-wk ">—</div>
         </div>
+        <div class="mkt-row">
+          <div class="m-name"><a href="https://www.morningstar.com/stocks/xnys/dell/quote" class="ticker">DELL</a></div>
+          <div class="m-val">—</div>
+          <div class="m-day ">—</div>
+          <div class="m-wk ">—</div>
+        </div>
+        <div class="mkt-div"></div>
         <div class="mkt-row">
           <div class="m-name">10Y Yield</div>
           <div class="m-val">—</div>
@@ -204,11 +237,15 @@
     </div>
 
     <ul class="detail-list">
+      <li><span><span class="dl-label">Stock spotlight:</span>TSLA -4.6% today after missing on delivery guidance last week. Musk's margin story is cracking.</span></li>
       <li><span><span class="dl-label">Watch next week:</span>Friday's jobs report. Anything under 150K nonfarm payrolls sends equities higher.</span></li>
-      <li><span><span class="dl-label">Trade to watch:</span>TSLA -4.6% today after missing on delivery guidance last week. Musk's margin story is cracking.</span></li>
       <li><span><span class="dl-label">What to bring up:</span>Nvidia is up 6.3% on a flat day while the Mag 7 broadly retreated. The AI concentration play is real—NVDA alone now drives outperformance.</span></li>
     </ul>
   </section>
+
+
+
+
 
   <section class="brief-section" id="culture">
     <div class="section-label sl-culture">Culture</div>
@@ -243,9 +280,9 @@
 
     <div class="brief-rec">
       <div class="rec-label">This week's pick</div>
-      <div class="rec-title">Eight Sleep Pod 4 — the mattress cover that fixes your sleep temperature.</div>
-      <p class="rec-body">Most sleep problems are temperature problems. Eight Sleep actively cools or heats each side of the bed throughout the night based on your sleep stage — the cooling function alone is worth it for anyone who runs hot. Recovery scores improve measurably within the first week for most users. Expensive but cheaper than bad sleep compounding.</p>
-      <a href="https://www.eightsleep.com" target="_blank" rel="noopener" class="rec-link">Try Eight Sleep →</a>
+      <div class="rec-title">Calm — the sleep app that actually helps you fall asleep faster.</div>
+      <p class="rec-body">Sleep stories sound dumb until you fall asleep in 12 minutes listening to one. Calm's library has enough variety to not repeat, the breathing exercises are legitimately calibrated for pre-sleep use, and the meditation tracks are short enough that &quot;I don't have time&quot; stops being the excuse. The $70/year plan is cheaper than one bad night of Ambien.</p>
+      <a href="https://www.calm.com" target="_blank" rel="noopener" class="rec-link">Try Calm →</a>
     </div>
   </section>
 
@@ -261,7 +298,7 @@
     <div class="section-label">Numbers worth stealing</div>
     <ul class="numbers-list">
       <li class="numbers-item">
-        <div class="n-num">103–111</div>
+        <div class="n-num">111–103</div>
         <div><strong>West Finals - Game 7.</strong> The Nuggets just took Game 7 of the Western Finals 103-111 against the Suns, punching their ticket back to the NBA Finals for the third straight year. Jokic finished with 34 points and 14 rebounds; Denver's depth and defense in the final quarter broke Phoenix's back after they led by 8 midway through the third.</div>
       </li>
       <li class="numbers-item">
@@ -291,6 +328,22 @@
     <a href="mailto:guytalkdaily@gmail.com">Reply to Jake</a>
   </div>
 </footer>
+
+<script>
+(function() {
+  var bar = document.getElementById('readingProgress');
+  var article = document.getElementById('briefArticle');
+  if (!bar || !article) return;
+  function update() {
+    var rect = article.getBoundingClientRect();
+    var total = article.offsetHeight - window.innerHeight;
+    var pct = total > 0 ? Math.min(100, Math.max(0, (-rect.top / total) * 100)) : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
 
 </body>
 </html>

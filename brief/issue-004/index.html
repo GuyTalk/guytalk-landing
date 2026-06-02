@@ -4,203 +4,117 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Brief · #004 — GuyTalk</title>
-<meta name="description" content="Knicks up 2-0. OKC leads 2-1. Si Woo Kim leads at Byron Nelson. Weekend brief — GuyTalk Issue #004.">
-
-<!-- Fonts -->
+<meta name="description" content="Both series tied. Scheffler leads at The Memorial. Weekend's stacked. — GuyTalk Issue #004.">
+<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<meta property="og:type"        content="article">
+<meta property="og:url"         content="https://www.guytalkmedia.com/brief/issue-004/">
+<meta property="og:title"       content="Both series tied. Scheffler leads at The Memorial. Weekend's stacked.">
+<meta property="og:description" content="GuyTalk Issue #004 — sports, markets, and culture in five minutes.">
+<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
+<meta property="og:site_name"   content="GuyTalk">
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:site"        content="@guytalkmedia">
+<meta name="twitter:title"       content="Both series tied. Scheffler leads at The Memorial. Weekend's stacked.">
+<meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-
-<!-- Shared brief stylesheet — ALL briefs use this -->
 <link rel="stylesheet" href="/assets/brief.css">
-
-<!--
-  HOW TO CREATE THE NEXT ISSUE:
-  1. Duplicate this file to /brief/issue-005/index.html
-  2. Update <title>, meta description, .brief-nav-issue, .brief-pretitle, .brief-title
-  3. Update TL;DR items
-  4. Replace each section's content (look for REPLACE: comments)
-  5. Update the data file: /brief/data/issue-005.json
-  6. In index.html, change the 3 brief-story links from issue-004 to issue-005
-  7. git add . && git commit -m "Add Issue #005" && git push
-  Vercel auto-deploys in ~30 seconds.
--->
 </head>
 <body>
 
-<!-- ============================================================
-     NAV
-     REPLACE: Update issue number each new brief
-     ============================================================ -->
+<div class="reading-progress" id="readingProgress"></div>
+
 <nav class="brief-nav">
   <div class="brief-nav-inner">
     <a href="/" class="brief-wordmark">GuyTalk<span class="dot">.</span></a>
     <div class="brief-nav-right">
-      <span class="brief-nav-issue">The Brief · #004</span><!-- REPLACE: #005, #006, etc. -->
+      <span class="brief-nav-issue">The Brief · #004</span>
       <a href="/#signup" class="brief-cta">Subscribe free →</a>
     </div>
   </div>
 </nav>
 
-<!-- ============================================================
-     ARTICLE
-     ============================================================ -->
-<article class="brief-article">
+<article class="brief-article" id="briefArticle">
 
-  <!-- ---- HEADER ---- -->
-  <!-- REPLACE: date, title, deck each issue -->
   <div class="brief-pretitle">
     <span class="brief-pretitle-dot"></span>
-    Friday, May 23, 2026<!-- REPLACE: new date -->
+    Friday, May 23, 2026
   </div>
-  <h1 class="brief-title">Knicks up 2-0. OKC leads 2-1. Si Woo Kim leads at Byron Nelson. Weekend's stacked.</h1><!-- REPLACE -->
+  <h1 class="brief-title">Both series tied. Scheffler leads at The Memorial. Weekend's stacked.</h1>
   <p class="brief-deck">Five minutes. Everything you need going into the weekend.</p>
   <div class="brief-meta">
     <span>5 MIN READ</span>
     <span class="sep">·</span>
-    <span>ISSUE #004</span><!-- REPLACE -->
+    <span>ISSUE #004</span>
     <span class="sep">·</span>
-    <span>SPORTS · MARKETS · GOLF · CULTURE</span>
+    <span>SPORTS · MARKETS · CULTURE</span>
   </div>
 
-  <!-- ============================================================
-       TL;DR CARD
-       5 bullets max. One per major story. Link to section anchor.
-       REPLACE: all items with new content each issue
-       ============================================================ -->
+  <nav class="section-jump" aria-label="Jump to section">
+    <a href="#sports" class="sj-link">Sports</a>
+    <a href="#markets" class="sj-link">Markets</a>
+    <a href="#culture" class="sj-link">Culture</a>
+    <a href="#sharp-take" class="sj-link">Take</a>
+  </nav>
+
   <div class="tldr">
     <div class="tldr-label">TL;DR — Five things to know</div>
     <ul class="tldr-list">
       <li class="tldr-item">
         <a href="#sports" class="tag-link"><span class="tag tag-amber">Sports</span></a>
-        <span>Knicks lead ECF 2-0. <a href="https://www.espn.com/nba/player/_/id/3934672/jalen-brunson" class="player">Brunson</a> had 33 in Game 1, Knicks won Game 2 by 16. Game 3 tonight at MSG.</span>
+        <span>No games last night — check the schedule.</span>
       </li>
       <li class="tldr-item">
         <a href="#sports" class="tag-link"><span class="tag tag-amber">Sports</span></a>
-        <span>OKC leads WCF 2-1. Spurs stole Game 1 in OKC. Thunder answered with back-to-back wins including Game 3 in San Antonio. Game 4 Sunday.</span>
+        <span>Weekend recap inside.</span>
       </li>
       <li class="tldr-item">
-        <a href="#markets" class="tag-link"><span class="tag tag-amber">Markets</span></a>
-        <span><a href="https://www.morningstar.com/etfs/arcx/spy/quote" class="ticker">SPY</a> +0.8% on the week. <a href="https://www.morningstar.com/stocks/xnas/nvda/quote" class="ticker">NVDA</a> consolidating near $1,080. Memorial Day week = light volume — don't overread moves.</span>
-      </li>
-      <li class="tldr-item">
-        <a href="#golf" class="tag-link"><span class="tag tag-amber">Golf</span></a>
-        <span>Si Woo Kim leads the CJ Cup Byron Nelson at −19 through Round 3. Zach Bauchou and Jackson Suber at −15. Final round Sunday.</span>
+        <a href="#markets" class="tag-link"><span class="tag tag-blue">Markets</span></a>
+        <span>Markets data unavailable.</span>
       </li>
       <li class="tldr-item">
         <a href="#culture" class="tag-link"><span class="tag tag-amber">Culture</span></a>
-        <span>Jensen Huang's 3.5-hr Tim Ferriss interview dropped. The one part about near-bankruptcy is worth your time alone. Plus: what to watch this weekend.</span>
+        <span>Culture picks inside.</span>
       </li>
     </ul>
   </div>
 
-  <!-- ============================================================
-       SPORTS
-       Add/remove scoreboard blocks and detail lists as needed
-       ============================================================ -->
   <section class="brief-section" id="sports">
-    <div class="section-label">Sports</div>
+    <div class="section-label sl-sports">Sports</div>
+    <h3>No games last night.</h3>
+    
 
-    <h3>ECF: Knicks–Cavs — Knicks lead 2-0. Game 3 tonight at MSG.</h3>
 
-    <!-- Game 1 Scoreboard -->
-    <div class="scoreboard">
-      <div class="score-side">
-        <div class="score-team">Knicks</div>
-        <div class="score-num">115</div>
+
+    <h3>The gear pick.</h3>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://pluggedingolf.com/wp-content/uploads/2026/01/2026-FootJoy-Pro-SL-1123.jpg" alt="Pro/SL Golf Shoe" loading="lazy">
       </div>
-      <div class="score-center">
-        <div class="score-meta">ECF Game 1 · Final</div>
-        <div class="score-badge">NYK Win</div>
+      <div class="product-info">
+        <div class="product-brand">FootJoy</div>
+        <div class="product-name">Pro/SL Golf Shoe</div>
+        <p class="product-desc">The best-selling golf shoe on tour for a reason. The 2026 version dropped 29% in weight, added a new last, and kept everything that made the original worth buying: waterproof, spikeless, and stable on any terrain. Buy them once and stop thinking about golf shoes. <a href="https://www.footjoy.com/collections/mens-golf-shoes/pro-sl" class="brand">Shop FootJoy →</a></p>
+        <span class="product-price">$170</span>
+        <a href="https://www.footjoy.com/collections/mens-golf-shoes/pro-sl" target="_blank" rel="noopener" class="product-link">Shop FootJoy →</a>
       </div>
-      <div class="score-side right">
-        <div class="score-team loser">Cavs</div>
-        <div class="score-num loser">104</div>
-      </div>
-    </div>
-
-    <p><a href="https://www.espn.com/nba/player/_/id/3934672/jalen-brunson" class="player">Jalen Brunson</a> ran the building. 33 points, 8 assists, 12-of-21 from the floor — MSG was as loud as it's been since the Reggie Miller era. The Cavs got 18 from <a href="https://www.espn.com/nba/player/_/id/3908809/donovan-mitchell" class="player">Donovan Mitchell</a> on 7-of-22 shooting. That is a Donovan Mitchell off-night. Everyone expected him to bounce back in Game 2.</p>
-
-    <!-- Game 2 Scoreboard -->
-    <div class="scoreboard">
-      <div class="score-side">
-        <div class="score-team">Knicks</div>
-        <div class="score-num">109</div>
-      </div>
-      <div class="score-center">
-        <div class="score-meta">ECF Game 2 · Final</div>
-        <div class="score-badge">NYK Win</div>
-      </div>
-      <div class="score-side right">
-        <div class="score-team loser">Cavs</div>
-        <div class="score-num loser">93</div>
-      </div>
-    </div>
-
-    <p>He didn't. New York won Game 2 by 16 and the series is no longer a coin flip. The Knicks have taken home court and stolen road court before it existed. Cleveland hasn't found an answer for the pace Brunson sets — and now they come to MSG tonight down 0-2.</p>
-
-    <ul class="detail-list">
-      <li><span><span class="dl-label">The number that matters:</span>Teams that go up 3-0 in a conference finals close it out 100% of the time in NBA history. Getting to 3-0 tonight would effectively end this series. The Knicks know it.</span></li>
-      <li><span><span class="dl-label">Brunson's Game 3 situation:</span>He's 14-3 in home playoff games. MSG at 0-2 in a series is the loudest building in basketball. The Cavs have to win tonight just to make it interesting again.</span></li>
-      <li><span><span class="dl-label">How to watch:</span>Tonight, 8:30pm ET, ESPN. This could be the series-clinching run starting right now.</span></li>
-    </ul>
-
-    <!-- "What to bring up" angle box -->
-    <div class="angle-box">
-      <span class="angle-label">Group Chat Angle</span>
-      <p class="angle-text">"The Cavs beat the Celtics — the defending champs — just to get here. And the Knicks are treating them like a first-round opponent." That's the real story. Cleveland isn't bad. New York is just playing at a different level right now.</p>
-    </div>
-
-    <h3>WCF: Thunder–Spurs — OKC leads 2-1. Game 4 Sunday in San Antonio.</h3>
-
-    <p>The Spurs stole Game 1 in OKC 122-115 — the first time this Thunder team lost at home all playoffs. <a href="https://www.espn.com/nba/player/_/id/4278073/shai-gilgeous-alexander" class="player">SGA</a> and the Thunder answered immediately. OKC won Game 2 at home 122-113, then went into San Antonio and won Game 3 123-108. OKC now leads the series 2-1 and has the Spurs' backs against the wall on their own floor Sunday.</p>
-
-    <!-- WCF Series Stat Block -->
-    <div class="stat-block">
-      <div class="stat-cell">
-        <div class="stat-num amber">122</div>
-        <div class="stat-lbl">OKC · G2 Win</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num amber">123</div>
-        <div class="stat-lbl">OKC · G3 Win</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num amber">2-1</div>
-        <div class="stat-lbl">OKC Series Lead</div>
-      </div>
-    </div>
-
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What the Spurs need:</span>San Antonio must win Sunday to stay alive. They've already proven they can win in OKC — the question is whether they can replicate that in a must-win situation at home after getting outplayed in both Games 2 and 3.</span></li>
-      <li><span><span class="dl-label"><a href="https://www.espn.com/nba/player/_/id/4845367/stephon-castle" class="player">Stephon Castle</a> situation:</span>The 21-year-old is the Spurs' best chance at a series equalizer. He's been the most electric young player in this postseason. If he goes off Sunday, San Antonio has a chance.</span></li>
-      <li><span><span class="dl-label">What to bring up:</span>"OKC won two games in a row after losing their home court advantage — including a road win in San Antonio. This team doesn't panic. That's what separates them from everyone else." True and it lands.</span></li>
-    </ul>
-
-    <div class="angle-box">
-      <span class="angle-label">The Real Story</span>
-      <p class="angle-text">SGA vs Wemby is the best individual matchup since Durant-Westbrook in 2012. One is trying to go back-to-back. The other is trying to become the face of the league at 22. OKC is one win away from another Finals trip. The Spurs are one loss away from their season ending. Sunday is everything.</p>
     </div>
   </section>
 
-  <!-- ============================================================
-       MARKETS
-       REPLACE: all prices, percentages, and narrative each issue
-       ============================================================ -->
   <section class="brief-section" id="markets">
-    <div class="section-label">Markets</div>
+    <div class="section-label sl-markets">Markets</div>
 
-    <h3>Week in one line: quiet, green, and don't overthink it.</h3>
+    <h3>Markets wrap.</h3>
 
-    <p>S&amp;P finished the week up 0.8%. <a href="https://www.morningstar.com/etfs/arcx/qqq/quote" class="ticker">QQQ</a> up 1.1%. <a href="https://www.morningstar.com/stocks/xnas/nvda/quote" class="ticker">NVDA</a> consolidated after the $4T print — held near $1,080 without rolling over. That's bullish behavior. When a stock makes a historic high and doesn't immediately give it back, the buyers are in control.</p>
+    <p>Market data below.</p>
 
-    <p>The bigger story going into next week: Memorial Day week historically runs on 25% of normal volume. Thin markets amplify moves in both directions. Don't panic on a down day, don't get greedy on an up day. Stay the course.</p>
+    <p>Watch for key economic data next week.</p>
 
-    <!-- REPLACE: update all prices, day%, week% each brief -->
     <div class="mkt-table">
       <div class="mkt-table-hd">
-        <div class="mkt-table-title">Friday Close</div>
-        <div class="mkt-table-sub">May 23, 2026</div><!-- REPLACE: date -->
+        <div class="mkt-table-title">Daily Close</div>
+        <div class="mkt-table-sub">Friday, May 23, 2026</div>
       </div>
       <div class="mkt-table-body">
         <div class="mkt-cols">
@@ -209,225 +123,142 @@
           <div class="th">Day</div>
           <div class="th">Week</div>
         </div>
-        <!-- REPLACE: all rows with current data -->
         <div class="mkt-row">
           <div class="m-name"><a href="https://www.morningstar.com/etfs/arcx/spy/quote" class="ticker">SPY</a></div>
-          <div class="m-val">7,561</div>
-          <div class="m-day up">+0.4%</div>
-          <div class="m-wk up">+0.8%</div>
+          <div class="m-val">—</div>
+          <div class="m-day ">—</div>
+          <div class="m-wk ">—</div>
         </div>
         <div class="mkt-row">
           <div class="m-name"><a href="https://www.morningstar.com/etfs/arcx/qqq/quote" class="ticker">QQQ</a></div>
-          <div class="m-val">26,880</div>
-          <div class="m-day up">+0.6%</div>
-          <div class="m-wk up">+1.1%</div>
+          <div class="m-val">—</div>
+          <div class="m-day ">—</div>
+          <div class="m-wk ">—</div>
         </div>
         <div class="mkt-div"></div>
         <div class="mkt-row">
           <div class="m-name"><a href="https://www.morningstar.com/stocks/xnas/nvda/quote" class="ticker">NVDA</a></div>
-          <div class="m-val">$1,082</div>
-          <div class="m-day dn">−0.3%</div>
-          <div class="m-wk dn">−0.4%</div>
+          <div class="m-val">—</div>
+          <div class="m-day ">—</div>
+          <div class="m-wk ">—</div>
         </div>
         <div class="mkt-row">
           <div class="m-name"><a href="https://www.morningstar.com/stocks/xnas/tsla/quote" class="ticker">TSLA</a></div>
-          <div class="m-val">$318</div>
-          <div class="m-day up">+1.2%</div>
-          <div class="m-wk up">+3.8%</div>
+          <div class="m-val">—</div>
+          <div class="m-day ">—</div>
+          <div class="m-wk ">—</div>
+        </div>
+        <div class="mkt-row">
+          <div class="m-name"><a href="https://www.morningstar.com/stocks/xnas/msft/quote" class="ticker">MSFT</a></div>
+          <div class="m-val">—</div>
+          <div class="m-day ">—</div>
+          <div class="m-wk ">—</div>
         </div>
         <div class="mkt-div"></div>
         <div class="mkt-row">
-          <div class="m-name">Bitcoin</div>
-          <div class="m-val">$97.4K</div>
-          <div class="m-day up">+2.1%</div>
-          <div class="m-wk up">+1.4%</div>
+          <div class="m-name"><a href="https://www.morningstar.com/funds/xnas/gbtc/quote" class="ticker">Bitcoin</a></div>
+          <div class="m-val">—</div>
+          <div class="m-day ">—</div>
+          <div class="m-wk ">—</div>
         </div>
         <div class="mkt-row">
+          <div class="m-name"><a href="https://www.morningstar.com/stocks/xnys/dell/quote" class="ticker">DELL</a></div>
+          <div class="m-val">—</div>
+          <div class="m-day ">—</div>
+          <div class="m-wk ">—</div>
+        </div>
+        <div class="mkt-div"></div>
+        <div class="mkt-row">
           <div class="m-name">10Y Yield</div>
-          <div class="m-val">4.54%</div>
-          <div class="m-day dn">−0.03</div>
-          <div class="m-wk dn">−0.08</div>
+          <div class="m-val">—</div>
+          <div class="m-day ">—</div>
+          <div class="m-wk ">—</div>
         </div>
       </div>
     </div>
 
     <ul class="detail-list">
-      <li><span><span class="dl-label">Watch next week:</span>Consumer Confidence (Wednesday). Any surprise in either direction will move in exaggerated fashion given the thin volume. The base expectation is sideways.</span></li>
-      <li><span><span class="dl-label">The one trade worth watching:</span><a href="https://www.morningstar.com/stocks/xnas/tsla/quote" class="ticker">TSLA</a> is up almost 4% this week on no news. That kind of quiet run usually means institutional accumulation — or it reverses Monday. Watch the open.</span></li>
-      <li><span><span class="dl-label">What to bring up:</span>"Memorial Day week is the worst week of the year to make a big portfolio move. The guys running the desk are in the Hamptons. Wait until June." True and useful.</span></li>
+      
+      <li><span><span class="dl-label">Watch next week:</span>Monitor upcoming Fed commentary and economic releases.</span></li>
+      <li><span><span class="dl-label">What to bring up:</span>SPY closed at N/A.</span></li>
     </ul>
   </section>
 
-  <!-- ============================================================
-       GOLF + LIFESTYLE
-       New section. Add every issue.
-       REPLACE: tournament, leaderboard, featured product
-       ============================================================ -->
-  <section class="brief-section" id="golf">
-    <div class="section-label">Golf + Lifestyle</div>
 
-    <h3>CJ Cup Byron Nelson: Si Woo Kim leads at −19 through Round 3.</h3>
 
-    <p>Si Woo Kim has been in a different zip code from the rest of the field at TPC Craig Ranch this week. He leads the CJ Cup Byron Nelson at −19 through three rounds — a four-shot cushion over Zach Bauchou and Jackson Suber at −15. Wyndham Clark and Sungjae Im are at −14. Final round is Sunday. Kim is well-positioned to close this out, but a four-shot lead on moving day has disappeared before.</p>
 
-    <ul class="detail-list">
-      <li><span><span class="dl-label">Leaderboard (through R3):</span>Si Woo Kim −19 · Zach Bauchou −15 · Jackson Suber −15 · Wyndham Clark −14 · Sungjae Im −14.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span>The CJ Cup Byron Nelson is a full FedEx Cup points event with a strong field. A win moves Kim significantly in the season standings. For the guys chasing — Clark especially — a Sunday charge could flip the leaderboard fast.</span></li>
-      <li><span><span class="dl-label">What to bring up:</span>"Si Woo Kim has had one of the most streaky careers in golf — major winner, multiple wins, but long stretches of quiet. When he's on, he's unbeatable for that week. He's on right now." Sets up Sunday perfectly.</span></li>
-    </ul>
 
-    <div class="angle-box">
-      <span class="angle-label">TV Schedule</span>
-      <p class="angle-text">Sunday Final Round: Golf Channel / Peacock, morning coverage begins ~11am ET. Worth checking in before the NBA tips at night. Kim could wrap this up by early afternoon.</p>
-    </div>
-
-    <!-- PRODUCT FEATURE -->
-    <!-- REPLACE: swap product, brand, price, URL each issue -->
-    <!-- REPLACE: put real product image at /assets/images/peter-millar-crown-sport-polo.jpg -->
-    <h3>The product everyone's wearing at the course.</h3>
-
-    <div class="product-card">
-      <div class="product-img">
-        <!-- REPLACE: swap this placeholder with actual product image -->
-        <!-- Image should be ~400×533px (portrait), saved to /assets/images/ -->
-        <div class="product-img-ph">Add image:<br>/assets/images/<br>peter-millar-crown-sport-polo.jpg</div>
-      </div>
-      <div class="product-info">
-        <div class="product-brand">Peter Millar</div>
-        <div class="product-name">Crown Sport Polo</div>
-        <p class="product-desc">The reason <a href="https://www.petermillar.com/collections/mens-sport-polo-shirts" class="brand">Peter Millar</a> is everywhere right now. Moisture-wicking, stretch-engineered, and it looks country club without being stuffy. Works on the course, works at brunch, works at the bar after. The brand's been creeping into every golf bag for two years — this is the polo that started it.</p>
-        <span class="product-price">$115</span>
-        <a href="https://www.petermillar.com/collections/mens-sport-polo-shirts" target="_blank" rel="noopener" class="product-link">Shop Peter Millar →</a>
-      </div>
-    </div>
-
-    <p style="font-size:14px; color:var(--text-3);">Other brands worth knowing: <a href="https://rhoback.com" class="brand">Rhoback</a> (best performance quarter-zip), <a href="https://www.travismathew.com" class="brand">TravisMathew</a> (most wearable off the course), <a href="https://holdernessandbourne.com" class="brand">Holderness &amp; Bourne</a> (premium finish, similar Peter Millar energy).</p>
-  </section>
-
-  <!-- ============================================================
-       CULTURE
-       3 items max. Each needs: headline, source, body, angle.
-       NO VAGUE REFERENCES. Name the person, the company, the clip.
-       REPLACE: all items with current week's actual stories
-       ============================================================ -->
   <section class="brief-section" id="culture">
-    <div class="section-label">Culture</div>
-
-    <ul class="culture-list">
-
-      <!-- Culture item 1 — Specific story with named source -->
-      <li class="culture-item">
-        <div>
-          <div class="culture-head">Jensen Huang's 3.5-hour Tim Ferriss interview is the one to watch this weekend.</div>
-          <span class="culture-source">Podcast · The Tim Ferriss Show · <a href="https://tim.blog/2026/05/20/jensen-huang/" target="_blank" rel="noopener">tim.blog</a></span><!-- REPLACE: with real URL -->
-          <p class="culture-body">The Nvidia CEO sat with Tim Ferriss for three-and-a-half hours. The part that runs every group chat: Huang describes the period in the early 90s when Nvidia was weeks from bankruptcy — they had one shot to get the product right and they didn't. He talks about what it felt like to watch the company almost die. Then the pivot that saved it. His framework for hiring — <strong>"give people projects they can't finish"</strong> — is the line you'll repeat. Watch it at 2x. The first 45 minutes are worth it alone.</p>
-        </div>
-      </li>
-
-      <!-- Culture item 2 — REPLACE with actual this-week story -->
-      <!-- DO NOT write vague "a CEO posted" lines. Name the person. -->
-      <li class="culture-item">
-        <div>
-          <div class="culture-head">REPLACE: Specific this-week story. Name the person, company, or moment.</div>
-          <span class="culture-source">REPLACE: Platform · Source name · Link if available</span>
-          <p class="culture-body">REPLACE: 3-4 sentences in GuyTalk voice. What happened exactly. Why people are reacting. What the correct read is — not just what both sides are saying, but which side is actually right and why. End with one usable line for conversation.</p>
-        </div>
-      </li>
-
-      <!-- Culture item 3 — Weekend entertainment rec -->
-      <!-- REPLACE: actual movie/show/event for this weekend -->
-      <li class="culture-item">
-        <div>
-          <div class="culture-head">This weekend: REPLACE with actual movie or show title.</div>
-          <span class="culture-source">REPLACE: Netflix / HBO / Theater · Release date</span>
-          <p class="culture-body">REPLACE: What it is, who made it, who it's for, one sentence on why it's worth your time. Don't oversell it. "It's good, here's why" is the right energy. If it has a trailer, link it. Sources: <a href="https://www.rottentomatoes.com" target="_blank" rel="noopener">Rotten Tomatoes</a> for scores, <a href="https://letterboxd.com" target="_blank" rel="noopener">Letterboxd</a> for vibe check.</p>
-        </div>
-      </li>
-
-    </ul>
+    <div class="section-label sl-culture">Culture</div>
+    <p>Culture picks are being updated — check back shortly.</p>
   </section>
 
-  <!-- ============================================================
-       THE REC
-       One clean recommendation per issue. App, gear, show, spot.
-       REPLACE: all content with this week's actual rec
-       ============================================================ -->
   <section class="brief-section" id="the-rec">
-    <div class="section-label">The Rec</div>
+    <div class="section-label sl-markets">The Rec</div>
 
     <div class="brief-rec">
       <div class="rec-label">This week's pick</div>
-      <div class="rec-title">18Birdies — the only golf app worth keeping.</div>
-      <!-- REPLACE: title, body, and link each issue -->
-      <p class="rec-body">GPS rangefinder, digital scorecard, stat tracking, and a handicap system that actually works. The free tier is legitimately good — you don't need the paid version unless you're logging every round obsessively (which, valid). Download it before your next round. It has course maps for 50,000+ courses globally. You'll wonder why you didn't have it earlier. Works offline once you've loaded the course.</p>
-      <a href="https://www.18birdies.com" target="_blank" rel="noopener" class="rec-link">Download 18Birdies (free) →</a>
+      <div class="rec-title">AG1 (Athletic Greens) — the supplement that replaces the stack you forget to take.</div>
+      <p class="rec-body">One scoop covers vitamins, minerals, and adaptogens that most guys buy separately and skip half the time. The main argument for it: you take it because it's on your counter and it tastes fine. The argument against: $79/month. If you're already spending that on supplements you forget, it pays for itself in consistency alone.</p>
+      <a href="https://drinkag1.com" target="_blank" rel="noopener" class="rec-link">Try AG1 →</a>
     </div>
-
-    <!--
-    FUTURE RECS TEMPLATE — copy and paste over the above each issue:
-    <div class="brief-rec">
-      <div class="rec-label">This week's pick</div>
-      <div class="rec-title">REPLACE: Item name</div>
-      <p class="rec-body">REPLACE: 3-4 sentences. What it is. Why it's good. Who it's for. One specific detail that makes it worth mentioning (a feature, a fact, a price point).</p>
-      <a href="REPLACE_URL" target="_blank" rel="noopener" class="rec-link">REPLACE: CTA text →</a>
-    </div>
-    -->
   </section>
 
-  <!-- ============================================================
-       SHARP TAKE — closing thought, every issue
-       1-2 paragraphs. GuyTalk voice. No hedging.
-       REPLACE: each issue
-       ============================================================ -->
   <div class="sharp-take">
     <div class="sharp-take-label">The Sharp Take</div>
-    <!-- REPLACE: each issue -->
-    <p>The Knicks are two wins from the Finals and playing their best basketball in thirty years. OKC is one win from the Finals and has looked unshakeable after their first loss. Si Woo Kim has a four-shot lead with one round to go. It's Memorial Day weekend — the highest sports-per-square-inch three days of the early summer.</p>
-    <p>Clear tonight. Game 3 ECF tips at 8:30 — a potential series-sealing game for New York at MSG. Sunday has OKC trying to close out San Antonio and Kim trying to hold off the field. If someone asks you to do something else this weekend between now and Sunday night, the answer is no. This is what you subscribe for.</p>
+    <p>The week had its moments. Check back tomorrow.</p>
   </div>
 
-  <!-- ============================================================
-       NUMBERS WORTH STEALING — optional, use when you have good stats
-       REPLACE: all items
-       ============================================================ -->
   <div class="brief-section">
     <div class="section-label">Numbers worth stealing</div>
     <ul class="numbers-list">
-      <!-- REPLACE: stats each issue. Format: number, bold context, explanation -->
       <li class="numbers-item">
-        <div class="n-num">2-0</div>
-        <div><strong>Knicks lead the ECF heading into Game 3 tonight at MSG.</strong> No team in NBA history has come back from 3-0 down in a series. If New York wins tonight, this is functionally over.</div>
+        <div class="n-num">—</div>
+        <div><strong>Check today&#39;s full issue for more.</strong></div>
       </li>
       <li class="numbers-item">
-        <div class="n-num">25%</div>
-        <div><strong>Below-average volume Memorial Day week runs.</strong> Thin markets in both directions. The right move next week is to do less, not more. This applies to trading and to life.</div>
+        <div class="n-num">—</div>
+        <div><strong>Check today&#39;s full issue for more.</strong></div>
       </li>
       <li class="numbers-item">
-        <div class="n-num">$115</div>
-        <div><strong>Peter Millar Crown Sport Polo — the price of looking like you belong on any patio in the country.</strong> Cheaper than a round at most decent courses. Wears longer.</div>
+        <div class="n-num">—</div>
+        <div><strong>Check today&#39;s full issue for more.</strong></div>
       </li>
     </ul>
   </div>
 
 </article>
 
-<!-- ============================================================
-     FOOTER — update issue archive links as new issues are added
-     ============================================================ -->
 <footer class="brief-footer">
   <a href="/#signup" class="footer-cta">Get the brief free →</a>
   <p class="footer-meta">
-    You're reading GuyTalk — the daily brief on sports, markets, golf, and culture.<br>
+    You're reading GuyTalk — the daily brief on sports, markets, and culture.<br>
     Five minutes a day. Free forever. No algorithm.
   </p>
   <p class="footer-sig">— Jake, GuyTalk</p>
   <div class="footer-nav">
     <a href="/">Home</a>
+    <a href="/briefs/">All Issues</a>
     <a href="/brief/issue-003/">Issue #003</a>
-    <a href="/brief/issue-001/">Issue #001</a>
     <a href="mailto:guytalkdaily@gmail.com">Reply to Jake</a>
   </div>
 </footer>
+
+<script>
+(function() {
+  var bar = document.getElementById('readingProgress');
+  var article = document.getElementById('briefArticle');
+  if (!bar || !article) return;
+  function update() {
+    var rect = article.getBoundingClientRect();
+    var total = article.offsetHeight - window.innerHeight;
+    var pct = total > 0 ? Math.min(100, Math.max(0, (-rect.top / total) * 100)) : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
 
 </body>
 </html>

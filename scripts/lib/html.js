@@ -16,6 +16,10 @@ function renderParas(text, fallback = '') {
 // ─────────────────────────────────────────────────────────────────────────────
 // Entry point — returns the full HTML string for a brief issue
 // ─────────────────────────────────────────────────────────────────────────────
+function capFirst(s) {
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+}
+
 // ESPN CDN logo URL for a team abbreviation + sport
 function espnLogo(abbrev, sport) {
   if (!abbrev) return null;
@@ -198,7 +202,7 @@ function buildTldr({ sports, markets, golf, f1, worldCup, upcoming, copy }) {
       html: `${playerLink(l.name)} ${golfVerb} ${esc(golf.name)} at ${esc(l.score)} (${esc(golf.status || 'Final')}).`,
     });
   } else if (golf && !golfLive) {
-    items.push({ tag: 'Sports', anchor: '#sports', html: `${esc(golf.name)} tees off this week.` });
+    items.push({ tag: 'Sports', anchor: '#sports', html: `${esc(capFirst(golf.name))} tees off this week.` });
   }
 
   // F1 bullet
@@ -395,16 +399,17 @@ function buildUpcomingGameCard(game) {
   const homeLogo = espnLogo(game.home.abbrev, sport);
   const awayLogo = espnLogo(game.away.abbrev, sport);
   const scheduleUrl = `https://www.espn.com/${sport}/game/_/gameId/${game.id}`;
+  const isFinals = /finals/i.test(game.note || game.shortName || '');
 
   return `
-    <div class="upcoming-card">
+    <div class="upcoming-card${isFinals ? ' upcoming-finals' : ''}">
       <div class="upcoming-label">${esc(when)} — ${esc(game.note || game.shortName)}</div>
       <div class="upcoming-matchup">
         <div class="upcoming-team">
           ${awayLogo ? `<img src="${esc(awayLogo)}" class="upcoming-logo" alt="${esc(game.away.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
           <span>${esc(game.away.team)}</span>
         </div>
-        <div class="upcoming-vs">VS</div>
+        <div class="upcoming-vs">${isFinals ? 'NBA<br>FINALS' : 'VS'}</div>
         <div class="upcoming-team upcoming-home">
           <span>${esc(game.home.team)}</span>
           ${homeLogo ? `<img src="${esc(homeLogo)}" class="upcoming-logo" alt="${esc(game.home.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
@@ -505,13 +510,14 @@ function buildGolfBlock({ golf, copy }) {
     ).join(', ');
 
     const isFinished  = golf.statusState === 'post';
-    const aiNote      = copy?.golfNote      || (isFinished ? `${esc(leader.name)} wins ${esc(golf.name)} at ${esc(leader.score)}.` : `${esc(leader.name)} holds the lead at ${esc(leader.score)}.`);
-    const whyMatters  = gd.whyItMatters     || `${esc(golf.name)} carries full FedEx Cup points.`;
+    const golfNameDisplay = capFirst(golf.name);
+    const aiNote      = copy?.golfNote      || (isFinished ? `${esc(leader.name)} wins ${esc(golfNameDisplay)} at ${esc(leader.score)}.` : `${esc(leader.name)} holds the lead at ${esc(leader.score)}.`);
+    const whyMatters  = gd.whyItMatters     || `${esc(golfNameDisplay)} carries full FedEx Cup points.`;
     const bringUp     = gd.bringUp          || `${esc(leader.name)} ${isFinished ? 'won' : 'leads'} at ${esc(leader.score)}.`;
     const groupChat   = gd.groupChatAngle   || `${isFinished ? `${esc(leader.name)} took it.` : `Watch ${esc(leader.name)} this weekend.`}`;
     const heading     = isFinished
-      ? `${esc(golf.name)}: ${playerLink(leader.name)} wins at ${esc(leader.score)}.`
-      : `${esc(golf.name)}: ${playerLink(leader.name)} leads at ${esc(leader.score)}.`;
+      ? `${esc(golfNameDisplay)}: ${playerLink(leader.name)} wins at ${esc(leader.score)}.`
+      : `${esc(golfNameDisplay)}: ${playerLink(leader.name)} leads at ${esc(leader.score)}.`;
     const thirdDetail = isFinished
       ? `<li><span><span class="dl-label">How it happened:</span>${esc(gd.recap || `${esc(leader.name)} closed out ${esc(golf.name)} in the final round.`)}</span></li>`
       : `<li><span><span class="dl-label">TV schedule:</span>${esc(gd.tvSchedule || 'Golf Channel/Peacock · NBC/CBS. Check local listings.')}</span></li>`;
@@ -534,9 +540,17 @@ function buildGolfBlock({ golf, copy }) {
     </div>`;
 
   } else if (golf && !golfInProgress) {
+    const golfNameDisplay = capFirst(golf.name);
+    const whyMatters = gd.whyItMatters || `${esc(golfNameDisplay)} is the featured PGA Tour event this week.`;
+    const bringUp = gd.bringUp || 'Watch for the early rounds to set the weekend field.';
+    const groupChat = gd.groupChatAngle || '';
     return `
-    <h3>${esc(golf.name)} — tees off this week.</h3>
-    <p>${gd.whyItMatters || `${esc(golf.name)} is the featured PGA Tour event this week.`} ${gd.bringUp || 'Watch for the early rounds to set the weekend field.'}</p>`;
+    <h3>${esc(golfNameDisplay)} — tees off this week.</h3>
+    <p>${whyMatters} ${bringUp}</p>
+    ${groupChat ? `<div class="angle-box">
+      <span class="angle-label">Group Chat Angle</span>
+      <p class="angle-text">${esc(groupChat)}</p>
+    </div>` : ''}`;
   }
 
   return '';
@@ -624,16 +638,18 @@ ${parasHtml}${bulletsHtml}
 // ─────────────────────────────────────────────────────────────────────────────
 // Numbers worth stealing
 // ─────────────────────────────────────────────────────────────────────────────
-function buildNumbers({ sports, markets, golf, copy }) {
+function buildNumbers({ sports, markets, golf, upcoming, copy }) {
   const ctxArr = copy?.numbersContext;
   const items = [];
 
   if (sports?.length) {
     const g = sports[0];
+    const w = g.home.winner ? g.home : g.away;
+    const l = g.home.winner ? g.away : g.home;
     const note = g.note || g.shortName;
     const rawCtx = ctxArr?.[0]?.context || `${note} final score.`;
     items.push({
-      num: `${g.home.score}–${g.away.score}`,
+      num: `${w.score}–${l.score}`,
       html: `<strong>${esc(note)}.</strong> ${esc(rawCtx.replace(/&amp;/g, '&'))}`,
     });
   }
@@ -659,7 +675,14 @@ function buildNumbers({ sports, markets, golf, copy }) {
   }
 
   while (items.length < 3) {
-    items.push({ num: '—', html: '<strong>Check today&#39;s full issue for more.</strong>' });
+    if (upcoming?.length && items.length === 2) {
+      const g = upcoming[0];
+      const when = g.daysAhead === 0 ? 'tonight' : g.daysAhead === 1 ? 'tomorrow' : 'this week';
+      const ctx = copy?.numbersContext?.[2]?.context || `${esc(g.note || g.shortName)} is the most-anticipated game on the calendar right now.`;
+      items.push({ num: 'G1', html: `<strong>${esc(g.note || g.shortName)} — ${when}.</strong> ${ctx}` });
+    } else {
+      items.push({ num: '—', html: '<strong>Check today&#39;s full issue for more.</strong>' });
+    }
   }
 
   return `  <div class="brief-section">
@@ -690,9 +713,14 @@ function buildF1Block({ f1, copy }) {
     const preChamp = fd.championship || '';
     const prePick = fd.pick || '';
     const monacoImg = f1.name?.toLowerCase().includes('monaco')
-      ? `    <div class="brief-img">
-      <img src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1280,q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Monaco.jpg" alt="Monaco Grand Prix" loading="lazy" onerror="this.closest('.brief-img').remove()">
-      <div class="brief-img-cap">Monaco Grand Prix · Circuit de Monaco · Race day Sunday</div>
+      ? `    <div class="brief-img-gallery">
+      <div class="brief-img">
+        <img src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Monaco.jpg" alt="Monaco Grand Prix circuit" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">
+      </div>
+      <div class="brief-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Monte_Carlo_Formula_1_Grand_Prix_2012.jpg/1280px-Monte_Carlo_Formula_1_Grand_Prix_2012.jpg" alt="Monaco Grand Prix aerial view" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">
+      </div>
+      <div class="brief-img-cap">Monaco Grand Prix · Circuit de Monaco · The most iconic race on the calendar</div>
     </div>` : '';
     return `  <section class="brief-section" id="f1">
     <div class="section-label sl-sports">Formula 1</div>

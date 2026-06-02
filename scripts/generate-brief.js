@@ -35,9 +35,64 @@ function pad(n, w = 3) { return String(n).padStart(w, '0'); }
 function line(char = '─', len = 44) { return char.repeat(len); }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Regen mode — re-render all existing issues from saved JSON (new templates)
+// Usage: node scripts/generate-brief.js --regen [--copy]
+// --copy also regenerates the AI prose (slower, uses API credits)
+// ─────────────────────────────────────────────────────────────────────────────
+async function regenAll() {
+  const regenCopy = process.argv.includes('--copy');
+  const dataDir   = path.join(__dirname, '..', 'brief', 'data');
+  if (!fs.existsSync(dataDir)) {
+    console.log('No brief/data/ directory found. Nothing to regen.');
+    return;
+  }
+  const files = fs.readdirSync(dataDir).filter(f => f.endsWith('.json') && f.startsWith('issue-'));
+  if (!files.length) {
+    console.log('No saved issue JSON files found.');
+    return;
+  }
+  console.log(`\n${'═'.repeat(44)}`);
+  console.log(`  GuyTalk Brief Regenerator${regenCopy ? ' · WITH AI COPY' : ' · HTML only'}`);
+  console.log(`  ${files.length} issue(s) found`);
+  console.log(`${'═'.repeat(44)}\n`);
+  for (const file of files.sort()) {
+    const jsonPath = path.join(dataDir, file);
+    const issueData = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+    const slug = issueData.slug;
+    if (regenCopy) {
+      console.log(`  ✍️  Regenerating AI copy for ${slug}...`);
+      try {
+        const { sports, markets, golf, trending, f1, worldCup, upcoming } = issueData;
+        const boxScores = {};
+        issueData.copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores });
+        if (issueData.copy?.title) issueData.title = issueData.copy.title;
+        fs.writeFileSync(jsonPath, JSON.stringify(issueData, null, 2));
+        console.log(`     ✓ Copy: "${issueData.copy?.title || 'generated'}"`);
+      } catch (e) {
+        console.log(`     ⚠  Copy failed: ${e.message}`);
+      }
+    }
+    const htmlDir  = path.join(__dirname, '..', 'brief', slug);
+    if (!fs.existsSync(htmlDir)) fs.mkdirSync(htmlDir, { recursive: true });
+    fs.writeFileSync(path.join(htmlDir, 'index.html'), buildHtml(issueData));
+    console.log(`  ✓ ${slug}/index.html rebuilt`);
+  }
+  try {
+    const ROOT = path.join(__dirname, '..');
+    const { buildArchive } = require('./lib/archive');
+    buildArchive(ROOT);
+    console.log(`  ✓ briefs/index.html archive updated\n`);
+  } catch (e) {
+    console.log(`  ⚠  Archive update failed: ${e.message}\n`);
+  }
+  console.log('  Done. Deploy: git add . && git commit -m "Regen all briefs" && git push\n');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Main
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
+  if (process.argv.includes('--regen')) return regenAll();
   const isPreview = process.argv.includes('--preview');
   const issueNum  = getNextIssueNum();
   const today     = new Date();

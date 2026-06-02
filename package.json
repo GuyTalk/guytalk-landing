@@ -6,6 +6,8 @@
     "brief": "node scripts/generate-brief.js",
     "brief:preview": "node scripts/generate-brief.js --preview",
     "brief:review": "node scripts/generate-brief.js --open",
+    "brief:regen": "node scripts/generate-brief.js --regen",
+    "brief:regen:copy": "node scripts/generate-brief.js --regen --copy",
     "send": "node scripts/send-brief.js",
     "send:dry": "node scripts/send-brief.js --dry-run",
     "install:brief": "npm install"

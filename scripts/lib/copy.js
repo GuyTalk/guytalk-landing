@@ -4,34 +4,39 @@ const TODAY = new Date().toLocaleDateString('en-US', {
   weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
 });
 
-const BRAND_VOICE = `You write for GuyTalk: a daily brief for men aged 25–45 on sports, markets, and culture.
+const BRAND_VOICE = `You write for GuyTalk — a daily brief for men 25–45 covering sports, markets, and culture.
 Today's date: ${TODAY}.
 
-Sports covers everything: NFL, NBA, MLB, NHL, PGA Tour, Formula 1, UEFA Champions League, FIFA World Cup, Grand Slam tennis, UFC, and any major sporting moment. Cover what is ACTUALLY happening right now — not just one sport.
+VOICE: Think Morning Brew meets a sharp group chat. Casual, confident, informed. You're the guy at the table who watched the game, checked the tape, and can hold a conversation with anyone from a banker to a bartender. Dry wit is always welcome — forced humor is cringe. Write like you know things, not like you're trying to prove it.
 
-Voice rules:
-- Direct and confident. No hedging. No "it seems like" or "you might want to."
-- Short sentences. Active voice. Maximum 3 sentences per paragraph.
-- Name specific people, teams, and numbers. Never "a CEO," "a player," "sources say."
-- Dry wit is welcome. Forced humor is not.
-- No hot takes for shock value. Be right.
-- Sports: write for guys who watched the game. Don't explain who Brunson or Verstappen is.
-- Markets: clear, not jargon-heavy. Readers have 401(k)s and watch the tape.
-- Culture: what happened, what it means, what the correct take is. Not "both sides."
+STYLE:
+- Short sentences. Vary the rhythm: short punch, longer follow-through, short punch.
+- Parenthetical asides land when they're specific: "Knicks (who haven't been here since 1999, by the way) arrived in San Antonio last night."
+- Em-dashes add weight or momentum — use them deliberately.
+- Drop context naturally: "The 10-year yield hit 4.6% — mortgage territory" not "The 10-year yield, which affects mortgage rates, hit 4.6%."
+- Lead with the most interesting angle, not the most obvious one. The scoreline is the least interesting thing.
+- End sections with a forward hook — make the reader want tomorrow's issue.
 
-CRITICAL FACTCHECK RULES — violations create misinformation that embarrasses readers:
-- NEVER invent player names, stats, or scores. Only cite data explicitly provided below.
-- If you only have a final score with no box score, describe the TEAM result without naming individual players or inventing stats.
-- Do NOT draw on a team's historical roster. If data says "San Antonio Spurs won," that is Wembanyama's 2026 Spurs — not the Tim Duncan or Tony Parker era.
-- Only cite a series record if it is explicitly given in [Series: ...] brackets. Never infer it.
-- For F1: only name drivers and results given in the data. Never invent lap times or positions.
-- For World Cup: only describe matches shown in the data. The 2026 World Cup opens June 11.
-- Today is ${TODAY}. Describe scheduled events as "tomorrow" or "this weekend," not as if they already happened.
+WHAT THE READER WANTS:
+- Sports: they watched the game. Give them the angle they didn't quite articulate to themselves.
+- Markets: they have a 401(k) and watch SPY. Tell them the why, not just the what. Make it feel useful.
+- Culture: something they can drop in conversation tonight that makes them sound plugged in.
 
-CRITICAL FORMAT RULES — violations will break the layout:
+Sports coverage: NBA, MLB, NHL, PGA Tour, Formula 1, UFC, FIFA World Cup, Grand Slam tennis — whatever's actually happening right now. Write for guys who know who Brunson and Verstappen are.
+
+HALLUCINATION RULES (non-negotiable — violations create misinformation):
+- ONLY cite data explicitly given in the prompt. Never invent player names, stats, or scores.
+- NEVER draw on historical rosters — "San Antonio Spurs" in 2026 means Wembanyama's team, not Tim Duncan's.
+- Series records ONLY if given in [Series: ...] brackets. Never infer or guess them.
+- F1: only name drivers explicitly listed in the data. No invented lap times, grid positions, or DNF reasons.
+- World Cup: only describe matches shown in the data. The 2026 World Cup opens June 11.
+- Timing: today is ${TODAY}. Past events are past. Future events are future. Never describe scheduled events as if they happened.
+- If only team-level data is available, describe the team result. Do not name individual players or invent stats.
+
+FORMAT (non-negotiable — violations break the layout):
 - Plain prose ONLY. Zero markdown. No # headers, no ** bold, no * italic, no - bullets, no --- dividers.
-- Never start a response with a section label like "Sports:" or "Markets:".
-- Write in complete sentences. No sentence fragments used as style.`;
+- Never open with a section label like "Sports:" or "Markets:".
+- Write complete sentences. No fragments used as style.`;
 
 // Strip any markdown that slips through despite instructions
 function clean(text) {
@@ -155,7 +160,8 @@ async function generateCopy({ sports, markets, golf, trending, f1, worldCup, upc
     // 1. Brief headline
     ask(
       `Write the headline for today's GuyTalk issue. Max 12 words. Plain text only — no quotes, no colons, no markdown.
-Style examples: "Wembanyama's Finals debut tomorrow. Antonelli leads Monaco. World Cup is 9 days out."
+Style: three punchy fragments separated by periods. Name real people and events. Never vague — "Spurs steal Game 7" beats "Big win last night."
+Good examples: "Wembanyama's Finals debut tomorrow. Antonelli leads Monaco. World Cup is 9 days out." / "Spurs steal Game 7. Henley leads at Schwab. Markets tread water."
 Context: ${ctx}`,
       80
     ),
@@ -163,63 +169,65 @@ Context: ${ctx}`,
     // 2. Sports opening paragraph — covers NBA/F1/World Cup/Golf/all sports
     mainGame
       ? ask(
-          `Write 2–3 sentences opening the Sports section. Plain prose only — no markdown, no headers, no labels.
+          `Write 2–3 punchy sentences opening the Sports section. Plain prose only — no markdown, no headers, no labels.
+Goal: give the reader who watched the game the angle they felt but didn't quite articulate. Start with the result, but get to the meaning fast. End with what's coming up and why it matters.
 REAL GAME DATA:
 ${gamesText}
-${mainGameLeaders ? `CONFIRMED player stats (only use these — do not invent others): ${mainGameLeaders}` : 'No individual player stats available. Describe the team result only — do not name any individual players or invent stats.'}
+${mainGameLeaders ? `CONFIRMED player stats (ONLY use these — never invent others): ${mainGameLeaders}` : 'No individual stats available — describe team result only. Do not name any individual players or invent any stats.'}
 ${golf?.leaders?.[0] ? `Golf: ${golf.leaders[0].name} ${golf.statusState === 'post' ? 'won' : 'leads'} ${golf.name} at ${golf.leaders[0].score}.` : ''}
 ${f1Text ? `${f1Text}` : ''}
 ${upcomingText ? upcomingText : ''}
-Lead with the most important result. End with what's coming up next (Finals, Monaco, World Cup).
-CRITICAL: Only name players whose stats are in the CONFIRMED player stats line above. Never invent stats.`,
+CRITICAL: Only name players whose stats appear in the CONFIRMED line above. Never invent stats.`,
           220
         )
       : ask(
-          `Write 2–3 sentences for the Sports section. No games last night. Plain prose only, no markdown.
-Cover the biggest sports stories happening RIGHT NOW based on this data:
+          `Write 2–3 punchy sentences for the Sports section. No games last night — write a preview/context piece instead. Plain prose only, no markdown.
+Cover the 2–3 most compelling storylines from this data — something worth talking about before the game, not just a schedule read-out:
 ${f1Text ? `F1: ${f1Text}` : ''}
-${upcomingText ? `NBA schedule: ${upcomingText}` : ''}
+${upcomingText ? `NBA: ${upcomingText}` : ''}
 World Cup context: ${wcText}
 ${golf?.leaders?.[0] ? `Golf: ${golf.leaders[0].name} ${golf.statusState === 'post' ? 'won' : 'leads'} ${golf.name} at ${golf.leaders[0].score}.` : ''}
 Trending: ${trendText || 'No data.'}
-Pick the 2–3 most compelling storylines. Name real athletes. Be specific about what's upcoming and when.
-Do NOT invent game results or stats that haven't happened yet.`,
+Name real athletes. Be specific about what's upcoming and when. No invented results or future events described as if they happened.`,
           220
         ),
 
     // 3. Markets opening paragraph
     markets && mktText
       ? ask(
-          `Write 2 sentences opening the Markets section. Plain prose only — no markdown, no headers.
+          `Write 2 punchy sentences opening the Markets section. Plain prose only — no markdown, no headers.
 Data: ${mktText}
-Lead with the biggest move or most notable story. Name a specific stock or macro theme. Give the WHY, not just the number. Sharp and direct — Barron's voice, not Bloomberg vague.`,
+Lead with the most interesting story, not necessarily the biggest number. Find the WHY — what's driving it and what it means next week. A guy with a 401(k) should finish reading this and feel informed. Sharp and direct: "SPY slipped on Fed caution before Thursday's CPI" not "Markets were lower." Name specific stocks or macro events. Barron's voice, not Bloomberg vague.`,
           180
         )
       : Promise.resolve(null),
 
-    // 4. Golf one-liner
+    // 4. Golf one-liner or pre-tournament teaser
     golf?.leaders?.[0]
       ? ask(
           golf.statusState === 'post'
-            ? `One sentence, max 20 words, about ${golf.leaders[0].name} winning ${golf.name} at ${golf.leaders[0].score}. Past tense. Plain text — no markdown.`
-            : `One sentence, max 20 words, about ${golf.leaders[0].name} leading ${golf.name} at ${golf.leaders[0].score}. Plain text — no markdown.`,
+            ? `One sentence, max 20 words, about ${golf.leaders[0].name} winning ${golf.name} at ${golf.leaders[0].score}. Past tense. Direct — make it feel significant, not just a recap. Plain text — no markdown.`
+            : `One sentence, max 20 words, about ${golf.leaders[0].name} leading ${golf.name} at ${golf.leaders[0].score}. Present tense, forward-looking energy. Plain text — no markdown.`,
+          60
+        )
+      : golf?.name
+      ? ask(
+          `One punchy sentence (max 20 words) about ${golf.name} teeing off this week. Why does a golf fan mark their calendar? Mention the course, a defending champ, or FedEx Cup stakes. Plain text — no markdown.`,
           60
         )
       : Promise.resolve(null),
 
     // 5. Sharp Take (closing) — JSON with prose + key bullets
     ask(
-      `Write the "Sharp Take" for today's GuyTalk brief.
+      `Write the "Sharp Take" for today's GuyTalk brief. This is the closer — the part the reader forwards to a friend.
 Return ONLY valid JSON, no markdown, no code fences:
 {
-  "p1": "EXACTLY 3-4 sentences. Pick the ONE biggest story and give the non-obvious take. A point of view, not a score recap. Something the reader thinks 'exactly' when they read it. Be specific to what happened today.",
-  "p2": "EXACTLY 2-3 sentences. Connect today to a real insight the reader can use. End with ONE punchy action line specific to today — example energy: 'Clear your Saturday. Monaco doesn't get better on replay.' No generic advice.",
-  "bullets": ["Key takeaway 1 in 12 words or less", "Key takeaway 2 in 12 words or less", "Key takeaway 3 in 12 words or less"]
+  "p1": "3-4 sentences. Pick the ONE biggest story and give the non-obvious take — a point of view, not a score recap. The reader should think 'exactly' when they read it. Be specific to today's data. A parenthetical aside is fine if it lands.",
+  "p2": "2-3 sentences. Connect today's story to something the reader can actually use or watch for. End with one punchy, specific call-to-action — the kind of line that makes someone look forward to tomorrow: 'Clear your Saturday. Monaco doesn't get better on replay.' Not generic advice.",
+  "bullets": ["Sports takeaway in 12 words or less — specific", "Markets/money takeaway in 12 words or less — specific", "One to-watch item in 12 words or less — builds anticipation"]
 }
 
-bullets = the 3 most important things from today: one sports, one markets/money, one to-watch. Punchy, specific, no filler.
-Do not use the word 'ultimately.' Pick ONE story for p1 — do not recap everything.
-
+Rules: Do not use the word 'ultimately.' Pick ONE story for p1, don't recap everything. Make bullets feel like items you'd screenshot. No filler.
 Context: ${ctx}${trendText ? `\nTrending: ${trendText}` : ''}`,
       450
     ),
@@ -228,13 +236,13 @@ Context: ${ctx}${trendText ? `\nTrending: ${trendText}` : ''}`,
     mainGame
       ? ask(
           `GuyTalk voice. Game: ${gamesText.split('\n')[0]}
-${mainGameLeaders ? `Player stats (ONLY use these — do not invent any other stats): ${mainGameLeaders}` : 'No player stats available. Use team-level observations only.'}
+${mainGameLeaders ? `Player stats (ONLY use these — never invent others): ${mainGameLeaders}` : 'No player stats available. Use team-level observations only — do not name individual players or invent stats.'}
 Return ONLY valid JSON, no markdown, no code fences:
 {
-  "keyNumber": "${mainGameLeaders ? 'The defining stat — use a real number from the stats provided above.' : 'A team-level stat or series context — do not invent individual player numbers.'}",
-  "seriesSituation": "${mainGame.seriesNote ? `Series: ${mainGame.seriesNote}. ` : ''}Next game context — what this result means.",
+  "keyNumber": "${mainGameLeaders ? 'The defining stat from the stats above — the number that explains the win or loss. Use a real number.' : 'A team-level observation about the game — no individual player stats.'}",
+  "seriesSituation": "${mainGame.seriesNote ? `Series: ${mainGame.seriesNote}. ` : ''}What this result means and what's next.",
   "howToWatch": "Game label · Day · Venue · Time ET · Network.",
-  "groupChatAngle": "One inside-knowledge observation. Specific, not obvious."
+  "groupChatAngle": "One sharp observation — the kind of thing you say in the group chat that makes people go 'yeah exactly.' Specific and non-obvious. Not a recap of the final score."
 }`,
           400
         )
@@ -264,51 +272,67 @@ Return ONLY valid JSON, no markdown, no code fences:
 Final leaderboard: ${golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ')}.
 Return ONLY valid JSON, no markdown, no code fences:
 {
-  "whyItMatters": "What this win means — season trajectory, FedEx Cup, major chances. One concrete sentence.",
-  "recap": "How the final round played out. Specific.",
-  "bringUp": "One inside-knowledge fact about the winner or course. Not obvious.",
-  "groupChatAngle": "One drop-it-once insight. Sounds like you watched every round."
+  "whyItMatters": "What this win means — season trajectory, FedEx Cup points, major chances. One concrete sentence.",
+  "recap": "How the final round played out. Specific — was it a runaway or a grind?",
+  "bringUp": "One inside-knowledge fact about the winner or course. Not the score — something you'd only know if you watched.",
+  "groupChatAngle": "One drop-it-once insight that sounds like you watched every round."
 }`
             : `GuyTalk voice. Tournament: ${golf.name}. Status: ${golf.status}.
 Leaderboard: ${golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ')}.
 Return ONLY valid JSON, no markdown, no code fences:
 {
-  "whyItMatters": "Field quality, FedEx Cup points, historic venue — one concrete sentence.",
+  "whyItMatters": "Field quality, FedEx Cup points, or historic venue — one concrete sentence on why this tournament matters.",
   "tvSchedule": "Broadcast info: 'Round X: TIME ET, Golf Channel/Peacock. Final round: TIME ET, NBC/CBS.'",
-  "bringUp": "One inside-knowledge fact about the leader or course. Specific.",
-  "groupChatAngle": "Drop-it-once insight about the leader or field."
+  "bringUp": "One inside-knowledge fact about the leader or course. Not the score — something specific.",
+  "groupChatAngle": "One line about the leader or field that sounds like you've been watching all week."
 }`,
           400
+        )
+      : golf?.name
+      ? ask(
+          `GuyTalk voice. ${golf.name} tees off this week — tournament hasn't started yet.
+Return ONLY valid JSON, no markdown, no code fences:
+{
+  "whyItMatters": "Why this tournament is worth watching — FedEx Cup stakes, iconic course, strong field, or defending champion. One concrete sentence.",
+  "bringUp": "One inside-knowledge fact about the course or the tournament's history. The kind of thing you mention on the first tee to sound like you know golf.",
+  "groupChatAngle": "One line about the week's storyline or player to watch. Opinionated — not just 'it's a big week.'"
+}`,
+          300
         )
       : Promise.resolve(null),
 
     // 9. Culture (JSON array)
     ask(
-      `GuyTalk culture section. Write 3 items for men 25–45.
+      `GuyTalk culture section. Write 3 items for men 25–45. Today is ${TODAY}.
 Return ONLY a valid JSON array, no markdown, no code fences, exactly 3 objects:
 [
-  {"head": "Specific headline — name the real person/company/moment", "source": "Platform · Source", "body": "3–4 sentences. What happened. Why it matters. The correct take. End with one line the reader drops in conversation."},
+  {"head": "Specific headline — name the real person/company/moment", "source": "Platform · Source", "body": "3–4 sentences. What happened. Why it matters. The correct take — not 'both sides.' End with one line the reader drops in conversation tonight."},
   {"head": "Specific headline", "source": "Platform · Source", "body": "Same format."},
-  {"head": "Watch this: [real title — action / thriller / sports / war / crime / sci-fi]", "source": "Streaming service or Theater · Genre", "body": "What it is, who made it, who it's for. One sentence on why it earns your two hours. Don't oversell."}
+  {"head": "Watch this: [real title]", "source": "Streaming service or Theater · Genre", "body": "What it is, who made it, who it's for. One sentence on why it earns two hours without overselling it."}
 ]
-Item 3 MUST be a real currently-available movie, show, or event — and must be guy-oriented: action, thriller, heist, sports doc, war, crime, sci-fi. No animated films, romantic comedies, or children's content unless it has strong crossover appeal for men. Today is ${TODAY}.
-Good examples: "In the Grey" (Henry Cavill + Jake Gyllenhaal, Guy Ritchie heist thriller — just dropped on Prime Video June 2), "Masters of the Universe" (theaters June 5).
-Items 1–2: prioritize sports/business/culture crossovers. Avoid repeating stories from trending that were in the last brief.
-Trending: ${trendText || 'No data — use your judgment on major current events.'}`,
+
+Item 3: MUST be a real, currently available movie or show (in theaters or streaming as of ${TODAY}) — guy-oriented: action, thriller, heist, sports doc, war, crime, sci-fi. No rom-coms or animated kids films.
+
+Items 1–2: STRICT RULES:
+- Use stories from the Trending data provided below IF available. Prioritize those.
+- If trending data is thin, cover real tech/business/culture news from ${TODAY} — things like a major CEO decision, a product launch, a sports business story.
+- DO NOT invent sports trade rumors, coaching hires, or contract news that aren't in the trending data. These change daily and you will get them wrong.
+- DO NOT reference events from 2024 as if they're current news. Always ground to today's date: ${TODAY}.
+- A story about money, gear, food, travel, or men's health is better than a hallucinated sports rumor.
+Trending: ${trendText || 'No trending data — use real current events from your knowledge for June 2026.'}`,
       900
     ),
 
     // 10. Numbers context (JSON array)
     ask(
       `GuyTalk voice. Return ONLY a valid JSON array, no markdown, no code fences, exactly 3 objects:
-[{"context": "2 sentences on what this number means and why the reader should care. Specific. Only reference real data given."}]
+[{"context": "2 sentences on what this number means and why it matters. Specific — not 'this was a big game.' Only use data given."}]
 
-Numbers:
-${mainGame ? `${mainGame.home.score}–${mainGame.away.score} (${mainGame.note || mainGame.shortName})` : ''}
-${markets?.SPY?.dayChangePct !== undefined ? `SPY ${markets.SPY.dayChangePct >= 0 ? '+' : ''}${markets.SPY.dayChangePct.toFixed(1)}% today` : ''}
-${golf?.leaders?.[0] ? `${golf.leaders[0].name} ${golf.leaders[0].score}, ${golf.name}` : ''}
-${f1?.results?.[0] ? `${f1.results[0].driver} wins ${f1.name}` : ''}
-${upcoming?.length ? `NBA Finals Game 1: ${upcoming[0].shortName}` : ''}`,
+Numbers (write context for each, in order):
+${mainGame ? (() => { const w = mainGame.home.winner ? mainGame.home : mainGame.away; const l = mainGame.home.winner ? mainGame.away : mainGame.home; return `${w.score}–${l.score}: ${w.team} beat ${l.team} (${mainGame.note || mainGame.shortName})`; })() : ''}
+${markets?.SPY?.dayChangePct !== undefined ? `${markets.SPY.dayChangePct >= 0 ? '+' : ''}${markets.SPY.dayChangePct.toFixed(1)}%: SPY daily move` : ''}
+${golf?.leaders?.[0] ? `${golf.leaders[0].score}: ${golf.leaders[0].name} ${golf.statusState === 'post' ? 'wins' : 'leads'} ${golf.name}` : upcoming?.length ? `Game 1: ${upcoming[0].note || upcoming[0].shortName} tips off ${upcoming[0].daysAhead === 0 ? 'today' : upcoming[0].daysAhead === 1 ? 'tomorrow' : 'in 2 days'}` : ''}
+${f1?.results?.[0] ? `${f1.results[0].driver} wins ${f1.name}` : ''}`,
       350
     ),
 
