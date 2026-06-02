@@ -778,6 +778,21 @@ function buildGolfBlock({ golf, copy }) {
   return '';
 }
 
+// Detect culture item category from head/source text
+function detectCultureTag(head, source, index) {
+  const h = (head + ' ' + source).toLowerCase();
+  if (index === 2 || /watch this/.test(h)) return 'Streaming';
+  if (/netflix|hbo|hulu|peacock|amazon prime|apple tv|max\b|disney\+|paramount\+|theaters|at theaters|film|movie/.test(h)) return 'Streaming';
+  if (/album|tour|song|music|rap|hip.hop|pop star|billboard|grammy|spotify|concert|single|debut/.test(h)) return 'Music';
+  if (/trade|contract|sign|deal|salary|sports business|league|franchise|broadcast rights/.test(h)) return 'Sports Biz';
+  if (/marry|married|wedding|engaged|divorce|couple|relationship|dating|celebrity/.test(h)) return 'Celebrity';
+  if (/\btv\b|television|reality show|love island|bachelor|survivor|episode|season|sitcom|reality/.test(h)) return 'TV';
+  if (/series|show|streaming|pilot|cancelled|renewed/.test(h)) return 'TV';
+  if (/tech|ai\b|app\b|startup|launch|iphone|android|software|hardware/.test(h)) return 'Tech';
+  if (/podcast|book|author|bestseller/.test(h)) return 'Media';
+  return 'Culture';
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Culture
 // ─────────────────────────────────────────────────────────────────────────────
@@ -791,14 +806,21 @@ function buildCulture({ copy }) {
   </section>`;
   }
 
-  const itemsHtml = items.slice(0, 3).map(item => `
+  const itemsHtml = items.slice(0, 3).map((item, i) => {
+    const tag = item.tag || detectCultureTag(item.head || '', item.source || '', i);
+    const tagClass = `ctag-${tag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`;
+    return `
       <li class="culture-item">
         <div>
+          <div class="culture-item-top">
+            <span class="culture-tag ${tagClass}">${esc(tag)}</span>
+          </div>
           <div class="culture-head">${esc(item.head || '')}</div>
           <span class="culture-source">${esc(item.source || '')}</span>
           <p class="culture-body">${esc(item.body || '')}</p>
         </div>
-      </li>`).join('');
+      </li>`;
+  }).join('');
 
   return `  <section class="brief-section" id="culture">
     <div class="section-label sl-culture">Culture</div>

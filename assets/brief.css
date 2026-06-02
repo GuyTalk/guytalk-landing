@@ -389,7 +389,7 @@ em { font-style: italic; }
    ================================================================ */
 .culture-list { list-style: none; counter-reset: clist; }
 .culture-item {
-  counter-increment: clist; padding: 18px 0;
+  counter-increment: clist; padding: 20px 0;
   border-top: 1px solid var(--border);
   display: grid; grid-template-columns: 30px 1fr; gap: 14px;
 }
@@ -397,15 +397,31 @@ em { font-style: italic; }
 .culture-item::before {
   content: counter(clist, decimal-leading-zero);
   font-family: 'JetBrains Mono', monospace; font-weight: 600;
-  font-size: 13px; color: var(--accent); padding-top: 3px;
+  font-size: 13px; color: var(--accent); padding-top: 22px;
 }
+.culture-item-top { margin-bottom: 7px; }
+.culture-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  padding: 3px 8px; border-radius: 4px;
+  background: var(--surface-2); color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.culture-tag.ctag-celebrity  { background: rgba(194,65,12,0.07);  color: var(--culture); border-color: rgba(194,65,12,0.18); }
+.culture-tag.ctag-music       { background: rgba(139,92,246,0.07); color: #7C3AED; border-color: rgba(139,92,246,0.2); }
+.culture-tag.ctag-sports-biz  { background: rgba(22,163,74,0.07);  color: var(--sports); border-color: rgba(22,163,74,0.18); }
+.culture-tag.ctag-streaming   { background: rgba(43,111,255,0.07); color: var(--accent); border-color: rgba(43,111,255,0.18); }
+.culture-tag.ctag-tv          { background: rgba(43,111,255,0.07); color: var(--accent); border-color: rgba(43,111,255,0.18); }
+.culture-tag.ctag-tech        { background: rgba(16,185,129,0.07); color: #059669; border-color: rgba(16,185,129,0.18); }
+.culture-tag.ctag-watch       { background: rgba(43,111,255,0.07); color: var(--accent); border-color: rgba(43,111,255,0.18); }
 .culture-head {
   font-family: 'Inter Tight', sans-serif; font-weight: 700;
   font-size: 18px; line-height: 1.25; margin-bottom: 4px; color: var(--text);
 }
 .culture-source {
   font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-3);
-  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; display: block;
+  letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; display: block;
 }
 .culture-body { font-size: 15px; color: var(--text-2); line-height: 1.62; }
 .culture-body strong { color: var(--text); }

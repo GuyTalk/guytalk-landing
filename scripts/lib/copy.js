@@ -325,13 +325,17 @@ CRITICAL RULE: Each object in the array MUST have its "head", "source", and "bod
 
 Return ONLY a valid JSON array, no markdown, no code fences, exactly 3 objects. Write them in this order — complete each one fully before starting the next:
 
-ITEM 1: Pick the first story from the trending data. Write "head" (headline), then "source" (platform · outlet), then "body" (3–4 sentences about THAT SAME story — lead with the specific thing that happened, give the take, end with one line to drop in conversation tonight).
+Each object has these fields: "head", "source", "body", "tag".
+- "tag" must be ONE of: Celebrity, Music, Sports Biz, Streaming, TV, Tech, Culture — pick the best fit.
 
-ITEM 2: Pick the second story from the trending data (different territory from item 1). Write "head", "source", "body" — all three about THAT SAME story.
+ITEM 1: Pick the first story from the trending data. Write "head", "source", "tag", then "body" (3–4 sentences about THAT SAME story — lead with the specific thing that happened, give the take, end with one line to drop in conversation tonight).
+
+ITEM 2: Pick the second story from the trending data (different territory from item 1). Write "head", "source", "tag", "body" — all four about THAT SAME story.
 
 ITEM 3 (streaming/theater pick) — STRICT RULES:
 - "head" must be "Watch this: [exact title]"
 - "source" must be the streaming service or theater
+- "tag" must be "Streaming"
 - "body" must be about THAT SAME title — two sentences max: what it is and the ONE thing that makes it worth the time
 - BANNED: animated, kids, family, rom-com, musical, Disney/Pixar/DreamWorks titles
 - ALLOWED: action, thriller, heist, sports doc, war, crime, sci-fi, prestige drama
