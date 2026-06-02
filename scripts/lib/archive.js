@@ -3,6 +3,52 @@
 const fs   = require('fs');
 const path = require('path');
 
+function buildTickerItems(issue) {
+  const items = [];
+  // Markets
+  const m = issue.markets || {};
+  const tickers = ['SPY', 'QQQ', 'NVDA', 'TSLA', 'BTC'];
+  for (const sym of tickers) {
+    if (m[sym]?.dayChangePct !== undefined) {
+      const pct = m[sym].dayChangePct;
+      const cls = pct >= 0 ? 'ticker-up' : 'ticker-down';
+      const sign = pct >= 0 ? '+' : '';
+      items.push(`<div class="ticker-item"><span class="ticker-sym">${sym}</span><span class="${cls}">${sign}${pct.toFixed(2)}%</span></div>`);
+    }
+  }
+  items.push('<div class="ticker-item"><span class="ticker-divider">—</span></div>');
+  // Sports
+  const sports = issue.sports || [];
+  for (const g of sports.slice(0, 3)) {
+    const w = g.home?.winner ? g.home : g.away;
+    const l = g.home?.winner ? g.away : g.home;
+    if (w && l) {
+      const label = (g.note || g.shortName || '').toUpperCase();
+      items.push(`<div class="ticker-item"><span class="ticker-sport">${w.team.toUpperCase()} ${w.score}  ${l.team.toUpperCase()} ${l.score}${label ? `  · ${label}` : ''}</span></div>`);
+    }
+  }
+  // Upcoming
+  const upcoming = issue.upcoming || [];
+  for (const g of upcoming.slice(0, 2)) {
+    const when = g.daysAhead === 0 ? 'TODAY' : g.daysAhead === 1 ? 'TOMORROW' : 'UPCOMING';
+    const label = (g.note || g.shortName || '').toUpperCase();
+    items.push(`<div class="ticker-item"><span class="ticker-sport">${label}  · ${when}</span></div>`);
+  }
+  // F1
+  if (issue.f1?.name) {
+    const status = issue.f1.statusState === 'post' ? 'FINAL' : 'THIS WEEKEND';
+    const leader = issue.f1.results?.[0]?.driver || 'TBD';
+    items.push(`<div class="ticker-item"><span class="ticker-sport">F1 ${issue.f1.name?.toUpperCase()}  · ${leader} ${status}</span></div>`);
+  }
+  // Golf
+  if (issue.golf?.leaders?.[0]) {
+    const l = issue.golf.leaders[0];
+    const status = issue.golf.statusState === 'post' ? 'WINS' : 'LEADS';
+    items.push(`<div class="ticker-item"><span class="ticker-sport">${l.name.toUpperCase()} ${status}  ${l.score}</span></div>`);
+  }
+  return items.length > 2 ? items.join('\n        ') : null;
+}
+
 // Builds /briefs/index.html from all brief/data/issue-NNN.json files
 function buildArchive(rootDir) {
   const dataDir  = path.join(rootDir, 'brief', 'data');
@@ -74,6 +120,14 @@ function buildArchive(rootDir) {
         /href="\/brief\/issue-\d+\/(#[a-z]+)"/g,
         `href="/brief/${latestSlug}/$1"`
       );
+      // Update ticker with latest sports + market data
+      const tickerItems = buildTickerItems(latest);
+      if (tickerItems) {
+        indexHtml = indexHtml.replace(
+          /(<div class="ticker" id="ticker-track">)[\s\S]*?(<\/div><\/div>\s*<\/div>)/,
+          `$1\n        ${tickerItems}\n        ${tickerItems}\n      </div></div>\n    </div>`
+        );
+      }
       fs.writeFileSync(indexPath, indexHtml, 'utf8');
     }
   }
