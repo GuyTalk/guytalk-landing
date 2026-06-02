@@ -165,8 +165,9 @@ function buildHtml(issue, relatedIssues) {
   const nextSlug = `issue-${String(num + 1).padStart(3, '0')}`;
   const prevLabel = prevSlug ? `#${String(num - 1).padStart(3, '0')}` : null;
 
-  const hasF1 = f1?.name != null;
-  const hasWC = worldCup?.length > 0;
+  const hasF1  = f1?.name != null;
+  const hasWC  = worldCup?.length > 0;
+  const hasGolf = golf?.name != null;
 
   const seoTitle = buildSeoTitle(issue);
   const seoDesc  = buildSeoDesc(issue);
@@ -237,7 +238,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
   <nav class="section-jump" aria-label="Jump to section">
     <a href="#sports" class="sj-link">Sports</a>
-    <a href="#markets" class="sj-link">Markets</a>${hasF1 ? `\n    <a href="#f1" class="sj-link">F1</a>` : ''}${hasWC ? `\n    <a href="#worldcup" class="sj-link">World Cup</a>` : ''}
+    <a href="#markets" class="sj-link">Markets</a>${hasGolf ? `\n    <a href="#golf" class="sj-link">Golf</a>` : ''}${hasF1 ? `\n    <a href="#f1" class="sj-link">F1</a>` : ''}${hasWC ? `\n    <a href="#worldcup" class="sj-link">World Cup</a>` : ''}
     <a href="#culture" class="sj-link">Culture</a>
     <a href="#sharp-take" class="sj-link">Take</a>
   </nav>
@@ -743,7 +744,7 @@ function buildGolfBlock({ golf, copy }) {
     })();
 
     return `
-    <h3>${heading}</h3>
+    <h3 id="golf">${heading}</h3>
 
     ${golfImg}
 
@@ -767,7 +768,7 @@ function buildGolfBlock({ golf, copy }) {
     const bringUp = gd.bringUp || 'Watch for the early rounds to set the weekend field.';
     const groupChat = gd.groupChatAngle || '';
     return `
-    <h3>${esc(golfNameDisplay)} — tees off this week.</h3>
+    <h3 id="golf">${esc(golfNameDisplay)} — tees off this week.</h3>
     <p>${whyMatters} ${bringUp}</p>
     ${groupChat ? `<div class="angle-box">
       <span class="angle-label">Group Chat Angle</span>
