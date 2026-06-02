@@ -10,7 +10,7 @@ function orderSuffix(n) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ESPN: NBA scores — tries yesterday, then 2 and 3 days back if empty
+// ESPN: parse game scoreboard response
 // ─────────────────────────────────────────────────────────────────────────────
 function parseESPNGames(data, sport = 'NBA') {
   return (data.events || []).map(ev => {
@@ -23,6 +23,7 @@ function parseESPNGames(data, sport = 'NBA') {
       name: ev.name,
       shortName: ev.shortName,
       status: comp.status?.type?.description || 'Final',
+      statusState: ev.status?.type?.state || 'post',
       note: comp.notes?.[0]?.headline || '',
       seriesNote: comp.series?.summary || '',
       sport,
@@ -42,31 +43,123 @@ function parseESPNGames(data, sport = 'NBA') {
   });
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// ESPN: NBA scores — tries ONLY yesterday to prevent repeating stale games
+// ─────────────────────────────────────────────────────────────────────────────
 async function fetchNBA(dateStr) {
   const tryDate = async (ds) => {
     const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${ds}`;
     const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
     if (!res.ok) return [];
     const data = await res.json();
-    return parseESPNGames(data, 'NBA');
+    return parseESPNGames(data, 'NBA').filter(g => g.status === 'Final');
   };
 
   if (dateStr) return tryDate(dateStr);
 
-  // No date given — try yesterday, then 2 days back, then 3 days back
-  for (let daysBack = 1; daysBack <= 3; daysBack++) {
-    const d = new Date();
-    d.setDate(d.getDate() - daysBack);
-    const ds = d.toISOString().slice(0, 10).replace(/-/g, '');
-    const games = await tryDate(ds);
-    if (games.length) return games;
-  }
-  return [];
+  // Only try yesterday — avoids repeating a game that aired 2-3 days ago
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  const ds = d.toISOString().slice(0, 10).replace(/-/g, '');
+  return tryDate(ds);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ESPN: MLB scores for yesterday (fallback when no NBA games)
-// Returns top 3 most notable games (by score activity)
+// ESPN: upcoming NBA games (today + next 2 days) for preview/schedule context
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchNBAUpcoming() {
+  const scheduled = [];
+  for (let daysAhead = 0; daysAhead <= 2; daysAhead++) {
+    const d = new Date();
+    d.setDate(d.getDate() + daysAhead);
+    const ds = d.toISOString().slice(0, 10).replace(/-/g, '');
+    try {
+      const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${ds}`;
+      const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+      if (!res.ok) continue;
+      const data = await res.json();
+      const games = parseESPNGames(data, 'NBA').filter(g => g.status !== 'Final');
+      games.forEach(g => scheduled.push({ ...g, daysAhead }));
+    } catch (_) {}
+  }
+  return scheduled;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ESPN: game highlights meta — featured image + recap URL for any sport
+// Returns { imageUrl, recapUrl, headlineText } or null
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchGameMeta(gameId, sport = 'nba') {
+  const sportPath = sport === 'nba' ? 'basketball/nba' : 'baseball/mlb';
+  try {
+    const url = `https://site.api.espn.com/apis/site/v2/sports/${sportPath}/summary?event=${gameId}`;
+    const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+    if (!res.ok) return null;
+    const data = await res.json();
+
+    // Featured image from header
+    const comp = data.header?.competitions?.[0];
+    const headlines = comp?.headlines || data.gameInfo?.venue?.headlines || [];
+    const imageUrl = headlines[0]?.image?.href || null;
+
+    // ESPN recap URL
+    const recapUrl = `https://www.espn.com/${sport}/recap/_/gameId/${gameId}`;
+
+    // Key headline text
+    const headlineText = headlines[0]?.shortLinkText || headlines[0]?.description || null;
+
+    return { imageUrl, recapUrl, headlineText };
+  } catch (_) {
+    return null;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ESPN: NBA box score — player stats for a completed game
+// Returns top performers sorted by points
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchNBABoxScore(gameId) {
+  try {
+    const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=${gameId}`;
+    const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+    if (!res.ok) return null;
+    const data = await res.json();
+
+    const performers = [];
+    (data.boxscore?.players || []).forEach(teamStats => {
+      const teamName = teamStats.team?.shortDisplayName || teamStats.team?.displayName || '';
+      (teamStats.statistics || []).forEach(statGroup => {
+        const labels = statGroup.labels || [];
+        const ptsIdx = labels.indexOf('PTS');
+        const rebIdx = labels.indexOf('REB');
+        const astIdx = labels.indexOf('AST');
+        if (ptsIdx < 0) return;
+        (statGroup.athletes || []).forEach(a => {
+          const stats = a.stats || [];
+          const pts = parseInt(stats[ptsIdx]) || 0;
+          if (pts >= 10) {
+            performers.push({
+              name: a.athlete?.displayName || '',
+              team: teamName,
+              pts: stats[ptsIdx] || '0',
+              reb: rebIdx >= 0 ? (stats[rebIdx] || '0') : '',
+              ast: astIdx >= 0 ? (stats[astIdx] || '0') : '',
+            });
+          }
+        });
+      });
+    });
+
+    performers.sort((a, b) => parseInt(b.pts) - parseInt(a.pts));
+    return performers.length ? performers.slice(0, 6) : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ESPN: MLB scores for yesterday (fallback when no NBA)
+// Returns top 3 highest-scoring games
 // ─────────────────────────────────────────────────────────────────────────────
 async function fetchMLB() {
   for (let daysBack = 1; daysBack <= 2; daysBack++) {
@@ -80,7 +173,6 @@ async function fetchMLB() {
       const data = await res.json();
       const games = parseESPNGames(data, 'MLB');
       if (games.length) {
-        // Return top 3 highest-scoring games
         return games
           .sort((a, b) => (parseInt(b.home.score) + parseInt(b.away.score)) - (parseInt(a.home.score) + parseInt(a.away.score)))
           .slice(0, 3);
@@ -91,17 +183,85 @@ async function fetchMLB() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Finnhub: current quote for each ticker in FETCH_TICKERS
-// Returns { SPY: { price, dayChange, dayChangePct, prevClose }, ... }
+// ESPN: F1 scoreboard — most recent race or upcoming grand prix
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchF1() {
+  try {
+    const url = 'https://site.api.espn.com/apis/site/v2/sports/racing/f1/scoreboard';
+    const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const ev = data.events?.[0];
+    if (!ev) return null;
+
+    const comp = ev.competitions?.[0];
+    const statusState = ev.status?.type?.state || 'pre';
+    const statusDesc = comp?.status?.type?.description || ev.status?.type?.description || '';
+
+    const results = (comp?.competitors || [])
+      .sort((a, b) => (a.order || 99) - (b.order || 99))
+      .slice(0, 5)
+      .map((c, i) => ({
+        pos: c.order || i + 1,
+        driver: c.athlete?.displayName || 'Unknown',
+        team: c.team?.shortDisplayName || c.team?.displayName || '',
+        time: c.time || c.score || '',
+      }))
+      .filter(c => c.driver !== 'Unknown');
+
+    return {
+      name: ev.name || 'Formula 1',
+      shortName: ev.shortName || ev.name || 'F1',
+      venue: ev.venue?.fullName || '',
+      status: statusDesc,
+      statusState,
+      results,
+    };
+  } catch (_) {
+    return null;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ESPN: FIFA World Cup scoreboard (active during tournament)
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchWorldCup() {
+  try {
+    const url = 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard';
+    const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const events = (data.events || []).slice(0, 4);
+    if (!events.length) return null;
+
+    return events.map(ev => {
+      const comp = ev.competitions?.[0];
+      const home = comp?.competitors?.find(c => c.homeAway === 'home') || {};
+      const away = comp?.competitors?.find(c => c.homeAway === 'away') || {};
+      return {
+        name: ev.name,
+        shortName: ev.shortName || ev.name,
+        status: comp?.status?.type?.description || '',
+        statusState: ev.status?.type?.state || 'pre',
+        date: ev.date,
+        home: { team: home.team?.displayName || '', score: home.score || '' },
+        away: { team: away.team?.displayName || '', score: away.score || '' },
+      };
+    });
+  } catch (_) {
+    return null;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Finnhub: market quotes with weekly change
 // ─────────────────────────────────────────────────────────────────────────────
 async function fetchMarkets() {
   const key = process.env.FINNHUB_API_KEY;
   if (!key || key.includes('your_') || key.includes('_here')) return null;
 
   const results = {};
-
-  // Fetch daily candle for past 10 days — gives us both day % and week %
-  const now     = Math.floor(Date.now() / 1000);
+  const now = Math.floor(Date.now() / 1000);
   const tenDaysAgo = now - 10 * 24 * 60 * 60;
 
   for (const sym of FETCH_TICKERS) {
@@ -109,27 +269,24 @@ async function fetchMarkets() {
     if (!cfg?.finnhub) continue;
 
     try {
-      const encoded   = encodeURIComponent(cfg.finnhub);
-      const isCrypto  = cfg.finnhub.includes(':');
+      const encoded = encodeURIComponent(cfg.finnhub);
+      const isCrypto = cfg.finnhub.includes(':');
 
-      // Quote for real-time price + day change
       const quoteRes = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encoded}&token=${key}`);
       const q = quoteRes.ok ? await quoteRes.json() : {};
 
-      // Candle for weekly %
       await new Promise(r => setTimeout(r, 120));
       const candleBase = isCrypto ? 'crypto/candle' : 'stock/candle';
-      const candleRes  = await fetch(
+      const candleRes = await fetch(
         `https://finnhub.io/api/v1/${candleBase}?symbol=${encoded}&resolution=D&from=${tenDaysAgo}&to=${now}&token=${key}`
       );
       let weekChangePct = null;
       if (candleRes.ok) {
         const c = await candleRes.json();
         if (c.s === 'ok' && c.c?.length >= 2) {
-          // Week = current close vs. close from 5 trading sessions ago (or earliest available)
-          const closes    = c.c;
-          const weekStart = closes[Math.max(0, closes.length - 6)]; // ~5 sessions back
-          const latest    = closes[closes.length - 1];
+          const closes = c.c;
+          const weekStart = closes[Math.max(0, closes.length - 6)];
+          const latest = closes[closes.length - 1];
           if (weekStart && weekStart !== 0) {
             weekChangePct = ((latest - weekStart) / weekStart) * 100;
           }
@@ -137,9 +294,9 @@ async function fetchMarkets() {
       }
 
       results[sym] = {
-        price:        q.c  ?? null,
-        prevClose:    q.pc ?? null,
-        dayChange:    q.d  ?? null,
+        price: q.c ?? null,
+        prevClose: q.pc ?? null,
+        dayChange: q.d ?? null,
         dayChangePct: q.dp ?? null,
         weekChangePct,
       };
@@ -157,12 +314,6 @@ async function fetchMarkets() {
 // ESPN: active PGA Tour leaderboard
 // ─────────────────────────────────────────────────────────────────────────────
 async function fetchGolf() {
-  const endpoints = [
-    'https://site.api.espn.com/apis/site/v2/sports/golf/pga/leaderboard',
-    'https://site.api.espn.com/apis/site/v2/sports/golf/pga/scoreboard',
-  ];
-
-  // Only try the scoreboard — leaderboard endpoint consistently returns 404
   const url = 'https://site.api.espn.com/apis/site/v2/sports/golf/pga/scoreboard';
   try {
     const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
@@ -171,44 +322,40 @@ async function fetchGolf() {
     const ev = data.events?.[0];
     if (!ev) return null;
 
-    // Competitors live under competitions[0], sorted by order (1 = leader)
     const comp = ev.competitions?.[0];
     const statusDetail = comp?.status?.type?.detail || ev.status?.type?.description || '';
-    const statusState  = ev.status?.type?.state || 'pre';
+    const statusState = ev.status?.type?.state || 'pre';
 
     const leaders = (comp?.competitors || [])
       .sort((a, b) => (a.order || 99) - (b.order || 99))
       .slice(0, 10)
       .map((c, i) => ({
-        name:   c.athlete?.displayName || 'Unknown',
+        name: c.athlete?.displayName || 'Unknown',
         espnId: c.athlete?.id,
-        score:  c.score || 'E',
-        pos:    orderSuffix(c.order || i + 1),
+        score: c.score || 'E',
+        pos: orderSuffix(c.order || i + 1),
       }))
       .filter(c => c.name !== 'Unknown');
 
     return {
-      name:        ev.name || 'PGA Tour',
-      venue:       ev.venue?.fullName || '',
-      status:      statusDetail,
-      statusState,                                // 'pre' | 'in' | 'post'
+      name: ev.name || 'PGA Tour',
+      venue: ev.venue?.fullName || '',
+      status: statusDetail,
+      statusState,
       leaders,
     };
   } catch (_) {
     return null;
   }
-
-  return null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Culture/trending: Reddit hot posts + optional NewsAPI headlines
-// Used only as editorial suggestions (shown in HTML comments).
 // ─────────────────────────────────────────────────────────────────────────────
 async function fetchTrending() {
   const items = [];
 
-  const subs = ['nba', 'golf', 'investing', 'entertainment'];
+  const subs = ['nba', 'formula1', 'soccer', 'investing', 'entertainment'];
   for (const sub of subs) {
     try {
       const res = await fetch(`https://www.reddit.com/r/${sub}/hot.json?limit=5`, {
@@ -218,9 +365,9 @@ async function fetchTrending() {
       const data = await res.json();
       (data.data?.children || []).forEach(p => {
         items.push({
-          title:  p.data.title,
-          url:    `https://reddit.com${p.data.permalink}`,
-          score:  p.data.score,
+          title: p.data.title,
+          url: `https://reddit.com${p.data.permalink}`,
+          score: p.data.score,
           source: `r/${sub}`,
         });
       });
@@ -239,10 +386,10 @@ async function fetchTrending() {
         const data = await res.json();
         (data.articles || []).forEach(a => {
           items.push({
-            title:       a.title,
-            url:         a.url,
+            title: a.title,
+            url: a.url,
             description: a.description,
-            source:      a.source?.name,
+            source: a.source?.name,
           });
         });
       } catch (_) {}
@@ -252,4 +399,4 @@ async function fetchTrending() {
   return items;
 }
 
-module.exports = { fetchNBA, fetchMLB, fetchMarkets, fetchGolf, fetchTrending };
+module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchGolf, fetchTrending };

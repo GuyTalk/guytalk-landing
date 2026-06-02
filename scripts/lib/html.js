@@ -16,11 +16,28 @@ function renderParas(text, fallback = '') {
 // ─────────────────────────────────────────────────────────────────────────────
 // Entry point — returns the full HTML string for a brief issue
 // ─────────────────────────────────────────────────────────────────────────────
+// ESPN CDN logo URL for a team abbreviation + sport
+function espnLogo(abbrev, sport) {
+  if (!abbrev) return null;
+  const a = abbrev.toLowerCase().replace(/[^a-z]/g, '');
+  const sportKey = sport === 'mlb' ? 'mlb' : 'nba';
+  return `https://a.espncdn.com/i/teamlogos/${sportKey}/500/${a}.png`;
+}
+
+// ESPN recap URL from game ID + sport
+function espnRecapUrl(gameId, sport) {
+  const s = sport === 'mlb' ? 'mlb' : 'nba';
+  return `https://www.espn.com/${s}/recap/_/gameId/${gameId}`;
+}
+
 function buildHtml(issue) {
-  const { num, slug, date, title, deck, sports, markets, golf, trending, copy } = issue;
+  const { num, slug, date, title, deck, sports, markets, golf, f1, worldCup, upcoming, gameMetas, trending, copy } = issue;
   const label = `#${String(num).padStart(3, '0')}`;
   const prevSlug = num > 1 ? `issue-${String(num - 1).padStart(3, '0')}` : null;
   const prevLabel = prevSlug ? `#${String(num - 1).padStart(3, '0')}` : null;
+
+  const hasF1 = f1?.name != null;
+  const hasWC = worldCup?.length > 0;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -47,6 +64,8 @@ function buildHtml(issue) {
 </head>
 <body>
 
+<div class="reading-progress" id="readingProgress"></div>
+
 <nav class="brief-nav">
   <div class="brief-nav-inner">
     <a href="/" class="brief-wordmark">GuyTalk<span class="dot">.</span></a>
@@ -57,7 +76,7 @@ function buildHtml(issue) {
   </div>
 </nav>
 
-<article class="brief-article">
+<article class="brief-article" id="briefArticle">
 
   <div class="brief-pretitle">
     <span class="brief-pretitle-dot"></span>
@@ -73,11 +92,22 @@ function buildHtml(issue) {
     <span>SPORTS · MARKETS · CULTURE</span>
   </div>
 
+  <nav class="section-jump" aria-label="Jump to section">
+    <a href="#sports" class="sj-link">Sports</a>
+    <a href="#markets" class="sj-link">Markets</a>${hasF1 ? `\n    <a href="#f1" class="sj-link">F1</a>` : ''}${hasWC ? `\n    <a href="#worldcup" class="sj-link">World Cup</a>` : ''}
+    <a href="#culture" class="sj-link">Culture</a>
+    <a href="#sharp-take" class="sj-link">Take</a>
+  </nav>
+
 ${buildTldr(issue)}
 
 ${buildSports(issue)}
 
 ${buildMarkets(issue)}
+
+${hasF1 ? buildF1Block(issue) : ''}
+
+${hasWC ? buildWorldCupBlock(issue) : ''}
 
 ${buildCulture(issue)}
 
@@ -104,6 +134,22 @@ ${buildNumbers(issue)}
   </div>
 </footer>
 
+<script>
+(function() {
+  var bar = document.getElementById('readingProgress');
+  var article = document.getElementById('briefArticle');
+  if (!bar || !article) return;
+  function update() {
+    var rect = article.getBoundingClientRect();
+    var total = article.offsetHeight - window.innerHeight;
+    var pct = total > 0 ? Math.min(100, Math.max(0, (-rect.top / total) * 100)) : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
 </body>
 </html>`;
 }
@@ -111,7 +157,7 @@ ${buildNumbers(issue)}
 // ─────────────────────────────────────────────────────────────────────────────
 // TL;DR
 // ─────────────────────────────────────────────────────────────────────────────
-function buildTldr({ sports, markets, golf, copy }) {
+function buildTldr({ sports, markets, golf, f1, worldCup, upcoming, copy }) {
   const items = [];
 
   (sports || []).slice(0, 2).forEach(g => {
@@ -155,16 +201,55 @@ function buildTldr({ sports, markets, golf, copy }) {
     items.push({ tag: 'Sports', anchor: '#sports', html: `${esc(golf.name)} tees off this week.` });
   }
 
+  // F1 bullet
+  if (f1?.results?.length && f1.statusState === 'post') {
+    items.push({
+      tag: 'F1', anchor: '#f1',
+      html: `${esc(f1.results[0]?.driver)} wins ${esc(f1.shortName || f1.name)}.`,
+    });
+  } else if (f1?.name) {
+    items.push({
+      tag: 'F1', anchor: '#f1',
+      html: `${esc(f1.name)} — ${esc(f1.status || 'this weekend')}.`,
+    });
+  }
+
+  // World Cup bullet
+  if (worldCup?.length) {
+    const active = worldCup.find(m => m.statusState === 'in' || m.statusState === 'post');
+    if (active) {
+      items.push({
+        tag: 'World Cup', anchor: '#worldcup',
+        html: `${esc(active.away.team)} vs ${esc(active.home.team)}: <strong>${esc(active.away.score)}–${esc(active.home.score)}</strong>.`,
+      });
+    } else {
+      items.push({ tag: 'World Cup', anchor: '#worldcup', html: 'FIFA World Cup 2026 opens June 11 — USA hosts.' });
+    }
+  }
+
+  // Upcoming NBA bullet (Finals preview)
+  if (upcoming?.length && items.filter(i => i.tag === 'Sports').length === 0) {
+    const g = upcoming[0];
+    const when = g.daysAhead === 0 ? 'tonight' : g.daysAhead === 1 ? 'tomorrow' : 'in 2 days';
+    items.push({
+      tag: 'Sports', anchor: '#sports',
+      html: `${esc(g.note || g.shortName)} tips off ${when}${g.daysAhead <= 1 ? ' — Game 1' : ''}.`,
+    });
+  }
+
   const cultureBullet = copy?.culture?.[0]?.head
     ? esc(copy.culture[0].head)
     : 'Culture picks inside.';
   items.push({ tag: 'Culture', anchor: '#culture', html: cultureBullet });
 
+  // Tag color map
+  const tagClass = { 'Sports': 'tag-amber', 'Markets': 'tag-blue', 'F1': 'tag-green', 'World Cup': 'tag-green', 'Culture': 'tag-amber' };
+
   return `  <div class="tldr">
     <div class="tldr-label">TL;DR — Five things to know</div>
     <ul class="tldr-list">
 ${items.slice(0, 5).map(item => `      <li class="tldr-item">
-        <a href="${item.anchor}" class="tag-link"><span class="tag tag-amber">${item.tag}</span></a>
+        <a href="${item.anchor}" class="tag-link"><span class="tag ${tagClass[item.tag] || 'tag-amber'}">${item.tag}</span></a>
         <span>${item.html}</span>
       </li>`).join('\n')}
     </ul>
@@ -174,7 +259,7 @@ ${items.slice(0, 5).map(item => `      <li class="tldr-item">
 // ─────────────────────────────────────────────────────────────────────────────
 // Sports
 // ─────────────────────────────────────────────────────────────────────────────
-function buildSports({ sports, copy, golf, num }) {
+function buildSports({ sports, copy, golf, num, gameMetas, upcoming }) {
   const golfBlock = buildGolfBlock({ golf, copy });
   const product = PRODUCTS[num % PRODUCTS.length];
   const productCard = `
@@ -194,11 +279,17 @@ function buildSports({ sports, copy, golf, num }) {
       </div>
     </div>`;
 
+  // Upcoming game preview card (e.g., NBA Finals Game 1 tomorrow)
+  const upcomingCard = upcoming?.length
+    ? buildUpcomingGameCard(upcoming[0])
+    : '';
+
   if (!sports?.length) {
     return `  <section class="brief-section" id="sports">
     <div class="section-label sl-sports">Sports</div>
-    <h3>Off day — weekend recap.</h3>
-    ${renderParas(copy?.sportsAngle, 'No games last night.')}
+    <h3>No games last night.</h3>
+    ${renderParas(copy?.sportsAngle, '')}
+${upcomingCard}
 ${golfBlock}
 ${productCard}
   </section>`;
@@ -210,9 +301,15 @@ ${productCard}
     const homeLoser = !g.home.winner;
     const awayLoser = !g.away.winner;
     const metaText = g.note ? `${g.note} · ${g.status}` : g.status;
+    const sport = g.sport?.toLowerCase() || 'nba';
+
+    // Team logos from ESPN CDN
+    const homeLogo = espnLogo(g.home.abbrev, sport);
+    const awayLogo = espnLogo(g.away.abbrev, sport);
 
     const scoreboard = `    <div class="scoreboard">
       <div class="score-side">
+        ${homeLogo ? `<img src="${esc(homeLogo)}" class="score-logo${homeLoser ? ' loser' : ''}" alt="${esc(g.home.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
         <div class="score-team${homeLoser ? ' loser' : ''}">${esc(g.home.team)}</div>
         <div class="score-num${homeLoser ? ' loser' : ''}">${esc(g.home.score)}</div>
       </div>
@@ -223,33 +320,49 @@ ${productCard}
       <div class="score-side right">
         <div class="score-team${awayLoser ? ' loser' : ''}">${esc(g.away.team)}</div>
         <div class="score-num${awayLoser ? ' loser' : ''}">${esc(g.away.score)}</div>
+        ${awayLogo ? `<img src="${esc(awayLogo)}" class="score-logo${awayLoser ? ' loser' : ''}" alt="${esc(g.away.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+      </div>
+    </div>`;
+
+    // Highlights card
+    const meta = gameMetas?.[g.id];
+    const recapUrl = meta?.recapUrl || espnRecapUrl(g.id, sport);
+    const ytQuery = encodeURIComponent(`${g.away.team} vs ${g.home.team} highlights`);
+    const ytUrl = `https://www.youtube.com/results?search_query=${ytQuery}`;
+    const highlightsCard = `    <div class="highlights-card">
+      <span class="hl-label">Best Moments</span>
+      <div class="hl-links">
+        <a href="${esc(recapUrl)}" target="_blank" rel="noopener" class="hl-btn">▶ Watch on ESPN</a>
+        <a href="${esc(ytUrl)}" target="_blank" rel="noopener" class="hl-btn hl-btn-yt">YouTube Highlights</a>
       </div>
     </div>`;
 
     if (i === 0) {
       const d = copy?.sportsDetail || {};
       const keyNumber       = d.keyNumber       || `${w.team} take the win.`;
-      const seriesSituation = d.seriesSituation || (g.seriesNote ? g.seriesNote : 'Series continues.');
+      const seriesSituation = d.seriesSituation || (g.seriesNote ? g.seriesNote : '');
       const howToWatch      = d.howToWatch      || 'Check ESPN for next game details.';
-      const groupChat       = d.groupChatAngle  || 'Full series breakdown at ESPN.com.';
+      const groupChat       = d.groupChatAngle  || '';
 
       return `
     <h3>${esc(g.note || g.name)}</h3>
 
 ${scoreboard}
 
+${highlightsCard}
+
     ${renderParas(copy?.sportsAngle, `${w.team} win.`)}
 
     <ul class="detail-list">
       <li><span><span class="dl-label">Key number:</span> ${esc(keyNumber)}</span></li>
-      <li><span><span class="dl-label">Series situation:</span> ${esc(seriesSituation)}</span></li>
+      ${seriesSituation ? `<li><span><span class="dl-label">Series:</span> ${esc(seriesSituation)}</span></li>` : ''}
       <li><span><span class="dl-label">How to watch:</span> ${esc(howToWatch)}</span></li>
     </ul>
 
-    <div class="angle-box">
+    ${groupChat ? `<div class="angle-box">
       <span class="angle-label">Group Chat Angle</span>
       <p class="angle-text">${esc(groupChat)}</p>
-    </div>`;
+    </div>` : ''}`;
     }
 
     const extraNote = copy?.sportsAdditional?.[i - 1] || `${w.team} win, ${w.score}–${l.score}.`;
@@ -258,15 +371,48 @@ ${scoreboard}
 
 ${scoreboard}
 
+${highlightsCard}
+
     ${renderParas(extraNote, '')}`;
   });
 
   return `  <section class="brief-section" id="sports">
     <div class="section-label sl-sports">Sports</div>
 ${gameBlocks.join('\n')}
+${upcomingCard}
 ${golfBlock}
 ${productCard}
   </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Upcoming game preview card
+// ─────────────────────────────────────────────────────────────────────────────
+function buildUpcomingGameCard(game) {
+  if (!game) return '';
+  const when = game.daysAhead === 0 ? 'Tonight' : game.daysAhead === 1 ? 'Tomorrow' : 'In 2 days';
+  const sport = game.sport?.toLowerCase() || 'nba';
+  const homeLogo = espnLogo(game.home.abbrev, sport);
+  const awayLogo = espnLogo(game.away.abbrev, sport);
+  const scheduleUrl = `https://www.espn.com/${sport}/game/_/gameId/${game.id}`;
+
+  return `
+    <div class="upcoming-card">
+      <div class="upcoming-label">${esc(when)} — ${esc(game.note || game.shortName)}</div>
+      <div class="upcoming-matchup">
+        <div class="upcoming-team">
+          ${awayLogo ? `<img src="${esc(awayLogo)}" class="upcoming-logo" alt="${esc(game.away.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+          <span>${esc(game.away.team)}</span>
+        </div>
+        <div class="upcoming-vs">VS</div>
+        <div class="upcoming-team upcoming-home">
+          <span>${esc(game.home.team)}</span>
+          ${homeLogo ? `<img src="${esc(homeLogo)}" class="upcoming-logo" alt="${esc(game.home.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+        </div>
+      </div>
+      ${game.seriesNote ? `<div class="upcoming-series">${esc(game.seriesNote)}</div>` : ''}
+      <a href="${esc(scheduleUrl)}" target="_blank" rel="noopener" class="upcoming-link">Game info on ESPN →</a>
+    </div>`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -519,6 +665,99 @@ ${items.slice(0, 3).map(item => `      <li class="numbers-item">
       </li>`).join('\n')}
     </ul>
   </div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// F1 Section
+// ─────────────────────────────────────────────────────────────────────────────
+function buildF1Block({ f1, copy }) {
+  if (!f1?.name) return '';
+
+  const fd = copy?.f1Detail || {};
+  const isFinished = f1.statusState === 'post';
+  const isScheduled = f1.statusState === 'pre';
+
+  if (isScheduled || !f1.results?.length) {
+    const preHeadline = fd.headline || `${esc(f1.shortName || f1.name)} — this weekend.`;
+    const preAngle = fd.angle || `The ${esc(f1.name)} takes place ${esc(f1.venue ? `at ${f1.venue}` : 'this weekend')}. One of the marquee events on the F1 calendar — race day is Sunday.`;
+    const preBringUp = fd.bringUp || '';
+    const preChamp = fd.championship || '';
+    return `  <section class="brief-section" id="f1">
+    <div class="section-label sl-sports">Formula 1</div>
+    <h3>${esc(preHeadline)}</h3>
+    ${renderParas(preAngle, '')}
+    <ul class="detail-list">
+      <li><span><span class="dl-label">Race:</span>${esc(f1.name)}${f1.venue ? ` · ${esc(f1.venue)}` : ''} · Sunday</span></li>
+      <li><span><span class="dl-label">Watch:</span>ESPN / ABC · Race day coverage begins ~9am ET</span></li>
+      ${preBringUp ? `<li><span><span class="dl-label">What to bring up:</span>${esc(preBringUp)}</span></li>` : ''}
+      ${preChamp ? `<li><span><span class="dl-label">Championship:</span>${esc(preChamp)}</span></li>` : ''}
+    </ul>
+  </section>`;
+  }
+
+  const winner = f1.results[0];
+  const heading = isFinished
+    ? `${esc(f1.shortName || f1.name)}: ${esc(winner.driver)} wins.`
+    : `${esc(f1.shortName || f1.name)} — race weekend.`;
+
+  const leaderboardHtml = f1.results.map(r =>
+    `P${r.pos} ${playerLink(r.driver)} (${esc(r.team)})${r.time ? ` — ${esc(r.time)}` : ''}`
+  ).join(', ');
+
+  const angle = fd.angle || '';
+  const bringUp = fd.bringUp || '';
+  const champ = fd.championship || '';
+
+  return `  <section class="brief-section" id="f1">
+    <div class="section-label sl-sports">Formula 1</div>
+    <h3>${heading}</h3>
+    ${renderParas(angle, '')}
+    <ul class="detail-list">
+      <li><span><span class="dl-label">Result:</span>${leaderboardHtml}.</span></li>
+      ${bringUp ? `<li><span><span class="dl-label">What to bring up:</span>${esc(bringUp)}</span></li>` : ''}
+      ${champ ? `<li><span><span class="dl-label">Championship:</span>${esc(champ)}</span></li>` : ''}
+    </ul>
+  </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// World Cup Section
+// ─────────────────────────────────────────────────────────────────────────────
+function buildWorldCupBlock({ worldCup }) {
+  if (!worldCup?.length) return '';
+
+  const active = worldCup.filter(m => m.statusState === 'in' || m.statusState === 'post');
+  const upcoming = worldCup.filter(m => m.statusState === 'pre');
+
+  if (!active.length && upcoming.length) {
+    // Pre-tournament preview
+    const next = upcoming[0];
+    return `  <section class="brief-section" id="worldcup">
+    <div class="section-label sl-culture">World Cup 2026</div>
+    <h3>The World Cup opens June 11.</h3>
+    <p>48 teams. 104 matches. USA, Canada, and Mexico host the first expanded World Cup. The opening match: ${esc(next.away.team)} vs ${esc(next.home.team)}. USA plays June 12 at SoFi Stadium against Paraguay. This is the biggest sporting event on the planet and it's happening in your backyard.</p>
+    <ul class="detail-list">
+      <li><span><span class="dl-label">First match:</span>${esc(next.away.team)} vs ${esc(next.home.team)} — ${esc(next.status || 'June 11')}</span></li>
+      <li><span><span class="dl-label">USA opener:</span>USA vs Paraguay, June 12 · SoFi Stadium, Los Angeles · 9pm ET · Fox</span></li>
+      <li><span><span class="dl-label">To watch:</span>48 teams, group stage runs through July 2. Final is July 19 at MetLife Stadium.</span></li>
+    </ul>
+  </section>`;
+  }
+
+  const matchRows = active.slice(0, 4).map(m => {
+    const scoreOrStatus = m.statusState === 'post'
+      ? `${esc(m.away.score)}–${esc(m.home.score)} Final`
+      : esc(m.status || 'In Progress');
+    return `<li><span>${esc(m.away.team)} vs ${esc(m.home.team)} — <strong>${scoreOrStatus}</strong></span></li>`;
+  }).join('\n      ');
+
+  return `  <section class="brief-section" id="worldcup">
+    <div class="section-label sl-culture">World Cup 2026</div>
+    <h3>Group stage underway.</h3>
+    <ul class="detail-list">
+      ${matchRows}
+    </ul>
+  </section>`;
 }
 
 module.exports = { buildHtml };

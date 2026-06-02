@@ -28,6 +28,25 @@ const PLAYERS = {
   'Nikola Jokic':              { sport: 'nba',  id: '3112335',  slug: 'nikola-jokic' },
   'Luka Doncic':               { sport: 'nba',  id: '3945274',  slug: 'luka-doncic' },
   'Anthony Edwards':           { sport: 'nba',  id: '4594268',  slug: 'anthony-edwards' },
+  // MLB – top stars
+  'Shohei Ohtani':              { sport: 'mlb', id: '4697985',  slug: 'shohei-ohtani' },
+  'Aaron Judge':                { sport: 'mlb', id: '4196466',  slug: 'aaron-judge' },
+  'Juan Soto':                  { sport: 'mlb', id: '4195502',  slug: 'juan-soto' },
+  'Mookie Betts':               { sport: 'mlb', id: '4157272',  slug: 'mookie-betts' },
+  'Freddie Freeman':            { sport: 'mlb', id: '4020',     slug: 'freddie-freeman' },
+  'Ronald Acuna Jr.':           { sport: 'mlb', id: '4243706',  slug: 'ronald-acuna-jr' },
+  'Bryce Harper':               { sport: 'mlb', id: '33140',    slug: 'bryce-harper' },
+  'Fernando Tatis Jr.':         { sport: 'mlb', id: '4243770',  slug: 'fernando-tatis-jr' },
+  'Paul Skenes':                { sport: 'mlb', id: '4895670',  slug: 'paul-skenes' },
+  'Cody Bellinger':             { sport: 'mlb', id: '4097870',  slug: 'cody-bellinger' },
+  // F1 drivers
+  'Max Verstappen':             { sport: 'f1',  id: '3990',     slug: 'max-verstappen' },
+  'Lewis Hamilton':             { sport: 'f1',  id: '1025',     slug: 'lewis-hamilton' },
+  'Charles Leclerc':            { sport: 'f1',  id: '4592730',  slug: 'charles-leclerc' },
+  'Lando Norris':               { sport: 'f1',  id: '4702614',  slug: 'lando-norris' },
+  'Carlos Sainz':               { sport: 'f1',  id: '4429619',  slug: 'carlos-sainz' },
+  'George Russell':             { sport: 'f1',  id: '4686350',  slug: 'george-russell' },
+  'Kimi Antonelli':             { sport: 'f1',  id: '5073282',  slug: 'kimi-antonelli' },
   // Golf – PGA
   'Scottie Scheffler':         { sport: 'golf', id: '4686091',  slug: 'scottie-scheffler' },
   'Rory McIlroy':              { sport: 'golf', id: '3448',     slug: 'rory-mcilroy' },
@@ -97,9 +116,11 @@ function esc(s) {
 function playerLink(name) {
   const p = PLAYERS[name];
   if (!p) return `<span class="player">${esc(name)}</span>`;
-  const base = p.sport === 'golf'
-    ? `https://www.espn.com/golf/player/_/id/${p.id}/${p.slug}`
-    : `https://www.espn.com/nba/player/_/id/${p.id}/${p.slug}`;
+  let base;
+  if (p.sport === 'golf') base = `https://www.espn.com/golf/player/_/id/${p.id}/${p.slug}`;
+  else if (p.sport === 'mlb') base = `https://www.espn.com/mlb/player/_/id/${p.id}/${p.slug}`;
+  else if (p.sport === 'f1') base = `https://www.espn.com/racing/driver/_/id/${p.id}/${p.slug}`;
+  else base = `https://www.espn.com/nba/player/_/id/${p.id}/${p.slug}`;
   return `<a href="${base}" class="player">${esc(name)}</a>`;
 }
 
@@ -182,11 +203,11 @@ const PRODUCTS = [
   {
     brand: 'FootJoy',
     name: 'Pro/SL Golf Shoe',
-    desc: `The best-selling golf shoe on tour for a reason. Waterproof, spikeless, and stable on courses with real elevation. The carbon rubber outsole outlasts most competitors at this price point. Buy them once and stop thinking about golf shoes. <a href="https://www.footjoy.com/collections/mens-golf-shoes/pro-sl" class="brand">Shop FootJoy →</a>`,
+    desc: `The best-selling golf shoe on tour for a reason. The 2026 version dropped 29% in weight, added a new last, and kept everything that made the original worth buying: waterproof, spikeless, and stable on any terrain. Buy them once and stop thinking about golf shoes. <a href="https://www.footjoy.com/collections/mens-golf-shoes/pro-sl" class="brand">Shop FootJoy →</a>`,
     price: '$170',
     url: 'https://www.footjoy.com/collections/mens-golf-shoes/pro-sl',
     cta: 'Shop FootJoy',
-    imageUrl: null,
+    imageUrl: 'https://pluggedingolf.com/wp-content/uploads/2026/01/2026-FootJoy-Pro-SL-1123.jpg',
   },
   {
     brand: 'Titleist',
@@ -214,6 +235,42 @@ const PRODUCTS = [
     url: 'https://malbon.com/products/malbon-bucket-hat-black',
     cta: 'Shop Malbon',
     imageUrl: 'https://malbon.com/cdn/shop/files/M-9426-BLK.png?crop=center&height=800&v=1753723097&width=720',
+  },
+  {
+    brand: 'Patagonia',
+    name: 'Nano Puff Hoody',
+    desc: `The jacket you grab without thinking. PrimaLoft insulation is warm without bulk, the packable stuff-sack fit means it disappears into your bag, and Patagonia builds theirs to last 10 years. Works for 45-degree mornings at the course, sideline of any youth sports game, or traveling through airports in June when every gate is 60 degrees. <a href="https://www.patagonia.com/shop/mens-jackets" class="brand">Shop Patagonia →</a>`,
+    price: '$249',
+    url: 'https://www.patagonia.com/shop/mens-jackets',
+    cta: 'Shop Patagonia',
+    imageUrl: null,
+  },
+  {
+    brand: 'YETI',
+    name: 'Rambler 20 oz Tumbler',
+    desc: `YETI's 20oz Rambler keeps coffee hot for 4 hours and cold drinks cold for 8. The MagSlider lid is genuinely better than every cheaper alternative. It's the most-gifted item in YETI's lineup because everyone who gets one stops using other tumblers. If you're still running grocery store drinkware, just upgrade. <a href="https://www.yeti.com/drinkware/tumblers" class="brand">Shop YETI →</a>`,
+    price: '$35',
+    url: 'https://www.yeti.com/drinkware/tumblers',
+    cta: 'Shop YETI',
+    imageUrl: null,
+  },
+  {
+    brand: 'Therabody',
+    name: 'Theragun Prime',
+    desc: `If you play golf, lift, or run — get a percussion massager. The Theragun Prime isn't as heavy as the Pro and hits deep enough for real muscle recovery. 60 minutes of battery per charge covers a week of daily use. Works on the back, shoulders, and calves where foam rollers don't reach. Quieter than the previous generation, which matters. <a href="https://www.therabody.com/pages/theragun" class="brand">Shop Therabody →</a>`,
+    price: '$299',
+    url: 'https://www.therabody.com/pages/theragun',
+    cta: 'Shop Therabody',
+    imageUrl: null,
+  },
+  {
+    brand: 'Lululemon',
+    name: 'ABC Slim-Fit Pant',
+    desc: `The ABC ("Anti-Ball Crushing") pant is the only work pant most guys need anymore. Full range of motion, looks sharp in the office, and you can wear them straight to the gym. The slim-fit cut works in a meeting and doesn't look like athleisure. Once you own a pair you'll buy a second one. <a href="https://shop.lululemon.com/c/mens-trousers" class="brand">Shop Lululemon →</a>`,
+    price: '$128',
+    url: 'https://shop.lululemon.com/c/mens-trousers',
+    cta: 'Shop Lululemon',
+    imageUrl: null,
   },
 ];
 
@@ -269,6 +326,30 @@ const RECS = [
     body: `One scoop covers vitamins, minerals, and adaptogens that most guys buy separately and skip half the time. The main argument for it: you take it because it's on your counter and it tastes fine. The argument against: $79/month. If you're already spending that on supplements you forget, it pays for itself in consistency alone.`,
     url: 'https://drinkag1.com',
     cta: 'Try AG1 →',
+  },
+  {
+    title: 'Peloton App — the gym you\'ll actually use when you\'re traveling.',
+    body: `Forget the bike — the Peloton app without hardware costs $13/month and gives you strength training, outdoor run coaching, yoga, and stretching content that's legitimately better than what most gym PTs program. The strength library alone is worth it. Download it before any hotel stay and you'll stop skipping workouts on the road.`,
+    url: 'https://www.onepeloton.com/app',
+    cta: 'Try Peloton App →',
+  },
+  {
+    title: 'Calm — the sleep app that actually helps you fall asleep faster.',
+    body: `Sleep stories sound dumb until you fall asleep in 12 minutes listening to one. Calm's library has enough variety to not repeat, the breathing exercises are legitimately calibrated for pre-sleep use, and the meditation tracks are short enough that "I don't have time" stops being the excuse. The $70/year plan is cheaper than one bad night of Ambien.`,
+    url: 'https://www.calm.com',
+    cta: 'Try Calm →',
+  },
+  {
+    title: 'Grammarly Premium — the writing tool that fixes emails you regret sending.',
+    body: `Grammarly catches not just typos but tone, clarity, and word choice in real time. Premium surfaces things like "this reads as aggressive" or "this sentence is unclear to a first-time reader." Worth it for anyone who sends more than 10 important emails a week. The Slack and Gmail integrations mean you stop thinking about it.`,
+    url: 'https://www.grammarly.com/premium',
+    cta: 'Try Grammarly →',
+  },
+  {
+    title: '1Password — fix your password situation before you have to.',
+    body: `If you're reusing passwords or using your browser's keychain, you're one data breach away from a bad month. 1Password generates, stores, and fills unique passwords for every account. The family plan covers five people for $5/month. Takes one hour to set up and then you stop thinking about it. Do it before you're forced to.`,
+    url: 'https://1password.com',
+    cta: 'Try 1Password →',
   },
 ];
 

@@ -54,6 +54,19 @@ async function main() {
     const leader = data.golf.leaders[0];
     bullets.push(`<b>Golf:</b> ${leader.name} leads ${data.golf.name} at ${leader.score}`);
   }
+  if (data.f1?.name) {
+    const f1Str = data.f1.results?.[0]?.driver
+      ? `${data.f1.results[0].driver} wins ${data.f1.shortName || data.f1.name}`
+      : `${data.f1.shortName || data.f1.name} — this weekend`;
+    bullets.push(`<b>F1:</b> ${f1Str}`);
+  }
+  if (data.worldCup?.length) {
+    const active = data.worldCup.find(m => m.statusState === 'in' || m.statusState === 'post');
+    const wcStr = active
+      ? `${active.away.team} vs ${active.home.team} — ${active.away.score}–${active.home.score}`
+      : 'FIFA World Cup 2026 opens June 11';
+    bullets.push(`<b>World Cup:</b> ${wcStr}`);
+  }
   if (data.copy?.culture?.[0]?.head) {
     bullets.push(`<b>Culture:</b> ${data.copy.culture[0].head}`);
   }
