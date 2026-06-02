@@ -756,13 +756,15 @@ function buildF1Block({ f1, copy }) {
     const prePick = fd.pick || '';
     const monacoImg = f1.name?.toLowerCase().includes('monaco')
       ? `    <div class="brief-img-gallery">
-      <div class="brief-img">
-        <img src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Monaco.jpg" alt="Monaco Grand Prix circuit" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">
+      <div class="brief-img-gallery-grid">
+        <div class="brief-img">
+          <img src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Monaco.jpg" alt="Monaco Grand Prix circuit" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">
+        </div>
+        <div class="brief-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Monte_Carlo_Formula_1_Grand_Prix_2012.jpg/1280px-Monte_Carlo_Formula_1_Grand_Prix_2012.jpg" alt="Monaco Grand Prix starting grid" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">
+        </div>
       </div>
-      <div class="brief-img">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Monte_Carlo_Formula_1_Grand_Prix_2012.jpg/1280px-Monte_Carlo_Formula_1_Grand_Prix_2012.jpg" alt="Monaco Grand Prix aerial view" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">
-      </div>
-      <div class="brief-img-cap">Monaco Grand Prix · Circuit de Monaco · The most iconic race on the calendar</div>
+      <div class="brief-img-cap">Monaco Grand Prix · Circuit de Monaco · 78 laps through the streets of Monte Carlo · The most iconic 3.3 miles in motorsport</div>
     </div>` : '';
     return `  <section class="brief-section" id="f1">
     <div class="section-label sl-sports">Formula 1</div>
