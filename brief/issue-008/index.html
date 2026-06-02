@@ -16,6 +16,8 @@
 <meta name="twitter:site"        content="@guytalkmedia">
 <meta name="twitter:title"       content="REPLACE: Issue headline — max 12 words, no colons.">
 <meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-card.svg">
+<link rel="canonical"            href="https://www.guytalkmedia.com/brief/issue-008/">
+<link rel="prev" href="https://www.guytalkmedia.com/brief/issue-007/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -233,8 +235,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 </article>
 
+<div class="brief-subscribe-block">
+  <div class="bsb-label">Free · Daily · 5 Minutes</div>
+  <div class="bsb-headline">Get it in your inbox every morning.</div>
+  <p class="bsb-sub">Sports, markets, golf, and culture — before 8am.</p>
+  <form class="bsb-form" onsubmit="handleBriefSignup(event, this)">
+    <input type="email" name="email" placeholder="Your email address" required class="bsb-input" autocomplete="email">
+    <button type="submit" class="bsb-btn">Subscribe Free →</button>
+  </form>
+  <div class="bsb-success" id="briefSubSuccess">You're in. See you tomorrow morning.</div>
+  <p class="bsb-hint">Free forever · No spam · Unsubscribe anytime</p>
+</div>
+
 <footer class="brief-footer">
-  <a href="/#signup" class="footer-cta">Get the brief free →</a>
+  <a href="/briefs/" class="footer-cta">Browse all issues →</a>
   <p class="footer-meta">
     You're reading GuyTalk — the daily brief on sports, markets, and culture.<br>
     Five minutes a day. Free forever. No algorithm.
@@ -249,6 +263,23 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </footer>
 
 <script>
+window.handleBriefSignup = function(e, form) {
+  e.preventDefault();
+  var email = form.querySelector('input[type="email"]').value.trim();
+  if (!email) return;
+  form.style.display = 'none';
+  document.getElementById('briefSubSuccess').style.display = 'block';
+  if (window.posthog) {
+    posthog.identify(email, { email: email });
+    posthog.capture('email_signup', { email: email, source: 'brief_footer' });
+  }
+  var fd = new FormData();
+  fd.append('email', email);
+  fetch('https://subscribe-forms.beehiiv.com/api/v3/forms/88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d/subscriptions', {
+    method: 'POST', mode: 'no-cors', body: fd
+  }).catch(function() {});
+};
+
 (function() {
   var bar = document.getElementById('readingProgress');
   var article = document.getElementById('briefArticle');
