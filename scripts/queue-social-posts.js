@@ -173,12 +173,26 @@ async function main() {
       const existing = byDate.get(key);
       if (!existing || (d.num || 0) > (existing.d.num || 0)) byDate.set(key, { f, d });
     }
-    // Most recent 8 unique issues
+    // Only queue recent issues (last 7 days) — max 3 to avoid spamming stale content
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - 7);
     files = Array.from(byDate.values())
       .sort((a, b) => (b.d.num || 0) - (a.d.num || 0))
-      .slice(0, 8)
+      .filter(x => {
+        if (!x.d.date) return true;
+        const d = new Date(x.d.date);
+        return !isNaN(d) && d >= cutoff;
+      })
+      .slice(0, 3)
       .sort((a, b) => (a.d.num || 0) - (b.d.num || 0))
       .map(x => x.f);
+    if (!files.length) {
+      // Fallback: just the most recent issue
+      files = Array.from(byDate.values())
+        .sort((a, b) => (b.d.num || 0) - (a.d.num || 0))
+        .slice(0, 1)
+        .map(x => x.f);
+    }
   }
 
   // Get Buffer profiles (skip in dry-run)
