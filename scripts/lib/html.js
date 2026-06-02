@@ -38,37 +38,77 @@ function isoDate(dateStr) {
   try { return new Date(dateStr).toISOString().slice(0, 10); } catch { return new Date().toISOString().slice(0, 10); }
 }
 
+function buildSeoTitle(issue) {
+  const { title, sports, upcoming, golf, f1, worldCup } = issue;
+  // Pull 2-3 real event names for a richer page title
+  const parts = [];
+  if (upcoming?.length) parts.push(`${upcoming[0].note || upcoming[0].shortName}`);
+  else if (sports?.length) {
+    const g = sports[0];
+    const w = g.home?.winner ? g.home : g.away;
+    const l = g.home?.winner ? g.away : g.home;
+    parts.push(`${w.team} ${w.score}-${l.score}`);
+  }
+  if (f1?.name) parts.push(f1.shortName || f1.name.split(' ').slice(0, 3).join(' '));
+  if (golf?.leaders?.[0]) parts.push(golf.leaders[0].name + ' leads');
+  if (parts.length) return `${parts.slice(0, 2).join(' · ')} — GuyTalk Daily Brief`;
+  return title ? `${title.slice(0, 70)} — GuyTalk` : `GuyTalk Daily Brief`;
+}
+
+function buildSeoDesc(issue) {
+  const { title, sports, upcoming, golf, f1, worldCup, markets, date } = issue;
+  const pieces = [];
+  if (upcoming?.length) pieces.push(`${upcoming[0].note || upcoming[0].shortName} ${upcoming[0].daysAhead <= 1 ? 'tomorrow' : 'this week'}.`);
+  if (sports?.length) {
+    const g = sports[0];
+    const w = g.home?.winner ? g.home : g.away;
+    const l = g.home?.winner ? g.away : g.home;
+    pieces.push(`${w.team} ${w.score}-${l.score} ${l.team}.`);
+  }
+  if (f1?.name) pieces.push(`${f1.shortName || f1.name} ${f1.statusState === 'post' ? 'results' : 'preview'}.`);
+  if (golf?.leaders?.[0]) pieces.push(`${golf.leaders[0].name} leads ${(golf.name || '').replace(/pres\. by .*/i,'').trim()}.`);
+  if (worldCup?.length) pieces.push('World Cup 2026 coverage.');
+  pieces.push('Markets, culture, and more. Free daily brief from GuyTalk.');
+  return pieces.slice(0, 4).join(' ');
+}
+
 function buildHtml(issue) {
   const { num, slug, date, title, deck, sports, markets, golf, f1, worldCup, upcoming, gameMetas, trending, copy } = issue;
   const label = `#${String(num).padStart(3, '0')}`;
   const prevSlug = num > 1 ? `issue-${String(num - 1).padStart(3, '0')}` : null;
+  const nextSlug = `issue-${String(num + 1).padStart(3, '0')}`;
   const prevLabel = prevSlug ? `#${String(num - 1).padStart(3, '0')}` : null;
 
   const hasF1 = f1?.name != null;
   const hasWC = worldCup?.length > 0;
+
+  const seoTitle = buildSeoTitle(issue);
+  const seoDesc  = buildSeoDesc(issue);
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Brief · ${label} — GuyTalk</title>
-<meta name="description" content="${esc(title)} — GuyTalk Issue ${label}.">
+<title>${esc(seoTitle)}</title>
+<meta name="description" content="${esc(seoDesc)}">
 <link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="https://www.guytalkmedia.com/brief/${slug}/">
 <meta property="og:title"       content="${esc(title)}">
-<meta property="og:description" content="GuyTalk Issue ${label} — sports, markets, and culture in five minutes.">
+<meta property="og:description" content="${esc(seoDesc)}">
 <meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
 <meta property="og:site_name"   content="GuyTalk">
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:site"        content="@guytalkmedia">
 <meta name="twitter:title"       content="${esc(title)}">
+<meta name="twitter:description" content="${esc(seoDesc)}">
 <meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
 <link rel="canonical"            href="https://www.guytalkmedia.com/brief/${slug}/">
 ${prevSlug ? `<link rel="prev" href="https://www.guytalkmedia.com/brief/${prevSlug}/">` : ''}
+<link rel="next" href="https://www.guytalkmedia.com/brief/${nextSlug}/">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":${JSON.stringify(title)},"description":"GuyTalk Issue ${label} — sports, markets, and culture in five minutes.","url":"https://www.guytalkmedia.com/brief/${slug}/","image":"https://www.guytalkmedia.com/assets/og-card.png","publisher":{"@type":"Organization","name":"GuyTalk","logo":{"@type":"ImageObject","url":"https://www.guytalkmedia.com/assets/logo/guytalk-icon.svg"}},"author":{"@type":"Person","name":"Jake Williams"},"datePublished":"${isoDate(date)}"}
+{"@context":"https://schema.org","@type":"Article","headline":${JSON.stringify(title)},"description":${JSON.stringify(seoDesc)},"url":"https://www.guytalkmedia.com/brief/${slug}/","image":"https://www.guytalkmedia.com/assets/og-card.png","publisher":{"@type":"Organization","name":"GuyTalk","logo":{"@type":"ImageObject","url":"https://www.guytalkmedia.com/assets/logo/guytalk-icon.svg"}},"author":{"@type":"Person","name":"Jake Williams"},"datePublished":"${isoDate(date)}"}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
