@@ -28,6 +28,72 @@ function espnLogo(abbrev, sport) {
   return `https://a.espncdn.com/i/teamlogos/${sportKey}/500/${a}.png`;
 }
 
+// Venue/stadium image for notable MLB and NBA venues
+function venueImage(abbrev, sport) {
+  const key = (abbrev || '').toUpperCase();
+  const MLB_VENUES = {
+    DET: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Comerica_Park_Detroit_2014.jpg/1280px-Comerica_Park_Detroit_2014.jpg', alt: 'Comerica Park', cap: 'Comerica Park · Detroit, Michigan' },
+    TB:  { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Tropicana_Field.jpg/1280px-Tropicana_Field.jpg', alt: 'Tropicana Field', cap: 'Tropicana Field · St. Petersburg, Florida' },
+    MIL: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/American_Family_Field.jpg/1280px-American_Family_Field.jpg', alt: 'American Family Field', cap: 'American Family Field · Milwaukee, Wisconsin' },
+    SF:  { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Oracle_Park_2019.jpg/1280px-Oracle_Park_2019.jpg', alt: 'Oracle Park', cap: 'Oracle Park · San Francisco, California' },
+    LAD: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Dodger_Stadium_2020.jpg/1280px-Dodger_Stadium_2020.jpg', alt: 'Dodger Stadium', cap: 'Dodger Stadium · Los Angeles, California' },
+    NYY: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Yankee_Stadium_2012.jpg/1280px-Yankee_Stadium_2012.jpg', alt: 'Yankee Stadium', cap: 'Yankee Stadium · Bronx, New York' },
+    BOS: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Fenway_from_air_05.jpg/1280px-Fenway_from_air_05.jpg', alt: 'Fenway Park', cap: 'Fenway Park · Boston, Massachusetts' },
+    CHC: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Wrigley_Field_2013.jpg/1280px-Wrigley_Field_2013.jpg', alt: 'Wrigley Field', cap: 'Wrigley Field · Chicago, Illinois' },
+    CLE: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Progressive_Field_2014.jpg/1280px-Progressive_Field_2014.jpg', alt: 'Progressive Field', cap: 'Progressive Field · Cleveland, Ohio' },
+    PIT: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/PNC_Park_2011.jpg/1280px-PNC_Park_2011.jpg', alt: 'PNC Park', cap: 'PNC Park · Pittsburgh, Pennsylvania' },
+    ATL: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Truist_Park_2017.jpg/1280px-Truist_Park_2017.jpg', alt: 'Truist Park', cap: 'Truist Park · Cumberland, Georgia' },
+    HOU: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Minute_Maid_Park_2015.jpg/1280px-Minute_Maid_Park_2015.jpg', alt: 'Minute Maid Park', cap: 'Minute Maid Park · Houston, Texas' },
+  };
+  const NBA_VENUES = {
+    SA:  { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/AT%26T_Center_2019.jpg/1280px-AT%26T_Center_2019.jpg', alt: 'AT&T Center', cap: 'AT&T Center · San Antonio, Texas · Home of the Spurs' },
+    NY:  { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Madison_Square_Garden_2020.jpg/1280px-Madison_Square_Garden_2020.jpg', alt: 'Madison Square Garden', cap: 'Madison Square Garden · New York City · The World\'s Most Famous Arena' },
+    NYK: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Madison_Square_Garden_2020.jpg/1280px-Madison_Square_Garden_2020.jpg', alt: 'Madison Square Garden', cap: 'Madison Square Garden · New York City · The World\'s Most Famous Arena' },
+    BOS: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/TD_Garden_Boston.jpg/1280px-TD_Garden_Boston.jpg', alt: 'TD Garden', cap: 'TD Garden · Boston, Massachusetts' },
+    MIL: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Fiserv_Forum_2018.jpg/1280px-Fiserv_Forum_2018.jpg', alt: 'Fiserv Forum', cap: 'Fiserv Forum · Milwaukee, Wisconsin' },
+    GSW: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Chase_Center_San_Francisco_2019.jpg/1280px-Chase_Center_San_Francisco_2019.jpg', alt: 'Chase Center', cap: 'Chase Center · San Francisco, California' },
+    LAL: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Crypto.com_Arena_2021.jpg/1280px-Crypto.com_Arena_2021.jpg', alt: 'Crypto.com Arena', cap: 'Crypto.com Arena · Los Angeles, California' },
+    MIN: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Target_Center_2019.jpg/1280px-Target_Center_2019.jpg', alt: 'Target Center', cap: 'Target Center · Minneapolis, Minnesota' },
+    OKC: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Paycom_Center_2021.jpg/1280px-Paycom_Center_2021.jpg', alt: 'Paycom Center', cap: 'Paycom Center · Oklahoma City, Oklahoma' },
+  };
+  if (sport === 'mlb') return MLB_VENUES[key] || null;
+  if (sport === 'nba') return NBA_VENUES[key] || null;
+  return null;
+}
+
+// F1 circuit images for major venues
+function f1CircuitImage(raceName) {
+  const name = (raceName || '').toLowerCase();
+  if (name.includes('monaco')) {
+    return { urls: [
+      'https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Monaco.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Monte_Carlo_Formula_1_Grand_Prix_2012.jpg/1280px-Monte_Carlo_Formula_1_Grand_Prix_2012.jpg',
+    ], cap: 'Monaco Grand Prix · Circuit de Monaco · 78 laps through the streets of Monte Carlo · The most iconic 3.3 miles in motorsport' };
+  }
+  if (name.includes('british') || name.includes('silverstone')) {
+    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Silverstone_Circuit_2021.jpg/1280px-Silverstone_Circuit_2021.jpg'], cap: 'Silverstone Circuit · Northamptonshire, England · British Grand Prix' };
+  }
+  if (name.includes('italian') || name.includes('monza')) {
+    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Autodromo_Nazionale_Monza_2019.jpg/1280px-Autodromo_Nazionale_Monza_2019.jpg'], cap: 'Autodromo Nazionale Monza · Monza, Italy · Temple of Speed' };
+  }
+  if (name.includes('belgian') || name.includes('spa')) {
+    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Spa-Francorchamps_from_above_2021.jpg/1280px-Spa-Francorchamps_from_above_2021.jpg'], cap: 'Circuit de Spa-Francorchamps · Belgium · One of the greatest circuits on Earth' };
+  }
+  if (name.includes('singapore')) {
+    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Singapore_GP_2019_Marina_Bay.jpg/1280px-Singapore_GP_2019_Marina_Bay.jpg'], cap: 'Marina Bay Street Circuit · Singapore · F1\'s most dramatic night race' };
+  }
+  if (name.includes('japanese') || name.includes('suzuka')) {
+    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Suzuka_Circuit.jpg/1280px-Suzuka_Circuit.jpg'], cap: 'Suzuka Circuit · Suzuka, Japan' };
+  }
+  if (name.includes('miami')) {
+    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Miami_International_Autodrome_2022.jpg/1280px-Miami_International_Autodrome_2022.jpg'], cap: 'Miami International Autodrome · Miami Gardens, Florida' };
+  }
+  if (name.includes('las vegas')) {
+    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Las_Vegas_Grand_Prix_2023.jpg/1280px-Las_Vegas_Grand_Prix_2023.jpg'], cap: 'Las Vegas Street Circuit · Las Vegas, Nevada' };
+  }
+  return null;
+}
+
 // ESPN recap URL from game ID + sport
 function espnRecapUrl(gameId, sport) {
   const s = sport === 'mlb' ? 'mlb' : 'nba';
@@ -195,6 +261,14 @@ ${buildSharpTake(issue)}
 ${buildNumbers(issue)}
 
 </article>
+
+<div class="brief-share-bar">
+  <span class="share-label">Share this issue</span>
+  <div class="share-buttons">
+    <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(`GuyTalk ${label}: ${title}`)}&url=${encodeURIComponent(`https://www.guytalkmedia.com/brief/${slug}/`)}" target="_blank" rel="noopener" class="share-btn share-x">Post on X →</a>
+    <button class="share-btn share-copy" onclick="(function(b){navigator.clipboard.writeText('https://www.guytalkmedia.com/brief/${slug}/').then(function(){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy link'},2000)});})(this)">Copy link</button>
+  </div>
+</div>
 
 ${buildMoreIssues(relatedIssues)}
 
@@ -441,6 +515,12 @@ ${productCard}
       </div>
     </div>`;
 
+    // Venue image for the home team (MLB/NBA only)
+    const venue = venueImage(g.home.abbrev, sport);
+    const venueHtml = venue
+      ? `    <div class="brief-img"><img src="${esc(venue.url)}" alt="${esc(venue.alt)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(venue.cap)}</div></div>`
+      : '';
+
     // Highlights card
     const meta = gameMetas?.[g.id];
     const recapUrl = meta?.recapUrl || espnRecapUrl(g.id, sport);
@@ -466,6 +546,8 @@ ${productCard}
 
 ${scoreboard}
 
+${venueHtml}
+
 ${highlightsCard}
 
     ${renderParas(copy?.sportsAngle, `${w.team} win.`)}
@@ -487,6 +569,8 @@ ${highlightsCard}
     <h3>${esc(g.note || g.name)}</h3>
 
 ${scoreboard}
+
+${venueHtml}
 
 ${highlightsCard}
 
@@ -514,6 +598,12 @@ function buildUpcomingGameCard(game) {
   const scheduleUrl = `https://www.espn.com/${sport}/game/_/gameId/${game.id}`;
   const isFinals = /finals/i.test(game.note || game.shortName || '');
 
+  // Show arena image for NBA Finals preview
+  const arenaVenue = isFinals ? venueImage(game.home.abbrev, sport) : null;
+  const arenaHtml = arenaVenue
+    ? `<div class="brief-img upcoming-arena-img"><img src="${esc(arenaVenue.url)}" alt="${esc(arenaVenue.alt)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(arenaVenue.cap)}</div></div>`
+    : '';
+
   return `
     <div class="upcoming-card${isFinals ? ' upcoming-finals' : ''}">
       <div class="upcoming-label">${esc(when)} — ${esc(game.note || game.shortName)}</div>
@@ -530,7 +620,8 @@ function buildUpcomingGameCard(game) {
       </div>
       ${game.seriesNote ? `<div class="upcoming-series">${esc(game.seriesNote)}</div>` : ''}
       <a href="${esc(scheduleUrl)}" target="_blank" rel="noopener" class="upcoming-link">Game info on ESPN →</a>
-    </div>`;
+    </div>
+    ${arenaHtml}`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -843,21 +934,20 @@ function buildF1Block({ f1, copy }) {
     const preBringUp = fd.bringUp || '';
     const preChamp = fd.championship || '';
     const prePick = fd.pick || '';
-    const monacoImg = f1.name?.toLowerCase().includes('monaco')
-      ? `    <div class="brief-img-gallery">
+    const circuitImg = f1CircuitImage(f1.name);
+    const circuitImgHtml = circuitImg
+      ? (circuitImg.urls.length > 1
+          ? `    <div class="brief-img-gallery">
       <div class="brief-img-gallery-grid">
-        <div class="brief-img">
-          <img src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Monaco.jpg" alt="Monaco Grand Prix circuit" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">
-        </div>
-        <div class="brief-img">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Monte_Carlo_Formula_1_Grand_Prix_2012.jpg/1280px-Monte_Carlo_Formula_1_Grand_Prix_2012.jpg" alt="Monaco Grand Prix starting grid" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">
-        </div>
+        ${circuitImg.urls.map((u, i) => `<div class="brief-img"><img src="${esc(u)}" alt="${esc(circuitImg.cap)} ${i + 1}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>`).join('\n        ')}
       </div>
-      <div class="brief-img-cap">Monaco Grand Prix · Circuit de Monaco · 78 laps through the streets of Monte Carlo · The most iconic 3.3 miles in motorsport</div>
-    </div>` : '';
+      <div class="brief-img-cap">${esc(circuitImg.cap)}</div>
+    </div>`
+          : `    <div class="brief-img"><img src="${esc(circuitImg.urls[0])}" alt="${esc(circuitImg.cap)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(circuitImg.cap)}</div></div>`)
+      : '';
     return `  <section class="brief-section" id="f1">
     <div class="section-label sl-sports">Formula 1</div>
-${monacoImg}
+${circuitImgHtml}
     <h3>${esc(preHeadline)}</h3>
     ${renderParas(preAngle, '')}
     <ul class="detail-list">
@@ -884,8 +974,15 @@ ${monacoImg}
   const champ = fd.championship || '';
   const pick = fd.pick || '';
 
+  // Show circuit image for post-race coverage too
+  const postCircuitImg = f1CircuitImage(f1.name);
+  const postCircuitHtml = postCircuitImg
+    ? `    <div class="brief-img"><img src="${esc(postCircuitImg.urls[0])}" alt="${esc(postCircuitImg.cap)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(postCircuitImg.cap)}</div></div>`
+    : '';
+
   return `  <section class="brief-section" id="f1">
     <div class="section-label sl-sports">Formula 1</div>
+${postCircuitHtml}
     <h3>${heading}</h3>
     ${renderParas(angle, '')}
     <ul class="detail-list">

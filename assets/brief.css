@@ -518,6 +518,14 @@ em { font-style: italic; }
 }
 .more-issues-all:hover { opacity: 0.75; border-bottom: 0; }
 
+/* Arena/venue image shown in upcoming card */
+.upcoming-arena-img {
+  margin: 0 !important;
+  border-radius: 0 0 var(--r) var(--r);
+  overflow: hidden;
+}
+.upcoming-arena-img img { border-radius: 0; max-height: 200px; object-fit: cover; width: 100%; }
+
 /* ================================================================
    BRIEF SUBSCRIBE BLOCK
    ================================================================ */
@@ -561,6 +569,40 @@ em { font-style: italic; }
   margin-top: 10px;
 }
 .bsb-hint { font-size: 12px; color: var(--text-3); margin-top: 10px; }
+
+/* ================================================================
+   SHARE BAR
+   ================================================================ */
+.brief-share-bar {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 20px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.share-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-3);
+  white-space: nowrap;
+}
+.share-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+.share-btn {
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px;
+  padding: 8px 16px; border-radius: 7px; cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease; border: none;
+}
+.share-btn:hover { transform: translateY(-1px); }
+.share-x {
+  background: var(--text); color: white;
+  border-bottom: none !important;
+}
+.share-x:hover { background: #1C2733; border-bottom: none !important; }
+.share-copy {
+  background: var(--surface); color: var(--text);
+  border: 1.5px solid var(--border) !important;
+}
+.share-copy:hover { border-color: var(--text-2) !important; }
 
 /* ================================================================
    READING PROGRESS BAR
@@ -755,4 +797,7 @@ em { font-style: italic; }
   .upcoming-team { font-size: 13px; }
   .upcoming-logo { width: 26px; height: 26px; }
   .score-logo { width: 28px; height: 28px; }
+  .brief-share-bar { flex-direction: column; gap: 12px; }
+  .share-buttons { justify-content: center; }
+}
 }
