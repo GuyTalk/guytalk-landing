@@ -47,7 +47,7 @@ BANNED WORDS AND PHRASES (never use these — they're AI tells):
 - "it remains to be seen", "fans are paying attention", "this could be interesting to watch", "keep an eye on"
 - "momentum" as a standalone explanation (e.g., "this gives them momentum" — banned. Name what actually changes.)
 - "worth watching", "it's unclear", "time will tell", "only time will tell"
-- "Tonight's line:", "Drop this tonight:", "Drop tonight:" — never use these labels. Weave the conversational line into the copy naturally.
+- "Tonight's line:", "Drop this tonight:", "Drop tonight:", "What you're saying tonight:", "What to say tonight:", "Next:", "The takeaway:", "Why it matters:" — never use these labels as paragraph openers. Weave the conversational line into the copy naturally.
 - "Clear your [day/night/evening]" as a Sharp Take closer — RATIONED. Only for genuine Game 7, championship final, or once-in-a-season event. On all other days, end with a specific forward observation.
 - Never start a sentence with "Ultimately," "Interestingly," "Notably," or "It's important to note"
 - Never use "speaks to" (as in "this speaks to the larger issue")
@@ -99,7 +99,7 @@ function parseJson(raw) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Generate all GuyTalk copy in parallel using Claude Haiku
 // ─────────────────────────────────────────────────────────────────────────────
-async function generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, prev3 }) {
+async function generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, prev3, streamingPick }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey || apiKey.includes('your_') || apiKey.includes('_here')) return null;
 
@@ -321,24 +321,23 @@ Context: ${ctx}${trendText ? `\nTrending: ${trendText}` : ''}`,
             const statsLine = mainGameLeaders
               ? `Player stats (ONLY use these — never invent others): ${mainGameLeaders}`
               : 'No player stats available. Describe team result only — do not name individual players or invent stats.';
-            const keyNumInstruction = mainGameLeaders
-              ? 'The defining stat from the stats above — the number that explains the win or loss.'
-              : 'A team-level observation about the game — no invented player stats.';
-            const seriesInstruction = mainGame.seriesNote
-              ? `Series context: ${mainGame.seriesNote}. What this result means and what is at stake for the next game.`
-              : 'What this result means for the team — standings, trajectory, what changes. If this is a regular season game, do NOT invent playoff series context.';
+            const hasStats = !!mainGameLeaders;
+            const hasSeries = !!mainGame.seriesNote;
             return `GuyTalk voice. Game: ${gameOneLiner}
 ${statsLine}
 
-Return ONLY valid JSON, no markdown, no code fences. Five fields exactly:
+Write the 5 fields below, then return them as a single-line JSON object.
+Do NOT copy instruction text as values — write actual GuyTalk content for each field.
 
-{
-  "keyNumber": "${keyNumInstruction}",
-  "seriesSituation": "${seriesInstruction}",
-  "howToWatch": "When and where to watch the next game — Day, Time ET, Network. If no next game is scheduled, skip or say 'check ESPN.'",
-  "groupChatAngle": "One sharp, non-obvious observation the kind of thing someone screenshots and sends. Not a recap of the final score.",
-  "barArgument": "One assertion (NOT a question) a guy would defend at a bar for 10 minutes. Must end with a period. Example: 'Pittsburgh is the best story in baseball right now and nobody is paying attention.' State the more interesting side. Never end with a question mark."
-}`;
+FIELD RULES:
+keyNumber — ${hasStats ? 'The one stat from the player data above that best explains the win or loss. Lead with the number, then one sentence on what it means.' : 'The final score written as "W-L" and one sentence on what the margin reveals about one of the teams.'}
+seriesSituation — ${hasSeries ? `Series: ${mainGame.seriesNote}. Write what this result means for the series and what's at stake next game.` : 'What this regular season result means — standings position, current form, what changes for this team going forward. Do NOT invent playoff context for a regular season game.'}
+howToWatch — The day, time ET, and network for the next game. If not known, write: Check ESPN for the next game schedule.
+groupChatAngle — One specific, non-obvious observation. The kind of thing someone screenshots and texts. Not a score recap.
+barArgument — One declarative statement a guy would defend at a bar. Ends with a period, never a question mark. State the more interesting side. Example: Pittsburgh is the best story in baseball right now and nobody is paying attention.
+
+Return as compact JSON on one line — no markdown, no code fences:
+{"keyNumber":"...","seriesSituation":"...","howToWatch":"...","groupChatAngle":"...","barArgument":"..."}`;
           })(),
           500
         )
@@ -404,38 +403,24 @@ Return ONLY valid JSON, no markdown, no code fences:
 
     // 9. Culture (JSON array)
     ask(
-      `GuyTalk culture section. Write 3 items for men 25–45. Today is ${TODAY}.
+      `GuyTalk culture section. Write exactly 2 items for men 25–45. Today is ${TODAY}.
 
-CRITICAL RULE: Each object in the array MUST have its "head", "source", and "body" all about the SAME story. Do NOT split a story across objects. Write each object completely before moving to the next.
+Return ONLY a valid JSON array with exactly 2 objects — no more, no less. No markdown, no code fences.
+Each object has: "head" (headline), "source" (publication name), "tag" (one of: Celebrity, Music, Sports Biz, TV, Tech, Culture), "body" (3-4 sentences).
 
-Return ONLY a valid JSON array, no markdown, no code fences, exactly 3 objects. Write them in this order — complete each one fully before starting the next:
+ITEM 1: Pick the strongest story from the trending data.
+ITEM 2: Pick a different story from different territory than item 1. (If item 1 is sports/entertainment, item 2 should be tech, music, or culture. Never two sports business stories.)
 
-Each object has these fields: "head", "source", "body", "tag".
-- "tag" must be ONE of: Celebrity, Music, Sports Biz, Streaming, TV, Tech, Culture — pick the best fit.
-
-ITEM 1: Pick the first story from the trending data. Write "head", "source", "tag", then "body":
-BODY STRUCTURE FOR ITEMS 1 AND 2:
+BODY STRUCTURE FOR BOTH ITEMS:
 - Open with the one observation that makes this story worth knowing — the implication, the non-obvious read, or the business/cultural shift underneath the surface event. NOT a recap of what happened.
-- Then give just enough context (1-2 sentences) for the observation to land — who was involved, what actually happened, what the stakes are.
-- End with one specific, conversation-ready sentence that's woven naturally into the copy — NOT labeled "Tonight's line:" or "Drop this:". It should read like a natural conclusion, not an announced appendix.
-- Total: 3-4 sentences. If it could have run on any news site as a recap, rewrite it.
+- Then 1-2 sentences of context — who was involved, what happened, what the stakes are.
+- End with one conversation-ready line woven naturally into the copy. Do NOT label it "Tonight's line:", "What you're saying tonight:", or "Drop this:". It should read like a natural conclusion.
+- Total: 3-4 sentences. If it could have run on any news site as a straight recap, rewrite it.
 
-ITEM 2: Pick a second story (different territory from item 1 — if item 1 is sports biz, item 2 should be music, tech, TV, or celebrity). Same structure as item 1.
-
-ITEM 3 (streaming/theater pick) — STRICT RULES:
-- "head" must be "Watch this: [exact title]"
-- "source" must be the streaming service or theater
-- "tag" must be "Streaming"
-- "body" must be about THAT SAME title — two sentences max: what it is and the ONE thing that makes it worth the time
-- BANNED: animated, kids, family, rom-com, musical, Disney/Pixar/DreamWorks titles
-- ALLOWED: action, thriller, heist, sports doc, war, crime, sci-fi, prestige drama
-- Good examples: Sinners, The Accountant 2, Zero Day, The Brutalist, The Day of the Jackal, Black Bag
-
-Items 1–2 rules:
+Rules:
 - Only use stories confirmed in the Trending data below — never invent trades, hirings, or contracts
-- Each item should be different territory (don't do two sports business stories)
 Trending: ${trendText || 'No trending data — use your best knowledge of June 2026 current events.'}`,
-      900
+      600
     ),
 
     // 10. Numbers context (JSON array)
@@ -451,19 +436,21 @@ ${f1?.results?.[0] ? `${f1.results[0].driver} wins ${f1.name}` : ''}`,
       350
     ),
 
-    // 11. Office Take — mild-surprise test required
+    // 11. Office Take — must include a specific number, mild-surprise required
     ask(
       `Complete this sentence using today's data. Output ONLY the completed sentence — nothing before it, nothing after it.
 
 "The one non-sports thing worth knowing today: ___."
 
-Fill the blank with a specific fact from markets or culture. 15 words maximum in the blank.
+RULES:
+- Fill the blank with a specific fact. MUST include at least one real number (a price, percentage, yield, or count). 20 words maximum.
+- Example of WRONG (too vague, no number): "The bond market is signaling inflation concerns."
+- Example of RIGHT (specific number): "The 10-year yield hit 4.49% — the highest since before the Fed's last cut, and mortgage rates follow it up."
+- MILD SURPRISE TEST: Would a news reader already know this phrased this way? If yes, find a sharper angle on the same data.
 
-MILD SURPRISE TEST: Before finalizing, ask yourself — would someone who follows the news every day already know this exact fact phrased this way? If yes, find a different angle. The goal is mild surprise: a fact the reader hasn't quite articulated, or a familiar thing stated in a way that makes them go "huh, I hadn't thought of it like that." Not shocking — just slightly sharper than what's obvious.
-
-${mktText ? `Markets today: ${mktText.slice(0, 120)}.` : ''}
-${trendText ? `Top culture stories: ${trendText.split('\n').slice(0, 2).join('. ')}.` : ''}${repGuard ? `\n${repGuard}` : ''}`,
-      80
+${mktText ? `Markets today: ${mktText.slice(0, 200)}.` : ''}
+${trendText ? `Top culture/trend stories: ${trendText.split('\n').slice(0, 3).join('. ')}.` : ''}${repGuard ? `\n${repGuard}` : ''}`,
+      100
     ),
 
     // 12. Additional game notes (plain text, separated by |||)
@@ -529,7 +516,11 @@ ${extraGames.map(g => {
     sportsDetail:     parseJson(get(sportsDetailR)),
     marketsDetail:    parseJson(get(marketsDetailR)),
     golfDetail:       parseJson(get(golfDetailR)),
-    culture:          parseJson(get(cultureR)),
+    culture:          (() => {
+      const items = parseJson(get(cultureR)) || [];
+      if (streamingPick) items.push({ head: streamingPick.head, source: streamingPick.source, tag: 'Streaming', body: streamingPick.body });
+      return items.length ? items : null;
+    })(),
     numbersContext:   parseJson(get(numbersR)),
     marketsBringUpFormat: (() => {
       const md = parseJson(get(marketsDetailR));

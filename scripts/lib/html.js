@@ -425,9 +425,10 @@ function buildTldr({ sports, markets, golf, f1, worldCup, upcoming, copy }) {
       html: `${esc(f1.results[0]?.driver)} wins ${esc(f1.shortName || f1.name)}.`,
     });
   } else if (f1?.name) {
+    const f1Headline = copy?.f1Detail?.headline;
     items.push({
       tag: 'F1', anchor: '#f1',
-      html: `${esc(f1.name)} — ${esc(f1.status || 'this weekend')}.`,
+      html: f1Headline ? esc(f1Headline) : `${esc(f1.shortName || f1.name)} — this weekend.`,
     });
   }
 
@@ -562,9 +563,9 @@ ${productCard}
 
     if (i === 0) {
       const d = copy?.sportsDetail || {};
-      const keyNumber       = d.keyNumber       || `${w.team} take the win.`;
+      const keyNumber       = d.keyNumber       || `${w.score}–${l.score}: ${w.team} take the win.`;
       const seriesSituation = d.seriesSituation || (g.seriesNote ? g.seriesNote : '');
-      const howToWatch      = d.howToWatch      || 'Check ESPN for next game details.';
+      const howToWatch      = d.howToWatch      || 'Check ESPN for the next game schedule.';
       const groupChat       = d.groupChatAngle  || '';
       const barArgument     = d.barArgument     || '';
 

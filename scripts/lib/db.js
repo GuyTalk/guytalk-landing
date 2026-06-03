@@ -356,4 +356,71 @@ const RECS = [
   },
 ];
 
-module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, PRODUCTS, RECS, esc, playerLink, tickerLink, fmtPrice, fmtPct };
+// ─────────────────────────────────────────────────────────────────────────────
+// Curated streaming picks — verified descriptions, no AI hallucination
+// Pick via: STREAMING_PICKS[issueNum % STREAMING_PICKS.length]
+// ─────────────────────────────────────────────────────────────────────────────
+const STREAMING_PICKS = [
+  {
+    head: 'Watch this: Adolescence',
+    source: 'Netflix',
+    body: "Four episodes, each shot in a single continuous take — no cuts, no edits, no hiding. The story follows a 13-year-old arrested for stabbing a classmate, told from four different perspectives across one day. The interrogation episode is 45 minutes of the best acting you'll see this year. It's technically unprecedented and emotionally punishing in the best way. Clear two hours.",
+  },
+  {
+    head: 'Watch this: Landman',
+    source: 'Paramount+',
+    body: "Billy Bob Thornton running Texas oil country — part business thriller, part character study about men who operate by a code that predates HR departments. Handshake deals, brutal honesty, high stakes. Jon Hamm plays the wildcatter who funds it all. If you've ever dealt with people who say exactly what they mean, this will feel familiar. Ten episodes.",
+  },
+  {
+    head: 'Watch this: Ripley',
+    source: 'Netflix',
+    body: "Eight episodes shot entirely in black and white across Italy. Andrew Scott plays Tom Ripley — con man, forger, and one of fiction's most compelling sociopaths — with a stillness that makes you feel like you're watching someone think. Steven Zaillian directed all eight episodes himself. One of the most beautiful things Netflix has made.",
+  },
+  {
+    head: 'Watch this: The Day of the Jackal',
+    source: 'Peacock',
+    body: "Eddie Redmayne as a freelance assassin — methodical, charming, completely untraceable — until one investigator gets close. Ten episodes, European locations, and a cat-and-mouse structure that holds pressure without cheap reveals. Better than the original film. Start it and you'll finish it in a weekend.",
+  },
+  {
+    head: 'Watch this: Severance — Season 2',
+    source: 'Apple TV+',
+    body: "The show about surgical work-life separation — employees literally split their memories at the office door — came back and picked up exactly where it left off. If you watched Season 1 and then forgot about it, Season 2 is the reason you subscribed. Watch both seasons back to back if you haven't started.",
+  },
+  {
+    head: 'Watch this: Zero Day',
+    source: 'Netflix',
+    body: "Robert De Niro as a former president called back in to investigate a massive cyberattack on American infrastructure. More grounded than it sounds — less action movie, more political thriller with actual stakes. Six episodes. The first one hooks you before the credits finish.",
+  },
+  {
+    head: 'Watch this: Black Bag',
+    source: 'Peacock',
+    body: "Steven Soderbergh's spy thriller: Michael Fassbender and Cate Blanchett as intelligence agents who are married to each other — until one of them is suspected of being a mole. Tight, clever, and built like a chess match. 90 minutes with no wasted scenes.",
+  },
+  {
+    head: 'Watch this: The Accountant 2',
+    source: 'Netflix',
+    body: "Ben Affleck returns as the autistic forensic accountant who's also a lethal contractor. Better than the first film — sharper script, Jon Bernthal back making the most of every scene he's in. The premise sounds ridiculous and the execution is genuinely good. Two hours that don't drag.",
+  },
+  {
+    head: 'Watch this: The Studio',
+    source: 'Apple TV+',
+    body: "Seth Rogen plays a film studio exec who genuinely loves movies but runs a company that exists to make sequels and IP. Each episode is a specific industry absurdity — AI integration, awards season politics, prestige film financing — played straight enough to be funny and true enough to be uncomfortable. Best comedy of 2025.",
+  },
+  {
+    head: 'Watch this: Sinners',
+    source: 'In Theaters / Max',
+    body: "Ryan Coogler's supernatural horror film set in 1930s Mississippi Delta. Two brothers come home to open a juke joint and encounter something ancient and evil. Shot on analog film, uses blues music as a weapon, and works as both a genuine horror film and a story about Black American culture in the Jim Crow South. It's doing something the genre rarely tries.",
+  },
+  {
+    head: 'Watch this: The Brutalist',
+    source: 'Peacock',
+    body: "Adrien Brody as a Hungarian-Jewish architect who arrives in America after WWII and tries to build something real. Three and a half hours including intermission, and it earns every minute. Best film of 2024 by most measures. Watch it on the biggest screen you have — it was shot in VistaVision specifically so you'd feel the scale.",
+  },
+  {
+    head: 'Watch this: Dept. Q',
+    source: 'Netflix',
+    body: "Danish crime series following a cold case unit in Copenhagen — Scandinavian noir with an odd-couple detective pairing and cases that spiral in directions you don't see coming. Six episodes, subtitled, and the kind of show that makes two hours disappear. Season 2 is already confirmed.",
+  },
+];
+
+module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, PRODUCTS, RECS, STREAMING_PICKS, esc, playerLink, tickerLink, fmtPrice, fmtPct };

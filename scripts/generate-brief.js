@@ -10,6 +10,7 @@ const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchGameMeta, fetchMLB, f
 const { generateCopy }                                      = require('./lib/copy');
 const { buildHtml }                                         = require('./lib/html');
 const { buildArchive }                                      = require('./lib/archive');
+const { STREAMING_PICKS }                                   = require('./lib/db');
 
 const ROOT      = path.join(__dirname, '..');
 const BRIEF_DIR = path.join(ROOT, 'brief');
@@ -96,7 +97,8 @@ async function regenAll() {
       try {
         const { sports, markets, golf, trending, f1, worldCup, upcoming } = issueData;
         const boxScores = {};
-        issueData.copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, prev3: [] });
+        const streamingPick = STREAMING_PICKS[(issueData.num || 0) % STREAMING_PICKS.length];
+        issueData.copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, prev3: [], streamingPick });
         if (issueData.copy?.title) issueData.title = issueData.copy.title;
         fs.writeFileSync(jsonPath, JSON.stringify(issueData, null, 2));
         console.log(`     ✓ Copy: "${issueData.copy?.title || 'generated'}"`);
@@ -241,7 +243,8 @@ async function main() {
   try {
     const prev3 = loadPreviousBriefs(3);
     if (prev3.length) console.log(`   ✓ Repetition guard: loaded ${prev3.length} previous brief(s)`);
-    copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, gameMetas, prev3 });
+    const streamingPick = STREAMING_PICKS[issueNum % STREAMING_PICKS.length];
+    copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, gameMetas, prev3, streamingPick });
     if (copy) {
       if (copy.title)        console.log(`   ✓ Headline: "${copy.title}"`);
       if (copy.sportsAngle)  console.log(`   ✓ Sports angle`);
