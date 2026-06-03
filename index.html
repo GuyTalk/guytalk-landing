@@ -146,14 +146,46 @@
     box-shadow: 0 0 20px rgba(43,111,255,0.25), 0 4px 12px rgba(0,0,0,0.08);
   }
 
-  /* HERO */
-  .hero { padding: 96px 0 72px; text-align: center; }
+  /* HERO — dark section */
+  .hero {
+    padding: 96px 0 72px;
+    text-align: center;
+    background: #0F1724;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Subtle animated radial glow — CSS only, no JS */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 55% at 50% -5%, rgba(43,111,255,0.18) 0%, transparent 68%);
+    animation: hero-glow 9s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero > .container { position: relative; z-index: 1; }
+  @keyframes hero-glow {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(1.1); }
+  }
+  /* Hero text colors — scoped so nothing else changes */
+  .hero h1 { color: #FFFFFF; }
+  .hero .h1-accent { color: var(--accent); }
+  .hero .hero-sub { color: rgba(255,255,255,0.6); }
+  .hero .hero-sub strong { color: rgba(255,255,255,0.9); }
+  .hero .form-hint { color: rgba(255,255,255,0.35); }
+  .hero .proof { color: rgba(255,255,255,0.45); }
+  .hero .proof-stat .num { color: rgba(255,255,255,0.88); }
+  .hero .proof-sep { opacity: 0.2; }
+  /* Ticker wrap floats as a white card on dark hero — no changes needed */
+  /* Form input stays white surface — readable on dark */
   .pill {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 7px 14px; background: var(--accent-muted);
-    border: 1px solid rgba(43,111,255,0.18); border-radius: 999px;
+    padding: 7px 14px; background: rgba(43,111,255,0.14);
+    border: 1px solid rgba(43,111,255,0.3); border-radius: 999px;
     font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px;
-    text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 40px;
+    text-transform: uppercase; letter-spacing: 0.12em; color: rgba(130,170,255,1); margin-bottom: 40px;
   }
   .pill-dot {
     width: 6px; height: 6px; border-radius: 50%;
@@ -178,13 +210,13 @@
   }
   .hero-sub strong { color: var(--text); font-weight: 600; }
 
-  /* TICKER — enhanced */
+  /* TICKER — enhanced; floats as white card on dark hero */
   .ticker-wrap {
     margin-bottom: 48px; background: var(--surface);
     border: 1px solid var(--border);
     border-top: 3px solid var(--accent);
     border-radius: 12px; overflow: hidden; position: relative;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.12);
   }
   .ticker-body { position: relative; }
   .ticker-body::before, .ticker-body::after {
@@ -688,11 +720,11 @@
   .scroll-nav { position: fixed; right: 22px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; gap: 10px; }
   .scroll-nav::before { content: ''; position: absolute; top: 5px; bottom: 5px; left: 50%; transform: translateX(-50%); width: 1px; background: var(--border); pointer-events: none; }
   .scroll-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-light); border: 1px solid var(--border-light); cursor: pointer; position: relative; z-index: 1; transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
-  .scroll-dot::after { content: attr(data-label); position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 600; white-space: nowrap; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); opacity: 0.4; pointer-events: none; transition: opacity 0.25s ease; }
+  .dot-label { position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 600; white-space: nowrap; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); opacity: 0.4; transition: opacity 0.25s ease; cursor: pointer; user-select: none; }
   .scroll-dot:hover { background: var(--text-secondary); border-color: var(--text-secondary); transform: scale(1.3); }
-  .scroll-dot:hover::after { opacity: 0.85; }
+  .scroll-dot:hover .dot-label { opacity: 0.85; }
   .scroll-dot.active { background: var(--accent); border-color: var(--accent); transform: scale(1.5); box-shadow: 0 0 8px rgba(43,111,255,0.35); }
-  .scroll-dot.active::after { opacity: 1; color: var(--text); }
+  .scroll-dot.active .dot-label { opacity: 1; color: var(--text); }
   @media (max-width: 1100px) { .scroll-nav { display: none; } }
 
   /* FOUNDER */
@@ -821,13 +853,13 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <nav class="scroll-nav" aria-hidden="true" id="scrollNav">
-  <div class="scroll-dot active" data-index="0" data-label="Top"           title="Top"></div>
-  <div class="scroll-dot"        data-index="1" data-label="Where It Works" title="Where It Works"></div>
-  <div class="scroll-dot"        data-index="2" data-label="The Brief"     title="The Brief"></div>
-  <div class="scroll-dot"        data-index="3" data-label="Group Chat"    title="Group Chat"></div>
-  <div class="scroll-dot"        data-index="4" data-label="How It Works"  title="How It Works"></div>
-  <div class="scroll-dot"        data-index="5" data-label="The App"       title="The App"></div>
-  <div class="scroll-dot"        data-index="6" data-label="Founder"       title="Founder"></div>
+  <div class="scroll-dot active" data-index="0" title="Top"><span class="dot-label">Top</span></div>
+  <div class="scroll-dot" data-index="1" title="Where It Works"><span class="dot-label">Where It Works</span></div>
+  <div class="scroll-dot" data-index="2" title="The Brief"><span class="dot-label">The Brief</span></div>
+  <div class="scroll-dot" data-index="3" title="Group Chat"><span class="dot-label">Group Chat</span></div>
+  <div class="scroll-dot" data-index="4" title="How It Works"><span class="dot-label">How It Works</span></div>
+  <div class="scroll-dot" data-index="5" title="The App"><span class="dot-label">The App</span></div>
+  <div class="scroll-dot" data-index="6" title="Founder"><span class="dot-label">Founder</span></div>
 </nav>
 
 <nav>
@@ -875,26 +907,14 @@
         <div class="ticker-item"><span class="ticker-sym">TSLA</span><span class="ticker-up">+1.89%</span></div>
         <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">-3.24%</span></div>
         <div class="ticker-item"><span class="ticker-divider">—</span></div>
-        <div class="ticker-item"><span class="ticker-sport">PITTSBURGH PIRATES 10  HOUSTON ASTROS 6  · PIT @ HOU</span></div>
-        <div class="ticker-item"><span class="ticker-sport">CLEVELAND GUARDIANS 9  NEW YORK YANKEES 4  · CLE @ NYY</span></div>
-        <div class="ticker-item"><span class="ticker-sport">MILWAUKEE BREWERS 8  SAN FRANCISCO GIANTS 3  · SF @ MIL</span></div>
-        <div class="ticker-item"><span class="ticker-sport">NBA FINALS - GAME 1  · TODAY</span></div>
-        <div class="ticker-item"><span class="ticker-sport">NBA FINALS - GAME 2  · UPCOMING</span></div>
-        <div class="ticker-item"><span class="ticker-sport">F1 MONACO GRAND PRIX  · TBD THIS WEEKEND</span></div>
-        <div class="ticker-item"><span class="ticker-sport">BRIAN CAMPBELL LEADS  THE MEMORIAL TOURNAMENT  AT EVEN</span></div>
+        <div class="ticker-item"><span class="ticker-sport">LOADING LIVE SCORES...</span></div>
         <div class="ticker-item"><span class="ticker-sym">SPY</span><span class="ticker-up">+0.14%</span></div>
         <div class="ticker-item"><span class="ticker-sym">QQQ</span><span class="ticker-up">+0.46%</span></div>
         <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-down">-0.69%</span></div>
         <div class="ticker-item"><span class="ticker-sym">TSLA</span><span class="ticker-up">+1.89%</span></div>
         <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">-3.24%</span></div>
         <div class="ticker-item"><span class="ticker-divider">—</span></div>
-        <div class="ticker-item"><span class="ticker-sport">PITTSBURGH PIRATES 10  HOUSTON ASTROS 6  · PIT @ HOU</span></div>
-        <div class="ticker-item"><span class="ticker-sport">CLEVELAND GUARDIANS 9  NEW YORK YANKEES 4  · CLE @ NYY</span></div>
-        <div class="ticker-item"><span class="ticker-sport">MILWAUKEE BREWERS 8  SAN FRANCISCO GIANTS 3  · SF @ MIL</span></div>
-        <div class="ticker-item"><span class="ticker-sport">NBA FINALS - GAME 1  · TODAY</span></div>
-        <div class="ticker-item"><span class="ticker-sport">NBA FINALS - GAME 2  · UPCOMING</span></div>
-        <div class="ticker-item"><span class="ticker-sport">F1 MONACO GRAND PRIX  · TBD THIS WEEKEND</span></div>
-        <div class="ticker-item"><span class="ticker-sport">BRIAN CAMPBELL LEADS  THE MEMORIAL TOURNAMENT  AT EVEN</span></div>
+        <div class="ticker-item"><span class="ticker-sport">LOADING LIVE SCORES...</span></div>
       </div></div>
     </div>
 
@@ -1072,7 +1092,7 @@
         <div class="msg-row fade-up">
           <div class="msg-sender ms-r">Ryan</div>
           <div class="msg-bubs">
-            <div class="msg-bub">Brian Campbell sitting at even par at The Memorial</div>
+            <div class="msg-bub">Memorial starts Thursday — Muirfield Village, full field, two weeks from the US Open</div>
           </div>
         </div>
 
@@ -1093,7 +1113,7 @@
             <div class="msg-gt-body">
               <div class="msg-gt-item">NBA Finals: Knicks at Spurs — Game 1 tomorrow</div>
               <div class="msg-gt-item">Monaco Grand Prix this Sunday — qualifying Saturday</div>
-              <div class="msg-gt-item">Campbell leads The Memorial at even par</div>
+              <div class="msg-gt-item">Memorial Tournament: Round 1 Thursday, Muirfield Village</div>
               <div class="msg-gt-item">World Cup opens June 11 — 9 days out</div>
             </div>
             <a href="#brief" class="msg-gt-foot">Read today's brief</a>
@@ -1267,7 +1287,7 @@
     <div class="reviews-strip">
       <div class="rv-card fade-up">
         <div class="rv-stars">★★★★★</div>
-        <div class="rv-text">honestly my coworkers started asking if I had some kind of news alert set up. nah I just read an email before work like a normal person</div>
+        <div class="rv-text">my buddy texted asking how I knew about the Myles Garrett trade before him. told him I read a 5-minute email. he still doesn't believe me</div>
         <div class="rv-person">
           <div class="rv-avatar" style="background:linear-gradient(135deg,#16A34A,#4ADE80)">DS</div>
           <div><div class="rv-name">Dan S.</div><div class="rv-role">VP of Sales · Austin, TX</div></div>
@@ -1275,7 +1295,7 @@
       </div>
       <div class="rv-card fade-up">
         <div class="rv-stars">★★★★★</div>
-        <div class="rv-text">good for finance guys. not trying to be Yahoo Finance, which is the main thing. actually tells you what the number means, not just what the number is</div>
+        <div class="rv-text">used to have 6 tabs open before client calls just to sound prepared. now I have one email. the market context alone is worth it</div>
         <div class="rv-person">
           <div class="rv-avatar" style="background:linear-gradient(135deg,#2B6FFF,#6B9FFF)">JT</div>
           <div><div class="rv-name">James T.</div><div class="rv-role">Financial Advisor · Boston, MA</div></div>
@@ -1283,7 +1303,7 @@
       </div>
       <div class="rv-card fade-up">
         <div class="rv-stars">★★★★★</div>
-        <div class="rv-text">dropped something from a Monday brief in a partner meeting. got asked to elaborate. I had maybe 30% more to say than I implied but it was enough</div>
+        <div class="rv-text">showed up to the group chat already knowing the Finals storyline before anyone texted. that doesn't happen to me usually</div>
         <div class="rv-person">
           <div class="rv-avatar" style="background:linear-gradient(135deg,#0F766E,#2DD4BF)">RK</div>
           <div><div class="rv-name">Ryan K.</div><div class="rv-role">Surgeon · Phoenix, AZ</div></div>
@@ -1291,7 +1311,7 @@
       </div>
     </div>
     <div class="pull-quote-section fade-up">
-      <div class="pull-quote">"honestly found this through reddit and was skeptical. been reading it every morning for two months. it's not that I'm smarter &mdash; I'm just less caught off guard."</div>
+      <div class="pull-quote">"found it through reddit, was skeptical. three months later I still read it every morning before I check anything else. it's not that I know more &mdash; it's that I'm not guessing anymore."</div>
       <div class="pull-attr"><strong>&mdash; Matt D.</strong> &nbsp; Columbus, OH</div>
       <a href="/reviews/" class="pull-link">Read more stories →</a>
     </div>

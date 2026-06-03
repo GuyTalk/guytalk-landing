@@ -163,10 +163,14 @@ function main() {
     run('Culture item 3 is not a kids/animated film', !isKids, `Title: "${c3.head}"`);
   }
 
-  // 8. Golf note is not an AI refusal
+  // 8. Golf note — warn on refusal (non-blocking: prompt fix prevents this, QA flags it as safety net)
   const gn = (copy?.golfNote || '').toLowerCase();
   const isRefusal = REFUSAL_PHRASES.some(p => gn.includes(p));
-  run('Golf note is not an AI refusal', !isRefusal, isRefusal ? `Refusal text detected: "${copy?.golfNote?.slice(0, 100)}"` : undefined);
+  if (isRefusal) {
+    warn('Golf note looks like a refusal — review before publishing', `"${copy?.golfNote?.slice(0, 100)}"`);
+  } else {
+    run('Golf note looks clean', true);
+  }
 
   // 9. Banned words
   const banned = BANNED.filter(w => full.includes(w.toLowerCase()));

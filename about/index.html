@@ -83,8 +83,9 @@
     width: 140px; height: 140px; border-radius: 16px;
     background: linear-gradient(135deg, #0F1724 0%, #1a2d50 100%);
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    flex-shrink: 0; overflow: hidden;
   }
+  .founder-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .founder-avatar-text {
     font-family: 'Inter Tight', sans-serif; font-weight: 900;
     font-size: 52px; color: #F9F8F5; letter-spacing: -2px;
@@ -221,11 +222,11 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
 
   <span class="page-eyebrow">Who We Are</span>
   <h1 class="page-title">Built for the guy who wants to stay sharp.</h1>
-  <p class="page-lead">GuyTalk is a daily brief on sports, markets, and culture — written for guys who want to know what's happening, why it matters, and exactly what to say about it. Five minutes. Free. Every morning.</p>
+  <p class="page-lead">GuyTalk is a daily brief on sports, markets, golf, F1, and culture — written for guys who want to know what's happening, why it matters, and exactly what to say about it. Five minutes. Free. Every morning.</p>
 
   <div class="stat-row">
     <div class="stat-cell">
-      <div class="stat-num">8+</div>
+      <div class="stat-num">30+</div>
       <div class="stat-label">Issues published</div>
     </div>
     <div class="stat-cell">
@@ -233,7 +234,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
       <div class="stat-label">To read each issue</div>
     </div>
     <div class="stat-cell">
-      <div class="stat-num">3</div>
+      <div class="stat-num">5</div>
       <div class="stat-label">Topics covered daily</div>
     </div>
   </div>
@@ -244,7 +245,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
 
   <div class="founder-block">
     <div class="founder-avatar">
-      <span class="founder-avatar-text">J<span class="founder-avatar-dot">.</span></span>
+      <img src="/assets/website-images/founder-jake.jpg" alt="Jake Williams, Founder of GuyTalk">
     </div>
     <div>
       <div class="founder-name">Jake Williams</div>

@@ -66,7 +66,6 @@ function f1CircuitImage(raceName) {
   const name = (raceName || '').toLowerCase();
   if (name.includes('monaco')) {
     return { urls: [
-      'https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Monaco.jpg',
       'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Monte_Carlo_Formula_1_Grand_Prix_2012.jpg/1280px-Monte_Carlo_Formula_1_Grand_Prix_2012.jpg',
     ], cap: 'Monaco Grand Prix · Circuit de Monaco · 78 laps through the streets of Monte Carlo · The most iconic 3.3 miles in motorsport' };
   }
@@ -220,32 +219,46 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   </div>
 </nav>
 
+<div class="brief-hero-area">
+  <div class="brief-hero-inner">
+    <div class="brief-hero-num">${label}</div>
+    <div class="brief-pretitle">
+      <span class="brief-pretitle-dot"></span>
+      ${esc(date)}
+    </div>
+    <h1 class="brief-title">${esc(title)}</h1>
+    <p class="brief-deck">${esc(deck)}</p>
+    <div class="brief-meta">
+      <span>5 MIN READ</span>
+      <span class="sep">·</span>
+      <span>ISSUE ${label}</span>
+      <span class="sep">·</span>
+      <span>SPORTS · MARKETS · CULTURE</span>
+    </div>
+    <nav class="section-jump" aria-label="Jump to section">
+      <a href="#sports" class="sj-link">Sports</a>
+      <a href="#markets" class="sj-link">Markets</a>${hasGolf ? `\n      <a href="#golf" class="sj-link">Golf</a>` : ''}${hasF1 ? `\n      <a href="#f1" class="sj-link">F1</a>` : ''}${hasWC ? `\n      <a href="#worldcup" class="sj-link">World Cup</a>` : ''}
+      <a href="#culture" class="sj-link">Culture</a>
+      <a href="#sharp-take" class="sj-link">Take</a>
+    </nav>
+  </div>
+</div>
+
 <article class="brief-article" id="briefArticle">
-
-  <div class="brief-pretitle">
-    <span class="brief-pretitle-dot"></span>
-    ${esc(date)}
-  </div>
-  <h1 class="brief-title">${esc(title)}</h1>
-  <p class="brief-deck">${esc(deck)}</p>
-  <div class="brief-meta">
-    <span>5 MIN READ</span>
-    <span class="sep">·</span>
-    <span>ISSUE ${label}</span>
-    <span class="sep">·</span>
-    <span>SPORTS · MARKETS · CULTURE</span>
-  </div>
-
-  <nav class="section-jump" aria-label="Jump to section">
-    <a href="#sports" class="sj-link">Sports</a>
-    <a href="#markets" class="sj-link">Markets</a>${hasGolf ? `\n    <a href="#golf" class="sj-link">Golf</a>` : ''}${hasF1 ? `\n    <a href="#f1" class="sj-link">F1</a>` : ''}${hasWC ? `\n    <a href="#worldcup" class="sj-link">World Cup</a>` : ''}
-    <a href="#culture" class="sj-link">Culture</a>
-    <a href="#sharp-take" class="sj-link">Take</a>
-  </nav>
 
 ${buildTldr(issue)}
 
+${buildOfficeTake(issue)}
+
 ${buildSports(issue)}
+
+<div class="brief-inline-cta">
+  <div class="bic-inner">
+    <div class="bic-label">Free · Daily · 5 Minutes</div>
+    <p class="bic-text">Get GuyTalk in your inbox every morning — before you check anything else.</p>
+  </div>
+  <a href="/#signup" class="bic-btn">Subscribe free →</a>
+</div>
 
 ${buildMarkets(issue)}
 
@@ -344,6 +357,18 @@ window.handleBriefSignup = function(e, form) {
 
 </body>
 </html>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Office Take — one portable sentence for the morning
+// ─────────────────────────────────────────────────────────────────────────────
+function buildOfficeTake({ copy }) {
+  const ot = copy?.officeTake;
+  if (!ot) return '';
+  return `  <div class="angle-box office-take-callout">
+    <span class="angle-label">Office Take</span>
+    <p class="angle-text">${esc(ot)}</p>
+  </div>`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -541,6 +566,7 @@ ${productCard}
       const seriesSituation = d.seriesSituation || (g.seriesNote ? g.seriesNote : '');
       const howToWatch      = d.howToWatch      || 'Check ESPN for next game details.';
       const groupChat       = d.groupChatAngle  || '';
+      const barArgument     = d.barArgument     || '';
 
       return `
     <h3>${esc(g.note || g.name)}</h3>
@@ -562,6 +588,11 @@ ${highlightsCard}
     ${groupChat ? `<div class="angle-box">
       <span class="angle-label">Group Chat Angle</span>
       <p class="angle-text">${esc(groupChat)}</p>
+    </div>` : ''}
+
+    ${barArgument ? `<div class="angle-box angle-bar">
+      <span class="angle-label">Bar Argument</span>
+      <p class="angle-text">${esc(barArgument)}</p>
     </div>` : ''}`;
     }
 
@@ -605,7 +636,12 @@ function buildUpcomingGameCard(game) {
     ? `<div class="brief-img upcoming-arena-img"><img src="${esc(arenaVenue.url)}" alt="${esc(arenaVenue.alt)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(arenaVenue.cap)}</div></div>`
     : '';
 
+  const h3Label = isFinals
+    ? `${esc(game.away.team)} vs. ${esc(game.home.team)} — ${esc(game.note || game.shortName)}. ${when}.`
+    : `${esc(game.away.team)} at ${esc(game.home.team)} — ${when}.`;
+
   return `
+    <h3>${h3Label}</h3>
     <div class="upcoming-card${isFinals ? ' upcoming-finals' : ''}">
       <div class="upcoming-label">${esc(when)} — ${esc(game.note || game.shortName)}</div>
       <div class="upcoming-matchup">
@@ -636,7 +672,8 @@ function buildMarkets({ markets, copy, date }) {
   const secondPara    = md.secondPara     || 'Watch for key economic data next week.';
   const stockSpot     = md.stockSpotlight || md.tradeToWatch || '';
   const watchNext     = md.watchNextWeek  || 'Monitor upcoming Fed commentary and economic releases.';
-  const bringUp       = md.bringUp        || `SPY closed at ${markets?.SPY?.price ? fmtPrice('SPY', markets.SPY.price) : 'N/A'}.`;
+  const bringUpRaw    = md.bringUp || (markets?.SPY?.price ? `SPY closed at ${fmtPrice('SPY', markets.SPY.price)}.` : '');
+  const bringUp       = bringUpRaw;
 
   const rows = BRIEF_ROWS.map(row => {
     if (row.type === 'divider') return '        <div class="mkt-div"></div>';
@@ -660,7 +697,7 @@ function buildMarkets({ markets, copy, date }) {
     return `        <div class="mkt-row">
           <div class="m-name">${nameHtml}</div>
           <div class="m-val">${esc(price)}</div>
-          <div class="m-day ${dayDir}">${esc(dayPct)}</div>
+          <div class="m-day">${dayDir ? `<span class="pct-badge ${dayDir}">${esc(dayPct)}</span>` : '—'}</div>
           <div class="m-wk ${wkDir}">${esc(wkPct)}</div>
         </div>`;
   }).join('\n');
@@ -693,7 +730,7 @@ ${rows}
     <ul class="detail-list">
       ${stockSpot ? `<li><span><span class="dl-label">Stock spotlight:</span>${esc(stockSpot)}</span></li>` : ''}
       <li><span><span class="dl-label">Watch next week:</span>${esc(watchNext)}</span></li>
-      <li><span><span class="dl-label">What to bring up:</span>${esc(bringUp)}</span></li>
+      ${bringUp ? `<li><span><span class="dl-label">What to bring up:</span>${esc(bringUp)}</span></li>` : ''}
     </ul>
   </section>`;
 }
@@ -708,7 +745,7 @@ function buildGolfBlock({ golf, copy }) {
   const golfInProgress = golf?.statusState === 'in' || golf?.statusState === 'post';
   const hasLeaders = golf?.leaders?.length > 0;
 
-  if (golf && (golfInProgress || hasLeaders) && hasLeaders) {
+  if (golf && golfInProgress && hasLeaders) {
     const top5 = golf.leaders.slice(0, 5);
     const leader = top5[0];
     const leaderLineHtml = top5.map(p =>

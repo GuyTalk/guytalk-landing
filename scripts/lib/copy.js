@@ -33,14 +33,31 @@ HALLUCINATION RULES (non-negotiable — violations create misinformation):
 - Timing: today is ${TODAY}. Past events are past. Future events are future. Never describe scheduled events as if they happened.
 - If only team-level data is available, describe the team result. Do not name individual players or invent stats.
 
+EVERY SECTION MUST ANSWER TWO QUESTIONS:
+- Why does this matter?
+- What can the reader say about it tonight?
+
+If the copy doesn't pass both tests, rewrite it until it does.
+
 BANNED WORDS AND PHRASES (never use these — they're AI tells):
 - "pivotal", "groundbreaking", "game-changer", "seismic", "monumental", "historic" (unless genuinely historic)
 - "at the end of the day", "it's worth noting", "to be clear", "make no mistake"
 - "delve", "leverage" (as a verb), "nuanced", "ecosystem" (for companies), "narrative"
+- "buckle up", "the stage is set", "in today's fast-paced world", "as the dust settles"
+- "it remains to be seen", "fans are paying attention", "this could be interesting to watch", "keep an eye on"
+- "momentum" as a standalone explanation (e.g., "this gives them momentum" — banned. Name what actually changes.)
+- "worth watching", "it's unclear", "time will tell", "only time will tell"
+- "Tonight's line:", "Drop this tonight:", "Drop tonight:" — never use these labels. Weave the conversational line into the copy naturally.
+- "Clear your [day/night/evening]" as a Sharp Take closer — RATIONED. Only for genuine Game 7, championship final, or once-in-a-season event. On all other days, end with a specific forward observation.
 - Never start a sentence with "Ultimately," "Interestingly," "Notably," or "It's important to note"
 - Never use "speaks to" (as in "this speaks to the larger issue")
 - No passive voice: "was won by" → "won it"
 - No weak openers: "There is...", "It is...", "This was..."
+- Never summarize something the reader already knows. Get to the angle.
+- Never sit on the fence. If the answer is "we'll see," rewrite until you have an actual opinion.
+- Sports: the scoreline is the least interesting thing. Start with what it means.
+- Markets: don't say what moved. Say why it moved and what it signals for next week.
+- Culture: open with the one observation that makes the story worth knowing — not a recap of the event itself.
 
 GOOD OPENERS (rotate these, or invent similar):
 - Start mid-action: "Wemby finished with 28." not "In a game that saw..."
@@ -82,7 +99,7 @@ function parseJson(raw) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Generate all GuyTalk copy in parallel using Claude Haiku
 // ─────────────────────────────────────────────────────────────────────────────
-async function generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores }) {
+async function generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, prev3 }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey || apiKey.includes('your_') || apiKey.includes('_here')) return null;
 
@@ -157,6 +174,35 @@ async function generateCopy({ sports, markets, golf, trending, f1, worldCup, upc
     ? `Upcoming NBA: ${upcoming.map(g => `${g.shortName}${g.note ? ` (${g.note})` : ''} — ${g.daysAhead === 0 ? 'today' : g.daysAhead === 1 ? 'tomorrow' : 'in 2 days'}`).join(', ')}`
     : null;
 
+  // ── Repetition guard — do not repeat angles/closers from last 3 briefs ────
+  const repGuard = (prev3 && prev3.length) ? `
+REPETITION GUARD — the last ${prev3.length} brief(s) used these angles and closers. Do NOT repeat any of them:
+${prev3.map((b, i) => `Issue from ${i + 1} day(s) ago (${b.slug}):
+  Sharp Take closer: "${b.sharpTakeCloser}"
+  Sports thesis angle: "${b.sportsThesis}"
+  Bar Argument: "${b.barArgument}"
+  Office Take: "${b.officeTake}"
+  Markets Bring Up format: "${b.marketsBringUp}"
+`).join('')}
+If you find yourself writing something structurally identical to any of the above — same technique, same closer, same comparison style — take a completely different angle instead. Variety is a requirement.` : '';
+
+  // ── Markets bringUp format tracker — rotate through 4 techniques ──────────
+  // (1) comparison to something intuitive — e.g. "more than Portugal's GDP"
+  // (2) personal implication — e.g. "if you applied for a mortgage this week..."
+  // (3) historical context — e.g. "first time since 2008 that..."
+  // (4) contradiction of common belief — e.g. "everyone thinks X, the actual number is Y"
+  const lastBringUpFormats = (prev3 || []).map(b => b.marketsBringUpFormat || '').filter(Boolean);
+  const allFormats = ['comparison', 'personal_implication', 'historical_context', 'contradiction'];
+  const usedFormats = lastBringUpFormats.slice(0, 3);
+  const preferredFormat = allFormats.find(f => !usedFormats.includes(f)) || allFormats[0];
+  const formatInstructions = {
+    comparison:           'Use a COMPARISON: translate the number into something intuitive — another event, a country\'s GDP, a familiar milestone. Make the abstract concrete.',
+    personal_implication: 'Use PERSONAL IMPLICATION: connect the number directly to something in the reader\'s life — their mortgage, their 401(k), their rent, their job. One sentence, personal stakes.',
+    historical_context:   'Use HISTORICAL CONTEXT: give the number a timeline — "first time since X," "hasn\'t happened since Y," "last time this occurred was Z." Makes the number feel significant.',
+    contradiction:        'Use CONTRADICTION: state what most people assume, then give the actual number that disproves it. Format: "Everyone thinks [X]. The actual number is [Y]."',
+  };
+  const bringUpFormatInstruction = formatInstructions[preferredFormat];
+
   // ── All calls in parallel ───────────────────────────────────────────────
   const [
     titleR,
@@ -169,6 +215,7 @@ async function generateCopy({ sports, markets, golf, trending, f1, worldCup, upc
     golfDetailR,
     cultureR,
     numbersR,
+    officeTakeR,
     extraGamesR,
     f1DetailR,
   ] = await Promise.allSettled([
@@ -186,26 +233,29 @@ Context: ${ctx}`,
     mainGame
       ? ask(
           `Write 2–3 punchy sentences opening the Sports section. Plain prose only — no markdown, no headers, no labels.
-Goal: give the reader who watched the game the angle they felt but didn't quite articulate. Start with the result, but get to the meaning fast. End with what's coming up and why it matters.
+Goal: give the reader who watched the game the angle they felt but didn't quite articulate. Start with the result, but get to the meaning fast — the scoreline is the least interesting thing. End with what's coming up and why it matters.
 REAL GAME DATA:
 ${gamesText}
 ${mainGameLeaders ? `CONFIRMED player stats (ONLY use these — never invent others): ${mainGameLeaders}` : 'No individual stats available — describe team result only. Do not name any individual players or invent any stats.'}
 ${golf?.leaders?.[0] ? `Golf: ${golf.leaders[0].name} ${golf.statusState === 'post' ? 'won' : 'leads'} ${golf.name} at ${golf.leaders[0].score}.` : ''}
 ${f1Text ? `${f1Text}` : ''}
 ${upcomingText ? upcomingText : ''}
-CRITICAL: Only name players whose stats appear in the CONFIRMED line above. Never invent stats.`,
-          400
+CRITICAL: Only name players whose stats appear in the CONFIRMED line above. Never invent stats.
+TONE: Give a concrete opinion. Never write "it remains to be seen" or "fans are watching." If the game revealed something about a team, say exactly what it revealed. Every sentence should either inform or give the reader something to say.
+WATCH-FOR CLOSE: End with one specific thing to watch in the next game or upcoming event that confirms or disproves the thesis you just stated. Name a specific player action, coaching decision, or matchup — not "watch how the team responds." Something falsifiable and observable. Example: "Watch whether Thibodeau switches to zone in the first quarter — he's never done it in a playoff series and if he does, it signals he's genuinely worried about Wembanyama's pick-and-roll angles."${repGuard ? `\n${repGuard}` : ''}`,
+          420
         )
       : ask(
           `Write 2–3 punchy sentences for the Sports section. No games last night — write a preview/context piece instead. Plain prose only, no markdown.
-Cover the 2–3 most compelling storylines from this data — something worth talking about before the game, not just a schedule read-out:
+Cover the 2–3 most compelling storylines from this data — something the reader can actually say at work today, not a schedule read-out:
 ${f1Text ? `F1: ${f1Text}` : ''}
 ${upcomingText ? `NBA: ${upcomingText}` : ''}
 World Cup context: ${wcText}
 ${golf?.leaders?.[0] ? `Golf: ${golf.leaders[0].name} ${golf.statusState === 'post' ? 'won' : 'leads'} ${golf.name} at ${golf.leaders[0].score}.` : ''}
 Trending: ${trendText || 'No data.'}
-Name real athletes. Be specific about what's upcoming and when. No invented results or future events described as if they happened.`,
-          400
+Name real athletes. Be specific about what's upcoming and when. No invented results or future events described as if they happened. No fence-sitting — give opinions.
+End with one specific thing to watch for in the first game or event that proves whether the storyline you described is real.${repGuard ? `\n${repGuard}` : ''}`,
+          420
         ),
 
     // 3. Markets opening paragraph
@@ -219,17 +269,30 @@ Lead with the most interesting story, not necessarily the biggest number. Find t
       : Promise.resolve(null),
 
     // 4. Golf one-liner or pre-tournament teaser
-    golf?.leaders?.[0]
+    golf?.leaders?.[0] && golf?.statusState !== 'pre'
       ? ask(
-          golf.statusState === 'post'
-            ? `CONFIRMED DATA from live ESPN feed: ${golf.leaders[0].name} won ${golf.name} at ${golf.leaders[0].score}. Write exactly one sentence (max 20 words) about this. Past tense. Make it feel significant. Plain text only — no markdown, no refusals.`
-            : `CONFIRMED DATA from live ESPN feed: ${golf.leaders[0].name} leads ${golf.name} at ${golf.leaders[0].score}. Write exactly one sentence (max 20 words) about this. Present tense, forward-looking energy. Plain text only — no markdown, no refusals.`,
-          60
+          (() => {
+            const lb = golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ');
+            if (golf.statusState === 'post') {
+              return `GuyTalk voice. ${golf.name} is finished.
+Final leaderboard: ${lb}.
+Write exactly one sentence (max 20 words). Past tense.
+PLAYER RULE: If the winner is not a household name, do NOT write about their career or biography. Instead write about the winning score relative to par, the tournament's prestige, or the FedEx Cup impact. You always have enough data to write one good sentence about a completed tournament.
+Plain text only. No markdown. No refusals — a leaderboard is always enough to write one sentence.`;
+            }
+            return `GuyTalk voice. ${golf.name} in progress.
+Status: ${golf.status || 'In Progress'}. Current leaderboard: ${lb}.
+Write exactly one sentence (max 20 words). Present tense.
+ACCESSIBILITY RULE: Write the sentence so someone who doesn't play golf can understand it immediately. Translate scoring terms if needed ("leads at -8" → "eight under par — the best score in the field"). The fact should land for a non-golfer first, with golfer detail as a bonus.
+PLAYER RULE: If the leader is not a household name, write about the tournament situation and course, not the player's career.
+Plain text only. No markdown. No refusals.`;
+          })(),
+          80
         )
       : golf?.name
       ? ask(
-          `One punchy sentence (max 20 words) about ${golf.name} teeing off this week. Why does a golf fan mark their calendar? Mention the course, a defending champ, or FedEx Cup stakes. Plain text — no markdown.`,
-          60
+          `GuyTalk voice. One punchy sentence (max 20 words) about ${golf.name} teeing off this week. Why does a golf fan mark their calendar? Mention the course, the defending champion, or FedEx Cup stakes if you know them. If not, write about the tournament's reputation or prestige. Plain text — no markdown. No refusals.`,
+          80
         )
       : Promise.resolve(null),
 
@@ -243,7 +306,9 @@ Return ONLY valid JSON, no markdown, no code fences:
   "bullets": ["Sports takeaway in 12 words or less — specific", "Markets/money takeaway in 12 words or less — specific", "One to-watch item in 12 words or less — builds anticipation"]
 }
 
-Rules: Do not use the word 'ultimately.' Pick ONE story for p1, don't recap everything. Make bullets feel like items you'd screenshot. No filler.
+CRITICAL — SCHEDULED EVENTS: Any game or event labeled "today," "tonight," or "tomorrow" in the context has NOT happened yet. Write about it as a preview, not a result. Never invent scores, winners, or outcomes for events that haven't been played. Only write results for completed past events (yesterday, last night, this weekend's completed rounds).
+CLOSER RULE: "Clear your [day/night/evening]" is RATIONED — only use it if tonight or tomorrow holds a Game 7, championship final, World Cup knockout match, or a genuinely once-in-a-season moment. On all other days, end p2 with a specific forward observation — something the reader can look for, not just a time block to protect.
+Rules: Do not use the word 'ultimately.' Pick ONE story for p1, don't recap everything. Make bullets feel like items you'd screenshot. No filler.${repGuard ? `\n${repGuard}` : ''}
 Context: ${ctx}${trendText ? `\nTrending: ${trendText}` : ''}`,
       700
     ),
@@ -256,11 +321,12 @@ ${mainGameLeaders ? `Player stats (ONLY use these — never invent others): ${ma
 Return ONLY valid JSON, no markdown, no code fences:
 {
   "keyNumber": "${mainGameLeaders ? 'The defining stat from the stats above — the number that explains the win or loss. Use a real number.' : 'A team-level observation about the game — no individual player stats.'}",
-  "seriesSituation": "${mainGame.seriesNote ? `Series: ${mainGame.seriesNote}. ` : ''}What this result means and what's next.",
+  "seriesSituation": "${mainGame.seriesNote ? `Series: ${mainGame.seriesNote}. What this result means and what's at stake for the next game.` : 'What this result means for the team — standings impact, momentum shift, or season trajectory. If this is a regular season game, do NOT invent playoff or series context that was not given.'}",
   "howToWatch": "Game label · Day · Venue · Time ET · Network.",
-  "groupChatAngle": "One sharp observation — the kind of thing you say in the group chat that makes people go 'yeah exactly.' Specific and non-obvious. Not a recap of the final score."
+  "groupChatAngle": "One sharp observation — the kind of thing you drop in the group chat and someone immediately screenshots. Specific and non-obvious. Not a recap of the final score.",
+  "barArgument": "Write this as an ASSERTION, not a question — a position someone would defend for 10 minutes at a bar. It MUST end with a period, never a question mark. Pick the more controversial, defensible side and state it directly: 'Brunson is the Finals MVP and it's not close.' or 'San Antonio is two adjustments from winning three straight.' If you find yourself writing a question, delete it and restate it as the more interesting side of that question."
 }`,
-          400
+          500
         )
       : Promise.resolve(null),
 
@@ -274,34 +340,39 @@ Return ONLY valid JSON, no markdown, no code fences:
   "secondPara": "One forward-looking sentence — name a specific upcoming catalyst (data print, Fed meeting, earnings). Include the day of the week.",
   "stockSpotlight": "Pick the most interesting individual stock from today's data. Name it, give the move%, and one sharp sentence on what's driving it — is this a trend or a blip? Be direct.",
   "watchNextWeek": "The one macro event or print that traders are watching. Name the day and exactly what the number could mean for the market.",
-  "bringUp": "One specific, quotable market fact using a real number from today. The kind of thing you'd drop at dinner — not obvious, slightly surprising."
-}`,
+  "bringUp": "One specific, quotable market fact using a real number from today. ${bringUpFormatInstruction} One sentence. Slightly surprising — if someone who reads financial news already knows this, find a different angle.",
+  "bringUpFormat": "${preferredFormat}"
+}${repGuard ? `\n${repGuard}` : ''}`,
           500
         )
       : Promise.resolve(null),
 
     // 8. Golf detail (JSON)
-    golf?.leaders?.[0]
+    golf?.leaders?.[0] && golf?.statusState !== 'pre'
       ? ask(
-          golf.statusState === 'post'
-            ? `GuyTalk voice. FINAL — ${golf.name} complete. Winner: ${golf.leaders[0].name} at ${golf.leaders[0].score}.
-Final leaderboard: ${golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ')}.
+          (() => {
+            const lb = golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ');
+            if (golf.statusState === 'post') {
+              return `GuyTalk voice. FINAL — ${golf.name} complete.
+Final leaderboard: ${lb}.
 Return ONLY valid JSON, no markdown, no code fences:
 {
-  "whyItMatters": "What this win means — season trajectory, FedEx Cup points, major chances. One concrete sentence.",
-  "recap": "How the final round played out. Specific — was it a runaway or a grind?",
-  "bringUp": "One inside-knowledge fact about the winner or course. Not the score — something you'd only know if you watched.",
-  "groupChatAngle": "One drop-it-once insight that sounds like you watched every round."
-}`
-            : `GuyTalk voice. Tournament: ${golf.name}. Status: ${golf.status}.
-Leaderboard: ${golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ')}.
+  "whyItMatters": "What this tournament result means — FedEx Cup points, prestige, major implications. One concrete sentence. If the winner is not a household name, write about the tournament's significance, not their biography.",
+  "recap": "How the final score looks relative to par. Was the winning margin comfortable or tight? Write from the numbers — do not invent narrative you weren't given.",
+  "bringUp": "Write TWO connected sentences: FIRST a fact accessible to someone who has never played golf (a story about the venue's history, a streak being broken, a context comparison — something anyone can picture). THEN one sentence that rewards actual golfers with a specific technical detail. The non-golfer sentence comes first.",
+  "groupChatAngle": "One observation about the leaderboard situation or a score relative to par. Accessible to non-golfers — if it requires knowing what 'FedEx Cup points' are, add a brief explanation."
+}`;
+            }
+            return `GuyTalk voice. ${golf.name} in progress. Status: ${golf.status || 'In Progress'}.
+Leaderboard: ${lb}.
 Return ONLY valid JSON, no markdown, no code fences:
 {
-  "whyItMatters": "Field quality, FedEx Cup points, or historic venue — one concrete sentence on why this tournament matters.",
-  "tvSchedule": "Broadcast info: 'Round X: TIME ET, Golf Channel/Peacock. Final round: TIME ET, NBC/CBS.'",
-  "bringUp": "One inside-knowledge fact about the leader or course. Not the score — something specific.",
-  "groupChatAngle": "One line about the leader or field that sounds like you've been watching all week."
-}`,
+  "whyItMatters": "Field quality, FedEx Cup points, or historic venue — one concrete sentence on why this tournament matters this week. Use what you know about this tournament, not about the current leader's career.",
+  "tvSchedule": "Broadcast: 'Round X: TIME ET, Golf Channel/Peacock. Final round: TIME ET, NBC/CBS.'",
+  "bringUp": "Write TWO connected sentences: FIRST a fact accessible to someone who doesn't play golf — a story about the venue, a historical detail, a streak or record at stake. Then one sentence of golfer-specific detail (course difficulty, scoring average, what the winning score usually looks like here). Non-golfer sentence first.",
+  "groupChatAngle": "One observation about the leaderboard or the score. Accessible to non-golfers — translate any golf-specific terms with a brief parenthetical if needed."
+}`;
+          })(),
           400
         )
       : golf?.name
@@ -309,9 +380,9 @@ Return ONLY valid JSON, no markdown, no code fences:
           `GuyTalk voice. ${golf.name} tees off this week — tournament hasn't started yet.
 Return ONLY valid JSON, no markdown, no code fences:
 {
-  "whyItMatters": "Why this tournament is worth watching — FedEx Cup stakes, iconic course, strong field, or defending champion. One concrete sentence.",
-  "bringUp": "One inside-knowledge fact about the course or the tournament's history. The kind of thing you mention on the first tee to sound like you know golf.",
-  "groupChatAngle": "One line about the week's storyline or player to watch. Opinionated — not just 'it's a big week.'"
+  "whyItMatters": "Why this tournament is worth watching — FedEx Cup stakes, iconic course, strong field, or defending champion. One concrete sentence using what you know about this tournament.",
+  "bringUp": "One inside-knowledge fact about the course design, the tournament's history, or a notable past champion. The kind of detail that sounds good on the first tee.",
+  "groupChatAngle": "One opinionated line about the week's storyline — who to watch, why the course matters, or what the leaderboard usually looks like here. Not just 'it should be a good tournament.'"
 }`,
           300
         )
@@ -328,9 +399,14 @@ Return ONLY a valid JSON array, no markdown, no code fences, exactly 3 objects. 
 Each object has these fields: "head", "source", "body", "tag".
 - "tag" must be ONE of: Celebrity, Music, Sports Biz, Streaming, TV, Tech, Culture — pick the best fit.
 
-ITEM 1: Pick the first story from the trending data. Write "head", "source", "tag", then "body" (3–4 sentences about THAT SAME story — lead with the specific thing that happened, give the take, end with one line to drop in conversation tonight).
+ITEM 1: Pick the first story from the trending data. Write "head", "source", "tag", then "body":
+BODY STRUCTURE FOR ITEMS 1 AND 2:
+- Open with the one observation that makes this story worth knowing — the implication, the non-obvious read, or the business/cultural shift underneath the surface event. NOT a recap of what happened.
+- Then give just enough context (1-2 sentences) for the observation to land — who was involved, what actually happened, what the stakes are.
+- End with one specific, conversation-ready sentence that's woven naturally into the copy — NOT labeled "Tonight's line:" or "Drop this:". It should read like a natural conclusion, not an announced appendix.
+- Total: 3-4 sentences. If it could have run on any news site as a recap, rewrite it.
 
-ITEM 2: Pick the second story from the trending data (different territory from item 1). Write "head", "source", "tag", "body" — all four about THAT SAME story.
+ITEM 2: Pick a second story (different territory from item 1 — if item 1 is sports biz, item 2 should be music, tech, TV, or celebrity). Same structure as item 1.
 
 ITEM 3 (streaming/theater pick) — STRICT RULES:
 - "head" must be "Watch this: [exact title]"
@@ -361,7 +437,22 @@ ${f1?.results?.[0] ? `${f1.results[0].driver} wins ${f1.name}` : ''}`,
       350
     ),
 
-    // 11. Additional game notes (plain text, separated by |||)
+    // 11. Office Take — mild-surprise test required
+    ask(
+      `Complete this sentence using today's data. Output ONLY the completed sentence — nothing before it, nothing after it.
+
+"The one non-sports thing worth knowing today: ___."
+
+Fill the blank with a specific fact from markets or culture. 15 words maximum in the blank.
+
+MILD SURPRISE TEST: Before finalizing, ask yourself — would someone who follows the news every day already know this exact fact phrased this way? If yes, find a different angle. The goal is mild surprise: a fact the reader hasn't quite articulated, or a familiar thing stated in a way that makes them go "huh, I hadn't thought of it like that." Not shocking — just slightly sharper than what's obvious.
+
+${mktText ? `Markets today: ${mktText.slice(0, 120)}.` : ''}
+${trendText ? `Top culture stories: ${trendText.split('\n').slice(0, 2).join('. ')}.` : ''}${repGuard ? `\n${repGuard}` : ''}`,
+      80
+    ),
+
+    // 12. Additional game notes (plain text, separated by |||)
     extraGames.length
       ? ask(
           `GuyTalk voice. Write 2–3 sentence notes for each game below. Plain prose — no markdown. Separate game notes with "|||".
@@ -375,7 +466,7 @@ ${extraGames.map(g => {
         )
       : Promise.resolve(null),
 
-    // 12. F1 detail (JSON) — post-race results or pre-race preview
+    // 13. F1 detail (JSON) — post-race results or pre-race preview
     f1?.name
       ? (function() {
           if (f1.results?.length && f1.statusState === 'post') {
@@ -426,6 +517,17 @@ ${extraGames.map(g => {
     golfDetail:       parseJson(get(golfDetailR)),
     culture:          parseJson(get(cultureR)),
     numbersContext:   parseJson(get(numbersR)),
+    marketsBringUpFormat: (() => {
+      const md = parseJson(get(marketsDetailR));
+      return md?.bringUpFormat || preferredFormat;
+    })(),
+    officeTake:       (() => {
+      const raw = clean(get(officeTakeR));
+      if (!raw) return null;
+      // Take only the first sentence — Haiku often ignores word-count constraints
+      const first = raw.replace(/\n/g, ' ').split(/(?<=[.!?])\s+/)[0];
+      return (first && first.length > 10) ? first : raw.slice(0, 180);
+    })(),
     sportsAdditional: get(extraGamesR)?.split('|||').map(s => clean(s)).filter(Boolean) || [],
     f1Detail:         parseJson(get(f1DetailR)),
   };

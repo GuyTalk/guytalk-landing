@@ -205,7 +205,7 @@ em { font-style: italic; }
 .dl-label { font-family: 'Inter Tight', sans-serif; font-weight: 700; color: var(--text); margin-right: 4px; }
 
 /* ================================================================
-   ANGLE CALLOUT
+   ANGLE CALLOUTS — Group Chat, Bar Argument, Office Take
    ================================================================ */
 .angle-box {
   background: var(--surface-2); border: 1px solid var(--border);
@@ -217,6 +217,26 @@ em { font-style: italic; }
   color: var(--text-3); margin-bottom: 6px; display: block;
 }
 .angle-text { font-size: 15px; color: var(--text); line-height: 1.58; }
+
+/* Bar Argument — left accent + amber tint */
+.angle-bar {
+  background: rgba(184,124,53,0.05);
+  border-color: rgba(184,124,53,0.2);
+  border-left: 3px solid rgba(184,124,53,0.55);
+  padding-left: 16px;
+}
+.angle-bar .angle-label { color: rgba(156,100,28,0.85); }
+
+/* Office Take — top-of-brief callout, blue accent tint */
+.office-take-callout {
+  background: rgba(43,111,255,0.04);
+  border-color: rgba(43,111,255,0.18);
+  border-left: 3px solid rgba(43,111,255,0.45);
+  padding-left: 16px;
+  margin-top: 0; margin-bottom: 28px;
+}
+.office-take-callout .angle-label { color: var(--accent); }
+.office-take-callout .angle-text { font-size: 15.5px; font-style: italic; color: var(--text-2); }
 
 /* ================================================================
    SCOREBOARD
@@ -815,5 +835,156 @@ em { font-style: italic; }
   .score-logo { width: 28px; height: 28px; }
   .brief-share-bar { flex-direction: column; gap: 12px; }
   .share-buttons { justify-content: center; }
+  .brief-hero-inner { padding: 48px 16px 40px; }
+  .brief-hero-num { font-size: 80px; top: 12px; right: 8px; }
+  .brief-hero-area .brief-title { font-size: 30px; }
 }
+
+/* ================================================================
+   BRIEF HERO AREA
+   ================================================================ */
+.brief-hero-area {
+  background: linear-gradient(160deg, #090f1c 0%, #0d1525 55%, #0b1220 100%);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
 }
+.brief-hero-area::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 55% at 50% -10%, rgba(43,111,255,0.2), transparent 65%);
+  pointer-events: none;
+}
+.brief-hero-inner {
+  position: relative;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 64px 24px 52px;
+}
+.brief-hero-num {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 900;
+  font-size: clamp(90px, 18vw, 150px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  top: 18px;
+  right: 12px;
+  pointer-events: none;
+  user-select: none;
+}
+.brief-hero-area .brief-pretitle {
+  color: rgba(107,159,255,0.9);
+}
+.brief-hero-area .brief-pretitle-dot {
+  background: #6B9FFF;
+  box-shadow: 0 0 12px rgba(43,111,255,0.7);
+}
+.brief-hero-area .brief-title {
+  color: #FFFFFF;
+  font-size: clamp(30px, 7vw, 52px);
+}
+.brief-hero-area .brief-deck {
+  color: rgba(255,255,255,0.6);
+  font-size: 18px;
+  margin-bottom: 28px;
+}
+.brief-hero-area .brief-meta {
+  color: rgba(255,255,255,0.32);
+  border-bottom-color: rgba(255,255,255,0.08);
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+}
+.brief-hero-area .brief-meta .sep { color: rgba(255,255,255,0.14); }
+.brief-hero-area .section-jump { margin-bottom: 0; }
+.brief-hero-area .sj-link {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.6);
+  border-bottom-color: rgba(255,255,255,0.12);
+}
+.brief-hero-area .sj-link:hover {
+  background: rgba(43,111,255,0.22);
+  color: #fff;
+  border-color: rgba(43,111,255,0.45);
+  border-bottom-color: rgba(43,111,255,0.45);
+}
+
+/* Nav over hero — keep dark to blend */
+.brief-hero-area ~ * { }
+
+/* ================================================================
+   INLINE SUBSCRIBE CTA — mid-article conversion nudge
+   ================================================================ */
+.brief-inline-cta {
+  background: var(--accent-muted);
+  border: 1px solid rgba(43,111,255,0.18);
+  border-radius: var(--r-lg);
+  padding: 20px 24px;
+  margin: 52px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.bic-inner { flex: 1; min-width: 180px; }
+.bic-label {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.bic-text {
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+}
+.bic-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  border-bottom: 0;
+  transition: background 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+.bic-btn:hover { background: var(--accent-h); border-bottom: 0; transform: translateY(-1px); color: white; }
+@media (max-width: 600px) {
+  .brief-inline-cta { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+/* ================================================================
+   PCT BADGE — market day-change pill
+   ================================================================ */
+.pct-badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+.pct-badge.up {
+  background: rgba(22,163,74,0.13);
+  color: var(--green);
+}
+.pct-badge.dn {
+  background: rgba(220,38,38,0.1);
+  color: var(--red);
+}
+.mkt-row { transition: background 0.12s ease; border-radius: 6px; }
+.mkt-row:hover { background: var(--surface-2); }

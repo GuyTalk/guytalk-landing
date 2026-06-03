@@ -1,10 +1,12 @@
 // Vercel serverless function — GuyTalk brief approval endpoint
-// Called when Jake taps "Send to subscribers" from the review email on his phone.
-// Validates token → fetches subscribers → sends emails via Resend.
+//
+// Flow (two-step to prevent email-client prefetch from triggering a send):
+//   GET /api/approve?token=TOKEN         → confirmation page showing brief + subscriber count
+//   GET /api/approve?token=TOKEN&go=1    → validates, checks idempotency lock, sends, posts to X
 
-const fs          = require('fs');
-const path        = require('path');
-const crypto      = require('crypto');
+const fs     = require('fs');
+const path   = require('path');
+const crypto = require('crypto');
 const { TwitterApi } = require('twitter-api-v2');
 
 function safeTokenEqual(a, b) {
@@ -25,18 +27,27 @@ const X_API_KEY       = process.env.X_API_KEY;
 const X_API_SECRET    = process.env.X_API_KEY_SECRET;
 const X_ACCESS_TOKEN  = process.env.X_ACCESS_TOKEN;
 const X_ACCESS_SECRET = process.env.X_ACCESS_TOKEN_SECRET;
-const BUFFER_API_KEY  = process.env.BUFFER_API_KEY;
+const PO_BOX          = process.env.PO_BOX || 'PO Box [ADD MAILING ADDRESS]';
 const PUB_ID          = 'pub_d4c6a5c9-3ff9-4986-b17a-9e5650d915be';
 const SITE_URL        = 'https://www.guytalkmedia.com';
 const FROM_EMAIL      = process.env.FROM_EMAIL || 'GuyTalk <onboarding@resend.dev>';
 
-// ── Post to X after approval ─────────────────────────────────────────────────
+// ── Idempotency: write a lock file to /tmp after a successful send ────────────
+// Prevents double-sends within the same Vercel warm instance (~5-10 min window).
+function getLockPath(slug) {
+  return path.join('/tmp', `gt-sent-${slug}.lock`);
+}
+function isAlreadySent(slug) {
+  try { return fs.existsSync(getLockPath(slug)); } catch { return false; }
+}
+function markAsSent(slug) {
+  try { fs.writeFileSync(getLockPath(slug), new Date().toISOString()); } catch (_) {}
+}
+
+// ── Post to X after approval ──────────────────────────────────────────────────
 function buildSocialBullets(data) {
-  // Prefer the AI-generated sharp take bullets (more readable) over raw score data
   const aiB = data.copy?.sharpTake?.bullets;
   if (Array.isArray(aiB) && aiB.length >= 2) return aiB.slice(0, 3);
-
-  // Fallback: build from raw data
   const bullets = [];
   if (data.sports?.length) {
     const g = data.sports[0];
@@ -74,45 +85,7 @@ async function postToX(data, slug) {
   }
 }
 
-// ── Post to Buffer queue (Instagram + TikTok) ───────────────────────────────
-async function postToBuffer(data, slug) {
-  if (!BUFFER_API_KEY) return;
-  try {
-    const profilesRes = await fetch(
-      `https://api.bufferapp.com/1/profiles.json?access_token=${BUFFER_API_KEY}`
-    );
-    if (!profilesRes.ok) return;
-    const profiles = await profilesRes.json();
-    if (!Array.isArray(profiles)) return;
-
-    const targets = profiles.filter(p =>
-      p.service === 'instagram' || p.service === 'tiktok'
-    );
-    if (!targets.length) return;
-
-    const briefUrl = `${SITE_URL}/brief/${slug}/`;
-    const bullets  = buildSocialBullets(data);
-    const bulletLines = bullets.map(b => `▸ ${b}`).join('\n');
-    const tags = '#GuyTalk #DailyBrief #Sports #Markets #Golf #NBA #F1 #MensLifestyle';
-    const text = `${data.title}\n\nHere's what you need to know:\n\n${bulletLines}\n\nLink in bio 👆 — ${briefUrl}\n\n${tags}`;
-
-    const params = new URLSearchParams();
-    params.append('access_token', BUFFER_API_KEY);
-    targets.forEach(p => params.append('profile_ids[]', p.id));
-    params.append('text', text.slice(0, 2200));
-    params.append('shorten', 'true');
-
-    await fetch('https://api.bufferapp.com/1/updates/create.json', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body:    params.toString(),
-    });
-  } catch (_) {
-    // Buffer failure never blocks email delivery
-  }
-}
-
-// ── Get latest brief data from deployed filesystem ──────────────────────────
+// ── Brief data helpers ────────────────────────────────────────────────────────
 function getLatestBrief() {
   const dataDir = path.join(process.cwd(), 'brief', 'data');
   if (!fs.existsSync(dataDir)) return null;
@@ -125,7 +98,7 @@ function getLatestBrief() {
   return { data, slug: latest.replace('.json', '') };
 }
 
-// ── Fetch all active subscribers from Beehiiv ───────────────────────────────
+// ── Fetch subscribers from Beehiiv ────────────────────────────────────────────
 async function getSubscribers() {
   const emails = [];
   let page = 1;
@@ -145,12 +118,25 @@ async function getSubscribers() {
   return emails;
 }
 
-// ── Build email HTML ─────────────────────────────────────────────────────────
-// unsubEmail: subscriber's email, used to build Beehiiv unsubscribe link
+// ── Get subscriber count without fetching all emails (fast check) ─────────────
+async function getSubscriberCount() {
+  try {
+    const res = await fetch(
+      `https://api.beehiiv.com/v2/publications/${PUB_ID}/subscriptions?status=active&per_page=1&page=1`,
+      { headers: { Authorization: `Bearer ${BEEHIIV_API_KEY}` } }
+    );
+    const json = await res.json();
+    return json.total_results ?? json.pagination?.total ?? null;
+  } catch {
+    return null;
+  }
+}
+
+// ── Build subscriber email HTML ───────────────────────────────────────────────
 function buildEmailHtml(data, slug, unsubEmail) {
-  const briefUrl  = `${SITE_URL}/brief/${slug}/`;
-  const num       = String(data.num).padStart(3, '0');
-  const unsubUrl  = unsubEmail
+  const briefUrl = `${SITE_URL}/brief/${slug}/`;
+  const num      = String(data.num).padStart(3, '0');
+  const unsubUrl = unsubEmail
     ? `https://app.beehiiv.com/unsubscribe?email=${encodeURIComponent(unsubEmail)}&pub_id=${PUB_ID}`
     : `${SITE_URL}/unsubscribe/`;
 
@@ -252,13 +238,15 @@ function buildEmailHtml(data, slug, unsubEmail) {
   <tr>
     <td style="padding:24px 0 0;text-align:center;">
       <p style="font-size:12px;color:#9E9891;margin:0 0 6px;">
-        You're receiving this because you subscribed to GuyTalk.<br>
-        GuyTalk · guytalkmedia.com
+        You're receiving this because you subscribed to GuyTalk.
       </p>
-      <p style="font-size:12px;color:#9E9891;margin:0;">
+      <p style="font-size:12px;color:#9E9891;margin:0 0 4px;">
         <a href="${SITE_URL}" style="color:#9E9891;text-decoration:underline;">guytalkmedia.com</a>
         &nbsp;·&nbsp;
         <a href="${unsubUrl}" style="color:#9E9891;text-decoration:underline;">Unsubscribe</a>
+      </p>
+      <p style="font-size:11px;color:#B8B4AC;margin:0;">
+        GuyTalk · ${PO_BOX} · United States
       </p>
     </td>
   </tr>
@@ -270,7 +258,53 @@ function buildEmailHtml(data, slug, unsubEmail) {
 </html>`;
 }
 
-// ── HTML response pages ──────────────────────────────────────────────────────
+// ── Confirmation page (shown on first tap — prevents email prefetch sends) ────
+function confirmPage(data, slug, subscriberCount, token) {
+  const num      = String(data.num).padStart(3, '0');
+  const briefUrl = `${SITE_URL}/brief/${slug}/`;
+  const sendUrl  = `/api/approve?token=${encodeURIComponent(token)}&go=1`;
+  const subLine  = subscriberCount != null ? `${subscriberCount} subscriber${subscriberCount !== 1 ? 's' : ''}` : 'your subscribers';
+
+  const bullets = buildSocialBullets(data);
+  const bulletRows = bullets.map(b =>
+    `<p style="font-size:14px;color:#444;margin:6px 0;"><span style="color:#2B6FFF;font-weight:700;margin-right:6px;">→</span>${b}</p>`
+  ).join('');
+
+  return `<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GuyTalk — Confirm Send</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:40px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#F9F8F5;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+  .card{background:#fff;border:1px solid #E5E2DB;border-radius:16px;padding:32px 28px;max-width:420px;width:100%;}
+  .logo{font-weight:800;font-size:18px;letter-spacing:-0.02em;color:#0F1724;margin-bottom:20px;}
+  .logo span{color:#2B6FFF;}
+  .issue-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#9E9891;margin-bottom:8px;}
+  h1{font-size:20px;font-weight:800;color:#0F1724;margin:0 0 6px;line-height:1.2;}
+  .date{font-size:13px;color:#9E9891;margin:0 0 20px;}
+  .bullets{background:#F8F7F4;border-radius:8px;padding:12px 16px;margin:0 0 24px;}
+  .sub-count{font-size:14px;color:#6E6862;margin:0 0 20px;}
+  .btn-send{display:block;width:100%;padding:15px;background:#16A34A;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:15px;text-align:center;margin-bottom:10px;}
+  .btn-read{display:block;width:100%;padding:13px;border:1.5px solid #E5E2DB;color:#0F1724;text-decoration:none;border-radius:10px;font-weight:600;font-size:14px;text-align:center;}
+  .note{font-size:11px;color:#B0ADA8;text-align:center;margin-top:16px;line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">GuyTalk<span>.</span></div>
+  <div class="issue-num">Issue #${num} · Ready to send</div>
+  <h1>${data.title}</h1>
+  <p class="date">${data.date}</p>
+  <div class="bullets">${bulletRows}</div>
+  <p class="sub-count">This will send to <strong>${subLine}</strong>.</p>
+  <a href="${sendUrl}" class="btn-send">Confirm — Send to ${subLine} →</a>
+  <a href="${briefUrl}" class="btn-read" target="_blank">Read the full brief first →</a>
+  <p class="note">Only you can see this page.<br>Tap the green button to send.</p>
+</div>
+</body></html>`;
+}
+
+// ── Success / already-sent / error pages ──────────────────────────────────────
 function sentPage(sent, failed, slug) {
   return `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -291,6 +325,26 @@ function sentPage(sent, failed, slug) {
 </div></body></html>`;
 }
 
+function alreadySentPage(slug) {
+  return `<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GuyTalk — Already Sent</title>
+<style>
+  body{margin:0;padding:40px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#F9F8F5;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+  .card{background:#fff;border:1px solid #E5E2DB;border-radius:16px;padding:40px 32px;max-width:400px;width:100%;text-align:center;}
+  .icon{font-size:48px;margin-bottom:16px;}
+  h1{font-size:22px;font-weight:800;color:#0F1724;margin:0 0 8px;}
+  p{font-size:14px;color:#6E6862;margin:0 0 20px;}
+  a{display:inline-block;padding:12px 24px;background:#2B6FFF;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:14px;}
+</style></head>
+<body><div class="card">
+  <div class="icon">✓</div>
+  <h1>Already sent.</h1>
+  <p>This issue was already delivered to subscribers. Nothing was sent again.</p>
+  <a href="/brief/${slug}/">View the brief →</a>
+</div></body></html>`;
+}
+
 function errorPage(msg) {
   return `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -307,9 +361,8 @@ function errorPage(msg) {
 </div></body></html>`;
 }
 
-// ── Handler ──────────────────────────────────────────────────────────────────
+// ── Handler ───────────────────────────────────────────────────────────────────
 module.exports = async (req, res) => {
-  // Only GET requests
   if (req.method !== 'GET') {
     res.status(405).end('Method not allowed');
     return;
@@ -338,12 +391,23 @@ module.exports = async (req, res) => {
     res.status(404).send(errorPage('No brief data found in deployment.'));
     return;
   }
-
   const { data, slug } = brief;
-  const num     = String(data.num).padStart(3, '0');
-  const subject = `GuyTalk #${num} — ${data.title}`;
 
-  // Fetch subscribers
+  // ── Step 1: Confirmation page (no go=1 param) ─────────────────────────────
+  // Email clients prefetch links — this step ensures a prefetch never triggers a send.
+  if (req.query.go !== '1') {
+    const count = await getSubscriberCount().catch(() => null);
+    res.status(200).send(confirmPage(data, slug, count, token));
+    return;
+  }
+
+  // ── Step 2: Idempotency check ─────────────────────────────────────────────
+  if (isAlreadySent(slug)) {
+    res.status(200).send(alreadySentPage(slug));
+    return;
+  }
+
+  // ── Step 3: Fetch subscribers ─────────────────────────────────────────────
   let emails;
   try {
     emails = await getSubscribers();
@@ -357,7 +421,9 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Build per-subscriber payloads (each has personalized unsubscribe URL)
+  // ── Step 4: Build and send via Resend batch API ───────────────────────────
+  const num     = String(data.num).padStart(3, '0');
+  const subject = `GuyTalk #${num} — ${data.title}`;
   const payloads = emails.map(email => ({
     from:    FROM_EMAIL,
     to:      email,
@@ -365,7 +431,6 @@ module.exports = async (req, res) => {
     html:    buildEmailHtml(data, slug, email),
   }));
 
-  // Send via Resend batch API — max 100 per call, one HTTP request per batch
   const BATCH = 100;
   let sent = 0, failed = 0;
   for (let i = 0; i < payloads.length; i += BATCH) {
@@ -381,9 +446,9 @@ module.exports = async (req, res) => {
       });
       if (r.ok) {
         const result = await r.json();
-        const data   = Array.isArray(result?.data) ? result.data : [];
-        sent   += data.filter(e => e?.id).length;
-        failed += batch.length - data.filter(e => e?.id).length;
+        const d      = Array.isArray(result?.data) ? result.data : [];
+        sent   += d.filter(e => e?.id).length;
+        failed += batch.length - d.filter(e => e?.id).length;
       } else {
         failed += batch.length;
       }
@@ -392,8 +457,11 @@ module.exports = async (req, res) => {
     }
   }
 
-  // Post to X and queue to Buffer for Instagram/TikTok (non-blocking)
-  await Promise.all([postToX(data, slug), postToBuffer(data, slug)]);
+  // ── Step 5: Write idempotency lock ────────────────────────────────────────
+  if (sent > 0) markAsSent(slug);
+
+  // ── Step 6: Post to X (non-blocking) ─────────────────────────────────────
+  await postToX(data, slug);
 
   res.status(200).send(sentPage(sent, failed, slug));
 };

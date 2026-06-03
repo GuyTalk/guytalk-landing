@@ -375,7 +375,7 @@ async function fetchGolf() {
 async function fetchTrending() {
   const items = [];
 
-  const subs = ['nba', 'formula1', 'soccer', 'investing', 'entertainment'];
+  const subs = ['nba', 'formula1', 'soccer', 'investing', 'golf', 'baseball', 'movies', 'entertainment'];
   for (const sub of subs) {
     try {
       const res = await fetch(`https://www.reddit.com/r/${sub}/hot.json?limit=5`, {

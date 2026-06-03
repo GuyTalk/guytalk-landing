@@ -35,6 +35,32 @@ function pad(n, w = 3) { return String(n).padStart(w, '0'); }
 function line(char = '─', len = 44) { return char.repeat(len); }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Load last N real issue JSON files for the repetition guard
+// ─────────────────────────────────────────────────────────────────────────────
+function loadPreviousBriefs(n = 3) {
+  const dataDir = path.join(BRIEF_DIR, 'data');
+  if (!fs.existsSync(dataDir)) return [];
+  const files = fs.readdirSync(dataDir)
+    .filter(f => /^issue-\d{3}\.json$/.test(f))
+    .sort()
+    .slice(-n);
+  return files.map(f => {
+    try {
+      const d = JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8'));
+      return {
+        slug:                d.slug || f.replace('.json', ''),
+        sharpTakeCloser:     d.copy?.sharpTake?.p2?.split(/[.!?]/).filter(Boolean).pop()?.trim() || '',
+        sportsThesis:        (d.copy?.sportsAngle || '').slice(0, 120),
+        barArgument:         d.copy?.sportsDetail?.barArgument || '',
+        officeTake:          d.copy?.officeTake || '',
+        marketsBringUp:      d.copy?.marketsDetail?.bringUp || '',
+        marketsBringUpFormat: d.copy?.marketsBringUpFormat || '',
+      };
+    } catch (_) { return null; }
+  }).filter(Boolean);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Regen mode — re-render all existing issues from saved JSON (new templates)
 // Usage: node scripts/generate-brief.js --regen [--copy]
 // --copy also regenerates the AI prose (slower, uses API credits)
@@ -70,7 +96,7 @@ async function regenAll() {
       try {
         const { sports, markets, golf, trending, f1, worldCup, upcoming } = issueData;
         const boxScores = {};
-        issueData.copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores });
+        issueData.copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, prev3: [] });
         if (issueData.copy?.title) issueData.title = issueData.copy.title;
         fs.writeFileSync(jsonPath, JSON.stringify(issueData, null, 2));
         console.log(`     ✓ Copy: "${issueData.copy?.title || 'generated'}"`);
@@ -213,7 +239,9 @@ async function main() {
   console.log('\n✍️  Generating GuyTalk copy with Claude Haiku...');
   let copy = null;
   try {
-    copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, gameMetas });
+    const prev3 = loadPreviousBriefs(3);
+    if (prev3.length) console.log(`   ✓ Repetition guard: loaded ${prev3.length} previous brief(s)`);
+    copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, gameMetas, prev3 });
     if (copy) {
       if (copy.title)        console.log(`   ✓ Headline: "${copy.title}"`);
       if (copy.sportsAngle)  console.log(`   ✓ Sports angle`);

@@ -14,13 +14,8 @@ const SYMBOLS = [
   { display: 'AAPL',   api: 'AAPL' },
 ];
 
-// Manual fallback — shown when ESPN returns no games or the fetch fails
-const SPORTS_FALLBACK = [
-  { label: 'NBA FINALS  · KNICKS VS SPURS  GAME 1 TOMORROW' },
-  { label: 'MLB  · TIGERS 10  RAYS 9  · BREWERS 16  GIANTS 2' },
-  { label: 'F1 MONACO GRAND PRIX  · THIS WEEKEND' },
-  { label: 'WORLD CUP 2026  · OPENS JUNE 11' },
-];
+// No static sports fallback — return empty array when ESPN has no live scores.
+// The ticker shows markets-only on off days rather than displaying stale headlines.
 
 const ESPN_LEAGUES = [
   { sport: 'basketball', league: 'nba' },
@@ -119,7 +114,7 @@ module.exports = async function handler(req, res) {
       .filter(Boolean)
       .sort((a, b) => parseFloat(b.change) - parseFloat(a.change));
 
-    const sports = sportsItems || SPORTS_FALLBACK;
+    const sports = sportsItems || [];
 
     res.setHeader('Cache-Control', 's-maxage=1800, stale-while-revalidate=3600');
     return res.json({ markets, sports });
