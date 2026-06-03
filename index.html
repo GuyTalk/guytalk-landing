@@ -252,10 +252,10 @@
   }
   .ticker-body { position: relative; }
   .ticker-body::before, .ticker-body::after {
-    content: ""; position: absolute; top: 0; bottom: 0; width: 64px; z-index: 2; pointer-events: none;
+    content: ""; position: absolute; top: 0; bottom: 0; width: 40px; z-index: 2; pointer-events: none;
   }
-  .ticker-body::before { left: 0; background: linear-gradient(90deg, var(--surface), transparent); }
-  .ticker-body::after  { right: 0; background: linear-gradient(270deg, var(--surface), transparent); }
+  .ticker-body::before { left: 0; background: linear-gradient(90deg, var(--surface) 20%, transparent); }
+  .ticker-body::after  { right: 0; background: linear-gradient(270deg, var(--surface) 20%, transparent); }
   .ticker-hdr {
     padding: 10px 20px; border-bottom: 1px solid rgba(255,255,255,0.12);
     display: flex; align-items: center; justify-content: space-between;
