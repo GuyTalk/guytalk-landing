@@ -1,0 +1,428 @@
+{
+  "num": 32,
+  "slug": "issue-032",
+  "date": "Wednesday, June 3, 2026",
+  "title": "Spurs host Knicks in Finals Game 1. Pirates sweep Astros. World Cup in nine days.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815598",
+      "name": "Pittsburgh Pirates at Houston Astros",
+      "shortName": "PIT @ HOU",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Houston Astros",
+        "abbrev": "HOU",
+        "score": "6",
+        "winner": false
+      },
+      "away": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "10",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815590",
+      "name": "Cleveland Guardians at New York Yankees",
+      "shortName": "CLE @ NYY",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "New York Yankees",
+        "abbrev": "NYY",
+        "score": "4",
+        "winner": false
+      },
+      "away": {
+        "team": "Cleveland Guardians",
+        "abbrev": "CLE",
+        "score": "9",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815599",
+      "name": "San Francisco Giants at Milwaukee Brewers",
+      "shortName": "SF @ MIL",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "8",
+        "winner": true
+      },
+      "away": {
+        "team": "San Francisco Giants",
+        "abbrev": "SF",
+        "score": "3",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 754.24,
+      "prevClose": 759.57,
+      "dayChange": -5.33,
+      "dayChangePct": -0.7017,
+      "weekChangePct": null
+    },
+    "QQQ": {
+      "price": 744.21,
+      "prevClose": 746.16,
+      "dayChange": -1.95,
+      "dayChangePct": -0.2613,
+      "weekChangePct": null
+    },
+    "NVDA": {
+      "price": 214.75,
+      "prevClose": 222.82,
+      "dayChange": -8.07,
+      "dayChangePct": -3.6218,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 423.7,
+      "prevClose": 423.74,
+      "dayChange": -0.04,
+      "dayChangePct": -0.0094,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 427.34,
+      "prevClose": 441.31,
+      "dayChange": -13.97,
+      "dayChangePct": -3.1656,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 310.26,
+      "prevClose": 315.2,
+      "dayChange": -4.94,
+      "dayChangePct": -1.5673,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 64503.8,
+      "prevClose": 66602.43,
+      "dayChange": -2098.63,
+      "dayChangePct": -3.151,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 421.08,
+      "prevClose": 435.31,
+      "dayChange": -14.23,
+      "dayChangePct": -3.2689,
+      "weekChangePct": null
+    },
+    "10Y": {
+      "price": 4.491,
+      "prevClose": 4.454999923706055,
+      "dayChange": 0.03600007629394497,
+      "dayChangePct": 0.808082534466061,
+      "weekChangePct": 0.2231656667026267
+    }
+  },
+  "golf": {
+    "name": "the Memorial Tournament pres. by Workday",
+    "venue": "",
+    "status": "Thu, June 3rd at 12:00 AM EDT",
+    "statusState": "pre",
+    "leaders": [
+      {
+        "name": "Brian Campbell",
+        "score": "E",
+        "pos": "1st"
+      },
+      {
+        "name": "Pierceson Coody",
+        "score": "E",
+        "pos": "2nd"
+      },
+      {
+        "name": "Ryan Fox",
+        "score": "E",
+        "pos": "3rd"
+      },
+      {
+        "name": "Daniel Berger",
+        "score": "E",
+        "pos": "4th"
+      },
+      {
+        "name": "Jason Day",
+        "score": "E",
+        "pos": "5th"
+      },
+      {
+        "name": "Jordan Spieth",
+        "score": "E",
+        "pos": "6th"
+      },
+      {
+        "name": "Billy Horschel",
+        "score": "E",
+        "pos": "7th"
+      },
+      {
+        "name": "Sam Stevens",
+        "score": "E",
+        "pos": "8th"
+      },
+      {
+        "name": "J.T. Poston",
+        "score": "E",
+        "pos": "9th"
+      },
+      {
+        "name": "Ryo Hisatsune",
+        "score": "E",
+        "pos": "10th"
+      }
+    ]
+  },
+  "f1": {
+    "name": "Monaco Grand Prix",
+    "shortName": "Monaco GP",
+    "venue": "",
+    "status": "Scheduled",
+    "statusState": "pre",
+    "results": []
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "401859963",
+      "name": "New York Knicks at San Antonio Spurs",
+      "shortName": "NY @ SA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 1",
+      "seriesNote": "Series starts 6/3",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401859964",
+      "name": "New York Knicks at San Antonio Spurs",
+      "shortName": "NY @ SA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 2",
+      "seriesNote": "Series starts 6/3",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    }
+  ],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "PlayStation State of Play June 2026: All the news and trailers - The Verge",
+      "url": "https://www.theverge.com/entertainment/940913/playstation-state-of-play-june-2026-news-trailers",
+      "description": "Sony’s next State of Play showcase airs on June 2nd and will feature major PS5 reveals, including the new Wolverine game.",
+      "source": "The Verge"
+    },
+    {
+      "title": "'Alaskan Bush People' Star Matt Brown's Death Leaves Family Torn Between Grief and Relief - TMZ",
+      "url": "https://www.tmz.com/2026/06/02/matt-brown-family-mixed-feelings-death/",
+      "description": "Matt Brown's death has left his family wrestling with a painful and complicated reality ... some relatives are devastated, while others are feeling a sense of relief.",
+      "source": "TMZ"
+    },
+    {
+      "title": "DCU Superman Star's New Movie Reconfirms Release, Earns Perfect Test Screening Scores - MovieWeb",
+      "url": "https://movieweb.com/mr-irrelevant-david-corenswet-perfect-test-screening/",
+      "description": "Superman star David Corenswet's new movie, 'Mr. Irrelevant,' earned a perfect round of test scores after recent screenings.",
+      "source": "MovieWeb"
+    },
+    {
+      "title": "‘Teen Mom’ Alum Farrah Abraham Sparks Engagement and Pregnancy Rumors After 35th Birthday - Yahoo",
+      "url": "https://intouchweekly.com/teen-mom-alum-farrah-abraham-sparks-engagement-and-pregnancy-rumors-after-35th-birthday/",
+      "description": "Farrah Abraham seemingly dropped a major life update following her 35th birthday celebration. “#lifelately I can’t keep up 🏎️ winning in life,” the Teen Mom...",
+      "source": "inTouch Weekly"
+    },
+    {
+      "title": "A Marvel of Magic Design - Magic: The Gathering",
+      "url": "https://magic.wizards.com/en/news/making-magic/a-marvel-of-magic-design",
+      "description": "Mark discusses how he assembled a team of designers to create Magic: The Gathering | Marvel Super Heroes and reveals a particularly nutty new card.",
+      "source": "Wizards.com"
+    },
+    {
+      "title": "Sources: Steelers sign edge rusher Nick Herbig to a lucrative long-term extension - Pittsburgh Post-Gazette",
+      "url": "https://www.post-gazette.com/sports/steelers/2026/06/02/nfl-news-herbig-contract-tj-watt-alex-highsmith/stories/202606020065",
+      "description": "False",
+      "source": "Pittsburgh Post-Gazette"
+    },
+    {
+      "title": "A.J. Brown chose No. 1 jersey despite Julian Edelman giving his blessing to wear No. 11 - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/a-j-brown-chose-no-1-jersey-despite-julian-edelman-giving-his-blessing-to-wear-no-11",
+      "description": "New Patriots wide receiver A.J.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Legendary Trail Blazers coach Rick Adelman dies at 79 - OregonLive.com",
+      "url": "https://www.oregonlive.com/blazers/2026/06/legendary-trail-blazers-coach-rick-adelman-dead-at-79.html",
+      "description": null,
+      "source": "OregonLive"
+    },
+    {
+      "title": "Aaron Judge sidelined with shoulder injury in massive Yankees concern - New York Post",
+      "url": "https://nypost.com/2026/06/02/sports/aaron-judge-out-for-yankees-opener-against-guardians/",
+      "description": "The Yankees are back in action in The Bronx, but Aaron Judge is absent from the lineup.",
+      "source": "New York Post"
+    },
+    {
+      "title": "Georges St-Pierre reveals his requests made to UFC for Anderson Silva fight to happen - MMA Fighting",
+      "url": "https://www.mmafighting.com/ufc/491849/georges-st-pierre-reveals-his-requests-made-to-ufc-for-anderson-silva-fight-to-happen",
+      "description": "Georges St-Pierre says what he asked for to fight Anderson Silva was more than reasonable.",
+      "source": "MMA Fighting"
+    }
+  ],
+  "copy": {
+    "title": "Spurs host Knicks in Finals Game 1. Pirates sweep Astros. World Cup in nine days.",
+    "sportsAngle": "The Pirates just beat Houston 10-6, and the Astros are about to learn what every team learns when the Pirates show up: they're built different this year. Cleveland demolished the Yankees 9-4, which is the kind of blowout that doesn't happen in June unless one team is genuinely better. Milwaukee handled San Francisco 8-3.\n\nWhat you're actually seeing here is the gap between regular season performance and playoff readiness. Houston came in favored. Pittsburgh walked in and reminded them that ranking doesn't equal results.\n\nThe Finals tip off tonight — Knicks at Spurs in San Antonio. This is the moment everything narrows down: two teams, elimination basketball, and seven games to settle it. The Spurs have built something special defensively, but the Knicks have experience in these spots that San Antonio just doesn't have. Watch whether Thibodeau goes small in the first quarter — it's the one adjustment that could neutralize Wembanyama's gravity on pick-and-rolls if the Knicks decide to attack early and force San Antonio to commit defenders.\n\nMemorial Tournament at E is Campbell's to lose, which means nothing until Friday. Monaco is coming up on the F1 calendar, and the World Cup is nine days out — when the real tournament starts, everything before this gets forgotten fast.\n\nWhat to say tonight if someone asks about the Finals: \"The Spurs defense is real, but the Knicks have seen tighter pressure in the playoffs before. We're about to find out if experience beats talent.\" That's not a guess — it's just watching who wants it more when the clock stops for nobody.",
+    "marketsTake": null,
+    "golfNote": null,
+    "sharpTake": {
+      "p1": "The Knicks are down 0-1 to San Antonio tonight, and everyone's treating it like a referendum on New York's depth. Here's what's actually happening: the Spurs are playing the kind of suffocating defense that makes your offense look broken, even when it isn't. San Antonio forced turnovers, controlled the glass, and made every possession feel like a half-court grind. The Knicks didn't lose because they're not good enough. They lost because the Spurs are built to make you earn every single point — and New York hasn't played 48 minutes of that basketball in the regular season.",
+      "p2": "This series flips if the Knicks can solve the Spurs' length in the paint and cut turnovers in half. Game 2 is the gut-check: either New York adjusts and steals one in San Antonio, or they're staring down a 0-2 hole with momentum fully against them. Watch whether the Knicks' ball movement actually flows or whether they're still hunting for loose space against that defense.",
+      "bullets": [
+        "Knicks down 0-1; Spurs' suffocating defense the real story here.",
+        "SPY down 0.7% — tech rotation continues away from mega-cap AI plays.",
+        "Monaco Grand Prix this weekend; F1 title fight intensifies on the circuit."
+      ]
+    },
+    "sportsDetail": {
+      "keyNumber": "10-6. Pirates scored in bunches — that's not sustainable against Houston, but it happened tonight.",
+      "seriesSituation": "Pittsburgh picked up a road win in a division matchup. Houston's still in the thick of it, but a 4-run loss at home stings when you're fighting for positioning. Neither team's season hinges on this, but the Pirates showed they can compete in someone else's park.",
+      "howToWatch": "Check ESPN for the next game schedule.",
+      "groupChatAngle": "Houston gave up 10 runs and still only lost by 4. That should terrify their own fans more than it should impress Pirates supporters.",
+      "barArgument": "The Pirates aren't done being relevant this year and anyone sleeping on them in the Central is doing it wrong."
+    },
+    "marketsDetail": {
+      "headline": "Nvidia, Microsoft tank as rates spike — AI trade unravels",
+      "secondPara": "Jobs report hits Friday. If payroll growth stays hot, that 10Y yield keeps climbing — and tech gets worse before it gets better.",
+      "stockSpotlight": "NVDA -3.6%. The chip darling got caught in the crossfire: rising rates make expensive growth stocks cheaper to own relative to bonds, and when the 10-year moves 80 bps in two days, the math gets real fast.",
+      "watchNextWeek": "Friday's employment report. Anything over 200k new jobs signals the Fed's rate-cut cycle might be shorter than expected — which means the 10-year stays elevated and the sell-off in high-multiple tech extends into next week.",
+      "bringUp": "Your mortgage rate just moved 0.2% this week alone. If you've got a refi in the pipeline, that's $50-100 a month per $100k borrowed that just evaporated from your buying power.",
+      "bringUpFormat": "personal_implication"
+    },
+    "golfDetail": {
+      "whyItMatters": "Muirfield Village is where the tour's best players actually show up — it's Jack's course, the field is stacked, and a win here carries weight that a regular tour event doesn't. This week starts sorting out who's sharp heading into the majors.",
+      "bringUp": "Jack Nicklaus designed Muirfield Village to punish you for being lazy off the tee. The rough is genuine rough, not a second fairway. Guys who bomb it without thought get humbled here — accuracy has mattered more than distance all week historically.",
+      "groupChatAngle": "The Memorial doesn't have the biggest names always winning it, but it has the right names — guys who can shape shots and manage their ball. This week's leaderboard will probably look smarter than it does flashy, and that's the whole point."
+    },
+    "culture": [
+      {
+        "head": "PlayStation just showed its hand for the next two years",
+        "source": "The Verge",
+        "tag": "Tech",
+        "body": "State of Play reveals matter because they tell you what Sony thinks will move consoles—and right now, it's betting on existing franchises over surprises. The June showcase dropped new trailers and release windows for its slate, signaling that blockbuster sequels and established IP are where the real money is. If you're a gamer, this is your preview of what's actually coming. If you're not, you can tell your friends who are that PlayStation just confirmed the industry's least risky playbook is working."
+      },
+      {
+        "head": "Nick Herbig just got paid because the Steelers finally fixed their edge rush math",
+        "source": "Pittsburgh Post-Gazette",
+        "tag": "Sports Biz",
+        "body": "The Steelers locked up Herbig to a long-term extension because pass rush velocity wins playoff games, and Pittsburgh spent years letting that position rot. One guy doesn't change a defense, but committing money here signals they've stopped hoping and started building. If you watched them lose games last season because quarterbacks had all day, this is the move that says management noticed too."
+      },
+      {
+        "head": "Watch this: The Studio",
+        "source": "Apple TV+",
+        "tag": "Streaming",
+        "body": "Seth Rogen plays a film studio exec who genuinely loves movies but runs a company that exists to make sequels and IP. Each episode is a specific industry absurdity — AI integration, awards season politics, prestige film financing — played straight enough to be funny and true enough to be uncomfortable. Best comedy of 2025."
+      }
+    ],
+    "numbersContext": [
+      {
+        "context": "Pittsburgh just walked into Houston and took a series game — first time they've beaten the Astros this season in their own stadium. The Pirates are 10-6 after that win, which means they're actually playing .625 baseball right now. That's not a fluke record for a team that's supposed to be rebuilding."
+      },
+      {
+        "context": "SPY dropped 0.7% today, which feels small until you remember the S&P has been grinding higher for weeks. A pullback this size usually means something spooked the room — could be rate talk, could be earnings anxiety ahead of earnings season proper. Watch whether we close the week here or drop another 1-2%."
+      },
+      {
+        "context": "Brian Campbell is leading the Memorial Tournament, which means he's the guy to beat at one of the toughest setups on the PGA calendar. The Memorial doesn't forgive sloppy play. If Campbell holds through Thursday, that's your conversation — not a household name in a major championship position at a course that filters out pretenders."
+      }
+    ],
+    "marketsBringUpFormat": "personal_implication",
+    "officeTake": "The one non-sports thing worth knowing today: The 10-year yield jumped 0.8% this week to 4.6%—mortgage territory—while mega-cap tech stocks cratered 3-4%, signaling investors are finally pricing in that AI buildout costs real money.",
+    "sportsAdditional": [
+      "Cleveland came in and imposed their will. The Guardians hit like they were trying to prove something — nine runs in a Yankees house tends to do that. If you watched it, you know this wasn't competitive after the third inning; if you didn't, the story is simple: Cleveland's offense showed up when it mattered, New York's didn't.",
+      "Milwaukee looked like the team that was supposed to win this one. Eight runs, dominant pitching, no drama — the Brewers went to San Francisco and treated it like a work day. This is what happens when you don't let the other team breathe; the Giants scored three and were never really in it."
+    ],
+    "f1Detail": {
+      "headline": "Monaco rewards precision. This year it demands perfection.",
+      "angle": "The Circuit de Monaco hasn't changed, but F1 has — cars are faster, margins thinner, and one mistake ends your race in the barriers. For drivers chasing the championship, this is where you separate yourself or hand points to rivals. Street circuits punish hesitation.",
+      "bringUp": "Monaco is the only race where qualifying basically decides the grid for Sunday. Pole position here isn't an advantage — it's the race. The driver who nails Saturday afternoon wins 80% of the time.",
+      "championship": "Without current 2026 standings provided, the championship story remains open, but Monaco always tilts toward whoever's leading the points. A strong result here compounds pressure on challengers; a crash or DNF can swing momentum hard.",
+      "pick": "Go with whoever's sitting third or fourth in the grid — they'll have fresh tires for the restart, cleaner air, and less to lose. Monaco rewards the patient aggressor, not the guy defending."
+    }
+  }
+}
