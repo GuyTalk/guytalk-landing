@@ -87,7 +87,7 @@ async function getChannels(orgId) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Create a post on a channel
 // ─────────────────────────────────────────────────────────────────────────────
-async function createPost(channelId, text, scheduledAt, imageUrl) {
+async function createPost(channelId, text, scheduledAt, imageUrl, metadata) {
   const input = {
     channelId,
     text,
@@ -95,7 +95,8 @@ async function createPost(channelId, text, scheduledAt, imageUrl) {
     mode: scheduledAt ? 'customScheduled' : 'addToQueue',
   };
   if (scheduledAt) input.dueAt = scheduledAt.toISOString();
-  if (imageUrl) input.imageUrls = [imageUrl];
+  if (imageUrl) input.assets = [{ image: { url: imageUrl } }];
+  if (metadata) input.metadata = metadata;
 
   const res = await graphql(`
     mutation CreatePost($input: CreatePostInput!) {
@@ -268,7 +269,8 @@ async function main() {
     const ttCaption = buildCaption(issue, 'tiktok');
     const xCaption  = buildCaption(issue, 'x');
     const scheduled = slots[slotIdx] || null;
-    const cardUrl   = `${BASE_URL}/assets/social-cards/${slug}.png`;
+    const cardUrl    = `${BASE_URL}/assets/social-cards/${slug}.png`;
+    const tiktokCard = `${BASE_URL}/assets/tiktok-cards/${slug}.jpg`;
     slotIdx++;
 
     console.log(`  📱 ${slug} — ${title.slice(0, 60)}`);
@@ -279,6 +281,7 @@ async function main() {
       console.log(`     [DRY] X:         ${xCaption.slice(0, 100)}`);
       console.log(`     [DRY] Instagram: ${igCaption.slice(0, 100)}`);
       console.log(`     [DRY] TikTok:    ${ttCaption.slice(0, 100)}`);
+      console.log(`     [DRY] TikTok img: ${tiktokCard}`);
       console.log('');
       continue;
     }
@@ -292,14 +295,14 @@ async function main() {
 
     if (channels.instagram) {
       try {
-        await createPost(channels.instagram.id, igCaption, scheduled, cardUrl);
+        await createPost(channels.instagram.id, igCaption, scheduled, cardUrl, { instagram: { type: 'post', shouldShareToFeed: true } });
         console.log('     ✓ Instagram queued');
       } catch (e) { console.log(`     ⚠  Instagram failed: ${e.message}`); }
     }
 
     if (channels.tiktok) {
       try {
-        await createPost(channels.tiktok.id, ttCaption, scheduled, cardUrl);
+        await createPost(channels.tiktok.id, ttCaption, scheduled, tiktokCard);
         console.log('     ✓ TikTok queued');
       } catch (e) { console.log(`     ⚠  TikTok failed: ${e.message}`); }
     }

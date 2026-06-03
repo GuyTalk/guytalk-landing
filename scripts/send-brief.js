@@ -22,6 +22,7 @@ const nodemailer  = require('nodemailer');
 const BEEHIIV_API_KEY  = process.env.BEEHIIV_API_KEY;
 const GMAIL_USER       = 'guytalkdaily@gmail.com';
 const GMAIL_APP_PASS   = process.env.GMAIL_APP_PASSWORD;
+const PO_BOX           = process.env.PO_BOX || 'PO Box [ADD MAILING ADDRESS]';
 const PUB_ID           = 'pub_d4c6a5c9-3ff9-4986-b17a-9e5650d915be';
 const SITE_URL         = 'https://www.guytalkmedia.com';
 const ROOT             = path.join(__dirname, '..');
@@ -202,7 +203,7 @@ function buildEmailHtml(data, slug) {
         <a href="https://www.guytalkmedia.com/unsubscribe/" style="color:#9E9891;text-decoration:underline;">Unsubscribe</a>
       </p>
       <p style="font-size:11px;color:#B8B4AC;margin:0;">
-        GuyTalk · PO Box (coming soon) · United States
+        GuyTalk · ${PO_BOX} · United States
       </p>
     </td>
   </tr>

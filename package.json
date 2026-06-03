@@ -14,6 +14,12 @@
     "send:dry": "node scripts/send-brief.js --dry-run",
     "social:queue": "node scripts/queue-social-posts.js",
     "social:dry": "node scripts/queue-social-posts.js --dry-run",
+    "tiktok:img": "node scripts/generate-tiktok-image.js",
+    "tiktok:img:dry": "node scripts/generate-tiktok-image.js --dry-run",
+    "ads:gen": "node scripts/generate-ad-content.js",
+    "ads:ugc": "node scripts/generate-ad-content.js --ugc",
+    "ads:images": "node scripts/generate-ad-content.js --images",
+    "ads:video": "node scripts/generate-ad-content.js --video",
     "install:brief": "npm install"
   },
   "dependencies": {
