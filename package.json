@@ -18,9 +18,13 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": ">=0.26.0",
+    "@fontsource/inter": "^5.2.8",
+    "@resvg/resvg-js": "^2.6.2",
+    "canvas": "^3.2.3",
     "dotenv": "^16.4.7",
     "nodemailer": "^8.0.10",
     "resend": "^6.12.4",
+    "satori": "^0.26.0",
     "twitter-api-v2": "^1.29.0"
   }
 }

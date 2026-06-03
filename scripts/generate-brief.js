@@ -282,6 +282,17 @@ async function main() {
     }
   }
 
+  // Social card
+  if (!isPreview) {
+    try {
+      const { generateCard } = require('./lib/social-card');
+      const cardPath = generateCard(issueData);
+      console.log(`   ✓ ${path.relative(ROOT, cardPath)}`);
+    } catch (e) {
+      console.log(`   ⚠  Social card failed: ${e.message}`);
+    }
+  }
+
   // ── Review checklist ───────────────────────────────────────────────────────
   console.log(`\n${line()}`);
   console.log('  ✅ REVIEW CHECKLIST — scan before it goes live:');
