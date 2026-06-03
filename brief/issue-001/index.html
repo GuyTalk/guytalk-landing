@@ -53,6 +53,8 @@
   .wordmark { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.03em; }
   .wordmark .dot { color: var(--accent); }
   .nav-meta { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
+  .nav-cta { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; padding: 7px 14px; background: var(--accent); color: white; border-radius: 7px; text-decoration: none; transition: background 0.15s; }
+  .nav-cta:hover { background: #1A5CEF; }
 
   /* ARTICLE */
   article {
@@ -312,8 +314,11 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="wordmark">GuyTalk<span class="dot">.</span></div>
-    <div class="nav-meta">The Brief · #001</div>
+    <a href="/" class="wordmark" style="text-decoration:none;color:inherit">GuyTalk<span class="dot">.</span></a>
+    <div style="display:flex;align-items:center;gap:16px">
+      <span class="nav-meta">The Brief · #001</span>
+      <a href="/#signup" class="nav-cta">Subscribe free →</a>
+    </div>
   </div>
 </nav>
 

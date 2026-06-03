@@ -437,6 +437,44 @@
   }
 
   /* SCENARIOS */
+  /* PHOTO SPLIT */
+  .photo-split { padding: 80px 0; border-top: 1px solid var(--border); }
+  .photo-split-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .photo-split-copy { }
+  .photo-split-eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+  }
+  .photo-split-headline {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 36px; letter-spacing: -0.03em; line-height: 1.1; color: var(--text); margin-bottom: 18px;
+  }
+  .photo-split-body { font-size: 16px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 28px; }
+  .photo-split-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .pss-item { }
+  .pss-num {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 28px; letter-spacing: -0.03em; color: var(--text); line-height: 1;
+  }
+  .pss-label { font-size: 13px; color: var(--text-secondary); margin-top: 3px; }
+  .photo-split-img-wrap {
+    border-radius: 20px; overflow: hidden; position: relative;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+  }
+  .photo-split-img-wrap img {
+    width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover;
+  }
+  .photo-split-badge {
+    position: absolute; bottom: 16px; left: 16px;
+    background: rgba(10,22,40,0.85); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
+    padding: 10px 16px; color: white;
+  }
+  .psb-name { font-weight: 700; font-size: 14px; }
+  .psb-role { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+
   .scenarios { padding: 80px 0; border-top: 1px solid var(--border); }
   .scenarios-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
   .scenario-card {
@@ -660,7 +698,8 @@
   /* FOUNDER */
   .founder { max-width: 640px; margin: 0 auto; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
   .founder-head { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
-  .founder-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #1A5CEF); display: flex; align-items: center; justify-content: center; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 18px; color: white; flex-shrink: 0; box-shadow: 0 0 20px rgba(43,111,255,0.2); }
+  .founder-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #1A5CEF); display: flex; align-items: center; justify-content: center; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 18px; color: white; flex-shrink: 0; box-shadow: 0 0 20px rgba(43,111,255,0.2); overflow: hidden; }
+  .founder-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .founder-name { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 16px; color: var(--text); }
   .founder-role { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
   .founder p { color: var(--text); font-size: 16px; line-height: 1.7; margin-bottom: 14px; }
@@ -689,6 +728,13 @@
     .app-inner { grid-template-columns: 1fr; gap: 48px; }
     .phone-frame { display: none; }
   }
+  @media (max-width: 800px) {
+    .photo-split-inner { grid-template-columns: 1fr; gap: 36px; }
+    .photo-split-img-wrap { order: -1; }
+    .photo-split-headline { font-size: 28px; }
+    .sp-grid { grid-template-columns: 1fr; }
+  }
+
   @media (max-width: 600px) {
     .container { padding: 0 16px; }
     .hero { padding: 60px 0 48px; }
@@ -707,6 +753,22 @@
     .reviews-strip { grid-template-columns: 1fr; }
     .pull-quote { font-size: 22px; }
   }
+
+  /* SCENARIO PHOTOS */
+  .scenario-photos { padding: 80px 0; border-top: 1px solid var(--border); }
+  .sp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .sp-card { display: flex; flex-direction: column; gap: 16px; }
+  .sp-img-wrap {
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+  }
+  .sp-img-wrap img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; transition: transform 0.4s ease; }
+  .sp-card:hover .sp-img-wrap img { transform: scale(1.03); }
+  .sp-label {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 17px; letter-spacing: -0.02em; color: var(--text);
+  }
+  .sp-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
 
   /* TESTIMONIALS SECTION */
   .testimonials { padding: 80px 0 72px; }
@@ -772,7 +834,7 @@
   <div class="nav-inner">
     <div class="wordmark">GuyTalk<span class="dot">.</span></div>
     <div style="display:flex;align-items:center;gap:24px;">
-      <a href="/brief/issue-029/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Today's Brief</a>
+      <a href="/brief/issue-030/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Today's Brief</a>
       <a href="/briefs/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Archive</a>
       <a href="/about/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">About</a>
       <a href="/advertise/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Advertise</a>
@@ -811,24 +873,26 @@
         <div class="ticker-item"><span class="ticker-sym">QQQ</span><span class="ticker-up">+0.46%</span></div>
         <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-down">-0.69%</span></div>
         <div class="ticker-item"><span class="ticker-sym">TSLA</span><span class="ticker-up">+1.89%</span></div>
-        <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">-5.54%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">-3.24%</span></div>
         <div class="ticker-item"><span class="ticker-divider">—</span></div>
-        <div class="ticker-item"><span class="ticker-sport">DETROIT TIGERS 10  TAMPA BAY RAYS 9  · DET @ TB</span></div>
-        <div class="ticker-item"><span class="ticker-sport">MILWAUKEE BREWERS 16  SAN FRANCISCO GIANTS 2  · SF @ MIL</span></div>
-        <div class="ticker-item"><span class="ticker-sport">COLORADO ROCKIES 9  LOS ANGELES ANGELS 8  · COL @ LAA</span></div>
-        <div class="ticker-item"><span class="ticker-sport">NBA FINALS - GAME 1  · TOMORROW</span></div>
+        <div class="ticker-item"><span class="ticker-sport">PITTSBURGH PIRATES 10  HOUSTON ASTROS 6  · PIT @ HOU</span></div>
+        <div class="ticker-item"><span class="ticker-sport">CLEVELAND GUARDIANS 9  NEW YORK YANKEES 4  · CLE @ NYY</span></div>
+        <div class="ticker-item"><span class="ticker-sport">MILWAUKEE BREWERS 8  SAN FRANCISCO GIANTS 3  · SF @ MIL</span></div>
+        <div class="ticker-item"><span class="ticker-sport">NBA FINALS - GAME 1  · TODAY</span></div>
+        <div class="ticker-item"><span class="ticker-sport">NBA FINALS - GAME 2  · UPCOMING</span></div>
         <div class="ticker-item"><span class="ticker-sport">F1 MONACO GRAND PRIX  · TBD THIS WEEKEND</span></div>
         <div class="ticker-item"><span class="ticker-sport">BRIAN CAMPBELL LEADS  THE MEMORIAL TOURNAMENT  AT EVEN</span></div>
         <div class="ticker-item"><span class="ticker-sym">SPY</span><span class="ticker-up">+0.14%</span></div>
         <div class="ticker-item"><span class="ticker-sym">QQQ</span><span class="ticker-up">+0.46%</span></div>
         <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-down">-0.69%</span></div>
         <div class="ticker-item"><span class="ticker-sym">TSLA</span><span class="ticker-up">+1.89%</span></div>
-        <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">-5.54%</span></div>
+        <div class="ticker-item"><span class="ticker-sym">BTC</span><span class="ticker-down">-3.24%</span></div>
         <div class="ticker-item"><span class="ticker-divider">—</span></div>
-        <div class="ticker-item"><span class="ticker-sport">DETROIT TIGERS 10  TAMPA BAY RAYS 9  · DET @ TB</span></div>
-        <div class="ticker-item"><span class="ticker-sport">MILWAUKEE BREWERS 16  SAN FRANCISCO GIANTS 2  · SF @ MIL</span></div>
-        <div class="ticker-item"><span class="ticker-sport">COLORADO ROCKIES 9  LOS ANGELES ANGELS 8  · COL @ LAA</span></div>
-        <div class="ticker-item"><span class="ticker-sport">NBA FINALS - GAME 1  · TOMORROW</span></div>
+        <div class="ticker-item"><span class="ticker-sport">PITTSBURGH PIRATES 10  HOUSTON ASTROS 6  · PIT @ HOU</span></div>
+        <div class="ticker-item"><span class="ticker-sport">CLEVELAND GUARDIANS 9  NEW YORK YANKEES 4  · CLE @ NYY</span></div>
+        <div class="ticker-item"><span class="ticker-sport">MILWAUKEE BREWERS 8  SAN FRANCISCO GIANTS 3  · SF @ MIL</span></div>
+        <div class="ticker-item"><span class="ticker-sport">NBA FINALS - GAME 1  · TODAY</span></div>
+        <div class="ticker-item"><span class="ticker-sport">NBA FINALS - GAME 2  · UPCOMING</span></div>
         <div class="ticker-item"><span class="ticker-sport">F1 MONACO GRAND PRIX  · TBD THIS WEEKEND</span></div>
         <div class="ticker-item"><span class="ticker-sport">BRIAN CAMPBELL LEADS  THE MEMORIAL TOURNAMENT  AT EVEN</span></div>
       </div></div>
@@ -850,6 +914,31 @@
       <div class="proof-stat"><span class="num">Free</span><span>forever</span></div>
       <span class="proof-sep">·</span>
       <div class="proof-stat"><span class="num">No</span><span>algorithm</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO SPLIT -->
+<section class="photo-split">
+  <div class="container">
+    <div class="photo-split-inner">
+      <div class="photo-split-copy fade-up">
+        <div class="photo-split-eyebrow">Five minutes. Every morning.</div>
+        <h2 class="photo-split-headline">The brief that fits in your commute.</h2>
+        <p class="photo-split-body">Before the meeting. Before the group chat blows up. Before someone asks your take on last night's game — GuyTalk puts you in the room first.</p>
+        <div class="photo-split-stats">
+          <div class="pss-item"><div class="pss-num">5 min</div><div class="pss-label">Average read time</div></div>
+          <div class="pss-item"><div class="pss-num">Daily</div><div class="pss-label">Every weekday morning</div></div>
+          <div class="pss-item"><div class="pss-num">Free</div><div class="pss-label">No paywall, ever</div></div>
+        </div>
+      </div>
+      <div class="photo-split-img-wrap fade-up">
+        <img src="/assets/website-images/hero-morning-guy.jpg" alt="Guy reading GuyTalk brief over morning coffee" loading="lazy">
+        <div class="photo-split-badge">
+          <div class="psb-name">The morning read.</div>
+          <div class="psb-role">Before anyone else knows.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -904,28 +993,28 @@
 
     <div class="brief-mock fade-up">
       <div class="brief-header">
-        <div class="brief-date">Tuesday, June 2, 2026</div>
-        <div class="brief-issue">ISSUE #029</div>
+        <div class="brief-date">Wednesday, June 3, 2026</div>
+        <div class="brief-issue">ISSUE #030</div>
       </div>
       <div class="brief-body">
         <div class="brief-greeting">Knicks-Spurs Game 1 tomorrow. Monaco this weekend.</div>
         <div class="brief-intro">NBA Finals tip off in San Antonio. Monaco Grand Prix on Sunday. World Cup opens June 11. Henley wins Schwab. Here's everything.</div>
 
-        <a class="brief-story" href="/brief/issue-029/#sports" target="_blank" rel="noopener">
+        <a class="brief-story" href="/brief/issue-030/#sports" target="_blank" rel="noopener">
           <div class="brief-cat bc-sports">Sports</div>
           <div class="brief-headline">NBA Finals: Knicks visit Spurs for Game 1 tomorrow night.</div>
           <div class="brief-snippet">Wembanyama's first Finals. San Antonio beat OKC in 7 to get here. New York ends the Knicks drought or Wemby takes over the league at 22. Either way this is the series.</div>
           <div class="brief-bring bb-sports"><span class="brief-bring-label">Bring up →</span> "Wemby in the Finals at 22. This is either his coronation or the Knicks' revenge tour."</div>
         </a>
 
-        <a class="brief-story" href="/brief/issue-029/#markets" target="_blank" rel="noopener">
+        <a class="brief-story" href="/brief/issue-030/#markets" target="_blank" rel="noopener">
           <div class="brief-cat bc-markets">Markets</div>
           <div class="brief-headline">MSFT off 3.4%. Tech rotation hits megacaps early June.</div>
           <div class="brief-snippet">Microsoft's cloud margin pressure is real and institutional money is moving. SPY holding flat but the quality trade is getting picked apart. Jobs report Friday sets the tone for rate expectations.</div>
           <div class="brief-bring bb-markets"><span class="brief-bring-label">Office take →</span> "MSFT is getting sold on cloud margin pressure. The AI capex story is one bad earnings call from cracking."</div>
         </a>
 
-        <a class="brief-story" href="/brief/issue-029/#f1" target="_blank" rel="noopener">
+        <a class="brief-story" href="/brief/issue-030/#f1" target="_blank" rel="noopener">
           <div class="brief-cat bc-sports">Formula 1</div>
           <div class="brief-headline">Monaco Grand Prix — Sunday. The circuit where pace doesn't matter.</div>
           <div class="brief-snippet">No run-off zones, no margin for error, nowhere to pass. Monaco neutralizes the fastest car and rewards the cleanest driver. Qualifying Saturday decides 80% of the race result.</div>
@@ -999,7 +1088,7 @@
           <div class="msg-gt-card">
             <div class="msg-gt-hdr">
               <span class="msg-gt-hdr-title">Today's Brief</span>
-              <span class="msg-gt-hdr-issue">Tuesday, June 2, 2026</span>
+              <span class="msg-gt-hdr-issue">Wednesday, June 3, 2026</span>
             </div>
             <div class="msg-gt-body">
               <div class="msg-gt-item">NBA Finals: Knicks at Spurs — Game 1 tomorrow</div>
@@ -1139,6 +1228,37 @@
   </div>
 </section>
 
+<!-- SCENARIO PHOTOS -->
+<section class="scenario-photos">
+  <div class="container">
+    <div class="section-eyebrow">Where it pays off</div>
+    <h2 class="section-title fade-up">The conversations you'll actually have.</h2>
+    <div class="sp-grid">
+      <div class="sp-card fade-up">
+        <div class="sp-img-wrap">
+          <img src="/assets/website-images/scenario-golf.jpg" alt="Guys talking on the golf course" loading="lazy">
+        </div>
+        <div class="sp-label">The Golf Round</div>
+        <div class="sp-desc">Client outing, 18 holes. The Ryder Cup captain thing comes up on hole 5. You've got two holes of real conversation.</div>
+      </div>
+      <div class="sp-card fade-up">
+        <div class="sp-img-wrap">
+          <img src="/assets/website-images/scenario-office.jpg" alt="Guy confidently presenting in a meeting" loading="lazy">
+        </div>
+        <div class="sp-label">The Monday Meeting</div>
+        <div class="sp-desc">Markets open down 1.2%. Someone asks the room what happened. You already read the reason at 7am.</div>
+      </div>
+      <div class="sp-card fade-up">
+        <div class="sp-img-wrap">
+          <img src="/assets/website-images/scenario-tailgate.jpg" alt="Guys watching the game together" loading="lazy">
+        </div>
+        <div class="sp-label">The Tailgate</div>
+        <div class="sp-desc">Game day. Everyone's got takes. Yours are grounded — you know the injury report, the series context, and what actually matters.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="container">
@@ -1183,11 +1303,10 @@
   <div class="container">
     <div class="section-eyebrow">Why I built this</div>
     <h2 class="section-title">Straight from the founder.</h2>
-    <p class="section-sub">&nbsp;</p>
 
     <div class="founder fade-up">
       <div class="founder-head">
-        <div class="founder-avatar">J</div>
+        <div class="founder-avatar"><img src="/assets/website-images/founder-jake.jpg" alt="Jake Williams"></div>
         <div>
           <div class="founder-name">Jake Williams</div>
           <div class="founder-role">Founder · GuyTalk</div>
