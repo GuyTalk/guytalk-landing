@@ -316,16 +316,30 @@ Context: ${ctx}${trendText ? `\nTrending: ${trendText}` : ''}`,
     // 6. Sports detail (JSON) — only when we have a real game
     mainGame
       ? ask(
-          `GuyTalk voice. Game: ${gamesText.split('\n')[0]}
-${mainGameLeaders ? `Player stats (ONLY use these — never invent others): ${mainGameLeaders}` : 'No player stats available. Use team-level observations only — do not name individual players or invent stats.'}
-Return ONLY valid JSON, no markdown, no code fences:
+          (() => {
+            const gameOneLiner = gamesText.split('\n')[0];
+            const statsLine = mainGameLeaders
+              ? `Player stats (ONLY use these — never invent others): ${mainGameLeaders}`
+              : 'No player stats available. Describe team result only — do not name individual players or invent stats.';
+            const keyNumInstruction = mainGameLeaders
+              ? 'The defining stat from the stats above — the number that explains the win or loss.'
+              : 'A team-level observation about the game — no invented player stats.';
+            const seriesInstruction = mainGame.seriesNote
+              ? `Series context: ${mainGame.seriesNote}. What this result means and what is at stake for the next game.`
+              : 'What this result means for the team — standings, trajectory, what changes. If this is a regular season game, do NOT invent playoff series context.';
+            return `GuyTalk voice. Game: ${gameOneLiner}
+${statsLine}
+
+Return ONLY valid JSON, no markdown, no code fences. Five fields exactly:
+
 {
-  "keyNumber": "${mainGameLeaders ? 'The defining stat from the stats above — the number that explains the win or loss. Use a real number.' : 'A team-level observation about the game — no individual player stats.'}",
-  "seriesSituation": "${mainGame.seriesNote ? `Series: ${mainGame.seriesNote}. What this result means and what's at stake for the next game.` : 'What this result means for the team — standings impact, momentum shift, or season trajectory. If this is a regular season game, do NOT invent playoff or series context that was not given.'}",
-  "howToWatch": "Game label · Day · Venue · Time ET · Network.",
-  "groupChatAngle": "One sharp observation — the kind of thing you drop in the group chat and someone immediately screenshots. Specific and non-obvious. Not a recap of the final score.",
-  "barArgument": "Write this as an ASSERTION, not a question — a position someone would defend for 10 minutes at a bar. It MUST end with a period, never a question mark. Pick the more controversial, defensible side and state it directly: 'Brunson is the Finals MVP and it's not close.' or 'San Antonio is two adjustments from winning three straight.' If you find yourself writing a question, delete it and restate it as the more interesting side of that question."
-}`,
+  "keyNumber": "${keyNumInstruction}",
+  "seriesSituation": "${seriesInstruction}",
+  "howToWatch": "When and where to watch the next game — Day, Time ET, Network. If no next game is scheduled, skip or say 'check ESPN.'",
+  "groupChatAngle": "One sharp, non-obvious observation the kind of thing someone screenshots and sends. Not a recap of the final score.",
+  "barArgument": "One assertion (NOT a question) a guy would defend at a bar for 10 minutes. Must end with a period. Example: 'Pittsburgh is the best story in baseball right now and nobody is paying attention.' State the more interesting side. Never end with a question mark."
+}`;
+          })(),
           500
         )
       : Promise.resolve(null),
