@@ -1119,14 +1119,15 @@ function buildTopModule({ copy, golf, f1, worldCup, markets, sports, upcoming })
   const hasGolf = !!golf?.name;
   const hasWC   = !!worldCup?.length;
 
+  // Each category uses its own dedicated key — never cross-pollinate
   const hitItems = [
-    hits?.sports   ? { tag: 'Sports',   anchor: '#the-lead', text: hits.sports,   cls: 'hit-sports'   } : null,
-    hits?.markets  ? { tag: 'Markets',  anchor: '#markets',  text: hits.markets,  cls: 'hit-markets'  } : null,
-    hasGolf && hits?.golf ? { tag: 'Golf', anchor: '#golf', text: hits.golf, cls: 'hit-golf' } : null,
-    hasF1  && hits?.f1   ? { tag: 'F1',   anchor: '#f1',    text: hits.f1,   cls: 'hit-f1'   } : null,
-    hasWC  && hits?.culture ? { tag: 'World Cup', anchor: '#worldcup', text: hits.culture, cls: 'hit-culture' } : null,
-    hits?.culture  ? { tag: 'Culture',  anchor: '#culture',  text: hits.culture,  cls: 'hit-culture'  } : null,
-  ].filter(Boolean).slice(0, 5);
+    hits?.sports   ? { tag: 'Sports',    anchor: '#the-lead', text: hits.sports,   cls: 'hit-sports'   } : null,
+    hits?.markets  ? { tag: 'Markets',   anchor: '#markets',  text: hits.markets,  cls: 'hit-markets'  } : null,
+    hasGolf && hits?.golf      ? { tag: 'Golf',     anchor: '#golf',     text: hits.golf,    cls: 'hit-golf'    } : null,
+    hasF1   && hits?.f1        ? { tag: 'F1',       anchor: '#f1',       text: hits.f1,      cls: 'hit-f1'      } : null,
+    hasWC   && hits?.worldcup  ? { tag: 'World Cup',anchor: '#worldcup', text: hits.worldcup,cls: 'hit-culture' } : null,
+    hits?.culture  ? { tag: 'Culture',   anchor: '#culture',  text: hits.culture,  cls: 'hit-culture'  } : null,
+  ].filter(Boolean).slice(0, 6);
 
   if (!hitItems.length && !keyTakeaway) return '';
 
@@ -1155,93 +1156,81 @@ ${hitItems.map(h => `    <a href="${h.anchor}" class="hit-item ${h.cls}">
 function buildLead({ sports, upcoming, copy }) {
   const lead = copy?.lead;
 
-  // Scoreboard for the main game (if available)
-  const mainGame = sports?.[0];
+  // AI tells us which game index is the lead story — default to 0
+  const gameIdx = (lead?.gameIndex >= 0 && lead?.gameIndex < (sports?.length || 0))
+    ? lead.gameIndex : 0;
+  const leadGame = sports?.[gameIdx];
+
+  // Scoreboard for the lead game only
   let scoreboardHtml = '';
-  if (mainGame) {
-    const w = mainGame.home.winner ? mainGame.home : mainGame.away;
-    const l = mainGame.home.winner ? mainGame.away : mainGame.home;
-    const sport = mainGame.sport?.toLowerCase() || 'nba';
-    const homeLogo = espnLogo(mainGame.home.abbrev, sport);
-    const awayLogo = espnLogo(mainGame.away.abbrev, sport);
-    const homeLoser = !mainGame.home.winner;
-    const awayLoser = !mainGame.away.winner;
-    const metaText = mainGame.note ? `${mainGame.note} · ${mainGame.status}` : mainGame.status;
+  if (leadGame) {
+    const w = leadGame.home.winner ? leadGame.home : leadGame.away;
+    const l = leadGame.home.winner ? leadGame.away : leadGame.home;
+    const sport = leadGame.sport?.toLowerCase() || 'nba';
+    const homeLogo = espnLogo(leadGame.home.abbrev, sport);
+    const awayLogo = espnLogo(leadGame.away.abbrev, sport);
+    const homeLoser = !leadGame.home.winner;
+    const awayLoser = !leadGame.away.winner;
+    const metaText = leadGame.note ? `${leadGame.note} · ${leadGame.status}` : leadGame.status;
     scoreboardHtml = `
     <div class="scoreboard">
       <div class="score-side">
-        ${homeLogo ? `<img src="${esc(homeLogo)}" class="score-logo${homeLoser ? ' loser' : ''}" alt="${esc(mainGame.home.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
-        <div class="score-team${homeLoser ? ' loser' : ''}">${esc(mainGame.home.team)}</div>
-        <div class="score-num${homeLoser ? ' loser' : ''}">${esc(mainGame.home.score)}</div>
+        ${homeLogo ? `<img src="${esc(homeLogo)}" class="score-logo${homeLoser ? ' loser' : ''}" alt="${esc(leadGame.home.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+        <div class="score-team${homeLoser ? ' loser' : ''}">${esc(leadGame.home.team)}</div>
+        <div class="score-num${homeLoser ? ' loser' : ''}">${esc(leadGame.home.score)}</div>
       </div>
       <div class="score-center">
         <div class="score-meta">${esc(metaText)}</div>
         <div class="score-badge">${esc(w.abbrev || w.team.split(' ').pop())} Win</div>
       </div>
       <div class="score-side right">
-        <div class="score-team${awayLoser ? ' loser' : ''}">${esc(mainGame.away.team)}</div>
-        <div class="score-num${awayLoser ? ' loser' : ''}">${esc(mainGame.away.score)}</div>
-        ${awayLogo ? `<img src="${esc(awayLogo)}" class="score-logo${awayLoser ? ' loser' : ''}" alt="${esc(mainGame.away.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+        <div class="score-team${awayLoser ? ' loser' : ''}">${esc(leadGame.away.team)}</div>
+        <div class="score-num${awayLoser ? ' loser' : ''}">${esc(leadGame.away.score)}</div>
+        ${awayLogo ? `<img src="${esc(awayLogo)}" class="score-logo${awayLoser ? ' loser' : ''}" alt="${esc(leadGame.away.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
       </div>
     </div>`;
   }
 
-  // Upcoming game card if no result
-  const upcomingCard = (!mainGame && upcoming?.length) ? buildUpcomingGameCard(upcoming[0]) : '';
-  // Also show upcoming if there's a finals/playoff game today
-  const finalsCard = (mainGame && upcoming?.length && upcoming[0].note) ? buildUpcomingGameCard(upcoming[0]) : '';
+  // Upcoming card if there are no results at all (no games played yet today)
+  const upcomingCard = (!sports?.length && upcoming?.length) ? buildUpcomingGameCard(upcoming[0]) : '';
 
-  const headline = lead?.headline || (mainGame
-    ? (() => { const w = mainGame.home.winner ? mainGame.home : mainGame.away; const l = mainGame.home.winner ? mainGame.away : mainGame.home; return `${w.team} ${w.score}–${l.score} ${l.team}`; })()
+  const headline = lead?.headline || (leadGame
+    ? (() => { const w = leadGame.home.winner ? leadGame.home : leadGame.away; const l = leadGame.home.winner ? leadGame.away : leadGame.home; return `${w.team} ${w.score}–${l.score} ${l.team}`; })()
     : 'Today in sports');
 
-  const whatHappened  = lead?.whatHappened  || '';
-  const whyBullet1    = lead?.whyBullet1    || '';
-  const whyBullet2    = lead?.whyBullet2    || '';
-  const whatToSay     = lead?.whatToSay     || '';
+  const whatHappened = lead?.whatHappened || '';
+  const whyBullet1   = lead?.whyBullet1  || '';
+  const whyBullet2   = lead?.whyBullet2  || '';
+  const whatToSay    = lead?.whatToSay   || '';
 
   return `  <section class="brief-section" id="the-lead">
     <div class="section-label sl-sports">The Lead</div>
     <h3>${esc(headline)}</h3>
 ${scoreboardHtml}
 ${upcomingCard}
-${finalsCard}
 ${whatHappened ? `    <p>${esc(whatHappened)}</p>` : ''}
     <ul class="detail-list">
       ${whyBullet1 ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyBullet1)}</span></li>` : ''}
       ${whyBullet2 ? `<li><span><span class="dl-label">The other angle:</span> ${esc(whyBullet2)}</span></li>` : ''}
-      ${whatToSay  ? `<li><span><span class="dl-label">What to say:</span> ${esc(whatToSay)}</span></li>`  : ''}
+      ${whatToSay  ? `<li><span><span class="dl-label">What to say:</span> ${esc(whatToSay)}</span></li>`      : ''}
     </ul>
   </section>`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SPORTS — other games + golf product card
+// SPORTS — other scores + Watch Next card
 // ─────────────────────────────────────────────────────────────────────────────
-function buildSports({ sports, copy, num }) {
-  const extraGames = sports?.slice(1) || [];
-  const product = PRODUCTS[num % PRODUCTS.length];
+function buildSports({ sports, copy, upcoming }) {
+  // All games except the lead game (lead.gameIndex or index 0)
+  const leadIdx = copy?.lead?.gameIndex ?? 0;
+  const otherGames = (sports || []).filter((_, i) => i !== leadIdx);
 
-  if (!extraGames.length) {
-    // No other scores — show product card only
-    return `  <section class="brief-section" id="sports">
-    <div class="section-label sl-sports">Sports</div>
-    <div class="product-card">
-      <div class="product-img">
-        ${product.imageUrl ? `<img src="${esc(product.imageUrl)}" alt="${esc(product.name)}" loading="lazy">` : `<div class="product-img-ph">${esc(product.brand)}</div>`}
-      </div>
-      <div class="product-info">
-        <div class="product-brand">${esc(product.brand)}</div>
-        <div class="product-name">${esc(product.name)}</div>
-        <p class="product-desc">${product.desc}</p>
-        <span class="product-price">${esc(product.price)}</span>
-        <a href="${esc(product.url)}" target="_blank" rel="noopener" class="product-link">${esc(product.cta)} →</a>
-      </div>
-    </div>
-  </section>`;
-  }
+  // Watch Next card for upcoming playoff/finals game
+  const watchNextCard = upcoming?.length ? buildUpcomingGameCard(upcoming[0]) : '';
 
-  const scoreRows = extraGames.map((g, i) => {
+  if (!otherGames.length && !watchNextCard) return '';
+
+  const scoreRows = otherGames.map((g, i) => {
     const w = g.home.winner ? g.home : g.away;
     const l = g.home.winner ? g.away : g.home;
     const sport = g.sport?.toLowerCase() || 'nba';
@@ -1250,7 +1239,8 @@ function buildSports({ sports, copy, num }) {
     const homeLoser = !g.home.winner;
     const awayLoser = !g.away.winner;
     const metaText = g.note ? `${g.note} · ${g.status}` : g.status;
-    const note = copy?.sportsOther?.[i] || `${w.team} handle the ${l.team}.`;
+    const noteIdx = sports.indexOf(g) > 0 ? sports.indexOf(g) - 1 : i;
+    const note = copy?.sportsOther?.[noteIdx] || copy?.sportsOther?.[i] || `${w.team} win, ${w.score}–${l.score}.`;
 
     return `    <div class="other-score-card">
       <div class="scoreboard scoreboard-sm">
@@ -1273,25 +1263,14 @@ function buildSports({ sports, copy, num }) {
     </div>`;
   }).join('\n');
 
-  const productCard = `
-    <div class="product-card">
-      <div class="product-img">
-        ${product.imageUrl ? `<img src="${esc(product.imageUrl)}" alt="${esc(product.name)}" loading="lazy">` : `<div class="product-img-ph">${esc(product.brand)}</div>`}
-      </div>
-      <div class="product-info">
-        <div class="product-brand">${esc(product.brand)}</div>
-        <div class="product-name">${esc(product.name)}</div>
-        <p class="product-desc">${product.desc}</p>
-        <span class="product-price">${esc(product.price)}</span>
-        <a href="${esc(product.url)}" target="_blank" rel="noopener" class="product-link">${esc(product.cta)} →</a>
-      </div>
-    </div>`;
+  const scoresSection = otherGames.length
+    ? `    <div class="other-scores-label">Other scores worth knowing</div>\n${scoreRows}`
+    : '';
 
   return `  <section class="brief-section" id="sports">
     <div class="section-label sl-sports">Sports</div>
-    <div class="other-scores-label">Other scores worth knowing</div>
-${scoreRows}
-${productCard}
+${scoresSection}
+${watchNextCard}
   </section>`;
 }
 
@@ -1307,34 +1286,28 @@ function buildMarkets({ markets, copy, date }) {
   const whyBullet2 = md.whyBullet2 || '';
   const bringUp    = md.bringUp    || '';
 
-  // Build ticker table rows
-  const rows = BRIEF_ROWS.map(sym => {
+  // BRIEF_ROWS = [{type:'ticker',key:'SPY'}, {type:'divider'}, ...]
+  const rows = BRIEF_ROWS.map(row => {
+    if (row.type === 'divider') return `        <div class="mkt-div"></div>`;
+    const sym = row.key;
     const cfg = TICKERS[sym];
     const q   = markets[sym];
-    const price  = q?.price       ? fmtPrice(sym, q.price)       : '—';
-    const dayPct = q?.dayChangePct !== undefined ? fmtPct(q.dayChangePct) : '—';
-    const dayDir = q?.dayChangePct !== undefined ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
-    const wkPct  = q?.weekChangePct !== null && q?.weekChangePct !== undefined ? fmtPct(q.weekChangePct) : '—';
-    const wkDir  = q?.weekChangePct !== null && q?.weekChangePct !== undefined ? (q.weekChangePct >= 0 ? 'up' : 'dn') : '';
-    const nameHtml = cfg?.ms
+    if (!cfg || !q) return '';
+    const price  = q.price !== undefined ? fmtPrice(sym, q.price) : '—';
+    const dayPct = q.dayChangePct !== null && q.dayChangePct !== undefined ? fmtPct(q.dayChangePct) : '—';
+    const dayDir = q.dayChangePct !== null && q.dayChangePct !== undefined ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
+    const wkPct  = q.weekChangePct !== null && q.weekChangePct !== undefined ? fmtPct(q.weekChangePct) : '—';
+    const wkDir  = q.weekChangePct !== null && q.weekChangePct !== undefined ? (q.weekChangePct >= 0 ? 'up' : 'dn') : '';
+    const nameHtml = cfg.ms
       ? `<a href="https://www.morningstar.com/${cfg.ms}" class="ticker">${esc(cfg.display)}</a>`
-      : esc(cfg?.display || sym);
+      : esc(cfg.display || sym);
     return `        <div class="mkt-row">
           <div class="m-name">${nameHtml}</div>
           <div class="m-val">${esc(price)}</div>
           <div class="m-day">${dayDir ? `<span class="pct-badge ${dayDir}">${esc(dayPct)}</span>` : '—'}</div>
           <div class="m-wk ${wkDir}">${esc(wkPct)}</div>
         </div>`;
-  }).join('\n');
-
-  // Find divider points from BRIEF_ROWS
-  const divPositions = [];
-  let prevGroup = null;
-  BRIEF_ROWS.forEach((sym, i) => {
-    const group = TICKERS[sym]?.group || sym;
-    if (prevGroup && group !== prevGroup) divPositions.push(i);
-    prevGroup = group;
-  });
+  }).filter(Boolean).join('\n');
 
   return `  <section class="brief-section" id="markets">
     <div class="section-label sl-markets">Markets</div>
@@ -1471,20 +1444,17 @@ function buildCulture({ copy }) {
 
   const tagCls = { Celebrity: 'ctag-celebrity', Music: 'ctag-music', 'Sports Biz': 'ctag-sports', TV: 'ctag-sports', Tech: 'ctag-sports', Culture: 'ctag-sports', Streaming: 'ctag-streaming' };
 
-  const itemsHtml = items.map((item, i) => {
-    const tag = item.tag || 'Culture';
-    const num = i + 1;
+  const itemsHtml = items.map(item => {
+    const tag  = item.tag || 'Culture';
+    const head = item.topic || item.head || '';
     return `      <li class="culture-item">
         <div class="culture-item-top">
-          <span class="culture-num">${num}.</span>
           <span class="culture-tag ${tagCls[tag] || 'ctag-sports'}">${esc(tag)}</span>
         </div>
-        <div class="culture-head">${esc(item.topic || item.head)}</div>
-        <ul class="culture-quick-list">
-          ${item.whatHappened  ? `<li><span class="dl-label">What happened:</span> ${esc(item.whatHappened)}</li>`  : ''}
-          ${item.whyItMatters  ? `<li><span class="dl-label">Why it matters:</span> ${esc(item.whyItMatters)}</li>` : ''}
-          ${item.whatToSay     ? `<li><span class="dl-label">What to say:</span> ${esc(item.whatToSay)}</li>`       : ''}
-        </ul>
+        <div class="culture-head">${esc(head)}</div>
+        ${item.whatHappened ? `<p class="culture-line"><strong>What happened:</strong> ${esc(item.whatHappened)}</p>` : ''}
+        ${item.whyItMatters ? `<p class="culture-line"><strong>Why it matters:</strong> ${esc(item.whyItMatters)}</p>` : ''}
+        ${item.whatToSay    ? `<p class="culture-line"><strong>What to say:</strong> ${esc(item.whatToSay)}</p>`       : ''}
       </li>`;
   }).join('\n');
 

@@ -173,8 +173,16 @@ Context: ${ctx}`,
       `Today's GuyTalk context: ${ctx}
 Trending: ${trendText || 'none'}
 
+CATEGORY RULES (strictly enforced):
+- "sports": baseball, basketball, NHL, NFL trades/news — NOT culture, NOT gaming
+- "markets": stocks, rates, crypto, economy ONLY
+- "golf": golf tournaments ONLY
+- "f1": Formula 1 ONLY
+- "worldcup": FIFA World Cup ONLY (do not put culture content here)
+- "culture": movies, TV, music, gaming, celebrity, tech trends, streaming
+
 Return ONLY valid JSON on one line — no markdown, no code fences:
-{"keyTakeaway":"2-3 sentences. The big picture of today — connect sports, markets, and culture into one read. This is the 20-second version of the entire brief. Give the narrative, not a list.","sports":"Editorial tagline for sports. Under 12 words. Punchy. Not a score.","markets":"Tagline for markets. Under 10 words. Must include a number or trend.","golf":"Tagline for golf. Under 10 words.","f1":"Tagline for F1. Under 10 words.","culture":"Tagline for culture. Under 10 words."}`,
+{"keyTakeaway":"2-3 sentences max. Big picture across sports, markets, culture. 20-second summary. No hype.","sports":"Tagline for sports section. Under 12 words.","markets":"Tagline for markets. Under 10 words. Include a number.","golf":"Tagline for golf. Under 10 words.","f1":"Tagline for F1. Under 10 words.","worldcup":"Tagline for World Cup (countdown, teams, venues). Under 10 words.","culture":"Tagline for culture/entertainment. Under 10 words. Must be about entertainment/gaming/TV/music — NOT sports scores."}`,
       350
     ),
 
@@ -187,21 +195,28 @@ ${upcomingText ? `Upcoming: ${upcomingText}` : ''}
 ${f1Text ? f1Text : ''}
 ${golfText ? golfText : ''}
 
+Games are listed 0-indexed: ${(sports || []).map((g, i) => {
+  const w = g.home.winner ? g.home : g.away;
+  return `[${i}] ${g.note || g.name}: ${w.team} wins`;
+}).join(' | ')}
+
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words. The angle, not the score.","whatHappened":"1-2 sentences. Plain language. Most interesting angle first — not the scoreline.","whyBullet1":"One sentence. The main reason this matters today.","whyBullet2":"One sentence. A different angle — consequence, context, or what happens next.","whatToSay":"One natural conversational line. Not labeled or announced — just the line. Example: If the Knicks drop Game 2, this stops being a series."}${repGuard}`,
+{"gameIndex":0,"headline":"Max 10 words. The angle, not the score.","whatHappened":"1-2 sentences. Plain language. Most interesting angle first.","whyBullet1":"One sentence. The main reason this matters today.","whyBullet2":"One sentence. A different angle.","whatToSay":"One natural conversational line."}
+
+gameIndex must be the index number (0, 1, 2...) of the game your headline and copy are about. If headline is about game at index 1, set gameIndex:1.${repGuard}`,
       400
     ),
 
-    // 4. Other sports — one sharp sentence per extra game
-    extraGames.length
+    // 4. Other sports — one sharp sentence per extra game (all games except the lead)
+    sports?.length > 1
       ? ask(
           `GuyTalk voice. One short sentence per game below — the quickest sharp take. Max 15 words each. Separate with "|||". Plain prose.
-${extraGames.map(g => {
+${sports.map(g => {
   const w = g.home.winner ? g.home : g.away;
   const l = g.home.winner ? g.away : g.home;
   return `${g.note || g.name}: ${w.team} ${w.score}–${l.team} ${l.score}`;
 }).join('\n')}`,
-          150
+          200
         )
       : Promise.resolve(null),
 
@@ -259,12 +274,13 @@ Trending: ${trendText || 'Use knowledge of June 2026 current events.'}`,
       500
     ),
 
-    // 9. Final Sharp Take — 3-5 sentences, connects themes, closes the brief
+    // 9. Final Sharp Take — 80-100 words, 3-4 sentences
     ask(
-      `Write the Final Sharp Take for today's GuyTalk. 3-5 sentences max. Connect today's main themes. Give an actual opinion — this is the last thing said before leaving the room. Not a recap of every section. Make it punchy and specific.
-Plain prose only. No bullets. No labels. No filler.
+      `Write the Final Sharp Take for today's GuyTalk. Hard limit: 80-100 words. 3-4 sentences only.
+Connect today's main themes — one actual opinion. Do NOT recap every score or section. Sound confident and natural — the last thing you say before leaving the room.
+No forced lines like "something bigger shifts" unless backed by real data. No hype. No filler. Plain prose.
 Context: ${ctx}${repGuard}`,
-      180
+      150
     ),
 
     // 10. Today at a Glance — 5 specific bullets
@@ -290,11 +306,12 @@ Context: ${ctx}`,
     title:          clean(get(titleR)),
     keyTakeaway:    topModule?.keyTakeaway  || null,
     todaysHits: topModule ? {
-      sports:  topModule.sports  || '',
-      markets: topModule.markets || '',
-      golf:    topModule.golf    || '',
-      f1:      topModule.f1      || '',
-      culture: topModule.culture || '',
+      sports:   topModule.sports    || '',
+      markets:  topModule.markets   || '',
+      golf:     topModule.golf      || '',
+      f1:       topModule.f1        || '',
+      worldcup: topModule.worldcup  || '',
+      culture:  topModule.culture   || '',
     } : null,
     lead:           leadData,
     sportsOther:    get(sportsOtherR)?.split('|||').map(s => clean(s)).filter(Boolean) || [],
