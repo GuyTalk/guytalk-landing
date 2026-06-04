@@ -229,33 +229,24 @@ Context: ${ctx}`,
       80
     ),
 
-    // 2. Sports opening paragraph — covers NBA/F1/World Cup/Golf/all sports
+    // 2. Sports opening — ONE punchy sentence (shown above the bullet list)
     mainGame
       ? ask(
-          `Write 2–3 punchy sentences opening the Sports section. Plain prose only — no markdown, no headers, no labels.
-Goal: give the reader who watched the game the angle they felt but didn't quite articulate. Start with the result, but get to the meaning fast — the scoreline is the least interesting thing. End with what's coming up and why it matters.
-REAL GAME DATA:
-${gamesText}
-${mainGameLeaders ? `CONFIRMED player stats (ONLY use these — never invent others): ${mainGameLeaders}` : 'No individual stats available — describe team result only. Do not name any individual players or invent any stats.'}
-${golf?.leaders?.[0] ? `Golf: ${golf.leaders[0].name} ${golf.statusState === 'post' ? 'won' : 'leads'} ${golf.name} at ${golf.leaders[0].score}.` : ''}
-${f1Text ? `${f1Text}` : ''}
-${upcomingText ? upcomingText : ''}
-CRITICAL: Only name players whose stats appear in the CONFIRMED line above. Never invent stats.
-TONE: Give a concrete opinion. Never write "it remains to be seen" or "fans are watching." If the game revealed something about a team, say exactly what it revealed. Every sentence should either inform or give the reader something to say.
-WATCH-FOR CLOSE: End with one specific thing to watch in the next game or upcoming event that confirms or disproves the thesis you just stated. Name a specific player action, coaching decision, or matchup — not "watch how the team responds." Something falsifiable and observable. Example: "Watch whether Thibodeau switches to zone in the first quarter — he's never done it in a playoff series and if he does, it signals he's genuinely worried about Wembanyama's pick-and-roll angles."${repGuard ? `\n${repGuard}` : ''}`,
-          420
+          `Write exactly ONE sentence (max 30 words) opening the Sports section. Plain prose — no markdown, no labels.
+Give the sharpest angle on the main game: not the score, but what it revealed about one of the teams. Be specific. Be direct. One sentence.
+GAME DATA: ${gamesText.split('\n')[0]}
+${mainGameLeaders ? `Player stats (only use if naming players): ${mainGameLeaders}` : 'No player stats — describe the team, not individual players.'}
+${upcomingText ? `Upcoming: ${upcomingText}` : ''}${repGuard ? `\n${repGuard}` : ''}`,
+          80
         )
       : ask(
-          `Write 2–3 punchy sentences for the Sports section. No games last night — write a preview/context piece instead. Plain prose only, no markdown.
-Cover the 2–3 most compelling storylines from this data — something the reader can actually say at work today, not a schedule read-out:
+          `Write exactly ONE sentence (max 30 words) for the Sports section. No games last night — give the single sharpest preview or storyline from the data below. Plain prose — no markdown.
 ${f1Text ? `F1: ${f1Text}` : ''}
 ${upcomingText ? `NBA: ${upcomingText}` : ''}
 World Cup context: ${wcText}
-${golf?.leaders?.[0] ? `Golf: ${golf.leaders[0].name} ${golf.statusState === 'post' ? 'won' : 'leads'} ${golf.name} at ${golf.leaders[0].score}.` : ''}
-Trending: ${trendText || 'No data.'}
-Name real athletes. Be specific about what's upcoming and when. No invented results or future events described as if they happened. No fence-sitting — give opinions.
-End with one specific thing to watch for in the first game or event that proves whether the storyline you described is real.${repGuard ? `\n${repGuard}` : ''}`,
-          420
+${golf?.leaders?.[0] ? `Golf: ${golf.leaders[0].name} leads ${golf.name} at ${golf.leaders[0].score}.` : ''}
+Be specific. Name a real athlete or event. One sentence.${repGuard ? `\n${repGuard}` : ''}`,
+          80
         ),
 
     // 3. Markets opening paragraph
@@ -456,14 +447,14 @@ ${trendText ? `Top culture/trend stories: ${trendText.split('\n').slice(0, 3).jo
     // 12. Additional game notes (plain text, separated by |||)
     extraGames.length
       ? ask(
-          `GuyTalk voice. Write 2–3 sentence notes for each game below. Plain prose — no markdown. Separate game notes with "|||".
-Only use team names and scores provided. Do not invent player stats.
+          `GuyTalk voice. Write ONE sentence for each game below — the sharpest angle, not a recap. Separate games with "|||". Plain prose, no markdown.
+Only use team names and scores provided. Max 20 words per game.
 ${extraGames.map(g => {
   const w = g.home.winner ? g.home : g.away;
   const l = g.home.winner ? g.away : g.home;
   return `${g.note || g.name}: ${w.team} ${w.score}–${l.team} ${l.score}`;
 }).join('\n')}`,
-          300
+          150
         )
       : Promise.resolve(null),
 

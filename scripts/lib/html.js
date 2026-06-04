@@ -246,8 +246,6 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <article class="brief-article" id="briefArticle">
 
-${buildTldr(issue)}
-
 ${buildOfficeTake(issue)}
 
 ${buildSports(issue)}
@@ -272,7 +270,7 @@ ${buildRec(issue)}
 
 ${buildSharpTake(issue)}
 
-${buildNumbers(issue)}
+${buildTodayAtAGlance(issue)}
 
 </article>
 
@@ -374,7 +372,7 @@ function buildOfficeTake({ copy }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // TL;DR
 // ─────────────────────────────────────────────────────────────────────────────
-function buildTldr({ sports, markets, golf, f1, worldCup, upcoming, copy }) {
+function buildTldrItems({ sports, markets, golf, f1, worldCup, upcoming, copy }) {
   const items = [];
 
   (sports || []).slice(0, 2).forEach(g => {
@@ -460,9 +458,12 @@ function buildTldr({ sports, markets, golf, f1, worldCup, upcoming, copy }) {
     : 'Culture picks inside.';
   items.push({ tag: 'Culture', anchor: '#culture', html: cultureBullet });
 
-  // Tag color map
-  const tagClass = { 'Sports': 'tag-amber', 'Markets': 'tag-blue', 'F1': 'tag-green', 'World Cup': 'tag-green', 'Culture': 'tag-amber' };
+  return items;
+}
 
+function buildTldr(issue) {
+  const items = buildTldrItems(issue);
+  const { tagClass } = _tldrHelpers();
   return `  <div class="tldr">
     <div class="tldr-label">TL;DR — Five things to know</div>
     <ul class="tldr-list">
@@ -472,6 +473,26 @@ ${items.slice(0, 5).map(item => `      <li class="tldr-item">
       </li>`).join('\n')}
     </ul>
   </div>`;
+}
+
+function buildTodayAtAGlance(issue) {
+  const items = buildTldrItems(issue);
+  const { tagClass } = _tldrHelpers();
+  return `  <div class="tldr tldr-bottom">
+    <div class="tldr-label">Today at a Glance</div>
+    <ul class="tldr-list">
+${items.map(item => `      <li class="tldr-item">
+        <a href="${item.anchor}" class="tag-link"><span class="tag ${tagClass[item.tag] || 'tag-amber'}">${item.tag}</span></a>
+        <span>${item.html}</span>
+      </li>`).join('\n')}
+    </ul>
+  </div>`;
+}
+
+function _tldrHelpers() {
+  return {
+    tagClass: { 'Sports': 'tag-amber', 'Markets': 'tag-blue', 'F1': 'tag-green', 'World Cup': 'tag-green', 'Culture': 'tag-amber' },
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -542,24 +563,11 @@ ${productCard}
       </div>
     </div>`;
 
-    // Venue image for the home team (MLB/NBA only)
-    const venue = venueImage(g.home.abbrev, sport);
-    const venueHtml = venue
-      ? `    <div class="brief-img"><img src="${esc(venue.url)}" alt="${esc(venue.alt)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(venue.cap)}</div></div>`
-      : '';
-
-    // Highlights card
+    // Highlights links (inline in How to watch bullet, not a card)
     const meta = gameMetas?.[g.id];
     const recapUrl = meta?.recapUrl || espnRecapUrl(g.id, sport);
     const ytQuery = encodeURIComponent(`${g.away.team} vs ${g.home.team} highlights`);
     const ytUrl = `https://www.youtube.com/results?search_query=${ytQuery}`;
-    const highlightsCard = `    <div class="highlights-card">
-      <span class="hl-label">Best Moments</span>
-      <div class="hl-links">
-        <a href="${esc(recapUrl)}" target="_blank" rel="noopener" class="hl-btn">▶ Watch on ESPN</a>
-        <a href="${esc(ytUrl)}" target="_blank" rel="noopener" class="hl-btn hl-btn-yt">YouTube Highlights</a>
-      </div>
-    </div>`;
 
     if (i === 0) {
       const d = copy?.sportsDetail || {};
@@ -568,46 +576,33 @@ ${productCard}
       const howToWatch      = d.howToWatch      || 'Check ESPN for the next game schedule.';
       const groupChat       = d.groupChatAngle  || '';
       const barArgument     = d.barArgument     || '';
+      // First sentence only from sportsAngle
+      const firstSentence   = (copy?.sportsAngle || `${w.team} win.`).replace(/\n/g, ' ').split(/(?<=[.!?])\s+/)[0] || '';
 
       return `
     <h3>${esc(g.note || g.name)}</h3>
 
 ${scoreboard}
 
-${venueHtml}
-
-${highlightsCard}
-
-    ${renderParas(copy?.sportsAngle, `${w.team} win.`)}
+    <p>${esc(firstSentence)}</p>
 
     <ul class="detail-list">
       <li><span><span class="dl-label">Key number:</span> ${esc(keyNumber)}</span></li>
-      ${seriesSituation ? `<li><span><span class="dl-label">Series:</span> ${esc(seriesSituation)}</span></li>` : ''}
-      <li><span><span class="dl-label">How to watch:</span> ${esc(howToWatch)}</span></li>
-    </ul>
-
-    ${groupChat ? `<div class="angle-box">
-      <span class="angle-label">Group Chat Angle</span>
-      <p class="angle-text">${esc(groupChat)}</p>
-    </div>` : ''}
-
-    ${barArgument ? `<div class="angle-box angle-bar">
-      <span class="angle-label">Bar Argument</span>
-      <p class="angle-text">${esc(barArgument)}</p>
-    </div>` : ''}`;
+      ${seriesSituation ? `<li><span><span class="dl-label">What it means:</span> ${esc(seriesSituation)}</span></li>` : ''}
+      ${groupChat ? `<li><span><span class="dl-label">Group chat:</span> ${esc(groupChat)}</span></li>` : ''}
+      ${barArgument ? `<li><span><span class="dl-label">Bar argument:</span> ${esc(barArgument)}</span></li>` : ''}
+      <li><span><span class="dl-label">How to watch:</span> ${esc(howToWatch)} · <a href="${esc(recapUrl)}" target="_blank" rel="noopener">ESPN recap</a> · <a href="${esc(ytUrl)}" target="_blank" rel="noopener">Highlights</a></span></li>
+    </ul>`;
     }
 
     const extraNote = copy?.sportsAdditional?.[i - 1] || `${w.team} win, ${w.score}–${l.score}.`;
+    const extraSentence = extraNote.replace(/\n/g, ' ').split(/(?<=[.!?])\s+/)[0] || extraNote;
     return `
     <h3>${esc(g.note || g.name)}</h3>
 
 ${scoreboard}
 
-${venueHtml}
-
-${highlightsCard}
-
-    ${renderParas(extraNote, '')}`;
+    <p>${esc(extraSentence)}</p>`;
   });
 
   return `  <section class="brief-section" id="sports">
@@ -709,8 +704,6 @@ function buildMarkets({ markets, copy, date }) {
     <h3>${esc(headline)}</h3>
 
     ${renderParas(openingPara, 'Market data below.')}
-
-    ${renderParas(secondPara, '')}
 
     <div class="mkt-table">
       <div class="mkt-table-hd">

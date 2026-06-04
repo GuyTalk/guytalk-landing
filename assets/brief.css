@@ -139,6 +139,8 @@ em { font-style: italic; }
 .tldr-item:first-child { border-top: 0; padding-top: 0; }
 .tldr-item a { color: var(--text-2); border-bottom: 0; }
 .tldr-item a:hover { color: var(--accent); }
+.tldr-bottom { margin-top: 56px; margin-bottom: 0; }
+.tldr-bottom .tldr-label { color: var(--text-3); }
 
 /* ---- Tag chips ---- */
 .tag {
@@ -159,21 +161,22 @@ em { font-style: italic; }
 /* ================================================================
    SECTIONS
    ================================================================ */
-.brief-section { margin-top: 56px; }
+.brief-section { margin-top: 72px; }
 .section-label {
+  display: block;
   font-family: 'Inter Tight', sans-serif; font-weight: 800;
-  font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--amber); margin-bottom: 22px;
-  padding-bottom: 14px; border-bottom: 2px solid var(--border);
+  font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 28px;
+  padding-bottom: 16px; border-bottom: 2px solid var(--border);
 }
-.section-label.sl-sports  { color: var(--sports); border-color: rgba(22,163,74,0.25); }
-.section-label.sl-markets { color: var(--accent);  border-color: rgba(43,111,255,0.25); }
-.section-label.sl-culture { color: var(--culture); border-color: rgba(194,65,12,0.25); }
-.section-label.sl-golf    { color: var(--amber);   border-color: rgba(184,124,53,0.25); }
+.section-label.sl-sports  { color: var(--sports); border-color: rgba(22,163,74,0.45); }
+.section-label.sl-markets { color: var(--accent);  border-color: rgba(43,111,255,0.45); }
+.section-label.sl-culture { color: var(--culture); border-color: rgba(194,65,12,0.45); }
+.section-label.sl-golf    { color: var(--amber);   border-color: rgba(184,124,53,0.45); }
 .brief-section h3 {
   font-family: 'Inter Tight', sans-serif; font-weight: 700;
-  font-size: 23px; line-height: 1.2; letter-spacing: -0.02em;
-  color: var(--text); margin: 32px 0 12px;
+  font-size: 26px; line-height: 1.2; letter-spacing: -0.02em;
+  color: var(--text); margin: 36px 0 14px;
 }
 .brief-section h3:first-of-type { margin-top: 0; }
 
@@ -795,13 +798,13 @@ em { font-style: italic; }
   body { font-size: 16px; }
   .brief-title { font-size: 28px; line-height: 1.1; }
   .brief-deck { font-size: 16px; }
-  .brief-section h3 { font-size: 20px; margin: 24px 0 10px; }
+  .brief-section h3 { font-size: 22px; margin: 28px 0 12px; }
   .brief-article { padding: 28px 16px 60px; }
   .brief-nav-inner { padding: 12px 16px; }
   .brief-nav-issue { display: none; }
   .brief-cta { font-size: 12px; padding: 6px 12px; }
   .brief-meta { gap: 10px; font-size: 12px; margin-bottom: 28px; }
-  .brief-section { margin-top: 40px; }
+  .brief-section { margin-top: 52px; }
   .section-jump { gap: 6px; margin-bottom: 28px; }
   .sj-link { font-size: 11px; padding: 5px 10px; }
   .tldr { padding: 16px 16px; margin-bottom: 36px; }
