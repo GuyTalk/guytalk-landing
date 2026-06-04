@@ -118,6 +118,86 @@ em { font-style: italic; }
 .brief-meta .sep { color: var(--border-light); }
 
 /* ================================================================
+   TOP MODULE — TODAY'S HITS + KEY TAKEAWAY
+   ================================================================ */
+.top-module {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 22px 24px; margin-bottom: 48px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.top-module-label {
+  font-family: 'Inter Tight', sans-serif; font-weight: 800;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
+}
+.hits-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+.hit-item {
+  display: flex; align-items: flex-start; gap: 12px; padding: 9px 0;
+  border-top: 1px solid var(--border); text-decoration: none;
+  color: var(--text-2); font-size: 15px; line-height: 1.45;
+  transition: color 0.12s;
+}
+.hit-item:first-child { border-top: 0; padding-top: 0; }
+.hit-item:hover { color: var(--text); }
+.hit-tag {
+  flex-shrink: 0; font-family: 'JetBrains Mono', monospace;
+  font-weight: 600; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border);
+  background: var(--surface-2, #f4f3f0); color: var(--text-3); min-width: 54px; text-align: center;
+}
+.hit-sports .hit-tag  { color: var(--sports);  border-color: rgba(22,163,74,0.3); background: rgba(22,163,74,0.05); }
+.hit-markets .hit-tag { color: var(--accent);   border-color: rgba(43,111,255,0.3); background: rgba(43,111,255,0.05); }
+.hit-golf .hit-tag    { color: var(--amber);    border-color: rgba(184,124,53,0.3); background: rgba(184,124,53,0.05); }
+.hit-f1 .hit-tag      { color: var(--sports);   border-color: rgba(22,163,74,0.3); background: rgba(22,163,74,0.05); }
+.hit-culture .hit-tag { color: var(--culture);  border-color: rgba(194,65,12,0.3); background: rgba(194,65,12,0.05); }
+.hit-text { flex: 1; }
+.key-takeaway { border-top: 1px solid var(--border); padding-top: 16px; }
+.kt-label {
+  font-family: 'Inter Tight', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 8px;
+}
+.kt-text { font-size: 15px; line-height: 1.55; color: var(--text); margin: 0; }
+
+/* Other scores */
+.other-scores-label {
+  font-family: 'Inter Tight', sans-serif; font-weight: 700;
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 16px;
+}
+.other-score-card { margin-bottom: 20px; }
+.other-score-note { font-size: 14px; color: var(--text-2); margin: 8px 0 0; line-height: 1.45; }
+.scoreboard-sm .score-num { font-size: 24px !important; }
+.scoreboard-sm .score-team { font-size: 13px !important; }
+.scoreboard-sm .score-logo { width: 28px !important; height: 28px !important; }
+
+/* Markets mood line */
+.markets-mood { font-size: 16px; font-weight: 500; color: var(--text); margin: 0 0 24px; line-height: 1.5; }
+
+/* Golf leaderboard line */
+.leaderboard-line { font-size: 14px; color: var(--text-2); margin: -4px 0 20px; }
+
+/* Culture quick list */
+.culture-quick-list {
+  list-style: none; margin: 8px 0 0; padding: 0;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.culture-quick-list li { font-size: 14.5px; color: var(--text-2); line-height: 1.45; }
+.culture-num {
+  font-family: 'Inter Tight', sans-serif; font-weight: 800;
+  font-size: 13px; color: var(--text-3); margin-right: 4px;
+}
+
+/* Today at a Glance — labeled bullets */
+.tldr-glance-item { align-items: flex-start; gap: 12px; }
+.glance-label {
+  flex-shrink: 0; min-width: 88px;
+  font-family: 'Inter Tight', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3); padding-top: 3px;
+}
+
+/* ================================================================
    TL;DR CARD
    ================================================================ */
 .tldr {

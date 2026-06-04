@@ -50,12 +50,10 @@ function loadPreviousBriefs(n = 3) {
       const d = JSON.parse(fs.readFileSync(path.join(dataDir, f), 'utf8'));
       return {
         slug:                d.slug || f.replace('.json', ''),
-        sharpTakeCloser:     d.copy?.sharpTake?.p2?.split(/[.!?]/).filter(Boolean).pop()?.trim() || '',
-        sportsThesis:        (d.copy?.sportsAngle || '').slice(0, 120),
-        barArgument:         d.copy?.sportsDetail?.barArgument || '',
-        officeTake:          d.copy?.officeTake || '',
-        marketsBringUp:      d.copy?.marketsDetail?.bringUp || '',
-        marketsBringUpFormat: d.copy?.marketsBringUpFormat || '',
+        sportsThesis:   (d.copy?.lead?.whatHappened || d.copy?.lead?.headline || '').slice(0, 120),
+        lead:           (d.copy?.lead?.headline || '').slice(0, 120),
+        bringUp:        d.copy?.markets?.bringUp || '',
+        marketsBringUp: d.copy?.markets?.bringUp || '',
       };
     } catch (_) { return null; }
   }).filter(Boolean);
@@ -246,10 +244,10 @@ async function main() {
     const streamingPick = STREAMING_PICKS[issueNum % STREAMING_PICKS.length];
     copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, gameMetas, prev3, streamingPick });
     if (copy) {
-      if (copy.title)        console.log(`   ✓ Headline: "${copy.title}"`);
-      if (copy.sportsAngle)  console.log(`   ✓ Sports angle`);
-      if (copy.marketsTake)  console.log(`   ✓ Markets take`);
-      if (copy.sharpTake)    console.log(`   ✓ Sharp take`);
+      if (copy.title)          console.log(`   ✓ Headline: "${copy.title}"`);
+      if (copy.lead)           console.log(`   ✓ Sports angle`);
+      if (copy.markets?.mood)  console.log(`   ✓ Markets take`);
+      if (copy.finalSharpTake) console.log(`   ✓ Sharp take`);
     } else {
       console.log(`   ⚠  Skipped — add ANTHROPIC_API_KEY to .env.local`);
     }

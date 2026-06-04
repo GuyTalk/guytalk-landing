@@ -236,17 +236,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
+      <a href="#the-lead" class="sj-link">Lead</a>
       <a href="#sports" class="sj-link">Sports</a>
       <a href="#markets" class="sj-link">Markets</a>${hasGolf ? `\n      <a href="#golf" class="sj-link">Golf</a>` : ''}${hasF1 ? `\n      <a href="#f1" class="sj-link">F1</a>` : ''}${hasWC ? `\n      <a href="#worldcup" class="sj-link">World Cup</a>` : ''}
       <a href="#culture" class="sj-link">Culture</a>
-      <a href="#sharp-take" class="sj-link">Take</a>
+      <a href="#sharp-take" class="sj-link">Sharp Take</a>
     </nav>
   </div>
 </div>
 
 <article class="brief-article" id="briefArticle">
 
-${buildOfficeTake(issue)}
+${buildTopModule(issue)}
+
+${buildLead(issue)}
 
 ${buildSports(issue)}
 
@@ -260,15 +263,17 @@ ${buildSports(issue)}
 
 ${buildMarkets(issue)}
 
-${hasF1 ? buildF1Block(issue) : ''}
+${hasGolf ? buildGolf(issue) : ''}
 
-${hasWC ? buildWorldCupBlock(issue) : ''}
+${hasF1 ? buildF1(issue) : ''}
+
+${hasWC ? buildWorldCup(issue) : ''}
 
 ${buildCulture(issue)}
 
 ${buildRec(issue)}
 
-${buildSharpTake(issue)}
+${buildFinalSharpTake(issue)}
 
 ${buildTodayAtAGlance(issue)}
 
@@ -1101,6 +1106,452 @@ function buildWorldCupBlock({ worldCup }) {
       ${matchRows}
     </ul>
   </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TOP MODULE — TODAY'S HITS + KEY TAKEAWAY
+// ─────────────────────────────────────────────────────────────────────────────
+function buildTopModule({ copy, golf, f1, worldCup, markets, sports, upcoming }) {
+  const hits = copy?.todaysHits;
+  const keyTakeaway = copy?.keyTakeaway;
+
+  const hasF1   = !!f1?.name;
+  const hasGolf = !!golf?.name;
+  const hasWC   = !!worldCup?.length;
+
+  const hitItems = [
+    hits?.sports   ? { tag: 'Sports',   anchor: '#the-lead', text: hits.sports,   cls: 'hit-sports'   } : null,
+    hits?.markets  ? { tag: 'Markets',  anchor: '#markets',  text: hits.markets,  cls: 'hit-markets'  } : null,
+    hasGolf && hits?.golf ? { tag: 'Golf', anchor: '#golf', text: hits.golf, cls: 'hit-golf' } : null,
+    hasF1  && hits?.f1   ? { tag: 'F1',   anchor: '#f1',    text: hits.f1,   cls: 'hit-f1'   } : null,
+    hasWC  && hits?.culture ? { tag: 'World Cup', anchor: '#worldcup', text: hits.culture, cls: 'hit-culture' } : null,
+    hits?.culture  ? { tag: 'Culture',  anchor: '#culture',  text: hits.culture,  cls: 'hit-culture'  } : null,
+  ].filter(Boolean).slice(0, 5);
+
+  if (!hitItems.length && !keyTakeaway) return '';
+
+  const hitsHtml = hitItems.length ? `
+  <div class="hits-list">
+${hitItems.map(h => `    <a href="${h.anchor}" class="hit-item ${h.cls}">
+      <span class="hit-tag">${esc(h.tag)}</span>
+      <span class="hit-text">${esc(h.text)}</span>
+    </a>`).join('\n')}
+  </div>` : '';
+
+  const takeawayHtml = keyTakeaway ? `
+  <div class="key-takeaway">
+    <div class="kt-label">Key Takeaway</div>
+    <p class="kt-text">${esc(keyTakeaway)}</p>
+  </div>` : '';
+
+  return `  <div class="top-module">
+    <div class="top-module-label">Today's Hits</div>${hitsHtml}${takeawayHtml}
+  </div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// THE LEAD
+// ─────────────────────────────────────────────────────────────────────────────
+function buildLead({ sports, upcoming, copy }) {
+  const lead = copy?.lead;
+
+  // Scoreboard for the main game (if available)
+  const mainGame = sports?.[0];
+  let scoreboardHtml = '';
+  if (mainGame) {
+    const w = mainGame.home.winner ? mainGame.home : mainGame.away;
+    const l = mainGame.home.winner ? mainGame.away : mainGame.home;
+    const sport = mainGame.sport?.toLowerCase() || 'nba';
+    const homeLogo = espnLogo(mainGame.home.abbrev, sport);
+    const awayLogo = espnLogo(mainGame.away.abbrev, sport);
+    const homeLoser = !mainGame.home.winner;
+    const awayLoser = !mainGame.away.winner;
+    const metaText = mainGame.note ? `${mainGame.note} · ${mainGame.status}` : mainGame.status;
+    scoreboardHtml = `
+    <div class="scoreboard">
+      <div class="score-side">
+        ${homeLogo ? `<img src="${esc(homeLogo)}" class="score-logo${homeLoser ? ' loser' : ''}" alt="${esc(mainGame.home.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+        <div class="score-team${homeLoser ? ' loser' : ''}">${esc(mainGame.home.team)}</div>
+        <div class="score-num${homeLoser ? ' loser' : ''}">${esc(mainGame.home.score)}</div>
+      </div>
+      <div class="score-center">
+        <div class="score-meta">${esc(metaText)}</div>
+        <div class="score-badge">${esc(w.abbrev || w.team.split(' ').pop())} Win</div>
+      </div>
+      <div class="score-side right">
+        <div class="score-team${awayLoser ? ' loser' : ''}">${esc(mainGame.away.team)}</div>
+        <div class="score-num${awayLoser ? ' loser' : ''}">${esc(mainGame.away.score)}</div>
+        ${awayLogo ? `<img src="${esc(awayLogo)}" class="score-logo${awayLoser ? ' loser' : ''}" alt="${esc(mainGame.away.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+      </div>
+    </div>`;
+  }
+
+  // Upcoming game card if no result
+  const upcomingCard = (!mainGame && upcoming?.length) ? buildUpcomingGameCard(upcoming[0]) : '';
+  // Also show upcoming if there's a finals/playoff game today
+  const finalsCard = (mainGame && upcoming?.length && upcoming[0].note) ? buildUpcomingGameCard(upcoming[0]) : '';
+
+  const headline = lead?.headline || (mainGame
+    ? (() => { const w = mainGame.home.winner ? mainGame.home : mainGame.away; const l = mainGame.home.winner ? mainGame.away : mainGame.home; return `${w.team} ${w.score}–${l.score} ${l.team}`; })()
+    : 'Today in sports');
+
+  const whatHappened  = lead?.whatHappened  || '';
+  const whyBullet1    = lead?.whyBullet1    || '';
+  const whyBullet2    = lead?.whyBullet2    || '';
+  const whatToSay     = lead?.whatToSay     || '';
+
+  return `  <section class="brief-section" id="the-lead">
+    <div class="section-label sl-sports">The Lead</div>
+    <h3>${esc(headline)}</h3>
+${scoreboardHtml}
+${upcomingCard}
+${finalsCard}
+${whatHappened ? `    <p>${esc(whatHappened)}</p>` : ''}
+    <ul class="detail-list">
+      ${whyBullet1 ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyBullet1)}</span></li>` : ''}
+      ${whyBullet2 ? `<li><span><span class="dl-label">The other angle:</span> ${esc(whyBullet2)}</span></li>` : ''}
+      ${whatToSay  ? `<li><span><span class="dl-label">What to say:</span> ${esc(whatToSay)}</span></li>`  : ''}
+    </ul>
+  </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPORTS — other games + golf product card
+// ─────────────────────────────────────────────────────────────────────────────
+function buildSports({ sports, copy, num }) {
+  const extraGames = sports?.slice(1) || [];
+  const product = PRODUCTS[num % PRODUCTS.length];
+
+  if (!extraGames.length) {
+    // No other scores — show product card only
+    return `  <section class="brief-section" id="sports">
+    <div class="section-label sl-sports">Sports</div>
+    <div class="product-card">
+      <div class="product-img">
+        ${product.imageUrl ? `<img src="${esc(product.imageUrl)}" alt="${esc(product.name)}" loading="lazy">` : `<div class="product-img-ph">${esc(product.brand)}</div>`}
+      </div>
+      <div class="product-info">
+        <div class="product-brand">${esc(product.brand)}</div>
+        <div class="product-name">${esc(product.name)}</div>
+        <p class="product-desc">${product.desc}</p>
+        <span class="product-price">${esc(product.price)}</span>
+        <a href="${esc(product.url)}" target="_blank" rel="noopener" class="product-link">${esc(product.cta)} →</a>
+      </div>
+    </div>
+  </section>`;
+  }
+
+  const scoreRows = extraGames.map((g, i) => {
+    const w = g.home.winner ? g.home : g.away;
+    const l = g.home.winner ? g.away : g.home;
+    const sport = g.sport?.toLowerCase() || 'nba';
+    const homeLogo = espnLogo(g.home.abbrev, sport);
+    const awayLogo = espnLogo(g.away.abbrev, sport);
+    const homeLoser = !g.home.winner;
+    const awayLoser = !g.away.winner;
+    const metaText = g.note ? `${g.note} · ${g.status}` : g.status;
+    const note = copy?.sportsOther?.[i] || `${w.team} handle the ${l.team}.`;
+
+    return `    <div class="other-score-card">
+      <div class="scoreboard scoreboard-sm">
+        <div class="score-side">
+          ${homeLogo ? `<img src="${esc(homeLogo)}" class="score-logo${homeLoser ? ' loser' : ''}" alt="${esc(g.home.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+          <div class="score-team${homeLoser ? ' loser' : ''}">${esc(g.home.team)}</div>
+          <div class="score-num${homeLoser ? ' loser' : ''}">${esc(g.home.score)}</div>
+        </div>
+        <div class="score-center">
+          <div class="score-meta">${esc(metaText)}</div>
+          <div class="score-badge">${esc(w.abbrev || w.team.split(' ').pop())} Win</div>
+        </div>
+        <div class="score-side right">
+          <div class="score-team${awayLoser ? ' loser' : ''}">${esc(g.away.team)}</div>
+          <div class="score-num${awayLoser ? ' loser' : ''}">${esc(g.away.score)}</div>
+          ${awayLogo ? `<img src="${esc(awayLogo)}" class="score-logo${awayLoser ? ' loser' : ''}" alt="${esc(g.away.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+        </div>
+      </div>
+      <p class="other-score-note">${esc(note)}</p>
+    </div>`;
+  }).join('\n');
+
+  const productCard = `
+    <div class="product-card">
+      <div class="product-img">
+        ${product.imageUrl ? `<img src="${esc(product.imageUrl)}" alt="${esc(product.name)}" loading="lazy">` : `<div class="product-img-ph">${esc(product.brand)}</div>`}
+      </div>
+      <div class="product-info">
+        <div class="product-brand">${esc(product.brand)}</div>
+        <div class="product-name">${esc(product.name)}</div>
+        <p class="product-desc">${product.desc}</p>
+        <span class="product-price">${esc(product.price)}</span>
+        <a href="${esc(product.url)}" target="_blank" rel="noopener" class="product-link">${esc(product.cta)} →</a>
+      </div>
+    </div>`;
+
+  return `  <section class="brief-section" id="sports">
+    <div class="section-label sl-sports">Sports</div>
+    <div class="other-scores-label">Other scores worth knowing</div>
+${scoreRows}
+${productCard}
+  </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MARKETS — restructured
+// ─────────────────────────────────────────────────────────────────────────────
+function buildMarkets({ markets, copy, date }) {
+  if (!markets) return '';
+
+  const md = copy?.markets || {};
+  const mood       = md.mood       || '';
+  const whyBullet1 = md.whyBullet1 || '';
+  const whyBullet2 = md.whyBullet2 || '';
+  const bringUp    = md.bringUp    || '';
+
+  // Build ticker table rows
+  const rows = BRIEF_ROWS.map(sym => {
+    const cfg = TICKERS[sym];
+    const q   = markets[sym];
+    const price  = q?.price       ? fmtPrice(sym, q.price)       : '—';
+    const dayPct = q?.dayChangePct !== undefined ? fmtPct(q.dayChangePct) : '—';
+    const dayDir = q?.dayChangePct !== undefined ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
+    const wkPct  = q?.weekChangePct !== null && q?.weekChangePct !== undefined ? fmtPct(q.weekChangePct) : '—';
+    const wkDir  = q?.weekChangePct !== null && q?.weekChangePct !== undefined ? (q.weekChangePct >= 0 ? 'up' : 'dn') : '';
+    const nameHtml = cfg?.ms
+      ? `<a href="https://www.morningstar.com/${cfg.ms}" class="ticker">${esc(cfg.display)}</a>`
+      : esc(cfg?.display || sym);
+    return `        <div class="mkt-row">
+          <div class="m-name">${nameHtml}</div>
+          <div class="m-val">${esc(price)}</div>
+          <div class="m-day">${dayDir ? `<span class="pct-badge ${dayDir}">${esc(dayPct)}</span>` : '—'}</div>
+          <div class="m-wk ${wkDir}">${esc(wkPct)}</div>
+        </div>`;
+  }).join('\n');
+
+  // Find divider points from BRIEF_ROWS
+  const divPositions = [];
+  let prevGroup = null;
+  BRIEF_ROWS.forEach((sym, i) => {
+    const group = TICKERS[sym]?.group || sym;
+    if (prevGroup && group !== prevGroup) divPositions.push(i);
+    prevGroup = group;
+  });
+
+  return `  <section class="brief-section" id="markets">
+    <div class="section-label sl-markets">Markets</div>
+    ${mood ? `<p class="markets-mood">${esc(mood)}</p>` : ''}
+
+    <div class="mkt-table">
+      <div class="mkt-table-hd">
+        <div class="mkt-table-title">Daily Close</div>
+        <div class="mkt-table-sub">${esc(date)}</div>
+      </div>
+      <div class="mkt-table-body">
+        <div class="mkt-cols">
+          <div class="th">Asset</div>
+          <div class="th">Price</div>
+          <div class="th">Day</div>
+          <div class="th">Week</div>
+        </div>
+${rows}
+      </div>
+    </div>
+
+    <ul class="detail-list">
+      ${whyBullet1 ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyBullet1)}</span></li>` : ''}
+      ${whyBullet2 ? `<li><span><span class="dl-label">Watch for:</span> ${esc(whyBullet2)}</span></li>` : ''}
+      ${bringUp    ? `<li><span><span class="dl-label">What to bring up:</span> ${esc(bringUp)}</span></li>` : ''}
+    </ul>
+  </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GOLF — tight section
+// ─────────────────────────────────────────────────────────────────────────────
+function buildGolf({ golf, copy }) {
+  if (!golf?.name) return '';
+  const gd = copy?.golf || {};
+  const headline  = gd.headline  || capFirst(golf.name);
+  const whyCare1  = gd.whyCare1  || '';
+  const whyCare2  = gd.whyCare2  || '';
+  const watchFor  = gd.watchFor  || '';
+  const whatToSay = gd.whatToSay || '';
+
+  const leaderLine = golf.leaders?.length
+    ? golf.leaders.slice(0, 3).map(l => `${playerLink(l.name)} ${esc(l.score)}`).join(', ')
+    : '';
+
+  return `  <section class="brief-section" id="golf">
+    <div class="section-label sl-golf">Golf</div>
+    <h3>${esc(headline)}</h3>
+    ${leaderLine ? `<p class="leaderboard-line">${leaderLine}</p>` : ''}
+    <ul class="detail-list">
+      ${whyCare1  ? `<li><span><span class="dl-label">Why you should care:</span> ${esc(whyCare1)}</span></li>`  : ''}
+      ${whyCare2  ? `<li><span><span class="dl-label">Course angle:</span> ${esc(whyCare2)}</span></li>`         : ''}
+      ${watchFor  ? `<li><span><span class="dl-label">Watch for:</span> ${esc(watchFor)}</span></li>`            : ''}
+      ${whatToSay ? `<li><span><span class="dl-label">What to say:</span> ${esc(whatToSay)}</span></li>`          : ''}
+    </ul>
+  </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// F1 — tight section
+// ─────────────────────────────────────────────────────────────────────────────
+function buildF1({ f1, copy }) {
+  if (!f1?.name) return '';
+  const fd = copy?.f1 || {};
+  const headline  = fd.headline  || esc(f1.shortName || f1.name);
+  const whyCare1  = fd.whyCare1  || '';
+  const whyCare2  = fd.whyCare2  || '';
+  const watchFor  = fd.watchFor  || '';
+  const whatToSay = fd.whatToSay || '';
+
+  const circuitImg = f1CircuitImage(f1.name);
+  const imgHtml = circuitImg
+    ? `    <div class="brief-img"><img src="${esc(circuitImg.urls[0])}" alt="${esc(circuitImg.cap)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(circuitImg.cap)}</div></div>`
+    : '';
+
+  return `  <section class="brief-section" id="f1">
+    <div class="section-label sl-sports">Formula 1</div>
+${imgHtml}
+    <h3>${esc(headline)}</h3>
+    <ul class="detail-list">
+      ${whyCare1  ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyCare1)}</span></li>`  : ''}
+      ${whyCare2  ? `<li><span><span class="dl-label">Championship:</span> ${esc(whyCare2)}</span></li>`   : ''}
+      ${watchFor  ? `<li><span><span class="dl-label">Watch for:</span> ${esc(watchFor)}</span></li>`       : ''}
+      ${whatToSay ? `<li><span><span class="dl-label">What to say:</span> ${esc(whatToSay)}</span></li>`    : ''}
+    </ul>
+  </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WORLD CUP — tight section
+// ─────────────────────────────────────────────────────────────────────────────
+function buildWorldCup({ worldCup, copy }) {
+  if (!worldCup?.length) return '';
+
+  const active = worldCup.filter(m => m.statusState === 'in' || m.statusState === 'post');
+  const upcoming = worldCup.filter(m => m.statusState === 'pre');
+
+  const matchRows = [...active, ...upcoming.slice(0, 2)].map(m => {
+    if (m.statusState === 'post' || m.statusState === 'in') {
+      return `      <li><span>${esc(m.away.team)} ${esc(m.away.score)}–${esc(m.home.score)} ${esc(m.home.team)} (${esc(m.statusState === 'post' ? 'Final' : 'Live')})</span></li>`;
+    }
+    return `      <li><span>${esc(m.away.team)} vs ${esc(m.home.team)} — upcoming</span></li>`;
+  }).join('\n');
+
+  const previewBanner = !active.length ? `
+    <div class="wc-preview-banner">
+      <div class="wc-banner-hosts"><span class="wc-flag">🇺🇸</span><span class="wc-flag">🇨🇦</span><span class="wc-flag">🇲🇽</span></div>
+      <div class="wc-banner-title">FIFA World Cup 2026</div>
+      <div class="wc-banner-sub">June 11 — July 19 · USA / Canada / Mexico</div>
+      <div class="wc-banner-stats">
+        <div class="wc-stat"><span class="wc-stat-num">48</span><span class="wc-stat-lbl">Teams</span></div>
+        <div class="wc-stat"><span class="wc-stat-num">104</span><span class="wc-stat-lbl">Matches</span></div>
+        <div class="wc-stat"><span class="wc-stat-num">16</span><span class="wc-stat-lbl">Venues</span></div>
+      </div>
+    </div>` : '';
+
+  return `  <section class="brief-section" id="worldcup">
+    <div class="section-label sl-culture">World Cup 2026</div>
+${previewBanner}
+    <ul class="detail-list">
+${matchRows}
+      <li><span><span class="dl-label">USA opener:</span> USA vs Paraguay, June 12 · SoFi Stadium · 9pm ET · Fox</span></li>
+      <li><span><span class="dl-label">Final:</span> July 19 · MetLife Stadium</span></li>
+    </ul>
+  </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CULTURE — 3 quick hits
+// ─────────────────────────────────────────────────────────────────────────────
+function buildCulture({ copy }) {
+  const items = copy?.culture;
+  if (!items?.length) return '';
+
+  const tagCls = { Celebrity: 'ctag-celebrity', Music: 'ctag-music', 'Sports Biz': 'ctag-sports', TV: 'ctag-sports', Tech: 'ctag-sports', Culture: 'ctag-sports', Streaming: 'ctag-streaming' };
+
+  const itemsHtml = items.map((item, i) => {
+    const tag = item.tag || 'Culture';
+    const num = i + 1;
+    return `      <li class="culture-item">
+        <div class="culture-item-top">
+          <span class="culture-num">${num}.</span>
+          <span class="culture-tag ${tagCls[tag] || 'ctag-sports'}">${esc(tag)}</span>
+        </div>
+        <div class="culture-head">${esc(item.topic || item.head)}</div>
+        <ul class="culture-quick-list">
+          ${item.whatHappened  ? `<li><span class="dl-label">What happened:</span> ${esc(item.whatHappened)}</li>`  : ''}
+          ${item.whyItMatters  ? `<li><span class="dl-label">Why it matters:</span> ${esc(item.whyItMatters)}</li>` : ''}
+          ${item.whatToSay     ? `<li><span class="dl-label">What to say:</span> ${esc(item.whatToSay)}</li>`       : ''}
+        </ul>
+      </li>`;
+  }).join('\n');
+
+  return `  <section class="brief-section" id="culture">
+    <div class="section-label sl-culture">Culture</div>
+    <ul class="culture-list">
+${itemsHtml}
+    </ul>
+  </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FINAL SHARP TAKE
+// ─────────────────────────────────────────────────────────────────────────────
+function buildFinalSharpTake({ copy }) {
+  const text = copy?.finalSharpTake;
+  if (!text) return '';
+  return `  <div class="sharp-take" id="sharp-take">
+    <div class="sharp-take-label">Final Sharp Take</div>
+    <p>${esc(text)}</p>
+  </div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TODAY AT A GLANCE — 5 specific bullets
+// ─────────────────────────────────────────────────────────────────────────────
+function buildTodayAtAGlance({ copy, sports, markets, upcoming }) {
+  const g = copy?.glance;
+
+  // Build from raw data if AI didn't return
+  const sportsFallback = (() => {
+    if (sports?.[0]) {
+      const w = sports[0].home.winner ? sports[0].home : sports[0].away;
+      const l = sports[0].home.winner ? sports[0].away : sports[0].home;
+      return `${w.team} ${w.score}–${l.score} ${l.team}`;
+    }
+    if (upcoming?.[0]) return `${upcoming[0].shortName} — ${upcoming[0].daysAhead === 0 ? 'tonight' : 'tomorrow'}`;
+    return 'Check scores on ESPN';
+  })();
+
+  const marketFallback = (() => {
+    if (markets?.SPY?.dayChangePct !== undefined) {
+      const d = markets.SPY.dayChangePct;
+      return `SPY ${d >= 0 ? '+' : ''}${d.toFixed(1)}% — markets ${d >= 0 ? 'edged up' : 'pulled back'}`;
+    }
+    return 'Market data inside';
+  })();
+
+  const bullets = [
+    { label: 'Main story',     text: g?.sports    || sportsFallback },
+    { label: 'Market mood',    text: g?.market     || marketFallback },
+    { label: 'Best convo',     text: g?.bestConvo  || '' },
+    { label: 'Watch next',     text: g?.watchNext  || '' },
+    { label: 'Quick rec',      text: g?.quickRec   || '' },
+  ].filter(b => b.text);
+
+  if (!bullets.length) return '';
+
+  return `  <div class="tldr tldr-bottom">
+    <div class="tldr-label">Today at a Glance</div>
+    <ul class="tldr-list">
+${bullets.map(b => `      <li class="tldr-item tldr-glance-item">
+        <span class="glance-label">${esc(b.label)}</span>
+        <span>${esc(b.text)}</span>
+      </li>`).join('\n')}
+    </ul>
+  </div>`;
 }
 
 module.exports = { buildHtml };
