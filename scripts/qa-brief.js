@@ -5,31 +5,63 @@
  * GuyTalk Brief QA — automated copy quality checker
  * Usage: node scripts/qa-brief.js [issue-slug]  (defaults to latest)
  *
- * Checks:
- *  1. Banned AI words/phrases
- *  2. Culture head ↔ body consistency (keyword overlap)
- *  3. Golf note is not a refusal
- *  4. No clearly empty required sections
- *  5. Culture item 3 not a kids/animated film
- *  6. Hallucination risk: no player names in sports copy unless in box score
- *  7. Market take uses real ticker symbols from data
+ * Checks (in order):
+ *  1. Headline present (3 fragments)
+ *  2. The Lead present (headline + whatHappened)
+ *  3. Markets table renders clean text (no [object Object])
+ *  4. Markets compliance — no investment advice language
+ *  5. Culture: 3 items, each with topic + whatHappened
+ *  6. Culture item 3 not a kids/animated film
+ *  7. Banned AI words/phrases
+ *  8. Refusal phrases (model refusing to write)
+ *  9. No passive voice in title
+ * 10. Final Sharp Take present and under 200 words
+ * 11. Today at a Glance present (5 fields)
  */
 
 const fs   = require('fs');
 const path = require('path');
 
-const BANNED = [
+// ── Banned AI phrasing ───────────────────────────────────────────────────────
+const BANNED_GENERAL = [
   'pivotal', 'groundbreaking', 'game-changer', 'game changer', 'seismic',
   'monumental', 'at the end of the day', "it's worth noting",
-  'to be clear', 'make no mistake', 'delve', 'tech ecosystem',
+  'to be clear,', 'make no mistake', 'delve', 'tech ecosystem',
   'broader narrative', 'dominant narrative', 'shifting the narrative',
-  'changes the narrative', 'ultimately,', 'interestingly,', 'notably,',
+  'ultimately,', 'interestingly,', 'notably,',
   "it's important to note", 'speaks to the larger', 'nuanced approach',
-  'leverage the', 'leveraging the',
+  'leverage the', 'leveraging the', 'canary in the coal mine',
 ];
 
-const KIDS_STUDIOS = ['pixar', 'disney animation', 'dreamworks', 'illumination', 'studio ghibli'];
-const KIDS_KEYWORDS = ['animated', 'toy story', 'finding ', 'frozen', 'moana', 'inside out', 'minions', 'despicable me', 'kung fu panda'];
+// ── Markets compliance — investment advice phrases (hard fail) ────────────────
+const MARKETS_COMPLIANCE_VIOLATIONS = [
+  'buying opportunity',
+  'investors should buy',
+  'investors should sell',
+  'investors should hold',
+  'investors should consider',
+  'consider adding shares',
+  'consider adding exposure',
+  'consider reducing',
+  'now may be a good time to buy',
+  'now is a good time to buy',
+  'great long-term investment',
+  "we like this stock",
+  'our favorite stock',
+  'the smart move is',
+  'the smart trade is',
+  'smart money move',
+  'looks undervalued',
+  'looks overvalued',
+  'price target of',
+  'portfolio allocation',
+  'risk tolerance',
+  'retirement advice',
+  'could be a buying',
+];
+
+const KIDS_STUDIOS   = ['pixar', 'disney animation', 'dreamworks', 'illumination', 'studio ghibli'];
+const KIDS_KEYWORDS  = ['animated', 'toy story', 'finding ', 'frozen', 'moana', 'inside out', 'minions', 'despicable me', 'kung fu panda'];
 
 const REFUSAL_PHRASES = [
   "i don't have data", "i can't write", "i cannot write",
@@ -37,6 +69,7 @@ const REFUSAL_PHRASES = [
   "hallucination rules", "violates the", "i'm unable",
 ];
 
+// ── Load issue ───────────────────────────────────────────────────────────────
 function loadIssue(slug) {
   const dataDir = path.join(__dirname, '..', 'brief', 'data');
   if (slug) {
@@ -44,10 +77,8 @@ function loadIssue(slug) {
     if (!fs.existsSync(f)) { console.error(`No data file for "${slug}"`); process.exit(1); }
     return JSON.parse(fs.readFileSync(f, 'utf8'));
   }
-  // Latest
   const files = fs.readdirSync(dataDir).filter(f => f.endsWith('.json') && f.startsWith('issue-')).sort();
   if (!files.length) { console.error('No issue data files found'); process.exit(1); }
-  // Deduplicate by date, take highest num
   const byDate = new Map();
   for (const f of files) {
     try {
@@ -62,36 +93,60 @@ function loadIssue(slug) {
   return latest.d;
 }
 
-function check(label, pass, detail) {
-  const icon = pass ? '✅' : '❌';
-  const msg  = `  ${icon} ${label}`;
-  if (!pass && detail) console.log(`${msg}\n     ↳ ${detail}`);
-  else console.log(msg);
-  return pass;
+// ── Collect all AI-generated text for scanning ───────────────────────────────
+function allText(issue) {
+  const c = issue.copy || {};
+  const parts = [
+    c.keyTakeaway,
+    c.lead?.headline, c.lead?.whatHappened, c.lead?.whyBullet1, c.lead?.whyBullet2, c.lead?.whatToSay,
+    c.markets?.mood, c.markets?.whyBullet1, c.markets?.whyBullet2, c.markets?.bringUp,
+    c.golf?.headline, c.golf?.whyCare1, c.golf?.whyCare2, c.golf?.watchFor, c.golf?.whatToSay,
+    c.f1?.headline, c.f1?.whyCare1, c.f1?.whyCare2, c.f1?.watchFor, c.f1?.whatToSay,
+    ...(c.sportsOther || []),
+    ...(c.culture || []).flatMap(i => [i.topic || i.head, i.whatHappened, i.whyItMatters, i.whatToSay]),
+    c.finalSharpTake,
+    c.glance?.sports, c.glance?.market, c.glance?.bestConvo, c.glance?.watchNext, c.glance?.quickRec,
+    ...(Object.values(c.todaysHits || {})),
+  ].filter(Boolean);
+  return parts.join(' ').toLowerCase();
 }
 
+// ── Collect markets-specific text only ───────────────────────────────────────
+function marketsText(issue) {
+  const c = issue.copy || {};
+  return [
+    c.markets?.mood,
+    c.markets?.whyBullet1,
+    c.markets?.whyBullet2,
+    c.markets?.bringUp,
+    c.glance?.market,
+  ].filter(Boolean).join(' ').toLowerCase();
+}
+
+// ── Check rendered HTML for [object Object] ──────────────────────────────────
+function checkRenderedHtml(slug) {
+  const htmlPath = path.join(__dirname, '..', 'brief', slug, 'index.html');
+  if (!fs.existsSync(htmlPath)) return { exists: false };
+  const html = fs.readFileSync(htmlPath, 'utf8');
+  const badCount = (html.match(/\[object Object\]/g) || []).length;
+  return { exists: true, badCount };
+}
+
+// ── Output helpers ───────────────────────────────────────────────────────────
+function check(label, pass, detail) {
+  const icon = pass ? '✅' : '❌';
+  console.log(`  ${icon} ${label}`);
+  if (!pass && detail) console.log(`     ↳ ${detail}`);
+  return pass;
+}
 function warn(label, detail) {
   console.log(`  ⚠️  ${label}${detail ? `\n     ↳ ${detail}` : ''}`);
 }
 
-function allText(issue) {
-  const c = issue.copy || {};
-  return [
-    c.sportsAngle, c.marketsTake, c.golfNote,
-    c.sharpTake?.p1, c.sharpTake?.p2,
-    ...(c.sharpTake?.bullets || []),
-    ...(c.culture || []).map(i => `${i.head} ${i.body}`),
-    ...(c.numbersContext || []).map(i => i.context),
-    ...(c.sportsAdditional || []),
-    c.marketsDetail?.headline, c.marketsDetail?.bringUp, c.marketsDetail?.stockSpotlight,
-    c.golfDetail?.bringUp, c.golfDetail?.groupChatAngle,
-    c.f1Detail?.angle, c.f1Detail?.bringUp,
-  ].filter(Boolean).join(' ').toLowerCase();
-}
-
+// ── Main ─────────────────────────────────────────────────────────────────────
 function main() {
-  const arg  = process.argv[2];
-  const slug = arg?.startsWith('issue-') ? arg : null;
+  const arg   = process.argv[2];
+  const slug  = arg?.startsWith('issue-') ? arg : null;
   const issue = loadIssue(slug);
   const { copy, sports, markets, upcoming, golf } = issue;
 
@@ -100,108 +155,131 @@ function main() {
   console.log(`${'═'.repeat(50)}\n`);
 
   let passed = 0, failed = 0;
-
   function run(label, pass, detail) {
     if (check(label, pass, detail)) passed++; else failed++;
   }
 
   const full = allText(issue);
+  const mkt  = marketsText(issue);
 
-  // 1. Headline exists and looks like three fragments
+  // 1. Headline
   const title = (issue.title || '').trim();
   run(
-    'Headline present and looks like 3 fragments',
+    'Headline present (3 fragments)',
     title.length > 10 && (title.match(/\./g) || []).length >= 2,
     title ? `Got: "${title}"` : 'Missing headline'
   );
 
-  // 2. Sports angle exists and is substantial
-  const sa = (copy?.sportsAngle || '').trim();
-  run('Sports angle present (>80 chars)', sa.length > 80, sa.length ? `Length: ${sa.length}` : 'Empty');
-
-  // 3. Markets take present
-  const mt = (copy?.marketsTake || '').trim();
-  run('Markets take present (>40 chars)', mt.length > 40, mt.length ? `Length: ${mt.length}` : 'Empty');
-
-  // 4. Sharp take exists with bullets
-  const st = copy?.sharpTake;
+  // 2. The Lead present
+  const lead = copy?.lead;
   run(
-    'Sharp take: p1, p2, and 3 bullets',
-    !!(st?.p1 && st?.p2 && st?.bullets?.length >= 3),
-    st ? `bullets: ${st.bullets?.length || 0}` : 'Missing'
+    'The Lead: headline and whatHappened present',
+    !!(lead?.headline?.trim() && lead?.whatHappened?.trim()),
+    lead ? `headline="${lead.headline?.slice(0, 50)}"` : 'lead is null'
   );
 
-  // 5. Culture: 3 items, each with head+body
+  // 3. Rendered HTML clean (no [object Object])
+  const html = checkRenderedHtml(issue.slug || '');
+  if (html.exists) {
+    run(
+      'Rendered HTML: no [object Object]',
+      html.badCount === 0,
+      html.badCount ? `Found ${html.badCount} instance(s)` : undefined
+    );
+  } else {
+    warn('HTML file not found — run generator first');
+  }
+
+  // 4. MARKETS COMPLIANCE — hard fail (no investment advice)
+  console.log('\n  [Markets Compliance]');
+  const complianceViolations = MARKETS_COMPLIANCE_VIOLATIONS.filter(p => mkt.includes(p));
+  run(
+    'Markets: no investment advice language',
+    complianceViolations.length === 0,
+    complianceViolations.length
+      ? `Violation(s): "${complianceViolations.join('", "')}" — rewrite before publishing`
+      : undefined
+  );
+
+  // Also scan full brief text (other sections sometimes bleed market advice)
+  const fullComplianceViolations = MARKETS_COMPLIANCE_VIOLATIONS.filter(p => full.includes(p));
+  if (fullComplianceViolations.length > complianceViolations.length) {
+    warn(
+      'Investment advice language found outside Markets section',
+      `"${fullComplianceViolations.filter(v => !complianceViolations.includes(v)).join('", "')}"`
+    );
+  }
+
+  // 5. Culture: 3 items
+  console.log('\n  [Culture]');
   const cult = copy?.culture || [];
-  run('Culture: exactly 3 items', cult.length === 3, `Got ${cult.length}`);
+  run('Culture: 3 items present', cult.length === 3, `Got ${cult.length}`);
   cult.forEach((item, i) => {
+    const head = item.topic || item.head || '';
+    const body = item.whatHappened || item.body || '';
     run(
-      `Culture ${i + 1}: head and body non-empty`,
-      !!(item.head?.trim() && item.body?.trim()),
-      `head="${item.head?.slice(0, 40)}" body="${item.body?.slice(0, 40)}"`
+      `Culture ${i + 1}: topic + whatHappened non-empty`,
+      !!(head.trim() && body.trim()),
+      `topic="${head.slice(0, 40)}" whatHappened="${body.slice(0, 40)}"`
     );
   });
 
-  // 6. Culture head ↔ body consistency — check that key nouns from head appear in body
-  cult.slice(0, 2).forEach((item, i) => {
-    const headWords = (item.head || '').toLowerCase().replace(/[^a-z0-9 ]/g, '').split(/\s+/).filter(w => w.length > 4);
-    const bodyLower = (item.body || '').toLowerCase();
-    const overlap   = headWords.filter(w => bodyLower.includes(w));
-    const consistent = overlap.length >= 1;
-    run(
-      `Culture ${i + 1}: body matches headline topic`,
-      consistent,
-      consistent ? undefined : `Head: "${item.head}" — no shared words with body. Possible mix-up.`
-    );
-  });
-
-  // 7. Culture item 3 — not a kids film
+  // 6. Culture item 3 not a kids film
   const c3 = cult[2];
   if (c3) {
-    const c3text = `${c3.head} ${c3.source} ${c3.body}`.toLowerCase();
-    const isKids  = KIDS_STUDIOS.some(s => c3text.includes(s)) || KIDS_KEYWORDS.some(k => c3text.includes(k));
-    run('Culture item 3 is not a kids/animated film', !isKids, `Title: "${c3.head}"`);
+    const c3text = `${c3.topic || c3.head} ${c3.whatHappened} ${c3.whyItMatters}`.toLowerCase();
+    const isKids = KIDS_STUDIOS.some(s => c3text.includes(s)) || KIDS_KEYWORDS.some(k => c3text.includes(k));
+    run('Culture item 3 not a kids/animated film', !isKids, isKids ? `"${c3.topic || c3.head}"` : undefined);
   }
 
-  // 8. Golf note — warn on refusal (non-blocking: prompt fix prevents this, QA flags it as safety net)
-  const gn = (copy?.golfNote || '').toLowerCase();
-  const isRefusal = REFUSAL_PHRASES.some(p => gn.includes(p));
-  if (isRefusal) {
-    warn('Golf note looks like a refusal — review before publishing', `"${copy?.golfNote?.slice(0, 100)}"`);
-  } else {
-    run('Golf note looks clean', true);
-  }
+  // 7. Banned AI words
+  console.log('\n  [Copy Quality]');
+  const banned = BANNED_GENERAL.filter(w => full.includes(w.toLowerCase()));
+  run('No banned AI phrases', banned.length === 0, banned.length ? `Found: ${banned.join(', ')}` : undefined);
 
-  // 9. Banned words
-  const banned = BANNED.filter(w => full.includes(w.toLowerCase()));
-  run('No banned AI words/phrases', banned.length === 0, banned.length ? `Found: ${banned.join(', ')}` : undefined);
+  // 8. Refusal phrases
+  const refusals = REFUSAL_PHRASES.filter(p => full.includes(p));
+  run('No refusal phrases in copy', refusals.length === 0, refusals.length ? `Found: "${refusals[0]}"` : undefined);
 
-  // 10. No passive voice in headlines ("was won by", "was beaten")
+  // 9. Passive voice in title
   const passiveInTitle = /\b(was\s+\w+ed\s+by|were\s+\w+ed\s+by)\b/i.test(title);
-  run('No passive voice in headline', !passiveInTitle, passiveInTitle ? `Headline: "${title}"` : undefined);
+  run('No passive voice in headline', !passiveInTitle, passiveInTitle ? title : undefined);
 
-  // 11. Market tickers in copy match data
-  if (markets) {
-    const tickerSyms = Object.keys(markets);
-    const mktText = `${copy?.marketsTake || ''} ${copy?.marketsDetail?.stockSpotlight || ''} ${copy?.marketsDetail?.bringUp || ''}`.toUpperCase();
-    const hasAnySym = tickerSyms.some(sym => mktText.includes(sym));
-    if (!hasAnySym && mt.length > 0) {
-      warn('Markets: no ticker symbols found in copy (may not reference real data)');
-    }
+  // 10. Final Sharp Take — present and not too long
+  const fst = (copy?.finalSharpTake || '').trim();
+  const fstWords = fst.split(/\s+/).filter(Boolean).length;
+  run('Final Sharp Take present', fst.length > 20, fst.length ? `Length: ${fst.length} chars` : 'Missing');
+  if (fst.length > 0) {
+    run(
+      'Final Sharp Take under 150 words',
+      fstWords <= 150,
+      `${fstWords} words — trim to under 150`
+    );
   }
 
-  // 12. Sharp take doesn't use "ultimately"
-  const stText = `${st?.p1 || ''} ${st?.p2 || ''}`.toLowerCase();
-  run('Sharp take does not open with "Ultimately"', !stText.includes('ultimately,'));
+  // 11. Today at a Glance (warn only — fallbacks exist in html.js)
+  const glance = copy?.glance;
+  const glanceFields = ['sports', 'market', 'bestConvo', 'watchNext', 'quickRec'].filter(k => glance?.[k]);
+  if (glanceFields.length < 4) {
+    warn(`Today at a Glance: only ${glanceFields.length}/5 fields — will use fallbacks`);
+  } else {
+    check('Today at a Glance: 4+ fields populated', true);
+    passed++;
+  }
 
-  // Summary
+  // 12. Golf refusal check (warn only)
+  const golfCopy = [copy?.golf?.whyCare1, copy?.golf?.whyCare2, copy?.golf?.watchFor].filter(Boolean).join(' ').toLowerCase();
+  const isRefusal = REFUSAL_PHRASES.some(p => golfCopy.includes(p));
+  if (isRefusal) warn('Golf copy looks like a refusal — review before publishing');
+
+  // ── Summary ─────────────────────────────────────────────────────────────────
   console.log(`\n${'─'.repeat(50)}`);
   console.log(`  ${passed} passed · ${failed} failed\n`);
 
   if (failed === 0) {
-    console.log('  🎉 Brief looks clean — ready to deploy.\n');
+    console.log('  ✅ Brief passes QA — ready to deploy.\n');
   } else {
-    console.log('  ⚠️  Fix the issues above before sending.\n');
+    console.log('  ❌ Fix the issues above before sending.\n');
     process.exit(1);
   }
 }

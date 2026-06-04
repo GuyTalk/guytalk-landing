@@ -33,7 +33,12 @@ BANNED PHRASES (never use):
 - "momentum" as standalone explanation, "canary in the coal mine"
 - "Tonight's line:", "What you're saying tonight:", "Drop this:", "Next:", "The takeaway:"
 - No passive voice. No weak openers: "There is...", "It is...", "This was..."
-- Never sit on the fence. Have an actual opinion.`;
+- Never sit on the fence. Have an actual opinion.
+
+MARKETS COMPLIANCE (applies to every section, not just Markets):
+GuyTalk is NOT an investment advisor. Never write anything that could be interpreted as a recommendation to buy, sell, or hold a security.
+NEVER use: "buying opportunity", "investors should buy/sell/hold", "looks undervalued", "looks overvalued", "now may be a good time to buy", "great long-term investment", "we like this stock", "our favorite", "consider adding shares", "consider reducing exposure", "smart money move", "the smart trade is", "price target", "portfolio allocation".
+ALWAYS frame markets as: what happened, why it happened, why it's being discussed. Observe and explain. Never advise.`;
 
 function clean(text) {
   if (!text) return text;
@@ -225,9 +230,19 @@ ${sports.map(g => {
       ? ask(
           `GuyTalk markets section. Data: ${mktText}
 
+COMPLIANCE RULES (hard requirements — violations will be removed before publishing):
+GuyTalk is a media product. It observes and explains. It does NOT advise.
+NEVER write: "buying opportunity", "investors should", "looks undervalued", "now may be a good time", "great long-term investment", "smart move is", "we like this stock", "consider adding", "consider reducing", "price target", "portfolio", "risk tolerance", "tax", "retirement advice".
+ALWAYS write about what happened and why — never what the reader should do.
+
+The Markets section answers three questions only:
+1. What happened?
+2. Why did it happen?
+3. Why are people talking about it?
+
 Return ONLY valid JSON on one line — no markdown:
-{"mood":"One sentence — overall market story today. What drove it and why. Include one real number. Plain English, not finance jargon.","whyBullet1":"Why this matters for someone with a 401k. One specific sentence.","whyBullet2":"What to watch in the next 2-3 days. Name a specific catalyst — include the day of the week.","bringUp":"One quotable market fact to use in conversation. Must include a real number. Slightly surprising angle — not just what everyone already knows."}`,
-          280
+{"mood":"One sentence — what happened in markets today and why. Include one real number. Plain English.","whyBullet1":"One sentence — why this matters in context. Explain, don't advise. Example: 'Treasury yields moved because...' not 'investors should...'","whyBullet2":"What professionals are watching in the next 2-3 days. Name a specific data print or event. Include the day of week.","bringUp":"One quotable market fact. Must include a real number. Explain something — do not tell anyone what to do with it."}`,
+          300
         )
       : Promise.resolve(null),
 
@@ -283,11 +298,12 @@ Context: ${ctx}${repGuard}`,
       150
     ),
 
-    // 10. Today at a Glance — 5 specific bullets
+    // 10. Today at a Glance — 5 labeled bullets
     ask(
-      `"Today at a Glance" for GuyTalk. Return ONLY valid JSON on one line — no markdown:
-{"sports":"Main sports story — include the score or one key fact. One line.","market":"Market summary — include one number. One line.","bestConvo":"Best conversation starter from today. Specific and quotable. One line.","watchNext":"One thing to watch in the next 24-48 hours. Specific.","quickRec":"Quick rec or reminder from today. One line."}
-Context: ${ctx}`,
+      `Write "Today at a Glance" for GuyTalk. Five short lines. Context: ${ctx}
+
+Return compact JSON on one line. Every field is a single sentence ending with a period. No markdown:
+{"sports":"[main sports result or preview — include score or key fact]","market":"[market summary — include one number]","bestConvo":"[best conversation starter from today — specific]","watchNext":"[one thing to watch in next 24-48 hours]","quickRec":"[quick rec or reminder from today's brief]"}`,
       200
     ),
   ]);
