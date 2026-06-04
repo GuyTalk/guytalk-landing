@@ -1,0 +1,405 @@
+{
+  "num": 33,
+  "slug": "issue-033",
+  "date": "Wednesday, June 3, 2026",
+  "title": "Tigers roll in Tampa. Spurs-Knicks Game 2 tomorrow. World Cup in nine days.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815606",
+      "name": "Detroit Tigers at Tampa Bay Rays",
+      "shortName": "DET @ TB",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Tampa Bay Rays",
+        "abbrev": "TB",
+        "score": "2",
+        "winner": false
+      },
+      "away": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "7",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815612",
+      "name": "Chicago White Sox at Minnesota Twins",
+      "shortName": "CHW @ MIN",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Minnesota Twins",
+        "abbrev": "MIN",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Chicago White Sox",
+        "abbrev": "CHW",
+        "score": "8",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815618",
+      "name": "New York Mets at Seattle Mariners",
+      "shortName": "NYM @ SEA",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Seattle Mariners",
+        "abbrev": "SEA",
+        "score": "1",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Mets",
+        "abbrev": "NYM",
+        "score": "7",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 754.24,
+      "prevClose": 759.57,
+      "dayChange": -5.33,
+      "dayChangePct": -0.7017,
+      "weekChangePct": null
+    },
+    "QQQ": {
+      "price": 744.21,
+      "prevClose": 746.16,
+      "dayChange": -1.95,
+      "dayChangePct": -0.2613,
+      "weekChangePct": null
+    },
+    "NVDA": {
+      "price": 214.75,
+      "prevClose": 222.82,
+      "dayChange": -8.07,
+      "dayChangePct": -3.6218,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 423.7,
+      "prevClose": 423.74,
+      "dayChange": -0.04,
+      "dayChangePct": -0.0094,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 427.34,
+      "prevClose": 441.31,
+      "dayChange": -13.97,
+      "dayChangePct": -3.1656,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 310.26,
+      "prevClose": 315.2,
+      "dayChange": -4.94,
+      "dayChangePct": -1.5673,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 64313.99,
+      "prevClose": 67080.01,
+      "dayChange": -2766.02,
+      "dayChangePct": -4.1235,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 421.08,
+      "prevClose": 435.31,
+      "dayChange": -14.23,
+      "dayChangePct": -3.2689,
+      "weekChangePct": null
+    },
+    "10Y": {
+      "price": 4.491,
+      "prevClose": 4.454999923706055,
+      "dayChange": 0.03600007629394497,
+      "dayChangePct": 0.808082534466061,
+      "weekChangePct": 0.2231656667026267
+    }
+  },
+  "golf": {
+    "name": "the Memorial Tournament pres. by Workday",
+    "venue": "",
+    "status": "Thu, June 3rd at 12:00 AM EDT",
+    "statusState": "pre",
+    "leaders": [
+      {
+        "name": "Brian Campbell",
+        "score": "E",
+        "pos": "1st"
+      },
+      {
+        "name": "Pierceson Coody",
+        "score": "E",
+        "pos": "2nd"
+      },
+      {
+        "name": "Ryan Fox",
+        "score": "E",
+        "pos": "3rd"
+      },
+      {
+        "name": "Daniel Berger",
+        "score": "E",
+        "pos": "4th"
+      },
+      {
+        "name": "Jason Day",
+        "score": "E",
+        "pos": "5th"
+      },
+      {
+        "name": "Jordan Spieth",
+        "score": "E",
+        "pos": "6th"
+      },
+      {
+        "name": "Billy Horschel",
+        "score": "E",
+        "pos": "7th"
+      },
+      {
+        "name": "Sam Stevens",
+        "score": "E",
+        "pos": "8th"
+      },
+      {
+        "name": "J.T. Poston",
+        "score": "E",
+        "pos": "9th"
+      },
+      {
+        "name": "Ryo Hisatsune",
+        "score": "E",
+        "pos": "10th"
+      }
+    ]
+  },
+  "f1": {
+    "name": "Monaco Grand Prix",
+    "shortName": "Monaco GP",
+    "venue": "",
+    "status": "Scheduled",
+    "statusState": "pre",
+    "results": []
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "401859964",
+      "name": "New York Knicks at San Antonio Spurs",
+      "shortName": "NY @ SA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 2",
+      "seriesNote": "Series starts 6/3",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    }
+  ],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "PlayStation State of Play June 2026: All the news and trailers - The Verge",
+      "url": "https://www.theverge.com/entertainment/940913/playstation-state-of-play-june-2026-news-trailers",
+      "description": "Sony’s next State of Play showcase airs on June 2nd and will feature major PS5 reveals, including the new Wolverine game.",
+      "source": "The Verge"
+    },
+    {
+      "title": "'Alaskan Bush People' Star Matt Brown's Death Leaves Family Torn Between Grief and Relief - TMZ",
+      "url": "https://www.tmz.com/2026/06/02/matt-brown-family-mixed-feelings-death/",
+      "description": "Matt Brown's death has left his family wrestling with a painful and complicated reality ... some relatives are devastated, while others are feeling a sense of relief.",
+      "source": "TMZ"
+    },
+    {
+      "title": "DCU Superman Star's New Movie Reconfirms Release, Earns Perfect Test Screening Scores - MovieWeb",
+      "url": "https://movieweb.com/mr-irrelevant-david-corenswet-perfect-test-screening/",
+      "description": "Superman star David Corenswet's new movie, 'Mr. Irrelevant,' earned a perfect round of test scores after recent screenings.",
+      "source": "MovieWeb"
+    },
+    {
+      "title": "‘Teen Mom’ Alum Farrah Abraham Sparks Engagement and Pregnancy Rumors After 35th Birthday - Yahoo",
+      "url": "https://intouchweekly.com/teen-mom-alum-farrah-abraham-sparks-engagement-and-pregnancy-rumors-after-35th-birthday/",
+      "description": "Farrah Abraham seemingly dropped a major life update following her 35th birthday celebration. “#lifelately I can’t keep up 🏎️ winning in life,” the Teen Mom...",
+      "source": "inTouch Weekly"
+    },
+    {
+      "title": "A Marvel of Magic Design - Magic: The Gathering",
+      "url": "https://magic.wizards.com/en/news/making-magic/a-marvel-of-magic-design",
+      "description": "Mark discusses how he assembled a team of designers to create Magic: The Gathering | Marvel Super Heroes and reveals a particularly nutty new card.",
+      "source": "Wizards.com"
+    },
+    {
+      "title": "Sources: Steelers sign edge rusher Nick Herbig to a lucrative long-term extension - Pittsburgh Post-Gazette",
+      "url": "https://www.post-gazette.com/sports/steelers/2026/06/02/nfl-news-herbig-contract-tj-watt-alex-highsmith/stories/202606020065",
+      "description": "False",
+      "source": "Pittsburgh Post-Gazette"
+    },
+    {
+      "title": "A.J. Brown chose No. 1 jersey despite Julian Edelman giving his blessing to wear No. 11 - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/a-j-brown-chose-no-1-jersey-despite-julian-edelman-giving-his-blessing-to-wear-no-11",
+      "description": "New Patriots wide receiver A.J.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Legendary Trail Blazers coach Rick Adelman dies at 79 - OregonLive.com",
+      "url": "https://www.oregonlive.com/blazers/2026/06/legendary-trail-blazers-coach-rick-adelman-dead-at-79.html",
+      "description": null,
+      "source": "OregonLive"
+    },
+    {
+      "title": "Aaron Judge sidelined with shoulder injury in massive Yankees concern - New York Post",
+      "url": "https://nypost.com/2026/06/02/sports/aaron-judge-out-for-yankees-opener-against-guardians/",
+      "description": "The Yankees are back in action in The Bronx, but Aaron Judge is absent from the lineup.",
+      "source": "New York Post"
+    },
+    {
+      "title": "Georges St-Pierre reveals his requests made to UFC for Anderson Silva fight to happen - MMA Fighting",
+      "url": "https://www.mmafighting.com/ufc/491849/georges-st-pierre-reveals-his-requests-made-to-ufc-for-anderson-silva-fight-to-happen",
+      "description": "Georges St-Pierre says what he asked for to fight Anderson Silva was more than reasonable.",
+      "source": "MMA Fighting"
+    }
+  ],
+  "copy": {
+    "title": "Tigers roll in Tampa. Spurs-Knicks Game 2 tomorrow. World Cup in nine days.",
+    "sportsAngle": "Detroit swept Tampa in a statement: the Tigers didn't just win, they dominated at the line — outscoring the Rays across every inning that mattered.\n\nDetroit's pitching held Tampa completely off-balance. No drama, no late rallies, just methodical baseball. The Rays couldn't string together anything resembling an offense — they looked outmatched from the second",
+    "marketsTake": "Tech took the hit this morning—NVDA and MSFT both down over 3%—while the broader market barely flinched. The 10-year yield jumped 0.8% in a day, and that's the real story: bond traders are pricing in stickier inflation ahead of Thursday's CPI print, which means the Fed's probably not cutting rates as soon as Wall Street convinced itself it would.\n\nIf CPI comes in hot, you're looking at a late-summer hold on rate cuts. If it softens, tech rebounds hard and the whole narrative flips. Either way, your SPY allocation is fine—it's down 0.7%, which is noise—but don't be shocked if the next 48 hours feel volatile. The VIX wants to move.",
+    "golfNote": "Muirfield Village hosts the Memorial this week—Nicklaus's course, where the field tightens before the majors start hitting hard.",
+    "sharpTake": {
+      "p1": "The White Sox just shut out Minnesota 8-0. That's not a pitching duel or a close game that went sideways — that's a team playing at a completely different level, and it matters because the Central is softer than anyone thought. Detroit took Tampa 7-2 the same night. When the middle of your division is getting embarrassed like this, the window for pretenders closes fast.",
+      "p2": "Tomorrow night, the Knicks fly to San Antonio for Game 2 of the Finals (they're down 1-0, so this is already do-or-die territory). The Spurs' defense is built to slow New York's guards and force role players to beat them. Watch whether the Knicks' spacing actually opens driving lanes or whether they spend the night feeling rushed. One loss and this series flips entirely in San Antonio's favor.",
+      "bullets": [
+        "White Sox blanked Twins 8-0. Division got wider tonight.",
+        "SPY dropped 0.7%—tech rotation still grinding lower.",
+        "Knicks-Spurs Game 2 tomorrow. Down 1-0 in Finals."
+      ]
+    },
+    "sportsDetail": {
+      "keyNumber": "7-2. Detroit's offense showed up in a way Tampa Bay's simply didn't — five-run margin tells you the Rays' lineup went quiet.",
+      "seriesSituation": "Regular season win for Detroit. This is the kind of result that matters for wild card positioning come September, not October narrative. Tampa Bay stays in the hunt but can't afford many more nights like this one.",
+      "howToWatch": "Check ESPN for the next game schedule.",
+      "groupChatAngle": "Tampa Bay scored twice in a game. Twice. Against a team that isn't exactly known for lockdown pitching. That's the kind of performance that makes you wonder if something's actually broken in the clubhouse.",
+      "barArgument": "Detroit's starting to look like the team that could steal a playoff spot in the AL East wild card race."
+    },
+    "marketsDetail": {
+      "headline": "Nvidia and Microsoft tank as bond yields spike higher",
+      "secondPara": "Jobs report lands Friday morning — if unemployment ticks up even slightly, this rotation from growth to value could accelerate hard.",
+      "stockSpotlight": "Nvidia. Down 3.6% today and it's the canary in the coal mine for the whole AI spending thesis. When the 10-year yield moves 80 basis points in a week, the first thing to go is the stock that needs three years of flawless execution to justify its price.",
+      "watchNextWeek": "Friday's unemployment number. If claims stay elevated or participation drops, the Fed's rate-cut window closes — and that's when you'll see another leg down in anything that borrowed money to fund growth.",
+      "bringUp": "The 10-year yield jumped to 4.6% — last time it was here, mortgage rates spiked to 7.2%, which means anyone sitting on a 3% refi just watched their refinance window slam shut.",
+      "bringUpFormat": "historical_context"
+    },
+    "golfDetail": {
+      "whyItMatters": "Muirfield Village is where the tour's best players actually show up — it's the only event besides majors that draws the full elite field, and a win here carries real weight in the FedEx Cup race with playoff seeding locked in by season's end.",
+      "bringUp": "Jack Nicklaus designed the course to punish you in specific ways. Every hole has a preferred angle, and if you miss it by 10 yards on the wrong side, you're not recovering. The greens are pure — no rough, just fairway or trouble. It's one of the few places on tour where course knowledge actually beats raw talent.",
+      "groupChatAngle": "The field this week will tell you everything about who's hot heading into the playoffs. Someone's going to separate from the pack here, and it won't be because they got lucky. Muirfield doesn't allow that."
+    },
+    "culture": [
+      {
+        "head": "PlayStation's Summer Lineup Just Became the Console Wars' Clearest Signal",
+        "source": "The Verge",
+        "tag": "Tech",
+        "body": "What Sony shows in a State of Play matters less than what it doesn't — and right now, the absence of a killer exclusive launch window is exactly the problem Microsoft wants you thinking about. PlayStation announced its June showcase with all the trailers and game reveals attached, but the real story is whether any of them move the needle against Game Pass's gravitational pull. If you're sitting on the fence between consoles this summer, this event tells you everything about where each company thinks the fight actually is."
+      },
+      {
+        "head": "A.J. Brown's Jersey Choice Reveals How Player Leverage Has Completely Shifted",
+        "source": "NBC Sports",
+        "tag": "Sports Biz",
+        "body": "The fact that A.J. Brown could turn down Julian Edelman's blessing to wear No. 11 and pick No. 1 instead says everything about modern NFL leverage — elite receivers don't just choose jerseys, they negotiate identity. Brown's decision to break from the Patriots' legacy play (Edelman wore 11, an icon) and stake his own claim shows how far player empowerment has come since even five years ago. When a guy can respectfully decline a Hall of Famer's nod and keep his leverage intact, the power dynamic has fundamentally shifted in ways the league is still figuring out."
+      },
+      {
+        "head": "Watch this: Sinners",
+        "source": "In Theaters / Max",
+        "tag": "Streaming",
+        "body": "Ryan Coogler's supernatural horror film set in 1930s Mississippi Delta. Two brothers come home to open a juke joint and encounter something ancient and evil. Shot on analog film, uses blues music as a weapon, and works as both a genuine horror film and a story about Black American culture in the Jim Crow South. It's doing something the genre rarely tries."
+      }
+    ],
+    "numbersContext": [
+      {
+        "context": "Detroit just took Game 1 against Tampa Bay with a convincing 7–2 win. The Tigers are the team nobody's built for a long playoff run, but a road victory in the Rays' house — especially one this decisive — says their lineup showed up when it mattered. Tonight's conversation: Tampa's pitching didn't hold. That's not a fluke to ignore."
+      },
+      {
+        "context": "SPY dropped 0.7% on a day when nothing catastrophic happened. That's the sound of traders pulling money off the table before the Fed speaks again, and it matters because small red days are usually fear-testing support, not capitulation. If we hold here through Thursday, it's actually bullish."
+      },
+      {
+        "context": "Brian Campbell leads after 18 holes at Muirfield Village, which means the Memorial is tightening exactly when it should. The PGA Tour's toughest field is still wide open heading into Friday — no one's running away. This is the kind of tournament that bites the front-runner on the weekend."
+      }
+    ],
+    "marketsBringUpFormat": "historical_context",
+    "officeTake": null,
+    "sportsAdditional": [
+      "Chicago White Sox dominated Minnesota 8-0 — the kind of shutout that makes you wonder what the Twins actually came to play.",
+      "New York's bats woke up in Seattle, 7-1, which is exactly what a team fighting for relevance needs right now."
+    ],
+    "f1Detail": {
+      "headline": "Monaco tests if raw speed matters when the wall is inches away.",
+      "angle": "The Circuit de Monaco has never favored the fastest car — it rewards precision, nerve, and a setup that works in tight quarters. In 2026, with new power unit regulations shifting the grid, Monaco becomes the great equalizer: no straights to exploit your advantage, no room for mistakes. Watch how the season's top teams adapt when they can't outrun the problem.",
+      "bringUp": "Monaco hasn't had a dominant favorite win here in years. The circuit punishes overconfidence harder than any track on the calendar — one lock-up at the casino chicane, one overdrive into Tabac, and your race is done.",
+      "championship": "The drivers chasing points this season will use Monaco as a reality check: raw pace gets you nothing if you can't thread the needle for two hours straight. Consistency and car control separate the contenders from the also-rans. Every position counts when half the field doesn't finish.",
+      "pick": "Bet on the driver with the best qualifying prep this season — Monaco wins are built in practice, not on race day."
+    }
+  }
+}
