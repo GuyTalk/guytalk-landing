@@ -1194,6 +1194,14 @@ function buildLead({ sports, upcoming, copy }) {
   // Upcoming card if there are no results at all (no games played yet today)
   const upcomingCard = (!sports?.length && upcoming?.length) ? buildUpcomingGameCard(upcoming[0]) : '';
 
+  // Venue image for lead game
+  let venueHtml = '';
+  if (leadGame) {
+    const sport = leadGame.sport?.toLowerCase() || 'nba';
+    const venue = venueImage(leadGame.home.abbrev, sport);
+    if (venue) venueHtml = `    <div class="brief-img"><img src="${esc(venue.url)}" alt="${esc(venue.alt)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(venue.cap)}</div></div>`;
+  }
+
   const headline = lead?.headline || (leadGame
     ? (() => { const w = leadGame.home.winner ? leadGame.home : leadGame.away; const l = leadGame.home.winner ? leadGame.away : leadGame.home; return `${w.team} ${w.score}–${l.score} ${l.team}`; })()
     : 'Today in sports');
@@ -1207,6 +1215,7 @@ function buildLead({ sports, upcoming, copy }) {
     <div class="section-label sl-sports">The Lead</div>
     <h3>${esc(headline)}</h3>
 ${scoreboardHtml}
+${venueHtml}
 ${upcomingCard}
 ${whatHappened ? `    <p>${esc(whatHappened)}</p>` : ''}
     <ul class="detail-list">
@@ -1242,6 +1251,12 @@ function buildSports({ sports, copy, upcoming }) {
     const noteIdx = sports.indexOf(g) > 0 ? sports.indexOf(g) - 1 : i;
     const note = copy?.sportsOther?.[noteIdx] || copy?.sportsOther?.[i] || `${w.team} win, ${w.score}–${l.score}.`;
 
+    // Venue image for the home team (only for notable ballparks/arenas)
+    const venue = venueImage(g.home.abbrev, sport);
+    const venueImgHtml = venue
+      ? `      <div class="brief-img brief-img-sm"><img src="${esc(venue.url)}" alt="${esc(venue.alt)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(venue.cap)}</div></div>`
+      : '';
+
     return `    <div class="other-score-card">
       <div class="scoreboard scoreboard-sm">
         <div class="score-side">
@@ -1259,6 +1274,7 @@ function buildSports({ sports, copy, upcoming }) {
           ${awayLogo ? `<img src="${esc(awayLogo)}" class="score-logo${awayLoser ? ' loser' : ''}" alt="${esc(g.away.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
         </div>
       </div>
+${venueImgHtml}
       <p class="other-score-note">${esc(note)}</p>
     </div>`;
   }).join('\n');
@@ -1338,6 +1354,30 @@ ${rows}
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Golf course image lookup by tournament name
+// ─────────────────────────────────────────────────────────────────────────────
+function golfCourseImage(tournamentName) {
+  const name = (tournamentName || '').toLowerCase();
+  const courses = {
+    memorial:    { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Muirfield_Village_Golf_Club.jpg/1280px-Muirfield_Village_Golf_Club.jpg', cap: 'Muirfield Village Golf Club · Dublin, Ohio · Host of The Memorial Tournament' },
+    masters:     { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Augusta_National_Golf_Club_Masters_2011.jpg/1280px-Augusta_National_Golf_Club_Masters_2011.jpg', cap: 'Augusta National Golf Club · Augusta, Georgia' },
+    'us open':   { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Pinehurst_No2_2014.jpg/1280px-Pinehurst_No2_2014.jpg', cap: 'U.S. Open Golf Championship' },
+    open:        { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Royal_Birkdale_Golf_Club_18th_green.jpg/1280px-Royal_Birkdale_Golf_Club_18th_green.jpg', cap: 'The Open Championship · The Royal & Ancient' },
+    'pga championship': { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Valhalla_Golf_Club.jpg/1280px-Valhalla_Golf_Club.jpg', cap: 'PGA Championship' },
+    players:     { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/TPC_Sawgrass_17th_hole.jpg/1280px-TPC_Sawgrass_17th_hole.jpg', cap: 'TPC Sawgrass · Ponte Vedra Beach, Florida · The Players Championship' },
+    pebble:      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Pebble_Beach_Golf_Links.jpg/1280px-Pebble_Beach_Golf_Links.jpg', cap: 'Pebble Beach Golf Links · Pebble Beach, California' },
+    torrey:      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Torrey_Pines_Golf_Course_2007.jpg/1280px-Torrey_Pines_Golf_Course_2007.jpg', cap: 'Torrey Pines Golf Course · La Jolla, California' },
+    riviera:     { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Riviera_Country_Club_2.jpg/1280px-Riviera_Country_Club_2.jpg', cap: 'Riviera Country Club · Pacific Palisades, California' },
+    augusta:     { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Augusta_National_Golf_Club_Masters_2011.jpg/1280px-Augusta_National_Golf_Club_Masters_2011.jpg', cap: 'Augusta National Golf Club · Augusta, Georgia' },
+    muirfield:   { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Muirfield_Village_Golf_Club.jpg/1280px-Muirfield_Village_Golf_Club.jpg', cap: 'Muirfield Village Golf Club · Dublin, Ohio' },
+    schwab:      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Colonial_Country_Club_golf_course.jpg/1280px-Colonial_Country_Club_golf_course.jpg', cap: 'Colonial Country Club · Fort Worth, Texas · Charles Schwab Challenge' },
+    colonial:    { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Colonial_Country_Club_golf_course.jpg/1280px-Colonial_Country_Club_golf_course.jpg', cap: 'Colonial Country Club · Fort Worth, Texas' },
+  };
+  const match = Object.entries(courses).find(([key]) => name.includes(key));
+  return match ? match[1] : null;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // GOLF — tight section
 // ─────────────────────────────────────────────────────────────────────────────
 function buildGolf({ golf, copy }) {
@@ -1353,8 +1393,14 @@ function buildGolf({ golf, copy }) {
     ? golf.leaders.slice(0, 3).map(l => `${playerLink(l.name)} ${esc(l.score)}`).join(', ')
     : '';
 
+  const courseImg = golfCourseImage(golf.name);
+  const courseImgHtml = courseImg
+    ? `    <div class="brief-img"><img src="${esc(courseImg.url)}" alt="${esc(courseImg.cap)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(courseImg.cap)}</div></div>`
+    : '';
+
   return `  <section class="brief-section" id="golf">
     <div class="section-label sl-golf">Golf</div>
+${courseImgHtml}
     <h3>${esc(headline)}</h3>
     ${leaderLine ? `<p class="leaderboard-line">${leaderLine}</p>` : ''}
     <ul class="detail-list">

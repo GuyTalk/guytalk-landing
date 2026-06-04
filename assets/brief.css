@@ -404,6 +404,8 @@ em { font-style: italic; }
   font-size: 12px; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase;
 }
 .brief-img-cap { padding: 10px 16px; font-size: 13px; color: var(--text-3); line-height: 1.5; }
+.brief-img-sm img { aspect-ratio: 21/9; }
+.brief-img-sm { margin: 14px 0; }
 .brief-img-gallery { margin: 24px 0; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border); }
 .brief-img-gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: var(--border); }
 .brief-img-gallery-grid .brief-img { margin: 0; border: none; border-radius: 0; }
