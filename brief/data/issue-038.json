@@ -1,0 +1,369 @@
+{
+  "num": 38,
+  "slug": "issue-038",
+  "date": "Friday, June 5, 2026",
+  "title": "Giants edge Brewers in shootout. Knicks host Spurs tonight. Monaco Grand Prix this weekend.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815626",
+      "name": "San Francisco Giants at Milwaukee Brewers",
+      "shortName": "SF @ MIL",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "9",
+        "winner": false
+      },
+      "away": {
+        "team": "San Francisco Giants",
+        "abbrev": "SF",
+        "score": "12",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815624",
+      "name": "Kansas City Royals at Minnesota Twins",
+      "shortName": "KC @ MIN",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Minnesota Twins",
+        "abbrev": "MIN",
+        "score": "6",
+        "winner": false
+      },
+      "away": {
+        "team": "Kansas City Royals",
+        "abbrev": "KC",
+        "score": "8",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815623",
+      "name": "Athletics Athletics at Chicago Cubs",
+      "shortName": "ATH @ CHC",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "7",
+        "winner": true
+      },
+      "away": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "6",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 757.09,
+      "prevClose": 754.24,
+      "dayChange": 2.85,
+      "dayChangePct": 0.3779,
+      "weekChangePct": null
+    },
+    "QQQ": {
+      "price": 740.61,
+      "prevClose": 744.21,
+      "dayChange": -3.6,
+      "dayChangePct": -0.4837,
+      "weekChangePct": null
+    },
+    "NVDA": {
+      "price": 218.66,
+      "prevClose": 214.75,
+      "dayChange": 3.91,
+      "dayChangePct": 1.8207,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 418.45,
+      "prevClose": 423.7,
+      "dayChange": -5.25,
+      "dayChangePct": -1.2391,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 428.05,
+      "prevClose": 427.34,
+      "dayChange": 0.71,
+      "dayChangePct": 0.1661,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 311.23,
+      "prevClose": 310.26,
+      "dayChange": 0.97,
+      "dayChangePct": 0.3126,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 62427.04,
+      "prevClose": 62452.45,
+      "dayChange": -25.41,
+      "dayChangePct": -0.0407,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 422.05,
+      "prevClose": 421.08,
+      "dayChange": 0.97,
+      "dayChangePct": 0.2304,
+      "weekChangePct": null
+    },
+    "10Y": {
+      "price": 4.477,
+      "prevClose": 4.491000175476074,
+      "dayChange": -0.014000175476073906,
+      "dayChangePct": -0.3117384753740251,
+      "weekChangePct": 0.49382888149735493
+    }
+  },
+  "golf": {
+    "name": "the Memorial Tournament pres. by Workday",
+    "venue": "",
+    "status": "Round 1 - Play Complete",
+    "statusState": "in",
+    "leaders": [
+      {
+        "name": "J.J. Spaun",
+        "score": "-5",
+        "pos": "1st"
+      },
+      {
+        "name": "Wyndham Clark",
+        "score": "-5",
+        "pos": "2nd"
+      },
+      {
+        "name": "Tommy Fleetwood",
+        "score": "-5",
+        "pos": "3rd"
+      },
+      {
+        "name": "Ryan Gerard",
+        "score": "-5",
+        "pos": "4th"
+      },
+      {
+        "name": "Nick Taylor",
+        "score": "-4",
+        "pos": "5th"
+      },
+      {
+        "name": "Sam Burns",
+        "score": "-3",
+        "pos": "6th"
+      },
+      {
+        "name": "Justin Rose",
+        "score": "-3",
+        "pos": "7th"
+      },
+      {
+        "name": "Ryan Fox",
+        "score": "-2",
+        "pos": "8th"
+      },
+      {
+        "name": "J.T. Poston",
+        "score": "-2",
+        "pos": "9th"
+      },
+      {
+        "name": "Shane Lowry",
+        "score": "-2",
+        "pos": "10th"
+      }
+    ]
+  },
+  "f1": {
+    "name": "Monaco Grand Prix",
+    "shortName": "Monaco GP",
+    "venue": "",
+    "status": "Scheduled",
+    "statusState": "pre",
+    "results": []
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "401859964",
+      "name": "New York Knicks at San Antonio Spurs",
+      "shortName": "NY @ SA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 2",
+      "seriesNote": "NY leads series 1-0",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    }
+  ],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "‘The Vampire Lestat’ Turns It All the Way Up - GQ",
+      "url": "https://www.gq.com/story/the-vampire-lestat-gq-hype",
+      "description": "Hanging with Sam Reid and Jacob Anderson, the stars of ‘The Vampire Lestat,’ one of the most original shows on TV.",
+      "source": "GQ Magazine"
+    },
+    {
+      "title": "America’s 250th: A welcome ‘distraction’ for the White House - MS NOW",
+      "url": "https://www.ms.now/news/trump-july-4-freedom-250-america-250-funding-ufc-concert",
+      "description": "As U.S. forces trade strikes with Iran, the president has thrown himself into a sprawling, opaquely funded July 4 celebration — one that has begun to swallow the nation’s official, nonpartisan commemoration.",
+      "source": "MS Now"
+    },
+    {
+      "title": "RHOBH Star Kathy Hilton Steps Down From Pride Honorary Role Amid Alleged Trump Ties - TMZ",
+      "url": "https://www.tmz.com/2026/06/04/real-housewives-of-beverly-hills-star-kathy-hilton-weho-pride-trump-erika-jayne/",
+      "description": "Kathy Hilton is pulling the plug on being Grand Marshal Icon for the 2026 WeHo Pride event in Los Angeles amid backlash over her alleged ties to President Trump's MAGA movement and an incident in which she purpurtely said a homophobic slur.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Doja Cat Slams Elon Musk as a ‘Barrel Chested Ewok’ While Requesting Changes to X: ‘You Look Like You Eat Sand’ - Variety",
+      "url": "https://variety.com/2026/music/news/doja-cat-elon-musk-barrel-chested-ewok-x-twitter-1236766362/",
+      "description": "Doja Cat slammed Elon Musk as a 'barrel chested Ewok' while requesting changes to X.",
+      "source": "Variety"
+    },
+    {
+      "title": "The Eagles fleeced the Patriots in the A.J. Brown trade - PhillyVoice",
+      "url": "https://www.phillyvoice.com/eagles-fleeced-patriots-aj-brown-trade-howie-roseman/",
+      "description": "A deep examination into how and why the Eagles got the best of the Patriots in the trade for A.J. Brown.",
+      "source": "PhillyVoice.com"
+    },
+    {
+      "title": "Jared Verse: I can play free with Carson Schwesinger behind me - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/jared-verse-i-can-play-free-with-carson-schwesinger-behind-me",
+      "description": "The Browns traded away the current defensive player of the year when they dealt Myles Garrett to the Rams earlier this week, but they emerged from the trade with the last two defensive rookies of the year.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Selfie-taking fan storms court in surreal NBA Finals Game 1 scene - New York Post",
+      "url": "https://nypost.com/2026/06/03/sports/selfie-taking-fan-storms-court-in-surreal-nba-finals-game-1-scene/",
+      "description": "Wembanyama seemed to enjoy the bizarre scene, while Robinson was visibly befuddled.",
+      "source": "New York Post"
+    },
+    {
+      "title": "Cooper Kupp told Aaron Donald: You’re not allowed to unretire - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/cooper-kupp-told-aaron-donald-youre-not-allowed-to-unretire",
+      "description": "\"I already texted him and told him he's not allowed. So we're good,\" Kupp joked.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "NFL: Quarterback Russell Wilson retires at 37 to take up media role with CBS - BBC",
+      "url": "https://www.bbc.com/sport/american-football/articles/c042w66qqleo",
+      "description": "Veteran quarterback Russell Wilson, who led the Seattle Seahawks to their first Super Bowl win in 2014, retires at the age of 37.",
+      "source": "BBC News"
+    }
+  ],
+  "copy": {
+    "title": "Giants edge Brewers in shootout. Knicks host Spurs tonight. Monaco Grand Prix this weekend.",
+    "keyTakeaway": "Giants beat Brewers 12–9, Royals edge Twins 8–6, Cubs top Athletics 7–6. NBA Finals Game 2 tonight (NY @ SA). SPY flat, QQQ down 0.5%. Vampire Lestat and World Cup hype building.",
+    "todaysHits": {
+      "sports": "Three close finishes Friday. Finals Game 2 tonight.",
+      "markets": "SPY +0.4%, QQQ -0.5%, NVDA climbing.",
+      "golf": "J.J. Spaun leads Memorial at -5.",
+      "f1": "Monaco Grand Prix this weekend.",
+      "worldcup": "World Cup 2026 opens June 11 — six days out.",
+      "culture": "Vampire Lestat turns it up. Doja calls out Elon."
+    },
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Giants blast Brewers in high-scoring road win",
+      "whatHappened": "San Francisco put up 12 runs to beat Milwaukee 9 in a slugfest that had both offenses firing. The Giants' bats stayed hot on the road and closed out a tight contest late.",
+      "whyBullet1": "The Giants are proving they can win ugly games away from home, which matters more than clean victories when you're chasing in a division.",
+      "whyBullet2": "Milwaukee's inability to hold leads in high-scoring games is becoming a pattern worth watching as the season stretches on.",
+      "whatToSay": "The Giants looked like the hungrier team yesterday—they just kept answering every punch the Brewers threw."
+    },
+    "sportsOther": [
+      "Giants held on in a slugfest. Brewers couldn't complete the comeback.",
+      "Royals' bats stayed hot against Minnesota's pitching.",
+      "Cubs edged Oakland in a tight one."
+    ],
+    "markets": {
+      "mood": "SPY eked out a 0.4% gain while Nvidia jumped 1.8%, but the Nasdaq dropped 0.5% as Tesla fell 1.2% — tech's strength today was selective and narrow.",
+      "whyBullet1": "The split personality in big tech matters because it shows investors aren't buying the entire sector equally right now. Nvidia's AI chip dominance still draws money, but Tesla's weakness suggests growth expectations are tightening elsewhere.",
+      "whyBullet2": "Treasury yields climbed 0.5% for the week and 10Y rates moved another -0.3% today — traders are watching Monday's jobs report to see if the Fed stays patient or signals rate changes ahead.",
+      "bringUp": "The 10-year is up half a percent on the week while the broad market barely moved. That divergence tells you bond traders and stock traders are reading the economy completely differently right now."
+    },
+    "golf": {
+      "headline": "Spaun, Clark, Fleetwood tied atop Memorial's brutalist course",
+      "whyCare1": "Muirfield Village is one of golf's toughest tests and a proving ground before majors kick into high gear.",
+      "whyCare2": "This field includes most of the guys who'll contend at the Open in a few weeks, so form here matters.",
+      "watchFor": "Whether Spaun can keep his lead — he's not usually a front-runner in major events, so watch if he folds or holds.",
+      "whatToSay": "Muirfield's playing so hard this year that even at five under, these guys barely feel safe."
+    },
+    "f1": null,
+    "culture": null,
+    "finalSharpTake": "Tech stocks are split right down the middle today—NVDA grinding higher while TSLA stumbles—which tells you nobody agrees on where growth goes next. The S&P barely moved, the Nasdaq dropped, and that's not indecision, that's caution. Meanwhile the Giants just beat the Brewers 12–9 in a slugfest, the kind of game that reminds you baseball season's heating up fast. NBA Finals Game 2 tips tonight. Monaco is this weekend. World Cup opens in six days. A lot of noise coming.",
+    "glance": null
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "reason": "OPENAI_API_KEY missing — brief NOT editor-reviewed"
+  }
+}
