@@ -190,6 +190,41 @@ Manual (Jake): npm run social:queue     ← queues Instagram + TikTok via Buffer
 **AI involvement:** Claude writes headline, angle, bring-up, championship context, driver to watch.
 **Quality standard:** Bring-up should be a specific circuit fact, not generic F1 trivia.
 
+**⚠️ EVENT STATUS RULE — REQUIRED CHECK BEFORE WRITING:**
+Before writing about F1, golf, tennis, tournaments, races, playoffs, or any live or scheduled event, verify `statusState` from the data source:
+- `"pre"` = event has not started → use preview/upcoming language
+- `"in"` = event is currently active → use live/current-leaderboard language
+- `"post"` = event has officially concluded → use final-result language
+
+**Never use final-result language ("wins," "finished," "beat," "took home," "champion") unless `statusState === "post"` is confirmed in the data.** If the ESPN API returns `"post"` but the date suggests the event hasn't occurred yet, treat it as unreliable and default to preview language. Fabricated or mis-labeled results are worse than a preview.
+
+---
+
+### Live Top 5 Leaderboard Module
+**When to use:** For F1, golf, NASCAR, tennis, and any event where a current standings/position list is available and verified from the data source.
+**CSS class:** `.live-top5` (defined in `brief.css`)
+**Format:**
+```html
+<div class="live-top5">
+  <div class="live-top5-hd">
+    <span class="live-top5-badge">Round 2 Complete</span>  <!-- or "After Qualifying", "Live", etc. -->
+    <span class="live-top5-title">Tournament Name · Top 5</span>
+  </div>
+  <!-- Repeat .live-top5-row for each entry (max 5) -->
+  <div class="live-top5-row">
+    <span class="lt5-pos lt5-pos-1">1</span>       <!-- lt5-pos-1 for amber highlight on leader -->
+    <span class="lt5-name">Player Name</span>
+    <span class="lt5-score under">-9</span>          <!-- .under = green, .over = red, .even = grey -->
+  </div>
+</div>
+```
+**Rules:**
+- Only use when real data is available from the fetcher. Never fabricate positions or scores.
+- If live data is unavailable, skip the module and write a plain text preview/update instead.
+- For golf: use `.under` / `.over` / `.even` on `.lt5-score` to color the score.
+- For F1 qualifying: show "Pole" for P1, team name as the right column (no lap times unless available).
+- For F1 race: only render if `statusState === "post"` — use positions and gap times from ESPN data.
+
 ---
 
 ### World Cup (when active)
