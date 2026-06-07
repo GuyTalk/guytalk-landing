@@ -252,23 +252,59 @@ function ContextCard(rows, live, tag) {
   </div>`;
 }
 
-/** FeaturedSpotlight — winner / leader hero card. Fills section dead space.
- *  @param {{eyebrow,icon,flag,name,subText,subColor,accent,footL,footR}} c */
-function FeaturedSpotlight(c) {
+/** EventSpotlight — editorial hero card: colour-block hero + one strong visual
+ *  (flag/initials) + up to three key stats. Premium, image-light, no scraping.
+ *  @param {{eyebrow,icon,flag,name,subText,subColor,accent,watermark,
+ *           stats:{num,label,neg}[]}} c */
+function EventSpotlight(c) {
   const mark = c.flag
-    ? `<img class="feat-flag" src="${esc(c.flag)}" alt="" loading="lazy">`
-    : `<span class="feat-avatar" style="background:${c.accent || hashColor(c.name || '')}">${esc(initials(c.name))}</span>`;
-  return `<div class="feat-card">
-    <span class="feat-accent" style="background:${c.accent || 'var(--accent)'}"></span>
-    <div class="feat-eyebrow"><span class="fx">${c.icon || ''}</span>${esc(c.eyebrow)}</div>
-    <div class="feat-main">
-      ${mark}
-      <div>
-        <div class="feat-name">${esc(c.name)}</div>
-        ${c.subText ? `<div class="feat-sub">${c.subColor ? `<span class="tc-dot" style="background:${c.subColor}"></span>` : ''}${esc(c.subText)}</div>` : ''}
+    ? `<img class="spot-flag" src="${esc(c.flag)}" alt="" loading="lazy">`
+    : `<span class="spot-avatar">${esc(initials(c.name))}</span>`;
+  const wm = c.watermark ? `<img class="spot-wm" src="${esc(c.watermark)}" alt="" loading="lazy">` : '';
+  const stats = (c.stats || []).filter((s) => s && s.num != null && s.num !== '').map(
+    (s) => `<div class="spot-stat"><div class="spot-stat-num${s.neg ? ' neg' : ''}">${esc(s.num)}</div><div class="spot-stat-lbl">${esc(s.label)}</div></div>`
+  ).join('');
+  return `<div class="spot">
+    <div class="spot-hero" style="--c:${c.accent || '#2B6FFF'}">
+      ${wm}
+      <div class="spot-eyebrow"><span class="fx">${c.icon || ''}</span>${esc(c.eyebrow)}</div>
+      <div class="spot-main">
+        ${mark}
+        <div>
+          <div class="spot-name">${esc(c.name)}</div>
+          ${c.subText ? `<div class="spot-team">${c.subColor ? `<span class="tc-dot" style="background:${c.subColor}"></span>` : ''}${esc(c.subText)}</div>` : ''}
+        </div>
       </div>
     </div>
-    ${(c.footL || c.footR) ? `<div class="feat-foot"><span>${esc(c.footL || '')}</span>${c.footR ? `<span class="num">${esc(c.footR)}</span>` : ''}</div>` : ''}
+    ${stats ? `<div class="spot-stats">${stats}</div>` : ''}
+  </div>`;
+}
+
+/** Marquee — premium matchup banner for the single biggest game. */
+function Marquee(g) {
+  const teamMark = (t, cls) =>
+    t.logo
+      ? `<img class="mq-logo" src="${esc(t.logo)}" alt="" loading="lazy">`
+      : `<span class="mq-avatar" style="background:${t.color || hashColor(t.abbr)}">${esc((t.abbr || '').slice(0, 3))}</span>`;
+  const showScore = g.state !== 'pre' && g.away.score !== '' && g.home.score !== '';
+  const side = (t, cls) => `<div class="mq-team ${cls}">
+      ${teamMark(t, cls)}
+      <div class="mq-tn"><div class="mq-abbr">${esc(t.abbr || t.name)}</div>${t.record ? `<div class="mq-rec">${esc(t.record)}</div>` : ''}</div>
+      ${showScore ? `<div class="mq-score">${esc(t.score)}</div>` : ''}
+    </div>`;
+  const mid = g.state === 'pre' ? 'vs' : '–';
+  const foot = g.state === 'in'
+    ? `<span class="pill pill-live"><span class="nav-live-dot"></span>Live</span> ${esc(g.statusText)}`
+    : esc(g.statusText);
+  return `<div class="marquee" style="--ca:${g.away.color || 'var(--accent)'};--ch:${g.home.color || 'var(--accent)'}">
+    <div class="marquee-accent"></div>
+    <div class="marquee-tag">${esc(g.headline || g.league)}</div>
+    <div class="marquee-body">
+      ${side(g.away, 'away')}
+      <div class="mq-mid">${mid}</div>
+      ${side(g.home, 'home')}
+    </div>
+    <div class="marquee-foot">${foot}</div>
   </div>`;
 }
 
@@ -385,13 +421,17 @@ function FeaturedF1Card(f1) {
   // Championship points for the spotlighted driver (matched by last name).
   const last = p0.driver.split(' ').pop().toLowerCase();
   const champ = (f1.driverStandings || []).find((d) => d.name.toLowerCase().endsWith(last));
+  const posLabel = f1.phase === 'result' ? 'Finish' : f1.phase === 'live' ? 'Running' : 'Grid';
 
-  return FeaturedSpotlight({
+  return EventSpotlight({
     eyebrow: meta.eyebrow, icon: meta.icon, flag: p0.flag, name: p0.driver,
     subText: p0.team || '', subColor: p0.team ? constructorColor(p0.team) : '',
-    accent: constructorColor(p0.team),
-    footL: shortEvent(f1.event),
-    footR: champ ? `${champ.points} pts · P${champ.pos}` : '',
+    accent: constructorColor(p0.team), watermark: f1.leagueLogo,
+    stats: [
+      { num: `P${p0.pos}`, label: posLabel },
+      champ && { num: champ.points, label: 'Season pts' },
+      champ ? { num: `P${champ.pos}`, label: 'Championship' } : { num: shortEvent(f1.event).replace(/^the /i, ''), label: 'Event' },
+    ],
   });
 }
 
@@ -405,11 +445,16 @@ function FeaturedGolfCard(g) {
     pre:  { eyebrow: 'Top of the Field', icon: '⛳' },
   }[g.state] || { eyebrow: 'Tournament Leader', icon: '⛳' };
 
-  return FeaturedSpotlight({
+  const negScore = String(lead.score).trim().startsWith('-');
+  return EventSpotlight({
     eyebrow: meta.eyebrow, icon: meta.icon, flag: lead.flag, name: lead.name,
-    subText: `Leads at ${lead.score}`, accent: '#16A34A',
-    footL: shortEvent(g.event),
-    footR: lead.thru ? `Thru ${lead.thru}` : (g.state === 'post' ? 'Final' : lead.score),
+    subText: g.state === 'post' ? `Won at ${lead.score}` : `Leads at ${lead.score}`,
+    accent: '#15803D', watermark: g.leagueLogo,
+    stats: [
+      { num: lead.score, label: 'Score', neg: negScore },
+      { num: lead.thru ? lead.thru : (g.state === 'post' ? 'F' : '—'), label: 'Thru' },
+      { num: lead.pos, label: 'Position' },
+    ],
   });
 }
 
@@ -532,7 +577,15 @@ function FeaturedGolfCard(g) {
     setBadge('badge-scores', real ? 'live' : null);
     const el = $('scoreboardWrap');
     if (!real || !real.length) { el.innerHTML = emptyBox('No games on the board right now.'); return; }
-    el.innerHTML = real.map((lg) => `
+
+    // Marquee: spotlight the single biggest game (live > upcoming > final, then importance).
+    const all = real.flatMap((lg) => lg.games);
+    const rank = { in: 0, pre: 1, post: 2 };
+    const big = all.filter((g) => g.isBig)
+      .sort((a, b) => (rank[a.state] - rank[b.state]) || (b.importance - a.importance))[0];
+    const marquee = big ? Marquee(big) : '';
+
+    el.innerHTML = marquee + real.map((lg) => `
       <div class="league-block">
         <div class="league-name">${esc(lg.label)}</div>
         <div class="grid grid-scores">${lg.games.map(ScoreboardCard).join('')}</div>
@@ -591,6 +644,19 @@ function FeaturedGolfCard(g) {
     setMeta('meta-scores',   p.scoreboard ? 'ESPN' : '');
     setMeta('meta-markets',  p.markets    ? 'Finnhub' : '');
     setMeta('meta-trending', 'Editorial');
+
+    // Section identity: surface the live event name under each header.
+    const setText = (id, t) => { const e = $(id); if (e && t) e.textContent = t; };
+    const liveN = (p.liveNow || []).length;
+    if (liveN) setText('desc-live', `${liveN} event${liveN > 1 ? 's' : ''} in focus right now, ranked by what matters.`);
+    if (p.f1) setText('desc-f1', `${p.f1.event} · ${p.f1.sessionLabel}`);
+    if (p.golf) setText('desc-golf', `${shortEvent(p.golf.event)} · ${p.golf.statusText}`);
+    if (p.scoreboard) {
+      const liveG = p.scoreboard.reduce((n, lg) => n + lg.games.filter((g) => g.state === 'in').length, 0);
+      setText('desc-scores', liveG
+        ? `${liveG} game${liveG > 1 ? 's' : ''} live now across ${p.scoreboard.length} leagues.`
+        : `Latest scores across ${p.scoreboard.length} leagues.`);
+    }
   }
 
   let timer = null;
@@ -627,7 +693,8 @@ function FeaturedGolfCard(g) {
   }
 
   window.GuyTalkLive = { refresh, MOCK, components: {
-    LiveEventCard, LiveLeaderboard, ScoreboardCard, MarketCard, TrendingStoryCard, TalkingPointCard, ContextCard,
+    LiveEventCard, LiveLeaderboard, ScoreboardCard, MarketCard, TrendingStoryCard,
+    TalkingPointCard, ContextCard, EventSpotlight, Marquee,
   }};
 
   paintSkeletons();

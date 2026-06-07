@@ -54,6 +54,12 @@ const json = (url) =>
     .then((r) => (r.ok ? r.json() : null))
     .catch(() => null);
 
+// Pick a usable (https, non-dark) logo href from an ESPN logos[] array.
+const pickLogo = (logos) => {
+  const l = (logos || []).find((x) => /^https/.test(x.href || '') && !/dark/i.test(x.href));
+  return l ? l.href : '';
+};
+
 /* ----------------------------------------------------------------- Scoreboard */
 
 function parseGame(event, lg) {
@@ -228,6 +234,9 @@ async function fetchF1() {
     sessionLabel,
     statusText,
     nextSession,           // {name, date} | null
+    leagueLogo: pickLogo(data?.leagues?.[0]?.logos),
+    circuit: event.circuit?.fullName || '',
+    circuitCountry: event.circuit?.address?.country || '',
     positions: board ? f1Positions(board, teamByDriver) : [],
     driverStandings: driverStandings.length ? driverStandings : null,
     constructorStandings: constructorStandings.length ? constructorStandings : null,
@@ -261,6 +270,7 @@ async function fetchGolf() {
     isMajor: MAJOR_GOLF_RE.test(event.name || ''),
     state: status.state,
     statusText: status.detail || status.shortDetail || '',
+    leagueLogo: pickLogo(data?.leagues?.[0]?.logos),
     leaderScore: leader ? leader.score : null,
     cutLine: comp.status?.cutLine != null ? String(comp.status.cutLine) : null,
     leaderboard,
