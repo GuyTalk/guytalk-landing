@@ -222,9 +222,12 @@ function LiveLeaderboard(cfg) {
       ? flagOrAvatar(r.flag, r.name)
       : (r.dotColor ? `<span class="tc-dot" style="background:${r.dotColor};width:10px;height:10px"></span>` : '');
     const detail = r.chip ? teamChip(r.chip) : (r.sub ? `<span class="sub">${esc(r.sub)}</span>` : '');
+    const nameHtml = r.href
+      ? `<a class="lb-link" href="${esc(r.href)}" target="_blank" rel="noopener">${esc(r.name)}</a>`
+      : esc(r.name);
     return `<div class="lb-row${leader ? ' is-leader' : ''}">
       <span class="lb-pos">${esc(r.pos)}</span>
-      <span class="lb-name-row">${mark}<span class="lb-name-block"><span class="lb-name">${esc(r.name)}</span>${detail}</span></span>
+      <span class="lb-name-row">${mark}<span class="lb-name-block"><span class="lb-name">${nameHtml}</span>${detail}</span></span>
       <span class="lb-val${r.valClass ? ' ' + r.valClass : ''}">${esc(r.val || '')}</span>
     </div>`;
   }).join('');
@@ -275,6 +278,7 @@ function EventSpotlight(c) {
           ${c.subText ? `<div class="spot-team">${c.subColor ? `<span class="tc-dot" style="background:${c.subColor}"></span>` : ''}${esc(c.subText)}</div>` : ''}
         </div>
       </div>
+      ${c.link ? `<div class="spot-link-row"><a class="hl-btn" href="${esc(c.link.url)}" target="_blank" rel="noopener"><span class="pl">▶</span> ${esc(c.link.label)}</a></div>` : ''}
     </div>
     ${stats ? `<div class="spot-stats">${stats}</div>` : ''}
   </div>`;
@@ -287,15 +291,19 @@ function Marquee(g) {
       ? `<img class="mq-logo" src="${esc(t.logo)}" alt="" loading="lazy">`
       : `<span class="mq-avatar" style="background:${t.color || hashColor(t.abbr)}">${esc((t.abbr || '').slice(0, 3))}</span>`;
   const showScore = g.state !== 'pre' && g.away.score !== '' && g.home.score !== '';
+  const tname = (t) => t.link
+    ? `<a class="nm-link" href="${esc(t.link)}" target="_blank" rel="noopener" style="color:#fff">${esc(t.abbr || t.name)}</a>`
+    : esc(t.abbr || t.name);
   const side = (t, cls) => `<div class="mq-team ${cls}">
       ${teamMark(t, cls)}
-      <div class="mq-tn"><div class="mq-abbr">${esc(t.abbr || t.name)}</div>${t.record ? `<div class="mq-rec">${esc(t.record)}</div>` : ''}</div>
+      <div class="mq-tn"><div class="mq-abbr">${tname(t)}</div>${t.record ? `<div class="mq-rec">${esc(t.record)}</div>` : ''}</div>
       ${showScore ? `<div class="mq-score">${esc(t.score)}</div>` : ''}
     </div>`;
   const mid = g.state === 'pre' ? 'vs' : '–';
-  const foot = g.state === 'in'
+  const status = g.state === 'in'
     ? `<span class="pill pill-live"><span class="nav-live-dot"></span>Live</span> ${esc(g.statusText)}`
     : esc(g.statusText);
+  const hl = g.eventLink ? ` &nbsp;·&nbsp; <a class="nm-link" href="${esc(g.eventLink.url)}" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.9)">${esc(g.eventLink.label)} →</a>` : '';
   return `<div class="marquee" style="--ca:${g.away.color || 'var(--accent)'};--ch:${g.home.color || 'var(--accent)'}">
     <div class="marquee-accent"></div>
     <div class="marquee-tag">${esc(g.headline || g.league)}</div>
@@ -304,7 +312,7 @@ function Marquee(g) {
       <div class="mq-mid">${mid}</div>
       ${side(g.home, 'home')}
     </div>
-    <div class="marquee-foot">${foot}</div>
+    <div class="marquee-foot">${status}${hl}</div>
   </div>`;
 }
 
@@ -312,8 +320,11 @@ function Marquee(g) {
 function ScoreboardCard(g) {
   const side = (t, otherScore) => {
     const losing = g.state === 'post' && t.score !== '' && Number(t.score) < Number(otherScore);
+    const abbr = t.link
+      ? `<a class="nm-link sc-abbr" href="${esc(t.link)}" target="_blank" rel="noopener">${esc(t.abbr || t.name)}</a>`
+      : `<span class="sc-abbr">${esc(t.abbr || t.name)}</span>`;
     return `<div class="sc-team${losing ? ' loser' : ''}">
-      <span class="nm">${teamMark(t.logo, t.abbr, t.color)}<span class="sc-abbr">${esc(t.abbr || t.name)}</span>${t.record ? `<span class="sc-rec">${esc(t.record)}</span>` : ''}</span>
+      <span class="nm">${teamMark(t.logo, t.abbr, t.color)}${abbr}${t.record ? `<span class="sc-rec">${esc(t.record)}</span>` : ''}</span>
       <span class="sc-score">${esc(t.score !== '' ? t.score : '—')}</span>
     </div>`;
   };
@@ -344,25 +355,30 @@ function MarketCard(m) {
   </div>`;
 }
 
-/** TrendingStoryCard — Section 6 */
+/** TrendingStoryCard — Section 6 (live headlines w/ source links) */
 function TrendingStoryCard(s, i) {
+  const head = s.url
+    ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.headline)}</a>`
+    : esc(s.headline);
   return `<div class="story">
     <div class="story-num">${String(i + 1).padStart(2, '0')}</div>
     <div>
       <div class="story-cat">${esc(s.category)}</div>
-      <div class="story-head">${esc(s.headline)}</div>
-      <p class="story-sum">${esc(s.summary)}</p>
-      <p class="story-why"><b>Why people care:</b> ${esc(s.why)}</p>
+      <div class="story-head">${head}</div>
+      ${s.summary ? `<p class="story-sum">${esc(s.summary)}</p>` : ''}
+      ${s.why ? `<p class="story-why"><b>Why it matters:</b> ${esc(s.why)}</p>` : ''}
+      ${s.url ? `<div class="story-src">${esc(s.source || 'Source')} · <a href="${esc(s.url)}" target="_blank" rel="noopener">Read →</a></div>` : ''}
     </div>
   </div>`;
 }
 
-/** TalkingPointCard — Section 7 */
+/** TalkingPointCard — Section 7 (topic / why / what to say + source) */
 function TalkingPointCard(t) {
   return `<div class="talk-card">
     <div class="talk-topic">${esc(t.topic)}</div>
     <p class="talk-field"><b>Why it matters</b>${esc(t.matters)}</p>
     <p class="talk-field talk-say"><b>What to say</b>${esc(t.say)}</p>
+    ${t.url ? `<p class="talk-src"><a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.source || 'Source')} →</a></p>` : ''}
   </div>`;
 }
 
@@ -427,6 +443,7 @@ function FeaturedF1Card(f1) {
     eyebrow: meta.eyebrow, icon: meta.icon, flag: p0.flag, name: p0.driver,
     subText: p0.team || '', subColor: p0.team ? constructorColor(p0.team) : '',
     accent: constructorColor(p0.team), watermark: f1.leagueLogo,
+    link: f1.eventLink || null,
     stats: [
       { num: `P${p0.pos}`, label: posLabel },
       champ && { num: champ.points, label: 'Season pts' },
@@ -449,7 +466,7 @@ function FeaturedGolfCard(g) {
   return EventSpotlight({
     eyebrow: meta.eyebrow, icon: meta.icon, flag: lead.flag, name: lead.name,
     subText: g.state === 'post' ? `Won at ${lead.score}` : `Leads at ${lead.score}`,
-    accent: '#15803D', watermark: g.leagueLogo,
+    accent: '#15803D', watermark: g.leagueLogo, link: g.eventLink || null,
     stats: [
       { num: lead.score, label: 'Score', neg: negScore },
       { num: lead.thru ? lead.thru : (g.state === 'post' ? 'F' : '—'), label: 'Thru' },
@@ -463,7 +480,8 @@ function FeaturedGolfCard(g) {
  * ===========================================================================*/
 
 (function () {
-  const REFRESH_MS = 60 * 1000;
+  const REFRESH_MS = 60 * 1000;        // scoreboard / F1 / golf / markets
+  const TALK_MS = 10 * 60 * 1000;      // trending stories / talking points
   const IS_DEV =
     /^(localhost|127\.0\.0\.1|0\.0\.0\.0)$/.test(location.hostname) ||
     location.hostname.endsWith('.vercel.app') ||
@@ -471,12 +489,15 @@ function FeaturedGolfCard(g) {
 
   const $ = (id) => document.getElementById(id);
 
-  // source: 'live' | 'mock' | 'editorial' | null. Badges show in dev only.
+  // source: 'live'|'mock'|'editorial'|'ai'|'derived'|null. Badges show in dev only.
   function setBadge(id, source) {
     const el = $(id);
     if (!el) return;
     if (!IS_DEV || !source) { el.innerHTML = ''; return; }
-    const map = { live: ['src-live', 'Live API'], mock: ['src-mock', 'Mock Data'], editorial: ['src-edit', 'Editorial'] };
+    const map = {
+      live: ['src-live', 'Live API'], mock: ['src-mock', 'Mock Data'],
+      editorial: ['src-edit', 'Editorial'], ai: ['src-ai', 'Claude AI'], derived: ['src-derived', 'Derived'],
+    };
     const [cls, label] = map[source] || ['', ''];
     el.innerHTML = cls ? `<span class="src-badge ${cls}">${label}</span>` : '';
   }
@@ -494,15 +515,16 @@ function FeaturedGolfCard(g) {
   // all envs; the dev-only coloured LIVE/MOCK/EDITORIAL badge is separate.
   function paintMeta(el) {
     const src = el.dataset.src || '';
-    const iso = window.__liveIso;
+    const iso = el.dataset.iso || window.__liveIso;
     if (!iso && !src) { el.innerHTML = ''; return; }
     const rel = iso ? `Updated ${relTime(iso)}` : '';
     el.innerHTML = `${rel}${rel && src ? ' · ' : ''}${src ? `<span class="section-src">${esc(src)}</span>` : ''}`;
   }
-  function setMeta(id, source) {
+  function setMeta(id, source, iso) {
     const el = $(id);
     if (!el) return;
     el.dataset.src = source || '';
+    if (iso) el.dataset.iso = iso;
     paintMeta(el);
   }
   const paintAllMetas = () => document.querySelectorAll('.section-meta').forEach(paintMeta);
@@ -534,14 +556,14 @@ function FeaturedGolfCard(g) {
       leaderHighlight: f1.phase !== 'upcoming', showMarks: true,
       subHead: f1.sessionLabel,
       rows: (f1.positions || []).map((p) => ({
-        pos: `P${p.pos}`, name: p.driver, flag: p.flag, chip: p.team || '',
+        pos: `P${p.pos}`, name: p.driver, flag: p.flag, chip: p.team || '', href: p.profileUrl || '',
       })),
     });
 
     const standings = f1.driverStandings ? LiveLeaderboard({
       event: 'Championship', statusText: `Driver standings · ${f1.season}`, state: '',
       leaderHighlight: true, showMarks: false, subHead: 'Drivers',
-      rows: f1.driverStandings.slice(0, 8).map((d) => ({ pos: d.pos, name: d.name, chip: d.team, val: `${d.points} pts` })),
+      rows: f1.driverStandings.slice(0, 8).map((d) => ({ pos: d.pos, name: d.name, chip: d.team, val: `${d.points} pts`, href: d.profileUrl || '' })),
     }) : '';
 
     const constructors = f1.constructorStandings ? LiveLeaderboard({
@@ -600,14 +622,22 @@ function FeaturedGolfCard(g) {
       `<p class="mk-disclaimer">Market data is informational only and is not investment advice. Values via index-tracking proxies; figures may be delayed.</p>`;
   }
 
-  function renderTrending(stories, source) {
-    setBadge('badge-trending', source);
-    $('trendingWrap').innerHTML = (stories || []).map(TrendingStoryCard).join('');
-  }
+  // Sections 6 & 7 — driven by the separate, slower /api/talk feed.
+  function renderTalk(p) {
+    const trendLive = !!(p && p.trending && p.trending.length);
+    const talkLive = !!(p && p.talkingAbout && p.talkingAbout.length);
+    const stories = trendLive ? p.trending : MOCK.trending;
+    const talks = talkLive ? p.talkingAbout : MOCK.talkingAbout;
+    $('trendingWrap').innerHTML = stories.map(TrendingStoryCard).join('');
+    $('talkingWrap').innerHTML = talks.map(TalkingPointCard).join('');
 
-  function renderTalking(points, source) {
-    setBadge('badge-talking', source);
-    $('talkingWrap').innerHTML = (points || []).map(TalkingPointCard).join('');
+    const iso = (p && p.updatedAt) || new Date().toISOString();
+    setBadge('badge-trending', trendLive ? 'live' : 'editorial');
+    setMeta('meta-trending', trendLive ? (p.sources?.trending || 'Live') : 'Editorial', iso);
+
+    const ts = talkLive ? p.sources?.talkingAbout : null; // 'ai' | 'derived'
+    setBadge('badge-talking', !talkLive ? 'editorial' : (ts === 'ai' ? 'ai' : 'derived'));
+    setMeta('meta-talking', !talkLive ? 'Editorial' : (ts === 'ai' ? 'Claude AI' : 'Derived'), iso);
   }
 
   function paintSkeletons() {
@@ -617,8 +647,6 @@ function FeaturedGolfCard(g) {
     $('golfWrap').innerHTML = sk(1);
     $('scoreboardWrap').innerHTML = sk(2);
     $('marketsWrap').innerHTML = sk(8);
-    renderTrending(MOCK.trending, 'editorial');
-    renderTalking(MOCK.talkingAbout, 'editorial');
   }
 
   function render(payload) {
@@ -628,9 +656,7 @@ function FeaturedGolfCard(g) {
     renderGolf(p.golf);
     renderScoreboard(p.scoreboard);
     renderMarkets(p.markets);
-    // Editorial sections: live feed may supply these later; until then, mock.
-    renderTrending(p.trending || MOCK.trending, 'editorial');
-    renderTalking(p.talkingAbout || MOCK.talkingAbout, 'editorial');
+    // Sections 6 & 7 are handled by refreshTalk() / renderTalk() (separate feed).
 
     const stamp = p.updatedAt || new Date().toISOString();
     window.__liveIso = stamp;
@@ -643,7 +669,7 @@ function FeaturedGolfCard(g) {
     setMeta('meta-golf',     p.golf       ? 'ESPN' : '');
     setMeta('meta-scores',   p.scoreboard ? 'ESPN' : '');
     setMeta('meta-markets',  p.markets    ? 'Finnhub' : '');
-    setMeta('meta-trending', 'Editorial');
+    // meta-trending / meta-talking are owned by renderTalk() (separate feed).
 
     // Section identity: surface the live event name under each header.
     const setText = (id, t) => { const e = $(id); if (e && t) e.textContent = t; };
@@ -659,7 +685,7 @@ function FeaturedGolfCard(g) {
     }
   }
 
-  let timer = null;
+  let timer = null, talkTimer = null;
   async function refresh(manual) {
     const btn = $('refreshBtn');
     if (manual) { btn.disabled = true; btn.textContent = 'Refreshing…'; }
@@ -673,6 +699,18 @@ function FeaturedGolfCard(g) {
     } finally {
       if (manual) { btn.disabled = false; btn.textContent = 'Refresh'; }
     }
+    if (manual) refreshTalk();
+  }
+
+  // Sections 6 & 7 — slower feed (news moves slower than scores).
+  async function refreshTalk() {
+    try {
+      const res = await fetch('/api/talk', { headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error('bad status ' + res.status);
+      renderTalk(await res.json());
+    } catch (err) {
+      renderTalk(null); // editorial fallback, clearly labelled
+    }
   }
 
   function startClock() {
@@ -684,10 +722,17 @@ function FeaturedGolfCard(g) {
   }
 
   function startAutoRefresh() {
-    const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
-    const start = () => { stop(); timer = setInterval(() => refresh(false), REFRESH_MS); };
+    const stop = () => {
+      if (timer) { clearInterval(timer); timer = null; }
+      if (talkTimer) { clearInterval(talkTimer); talkTimer = null; }
+    };
+    const start = () => {
+      stop();
+      timer = setInterval(() => refresh(false), REFRESH_MS);     // scores/markets: 60s
+      talkTimer = setInterval(refreshTalk, TALK_MS);             // news/talk: 10 min
+    };
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) stop(); else { refresh(false); start(); }
+      if (document.hidden) stop(); else { refresh(false); refreshTalk(); start(); }
     });
     start();
   }
@@ -698,7 +743,9 @@ function FeaturedGolfCard(g) {
   }};
 
   paintSkeletons();
+  renderTalk(null);   // instant editorial paint for sections 6 & 7 before the feed lands
   refresh(false);
+  refreshTalk();
   startClock();
   startAutoRefresh();
 })();

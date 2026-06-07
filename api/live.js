@@ -60,6 +60,24 @@ const pickLogo = (logos) => {
   return l ? l.href : '';
 };
 
+// Extract a highlight / recap / event link from an ESPN links[] array.
+// Returns {label, url, rel} or null — never invents a link.
+function espnLink(links) {
+  if (!Array.isArray(links)) return null;
+  const pref = [
+    ['highlights', 'Watch highlights'],
+    ['recap', 'Recap'],
+    ['summary', 'View on ESPN'],
+    ['gamecast', 'Gamecast'],
+  ];
+  for (const [rel, label] of pref) {
+    const m = links.find((l) => (l.rel || []).includes(rel) && /^https/.test(l.href || ''));
+    if (m) return { label, url: m.href, rel };
+  }
+  const f = links.find((l) => /^https/.test(l.href || ''));
+  return f ? { label: 'View on ESPN', url: f.href, rel: 'web' } : null;
+}
+
 /* ----------------------------------------------------------------- Scoreboard */
 
 function parseGame(event, lg) {
@@ -83,6 +101,7 @@ function parseGame(event, lg) {
     record: c.records?.[0]?.summary || '',
     logo: c.team?.logo || '',
     color: c.team?.color ? `#${c.team.color}` : '',
+    link: (c.team?.links || []).find((l) => /^https/.test(l.href || ''))?.href || '',
     winner: !!c.winner,
   });
 
@@ -98,6 +117,7 @@ function parseGame(event, lg) {
     headline,            // e.g. "NBA Finals - Game 3"  (real, from ESPN notes)
     isBig,
     importance,
+    eventLink: espnLink(event.links),   // {label,url,rel} | null
     home: team(home),
     away: team(away),
     startDate: comp.date || null,
@@ -128,7 +148,7 @@ const fmtET = (iso) => {
   catch { return ''; }
 };
 
-function f1Positions(comp, teamByDriver) {
+function f1Positions(comp, teamByDriver, profileByDriver) {
   return (comp.competitors || [])
     .slice()
     .sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
@@ -141,6 +161,7 @@ function f1Positions(comp, teamByDriver) {
         driver: name,
         team: teamByDriver[name] || teamByDriver[c.athlete?.shortName] || teamByDriver[last] || '',
         flag: c.athlete?.flag?.href || '',
+        profileUrl: profileByDriver[name] || profileByDriver[last] || '',
         winner: !!c.winner,
       };
     });
@@ -162,11 +183,13 @@ async function fetchF1() {
   ]);
   const driverList = drv?.MRData?.StandingsTable?.StandingsLists?.[0]?.DriverStandings || [];
   const teamByDriver = {};
+  const profileByDriver = {}; // reliable Wikipedia profile URL from Jolpica
   for (const d of driverList) {
     const full = `${d.Driver?.givenName || ''} ${d.Driver?.familyName || ''}`.trim();
     const team = d.Constructors?.[0]?.name || '';
-    if (full) teamByDriver[full] = team;
-    if (d.Driver?.familyName) teamByDriver[d.Driver.familyName] = team;
+    const url = d.Driver?.url || '';
+    if (full) { teamByDriver[full] = team; if (url) profileByDriver[full] = url; }
+    if (d.Driver?.familyName) { teamByDriver[d.Driver.familyName] = team; if (url) profileByDriver[d.Driver.familyName] = url; }
   }
 
   const driverStandings = driverList.slice(0, 10).map((d) => ({
@@ -174,6 +197,7 @@ async function fetchF1() {
     name: `${d.Driver?.givenName || ''} ${d.Driver?.familyName || ''}`.trim(),
     team: d.Constructors?.[0]?.name || '',
     points: Number(d.points),
+    profileUrl: d.Driver?.url || '',
   }));
   const constructorStandings =
     (con?.MRData?.StandingsTable?.StandingsLists?.[0]?.ConstructorStandings || [])
@@ -237,7 +261,8 @@ async function fetchF1() {
     leagueLogo: pickLogo(data?.leagues?.[0]?.logos),
     circuit: event.circuit?.fullName || '',
     circuitCountry: event.circuit?.address?.country || '',
-    positions: board ? f1Positions(board, teamByDriver) : [],
+    eventLink: espnLink(event.links),
+    positions: board ? f1Positions(board, teamByDriver, profileByDriver) : [],
     driverStandings: driverStandings.length ? driverStandings : null,
     constructorStandings: constructorStandings.length ? constructorStandings : null,
   };
@@ -271,6 +296,7 @@ async function fetchGolf() {
     state: status.state,
     statusText: status.detail || status.shortDetail || '',
     leagueLogo: pickLogo(data?.leagues?.[0]?.logos),
+    eventLink: espnLink(event.links),
     leaderScore: leader ? leader.score : null,
     cutLine: comp.status?.cutLine != null ? String(comp.status.cutLine) : null,
     leaderboard,

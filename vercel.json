@@ -4,7 +4,8 @@
   "functions": {
     "api/approve.js": { "maxDuration": 60 },
     "api/ticker.js":  { "maxDuration": 15 },
-    "api/live.js":    { "maxDuration": 15 }
+    "api/live.js":    { "maxDuration": 15 },
+    "api/talk.js":    { "maxDuration": 30 }
   },
   "headers": [
     {
