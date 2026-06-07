@@ -1,0 +1,422 @@
+{
+  "num": 40,
+  "slug": "issue-040",
+  "date": "Sunday, June 7, 2026",
+  "title": "Astros demolish Oakland. Leclerc wins Monaco. Spurs-Knicks Game 3 tomorrow.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815649",
+      "name": "Athletics Athletics at Houston Astros",
+      "shortName": "ATH @ HOU",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Houston Astros",
+        "abbrev": "HOU",
+        "score": "13",
+        "winner": true
+      },
+      "away": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815650",
+      "name": "Cincinnati Reds at St. Louis Cardinals",
+      "shortName": "CIN @ STL",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "St. Louis Cardinals",
+        "abbrev": "STL",
+        "score": "6",
+        "winner": true
+      },
+      "away": {
+        "team": "Cincinnati Reds",
+        "abbrev": "CIN",
+        "score": "5",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815655",
+      "name": "Los Angeles Angels at Los Angeles Dodgers",
+      "shortName": "LAA @ LAD",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Los Angeles Dodgers",
+        "abbrev": "LAD",
+        "score": "9",
+        "winner": true
+      },
+      "away": {
+        "team": "Los Angeles Angels",
+        "abbrev": "LAA",
+        "score": "2",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 737.55,
+      "prevClose": 757.09,
+      "dayChange": -19.54,
+      "dayChangePct": -2.5809,
+      "weekChangePct": null
+    },
+    "QQQ": {
+      "price": 705.06,
+      "prevClose": 740.61,
+      "dayChange": -35.55,
+      "dayChangePct": -4.8001,
+      "weekChangePct": null
+    },
+    "NVDA": {
+      "price": 205.1,
+      "prevClose": 218.66,
+      "dayChange": -13.56,
+      "dayChangePct": -6.2014,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 391,
+      "prevClose": 418.45,
+      "dayChange": -27.45,
+      "dayChangePct": -6.5599,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 416.67,
+      "prevClose": 428.05,
+      "dayChange": -11.38,
+      "dayChangePct": -2.6586,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 307.34,
+      "prevClose": 311.23,
+      "dayChange": -3.89,
+      "dayChangePct": -1.2499,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 62448,
+      "prevClose": 60643.48,
+      "dayChange": 1804.52,
+      "dayChangePct": 2.9756,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 394.39,
+      "prevClose": 422.05,
+      "dayChange": -27.66,
+      "dayChangePct": -6.5537,
+      "weekChangePct": null
+    },
+    "10Y": {
+      "price": 4.536,
+      "prevClose": 4.4770002365112305,
+      "dayChange": 0.05899976348876912,
+      "dayChangePct": 1.3178414199670798,
+      "weekChangePct": 1.863910398733508
+    }
+  },
+  "golf": {
+    "name": "the Memorial Tournament pres. by Workday",
+    "venue": "",
+    "status": "Round 3 - Suspended",
+    "statusState": "in",
+    "leaders": [
+      {
+        "name": "Ryan Gerard",
+        "score": "-9",
+        "pos": "1st"
+      },
+      {
+        "name": "J.T. Poston",
+        "score": "-9",
+        "pos": "2nd"
+      },
+      {
+        "name": "Sam Burns",
+        "score": "-8",
+        "pos": "3rd"
+      },
+      {
+        "name": "Eric Cole",
+        "score": "-6",
+        "pos": "4th"
+      },
+      {
+        "name": "Keegan Bradley",
+        "score": "-4",
+        "pos": "5th"
+      },
+      {
+        "name": "Wyndham Clark",
+        "score": "-4",
+        "pos": "6th"
+      },
+      {
+        "name": "Tommy Fleetwood",
+        "score": "-4",
+        "pos": "7th"
+      },
+      {
+        "name": "J.J. Spaun",
+        "score": "-3",
+        "pos": "8th"
+      },
+      {
+        "name": "Justin Rose",
+        "score": "-2",
+        "pos": "9th"
+      },
+      {
+        "name": "Alex Noren",
+        "score": "-2",
+        "pos": "10th"
+      }
+    ]
+  },
+  "f1": {
+    "name": "Monaco Grand Prix",
+    "shortName": "Monaco GP",
+    "venue": "",
+    "status": "Final",
+    "statusState": "post",
+    "results": [
+      {
+        "pos": 1,
+        "driver": "Charles Leclerc",
+        "team": "",
+        "time": ""
+      },
+      {
+        "pos": 2,
+        "driver": "Lewis Hamilton",
+        "team": "",
+        "time": ""
+      },
+      {
+        "pos": 3,
+        "driver": "Max Verstappen",
+        "team": "",
+        "time": ""
+      },
+      {
+        "pos": 4,
+        "driver": "Kimi Antonelli",
+        "team": "",
+        "time": ""
+      },
+      {
+        "pos": 5,
+        "driver": "George Russell",
+        "team": "",
+        "time": ""
+      }
+    ]
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "401859965",
+      "name": "San Antonio Spurs at New York Knicks",
+      "shortName": "SA @ NY",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 3",
+      "seriesNote": "NY leads series 2-0",
+      "sport": "NBA",
+      "home": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    }
+  ],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Your daily horoscope: June 6, 2026 - The Globe and Mail",
+      "url": "https://www.theglobeandmail.com/life/horoscopes/article-your-daily-horoscope-june-6-2026/",
+      "description": "Your daily horoscope for Saturday, June 6, 2026",
+      "source": "The Globe And Mail"
+    },
+    {
+      "title": "Taylor Swift and Travis Kelce Are Planning July Wedding at Madison Square Garden (Reports) - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/lifestyle/lifestyle-news/taylor-swift-travis-kelce-wedding-madison-square-garden-1236615147/",
+      "description": "The couple is tying the knot at the home of the New York Knicks and Rangers, according to Page Six.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "‘Buffy the Vampire Slayer’ Cast Pay Tribute to Anthony Head: “There’s a Hole in the World” - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/tv/tv-news/anthony-head-dead-buffy-the-vampire-slayer-cast-tributes-1236614926/",
+      "description": "Following the announcement of the British actor's death on Friday, Sarah Michelle Gellar, David Boreanaz, James Marsters and more reacted to the loss of Head, who died at 72.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "'Traitor' - Elmo in hot water with New Yorkers over Knicks NBA finals - BBC",
+      "url": "https://www.bbc.com/news/articles/cn0p0nzej66o",
+      "description": "The Sesame Street character, whose fictional home is in New York, was called a traitor after not fully backing the city's basketball team.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Wemby rues costly turnover as Spurs fall in Game 2 of NBA Finals - ESPN",
+      "url": "https://www.espn.com/nba/story/_/id/48981597/wemby-rues-costly-turnover-spurs-fall-game-2-nba-finals",
+      "description": "Spurs star Victor Wembanyama admitted urgency got the better of him when he committed a late turnover in Friday's Game 2 loss, but he said he would use the frustration as fuel for the next game.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Turning Point: Knicks get close calls, big plays in final moments - NBA.com",
+      "url": "https://www.nba.com/news/turning-point-knicks-spurs-game-2",
+      "description": "Game 2 of the NBA Finals had several turning points, and the Knicks were on the right side to escape with a 105-104 victory.",
+      "source": "Heat.com"
+    },
+    {
+      "title": "Updated NBA Finals Ticket Prices for Games 3, 4 at MSG After Knicks Take 2-0 Series Lead vs. Spurs - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25434399-updated-nba-finals-ticket-prices-games-3-4-msg-after-knicks-take-2-0-series-lead-vs-spurs",
+      "description": "The New York Knicks have taken a 2-0 lead in the best-of-seven NBA Finals after defeating the host San Antonio Spurs 105-104 on Friday evening.",
+      "source": "Bleacher Report"
+    },
+    {
+      "title": "Reports: NCAA rejects Texas Tech's appeal to reinstate Sorsby - ESPN",
+      "url": "https://www.espn.com/college-football/story/_/id/48980735/reports-ncaa-rejects-texas-tech-appeal-reinstate-sorsby",
+      "description": "The NCAA has denied Texas Tech's appeal to reinstate quarterback Brendan Sorsby's eligibility, according to multiple reports.",
+      "source": "ESPN"
+    }
+  ],
+  "copy": {
+    "title": "Astros demolish Oakland. Leclerc wins Monaco. Spurs-Knicks Game 3 tomorrow.",
+    "keyTakeaway": "Knicks are one win from the title after taking Game 2 at home. Tech stocks got crushed on a down market day. F1 heads to Canada after Leclerc's Monaco win.",
+    "todaysHits": {
+      "sports": "Knicks survive Game 2, lead Spurs 2-0 in Finals.",
+      "markets": "Tech selloff: QQQ -4.8%, NVDA -6.2%, TSLA -6.6%.",
+      "golf": "Gerard leads Memorial at 9-under, still playing.",
+      "f1": "Leclerc wins Monaco; Verstappen third, Hamilton second.",
+      "worldcup": "World Cup 2026 kicks off June 11 in North America.",
+      "culture": "Taylor Swift, Travis Kelce planning July wedding at MSG."
+    },
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Houston dismantled Oakland 13-2. Not even close.",
+      "whatHappened": "The Astros offense was in a different class Sunday, putting up double digits while the Athletics' bats stayed completely silent. This was a blowout that looked lopsided from the first inning.",
+      "whyBullet1": "Houston's dominance at home sets a dangerous tone heading into the week—they're the team to beat in their division right now.",
+      "whyBullet2": "Oakland's offense has real problems, and a loss this bad suggests deeper issues than one bad game.",
+      "whatToSay": "If you're watching Houston down the stretch, they just showed you why people think they're dangerous."
+    },
+    "sportsOther": [
+      "Astros blew out Oakland by 11 — that's a statement win in June.",
+      "Cardinals edged Cincinnati in a tight one, nothing decided early.",
+      "Dodgers dominated the Angels in the crosstown matchup, no real contest."
+    ],
+    "markets": {
+      "mood": "Tech stocks got hammered on a broad selloff, with the Nasdaq down 4.8% as the 10-year Treasury yield jumped 1.9% for the week, making bonds actually competitive again.",
+      "whyBullet1": "When Treasury yields spike that fast, growth stocks suffer because their future earnings are worth less in today's dollars. Nvidia, Tesla, and Dell all dropped 6%+ because they're priced on the assumption of cheap money that just got more expensive.",
+      "whyBullet2": "The inflation print on Thursday will tell you whether this selloff was justified or overdone. If CPI stays hot, the Fed stays stubborn, and yields keep climbing. If it cools, tech gets a chance to stabilize.",
+      "bringUp": "Bitcoin's up 3% while stocks tank, which is the first time in months it's decoupled from the Nasdaq in a down market. That's traders hedging against continued volatility or rotating to non-correlated assets."
+    },
+    "golf": {
+      "headline": "Gerard and Poston tied at Muirfield Village heading into final round",
+      "whyCare1": "Memorial is one of golf's most prestigious events and a crucial FedEx Cup checkpoint before the playoffs.",
+      "whyCare2": "Muirfield Village is Jack Nicklaus's course and plays brutally tough — scoring at nine under is legitimately impressive.",
+      "watchFor": "Whether Ryan Gerard can hold the lead Sunday or if J.T. Poston makes a move on the back nine.",
+      "whatToSay": "Gerard's flying under the radar but he's right there with Poston — could be a serious final round."
+    },
+    "f1": {
+      "headline": "Leclerc wins Monaco. Hamilton second. Verstappen third.",
+      "whyCare1": "Leclerc's home circuit victory keeps Ferrari competitive in the championship fight.",
+      "whyCare2": "Hamilton's podium finish shows Mercedes can challenge at Monaco despite setup constraints on tight street circuits.",
+      "watchFor": "Whether Verstappen's third-place result signals a temporary dip or a broader pattern as the season progresses.",
+      "whatToSay": "Leclerc finally delivered at home. Monaco always rewards the driver who nails the one qualifying lap that matters."
+    },
+    "culture": [
+      {
+        "topic": "Knicks take 2-0 series lead over Spurs",
+        "whatHappened": "New York won Games 1 and 2 of the NBA Finals against San Antonio, with the Knicks getting some favorable late-game calls and executing in crucial moments.",
+        "whyItMatters": "The Knicks are one win away from their first championship since 1970, and MSG ticket prices for Games 3 and 4 just jumped hard — meaning the city actually believes this is happening.",
+        "whatToSay": "If the Knicks pull this off, New York loses its mind for a week straight.",
+        "tag": "Sports Biz"
+      },
+      {
+        "topic": "Anthony Head, Buffy's Giles, dead at 72",
+        "whatHappened": "The British actor who played the headmaster and father figure on Buffy the Vampire Slayer passed away, and the cast released a joint tribute.",
+        "whyItMatters": "Giles was the moral center of that show — the guy who actually gave a damn — and losing him hits different if you grew up with that series.",
+        "whatToSay": "Giles made you want to read more and take yourself less seriously at the same time.",
+        "tag": "TV"
+      },
+      {
+        "topic": "Severance — Season 2",
+        "whatHappened": "The show about surgical work-life separation — employees literally split their memories at the office door — came back and picked up exactly where it left off.",
+        "whyItMatters": "Worth your time.",
+        "whatToSay": "Just put it on.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Tech got crushed today—QQQ down 4.8%, NVDA and TSLA both off 6.6%—but the real story is the 10-year Treasury climbing 1.9% on the week while stocks barely moved. Bond traders and equity traders are no longer on the same page about where rates go from here. Baseball was a bloodbath too, Houston demolished Oakland 13–2. Tomorrow the Spurs and Knicks play Game 3 of the Finals.",
+    "glance": null
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "reason": "OPENAI_API_KEY missing — brief NOT editor-reviewed"
+  }
+}
