@@ -1045,6 +1045,46 @@ em { font-style: italic; }
 }
 
 /* ================================================================
+   GUYTALK LIVE — cross-link CTA + nav link
+   ================================================================ */
+.brief-nav-live {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 14px; font-weight: 600; color: var(--text);
+  border-bottom: 0;
+}
+.brief-nav-live:hover { color: var(--text); border-bottom: 0; }
+.brief-live-cta {
+  background: rgba(220,38,38,0.05);
+  border: 1px solid rgba(220,38,38,0.18);
+  border-radius: var(--r-lg);
+  padding: 18px 22px; margin: 44px 0 0;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  border-bottom: 0;
+}
+.brief-live-cta:hover { border-bottom: 0; }
+.blc-dot {
+  width: 9px; height: 9px; border-radius: 50%; background: #DC2626;
+  flex-shrink: 0; animation: blcPulse 2s ease-in-out infinite;
+}
+@keyframes blcPulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.8); } }
+.blc-inner { flex: 1; min-width: 180px; }
+.blc-label {
+  font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: #DC2626; margin-bottom: 4px;
+}
+.blc-text { font-size: 15px; color: var(--text); font-weight: 500; line-height: 1.4; margin: 0; }
+.blc-btn {
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px;
+  background: var(--text); color: white; padding: 10px 18px; border-radius: 8px;
+  font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px;
+  border-bottom: 0; transition: transform 0.15s ease; white-space: nowrap;
+}
+.brief-live-cta:hover .blc-btn { transform: translateY(-1px); }
+@media (max-width: 600px) {
+  .brief-live-cta { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+/* ================================================================
    PCT BADGE — market day-change pill
    ================================================================ */
 .pct-badge {

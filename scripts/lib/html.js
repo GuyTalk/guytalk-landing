@@ -213,6 +213,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <div class="brief-nav-inner">
     <a href="/" class="brief-wordmark">GuyTalk<span class="dot">.</span></a>
     <div class="brief-nav-right">
+      <a href="/live/" class="brief-nav-live"><span class="blc-dot"></span>Live</a>
       <span class="brief-nav-issue">The Brief · ${label}</span>
       <a href="/#signup" class="brief-cta">Subscribe free →</a>
     </div>
@@ -250,6 +251,15 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 ${buildTopModule(issue)}
 
 ${buildLead(issue)}
+
+<a href="/live/" class="brief-live-cta">
+  <span class="blc-dot"></span>
+  <div class="blc-inner">
+    <div class="blc-label">Happening Now</div>
+    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
+  </div>
+  <span class="blc-btn">Open GuyTalk Live →</span>
+</a>
 
 ${buildSports(issue)}
 

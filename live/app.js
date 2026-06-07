@@ -1,0 +1,637 @@
+/* =============================================================================
+ * GuyTalk Live — front-end app
+ *
+ * Hydrates the /live dashboard from /api/live.
+ *
+ * DATA-SOURCE POLICY (important — see tasks 1 & 6)
+ *   - Real API data is rendered as-is.
+ *   - In DEVELOPMENT (localhost / *.vercel.app / ?dev) a missing section falls
+ *     back to MOCK data and is tagged with a coloured source badge so it can
+ *     never be mistaken for real live data:
+ *         LIVE  (green)  = real API
+ *         MOCK  (amber)  = placeholder, NOT real
+ *         EDIT  (blue)   = editorial (trending / talking-about; no live feed)
+ *   - In PRODUCTION we NEVER fabricate live scores. A missing sports/markets
+ *     section renders an honest empty state instead of mock data.
+ *
+ * Architecture: 1) interfaces  2) mock  3) components  4) app
+ * ===========================================================================*/
+
+/* =============================================================================
+ * 1. DATA INTERFACES  (shape returned by /api/live — kept in sync with live.js)
+ * ===========================================================================*/
+
+/**
+ * @typedef {Object} LivePayload
+ * @property {string} updatedAt
+ * @property {Object} sources                  per-section provenance string|null
+ * @property {LiveEvent[]|null} liveNow
+ * @property {F1Payload|null} f1
+ * @property {GolfPayload|null} golf
+ * @property {LeagueScoreboard[]|null} scoreboard
+ * @property {MarketRow[]|null} markets
+ * @property {TrendingStory[]|null} trending
+ * @property {TalkingPoint[]|null} talkingAbout
+ */
+
+/**
+ * @typedef {Object} F1Payload
+ * @property {string} event
+ * @property {number} season                    must equal current year (server-validated)
+ * @property {'live'|'result'|'upcoming'} phase
+ * @property {string} sessionLabel              e.g. "Race Result" / "Starting Grid"
+ * @property {string} statusText
+ * @property {{name:string,date:string}|null} nextSession
+ * @property {{pos:number,driver:string,team:string,flag:string,winner:boolean}[]} positions
+ * @property {{pos:number,name:string,team:string,points:number}[]|null} driverStandings
+ * @property {{pos:number,name:string,points:number}[]|null} constructorStandings
+ */
+
+/**
+ * @typedef {Object} GolfPayload
+ * @property {string} event @property {boolean} isMajor
+ * @property {'pre'|'in'|'post'} state @property {string} statusText
+ * @property {string|null} leaderScore @property {string|null} cutLine
+ * @property {{pos:string,name:string,flag:string,score:string,thru:string}[]} leaderboard
+ */
+
+/** @typedef {Object} LeagueScoreboard @property {string} key @property {string} label @property {GameCard[]} games */
+/**
+ * @typedef {Object} GameCard
+ * @property {'pre'|'in'|'post'} state @property {string} statusText
+ * @property {string} headline @property {boolean} isBig @property {number} importance
+ * @property {TeamSide} home @property {TeamSide} away
+ */
+/** @typedef {Object} TeamSide @property {string} name @property {string} abbr @property {string} score
+ *  @property {string} record @property {string} logo @property {string} color @property {boolean} winner */
+
+/** @typedef {Object} MarketRow @property {string} label @property {string} sub @property {number} value
+ *  @property {number} change @property {number} changePercent @property {'up'|'down'} direction */
+/** @typedef {Object} TrendingStory @property {string} category @property {string} headline @property {string} summary @property {string} why */
+/** @typedef {Object} TalkingPoint @property {string} topic @property {string} matters @property {string} say */
+
+/* =============================================================================
+ * 2. MOCK DATA  — DEVELOPMENT-ONLY fallbacks (never shown as live in prod).
+ *    Trending + Talking-About have no live source and are editorial in all envs.
+ * ===========================================================================*/
+
+const MOCK = {
+  /** @type {F1Payload} — a completed race, with no flags so the initials fallback shows. */
+  f1: {
+    event: 'Sample Grand Prix', season: new Date().getFullYear(), phase: 'result',
+    sessionLabel: 'Race Result', statusText: 'Final · (sample)', nextSession: null,
+    positions: [
+      { pos: 1, driver: 'Driver One', team: 'Team A', flag: '', winner: true },
+      { pos: 2, driver: 'Driver Two', team: 'Team B', flag: '', winner: false },
+      { pos: 3, driver: 'Driver Three', team: 'Team A', flag: '', winner: false },
+    ],
+    driverStandings: [
+      { pos: 1, name: 'Driver One', team: 'Team A', points: 160 },
+      { pos: 2, name: 'Driver Two', team: 'Team B', points: 120 },
+      { pos: 3, name: 'Driver Three', team: 'Team A', points: 95 },
+    ],
+    constructorStandings: [
+      { pos: 1, name: 'Team A', points: 255 },
+      { pos: 2, name: 'Team B', points: 198 },
+    ],
+  },
+
+  /** @type {GolfPayload} */
+  golf: {
+    event: 'Sample Invitational', isMajor: false, state: 'in', statusText: 'Round 4 (sample)',
+    leaderScore: '-10', cutLine: '+1',
+    leaderboard: [
+      { pos: '1', name: 'Golfer One', flag: '', score: '-10', thru: '14' },
+      { pos: 'T2', name: 'Golfer Two', flag: '', score: '-8', thru: '15' },
+      { pos: 'T2', name: 'Golfer Three', flag: '', score: '-8', thru: '13' },
+    ],
+  },
+
+  /** @type {TrendingStory[]} — editorial */
+  trending: [
+    { category: 'Sports', headline: 'NBA Finals tip toward a Game 7',
+      summary: 'A road win swung the series and guaranteed at least one more game.',
+      why: 'The team everyone wrote off is suddenly a couple wins from a title.' },
+    { category: 'Business', headline: 'Big Tech keeps setting market-cap records',
+      summary: 'AI demand continues to push the largest names to new highs.',
+      why: "It's the story driving every portfolio and every water-cooler 'did you see this?'" },
+    { category: 'Technology', headline: 'On-device AI takes center stage',
+      summary: 'New features run locally for privacy, with cloud fallback for heavy lifting.',
+      why: 'It ships to the phone in your pocket this fall.' },
+    { category: 'Culture', headline: 'A summer blockbuster smashes the opening record',
+      summary: 'The biggest domestic debut of the year so far.',
+      why: 'Proof audiences still show up for the right theatrical event.' },
+    { category: 'Entertainment', headline: 'A surprise album drop breaks streaming records',
+      summary: 'No rollout, no single — just a midnight release that lit up the charts.',
+      why: "It's the album your group chat is arguing about all week." },
+  ],
+
+  /** @type {TalkingPoint[]} — the uniquely-GuyTalk section; editorial */
+  talkingAbout: [
+    { topic: 'The NBA Finals are actually good this year',
+      matters: 'A tight series with real stars means even casual fans are locked in.',
+      say: '"Whoever wins the next one wins the series — road team has all the momentum."' },
+    { topic: "Everyone's suddenly a tech-stock expert",
+      matters: 'The relentless run has made it the default desk-and-dinner conversation.',
+      say: '"I\'m not chasing it up here, but you can\'t argue with the demand."' },
+    { topic: 'Dominance in golf is reshaping how people watch',
+      matters: "When one guy is this far ahead, the debate becomes 'is this boring or historic?'",
+      say: '"We\'re watching an all-timer. Enjoy it while it lasts."' },
+    { topic: 'Summer movies are back',
+      matters: 'After years of "theaters are dead," a record weekend flipped the script.',
+      say: '"Turns out people just want a reason to show up. Give them an event and they come."' },
+  ],
+};
+
+/* =============================================================================
+ * 3. COMPONENTS  — pure functions returning HTML strings.
+ * ===========================================================================*/
+
+const esc = (s) =>
+  String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+const shortEvent = (s) => String(s || '').replace(/\s+(pres\.?|presented).*/i, '').replace(/^the\s+/i, 'the ').trim();
+
+// Deterministic colour for an initials avatar (used when no logo/flag exists).
+function hashColor(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) >>> 0;
+  const hue = h % 360;
+  return `hsl(${hue} 45% 42%)`;
+}
+function initials(name) {
+  const parts = String(name || '').trim().split(/\s+/);
+  return ((parts[0]?.[0] || '') + (parts[parts.length - 1]?.[0] || '')).toUpperCase() || '–';
+}
+const flagOrAvatar = (flag, name) =>
+  flag
+    ? `<img class="flag" src="${esc(flag)}" alt="" loading="lazy">`
+    : `<span class="avatar" style="background:${hashColor(name || '')}">${esc(initials(name))}</span>`;
+const teamMark = (logo, abbr, color) =>
+  logo
+    ? `<img class="team-logo" src="${esc(logo)}" alt="" loading="lazy">`
+    : `<span class="avatar" style="width:22px;height:22px;background:${color || hashColor(abbr || '')}">${esc((abbr || '').slice(0, 3))}</span>`;
+
+// F1 has no team-logo feed from ESPN, so we identify constructors with their
+// well-known brand colours (stable, local — no external image dependency).
+const CONSTRUCTOR_COLORS = [
+  [/red bull/i, '#3671C6'], [/ferrari/i, '#E8002D'], [/mercedes/i, '#27F4D2'],
+  [/mclaren/i, '#FF8000'], [/aston martin/i, '#229971'], [/alpine/i, '#0093CC'],
+  [/williams/i, '#64C4FF'], [/(^|\b)rb\b|racing bulls|alphatauri/i, '#6692FF'],
+  [/haas/i, '#B6BABD'], [/sauber|audi|kick/i, '#52E252'], [/cadillac/i, '#C8102E'],
+];
+const constructorColor = (name) => {
+  for (const [re, c] of CONSTRUCTOR_COLORS) if (re.test(name || '')) return c;
+  return name ? hashColor(name) : 'var(--text-3)';
+};
+const teamChip = (name) =>
+  name ? `<span class="team-chip"><span class="tc-dot" style="background:${constructorColor(name)}"></span>${esc(name)}</span>` : '';
+
+const STATUS_PILL = {
+  live:     '<span class="pill pill-live"><span class="nav-live-dot"></span>Live</span>',
+  in:       '<span class="pill pill-live"><span class="nav-live-dot"></span>Live</span>',
+  result:   '<span class="pill pill-final">Final</span>',
+  final:    '<span class="pill pill-final">Final</span>',
+  post:     '<span class="pill pill-final">Final</span>',
+  upcoming: '<span class="pill pill-upcoming">Upcoming</span>',
+  pre:      '<span class="pill pill-upcoming">Upcoming</span>',
+};
+
+/** LiveEventCard — Section 1 */
+function LiveEventCard(ev) {
+  const lines = ev.lines.map(
+    (l) => `<div class="ev-line"><span class="l">${esc(l.left)}</span><span class="r">${esc(l.right)}</span></div>`
+  ).join('');
+  return `<div class="card">
+    <div class="ev-head">
+      <div><div class="ev-title">${esc(ev.title)}</div><div class="ev-status">${esc(ev.statusText)}</div></div>
+      ${STATUS_PILL[ev.status] || ''}
+    </div>
+    ${lines}
+    ${ev.leader ? `<div class="ev-foot">${esc(ev.leader)}</div>` : ''}
+  </div>`;
+}
+
+/** LiveLeaderboard — ranked table (F1 + golf).
+ *  rows: {pos,name,flag,sub,chip:{text},val,valClass,winner} */
+function LiveLeaderboard(cfg) {
+  const rows = cfg.rows.map((r, i) => {
+    const leader = cfg.leaderHighlight && i === 0;
+    const mark = cfg.showMarks
+      ? flagOrAvatar(r.flag, r.name)
+      : (r.dotColor ? `<span class="tc-dot" style="background:${r.dotColor};width:10px;height:10px"></span>` : '');
+    const detail = r.chip ? teamChip(r.chip) : (r.sub ? `<span class="sub">${esc(r.sub)}</span>` : '');
+    return `<div class="lb-row${leader ? ' is-leader' : ''}">
+      <span class="lb-pos">${esc(r.pos)}</span>
+      <span class="lb-name-row">${mark}<span class="lb-name-block"><span class="lb-name">${esc(r.name)}</span>${detail}</span></span>
+      <span class="lb-val${r.valClass ? ' ' + r.valClass : ''}">${esc(r.val || '')}</span>
+    </div>`;
+  }).join('');
+  return `<div class="lb">
+    <div class="lb-head">
+      <div><div class="lb-event">${esc(cfg.event)}</div><div class="lb-status">${esc(cfg.statusText)}</div></div>
+      ${STATUS_PILL[cfg.state] || ''}
+    </div>
+    ${cfg.subHead ? `<div class="lb-sub-head">${esc(cfg.subHead)}</div>` : ''}
+    ${rows}
+  </div>`;
+}
+
+/** ContextCard — "The GuyTalk Read": signature why-it-matters / watch-for / what-to-say. */
+function ContextCard(rows, live, tag) {
+  const body = rows.filter((r) => r && r.text).map((r) => {
+    const text = r.say
+      ? `<div class="ctx-say"><span class="ctx-text">${esc(r.text)}</span></div>`
+      : `<span class="ctx-text">${esc(r.text)}</span>`;
+    return `<div class="ctx-row"><span class="ctx-label">${esc(r.label)}</span>${text}</div>`;
+  }).join('');
+  return `<div class="ctx-card${live ? ' live-accent' : ''}">
+    <div class="ctx-head"><span class="gt">The GuyTalk Read<span class="dot">.</span></span>${tag ? `<span class="tag">${esc(tag)}</span>` : ''}</div>
+    <div class="ctx-body">${body}</div>
+  </div>`;
+}
+
+/** FeaturedSpotlight — winner / leader hero card. Fills section dead space.
+ *  @param {{eyebrow,icon,flag,name,subText,subColor,accent,footL,footR}} c */
+function FeaturedSpotlight(c) {
+  const mark = c.flag
+    ? `<img class="feat-flag" src="${esc(c.flag)}" alt="" loading="lazy">`
+    : `<span class="feat-avatar" style="background:${c.accent || hashColor(c.name || '')}">${esc(initials(c.name))}</span>`;
+  return `<div class="feat-card">
+    <span class="feat-accent" style="background:${c.accent || 'var(--accent)'}"></span>
+    <div class="feat-eyebrow"><span class="fx">${c.icon || ''}</span>${esc(c.eyebrow)}</div>
+    <div class="feat-main">
+      ${mark}
+      <div>
+        <div class="feat-name">${esc(c.name)}</div>
+        ${c.subText ? `<div class="feat-sub">${c.subColor ? `<span class="tc-dot" style="background:${c.subColor}"></span>` : ''}${esc(c.subText)}</div>` : ''}
+      </div>
+    </div>
+    ${(c.footL || c.footR) ? `<div class="feat-foot"><span>${esc(c.footL || '')}</span>${c.footR ? `<span class="num">${esc(c.footR)}</span>` : ''}</div>` : ''}
+  </div>`;
+}
+
+/** ScoreboardCard — Section 4 (one game) */
+function ScoreboardCard(g) {
+  const side = (t, otherScore) => {
+    const losing = g.state === 'post' && t.score !== '' && Number(t.score) < Number(otherScore);
+    return `<div class="sc-team${losing ? ' loser' : ''}">
+      <span class="nm">${teamMark(t.logo, t.abbr, t.color)}<span class="sc-abbr">${esc(t.abbr || t.name)}</span>${t.record ? `<span class="sc-rec">${esc(t.record)}</span>` : ''}</span>
+      <span class="sc-score">${esc(t.score !== '' ? t.score : '—')}</span>
+    </div>`;
+  };
+  const statusBit = g.state === 'in'
+    ? `<span class="pill pill-live"><span class="nav-live-dot"></span>Live</span> ${esc(g.statusText)}`
+    : esc(g.statusText);
+  return `<div class="sc-card">
+    ${g.isBig && g.headline ? `<div class="sc-tag">${esc(g.headline)}</div>` : ''}
+    ${side(g.away, g.home.score)}
+    ${side(g.home, g.away.score)}
+    <div class="sc-foot">${statusBit}</div>
+  </div>`;
+}
+
+/** MarketCard — Section 5 */
+function MarketCard(m) {
+  const fmt = (n) => {
+    const abs = Math.abs(n);
+    if (abs >= 1000) return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
+  const arrow = m.direction === 'up' ? '▲' : '▼';
+  const sign = m.change >= 0 ? '+' : '';
+  return `<div class="mk-card">
+    <div class="mk-label">${esc(m.label)}</div><div class="mk-sub">${esc(m.sub)}</div>
+    <div class="mk-value">${fmt(m.value)}</div>
+    <div class="mk-move ${m.direction}"><span class="mk-arrow">${arrow}</span>${sign}${fmt(m.change)} (${sign}${m.changePercent.toFixed(2)}%)</div>
+  </div>`;
+}
+
+/** TrendingStoryCard — Section 6 */
+function TrendingStoryCard(s, i) {
+  return `<div class="story">
+    <div class="story-num">${String(i + 1).padStart(2, '0')}</div>
+    <div>
+      <div class="story-cat">${esc(s.category)}</div>
+      <div class="story-head">${esc(s.headline)}</div>
+      <p class="story-sum">${esc(s.summary)}</p>
+      <p class="story-why"><b>Why people care:</b> ${esc(s.why)}</p>
+    </div>
+  </div>`;
+}
+
+/** TalkingPointCard — Section 7 */
+function TalkingPointCard(t) {
+  return `<div class="talk-card">
+    <div class="talk-topic">${esc(t.topic)}</div>
+    <p class="talk-field"><b>Why it matters</b>${esc(t.matters)}</p>
+    <p class="talk-field talk-say"><b>What to say</b>${esc(t.say)}</p>
+  </div>`;
+}
+
+/* ---- data-derived context builders (factual, from the live payload) ---- */
+
+function f1Context(f1) {
+  const p = f1.positions || [];
+  const d = f1.driverStandings || [];
+  const ev = shortEvent(f1.event);
+  if (f1.phase === 'live') {
+    return [
+      { label: 'Why it matters', text: p[0] ? `${p[0].driver} leads ${ev} with the race live.` : `${ev} is running now.` },
+      p[1] && { label: 'Watch for', text: `${p[1].driver} sitting P2 and within range.` },
+      { label: 'What to say', text: p[0] ? `"${p[0].driver} out front — this is his to lose."` : `"Tuning into ${ev} right now."`, say: true },
+    ];
+  }
+  if (f1.phase === 'upcoming') {
+    const grid = p[0];
+    return [
+      { label: 'Why it matters', text: `${ev} is next${f1.nextSession ? ' — race goes green soon' : ''}.` },
+      grid && { label: 'Watch for', text: `${grid.driver} starts on pole.` },
+      { label: 'What to say', text: grid ? `"${grid.driver} on pole — track position is everything here."` : `"Big weekend ahead at ${ev}."`, say: true },
+    ];
+  }
+  // result
+  const champ = d[0];
+  const gap = d[0] && d[1] ? d[0].points - d[1].points : null;
+  return [
+    { label: 'Why it matters', text: p[0] ? `${p[0].driver} wins ${ev}.` : `${ev} is in the books.` },
+    champ && { label: 'Watch for', text: gap != null ? `${champ.name} leads the title race by ${gap} pts.` : `${champ.name} leads the championship.` },
+    { label: 'What to say', text: p[0] ? `"${p[0].driver} taking ${ev} shakes up the title picture."` : `"Results are in for ${ev}."`, say: true },
+  ];
+}
+
+function golfContext(g) {
+  const lb = g.leaderboard || [];
+  const ev = shortEvent(g.event);
+  const lead = lb[0];
+  return [
+    { label: 'Why it matters', text: lead ? `${lead.name} leads ${ev} at ${lead.score}.` : `${ev} is underway.` },
+    { label: 'Watch for', text: g.cutLine ? `Cut line sitting at ${g.cutLine}.` : (lb[1] ? `${lb[1].name} chasing at ${lb[1].score}.` : 'The chasing pack closing in.') },
+    { label: 'What to say', text: lead ? `"${lead.name} at ${lead.score} is the one to beat."` : `"${ev} is one to watch this week."`, say: true },
+  ];
+}
+
+/** FeaturedF1Card — winner/leader/pole spotlight for the F1 section. */
+function FeaturedF1Card(f1) {
+  const p0 = (f1.positions || [])[0];
+  if (!p0) return '';
+  const meta = {
+    result:   { eyebrow: 'Race Winner', icon: '🏁' },
+    live:     { eyebrow: 'Race Leader', icon: '🏎️' },
+    upcoming: { eyebrow: 'On Pole',     icon: '⏱️' },
+  }[f1.phase] || { eyebrow: 'Top Spot', icon: '🏁' };
+
+  // Championship points for the spotlighted driver (matched by last name).
+  const last = p0.driver.split(' ').pop().toLowerCase();
+  const champ = (f1.driverStandings || []).find((d) => d.name.toLowerCase().endsWith(last));
+
+  return FeaturedSpotlight({
+    eyebrow: meta.eyebrow, icon: meta.icon, flag: p0.flag, name: p0.driver,
+    subText: p0.team || '', subColor: p0.team ? constructorColor(p0.team) : '',
+    accent: constructorColor(p0.team),
+    footL: shortEvent(f1.event),
+    footR: champ ? `${champ.points} pts · P${champ.pos}` : '',
+  });
+}
+
+/** FeaturedGolfCard — leader/champion spotlight for the golf section. */
+function FeaturedGolfCard(g) {
+  const lead = (g.leaderboard || [])[0];
+  if (!lead) return '';
+  const meta = {
+    post: { eyebrow: 'Champion', icon: '🏆' },
+    in:   { eyebrow: 'Tournament Leader', icon: '⛳' },
+    pre:  { eyebrow: 'Top of the Field', icon: '⛳' },
+  }[g.state] || { eyebrow: 'Tournament Leader', icon: '⛳' };
+
+  return FeaturedSpotlight({
+    eyebrow: meta.eyebrow, icon: meta.icon, flag: lead.flag, name: lead.name,
+    subText: `Leads at ${lead.score}`, accent: '#16A34A',
+    footL: shortEvent(g.event),
+    footR: lead.thru ? `Thru ${lead.thru}` : (g.state === 'post' ? 'Final' : lead.score),
+  });
+}
+
+/* =============================================================================
+ * 4. APP
+ * ===========================================================================*/
+
+(function () {
+  const REFRESH_MS = 60 * 1000;
+  const IS_DEV =
+    /^(localhost|127\.0\.0\.1|0\.0\.0\.0)$/.test(location.hostname) ||
+    location.hostname.endsWith('.vercel.app') ||
+    location.search.includes('dev');
+
+  const $ = (id) => document.getElementById(id);
+
+  // source: 'live' | 'mock' | 'editorial' | null. Badges show in dev only.
+  function setBadge(id, source) {
+    const el = $(id);
+    if (!el) return;
+    if (!IS_DEV || !source) { el.innerHTML = ''; return; }
+    const map = { live: ['src-live', 'Live API'], mock: ['src-mock', 'Mock Data'], editorial: ['src-edit', 'Editorial'] };
+    const [cls, label] = map[source] || ['', ''];
+    el.innerHTML = cls ? `<span class="src-badge ${cls}">${label}</span>` : '';
+  }
+
+  function relTime(iso) {
+    if (!iso) return '';
+    const s = Math.max(0, Math.floor((Date.now() - new Date(iso).getTime()) / 1000));
+    if (s < 60) return `${s}s ago`;
+    const m = Math.floor(s / 60);
+    if (m < 60) return `${m} min ago`;
+    return `${Math.floor(m / 60)}h ago`;
+  }
+
+  // Trust signal per section: "Updated Xm ago · ESPN". Source label is subtle in
+  // all envs; the dev-only coloured LIVE/MOCK/EDITORIAL badge is separate.
+  function paintMeta(el) {
+    const src = el.dataset.src || '';
+    const iso = window.__liveIso;
+    if (!iso && !src) { el.innerHTML = ''; return; }
+    const rel = iso ? `Updated ${relTime(iso)}` : '';
+    el.innerHTML = `${rel}${rel && src ? ' · ' : ''}${src ? `<span class="section-src">${esc(src)}</span>` : ''}`;
+  }
+  function setMeta(id, source) {
+    const el = $(id);
+    if (!el) return;
+    el.dataset.src = source || '';
+    paintMeta(el);
+  }
+  const paintAllMetas = () => document.querySelectorAll('.section-meta').forEach(paintMeta);
+
+  const emptyBox = (msg) => `<div class="empty">${esc(msg)}</div>`;
+
+  /* ---- section renderers. `real` = the live payload field (may be null). ---- */
+
+  function renderLiveNow(real) {
+    const data = real || (IS_DEV ? null : null); // liveNow has no static mock; honest empty if absent
+    setBadge('badge-live', real ? 'live' : null);
+    const el = $('liveNow');
+    if (!real || !real.length) {
+      el.innerHTML = `<div class="empty" style="grid-column:1/-1">Nothing major is live this moment. Scroll for the latest results, standings, and what's next.</div>`;
+      return;
+    }
+    el.innerHTML = real.map(LiveEventCard).join('');
+  }
+
+  function renderF1(real) {
+    const f1 = real || (IS_DEV ? MOCK.f1 : null);
+    setBadge('badge-f1', real ? 'live' : (f1 ? 'mock' : null));
+    const el = $('f1Wrap');
+    if (!f1) { el.innerHTML = emptyBox('No current Formula 1 session.'); return; }
+
+    const isLive = f1.phase === 'live';
+    const board = LiveLeaderboard({
+      event: f1.event, statusText: f1.statusText, state: f1.phase,
+      leaderHighlight: f1.phase !== 'upcoming', showMarks: true,
+      subHead: f1.sessionLabel,
+      rows: (f1.positions || []).map((p) => ({
+        pos: `P${p.pos}`, name: p.driver, flag: p.flag, chip: p.team || '',
+      })),
+    });
+
+    const standings = f1.driverStandings ? LiveLeaderboard({
+      event: 'Championship', statusText: `Driver standings · ${f1.season}`, state: '',
+      leaderHighlight: true, showMarks: false, subHead: 'Drivers',
+      rows: f1.driverStandings.slice(0, 8).map((d) => ({ pos: d.pos, name: d.name, chip: d.team, val: `${d.points} pts` })),
+    }) : '';
+
+    const constructors = f1.constructorStandings ? LiveLeaderboard({
+      event: 'Constructors', statusText: 'Team standings', state: '',
+      leaderHighlight: true, showMarks: false, subHead: 'Constructors',
+      rows: f1.constructorStandings.slice(0, 8).map((c) => ({ pos: c.pos, name: c.name, dotColor: constructorColor(c.name), val: `${c.points} pts` })),
+    }) : '';
+
+    el.innerHTML =
+      `<div class="stack">${board}${FeaturedF1Card(f1)}</div>` +
+      `<div class="stack">${ContextCard(f1Context(f1), isLive, 'Formula 1')}${standings}${constructors}</div>`;
+  }
+
+  function renderGolf(real) {
+    const golf = real || (IS_DEV ? MOCK.golf : null);
+    setBadge('badge-golf', real ? 'live' : (golf ? 'mock' : null));
+    const el = $('golfWrap');
+    if (!golf) { el.innerHTML = emptyBox('No tournament in progress.'); return; }
+    const cut = golf.cutLine ? ` · Cut ${golf.cutLine}` : '';
+    const board = LiveLeaderboard({
+      event: golf.event,
+      statusText: golf.statusText + (golf.leaderScore ? ` · Leader ${golf.leaderScore}` : '') + cut,
+      state: golf.state, leaderHighlight: true, showMarks: true, subHead: 'Leaderboard',
+      rows: (golf.leaderboard || []).map((p) => ({
+        pos: p.pos, name: p.name, flag: p.flag, sub: p.thru ? `Thru ${p.thru}` : '',
+        val: p.score, valClass: String(p.score).trim().startsWith('-') ? 'neg' : '',
+      })),
+    });
+    el.innerHTML = `<div class="grid-golf">${board}<div class="stack">${ContextCard(golfContext(golf), golf.state === 'in', 'Golf')}${FeaturedGolfCard(golf)}</div></div>`;
+  }
+
+  function renderScoreboard(real) {
+    setBadge('badge-scores', real ? 'live' : null);
+    const el = $('scoreboardWrap');
+    if (!real || !real.length) { el.innerHTML = emptyBox('No games on the board right now.'); return; }
+    el.innerHTML = real.map((lg) => `
+      <div class="league-block">
+        <div class="league-name">${esc(lg.label)}</div>
+        <div class="grid grid-scores">${lg.games.map(ScoreboardCard).join('')}</div>
+      </div>`).join('');
+  }
+
+  function renderMarkets(real) {
+    setBadge('badge-markets', real ? 'live' : null);
+    const el = $('marketsWrap');
+    if (!real || !real.length) { el.innerHTML = `<div class="empty" style="grid-column:1/-1">Market data unavailable right now.</div>`; return; }
+    el.innerHTML = real.map(MarketCard).join('') +
+      `<p class="mk-disclaimer">Market data is informational only and is not investment advice. Values via index-tracking proxies; figures may be delayed.</p>`;
+  }
+
+  function renderTrending(stories, source) {
+    setBadge('badge-trending', source);
+    $('trendingWrap').innerHTML = (stories || []).map(TrendingStoryCard).join('');
+  }
+
+  function renderTalking(points, source) {
+    setBadge('badge-talking', source);
+    $('talkingWrap').innerHTML = (points || []).map(TalkingPointCard).join('');
+  }
+
+  function paintSkeletons() {
+    const sk = (n) => Array.from({ length: n }, () => '<div class="skeleton"></div>').join('');
+    $('liveNow').innerHTML = sk(4);
+    $('f1Wrap').innerHTML = sk(2);
+    $('golfWrap').innerHTML = sk(1);
+    $('scoreboardWrap').innerHTML = sk(2);
+    $('marketsWrap').innerHTML = sk(8);
+    renderTrending(MOCK.trending, 'editorial');
+    renderTalking(MOCK.talkingAbout, 'editorial');
+  }
+
+  function render(payload) {
+    const p = payload || {};
+    renderLiveNow(p.liveNow);
+    renderF1(p.f1);
+    renderGolf(p.golf);
+    renderScoreboard(p.scoreboard);
+    renderMarkets(p.markets);
+    // Editorial sections: live feed may supply these later; until then, mock.
+    renderTrending(p.trending || MOCK.trending, 'editorial');
+    renderTalking(p.talkingAbout || MOCK.talkingAbout, 'editorial');
+
+    const stamp = p.updatedAt || new Date().toISOString();
+    window.__liveIso = stamp;
+    $('updatedLabel').textContent = `Updated ${relTime(stamp)}`;
+    $('updatedLabel').dataset.iso = stamp;
+
+    // Per-section trust signals (source + freshness).
+    setMeta('meta-live',     p.liveNow    ? 'ESPN' : '');
+    setMeta('meta-f1',       p.f1         ? 'ESPN · Jolpica' : '');
+    setMeta('meta-golf',     p.golf       ? 'ESPN' : '');
+    setMeta('meta-scores',   p.scoreboard ? 'ESPN' : '');
+    setMeta('meta-markets',  p.markets    ? 'Finnhub' : '');
+    setMeta('meta-trending', 'Editorial');
+  }
+
+  let timer = null;
+  async function refresh(manual) {
+    const btn = $('refreshBtn');
+    if (manual) { btn.disabled = true; btn.textContent = 'Refreshing…'; }
+    try {
+      const res = await fetch('/api/live', { headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error('bad status ' + res.status);
+      render(await res.json());
+    } catch (err) {
+      // API unreachable. In prod this yields honest empty states (no fake live data).
+      render(null);
+    } finally {
+      if (manual) { btn.disabled = false; btn.textContent = 'Refresh'; }
+    }
+  }
+
+  function startClock() {
+    setInterval(() => {
+      const lbl = $('updatedLabel');
+      if (lbl && lbl.dataset.iso) lbl.textContent = `Updated ${relTime(lbl.dataset.iso)}`;
+      paintAllMetas();
+    }, 15 * 1000);
+  }
+
+  function startAutoRefresh() {
+    const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+    const start = () => { stop(); timer = setInterval(() => refresh(false), REFRESH_MS); };
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop(); else { refresh(false); start(); }
+    });
+    start();
+  }
+
+  window.GuyTalkLive = { refresh, MOCK, components: {
+    LiveEventCard, LiveLeaderboard, ScoreboardCard, MarketCard, TrendingStoryCard, TalkingPointCard, ContextCard,
+  }};
+
+  paintSkeletons();
+  refresh(false);
+  startClock();
+  startAutoRefresh();
+})();
