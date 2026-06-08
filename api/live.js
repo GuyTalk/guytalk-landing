@@ -110,7 +110,7 @@ function parseGame(event, lg) {
   if (BIG_GAME_RE.test(headline)) importance += 40;
   if (state === 'in') importance += 12; // live games lead within a league
 
-  return {
+  const game = {
     id: event.id,        // ESPN event id — used to fetch verified game facts
     leagueKey: lg.league, // 'nba' | 'mlb' | ...
     league: lg.label,
@@ -124,6 +124,9 @@ function parseGame(event, lg) {
     away: team(away),
     startDate: comp.date || null,
   };
+  // MLB facts come free from the scoreboard payload (no extra fetch).
+  if (lg.league === 'mlb') game.facts = mlbFacts(competitors, state);
+  return game;
 }
 
 // Top scorer of a finished/live NBA game, from the box score. Stats array is
@@ -184,8 +187,46 @@ async function nbaGameFacts(eventId) {
       return L ? { abbr, name: L.athlete?.displayName || '', val: L.displayValue } : null;
     }).filter(Boolean);
     const topPerformer = (state === 'in' || state === 'post') ? nbaTopPerformer(d) : null;
-    return { state, series, teams, topScorers, topPerformer };
+    return { league: 'nba', state, series, teams, topScorers, topPerformer };
   } catch (_) { return null; }
+}
+
+// MLB verified facts — computed straight from the scoreboard event (no extra
+// fetch): probable pitchers + W/L/ERA pre-game, and each side's standout
+// performer (ESPN's per-game leader) once final. Never invented.
+function mlbFacts(competitors, state) {
+  const team = (c) => {
+    const recs = c.records || [];
+    const g = (t) => (recs.find((r) => r.type === t) || {}).summary || '';
+    const prob = (c.probables || [])[0];
+    let probable = null;
+    if (prob?.athlete) {
+      const st = prob.statistics || [];
+      const v = (n) => (st.find((s) => s.name === n) || {}).displayValue;
+      const w = v('wins'), l = v('losses'), era = v('ERA');
+      const bits = [];
+      if (w != null && l != null) bits.push(`${w}-${l}`);
+      if (era != null) bits.push(`${era} ERA`);
+      probable = { name: prob.athlete.displayName || prob.athlete.shortName || '', line: bits.join(', ') };
+    }
+    // Per-game standout only makes sense once the game is live/final (pre-game
+    // these leaders are season-rating numbers, not a box-score line).
+    let perf = null;
+    if (state === 'in' || state === 'post') {
+      const byName = (n) => (c.leaders || []).find((L) => L.name === n);
+      const lead = byName('MLBRating') || byName('RBIs') || byName('avg');
+      const top = lead && (lead.leaders || [])[0];
+      perf = top?.athlete ? { name: top.athlete.displayName || '', line: top.displayValue || '' } : null;
+    }
+    return {
+      abbr: (c.team?.abbreviation || '').toUpperCase(),
+      homeAway: c.homeAway,
+      total: g('total'),
+      split: c.homeAway === 'home' ? g('home') : g('road'),
+      probable, perf,
+    };
+  };
+  return { league: 'mlb', state, teams: (competitors || []).map(team) };
 }
 
 async function fetchScoreboards() {
@@ -203,15 +244,18 @@ async function fetchScoreboards() {
   const withGames = results.filter((r) => r.games.length > 0);
   if (!withGames.length) return null;
 
-  // Attach verified facts to the single marquee game (matches the client's pick:
-  // big games, ranked live > upcoming > final, then importance). NBA only for now.
-  const rank = { in: 0, pre: 1, post: 2 };
-  const marquee = withGames
-    .flatMap((r) => r.games)
-    .filter((g) => g.isBig)
-    .sort((a, b) => (rank[a.state] - rank[b.state]) || (b.importance - a.importance))[0];
-  if (marquee && marquee.leagueKey === 'nba' && marquee.id) {
-    marquee.facts = await nbaGameFacts(marquee.id);
+  // Attach a GuyTalk Read to the TOP game of each supported league (games are
+  // pre-sorted live > final > upcoming, then importance, so games[0] is it).
+  // MLB facts are already on the game (free, from the scoreboard); NBA needs a
+  // summary fetch. We keep facts ONLY on each league's top game.
+  await Promise.all(withGames.map(async (r) => {
+    const top = r.games[0];
+    if (top && r.key === 'nba' && top.id) top.facts = await nbaGameFacts(top.id);
+  }));
+  for (const r of withGames) {
+    for (let i = 1; i < r.games.length; i++) {
+      if (r.games[i].facts) delete r.games[i].facts;
+    }
   }
   return withGames;
 }

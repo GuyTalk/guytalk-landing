@@ -639,6 +639,70 @@ function nbaWhatYouMissed(g) {
 }
 function seriesLowOf(f) { return f.series ? f.series.summary.replace(/^Series\s+/i, '').toLowerCase() : ''; }
 
+/* ---- MLB game context (from g.facts; data comes free off the scoreboard) ---- */
+
+function mlbContext(g) {
+  const f = g.facts;
+  if (!f) return null;
+  const homeF = (f.teams || []).find((t) => t.homeAway === 'home') || {};
+  const awayF = (f.teams || []).find((t) => t.homeAway === 'away') || {};
+
+  if (f.state === 'post') {
+    const w = g.home.winner ? g.home : g.away;
+    const l = g.home.winner ? g.away : g.home;
+    const wF = g.home.winner ? homeF : awayF;
+    const perf = wF.perf || homeF.perf || awayF.perf;
+    return [
+      { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}.` },
+      perf && { label: 'Key stat', key: true, text: `${perf.name} led the way: ${perf.line}.` },
+      { label: 'What to say', say: true, text: perf
+        ? `"${perf.name} went ${perf.line} as ${w.name} took down ${l.name} ${w.score}-${l.score}."`
+        : `"${w.name} beat ${l.name} ${w.score}-${l.score}."` },
+    ];
+  }
+
+  // pre / live — lead with the pitching matchup, the most useful pre-game fact.
+  const hp = homeF.probable, ap = awayF.probable;
+  const matchup = (hp && hp.name && ap && ap.name) ? `${ap.name} (${ap.line}) vs ${hp.name} (${hp.line})` : '';
+  const recLine = (homeF.total || awayF.total)
+    ? `${g.home.name} ${homeF.total}${homeF.split ? ` (${homeF.split} home)` : ''} · ${g.away.name} ${awayF.total}${awayF.split ? ` (${awayF.split} away)` : ''}`
+    : '';
+  return [
+    { label: 'Why it matters', text: matchup
+        ? `${g.away.name} at ${g.home.name} — ${ap.name} and ${hp.name} get the ball.`
+        : `${g.away.name} visit ${g.home.name}.` },
+    (matchup || recLine) && { label: 'Key stat', key: true, text: matchup ? `${matchup}.` : `${recLine}.` },
+    { label: 'What to say', say: true, text: matchup
+        ? `"${ap.name} (${ap.line}) on the mound against ${hp.name} (${hp.line}) — should be a good one."`
+        : `"${g.home.name}–${g.away.name} tonight."` },
+  ];
+}
+
+function mlbWhatYouMissed(g) {
+  const f = g.facts;
+  if (!f || f.state !== 'post') return '';
+  const w = g.home.winner ? g.home : g.away;
+  const l = g.home.winner ? g.away : g.home;
+  const wF = (f.teams || []).find((t) => t.abbr === w.abbr) || {};
+  const perf = wF.perf || (f.teams || []).map((t) => t.perf).find(Boolean);
+  return WhatYouMissed([
+    { k: 'Winner', v: `${w.name} ${w.score}–${l.score}` },
+    { k: 'Biggest storyline', v: g.headline || `${w.name} take down ${l.name}` },
+    { k: 'Best performance', v: perf ? `${perf.name} — ${perf.line}` : '' },
+    { k: 'Key takeaway', v: `${w.name} get the W` },
+  ]);
+}
+
+/* Dispatch the right builder for a game that carries server-computed facts. */
+function gameRead(g, cls) {
+  if (!g || !g.facts) return '';
+  const lg = g.facts.league;
+  const rows = lg === 'mlb' ? mlbContext(g) : nbaContext(g);
+  if (!rows) return '';
+  const wym = lg === 'mlb' ? mlbWhatYouMissed(g) : nbaWhatYouMissed(g);
+  return `<div class="stack ${cls || 'marquee-read'}">${ContextCard(rows, g.state === 'in', g.league)}${wym}</div>`;
+}
+
 function golfWhatYouMissed(g) {
   if (!g || g.state !== 'post') return '';
   const lb = g.leaderboard || [];
@@ -840,17 +904,21 @@ function FeaturedGolfCard(g) {
       .sort((a, b) => (rank[a.state] - rank[b.state]) || (b.importance - a.importance))[0];
     const marquee = big ? Marquee(big) : '';
 
-    // Verified context for the marquee game (NBA so far): the GuyTalk Read +
-    // a What You Missed recap once it's final. Only when server facts exist.
-    const bigRead = (big && big.facts && nbaContext(big))
-      ? `<div class="stack marquee-read">${ContextCard(nbaContext(big), big.state === 'in', big.league)}${nbaWhatYouMissed(big)}</div>`
-      : '';
+    // GuyTalk Read under the marquee for the overall biggest game...
+    const bigRead = big ? gameRead(big, 'marquee-read') : '';
 
-    el.innerHTML = marquee + bigRead + real.map((lg) => `
+    // ...and for each league's top game in its own block (skip the marquee game
+    // so it isn't shown twice). Only renders where the server attached facts.
+    el.innerHTML = marquee + bigRead + real.map((lg) => {
+      const top = lg.games[0];
+      const read = (top && top !== big) ? gameRead(top, 'game-read') : '';
+      return `
       <div class="league-block">
         <div class="league-name">${esc(lg.label)}</div>
+        ${read}
         <div class="grid grid-scores">${lg.games.map(ScoreboardCard).join('')}</div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
   }
 
   function renderMarkets(real) {
