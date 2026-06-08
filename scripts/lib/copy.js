@@ -268,6 +268,7 @@ Return ONLY valid JSON on one line — no markdown:
               ? `Results: ${f1.results.slice(0, 3).map(r => `P${r.pos} ${r.driver} (${r.team})`).join(', ')}`
               : `Upcoming: ${f1.name} this weekend`;
             return `GuyTalk F1: ${f1.name}. ${raceLine}.
+A driver's team/constructor is ONLY the name shown in parentheses next to them. NEVER guess or state a driver's team if it is not given — if unsure, don't mention a team at all. Do not invent championship facts.
 Return ONLY valid JSON on one line — no markdown:
 {"headline":"Max 10 words.","whyCare1":"One sentence — what makes this race or result significant.","whyCare2":"One sentence — championship battle or circuit-specific detail.","watchFor":"One thing to track. Specific.","whatToSay":"One casual conversation line."}`;
           })(),

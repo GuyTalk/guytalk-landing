@@ -235,6 +235,29 @@ async function fetchF1() {
           .filter((c) => c.driver !== 'Unknown')
       : [];
 
+    // ESPN's F1 feed has no constructor, so fill the real team from Jolpica.
+    // Without this, downstream copy can hallucinate a driver's team.
+    if (results.some((r) => !r.team)) {
+      try {
+        const sres = await fetch('https://api.jolpi.ca/ergast/f1/current/driverStandings.json', { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+        if (sres.ok) {
+          const sd = await sres.json();
+          const list = sd?.MRData?.StandingsTable?.StandingsLists?.[0]?.DriverStandings || [];
+          const byLast = {};
+          for (const d of list) {
+            const last = (d.Driver?.familyName || '').toLowerCase();
+            if (last) byLast[last] = d.Constructors?.[0]?.name || '';
+          }
+          for (const r of results) {
+            if (!r.team) {
+              const last = r.driver.split(' ').pop().toLowerCase();
+              if (byLast[last]) r.team = byLast[last];
+            }
+          }
+        }
+      } catch (_) { /* leave team blank rather than guess */ }
+    }
+
     return {
       name: ev.name || 'Formula 1',
       shortName: ev.shortName || ev.name || 'F1',
