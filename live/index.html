@@ -259,6 +259,8 @@
   .talk-field b { font-family: 'Inter Tight', sans-serif; font-weight: 700; color: var(--text); display: block; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); margin-bottom: 2px; }
   .talk-say b { color: var(--accent); }
   .talk-say { background: var(--accent-muted); margin: 12px -10px -6px; padding: 12px 12px 10px; border-radius: 9px; }
+  .talk-stat { color: var(--text); font-weight: 600; padding-left: 11px; border-left: 3px solid var(--accent); }
+  .talk-stat b { color: var(--accent); }
 
   /* FLAGS (F1 + golf) + TEAM LOGOS (scoreboard) */
   .flag {
@@ -317,6 +319,36 @@
   .ctx-say { background: var(--accent-muted); border-radius: 10px; padding: 11px 14px; }
   .ctx-card.live-accent .ctx-say { background: var(--red-muted); }
   .ctx-say .ctx-text { font-weight: 500; font-style: italic; }
+  /* Key stat — the single most interesting number, called out */
+  .ctx-row.is-key .ctx-label { color: var(--text); }
+  .ctx-row.is-key .ctx-label::before { background: var(--text); }
+  .ctx-keystat {
+    background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+    border-radius: 9px; padding: 10px 13px;
+  }
+  .ctx-card.live-accent .ctx-keystat { border-left-color: var(--live); }
+  .ctx-keystat .ctx-text { font-weight: 600; }
+
+  /* WHAT YOU MISSED — recap block for a completed major event */
+  .wym-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden; box-shadow: 0 2px 14px rgba(0,0,0,0.04);
+  }
+  .wym-head {
+    display: flex; align-items: center; gap: 8px; padding: 12px 18px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-h)); color: #fff;
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 12px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .wym-dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; opacity: 0.9; }
+  .wym-body { padding: 4px 18px 12px; }
+  .wym-row { padding: 11px 0; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 3px; }
+  .wym-row:first-child { border-top: none; }
+  .wym-k {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 10.5px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+  }
+  .wym-v { font-size: 14.5px; color: var(--text); line-height: 1.4; font-weight: 500; }
 
   /* TEAM CHIP — small colour-coded identifier (F1 constructors, etc.) */
   .team-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--text-2); font-weight: 500; margin-top: 3px; }
@@ -455,8 +487,11 @@
     .mq-abbr { font-size: 16px; }
     .mq-score { font-size: 21px; }
     .grid-markets { grid-template-columns: 1fr 1fr; }
-    .nav-links .nav-link:not(.nav-link-live) { display: none; }
-    .nav-inner { padding: 12px 18px; }
+    /* Keep every nav destination reachable on mobile — wrap + compact, never hide */
+    .nav-inner { padding: 12px 16px; flex-wrap: wrap; row-gap: 8px; }
+    .nav-links { gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-link { font-size: 13px; }
+    .nav-cta { padding: 6px 12px; font-size: 12px; }
     footer { padding: 28px 18px 40px; }
   }
 </style>

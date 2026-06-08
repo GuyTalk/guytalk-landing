@@ -802,6 +802,11 @@
 
   @media (max-width: 600px) {
     .container { padding: 0 16px; }
+    /* Nav: wrap links instead of overflowing; keep every destination tappable */
+    .nav-inner { flex-wrap: wrap; row-gap: 8px; padding: 12px 16px; }
+    .nav-menu { gap: 14px !important; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-menu a { font-size: 13px !important; }
+    .nav-menu .nav-cta { padding: 7px 13px; }
     .hero { padding: 60px 0 48px; }
     section { padding: 56px 0; }
     .chat-section { padding: 52px 0; }
@@ -898,7 +903,7 @@
 <nav>
   <div class="nav-inner">
     <div class="wordmark">GuyTalk<span class="dot">.</span></div>
-    <div style="display:flex;align-items:center;gap:24px;">
+    <div class="nav-menu" style="display:flex;align-items:center;gap:24px;">
       <a href="/live/" style="font-size:14px;font-weight:600;color:var(--text);transition:color 0.15s;display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#DC2626;animation:gtLivePulse 2s ease-in-out infinite;"></span>Live</a>
       <a href="/brief/issue-041/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Today's Brief</a>
       <a href="/briefs/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Archive</a>

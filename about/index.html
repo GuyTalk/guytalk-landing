@@ -196,7 +196,10 @@
     .values-grid { grid-template-columns: 1fr; }
     .stat-row { grid-template-columns: 1fr; }
     .cta-form { flex-direction: column; }
-    .nav-links .nav-link { display: none; }
+    /* Keep nav reachable on mobile — wrap + compact, never hide */
+    .nav-inner { flex-wrap: wrap; row-gap: 8px; }
+    .nav-links { gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-link { font-size: 13px; }
   }
 </style>
 <script>
@@ -227,7 +230,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
 
   <div class="stat-row">
     <div class="stat-cell">
-      <div class="stat-num">17+</div>
+      <div class="stat-num">18+</div>
       <div class="stat-label">Issues published</div>
     </div>
     <div class="stat-cell">

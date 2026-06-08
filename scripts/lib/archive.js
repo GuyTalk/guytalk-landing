@@ -141,16 +141,24 @@ function buildArchive(rootDir) {
       }
       fs.writeFileSync(indexPath, indexHtml, 'utf8');
     }
+
+    // Write /brief/ index that redirects to the latest issue.
+    // Keeps generic "/brief/" links (e.g. the Live nav) from 404ing and
+    // always points "Today's Brief" at whatever issue is newest.
+    writeBriefRedirect(rootDir, latestSlug, latest);
   }
 
   const rows = issues.map(d => {
     const num  = String(d.num).padStart(3, '0');
     const slug = d.slug || `issue-${num}`;
+    const title = d.title || 'GuyTalk Brief';
+    const date = d.date || '';
+    const search = escHtml(`${title} ${num} #${num} ${date}`.toLowerCase());
     return `
-      <a href="/brief/${slug}/" class="archive-row">
+      <a href="/brief/${slug}/" class="archive-row" data-search="${search}">
         <span class="ar-num">#${num}</span>
-        <span class="ar-title">${escHtml(d.title || 'GuyTalk Brief')}</span>
-        <span class="ar-date">${escHtml(d.date || '')}</span>
+        <span class="ar-title">${escHtml(title)}</span>
+        <span class="ar-date">${escHtml(date)}</span>
         <span class="ar-arrow">→</span>
       </a>`;
   }).join('');
@@ -226,6 +234,22 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     letter-spacing: 0.04em; padding-bottom: 16px;
     border-bottom: 2px solid var(--border); margin-bottom: 8px;
   }
+
+  /* Search */
+  .archive-search-wrap { position: relative; margin-bottom: 18px; }
+  .archive-search-icon {
+    position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    color: var(--text-3); pointer-events: none;
+  }
+  .archive-search-input {
+    width: 100%; padding: 14px 16px 14px 44px;
+    border: 1.5px solid var(--border); border-radius: 11px;
+    font-size: 15px; font-family: inherit; background: var(--surface); color: var(--text);
+    outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .archive-search-input:focus { border-color: rgba(43,111,255,0.5); box-shadow: 0 0 0 3px rgba(43,111,255,0.10); }
+  .archive-search-input::placeholder { color: var(--text-3); }
+  .archive-empty { padding: 40px 0; text-align: center; color: var(--text-2); font-size: 15px; }
 
   /* Archive rows */
   .archive-row {
@@ -315,10 +339,15 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <div class="archive-pretitle">The Brief</div>
   <h1 class="archive-title">Every issue.</h1>
   <p class="archive-sub">Five minutes a day. Sports, markets, golf, and culture.</p>
-  <div class="archive-count">${issues.length} issue${issues.length !== 1 ? 's' : ''} published</div>
-  <div class="archive-list">
+  <div class="archive-search-wrap">
+    <svg class="archive-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <input type="search" id="archiveSearch" class="archive-search-input" placeholder="Search by topic, team, issue #…" aria-label="Search issues" autocomplete="off">
+  </div>
+  <div class="archive-count" id="archiveCount">${issues.length} issue${issues.length !== 1 ? 's' : ''} published</div>
+  <div class="archive-list" id="archiveList">
     ${rows}
   </div>
+  <div class="archive-empty" id="archiveEmpty" hidden>No issues match your search.</div>
 
   <div class="archive-cta-block">
     <div class="archive-cta-label">Free · Daily · 5 Minutes</div>
@@ -345,6 +374,30 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </footer>
 
 <script>
+// Client-side issue search/filter — instant, no network.
+(function () {
+  var input = document.getElementById('archiveSearch');
+  if (!input) return;
+  var rows  = Array.prototype.slice.call(document.querySelectorAll('.archive-row'));
+  var count = document.getElementById('archiveCount');
+  var empty = document.getElementById('archiveEmpty');
+  var total = rows.length;
+  function apply() {
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+    rows.forEach(function (r) {
+      var match = !q || (r.getAttribute('data-search') || '').indexOf(q) !== -1;
+      r.style.display = match ? '' : 'none';
+      if (match) shown++;
+    });
+    if (empty) empty.hidden = shown !== 0;
+    if (count) count.textContent = q
+      ? (shown + ' of ' + total + ' issue' + (total !== 1 ? 's' : '') + ' match')
+      : (total + ' issue' + (total !== 1 ? 's' : '') + ' published');
+  }
+  input.addEventListener('input', apply);
+})();
+
 window.handleSignup = function(e, form) {
   e.preventDefault();
   var email = form.querySelector('input[type="email"]').value.trim();
@@ -373,6 +426,7 @@ window.handleSignup = function(e, form) {
   const sitemapPath = path.join(rootDir, 'sitemap.xml');
   const staticUrls = [
     { loc: '/', changefreq: 'daily', priority: '1.0' },
+    { loc: '/live/', changefreq: 'always', priority: '0.9' },
     { loc: '/briefs/', changefreq: 'daily', priority: '0.9' },
     { loc: '/about/', changefreq: 'monthly', priority: '0.7' },
     { loc: '/reviews/', changefreq: 'weekly', priority: '0.7' },
@@ -400,6 +454,35 @@ window.handleSignup = function(e, form) {
     allUrls.map(u => `  <url>\n    <loc>https://www.guytalkmedia.com${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`).join('\n')
   }\n</urlset>\n`;
   fs.writeFileSync(sitemapPath, sitemapXml, 'utf8');
+}
+
+// Builds /brief/index.html — a fast redirect to the latest published issue.
+function writeBriefRedirect(rootDir, latestSlug, latest) {
+  const dest = `/brief/${latestSlug}/`;
+  const title = latest && latest.title ? latest.title : 'Today’s Brief';
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Today’s Brief — GuyTalk</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://www.guytalkmedia.com${dest}">
+<meta http-equiv="refresh" content="0; url=${dest}">
+<script>window.location.replace(${JSON.stringify(dest)});</script>
+<style>
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#F9F8F5;color:#0F1724;
+       display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;text-align:center;padding:24px;}
+  a{color:#2B6FFF;font-weight:600;text-decoration:none;}
+</style>
+</head>
+<body>
+  <p>Taking you to today’s brief…<br><a href="${dest}">${escHtml(title)} →</a></p>
+</body>
+</html>`;
+  const outDir = path.join(rootDir, 'brief');
+  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
 }
 
 function escHtml(str) {

@@ -246,8 +246,10 @@ function ContextCard(rows, live, tag) {
   const body = rows.filter((r) => r && r.text).map((r) => {
     const text = r.say
       ? `<div class="ctx-say"><span class="ctx-text">${esc(r.text)}</span></div>`
-      : `<span class="ctx-text">${esc(r.text)}</span>`;
-    return `<div class="ctx-row"><span class="ctx-label">${esc(r.label)}</span>${text}</div>`;
+      : r.key
+        ? `<div class="ctx-keystat"><span class="ctx-text">${esc(r.text)}</span></div>`
+        : `<span class="ctx-text">${esc(r.text)}</span>`;
+    return `<div class="ctx-row${r.key ? ' is-key' : ''}"><span class="ctx-label">${esc(r.label)}</span>${text}</div>`;
   }).join('');
   return `<div class="ctx-card${live ? ' live-accent' : ''}">
     <div class="ctx-head"><span class="gt">The GuyTalk Read<span class="dot">.</span></span>${tag ? `<span class="tag">${esc(tag)}</span>` : ''}</div>
@@ -377,51 +379,177 @@ function TalkingPointCard(t) {
   return `<div class="talk-card">
     <div class="talk-topic">${esc(t.topic)}</div>
     <p class="talk-field"><b>Why it matters</b>${esc(t.matters)}</p>
+    ${t.stat ? `<p class="talk-field talk-stat"><b>Key stat</b>${esc(t.stat)}</p>` : ''}
     <p class="talk-field talk-say"><b>What to say</b>${esc(t.say)}</p>
     ${t.url ? `<p class="talk-src"><a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.source || 'Source')} →</a></p>` : ''}
   </div>`;
 }
 
-/* ---- data-derived context builders (factual, from the live payload) ---- */
+/* ---- data-derived context builders (factual, from the live payload) ----
+ * GoalTalk content standard, every card answers: what happened, why it matters
+ * (consequence, not a result-restate), the single most interesting REAL stat,
+ * and a quotable line built on that stat. Only verified payload numbers are
+ * used — no invented records/streaks/superlatives (compliance). */
+
+// Championship picture from Jolpica driver standings.
+function f1Champ(f1) {
+  const d = f1.driverStandings || [];
+  if (!d.length) return null;
+  const leader = d[0];
+  const second = d[1] || null;
+  const gap = second ? leader.points - second.points : null;
+  return { leader, second, gap };
+}
+// Standing row for a given driver (matched by last name).
+function f1Standing(f1, name) {
+  const last = (name || '').split(' ').pop().toLowerCase();
+  return (f1.driverStandings || []).find((d) => d.name.toLowerCase().endsWith(last)) || null;
+}
+function f1OneTwo(f1) {
+  const p = f1.positions || [];
+  return p[0] && p[1] && p[0].team && p[0].team === p[1].team ? p[0].team : null;
+}
+const plural = (n, w) => `${n} ${w}${Math.abs(n) === 1 ? '' : 's'}`;
 
 function f1Context(f1) {
   const p = f1.positions || [];
-  const d = f1.driverStandings || [];
   const ev = shortEvent(f1.event);
+  const champ = f1Champ(f1);
+  const gapTxt = champ && champ.gap != null
+    ? `${champ.leader.name} leads the title by ${plural(champ.gap, 'point')}${champ.second ? ` over ${champ.second.name}` : ''}`
+    : null;
+
   if (f1.phase === 'live') {
+    const p0 = p[0], p1 = p[1];
     return [
-      { label: 'Why it matters', text: p[0] ? `${p[0].driver} leads ${ev} with the race live.` : `${ev} is running now.` },
-      p[1] && { label: 'Watch for', text: `${p[1].driver} sitting P2 and within range.` },
-      { label: 'What to say', text: p[0] ? `"${p[0].driver} out front — this is his to lose."` : `"Tuning into ${ev} right now."`, say: true },
+      { label: 'Why it matters', text: p0
+        ? `${p0.driver} controls ${ev} from the front${p1 ? `, and ${p1.driver} is the only car within range` : ''} — at this track, leading usually means winning.`
+        : `${ev} is running live right now.` },
+      champ && { label: 'Key stat', key: true, text: `${gapTxt} coming into today.` },
+      { label: 'What to say', say: true, text: p0
+        ? `"${p0.driver} is managing this from P1 — ${p1 ? `${p1.driver} can see him but can't reel him in` : 'the field has no answer'}."`
+        : `"${ev} is live — worth a look."` },
     ];
   }
+
   if (f1.phase === 'upcoming') {
     const grid = p[0];
     return [
-      { label: 'Why it matters', text: `${ev} is next${f1.nextSession ? ' — race goes green soon' : ''}.` },
-      grid && { label: 'Watch for', text: `${grid.driver} starts on pole.` },
-      { label: 'What to say', text: grid ? `"${grid.driver} on pole — track position is everything here."` : `"Big weekend ahead at ${ev}."`, say: true },
+      { label: 'Why it matters', text: champ && champ.gap != null
+        ? `${ev} can swing the championship — ${champ.leader.name} carries a ${plural(champ.gap, 'point')} lead into the weekend.`
+        : `${ev} is up next on the calendar.` },
+      grid && { label: 'Key stat', key: true, text: `${grid.driver} starts on pole${grid.team ? ` for ${grid.team}` : ''}.` },
+      { label: 'What to say', say: true, text: grid
+        ? `"${grid.driver} on pole, but ${champ ? `${champ.leader.name}'s ${champ.gap}-point cushion` : 'the title race'} is the story this weekend."`
+        : `"Big one coming up at ${ev}."` },
     ];
   }
+
   // result
-  const champ = d[0];
-  const gap = d[0] && d[1] ? d[0].points - d[1].points : null;
+  const winner = p[0];
+  const wStand = winner ? f1Standing(f1, winner.driver) : null;
+  const leads = !!(champ && winner &&
+    champ.leader.name.toLowerCase().endsWith(winner.driver.split(' ').pop().toLowerCase()));
+  const oneTwo = f1OneTwo(f1);
+  let why;
+  if (winner && champ && champ.gap != null) {
+    why = leads
+      ? `${winner.driver}'s win stretches his championship lead to ${plural(champ.gap, 'point')}${champ.second ? ` over ${champ.second.name}` : ''}.`
+      : `${winner.driver} takes the win, but ${champ.leader.name} still leads the title by ${plural(champ.gap, 'point')}.`;
+  } else { why = winner ? `${winner.driver} wins ${ev}.` : `${ev} is in the books.`; }
+
   return [
-    { label: 'Why it matters', text: p[0] ? `${p[0].driver} wins ${ev}.` : `${ev} is in the books.` },
-    champ && { label: 'Watch for', text: gap != null ? `${champ.name} leads the title race by ${gap} pts.` : `${champ.name} leads the championship.` },
-    { label: 'What to say', text: p[0] ? `"${p[0].driver} taking ${ev} shakes up the title picture."` : `"Results are in for ${ev}."`, say: true },
+    { label: 'Why it matters', text: why },
+    { label: 'Key stat', key: true, text: oneTwo
+        ? `${oneTwo} finish 1-2${gapTxt ? `; ${gapTxt}` : ''}.`
+        : (gapTxt ? `${gapTxt}.` : (wStand ? `${winner.driver} sits P${wStand.pos} on ${wStand.points} points.` : null)) },
+    { label: 'What to say', say: true, text: winner && champ && champ.gap != null
+        ? (leads
+            ? `"${winner.driver} is up ${champ.gap} now — this title's starting to look like a runaway."`
+            : `"Strong win for ${winner.driver}, but ${champ.leader.name} is still ${champ.gap} clear in the standings."`)
+        : (winner ? `"${winner.driver} taking ${ev} is a statement."` : `"Results are in for ${ev}."`) },
   ];
+}
+
+// Parse a golf score string ("-12", "E", "+3") to a number of strokes vs par.
+function golfScoreNum(s) {
+  if (s == null) return null;
+  const t = String(s).trim();
+  if (/^e$/i.test(t)) return 0;
+  const n = parseInt(t.replace('+', ''), 10);
+  return Number.isFinite(n) ? n : null;
 }
 
 function golfContext(g) {
   const lb = g.leaderboard || [];
   const ev = shortEvent(g.event);
-  const lead = lb[0];
+  const lead = lb[0], second = lb[1];
+  if (!lead) {
+    return [
+      { label: 'Why it matters', text: `${ev} is underway.` },
+      { label: 'What to say', say: true, text: `"${ev} is one to watch this week."` },
+    ];
+  }
+  const ls = golfScoreNum(lead.score), ss = golfScoreNum(second && second.score);
+  const margin = (ls != null && ss != null) ? ss - ls : null; // strokes leader is ahead
+  const clear = margin != null && margin > 0 ? `${plural(margin, 'stroke')} clear` : null;
+  const post = g.state === 'post';
   return [
-    { label: 'Why it matters', text: lead ? `${lead.name} leads ${ev} at ${lead.score}.` : `${ev} is underway.` },
-    { label: 'Watch for', text: g.cutLine ? `Cut line sitting at ${g.cutLine}.` : (lb[1] ? `${lb[1].name} chasing at ${lb[1].score}.` : 'The chasing pack closing in.') },
-    { label: 'What to say', text: lead ? `"${lead.name} at ${lead.score} is the one to beat."` : `"${ev} is one to watch this week."`, say: true },
+    { label: 'Why it matters', text: post
+        ? `${lead.name} wins ${ev} at ${lead.score}${clear ? `, ${clear} of the field` : ''} — a result that reshuffles the season's pecking order.`
+        : `${lead.name} ${clear ? `is ${clear}` : 'leads'} at ${ev}${lead.thru ? ` through ${lead.thru}` : ''}, and a lead like this is hard to hand back.` },
+    { label: 'Key stat', key: true, text: clear
+        ? `${lead.name} at ${lead.score}, ${clear}${second ? ` of ${second.name}` : ''}.`
+        : (g.cutLine ? `Cut line sitting at ${g.cutLine}.` : `${lead.name} leads at ${lead.score}.`) },
+    { label: 'What to say', say: true, text: post
+        ? `"${lead.name} closing out ${ev} at ${lead.score}${margin > 0 ? ` by ${margin}` : ''} — that's how you finish a tournament."`
+        : `"${lead.name} at ${lead.score}${clear ? `, ${clear}` : ''} — he's the man to beat."` },
   ];
+}
+
+/** WhatYouMissed — quick recap block for a completed major event.
+ *  Winner · Biggest storyline · Best performance · Key takeaway. */
+function WhatYouMissed(items) {
+  const rows = (items || []).filter((i) => i && i.v).map((i) =>
+    `<div class="wym-row"><span class="wym-k">${esc(i.k)}</span><span class="wym-v">${esc(i.v)}</span></div>`
+  ).join('');
+  if (!rows) return '';
+  return `<div class="wym-card">
+    <div class="wym-head"><span class="wym-dot"></span>What You Missed</div>
+    <div class="wym-body">${rows}</div>
+  </div>`;
+}
+
+function f1WhatYouMissed(f1) {
+  if (!f1 || f1.phase !== 'result') return '';
+  const p = f1.positions || [];
+  const winner = p[0];
+  if (!winner) return '';
+  const champ = f1Champ(f1);
+  const podium = p.slice(1, 3).map((x) => `P${x.pos} ${x.driver}`).join(', ');
+  const oneTwo = f1OneTwo(f1);
+  return WhatYouMissed([
+    { k: 'Winner', v: `${winner.driver}${winner.team ? ` · ${winner.team}` : ''}` },
+    { k: 'Biggest storyline', v: champ && champ.gap != null ? `${champ.leader.name} leads the title by ${champ.gap} pts` : '' },
+    { k: 'Best performance', v: oneTwo ? `${oneTwo} lock out a 1-2` : podium },
+    { k: 'Key takeaway', v: champ && champ.gap != null ? `${champ.gap}-point gap at the top with the season rolling on` : `${winner.driver} adds another win` },
+  ]);
+}
+
+function golfWhatYouMissed(g) {
+  if (!g || g.state !== 'post') return '';
+  const lb = g.leaderboard || [];
+  const lead = lb[0];
+  if (!lead) return '';
+  const second = lb[1];
+  const ls = golfScoreNum(lead.score), ss = golfScoreNum(second && second.score);
+  const margin = (ls != null && ss != null) ? ss - ls : null;
+  return WhatYouMissed([
+    { k: 'Winner', v: `${lead.name} · ${lead.score}` },
+    { k: 'Biggest storyline', v: margin && margin > 0 ? `Won by ${plural(margin, 'stroke')}` : 'Down-to-the-wire finish at the top' },
+    { k: 'Best performance', v: second ? `${second.name} runner-up at ${second.score}` : '' },
+    { k: 'Key takeaway', v: `${lead.name} takes ${shortEvent(g.event)}` },
+  ]);
 }
 
 /** FeaturedF1Card — winner/leader/pole spotlight for the F1 section. */
@@ -573,7 +701,7 @@ function FeaturedGolfCard(g) {
     }) : '';
 
     el.innerHTML =
-      `<div class="stack">${board}${FeaturedF1Card(f1)}</div>` +
+      `<div class="stack">${board}${FeaturedF1Card(f1)}${f1WhatYouMissed(f1)}</div>` +
       `<div class="stack">${ContextCard(f1Context(f1), isLive, 'Formula 1')}${standings}${constructors}</div>`;
   }
 
@@ -592,7 +720,7 @@ function FeaturedGolfCard(g) {
         val: p.score, valClass: String(p.score).trim().startsWith('-') ? 'neg' : '',
       })),
     });
-    el.innerHTML = `<div class="grid-golf">${board}<div class="stack">${ContextCard(golfContext(golf), golf.state === 'in', 'Golf')}${FeaturedGolfCard(golf)}</div></div>`;
+    el.innerHTML = `<div class="grid-golf">${board}<div class="stack">${ContextCard(golfContext(golf), golf.state === 'in', 'Golf')}${FeaturedGolfCard(golf)}${golfWhatYouMissed(golf)}</div></div>`;
   }
 
   function renderScoreboard(real) {

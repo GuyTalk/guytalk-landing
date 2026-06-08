@@ -159,11 +159,20 @@ async function buildAI(trending, marketLine, key) {
     'much using the exact numbers given. NEVER give investment advice or buy/sell/hold guidance, ' +
     'price targets, valuations, or tell anyone what to do with money. Observe and explain, never advise.\n' +
     '4. Be confident and casual; never hedge or say "some say". Stay grounded.\n\n' +
+    '\n5. CONTENT STANDARD — every item must clear this bar:\n' +
+    '   • "why it matters" / "matters" = the CONSEQUENCE or stakes, NOT a restate of the headline. ' +
+    'Say what it changes, sets up, or means going forward. Bad: "Team X won." Good: "The win moves Team X into the final and ends Team Y\'s season."\n' +
+    '   • "stat" = the single most interesting CONCRETE detail from the story — a record, streak, margin, ' +
+    'number, milestone, or historical comparison. Pull it ONLY from the provided inputs; if the inputs ' +
+    'contain no such number/fact, set "stat" to an empty string. Never fabricate one.\n' +
+    '   • "say" = a short, specific line someone could actually drop in conversation, built around the ' +
+    'real detail — never a generic "did you see this". Bad: "Big game last night." Good: "Three straight ' +
+    'wins now — they look like the team to beat."\n\n' +
     'Return STRICT JSON only (no markdown) with this exact shape: ' +
-    '{ "rundown": string, "trending": [{"i": number, "why": string}], "talking": [{"topic": string, "matters": string, "say": string, "sourceIndex": number}] }. ' +
+    '{ "rundown": string, "trending": [{"i": number, "why": string}], "talking": [{"topic": string, "matters": string, "stat": string, "say": string, "sourceIndex": number}] }. ' +
     'rundown = 2-3 punchy sentences on what matters right now across sports, markets, and culture, woven together like a smart friend catching you up (markets: describe the moves, never advise). ' +
-    'trending = one short "why it matters" sentence for EACH story index provided, grounded in that story. ' +
-    'talking = the 4 most conversation-driving topics, each with a one-line why and one short quotable line someone could actually say (in quotes). Opinions ok; invented facts are not.';
+    'trending = one short "why it matters" CONSEQUENCE sentence for EACH story index provided, grounded in that story (not a restate of the headline). ' +
+    'talking = the 4 most conversation-driving topics, each with topic, a consequence-driven "matters", a concrete "stat" (or "" if none in the inputs), and one short quotable "say" line (in quotes) built on the real detail. Opinions ok; invented facts are not.';
 
   const user =
     `Markets right now: ${marketLine || 'n/a'}\n\nToday's real stories:\n${stories}\n\n` +
@@ -191,8 +200,9 @@ async function buildAI(trending, marketLine, key) {
   // Talking points: drop any item whose copy contains investment-advice language.
   const talking = (obj.talking || []).slice(0, 5).map((o) => {
     const src = trending[o.sourceIndex] || null;
+    const stat = adviceFree(clean(o.stat || ''));
     return {
-      topic: clean(o.topic), matters: clean(o.matters), say: clean(o.say),
+      topic: clean(o.topic), matters: clean(o.matters), stat, say: clean(o.say),
       url: src?.url || '', source: src?.source || '',
     };
   }).filter((o) => o.topic && o.matters && o.say && !FIN_ADVICE.test(o.say) && !FIN_ADVICE.test(o.matters));
