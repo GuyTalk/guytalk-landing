@@ -2,11 +2,15 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "functions": {
-    "api/approve.js": { "maxDuration": 60 },
-    "api/ticker.js":  { "maxDuration": 15 },
-    "api/live.js":    { "maxDuration": 15 },
-    "api/talk.js":    { "maxDuration": 30 }
+    "api/approve.js":       { "maxDuration": 60 },
+    "api/ticker.js":        { "maxDuration": 15 },
+    "api/live.js":          { "maxDuration": 15 },
+    "api/talk.js":          { "maxDuration": 30 },
+    "api/beehiiv-sync.js":  { "maxDuration": 15 }
   },
+  "crons": [
+    { "path": "/api/beehiiv-sync", "schedule": "33 11 * * *" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
