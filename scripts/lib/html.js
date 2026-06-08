@@ -677,6 +677,8 @@ function buildUpcomingGameCard(game) {
 // ─────────────────────────────────────────────────────────────────────────────
 function buildMarkets({ markets, copy, date }) {
   const md = copy?.marketsDetail || {};
+  const mktTitle = markets?.__meta?.tableTitle || 'Daily Close';
+  const mktSub   = markets?.__meta?.tableSub   || date;
 
   const headline      = md.headline       || 'Markets wrap.';
   const openingPara   = copy?.marketsTake  || 'Market data below.';
@@ -722,8 +724,8 @@ function buildMarkets({ markets, copy, date }) {
 
     <div class="mkt-table">
       <div class="mkt-table-hd">
-        <div class="mkt-table-title">Daily Close</div>
-        <div class="mkt-table-sub">${esc(date)}</div>
+        <div class="mkt-table-title">${esc(mktTitle)}</div>
+        <div class="mkt-table-sub">${esc(mktSub)}</div>
       </div>
       <div class="mkt-table-body">
         <div class="mkt-cols">
@@ -1341,8 +1343,8 @@ function buildMarkets({ markets, copy, date }) {
 
     <div class="mkt-table">
       <div class="mkt-table-hd">
-        <div class="mkt-table-title">Daily Close</div>
-        <div class="mkt-table-sub">${esc(date)}</div>
+        <div class="mkt-table-title">${esc(mktTitle)}</div>
+        <div class="mkt-table-sub">${esc(mktSub)}</div>
       </div>
       <div class="mkt-table-body">
         <div class="mkt-cols">

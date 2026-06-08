@@ -235,28 +235,43 @@ async function fetchF1() {
           .filter((c) => c.driver !== 'Unknown')
       : [];
 
-    // ESPN's F1 feed has no constructor, so fill the real team from Jolpica.
-    // Without this, downstream copy can hallucinate a driver's team.
-    if (results.some((r) => !r.team)) {
-      try {
-        const sres = await fetch('https://api.jolpi.ca/ergast/f1/current/driverStandings.json', { headers: { 'User-Agent': 'GuyTalk/1.0' } });
-        if (sres.ok) {
-          const sd = await sres.json();
-          const list = sd?.MRData?.StandingsTable?.StandingsLists?.[0]?.DriverStandings || [];
-          const byLast = {};
-          for (const d of list) {
-            const last = (d.Driver?.familyName || '').toLowerCase();
-            if (last) byLast[last] = d.Constructors?.[0]?.name || '';
-          }
-          for (const r of results) {
-            if (!r.team) {
-              const last = r.driver.split(' ').pop().toLowerCase();
-              if (byLast[last]) r.team = byLast[last];
-            }
+    // ESPN's F1 feed has no constructor or season stats, so enrich from Jolpica:
+    // real team + real season wins + championship position. This both prevents
+    // team hallucination and gives the copy a genuine, sourced "bring up" stat.
+    let champLeader = null;
+    try {
+      const sres = await fetch('https://api.jolpi.ca/ergast/f1/current/driverStandings.json', { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+      if (sres.ok) {
+        const sd = await sres.json();
+        const list = sd?.MRData?.StandingsTable?.StandingsLists?.[0]?.DriverStandings || [];
+        const byLast = {};
+        for (const d of list) {
+          const last = (d.Driver?.familyName || '').toLowerCase();
+          if (last) byLast[last] = {
+            team: d.Constructors?.[0]?.name || '',
+            wins: d.wins != null ? Number(d.wins) : null,
+            pos: d.position != null ? Number(d.position) : null,
+            points: d.points != null ? Number(d.points) : null,
+          };
+        }
+        for (const r of results) {
+          const last = r.driver.split(' ').pop().toLowerCase();
+          const s = byLast[last];
+          if (s) {
+            if (!r.team && s.team) r.team = s.team;
+            r.seasonWins = s.wins;        // real season win count (not a streak)
+            r.champPos = s.pos;           // championship position
+            r.champPoints = s.points;     // championship points
           }
         }
-      } catch (_) { /* leave team blank rather than guess */ }
-    }
+        const L = list[0];
+        if (L) champLeader = {
+          name: `${L.Driver?.givenName || ''} ${L.Driver?.familyName || ''}`.trim(),
+          points: L.points != null ? Number(L.points) : null,
+          lead: list[1]?.points != null && L.points != null ? Number(L.points) - Number(list[1].points) : null,
+        };
+      }
+    } catch (_) { /* leave stats blank rather than guess */ }
 
     return {
       name: ev.name || 'Formula 1',
@@ -264,6 +279,7 @@ async function fetchF1() {
       venue: ev.venue?.fullName || ev.circuit?.fullName || '',
       status: statusDesc,
       statusState,
+      champLeader,
       results,
     };
   } catch (_) {
@@ -300,6 +316,44 @@ async function fetchWorldCup() {
   } catch (_) {
     return null;
   }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Market session timing (US/ET) — so the brief never calls a stale close "today".
+// Returns an honest table label + a framing instruction for the copy model.
+// ─────────────────────────────────────────────────────────────────────────────
+function marketTiming(d = new Date()) {
+  const fmt = (opts) => new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', ...opts });
+  const wd = fmt({ weekday: 'short' }).format(d);
+  const hour = Number(fmt({ hour: '2-digit', hour12: false }).format(d)) % 24;
+  const minute = Number(fmt({ minute: '2-digit' }).format(d));
+  const longDate = (dt) => fmt({ weekday: 'long', month: 'long', day: 'numeric' }).format(dt);
+  const isWeekend = wd === 'Sat' || wd === 'Sun';
+  const mins = hour * 60 + minute;
+  const OPEN = 9 * 60 + 30, CLOSE = 16 * 60;
+
+  const prevTradingDay = () => {
+    const dt = new Date(d);
+    do { dt.setUTCDate(dt.getUTCDate() - 1); } while (['Sat', 'Sun'].includes(fmt({ weekday: 'short' }).format(dt)));
+    return dt;
+  };
+
+  if (isWeekend) {
+    const fri = prevTradingDay();
+    return { state: 'weekend', tableTitle: 'Last close', tableSub: `${longDate(fri)} · markets closed for the weekend`,
+      framing: `US stock markets are CLOSED (weekend). Figures are last Friday's close (${longDate(fri)}). NEVER say "today" for the move — say "closed Friday at" and you may frame "heading into next week". No invented direction.` };
+  }
+  if (mins < OPEN) {
+    const prev = prevTradingDay();
+    return { state: 'preopen', tableTitle: 'Last close', tableSub: `${longDate(prev)} · U.S. markets open 9:30 AM ET`,
+      framing: `US stock markets have NOT opened yet today. Figures are the prior session's close (${longDate(prev)}). NEVER say "today" for the move — say "closed [that day] at". You may say markets are "looking to open" today, but do NOT predict a direction (no futures data provided).` };
+  }
+  if (mins >= CLOSE) {
+    return { state: 'closed_today', tableTitle: "Today's close", tableSub: longDate(d),
+      framing: `US stock markets have CLOSED for today. You may say "today" and describe today's close.` };
+  }
+  return { state: 'open', tableTitle: 'Markets open', tableSub: `as of ${fmt({ hour: 'numeric', minute: '2-digit', hour12: true }).format(d)} ET today`,
+    framing: `US stock markets are OPEN right now (intraday). Use present tense — "is trading", "up/down on the day so far". Do NOT say "closed".` };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -375,6 +429,9 @@ async function fetchMarkets() {
       results['10Y'] = { price, prevClose, dayChange: price && prevClose ? price - prevClose : null, dayChangePct, weekChangePct };
     }
   } catch (_) {}
+
+  // Honest session label + copy framing (non-iterable meta key).
+  results.__meta = marketTiming();
 
   return results;
 }

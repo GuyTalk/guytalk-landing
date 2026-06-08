@@ -230,6 +230,9 @@ ${sports.map(g => {
       ? ask(
           `GuyTalk markets section. Data: ${mktText}
 
+MARKET TIMING (hard requirement): ${markets?.__meta?.framing || 'Only use the word "today" if it is accurate for the current US market session.'}
+Use accurate phrasing like "closed at", "looking to open", or "as of … ET". If you say "today", it must actually be today.
+
 COMPLIANCE RULES (hard requirements — violations will be removed before publishing):
 GuyTalk is a media product. It observes and explains. It does NOT advise.
 NEVER write: "buying opportunity", "investors should", "looks undervalued", "now may be a good time", "great long-term investment", "smart move is", "we like this stock", "consider adding", "consider reducing", "price target", "portfolio", "risk tolerance", "tax", "retirement advice".
@@ -264,13 +267,22 @@ Return ONLY valid JSON on one line — no markdown:
     f1?.name
       ? ask(
           (() => {
-            const raceLine = f1.results?.length && f1.statusState === 'post'
+            const isPost = f1.results?.length && f1.statusState === 'post';
+            const raceLine = isPost
               ? `Results: ${f1.results.slice(0, 3).map(r => `P${r.pos} ${r.driver} (${r.team})`).join(', ')}`
               : `Upcoming: ${f1.name} this weekend`;
-            return `GuyTalk F1: ${f1.name}. ${raceLine}.
-A driver's team/constructor is ONLY the name shown in parentheses next to them. NEVER guess or state a driver's team if it is not given — if unsure, don't mention a team at all. Do not invent championship facts.
+            // Real, sourced season stats for a grounded "bring up" — never a record/streak.
+            const w = f1.results?.[0];
+            const bits = [];
+            if (isPost && w?.seasonWins != null) bits.push(`${w.driver} now has ${w.seasonWins} win${w.seasonWins === 1 ? '' : 's'} this season`);
+            if (isPost && w?.champPos != null) bits.push(`sits P${w.champPos} in the championship${w.champPoints != null ? ` with ${w.champPoints} pts` : ''}`);
+            if (f1.champLeader?.lead != null) bits.push(`${f1.champLeader.name} leads the title race by ${f1.champLeader.lead} pts`);
+            const statLine = bits.length ? `\nReal season stats (use ONLY these for any numbers/records): ${bits.join('; ')}.` : '';
+            return `GuyTalk F1: ${f1.name}. ${raceLine}.${statLine}
+A driver's team/constructor is ONLY the name shown in parentheses next to them. NEVER guess or state a driver's team if it is not given.
+STATS RULE (hard): you may include ONE interesting stat in "whatToSay" or "whyCare2", but ONLY using the season stats provided above. NEVER invent records, streaks, "first/most/youngest/oldest", or any number not given. If no stat is provided, don't cite one.
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words.","whyCare1":"One sentence — what makes this race or result significant.","whyCare2":"One sentence — championship battle or circuit-specific detail.","watchFor":"One thing to track. Specific.","whatToSay":"One casual conversation line."}`;
+{"headline":"Max 10 words.","whyCare1":"One sentence — what makes this race or result significant.","whyCare2":"One sentence — championship battle or circuit-specific detail.","watchFor":"One thing to track. Specific.","whatToSay":"One casual conversation line — weave in the real season stat if available."}`;
           })(),
           220
         )
