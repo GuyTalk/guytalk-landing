@@ -185,8 +185,38 @@ const constructorColor = (name) => {
   for (const [re, c] of CONSTRUCTOR_COLORS) if (re.test(name || '')) return c;
   return name ? hashColor(name) : 'var(--text-3)';
 };
+
+// Constructor identity badge: brand colour + monogram. ESPN/Jolpica provide no
+// F1 team logos, and the real logos are trademarked wordmarks — so we render our
+// own clean, trademark-safe badge. Image-ready: add a `logo` URL to a row below
+// and it renders the image with the badge as a graceful fallback.
+const CONSTRUCTORS = [
+  { re: /red bull/i,                            abbr: 'RBR', bg: '#3671C6', fg: '#fff' },
+  { re: /ferrari/i,                             abbr: 'FER', bg: '#E8002D', fg: '#fff' },
+  { re: /mercedes/i,                            abbr: 'MER', bg: '#00D7B6', fg: '#06251F' },
+  { re: /mclaren/i,                             abbr: 'MCL', bg: '#FF8000', fg: '#fff' },
+  { re: /aston martin/i,                        abbr: 'AMR', bg: '#229971', fg: '#fff' },
+  { re: /alpine/i,                              abbr: 'ALP', bg: '#0093CC', fg: '#fff' },
+  { re: /williams/i,                            abbr: 'WIL', bg: '#1868DB', fg: '#fff' },
+  { re: /racing bulls|alphatauri|(^|\b)rb\b/i,  abbr: 'RB',  bg: '#6692FF', fg: '#0A1B3D' },
+  { re: /haas/i,                                abbr: 'HAA', bg: '#9CA3A8', fg: '#111' },
+  { re: /sauber|audi|kick/i,                    abbr: 'SAU', bg: '#52E252', fg: '#0A2E12' },
+  { re: /cadillac/i,                            abbr: 'CAD', bg: '#C8102E', fg: '#fff' },
+];
+const constructorMeta = (name) => CONSTRUCTORS.find((c) => c.re.test(name || '')) || null;
+function constructorBadge(name) {
+  if (!name) return '';
+  const m = constructorMeta(name);
+  const bg = m ? m.bg : constructorColor(name);
+  const fg = m ? m.fg : '#fff';
+  const abbr = m ? m.abbr : name.replace(/[^a-z]/gi, '').slice(0, 3).toUpperCase();
+  if (m && m.logo) {
+    return `<span class="team-badge" style="background:${bg}"><img class="tb-logo" src="${esc(m.logo)}" alt="${esc(name)}" loading="lazy"></span>`;
+  }
+  return `<span class="team-badge" style="background:${bg};color:${fg}" title="${esc(name)}">${esc(abbr)}</span>`;
+}
 const teamChip = (name) =>
-  name ? `<span class="team-chip"><span class="tc-dot" style="background:${constructorColor(name)}"></span>${esc(name)}</span>` : '';
+  name ? `<span class="team-chip">${constructorBadge(name)}${esc(name)}</span>` : '';
 
 const STATUS_PILL = {
   live:     '<span class="pill pill-live"><span class="nav-live-dot"></span>Live</span>',
@@ -220,7 +250,8 @@ function LiveLeaderboard(cfg) {
     const leader = cfg.leaderHighlight && i === 0;
     const mark = cfg.showMarks
       ? flagOrAvatar(r.flag, r.name)
-      : (r.dotColor ? `<span class="tc-dot" style="background:${r.dotColor};width:10px;height:10px"></span>` : '');
+      : (r.badge ? constructorBadge(r.badge)
+        : (r.dotColor ? `<span class="tc-dot" style="background:${r.dotColor};width:10px;height:10px"></span>` : ''));
     const detail = r.chip ? teamChip(r.chip) : (r.sub ? `<span class="sub">${esc(r.sub)}</span>` : '');
     const nameHtml = r.href
       ? `<a class="lb-link" href="${esc(r.href)}" target="_blank" rel="noopener">${esc(r.name)}</a>`
@@ -866,7 +897,7 @@ function FeaturedGolfCard(g) {
     const constructors = f1.constructorStandings ? LiveLeaderboard({
       event: 'Constructors', statusText: 'Team standings', state: '',
       leaderHighlight: true, showMarks: false, subHead: 'Constructors',
-      rows: f1.constructorStandings.slice(0, 8).map((c) => ({ pos: c.pos, name: c.name, dotColor: constructorColor(c.name), val: `${c.points} pts` })),
+      rows: f1.constructorStandings.slice(0, 8).map((c) => ({ pos: c.pos, name: c.name, badge: c.name, val: `${c.points} pts` })),
     }) : '';
 
     el.innerHTML =
