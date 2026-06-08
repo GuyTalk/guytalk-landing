@@ -489,14 +489,18 @@ em { font-style: italic; }
 .culture-item {
   counter-increment: clist; padding: 20px 0;
   border-top: 1px solid var(--border);
-  display: grid; grid-template-columns: 30px 1fr; gap: 14px;
+  display: grid; grid-template-columns: 30px 1fr; gap: 4px 14px;
 }
 .culture-item:first-child { border-top: 0; padding-top: 4px; }
 .culture-item::before {
   content: counter(clist, decimal-leading-zero);
+  grid-column: 1; grid-row: 1;
   font-family: 'JetBrains Mono', monospace; font-weight: 600;
-  font-size: 13px; color: var(--accent); padding-top: 22px;
+  font-size: 13px; color: var(--accent);
 }
+/* All content sits in column 2; the counter owns column 1 (row 1). Without this,
+   grid auto-flow drops every other child into the narrow 30px column. */
+.culture-item > * { grid-column: 2; }
 .culture-item-top { margin-bottom: 7px; }
 .culture-tag {
   display: inline-block;
