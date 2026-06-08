@@ -275,12 +275,14 @@ function LiveLeaderboard(cfg) {
 /** ContextCard — "The GuyTalk Read": signature why-it-matters / watch-for / what-to-say. */
 function ContextCard(rows, live, tag) {
   const body = rows.filter((r) => r && r.text).map((r) => {
-    const text = r.say
-      ? `<div class="ctx-say"><span class="ctx-text">${esc(r.text)}</span></div>`
-      : r.key
-        ? `<div class="ctx-keystat"><span class="ctx-text">${esc(r.text)}</span></div>`
-        : `<span class="ctx-text">${esc(r.text)}</span>`;
-    return `<div class="ctx-row${r.key ? ' is-key' : ''}"><span class="ctx-label">${esc(r.label)}</span>${text}</div>`;
+    const text = r.take
+      ? `<div class="ctx-take"><span class="ctx-text">${esc(r.text)}</span></div>`
+      : r.say
+        ? `<div class="ctx-say"><span class="ctx-text">${esc(r.text)}</span></div>`
+        : r.key
+          ? `<div class="ctx-keystat"><span class="ctx-text">${esc(r.text)}</span></div>`
+          : `<span class="ctx-text">${esc(r.text)}</span>`;
+    return `<div class="ctx-row${r.key ? ' is-key' : ''}${r.take ? ' is-take' : ''}"><span class="ctx-label">${esc(r.label)}</span>${text}</div>`;
   }).join('');
   return `<div class="ctx-card${live ? ' live-accent' : ''}">
     <div class="ctx-head"><span class="gt">The GuyTalk Read<span class="dot">.</span></span>${tag ? `<span class="tag">${esc(tag)}</span>` : ''}</div>
@@ -524,6 +526,9 @@ function f1Context(f1) {
   } else { why = winner ? `${winner.driver} wins ${ev}.` : `${ev} is in the books.`; }
 
   const fun = f1FunFact(f1, winner);
+  const take = winner && champ && champ.gap != null && champ.gap >= 40
+    ? `${winner.driver} has this title wrapped up — the rest of the grid is racing for second.`
+    : (winner ? `${winner.driver} is the best driver on the grid right now, and it isn't particularly close.` : '');
   return [
     { label: 'Why it matters', text: why },
     { label: 'Key stat', key: true, text: fun ? fun.stat
@@ -536,6 +541,7 @@ function f1Context(f1) {
                 ? `"${winner.driver} is up ${champ.gap} now — this title's starting to look like a runaway."`
                 : `"Strong win for ${winner.driver}, but ${champ.leader.name} is still ${champ.gap} clear in the standings."`)
             : (winner ? `"${winner.driver} taking ${ev} is a statement."` : `"Results are in for ${ev}."`)) },
+    take && { label: 'Hot take', take: true, text: take },
   ];
 }
 
@@ -569,6 +575,7 @@ function golfContext(g) {
       { label: 'Why it matters', text: `${lead.name} wins ${ev} in a playoff over ${second.name} — both finished ${lead.score}, settled on extra holes.` },
       { label: 'Key stat', key: true, text: `Won a sudden-death playoff over ${second.name} (both at ${lead.score}).` },
       { label: 'What to say', say: true, text: `"${lead.name} took ${ev} in a playoff over ${second.name} — about as clutch as it gets."` },
+      { label: 'Hot take', take: true, text: `Winning a playoff under that pressure tells you more about a player than any wire-to-wire cruise ever could.` },
     ];
   }
   return [
@@ -581,6 +588,7 @@ function golfContext(g) {
     { label: 'What to say', say: true, text: post
         ? `"${lead.name} closing out ${ev} at ${lead.score}${margin > 0 ? ` by ${margin}` : ''} — that's how you finish a tournament."`
         : `"${lead.name} at ${lead.score}${clear ? `, ${clear}` : ''} — he's the man to beat."` },
+    (post && margin > 2) && { label: 'Hot take', take: true, text: `A ${margin}-shot win isn't a tournament, it's a statement — nobody else showed up.` },
   ];
 }
 
@@ -635,6 +643,7 @@ function nbaContext(g) {
       { label: 'What to say', say: true, text: tp
         ? `"${tp.name} went for ${line} and ${w.name} took it ${w.score}-${l.score}."`
         : `"${w.name} got it done, ${w.score}-${l.score}."` },
+      { label: 'Hot take', take: true, text: `${w.name} are the better team here — ${f.series ? 'this series is theirs to lose' : 'and it showed'}.` },
     ];
   }
 
@@ -652,6 +661,7 @@ function nbaContext(g) {
     { label: 'What to say', say: true, text: matchup
         ? `"${f.series ? `${f.series.name} ${seriesLow}` : (g.headline || 'Big one tonight')} — ${matchup} on points per game."`
         : `"${g.home.name}–${g.away.name} should be a good one."` },
+    f.series && { label: 'Hot take', take: true, text: `Series ${seriesLow} means tonight basically is the series — whoever blinks first goes home.` },
   ];
 }
 
@@ -689,6 +699,7 @@ function mlbContext(g) {
       { label: 'What to say', say: true, text: perf
         ? `"${perf.name} went ${perf.line} as ${w.name} took down ${l.name} ${w.score}-${l.score}."`
         : `"${w.name} beat ${l.name} ${w.score}-${l.score}."` },
+      { label: 'Hot take', take: true, text: `${w.name} are quietly the team nobody wants to face right now.` },
     ];
   }
 
@@ -706,6 +717,7 @@ function mlbContext(g) {
     { label: 'What to say', say: true, text: matchup
         ? `"${ap.name} (${ap.line}) on the mound against ${hp.name} (${hp.line}) — should be a good one."`
         : `"${g.home.name}–${g.away.name} tonight."` },
+    matchup && { label: 'Hot take', take: true, text: `Pitching wins this one — whoever's starter blinks first loses.` },
   ];
 }
 

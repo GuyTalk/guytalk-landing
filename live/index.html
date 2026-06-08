@@ -328,6 +328,14 @@
   }
   .ctx-card.live-accent .ctx-keystat { border-left-color: var(--live); }
   .ctx-keystat .ctx-text { font-weight: 600; }
+  /* Hot take — a bold, opinionated stance (bar-argument energy) */
+  .ctx-row.is-take .ctx-label { color: #DC2626; }
+  .ctx-row.is-take .ctx-label::before { background: #DC2626; }
+  .ctx-take {
+    background: rgba(220,38,38,0.05); border-left: 3px solid #DC2626;
+    border-radius: 0 9px 9px 0; padding: 10px 13px;
+  }
+  .ctx-take .ctx-text { font-weight: 600; font-style: italic; }
 
   /* WHAT YOU MISSED — recap block for a completed major event */
   .wym-card {
@@ -473,6 +481,13 @@
   .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
   .footer-links a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.15s ease; }
   .footer-links a:hover { color: var(--text); }
+  .footer-fine {
+    flex-basis: 100%; margin-top: 10px; padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 11.5px; line-height: 1.65; color: var(--text-3);
+  }
+  .footer-fine a { color: var(--text-3); text-decoration: underline; }
+  .footer-fine a:hover { color: var(--text-2); }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -664,7 +679,12 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <a href="https://x.com/guytalkmedia" target="_blank" rel="noopener">X</a>
     <a href="/advertise/">Advertise</a>
     <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
     <a href="mailto:guytalkdaily@gmail.com">Contact</a>
+  </div>
+  <div class="footer-fine">
+    Live sports data via ESPN and Jolpica/Ergast. Market data via <a href="https://finnhub.io" target="_blank" rel="noopener">Finnhub.io</a>; informational only, not investment advice.
+    GuyTalk is an independent publication and is not affiliated with, authorized, or endorsed by ESPN, the NBA, MLB, NHL, NFL, Formula 1, the PGA Tour, or any league or team. All team names, logos, and trademarks are the property of their respective owners.
   </div>
 </footer>
 

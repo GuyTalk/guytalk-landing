@@ -246,6 +246,36 @@ em { font-style: italic; }
 .section-label.sl-markets { color: var(--accent);  border-color: rgba(43,111,255,0.45); }
 .section-label.sl-culture { color: var(--culture); border-color: rgba(194,65,12,0.45); }
 .section-label.sl-golf    { color: var(--amber);   border-color: rgba(184,124,53,0.45); }
+.section-label.sl-take    { color: var(--accent);  border-color: rgba(43,111,255,0.45); }
+
+/* THE TAKE — two clearly-labelled opinions (Office Take + Bar Argument) */
+.take-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.take-card {
+  position: relative; padding: 22px 22px 18px; border-radius: 14px;
+  border: 1px solid var(--border); background: var(--surface);
+}
+.take-card.take-office { border-left: 4px solid var(--accent); }
+.take-card.take-bar    { border-left: 4px solid #DC2626; background: rgba(220,38,38,0.035); }
+.take-label {
+  font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+  display: block; margin-bottom: 10px;
+}
+.take-card.take-bar .take-label { color: #DC2626; }
+.take-text {
+  font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 18px;
+  line-height: 1.4; color: var(--text); margin: 0 0 12px;
+}
+.take-hint {
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+  letter-spacing: 0.04em; color: var(--text-3);
+}
+/* The Take jump-link gets a subtle accent so it stands out in the nav */
+.sj-link.sj-link-take { color: var(--accent); font-weight: 700; }
+@media (max-width: 640px) {
+  .take-grid { grid-template-columns: 1fr; }
+  .take-text { font-size: 16.5px; }
+}
 .brief-section h3 {
   font-family: 'Inter Tight', sans-serif; font-weight: 700;
   font-size: 26px; line-height: 1.2; letter-spacing: -0.02em;
@@ -598,6 +628,10 @@ em { font-style: italic; }
 .footer-nav { display: flex; gap: 20px; margin-top: 24px; flex-wrap: wrap; }
 .footer-nav a { font-size: 13px; color: var(--text-3); border-bottom: 0; }
 .footer-nav a:hover { color: var(--text); border-bottom: 0; }
+.footer-fine {
+  margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--border);
+  font-size: 11px; line-height: 1.65; color: var(--text-3); max-width: 640px;
+}
 
 /* ================================================================
    MORE ISSUES

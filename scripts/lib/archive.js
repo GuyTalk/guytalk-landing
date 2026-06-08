@@ -432,6 +432,7 @@ window.handleSignup = function(e, form) {
     { loc: '/reviews/', changefreq: 'weekly', priority: '0.7' },
     { loc: '/advertise/', changefreq: 'monthly', priority: '0.8' },
     { loc: '/privacy/', changefreq: 'yearly', priority: '0.3' },
+    { loc: '/terms/', changefreq: 'yearly', priority: '0.3' },
   ];
   const today = new Date().toISOString().slice(0, 10);
   const briefUrls = issues.map(d => {

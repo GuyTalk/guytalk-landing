@@ -162,6 +162,7 @@ ${prev3.map((b, i) => `${i + 1} day(s) ago — Lead angle: "${b.sportsThesis || 
     cultureR,
     finalTakeR,
     glanceR,
+    theTakeR,
   ] = await Promise.allSettled([
 
     // 1. Brief headline
@@ -319,6 +320,17 @@ Return compact JSON on one line. Every field is a single sentence ending with a 
 {"sports":"[main sports result or preview — include score or key fact]","market":"[market summary — include one number]","bestConvo":"[best conversation starter from today — specific]","watchNext":"[one thing to watch in next 24-48 hours]","quickRec":"[quick rec or reminder from today's brief]"}`,
       200
     ),
+
+    // 11. The Take — Office Take (smart, portable) + Bar Argument (spicy, debatable)
+    ask(
+      `Write two GuyTalk "takes" from today's brief — these are OPINIONS, not recaps. Take a real side.
+Use ONLY real facts from the context below; never invent stats, records, or events. Grounded but bold.
+Context: ${ctx}${repGuard}
+
+Return ONLY valid JSON on one line — no markdown:
+{"office":"The Office Take — one smart, measured sentence you can drop at work to sound like you've actually been paying attention. Insightful, slightly contrarian, not loud. Max 28 words.","bar":"The Bar Argument — one bold, debatable hot take that would genuinely start an argument among friends. Pick a side and commit. Confident and a little spicy, but grounded in today's real facts. Max 28 words."}`,
+      200
+    ),
   ]);
 
   const get = r => r.status === 'fulfilled' ? r.value : null;
@@ -350,6 +362,7 @@ Return compact JSON on one line. Every field is a single sentence ending with a 
     culture:        Array.isArray(cultureArr) ? cultureArr : null,
     finalSharpTake: clean(get(finalTakeR)),
     glance:         glanceData,
+    theTake:        parseJson(get(theTakeR)),
   };
 }
 

@@ -238,6 +238,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </div>
     <nav class="section-jump" aria-label="Jump to section">
       <a href="#the-lead" class="sj-link">Lead</a>
+      <a href="#the-take" class="sj-link sj-link-take">The Take</a>
       <a href="#sports" class="sj-link">Sports</a>
       <a href="#markets" class="sj-link">Markets</a>${hasGolf ? `\n      <a href="#golf" class="sj-link">Golf</a>` : ''}${hasF1 ? `\n      <a href="#f1" class="sj-link">F1</a>` : ''}${hasWC ? `\n      <a href="#worldcup" class="sj-link">World Cup</a>` : ''}
       <a href="#culture" class="sj-link">Culture</a>
@@ -260,6 +261,8 @@ ${buildLead(issue)}
   </div>
   <span class="blc-btn">Open GuyTalk Live →</span>
 </a>
+
+${buildTheTake(issue)}
 
 ${buildSports(issue)}
 
@@ -322,8 +325,13 @@ ${buildMoreIssues(relatedIssues)}
     <a href="/">Home</a>
     <a href="/briefs/">All Issues</a>
     ${prevSlug ? `<a href="/brief/${prevSlug}/">← Issue ${prevLabel}</a>` : ''}
+    <a href="/terms/">Terms</a>
     <a href="mailto:guytalkdaily@gmail.com">Reply to Jake</a>
   </div>
+  <p class="footer-fine">
+    Sports data via ESPN and Jolpica/Ergast. Market data via Finnhub.io; informational only, not investment advice.
+    GuyTalk is an independent publication and is not affiliated with or endorsed by ESPN, the NBA, MLB, NHL, NFL, Formula 1, the PGA Tour, or any league or team. Team names, logos, and trademarks are the property of their respective owners.
+  </p>
 </footer>
 
 <script>
@@ -382,6 +390,25 @@ function buildOfficeTake({ copy }) {
     <span class="angle-label">Office Take</span>
     <p class="angle-text">${esc(ot)}</p>
   </div>`;
+}
+
+// The Take — two clearly-labelled opinions up top: a measured Office Take to
+// sound informed, and a spicy Bar Argument to start a fight. Both grounded.
+function buildTheTake({ copy }) {
+  const t = copy?.theTake;
+  const office = t && typeof t === 'object' ? String(t.office || '').trim() : '';
+  const bar    = t && typeof t === 'object' ? String(t.bar    || '').trim() : '';
+  if (!office && !bar) return '';
+  const card = (cls, label, hint, text) => text ? `
+      <div class="take-card ${cls}">
+        <span class="take-label">${label}</span>
+        <p class="take-text">${esc(text)}</p>
+        <span class="take-hint">${hint}</span>
+      </div>` : '';
+  return `  <section class="brief-section take-section" id="the-take">
+    <div class="section-label sl-take">The Take</div>
+    <div class="take-grid">${card('take-office', 'Office Take', 'Drop this at work.', office)}${card('take-bar', 'Bar Argument', 'Start a fight with this one.', bar)}</div>
+  </section>`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1307,6 +1334,9 @@ ${watchNextCard}
 // ─────────────────────────────────────────────────────────────────────────────
 function buildMarkets({ markets, copy, date }) {
   if (!markets) return '';
+
+  const mktTitle = markets?.__meta?.tableTitle || 'Daily Close';
+  const mktSub   = markets?.__meta?.tableSub   || date;
 
   const md = copy?.markets || {};
   const mood       = md.mood       || '';
