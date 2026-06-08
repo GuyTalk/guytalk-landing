@@ -51,6 +51,12 @@ const json = (url, opts) =>
 
 const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
 
+// Defense-in-depth financial-compliance guard: even if the model slips past the
+// prompt, any AI text containing investment-advice language is rejected so it
+// never ships. Pairs with the prompt rules in §4 of COMPLIANCE_AND_FACTUALITY.md.
+const FIN_ADVICE = /\b(price targets?|buying opportunity|under-?valued|over-?valued|should (?:buy|sell|hold|invest)|time to (?:buy|sell)|buy the dip|load up|portfolio allocation|consider (?:adding|reducing)|smart money|good time to (?:buy|sell)|investors? should)\b/i;
+const adviceFree = (s) => (s && FIN_ADVICE.test(s) ? '' : s);
+
 // Compact market snapshot (top movers) to give The Rundown real market context.
 const MKT = [
   { l: 'S&P 500', s: 'SPY' }, { l: 'Nasdaq', s: 'QQQ' }, { l: 'Dow', s: 'DIA' },
@@ -143,13 +149,21 @@ async function buildAI(trending, marketLine, key) {
   const system =
     'You are GuyTalk — a sharp, fun, confident daily brief for guys who want to sound informed. ' +
     'You are given today\'s REAL sports/news headlines and market moves. ' +
-    'CRITICAL: use ONLY facts present in the provided inputs. Never invent scores, names, quotes, ' +
-    'or events. Be confident and casual; never hedge or say "some say". ' +
+    '\n\nCOMPLIANCE RULES (non-negotiable):\n' +
+    '1. Use ONLY facts present in the provided inputs. NEVER invent or assume scores, statistics, ' +
+    'standings, injuries, rankings, quotes, player news, or events. If the inputs do not support ' +
+    'a claim, leave it out.\n' +
+    '2. Do not present predictions or speculation as fact. Opinions are allowed but must read as ' +
+    'opinion, never as invented data or reporting.\n' +
+    '3. FINANCIAL: GuyTalk is informational only. For markets, describe ONLY what moved and by how ' +
+    'much using the exact numbers given. NEVER give investment advice or buy/sell/hold guidance, ' +
+    'price targets, valuations, or tell anyone what to do with money. Observe and explain, never advise.\n' +
+    '4. Be confident and casual; never hedge or say "some say". Stay grounded.\n\n' +
     'Return STRICT JSON only (no markdown) with this exact shape: ' +
     '{ "rundown": string, "trending": [{"i": number, "why": string}], "talking": [{"topic": string, "matters": string, "say": string, "sourceIndex": number}] }. ' +
-    'rundown = 2-3 punchy sentences on what matters right now across sports, markets, and culture, woven together like a smart friend catching you up. ' +
-    'trending = one short "why it matters" sentence for EACH story index provided. ' +
-    'talking = the 4 most conversation-driving topics, each with a one-line why and one short quotable line someone could actually say (in quotes).';
+    'rundown = 2-3 punchy sentences on what matters right now across sports, markets, and culture, woven together like a smart friend catching you up (markets: describe the moves, never advise). ' +
+    'trending = one short "why it matters" sentence for EACH story index provided, grounded in that story. ' +
+    'talking = the 4 most conversation-driving topics, each with a one-line why and one short quotable line someone could actually say (in quotes). Opinions ok; invented facts are not.';
 
   const user =
     `Markets right now: ${marketLine || 'n/a'}\n\nToday's real stories:\n${stories}\n\n` +
@@ -168,27 +182,32 @@ async function buildAI(trending, marketLine, key) {
   const obj = JSON.parse(text.slice(start, end + 1));
 
   // Merge AI "why" back onto the real trending items (keeps real links).
+  // Drop any "why" that trips the financial-advice guard.
   const enriched = trending.map((t, i) => {
     const w = (obj.trending || []).find((x) => x.i === i);
-    return { ...t, why: w ? clean(w.why) : '' };
+    return { ...t, why: w ? adviceFree(clean(w.why)) : '' };
   });
 
+  // Talking points: drop any item whose copy contains investment-advice language.
   const talking = (obj.talking || []).slice(0, 5).map((o) => {
     const src = trending[o.sourceIndex] || null;
     return {
       topic: clean(o.topic), matters: clean(o.matters), say: clean(o.say),
       url: src?.url || '', source: src?.source || '',
     };
-  }).filter((o) => o.topic && o.matters && o.say);
+  }).filter((o) => o.topic && o.matters && o.say && !FIN_ADVICE.test(o.say) && !FIN_ADVICE.test(o.matters));
 
-  return { rundown: clean(obj.rundown), trending: enriched, talking };
+  // The Rundown is dropped entirely if it contains any advice language.
+  return { rundown: adviceFree(clean(obj.rundown)), trending: enriched, talking };
 }
 
-// Deterministic fallback built straight from the real headlines.
+// Deterministic fallback built straight from the real headlines — no AI, no
+// invented facts. Every field is either a real headline/summary or a neutral
+// conversational wrapper around it.
 function buildTalkingDerived(trending) {
   return trending.slice(0, 4).map((t) => ({
     topic: t.headline,
-    matters: t.summary || `It's one of the biggest ${t.category} stories right now.`,
+    matters: t.summary || `A ${t.category} story making the rounds today.`,
     say: `"Did you catch this? ${t.headline.replace(/[.?!]+$/, '')}."`,
     url: t.url,
     source: t.source,

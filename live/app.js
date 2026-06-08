@@ -623,33 +623,40 @@ function FeaturedGolfCard(g) {
   }
 
   // Sections 6 & 7 — driven by the separate, slower /api/talk feed.
+  // COMPLIANCE: live data is rendered as-is. When it's missing we show an honest
+  // empty state in PRODUCTION (never fabricated content); MOCK is dev-only and
+  // always carries a visible badge.
   function renderTalk(p) {
-    // The Rundown (AI hero) — only shows when AI synthesis is available.
+    // The Rundown (AI hero) — only shows when real AI synthesis is present.
     const band = $('rundownBand');
     if (band) {
-      if (p && p.rundown) {
+      const hasRd = !!(p && p.rundown);
+      band.hidden = !hasRd;
+      if (hasRd) {
         $('rundownText').textContent = p.rundown;
         $('rundownSrc').textContent = 'GuyTalk AI · grounded in live data';
-        band.hidden = false;
-      } else if (p) {
-        band.hidden = true; // derived mode (no AI key) — hide rather than fake it
       }
     }
 
     const trendLive = !!(p && p.trending && p.trending.length);
     const talkLive = !!(p && p.talkingAbout && p.talkingAbout.length);
-    const stories = trendLive ? p.trending : MOCK.trending;
-    const talks = talkLive ? p.talkingAbout : MOCK.talkingAbout;
-    $('trendingWrap').innerHTML = stories.map(TrendingStoryCard).join('');
-    $('talkingWrap').innerHTML = talks.map(TalkingPointCard).join('');
+    const stories = trendLive ? p.trending : (IS_DEV ? MOCK.trending : null);
+    const talks = talkLive ? p.talkingAbout : (IS_DEV ? MOCK.talkingAbout : null);
+
+    $('trendingWrap').innerHTML = (stories && stories.length)
+      ? stories.map(TrendingStoryCard).join('')
+      : `<div class="empty" style="grid-column:1/-1">Live stories are refreshing — check back in a few minutes.</div>`;
+    $('talkingWrap').innerHTML = (talks && talks.length)
+      ? talks.map(TalkingPointCard).join('')
+      : `<div class="empty" style="grid-column:1/-1">Talking points update through the day — check back shortly.</div>`;
 
     const iso = (p && p.updatedAt) || new Date().toISOString();
-    setBadge('badge-trending', trendLive ? 'live' : 'editorial');
-    setMeta('meta-trending', trendLive ? (p.sources?.trending || 'Live') : 'Editorial', iso);
+    setBadge('badge-trending', trendLive ? 'live' : (IS_DEV ? 'editorial' : null));
+    setMeta('meta-trending', trendLive ? (p.sources?.trending || 'Live') : (IS_DEV ? 'Editorial' : ''), iso);
 
     const ts = talkLive ? p.sources?.talkingAbout : null; // 'ai' | 'derived'
-    setBadge('badge-talking', !talkLive ? 'editorial' : (ts === 'ai' ? 'ai' : 'derived'));
-    setMeta('meta-talking', !talkLive ? 'Editorial' : (ts === 'ai' ? 'Claude AI' : 'Derived'), iso);
+    setBadge('badge-talking', talkLive ? (ts === 'ai' ? 'ai' : 'derived') : (IS_DEV ? 'editorial' : null));
+    setMeta('meta-talking', talkLive ? (ts === 'ai' ? 'Claude AI' : 'Derived') : (IS_DEV ? 'Editorial' : ''), iso);
   }
 
   function paintSkeletons() {
@@ -659,8 +666,7 @@ function FeaturedGolfCard(g) {
     $('golfWrap').innerHTML = sk(1);
     $('scoreboardWrap').innerHTML = sk(2);
     $('marketsWrap').innerHTML = sk(8);
-    const band = $('rundownBand');
-    if (band) { band.hidden = false; $('rundownText').textContent = "Pulling today's rundown…"; $('rundownSrc').textContent = ''; }
+    // Rundown band stays hidden until real AI synthesis arrives (no fake placeholder).
   }
 
   // Engagement tracking via PostHog (paid) — clicks on profiles, highlights, stories.
