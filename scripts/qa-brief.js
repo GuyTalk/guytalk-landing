@@ -190,6 +190,28 @@ function main() {
     warn('HTML file not found — run generator first');
   }
 
+  // 3b. EDITORIAL BIBLE — the OpenAI editor's verdict (hard gate)
+  console.log('\n  [Editorial Bible]');
+  const ed = issue.editor;
+  if (!ed) {
+    warn('No editor record on this issue — generated before the editorial pass existed');
+  } else if (ed.reviewed) {
+    run(
+      'Editor pass: no sections blocked by the Bible',
+      (ed.blocking || []).length === 0,
+      (ed.blocking || []).length
+        ? `Blocked: ${ed.blocking.map(b => `${b.section} (${b.reason})`).join(' | ')}`
+        : `Reviewed by ${ed.model}${ed.changed?.length ? ` — rewrote ${ed.changed.join(', ')}` : ''}`
+    );
+    if (ed.notes?.length) warn(`Editor notes: ${ed.notes.join(' | ')}`);
+  } else {
+    // Fail-open by design (Jake, 2026-06-04): publish but warn loudly.
+    warn(
+      'BRIEF NOT EDITOR-REVIEWED — shipping on Claude draft only',
+      `${ed.reason || 'editor did not run'} — set OPENAI_API_KEY / check OpenAI to restore the editorial pass`
+    );
+  }
+
   // 4. MARKETS COMPLIANCE — hard fail (no investment advice)
   console.log('\n  [Markets Compliance]');
   const complianceViolations = MARKETS_COMPLIANCE_VIOLATIONS.filter(p => mkt.includes(p));

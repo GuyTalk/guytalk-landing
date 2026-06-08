@@ -9,6 +9,7 @@
     "brief:regen": "node scripts/generate-brief.js --regen",
     "brief:regen:copy": "node scripts/generate-brief.js --regen --copy",
     "brief:qa": "node scripts/qa-brief.js",
+    "brief:edit": "node scripts/edit-brief.js",
     "brief:ship": "node scripts/generate-brief.js && node scripts/qa-brief.js",
     "send": "node scripts/send-brief.js",
     "send:dry": "node scripts/send-brief.js --dry-run",
@@ -29,6 +30,7 @@
     "canvas": "^3.2.3",
     "dotenv": "^16.4.7",
     "nodemailer": "^8.0.10",
+    "openai": "^4.104.0",
     "resend": "^6.12.4",
     "satori": "^0.26.0",
     "twitter-api-v2": "^1.29.0"

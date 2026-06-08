@@ -1506,13 +1506,15 @@ function buildCulture({ copy }) {
     const tag  = item.tag || 'Culture';
     const head = item.topic || item.head || '';
     return `      <li class="culture-item">
-        <div class="culture-item-top">
-          <span class="culture-tag ${tagCls[tag] || 'ctag-sports'}">${esc(tag)}</span>
+        <div class="culture-content">
+          <div class="culture-item-top">
+            <span class="culture-tag ${tagCls[tag] || 'ctag-sports'}">${esc(tag)}</span>
+          </div>
+          <div class="culture-head">${esc(head)}</div>
+          ${item.whatHappened ? `<p class="culture-line"><strong>What happened:</strong> ${esc(item.whatHappened)}</p>` : ''}
+          ${item.whyItMatters ? `<p class="culture-line"><strong>Why it matters:</strong> ${esc(item.whyItMatters)}</p>` : ''}
+          ${item.whatToSay    ? `<p class="culture-line"><strong>What to say:</strong> ${esc(item.whatToSay)}</p>`       : ''}
         </div>
-        <div class="culture-head">${esc(head)}</div>
-        ${item.whatHappened ? `<p class="culture-line"><strong>What happened:</strong> ${esc(item.whatHappened)}</p>` : ''}
-        ${item.whyItMatters ? `<p class="culture-line"><strong>Why it matters:</strong> ${esc(item.whyItMatters)}</p>` : ''}
-        ${item.whatToSay    ? `<p class="culture-line"><strong>What to say:</strong> ${esc(item.whatToSay)}</p>`       : ''}
       </li>`;
   }).join('\n');
 

@@ -8,6 +8,7 @@ const path = require('path');
 
 const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchGolf, fetchTrending } = require('./lib/fetchers');
 const { generateCopy }                                      = require('./lib/copy');
+const { editBrief }                                         = require('./lib/editor');
 const { buildHtml }                                         = require('./lib/html');
 const { buildArchive }                                      = require('./lib/archive');
 const { STREAMING_PICKS }                                   = require('./lib/db');
@@ -147,6 +148,72 @@ function autoTitle({ sports, golf, f1, worldCup, upcoming }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Build a plain-text "raw facts" block for the editorial pass.
+// The editor may ONLY use these facts — it edits wording, never invents data.
+// ─────────────────────────────────────────────────────────────────────────────
+function buildFactsContext({ sports, markets, golf, f1, worldCup, upcoming, boxScores, trending }) {
+  const lines = [];
+
+  if (sports?.length) {
+    lines.push('GAMES:');
+    sports.forEach(g => {
+      const w = g.home.winner ? g.home : g.away;
+      const l = g.home.winner ? g.away : g.home;
+      let s = `- ${g.note || g.name}: ${w.team} ${w.score}–${l.team} ${l.score} (${g.status})`;
+      if (g.seriesNote) s += ` [Series: ${g.seriesNote}]`;
+      const leaders = boxScores?.[g.id];
+      if (leaders?.length) {
+        s += ` | Leaders: ${leaders.map(p => `${p.name} ${p.pts}pts${p.reb ? ` ${p.reb}reb` : ''}${p.ast ? ` ${p.ast}ast` : ''}`).join(', ')}`;
+      }
+      lines.push(s);
+    });
+  }
+
+  if (upcoming?.length) {
+    lines.push('UPCOMING:');
+    upcoming.slice(0, 3).forEach(g => lines.push(`- ${g.shortName}${g.note ? ` (${g.note})` : ''} — ${g.daysAhead === 0 ? 'today' : g.daysAhead === 1 ? 'tomorrow' : `in ${g.daysAhead} days`}`));
+  }
+
+  if (f1?.name) {
+    if (f1.results?.length && f1.statusState === 'post') {
+      lines.push(`F1: ${f1.name} (Finished) — ${f1.results.slice(0, 3).map(r => `P${r.pos} ${r.driver} (${r.team})`).join(', ')}`);
+    } else {
+      lines.push(`F1: ${f1.name} — upcoming this weekend (${f1.status || f1.statusState || 'scheduled'})`);
+    }
+  }
+
+  if (golf?.name) {
+    const lb = golf.leaders?.slice(0, 3).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ') || 'no leaderboard yet';
+    const status = golf.statusState === 'post' ? 'Finished' : golf.statusState === 'in' ? 'In Progress' : 'Starting this week';
+    lines.push(`GOLF: ${golf.name} — ${status}. Leaderboard: ${lb}`);
+  }
+
+  if (worldCup?.length) {
+    const played = worldCup.filter(m => m.statusState === 'in' || m.statusState === 'post').length;
+    lines.push(`WORLD CUP: 2026 — ${played} match(es) played so far`);
+  }
+
+  if (markets) {
+    const mkt = Object.entries(markets)
+      .filter(([, q]) => q?.dayChangePct !== null && q?.dayChangePct !== undefined)
+      .map(([sym, q]) => {
+        const day = `${q.dayChangePct >= 0 ? '+' : ''}${q.dayChangePct.toFixed(1)}%`;
+        const wk  = (q.weekChangePct !== null && q.weekChangePct !== undefined)
+          ? ` (${q.weekChangePct >= 0 ? '+' : ''}${q.weekChangePct.toFixed(1)}% wk)` : '';
+        return `${sym} ${day}${wk}`;
+      }).join(', ');
+    if (mkt) lines.push(`MARKETS: ${mkt}`);
+  }
+
+  if (trending?.length) {
+    lines.push('TRENDING HEADLINES (for culture/context):');
+    trending.slice(0, 8).forEach(t => lines.push(`- [${t.source}] ${t.title}`));
+  }
+
+  return lines.join('\n') || '(no data available)';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Main
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
@@ -255,6 +322,39 @@ async function main() {
     console.log(`   ⚠  Copy generation failed: ${err.message}`);
   }
 
+  // ── Editorial pass — OpenAI enforces the GuyTalk Editorial Bible ────────────
+  // Claude gathered the facts and drafted the raw stories above. This is the
+  // FINAL writing pass: every section is edited to follow GUYTALK_EDITORIAL_BIBLE.md.
+  // Sections that still can't meet the standard are flagged in editor.blocking,
+  // which qa-brief.js turns into a hard publish block. Fail-open: if OpenAI is
+  // unavailable the Claude draft ships with reviewed:false and a loud warning.
+  let editorMeta = { reviewed: false, blocking: [], changed: [], notes: [], reason: 'no copy to edit' };
+  if (copy) {
+    console.log('\n🧐 Editorial pass — OpenAI enforcing the GuyTalk Editorial Bible...');
+    try {
+      const facts = buildFactsContext({ sports, markets, golf, f1, worldCup, upcoming, boxScores, trending });
+      const result = await editBrief({ copy, context: facts });
+      copy = result.copy;
+      editorMeta = result.editor;
+      if (editorMeta.reviewed) {
+        console.log(`   ✓ Edited by ${editorMeta.model}`);
+        if (editorMeta.changed.length) console.log(`   ✓ Rewrote: ${editorMeta.changed.join(', ')}`);
+        if (editorMeta.blocking.length) {
+          console.log(`   ⛔ ${editorMeta.blocking.length} section(s) FLAGGED — QA will block publish:`);
+          editorMeta.blocking.forEach(b => console.log(`        • ${b.section}: ${b.reason}`));
+        } else {
+          console.log(`   ✓ All sections meet the Bible — no blocks`);
+        }
+      } else {
+        console.log(`   ⚠  NOT editor-reviewed: ${editorMeta.reason}`);
+        console.log(`   ⚠  Brief will publish on the Claude draft only (fail-open).`);
+      }
+    } catch (err) {
+      editorMeta = { reviewed: false, blocking: [], changed: [], notes: [], reason: `editor crashed: ${err.message}` };
+      console.log(`   ⚠  Editorial pass crashed: ${err.message} — keeping Claude draft (fail-open)`);
+    }
+  }
+
   // ── Assemble issue data object ─────────────────────────────────────────────
   const issueData = {
     num:     issueNum,
@@ -271,6 +371,7 @@ async function main() {
     gameMetas,
     trending,
     copy,
+    editor:  editorMeta,
   };
 
   // ── Write files ────────────────────────────────────────────────────────────
