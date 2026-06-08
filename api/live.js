@@ -167,6 +167,65 @@ function f1Positions(comp, teamByDriver, profileByDriver) {
     });
 }
 
+// Verified historical facts for the most recent race winner, computed straight
+// from Jolpica/Ergast results — NEVER guessed. Powers fun "what to say" lines
+// (win streaks, season win count, youngest-winner-at-this-circuit records).
+// Returns null on any failure so the section degrades gracefully.
+async function f1WinnerFacts() {
+  try {
+    const MS_YR = 365.25 * 864e5;
+    // Season race winners (position 1) — carries each winner's Driver + Circuit,
+    // so the latest entry doubles as "last race" (no extra call needed).
+    const resJson = await json('https://api.jolpi.ca/ergast/f1/current/results/1.json?limit=100');
+    const allRaces = (resJson?.MRData?.RaceTable?.Races || [])
+      .slice()
+      .sort((a, b) => Number(a.round) - Number(b.round));
+    const races = allRaces
+      .map((r) => ({ round: Number(r.round), last: r.Results?.[0]?.Driver?.familyName || '' }))
+      .filter((r) => r.last);
+    const lastRace = allRaces[allRaces.length - 1];
+    const wd = lastRace?.Results?.[0]?.Driver;
+    if (!lastRace || !wd) return null;
+
+    const winnerLast = wd.familyName;
+    // Consecutive wins ending at the latest round.
+    let streak = 0;
+    for (let i = races.length - 1; i >= 0; i--) {
+      if (races[i].last === winnerLast) streak++; else break;
+    }
+    const seasonWins = races.filter((r) => r.last === winnerLast).length;
+
+    // Youngest-ever winner at THIS circuit?
+    let youngest = null;
+    const circuitId = lastRace.Circuit?.circuitId;
+    if (circuitId && wd.dateOfBirth && lastRace.date) {
+      const cj = await json(`https://api.jolpi.ca/ergast/f1/circuits/${circuitId}/results/1.json?limit=100`);
+      const ages = (cj?.MRData?.RaceTable?.Races || [])
+        .map((r) => {
+          const d = r.Results?.[0]?.Driver;
+          if (!d?.dateOfBirth) return null;
+          return {
+            age: (new Date(r.date) - new Date(d.dateOfBirth)) / MS_YR,
+            last: d.familyName, season: r.season,
+            name: `${d.givenName || ''} ${d.familyName || ''}`.trim(),
+          };
+        })
+        .filter(Boolean)
+        .sort((a, b) => a.age - b.age);
+      const winAge = (new Date(lastRace.date) - new Date(wd.dateOfBirth)) / MS_YR;
+      if (ages.length && ages[0].last === winnerLast && Math.abs(ages[0].age - winAge) < 0.02) {
+        const prev = ages.find((a) => a.last !== winnerLast) || null;
+        youngest = {
+          circuit: lastRace.raceName.replace(/\s+Grand Prix$/i, ''),
+          age: Math.floor(winAge),
+          prev: prev ? { name: prev.name, age: Math.floor(prev.age), season: prev.season } : null,
+        };
+      }
+    }
+    return { winnerLast, streak, seasonWins, youngest };
+  } catch (_) { return null; }
+}
+
 async function fetchF1() {
   const data = await json(`${ESPN}/racing/f1/scoreboard`);
   const event = data?.events?.[0];
@@ -251,6 +310,24 @@ async function fetchF1() {
     statusText = board ? `Final · ${fmtET(board.date)}` : '';
   }
 
+  const positions = board ? f1Positions(board, teamByDriver, profileByDriver) : [];
+
+  // Normalize standings names to ESPN's broadcast short form (by surname) so
+  // the championship/standings names match the race board everywhere
+  // (e.g. Jolpica "Andrea Kimi Antonelli" → ESPN "Kimi Antonelli").
+  const espnNameByLast = {};
+  for (const p of positions) {
+    const last = p.driver.split(' ').pop().toLowerCase();
+    if (last) espnNameByLast[last] = p.driver;
+  }
+  for (const d of driverStandings) {
+    const last = d.name.split(' ').pop().toLowerCase();
+    if (espnNameByLast[last]) d.name = espnNameByLast[last];
+  }
+
+  // Verified historical facts only matter once a race is in the books.
+  const winnerFacts = phase === 'result' ? await f1WinnerFacts() : null;
+
   return {
     event: event.name || event.shortName || 'Formula 1',
     season: year,
@@ -262,9 +339,10 @@ async function fetchF1() {
     circuit: event.circuit?.fullName || '',
     circuitCountry: event.circuit?.address?.country || '',
     eventLink: espnLink(event.links),
-    positions: board ? f1Positions(board, teamByDriver, profileByDriver) : [],
+    positions,
     driverStandings: driverStandings.length ? driverStandings : null,
     constructorStandings: constructorStandings.length ? constructorStandings : null,
+    winnerFacts,           // {winnerLast, streak, seasonWins, youngest} | null
   };
 }
 

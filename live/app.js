@@ -411,6 +411,40 @@ function f1OneTwo(f1) {
 }
 const plural = (n, w) => `${n} ${w}${Math.abs(n) === 1 ? '' : 's'}`;
 
+// Verified-fact conversation starter for the race winner, built from
+// f1.winnerFacts (computed server-side from Jolpica history — never invented).
+// Guarded: facts are only used if they match the spotlighted winner.
+function f1FunFact(f1, winner) {
+  const wf = f1.winnerFacts;
+  if (!wf || !winner) return null;
+  const wl = winner.driver.split(' ').pop().toLowerCase();
+  if (wf.winnerLast && wf.winnerLast.toLowerCase() !== wl) return null;
+  if (wf.youngest) {
+    const y = wf.youngest;
+    const prev = y.prev ? ` Next-youngest: ${y.prev.name} at ${y.prev.age} (${y.prev.season}).` : '';
+    return {
+      stat: `Youngest ${y.circuit} GP winner in F1 history — at ${y.age}.${prev}`,
+      say: `"At ${y.age}, ${winner.driver} is the youngest ${y.circuit} winner ever${wf.streak >= 2 ? ` — and that's ${wf.streak} straight now` : ''}."`,
+      missed: `Youngest ${y.circuit} winner ever (age ${y.age})`,
+    };
+  }
+  if (wf.streak >= 2) {
+    return {
+      stat: `${plural(wf.streak, 'win')} in a row — ${plural(wf.seasonWins, 'win')} on the season.`,
+      say: `"That's ${wf.streak} straight for ${winner.driver} — this title's turning into a runaway."`,
+      missed: `${wf.streak} straight wins`,
+    };
+  }
+  if (wf.seasonWins >= 2) {
+    return {
+      stat: `${plural(wf.seasonWins, 'win')} already this season.`,
+      say: `"${winner.driver} is up to ${wf.seasonWins} wins on the year — he's the man to beat."`,
+      missed: `${wf.seasonWins} wins this season`,
+    };
+  }
+  return null;
+}
+
 function f1Context(f1) {
   const p = f1.positions || [];
   const ev = shortEvent(f1.event);
@@ -458,16 +492,19 @@ function f1Context(f1) {
       : `${winner.driver} takes the win, but ${champ.leader.name} still leads the title by ${plural(champ.gap, 'point')}.`;
   } else { why = winner ? `${winner.driver} wins ${ev}.` : `${ev} is in the books.`; }
 
+  const fun = f1FunFact(f1, winner);
   return [
     { label: 'Why it matters', text: why },
-    { label: 'Key stat', key: true, text: oneTwo
-        ? `${oneTwo} finish 1-2${gapTxt ? `; ${gapTxt}` : ''}.`
-        : (gapTxt ? `${gapTxt}.` : (wStand ? `${winner.driver} sits P${wStand.pos} on ${wStand.points} points.` : null)) },
-    { label: 'What to say', say: true, text: winner && champ && champ.gap != null
-        ? (leads
-            ? `"${winner.driver} is up ${champ.gap} now — this title's starting to look like a runaway."`
-            : `"Strong win for ${winner.driver}, but ${champ.leader.name} is still ${champ.gap} clear in the standings."`)
-        : (winner ? `"${winner.driver} taking ${ev} is a statement."` : `"Results are in for ${ev}."`) },
+    { label: 'Key stat', key: true, text: fun ? fun.stat
+        : (oneTwo
+            ? `${oneTwo} finish 1-2${gapTxt ? `; ${gapTxt}` : ''}.`
+            : (gapTxt ? `${gapTxt}.` : (wStand ? `${winner.driver} sits P${wStand.pos} on ${wStand.points} points.` : null))) },
+    { label: 'What to say', say: true, text: fun ? fun.say
+        : (winner && champ && champ.gap != null
+            ? (leads
+                ? `"${winner.driver} is up ${champ.gap} now — this title's starting to look like a runaway."`
+                : `"Strong win for ${winner.driver}, but ${champ.leader.name} is still ${champ.gap} clear in the standings."`)
+            : (winner ? `"${winner.driver} taking ${ev} is a statement."` : `"Results are in for ${ev}."`)) },
   ];
 }
 
@@ -494,6 +531,15 @@ function golfContext(g) {
   const margin = (ls != null && ss != null) ? ss - ls : null; // strokes leader is ahead
   const clear = margin != null && margin > 0 ? `${plural(margin, 'stroke')} clear` : null;
   const post = g.state === 'post';
+  // A finished win where the leader tied the runner-up on score = playoff.
+  const playoff = post && second && ls != null && ss != null && ls === ss;
+  if (playoff) {
+    return [
+      { label: 'Why it matters', text: `${lead.name} wins ${ev} in a playoff over ${second.name} — both finished ${lead.score}, settled on extra holes.` },
+      { label: 'Key stat', key: true, text: `Won a sudden-death playoff over ${second.name} (both at ${lead.score}).` },
+      { label: 'What to say', say: true, text: `"${lead.name} took ${ev} in a playoff over ${second.name} — about as clutch as it gets."` },
+    ];
+  }
   return [
     { label: 'Why it matters', text: post
         ? `${lead.name} wins ${ev} at ${lead.score}${clear ? `, ${clear} of the field` : ''} — a result that reshuffles the season's pecking order.`
@@ -528,9 +574,11 @@ function f1WhatYouMissed(f1) {
   const champ = f1Champ(f1);
   const podium = p.slice(1, 3).map((x) => `P${x.pos} ${x.driver}`).join(', ');
   const oneTwo = f1OneTwo(f1);
+  const fun = f1FunFact(f1, winner);
   return WhatYouMissed([
     { k: 'Winner', v: `${winner.driver}${winner.team ? ` · ${winner.team}` : ''}` },
-    { k: 'Biggest storyline', v: champ && champ.gap != null ? `${champ.leader.name} leads the title by ${champ.gap} pts` : '' },
+    { k: 'Biggest storyline', v: fun ? fun.missed
+        : (champ && champ.gap != null ? `${champ.leader.name} leads the title by ${champ.gap} pts` : '') },
     { k: 'Best performance', v: oneTwo ? `${oneTwo} lock out a 1-2` : podium },
     { k: 'Key takeaway', v: champ && champ.gap != null ? `${champ.gap}-point gap at the top with the season rolling on` : `${winner.driver} adds another win` },
   ]);
@@ -544,9 +592,11 @@ function golfWhatYouMissed(g) {
   const second = lb[1];
   const ls = golfScoreNum(lead.score), ss = golfScoreNum(second && second.score);
   const margin = (ls != null && ss != null) ? ss - ls : null;
+  const playoff = second && ls != null && ss != null && ls === ss;
   return WhatYouMissed([
     { k: 'Winner', v: `${lead.name} · ${lead.score}` },
-    { k: 'Biggest storyline', v: margin && margin > 0 ? `Won by ${plural(margin, 'stroke')}` : 'Down-to-the-wire finish at the top' },
+    { k: 'Biggest storyline', v: playoff ? `Won a playoff over ${second.name}`
+        : (margin && margin > 0 ? `Won by ${plural(margin, 'stroke')}` : 'Down-to-the-wire finish at the top') },
     { k: 'Best performance', v: second ? `${second.name} runner-up at ${second.score}` : '' },
     { k: 'Key takeaway', v: `${lead.name} takes ${shortEvent(g.event)}` },
   ]);
