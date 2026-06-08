@@ -194,25 +194,51 @@ async function fetchF1() {
     const ev = data.events?.[0];
     if (!ev) return null;
 
-    const comp = ev.competitions?.[0];
-    const statusState = ev.status?.type?.state || 'pre';
-    const statusDesc = comp?.status?.type?.description || ev.status?.type?.description || '';
+    // SAFEGUARD: current season only — never publish a stale/cached cross-season race.
+    const CURRENT_YEAR = new Date().getUTCFullYear();
+    const year = ev.season?.year || data.leagues?.[0]?.season?.year;
+    if (year && year !== CURRENT_YEAR) return null;
 
-    const results = (comp?.competitors || [])
-      .sort((a, b) => (a.order || 99) - (b.order || 99))
-      .slice(0, 5)
-      .map((c, i) => ({
-        pos: c.order || i + 1,
-        driver: c.athlete?.displayName || 'Unknown',
-        team: c.team?.shortDisplayName || c.team?.displayName || '',
-        time: c.time || c.score || '',
-      }))
-      .filter(c => c.driver !== 'Unknown');
+    // An F1 event has 5 sessions (FP1, FP2, FP3, Qualifying, Race). competitions[0]
+    // is Free Practice 1 — NOT the race. Select the correct session, and only ever
+    // report RESULTS when the actual Race is live or final (never practice/qualifying
+    // order presented as race results).
+    const comps = (ev.competitions || []).slice().sort((a, b) => new Date(a.date) - new Date(b.date));
+    const stateOf = (c) => c?.status?.type?.state;
+    const race = comps.find((c) => c.type?.abbreviation === 'Race') || comps[comps.length - 1];
+    const liveSession = comps.find((c) => stateOf(c) === 'in');
+    const raceIsLive = liveSession && (liveSession === race || liveSession.type?.abbreviation === 'Race');
+
+    let board = null, statusState = 'pre', statusDesc = 'Upcoming';
+    if (raceIsLive) {
+      board = race; statusState = 'in';
+      statusDesc = race.status?.type?.description || 'Race in progress';
+    } else if (race && stateOf(race) === 'post') {
+      board = race; statusState = 'post';
+      statusDesc = race.status?.type?.description || 'Final';
+    } else {
+      // Upcoming (or only practice/qualifying complete) — do NOT present as results.
+      board = null; statusState = 'pre';
+      statusDesc = race?.status?.type?.shortDetail || ev.status?.type?.description || 'Upcoming';
+    }
+
+    const results = board
+      ? (board.competitors || [])
+          .sort((a, b) => (a.order || 99) - (b.order || 99))
+          .slice(0, 5)
+          .map((c, i) => ({
+            pos: c.order || i + 1,
+            driver: c.athlete?.displayName || 'Unknown',
+            team: c.team?.shortDisplayName || c.team?.displayName || '',
+            time: c.time || c.score || '',
+          }))
+          .filter((c) => c.driver !== 'Unknown')
+      : [];
 
     return {
       name: ev.name || 'Formula 1',
       shortName: ev.shortName || ev.name || 'F1',
-      venue: ev.venue?.fullName || '',
+      venue: ev.venue?.fullName || ev.circuit?.fullName || '',
       status: statusDesc,
       statusState,
       results,
