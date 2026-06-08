@@ -624,6 +624,18 @@ function FeaturedGolfCard(g) {
 
   // Sections 6 & 7 — driven by the separate, slower /api/talk feed.
   function renderTalk(p) {
+    // The Rundown (AI hero) — only shows when AI synthesis is available.
+    const band = $('rundownBand');
+    if (band) {
+      if (p && p.rundown) {
+        $('rundownText').textContent = p.rundown;
+        $('rundownSrc').textContent = 'GuyTalk AI · grounded in live data';
+        band.hidden = false;
+      } else if (p) {
+        band.hidden = true; // derived mode (no AI key) — hide rather than fake it
+      }
+    }
+
     const trendLive = !!(p && p.trending && p.trending.length);
     const talkLive = !!(p && p.talkingAbout && p.talkingAbout.length);
     const stories = trendLive ? p.trending : MOCK.trending;
@@ -647,6 +659,21 @@ function FeaturedGolfCard(g) {
     $('golfWrap').innerHTML = sk(1);
     $('scoreboardWrap').innerHTML = sk(2);
     $('marketsWrap').innerHTML = sk(8);
+    const band = $('rundownBand');
+    if (band) { band.hidden = false; $('rundownText').textContent = "Pulling today's rundown…"; $('rundownSrc').textContent = ''; }
+  }
+
+  // Engagement tracking via PostHog (paid) — clicks on profiles, highlights, stories.
+  function trackClicks() {
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (!a || !window.posthog) return;
+      let ev = null;
+      if (a.classList.contains('hl-btn')) ev = 'live_highlight_click';
+      else if (a.classList.contains('lb-link') || a.classList.contains('nm-link')) ev = 'live_profile_click';
+      else if (a.closest('.story-head') || a.closest('.story-src') || a.closest('.talk-src')) ev = 'live_story_click';
+      if (ev) posthog.capture(ev, { href: a.href, text: (a.textContent || '').trim().slice(0, 60) });
+    }, { capture: true });
   }
 
   function render(payload) {
@@ -688,7 +715,7 @@ function FeaturedGolfCard(g) {
   let timer = null, talkTimer = null;
   async function refresh(manual) {
     const btn = $('refreshBtn');
-    if (manual) { btn.disabled = true; btn.textContent = 'Refreshing…'; }
+    if (manual) { btn.disabled = true; btn.textContent = 'Refreshing…'; if (window.posthog) posthog.capture('live_manual_refresh'); }
     try {
       const res = await fetch('/api/live', { headers: { Accept: 'application/json' } });
       if (!res.ok) throw new Error('bad status ' + res.status);
@@ -748,4 +775,5 @@ function FeaturedGolfCard(g) {
   refreshTalk();
   startClock();
   startAutoRefresh();
+  trackClicks();
 })();

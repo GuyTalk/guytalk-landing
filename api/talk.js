@@ -51,6 +51,21 @@ const json = (url, opts) =>
 
 const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
 
+// Compact market snapshot (top movers) to give The Rundown real market context.
+const MKT = [
+  { l: 'S&P 500', s: 'SPY' }, { l: 'Nasdaq', s: 'QQQ' }, { l: 'Dow', s: 'DIA' },
+  { l: 'Bitcoin', s: 'BINANCE:BTCUSDT' }, { l: 'Gold', s: 'GLD' }, { l: 'Oil', s: 'USO' },
+];
+async function marketContext(key) {
+  if (!key) return '';
+  const rows = await Promise.all(MKT.map(async (m) => {
+    const d = await json(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(m.s)}&token=${key}`);
+    return d && d.dp != null ? { l: m.l, dp: Number(d.dp) } : null;
+  }));
+  const have = rows.filter(Boolean).sort((a, b) => Math.abs(b.dp) - Math.abs(a.dp)).slice(0, 4);
+  return have.map((r) => `${r.l} ${r.dp >= 0 ? '+' : ''}${r.dp.toFixed(1)}%`).join(', ');
+}
+
 /* ----------------------------------------------------------- Trending (live) */
 
 async function fetchEspnNews() {
@@ -116,7 +131,8 @@ function buildTrending(espn, newsapi) {
 
 /* ------------------------------------------- Talking points (AI or derived) */
 
-async function buildTalkingAI(trending, key) {
+// One grounded Claude call → { rundown, trending-why, talking points }.
+async function buildAI(trending, marketLine, key) {
   const Anthropic = require('@anthropic-ai/sdk');
   const client = new Anthropic({ apiKey: key });
 
@@ -125,37 +141,47 @@ async function buildTalkingAI(trending, key) {
     .join('\n');
 
   const system =
-    'You are GuyTalk, a sharp, fun daily brief for guys. From the real news stories ' +
-    'provided, pick the 4 most conversation-driving topics for group chats, offices, and bars. ' +
-    'CRITICAL: use ONLY facts present in the provided stories. Do NOT invent scores, names, ' +
-    'quotes, or events. Keep it confident and casual, never hedge. ' +
-    'Return STRICT JSON only: an array of 4 objects with keys ' +
-    '"topic" (short), "matters" (one sentence on why it matters), ' +
-    '"say" (one short conversational line, in quotes, that someone could actually say), ' +
-    'and "sourceIndex" (the [n] of the story you used). No prose, no markdown.';
+    'You are GuyTalk — a sharp, fun, confident daily brief for guys who want to sound informed. ' +
+    'You are given today\'s REAL sports/news headlines and market moves. ' +
+    'CRITICAL: use ONLY facts present in the provided inputs. Never invent scores, names, quotes, ' +
+    'or events. Be confident and casual; never hedge or say "some say". ' +
+    'Return STRICT JSON only (no markdown) with this exact shape: ' +
+    '{ "rundown": string, "trending": [{"i": number, "why": string}], "talking": [{"topic": string, "matters": string, "say": string, "sourceIndex": number}] }. ' +
+    'rundown = 2-3 punchy sentences on what matters right now across sports, markets, and culture, woven together like a smart friend catching you up. ' +
+    'trending = one short "why it matters" sentence for EACH story index provided. ' +
+    'talking = the 4 most conversation-driving topics, each with a one-line why and one short quotable line someone could actually say (in quotes).';
+
+  const user =
+    `Markets right now: ${marketLine || 'n/a'}\n\nToday's real stories:\n${stories}\n\n` +
+    'Return the JSON object.';
 
   const msg = await client.messages.create({
     model: 'claude-haiku-4-5-20251001',
-    max_tokens: 900,
+    max_tokens: 1500,
     system,
-    messages: [{ role: 'user', content: `Today's real stories:\n${stories}\n\nReturn the JSON array.` }],
+    messages: [{ role: 'user', content: user }],
   });
 
   const text = (msg.content || []).map((b) => b.text || '').join('');
-  const start = text.indexOf('['), end = text.lastIndexOf(']');
+  const start = text.indexOf('{'), end = text.lastIndexOf('}');
   if (start === -1 || end === -1) throw new Error('no json');
-  const arr = JSON.parse(text.slice(start, end + 1));
+  const obj = JSON.parse(text.slice(start, end + 1));
 
-  return arr.slice(0, 5).map((o) => {
+  // Merge AI "why" back onto the real trending items (keeps real links).
+  const enriched = trending.map((t, i) => {
+    const w = (obj.trending || []).find((x) => x.i === i);
+    return { ...t, why: w ? clean(w.why) : '' };
+  });
+
+  const talking = (obj.talking || []).slice(0, 5).map((o) => {
     const src = trending[o.sourceIndex] || null;
     return {
-      topic: clean(o.topic),
-      matters: clean(o.matters),
-      say: clean(o.say),
-      url: src?.url || '',
-      source: src?.source || '',
+      topic: clean(o.topic), matters: clean(o.matters), say: clean(o.say),
+      url: src?.url || '', source: src?.source || '',
     };
   }).filter((o) => o.topic && o.matters && o.say);
+
+  return { rundown: clean(obj.rundown), trending: enriched, talking };
 }
 
 // Deterministic fallback built straight from the real headlines.
@@ -173,24 +199,27 @@ function buildTalkingDerived(trending) {
 
 module.exports = async function handler(req, res) {
   try {
-    const [espn, newsapi] = await Promise.all([
+    const [espn, newsapi, marketLine] = await Promise.all([
       fetchEspnNews(),
       fetchNewsApi(process.env.NEWS_API_KEY),
+      marketContext(process.env.FINNHUB_API_KEY),
     ]);
 
-    const trending = buildTrending(espn, newsapi);
-
-    let talkingAbout = null;
+    let trending = buildTrending(espn, newsapi);
+    let talkingAbout = [];
+    let rundown = '';
     let talkSource = 'derived';
+
     if (process.env.ANTHROPIC_API_KEY && trending.length) {
       try {
-        talkingAbout = await buildTalkingAI(trending, process.env.ANTHROPIC_API_KEY);
-        talkSource = 'ai';
-      } catch (_) {
-        talkingAbout = null; // fall through to derived
-      }
+        const ai = await buildAI(trending, marketLine, process.env.ANTHROPIC_API_KEY);
+        if (ai.trending?.length) trending = ai.trending;   // now carries AI "why"
+        talkingAbout = ai.talking || [];
+        rundown = ai.rundown || '';
+        talkSource = talkingAbout.length ? 'ai' : 'derived';
+      } catch (_) { /* fall through to derived */ }
     }
-    if (!talkingAbout || !talkingAbout.length) {
+    if (!talkingAbout.length) {
       talkingAbout = buildTalkingDerived(trending);
       talkSource = 'derived';
     }
@@ -199,9 +228,11 @@ module.exports = async function handler(req, res) {
     return res.json({
       updatedAt: new Date().toISOString(),
       sources: {
+        rundown: rundown ? 'ai' : null,
         trending: newsapi.length ? 'ESPN · NewsAPI' : 'ESPN',
         talkingAbout: talkSource, // 'ai' | 'derived'
       },
+      rundown: rundown || null,
       trending: trending.length ? trending : null,
       talkingAbout: talkingAbout.length ? talkingAbout : null,
     });

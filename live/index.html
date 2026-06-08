@@ -100,6 +100,23 @@
   .live-refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
   .live-refresh-btn:disabled { opacity: 0.5; cursor: default; }
 
+  /* THE RUNDOWN — AI-generated top-of-page brief */
+  .rundown-band {
+    background: linear-gradient(135deg, #0F1724 0%, #1a2d50 100%);
+    border-radius: 16px; padding: 20px 24px; margin-bottom: 30px;
+    box-shadow: 0 6px 24px rgba(15,23,36,0.18);
+  }
+  .rundown-label {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: #fff; margin-bottom: 10px;
+  }
+  .rundown-label .nav-live-dot { background: #fff; }
+  .rundown-src { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.04em; color: rgba(255,255,255,0.5); text-transform: none; font-weight: 500; }
+  .rundown-text { font-size: 16.5px; line-height: 1.6; color: rgba(255,255,255,0.94); font-weight: 400; }
+  .rundown-skel { height: 14px; border-radius: 4px; background: rgba(255,255,255,0.10); margin-top: 8px; }
+  .rundown-skel.s2 { width: 92%; } .rundown-skel.s3 { width: 78%; }
+
   /* SECTION SCAFFOLD */
   .live-section { margin-top: 40px; scroll-margin-top: 80px; }
   .live-section:first-of-type { margin-top: 8px; }
@@ -414,6 +431,13 @@
   .footer-links a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.15s ease; }
   .footer-links a:hover { color: var(--text); }
 
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important; scroll-behavior: auto !important;
+    }
+  }
+
   @media (max-width: 720px) {
     .grid-two { grid-template-columns: 1fr; }
   }
@@ -443,7 +467,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
 </head>
 <body>
 
-<nav>
+<nav aria-label="Primary">
   <div class="nav-inner">
     <a href="/" class="wordmark">GuyTalk<span class="dot">.</span></a>
     <div class="nav-links">
@@ -463,10 +487,16 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <h1 class="live-title">What's happening right now.</h1>
     <p class="live-sub">Live scores, markets, rankings, and stories worth knowing right now.</p>
     <div class="live-updated">
-      <span id="updatedLabel">Loading live data…</span>
-      <button class="live-refresh-btn" id="refreshBtn" onclick="window.GuyTalkLive.refresh(true)">Refresh</button>
+      <span id="updatedLabel" aria-live="polite">Loading live data…</span>
+      <button class="live-refresh-btn" id="refreshBtn" aria-label="Refresh live data" onclick="window.GuyTalkLive.refresh(true)">Refresh</button>
     </div>
   </header>
+
+  <!-- THE RUNDOWN — AI-synthesized brief of what matters right now -->
+  <section class="rundown-band" id="rundownBand" aria-label="The Rundown" hidden>
+    <div class="rundown-label"><span class="nav-live-dot"></span>The Rundown <span class="rundown-src" id="rundownSrc"></span></div>
+    <p class="rundown-text" id="rundownText"></p>
+  </section>
 
   <!-- SECTION 1 — LIVE NOW -->
   <section class="live-section" id="live-now">
