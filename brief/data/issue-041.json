@@ -1,0 +1,451 @@
+{
+  "num": 41,
+  "slug": "issue-041",
+  "date": "Monday, June 8, 2026",
+  "title": "Angels stun Dodgers in LA. Spurs-Knicks Game 3 tonight. Tech selling hard.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815670",
+      "name": "Los Angeles Angels at Los Angeles Dodgers",
+      "shortName": "LAA @ LAD",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Los Angeles Dodgers",
+        "abbrev": "LAD",
+        "score": "5",
+        "winner": false
+      },
+      "away": {
+        "team": "Los Angeles Angels",
+        "abbrev": "LAA",
+        "score": "13",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815669",
+      "name": "Milwaukee Brewers at Colorado Rockies",
+      "shortName": "MIL @ COL",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "4",
+        "winner": false
+      },
+      "away": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "12",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815660",
+      "name": "Chicago White Sox at Philadelphia Phillies",
+      "shortName": "CHW @ PHI",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Philadelphia Phillies",
+        "abbrev": "PHI",
+        "score": "9",
+        "winner": true
+      },
+      "away": {
+        "team": "Chicago White Sox",
+        "abbrev": "CHW",
+        "score": "5",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 737.55,
+      "prevClose": 757.09,
+      "dayChange": -19.54,
+      "dayChangePct": -2.5809,
+      "weekChangePct": null
+    },
+    "QQQ": {
+      "price": 705.06,
+      "prevClose": 740.61,
+      "dayChange": -35.55,
+      "dayChangePct": -4.8001,
+      "weekChangePct": null
+    },
+    "NVDA": {
+      "price": 205.1,
+      "prevClose": 218.66,
+      "dayChange": -13.56,
+      "dayChangePct": -6.2014,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 391,
+      "prevClose": 418.45,
+      "dayChange": -27.45,
+      "dayChangePct": -6.5599,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 416.67,
+      "prevClose": 428.05,
+      "dayChange": -11.38,
+      "dayChangePct": -2.6586,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 307.34,
+      "prevClose": 311.23,
+      "dayChange": -3.89,
+      "dayChangePct": -1.2499,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 63416,
+      "prevClose": 62434.47,
+      "dayChange": 981.53,
+      "dayChangePct": 1.5721,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 394.39,
+      "prevClose": 422.05,
+      "dayChange": -27.66,
+      "dayChangePct": -6.5537,
+      "weekChangePct": null
+    },
+    "10Y": {
+      "price": 4.536,
+      "prevClose": 4.4770002365112305,
+      "dayChange": 0.05899976348876912,
+      "dayChangePct": 1.3178414199670798,
+      "weekChangePct": 1.863910398733508
+    }
+  },
+  "golf": {
+    "name": "the Memorial Tournament pres. by Workday",
+    "venue": "",
+    "status": "Final",
+    "statusState": "post",
+    "leaders": [
+      {
+        "name": "J.T. Poston",
+        "score": "-12",
+        "pos": "1st"
+      },
+      {
+        "name": "Ryan Gerard",
+        "score": "-12",
+        "pos": "2nd"
+      },
+      {
+        "name": "Wyndham Clark",
+        "score": "-11",
+        "pos": "3rd"
+      },
+      {
+        "name": "Tommy Fleetwood",
+        "score": "-10",
+        "pos": "4th"
+      },
+      {
+        "name": "Sam Burns",
+        "score": "-10",
+        "pos": "5th"
+      },
+      {
+        "name": "Kristoffer Reitan",
+        "score": "-8",
+        "pos": "6th"
+      },
+      {
+        "name": "Alex Fitzpatrick",
+        "score": "-8",
+        "pos": "7th"
+      },
+      {
+        "name": "Eric Cole",
+        "score": "-7",
+        "pos": "8th"
+      },
+      {
+        "name": "Alex Noren",
+        "score": "-6",
+        "pos": "9th"
+      },
+      {
+        "name": "Si Woo Kim",
+        "score": "-5",
+        "pos": "10th"
+      }
+    ]
+  },
+  "f1": {
+    "name": "Monaco Grand Prix",
+    "shortName": "Monaco GP",
+    "venue": "Circuit de Monaco",
+    "status": "Final",
+    "statusState": "post",
+    "results": [
+      {
+        "pos": 1,
+        "driver": "Kimi Antonelli",
+        "team": "",
+        "time": ""
+      },
+      {
+        "pos": 2,
+        "driver": "Lewis Hamilton",
+        "team": "",
+        "time": ""
+      },
+      {
+        "pos": 3,
+        "driver": "Isack Hadjar",
+        "team": "",
+        "time": ""
+      },
+      {
+        "pos": 4,
+        "driver": "Oscar Piastri",
+        "team": "",
+        "time": ""
+      },
+      {
+        "pos": 5,
+        "driver": "Liam Lawson",
+        "team": "",
+        "time": ""
+      }
+    ]
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "401859965",
+      "name": "San Antonio Spurs at New York Knicks",
+      "shortName": "SA @ NY",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 3",
+      "seriesNote": "NY leads series 2-0",
+      "sport": "NBA",
+      "home": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401859966",
+      "name": "San Antonio Spurs at New York Knicks",
+      "shortName": "SA @ NY",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 4",
+      "seriesNote": "NY leads series 2-0",
+      "sport": "NBA",
+      "home": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    }
+  ],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Vampires, literary monsters and a cake: The Tony Awards are here - Boston.com",
+      "url": "https://www.boston.com/culture/entertainment/2026/06/07/vampires-literary-monsters-and-a-cake-the-tony-awards-are-here/",
+      "description": "Twenty-four Broadway shows will hope to nab at least one win Sunday across the 26 Tony categories. Grammy Award-winner Pink is the host.",
+      "source": "Boston.com"
+    },
+    {
+      "title": "Anna Faris 'Scary Movie' Then And Now: Good Genes or Good Docs?! - TMZ",
+      "url": "https://www.tmz.com/2026/06/07/anna-faris-good-genes-or-good-docs/",
+      "description": "Are Anna Faris' looks over the years SCARY-hot?!",
+      "source": "TMZ"
+    },
+    {
+      "title": "Bill Maher says artists quitting Freedom 250 concert makes it look like Dems ‘don’t love America’ - Yahoo",
+      "url": "https://nypost.com/2026/06/07/media/bill-maher-says-artists-quitting-freedom-250-concert-makes-it-look-like-dems-dont-love-america/",
+      "description": "\"Can’t we all just celebrate America itself and leave Trump out of it?”",
+      "source": "New York Post"
+    },
+    {
+      "title": "Why ‘Masters Of The Universe’ Streaming Release Will Likely Echo ‘Project Hail Mary’ - Forbes",
+      "url": "https://www.forbes.com/sites/timlammers/2026/06/06/why-masters-of-the-universe-streaming-release-will-likely-echo-project-hail-mary/",
+      "description": "The new He-Man movie \"Masters of the Universe\" is off to a rough start at the box office, which means it may not take the original path to streaming that most Amazon MGM Studios releases do.",
+      "source": "Forbes"
+    },
+    {
+      "title": "5 Zodiac Signs With The Best Horoscopes On Sunday, June 7 - YourTango",
+      "url": "https://www.yourtango.com/2026398099/zodiac-signs-best-horoscopes-june-7-2026",
+      "description": "Five zodiac signs are experiencing the best horoscopes on Sunday, June 7, 2026. They are: Aries, Cancer, Libra, Capricorn, and Pisces.",
+      "source": "YourTango"
+    },
+    {
+      "title": "Jimmy Kimmel slams Donald Trump for attending Knicks game: “Convicted of 34 felonies” - Far Out Magazine",
+      "url": "https://faroutmagazine.co.uk/jimmy-kimmel-slams-donald-trump-for-attending-knicks-game-convicted-of-34-felonies/",
+      "description": "Jimmy Kimmel has slammed Donald Trump for attending the Knicks game, marking it his first appearance in court \"since being convicted of 34 felonies.\"",
+      "source": "Far Out Magazine"
+    },
+    {
+      "title": "Marner scores fastest hat trick in Cup Final history, helps Vegas to Game 3 win - NHL.com",
+      "url": "https://www.nhl.com/news/mitch-marner-scores-fastest-hat-trick-in-stanley-cup-final-history",
+      "description": "Forward helps take series lead against Hurricanes, leads playoffs with 28 points",
+      "source": "NHL News"
+    },
+    {
+      "title": "Germany beat USA before World Cup but injuries cast shadow - DW",
+      "url": "https://www.dw.com/en/germany-beat-usa-before-world-cup-but-injuries-cast-shadow/a-77446005",
+      "description": "Germany’s final match before their World Cup start ended with a 2-1 win. But a tournament-ending injury to rising star Lennart Karl and doubts about veteran Manuel Neuer mean coach Julian Nagelsmann has work to do.",
+      "source": "DW (English)"
+    },
+    {
+      "title": "Stewart, Liberty dig deep, win 'ugly' in Cup game vs. Fever - ESPN",
+      "url": "https://www.espn.com/wnba/story/_/id/48988941/stewart-liberty-dig-deep-win-ugly-cup-game-vs-fever",
+      "description": "Breanna Stewart told her team to wake up halfway through a dismal shooting performance in Saturday's Commissioner's Cup game, and the Liberty responded with a rugged second-half effort.",
+      "source": "ESPN"
+    }
+  ],
+  "copy": {
+    "title": "Angels stun Dodgers in LA. Spurs-Knicks Game 3 tonight. Tech selling hard.",
+    "keyTakeaway": "Tech stocks got hammered today—QQQ down nearly 5%—while the Spurs-Knicks NBA Finals tip off tonight. Baseball saw some lopsided scores out West, and Kimi Antonelli won Monaco.",
+    "todaysHits": {
+      "sports": "Angels shock Dodgers 13-5; Spurs-Knicks Finals Game 3 tonight.",
+      "markets": "QQQ -4.8%, NVDA -6.2%, TSLA -6.6%; 10Y yields up.",
+      "golf": "J.T. Poston leads Memorial at -12.",
+      "f1": "Kimi Antonelli wins Monaco; Hamilton second.",
+      "worldcup": "World Cup 2026 kicks off June 11.",
+      "culture": "Tony Awards tonight; Masters of Universe streaming release looms."
+    },
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Angels blast Dodgers 13-5, steal the division spotlight",
+      "whatHappened": "Los Angeles Angels dominated the Dodgers 13-5, a statement win that flips the script in Southern California. The Angels' offense came alive while the Dodgers couldn't keep pace.",
+      "whyBullet1": "Division rivals don't forget nights like this—the Angels proved they're capable of taking down LA's marquee team.",
+      "whyBullet2": "The Dodgers' defense and pitching both cratered in the same game, suggesting deeper problems than just a bad night.",
+      "whatToSay": "The Angels just reminded everyone they're in the same division conversation. That's the kind of win you bring up when people sleep on you."
+    },
+    "sportsOther": [
+      "Angels embarrassed the Dodgers at home. That doesn't happen often.",
+      "Brewers demolished Colorado like they were playing a different sport.",
+      "Phillies handled the White Sox with ease, nothing dramatic."
+    ],
+    "markets": {
+      "mood": "Tech stocks sold off hard today — SPY dropped 2.6% and the Nasdaq fell 4.8% — as the 10-year Treasury yield climbed 1.3 percent and signaled rising rate expectations.",
+      "whyBullet1": "When Treasury yields spike, growth stocks get punished because their future earnings are worth less in today's dollars. NVDA, TSLA, and DELL each dropped over 6%, which tells you the market is repricing what expensive tech is actually worth. Meanwhile AAPL held up better at down 1.2%, suggesting defensive positioning.",
+      "whyBullet2": "Friday's jobs report will either confirm the Fed's narrative that the economy is cooling or prove that inflation pressure is still real. If unemployment ticks up, this selling gets validated. If job growth stays hot, you're looking at another round.",
+      "bringUp": "Bitcoin climbed 1.6% while everything else cratered — that's the classic flight-to-alternative-assets move when people stop trusting where rates are headed. Not a sign of confidence in tech, more a sign people are hedging their bets."
+    },
+    "golf": {
+      "headline": "Poston wins Memorial in playoff over Gerard at Muirfield",
+      "whyCare1": "Memorial is the last tune-up before the US Open, and Poston just proved he can win on a brutally difficult course.",
+      "whyCare2": "Muirfield Village is Jack Nicklaus's course and plays like a US Open — if you can win here, you can win anywhere.",
+      "watchFor": "Whether Poston carries this momentum to Pinehurst for the US Open in two weeks.",
+      "whatToSay": "Poston just beat a good field on the hardest course of the year. That's the kind of thing that matters in majors."
+    },
+    "f1": {
+      "headline": "Antonelli wins Monaco in Ferrari statement",
+      "whyCare1": "Kimi Antonelli took the street circuit's most prestigious race, signaling Ferrari's competitiveness in a tight season.",
+      "whyCare2": "Hamilton finished second, keeping his championship hopes alive despite the early-season gap to the leaders.",
+      "watchFor": "Whether Antonelli can convert Monaco success into consistency at circuits that don't reward raw pace.",
+      "whatToSay": "Antonelli finally broke through at the one track where it matters most. Ferrari's got something real this year."
+    },
+    "culture": [
+      {
+        "topic": "Marner's hat trick puts Vegas up in Cup Final",
+        "whatHappened": "Marner scored the fastest hat trick in Stanley Cup Final history to lead Vegas to a Game 3 win.",
+        "whyItMatters": "Vegas is one win away from hoisting the Cup, and Marner just showed up exactly when it matters most.",
+        "whatToSay": "That's the kind of performance that gets your name on the Cup. Marner's been waiting for this.",
+        "tag": "Sports Biz"
+      },
+      {
+        "topic": "Tony Awards celebrate monsters, vampires, and actual talent",
+        "whatHappened": "The Tony Awards happened with literary monsters and vampires as part of the night's theme and cake moments.",
+        "whyItMatters": "It's the one awards show where people actually care about the work instead of just the red carpet.",
+        "whatToSay": "Did you catch the Tonys? Actually worth watching this year.",
+        "tag": "TV"
+      },
+      {
+        "topic": "Zero Day",
+        "whatHappened": "Robert De Niro as a former president called back in to investigate a massive cyberattack on American infrastructure.",
+        "whyItMatters": "Worth your time.",
+        "whatToSay": "Just put it on.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Tech got crushed today—SPY down 2.6%, QQQ down 4.8%—and the bond market's screaming that traders think something's broken in the economy. Meanwhile Bitcoin's up 1.6%, which means money's looking for somewhere safe that isn't a stock. Tonight's Spurs-Knicks Game 3 matters only if you're a basketball guy; what matters is whether this selling continues or snaps back tomorrow.",
+    "glance": null
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "reason": "OPENAI_API_KEY missing — brief NOT editor-reviewed"
+  }
+}
