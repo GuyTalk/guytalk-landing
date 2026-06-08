@@ -584,6 +584,61 @@ function f1WhatYouMissed(f1) {
   ]);
 }
 
+/* ---- NBA marquee-game context (from g.facts, computed server-side) ---- */
+
+function nbaContext(g) {
+  const f = g.facts;
+  if (!f) return null;
+  const homeRec = (f.teams || []).find((t) => t.homeAway === 'home') || {};
+  const awayRec = (f.teams || []).find((t) => t.homeAway === 'away') || {};
+  const seriesLow = f.series ? f.series.summary.replace(/^Series\s+/i, '').toLowerCase() : ''; // "tied 1-1"
+
+  if (f.state === 'post') {
+    const w = g.home.winner ? g.home : g.away;
+    const l = g.home.winner ? g.away : g.home;
+    const tp = f.topPerformer;
+    const line = tp ? `${tp.pts}${tp.reb != null ? `/${tp.reb}` : ''}${tp.ast != null ? `/${tp.ast}` : ''}` : '';
+    return [
+      { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}${f.series ? ` — ${f.series.name} now ${seriesLow}` : ''}.` },
+      tp && { label: 'Key stat', key: true, text: `${tp.name} led all scorers with ${tp.pts}${tp.reb != null && tp.ast != null ? ` (${tp.reb} reb, ${tp.ast} ast)` : ''}.` },
+      { label: 'What to say', say: true, text: tp
+        ? `"${tp.name} went for ${line} and ${w.name} took it ${w.score}-${l.score}."`
+        : `"${w.name} got it done, ${w.score}-${l.score}."` },
+    ];
+  }
+
+  // pre / live
+  const ts = f.topScorers || [];
+  const matchup = ts.length >= 2 ? `${ts[0].name} (${ts[0].val}) vs ${ts[1].name} (${ts[1].val})` : '';
+  const recLine = (homeRec.total || awayRec.total)
+    ? `${g.home.name} ${homeRec.total}${homeRec.split ? ` (${homeRec.split} home)` : ''} · ${g.away.name} ${awayRec.total}${awayRec.split ? ` (${awayRec.split} away)` : ''}`
+    : '';
+  return [
+    { label: 'Why it matters', text: f.series
+        ? `${g.headline || 'Tonight'}: the ${f.series.name} is ${seriesLow} — every game swings it now.`
+        : `${g.away.name} visit ${g.home.name} with real stakes.` },
+    recLine && { label: 'Key stat', key: true, text: `${recLine}.` },
+    { label: 'What to say', say: true, text: matchup
+        ? `"${f.series ? `${f.series.name} ${seriesLow}` : (g.headline || 'Big one tonight')} — ${matchup} on points per game."`
+        : `"${g.home.name}–${g.away.name} should be a good one."` },
+  ];
+}
+
+function nbaWhatYouMissed(g) {
+  const f = g.facts;
+  if (!f || f.state !== 'post') return '';
+  const w = g.home.winner ? g.home : g.away;
+  const l = g.home.winner ? g.away : g.home;
+  const tp = f.topPerformer;
+  return WhatYouMissed([
+    { k: 'Winner', v: `${w.name} ${w.score}–${l.score}` },
+    { k: 'Biggest storyline', v: f.series ? `${f.series.name}: ${f.series.summary}` : (g.headline || '') },
+    { k: 'Best performance', v: tp ? `${tp.name} — ${tp.pts} pts${tp.reb != null ? `, ${tp.reb} reb` : ''}${tp.ast != null ? `, ${tp.ast} ast` : ''}` : '' },
+    { k: 'Key takeaway', v: f.series ? `${f.series.name} now ${seriesLowOf(f)}` : `${w.name} get the W` },
+  ]);
+}
+function seriesLowOf(f) { return f.series ? f.series.summary.replace(/^Series\s+/i, '').toLowerCase() : ''; }
+
 function golfWhatYouMissed(g) {
   if (!g || g.state !== 'post') return '';
   const lb = g.leaderboard || [];
@@ -785,7 +840,13 @@ function FeaturedGolfCard(g) {
       .sort((a, b) => (rank[a.state] - rank[b.state]) || (b.importance - a.importance))[0];
     const marquee = big ? Marquee(big) : '';
 
-    el.innerHTML = marquee + real.map((lg) => `
+    // Verified context for the marquee game (NBA so far): the GuyTalk Read +
+    // a What You Missed recap once it's final. Only when server facts exist.
+    const bigRead = (big && big.facts && nbaContext(big))
+      ? `<div class="stack marquee-read">${ContextCard(nbaContext(big), big.state === 'in', big.league)}${nbaWhatYouMissed(big)}</div>`
+      : '';
+
+    el.innerHTML = marquee + bigRead + real.map((lg) => `
       <div class="league-block">
         <div class="league-name">${esc(lg.label)}</div>
         <div class="grid grid-scores">${lg.games.map(ScoreboardCard).join('')}</div>

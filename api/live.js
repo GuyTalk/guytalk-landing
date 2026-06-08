@@ -111,6 +111,8 @@ function parseGame(event, lg) {
   if (state === 'in') importance += 12; // live games lead within a league
 
   return {
+    id: event.id,        // ESPN event id — used to fetch verified game facts
+    leagueKey: lg.league, // 'nba' | 'mlb' | ...
     league: lg.label,
     state,
     statusText: status.shortDetail || status.detail || '',
@@ -122,6 +124,68 @@ function parseGame(event, lg) {
     away: team(away),
     startDate: comp.date || null,
   };
+}
+
+// Top scorer of a finished/live NBA game, from the box score. Stats array is
+// positional, mapped via the statistics[].keys header. Verified, not guessed.
+function nbaTopPerformer(summary) {
+  try {
+    const teams = summary?.boxscore?.players || [];
+    let best = null;
+    for (const tm of teams) {
+      const abbr = (tm.team?.abbreviation || '').toUpperCase();
+      const st = (tm.statistics || [])[0] || {};
+      const keys = st.keys || st.labels || [];
+      const pi = keys.indexOf('points'), ri = keys.indexOf('rebounds'), ai = keys.indexOf('assists');
+      if (pi < 0) continue;
+      for (const a of (st.athletes || [])) {
+        const s = a.stats || [];
+        const pts = parseInt(s[pi], 10);
+        if (!Number.isFinite(pts)) continue;
+        if (!best || pts > best.pts) {
+          best = {
+            abbr, name: a.athlete?.displayName || '', pts,
+            reb: ri >= 0 ? parseInt(s[ri], 10) : null,
+            ast: ai >= 0 ? parseInt(s[ai], 10) : null,
+          };
+        }
+      }
+    }
+    return best && Number.isFinite(best.pts) ? best : null;
+  } catch (_) { return null; }
+}
+
+// Verified facts for one NBA game from the ESPN summary endpoint:
+// series state, team records (with the split that matters for this venue),
+// scoring leaders (season avg pre-game, game leaders once it tips), and the
+// box-score top performer when live/final. Null on any failure.
+async function nbaGameFacts(eventId) {
+  try {
+    const d = await json(`${ESPN}/basketball/nba/summary?event=${eventId}`);
+    const hc = d?.header?.competitions?.[0];
+    if (!hc) return null;
+    const state = hc.status?.type?.state;
+    const s0 = (hc.series || [])[0] || null;
+    const series = s0 && s0.summary ? { name: s0.description || 'The series', summary: s0.summary } : null;
+    const teams = (hc.competitors || []).map((c) => {
+      const recs = c.record || [];
+      const g = (t) => (recs.find((r) => r.type === t) || {}).summary || '';
+      return {
+        abbr: (c.team?.abbreviation || '').toUpperCase(),
+        homeAway: c.homeAway,
+        total: g('total'),
+        split: c.homeAway === 'home' ? g('home') : g('road'),
+      };
+    });
+    const topScorers = (d.leaders || []).map((tm) => {
+      const abbr = (tm.team?.abbreviation || '').toUpperCase();
+      const cat = (tm.leaders || []).find((c) => c.name === 'pointsPerGame' || c.name === 'points');
+      const L = cat?.leaders?.[0];
+      return L ? { abbr, name: L.athlete?.displayName || '', val: L.displayValue } : null;
+    }).filter(Boolean);
+    const topPerformer = (state === 'in' || state === 'post') ? nbaTopPerformer(d) : null;
+    return { state, series, teams, topScorers, topPerformer };
+  } catch (_) { return null; }
 }
 
 async function fetchScoreboards() {
@@ -137,7 +201,19 @@ async function fetchScoreboards() {
     })
   );
   const withGames = results.filter((r) => r.games.length > 0);
-  return withGames.length ? withGames : null;
+  if (!withGames.length) return null;
+
+  // Attach verified facts to the single marquee game (matches the client's pick:
+  // big games, ranked live > upcoming > final, then importance). NBA only for now.
+  const rank = { in: 0, pre: 1, post: 2 };
+  const marquee = withGames
+    .flatMap((r) => r.games)
+    .filter((g) => g.isBig)
+    .sort((a, b) => (rank[a.state] - rank[b.state]) || (b.importance - a.importance))[0];
+  if (marquee && marquee.leagueKey === 'nba' && marquee.id) {
+    marquee.facts = await nbaGameFacts(marquee.id);
+  }
+  return withGames;
 }
 
 /* ------------------------------------------------------------------ Formula 1 */
