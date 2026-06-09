@@ -191,6 +191,58 @@ async function nbaGameFacts(eventId) {
   } catch (_) { return null; }
 }
 
+// One standout per team from the ESPN summary `leaders` block. Pre-game these
+// are season leaders; once the game tips they become game lines. `priority` is
+// the ordered list of stat categories to prefer (e.g. QB passing for NFL). All
+// values come straight from ESPN — never computed or guessed.
+function summaryLeaders(d, priority) {
+  return (d?.leaders || []).map((tm) => {
+    const abbr = (tm.team?.abbreviation || '').toUpperCase();
+    let cat = null;
+    for (const p of priority) { cat = (tm.leaders || []).find((c) => c.name === p); if (cat) break; }
+    if (!cat) cat = (tm.leaders || [])[0];
+    const L = cat?.leaders?.[0];
+    if (!L?.athlete) return null;
+    return {
+      abbr,
+      name: L.athlete.displayName || L.athlete.shortName || '',
+      line: L.displayValue || '',
+      cat: cat.displayName || cat.shortDisplayName || '',
+    };
+  }).filter(Boolean);
+}
+
+// Verified facts for one NFL/NHL game from the ESPN summary endpoint: playoff
+// series state (NHL/postseason), team records with the venue split, and a
+// standout performer per side. Same fail-closed contract as the NBA builder —
+// null on any error so the section degrades gracefully.
+async function summaryGameFacts(league, sport, eventId, leaderPriority) {
+  try {
+    const d = await json(`${ESPN}/${sport}/${league}/summary?event=${eventId}`);
+    const hc = d?.header?.competitions?.[0];
+    if (!hc) return null;
+    const state = hc.status?.type?.state;
+    // ESPN returns a head-to-head "Regular Season Series" for in-season games;
+    // that's not the playoff stakes we mean by a series, so only keep post-season
+    // ones (e.g. "Stanley Cup Final", "First Round").
+    const s0 = (hc.series || [])[0] || null;
+    const series = (s0 && s0.summary && !/regular\s*season/i.test(s0.description || ''))
+      ? { name: s0.description || 'The series', summary: s0.summary }
+      : null;
+    const teams = (hc.competitors || []).map((c) => {
+      const recs = c.record || [];
+      const g = (t) => (recs.find((r) => r.type === t) || {}).summary || '';
+      return {
+        abbr: (c.team?.abbreviation || '').toUpperCase(),
+        homeAway: c.homeAway,
+        total: g('total'),
+        split: c.homeAway === 'home' ? g('home') : g('road'),
+      };
+    });
+    return { league, state, series, teams, leaders: summaryLeaders(d, leaderPriority) };
+  } catch (_) { return null; }
+}
+
 // MLB verified facts — computed straight from the scoreboard event (no extra
 // fetch): probable pitchers + W/L/ERA pre-game, and each side's standout
 // performer (ESPN's per-game leader) once final. Never invented.
@@ -250,7 +302,10 @@ async function fetchScoreboards() {
   // summary fetch. We keep facts ONLY on each league's top game.
   await Promise.all(withGames.map(async (r) => {
     const top = r.games[0];
-    if (top && r.key === 'nba' && top.id) top.facts = await nbaGameFacts(top.id);
+    if (!top || !top.id) return;
+    if (r.key === 'nba') top.facts = await nbaGameFacts(top.id);
+    else if (r.key === 'nhl') top.facts = await summaryGameFacts('nhl', 'hockey', top.id, ['points', 'goals', 'assists']);
+    else if (r.key === 'nfl') top.facts = await summaryGameFacts('nfl', 'football', top.id, ['passingYards', 'rushingYards', 'receivingYards']);
   }));
   for (const r of withGames) {
     for (let i = 1; i < r.games.length; i++) {

@@ -736,13 +736,73 @@ function mlbWhatYouMissed(g) {
   ]);
 }
 
+/* ---- NFL / NHL game context (from g.facts via the ESPN summary endpoint) ----
+   Same fact shape for both: records + venue split, a standout per side, and a
+   playoff series when present (NHL post-season). Phrasing stays sport-neutral. */
+
+function summaryReadContext(g) {
+  const f = g.facts;
+  if (!f) return null;
+  const homeF = (f.teams || []).find((t) => t.homeAway === 'home') || {};
+  const awayF = (f.teams || []).find((t) => t.homeAway === 'away') || {};
+  const seriesLow = f.series ? f.series.summary.replace(/^Series\s+/i, '').toLowerCase() : '';
+  const leaderBy = (abbr) => (f.leaders || []).find((l) => l.abbr === abbr);
+
+  if (f.state === 'post') {
+    const w = g.home.winner ? g.home : g.away;
+    const l = g.home.winner ? g.away : g.home;
+    const wl = leaderBy(w.abbr);
+    return [
+      { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}${f.series ? ` — ${f.series.name} now ${seriesLow}` : ''}.` },
+      wl && { label: 'Key stat', key: true, text: `${wl.name} led the way${wl.cat ? ` (${wl.cat.toLowerCase()})` : ''}: ${wl.line}.` },
+      { label: 'What to say', say: true, text: wl
+        ? `"${wl.name} put up ${wl.line} and ${w.name} took it ${w.score}-${l.score}."`
+        : `"${w.name} got it done, ${w.score}-${l.score}."` },
+      { label: 'Hot take', take: true, text: `${w.name} are the better team here — ${f.series ? 'this series is theirs to lose' : 'and it showed'}.` },
+    ];
+  }
+
+  // pre / live
+  const recLine = (homeF.total || awayF.total)
+    ? `${g.home.name} ${homeF.total}${homeF.split ? ` (${homeF.split} home)` : ''} · ${g.away.name} ${awayF.total}${awayF.split ? ` (${awayF.split} away)` : ''}`
+    : '';
+  const hl = leaderBy(g.home.abbr), al = leaderBy(g.away.abbr);
+  const matchup = (hl && al) ? `${al.name} (${al.line}) vs ${hl.name} (${hl.line})` : '';
+  return [
+    { label: 'Why it matters', text: f.series
+        ? `${g.headline || 'Tonight'}: the ${f.series.name} is ${seriesLow} — every game swings it now.`
+        : `${g.away.name} visit ${g.home.name} with real stakes.` },
+    recLine && { label: 'Key stat', key: true, text: `${recLine}.` },
+    { label: 'What to say', say: true, text: matchup
+        ? `"Keep an eye on ${matchup} — that's the matchup that decides it."`
+        : `"${g.home.name}–${g.away.name} should be a good one."` },
+    f.series && { label: 'Hot take', take: true, text: `Series ${seriesLow} means tonight basically is the series — whoever blinks first goes home.` },
+  ];
+}
+
+function summaryWhatYouMissed(g) {
+  const f = g.facts;
+  if (!f || f.state !== 'post') return '';
+  const w = g.home.winner ? g.home : g.away;
+  const l = g.home.winner ? g.away : g.home;
+  const wl = (f.leaders || []).find((x) => x.abbr === w.abbr);
+  return WhatYouMissed([
+    { k: 'Winner', v: `${w.name} ${w.score}–${l.score}` },
+    { k: 'Biggest storyline', v: f.series ? `${f.series.name}: ${f.series.summary}` : (g.headline || `${w.name} take down ${l.name}`) },
+    { k: 'Best performance', v: wl ? `${wl.name} — ${wl.line}` : '' },
+    { k: 'Key takeaway', v: f.series ? `${f.series.name} now ${seriesLowOf(f)}` : `${w.name} get the W` },
+  ]);
+}
+
 /* Dispatch the right builder for a game that carries server-computed facts. */
 function gameRead(g, cls) {
   if (!g || !g.facts) return '';
   const lg = g.facts.league;
-  const rows = lg === 'mlb' ? mlbContext(g) : nbaContext(g);
+  let rows, wym;
+  if (lg === 'mlb') { rows = mlbContext(g); wym = mlbWhatYouMissed(g); }
+  else if (lg === 'nhl' || lg === 'nfl') { rows = summaryReadContext(g); wym = summaryWhatYouMissed(g); }
+  else { rows = nbaContext(g); wym = nbaWhatYouMissed(g); }
   if (!rows) return '';
-  const wym = lg === 'mlb' ? mlbWhatYouMissed(g) : nbaWhatYouMissed(g);
   return `<div class="stack ${cls || 'marquee-read'}">${ContextCard(rows, g.state === 'in', g.league)}${wym}</div>`;
 }
 

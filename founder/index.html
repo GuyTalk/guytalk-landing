@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Founder — GuyTalk</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F9F8F5; --surface: #FFFFFF; --border: #E5E2DB; --border-light: #D4D0C8;
+    --text: #0F1724; --text-2: #6E6862; --text-3: #9E9891;
+    --accent: #2B6FFF; --accent-h: #1A5CEF; --accent-muted: #EBF1FF; --green: #16A34A; --red: #DC2626;
+  }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.55;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  .fhead { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
+  .wordmark { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.03em; }
+  .wordmark .dot { color: var(--accent); }
+  .feyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-3); }
+  .fsub { color: var(--text-2); font-size: 15px; margin-bottom: 28px; }
+
+  /* Login */
+  .login { max-width: 380px; margin: 80px auto; text-align: center; }
+  .login h1 { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.03em; margin-bottom: 8px; }
+  .login p { color: var(--text-2); margin-bottom: 22px; font-size: 15px; }
+  .login input { width: 100%; padding: 13px 15px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 15px; font-family: inherit; margin-bottom: 12px; outline: none; }
+  .login input:focus { border-color: rgba(43,111,255,0.5); }
+  .login button { width: 100%; padding: 13px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-weight: 700; font-size: 15px; cursor: pointer; font-family: inherit; }
+  .login button:hover { background: var(--accent-h); }
+  .login .err { color: var(--red); font-size: 13px; min-height: 18px; margin-top: 4px; }
+
+  /* Stat cards */
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 14px; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 16px; }
+  .stat-card.lead { border-left: 4px solid var(--accent); }
+  .stat-label { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
+  .stat-num { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: -0.03em; margin-top: 6px; }
+  .stat-num.sm { font-size: 24px; }
+  .stat-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+  .panel-h { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .panel-h .dot-live { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+  .kv { display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--border); font-size: 14px; }
+  .kv:first-of-type { border-top: 0; }
+  .kv .k { color: var(--text-2); }
+  .kv .v { font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+
+  /* Links */
+  .qlinks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .qlink { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; font-weight: 600; font-size: 14px; color: var(--text); transition: background 0.12s; }
+  .qlink:hover { background: var(--accent-muted); border-color: rgba(43,111,255,0.3); }
+  .qlink .arrow { color: var(--accent); }
+
+  /* Changelog */
+  .clog-item { display: grid; grid-template-columns: 84px 1fr; gap: 14px; padding: 12px 0; border-top: 1px solid var(--border); }
+  .clog-item:first-child { border-top: 0; }
+  .clog-meta { display: flex; flex-direction: column; gap: 5px; }
+  .clog-date { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-3); }
+  .clog-tag { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 4px; width: fit-content; }
+  .tag-feature { background: rgba(43,111,255,0.1); color: var(--accent); }
+  .tag-fix { background: rgba(22,163,74,0.1); color: var(--green); }
+  .tag-legal { background: rgba(184,124,53,0.12); color: #B87C35; }
+  .clog-text { font-size: 14px; color: var(--text); line-height: 1.5; }
+
+  .updated { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); margin-top: 20px; }
+  .logout { font-size: 12px; color: var(--text-3); cursor: pointer; text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .row2 { grid-template-columns: 1fr; }
+    .qlinks { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="loginView" class="wrap" style="display:none">
+  <div class="login">
+    <div class="wordmark">GuyTalk<span class="dot">.</span></div>
+    <h1 style="margin-top:18px">Founder access</h1>
+    <p>Private dashboard. Enter your founder key.</p>
+    <form id="loginForm">
+      <input type="password" id="tokenInput" placeholder="Founder key" autocomplete="off" autofocus>
+      <button type="submit">Open dashboard →</button>
+      <div class="err" id="loginErr"></div>
+    </form>
+  </div>
+</div>
+
+<div id="dashView" class="wrap" style="display:none">
+  <div class="fhead">
+    <div class="wordmark">GuyTalk<span class="dot">.</span> <span class="feyebrow">/ founder</span></div>
+    <span class="logout" id="logoutBtn">Log out</span>
+  </div>
+  <p class="fsub">Everything that's going on — at a glance.</p>
+
+  <div class="stat-grid" id="statGrid"></div>
+
+  <div class="row2">
+    <div class="panel">
+      <div class="panel-h"><span class="dot-live"></span>Newsletter (live · Beehiiv)</div>
+      <div id="newsletterPanel"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-h">System status</div>
+      <div id="statusPanel"></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:14px">
+    <div class="panel-h">Open the full analytics</div>
+    <div class="qlinks" id="qlinks"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h">What's new — recent edits</div>
+    <div id="changelog"></div>
+  </div>
+
+  <div class="updated" id="updated"></div>
+</div>
+
+<script>
+(function () {
+  var KEY = 'gt_founder_token';
+  var loginView = document.getElementById('loginView');
+  var dashView = document.getElementById('dashView');
+
+  function showLogin(msg) {
+    loginView.style.display = '';
+    dashView.style.display = 'none';
+    if (msg) document.getElementById('loginErr').textContent = msg;
+  }
+  function fmtNum(n) { return n == null ? '—' : Number(n).toLocaleString('en-US'); }
+  function fmtPct(n) { return n == null ? '—' : (Number(n) <= 1 ? (Number(n) * 100) : Number(n)).toFixed(1) + '%'; }
+  function fmtDate(s) { if (!s) return '—'; try { return new Date(s).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); } catch (e) { return s; } }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function render(d) {
+    loginView.style.display = 'none';
+    dashView.style.display = '';
+    var b = d.beehiiv || {};
+    document.getElementById('statGrid').innerHTML =
+      card('Subscribers', fmtNum(b.activeSubscriptions), b.activePremium ? fmtNum(b.activePremium) + ' premium' : 'all-time active', true) +
+      card('Open rate', fmtPct(b.openRate), 'avg across sends', false, true) +
+      card('Click rate', fmtPct(b.clickRate), 'avg across sends', false, true) +
+      card('Emails sent', fmtNum(b.totalSent), 'lifetime', false, true);
+
+    var lp = d.lastPost;
+    document.getElementById('newsletterPanel').innerHTML = lp
+      ? kv('Last post', esc(lp.title || '—')) + kv('Status', esc(lp.status || '—')) + kv('Published', fmtDate(lp.publishDate)) + (lp.opens != null ? kv('Opens', fmtNum(lp.opens)) : '') + (lp.clicks != null ? kv('Clicks', fmtNum(lp.clicks)) : '')
+      : (b.activeSubscriptions != null ? '<div class="kv"><span class="k">No recent post data</span></div>' : '<div class="kv"><span class="k">Beehiiv unreachable right now</span></div>');
+
+    var li = d.latestIssue;
+    document.getElementById('statusPanel').innerHTML =
+      (li ? kv('Latest issue', '#' + esc(li.num)) + kv('Published', esc(li.date || '—')) + '<div class="kv"><span class="k">Read it</span><span class="v"><a href="/brief/' + esc(li.slug) + '/">/brief/' + esc(li.slug) + '</a></span></div>' : kv('Latest issue', '—')) +
+      kv('Pipeline', '7am daily · auto') +
+      kv('Live page', 'updating ≤60s');
+
+    var L = d.links || {};
+    document.getElementById('qlinks').innerHTML =
+      qlink('Founder Overview (PostHog)', L.posthogFounder) +
+      qlink('Live engagement (PostHog)', L.posthogLive) +
+      qlink('Beehiiv dashboard', L.beehiiv) +
+      qlink('Open the site', L.site);
+
+    document.getElementById('changelog').innerHTML = (d.changelog || []).map(function (c) {
+      var tag = (c.tag || 'feature').toLowerCase();
+      return '<div class="clog-item"><div class="clog-meta"><span class="clog-date">' + esc(c.date || '') + '</span><span class="clog-tag tag-' + esc(tag) + '">' + esc(tag) + '</span></div><div class="clog-text">' + esc(c.text || '') + '</div></div>';
+    }).join('') || '<div class="clog-text">No recent entries.</div>';
+
+    document.getElementById('updated').textContent = 'Loaded ' + new Date(d.generatedAt).toLocaleString('en-US');
+  }
+  function card(label, num, sub, lead, sm) {
+    return '<div class="stat-card' + (lead ? ' lead' : '') + '"><div class="stat-label">' + label + '</div><div class="stat-num' + (sm ? ' sm' : '') + '">' + num + '</div><div class="stat-sub">' + sub + '</div></div>';
+  }
+  function kv(k, v) { return '<div class="kv"><span class="k">' + k + '</span><span class="v">' + v + '</span></div>'; }
+  function qlink(label, href) { return '<a class="qlink" href="' + href + '" target="_blank" rel="noopener">' + label + ' <span class="arrow">→</span></a>'; }
+
+  function load(token) {
+    fetch('/api/founder?token=' + encodeURIComponent(token))
+      .then(function (r) { if (r.status === 401) { localStorage.removeItem(KEY); throw new Error('Invalid key.'); } if (!r.ok) throw new Error('Could not load (' + r.status + ').'); return r.json(); })
+      .then(function (d) { localStorage.setItem(KEY, token); render(d); })
+      .catch(function (e) { showLogin(e.message || 'Something went wrong.'); });
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var t = document.getElementById('tokenInput').value.trim();
+    if (t) load(t);
+  });
+  document.getElementById('logoutBtn').addEventListener('click', function () { localStorage.removeItem(KEY); location.reload(); });
+
+  var saved = localStorage.getItem(KEY);
+  if (saved) load(saved); else showLogin('');
+})();
+</script>
+
+</body>
+</html>
