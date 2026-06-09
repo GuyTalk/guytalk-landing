@@ -1779,12 +1779,20 @@ function buildTodayAtAGlance({ copy, sports, markets, upcoming }) {
     return 'Market data inside';
   })();
 
+  // Fallbacks so the glance is always full even if the AI glance call misfires.
+  const watchFallback = upcoming?.[0]
+    ? `${upcoming[0].shortName}${upcoming[0].note ? ` (${upcoming[0].note})` : ''} — ${upcoming[0].daysAhead === 0 ? 'tonight' : upcoming[0].daysAhead === 1 ? 'tomorrow' : 'soon'}`
+    : '';
+  const convoFallback = copy?.theTake?.bar || copy?.theTake?.office || (copy?.culture?.[0]?.whatToSay || '');
+  const recFallback = copy?.culture?.find(c => /stream|watch/i.test(c.tag || ''))?.topic
+    ? `Watch this: ${copy.culture.find(c => /stream|watch/i.test(c.tag || '')).topic}` : '';
+
   const bullets = [
     { label: 'Main story',  text: g?.sports    || sportsFallback, anchor: '#sports',   cls: 'hit-sports'  },
     { label: 'Market mood', text: g?.market     || marketFallback, anchor: '#markets',  cls: 'hit-markets' },
-    { label: 'Best convo',  text: g?.bestConvo  || '',             anchor: '#the-take', cls: 'hit-culture' },
-    { label: 'Watch next',  text: g?.watchNext  || '',             anchor: '#sports',   cls: 'hit-sports'  },
-    { label: 'Quick rec',   text: g?.quickRec   || '',             anchor: '#culture',  cls: 'hit-culture' },
+    { label: 'Best convo',  text: g?.bestConvo  || convoFallback,  anchor: '#the-take', cls: 'hit-culture' },
+    { label: 'Watch next',  text: g?.watchNext  || watchFallback,  anchor: '#sports',   cls: 'hit-sports'  },
+    { label: 'Quick rec',   text: g?.quickRec   || recFallback,    anchor: '#culture',  cls: 'hit-culture' },
   ].filter(b => b.text);
 
   if (!bullets.length) return '';
