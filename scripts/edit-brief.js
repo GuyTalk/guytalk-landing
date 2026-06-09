@@ -19,6 +19,7 @@ const path = require('path');
 
 const { editBrief } = require('./lib/editor');
 const { buildHtml } = require('./lib/html');
+const { fetchNBABoxScore } = require('./lib/fetchers');
 
 const ROOT     = path.join(__dirname, '..');
 const DATA_DIR = path.join(ROOT, 'brief', 'data');
@@ -31,8 +32,10 @@ function latestSlug() {
   return files[files.length - 1].replace('.json', '');
 }
 
-// Rebuild a raw-facts block from a saved issue (mirrors generate-brief.js)
-function factsFromIssue(d) {
+// Rebuild a raw-facts block from a saved issue (mirrors generate-brief.js).
+// boxScores (keyed by game id) are fetched fresh in main() so the editor can
+// verify real player stats — they aren't persisted in the issue file.
+function factsFromIssue(d, boxScores = {}) {
   const lines = [];
   if (d.sports?.length) {
     lines.push('GAMES:');
@@ -41,6 +44,10 @@ function factsFromIssue(d) {
       const l = g.home.winner ? g.away : g.home;
       let s = `- ${g.note || g.name}: ${w.team} ${w.score}–${l.team} ${l.score} (${g.status})`;
       if (g.seriesNote) s += ` [Series: ${g.seriesNote}]`;
+      const leaders = boxScores?.[g.id];
+      if (leaders?.length) {
+        s += ` | Leaders: ${leaders.map(p => `${p.name} ${p.pts}pts${p.reb ? ` ${p.reb}reb` : ''}${p.ast ? ` ${p.ast}ast` : ''}`).join(', ')}`;
+      }
       lines.push(s);
     });
   }
@@ -91,8 +98,18 @@ async function main() {
 
   console.log(`\n🧐 Editorial pass on ${slug} (${issue.date || '?'})...`);
 
+  // Fetch box scores for final games so the editor can verify player stats
+  // (not persisted in the issue file). Final NBA games return leaders; others null.
+  const boxScores = {};
+  for (const g of (issue.sports || [])) {
+    if (g.statusState === 'post' && g.id) {
+      const bs = await fetchNBABoxScore(g.id);
+      if (bs) boxScores[g.id] = bs;
+    }
+  }
+
   const links = (issue.trending || []).map(t => t.url).filter(Boolean);
-  const result = await editBrief({ copy: issue.copy, context: factsFromIssue(issue), links });
+  const result = await editBrief({ copy: issue.copy, context: factsFromIssue(issue, boxScores), links });
   issue.copy   = result.copy;
   issue.editor = result.editor;
   if (issue.copy?.title) issue.title = issue.copy.title;
