@@ -61,34 +61,28 @@ function venueImage(abbrev, sport) {
   return null;
 }
 
-// F1 circuit images for major venues
+// F1 circuit photos — self-hosted in /assets/circuits/ (reliable, relevant).
 function f1CircuitImage(raceName) {
   const name = (raceName || '').toLowerCase();
-  if (name.includes('monaco')) {
-    return { urls: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Monte_Carlo_Formula_1_Grand_Prix_2012.jpg/1280px-Monte_Carlo_Formula_1_Grand_Prix_2012.jpg',
-    ], cap: 'Monaco Grand Prix · Circuit de Monaco · 78 laps through the streets of Monte Carlo · The most iconic 3.3 miles in motorsport' };
-  }
-  if (name.includes('british') || name.includes('silverstone')) {
-    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Silverstone_Circuit_2021.jpg/1280px-Silverstone_Circuit_2021.jpg'], cap: 'Silverstone Circuit · Northamptonshire, England · British Grand Prix' };
-  }
-  if (name.includes('italian') || name.includes('monza')) {
-    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Autodromo_Nazionale_Monza_2019.jpg/1280px-Autodromo_Nazionale_Monza_2019.jpg'], cap: 'Autodromo Nazionale Monza · Monza, Italy · Temple of Speed' };
-  }
-  if (name.includes('belgian') || name.includes('spa')) {
-    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Spa-Francorchamps_from_above_2021.jpg/1280px-Spa-Francorchamps_from_above_2021.jpg'], cap: 'Circuit de Spa-Francorchamps · Belgium · One of the greatest circuits on Earth' };
-  }
-  if (name.includes('singapore')) {
-    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Singapore_GP_2019_Marina_Bay.jpg/1280px-Singapore_GP_2019_Marina_Bay.jpg'], cap: 'Marina Bay Street Circuit · Singapore · F1\'s most dramatic night race' };
-  }
-  if (name.includes('japanese') || name.includes('suzuka')) {
-    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Suzuka_Circuit.jpg/1280px-Suzuka_Circuit.jpg'], cap: 'Suzuka Circuit · Suzuka, Japan' };
-  }
-  if (name.includes('miami')) {
-    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Miami_International_Autodrome_2022.jpg/1280px-Miami_International_Autodrome_2022.jpg'], cap: 'Miami International Autodrome · Miami Gardens, Florida' };
-  }
-  if (name.includes('las vegas')) {
-    return { urls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Las_Vegas_Grand_Prix_2023.jpg/1280px-Las_Vegas_Grand_Prix_2023.jpg'], cap: 'Las Vegas Street Circuit · Las Vegas, Nevada' };
+  const circuits = [
+    [/monaco/,                              'monaco',      'Circuit de Monaco · Monte Carlo · The most iconic 3.3 miles in motorsport'],
+    [/british|silverstone/,                 'silverstone', 'Silverstone Circuit · Northamptonshire, England'],
+    [/italian|monza/,                       'monza',       'Autodromo Nazionale Monza · Monza, Italy · Temple of Speed'],
+    [/belgian|spa/,                         'spa',         'Circuit de Spa-Francorchamps · Belgium'],
+    [/japanese|suzuka/,                     'suzuka',      'Suzuka Circuit · Suzuka, Japan'],
+    [/united states|austin|americas|cota/,  'cota',        'Circuit of the Americas · Austin, Texas'],
+    [/bahrain/,                             'bahrain',     'Bahrain International Circuit · Sakhir'],
+    [/australian|melbourne|albert park/,    'melbourne',   'Albert Park Circuit · Melbourne, Australia'],
+    [/canadian|montreal|villeneuve/,        'montreal',    'Circuit Gilles Villeneuve · Montreal, Canada'],
+    [/spanish|barcelona|catalun/,           'barcelona',   'Circuit de Barcelona-Catalunya · Spain'],
+    [/dutch|zandvoort/,                     'zandvoort',   'Circuit Zandvoort · Netherlands'],
+    [/singapore|marina bay/,                'singapore',   'Marina Bay Street Circuit · Singapore'],
+    [/las vegas/,                           'lasvegas',    'Las Vegas Strip Circuit · Las Vegas, Nevada'],
+    [/austrian|red bull ring|spielberg/,    'redbullring', 'Red Bull Ring · Spielberg, Austria'],
+    [/brazil|paulo|interlagos/,             'interlagos',  'Interlagos (Autodromo Jose Carlos Pace) · Sao Paulo, Brazil'],
+  ];
+  for (const [re, key, cap] of circuits) {
+    if (re.test(name)) return { urls: [`/assets/circuits/${key}.jpg`], cap };
   }
   return null;
 }
