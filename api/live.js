@@ -620,8 +620,41 @@ function deriveLiveNow({ scoreboard, f1, golf }) {
     }
   }
 
-  cards.sort((a, b) => b.importance - a.importance);
-  return cards.length ? cards.slice(0, 8) : null;
+  if (cards.length) {
+    cards.sort((a, b) => b.importance - a.importance);
+    return cards.slice(0, 8);
+  }
+
+  // Nothing live right now → show what's ON THE SLATE so this is never blank:
+  // tonight's scheduled games + any upcoming F1/golf, tagged as upcoming.
+  const sched = [];
+  if (f1 && f1.phase === 'upcoming' && f1.event) {
+    sched.push({
+      kind: 'f1', importance: 100, title: f1.event, status: 'upcoming',
+      statusText: `Formula 1 · ${f1.statusText || 'Upcoming'}`,
+      lines: f1.grid ? [{ left: `Pole: ${f1.grid.driver}`, right: f1.grid.team || '' }] : [], leader: '',
+    });
+  }
+  if (golf && (golf.state === 'pre' || golf.state === 'upcoming') && golf.event) {
+    sched.push({
+      kind: 'golf', importance: 80, title: golf.event, status: 'upcoming',
+      statusText: `Golf · ${golf.statusText || 'Tees off soon'}`, lines: [], leader: '',
+    });
+  }
+  if (scoreboard) {
+    for (const lg of scoreboard) {
+      for (const g of lg.games) {
+        if (g.state !== 'pre') continue;
+        sched.push({
+          kind: 'game', importance: g.importance, title: `${g.away.abbr} @ ${g.home.abbr}`, status: 'upcoming',
+          statusText: `${g.headline || lg.label} · ${g.statusText}`,
+          lines: [{ left: g.away.name, right: '' }, { left: g.home.name, right: '' }], leader: '',
+        });
+      }
+    }
+  }
+  sched.sort((a, b) => b.importance - a.importance);
+  return sched.length ? sched.slice(0, 6) : null;
 }
 
 /* ------------------------------------------------------------------- handler */

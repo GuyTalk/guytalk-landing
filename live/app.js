@@ -191,16 +191,16 @@ const constructorColor = (name) => {
 // own clean, trademark-safe badge. Image-ready: add a `logo` URL to a row below
 // and it renders the image with the badge as a graceful fallback.
 const CONSTRUCTORS = [
-  { re: /red bull/i,                            abbr: 'RBR', bg: '#3671C6', fg: '#fff' },
-  { re: /ferrari/i,                             abbr: 'FER', bg: '#E8002D', fg: '#fff' },
-  { re: /mercedes/i,                            abbr: 'MER', bg: '#00D7B6', fg: '#06251F' },
-  { re: /mclaren/i,                             abbr: 'MCL', bg: '#FF8000', fg: '#fff' },
-  { re: /aston martin/i,                        abbr: 'AMR', bg: '#229971', fg: '#fff' },
-  { re: /alpine/i,                              abbr: 'ALP', bg: '#0093CC', fg: '#fff' },
-  { re: /williams/i,                            abbr: 'WIL', bg: '#1868DB', fg: '#fff' },
-  { re: /racing bulls|alphatauri|(^|\b)rb\b/i,  abbr: 'RB',  bg: '#6692FF', fg: '#0A1B3D' },
-  { re: /haas/i,                                abbr: 'HAA', bg: '#9CA3A8', fg: '#111' },
-  { re: /sauber|audi|kick/i,                    abbr: 'SAU', bg: '#52E252', fg: '#0A2E12' },
+  { re: /red bull/i,                            abbr: 'RBR', bg: '#3671C6', fg: '#fff',     logo: '/assets/f1/redbull.png' },
+  { re: /ferrari/i,                             abbr: 'FER', bg: '#E8002D', fg: '#fff',     logo: '/assets/f1/ferrari.png' },
+  { re: /mercedes/i,                            abbr: 'MER', bg: '#00D7B6', fg: '#06251F',  logo: '/assets/f1/mercedes.png' },
+  { re: /mclaren/i,                             abbr: 'MCL', bg: '#FF8000', fg: '#fff',     logo: '/assets/f1/mclaren.png' },
+  { re: /aston martin/i,                        abbr: 'AMR', bg: '#229971', fg: '#fff',     logo: '/assets/f1/astonmartin.png' },
+  { re: /alpine/i,                              abbr: 'ALP', bg: '#0093CC', fg: '#fff',     logo: '/assets/f1/alpine.png' },
+  { re: /williams/i,                            abbr: 'WIL', bg: '#1868DB', fg: '#fff',     logo: '/assets/f1/williams.png' },
+  { re: /racing bulls|alphatauri|(^|\b)rb\b/i,  abbr: 'RB',  bg: '#6692FF', fg: '#0A1B3D',  logo: '/assets/f1/rb.png' },
+  { re: /haas/i,                                abbr: 'HAA', bg: '#9CA3A8', fg: '#111',     logo: '/assets/f1/haas.png' },
+  { re: /sauber|audi|kick/i,                    abbr: 'SAU', bg: '#52E252', fg: '#0A2E12',  logo: '/assets/f1/sauber.png' },
   { re: /cadillac/i,                            abbr: 'CAD', bg: '#C8102E', fg: '#fff' },
 ];
 const constructorMeta = (name) => CONSTRUCTORS.find((c) => c.re.test(name || '')) || null;
@@ -211,7 +211,9 @@ function constructorBadge(name) {
   const fg = m ? m.fg : '#fff';
   const abbr = m ? m.abbr : name.replace(/[^a-z]/gi, '').slice(0, 3).toUpperCase();
   if (m && m.logo) {
-    return `<span class="team-badge" style="background:${bg}"><img class="tb-logo" src="${esc(m.logo)}" alt="${esc(name)}" loading="lazy"></span>`;
+    // White plate so the full-colour team emblem reads cleanly; monogram shows
+    // if the image ever fails to load.
+    return `<span class="team-badge team-badge-logo" title="${esc(name)}"><img class="tb-logo" src="${esc(m.logo)}" alt="${esc(name)}" loading="lazy" onerror="var s=this.parentNode;s.classList.remove('team-badge-logo');s.style.background='${bg}';s.style.color='${fg}';s.textContent='${esc(abbr)}'"></span>`;
   }
   return `<span class="team-badge" style="background:${bg};color:${fg}" title="${esc(name)}">${esc(abbr)}</span>`;
 }
@@ -934,13 +936,18 @@ function FeaturedGolfCard(g) {
   /* ---- section renderers. `real` = the live payload field (may be null). ---- */
 
   function renderLiveNow(real) {
-    const data = real || (IS_DEV ? null : null); // liveNow has no static mock; honest empty if absent
-    setBadge('badge-live', real ? 'live' : null);
     const el = $('liveNow');
+    const anyLive = !!(real && real.some((c) => c.status === 'live'));
+    setBadge('badge-live', anyLive ? 'live' : null);
+    const desc = $('desc-live');
     if (!real || !real.length) {
-      el.innerHTML = `<div class="empty" style="grid-column:1/-1">Nothing major is live this moment. Scroll for the latest results, standings, and what's next.</div>`;
+      if (desc) desc.textContent = 'Quiet on the schedule right now — scroll for the latest results, standings, and what’s next.';
+      el.innerHTML = `<div class="empty" style="grid-column:1/-1">Nothing live and nothing on tonight’s slate yet. Scroll for the latest results, standings, and what’s next.</div>`;
       return;
     }
+    if (desc) desc.textContent = anyLive
+      ? 'The biggest events happening right now, ranked by what matters.'
+      : 'Nothing’s live this second — here’s what’s on the slate next, ranked by what matters.';
     el.innerHTML = real.map(LiveEventCard).join('');
   }
 
