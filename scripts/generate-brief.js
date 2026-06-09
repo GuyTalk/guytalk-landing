@@ -6,7 +6,7 @@ require('dotenv').config({ path: '.env.local' });
 const fs   = require('fs');
 const path = require('path');
 
-const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchGolf, fetchTrending } = require('./lib/fetchers');
+const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTrending } = require('./lib/fetchers');
 const { generateCopy }                                      = require('./lib/copy');
 const { editBrief }                                         = require('./lib/editor');
 const { buildHtml }                                         = require('./lib/html');
@@ -233,7 +233,7 @@ async function main() {
   // ── Fetch data ─────────────────────────────────────────────────────────────
   console.log('📡 Fetching data...');
 
-  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult] = await Promise.allSettled([
+  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult, screenersResult] = await Promise.allSettled([
     fetchNBA(),
     fetchMarkets(),
     fetchGolf(),
@@ -241,10 +241,20 @@ async function main() {
     fetchF1(),
     fetchWorldCup(),
     fetchNBAUpcoming(),
+    fetchMarketScreeners(),
   ]);
 
   let sports       = sportsResult.status    === 'fulfilled' ? sportsResult.value    : null;
   const markets    = marketsResult.status   === 'fulfilled' ? marketsResult.value   : null;
+  const screeners  = screenersResult.status === 'fulfilled' ? screenersResult.value : null;
+  // Attach market-wide screeners (FMP) to the markets object so they're saved
+  // with the issue and rendered. Falls back to watchlist movers if no FMP key.
+  if (markets && screeners) {
+    markets.__screeners = screeners;
+    console.log(`   ✓ Market screeners: ${screeners.gainers.length} gainers, ${screeners.losers.length} losers, ${screeners.actives.length} most-active`);
+  } else if (markets) {
+    console.log('   ⚠  No FMP screeners (set FMP_API_KEY) — using watchlist movers fallback');
+  }
   const golf       = golfResult.status      === 'fulfilled' ? golfResult.value      : null;
   const trending   = trendingResult.status  === 'fulfilled' ? trendingResult.value  : null;
   const f1         = f1Result.status        === 'fulfilled' ? f1Result.value        : null;

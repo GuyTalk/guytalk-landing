@@ -76,6 +76,7 @@ const TICKERS = {
   'SPY':  { name: 'S&P 500',   finnhub: 'SPY',              ms: 'etfs/arcx/spy/quote',        display: 'S&P 500' },
   'DIA':  { name: 'Dow Jones', finnhub: 'DIA',              ms: 'etfs/arcx/dia/quote',        display: 'Dow' },
   'QQQ':  { name: 'Nasdaq 100',finnhub: 'QQQ',              ms: 'etfs/arcx/qqq/quote',        display: 'Nasdaq' },
+  'IWM':  { name: 'Russell 2000',finnhub: 'IWM',            ms: 'etfs/arcx/iwm/quote',        display: 'Russell 2000' },
   '10Y':  { name: '10Y Yield', finnhub: null,               ms: null,                         display: '10Y Treasury', yahoo: '%5ETNX' },
   // ── Movers watchlist — rotates daily by biggest move ─────────────────────
   'NVDA': { name: 'Nvidia',    finnhub: 'NVDA',             ms: 'stocks/xnas/nvda/quote',     display: 'NVDA' },
@@ -94,8 +95,8 @@ const TICKERS = {
   'BTC':  { name: 'Bitcoin',   finnhub: 'BINANCE:BTCUSDT',  ms: 'funds/xnas/gbtc/quote',      display: 'Bitcoin' },
 };
 
-// Core indices always rendered, in order (S&P, Dow, Nasdaq, 10Y Treasury).
-const CORE_TICKERS = ['SPY', 'DIA', 'QQQ', '10Y'];
+// Core indices always rendered, in order (S&P, Dow, Nasdaq, Russell 2000, 10Y).
+const CORE_TICKERS = ['SPY', 'DIA', 'QQQ', 'IWM', '10Y'];
 
 // Pool scanned each day; the biggest movers get featured under the indices so
 // the individual names aren't the same every issue.

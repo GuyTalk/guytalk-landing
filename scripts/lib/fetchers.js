@@ -428,10 +428,22 @@ async function fetchMarkets() {
     .slice(0, MOVERS_COUNT || 5)
     .map(m => m.sym);
 
+  // Sparklines + reliable week % for the equity indices (Yahoo, keyless).
+  // Finnhub's candle endpoint is premium, so we source the series from Yahoo.
+  for (const sym of ['SPY', 'DIA', 'QQQ', 'IWM']) {
+    if (!results[sym]) continue;
+    const sp = await fetchYahooSpark(sym);
+    if (sp) {
+      results[sym].spark = sp.closes;
+      if (results[sym].weekChangePct == null) results[sym].weekChangePct = sp.weekChangePct;
+      if (results[sym].price == null) results[sym].price = sp.price;
+    }
+  }
+
   // 10Y Treasury yield via Yahoo Finance (^TNX) — no API key required
   try {
     const yRes = await fetch(
-      'https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=6d',
+      'https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=1mo',
       { headers: { 'User-Agent': 'Mozilla/5.0' } }
     );
     if (yRes.ok) {
@@ -444,7 +456,7 @@ async function fetchMarkets() {
       const dayChangePct = (price && prevClose) ? ((price - prevClose) / prevClose) * 100 : null;
       const weekStart = closes[Math.max(0, closes.length - 6)];
       const weekChangePct = (weekStart && price) ? ((price - weekStart) / weekStart) * 100 : null;
-      results['10Y'] = { price, prevClose, dayChange: price && prevClose ? price - prevClose : null, dayChangePct, weekChangePct };
+      results['10Y'] = { price, prevClose, dayChange: price && prevClose ? price - prevClose : null, dayChangePct, weekChangePct, spark: closes.slice(-22) };
     }
   } catch (_) {}
 
@@ -452,6 +464,71 @@ async function fetchMarkets() {
   results.__meta = marketTiming();
 
   return results;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Yahoo Finance daily series (keyless) — for index sparklines + accurate week %.
+// Returns { closes:[...], price, prevClose, weekChangePct } or null.
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchYahooSpark(yahooSymbol) {
+  try {
+    const res = await fetch(
+      `https://query1.finance.yahoo.com/v8/finance/chart/${yahooSymbol}?interval=1d&range=1mo`,
+      { headers: { 'User-Agent': 'Mozilla/5.0' } }
+    );
+    if (!res.ok) return null;
+    const j = await res.json();
+    const result = j?.chart?.result?.[0];
+    const closes = (result?.indicators?.quote?.[0]?.close || []).filter(v => v != null);
+    if (closes.length < 2) return null;
+    const meta = result?.meta || {};
+    const price = meta.regularMarketPrice ?? closes[closes.length - 1];
+    const prevClose = meta.previousClose ?? closes[closes.length - 2];
+    const weekStart = closes[Math.max(0, closes.length - 6)];
+    const weekChangePct = (weekStart && price) ? ((price - weekStart) / weekStart) * 100 : null;
+    return { closes: closes.slice(-22), price, prevClose, weekChangePct };
+  } catch (_) { return null; }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Financial Modeling Prep: market-WIDE screeners — Top Gainers, Top Losers,
+// Most Active. This is the real thing (whole market), not a curated watchlist.
+// Free tier covers these endpoints. Returns null (caller falls back) if no key.
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchMarketScreeners(limit = 4) {
+  const key = process.env.FMP_API_KEY;
+  if (!key || key.includes('your_') || key.includes('_here')) return null;
+
+  const norm = (arr) => (Array.isArray(arr) ? arr : [])
+    .map(r => {
+      const pct = typeof r.changesPercentage === 'string'
+        ? parseFloat(r.changesPercentage.replace(/[()%]/g, ''))
+        : r.changesPercentage;
+      return {
+        symbol: r.symbol,
+        name: r.name || r.symbol,
+        price: typeof r.price === 'number' ? r.price : parseFloat(r.price),
+        changePct: Number.isFinite(pct) ? pct : null,
+      };
+    })
+    .filter(r => r.symbol && r.changePct !== null)
+    .slice(0, limit);
+
+  const get = async (path) => {
+    try {
+      const res = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/${path}?apikey=${key}`);
+      if (!res.ok) return [];
+      const j = await res.json();
+      return Array.isArray(j) ? j : [];
+    } catch (_) { return []; }
+  };
+
+  try {
+    const [gainers, losers, actives] = await Promise.all([get('gainers'), get('losers'), get('actives')]);
+    const out = { gainers: norm(gainers), losers: norm(losers), actives: norm(actives) };
+    if (!out.gainers.length && !out.losers.length && !out.actives.length) return null;
+    return out;
+  } catch (_) { return null; }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -543,4 +620,4 @@ async function fetchTrending() {
   return items;
 }
 
-module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchGolf, fetchTrending };
+module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTrending };

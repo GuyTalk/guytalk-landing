@@ -168,6 +168,13 @@ function buildHtml(issue, relatedIssues) {
   const hasWC  = worldCup?.length > 0;
   const hasGolf = golf?.name != null;
 
+  // Hero photo for the top event — the lead game's venue (or upcoming marquee).
+  const heroGame = (sports && sports[0]) || (upcoming && upcoming[0]) || null;
+  const heroV = heroGame ? venueImage(heroGame.home.abbrev, (heroGame.sport || 'nba').toLowerCase()) : null;
+  const heroImgHtml = heroV
+    ? `<div class="brief-hero-img"><img src="${esc(heroV.url)}" alt="${esc(heroV.alt)}" loading="eager"><div class="brief-hero-img-cap"><span class="bhi-pin">◍</span>${esc(heroV.cap)}</div></div>`
+    : '';
+
   const seoTitle = buildSeoTitle(issue);
   const seoDesc  = buildSeoDesc(issue);
 
@@ -248,6 +255,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </div>
 
 <article class="brief-article" id="briefArticle">
+
+${heroImgHtml}
 
 ${buildTopModule(issue)}
 
@@ -1246,12 +1255,17 @@ function buildLead({ sports, upcoming, copy }) {
   // Upcoming card if there are no results at all (no games played yet today)
   const upcomingCard = (!sports?.length && upcoming?.length) ? buildUpcomingGameCard(upcoming[0]) : '';
 
-  // Venue image for lead game
+  // Venue image + an explicit "where / who's home" line for the lead game
   let venueHtml = '';
+  let whereHtml = '';
   if (leadGame) {
     const sport = leadGame.sport?.toLowerCase() || 'nba';
     const venue = venueImage(leadGame.home.abbrev, sport);
     if (venue) venueHtml = `    <div class="brief-img"><img src="${esc(venue.url)}" alt="${esc(venue.alt)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(venue.cap)}</div></div>`;
+    const venueTxt = venue ? venue.cap.split(' · ').slice(0, 2).join(' · ') : '';
+    const startTime = leadGame.statusState !== 'post' ? fmtGameTime(leadGame.date) : '';
+    const bits = [venueTxt, `${leadGame.home.team} at home`, startTime].filter(Boolean);
+    if (bits.length) whereHtml = `    <div class="where-line"><span class="where-pin">◍</span>${esc(bits.join('  ·  '))}</div>`;
   }
 
   const headline = lead?.headline || (leadGame
@@ -1267,6 +1281,7 @@ function buildLead({ sports, upcoming, copy }) {
     <div class="section-label sl-sports">The Lead</div>
     <h3>${esc(headline)}</h3>
 ${scoreboardHtml}
+${whereHtml}
 ${venueHtml}
 ${upcomingCard}
 ${whatHappened ? `    <p>${esc(whatHappened)}</p>` : ''}
@@ -1345,6 +1360,22 @@ ${watchNextCard}
 // ─────────────────────────────────────────────────────────────────────────────
 // MARKETS — restructured
 // ─────────────────────────────────────────────────────────────────────────────
+// Tiny inline-SVG sparkline from a series of closes. Renders on web; email
+// clients that strip SVG simply fall back to the price + % (still readable).
+function sparklineSvg(closes, dir) {
+  if (!Array.isArray(closes) || closes.length < 2) return '';
+  const w = 88, h = 28, pad = 3;
+  const min = Math.min(...closes), max = Math.max(...closes);
+  const range = (max - min) || 1;
+  const pts = closes.map((c, i) => {
+    const x = pad + (i / (closes.length - 1)) * (w - 2 * pad);
+    const y = pad + (1 - (c - min) / range) * (h - 2 * pad);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+  const stroke = dir === 'dn' ? '#DC2626' : '#16A34A';
+  return `<svg class="mt-spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${stroke}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
 function buildMarkets({ markets, copy, date }) {
   if (!markets) return '';
 
@@ -1357,7 +1388,7 @@ function buildMarkets({ markets, copy, date }) {
   const whyBullet2 = md.whyBullet2 || '';
   const bringUp    = md.bringUp    || '';
 
-  // ── Core index tiles — always present (S&P, Dow, Nasdaq, 10Y Treasury) ──
+  // ── Core index tiles — always present (S&P, Dow, Nasdaq, Russell 2000, 10Y) ──
   const coreList = (CORE_TICKERS && CORE_TICKERS.length) ? CORE_TICKERS : ['SPY', 'QQQ', '10Y'];
   const indexTiles = coreList.map(sym => {
     const cfg = TICKERS[sym];
@@ -1367,40 +1398,59 @@ function buildMarkets({ markets, copy, date }) {
     const hasDay = q.dayChangePct !== null && q.dayChangePct !== undefined;
     const dayPct = hasDay ? fmtPct(q.dayChangePct) : '—';
     const dir    = hasDay ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
+    const spark  = sparklineSvg(q.spark, dir);
     return `        <div class="mkt-tile ${dir}">
           <div class="mt-name">${esc(cfg.display || sym)}</div>
           <div class="mt-price">${esc(price)}</div>
-          <div class="mt-chg ${dir}">${hasDay ? esc(dayPct) : '—'}</div>
+          <div class="mt-foot"><span class="mt-chg ${dir}">${hasDay ? esc(dayPct) : '—'}</span>${spark}</div>
         </div>`;
   }).filter(Boolean).join('\n');
 
-  // ── Movers — the biggest individual names of the day (rotates daily) ────
-  const movers = Array.isArray(markets.__dynamicMovers) ? markets.__dynamicMovers : [];
-  const moverRows = movers.map(sym => {
-    const cfg = TICKERS[sym];
-    const q   = markets[sym];
-    if (!cfg || !q) return '';
-    const price  = q.price !== undefined && q.price !== null ? fmtPrice(sym, q.price) : '—';
-    const hasDay = q.dayChangePct !== null && q.dayChangePct !== undefined;
-    const dayPct = hasDay ? fmtPct(q.dayChangePct) : '—';
-    const dir    = hasDay ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
-    const nameHtml = cfg.ms
-      ? `<a href="https://www.morningstar.com/${cfg.ms}" class="ticker">${esc(cfg.display)}</a>`
-      : esc(cfg.display || sym);
-    return `        <div class="mover-row ${dir}">
-          <div class="mv-name">${nameHtml}<span class="mv-full">${esc(cfg.name || '')}</span></div>
-          <div class="mv-price">${esc(price)}</div>
-          <div class="mv-chg"><span class="pct-badge ${dir}">${hasDay ? esc(dayPct) : '—'}</span></div>
+  // ── Individual stock trackers — true market-wide (FMP screeners) ────────
+  const scr = markets.__screeners;
+  const usd = (v) => (v == null || isNaN(v)) ? '' : `$${Number(v).toFixed(2)}`;
+  const trkCol = (title, items, cls) => {
+    if (!Array.isArray(items) || !items.length) return '';
+    const rows = items.map(it => {
+      const dir = it.changePct >= 0 ? 'up' : 'dn';
+      return `          <div class="trk-row" title="${esc(it.name || it.symbol)}">
+            <span class="trk-sym">${esc(it.symbol)}</span>
+            <span class="trk-price">${esc(usd(it.price))}</span>
+            <span class="pct-badge ${dir}">${esc(fmtPct(it.changePct))}</span>
+          </div>`;
+    }).join('\n');
+    return `        <div class="trk-col ${cls}">
+          <div class="trk-hd">${esc(title)}</div>
+${rows}
         </div>`;
-  }).filter(Boolean).join('\n');
+  };
 
-  const moversBlock = moverRows ? `
+  let trackersBlock = '';
+  if (scr && (scr.gainers?.length || scr.losers?.length || scr.actives?.length)) {
+    trackersBlock = `
+      <div class="mkt-trackers">
+${[trkCol('Top Gainers', scr.gainers, 'trk-up'), trkCol('Top Losers', scr.losers, 'trk-dn'), trkCol('Most Active', scr.actives, 'trk-active')].filter(Boolean).join('\n')}
+      </div>`;
+  } else {
+    // Fallback: biggest movers from the curated watchlist (no FMP key yet).
+    const movers = Array.isArray(markets.__dynamicMovers) ? markets.__dynamicMovers : [];
+    const moverRows = movers.map(sym => {
+      const cfg = TICKERS[sym]; const q = markets[sym];
+      if (!cfg || !q) return '';
+      const price  = q.price != null ? fmtPrice(sym, q.price) : '—';
+      const hasDay = q.dayChangePct != null;
+      const dir    = hasDay ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
+      const nameHtml = cfg.ms ? `<a href="https://www.morningstar.com/${cfg.ms}" class="ticker">${esc(cfg.display)}</a>` : esc(cfg.display || sym);
+      return `          <div class="mover-row ${dir}"><div class="mv-name">${nameHtml}<span class="mv-full">${esc(cfg.name || '')}</span></div><div class="mv-price">${esc(price)}</div><div class="mv-chg"><span class="pct-badge ${dir}">${hasDay ? esc(fmtPct(q.dayChangePct)) : '—'}</span></div></div>`;
+    }).filter(Boolean).join('\n');
+    if (moverRows) trackersBlock = `
       <div class="mkt-movers">
         <div class="mkt-movers-hd">Today's Movers</div>
         <div class="mover-list">
 ${moverRows}
         </div>
-      </div>` : '';
+      </div>`;
+  }
 
   return `  <section class="brief-section" id="markets">
     <div class="section-label sl-markets">Markets</div>
@@ -1413,7 +1463,7 @@ ${moverRows}
       </div>
       <div class="mkt-index-grid">
 ${indexTiles}
-      </div>${moversBlock}
+      </div>${trackersBlock}
     </div>
 
     <ul class="detail-list">
@@ -1433,7 +1483,7 @@ function golfCourseImage(tournamentName) {
     memorial:    { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Muirfield_Village_Golf_Club.jpg/1280px-Muirfield_Village_Golf_Club.jpg', cap: 'Muirfield Village Golf Club · Dublin, Ohio · Host of The Memorial Tournament' },
     masters:     { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Augusta_National_Golf_Club_Masters_2011.jpg/1280px-Augusta_National_Golf_Club_Masters_2011.jpg', cap: 'Augusta National Golf Club · Augusta, Georgia' },
     'us open':   { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Pinehurst_No2_2014.jpg/1280px-Pinehurst_No2_2014.jpg', cap: 'U.S. Open Golf Championship' },
-    open:        { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Royal_Birkdale_Golf_Club_18th_green.jpg/1280px-Royal_Birkdale_Golf_Club_18th_green.jpg', cap: 'The Open Championship · The Royal & Ancient' },
+    'open championship': { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Royal_Birkdale_Golf_Club_18th_green.jpg/1280px-Royal_Birkdale_Golf_Club_18th_green.jpg', cap: 'The Open Championship · The Royal & Ancient' },
     'pga championship': { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Valhalla_Golf_Club.jpg/1280px-Valhalla_Golf_Club.jpg', cap: 'PGA Championship' },
     players:     { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/TPC_Sawgrass_17th_hole.jpg/1280px-TPC_Sawgrass_17th_hole.jpg', cap: 'TPC Sawgrass · Ponte Vedra Beach, Florida · The Players Championship' },
     pebble:      { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Pebble_Beach_Golf_Links.jpg/1280px-Pebble_Beach_Golf_Links.jpg', cap: 'Pebble Beach Golf Links · Pebble Beach, California' },
@@ -1468,11 +1518,14 @@ function buildGolf({ golf, copy }) {
   const courseImgHtml = courseImg
     ? `    <div class="brief-img"><img src="${esc(courseImg.url)}" alt="${esc(courseImg.cap)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(courseImg.cap)}</div></div>`
     : '';
+  const courseWhere = courseImg ? courseImg.cap.split(' · ').slice(0, 2).join(' · ') : '';
+  const golfWhereHtml = courseWhere ? `    <div class="where-line"><span class="where-pin">◍</span>${esc(courseWhere)}</div>` : '';
 
   return `  <section class="brief-section" id="golf">
     <div class="section-label sl-golf">Golf</div>
 ${courseImgHtml}
     <h3>${esc(headline)}</h3>
+${golfWhereHtml}
     ${leaderLine ? `<p class="leaderboard-line">${leaderLine}</p>` : ''}
     <ul class="detail-list">
       ${whyCare1  ? `<li><span><span class="dl-label">Why you should care:</span> ${esc(whyCare1)}</span></li>`  : ''}
@@ -1499,11 +1552,14 @@ function buildF1({ f1, copy }) {
   const imgHtml = circuitImg
     ? `    <div class="brief-img"><img src="${esc(circuitImg.urls[0])}" alt="${esc(circuitImg.cap)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(circuitImg.cap)}</div></div>`
     : '';
+  const circuitWhere = circuitImg ? circuitImg.cap.split(' · ').slice(0, 2).join(' · ') : (f1.name || '');
+  const f1WhereHtml = circuitWhere ? `    <div class="where-line"><span class="where-pin">◍</span>${esc(circuitWhere)}</div>` : '';
 
   return `  <section class="brief-section" id="f1">
     <div class="section-label sl-sports">Formula 1</div>
 ${imgHtml}
     <h3>${esc(headline)}</h3>
+${f1WhereHtml}
     <ul class="detail-list">
       ${whyCare1  ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyCare1)}</span></li>`  : ''}
       ${whyCare2  ? `<li><span><span class="dl-label">Championship:</span> ${esc(whyCare2)}</span></li>`   : ''}
