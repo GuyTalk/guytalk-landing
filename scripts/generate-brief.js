@@ -6,7 +6,7 @@ require('dotenv').config({ path: '.env.local' });
 const fs   = require('fs');
 const path = require('path');
 
-const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTrending } = require('./lib/fetchers');
+const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTrending } = require('./lib/fetchers');
 const { generateCopy }                                      = require('./lib/copy');
 const { editBrief }                                         = require('./lib/editor');
 const { buildHtml }                                         = require('./lib/html');
@@ -233,7 +233,7 @@ async function main() {
   // ── Fetch data ─────────────────────────────────────────────────────────────
   console.log('📡 Fetching data...');
 
-  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult, screenersResult] = await Promise.allSettled([
+  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult, screenersResult, nhlResult] = await Promise.allSettled([
     fetchNBA(),
     fetchMarkets(),
     fetchGolf(),
@@ -242,11 +242,14 @@ async function main() {
     fetchWorldCup(),
     fetchNBAUpcoming(),
     fetchMarketScreeners(),
+    fetchNHL(),
   ]);
 
   let sports       = sportsResult.status    === 'fulfilled' ? sportsResult.value    : null;
   const markets    = marketsResult.status   === 'fulfilled' ? marketsResult.value   : null;
   const screeners  = screenersResult.status === 'fulfilled' ? screenersResult.value : null;
+  const nhl        = nhlResult.status === 'fulfilled' ? nhlResult.value : null;
+  if (nhl) console.log(`   ✓ NHL: ${nhl.final ? nhl.final.shortName + ' (Final)' : ''}${nhl.next ? ` next: ${nhl.next.shortName}` : ''}`);
   // Attach market-wide screeners (FMP) to the markets object so they're saved
   // with the issue and rendered. Falls back to watchlist movers if no FMP key.
   if (markets && screeners) {
@@ -384,6 +387,7 @@ async function main() {
     golf,
     f1,
     worldCup,
+    nhl,
     upcoming,
     gameMetas,
     trending,

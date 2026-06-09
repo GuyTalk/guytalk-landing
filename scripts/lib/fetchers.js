@@ -1,6 +1,6 @@
 'use strict';
 
-const { TICKERS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT } = require('./db');
+const { TICKERS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT, LARGECAP_UNIVERSE, CRYPTO_UNIVERSE } = require('./db');
 
 function orderSuffix(n) {
   if (n === 1) return '1st';
@@ -23,6 +23,8 @@ function parseESPNGames(data, sport = 'NBA') {
       name: ev.name,
       shortName: ev.shortName,
       date: ev.date || comp.date || null,   // ISO start time (for tip-off / first-pitch)
+      venue: comp.venue?.fullName || '',
+      venueCity: [comp.venue?.address?.city, comp.venue?.address?.state].filter(Boolean).join(', '),
       status: comp.status?.type?.description || 'Final',
       statusState: ev.status?.type?.state || 'post',
       note: comp.notes?.[0]?.headline || '',
@@ -84,6 +86,28 @@ async function fetchNBAUpcoming() {
     } catch (_) {}
   }
   return scheduled;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ESPN: NHL — most recent final + next upcoming game (with venue/date)
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchNHL() {
+  const get = async (ds) => {
+    try {
+      const url = `https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard${ds ? `?dates=${ds}` : ''}`;
+      const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+      if (!res.ok) return [];
+      return parseESPNGames(await res.json(), 'NHL');
+    } catch (_) { return []; }
+  };
+  const d = new Date(); d.setDate(d.getDate() - 1);
+  const ds = d.toISOString().slice(0, 10).replace(/-/g, '');
+  const yfinals = (await get(ds)).filter(g => g.status === 'Final');
+  const cur = await get();
+  const final = yfinals[0] || cur.find(g => g.status === 'Final') || null;
+  const next = cur.find(g => g.statusState === 'pre') || null;
+  if (!final && !next) return null;
+  return { final, next };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -495,40 +519,60 @@ async function fetchYahooSpark(yahooSymbol) {
 // Most Active. This is the real thing (whole market), not a curated watchlist.
 // Free tier covers these endpoints. Returns null (caller falls back) if no key.
 // ─────────────────────────────────────────────────────────────────────────────
+// Builds Top Gainers / Losers / Most Active from a curated LARGE-CAP + CRYPTO
+// universe (recognizable names only, never penny stocks) using FMP per-symbol
+// quotes (free-tier; batch is paid). Gainers/losers by % move, most-active by
+// volume. Crypto is mixed in so there's always a coin in the running.
 async function fetchMarketScreeners(limit = 4) {
   const key = process.env.FMP_API_KEY;
   if (!key || key.includes('your_') || key.includes('_here')) return null;
 
-  const norm = (arr) => (Array.isArray(arr) ? arr : [])
-    .map(r => {
-      const pct = typeof r.changesPercentage === 'string'
-        ? parseFloat(r.changesPercentage.replace(/[()%]/g, ''))
-        : r.changesPercentage;
+  const symbols = [...(LARGECAP_UNIVERSE || []), ...(CRYPTO_UNIVERSE || [])];
+  const isCrypto = (s) => /USD$/.test(s) && (CRYPTO_UNIVERSE || []).includes(s);
+  const disp = (s) => isCrypto(s) ? s.replace(/USD$/, '') : s;
+
+  const quote = async (sym) => {
+    try {
+      const res = await fetch(`https://financialmodelingprep.com/stable/quote?symbol=${encodeURIComponent(sym)}&apikey=${key}`);
+      if (!res.ok) return null;
+      const r = (await res.json())?.[0];
+      if (!r) return null;
+      const pct = r.changePercentage ?? r.changesPercentage;
       return {
-        symbol: r.symbol,
-        name: r.name || r.symbol,
+        symbol: disp(sym),
+        name: r.name || disp(sym),
         price: typeof r.price === 'number' ? r.price : parseFloat(r.price),
         changePct: Number.isFinite(pct) ? pct : null,
+        volume: r.volume ?? 0,
+        crypto: isCrypto(sym),
       };
-    })
-    .filter(r => r.symbol && r.changePct !== null)
-    .slice(0, limit);
-
-  const get = async (path) => {
-    try {
-      const res = await fetch(`https://financialmodelingprep.com/api/v3/stock_market/${path}?apikey=${key}`);
-      if (!res.ok) return [];
-      const j = await res.json();
-      return Array.isArray(j) ? j : [];
-    } catch (_) { return []; }
+    } catch (_) { return null; }
   };
 
-  try {
-    const [gainers, losers, actives] = await Promise.all([get('gainers'), get('losers'), get('actives')]);
-    const out = { gainers: norm(gainers), losers: norm(losers), actives: norm(actives) };
-    if (!out.gainers.length && !out.losers.length && !out.actives.length) return null;
-    return out;
-  } catch (_) { return null; }
+  // Bounded concurrency so we stay polite on the free tier.
+  const rows = [];
+  const POOL = 6;
+  for (let i = 0; i < symbols.length; i += POOL) {
+    const batch = await Promise.all(symbols.slice(i, i + POOL).map(quote));
+    rows.push(...batch.filter(r => r && r.changePct !== null));
+  }
+  if (!rows.length) return null;
+
+  const byPctDesc = [...rows].sort((a, b) => b.changePct - a.changePct);
+  const strip = (r) => ({ symbol: r.symbol, name: r.name, price: r.price, changePct: r.changePct });
+
+  // Gainers/losers from the full universe (a coin shows up when it's a big mover).
+  // Most Active = top stocks by volume + one crypto, so it stays recognizable
+  // (crypto volume otherwise dwarfs every stock) while guaranteeing crypto presence.
+  const stocksByVol = rows.filter(r => !r.crypto).sort((a, b) => (b.volume || 0) - (a.volume || 0));
+  const cryptoByVol = rows.filter(r => r.crypto).sort((a, b) => (b.volume || 0) - (a.volume || 0));
+  const actives = [...stocksByVol.slice(0, Math.max(1, limit - 1)), ...cryptoByVol.slice(0, 1)];
+
+  return {
+    gainers: byPctDesc.filter(r => r.changePct > 0).slice(0, limit).map(strip),
+    losers:  byPctDesc.filter(r => r.changePct < 0).slice(-limit).reverse().map(strip),
+    actives: actives.map(strip),
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -626,4 +670,4 @@ async function fetchTrending() {
   return items;
 }
 
-module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTrending };
+module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTrending };

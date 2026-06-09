@@ -158,7 +158,7 @@ ${items}
 }
 
 function buildHtml(issue, relatedIssues) {
-  const { num, slug, date, title, deck, sports, markets, golf, f1, worldCup, upcoming, gameMetas, trending, copy } = issue;
+  const { num, slug, date, title, deck, sports, markets, golf, f1, worldCup, nhl, upcoming, gameMetas, trending, copy } = issue;
   const label = `#${String(num).padStart(3, '0')}`;
   const prevSlug = num > 1 ? `issue-${String(num - 1).padStart(3, '0')}` : null;
   const nextSlug = `issue-${String(num + 1).padStart(3, '0')}`;
@@ -167,17 +167,31 @@ function buildHtml(issue, relatedIssues) {
   const hasF1  = f1?.name != null;
   const hasWC  = worldCup?.length > 0;
   const hasGolf = golf?.name != null;
+  const hasNHL = !!(nhl && (nhl.final || nhl.next));
 
-  // Hero photo for the top event. Prefer ESPN's real game photo (reliable CDN),
-  // fall back to a venue photo. onerror hides the whole block so a dead image
-  // never shows a broken icon.
+  // Designed hero banner for the top event: a self-hosted sport photo darkened
+  // behind the team logos (ESPN CDN) + event + venue. Self-hosted bg can't 404,
+  // and even with no photo the dark banner still renders — never a broken icon.
   const heroGame = (sports && sports[0]) || (upcoming && upcoming[0]) || null;
-  const heroV = heroGame ? venueImage(heroGame.home.abbrev, (heroGame.sport || 'nba').toLowerCase()) : null;
-  const heroEspn = heroGame && gameMetas && gameMetas[heroGame.id] ? gameMetas[heroGame.id].imageUrl : null;
-  const heroUrl = heroEspn || (heroV ? heroV.url : null);
-  const heroCap = heroV ? heroV.cap : (heroGame ? `${heroGame.away?.team || ''} at ${heroGame.home?.team || ''}` : '');
-  const heroImgHtml = heroUrl
-    ? `<div class="brief-hero-img"><img src="${esc(heroUrl)}" alt="${esc(heroCap)}" loading="eager" onerror="this.closest('.brief-hero-img').style.display='none'">${heroCap ? `<div class="brief-hero-img-cap"><span class="bhi-pin">◍</span>${esc(heroCap)}</div>` : ''}</div>`
+  const heroSport = (heroGame?.sport || 'nba').toLowerCase();
+  const heroKey = ({ nba: 'nba', nhl: 'nhl', mlb: 'mlb', f1: 'f1', golf: 'golf' })[heroSport] || 'default';
+  const heroV = heroGame ? venueImage(heroGame.home.abbrev, heroSport) : null;
+  const heroVenueTxt = heroV ? heroV.cap.split(' · ').slice(0, 2).join(' · ') : '';
+  const heroEyebrow = heroGame ? (heroGame.note || heroGame.shortName || 'Today in sports') : '';
+  const hAway = heroGame ? espnLogo(heroGame.away.abbrev, heroSport) : null;
+  const hHome = heroGame ? espnLogo(heroGame.home.abbrev, heroSport) : null;
+  const heroImgHtml = heroGame
+    ? `<div class="brief-hero-banner" style="background-image:url('/assets/hero/${heroKey}.jpg')">
+  <div class="bhb-inner">
+    ${heroEyebrow ? `<div class="bhb-eyebrow">${esc(heroEyebrow)}</div>` : ''}
+    <div class="bhb-teams">
+      ${hAway ? `<img class="bhb-logo" src="${esc(hAway)}" alt="" loading="eager" onerror="this.style.display='none'">` : ''}
+      <span class="bhb-vs">${esc(heroGame.away.abbrev)}<span class="bhb-at"> @ </span>${esc(heroGame.home.abbrev)}</span>
+      ${hHome ? `<img class="bhb-logo" src="${esc(hHome)}" alt="" loading="eager" onerror="this.style.display='none'">` : ''}
+    </div>
+    ${heroVenueTxt ? `<div class="bhb-venue"><span class="where-pin">◍</span>${esc(heroVenueTxt)}</div>` : ''}
+  </div>
+</div>`
     : '';
 
   const seoTitle = buildSeoTitle(issue);
@@ -249,10 +263,9 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
-      <a href="#the-lead" class="sj-link">Lead</a>
-      <a href="#the-take" class="sj-link sj-link-take">The Take</a>
       <a href="#sports" class="sj-link">Sports</a>
-      <a href="#markets" class="sj-link">Markets</a>${hasGolf ? `\n      <a href="#golf" class="sj-link">Golf</a>` : ''}${hasF1 ? `\n      <a href="#f1" class="sj-link">F1</a>` : ''}${hasWC ? `\n      <a href="#worldcup" class="sj-link">World Cup</a>` : ''}
+      <a href="#the-take" class="sj-link sj-link-take">The Take</a>${hasNHL ? `\n      <a href="#nhl" class="sj-link">NHL</a>` : ''}${hasF1 ? `\n      <a href="#f1" class="sj-link">F1</a>` : ''}${hasGolf ? `\n      <a href="#golf" class="sj-link">Golf</a>` : ''}${hasWC ? `\n      <a href="#worldcup" class="sj-link">World Cup</a>` : ''}
+      <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
       <a href="#sharp-take" class="sj-link">Sharp Take</a>
     </nav>
@@ -264,6 +277,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 ${heroImgHtml}
 
 ${buildTopModule(issue)}
+
+<div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
 
 ${buildLead(issue)}
 
@@ -280,6 +295,14 @@ ${buildTheTake(issue)}
 
 ${buildSports(issue)}
 
+${hasNHL ? buildNHL(issue) : ''}
+
+${hasF1 ? buildF1(issue) : ''}
+
+${hasGolf ? buildGolf(issue) : ''}
+
+${hasWC ? buildWorldCup(issue) : ''}
+
 <div class="brief-inline-cta">
   <div class="bic-inner">
     <div class="bic-label">Free · Daily · 5 Minutes</div>
@@ -288,13 +311,11 @@ ${buildSports(issue)}
   <a href="/#signup" class="bic-btn">Subscribe free →</a>
 </div>
 
+<div class="umbrella-head"><h2 class="umbrella-title">Markets</h2></div>
+
 ${buildMarkets(issue)}
 
-${hasGolf ? buildGolf(issue) : ''}
-
-${hasF1 ? buildF1(issue) : ''}
-
-${hasWC ? buildWorldCup(issue) : ''}
+<div class="umbrella-head"><h2 class="umbrella-title">Culture</h2></div>
 
 ${buildCulture(issue)}
 
@@ -1354,8 +1375,8 @@ ${venueImgHtml}
     ? `    <div class="other-scores-label">Other scores worth knowing</div>\n${scoreRows}`
     : '';
 
-  return `  <section class="brief-section" id="sports">
-    <div class="section-label sl-sports">Sports</div>
+  return `  <section class="brief-section" id="sports-scores">
+    <div class="section-label sl-sports">More Sports</div>
 ${scoresSection}
 ${watchNextCard}
   </section>`;
@@ -1620,6 +1641,52 @@ ${matchRows}
       <li><span><span class="dl-label">USA opener:</span> USA vs Paraguay, June 12 · SoFi Stadium · 9pm ET · Fox</span></li>
       <li><span><span class="dl-label">Final:</span> July 19 · MetLife Stadium</span></li>
     </ul>
+  </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NHL — most recent final or next game, with venue + when
+// ─────────────────────────────────────────────────────────────────────────────
+function buildNHL({ nhl }) {
+  if (!nhl || (!nhl.final && !nhl.next)) return '';
+  const isFinal = !!nhl.final;
+  const g = nhl.final || nhl.next;
+  const homeLogo = espnLogo(g.home.abbrev, 'nhl');
+  const awayLogo = espnLogo(g.away.abbrev, 'nhl');
+  const startTime = fmtGameTime(g.date);
+  const whereTxt = [g.venue, g.venueCity].filter(Boolean).join(' · ');
+
+  let body, headline;
+  if (isFinal) {
+    const w = g.home.winner ? g.home : g.away;
+    const side = (t, logo) => `      <div class="score-side">${logo ? `<img src="${esc(logo)}" class="score-logo" alt="${esc(t.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}<div class="score-team">${esc(t.team)}</div><div class="score-num">${esc(t.score)}</div></div>`;
+    body = `
+    <div class="scoreboard">
+${side(g.away, awayLogo)}
+      <div class="score-center"><div class="score-meta">${esc(g.note || g.status)}</div><div class="score-badge">${esc(w.abbrev || w.team.split(' ').pop())} Win</div></div>
+${side(g.home, homeLogo)}
+    </div>`;
+    headline = `${esc(w.team)} win${g.seriesNote ? ` — ${esc(g.seriesNote)}` : ''}.`;
+  } else {
+    body = `
+    <div class="upcoming-card">
+      <div class="upcoming-label">${startTime ? `${esc(startTime)} · ` : ''}${esc(g.note || g.shortName)}</div>
+      <div class="upcoming-matchup">
+        <div class="upcoming-team">${awayLogo ? `<img src="${esc(awayLogo)}" class="upcoming-logo" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}<span>${esc(g.away.team)}</span></div>
+        <div class="upcoming-vs">VS</div>
+        <div class="upcoming-team upcoming-home"><span>${esc(g.home.team)}</span>${homeLogo ? `<img src="${esc(homeLogo)}" class="upcoming-logo" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}</div>
+      </div>
+      ${startTime ? `<div class="upcoming-time">Puck drop ${esc(startTime)}</div>` : ''}
+      ${g.seriesNote ? `<div class="upcoming-series">${esc(g.seriesNote)}</div>` : ''}
+    </div>`;
+    headline = `${esc(g.away.team)} at ${esc(g.home.team)}${startTime ? ` — ${esc(startTime)}` : ''}.`;
+  }
+
+  return `  <section class="brief-section" id="nhl">
+    <div class="section-label sl-sports">NHL</div>
+    <h3>${headline}</h3>
+    ${whereTxt ? `<div class="where-line"><span class="where-pin">◍</span>${esc(whereTxt)}</div>` : ''}
+${body}
   </section>`;
 }
 

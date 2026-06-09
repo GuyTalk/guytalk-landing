@@ -105,6 +105,15 @@ const MOVERS_WATCHLIST = ['NVDA', 'TSLA', 'MSFT', 'AAPL', 'META', 'AMZN', 'GOOGL
 // How many movers to feature under the indices.
 const MOVERS_COUNT = 5;
 
+// Large-cap universe scanned for Top Gainers / Losers / Most Active (recognizable
+// names only — no penny stocks) plus major crypto. Ranked daily by FMP quotes.
+const LARGECAP_UNIVERSE = [
+  'AAPL','MSFT','NVDA','GOOGL','AMZN','META','TSLA','AVGO','AMD','NFLX','ORCL','CRM','ADBE','INTC','MU','QCOM','PLTR','COIN','MSTR','UBER',
+  'JPM','V','MA','BAC','GS','WMT','COST','HD','NKE','MCD','SBUX','DIS','XOM','CVX','UNH','LLY','JNJ','PFE','KO','PEP','BA','CAT','GE','F',
+];
+// FMP crypto symbol format is e.g. BTCUSD; display strips the USD.
+const CRYPTO_UNIVERSE = ['BTCUSD','ETHUSD','SOLUSD','XRPUSD','DOGEUSD'];
+
 // Legacy fixed layout (kept for any older render paths); active brief uses
 // CORE_TICKERS + selected movers.
 const BRIEF_ROWS = [
@@ -441,4 +450,4 @@ const STREAMING_PICKS = [
   },
 ];
 
-module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT, PRODUCTS, RECS, STREAMING_PICKS, esc, playerLink, tickerLink, fmtPrice, fmtPct };
+module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT, LARGECAP_UNIVERSE, CRYPTO_UNIVERSE, PRODUCTS, RECS, STREAMING_PICKS, esc, playerLink, tickerLink, fmtPrice, fmtPct };

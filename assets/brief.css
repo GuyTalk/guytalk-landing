@@ -500,6 +500,22 @@ em { font-style: italic; }
 }
 .upcoming-finals .upcoming-time { color: #6B9FFF; }
 
+/* Umbrella section headers (Sports / Markets / Culture) — anchor the flow */
+.umbrella-head {
+  margin: 56px 0 8px; padding-bottom: 12px; border-bottom: 2px solid var(--text);
+}
+.umbrella-head:first-of-type { margin-top: 40px; }
+.umbrella-kicker {
+  display: block; font-family: 'Inter Tight', sans-serif; font-weight: 700;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px;
+}
+.umbrella-title {
+  font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 30px;
+  letter-spacing: -0.03em; color: var(--text); margin: 0; line-height: 1;
+}
+.umbrella-head + .brief-section { margin-top: 20px; }
+@media (max-width: 560px) { .umbrella-title { font-size: 25px; } .umbrella-head { margin-top: 40px; } }
+
 /* "Where / who's home" line — shown on every sport */
 .where-line {
   display: flex; align-items: center; gap: 7px; margin: -4px 0 18px;
@@ -508,21 +524,39 @@ em { font-style: italic; }
 }
 .where-pin { color: var(--accent); font-size: 13px; line-height: 1; }
 
-/* Hero photo for the top event */
-.brief-hero-img {
+/* Designed hero banner for the top event (self-hosted photo + logos + text) */
+.brief-hero-banner {
   position: relative; border-radius: var(--r-lg); overflow: hidden;
-  margin: 0 0 40px; border: 1px solid var(--border); box-shadow: 0 8px 30px rgba(15,23,36,0.10);
+  margin: 0 0 40px; min-height: 220px;
+  background-color: #0F1724; background-size: cover; background-position: center;
+  display: flex; align-items: flex-end;
+  box-shadow: 0 8px 30px rgba(15,23,36,0.16);
 }
-.brief-hero-img img { width: 100%; display: block; aspect-ratio: 16/7; object-fit: cover; }
-.brief-hero-img-cap {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  padding: 26px 20px 14px; color: #fff;
-  background: linear-gradient(to top, rgba(8,12,20,0.78), transparent);
-  font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 13px;
-  display: flex; align-items: center; gap: 7px;
+.brief-hero-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,12,20,0.92) 0%, rgba(8,12,20,0.55) 45%, rgba(8,12,20,0.35) 100%);
 }
-.bhi-pin { color: #6B9FFF; }
-@media (max-width: 560px) { .brief-hero-img img { aspect-ratio: 16/9; } }
+.bhb-inner { position: relative; z-index: 1; padding: 24px 26px; width: 100%; }
+.bhb-eyebrow {
+  font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: #6B9FFF; margin-bottom: 10px;
+}
+.bhb-teams { display: flex; align-items: center; gap: 14px; }
+.bhb-logo { width: 46px; height: 46px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
+.bhb-vs {
+  font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 30px;
+  letter-spacing: -0.02em; color: #fff; line-height: 1;
+}
+.bhb-at { color: rgba(255,255,255,0.55); font-weight: 600; }
+.bhb-venue {
+  display: flex; align-items: center; gap: 7px; margin-top: 12px;
+  font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 13px; color: rgba(255,255,255,0.9);
+}
+.bhb-venue .where-pin { color: #6B9FFF; }
+@media (max-width: 560px) {
+  .brief-hero-banner { min-height: 180px; }
+  .bhb-vs { font-size: 24px; } .bhb-logo { width: 38px; height: 38px; }
+}
 
 @media (max-width: 720px) {
   .mkt-index-grid { grid-template-columns: repeat(3, 1fr); }
