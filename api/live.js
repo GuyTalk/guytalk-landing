@@ -411,10 +411,23 @@ async function fetchF1() {
   if (year !== CURRENT_YEAR) return null;
 
   // Standings first so we can map driver → constructor on the session board.
-  const [drv, con] = await Promise.all([
+  const [drv, con, sched] = await Promise.all([
     json('https://api.jolpi.ca/ergast/f1/current/driverStandings.json'),
     json('https://api.jolpi.ca/ergast/f1/current/constructorStandings.json'),
+    json('https://api.jolpi.ca/ergast/f1/current.json'),
   ]);
+
+  // Next race on the calendar (for the "Up next" box) — reliable from Jolpica.
+  const races = sched?.MRData?.RaceTable?.Races || [];
+  const nowMs = Date.now();
+  const nx = races.find((r) => new Date(`${r.date}T${r.time || '12:00:00Z'}`).getTime() > nowMs);
+  const nextRace = nx ? {
+    name: nx.raceName,
+    circuit: nx.Circuit?.circuitName || '',
+    location: [nx.Circuit?.Location?.locality, nx.Circuit?.Location?.country].filter(Boolean).join(', '),
+    date: nx.date,
+    time: nx.time || null,
+  } : null;
   const driverList = drv?.MRData?.StandingsTable?.StandingsLists?.[0]?.DriverStandings || [];
   const teamByDriver = {};
   const profileByDriver = {}; // reliable Wikipedia profile URL from Jolpica
@@ -510,6 +523,7 @@ async function fetchF1() {
     sessionLabel,
     statusText,
     nextSession,           // {name, date} | null
+    nextRace,              // {name, circuit, location, date, time} | null
     leagueLogo: pickLogo(data?.leagues?.[0]?.logos),
     circuit: event.circuit?.fullName || '',
     circuitCountry: event.circuit?.address?.country || '',
@@ -522,6 +536,31 @@ async function fetchF1() {
 }
 
 /* ----------------------------------------------------------------------- Golf */
+
+// ESPN's golf feed carries no course/purse, so we keep a small map of public,
+// stable tournament facts. Winner's share defaults to the PGA-standard ~18% of
+// purse when not given. Add rows here as the schedule turns over.
+const GOLF_EVENTS = [
+  { re: /rbc canadian/i,      course: 'TPC Toronto at Osprey Valley', location: 'Ontario, Canada', purse: 9800000 },
+  { re: /memorial/i,          course: 'Muirfield Village Golf Club',  location: 'Dublin, Ohio',     purse: 20000000 },
+  { re: /masters/i,           course: 'Augusta National Golf Club',   location: 'Augusta, Georgia', purse: 20000000, winnerShare: 3600000 },
+  { re: /pga championship/i,  course: 'Quail Hollow Club',            location: 'Charlotte, N.C.',  purse: 19000000, winnerShare: 3420000 },
+  { re: /u\.?s\.? open/i,      course: 'Oakmont Country Club',         location: 'Oakmont, Pa.',     purse: 21500000, winnerShare: 4300000 },
+  { re: /the open|open championship/i, course: 'Royal Portrush',      location: 'Northern Ireland', purse: 17000000, winnerShare: 3100000 },
+  { re: /players championship/i, course: 'TPC Sawgrass',              location: 'Ponte Vedra Beach, Fla.', purse: 25000000, winnerShare: 4500000 },
+  { re: /travelers/i,         course: 'TPC River Highlands',          location: 'Cromwell, Conn.',  purse: 20000000 },
+  { re: /john deere/i,        course: 'TPC Deere Run',                location: 'Silvis, Ill.',     purse: 8400000 },
+  { re: /genesis scottish/i,  course: 'The Renaissance Club',         location: 'North Berwick, Scotland', purse: 9000000 },
+];
+function golfEventMeta(name) {
+  const m = GOLF_EVENTS.find((e) => e.re.test(name || ''));
+  if (!m) return null;
+  return {
+    course: m.course, location: m.location, purse: m.purse,
+    winnerShare: m.winnerShare || (m.purse ? Math.round(m.purse * 0.18) : null),
+  };
+}
+const usd = (n) => (n == null ? null : '$' + Number(n).toLocaleString('en-US'));
 
 async function fetchGolf() {
   const data = await json(`${ESPN}/golf/pga/scoreboard`);
@@ -543,6 +582,7 @@ async function fetchGolf() {
     }));
 
   const leader = leaderboard[0] || null;
+  const meta = golfEventMeta(event.name || event.shortName || '');
   return {
     event: event.name || event.shortName || 'PGA Tour',
     isMajor: MAJOR_GOLF_RE.test(event.name || ''),
@@ -552,6 +592,11 @@ async function fetchGolf() {
     eventLink: espnLink(event.links),
     leaderScore: leader ? leader.score : null,
     cutLine: comp.status?.cutLine != null ? String(comp.status.cutLine) : null,
+    // Public tournament facts (course/purse/winner's share) — not in ESPN feed.
+    course: meta?.course || '',
+    location: meta?.location || '',
+    purse: meta ? usd(meta.purse) : null,
+    winnerShare: meta ? usd(meta.winnerShare) : null,
     leaderboard,
   };
 }
@@ -611,8 +656,8 @@ function deriveLiveNow({ scoreboard, f1, golf }) {
           kind: 'game', importance: g.importance, title: `${g.away.abbr} @ ${g.home.abbr}`, status: 'live',
           statusText: `${g.headline || lg.label} · ${g.statusText}`,
           lines: [
-            { left: g.away.name, right: g.away.score },
-            { left: g.home.name, right: g.home.score },
+            { left: g.away.name, right: g.away.score, logo: g.away.logo },
+            { left: g.home.name, right: g.home.score, logo: g.home.logo },
           ],
           leader: '',
         });
@@ -648,7 +693,7 @@ function deriveLiveNow({ scoreboard, f1, golf }) {
         sched.push({
           kind: 'game', importance: g.importance, title: `${g.away.abbr} @ ${g.home.abbr}`, status: 'upcoming',
           statusText: `${g.headline || lg.label} · ${g.statusText}`,
-          lines: [{ left: g.away.name, right: '' }, { left: g.home.name, right: '' }], leader: '',
+          lines: [{ left: g.away.name, right: '', logo: g.away.logo }, { left: g.home.name, right: '', logo: g.home.logo }], leader: '',
         });
       }
     }

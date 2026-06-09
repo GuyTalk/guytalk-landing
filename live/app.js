@@ -233,7 +233,7 @@ const STATUS_PILL = {
 /** LiveEventCard — Section 1 */
 function LiveEventCard(ev) {
   const lines = ev.lines.map(
-    (l) => `<div class="ev-line"><span class="l">${esc(l.left)}</span><span class="r">${esc(l.right)}</span></div>`
+    (l) => `<div class="ev-line"><span class="l">${l.logo ? `<img class="ev-logo" src="${esc(l.logo)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}${esc(l.left)}</span><span class="r">${esc(l.right)}</span></div>`
   ).join('');
   return `<div class="card">
     <div class="ev-head">
@@ -979,9 +979,15 @@ function FeaturedGolfCard(g) {
       rows: f1.constructorStandings.slice(0, 8).map((c) => ({ pos: c.pos, name: c.name, badge: c.name, val: `${c.points} pts` })),
     }) : '';
 
+    const f1Rows = f1Context(f1);
+    if (f1.nextRace) {
+      const nr = f1.nextRace;
+      const d = nr.date ? new Date(nr.date + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
+      f1Rows.push({ label: 'Next race', text: `${nr.name}${nr.circuit ? ` · ${nr.circuit}` : ''}${nr.location ? ` · ${nr.location}` : ''}${d ? ` · ${d}` : ''}` });
+    }
     el.innerHTML =
       `<div class="stack">${board}${FeaturedF1Card(f1)}${f1WhatYouMissed(f1)}</div>` +
-      `<div class="stack">${ContextCard(f1Context(f1), isLive, 'Formula 1')}${standings}${constructors}</div>`;
+      `<div class="stack">${ContextCard(f1Rows, isLive, 'Formula 1')}${standings}${constructors}</div>`;
   }
 
   function renderGolf(real) {
@@ -999,7 +1005,12 @@ function FeaturedGolfCard(g) {
         val: p.score, valClass: String(p.score).trim().startsWith('-') ? 'neg' : '',
       })),
     });
-    el.innerHTML = `<div class="grid-golf">${board}<div class="stack">${ContextCard(golfContext(golf), golf.state === 'in', 'Golf')}${FeaturedGolfCard(golf)}${golfWhatYouMissed(golf)}</div></div>`;
+    const golfRows = golfContext(golf);
+    const golfExtra = [];
+    if (golf.course) golfExtra.push({ label: 'Course', text: `${golf.course}${golf.location ? ` · ${golf.location}` : ''}` });
+    if (golf.purse) golfExtra.push({ label: 'Purse', text: `${golf.purse}${golf.winnerShare ? ` · Winner takes ${golf.winnerShare}` : ''}` });
+    golfRows.unshift(...golfExtra);
+    el.innerHTML = `<div class="grid-golf">${board}<div class="stack">${ContextCard(golfRows, golf.state === 'in', 'Golf')}${FeaturedGolfCard(golf)}${golfWhatYouMissed(golf)}</div></div>`;
   }
 
   function renderScoreboard(real) {
