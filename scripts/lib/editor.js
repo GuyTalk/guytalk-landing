@@ -303,7 +303,12 @@ Rules for the "copy" object:
 - Keep EXACTLY the same keys and array lengths as the DRAFT. Do not add or drop sections.
 - Only change text values. Preserve any non-text fields.
 - If a section is already great, return it unchanged.
-- Prefer to FIX rather than block — block only when RAW FACTS won't allow a compliant fix.`;
+
+BLOCKING vs FIXING — read carefully:
+- "blocking" is ONLY for sections whose FINAL rewritten copy STILL violates the Bible or still has no real substance. It triggers a hard publish stop.
+- If you fixed a problem (removed an invented stat, rewrote an advice line, corrected framing), that section is now COMPLIANT — do NOT put it in blocking. Record what you did in "changed" and optionally "notes".
+- Example: draft cited a championship lead not in RAW FACTS → you remove it and keep the section qualitative → that is a FIX, not a block. Only block if the section cannot stand without the fabricated fact.
+- Default to FIX. Block rarely, and only for genuinely unsalvageable sections.`;
 
   const user = `=== GUYTALK EDITORIAL BIBLE ===
 ${bible}
