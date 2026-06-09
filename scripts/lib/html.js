@@ -169,6 +169,22 @@ function buildHtml(issue, relatedIssues) {
   const hasGolf = golf?.name != null;
   const hasNHL = !!(nhl && (nhl.final || nhl.next));
 
+  // Right-rail scroll-spy nav — fills the desktop margin + tracks where you are.
+  const sideLinks = [
+    ['top', 'Top'],
+    ['the-lead', 'The Lead'],
+    hasNHL  ? ['nhl', 'NHL'] : null,
+    hasF1   ? ['f1', 'F1'] : null,
+    hasGolf ? ['golf', 'Golf'] : null,
+    hasWC   ? ['worldcup', 'World Cup'] : null,
+    ['markets', 'Markets'],
+    ['culture', 'Culture'],
+    ['sharp-take', 'Sharp Take'],
+  ].filter(Boolean);
+  const sideNavHtml = `<nav class="brief-sidenav" aria-label="On this page">
+${sideLinks.map(([id, label]) => `  <a href="#${id}" class="bsn-link" data-target="${id}"><span class="bsn-txt">${esc(label)}</span><span class="bsn-dot"></span></a>`).join('\n')}
+</nav>`;
+
   // Designed hero banner for the top event: a self-hosted sport photo darkened
   // behind the team logos (ESPN CDN) + event + venue. Self-hosted bg can't 404,
   // and even with no photo the dark banner still renders — never a broken icon.
@@ -272,7 +288,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   </div>
 </div>
 
+${sideNavHtml}
+
 <article class="brief-article" id="briefArticle">
+<span id="top"></span>
 
 ${heroImgHtml}
 
@@ -408,6 +427,25 @@ window.handleBriefSignup = function(e, form) {
   }
   window.addEventListener('scroll', update, { passive: true });
   update();
+})();
+
+// Right-rail scroll-spy — highlight the section you're currently in.
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.bsn-link'));
+  if (!links.length) return;
+  var ids = links.map(function (l) { return l.getAttribute('data-target'); });
+  function onScroll() {
+    var probe = window.scrollY + window.innerHeight * 0.33;
+    var current = ids[0];
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top + window.scrollY <= probe) current = id;
+    });
+    links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('data-target') === current); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
 })();
 </script>
 
@@ -956,7 +994,7 @@ function buildCulture({ copy }) {
   }).join('');
 
   return `  <section class="brief-section" id="culture">
-    <div class="section-label sl-culture">Culture</div>
+    <div class="section-label sl-culture">The Scene</div>
     <ul class="culture-list">
 ${itemsHtml}
     </ul>
@@ -1485,7 +1523,7 @@ ${moverRows}
   }
 
   return `  <section class="brief-section" id="markets">
-    <div class="section-label sl-markets">Markets</div>
+    <div class="section-label sl-markets">The Close</div>
     ${mood ? `<p class="markets-mood">${esc(mood)}</p>` : ''}
 
     <div class="mkt-card">
@@ -1741,7 +1779,7 @@ function buildCulture({ copy }) {
   }).join('\n');
 
   return `  <section class="brief-section" id="culture">
-    <div class="section-label sl-culture">Culture</div>
+    <div class="section-label sl-culture">The Scene</div>
     <ul class="culture-list">
 ${itemsHtml}
     </ul>
