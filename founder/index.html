@@ -14,7 +14,7 @@
   :root {
     --bg: #F9F8F5; --surface: #FFFFFF; --border: #E5E2DB; --border-light: #D4D0C8;
     --text: #0F1724; --text-2: #6E6862; --text-3: #9E9891;
-    --accent: #2B6FFF; --accent-h: #1A5CEF; --accent-muted: #EBF1FF; --green: #16A34A; --red: #DC2626;
+    --accent: #2B6FFF; --accent-h: #1A5CEF; --accent-muted: #EBF1FF; --green: #16A34A; --amber: #B87C35; --red: #DC2626;
   }
   body {
     background: var(--bg); color: var(--text);
@@ -22,13 +22,17 @@
     -webkit-font-smoothing: antialiased; line-height: 1.55;
   }
   a { color: var(--accent); text-decoration: none; }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 40px 24px 80px; }
 
   .fhead { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
   .wordmark { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.03em; }
   .wordmark .dot { color: var(--accent); }
   .feyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-3); }
-  .fsub { color: var(--text-2); font-size: 15px; margin-bottom: 28px; }
+  .fhead-right { display: flex; align-items: center; gap: 14px; }
+  .fsub { color: var(--text-2); font-size: 15px; margin-bottom: 24px; }
+  .refresh { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); cursor: pointer; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 11px; transition: background 0.12s; }
+  .refresh:hover { background: var(--accent-muted); }
+  .refresh:disabled { opacity: 0.5; cursor: default; }
 
   /* Login */
   .login { max-width: 380px; margin: 80px auto; text-align: center; }
@@ -46,17 +50,37 @@
   .stat-card.lead { border-left: 4px solid var(--accent); }
   .stat-label { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); }
   .stat-num { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 34px; letter-spacing: -0.03em; margin-top: 6px; }
-  .stat-num.sm { font-size: 24px; }
+  .stat-num.sm { font-size: 22px; }
   .stat-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+  .badge { display: inline-flex; align-items: center; gap: 5px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-top: 8px; }
+  .badge .d { width: 7px; height: 7px; border-radius: 50%; }
+  .badge.ok { background: rgba(22,163,74,0.1); color: var(--green); } .badge.ok .d { background: var(--green); }
+  .badge.warn { background: rgba(184,124,53,0.12); color: var(--amber); } .badge.warn .d { background: var(--amber); }
 
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 14px; }
   .panel-h { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-  .panel-h .dot-live { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+  .panel-h .dot-live { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(22,163,74,0.5); animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(22,163,74,0.45); } 70% { box-shadow: 0 0 0 7px rgba(22,163,74,0); } 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); } }
+  .panel-h .spacer { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: none; letter-spacing: 0; }
   .kv { display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--border); font-size: 14px; }
   .kv:first-of-type { border-top: 0; }
   .kv .k { color: var(--text-2); }
   .kv .v { font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+
+  /* Live analytics embed */
+  .embed-frame { width: 100%; height: 720px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); }
+  .embed-empty { border: 1px dashed var(--border-light); border-radius: 12px; padding: 26px; background: var(--bg); font-size: 14px; color: var(--text-2); line-height: 1.6; }
+  .embed-empty code { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; background: var(--surface); border: 1px solid var(--border); padding: 1px 6px; border-radius: 5px; }
+  .embed-empty ol { margin: 10px 0 0 18px; }
+  .embed-empty li { margin-bottom: 6px; }
+
+  /* "How it works" explainer */
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 10px; }
+  .flow-step { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; text-align: center; }
+  .flow-step .ft { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 13px; }
+  .flow-step .fd { font-size: 11.5px; color: var(--text-2); margin-top: 2px; }
+  .flow .arr { color: var(--text-3); font-weight: 700; }
 
   /* Links */
   .qlinks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -72,7 +96,7 @@
   .clog-tag { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 4px; width: fit-content; }
   .tag-feature { background: rgba(43,111,255,0.1); color: var(--accent); }
   .tag-fix { background: rgba(22,163,74,0.1); color: var(--green); }
-  .tag-legal { background: rgba(184,124,53,0.12); color: #B87C35; }
+  .tag-legal { background: rgba(184,124,53,0.12); color: var(--amber); }
   .clog-text { font-size: 14px; color: var(--text); line-height: 1.5; }
 
   .updated { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); margin-top: 20px; }
@@ -82,6 +106,9 @@
     .stat-grid { grid-template-columns: 1fr 1fr; }
     .row2 { grid-template-columns: 1fr; }
     .qlinks { grid-template-columns: 1fr; }
+    .flow { grid-template-columns: 1fr; }
+    .flow .arr { display: none; }
+    .embed-frame { height: 560px; }
   }
 </style>
 </head>
@@ -103,29 +130,49 @@
 <div id="dashView" class="wrap" style="display:none">
   <div class="fhead">
     <div class="wordmark">GuyTalk<span class="dot">.</span> <span class="feyebrow">/ founder</span></div>
-    <span class="logout" id="logoutBtn">Log out</span>
+    <div class="fhead-right">
+      <button class="refresh" id="refreshBtn">↻ Refresh</button>
+      <span class="logout" id="logoutBtn">Log out</span>
+    </div>
   </div>
   <p class="fsub">Everything that's going on — at a glance.</p>
 
   <div class="stat-grid" id="statGrid"></div>
 
-  <div class="row2">
-    <div class="panel">
-      <div class="panel-h"><span class="dot-live"></span>Newsletter (live · Beehiiv)</div>
-      <div id="newsletterPanel"></div>
+  <!-- Live analytics: embedded PostHog dashboard -->
+  <div class="panel">
+    <div class="panel-h"><span class="dot-live"></span>Live analytics — traffic, signups & brief reads
+      <span class="spacer">PostHog · last 30 days</span>
     </div>
-    <div class="panel">
+    <div id="analyticsPanel"></div>
+  </div>
+
+  <div class="row2">
+    <div class="panel" style="margin-bottom:0">
       <div class="panel-h">System status</div>
       <div id="statusPanel"></div>
     </div>
+    <div class="panel" style="margin-bottom:0">
+      <div class="panel-h">How GuyTalk reaches readers</div>
+      <div class="flow">
+        <div class="flow-step"><div class="ft">Signup forms</div><div class="fd">on the site</div></div>
+        <span class="arr">→</span>
+        <div class="flow-step"><div class="ft">Beehiiv</div><div class="fd">subscriber list</div></div>
+        <span class="arr">→</span>
+        <div class="flow-step"><div class="ft">Resend</div><div class="fd">delivers the brief</div></div>
+      </div>
+      <div class="kv" style="margin-top:14px"><span class="k">Beehiiv's job</span><span class="v">store subscribers</span></div>
+      <div class="kv"><span class="k">Resend's job</span><span class="v">send 7am daily</span></div>
+      <div class="kv"><span class="k">Open / click tracking</span><span class="v">PostHog · Resend</span></div>
+    </div>
   </div>
 
-  <div class="panel" style="margin-bottom:14px">
+  <div class="panel">
     <div class="panel-h">Open the full analytics</div>
     <div class="qlinks" id="qlinks"></div>
   </div>
 
-  <div class="panel">
+  <div class="panel" style="margin-bottom:0">
     <div class="panel-h">What's new — recent edits</div>
     <div id="changelog"></div>
   </div>
@@ -138,6 +185,7 @@
   var KEY = 'gt_founder_token';
   var loginView = document.getElementById('loginView');
   var dashView = document.getElementById('dashView');
+  var currentToken = null;
 
   function showLogin(msg) {
     loginView.style.display = '';
@@ -145,28 +193,45 @@
     if (msg) document.getElementById('loginErr').textContent = msg;
   }
   function fmtNum(n) { return n == null ? '—' : Number(n).toLocaleString('en-US'); }
-  function fmtPct(n) { return n == null ? '—' : (Number(n) <= 1 ? (Number(n) * 100) : Number(n)).toFixed(1) + '%'; }
-  function fmtDate(s) { if (!s) return '—'; try { return new Date(s).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); } catch (e) { return s; } }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   function render(d) {
     loginView.style.display = 'none';
     dashView.style.display = '';
     var b = d.beehiiv || {};
+    var p = d.publishing || {};
+
+    // Honest headline stats only.
+    var editorBadge = p.editorReviewed
+      ? '<div class="badge ok"><span class="d"></span>Editor pass ON</div>'
+      : '<div class="badge warn"><span class="d"></span>Editor pass OFF</div>';
     document.getElementById('statGrid').innerHTML =
-      card('Subscribers', fmtNum(b.activeSubscriptions), b.activePremium ? fmtNum(b.activePremium) + ' premium' : 'all-time active', true) +
-      card('Open rate', fmtPct(b.openRate), 'avg across sends', false, true) +
-      card('Click rate', fmtPct(b.clickRate), 'avg across sends', false, true) +
-      card('Emails sent', fmtNum(b.totalSent), 'lifetime', false, true);
+      card('Subscribers', fmtNum(b.activeSubscriptions), 'Beehiiv · active', true) +
+      card('Issues published', fmtNum(p.issuesPublished), p.daysLive ? ('over ' + p.daysLive + ' days') : 'to date') +
+      card('Latest issue', p.latestIssue ? '#' + esc(p.latestIssue.num) : '—', p.latestIssue ? esc(p.latestIssue.date || '') : '', false, true) +
+      card('Editorial QA', p.editorReviewed ? 'Live' : 'Fail-open', editorBadge, false, true, true);
 
-    var lp = d.lastPost;
-    document.getElementById('newsletterPanel').innerHTML = lp
-      ? kv('Last post', esc(lp.title || '—')) + kv('Status', esc(lp.status || '—')) + kv('Published', fmtDate(lp.publishDate)) + (lp.opens != null ? kv('Opens', fmtNum(lp.opens)) : '') + (lp.clicks != null ? kv('Clicks', fmtNum(lp.clicks)) : '')
-      : (b.activeSubscriptions != null ? '<div class="kv"><span class="k">No recent post data</span></div>' : '<div class="kv"><span class="k">Beehiiv unreachable right now</span></div>');
+    // Live PostHog embed (or setup instructions if sharing isn't enabled yet).
+    var ap = document.getElementById('analyticsPanel');
+    if (d.posthogEmbedUrl) {
+      ap.innerHTML = '<iframe class="embed-frame" src="' + esc(d.posthogEmbedUrl) + '" allowfullscreen title="GuyTalk live analytics"></iframe>';
+    } else {
+      ap.innerHTML = '<div class="embed-empty"><strong>Live charts aren\'t turned on yet.</strong> To embed your PostHog Founder Overview here:'
+        + '<ol><li>Open the <a href="' + esc((d.links||{}).posthogFounder || '#') + '" target="_blank" rel="noopener">Founder Overview dashboard</a>.</li>'
+        + '<li>Top-right <strong>⋯ → Share or embed</strong> → toggle <strong>“Share publicly”</strong> on.</li>'
+        + '<li>Copy the embed URL (looks like <code>https://us.posthog.com/embedded/&lt;token&gt;</code>) and set it as the <code>POSTHOG_EMBED_URL</code> env var in Vercel.</li></ol>'
+        + 'Until then, use the link below to open it directly in PostHog.</div>';
+    }
 
-    var li = d.latestIssue;
+    var li = p.latestIssue;
     document.getElementById('statusPanel').innerHTML =
-      (li ? kv('Latest issue', '#' + esc(li.num)) + kv('Published', esc(li.date || '—')) + '<div class="kv"><span class="k">Read it</span><span class="v"><a href="/brief/' + esc(li.slug) + '/">/brief/' + esc(li.slug) + '</a></span></div>' : kv('Latest issue', '—')) +
+      (li
+        ? kv('Latest issue', '#' + esc(li.num))
+          + kv('Published', esc(li.date || '—'))
+          + '<div class="kv"><span class="k">Read it</span><span class="v"><a href="/brief/' + esc(li.slug) + '/">/brief/' + esc(li.slug) + '</a></span></div>'
+        : kv('Latest issue', '—')) +
+      kv('Editorial pass', p.editorReviewed ? 'reviewed ✓' : 'fail-open (key/quota)') +
+      (p.editorBlocking ? kv('QA blocks', String(p.editorBlocking)) : '') +
       kv('Pipeline', '7am daily · auto') +
       kv('Live page', 'updating ≤60s');
 
@@ -174,7 +239,7 @@
     document.getElementById('qlinks').innerHTML =
       qlink('Founder Overview (PostHog)', L.posthogFounder) +
       qlink('Live engagement (PostHog)', L.posthogLive) +
-      qlink('Beehiiv dashboard', L.beehiiv) +
+      qlink('Beehiiv (subscriber list)', L.beehiiv) +
       qlink('Open the site', L.site);
 
     document.getElementById('changelog').innerHTML = (d.changelog || []).map(function (c) {
@@ -184,17 +249,21 @@
 
     document.getElementById('updated').textContent = 'Loaded ' + new Date(d.generatedAt).toLocaleString('en-US');
   }
-  function card(label, num, sub, lead, sm) {
-    return '<div class="stat-card' + (lead ? ' lead' : '') + '"><div class="stat-label">' + label + '</div><div class="stat-num' + (sm ? ' sm' : '') + '">' + num + '</div><div class="stat-sub">' + sub + '</div></div>';
+  function card(label, num, sub, lead, sm, subIsHtml) {
+    return '<div class="stat-card' + (lead ? ' lead' : '') + '"><div class="stat-label">' + label + '</div><div class="stat-num' + (sm ? ' sm' : '') + '">' + num + '</div>'
+      + (subIsHtml ? sub : '<div class="stat-sub">' + sub + '</div>') + '</div>';
   }
   function kv(k, v) { return '<div class="kv"><span class="k">' + k + '</span><span class="v">' + v + '</span></div>'; }
   function qlink(label, href) { return '<a class="qlink" href="' + href + '" target="_blank" rel="noopener">' + label + ' <span class="arrow">→</span></a>'; }
 
   function load(token) {
+    var btn = document.getElementById('refreshBtn');
+    if (btn) { btn.disabled = true; btn.textContent = '↻ Loading…'; }
     fetch('/api/founder?token=' + encodeURIComponent(token))
       .then(function (r) { if (r.status === 401) { localStorage.removeItem(KEY); throw new Error('Invalid key.'); } if (!r.ok) throw new Error('Could not load (' + r.status + ').'); return r.json(); })
-      .then(function (d) { localStorage.setItem(KEY, token); render(d); })
-      .catch(function (e) { showLogin(e.message || 'Something went wrong.'); });
+      .then(function (d) { currentToken = token; localStorage.setItem(KEY, token); render(d); })
+      .catch(function (e) { showLogin(e.message || 'Something went wrong.'); })
+      .finally(function () { if (btn) { btn.disabled = false; btn.textContent = '↻ Refresh'; } });
   }
 
   document.getElementById('loginForm').addEventListener('submit', function (e) {
@@ -202,6 +271,7 @@
     var t = document.getElementById('tokenInput').value.trim();
     if (t) load(t);
   });
+  document.getElementById('refreshBtn').addEventListener('click', function () { if (currentToken) load(currentToken); });
   document.getElementById('logoutBtn').addEventListener('click', function () { localStorage.removeItem(KEY); location.reload(); });
 
   var saved = localStorage.getItem(KEY);
