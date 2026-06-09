@@ -57,6 +57,15 @@ function factsFromIssue(d) {
     const lb = d.golf.leaders?.slice(0, 3).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ') || 'no leaderboard yet';
     lines.push(`GOLF: ${d.golf.name} — ${lb}`);
   }
+  if (d.worldCup?.length) {
+    const played = d.worldCup.filter(m => m.statusState === 'in' || m.statusState === 'post').length;
+    const next = d.worldCup
+      .filter(m => m.statusState === 'pre' && m.date)
+      .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
+      .slice(0, 3)
+      .map(m => `${m.shortName || m.name} (${new Date(m.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })})`);
+    lines.push(`WORLD CUP: 2026 — ${played} match(es) played so far${next.length ? `; upcoming: ${next.join(', ')}` : ''}`);
+  }
   if (d.markets) {
     const mkt = Object.entries(d.markets)
       .filter(([, q]) => q?.dayChangePct != null)
@@ -82,7 +91,8 @@ async function main() {
 
   console.log(`\n🧐 Editorial pass on ${slug} (${issue.date || '?'})...`);
 
-  const result = await editBrief({ copy: issue.copy, context: factsFromIssue(issue) });
+  const links = (issue.trending || []).map(t => t.url).filter(Boolean);
+  const result = await editBrief({ copy: issue.copy, context: factsFromIssue(issue), links });
   issue.copy   = result.copy;
   issue.editor = result.editor;
   if (issue.copy?.title) issue.title = issue.copy.title;
@@ -98,6 +108,10 @@ async function main() {
     }
   } else {
     console.log(`   ⚠  NOT editor-reviewed: ${result.editor.reason}`);
+  }
+  if (result.editor.brokenLinks?.length) {
+    console.log(`   🔗 ${result.editor.brokenLinks.length} broken source link(s):`);
+    result.editor.brokenLinks.forEach(l => console.log(`        • ${l.url} — ${l.reason}`));
   }
 
   // Persist JSON + re-render HTML

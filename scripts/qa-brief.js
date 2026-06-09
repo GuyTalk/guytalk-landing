@@ -190,7 +190,7 @@ function main() {
     warn('HTML file not found — run generator first');
   }
 
-  // 3b. EDITORIAL BIBLE — the OpenAI editor's verdict (hard gate)
+  // 3b. EDITORIAL BIBLE — the Claude editor's verdict (hard gate)
   console.log('\n  [Editorial Bible]');
   const ed = issue.editor;
   if (!ed) {
@@ -208,8 +208,12 @@ function main() {
     // Fail-open by design (Jake, 2026-06-04): publish but warn loudly.
     warn(
       'BRIEF NOT EDITOR-REVIEWED — shipping on Claude draft only',
-      `${ed.reason || 'editor did not run'} — set OPENAI_API_KEY / check OpenAI to restore the editorial pass`
+      `${ed.reason || 'editor did not run'} — check ANTHROPIC_API_KEY to restore the editorial pass`
     );
+  }
+  // Broken source links — warning only, never a hard block.
+  if (ed?.brokenLinks?.length) {
+    warn(`${ed.brokenLinks.length} broken source link(s)`, ed.brokenLinks.map(l => `${l.url} (${l.reason})`).join(' | '));
   }
 
   // 4. MARKETS COMPLIANCE — hard fail (no investment advice)

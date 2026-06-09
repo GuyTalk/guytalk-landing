@@ -4,18 +4,24 @@
  * GuyTalk Editorial Pass — the FINAL writing pass.
  *
  * Pipeline role:
- *   Claude (copy.js)  → gathers facts, drafts raw stories  →  copy{}
- *   OpenAI (this file) → final writing pass: edits every section to follow
- *                        GUYTALK_EDITORIAL_BIBLE.md, then flags anything that
- *                        still can't meet the standard.
- *   qa-brief.js        → hard-blocks publish if the editor flagged a violation.
+ *   Claude Haiku (copy.js)   → gathers facts, drafts raw stories  →  copy{}
+ *   Claude Sonnet (this file) → final editorial pass: checks formatting, sharpens
+ *                               every "What to say" and "Why it matters", enforces
+ *                               GUYTALK_EDITORIAL_BIBLE.md, flags weak content, and
+ *                               (in code) detects broken source links.
+ *   qa-brief.js               → hard-blocks publish if the editor flagged a violation.
+ *
+ * Runs entirely on the existing Anthropic infrastructure that already powers
+ * brief generation — same ANTHROPIC_API_KEY, same @anthropic-ai/sdk. No OpenAI.
  *
  * Behavior (set by Jake, 2026-06-04):
  *   - Rewrite + hard-block: editor rewrites to comply; sections that still fail
  *     the Bible are returned in report.blocking, and QA blocks the publish.
- *   - Fail-open: if OPENAI_API_KEY is missing or OpenAI errors, the Claude draft
- *     is returned untouched with reviewed:false so the brief can still ship with
- *     a loud "NOT editor-reviewed" warning. The streak survives an OpenAI outage.
+ *   - Fail-open: if ANTHROPIC_API_KEY is missing or the call errors, the Claude
+ *     draft is returned untouched with reviewed:false so the brief can still ship
+ *     with a loud "NOT editor-reviewed" warning. The streak survives an outage.
+ *   - Broken links are reported as warnings (editor.brokenLinks), not hard blocks —
+ *     a dead source link shouldn't kill the whole brief.
  *
  * The Editorial Bible is loaded from disk every run, so editing the markdown
  * changes the standard with no code change.
@@ -26,8 +32,9 @@ const path = require('path');
 
 const BIBLE_PATH = path.join(__dirname, '..', '..', 'GUYTALK_EDITORIAL_BIBLE.md');
 
-// Default editor model — override with OPENAI_EDITOR_MODEL in .env.local
-const DEFAULT_MODEL = 'gpt-4o';
+// Editor model — a stronger model than the Haiku drafter, for editorial judgment.
+// Override with ANTHROPIC_EDITOR_MODEL in .env.local.
+const DEFAULT_MODEL = 'claude-sonnet-4-6';
 
 // ── Editable text fields, by section. The editor may only rewrite these. ──────
 // Everything else in copy{} (gameIndex, tag values, structure) is preserved.
@@ -141,35 +148,106 @@ function loadBible() {
   catch (_) { return null; }
 }
 
+// ── Formatting check (code-side) ───────────────────────────────────────────────
+// Catches markdown artifacts that should never appear in the plain-prose brief.
+function formattingIssues(copy) {
+  const issues = [];
+  const scan = (label, text) => {
+    if (typeof text !== 'string' || !text) return;
+    if (/\*\*|__|^#{1,6}\s|^[-*•]\s|\]\(http/m.test(text)) issues.push(`${label}: markdown artifact`);
+    if (/\b(undefined|null|\[object Object\]|NaN)\b/.test(text)) issues.push(`${label}: placeholder/empty value leaked`);
+  };
+  const walk = (obj, prefix) => {
+    if (!obj || typeof obj !== 'object') return;
+    for (const [k, v] of Object.entries(obj)) {
+      const label = prefix ? `${prefix}.${k}` : k;
+      if (typeof v === 'string') scan(label, v);
+      else if (v && typeof v === 'object') walk(v, label);
+    }
+  };
+  walk(extractEditable(copy), '');
+  return [...new Set(issues)];
+}
+
+// ── Broken-link detection (code-side) ──────────────────────────────────────────
+// Validates URL format and reachability. Returns [{ url, reason }]. Warnings only.
+async function checkLinks(links) {
+  const urls = [...new Set((links || []).filter(u => typeof u === 'string' && u.trim()))];
+  if (!urls.length) return [];
+  const broken = [];
+
+  const checkOne = async (url) => {
+    let parsed;
+    try { parsed = new URL(url); }
+    catch (_) { broken.push({ url, reason: 'malformed URL' }); return; }
+    if (!/^https?:$/.test(parsed.protocol)) { broken.push({ url, reason: `unsupported protocol ${parsed.protocol}` }); return; }
+
+    // Browser-like UA — many publishers 403 a bot UA on otherwise-live pages.
+    const headers = {
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+      'Accept': 'text/html,application/xhtml+xml,*/*',
+    };
+    const attempt = async (method) => {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 6000);
+      try {
+        return await fetch(url, { method, redirect: 'follow', signal: ctrl.signal, headers });
+      } finally { clearTimeout(timer); }
+    };
+    try {
+      let res = await attempt('HEAD');
+      // Many servers reject/blank HEAD — retry once with GET before judging.
+      if ([403, 405, 501].includes(res.status)) res = await attempt('GET');
+      const s = res.status;
+      // Only treat genuinely-dead responses as broken. 401/403/429 are
+      // auth / anti-bot / rate-limit — the page almost certainly works in a browser.
+      if (s === 404 || s === 410 || s >= 500) broken.push({ url, reason: `HTTP ${s}` });
+    } catch (err) {
+      broken.push({ url, reason: err.name === 'AbortError' ? 'timeout' : `unreachable (${err.message})` });
+    }
+  };
+
+  // Bounded concurrency so we never hammer sources or stall the 7am run.
+  const POOL = 5;
+  for (let i = 0; i < urls.length; i += POOL) {
+    await Promise.all(urls.slice(i, i + POOL).map(checkOne));
+  }
+  return broken;
+}
+
 // ── Main entry ────────────────────────────────────────────────────────────────
-// Returns { copy, editor } where editor = {
-//   reviewed, model, ts, changed:[], blocking:[{section,reason}], notes:[], reason?
-// }
-async function editBrief({ copy, context }) {
+// editBrief({ copy, context, links }) → { copy, editor }
+// editor = { reviewed, model, ts, changed:[], blocking:[{section,reason}],
+//            notes:[], brokenLinks:[{url,reason}], reason? }
+async function editBrief({ copy, context, links }) {
+  // Broken-link detection runs regardless of whether the model edit succeeds —
+  // it's a code-side check on the source URLs, independent of Anthropic.
+  const brokenLinks = await checkLinks(links).catch(() => []);
+
   const skip = (reason) => ({
     copy,
-    editor: { reviewed: false, blocking: [], changed: [], notes: [], reason },
+    editor: { reviewed: false, blocking: [], changed: [], notes: [], brokenLinks, reason },
   });
 
   if (!copy) return skip('no copy to edit');
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey || apiKey.includes('your_') || apiKey.includes('_here')) {
-    return skip('OPENAI_API_KEY missing — brief NOT editor-reviewed');
+    return skip('ANTHROPIC_API_KEY missing — brief NOT editor-reviewed');
   }
 
   const bible = loadBible();
   if (!bible) return skip('GUYTALK_EDITORIAL_BIBLE.md not found — editor cannot enforce standard');
 
-  let OpenAI;
+  let Anthropic;
   try {
-    OpenAI = require('openai');
+    Anthropic = require('@anthropic-ai/sdk');
   } catch (_) {
-    return skip('openai package not installed (run: npm install)');
+    return skip('@anthropic-ai/sdk not installed (run: npm install)');
   }
 
-  const model  = process.env.OPENAI_EDITOR_MODEL || DEFAULT_MODEL;
-  const client = new (OpenAI.default || OpenAI)({ apiKey });
+  const model  = process.env.ANTHROPIC_EDITOR_MODEL || DEFAULT_MODEL;
+  const client = new (Anthropic.default || Anthropic)({ apiKey });
   const editable = extractEditable(copy);
 
   const system = `You are the GuyTalk Editor — the final editorial gate before a daily brief publishes.
@@ -179,25 +257,23 @@ You are given:
 2. RAW FACTS — the only facts you may use. Never add a name, number, score, or event that is not in RAW FACTS.
 3. DRAFT — JSON the writer produced. You rewrite the text to follow the Bible.
 
-YOUR JOB
-- Make every section read like GuyTalk: "what happened, why it matters, and what to say about it."
-- Tighten wording. Cut filler. Keep it casual, confident, useful. 2–5 sentences per item.
-- Sports: every item must have a specific player, play, moment, or storyline AND why it matters. If the RAW FACTS lack any specific detail for an item, flag it — do not invent one.
-- Markets: observational ONLY. Never advise. No buy/sell/hold, no "buying opportunity", no price targets, no "investors should". Use "markets moved / investors watched / the read-through was / the concern was".
-- Culture: never a bare headline. Each item needs what happened, why people care, and what to say.
-- Top Hits / taglines: short, punchy, specific. No vague fragments.
+YOUR JOB — six things, every run:
 
-HARD RULE — CONVERSATIONAL VALUE
-A section may only stay if it answers at least TWO of:
-- Why does this matter?
-- Why would people be talking about this?
-- What is the simple takeaway?
-- What could I say in a group chat / at work / at a bar?
-If you cannot make a section meet that bar using only the RAW FACTS, add it to report.blocking instead of faking it.
+A. CHECK FORMATTING. Plain prose only — strip any markdown (**bold**, #headers, - bullets, links), fix broken sentences, kill double spaces, ensure each item is complete sentences. 2–5 sentences per item. No leaked "undefined", "null", or template fragments.
 
-OUTPUT — return ONLY valid JSON, no markdown, exactly this shape:
+B. IMPROVE EVERY "WHAT TO SAY". These are the lines a reader drops in a group chat, at work, or at a bar (lead.whatToSay, golf.whatToSay, f1.whatToSay, culture[].whatToSay, markets.bringUp). Make them punchy, specific, and actually sayable out loud. Cut hedging. A great one sounds like a confident friend, not a press release.
+
+C. IMPROVE EVERY "WHY IT MATTERS". These justify the reader's attention (lead.whyBullet1/2, markets.whyBullet1/2, golf.whyCare1/2, f1.whyCare1/2, culture[].whyItMatters). Make the stakes concrete and non-obvious. Replace "this is big" with the actual reason it's big, using only RAW FACTS.
+
+D. ENFORCE THE BIBLE on every section — voice, banned phrases, structure.
+
+E. MARKETS COMPLIANCE. Observational ONLY. Never advise. No buy/sell/hold, "buying opportunity", price targets, or "investors should". Use "markets moved / investors watched / the read-through was / the concern was". This applies to ALL sections, not just Markets.
+
+F. FLAG WEAK CONTENT. A section may only stay if it answers at least TWO of: Why does this matter? Why would people be talking about it? What is the simple takeaway? What could I say about it? If you cannot make a section meet that bar using only the RAW FACTS, add it to report.blocking instead of faking it. Sports items need a specific player, play, moment, or storyline AND why it matters; if RAW FACTS lack the detail, block it — do not invent.
+
+OUTPUT — return ONLY valid JSON, no markdown fences, exactly this shape:
 {
-  "copy": { ...the DRAFT object with the same keys, text rewritten to follow the Bible... },
+  "copy": { ...the DRAFT object with the SAME keys and array lengths, text rewritten to follow the Bible... },
   "report": {
     "blocking": [ { "section": "markets|lead|sportsOther|golf|f1|culture|finalSharpTake|...", "reason": "why this section still fails the Bible and must not publish as-is" } ],
     "changed":  [ "names of sections you meaningfully rewrote" ],
@@ -208,8 +284,8 @@ OUTPUT — return ONLY valid JSON, no markdown, exactly this shape:
 Rules for the "copy" object:
 - Keep EXACTLY the same keys and array lengths as the DRAFT. Do not add or drop sections.
 - Only change text values. Preserve any non-text fields.
-- If a section is fine as-is, return it unchanged.
-- "blocking" is for sections that CANNOT be made compliant from the RAW FACTS (e.g. a sports item with no specific detail available, or unavoidable advice language). Prefer to FIX rather than block — block only when facts won't allow a fix.`;
+- If a section is already great, return it unchanged.
+- Prefer to FIX rather than block — block only when RAW FACTS won't allow a compliant fix.`;
 
   const user = `=== GUYTALK EDITORIAL BIBLE ===
 ${bible}
@@ -222,19 +298,18 @@ ${JSON.stringify(editable)}`;
 
   let raw;
   try {
-    const res = await client.chat.completions.create({
+    const res = await client.messages.create({
       model,
+      max_tokens: 4096,
       temperature: 0.4,
-      max_tokens: 3000,
-      response_format: { type: 'json_object' },
+      system,
       messages: [
-        { role: 'system', content: system },
-        { role: 'user',   content: user },
+        { role: 'user', content: `${user}\n\nReturn ONLY the JSON object described above, starting with {.` },
       ],
     });
-    raw = res.choices?.[0]?.message?.content;
+    raw = (res.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
   } catch (err) {
-    return skip(`OpenAI editor call failed: ${err.message}`);
+    return skip(`Claude editor call failed: ${err.message}`);
   }
 
   const parsed = parseJson(raw);
@@ -250,6 +325,11 @@ ${JSON.stringify(editable)}`;
   const changed = Array.isArray(report.changed) ? report.changed.filter(Boolean) : [];
   const notes   = Array.isArray(report.notes)   ? report.notes.filter(Boolean)   : [];
 
+  // Code-side formatting backstop on the FINAL merged copy — anything the model
+  // missed becomes an editor note (visible in QA) rather than shipping silently.
+  const fmt = formattingIssues(mergedCopy);
+  if (fmt.length) notes.push(...fmt.map(f => `formatting: ${f}`));
+
   return {
     copy: mergedCopy,
     editor: {
@@ -259,8 +339,9 @@ ${JSON.stringify(editable)}`;
       blocking,
       changed,
       notes,
+      brokenLinks,
     },
   };
 }
 
-module.exports = { editBrief, loadBible, BIBLE_PATH };
+module.exports = { editBrief, loadBible, checkLinks, BIBLE_PATH };

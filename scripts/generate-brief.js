@@ -322,18 +322,21 @@ async function main() {
     console.log(`   ⚠  Copy generation failed: ${err.message}`);
   }
 
-  // ── Editorial pass — OpenAI enforces the GuyTalk Editorial Bible ────────────
-  // Claude gathered the facts and drafted the raw stories above. This is the
-  // FINAL writing pass: every section is edited to follow GUYTALK_EDITORIAL_BIBLE.md.
-  // Sections that still can't meet the standard are flagged in editor.blocking,
-  // which qa-brief.js turns into a hard publish block. Fail-open: if OpenAI is
-  // unavailable the Claude draft ships with reviewed:false and a loud warning.
-  let editorMeta = { reviewed: false, blocking: [], changed: [], notes: [], reason: 'no copy to edit' };
+  // ── Editorial pass — Claude enforces the GuyTalk Editorial Bible ────────────
+  // Claude Haiku gathered the facts and drafted the raw stories above. This is the
+  // FINAL writing pass (Claude Sonnet): it checks formatting, sharpens every
+  // "What to say" / "Why it matters", enforces GUYTALK_EDITORIAL_BIBLE.md, flags
+  // weak content, and checks source links. Sections that still can't meet the
+  // standard are flagged in editor.blocking, which qa-brief.js turns into a hard
+  // publish block. Fail-open: if Anthropic is unavailable the Claude draft ships
+  // with reviewed:false and a loud warning.
+  let editorMeta = { reviewed: false, blocking: [], changed: [], notes: [], brokenLinks: [], reason: 'no copy to edit' };
   if (copy) {
-    console.log('\n🧐 Editorial pass — OpenAI enforcing the GuyTalk Editorial Bible...');
+    console.log('\n🧐 Editorial pass — Claude enforcing the GuyTalk Editorial Bible...');
     try {
       const facts = buildFactsContext({ sports, markets, golf, f1, worldCup, upcoming, boxScores, trending });
-      const result = await editBrief({ copy, context: facts });
+      const links = (trending || []).map(t => t.url).filter(Boolean);
+      const result = await editBrief({ copy, context: facts, links });
       copy = result.copy;
       editorMeta = result.editor;
       if (editorMeta.reviewed) {
@@ -349,8 +352,12 @@ async function main() {
         console.log(`   ⚠  NOT editor-reviewed: ${editorMeta.reason}`);
         console.log(`   ⚠  Brief will publish on the Claude draft only (fail-open).`);
       }
+      if (editorMeta.brokenLinks?.length) {
+        console.log(`   🔗 ${editorMeta.brokenLinks.length} broken source link(s):`);
+        editorMeta.brokenLinks.forEach(l => console.log(`        • ${l.url} — ${l.reason}`));
+      }
     } catch (err) {
-      editorMeta = { reviewed: false, blocking: [], changed: [], notes: [], reason: `editor crashed: ${err.message}` };
+      editorMeta = { reviewed: false, blocking: [], changed: [], notes: [], brokenLinks: [], reason: `editor crashed: ${err.message}` };
       console.log(`   ⚠  Editorial pass crashed: ${err.message} — keeping Claude draft (fail-open)`);
     }
   }
