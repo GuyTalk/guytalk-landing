@@ -3,7 +3,7 @@
 
 /**
  * GuyTalk standalone editorial pass.
- * Re-runs the OpenAI editor on an already-generated issue against the current
+ * Re-runs the Claude editor on an already-generated issue against the current
  * GUYTALK_EDITORIAL_BIBLE.md, then re-renders the HTML. Use after editing the
  * Bible, or to re-edit without re-fetching data / re-drafting with Claude.
  *

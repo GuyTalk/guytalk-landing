@@ -26,7 +26,7 @@ and suggest conversation — it may never invent facts.
 | Trending "why it matters" | Claude (Anthropic) | **AI interpretation** (grounded) | Yes (≤15m) |
 | The Rundown | Claude (Anthropic) | **AI summary** (grounded) | Yes (≤15m) |
 | What Everyone's Talking About | Claude (Anthropic) | **AI interpretation** (grounded) | Yes (≤15m) |
-| Daily Brief (all copy) | Claude + OpenAI editor | **AI copy** over sourced facts | Daily |
+| Daily Brief (all copy) | Claude (Haiku writer + Sonnet editor) | **AI copy** over sourced facts | Daily |
 
 **Sourced data vs. AI interpretation are visibly separated** in the UI: every
 section shows a source label ("Updated X ago · ESPN / NewsAPI / Finnhub /

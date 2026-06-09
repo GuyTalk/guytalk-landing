@@ -1,7 +1,7 @@
 # GuyTalk Editorial Bible
 
 > This file is the single source of truth for GuyTalk editorial standards.
-> The OpenAI editor pass (`scripts/lib/editor.js`) loads this file at runtime and
+> The Claude editor pass (`scripts/lib/editor.js`) loads this file at runtime and
 > enforces every rule below on each generated brief before it can preview or publish.
 > Edit this file to change the standard — no code change required.
 

@@ -1,4 +1,5 @@
 [
+  { "date": "2026-06-09", "tag": "feature", "text": "Editorial pass moved off OpenAI onto Claude (Sonnet) — runs on the same Anthropic key as the brief writer. It now checks formatting, sharpens every 'What to say' and 'Why it matters', enforces the Editorial Bible, flags weak/unsupported content, and detects broken source links. No more OpenAI dependency or extra bill." },
   { "date": "2026-06-09", "tag": "feature", "text": "Founder dashboard rebuilt — honest headline stats (subscribers, issues published, days live, editorial-QA status), an embedded live PostHog analytics view, a 'how we reach readers' explainer, and a refresh button." },
   { "date": "2026-06-09", "tag": "fix", "text": "Fixed the misleading 'Last post' card — it was pulling an unpublished Beehiiv draft dated Jan 1970. Beehiiv is now correctly shown as the subscriber list only (delivery is via Resend)." },
   { "date": "2026-06-09", "tag": "feature", "text": "Connected the OpenAI editorial pass (OPENAI_API_KEY) in local + Vercel prod so the daily brief gets the Editorial-Bible enforcement pass." },

@@ -7,7 +7,7 @@
  *   - live Beehiiv subscriber count (the ONLY thing Beehiiv is used for —
  *     it's the subscriber list; the daily brief is delivered via Resend)
  *   - publishing stats derived from the local brief archive (issues, cadence,
- *     latest issue + whether it passed the OpenAI editorial pass)
+ *     latest issue + whether it passed the editorial pass)
  *   - an optional embedded PostHog dashboard (POSTHOG_EMBED_URL) for live
  *     traffic / signup / brief-read charts
  *   - a maintained changelog of recent work (founder-changelog.json)
@@ -80,7 +80,7 @@ function publishing() {
       issuesPublished: num,        // highest issue number = total shipped
       daysLive,
       latestIssue: { num: String(num).padStart(3, '0'), slug, date: last.date || '', title: last.title || '' },
-      // Did the latest brief pass the OpenAI editorial-bible pass?
+      // Did the latest brief pass the editorial-bible pass?
       editorReviewed: !!(last.editor && last.editor.reviewed),
       editorBlocking: last.editor && Array.isArray(last.editor.blocking) ? last.editor.blocking.length : 0,
     };

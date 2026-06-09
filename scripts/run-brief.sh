@@ -84,12 +84,12 @@ if [ "$GEN_EXIT" -eq 0 ]; then
       echo "   ✓ QA passed" >> "$LOG_FILE"
 
       # ── Editorial pass status (fail-open warning) ───────────────────────────
-      # The OpenAI editor runs inside generate-brief.js. If it didn't run
-      # (key missing / OpenAI down), the brief still ships but is flagged here.
+      # The Claude editor runs inside generate-brief.js. If it didn't run
+      # (key missing / Anthropic down), the brief still ships but is flagged here.
       EDITOR_REVIEWED=$("$NODE" -e 'try{const d=require(process.argv[1]);process.stdout.write(d.editor&&d.editor.reviewed?"yes":"no")}catch(e){process.stdout.write("unknown")}' "$PROJECT_DIR/brief/data/${ISSUE}.json" 2>/dev/null)
       if [ "$EDITOR_REVIEWED" != "yes" ]; then
         echo "   ⚠  EDITORIAL PASS DID NOT RUN — brief shipping on Claude draft only." >> "$LOG_FILE"
-        osascript -e "display notification \"${ISSUE} shipped WITHOUT editor pass — check OPENAI_API_KEY\" with title \"GuyTalk Brief ⚠\" subtitle \"Not editorially reviewed\""
+        osascript -e "display notification \"${ISSUE} shipped WITHOUT editor pass — check ANTHROPIC_API_KEY\" with title \"GuyTalk Brief ⚠\" subtitle \"Not editorially reviewed\""
       else
         echo "   ✓ Editorial pass reviewed this brief" >> "$LOG_FILE"
       fi
