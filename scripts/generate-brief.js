@@ -151,7 +151,7 @@ function autoTitle({ sports, golf, f1, worldCup, upcoming }) {
 // Build a plain-text "raw facts" block for the editorial pass.
 // The editor may ONLY use these facts — it edits wording, never invents data.
 // ─────────────────────────────────────────────────────────────────────────────
-function buildFactsContext({ sports, markets, golf, f1, worldCup, upcoming, boxScores, trending }) {
+function buildFactsContext({ sports, markets, golf, f1, worldCup, nhl, upcoming, boxScores, trending }) {
   const lines = [];
 
   if (sports?.length) {
@@ -191,6 +191,17 @@ function buildFactsContext({ sports, markets, golf, f1, worldCup, upcoming, boxS
   if (worldCup?.length) {
     const played = worldCup.filter(m => m.statusState === 'in' || m.statusState === 'post').length;
     lines.push(`WORLD CUP: 2026 — ${played} match(es) played so far`);
+  }
+
+  if (nhl && (nhl.final || nhl.next)) {
+    const g = nhl.final || nhl.next;
+    const loc = [g.venue, g.venueCity].filter(Boolean).join(', ');
+    if (nhl.final) {
+      const w = g.home.winner ? g.home : g.away, l = g.home.winner ? g.away : g.home;
+      lines.push(`NHL: ${g.note || 'game'} — ${w.team} ${w.score}–${l.score} ${l.team}${g.seriesNote ? ` [Series: ${g.seriesNote}]` : ''}${loc ? ` at ${loc}` : ''}`);
+    } else {
+      lines.push(`NHL UPCOMING: ${g.note || g.shortName} — ${g.away.team} at ${g.home.team}${g.seriesNote ? ` [Series: ${g.seriesNote}]` : ''}${loc ? ` at ${loc}` : ''}. NO result yet.`);
+    }
   }
 
   if (markets) {
@@ -347,7 +358,7 @@ async function main() {
   if (copy) {
     console.log('\n🧐 Editorial pass — Claude enforcing the GuyTalk Editorial Bible...');
     try {
-      const facts = buildFactsContext({ sports, markets, golf, f1, worldCup, upcoming, boxScores, trending });
+      const facts = buildFactsContext({ sports, markets, golf, f1, worldCup, nhl, upcoming, boxScores, trending });
       const links = (trending || []).map(t => t.url).filter(Boolean);
       const result = await editBrief({ copy, context: facts, links });
       copy = result.copy;
