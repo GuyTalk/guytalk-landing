@@ -298,7 +298,7 @@ Return ONLY valid JSON array with exactly 3 objects — no markdown, no extra te
 [{"topic":"Headline. Max 8 words.","whatHappened":"One sentence — what actually happened.","whyItMatters":"One sentence — why a guy should care.","whatToSay":"One casual conversation line. Natural, not forced.","tag":"Celebrity|Music|Sports Biz|TV|Tech|Culture|Streaming"}]
 
 Items 1 and 2: Real stories from trending data. Different categories — don't do two of the same type.
-${streamingPick ? `Item 3 EXACTLY: {"topic":"${streamingPick.head.replace('Watch this: ', '')}","whatHappened":"${streamingPick.body.split('.')[0]}.","whyItMatters":"Worth your time.","whatToSay":"Just put it on.","tag":"Streaming"}` : 'Item 3: One streaming/watch rec. Action, thriller, crime, prestige drama only — no animated, kids, or family.'}
+${streamingPick ? `Item 3 — a watch recommendation for "${streamingPick.head.replace('Watch this: ', '')}": {"topic":"${streamingPick.head.replace('Watch this: ', '')}","whatHappened":"${streamingPick.body.split('.')[0]}.","whyItMatters":"One sentence on the vibe/genre and why it's worth a guy's night — general framing only, do NOT invent plot, cast, awards, or box-office.","whatToSay":"One natural recommendation line you'd actually say to a friend.","tag":"Streaming"}` : 'Item 3: One streaming/watch rec (action, thriller, crime, or prestige drama — no animated/kids/family). whyItMatters = vibe + why worth watching; whatToSay = a natural rec line. No invented facts.'}
 
 Only use stories confirmed in trending data — never invent events.
 Trending: ${trendText || 'Use knowledge of June 2026 current events.'}`,

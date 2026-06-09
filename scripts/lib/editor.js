@@ -283,6 +283,8 @@ E. MARKETS COMPLIANCE. Observational ONLY. Never advise. No buy/sell/hold, "buyi
 
 F. FLAG WEAK CONTENT. A section may only stay if it answers at least TWO of: Why does this matter? Why would people be talking about it? What is the simple takeaway? What could I say about it? If you cannot make a section meet that bar using only the RAW FACTS, add it to report.blocking instead of faking it. Sports items need a specific player, play, moment, or storyline AND why it matters; if RAW FACTS lack the detail, block it — do not invent.
 
+EXCEPTION — the LAST Culture item is a curated streaming/watch recommendation (an editorial pick, not a sourced news story). Do NOT add it to blocking for lacking RAW FACTS. Keep it, and make the recommendation copy sharp and specific (genre/vibe, why it's worth a watch, a natural one-liner) — just never invent a plot detail, cast member, award, or box-office number.
+
 OUTPUT — return ONLY valid JSON, no markdown fences, exactly this shape:
 {
   "copy": { ...the DRAFT object with the SAME keys and array lengths, text rewritten to follow the Bible... },
