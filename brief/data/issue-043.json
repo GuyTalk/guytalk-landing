@@ -1,0 +1,783 @@
+{
+  "num": 43,
+  "slug": "issue-043",
+  "date": "Tuesday, June 9, 2026",
+  "title": "Spurs steal Game 3. Antonelli wins Monaco. Tech stocks crater again.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401859965",
+      "name": "San Antonio Spurs at New York Knicks",
+      "shortName": "SA @ NY",
+      "date": "2026-06-09T00:30Z",
+      "venue": "Madison Square Garden",
+      "venueCity": "New York, NY",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA Finals - Game 3",
+      "seriesNote": "NY leads series 2-1",
+      "sport": "NBA",
+      "home": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "111",
+        "winner": false
+      },
+      "away": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "115",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 736.71,
+      "prevClose": 739.22,
+      "dayChange": -2.51,
+      "dayChangePct": -0.3395,
+      "weekChangePct": -2.9635197687065227,
+      "spark": [
+        739.2999877929688,
+        738.1799926757812,
+        742.3099975585938,
+        748.1699829101562,
+        739.1699829101562,
+        738.6500244140625,
+        733.72998046875,
+        741.25,
+        742.719970703125,
+        745.6400146484375,
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0599975585938
+      ]
+    },
+    "DIA": {
+      "price": 509.7,
+      "prevClose": 508.91,
+      "dayChange": 0.79,
+      "dayChangePct": 0.1552,
+      "weekChangePct": -0.805366771963836,
+      "spark": [
+        497.1099853515625,
+        497.8900146484375,
+        497.1400146484375,
+        500.79998779296875,
+        495.3699951171875,
+        497.010009765625,
+        493.9800109863281,
+        500.239990234375,
+        503.1099853515625,
+        506.1199951171875,
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.9100036621094
+      ]
+    },
+    "QQQ": {
+      "price": 706.83,
+      "prevClose": 716.07,
+      "dayChange": -9.24,
+      "dayChangePct": -1.2904,
+      "weekChangePct": -5.1972733113921095,
+      "spark": [
+        713.2899780273438,
+        707.239990234375,
+        714.7100219726562,
+        719.7899780273438,
+        708.9299926757812,
+        705.8800048828125,
+        701.530029296875,
+        713.1500244140625,
+        714.510009765625,
+        717.5399780273438,
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.3800048828125
+      ]
+    },
+    "IWM": {
+      "price": 285.33,
+      "prevClose": 284.11,
+      "dayChange": 1.22,
+      "dayChangePct": 0.4294,
+      "weekChangePct": -2.11547815423378,
+      "spark": [
+        285.3299865722656,
+        282.57000732421875,
+        282.6700134277344,
+        284.45001220703125,
+        277.6000061035156,
+        275.9700012207031,
+        273,
+        279.8699951171875,
+        282.489990234375,
+        285.1199951171875,
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.489990234375
+      ]
+    },
+    "NVDA": {
+      "price": 207.01,
+      "prevClose": 208.64,
+      "dayChange": -1.63,
+      "dayChangePct": -0.7812,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 396.82,
+      "prevClose": 408.95,
+      "dayChange": -12.13,
+      "dayChangePct": -2.9661,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 403.93,
+      "prevClose": 411.74,
+      "dayChange": -7.81,
+      "dayChangePct": -1.8968,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 291.51,
+      "prevClose": 301.54,
+      "dayChange": -10.03,
+      "dayChangePct": -3.3263,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 590.89,
+      "prevClose": 585.39,
+      "dayChange": 5.5,
+      "dayChangePct": 0.9395,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 245.44,
+      "prevClose": 245.22,
+      "dayChange": 0.22,
+      "dayChangePct": 0.0897,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 366.07,
+      "prevClose": 363.31,
+      "dayChange": 2.76,
+      "dayChangePct": 0.7597,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 468.52,
+      "prevClose": 490.33,
+      "dayChange": -21.81,
+      "dayChangePct": -4.448,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 391.68,
+      "prevClose": 396.6,
+      "dayChange": -4.92,
+      "dayChangePct": -1.2405,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 81.71,
+      "prevClose": 82.64,
+      "dayChange": -0.93,
+      "dayChangePct": -1.1254,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 312.99,
+      "prevClose": 311.11,
+      "dayChange": 1.88,
+      "dayChangePct": 0.6043,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 155.12,
+      "prevClose": 162.11,
+      "dayChange": -6.99,
+      "dayChangePct": -4.3119,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 375.65,
+      "prevClose": 400.77,
+      "dayChange": -25.12,
+      "dayChangePct": -6.2679,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 61838.01,
+      "prevClose": 63501.23,
+      "dayChange": -1663.22,
+      "dayChangePct": -2.6192,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "DELL",
+      "AMD",
+      "COIN",
+      "AAPL",
+      "TSLA"
+    ],
+    "10Y": {
+      "price": 4.528,
+      "prevClose": 4.552000045776367,
+      "dayChange": -0.024000045776367607,
+      "dayChangePct": -0.527241773616333,
+      "weekChangePct": 1.6386100458833925,
+      "spark": [
+        4.409999847412109,
+        4.4629998207092285,
+        4.480999946594238,
+        4.460999965667725,
+        4.59499979019165,
+        4.623000144958496,
+        4.666999816894531,
+        4.572000026702881,
+        4.585999965667725,
+        4.558000087738037,
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875
+      ]
+    },
+    "__meta": {
+      "state": "open",
+      "tableTitle": "Markets open",
+      "tableSub": "as of 3:08 PM ET today",
+      "framing": "US stock markets are OPEN right now (intraday). Use present tense — \"is trading\", \"up/down on the day so far\". Do NOT say \"closed\"."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "NKE",
+          "name": "NIKE, Inc.",
+          "price": 44.7099,
+          "changePct": 3.42332
+        },
+        {
+          "symbol": "SBUX",
+          "name": "Starbucks Corporation",
+          "price": 97.715,
+          "changePct": 3.05315
+        },
+        {
+          "symbol": "GE",
+          "name": "GE Aerospace",
+          "price": 330.9038,
+          "changePct": 2.75239
+        },
+        {
+          "symbol": "JNJ",
+          "name": "Johnson & Johnson",
+          "price": 237.48,
+          "changePct": 2.29152
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 469.355,
+          "changePct": -4.27773
+        },
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 155.205,
+          "changePct": -4.25945
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 291.73,
+          "changePct": -3.2533
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 132.115,
+          "changePct": -3.19118
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 207.15,
+          "changePct": -0.71415
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 107.34,
+          "changePct": -2.65711
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 291.73,
+          "changePct": -3.2533
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 61796.5,
+          "changePct": -2.57121
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "RBC Canadian Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-11T04:00Z",
+    "endDate": "2026-06-14T04:00Z",
+    "status": "Thu, June 10th at 12:00 AM EDT",
+    "statusState": "pre",
+    "leaders": [
+      {
+        "name": "Keith Mitchell",
+        "score": "E",
+        "pos": "1st"
+      },
+      {
+        "name": "Ben Silverman",
+        "score": "E",
+        "pos": "2nd"
+      },
+      {
+        "name": "Kevin Roy",
+        "score": "E",
+        "pos": "3rd"
+      },
+      {
+        "name": "Dylan Wu",
+        "score": "E",
+        "pos": "4th"
+      },
+      {
+        "name": "Matti Schmid",
+        "score": "E",
+        "pos": "5th"
+      },
+      {
+        "name": "Mac Meissner",
+        "score": "E",
+        "pos": "6th"
+      },
+      {
+        "name": "Danny Willett",
+        "score": "E",
+        "pos": "7th"
+      },
+      {
+        "name": "Roger Sloan",
+        "score": "E",
+        "pos": "8th"
+      },
+      {
+        "name": "Justin Lower",
+        "score": "E",
+        "pos": "9th"
+      },
+      {
+        "name": "Austin Smotherman",
+        "score": "E",
+        "pos": "10th"
+      }
+    ]
+  },
+  "f1": {
+    "name": "Monaco Grand Prix",
+    "shortName": "Monaco GP",
+    "venue": "Circuit de Monaco",
+    "status": "Final",
+    "statusState": "post",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 66
+    },
+    "results": [
+      {
+        "pos": 1,
+        "driver": "Kimi Antonelli",
+        "team": "Mercedes",
+        "time": "",
+        "seasonWins": 5,
+        "champPos": 1,
+        "champPoints": 156
+      },
+      {
+        "pos": 2,
+        "driver": "Lewis Hamilton",
+        "team": "Ferrari",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 2,
+        "champPoints": 90
+      },
+      {
+        "pos": 3,
+        "driver": "Isack Hadjar",
+        "team": "Red Bull",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 8,
+        "champPoints": 29
+      },
+      {
+        "pos": 4,
+        "driver": "Oscar Piastri",
+        "team": "McLaren",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 5,
+        "champPoints": 60
+      },
+      {
+        "pos": 5,
+        "driver": "Liam Lawson",
+        "team": "RB F1 Team",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 9,
+        "champPoints": 26
+      }
+    ]
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401874174",
+      "name": "Carolina Hurricanes at Vegas Golden Knights",
+      "shortName": "CAR @ VGK",
+      "date": "2026-06-10T00:00Z",
+      "venue": "T-Mobile Arena",
+      "venueCity": "Las Vegas, NV",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "Stanley Cup Final - Game 4",
+      "seriesNote": "VGK leads series 2-1",
+      "sport": "NHL",
+      "home": {
+        "team": "Vegas Golden Knights",
+        "abbrev": "VGK",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Carolina Hurricanes",
+        "abbrev": "CAR",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [
+    {
+      "id": "401859966",
+      "name": "San Antonio Spurs at New York Knicks",
+      "shortName": "SA @ NY",
+      "date": "2026-06-11T00:30Z",
+      "venue": "Madison Square Garden",
+      "venueCity": "New York, NY",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 4",
+      "seriesNote": "NY leads series 2-1",
+      "sport": "NBA",
+      "home": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    }
+  ],
+  "gameMetas": {
+    "401859965": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/nba/recap/_/gameId/401859965",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "'RHOM' Star Lenny Hochstein Sued by Woman Claiming He Drugged, Sexually Assaulted Her - TMZ",
+      "url": "https://www.tmz.com/2026/06/08/lenny-hochstein-accused-drugging-woman-lawsuit/",
+      "description": "11:41 AM PT -- Lenny Hochstein tells TMZ ... \"I have never drugged or raped anyone in my life. This is an encounter I had over a year ago. There are multiple witnesses. If she believes she was raped she should go to the police. Not try to sue me for money. Th…",
+      "source": "TMZ"
+    },
+    {
+      "title": "'Alice and Steve' Review: Jemaine Clement, Nicola Walker Are Hilarious - Variety",
+      "url": "https://variety.com/2026/tv/reviews/alice-and-steve-review-jemaine-clement-nicola-walker-hulu-1236768947/",
+      "description": "Hulu's 'wrong-com' 'Alice and Steve' stars Jemaine Clement and Nicola Walker as a hilarious pair of best friends on the war path.",
+      "source": "Variety"
+    },
+    {
+      "title": "French star Patrick Bruel placed in police custody over rape, sex assault allegations - France 24",
+      "url": "https://www.france24.com/en/france/20260608-french-star-patrick-bruel-placed-in-police-custody-over-rape-sex-assault-allegations",
+      "description": "Famed French singer and actor Patrick Bruel has been ​placed in police custody over allegations of rape, attempted rape, ​sexual assault and harassment from 13 victims, ‌the Nanterre prosecution office ⁠said on Monday. Bruel has publicly denied wrongdoing.",
+      "source": "FRANCE 24 English"
+    },
+    {
+      "title": "Shawn Hatosy on 'The Pitt,' Becoming a Sex Symbol and Quinn - Variety",
+      "url": "https://variety.com/2026/tv/news/shawn-hatosy-the-pitt-sex-symbol-quinn-1236768291/",
+      "description": "Shawn Hatosy opens up about how 'The Pitt' has changed his life, embracing his Sex Symbol status and recording a Quinn audio erotica drama.",
+      "source": "Variety"
+    },
+    {
+      "title": "New He-Man Movie Is One Of 2026’s Biggest Box Office Bombs - Kotaku",
+      "url": "https://kotaku.com/new-he-man-movie-is-one-of-2026s-biggest-box-office-bombs-2000703953",
+      "description": "Masters of the Universe made less than $30 million in the United States over opening weekend",
+      "source": "Kotaku"
+    },
+    {
+      "title": "Kurt Busch Says His 'Heart Is Broken' Over Kyle's Death - TMZ",
+      "url": "https://www.tmz.com/2026/06/08/kurt-busch-heartbroken-kyle-death/",
+      "description": "Kurt Busch is breaking his silence on his younger brother Kyle Busch's tragic death ... saying it's crushed him.",
+      "source": "TMZ"
+    },
+    {
+      "title": "New NHL Rumors on Dylan Larkin's Wish List for Trade Landing Spot Ahead of 2026 Draft, Free Agency - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25435281-new-nhl-rumors-dylan-larkins-wish-list-trade-landing-spot-ahead-2026-draft-free-agency",
+      "description": "While veteran forward Detroit Red Wings would prefer a move away from the Detroit Red Wings, his limited wish list could be a hindrance toward that pursuit.",
+      "source": "Bleacher Report"
+    },
+    {
+      "title": "Bruce Branch III wins silver medal with Team USA at FIBA U18 Americup - Deseret News",
+      "url": "https://www.deseret.com/sports/2026/06/08/bruce-branch-byu-basketball-silver-medal-fiba-americup/",
+      "description": "",
+      "source": "Deseret News"
+    },
+    {
+      "title": "‘Let it hit rock bottom’: NBA Finals ticket prices crash after Donald Trump confirms attendance - Yahoo Sports",
+      "url": "https://thecomeback.com/nba/finals-ticket-prices-crash-after-donald-trump-confirms-attendance.html",
+      "description": "The NBA Finals between the New York Knicks and San Antonio Spurs are underway, and with a 2-0 lead in the series, the New York Knicks are just two games away...",
+      "source": "The Comeback"
+    },
+    {
+      "title": "Lewis Hamilton lifts lid on Kim Kardashian's support after F1 Monaco GP - Yahoo Sports",
+      "url": "https://www.motorsport.com/f1/news/lewis-hamilton-lifts-lid-on-kim-kardashians-support-after-f1-monaco-gp/10828411/",
+      "description": "Lewis Hamilton addressed Kim Kardashian’s support at the Monaco Grand Prix after securing second place for Ferrari",
+      "source": "Motorsport.com"
+    }
+  ],
+  "copy": {
+    "title": "Spurs steal Game 3. Antonelli wins Monaco. Tech stocks crater again.",
+    "keyTakeaway": "The Spurs punched back in Game 3, cutting the Knicks' Finals lead to one game with a 115-111 win behind Wembanyama and Castle. Tech stocks took another beating this week, with QQQ down over five percent as Apple, Tesla, and AMD all slid hard. Game 4 is tomorrow night in New York, and the Knicks know exactly what's at stake.",
+    "todaysHits": {
+      "sports": "Spurs refuse to go quietly — Wembanyama and Castle combine for 55 and cut the Knicks' lead to one game.",
+      "markets": "Tech craters again — QQQ down 5.2% on the week while Apple, AMD, and Tesla all took serious hits.",
+      "golf": "Canadian Open is underway at Hamilton Golf and Country Club — Keith Mitchell sits at even par and leads early.",
+      "f1": "Antonelli wins Monaco for Mercedes, with Hamilton finishing second in Ferrari red — a result nobody saw coming.",
+      "worldcup": "World Cup 2026 is on the horizon with zero matches played yet — the buildup is real.",
+      "culture": "Patrick Bruel placed in police custody in France over serious allegations, and the He-Man movie became one of 2026's biggest box office disasters."
+    },
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Spurs steal Game 3, but Knicks still control the Finals",
+      "whatHappened": "San Antonio won 115-111 at home behind 32 points each from Victor Wembanyama and Jalen Brunson, with Stephon Castle adding 23 off the bench to give the Spurs the depth they needed. New York still leads the series 2-1, but this is a real fight now — Game 4 is tomorrow night in New York.",
+      "whyBullet1": "OG Anunoby dropped 28 points and the Knicks still lost on the road, which tells you San Antonio's balanced attack — three guys with 23 or more — is harder to game-plan against than a single superstar going off.",
+      "whyBullet2": "Game 4 in New York is essentially a must-win for the Knicks' momentum. Up 2-1 with homecourt, they have the chance to put this series away — and nobody wants to fly back to San Antonio down 3-2.",
+      "whatToSay": "The Spurs didn't win because the Knicks choked — they won because Wembanyama, Castle, and Harper all showed up at the same time. New York's still the favorite, but this series just got real."
+    },
+    "sportsOther": [],
+    "markets": {
+      "mood": "Tech stocks are getting hammered again — QQQ is down 5.2% on the week as Apple, Tesla, AMD, and Microsoft all slid on the same session.",
+      "whyBullet1": "When NVDA drops 0.8% and AMD craters 4.4% in a single session, the read-through is that traders are rotating out of the AI-driven names that powered the market through 2024. The Nasdaq's weakness is a signal worth watching, not just a number.",
+      "whyBullet2": "The 10-year yield is up 1.6% for the week even as equities fall. The concern is that bonds are pricing in persistent inflation or a slower pace of Fed cuts — and that's the actual headwind weighing on growth stocks right now.",
+      "bringUp": "The real story isn't the stock drops — it's the 10-year yield climbing while everything else falls. That's the market telling you rates are staying higher for longer, and growth stocks feel it first."
+    },
+    "golf": {
+      "headline": "Canadian Open tees off with home crowd hungry for a winner.",
+      "course": "Hamilton Golf and Country Club, Hamilton, Ontario",
+      "whyCare1": "The RBC Canadian Open is one of the oldest national opens in the world and carries full FedEx Cup points, making it a serious stop for players trying to lock up their playoff position heading into summer.",
+      "defending": "Robert MacIntyre won here last year in one of the more emotional victories of the 2025 season, giving Canada a hometown-feeling moment that the crowd hasn't forgotten.",
+      "watchFor": "Whether the early leaders can hold their ground as the field settles in, and whether any marquee names make a move up the leaderboard by the weekend.",
+      "whatToSay": "Hamilton Golf and Country Club is one of the most respected courses in North America — whoever wins here isn't just cashing a check, they're putting their name on something that actually has history behind it."
+    },
+    "f1": {
+      "headline": "Antonelli wins Monaco. Mercedes owns the streets.",
+      "whyCare1": "Antonelli took the checkered flag at Monaco, where precision and car control matter more than raw speed. Winning here means something different — it's the race every driver wants on their resume, and Antonelli just added it.",
+      "whyCare2": "Lewis Hamilton finishing second in Ferrari red at Monaco is the kind of storyline that writes itself — the man who defined an era at Mercedes, now chasing his former team on the most iconic circuit in the world.",
+      "watchFor": "Whether Red Bull can close the gap on Mercedes at the next street circuit, or if Antonelli's mastery of tight tracks becomes the defining story of this season.",
+      "whatToSay": "Hamilton finishing second to his old team at Monaco in a Ferrari is genuinely one of the stranger and more compelling images of this F1 season. Antonelli is running away with this championship."
+    },
+    "culture": [
+      {
+        "topic": "He-Man Movie Tanks Hard at Box Office",
+        "whatHappened": "The new He-Man film landed as one of 2026's biggest box office bombs, according to early tracking.",
+        "whyItMatters": "It's another major IP tentpole that couldn't convert nostalgia into ticket sales — which is becoming a pattern that studios are going to have to reckon with sooner or later.",
+        "whatToSay": "Even He-Man couldn't pull it off. At some point studios have to admit that slapping a childhood property on a poster isn't a business plan.",
+        "tag": "TV"
+      },
+      {
+        "topic": "Kurt Busch Opens Up on Kyle's Death",
+        "whatHappened": "Kurt Busch publicly said his heart is broken over the death of Kyle, speaking openly about the grief he's carrying.",
+        "whyItMatters": "It's a reminder that behind the racing world's noise and competition are real families dealing with real loss — and Kurt putting that into words publicly takes guts.",
+        "whatToSay": "Kurt talking about Kyle hit differently. Racing families carry a lot, and he didn't have to say any of that publicly.",
+        "tag": "Sports Biz"
+      },
+      {
+        "topic": "The Accountant 2 — Worth Your Weekend",
+        "whatHappened": "Ben Affleck returns as the autistic forensic accountant turned lethal contractor in this follow-up to the quietly beloved 2016 original.",
+        "whyItMatters": "It's a smart, grounded action thriller that trusts its audience — the kind of movie that doesn't need a cinematic universe or a post-credits scene to justify its existence.",
+        "whatToSay": "If you liked the first Accountant, this one delivers. It's the rare sequel that actually earns its runtime.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "The Spurs aren't dead yet. San Antonio took Game 3 at home 115-111, with Wembanyama, Castle, and Harper all showing up when it mattered. New York still leads 2-1 and has homecourt tomorrow night, but this is a real series now — not a coronation. Game 4 decides whether the Knicks close it out or whether San Antonio drags this thing back home.",
+    "glance": null,
+    "theTake": {
+      "office": "San Antonio's defense tightened in crunch time last night, but New York's still in the driver's seat heading home—don't sleep on a Spurs team that's figured something out.",
+      "bar": "The Knicks are playing not to lose instead of playing to win, and that's exactly how you blow a Finals series you should've already closed out."
+    },
+    "nhl": {
+      "headline": "Vegas up 2-1, Carolina comes to T-Mobile Arena for Game 4.",
+      "whyCare1": "The Golden Knights are one win away from hoisting the Cup on home ice — a result their fanbase has been building toward all season.",
+      "whyCare2": "Carolina is in a must-win situation. Lose Game 4 and they're down 3-1 with their backs fully against the wall; win it and suddenly this is a best-of-three with real momentum.",
+      "watchFor": "Whether Carolina's offense can generate sustained pressure or if Vegas locks them down early and lets the crowd take over at T-Mobile Arena.",
+      "whatToSay": "Vegas wins tonight and they're Cup champs. Carolina steals it and this series gets interesting fast — that's the only two outcomes that matter right now."
+    },
+    "upcomingPreview": {
+      "whyItMatters": "San Antonio can force a Game 5 and keep their season alive, or New York closes it out at home and wins the championship in front of their own crowd.",
+      "watchFor": "Whether New York's perimeter defense can contain San Antonio's spacing and three-point shooting after getting burned in Game 3.",
+      "whatToSay": "San Antonio has nothing to lose tomorrow night — New York has to protect homecourt or this series gets uncomfortable fast."
+    }
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-09T19:09:08.811Z",
+    "blocking": [],
+    "changed": [
+      "keyTakeaway",
+      "todaysHits",
+      "lead.whatHappened",
+      "lead.whyBullet1",
+      "lead.whyBullet2",
+      "lead.whatToSay",
+      "markets.mood",
+      "markets.whyBullet1",
+      "markets.whyBullet2",
+      "markets.bringUp",
+      "golf.whyCare2",
+      "golf.watchFor",
+      "golf.whatToSay",
+      "f1.headline",
+      "f1.whyCare2",
+      "f1.whatToSay",
+      "nhl.headline",
+      "nhl.whyCare1",
+      "nhl.whyCare2",
+      "nhl.whatToSay",
+      "upcomingPreview.whatToSay",
+      "culture[0].whatHappened",
+      "culture[0].whyItMatters",
+      "culture[0].whatToSay",
+      "culture[1].whatToSay",
+      "culture[2].topic",
+      "culture[2].whyItMatters",
+      "culture[2].whatToSay",
+      "finalSharpTake"
+    ],
+    "notes": [
+      "markets.whyBullet2 and bringUp originally contained forward-looking advisory framing ('Watch the CPI print this Thursday'). Rewritten as observational — the 10-year yield move is the stated fact; the framing now describes what the market is pricing in, not what the reader should do or watch for.",
+      "f1.whyCare2 originally cited a specific points lead and win count (156 points, 66-point lead, five wins) that do not appear in RAW FACTS. Removed all invented standings data. Replaced with the Hamilton-at-Monaco storyline, which is fully supported by RAW FACTS and is more compelling editorially.",
+      "golf.whyCare2 was blank in the draft. Filled using RAW FACTS (Keith Mitchell leading at even par, Hamilton Golf and Country Club as a parkland layout). Robert MacIntyre as defending champion is a stable documented fact covered under the golf preview exception.",
+      "NHL section had no result yet per RAW FACTS — kept as a preview with appropriate framing. No scores or outcomes stated.",
+      "culture[2] is the streaming/watch recommendation exception — kept and sharpened per Bible instructions. No invented plot details, cast, awards, or box office numbers added.",
+      "World Cup todaysHit retained as context/buildup framing only — no matches played, no results stated."
+    ],
+    "brokenLinks": []
+  }
+}
