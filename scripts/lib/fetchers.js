@@ -558,9 +558,15 @@ async function fetchGolf() {
       }))
       .filter(c => c.name !== 'Unknown');
 
+    const addr = comp?.venue?.address || ev.venue?.address || {};
+    const location = [addr.city, addr.state || addr.country].filter(Boolean).join(', ');
+
     return {
       name: ev.name || 'PGA Tour',
-      venue: ev.venue?.fullName || '',
+      venue: comp?.venue?.fullName || ev.venue?.fullName || '',
+      location,
+      date: ev.date || comp?.date || null,
+      endDate: ev.endDate || null,
       status: statusDetail,
       statusState,
       leaders,

@@ -168,11 +168,16 @@ function buildHtml(issue, relatedIssues) {
   const hasWC  = worldCup?.length > 0;
   const hasGolf = golf?.name != null;
 
-  // Hero photo for the top event — the lead game's venue (or upcoming marquee).
+  // Hero photo for the top event. Prefer ESPN's real game photo (reliable CDN),
+  // fall back to a venue photo. onerror hides the whole block so a dead image
+  // never shows a broken icon.
   const heroGame = (sports && sports[0]) || (upcoming && upcoming[0]) || null;
   const heroV = heroGame ? venueImage(heroGame.home.abbrev, (heroGame.sport || 'nba').toLowerCase()) : null;
-  const heroImgHtml = heroV
-    ? `<div class="brief-hero-img"><img src="${esc(heroV.url)}" alt="${esc(heroV.alt)}" loading="eager"><div class="brief-hero-img-cap"><span class="bhi-pin">◍</span>${esc(heroV.cap)}</div></div>`
+  const heroEspn = heroGame && gameMetas && gameMetas[heroGame.id] ? gameMetas[heroGame.id].imageUrl : null;
+  const heroUrl = heroEspn || (heroV ? heroV.url : null);
+  const heroCap = heroV ? heroV.cap : (heroGame ? `${heroGame.away?.team || ''} at ${heroGame.home?.team || ''}` : '');
+  const heroImgHtml = heroUrl
+    ? `<div class="brief-hero-img"><img src="${esc(heroUrl)}" alt="${esc(heroCap)}" loading="eager" onerror="this.closest('.brief-hero-img').style.display='none'">${heroCap ? `<div class="brief-hero-img-cap"><span class="bhi-pin">◍</span>${esc(heroCap)}</div>` : ''}</div>`
     : '';
 
   const seoTitle = buildSeoTitle(issue);
@@ -1233,22 +1238,21 @@ function buildLead({ sports, upcoming, copy }) {
     const homeLoser = !leadGame.home.winner;
     const awayLoser = !leadGame.away.winner;
     const metaText = leadGame.note ? `${leadGame.note} · ${leadGame.status}` : leadGame.status;
+    // Both sides identical (logo on top → team → score). Winner shown by the
+    // center badge, not by dimming, so the two sides look the same.
+    const sideHtml = (t, logo) => `      <div class="score-side">
+        ${logo ? `<img src="${esc(logo)}" class="score-logo" alt="${esc(t.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+        <div class="score-team">${esc(t.team)}</div>
+        <div class="score-num">${esc(t.score)}</div>
+      </div>`;
     scoreboardHtml = `
     <div class="scoreboard">
-      <div class="score-side">
-        ${homeLogo ? `<img src="${esc(homeLogo)}" class="score-logo${homeLoser ? ' loser' : ''}" alt="${esc(leadGame.home.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
-        <div class="score-team${homeLoser ? ' loser' : ''}">${esc(leadGame.home.team)}</div>
-        <div class="score-num${homeLoser ? ' loser' : ''}">${esc(leadGame.home.score)}</div>
-      </div>
+${sideHtml(leadGame.home, homeLogo)}
       <div class="score-center">
         <div class="score-meta">${esc(metaText)}</div>
         <div class="score-badge">${esc(w.abbrev || w.team.split(' ').pop())} Win</div>
       </div>
-      <div class="score-side right">
-        <div class="score-team${awayLoser ? ' loser' : ''}">${esc(leadGame.away.team)}</div>
-        <div class="score-num${awayLoser ? ' loser' : ''}">${esc(leadGame.away.score)}</div>
-        ${awayLogo ? `<img src="${esc(awayLogo)}" class="score-logo${awayLoser ? ' loser' : ''}" alt="${esc(leadGame.away.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
-      </div>
+${sideHtml(leadGame.away, awayLogo)}
     </div>`;
   }
 
@@ -1518,8 +1522,16 @@ function buildGolf({ golf, copy }) {
   const courseImgHtml = courseImg
     ? `    <div class="brief-img"><img src="${esc(courseImg.url)}" alt="${esc(courseImg.cap)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(courseImg.cap)}</div></div>`
     : '';
-  const courseWhere = courseImg ? courseImg.cap.split(' · ').slice(0, 2).join(' · ') : '';
-  const golfWhereHtml = courseWhere ? `    <div class="where-line"><span class="where-pin">◍</span>${esc(courseWhere)}</div>` : '';
+  // Where + when, from real ESPN golf data (venue/location/date), not a guess.
+  const fmtD = (iso) => { try { return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'America/New_York' }); } catch (_) { return ''; } };
+  let golfWhen = '';
+  if (golf.statusState === 'pre' && golf.date) {
+    golfWhen = golf.endDate ? `${fmtD(golf.date)}–${fmtD(golf.endDate)}` : `Starts ${fmtD(golf.date)}`;
+  } else if (golf.status) {
+    golfWhen = golf.status;
+  }
+  const golfWhereTxt = [golf.venue, golf.location, golfWhen].filter(Boolean).join('  ·  ');
+  const golfWhereHtml = golfWhereTxt ? `    <div class="where-line"><span class="where-pin">◍</span>${esc(golfWhereTxt)}</div>` : '';
 
   return `  <section class="brief-section" id="golf">
     <div class="section-label sl-golf">Golf</div>
