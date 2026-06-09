@@ -1530,7 +1530,10 @@ function buildGolf({ golf, copy }) {
   } else if (golf.status) {
     golfWhen = golf.status;
   }
-  const golfWhereTxt = [golf.venue, golf.location, golfWhen].filter(Boolean).join('  ·  ');
+  // Venue from ESPN when present; else our curated course list (fixed-venue
+  // majors); else just the dates — never a guessed course.
+  const realVenue = golf.venue || (courseImg ? courseImg.cap.split(' · ')[0] : '');
+  const golfWhereTxt = [realVenue, golf.location, golfWhen].filter(Boolean).join('  ·  ');
   const golfWhereHtml = golfWhereTxt ? `    <div class="where-line"><span class="where-pin">◍</span>${esc(golfWhereTxt)}</div>` : '';
 
   return `  <section class="brief-section" id="golf">
