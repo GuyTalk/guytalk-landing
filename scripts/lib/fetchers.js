@@ -1,6 +1,6 @@
 'use strict';
 
-const { TICKERS, FETCH_TICKERS } = require('./db');
+const { TICKERS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT } = require('./db');
 
 function orderSuffix(n) {
   if (n === 1) return '1st';
@@ -22,6 +22,7 @@ function parseESPNGames(data, sport = 'NBA') {
       id: ev.id,
       name: ev.name,
       shortName: ev.shortName,
+      date: ev.date || comp.date || null,   // ISO start time (for tip-off / first-pitch)
       status: comp.status?.type?.description || 'Final',
       statusState: ev.status?.type?.state || 'post',
       note: comp.notes?.[0]?.headline || '',
@@ -367,9 +368,15 @@ async function fetchMarkets() {
   const now = Math.floor(Date.now() / 1000);
   const tenDaysAgo = now - 10 * 24 * 60 * 60;
 
+  // Core indices get the full treatment (price + day + week change). Movers
+  // only need a quote (price + day %) — keeps the call count well under the
+  // Finnhub free-tier rate limit across the ~17-symbol watchlist.
+  const coreSet = new Set(CORE_TICKERS);
+
   for (const sym of FETCH_TICKERS) {
     const cfg = TICKERS[sym];
     if (!cfg?.finnhub) continue;
+    const wantWeek = coreSet.has(sym);
 
     try {
       const encoded = encodeURIComponent(cfg.finnhub);
@@ -378,20 +385,22 @@ async function fetchMarkets() {
       const quoteRes = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encoded}&token=${key}`);
       const q = quoteRes.ok ? await quoteRes.json() : {};
 
-      await new Promise(r => setTimeout(r, 120));
-      const candleBase = isCrypto ? 'crypto/candle' : 'stock/candle';
-      const candleRes = await fetch(
-        `https://finnhub.io/api/v1/${candleBase}?symbol=${encoded}&resolution=D&from=${tenDaysAgo}&to=${now}&token=${key}`
-      );
       let weekChangePct = null;
-      if (candleRes.ok) {
-        const c = await candleRes.json();
-        if (c.s === 'ok' && c.c?.length >= 2) {
-          const closes = c.c;
-          const weekStart = closes[Math.max(0, closes.length - 6)];
-          const latest = closes[closes.length - 1];
-          if (weekStart && weekStart !== 0) {
-            weekChangePct = ((latest - weekStart) / weekStart) * 100;
+      if (wantWeek) {
+        await new Promise(r => setTimeout(r, 120));
+        const candleBase = isCrypto ? 'crypto/candle' : 'stock/candle';
+        const candleRes = await fetch(
+          `https://finnhub.io/api/v1/${candleBase}?symbol=${encoded}&resolution=D&from=${tenDaysAgo}&to=${now}&token=${key}`
+        );
+        if (candleRes.ok) {
+          const c = await candleRes.json();
+          if (c.s === 'ok' && c.c?.length >= 2) {
+            const closes = c.c;
+            const weekStart = closes[Math.max(0, closes.length - 6)];
+            const latest = closes[closes.length - 1];
+            if (weekStart && weekStart !== 0) {
+              weekChangePct = ((latest - weekStart) / weekStart) * 100;
+            }
           }
         }
       }
@@ -407,8 +416,17 @@ async function fetchMarkets() {
       results[sym] = null;
     }
 
-    await new Promise(r => setTimeout(r, 220));
+    await new Promise(r => setTimeout(r, wantWeek ? 220 : 130));
   }
+
+  // Pick the day's biggest movers from the watchlist (by absolute % move) so the
+  // featured individual names rotate day to day instead of being a fixed list.
+  results.__dynamicMovers = (MOVERS_WATCHLIST || [])
+    .map(sym => ({ sym, pct: results[sym]?.dayChangePct }))
+    .filter(m => m.pct !== null && m.pct !== undefined && Number.isFinite(m.pct))
+    .sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct))
+    .slice(0, MOVERS_COUNT || 5)
+    .map(m => m.sym);
 
   // 10Y Treasury yield via Yahoo Finance (^TNX) — no API key required
   try {

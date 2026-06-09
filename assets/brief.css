@@ -122,35 +122,38 @@ em { font-style: italic; }
    ================================================================ */
 .top-module {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-lg); padding: 22px 24px; margin-bottom: 48px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  border-radius: var(--r-lg); padding: 10px 28px 26px; margin-bottom: 48px;
+  box-shadow: 0 6px 24px rgba(15,23,36,0.06);
 }
 .top-module-label {
   font-family: 'Inter Tight', sans-serif; font-weight: 800;
   font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 16px;
+  color: var(--accent); margin: 20px 0 4px;
+  display: flex; align-items: center; gap: 9px;
 }
-.hits-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+.top-module-label::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.hits-list { display: flex; flex-direction: column; margin-bottom: 20px; }
 .hit-item {
-  display: flex; align-items: flex-start; gap: 12px; padding: 9px 0;
-  border-top: 1px solid var(--border); text-decoration: none;
-  color: var(--text-2); font-size: 15px; line-height: 1.45;
-  transition: color 0.12s;
+  display: grid; grid-template-columns: 78px 1fr; align-items: start; gap: 18px;
+  padding: 15px 0; border-top: 1px solid var(--border); text-decoration: none;
+  color: var(--text); font-size: 15.5px; line-height: 1.5;
+  transition: transform 0.14s ease;
 }
-.hit-item:first-child { border-top: 0; padding-top: 0; }
-.hit-item:hover { color: var(--text); }
+.hit-item:first-child { border-top: 0; }
+.hit-item:hover { transform: translateX(3px); border-bottom: 0; }
 .hit-tag {
-  flex-shrink: 0; font-family: 'JetBrains Mono', monospace;
-  font-weight: 600; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border);
-  background: var(--surface-2, #f4f3f0); color: var(--text-3); min-width: 54px; text-align: center;
+  font-family: 'Inter Tight', sans-serif; font-weight: 800;
+  font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3); border-left: 3px solid var(--border);
+  padding: 2px 0 2px 13px; line-height: 1.3;
 }
-.hit-sports .hit-tag  { color: var(--sports);  border-color: rgba(22,163,74,0.3); background: rgba(22,163,74,0.05); }
-.hit-markets .hit-tag { color: var(--accent);   border-color: rgba(43,111,255,0.3); background: rgba(43,111,255,0.05); }
-.hit-golf .hit-tag    { color: var(--amber);    border-color: rgba(184,124,53,0.3); background: rgba(184,124,53,0.05); }
-.hit-f1 .hit-tag      { color: var(--sports);   border-color: rgba(22,163,74,0.3); background: rgba(22,163,74,0.05); }
-.hit-culture .hit-tag { color: var(--culture);  border-color: rgba(194,65,12,0.3); background: rgba(194,65,12,0.05); }
-.hit-text { flex: 1; }
+.hit-sports .hit-tag  { color: var(--sports);  border-color: var(--sports); }
+.hit-markets .hit-tag { color: var(--accent);  border-color: var(--accent); }
+.hit-golf .hit-tag    { color: var(--amber);   border-color: var(--amber); }
+.hit-f1 .hit-tag      { color: var(--sports);  border-color: var(--sports); }
+.hit-culture .hit-tag { color: var(--culture); border-color: var(--culture); }
+.hit-text { color: var(--text-2); }
+.hit-item:hover .hit-text { color: var(--text); }
 .key-takeaway { border-top: 1px solid var(--border); padding-top: 16px; }
 .kt-label {
   font-family: 'Inter Tight', sans-serif; font-weight: 700;
@@ -385,39 +388,65 @@ em { font-style: italic; }
 /* ================================================================
    MARKET TICKER TABLE
    ================================================================ */
-.mkt-table {
+/* Markets — modern card: core index tiles + a rotating movers list */
+.mkt-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r); overflow: hidden; margin: 24px 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-radius: var(--r-lg); overflow: hidden; margin: 24px 0;
+  box-shadow: 0 6px 24px rgba(15,23,36,0.06);
 }
-.mkt-table-hd {
-  padding: 14px 22px 12px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: baseline; justify-content: space-between;
-  background: var(--surface-2);
+.mkt-card-hd {
+  padding: 16px 22px 14px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
 }
-.mkt-table-title {
-  font-family: 'Inter Tight', sans-serif; font-weight: 700;
-  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+.mkt-card-title {
+  font-family: 'Inter Tight', sans-serif; font-weight: 800;
+  font-size: 13px; letter-spacing: 0.03em; color: var(--text);
 }
-.mkt-table-sub { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); }
-.mkt-table-body { padding: 8px 22px 14px; font-family: 'JetBrains Mono', monospace; }
-.mkt-cols, .mkt-row {
-  display: grid; grid-template-columns: 1.5fr 1fr 0.8fr 0.9fr;
-  gap: 10px; padding: 8px 0; font-size: 13px; align-items: baseline;
+.mkt-card-sub { font-size: 12px; color: var(--text-3); font-weight: 500; }
+
+.mkt-index-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+.mkt-tile { background: var(--surface); padding: 16px 18px; }
+.mt-name {
+  font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px;
+  letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); margin-bottom: 9px;
 }
-.mkt-cols { border-bottom: 1px solid var(--border); margin-bottom: 4px; }
-.mkt-cols .th {
-  font-family: 'Inter Tight', sans-serif; font-weight: 600;
-  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3);
+.mt-price {
+  font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 23px;
+  letter-spacing: -0.025em; color: var(--text); line-height: 1; font-variant-numeric: tabular-nums;
 }
-.mkt-cols .th:nth-child(n+2) { text-align: right; }
-.mkt-row .m-name { color: var(--text); font-weight: 600; }
-.mkt-row .m-val, .mkt-row .m-day, .mkt-row .m-wk { text-align: right; }
-.mkt-row .m-val { color: var(--text); }
-.mkt-row .m-wk  { color: var(--text-2); }
-.mkt-row .up { color: var(--green); }
-.mkt-row .dn { color: var(--red); }
-.mkt-div { height: 1px; background: var(--border); margin: 8px 0 4px; }
+.mt-chg { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; margin-top: 7px; font-variant-numeric: tabular-nums; color: var(--text-3); }
+.mkt-tile.up .mt-chg { color: var(--green); }
+.mkt-tile.dn .mt-chg { color: var(--red); }
+
+.mkt-movers { padding: 16px 22px 18px; border-top: 1px solid var(--border); background: var(--surface-2); }
+.mkt-movers-hd {
+  font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+}
+.mover-list { display: flex; flex-direction: column; }
+.mover-row {
+  display: grid; grid-template-columns: 1fr auto 70px; align-items: center; gap: 14px;
+  padding: 11px 0; border-top: 1px solid var(--border);
+}
+.mover-row:first-child { border-top: 0; }
+.mv-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px; color: var(--text); display: flex; align-items: baseline; gap: 9px; }
+.mv-name .ticker { border-bottom: 0; color: var(--text); }
+.mv-full { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 12.5px; color: var(--text-3); }
+.mv-price { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 15px; color: var(--text); text-align: right; font-variant-numeric: tabular-nums; }
+.mv-chg { text-align: right; }
+
+/* Tip-off time on upcoming-game cards */
+.upcoming-time {
+  font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px;
+  color: var(--accent); margin-top: 14px; letter-spacing: 0.01em;
+}
+.upcoming-finals .upcoming-time { color: #6B9FFF; }
+
+@media (max-width: 560px) {
+  .mkt-index-grid { grid-template-columns: repeat(2, 1fr); }
+  .mt-price { font-size: 20px; }
+  .mv-full { display: none; }
+}
 
 /* ================================================================
    IMAGE MODULE

@@ -72,20 +72,40 @@ const PLAYERS = {
 // The BRIEF_ORDER array controls which tickers appear in the markets table.
 // ─────────────────────────────────────────────────────────────────────────────
 const TICKERS = {
-  'SPY':  { name: 'S&P 500',   finnhub: 'SPY',              ms: 'etfs/arcx/spy/quote',        display: 'SPY' },
-  'QQQ':  { name: 'Nasdaq',    finnhub: 'QQQ',              ms: 'etfs/arcx/qqq/quote',        display: 'QQQ' },
+  // ── Core indices — ALWAYS shown ──────────────────────────────────────────
+  'SPY':  { name: 'S&P 500',   finnhub: 'SPY',              ms: 'etfs/arcx/spy/quote',        display: 'S&P 500' },
+  'DIA':  { name: 'Dow Jones', finnhub: 'DIA',              ms: 'etfs/arcx/dia/quote',        display: 'Dow' },
+  'QQQ':  { name: 'Nasdaq 100',finnhub: 'QQQ',              ms: 'etfs/arcx/qqq/quote',        display: 'Nasdaq' },
+  '10Y':  { name: '10Y Yield', finnhub: null,               ms: null,                         display: '10Y Treasury', yahoo: '%5ETNX' },
+  // ── Movers watchlist — rotates daily by biggest move ─────────────────────
   'NVDA': { name: 'Nvidia',    finnhub: 'NVDA',             ms: 'stocks/xnas/nvda/quote',     display: 'NVDA' },
   'TSLA': { name: 'Tesla',     finnhub: 'TSLA',             ms: 'stocks/xnas/tsla/quote',     display: 'TSLA' },
   'MSFT': { name: 'Microsoft', finnhub: 'MSFT',             ms: 'stocks/xnas/msft/quote',     display: 'MSFT' },
   'AAPL': { name: 'Apple',     finnhub: 'AAPL',             ms: 'stocks/xnas/aapl/quote',     display: 'AAPL' },
   'META': { name: 'Meta',      finnhub: 'META',             ms: 'stocks/xnas/meta/quote',     display: 'META' },
   'AMZN': { name: 'Amazon',    finnhub: 'AMZN',             ms: 'stocks/xnas/amzn/quote',     display: 'AMZN' },
-  'BTC':  { name: 'Bitcoin',       finnhub: 'BINANCE:BTCUSDT',  ms: 'funds/xnas/gbtc/quote',  display: 'Bitcoin' },
-  'DELL': { name: 'Dell',          finnhub: 'DELL',             ms: 'stocks/xnys/dell/quote', display: 'DELL' },
-  '10Y':  { name: '10Y Yield',     finnhub: null,               ms: null,                     display: '10Y Yield', yahoo: '%5ETNX' },
+  'GOOGL':{ name: 'Alphabet',  finnhub: 'GOOGL',            ms: 'stocks/xnas/googl/quote',    display: 'GOOGL' },
+  'AMD':  { name: 'AMD',       finnhub: 'AMD',              ms: 'stocks/xnas/amd/quote',      display: 'AMD' },
+  'AVGO': { name: 'Broadcom',  finnhub: 'AVGO',             ms: 'stocks/xnas/avgo/quote',     display: 'AVGO' },
+  'NFLX': { name: 'Netflix',   finnhub: 'NFLX',             ms: 'stocks/xnas/nflx/quote',     display: 'NFLX' },
+  'JPM':  { name: 'JPMorgan',  finnhub: 'JPM',              ms: 'stocks/xnys/jpm/quote',      display: 'JPM' },
+  'COIN': { name: 'Coinbase',  finnhub: 'COIN',             ms: 'stocks/xnas/coin/quote',     display: 'COIN' },
+  'DELL': { name: 'Dell',      finnhub: 'DELL',             ms: 'stocks/xnys/dell/quote',     display: 'DELL' },
+  'BTC':  { name: 'Bitcoin',   finnhub: 'BINANCE:BTCUSDT',  ms: 'funds/xnas/gbtc/quote',      display: 'Bitcoin' },
 };
 
-// Which tickers appear in the brief table, in order, with dividers
+// Core indices always rendered, in order (S&P, Dow, Nasdaq, 10Y Treasury).
+const CORE_TICKERS = ['SPY', 'DIA', 'QQQ', '10Y'];
+
+// Pool scanned each day; the biggest movers get featured under the indices so
+// the individual names aren't the same every issue.
+const MOVERS_WATCHLIST = ['NVDA', 'TSLA', 'MSFT', 'AAPL', 'META', 'AMZN', 'GOOGL', 'AMD', 'AVGO', 'NFLX', 'JPM', 'COIN', 'DELL', 'BTC'];
+
+// How many movers to feature under the indices.
+const MOVERS_COUNT = 5;
+
+// Legacy fixed layout (kept for any older render paths); active brief uses
+// CORE_TICKERS + selected movers.
 const BRIEF_ROWS = [
   { type: 'ticker', key: 'SPY' },
   { type: 'ticker', key: 'QQQ' },
@@ -94,14 +114,11 @@ const BRIEF_ROWS = [
   { type: 'ticker', key: 'TSLA' },
   { type: 'ticker', key: 'MSFT' },
   { type: 'divider' },
-  { type: 'ticker', key: 'BTC' },
-  { type: 'ticker', key: 'DELL' },
-  { type: 'divider' },
   { type: 'ticker', key: '10Y' },
 ];
 
-// Which tickers to fetch from Finnhub
-const FETCH_TICKERS = ['SPY', 'QQQ', 'NVDA', 'TSLA', 'MSFT', 'AAPL', 'BTC', 'DELL'];
+// Which tickers to fetch from Finnhub (core movers + indices)
+const FETCH_TICKERS = [...CORE_TICKERS.filter(t => t !== '10Y'), ...MOVERS_WATCHLIST];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helper: HTML-escape a string
@@ -423,4 +440,4 @@ const STREAMING_PICKS = [
   },
 ];
 
-module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, PRODUCTS, RECS, STREAMING_PICKS, esc, playerLink, tickerLink, fmtPrice, fmtPct };
+module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT, PRODUCTS, RECS, STREAMING_PICKS, esc, playerLink, tickerLink, fmtPrice, fmtPct };

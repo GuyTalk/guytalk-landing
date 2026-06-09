@@ -1,6 +1,6 @@
 'use strict';
 
-const { BRIEF_ROWS, TICKERS, PRODUCTS, RECS, esc, playerLink, tickerLink, fmtPrice, fmtPct } = require('./db');
+const { BRIEF_ROWS, TICKERS, CORE_TICKERS, PRODUCTS, RECS, esc, playerLink, tickerLink, fmtPrice, fmtPct } = require('./db');
 
 // Render AI prose (possibly multi-paragraph) into proper <p> tags
 function renderParas(text, fallback = '') {
@@ -659,9 +659,21 @@ ${productCard}
 // ─────────────────────────────────────────────────────────────────────────────
 // Upcoming game preview card
 // ─────────────────────────────────────────────────────────────────────────────
+// Format an ISO event start time to US Eastern, e.g. "8:00 PM ET". Returns
+// 'Time TBD' when ESPN hasn't set a real tip-off (placeholder midnight-UTC).
+function fmtGameTime(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d)) return '';
+  const t = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' });
+  return /^12:00 AM/.test(t) ? 'Time TBD' : `${t} ET`;
+}
+
 function buildUpcomingGameCard(game) {
   if (!game) return '';
   const when = game.daysAhead === 0 ? 'Tonight' : game.daysAhead === 1 ? 'Tomorrow' : 'In 2 days';
+  const startTime = fmtGameTime(game.date);
+  const whenWithTime = startTime ? `${when} · ${startTime}` : when;
   const sport = game.sport?.toLowerCase() || 'nba';
   const homeLogo = espnLogo(game.home.abbrev, sport);
   const awayLogo = espnLogo(game.away.abbrev, sport);
@@ -675,13 +687,13 @@ function buildUpcomingGameCard(game) {
     : '';
 
   const h3Label = isFinals
-    ? `${esc(game.away.team)} vs. ${esc(game.home.team)} — ${esc(game.note || game.shortName)}. ${when}.`
-    : `${esc(game.away.team)} at ${esc(game.home.team)} — ${when}.`;
+    ? `${esc(game.away.team)} vs. ${esc(game.home.team)} — ${esc(game.note || game.shortName)}. ${when}${startTime ? `, ${startTime}` : ''}.`
+    : `${esc(game.away.team)} at ${esc(game.home.team)} — ${when}${startTime ? `, ${startTime}` : ''}.`;
 
   return `
     <h3>${h3Label}</h3>
     <div class="upcoming-card${isFinals ? ' upcoming-finals' : ''}">
-      <div class="upcoming-label">${esc(when)} — ${esc(game.note || game.shortName)}</div>
+      <div class="upcoming-label">${esc(whenWithTime)} — ${esc(game.note || game.shortName)}</div>
       <div class="upcoming-matchup">
         <div class="upcoming-team">
           ${awayLogo ? `<img src="${esc(awayLogo)}" class="upcoming-logo" alt="${esc(game.away.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
@@ -693,6 +705,7 @@ function buildUpcomingGameCard(game) {
           ${homeLogo ? `<img src="${esc(homeLogo)}" class="upcoming-logo" alt="${esc(game.home.abbrev)}" loading="lazy" onerror="this.style.display='none'">` : ''}
         </div>
       </div>
+      ${startTime ? `<div class="upcoming-time">Tip-off ${esc(startTime)} · ${esc(when)}</div>` : ''}
       ${game.seriesNote ? `<div class="upcoming-series">${esc(game.seriesNote)}</div>` : ''}
       <a href="${esc(scheduleUrl)}" target="_blank" rel="noopener" class="upcoming-link">Game info on ESPN →</a>
     </div>
@@ -1344,47 +1357,63 @@ function buildMarkets({ markets, copy, date }) {
   const whyBullet2 = md.whyBullet2 || '';
   const bringUp    = md.bringUp    || '';
 
-  // BRIEF_ROWS = [{type:'ticker',key:'SPY'}, {type:'divider'}, ...]
-  const rows = BRIEF_ROWS.map(row => {
-    if (row.type === 'divider') return `        <div class="mkt-div"></div>`;
-    const sym = row.key;
+  // ── Core index tiles — always present (S&P, Dow, Nasdaq, 10Y Treasury) ──
+  const coreList = (CORE_TICKERS && CORE_TICKERS.length) ? CORE_TICKERS : ['SPY', 'QQQ', '10Y'];
+  const indexTiles = coreList.map(sym => {
     const cfg = TICKERS[sym];
     const q   = markets[sym];
     if (!cfg || !q) return '';
-    const price  = q.price !== undefined ? fmtPrice(sym, q.price) : '—';
-    const dayPct = q.dayChangePct !== null && q.dayChangePct !== undefined ? fmtPct(q.dayChangePct) : '—';
-    const dayDir = q.dayChangePct !== null && q.dayChangePct !== undefined ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
-    const wkPct  = q.weekChangePct !== null && q.weekChangePct !== undefined ? fmtPct(q.weekChangePct) : '—';
-    const wkDir  = q.weekChangePct !== null && q.weekChangePct !== undefined ? (q.weekChangePct >= 0 ? 'up' : 'dn') : '';
+    const price  = q.price !== undefined && q.price !== null ? fmtPrice(sym, q.price) : '—';
+    const hasDay = q.dayChangePct !== null && q.dayChangePct !== undefined;
+    const dayPct = hasDay ? fmtPct(q.dayChangePct) : '—';
+    const dir    = hasDay ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
+    return `        <div class="mkt-tile ${dir}">
+          <div class="mt-name">${esc(cfg.display || sym)}</div>
+          <div class="mt-price">${esc(price)}</div>
+          <div class="mt-chg ${dir}">${hasDay ? esc(dayPct) : '—'}</div>
+        </div>`;
+  }).filter(Boolean).join('\n');
+
+  // ── Movers — the biggest individual names of the day (rotates daily) ────
+  const movers = Array.isArray(markets.__dynamicMovers) ? markets.__dynamicMovers : [];
+  const moverRows = movers.map(sym => {
+    const cfg = TICKERS[sym];
+    const q   = markets[sym];
+    if (!cfg || !q) return '';
+    const price  = q.price !== undefined && q.price !== null ? fmtPrice(sym, q.price) : '—';
+    const hasDay = q.dayChangePct !== null && q.dayChangePct !== undefined;
+    const dayPct = hasDay ? fmtPct(q.dayChangePct) : '—';
+    const dir    = hasDay ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
     const nameHtml = cfg.ms
       ? `<a href="https://www.morningstar.com/${cfg.ms}" class="ticker">${esc(cfg.display)}</a>`
       : esc(cfg.display || sym);
-    return `        <div class="mkt-row">
-          <div class="m-name">${nameHtml}</div>
-          <div class="m-val">${esc(price)}</div>
-          <div class="m-day">${dayDir ? `<span class="pct-badge ${dayDir}">${esc(dayPct)}</span>` : '—'}</div>
-          <div class="m-wk ${wkDir}">${esc(wkPct)}</div>
+    return `        <div class="mover-row ${dir}">
+          <div class="mv-name">${nameHtml}<span class="mv-full">${esc(cfg.name || '')}</span></div>
+          <div class="mv-price">${esc(price)}</div>
+          <div class="mv-chg"><span class="pct-badge ${dir}">${hasDay ? esc(dayPct) : '—'}</span></div>
         </div>`;
   }).filter(Boolean).join('\n');
+
+  const moversBlock = moverRows ? `
+      <div class="mkt-movers">
+        <div class="mkt-movers-hd">Today's Movers</div>
+        <div class="mover-list">
+${moverRows}
+        </div>
+      </div>` : '';
 
   return `  <section class="brief-section" id="markets">
     <div class="section-label sl-markets">Markets</div>
     ${mood ? `<p class="markets-mood">${esc(mood)}</p>` : ''}
 
-    <div class="mkt-table">
-      <div class="mkt-table-hd">
-        <div class="mkt-table-title">${esc(mktTitle)}</div>
-        <div class="mkt-table-sub">${esc(mktSub)}</div>
+    <div class="mkt-card">
+      <div class="mkt-card-hd">
+        <div class="mkt-card-title">${esc(mktTitle)}</div>
+        <div class="mkt-card-sub">${esc(mktSub)}</div>
       </div>
-      <div class="mkt-table-body">
-        <div class="mkt-cols">
-          <div class="th">Asset</div>
-          <div class="th">Price</div>
-          <div class="th">Day</div>
-          <div class="th">Week</div>
-        </div>
-${rows}
-      </div>
+      <div class="mkt-index-grid">
+${indexTiles}
+      </div>${moversBlock}
     </div>
 
     <ul class="detail-list">
