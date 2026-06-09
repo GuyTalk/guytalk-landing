@@ -704,11 +704,19 @@ function fmtGameTime(iso) {
   return /^12:00 AM/.test(t) ? 'Time TBD' : `${t} ET`;
 }
 
-function buildUpcomingGameCard(game) {
+function buildUpcomingGameCard(game, preview) {
   if (!game) return '';
   const when = game.daysAhead === 0 ? 'Tonight' : game.daysAhead === 1 ? 'Tomorrow' : 'In 2 days';
   const startTime = fmtGameTime(game.date);
   const whenWithTime = startTime ? `${when} · ${startTime}` : when;
+  const pv = preview || {};
+  const previewDetail = (pv.whyItMatters || pv.watchFor || pv.whatToSay)
+    ? `    <ul class="detail-list">
+      ${pv.whyItMatters ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(pv.whyItMatters)}</span></li>` : ''}
+      ${pv.watchFor     ? `<li><span><span class="dl-label">Watch for:</span> ${esc(pv.watchFor)}</span></li>` : ''}
+      ${pv.whatToSay    ? `<li><span><span class="dl-label">What to say:</span> ${esc(pv.whatToSay)}</span></li>` : ''}
+    </ul>`
+    : '';
   const sport = game.sport?.toLowerCase() || 'nba';
   const homeLogo = espnLogo(game.home.abbrev, sport);
   const awayLogo = espnLogo(game.away.abbrev, sport);
@@ -744,6 +752,7 @@ function buildUpcomingGameCard(game) {
       ${game.seriesNote ? `<div class="upcoming-series">${esc(game.seriesNote)}</div>` : ''}
       <a href="${esc(scheduleUrl)}" target="_blank" rel="noopener" class="upcoming-link">Game info on ESPN →</a>
     </div>
+${previewDetail}
     ${arenaHtml}`;
 }
 
@@ -1206,15 +1215,13 @@ function buildTopModule({ copy, golf, f1, worldCup, markets, sports, upcoming })
   const hasGolf = !!golf?.name;
   const hasWC   = !!worldCup?.length;
 
-  // Each category uses its own dedicated key — never cross-pollinate
+  // Today's Hits = three umbrellas only: Sports, Markets, Culture. Specific
+  // sports (golf/F1/NHL/WC) live in their own sections, not here.
   const hitItems = [
-    hits?.sports   ? { tag: 'Sports',    anchor: '#the-lead', text: hits.sports,   cls: 'hit-sports'   } : null,
-    hits?.markets  ? { tag: 'Markets',   anchor: '#markets',  text: hits.markets,  cls: 'hit-markets'  } : null,
-    hasGolf && hits?.golf      ? { tag: 'Golf',     anchor: '#golf',     text: hits.golf,    cls: 'hit-golf'    } : null,
-    hasF1   && hits?.f1        ? { tag: 'F1',       anchor: '#f1',       text: hits.f1,      cls: 'hit-f1'      } : null,
-    hasWC   && hits?.worldcup  ? { tag: 'World Cup',anchor: '#worldcup', text: hits.worldcup,cls: 'hit-culture' } : null,
-    hits?.culture  ? { tag: 'Culture',   anchor: '#culture',  text: hits.culture,  cls: 'hit-culture'  } : null,
-  ].filter(Boolean).slice(0, 6);
+    hits?.sports   ? { tag: 'Sports',  anchor: '#sports',  text: hits.sports,  cls: 'hit-sports'  } : null,
+    hits?.markets  ? { tag: 'Markets', anchor: '#markets', text: hits.markets, cls: 'hit-markets' } : null,
+    hits?.culture  ? { tag: 'Culture', anchor: '#culture', text: hits.culture, cls: 'hit-culture' } : null,
+  ].filter(Boolean);
 
   if (!hitItems.length && !keyTakeaway) return '';
 
@@ -1278,7 +1285,7 @@ ${sideHtml(leadGame.away, awayLogo)}
   }
 
   // Upcoming card if there are no results at all (no games played yet today)
-  const upcomingCard = (!sports?.length && upcoming?.length) ? buildUpcomingGameCard(upcoming[0]) : '';
+  const upcomingCard = (!sports?.length && upcoming?.length) ? buildUpcomingGameCard(upcoming[0], copy?.upcomingPreview) : '';
 
   // Venue image + an explicit "where / who's home" line for the lead game
   let venueHtml = '';
@@ -1327,7 +1334,7 @@ function buildSports({ sports, copy, upcoming }) {
   const otherGames = (sports || []).filter((_, i) => i !== leadIdx);
 
   // Watch Next card for upcoming playoff/finals game
-  const watchNextCard = upcoming?.length ? buildUpcomingGameCard(upcoming[0]) : '';
+  const watchNextCard = upcoming?.length ? buildUpcomingGameCard(upcoming[0], copy?.upcomingPreview) : '';
 
   if (!otherGames.length && !watchNextCard) return '';
 
@@ -1647,10 +1654,11 @@ ${matchRows}
 // ─────────────────────────────────────────────────────────────────────────────
 // NHL — most recent final or next game, with venue + when
 // ─────────────────────────────────────────────────────────────────────────────
-function buildNHL({ nhl }) {
+function buildNHL({ nhl, copy }) {
   if (!nhl || (!nhl.final && !nhl.next)) return '';
   const isFinal = !!nhl.final;
   const g = nhl.final || nhl.next;
+  const nd = copy?.nhl || {};
   const homeLogo = espnLogo(g.home.abbrev, 'nhl');
   const awayLogo = espnLogo(g.away.abbrev, 'nhl');
   const startTime = fmtGameTime(g.date);
@@ -1682,11 +1690,22 @@ ${side(g.home, homeLogo)}
     headline = `${esc(g.away.team)} at ${esc(g.home.team)}${startTime ? ` — ${esc(startTime)}` : ''}.`;
   }
 
+  const h = nd.headline ? esc(nd.headline) : headline;
+  const whenTxt = startTime ? `${isFinal ? 'Played' : 'Puck drop'} ${startTime}` : '';
+  const detail = `    <ul class="detail-list">
+      ${nd.whyCare1  ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(nd.whyCare1)}</span></li>` : ''}
+      ${nd.whyCare2  ? `<li><span><span class="dl-label">The series:</span> ${esc(nd.whyCare2)}</span></li>` : ''}
+      ${nd.watchFor  ? `<li><span><span class="dl-label">Watch for:</span> ${esc(nd.watchFor)}</span></li>` : ''}
+      ${nd.whatToSay ? `<li><span><span class="dl-label">What to say:</span> ${esc(nd.whatToSay)}</span></li>` : ''}
+      ${whenTxt ? `<li><span><span class="dl-label">When:</span> ${esc(whenTxt)}</span></li>` : ''}
+    </ul>`;
+
   return `  <section class="brief-section" id="nhl">
     <div class="section-label sl-sports">NHL</div>
-    <h3>${headline}</h3>
+    <h3>${h}</h3>
     ${whereTxt ? `<div class="where-line"><span class="where-pin">◍</span>${esc(whereTxt)}</div>` : ''}
 ${body}
+${detail}
   </section>`;
 }
 
@@ -1761,23 +1780,25 @@ function buildTodayAtAGlance({ copy, sports, markets, upcoming }) {
   })();
 
   const bullets = [
-    { label: 'Main story',     text: g?.sports    || sportsFallback },
-    { label: 'Market mood',    text: g?.market     || marketFallback },
-    { label: 'Best convo',     text: g?.bestConvo  || '' },
-    { label: 'Watch next',     text: g?.watchNext  || '' },
-    { label: 'Quick rec',      text: g?.quickRec   || '' },
+    { label: 'Main story',  text: g?.sports    || sportsFallback, anchor: '#sports',   cls: 'hit-sports'  },
+    { label: 'Market mood', text: g?.market     || marketFallback, anchor: '#markets',  cls: 'hit-markets' },
+    { label: 'Best convo',  text: g?.bestConvo  || '',             anchor: '#the-take', cls: 'hit-culture' },
+    { label: 'Watch next',  text: g?.watchNext  || '',             anchor: '#sports',   cls: 'hit-sports'  },
+    { label: 'Quick rec',   text: g?.quickRec   || '',             anchor: '#culture',  cls: 'hit-culture' },
   ].filter(b => b.text);
 
   if (!bullets.length) return '';
 
-  return `  <div class="tldr tldr-bottom">
-    <div class="tldr-label">Today at a Glance</div>
-    <ul class="tldr-list">
-${bullets.map(b => `      <li class="tldr-item tldr-glance-item">
-        <span class="glance-label">${esc(b.label)}</span>
-        <span>${esc(b.text)}</span>
-      </li>`).join('\n')}
-    </ul>
+  // Interactive, section-linked rows — mirrors Today's Hits to bookend the brief.
+  return `  <div class="glance-card">
+    <div class="glance-head"><span class="glance-dot"></span>Today at a Glance</div>
+    <div class="glance-rows">
+${bullets.map(b => `      <a class="glance-row ${b.cls}" href="${b.anchor}">
+        <span class="glance-k">${esc(b.label)}</span>
+        <span class="glance-v">${esc(b.text)}</span>
+        <span class="glance-arr">→</span>
+      </a>`).join('\n')}
+    </div>
   </div>`;
 }
 

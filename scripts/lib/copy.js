@@ -64,7 +64,7 @@ function parseJson(raw) {
   return null;
 }
 
-async function generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, prev3, streamingPick }) {
+async function generateCopy({ sports, markets, golf, trending, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey || apiKey.includes('your_') || apiKey.includes('_here')) return null;
 
@@ -163,6 +163,8 @@ ${prev3.map((b, i) => `${i + 1} day(s) ago — Lead angle: "${b.sportsThesis || 
     finalTakeR,
     glanceR,
     theTakeR,
+    nhlR,
+    upcomingPreviewR,
   ] = await Promise.allSettled([
 
     // 1. Brief headline
@@ -331,6 +333,34 @@ Return ONLY valid JSON on one line — no markdown:
 {"office":"The Office Take — one smart, measured sentence you can drop at work to sound like you've actually been paying attention. Insightful, slightly contrarian, not loud. Max 28 words.","bar":"The Bar Argument — one bold, debatable hot take that would genuinely start an argument among friends. Pick a side and commit. Confident and a little spicy, but grounded in today's real facts. Max 28 words."}`,
       200
     ),
+
+    // 12. NHL — F1-style treatment (only if there's an NHL game)
+    (() => {
+      const g = nhl?.final || nhl?.next;
+      if (!g) return Promise.resolve(null);
+      const line = nhl.final
+        ? `Result: ${(g.home.winner ? g.home : g.away).team} won ${Math.max(+g.home.score, +g.away.score)}–${Math.min(+g.home.score, +g.away.score)}`
+        : `Upcoming: ${g.away.team} at ${g.home.team}`;
+      const meta = `${g.note || ''}${g.seriesNote ? ` — ${g.seriesNote}` : ''}${g.venue ? ` — ${g.venue}${g.venueCity ? `, ${g.venueCity}` : ''}` : ''}`;
+      return ask(
+        `GuyTalk NHL section. ${g.note || 'NHL game'}. ${line}. ${meta}.
+Use ONLY the facts above — never invent scores, records, or stats not given.
+Return ONLY valid JSON on one line — no markdown:
+{"headline":"Max 10 words — the angle.","whyCare1":"One sentence — why this game/series matters right now.","whyCare2":"One sentence — series state or stakes (who leads, what a win does).","watchFor":"One specific thing to track.","whatToSay":"One casual conversation line."}`,
+        220
+      );
+    })(),
+
+    // 13. Upcoming marquee game preview (e.g. the next NBA Finals game) — context
+    (upcoming && upcoming.length)
+      ? ask(
+          `GuyTalk preview of an UPCOMING game: ${upcomingText}${upcoming[0].seriesNote ? ` (${upcoming[0].seriesNote})` : ''}.
+Use ONLY these facts — never invent stats. This game has NOT happened yet, so do not state a result.
+Return ONLY valid JSON on one line — no markdown:
+{"whyItMatters":"One sentence — what's at stake in this game and why people care.","watchFor":"One specific thing to watch for.","whatToSay":"One casual conversation line about the matchup."}`,
+          200
+        )
+      : Promise.resolve(null),
   ]);
 
   const get = r => r.status === 'fulfilled' ? r.value : null;
@@ -363,6 +393,8 @@ Return ONLY valid JSON on one line — no markdown:
     finalSharpTake: clean(get(finalTakeR)),
     glance:         glanceData,
     theTake:        parseJson(get(theTakeR)),
+    nhl:            parseJson(get(nhlR)),
+    upcomingPreview: parseJson(get(upcomingPreviewR)),
   };
 }
 

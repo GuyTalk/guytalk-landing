@@ -500,6 +500,43 @@ em { font-style: italic; }
 }
 .upcoming-finals .upcoming-time { color: #6B9FFF; }
 
+/* Today at a Glance — interactive, section-linked recap (bookends Today's Hits) */
+.glance-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 10px 26px 16px; margin: 40px 0 0;
+  box-shadow: 0 6px 24px rgba(15,23,36,0.06);
+}
+.glance-head {
+  font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 11px;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+  margin: 18px 0 4px; display: flex; align-items: center; gap: 9px;
+}
+.glance-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.glance-rows { display: flex; flex-direction: column; }
+.glance-row {
+  display: grid; grid-template-columns: 96px 1fr auto; align-items: start; gap: 16px;
+  padding: 14px 0; border-top: 1px solid var(--border);
+  text-decoration: none; color: var(--text); transition: transform 0.14s ease;
+}
+.glance-row:first-child { border-top: 0; }
+.glance-row:hover { transform: translateX(3px); border-bottom: 0; }
+.glance-k {
+  font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 10.5px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3);
+  border-left: 3px solid var(--border); padding: 2px 0 2px 13px; line-height: 1.4;
+}
+.glance-row.hit-sports  .glance-k { color: var(--sports);  border-color: var(--sports); }
+.glance-row.hit-markets .glance-k { color: var(--accent);  border-color: var(--accent); }
+.glance-row.hit-culture .glance-k { color: var(--culture); border-color: var(--culture); }
+.glance-v { font-size: 15px; line-height: 1.5; color: var(--text-2); }
+.glance-row:hover .glance-v { color: var(--text); }
+.glance-arr { color: var(--text-3); font-weight: 700; align-self: center; transition: color 0.14s; }
+.glance-row:hover .glance-arr { color: var(--accent); }
+@media (max-width: 560px) {
+  .glance-row { grid-template-columns: 84px 1fr; }
+  .glance-arr { display: none; }
+}
+
 /* Umbrella section headers (Sports / Markets / Culture) — anchor the flow */
 .umbrella-head {
   margin: 56px 0 8px; padding-bottom: 12px; border-bottom: 2px solid var(--text);

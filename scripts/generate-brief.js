@@ -94,10 +94,10 @@ async function regenAll() {
     if (regenCopy) {
       console.log(`  ✍️  Regenerating AI copy for ${slug}...`);
       try {
-        const { sports, markets, golf, trending, f1, worldCup, upcoming } = issueData;
+        const { sports, markets, golf, trending, f1, worldCup, nhl, upcoming } = issueData;
         const boxScores = {};
         const streamingPick = STREAMING_PICKS[(issueData.num || 0) % STREAMING_PICKS.length];
-        issueData.copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, prev3: [], streamingPick });
+        issueData.copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, nhl, upcoming, boxScores, prev3: [], streamingPick });
         if (issueData.copy?.title) issueData.title = issueData.copy.title;
         fs.writeFileSync(jsonPath, JSON.stringify(issueData, null, 2));
         console.log(`     ✓ Copy: "${issueData.copy?.title || 'generated'}"`);
@@ -322,7 +322,7 @@ async function main() {
     const prev3 = loadPreviousBriefs(3);
     if (prev3.length) console.log(`   ✓ Repetition guard: loaded ${prev3.length} previous brief(s)`);
     const streamingPick = STREAMING_PICKS[issueNum % STREAMING_PICKS.length];
-    copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, upcoming, boxScores, gameMetas, prev3, streamingPick });
+    copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick });
     if (copy) {
       if (copy.title)          console.log(`   ✓ Headline: "${copy.title}"`);
       if (copy.lead)           console.log(`   ✓ Sports angle`);

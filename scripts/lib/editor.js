@@ -72,6 +72,18 @@ function extractEditable(copy) {
       watchFor:  copy.f1.watchFor || '',
       whatToSay: copy.f1.whatToSay || '',
     } : null,
+    nhl: copy.nhl ? {
+      headline:  copy.nhl.headline || '',
+      whyCare1:  copy.nhl.whyCare1 || '',
+      whyCare2:  copy.nhl.whyCare2 || '',
+      watchFor:  copy.nhl.watchFor || '',
+      whatToSay: copy.nhl.whatToSay || '',
+    } : null,
+    upcomingPreview: copy.upcomingPreview ? {
+      whyItMatters: copy.upcomingPreview.whyItMatters || '',
+      watchFor:     copy.upcomingPreview.watchFor || '',
+      whatToSay:    copy.upcomingPreview.whatToSay || '',
+    } : null,
     culture: Array.isArray(copy.culture) ? copy.culture.map(i => ({
       topic:        i.topic || i.head || '',
       whatHappened: i.whatHappened || '',
@@ -107,7 +119,7 @@ function mergeEdited(original, edited) {
   if (Array.isArray(edited.sportsOther) && Array.isArray(out.sportsOther)) {
     out.sportsOther = out.sportsOther.map((orig, i) => str(edited.sportsOther[i], orig));
   }
-  for (const sec of ['markets', 'golf', 'f1']) {
+  for (const sec of ['markets', 'golf', 'f1', 'nhl', 'upcomingPreview']) {
     if (edited[sec] && out[sec]) {
       for (const k of Object.keys(out[sec])) {
         if (typeof out[sec][k] === 'string') out[sec][k] = str(edited[sec][k], out[sec][k]);
