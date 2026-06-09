@@ -388,6 +388,41 @@ em { font-style: italic; }
 /* ================================================================
    MARKET TICKER TABLE
    ================================================================ */
+/* Legacy markets table — kept so already-published issues still render */
+.mkt-table {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); overflow: hidden; margin: 24px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.mkt-table-hd {
+  padding: 14px 22px 12px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: baseline; justify-content: space-between;
+  background: var(--surface-2);
+}
+.mkt-table-title {
+  font-family: 'Inter Tight', sans-serif; font-weight: 700;
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+}
+.mkt-table-sub { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); }
+.mkt-table-body { padding: 8px 22px 14px; font-family: 'JetBrains Mono', monospace; }
+.mkt-cols, .mkt-row {
+  display: grid; grid-template-columns: 1.5fr 1fr 0.8fr 0.9fr;
+  gap: 10px; padding: 8px 0; font-size: 13px; align-items: baseline;
+}
+.mkt-cols { border-bottom: 1px solid var(--border); margin-bottom: 4px; }
+.mkt-cols .th {
+  font-family: 'Inter Tight', sans-serif; font-weight: 600;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3);
+}
+.mkt-cols .th:nth-child(n+2) { text-align: right; }
+.mkt-row .m-name { color: var(--text); font-weight: 600; }
+.mkt-row .m-val, .mkt-row .m-day, .mkt-row .m-wk { text-align: right; }
+.mkt-row .m-val { color: var(--text); }
+.mkt-row .m-wk  { color: var(--text-2); }
+.mkt-row .up { color: var(--green); }
+.mkt-row .dn { color: var(--red); }
+.mkt-div { height: 1px; background: var(--border); margin: 8px 0 4px; }
+
 /* Markets — modern card: core index tiles + a rotating movers list */
 .mkt-card {
   background: var(--surface); border: 1px solid var(--border);
