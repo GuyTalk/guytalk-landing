@@ -78,9 +78,9 @@ async function generateCopy({ sports, markets, golf, trending, f1, worldCup, nhl
 
   const client = new (Anthropic.default || Anthropic)({ apiKey });
 
-  async function ask(prompt, maxTokens = 300) {
+  async function ask(prompt, maxTokens = 300, model = 'claude-haiku-4-5-20251001') {
     const res = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
+      model,
       max_tokens: maxTokens,
       messages: [{ role: 'user', content: `${BRAND_VOICE}\n\n${prompt}` }],
     });
@@ -149,6 +149,10 @@ async function generateCopy({ sports, markets, golf, trending, f1, worldCup, nhl
   const repGuard = (prev3 && prev3.length) ? `
 REPETITION GUARD — avoid these angles used in recent issues:
 ${prev3.map((b, i) => `${i + 1} day(s) ago — Lead angle: "${b.sportsThesis || b.lead || ''}" | Bring-up: "${b.marketsBringUp || b.bringUp || ''}"`).join('\n')}` : '';
+
+  // Golf preview leans on factual recall (course, defending champ) — use the
+  // stronger model for it; live recaps stay on Haiku.
+  const golfStarted = golf?.statusState === 'post' || golf?.statusState === 'in';
 
   // ── 10 parallel calls ───────────────────────────────────────────────────────
   const [
@@ -269,16 +273,16 @@ Return ONLY valid JSON on one line — no markdown:
 
             // PREVIEW (not started): give it real voice for a casual fan. The course,
             // location, and last year's winner aren't in our live feed — use your
-            // own well-documented knowledge of this exact event for those. Players
-            // in the field this week: ${fieldNames || '(unknown)'}.
-            return `GuyTalk golf PREVIEW: ${golf.name} — ${status} (dates ${golf.date ? new Date(golf.date).toDateString() : 'this week'}).
-This is a PREVIEW — there is NO leaderboard yet, so do NOT invent scores, results, or a winner.
-You MAY use your own knowledge of this specific tournament for: the course/venue + city, last year's champion, and a couple of recognizable players in the field. Players confirmed teeing off this week: ${fieldNames || '(field not listed)'}.
-Write it so a guy who does not follow golf instantly gets it. Have an opinion on who's worth watching.
+            // own well-documented knowledge of this specific event for those.
+            return `GuyTalk golf PREVIEW: ${golf.name} (dates ${golf.date ? new Date(golf.date).toDateString() : 'this week'}). The tournament has NOT started.
+CRITICAL: there is NO leaderboard and NO results yet. NEVER say anyone is "leading", "at the top", "sitting in front", or going "wire to wire" — nobody has hit a shot. The names below are just the alphabetical/tee-time field list, NOT a ranking.
+Players teeing off this week: ${fieldNames || '(field not listed)'}.
+Use your knowledge of THIS specific tournament to name the real course + city and last year's champion. Be specific and confident — this is exactly the context a casual fan needs. If you genuinely don't know a fact, give an honest general line rather than a vague non-answer (never fabricate a name you're unsure of).
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words — the storyline going in.","course":"The course + city it's played at (e.g. 'TPC Toronto at Osprey Valley · Ontario'). If you are not sure of the exact 2026 venue, omit specifics and say the tour stop name only.","whyCare1":"One sentence — why this event matters and what's at stake.","defending":"One sentence — who won it last year and any storyline there (only if you're confident; else a general line about the event's recent history).","watchFor":"Who to watch / who's in the running to win — name 2-3 recognizable players (favorites or notable names in the field).","whatToSay":"One casual, confident conversational line a casual fan could drop."}`;
+{"headline":"Max 10 words — the storyline going in (a preview, not a result).","course":"Real course/venue + city (e.g. 'TPC Toronto at Osprey Valley, Ontario'). Name it if you know it.","whyCare1":"One sentence — why this event matters / what's at stake (FedEx Cup, prestige, field strength).","defending":"One sentence — who WON it last year and the storyline (name the champion if you know it).","watchFor":"Who to watch to win — name 2-3 recognizable favorites or marquee names expected in the field. Framed as 'worth watching', NOT as current leaders.","whatToSay":"One casual, confident line a casual fan could drop — about the matchup/storyline, not a fake leaderboard."}`;
           })(),
-          320
+          320,
+          golfStarted ? undefined : 'claude-sonnet-4-6'
         )
       : Promise.resolve(null),
 
