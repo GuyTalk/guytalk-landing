@@ -256,13 +256,29 @@ Return ONLY valid JSON on one line — no markdown:
     golf?.name
       ? ask(
           (() => {
-            const lb = golf.leaders?.slice(0, 3).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ') || 'no leaderboard yet';
-            const status = golf.statusState === 'post' ? 'Finished' : golf.statusState === 'in' ? 'In Progress' : 'Starting this week';
-            return `GuyTalk golf: ${golf.name} — ${status}. Leaderboard: ${lb}.
+            const started = golf.statusState === 'post' || golf.statusState === 'in';
+            const lb = golf.leaders?.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ') || '';
+            const fieldNames = golf.leaders?.slice(0, 8).map(l => l.name).join(', ') || '';
+            const status = golf.statusState === 'post' ? 'Finished' : golf.statusState === 'in' ? 'In Progress' : 'Has NOT started yet';
+
+            if (started) {
+              return `GuyTalk golf: ${golf.name} — ${status}. Leaderboard: ${lb || 'no leaderboard yet'}.
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words — what's happening at ${golf.name}.","whyCare1":"One sentence — why this tournament matters this week (FedEx Cup stakes, prestige, course reputation).","whyCare2":"One sentence — a specific angle about the course, the field, or the situation.","watchFor":"One thing to track this weekend. Specific — a player, a position battle, a scoring target.","whatToSay":"One casual line for conversation. Sounds informed without being nerdy."}`;
+{"headline":"Max 10 words — what's happening at ${golf.name}.","whyCare1":"One sentence — why this tournament matters (stakes, prestige, course).","whyCare2":"One sentence — the leaderboard situation or a specific angle.","watchFor":"One thing to track — a player, a battle, a scoring target.","whatToSay":"One casual conversational line."}`;
+            }
+
+            // PREVIEW (not started): give it real voice for a casual fan. The course,
+            // location, and last year's winner aren't in our live feed — use your
+            // own well-documented knowledge of this exact event for those. Players
+            // in the field this week: ${fieldNames || '(unknown)'}.
+            return `GuyTalk golf PREVIEW: ${golf.name} — ${status} (dates ${golf.date ? new Date(golf.date).toDateString() : 'this week'}).
+This is a PREVIEW — there is NO leaderboard yet, so do NOT invent scores, results, or a winner.
+You MAY use your own knowledge of this specific tournament for: the course/venue + city, last year's champion, and a couple of recognizable players in the field. Players confirmed teeing off this week: ${fieldNames || '(field not listed)'}.
+Write it so a guy who does not follow golf instantly gets it. Have an opinion on who's worth watching.
+Return ONLY valid JSON on one line — no markdown:
+{"headline":"Max 10 words — the storyline going in.","course":"The course + city it's played at (e.g. 'TPC Toronto at Osprey Valley · Ontario'). If you are not sure of the exact 2026 venue, omit specifics and say the tour stop name only.","whyCare1":"One sentence — why this event matters and what's at stake.","defending":"One sentence — who won it last year and any storyline there (only if you're confident; else a general line about the event's recent history).","watchFor":"Who to watch / who's in the running to win — name 2-3 recognizable players (favorites or notable names in the field).","whatToSay":"One casual, confident conversational line a casual fan could drop."}`;
           })(),
-          250
+          320
         )
       : Promise.resolve(null),
 

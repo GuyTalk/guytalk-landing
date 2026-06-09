@@ -24,7 +24,7 @@ function capFirst(s) {
 function espnLogo(abbrev, sport) {
   if (!abbrev) return null;
   const a = abbrev.toLowerCase().replace(/[^a-z]/g, '');
-  const sportKey = sport === 'mlb' ? 'mlb' : 'nba';
+  const sportKey = { mlb: 'mlb', nhl: 'nhl', nfl: 'nfl' }[(sport || '').toLowerCase()] || 'nba';
   return `https://a.espncdn.com/i/teamlogos/${sportKey}/500/${a}.png`;
 }
 
@@ -1536,13 +1536,17 @@ function golfCourseImage(tournamentName) {
 function buildGolf({ golf, copy }) {
   if (!golf?.name) return '';
   const gd = copy?.golf || {};
+  const started = golf.statusState === 'post' || golf.statusState === 'in';
   const headline  = gd.headline  || capFirst(golf.name);
   const whyCare1  = gd.whyCare1  || '';
   const whyCare2  = gd.whyCare2  || '';
+  const defending = gd.defending || '';
   const watchFor  = gd.watchFor  || '';
   const whatToSay = gd.whatToSay || '';
 
-  const leaderLine = golf.leaders?.length
+  // Only show a "leaderboard" once play has actually started — pre-tournament
+  // everyone is at even and it's just tee-time order.
+  const leaderLine = (started && golf.leaders?.length)
     ? golf.leaders.slice(0, 3).map(l => `${playerLink(l.name)} ${esc(l.score)}`).join(', ')
     : '';
 
@@ -1560,7 +1564,8 @@ function buildGolf({ golf, copy }) {
   }
   // Venue from ESPN when present; else our curated course list (fixed-venue
   // majors); else just the dates — never a guessed course.
-  const realVenue = golf.venue || (courseImg ? courseImg.cap.split(' · ')[0] : '');
+  // Venue: ESPN data → AI preview course → curated course image → dates only.
+  const realVenue = golf.venue || gd.course || (courseImg ? courseImg.cap.split(' · ')[0] : '');
   const golfWhereTxt = [realVenue, golf.location, golfWhen].filter(Boolean).join('  ·  ');
   const golfWhereHtml = golfWhereTxt ? `    <div class="where-line"><span class="where-pin">◍</span>${esc(golfWhereTxt)}</div>` : '';
 
@@ -1571,9 +1576,10 @@ ${courseImgHtml}
 ${golfWhereHtml}
     ${leaderLine ? `<p class="leaderboard-line">${leaderLine}</p>` : ''}
     <ul class="detail-list">
-      ${whyCare1  ? `<li><span><span class="dl-label">Why you should care:</span> ${esc(whyCare1)}</span></li>`  : ''}
-      ${whyCare2  ? `<li><span><span class="dl-label">Course angle:</span> ${esc(whyCare2)}</span></li>`         : ''}
-      ${watchFor  ? `<li><span><span class="dl-label">Watch for:</span> ${esc(watchFor)}</span></li>`            : ''}
+      ${whyCare1  ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyCare1)}</span></li>`  : ''}
+      ${defending ? `<li><span><span class="dl-label">Last year:</span> ${esc(defending)}</span></li>`     : ''}
+      ${whyCare2  ? `<li><span><span class="dl-label">The angle:</span> ${esc(whyCare2)}</span></li>`        : ''}
+      ${watchFor  ? `<li><span><span class="dl-label">${started ? 'Watch for' : 'In the running'}:</span> ${esc(watchFor)}</span></li>` : ''}
       ${whatToSay ? `<li><span><span class="dl-label">What to say:</span> ${esc(whatToSay)}</span></li>`          : ''}
     </ul>
   </section>`;
