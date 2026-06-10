@@ -33,6 +33,20 @@ const FORCED_ISSUE     = (() => {
 })();
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Marquee game picker — the email teaser should LEAD with the day's biggest
+// event (e.g. tonight's Finals), not whatever game is first in the array.
+// ─────────────────────────────────────────────────────────────────────────────
+const BIG_GAME_RE = /final|finals|championship|\bcup\b|playoff|conference|series|elimination|game\s*\d/i;
+const isBigGame = (g) => g && BIG_GAME_RE.test(`${g.note || ''} ${g.seriesNote || ''} ${g.shortName || ''}`);
+function pickMarquee(sports, upcoming) {
+  const upBig = (upcoming || []).find(isBigGame);   // a marquee event still to come
+  if (upBig) return { game: upBig, upcoming: true };
+  const spBig = (sports || []).find(isBigGame);     // a marquee result from today
+  if (spBig) return { game: spBig, upcoming: false };
+  return (sports && sports[0]) ? { game: sports[0], upcoming: false } : null;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Beehiiv: fetch all active subscriber emails
 // ─────────────────────────────────────────────────────────────────────────────
 async function getSubscribers() {
@@ -85,12 +99,20 @@ function buildEmailHtml(data, slug) {
   if (Array.isArray(aiBullets) && aiBullets.length >= 2) {
     bullets = aiBullets.slice(0, 3).map(b => `<span style="color:#0F1724">${b}</span>`);
   } else {
-    // Fallback: build from raw data
-    if (data.sports?.length) {
-      const g = data.sports[0];
-      const w = g.home?.winner ? g.home : g.away;
-      const l = g.home?.winner ? g.away : g.home;
-      bullets.push(`<b style="color:#0F1724">Sports:</b> ${g.note || g.shortName} — ${w?.team} ${w?.score}, ${l?.team} ${l?.score}`);
+    // Fallback: build from raw data, leading with the day's marquee event.
+    const marquee = pickMarquee(data.sports, data.upcoming);
+    if (marquee) {
+      const g = marquee.game;
+      if (marquee.upcoming) {
+        const when = g.daysAhead === 0 ? 'Tonight' : g.daysAhead === 1 ? 'Tomorrow' : 'Up next';
+        const noteClean = (g.note || g.shortName || '').replace(/\s*-\s*/g, ' ');
+        const series = g.seriesNote ? ` (${g.seriesNote})` : '';
+        bullets.push(`<b style="color:#0F1724">${when}:</b> ${g.away?.team} at ${g.home?.team} — ${noteClean}${series}`);
+      } else {
+        const w = g.home?.winner ? g.home : g.away;
+        const l = g.home?.winner ? g.away : g.home;
+        bullets.push(`<b style="color:#0F1724">Sports:</b> ${g.note || g.shortName} — ${w?.team} ${w?.score}, ${l?.team} ${l?.score}`);
+      }
     }
     if (data.markets?.SPY?.dayChangePct != null) {
       const chg = data.markets.SPY.dayChangePct;
