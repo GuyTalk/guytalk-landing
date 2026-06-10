@@ -67,14 +67,22 @@ async function fetchSportsItems() {
         const winScore = sorted[0].score;
         const loseScore = sorted[1].score;
         const ot = /ot/i.test(detail) ? ' IN OT' : '';
-        finals.push({ label: `${winner} WIN${ot} · ${winScore}–${loseScore}` });
+        finals.push({
+          label: `${winner} WIN${ot} · ${winScore}–${loseScore}`,
+          logos: [sorted[0].team?.logo, sorted[1].team?.logo].filter(Boolean),
+        });
 
       } else if (statusName === 'STATUS_SCHEDULED') {
-        const home = competitors.find(c => c.homeAway === 'home')?.team?.abbreviation?.toUpperCase();
-        const away = competitors.find(c => c.homeAway === 'away')?.team?.abbreviation?.toUpperCase();
+        const awayC = competitors.find(c => c.homeAway === 'away');
+        const homeC = competitors.find(c => c.homeAway === 'home');
+        const home = homeC?.team?.abbreviation?.toUpperCase();
+        const away = awayC?.team?.abbreviation?.toUpperCase();
         const time = formatGameTime(comp.date);
         if (home && away && time) {
-          scheduled.push({ label: `${away} AT ${home} · ${time} ET` });
+          scheduled.push({
+            label: `${away} AT ${home} · ${time} ET`,
+            logos: [awayC?.team?.logo, homeC?.team?.logo].filter(Boolean),
+          });
         }
       }
     }
