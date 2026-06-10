@@ -857,9 +857,9 @@
   .rv-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
     padding: 24px; display: flex; flex-direction: column; gap: 14px;
-    transition: box-shadow 0.2s ease;
+    transition: transform 0.18s ease, box-shadow 0.2s ease, border-color 0.18s ease;
   }
-  .rv-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .rv-card:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,0.10); border-color: rgba(43,111,255,0.3); }
   .rv-stars { font-size: 13px; color: #F59E0B; letter-spacing: 2px; }
   .rv-text { font-size: 15px; color: var(--text-secondary); line-height: 1.6; font-style: italic; flex: 1; }
   .rv-person { display: flex; align-items: center; gap: 12px; margin-top: auto; }
