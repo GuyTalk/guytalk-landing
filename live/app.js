@@ -434,6 +434,42 @@ function TalkingPointCard(t) {
  * and a quotable line built on that stat. Only verified payload numbers are
  * used — no invented records/streaks/superlatives (compliance). */
 
+// Map a race/circuit name to a track photo we ship in /assets/circuits.
+const CIRCUIT_IMG = [
+  [/monaco|monte carlo/i, 'monaco'],
+  [/bahrain|sakhir/i, 'bahrain'],
+  [/spanish|barcelona|catalunya|madrid/i, 'barcelona'],
+  [/united states|austin|cota|texas/i, 'cota'],
+  [/brazil|s[aã]o paulo|sao paulo|interlagos/i, 'interlagos'],
+  [/las vegas|vegas/i, 'lasvegas'],
+  [/austral|melbourne|albert park/i, 'melbourne'],
+  [/canad|montr[eé]al|gilles/i, 'montreal'],
+  [/ital|monza/i, 'monza'],
+  [/austria|red ?bull ?ring|spielberg|styria/i, 'redbullring'],
+  [/british|silverstone/i, 'silverstone'],
+  [/singapore|marina bay/i, 'singapore'],
+  [/belgian|spa|francorchamps/i, 'spa'],
+  [/japan|suzuka/i, 'suzuka'],
+  [/dutch|zandvoort|netherlands/i, 'zandvoort'],
+];
+function circuitImage(f1) {
+  const hay = `${f1.event || ''} ${(f1.nextRace && (f1.nextRace.circuit || f1.nextRace.name)) || ''}`;
+  for (const [re, file] of CIRCUIT_IMG) if (re.test(hay)) return `/assets/circuits/${file}.jpg`;
+  return '';
+}
+// Full-width circuit photo banner that heads the F1 section.
+function F1CircuitBanner(f1) {
+  const src = circuitImage(f1);
+  if (!src) return '';
+  return `<div class="f1-banner">
+    <img src="${src}" alt="${esc(f1.event || 'Formula 1')} circuit" loading="lazy">
+    <div class="f1-banner-cap">
+      <span class="f1-banner-event">${esc(f1.event || 'Formula 1')}</span>
+      <span class="f1-banner-sub">${esc(f1.sessionLabel || '')}</span>
+    </div>
+  </div>`;
+}
+
 // Championship picture from Jolpica driver standings.
 function f1Champ(f1) {
   const d = f1.driverStandings || [];
@@ -994,6 +1030,7 @@ function FeaturedGolfCard(g) {
       f1Rows.push({ label: 'Next race', text: `${nr.name}${nr.circuit ? ` · ${nr.circuit}` : ''}${nr.location ? ` · ${nr.location}` : ''}${d ? ` · ${d}` : ''}` });
     }
     el.innerHTML =
+      F1CircuitBanner(f1) +
       `<div class="stack">${board}${FeaturedF1Card(f1)}${f1WhatYouMissed(f1)}</div>` +
       `<div class="stack">${ContextCard(f1Rows, isLive, 'Formula 1')}${standings}${constructors}</div>`;
   }

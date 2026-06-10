@@ -81,11 +81,14 @@
     border: 1px solid var(--border);
     box-shadow: 0 18px 48px rgba(12,27,51,0.22);
   }
-  /* Faded sports/markets/culture collage behind the hero */
+  /* Sports/markets/culture collage — kept off the text (left stays rich navy)
+     and revealed in the open right area so the imagery actually reads. */
   .live-hero::before {
     content: ""; position: absolute; inset: 0; pointer-events: none;
     background: url('/assets/website-images/live-backdrop.png') center/cover no-repeat;
-    opacity: 0.32;
+    opacity: 0.85;
+    -webkit-mask-image: linear-gradient(100deg, transparent 40%, rgba(0,0,0,0.5) 68%, #000 100%);
+            mask-image: linear-gradient(100deg, transparent 40%, rgba(0,0,0,0.5) 68%, #000 100%);
   }
   /* Accent glow + slow drift so it feels alive */
   .live-hero::after {
@@ -99,6 +102,18 @@
     50% { transform: translate(-28px, 22px) scale(1.12); opacity: 1; }
   }
   .live-hero > * { position: relative; z-index: 1; }
+
+  /* Section scroll-dot nav (matches the other pages) */
+  .scroll-nav { position: fixed; right: 22px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .scroll-nav::before { content: ''; position: absolute; top: 5px; bottom: 5px; left: 50%; transform: translateX(-50%); width: 1px; background: var(--border); pointer-events: none; }
+  .scroll-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-light); border: 1px solid var(--border-light); cursor: pointer; position: relative; z-index: 1; transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+  .scroll-dot[hidden] { display: none; }
+  .scroll-dot:hover { background: var(--text-2); border-color: var(--text-2); transform: scale(1.3); }
+  .scroll-dot:hover .dot-label { opacity: 0.85; }
+  .scroll-dot.active { background: var(--accent); border-color: var(--accent); transform: scale(1.5); box-shadow: 0 0 8px rgba(43,111,255,0.35); }
+  .scroll-dot.active .dot-label { opacity: 1; color: var(--text); }
+  .dot-label { position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 600; white-space: nowrap; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-2); opacity: 0.4; transition: opacity 0.25s ease; cursor: pointer; user-select: none; }
+  @media (max-width: 1180px) { .scroll-nav { display: none; } }
   .live-eyebrow {
     display: inline-flex; align-items: center; gap: 7px;
     font-family: 'Inter Tight', sans-serif; font-weight: 700;
@@ -193,6 +208,14 @@
   .grid-markets { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   .grid-two { grid-template-columns: 1fr 1fr; gap: 16px; }
   .grid-stories { grid-template-columns: 1fr; gap: 0; }
+  /* F1 circuit photo banner — spans both columns above the boards */
+  .f1-banner { grid-column: 1 / -1; position: relative; height: 168px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+  .f1-banner img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .f1-banner:hover img { transform: scale(1.04); }
+  .f1-banner-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 20px; display: flex; flex-direction: column; gap: 3px;
+    background: linear-gradient(transparent, rgba(8,12,20,0.55) 55%, rgba(8,12,20,0.85)); }
+  .f1-banner-event { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.02em; color: #fff; }
+  .f1-banner-sub { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.78); }
 
   /* GENERIC CARD */
   .card {
@@ -626,6 +649,16 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
   </div>
 </nav>
 
+<nav class="scroll-nav" aria-hidden="true" id="liveScrollNav">
+  <div class="scroll-dot active" data-target="live-now" title="Live Now"><span class="dot-label">Live Now</span></div>
+  <div class="scroll-dot" data-target="f1" title="F1"><span class="dot-label">F1</span></div>
+  <div class="scroll-dot" data-target="golf" title="Golf"><span class="dot-label">Golf</span></div>
+  <div class="scroll-dot" data-target="scoreboard" title="Scores"><span class="dot-label">Scores</span></div>
+  <div class="scroll-dot" data-target="markets" title="Markets"><span class="dot-label">Markets</span></div>
+  <div class="scroll-dot" data-target="trending" title="Trending"><span class="dot-label">Trending</span></div>
+  <div class="scroll-dot" data-target="talking" title="Talk"><span class="dot-label">Talk</span></div>
+</nav>
+
 <main class="page-wrap">
 
   <header class="live-hero">
@@ -788,5 +821,36 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
 </div>
 
 <script src="/live/app.js"></script>
+<script>
+  // Section scroll-dot nav — tracks scroll position, hides dots for sections
+  // that aren't currently rendered (e.g. F1 off-season).
+  (function () {
+    var nav = document.getElementById('liveScrollNav');
+    if (!nav) return;
+    var dots = Array.prototype.slice.call(nav.querySelectorAll('.scroll-dot'));
+    function sync() {
+      var mid = window.scrollY + window.innerHeight * 0.42;
+      var current = -1;
+      dots.forEach(function (dot, i) {
+        var sec = document.getElementById(dot.getAttribute('data-target'));
+        var visible = sec && sec.offsetParent !== null;
+        dot.hidden = !visible;
+        if (visible && (sec.getBoundingClientRect().top + window.scrollY) <= mid) current = i;
+      });
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    }
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        var sec = document.getElementById(dot.getAttribute('data-target'));
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+    // Re-sync after async live data renders sections in/out.
+    [600, 1500, 3500].forEach(function (t) { setTimeout(sync, t); });
+  })();
+</script>
 </body>
 </html>
