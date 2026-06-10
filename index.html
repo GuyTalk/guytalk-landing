@@ -253,10 +253,12 @@
   }
   .ticker-body { position: relative; }
   .ticker-body::before, .ticker-body::after {
-    content: ""; position: absolute; top: 0; bottom: 0; width: 40px; z-index: 2; pointer-events: none;
+    content: ""; position: absolute; top: 0; bottom: 0; width: 72px; z-index: 2; pointer-events: none;
   }
-  .ticker-body::before { left: 0; background: linear-gradient(90deg, var(--surface) 20%, transparent); }
-  .ticker-body::after  { right: 0; background: linear-gradient(270deg, var(--surface) 20%, transparent); }
+  /* Fade toward transparent WHITE (not `transparent` = rgba(0,0,0,0), which
+     Safari interpolates through black and leaves a gray smudge at the edges). */
+  .ticker-body::before { left: 0;  background: linear-gradient(90deg,  #FFFFFF 35%, rgba(255,255,255,0)); }
+  .ticker-body::after  { right: 0; background: linear-gradient(270deg, #FFFFFF 35%, rgba(255,255,255,0)); }
   .ticker-hdr {
     padding: 10px 20px; border-bottom: 1px solid rgba(255,255,255,0.12);
     display: flex; align-items: center; justify-content: space-between;

@@ -302,7 +302,9 @@ async function queueSocialPosts({ apiKey, dryRun = false, single = null, platfor
     }
 
     if (channels.twitter && want('x')) {
-      try { await createPost(apiKey, channels.twitter.id, captions.x, scheduled); entry.results.x = 'queued'; log('     ✓ X queued'); }
+      // Attach the issue's own card so the tweet always shows a rich, on-brand
+      // image — never a blank/stale link-unfurl card.
+      try { await createPost(apiKey, channels.twitter.id, captions.x, scheduled, cardUrl); entry.results.x = 'queued'; log('     ✓ X queued'); }
       catch (e) { entry.results.x = `failed: ${e.message}`; log(`     ⚠  X failed: ${e.message}`); }
     }
     if (channels.instagram && want('instagram')) {
