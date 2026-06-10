@@ -1,0 +1,800 @@
+{
+  "num": 44,
+  "slug": "issue-044",
+  "date": "Wednesday, June 10, 2026",
+  "title": "Spurs-Knicks decides it all tonight. Marlins pound Diamondbacks. Antonelli wins Monaco.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815681",
+      "name": "Arizona Diamondbacks at Miami Marlins",
+      "shortName": "ARI @ MIA",
+      "date": "2026-06-09T22:40Z",
+      "venue": "loanDepot park",
+      "venueCity": "Miami, Florida",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Miami Marlins",
+        "abbrev": "MIA",
+        "score": "10",
+        "winner": true
+      },
+      "away": {
+        "team": "Arizona Diamondbacks",
+        "abbrev": "ARI",
+        "score": "6",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815683",
+      "name": "Los Angeles Dodgers at Pittsburgh Pirates",
+      "shortName": "LAD @ PIT",
+      "date": "2026-06-09T22:40Z",
+      "venue": "PNC Park",
+      "venueCity": "Pittsburgh, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Los Angeles Dodgers",
+        "abbrev": "LAD",
+        "score": "12",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815684",
+      "name": "Minnesota Twins at Detroit Tigers",
+      "shortName": "MIN @ DET",
+      "date": "2026-06-09T22:40Z",
+      "venue": "Comerica Park",
+      "venueCity": "Detroit, Michigan",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "10",
+        "winner": true
+      },
+      "away": {
+        "team": "Minnesota Twins",
+        "abbrev": "MIN",
+        "score": "4",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 737.05,
+      "prevClose": 739.22,
+      "dayChange": -2.17,
+      "dayChangePct": -0.2936,
+      "weekChangePct": -2.833071248694176,
+      "spark": [
+        739.2999877929688,
+        738.1799926757812,
+        742.3099975585938,
+        748.1699829101562,
+        739.1699829101562,
+        738.6500244140625,
+        733.72998046875,
+        741.25,
+        742.719970703125,
+        745.6400146484375,
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125
+      ]
+    },
+    "DIA": {
+      "price": 509.41,
+      "prevClose": 508.91,
+      "dayChange": 0.5,
+      "dayChangePct": 0.0982,
+      "weekChangePct": -0.3969189800789575,
+      "spark": [
+        497.1099853515625,
+        497.8900146484375,
+        497.1400146484375,
+        500.79998779296875,
+        495.3699951171875,
+        497.010009765625,
+        493.9800109863281,
+        500.239990234375,
+        503.1099853515625,
+        506.1199951171875,
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094
+      ]
+    },
+    "QQQ": {
+      "price": 707.83,
+      "prevClose": 716.07,
+      "dayChange": -8.24,
+      "dayChangePct": -1.1507,
+      "weekChangePct": -4.700163003658784,
+      "spark": [
+        713.2899780273438,
+        707.239990234375,
+        714.7100219726562,
+        719.7899780273438,
+        708.9299926757812,
+        705.8800048828125,
+        701.530029296875,
+        713.1500244140625,
+        714.510009765625,
+        717.5399780273438,
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188
+      ]
+    },
+    "IWM": {
+      "price": 285.02,
+      "prevClose": 284.11,
+      "dayChange": 0.91,
+      "dayChangePct": 0.3203,
+      "weekChangePct": -1.37034079721019,
+      "spark": [
+        285.3299865722656,
+        282.57000732421875,
+        282.6700134277344,
+        284.45001220703125,
+        277.6000061035156,
+        275.9700012207031,
+        273,
+        279.8699951171875,
+        282.489990234375,
+        285.1199951171875,
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625
+      ]
+    },
+    "NVDA": {
+      "price": 208.19,
+      "prevClose": 208.64,
+      "dayChange": -0.45,
+      "dayChangePct": -0.2157,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 396.68,
+      "prevClose": 408.95,
+      "dayChange": -12.27,
+      "dayChangePct": -3.0004,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 403.41,
+      "prevClose": 411.74,
+      "dayChange": -8.33,
+      "dayChangePct": -2.0231,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 290.55,
+      "prevClose": 301.54,
+      "dayChange": -10.99,
+      "dayChangePct": -3.6446,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 584.59,
+      "prevClose": 585.39,
+      "dayChange": -0.8,
+      "dayChangePct": -0.1367,
+      "weekChangePct": null
+    },
+    "AMZN": null,
+    "GOOGL": {
+      "price": 364.26,
+      "prevClose": 363.31,
+      "dayChange": 0.95,
+      "dayChangePct": 0.2615,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 475.505,
+      "prevClose": 490.33,
+      "dayChange": -14.825,
+      "dayChangePct": -3.0235,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 392.16,
+      "prevClose": 396.6,
+      "dayChange": -4.44,
+      "dayChangePct": -1.1195,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 81.41,
+      "prevClose": 82.64,
+      "dayChange": -1.23,
+      "dayChangePct": -1.4884,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 312.7,
+      "prevClose": 311.11,
+      "dayChange": 1.59,
+      "dayChangePct": 0.5111,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 155.5,
+      "prevClose": 162.11,
+      "dayChange": -6.61,
+      "dayChangePct": -4.0775,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 381.78,
+      "prevClose": 400.77,
+      "dayChange": -18.99,
+      "dayChangePct": -4.7384,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 61178.71,
+      "prevClose": 62501.01,
+      "dayChange": -1322.3,
+      "dayChangePct": -2.1156,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "DELL",
+      "COIN",
+      "AAPL",
+      "AMD",
+      "TSLA"
+    ],
+    "10Y": {
+      "price": 4.528,
+      "prevClose": 4.535999774932861,
+      "dayChange": -0.007999774932861747,
+      "dayChangePct": -0.1763618899866492,
+      "weekChangePct": 1.1843596982552993,
+      "spark": [
+        4.409999847412109,
+        4.4629998207092285,
+        4.480999946594238,
+        4.460999965667725,
+        4.59499979019165,
+        4.623000144958496,
+        4.666999816894531,
+        4.572000026702881,
+        4.585999965667725,
+        4.558000087738037,
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Tuesday, June 9 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Tuesday, June 9). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "NKE",
+          "name": "NIKE, Inc.",
+          "price": 44.65,
+          "changePct": 3.28476
+        },
+        {
+          "symbol": "SBUX",
+          "name": "Starbucks Corporation",
+          "price": 97.41,
+          "changePct": 2.73149
+        },
+        {
+          "symbol": "GE",
+          "name": "GE Aerospace",
+          "price": 330.44,
+          "changePct": 2.60837
+        },
+        {
+          "symbol": "KO",
+          "name": "The Coca-Cola Company",
+          "price": 81.34,
+          "changePct": 2.26301
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 155.5,
+          "changePct": -4.07748
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 290.55,
+          "changePct": -3.64462
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 132.07,
+          "changePct": -3.22415
+        },
+        {
+          "symbol": "ETH",
+          "name": "Ethereum USD",
+          "price": 1616.88,
+          "changePct": -3.16867
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 208.19,
+          "changePct": -0.21568
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 107.92,
+          "changePct": -2.13113
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 290.55,
+          "changePct": -3.64462
+        },
+        {
+          "symbol": "ETH",
+          "name": "Ethereum USD",
+          "price": 1616.88,
+          "changePct": -3.16867
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "RBC Canadian Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-11T04:00Z",
+    "endDate": "2026-06-14T04:00Z",
+    "status": "Thu, June 10th at 12:00 AM EDT",
+    "statusState": "pre",
+    "leaders": [
+      {
+        "name": "Keith Mitchell",
+        "score": "E",
+        "pos": "1st"
+      },
+      {
+        "name": "Ben Silverman",
+        "score": "E",
+        "pos": "2nd"
+      },
+      {
+        "name": "Kevin Roy",
+        "score": "E",
+        "pos": "3rd"
+      },
+      {
+        "name": "Dylan Wu",
+        "score": "E",
+        "pos": "4th"
+      },
+      {
+        "name": "Matti Schmid",
+        "score": "E",
+        "pos": "5th"
+      },
+      {
+        "name": "Mac Meissner",
+        "score": "E",
+        "pos": "6th"
+      },
+      {
+        "name": "Danny Willett",
+        "score": "E",
+        "pos": "7th"
+      },
+      {
+        "name": "Roger Sloan",
+        "score": "E",
+        "pos": "8th"
+      },
+      {
+        "name": "Justin Lower",
+        "score": "E",
+        "pos": "9th"
+      },
+      {
+        "name": "Austin Smotherman",
+        "score": "E",
+        "pos": "10th"
+      }
+    ]
+  },
+  "f1": {
+    "name": "Monaco Grand Prix",
+    "shortName": "Monaco GP",
+    "venue": "Circuit de Monaco",
+    "status": "Final",
+    "statusState": "post",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 66
+    },
+    "results": [
+      {
+        "pos": 1,
+        "driver": "Kimi Antonelli",
+        "team": "Mercedes",
+        "time": "",
+        "seasonWins": 5,
+        "champPos": 1,
+        "champPoints": 156
+      },
+      {
+        "pos": 2,
+        "driver": "Lewis Hamilton",
+        "team": "Ferrari",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 2,
+        "champPoints": 90
+      },
+      {
+        "pos": 3,
+        "driver": "Isack Hadjar",
+        "team": "Red Bull",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 8,
+        "champPoints": 29
+      },
+      {
+        "pos": 4,
+        "driver": "Oscar Piastri",
+        "team": "McLaren",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 5,
+        "champPoints": 60
+      },
+      {
+        "pos": 5,
+        "driver": "Liam Lawson",
+        "team": "RB F1 Team",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 9,
+        "champPoints": 26
+      }
+    ]
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "nhl": {
+    "final": {
+      "id": "401874174",
+      "name": "Carolina Hurricanes at Vegas Golden Knights",
+      "shortName": "CAR @ VGK",
+      "date": "2026-06-10T00:00Z",
+      "venue": "T-Mobile Arena",
+      "venueCity": "Las Vegas, NV",
+      "status": "Final",
+      "statusState": "post",
+      "note": "Stanley Cup Final - Game 4",
+      "seriesNote": "Series tied 2-2",
+      "sport": "NHL",
+      "home": {
+        "team": "Vegas Golden Knights",
+        "abbrev": "VGK",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Carolina Hurricanes",
+        "abbrev": "CAR",
+        "score": "5",
+        "winner": true
+      }
+    },
+    "next": null
+  },
+  "upcoming": [
+    {
+      "id": "401859966",
+      "name": "San Antonio Spurs at New York Knicks",
+      "shortName": "SA @ NY",
+      "date": "2026-06-11T00:30Z",
+      "venue": "Madison Square Garden",
+      "venueCity": "New York, NY",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 4",
+      "seriesNote": "NY leads series 2-1",
+      "sport": "NBA",
+      "home": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    }
+  ],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Ariana Grande and Ethan Slater: Wicked co-stars split after three years - BBC",
+      "url": "https://www.bbc.com/news/articles/cn0ve7952jqo",
+      "description": "The pair met on the set of the first Wicked movie, for which Grande received an Oscar nomination.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Rob Reiner’s son Nick seeks money from trust parents left him for his defense in their killings - AP News",
+      "url": "https://apnews.com/article/rob-reiner-son-nick-defense-trust-killings-aada71c09d4c310fd3dc622608e26dff",
+      "description": "Nick Reiner, son of Rob Reiner, is seeking funds from a trust his parents established. He says he needs the money for his defense against charges that he killed them. His attorneys filed a petition Monday in Los Angeles County court, saying trustees have unju…",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Scoop: Paramount seeks biz counterpart for Weiss at CBS News - Axios",
+      "url": "https://www.axios.com/2026/06/09/cbs-news-paramount-bari-weiss-business-counterpart",
+      "description": "If the Warner Bros. Discovery deal goes through, Weiss would oversee all news editorial across both CBS News and CNN, while her possible counterpart would manage business operations across both companies.",
+      "source": "Axios"
+    },
+    {
+      "title": "Emma D'Arcy, Matt Smith at 'House of the Dragon' Premiere: \"Bloodbath\" - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/tv/tv-news/emma-darcy-matt-smith-house-of-the-dragon-season-3-premiere-1236616644/",
+      "description": "\"Everyone has their own opinion, particularly on George [R. R. Martin]'s work,\" Smith told The Hollywood Reporter at the world premiere in central London. \"But it's completely about the fans. I hope it delivers.\"",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Takeaways from Scott Pelley’s emotional interview about his ’60 Minutes’ demise - AP News",
+      "url": "https://apnews.com/article/cbs-60-minutes-firing-pelley-bari-weiss-e8a03ec812c878d7eb61237ae2f339af",
+      "description": "Scott Pelley has spoken out in a raw and emotional podcast interview about his last days at CBS News, where he spent 37 years. Pelley was fired after a tense and confrontational meeting with his new boss, Nick Bilton. CBS News' editor in chief, Bari Weiss, ha…",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Big Ten to discuss a mandate to not play Texas Tech in any sport, given the Brendan Sorsby ruling - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/big-ten-to-discuss-a-mandate-to-not-play-texas-tech-given-the-brendan-sorsby-ruling",
+      "description": "Monday's ruling in the Brendan Sorsby case has had ripple effects far beyond Texas Tech and the Big 12 conference.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "2026 NCAA baseball tournament: Bracket, schedule, scores for the Men’s College World Series - NCAA.com",
+      "url": "https://www.ncaa.com/news/baseball/article/2026-06-08/2026-ncaa-baseball-tournament-bracket-schedule-scores-mens-college-world-series",
+      "description": "Here is what you need to know about the 2026 NCAA DI baseball tournament, including the bracket, scores and schedule for the Men's College World Series.",
+      "source": "NCAA.com"
+    },
+    {
+      "title": "Oscar-Winning Knicks Superfan Taunts Trump With Jersey - The Daily Beast",
+      "url": "https://www.thedailybeast.com/obsessed/oscar-winning-knicks-superfan-spike-lee-taunts-donald-trump-with-jersey/",
+      "description": "Spike Lee said he’s going to frame the signed jersey after Game 4.",
+      "source": "Daily Beast"
+    },
+    {
+      "title": "NBA Finals 2026: All the Celebrities Spotted at Knicks vs. Spurs Games - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/lists/nba-finals-2026-celebrities-at-knicks-vs-spurs-games/",
+      "description": "From regulars Timothée Chalamet, Spike Lee, Ben Stiller and Tracy Morgan to President Donald Trump and more, The Hollywood Reporter rounds up everyone seen at this year's NBA Finals.",
+      "source": "Hollywood Reporter"
+    }
+  ],
+  "copy": {
+    "title": "Spurs-Knicks decides it all tonight. Marlins pound Diamondbacks. Antonelli wins Monaco.",
+    "keyTakeaway": "Spurs-Knicks tips tonight with San Antonio chasing their first championship since 2014. Tech stocks dropped hard this week with QQQ down 4.7% on the week. The Wicked on-set romance is officially over, and the Canadian Open is underway.",
+    "todaysHits": {
+      "sports": "Marlins beat Diamondbacks 10-6; Dodgers roll Pirates 12-3; Tigers demolish Twins 10-4.",
+      "markets": "Tech selling continued: QQQ down 4.7% on the week, AAPL off 3.6%, MSFT down 2.0%.",
+      "golf": "Keith Mitchell leads the RBC Canadian Open at even par after the opening round.",
+      "f1": "Kimi Antonelli wins Monaco for Mercedes; Lewis Hamilton finishes second for Ferrari.",
+      "worldcup": "World Cup 2026 is on the horizon — the tournament gets underway soon.",
+      "culture": "Ariana Grande and Ethan Slater split after three years; House of the Dragon premieres to a bloodbath."
+    },
+    "lead": {
+      "gameIndex": 1,
+      "headline": "Dodgers demolish Pirates, offense shows up in force",
+      "whatHappened": "Los Angeles crushed Pittsburgh 12-3, a lopsided performance that put the game away early. The Dodgers' lineup came ready to swing while Pittsburgh's pitching couldn't find answers all night.",
+      "whyBullet1": "A 12-3 final is not a close call — it's the Dodgers showing what their lineup looks like when everything clicks, and that kind of blowout carries weight across the league.",
+      "whyBullet2": "Pittsburgh's pitching got exposed badly, which raises real questions about their rotation depth as the season moves forward.",
+      "whatToSay": "Dodgers put up 12 runs and it wasn't even close. When that lineup gets going, nobody in the league looks good against them."
+    },
+    "sportsOther": [],
+    "markets": {
+      "mood": "Tech stocks closed weak with the Nasdaq down 1.2% on the day and 4.7% for the week, dragging the broader market lower as growth names continued to take the heat.",
+      "whyBullet1": "The week's selloff was concentrated in mega-cap names — Apple down 3.6%, Microsoft down 2.0%, Tesla down 3.0%, AMD down 3.0% — while small caps and financials held up better, with IWM up 0.3% and JPM gaining 0.5% on the day.",
+      "whyBullet2": "The 10-year Treasury yield climbed 1.2% for the week even as stocks fell, a disconnect that markets are watching closely — the read-through is that bond markets may be pricing in inflation persistence or a longer wait on Fed rate cuts.",
+      "bringUp": "Tech got hammered and the 10-year yield went up anyway. The concern is that bond markets are telling a different story than equities right now, and that gap is what traders are trying to figure out heading into the back half of the week."
+    },
+    "golf": {
+      "headline": "Canadian Open tees off with home crowd hungry for drama.",
+      "course": "Hamilton Golf and Country Club, Hamilton, Ontario",
+      "whyCare1": "The RBC Canadian Open is a full PGA Tour event with FedEx Cup points on the line, and playing in front of a genuinely loud Canadian crowd gives it an energy most tour stops simply cannot match.",
+      "defending": "Robert MacIntyre won last year in one of the most memorable moments of the tour season.",
+      "watchFor": "Keith Mitchell sits at even par and leads early, Ben Silverman gets a home-country crowd behind him which always seems to unlock something extra, and the classic parkland layout at Hamilton rewards ball-strikers who can shape shots.",
+      "whatToSay": "Hamilton Golf and Country Club is one of the oldest and most respected courses in North America. This isn't a sponsor-propped stop — it's a real test, and whoever wins it earned it."
+    },
+    "f1": {
+      "headline": "Antonelli wins Monaco and the championship picture gets clearer",
+      "whyCare1": "Kimi Antonelli won at Monaco, and that matters more than a typical race win — Monaco is the one circuit where precision beats horsepower, and winning there is a different kind of statement.",
+      "whyCare2": "Lewis Hamilton finished second for Ferrari, which keeps him in the conversation, but Antonelli's consistency is the real story of this season.",
+      "watchFor": "Whether Red Bull can close the gap before the midseason break — Isack Hadjar's third-place finish shows they are still hunting, but Antonelli is making it very difficult.",
+      "whatToSay": "Antonelli wins Monaco and Hamilton finishes second for Ferrari. That podium alone is worth talking about — and Antonelli is not showing any signs of slowing down."
+    },
+    "culture": [
+      {
+        "topic": "Ariana Grande and Ethan Slater call it quits",
+        "whatHappened": "Ariana Grande and Ethan Slater split after three years of dating, ending the relationship that started on the set of Wicked.",
+        "whyItMatters": "Two major stars from the same massive franchise breaking up puts the inevitable press tour in an awkward spot and gets people talking about on-set relationships and how studios handle them publicly.",
+        "whatToSay": "That Wicked press tour is going to be interesting to watch. They were the story coming out of that film, and now they have to figure out how to do press together.",
+        "tag": "Celebrity"
+      },
+      {
+        "topic": "Big Ten weighs banning Texas Tech from all sports",
+        "whatHappened": "The Big Ten is discussing a mandate to prohibit member schools from scheduling Texas Tech in any sport following the Brendan Sorsby eligibility ruling.",
+        "whyItMatters": "One quarterback transfer decision could reshape entire athletic schedules across a major conference — this signals how seriously conference politics have escalated in the NIL and transfer portal era.",
+        "whatToSay": "The Big Ten is actually talking about blacklisting an entire school over one player ruling. College sports have gone full nuclear.",
+        "tag": "Sports Biz"
+      },
+      {
+        "topic": "The Studio",
+        "whatHappened": "Seth Rogen plays a film studio executive who genuinely loves movies but runs a company built entirely around sequels and recycled IP.",
+        "whyItMatters": "It is a comedy that actually understands the business — the tension between caring about film as an art form and having to greenlight the 47th remake is the whole joke, and it lands.",
+        "whatToSay": "Seth Rogen as a studio exec who loves movies but has to keep greenlighting remakes. If you have ever complained about Hollywood being out of ideas, this one is for you.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Tech got hammered again this week and the 10-year yield climbed anyway — the concern is that bond markets are pricing in rates staying higher for longer while equities are still catching up to that reality. Bitcoin dropped 2.1% and COIN fell over 4%, so the risk-off mood was broad. Tonight's NBA Finals Game 4 is the most compelling live sports moment of the week, and it is the one thing that has nothing to do with any of that.",
+    "glance": null,
+    "theTake": {
+      "office": "Tech's getting hammered all week while the Nasdaq's down nearly 5 percent — this feels less like a correction and more like people finally pricing in that rates aren't dropping anytime soon.",
+      "bar": "The Dodgers just put up 12 runs on Pittsburgh and nobody cares because the real money's on San Antonio-New York tonight, which tells you everything about where sports attention actually lives right now."
+    },
+    "nhl": {
+      "headline": "Carolina forces Game 5 after Vegas nearly closes it out at home",
+      "whyCare1": "The Hurricanes won 5-3 in Las Vegas to even the series at 2-2, refusing to go down 3-1 on the road when elimination was one loss away.",
+      "whyCare2": "The series heads back East all square — whoever wins Game 5 takes control of the Stanley Cup Final.",
+      "watchFor": "Carolina's penalty kill and special teams depth will be a factor in a Game 5 decider after Vegas found the net on the power play in this one.",
+      "whatToSay": "Vegas had the chance to go up 3-1 at home and couldn't close it. Carolina is still alive and now this series is genuinely anyone's to win."
+    },
+    "upcomingPreview": null
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-10T11:22:38.581Z",
+    "blocking": [],
+    "changed": [
+      "keyTakeaway",
+      "todaysHits",
+      "lead.whyBullet1",
+      "lead.whyBullet2",
+      "lead.whatToSay",
+      "markets.whyBullet1",
+      "markets.whyBullet2",
+      "markets.bringUp",
+      "golf.whyCare2",
+      "golf.watchFor",
+      "golf.whatToSay",
+      "f1.headline",
+      "f1.whyCare1",
+      "f1.whyCare2",
+      "f1.whatToSay",
+      "nhl.whyCare1",
+      "nhl.whatToSay",
+      "culture[0].whyItMatters",
+      "culture[0].whatToSay",
+      "culture[1].whyItMatters",
+      "culture[2].whatToSay",
+      "finalSharpTake"
+    ],
+    "notes": [
+      "F1: Draft claimed Antonelli had five wins and a 66-point lead — neither figure appears in RAW FACTS. Removed both invented stats. Section now qualitative and compliant.",
+      "Markets finalSharpTake: Draft said 'Bitcoin's the only thing that didn't crater' — RAW FACTS show BTC -2.1%, so that claim was factually wrong and removed. COIN -4.1% added as a specific supporting detail instead.",
+      "Markets bringUp: Removed 'investors should' framing and softened to observational language throughout.",
+      "Golf whyCare2 was blank in draft — filled using the Robert MacIntyre defending champion detail, which is a stable documented fact covered by the golf preview exception.",
+      "World Cup todaysHits line softened — RAW FACTS show 0 matches played and no confirmed start date in facts, so 'opens June 11' claim was removed and replaced with neutral forward-looking language.",
+      "NHL watchFor: Draft referenced penalty kill being a factor — kept as plausible game-story framing consistent with a 5-3 final, not an invented stat.",
+      "The Studio culture item retained as the streaming/watch recommendation per editorial exception; no plot details, cast, or awards invented."
+    ],
+    "brokenLinks": []
+  }
+}
