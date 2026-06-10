@@ -41,7 +41,8 @@ module.exports = async (req, res) => {
         body: JSON.stringify({
           email,
           reactivate_existing: true,      // re-subscribe someone who left
-          send_welcome_email: true,       // honor the publication's opt-in flow
+          send_welcome_email: true,       // send the welcome, not a confirmation
+          double_opt_override: 'off',     // signups go straight to active (no pending)
           utm_source: 'guytalkmedia.com',
           utm_medium: 'website_signup',
           referring_site: 'https://www.guytalkmedia.com',

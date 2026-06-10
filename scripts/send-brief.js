@@ -31,6 +31,12 @@ const FORCED_ISSUE     = (() => {
   const idx = process.argv.indexOf('--issue');
   return idx !== -1 ? process.argv[idx + 1] : null;
 })();
+// --to <email>: send only to this address (e.g. backfill a single subscriber)
+// without re-emailing the whole active list.
+const ONLY_TO          = (() => {
+  const idx = process.argv.indexOf('--to');
+  return idx !== -1 ? process.argv[idx + 1] : null;
+})();
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Marquee game picker — the email teaser should LEAD with the day's biggest
@@ -280,14 +286,20 @@ async function main() {
     process.exit(1);
   }
 
-  // Fetch subscriber list
-  console.log(`\n📬 Sending ${slug} to subscribers...`);
-  console.log('   Fetching subscriber list from Beehiiv...');
-  const emails = await getSubscribers();
-  console.log(`   ✓ ${emails.length} active subscriber(s)`);
+  // Recipient list: a single targeted address (--to) or all active subscribers.
+  let emails;
+  if (ONLY_TO) {
+    emails = [ONLY_TO];
+    console.log(`\n📬 Sending ${slug} to a single address: ${ONLY_TO}`);
+  } else {
+    console.log(`\n📬 Sending ${slug} to subscribers...`);
+    console.log('   Fetching subscriber list from Beehiiv...');
+    emails = await getSubscribers();
+    console.log(`   ✓ ${emails.length} active subscriber(s)`);
+  }
 
   if (emails.length === 0) {
-    console.log('   No active subscribers — nothing sent.\n');
+    console.log('   No recipients — nothing sent.\n');
     return;
   }
 
