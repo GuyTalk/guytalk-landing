@@ -271,18 +271,18 @@ ${sideLinks.map(([id, label]) => `  <a href="#${id}" class="bsn-link" data-targe
 <meta property="og:url"         content="https://www.guytalkmedia.com/brief/${slug}/">
 <meta property="og:title"       content="${esc(title)}">
 <meta property="og:description" content="${esc(seoDesc)}">
-<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
+<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-cards/${slug}.png">
 <meta property="og:site_name"   content="GuyTalk">
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:site"        content="@guytalkmedia">
 <meta name="twitter:title"       content="${esc(title)}">
 <meta name="twitter:description" content="${esc(seoDesc)}">
-<meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
+<meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-cards/${slug}.png">
 <link rel="canonical"            href="https://www.guytalkmedia.com/brief/${slug}/">
 ${prevSlug ? `<link rel="prev" href="https://www.guytalkmedia.com/brief/${prevSlug}/">` : ''}
 <link rel="next" href="https://www.guytalkmedia.com/brief/${nextSlug}/">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":${JSON.stringify(title)},"description":${JSON.stringify(seoDesc)},"url":"https://www.guytalkmedia.com/brief/${slug}/","image":"https://www.guytalkmedia.com/assets/og-card.png","publisher":{"@type":"Organization","name":"GuyTalk","logo":{"@type":"ImageObject","url":"https://www.guytalkmedia.com/assets/logo/guytalk-icon.svg"}},"author":{"@type":"Person","name":"Jake Williams"},"datePublished":"${isoDate(date)}"}
+{"@context":"https://schema.org","@type":"Article","headline":${JSON.stringify(title)},"description":${JSON.stringify(seoDesc)},"url":"https://www.guytalkmedia.com/brief/${slug}/","image":"https://www.guytalkmedia.com/assets/og-cards/${slug}.png","publisher":{"@type":"Organization","name":"GuyTalk","logo":{"@type":"ImageObject","url":"https://www.guytalkmedia.com/assets/logo/guytalk-icon.svg"}},"author":{"@type":"Person","name":"Jake Williams"},"datePublished":"${isoDate(date)}"}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

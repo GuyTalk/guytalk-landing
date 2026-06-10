@@ -6,6 +6,7 @@ const { createCanvas, registerFont } = require('canvas');
 
 const OUTPUT_DIR = path.join(__dirname, '..', '..', 'assets', 'social-cards');
 const TIKTOK_DIR = path.join(__dirname, '..', '..', 'assets', 'tiktok-cards');
+const OG_DIR     = path.join(__dirname, '..', '..', 'assets', 'og-cards');
 
 const C = {
   bgTop:   '#0C1B33',
@@ -84,10 +85,12 @@ function getHits(issue) {
 }
 
 function generateCard(issue, opts = {}) {
-  const vertical = opts.format === 'vertical';
-  const W = SIZE;                          // 1080 wide for both
-  const H = vertical ? 1920 : SIZE;        // 9:16 for TikTok/Reels, 1:1 for IG feed
-  const outDir = vertical ? TIKTOK_DIR : OUTPUT_DIR;
+  const fmt = opts.format || 'square';
+  const vertical = fmt === 'vertical';
+  const og = fmt === 'og';
+  const W = og ? 1200 : SIZE;              // 1.91:1 link-preview vs 1080 wide
+  const H = vertical ? 1920 : og ? 630 : SIZE;
+  const outDir = vertical ? TIKTOK_DIR : og ? OG_DIR : OUTPUT_DIR;
   if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
   const { num, slug, date, title, copy } = issue;
@@ -136,63 +139,102 @@ function generateCard(issue, opts = {}) {
     ctx.fillText(dateStr, RIGHT - ctx.measureText(dateStr).width, 122);
   }
 
-  // ── Layout budget (computed bottom-up so nothing ever overflows) ───────────────
-  const maxW       = W - PAD * 2;
-  const footerTop  = H - 96;                    // everything above stays clear of footer
-  const hitRowH    = 74;
-  const hitsHdrH   = hits.length ? 58 : 0;
-  const hitsBlockH = hits.length ? hitsHdrH + hits.length * hitRowH : 0;
-  const dividerY   = hits.length ? footerTop - hitsBlockH - 28 : footerTop;
-  // Vertical cards get a tall safe-zone top margin (clear of TikTok's UI chrome).
-  const headTop    = vertical ? 380 : 196;
-  const headBottom = (hits.length ? dividerY : footerTop) - 36;
-  const headZone   = headBottom - headTop;
+  const maxW = W - PAD * 2;
 
-  // ── Headline (sized to fit its zone) ───────────────────────────────────────────
-  let fontSize = vertical ? 104 : 92;
-  let lines, lineH;
-  for (;;) {
-    ctx.font = `${fontSize}px "${FONTS.black}"`;
-    lines = wrapText(ctx, headline, maxW);
-    lineH = fontSize * 1.07;
-    if (lines.length * lineH <= headZone || fontSize <= 48) break;
-    fontSize -= 3;
-  }
-  ctx.fillStyle = C.text;
-  ctx.font = `${fontSize}px "${FONTS.black}"`;
-  // Vertical: center the headline in its (tall) zone; square: top-align.
-  const blockH = lines.length * lineH;
-  let y = headTop + fontSize + (vertical ? Math.max(0, (headZone - blockH) / 2) : 0);
-  for (const line of lines) { ctx.fillText(line, PAD, y); y += lineH; }
+  if (og) {
+    // ── OG / link-preview body: headline + subtitle + category chips ─────────────
+    let ogSize = 78;
+    let ogLines, ogLineH;
+    for (;;) {
+      ctx.font = `${ogSize}px "${FONTS.black}"`;
+      ogLines = wrapText(ctx, headline, maxW).slice(0, 3);
+      ogLineH = ogSize * 1.07;
+      if (ogLines.length * ogLineH <= 270 || ogSize <= 46) break;
+      ogSize -= 3;
+    }
+    ctx.fillStyle = C.text;
+    ctx.font = `${ogSize}px "${FONTS.black}"`;
+    let oy = 200;
+    for (const line of ogLines) { ctx.fillText(line, PAD, oy); oy += ogLineH; }
 
-  // ── Today's hits ──────────────────────────────────────────────────────────────
-  if (hits.length) {
-    ctx.strokeStyle = C.border;
-    ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(PAD, dividerY); ctx.lineTo(RIGHT, dividerY); ctx.stroke();
-
-    ctx.font = `22px "${FONTS.bold}"`;
+    // Subtitle
+    ctx.font = `28px "${FONTS.regular}"`;
     ctx.fillStyle = C.text2;
-    ctx.fillText("TODAY'S HITS", PAD, dividerY + 42);
+    const subtitle = issue.deck && issue.deck !== 'Five minutes. Everything you need.'
+      ? issue.deck : 'Sports · Markets · Culture · Five minutes a day.';
+    ctx.fillText(truncateToWidth(ctx, subtitle, maxW), PAD, oy + 14);
 
-    let ry = dividerY + hitsHdrH + 38;
-    for (const hit of hits) {
-      // Colored category chip
+    // Category chips (only the sections this issue actually covers)
+    let cx = PAD;
+    const chipY = 500;
+    for (const hit of getHits(issue)) {
       ctx.font = `20px "${FONTS.bold}"`;
-      const chipText = hit.label;
-      const chipW = ctx.measureText(chipText).width + 28;
-      drawRoundRect(ctx, PAD, ry - 27, chipW, 38, 8);
+      const chipW = ctx.measureText(hit.label).width + 32;
+      drawRoundRect(ctx, cx, chipY - 28, chipW, 40, 9);
       ctx.fillStyle = C.cats[hit.key] || C.accent;
       ctx.fill();
       ctx.fillStyle = '#0A0F1A';
-      ctx.fillText(chipText, PAD + 14, ry);
+      ctx.fillText(hit.label, cx + 16, chipY);
+      cx += chipW + 14;
+    }
+  } else {
+    // ── Layout budget (computed bottom-up so nothing ever overflows) ──────────────
+    const footerTop  = H - 96;                    // everything above stays clear of footer
+    const hitRowH    = 74;
+    const hitsHdrH   = hits.length ? 58 : 0;
+    const hitsBlockH = hits.length ? hitsHdrH + hits.length * hitRowH : 0;
+    const dividerY   = hits.length ? footerTop - hitsBlockH - 28 : footerTop;
+    // Vertical cards get a tall safe-zone top margin (clear of TikTok's UI chrome).
+    const headTop    = vertical ? 380 : 196;
+    const headBottom = (hits.length ? dividerY : footerTop) - 36;
+    const headZone   = headBottom - headTop;
 
-      // Hit text — single line, truncated to fit so rows stay uniform
-      ctx.font = `30px "${FONTS.bold}"`;
-      ctx.fillStyle = C.text;
-      const textX = PAD + chipW + 22;
-      ctx.fillText(truncateToWidth(ctx, hit.text, RIGHT - textX), textX, ry);
-      ry += hitRowH;
+    // ── Headline (sized to fit its zone) ─────────────────────────────────────────
+    let fontSize = vertical ? 104 : 92;
+    let lines, lineH;
+    for (;;) {
+      ctx.font = `${fontSize}px "${FONTS.black}"`;
+      lines = wrapText(ctx, headline, maxW);
+      lineH = fontSize * 1.07;
+      if (lines.length * lineH <= headZone || fontSize <= 48) break;
+      fontSize -= 3;
+    }
+    ctx.fillStyle = C.text;
+    ctx.font = `${fontSize}px "${FONTS.black}"`;
+    // Vertical: center the headline in its (tall) zone; square: top-align.
+    const blockH = lines.length * lineH;
+    let y = headTop + fontSize + (vertical ? Math.max(0, (headZone - blockH) / 2) : 0);
+    for (const line of lines) { ctx.fillText(line, PAD, y); y += lineH; }
+
+    // ── Today's hits ─────────────────────────────────────────────────────────────
+    if (hits.length) {
+      ctx.strokeStyle = C.border;
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(PAD, dividerY); ctx.lineTo(RIGHT, dividerY); ctx.stroke();
+
+      ctx.font = `22px "${FONTS.bold}"`;
+      ctx.fillStyle = C.text2;
+      ctx.fillText("TODAY'S HITS", PAD, dividerY + 42);
+
+      let ry = dividerY + hitsHdrH + 38;
+      for (const hit of hits) {
+        // Colored category chip
+        ctx.font = `20px "${FONTS.bold}"`;
+        const chipText = hit.label;
+        const chipW = ctx.measureText(chipText).width + 28;
+        drawRoundRect(ctx, PAD, ry - 27, chipW, 38, 8);
+        ctx.fillStyle = C.cats[hit.key] || C.accent;
+        ctx.fill();
+        ctx.fillStyle = '#0A0F1A';
+        ctx.fillText(chipText, PAD + 14, ry);
+
+        // Hit text — single line, truncated to fit so rows stay uniform
+        ctx.font = `30px "${FONTS.bold}"`;
+        ctx.fillStyle = C.text;
+        const textX = PAD + chipW + 22;
+        ctx.fillText(truncateToWidth(ctx, hit.text, RIGHT - textX), textX, ry);
+        ry += hitRowH;
+      }
     }
   }
 
@@ -224,4 +266,9 @@ function generateTikTokCard(issue) {
   return generateCard(issue, { format: 'vertical' });
 }
 
-module.exports = { generateCard, generateTikTokCard };
+// 1200×630 link-preview card (og:image / twitter:image) — per issue.
+function generateOgCard(issue) {
+  return generateCard(issue, { format: 'og' });
+}
+
+module.exports = { generateCard, generateTikTokCard, generateOgCard };
