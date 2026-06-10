@@ -209,6 +209,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   }
   .wordmark { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.03em; color: var(--text); }
   .wordmark .dot { color: var(--accent); }
+  .tm { font-size: 0.42em; vertical-align: super; font-weight: 700; letter-spacing: 0; margin-left: 1px; color: var(--text-secondary); }
   .nav-cta {
     font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px;
     padding: 7px 14px; background: var(--accent); color: white; border-radius: 7px;
@@ -330,7 +331,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <nav>
   <div class="nav-inner">
-    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span></a>
+    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span><span class="tm">™</span></a>
     <a href="/#signup" class="nav-cta">Subscribe Free →</a>
   </div>
 </nav>
@@ -363,7 +364,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </main>
 
 <footer>
-  <div class="footer-brand">GuyTalk<span class="dot">.</span></div>
+  <div class="footer-brand">GuyTalk<span class="dot">.</span><span class="tm">™</span></div>
   <div class="footer-links">
     <a href="/">Home</a>
     <a href="https://instagram.com/guytalkmedia" target="_blank" rel="noopener">Instagram</a>

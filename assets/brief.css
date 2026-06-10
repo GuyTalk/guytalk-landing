@@ -69,6 +69,7 @@ em { font-style: italic; }
   font-size: 19px; letter-spacing: -0.03em; color: var(--text); border-bottom: 0;
 }
 .brief-wordmark .dot { color: var(--accent); }
+.brief-wordmark .tm { font-size: 0.42em; vertical-align: super; font-weight: 700; letter-spacing: 0; margin-left: 1px; color: var(--text-secondary); }
 .brief-wordmark:hover { border-bottom: 0; }
 .brief-nav-right { display: flex; align-items: center; gap: 16px; }
 .brief-nav-issue {
