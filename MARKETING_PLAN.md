@@ -150,6 +150,29 @@ Keep one editorial rule: **every post ends with a reason to subscribe**, not jus
 
 ---
 
+## 7b. Tracking — UTMs & the funnel (set up 2026‑06‑10)
+
+**Funnel insight (live in PostHog):** "Visitor → Signup" — `$pageview → email_signup`.
+Currently **78 visitors → 3 signups = 3.85%** (90 days). Watch this number; gate the
+paid push on it holding ≥3–5% once real traffic arrives.
+→ https://us.posthog.com/project/428450/insights/hHGnJ72r
+
+**UTM convention** — tag every external link so PostHog attributes the source. Format:
+`https://www.guytalkmedia.com/?utm_source=<where>&utm_medium=<type>&utm_campaign=<what>`
+
+| Channel | utm_source | utm_medium |
+|---|---|---|
+| TikTok | `tiktok` | `social` |
+| Instagram | `instagram` | `social` |
+| X | `x` | `social` |
+| Newsletter swap | `<partner>` | `swap` |
+| Reddit/forum | `reddit` | `community` |
+| Paid | `tiktok`/`meta` | `paid` |
+
+Tracked events already firing: `$pageview`, `email_signup`, `brief_read`, `404_hit`.
+
+---
+
 ## 8. 30 / 60 / 90‑day plan
 
 **Days 1–30 — Foundations + first 100 (manual)**
