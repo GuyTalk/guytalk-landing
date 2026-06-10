@@ -55,6 +55,12 @@ function loadPreviousBriefs(n = 3) {
         lead:           (d.copy?.lead?.headline || '').slice(0, 120),
         bringUp:        d.copy?.markets?.bringUp || '',
         marketsBringUp: d.copy?.markets?.bringUp || '',
+        // What events we already covered — used to avoid re-reporting the same
+        // completed race/tournament and to pivot forward to what's next.
+        f1Event:    d.f1?.name || '',
+        f1State:    d.f1?.statusState || '',
+        golfEvent:  d.golf?.name || '',
+        golfState:  d.golf?.statusState || '',
       };
     } catch (_) { return null; }
   }).filter(Boolean);
@@ -271,7 +277,7 @@ async function main() {
   }
   const golf       = golfResult.status      === 'fulfilled' ? golfResult.value      : null;
   const trending   = trendingResult.status  === 'fulfilled' ? trendingResult.value  : null;
-  const f1         = f1Result.status        === 'fulfilled' ? f1Result.value        : null;
+  let   f1         = f1Result.status        === 'fulfilled' ? f1Result.value        : null;
   const worldCup   = wcResult.status        === 'fulfilled' ? wcResult.value        : null;
   const upcoming   = upcomingResult.status  === 'fulfilled' ? upcomingResult.value  : null;
 
@@ -332,6 +338,26 @@ async function main() {
   try {
     const prev3 = loadPreviousBriefs(3);
     if (prev3.length) console.log(`   ✓ Repetition guard: loaded ${prev3.length} previous brief(s)`);
+
+    // Don't re-report a completed race we already covered — pivot to a preview of
+    // the next track. Swapping f1 to a 'pre'/no-results object makes the whole
+    // downstream pipeline (copy + circuit image) treat it as an upcoming race.
+    const f1AlreadyCovered = f1?.name && f1.statusState === 'post'
+      && prev3.some(p => p.f1Event && p.f1Event === f1.name && p.f1State === 'post');
+    if (f1AlreadyCovered && f1.nextRace?.name) {
+      console.log(`   ↪ F1: ${f1.name} already covered — pivoting to next race (${f1.nextRace.name})`);
+      f1 = {
+        name: f1.nextRace.name,
+        shortName: f1.nextRace.name,
+        venue: '',
+        status: 'Upcoming',
+        statusState: 'pre',
+        champLeader: f1.champLeader,   // keep the real, sourced title-race stat
+        results: [],
+        nextRace: null,
+        daysAway: f1.nextRace.daysAway,
+      };
+    }
     const streamingPick = STREAMING_PICKS[issueNum % STREAMING_PICKS.length];
     copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick });
     if (copy) {

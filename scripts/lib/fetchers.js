@@ -298,6 +298,27 @@ async function fetchF1() {
       }
     } catch (_) { /* leave stats blank rather than guess */ }
 
+    // Next race on the calendar (so a completed weekend can pivot to a preview).
+    // Best-effort: the scoreboard exposes the season schedule under leagues[].calendar.
+    let nextRace = null;
+    try {
+      const cal = data.leagues?.[0]?.calendar || [];
+      const now = Date.now();
+      const entries = cal
+        .map((c) => (typeof c === 'string'
+          ? { label: '', startDate: c }
+          : { label: c.label || c.event?.shortName || '', startDate: c.startDate || c.event?.date || c.date, endDate: c.endDate }))
+        .filter((c) => c.startDate)
+        .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+      // First weekend whose end (or start) is still ahead of the current event.
+      const curEnd = race?.date ? new Date(race.date).getTime() : now;
+      const nxt = entries.find((c) => new Date(c.endDate || c.startDate).getTime() > Math.max(now, curEnd));
+      if (nxt && nxt.label && nxt.label !== (ev.name || '')) {
+        const daysAway = Math.max(0, Math.round((new Date(nxt.startDate).getTime() - now) / 86400000));
+        nextRace = { name: nxt.label, date: nxt.startDate, daysAway };
+      }
+    } catch (_) { /* leave nextRace null — section behaves as before */ }
+
     return {
       name: ev.name || 'Formula 1',
       shortName: ev.shortName || ev.name || 'F1',
@@ -306,6 +327,7 @@ async function fetchF1() {
       statusState,
       champLeader,
       results,
+      nextRace,
     };
   } catch (_) {
     return null;

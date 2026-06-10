@@ -146,9 +146,15 @@ async function generateCopy({ sports, markets, golf, trending, f1, worldCup, nhl
   ].filter(Boolean).join(' | ');
 
   // Repetition guard from last 3 briefs
+  const coveredEvents = (prev3 || [])
+    .flatMap(b => [b.f1State === 'post' ? b.f1Event : '', b.golfState === 'post' ? b.golfEvent : ''])
+    .filter(Boolean);
+  const coveredLine = coveredEvents.length
+    ? `\nALREADY COVERED as results in recent issues — do NOT re-report these as fresh news; if they're the only item, pivot forward to what's next: ${[...new Set(coveredEvents)].join(', ')}.`
+    : '';
   const repGuard = (prev3 && prev3.length) ? `
 REPETITION GUARD — avoid these angles used in recent issues:
-${prev3.map((b, i) => `${i + 1} day(s) ago — Lead angle: "${b.sportsThesis || b.lead || ''}" | Bring-up: "${b.marketsBringUp || b.bringUp || ''}"`).join('\n')}` : '';
+${prev3.map((b, i) => `${i + 1} day(s) ago — Lead angle: "${b.sportsThesis || b.lead || ''}" | Bring-up: "${b.marketsBringUp || b.bringUp || ''}"`).join('\n')}${coveredLine}` : '';
 
   // Golf preview leans on factual recall (course, defending champ) — use the
   // stronger model for it; live recaps stay on Haiku.
@@ -273,7 +279,8 @@ Return ONLY valid JSON on one line — no markdown:
             const status = golf.statusState === 'post' ? 'Finished' : golf.statusState === 'in' ? 'In Progress' : 'Has NOT started yet';
 
             if (started) {
-              return `GuyTalk golf: ${golf.name} — ${status}. Leaderboard: ${lb || 'no leaderboard yet'}.
+              return `GuyTalk golf: ${golf.name} — ${status}. Leaderboard: ${lb || 'no leaderboard yet'}.${coveredLine}
+${golf.statusState === 'post' ? 'If this event is in the ALREADY COVERED list above, do not re-report the finish as fresh — give a one-line wrap and point ahead to the tour moving on (do NOT invent the next tournament\'s name or field).' : ''}
 Return ONLY valid JSON on one line — no markdown:
 {"headline":"Max 10 words — what's happening at ${golf.name}.","whyCare1":"One sentence — why this tournament matters (stakes, prestige, course).","whyCare2":"One sentence — the leaderboard situation or a specific angle.","watchFor":"One thing to track — a player, a battle, a scoring target.","whatToSay":"One casual conversational line."}`;
             }
@@ -298,9 +305,13 @@ Return ONLY valid JSON on one line — no markdown:
       ? ask(
           (() => {
             const isPost = f1.results?.length && f1.statusState === 'post';
+            const whenTxt = f1.daysAway == null ? 'this weekend'
+              : f1.daysAway <= 1 ? 'this weekend'
+              : f1.daysAway <= 9 ? 'next weekend'
+              : `in about ${f1.daysAway} days`;
             const raceLine = isPost
               ? `Results: ${f1.results.slice(0, 3).map(r => `P${r.pos} ${r.driver} (${r.team})`).join(', ')}`
-              : `Upcoming: ${f1.name} this weekend`;
+              : `PREVIEW (the last race is done — look AHEAD, do not report results): the next race is ${f1.name}, coming up ${whenTxt}. Build anticipation — the circuit's character, the title race, what's at stake. Do NOT invent results or grid positions.`;
             // Real, sourced season stats for a grounded "bring up" — never a record/streak.
             const w = f1.results?.[0];
             const bits = [];
