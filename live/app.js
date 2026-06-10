@@ -376,6 +376,11 @@ function ScoreboardCard(g) {
   </div>`;
 }
 
+// Map a market tile to the Yahoo symbol its value represents, so a click opens
+// the matching security (the proxy/yield actually shown, not a mismatched index).
+const MARKET_YAHOO = { spx: 'SPY', dow: 'DIA', ndq: 'QQQ', rut: 'IWM', btc: 'BTC-USD', gold: 'GLD', oil: 'USO', tnx: '^TNX' };
+function marketYahooSymbol(m) { return MARKET_YAHOO[m.key] || (m.sub && /^[A-Z.\-^]+$/.test(m.sub) ? m.sub : null); }
+
 /** MarketCard — Section 5 */
 function MarketCard(m) {
   const fmt = (n) => {
@@ -386,7 +391,9 @@ function MarketCard(m) {
   const arrow = m.direction === 'up' ? '▲' : '▼';
   const sign = m.change >= 0 ? '+' : '';
   const unit = m.unit || ''; // e.g. '%' for the 10-Yr Treasury yield
-  return `<div class="mk-card">
+  const sym = marketYahooSymbol(m);
+  const clickAttrs = sym ? ` is-clickable" data-symbol="${esc(sym)}" role="button" tabindex="0` : '';
+  return `<div class="mk-card${clickAttrs}">
     <div class="mk-label">${esc(m.label)}</div><div class="mk-sub">${esc(m.sub)}</div>
     <div class="mk-value">${fmt(m.value)}${esc(unit)}</div>
     <div class="mk-move ${m.direction}"><span class="mk-arrow">${arrow}</span>${sign}${fmt(m.change)} (${sign}${m.changePercent.toFixed(2)}%)</div>
@@ -1199,7 +1206,124 @@ function FeaturedGolfCard(g) {
     start();
   }
 
-  window.GuyTalkLive = { refresh, MOCK, components: {
+  // ── Securities search + detail modal ───────────────────────────────────────
+  function sdFmt(n, isYield) {
+    if (n == null || isNaN(n)) return '—';
+    if (isYield) return Number(n).toFixed(2) + '%';
+    const abs = Math.abs(n);
+    return abs >= 1000
+      ? Number(n).toLocaleString('en-US', { maximumFractionDigits: 2 })
+      : Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  // Minimal line chart from a price series, colored by net direction.
+  function lineChart(series, up) {
+    if (!Array.isArray(series) || series.length < 2) return '<div class="sd-range-label">Chart unavailable.</div>';
+    const w = 520, h = 140, pad = 6;
+    const min = Math.min(...series), max = Math.max(...series), span = (max - min) || 1;
+    const stepX = (w - pad * 2) / (series.length - 1);
+    const xy = (v, i) => [pad + i * stepX, pad + (h - pad * 2) * (1 - (v - min) / span)];
+    const pts = series.map((v, i) => xy(v, i).map(n => n.toFixed(1)).join(',')).join(' ');
+    const [lx, ly] = xy(series[series.length - 1], series.length - 1);
+    const color = up ? 'var(--green)' : 'var(--red)';
+    return '<svg class="sd-chart" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none" aria-hidden="true">'
+      + '<polyline fill="none" stroke="' + color + '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="' + pts + '"></polyline>'
+      + '<circle cx="' + lx.toFixed(1) + '" cy="' + ly.toFixed(1) + '" r="3" fill="' + color + '"></circle></svg>';
+  }
+
+  const modal = $('stockModal');
+  const modalBody = $('stockModalBody');
+  let lastFocus = null;
+
+  function closeStock() {
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (_) {} }
+  }
+
+  function openStock(symbol, presetName) {
+    if (!modal || !symbol) return;
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    modalBody.innerHTML = '<div class="sd-loading">Loading ' + esc(presetName || symbol) + '…</div>';
+    if (window.posthog) posthog.capture('live_stock_view', { symbol });
+    fetch('/api/quote?symbol=' + encodeURIComponent(symbol), { headers: { Accept: 'application/json' } })
+      .then(r => r.json())
+      .then(d => {
+        if (!d || !d.quote) throw new Error((d && d.error) || 'No data');
+        const q = d.quote;
+        const up = (q.change || 0) >= 0;
+        const sign = up ? '+' : '';
+        const cur = (!q.isYield && q.currency === 'USD') ? '$' : '';
+        const chg = q.change != null ? sign + sdFmt(q.change, q.isYield) : '';
+        const pct = q.changePercent != null ? ' (' + sign + Number(q.changePercent).toFixed(2) + '%)' : '';
+        const stat = (k, v) => (v == null || v === '') ? '' :
+          '<div class="sd-stat"><div class="sd-stat-k">' + esc(k) + '</div><div class="sd-stat-v">' + esc(typeof v === 'number' ? (cur + sdFmt(v, q.isYield)) : v) + '</div></div>';
+        const range = (q.dayLow != null && q.dayHigh != null) ? (cur + sdFmt(q.dayLow, q.isYield) + ' – ' + cur + sdFmt(q.dayHigh, q.isYield)) : '';
+        modalBody.innerHTML =
+          '<div class="sd-name">' + esc(q.name || symbol) + '</div>'
+          + '<div class="sd-sym">' + esc(q.symbol || symbol) + (q.exchange ? ' · ' + esc(q.exchange) : '') + '</div>'
+          + '<div class="sd-price-row"><span class="sd-price">' + cur + sdFmt(q.price, q.isYield) + '</span>'
+          + '<span class="sd-move ' + (up ? 'up' : 'down') + '">' + esc(chg + pct) + '</span></div>'
+          + '<div class="sd-range-label">' + esc(q.rangeLabel ? (q.rangeLabel === 'Today' ? 'Today, intraday' : 'Last ' + q.rangeLabel) : '') + '</div>'
+          + lineChart(d.series, up)
+          + '<div class="sd-stats">'
+            + stat('Prev close', q.prevClose)
+            + (range ? '<div class="sd-stat"><div class="sd-stat-k">Day range</div><div class="sd-stat-v">' + esc(range) + '</div></div>' : '')
+            + stat('52-wk high', q.yearHigh)
+            + stat('52-wk low', q.yearLow)
+          + '</div>'
+          + '<div class="sd-foot">Data via Yahoo Finance; may be delayed. Informational only — not investment advice.</div>';
+      })
+      .catch(() => { modalBody.innerHTML = '<div class="sd-loading">Couldn’t load that security. Please try again.</div>'; });
+  }
+
+  const searchInput = $('mkSearchInput');
+  const searchResults = $('mkSearchResults');
+  let searchTimer = null, lastQ = '';
+  function hideResults() { if (searchResults) { searchResults.hidden = true; searchResults.innerHTML = ''; } }
+  function renderResults(list) {
+    if (!searchResults) return;
+    searchResults.innerHTML = (list && list.length)
+      ? list.map(r => '<div class="mk-result" data-symbol="' + esc(r.symbol) + '" data-name="' + esc(r.name) + '">'
+          + '<span class="mk-result-sym">' + esc(r.symbol) + '</span>'
+          + '<span class="mk-result-name">' + esc(r.name) + '</span>'
+          + '<span class="mk-result-ex">' + esc(r.exchange || r.type || '') + '</span></div>').join('')
+      : '<div class="mk-result-empty">No matches.</div>';
+    searchResults.hidden = false;
+  }
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim();
+      if (searchTimer) clearTimeout(searchTimer);
+      if (q.length < 1) { hideResults(); lastQ = ''; return; }
+      searchTimer = setTimeout(() => {
+        if (q === lastQ) return; lastQ = q;
+        fetch('/api/quote?q=' + encodeURIComponent(q), { headers: { Accept: 'application/json' } })
+          .then(r => r.json()).then(d => renderResults(d && d.results)).catch(hideResults);
+      }, 220);
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    const res = e.target.closest('.mk-result');
+    if (res) { openStock(res.getAttribute('data-symbol'), res.getAttribute('data-name')); hideResults(); if (searchInput) searchInput.value = ''; lastQ = ''; return; }
+    const card = e.target.closest('.mk-card[data-symbol]');
+    if (card) { openStock(card.getAttribute('data-symbol'), card.querySelector('.mk-label') ? card.querySelector('.mk-label').textContent : ''); return; }
+    if (e.target.closest('[data-close]')) { closeStock(); return; }
+    if (searchResults && !searchResults.hidden && !e.target.closest('.mk-search')) hideResults();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { if (modal && !modal.hidden) closeStock(); else hideResults(); return; }
+    const el = document.activeElement;
+    if ((e.key === 'Enter' || e.key === ' ') && el && el.classList && el.classList.contains('mk-card') && el.dataset && el.dataset.symbol) {
+      e.preventDefault(); openStock(el.dataset.symbol, el.querySelector('.mk-label') ? el.querySelector('.mk-label').textContent : '');
+    }
+  });
+
+  window.GuyTalkLive = { refresh, MOCK, openStock, components: {
     LiveEventCard, LiveLeaderboard, ScoreboardCard, MarketCard, TrendingStoryCard,
     TalkingPointCard, ContextCard, EventSpotlight, Marquee,
   }};

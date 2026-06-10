@@ -234,6 +234,49 @@
   .mk-move.up { color: var(--green); }
   .mk-move.down { color: var(--red); }
   .mk-arrow { font-size: 11px; }
+  .mk-card.is-clickable { cursor: pointer; transition: border-color .12s, transform .12s, box-shadow .12s; }
+  .mk-card.is-clickable:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(43,111,255,0.10); }
+
+  /* ── Securities search ──────────────────────────────────────────────────── */
+  .mk-search { position: relative; margin-bottom: 16px; }
+  .mk-search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-3); font-size: 17px; pointer-events: none; }
+  .mk-search input { width: 100%; box-sizing: border-box; padding: 12px 14px 12px 38px; font-size: 15px; font-family: inherit;
+    color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; outline: none; transition: border-color .12s, box-shadow .12s; }
+  .mk-search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-muted); }
+  .mk-search input::placeholder { color: var(--text-3); }
+  .mk-search-results { position: absolute; z-index: 30; left: 0; right: 0; top: calc(100% + 6px);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 12px 30px rgba(0,0,0,0.12); overflow: hidden; }
+  .mk-result { display: flex; align-items: baseline; gap: 10px; padding: 11px 14px; cursor: pointer; border-bottom: 1px solid var(--border); }
+  .mk-result:last-child { border-bottom: none; }
+  .mk-result:hover, .mk-result.is-active { background: var(--accent-muted); }
+  .mk-result-sym { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; color: var(--text); min-width: 64px; }
+  .mk-result-name { font-size: 13px; color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+  .mk-result-ex { font-size: 11px; color: var(--text-3); font-family: 'JetBrains Mono', monospace; }
+  .mk-result-empty { padding: 12px 14px; font-size: 13px; color: var(--text-3); }
+
+  /* ── Security detail modal ──────────────────────────────────────────────── */
+  .stock-modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .stock-modal[hidden] { display: none; }
+  .stock-modal-backdrop { position: absolute; inset: 0; background: rgba(15,23,36,0.55); backdrop-filter: blur(2px); }
+  .stock-modal-card { position: relative; width: 100%; max-width: 560px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.28); padding: 24px; max-height: 90vh; overflow-y: auto; animation: stockIn .16s ease; }
+  @keyframes stockIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .stock-modal-x { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 26px; line-height: 1; color: var(--text-3); cursor: pointer; padding: 2px 6px; border-radius: 6px; }
+  .stock-modal-x:hover { color: var(--text); background: var(--bg); }
+  .sd-name { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: -0.02em; color: var(--text); padding-right: 30px; line-height: 1.2; }
+  .sd-sym { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-3); margin-top: 3px; }
+  .sd-price-row { display: flex; align-items: baseline; gap: 12px; margin: 16px 0 4px; flex-wrap: wrap; }
+  .sd-price { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 32px; letter-spacing: -0.02em; color: var(--text); line-height: 1; }
+  .sd-move { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 15px; }
+  .sd-move.up { color: var(--green); } .sd-move.down { color: var(--red); }
+  .sd-range-label { font-size: 11px; color: var(--text-3); font-family: 'JetBrains Mono', monospace; margin-top: 10px; }
+  .sd-chart { width: 100%; height: 140px; margin: 6px 0 18px; }
+  .sd-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .sd-stat { background: var(--surface); padding: 11px 14px; }
+  .sd-stat-k { font-size: 11px; color: var(--text-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .sd-stat-v { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 14px; color: var(--text); margin-top: 3px; }
+  .sd-foot { font-size: 11px; color: var(--text-3); margin-top: 16px; line-height: 1.5; }
+  .sd-loading { padding: 40px 0; text-align: center; color: var(--text-3); font-size: 14px; }
   .mk-disclaimer { grid-column: 1 / -1; margin-top: 6px; font-size: 12px; color: var(--text-3); font-style: italic; }
 
   /* TRENDING STORY */
@@ -630,6 +673,11 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
       </div>
       <p class="section-desc">Indices, crypto, and commodities. Informational only — not investment advice.</p>
     </div>
+    <div class="mk-search">
+      <span class="mk-search-icon" aria-hidden="true">⌕</span>
+      <input id="mkSearchInput" type="text" placeholder="Search any stock, ETF, or crypto — e.g. AAPL, NVDA, Bitcoin" autocomplete="off" spellcheck="false" aria-label="Search securities">
+      <div id="mkSearchResults" class="mk-search-results" hidden></div>
+    </div>
     <div class="grid grid-markets" id="marketsWrap"></div>
   </section>
 
@@ -691,6 +739,15 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     GuyTalk is an independent publication and is not affiliated with, authorized, or endorsed by ESPN, the NBA, MLB, NHL, NFL, Formula 1, the PGA Tour, or any league or team. All team names, logos, and trademarks are the property of their respective owners.
   </div>
 </footer>
+
+<!-- Security detail modal (populated by app.js) -->
+<div id="stockModal" class="stock-modal" hidden>
+  <div class="stock-modal-backdrop" data-close></div>
+  <div class="stock-modal-card" role="dialog" aria-modal="true" aria-label="Security detail">
+    <button class="stock-modal-x" data-close aria-label="Close">&times;</button>
+    <div id="stockModalBody"></div>
+  </div>
+</div>
 
 <script src="/live/app.js"></script>
 </body>
