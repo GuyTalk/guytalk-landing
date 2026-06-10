@@ -73,32 +73,57 @@
   .page-wrap { max-width: 1040px; margin: 0 auto; padding: 40px 24px 100px; }
 
   /* HERO */
-  .live-hero { margin-bottom: 30px; }
+  .live-hero {
+    position: relative; overflow: hidden;
+    margin-bottom: 30px; padding: 44px 40px 38px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #0C1B33 0%, #0A1428 58%, #0F1724 100%);
+    border: 1px solid var(--border);
+    box-shadow: 0 18px 48px rgba(12,27,51,0.22);
+  }
+  /* Faded sports/markets/culture collage behind the hero */
+  .live-hero::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: url('/assets/website-images/live-backdrop.png') center/cover no-repeat;
+    opacity: 0.16;
+  }
+  /* Accent glow + slow drift so it feels alive */
+  .live-hero::after {
+    content: ""; position: absolute; top: -45%; right: -8%;
+    width: 420px; height: 420px; pointer-events: none;
+    background: radial-gradient(circle, rgba(59,130,246,0.30), transparent 68%);
+    animation: heroGlow 9s ease-in-out infinite;
+  }
+  @keyframes heroGlow {
+    0%, 100% { transform: translate(0,0) scale(1); opacity: 0.9; }
+    50% { transform: translate(-28px, 22px) scale(1.12); opacity: 1; }
+  }
+  .live-hero > * { position: relative; z-index: 1; }
   .live-eyebrow {
     display: inline-flex; align-items: center; gap: 7px;
     font-family: 'Inter Tight', sans-serif; font-weight: 700;
     font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--live); margin-bottom: 14px;
+    color: #FF6B6B; margin-bottom: 14px;
   }
   .live-eyebrow .nav-live-dot { margin: 0; }
   .live-title {
     font-family: 'Inter Tight', sans-serif; font-weight: 900;
     font-size: 52px; letter-spacing: -0.04em; line-height: 1.02;
-    color: var(--text); margin-bottom: 14px;
+    color: #F4F6FB; margin-bottom: 14px;
   }
-  .live-sub { font-size: 19px; color: var(--text-2); line-height: 1.55; max-width: 620px; }
+  .live-sub { font-size: 19px; color: rgba(244,246,251,0.74); line-height: 1.55; max-width: 620px; }
   .live-updated {
     display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-    margin-top: 18px; font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; color: var(--text-3); letter-spacing: 0.02em;
+    margin-top: 22px; font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: rgba(244,246,251,0.5); letter-spacing: 0.02em;
   }
   .live-refresh-btn {
     font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
-    color: var(--text-2); background: var(--surface); border: 1px solid var(--border);
+    color: rgba(244,246,251,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.22);
     border-radius: 7px; padding: 4px 10px; cursor: pointer; letter-spacing: 0.04em;
     text-transform: uppercase; transition: all 0.15s ease;
   }
-  .live-refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .live-refresh-btn:hover { border-color: var(--accent); color: #fff; background: var(--accent); }
   .live-refresh-btn:disabled { opacity: 0.5; cursor: default; }
 
   /* THE RUNDOWN — AI-generated top-of-page brief */
