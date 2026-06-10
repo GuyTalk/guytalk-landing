@@ -259,6 +259,13 @@ ${sideLinks.map(([id, label]) => `  <a href="#${id}" class="bsn-link" data-targe
   const seoTitle = buildSeoTitle(issue);
   const seoDesc  = buildSeoDesc(issue);
 
+  // Word-of-mouth share links (the growth wedge: "don't be the last guy to know")
+  const shareUrl  = `https://www.guytalkmedia.com/brief/${slug}/`;
+  const shareText = `${title} — the daily GuyTalk brief`;
+  const xShare    = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+  const smsShare  = `sms:?&body=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
+  const mailShare = `mailto:?subject=${encodeURIComponent('You should read this')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`;
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -415,6 +422,14 @@ ${buildMoreIssues(relatedIssues)}
 </div>
 
 <footer class="brief-footer">
+  <div class="footer-share">
+    <p class="footer-share-line">Know a guy who's always the last to know?</p>
+    <div class="footer-share-btns">
+      <a href="${smsShare}" class="share-btn">Text it</a>
+      <a href="${mailShare}" class="share-btn">Forward</a>
+      <a href="${xShare}" class="share-btn" target="_blank" rel="noopener">Post on X</a>
+    </div>
+  </div>
   <a href="/briefs/" class="footer-cta">Browse all issues →</a>
   <p class="footer-meta">
     You're reading GuyTalk — the daily brief on sports, markets, and culture.<br>
