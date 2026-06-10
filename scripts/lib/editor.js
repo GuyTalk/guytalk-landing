@@ -119,7 +119,15 @@ function mergeEdited(original, edited) {
     }
   }
   if (Array.isArray(edited.sportsOther) && Array.isArray(out.sportsOther)) {
-    out.sportsOther = out.sportsOther.map((orig, i) => str(edited.sportsOther[i], orig));
+    out.sportsOther = out.sportsOther.map((orig, i) => {
+      const ed = edited.sportsOther[i];
+      // sportsOther entries are { take, why, say } objects.
+      if (orig && typeof orig === 'object') {
+        const e = ed && typeof ed === 'object' ? ed : {};
+        return { take: str(e.take, orig.take), why: str(e.why, orig.why), say: str(e.say, orig.say) };
+      }
+      return str(ed, orig);
+    });
   }
   for (const sec of ['markets', 'golf', 'f1', 'nhl', 'upcomingPreview']) {
     if (edited[sec] && out[sec]) {

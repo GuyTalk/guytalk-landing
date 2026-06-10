@@ -102,7 +102,7 @@ function allText(issue) {
     c.markets?.mood, c.markets?.whyBullet1, c.markets?.whyBullet2, c.markets?.bringUp,
     c.golf?.headline, c.golf?.whyCare1, c.golf?.whyCare2, c.golf?.watchFor, c.golf?.whatToSay,
     c.f1?.headline, c.f1?.whyCare1, c.f1?.whyCare2, c.f1?.watchFor, c.f1?.whatToSay,
-    ...(c.sportsOther || []),
+    ...(c.sportsOther || []).flatMap(o => o && typeof o === 'object' ? [o.take, o.why, o.say] : [o]),
     ...(c.culture || []).flatMap(i => [i.topic || i.head, i.whatHappened, i.whyItMatters, i.whatToSay]),
     c.finalSharpTake,
     c.glance?.sports, c.glance?.market, c.glance?.bestConvo, c.glance?.watchNext, c.glance?.quickRec,

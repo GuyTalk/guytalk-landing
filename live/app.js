@@ -385,9 +385,10 @@ function MarketCard(m) {
   };
   const arrow = m.direction === 'up' ? '▲' : '▼';
   const sign = m.change >= 0 ? '+' : '';
+  const unit = m.unit || ''; // e.g. '%' for the 10-Yr Treasury yield
   return `<div class="mk-card">
     <div class="mk-label">${esc(m.label)}</div><div class="mk-sub">${esc(m.sub)}</div>
-    <div class="mk-value">${fmt(m.value)}</div>
+    <div class="mk-value">${fmt(m.value)}${esc(unit)}</div>
     <div class="mk-move ${m.direction}"><span class="mk-arrow">${arrow}</span>${sign}${fmt(m.change)} (${sign}${m.changePercent.toFixed(2)}%)</div>
   </div>`;
 }

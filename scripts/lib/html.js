@@ -87,6 +87,49 @@ function f1CircuitImage(raceName) {
   return null;
 }
 
+// Hero banner game selection — feature the day's MARQUEE event, not whatever
+// game happens to be first in the array. Ranks completed + upcoming games by
+// importance so a postseason/Finals matchup (even tonight's, still upcoming)
+// always beats a random regular-season game.
+const HERO_BIG_RE = /final|finals|championship|\bcup\b|playoff|conference|series|elimination|game\s*\d/i;
+const HERO_SPORT_BASE = { nfl: 6, nba: 5, nhl: 5, f1: 4, golf: 3, mlb: 3 };
+
+function heroScore(g, { upcoming = false } = {}) {
+  if (!g) return -1;
+  const sport = (g.sport || 'nba').toLowerCase();
+  let score = HERO_SPORT_BASE[sport] ?? 3;
+  const tags = `${g.note || ''} ${g.seriesNote || ''} ${g.shortName || ''}`;
+  if (HERO_BIG_RE.test(tags)) score += 50;        // postseason / Finals / Cup
+  if (upcoming) score += 2;                         // a marquee event still to come leads the day
+  return score;
+}
+
+// Returns { game, upcoming } for the single best hero candidate, or null.
+function pickHeroGame(sports, upcoming) {
+  const candidates = [
+    ...(sports || []).map((g) => ({ game: g, upcoming: false })),
+    ...(upcoming || []).map((g) => ({ game: g, upcoming: true })),
+  ];
+  if (!candidates.length) return null;
+  candidates.sort((a, b) => heroScore(b.game, { upcoming: b.upcoming }) - heroScore(a.game, { upcoming: a.upcoming }));
+  return candidates[0];
+}
+
+// Honest fallback take for a "More Sports" game when no AI context exists.
+// Uses ONLY the final score + series note — never invents anything.
+function deriveOtherTake(g, w, l) {
+  const ws = parseInt(w.score, 10), ls = parseInt(l.score, 10);
+  const margin = Number.isFinite(ws) && Number.isFinite(ls) ? ws - ls : null;
+  let qualifier = '';
+  if (margin != null) {
+    if (margin === 0) qualifier = '';
+    else if (margin <= 2) qualifier = ' in a tight one';
+    else if (margin >= 10) qualifier = ', and it wasn’t close';
+  }
+  const series = g.seriesNote ? ` ${g.seriesNote}.` : '';
+  return `${w.team} beat ${l.team} ${w.score}–${l.score}${qualifier}.${series}`.trim();
+}
+
 // ESPN recap URL from game ID + sport
 function espnRecapUrl(gameId, sport) {
   const s = sport === 'mlb' ? 'mlb' : 'nba';
@@ -182,12 +225,21 @@ ${sideLinks.map(([id, label]) => `  <a href="#${id}" class="bsn-link" data-targe
   // Designed hero banner for the top event: a self-hosted sport photo darkened
   // behind the team logos (ESPN CDN) + event + venue. Self-hosted bg can't 404,
   // and even with no photo the dark banner still renders — never a broken icon.
-  const heroGame = (sports && sports[0]) || (upcoming && upcoming[0]) || null;
+  const heroPick = pickHeroGame(sports, upcoming);
+  const heroGame = heroPick?.game || null;
+  const heroUpcoming = !!heroPick?.upcoming;
   const heroSport = (heroGame?.sport || 'nba').toLowerCase();
   const heroKey = ({ nba: 'nba', nhl: 'nhl', mlb: 'mlb', f1: 'f1', golf: 'golf' })[heroSport] || 'default';
   const heroV = heroGame ? venueImage(heroGame.home.abbrev, heroSport) : null;
   const heroVenueTxt = heroV ? heroV.cap.split(' · ').slice(0, 2).join(' · ') : '';
-  const heroEyebrow = heroGame ? (heroGame.note || heroGame.shortName || 'Today in sports') : '';
+  // For an upcoming marquee event, tip-time framing; otherwise the matchup note.
+  const heroTipTime = (heroUpcoming && heroGame?.date)
+    ? (() => { try { return new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).format(new Date(heroGame.date)) + ' ET'; } catch { return ''; } })()
+    : '';
+  const heroBase = heroGame ? (heroGame.note || heroGame.shortName || (heroUpcoming ? 'Tonight in sports' : 'Today in sports')) : '';
+  const heroEyebrow = heroUpcoming && heroBase
+    ? `${heroBase}${heroTipTime ? ` · Tonight ${heroTipTime}` : ' · Tonight'}`
+    : heroBase;
   const hAway = heroGame ? espnLogo(heroGame.away.abbrev, heroSport) : null;
   const hHome = heroGame ? espnLogo(heroGame.home.abbrev, heroSport) : null;
   const heroImgHtml = heroGame
@@ -1379,8 +1431,19 @@ function buildSports({ sports, copy, upcoming }) {
     const homeLoser = !g.home.winner;
     const awayLoser = !g.away.winner;
     const metaText = g.note ? `${g.note} · ${g.status}` : g.status;
-    const noteIdx = sports.indexOf(g) > 0 ? sports.indexOf(g) - 1 : i;
-    const note = copy?.sportsOther?.[noteIdx] || copy?.sportsOther?.[i] || `${w.team} win, ${w.score}–${l.score}.`;
+
+    // sportsOther is aligned 1:1 with `sports` by index; each entry is a
+    // { take, why, say } object giving the game real conversational context.
+    const ctx = copy?.sportsOther?.[sports.indexOf(g)];
+    const take = (ctx && ctx.take) || deriveOtherTake(g, w, l);
+    const why  = ctx && ctx.why;
+    const say  = ctx && ctx.say;
+    const ctxListHtml = (why || say)
+      ? `      <ul class="detail-list">
+        ${why ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(why)}</span></li>` : ''}
+        ${say ? `<li><span><span class="dl-label">What to say:</span> ${esc(say)}</span></li>` : ''}
+      </ul>`
+      : '';
 
     // Venue image for the home team (only for notable ballparks/arenas)
     const venue = venueImage(g.home.abbrev, sport);
@@ -1406,7 +1469,8 @@ function buildSports({ sports, copy, upcoming }) {
         </div>
       </div>
 ${venueImgHtml}
-      <p class="other-score-note">${esc(note)}</p>
+      <p class="other-score-note">${esc(take)}</p>
+${ctxListHtml}
     </div>`;
   }).join('\n');
 

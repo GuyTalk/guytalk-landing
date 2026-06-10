@@ -43,7 +43,9 @@ const MARKET_SYMBOLS = [
   { key: 'btc',  label: 'Bitcoin',        sub: 'BTC/USD', api: 'BINANCE:BTCUSDT' },
   { key: 'gold', label: 'Gold',           sub: 'GLD',     api: 'GLD' },
   { key: 'oil',  label: 'Crude Oil',      sub: 'USO',     api: 'USO' },
-  { key: 'tnx',  label: '10-Yr Treasury', sub: 'IEF',     api: 'IEF' },
+  // 10-Yr Treasury is sourced as a YIELD from Yahoo ^TNX (see fetchTnxYield),
+  // not a bond-price ETF. `api: null` tells fetchMarkets to skip Finnhub for it.
+  { key: 'tnx',  label: '10-Yr Treasury', sub: 'US10Y',   api: null, unit: '%' },
 ];
 
 const BIG_GAME_RE = /final|finals|championship|cup|playoff|conference|series|bowl|classic/i;
@@ -603,16 +605,41 @@ async function fetchGolf() {
 
 /* -------------------------------------------------------------------- Markets */
 
+// 10-Year Treasury YIELD via Yahoo Finance (^TNX) — keyless. Returns the actual
+// yield percentage (e.g. 4.43), not a bond-price ETF. We compute day change from
+// the price vs previousClose so the card shows the yield move, not a price move.
+async function fetchTnxYield() {
+  const yj = await json(
+    'https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=5d'
+  );
+  const result = yj?.chart?.result?.[0];
+  if (!result) return null;
+  const meta = result.meta || {};
+  const closes = (result.indicators?.quote?.[0]?.close || []).filter((v) => v != null);
+  const value = meta.regularMarketPrice ?? closes[closes.length - 1] ?? null;
+  const prev = meta.previousClose ?? meta.chartPreviousClose ?? closes[closes.length - 2] ?? null;
+  if (value == null || prev == null) return null;
+  const change = value - prev;
+  const changePercent = prev ? (change / prev) * 100 : 0;
+  return {
+    key: 'tnx', label: '10-Yr Treasury', sub: 'US10Y', unit: '%',
+    value: Number(value), change: Number(change),
+    changePercent: Number(changePercent), direction: change >= 0 ? 'up' : 'down',
+  };
+}
+
 async function fetchMarkets(key) {
   if (!key) return null;
   const rows = await Promise.all(
     MARKET_SYMBOLS.map(async (m) => {
+      // 10-Yr Treasury yield comes from Yahoo ^TNX, not Finnhub.
+      if (m.api == null) return m.key === 'tnx' ? fetchTnxYield() : null;
       const data = await json(
         `https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(m.api)}&token=${key}`
       );
       if (!data || data.dp == null || data.c == null) return null;
       return {
-        key: m.key, label: m.label, sub: m.sub,
+        key: m.key, label: m.label, sub: m.sub, unit: m.unit || null,
         value: Number(data.c), change: Number(data.d),
         changePercent: Number(data.dp), direction: data.dp >= 0 ? 'up' : 'down',
       };

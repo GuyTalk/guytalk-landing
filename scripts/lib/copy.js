@@ -219,16 +219,23 @@ gameIndex must be the index number (0, 1, 2...) of the game your headline and co
       400
     ),
 
-    // 4. Other sports — one sharp sentence per extra game (all games except the lead)
+    // 4. Other sports — full conversational context per game (same depth as the
+    //    main sections). Every game gets a take + why-it-matters + what-to-say.
     sports?.length > 1
       ? ask(
-          `GuyTalk voice. One short sentence per game below — the quickest sharp take. Max 15 words each. Separate with "|||". Plain prose.
-${sports.map(g => {
+          `GuyTalk voice. For EVERY game listed below, give a casual fan enough to actually talk about it — not just the score. Use ONLY the facts provided; never invent stats, records, injuries, or storylines.
+
+Games (in this exact order):
+${sports.map((g, i) => {
   const w = g.home.winner ? g.home : g.away;
   const l = g.home.winner ? g.away : g.home;
-  return `${g.note || g.name}: ${w.team} ${w.score}–${l.team} ${l.score}`;
-}).join('\n')}`,
-          200
+  const series = g.seriesNote ? ` [Series: ${g.seriesNote}]` : '';
+  return `${i + 1}. ${g.note || g.name} — ${w.team} ${w.score}, ${l.team} ${l.score}${series}`;
+}).join('\n')}
+
+Return ONLY a valid JSON array — one object per game, in the SAME order, no markdown:
+[{"take":"≤18 words — what happened and the sharpest angle, NOT just the score","why":"One sentence — why it matters or the bigger context","say":"One natural line a guy could drop in conversation"}]`,
+          600
         )
       : Promise.resolve(null),
 
@@ -405,7 +412,11 @@ Return ONLY valid JSON on one line — no markdown:
       culture:  topModule.culture   || '',
     } : null,
     lead:           leadData,
-    sportsOther:    get(sportsOtherR)?.split('|||').map(s => clean(s)).filter(Boolean) || [],
+    sportsOther:    (Array.isArray(parseJson(get(sportsOtherR))) ? parseJson(get(sportsOtherR)) : [])
+                      .map(o => o && typeof o === 'object'
+                        ? { take: clean(o.take), why: clean(o.why), say: clean(o.say) }
+                        : { take: clean(o) })
+                      .filter(o => o.take || o.why || o.say),
     markets:        marketsData,
     golf:           golfData,
     f1:             f1Data,
