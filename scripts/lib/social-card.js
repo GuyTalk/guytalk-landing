@@ -5,6 +5,7 @@ const path = require('path');
 const { createCanvas, registerFont } = require('canvas');
 
 const OUTPUT_DIR = path.join(__dirname, '..', '..', 'assets', 'social-cards');
+const TIKTOK_DIR = path.join(__dirname, '..', '..', 'assets', 'tiktok-cards');
 
 const C = {
   bgTop:   '#0C1B33',
@@ -82,8 +83,12 @@ function getHits(issue) {
     .filter(h => h.text);
 }
 
-function generateCard(issue) {
-  if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+function generateCard(issue, opts = {}) {
+  const vertical = opts.format === 'vertical';
+  const W = SIZE;                          // 1080 wide for both
+  const H = vertical ? 1920 : SIZE;        // 9:16 for TikTok/Reels, 1:1 for IG feed
+  const outDir = vertical ? TIKTOK_DIR : OUTPUT_DIR;
+  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
   const { num, slug, date, title, copy } = issue;
   const label    = `#${String(num).padStart(3, '0')}`;
@@ -95,22 +100,22 @@ function generateCard(issue) {
   const headline = copy?.title || title || 'GuyTalk Daily Brief';
   const hits     = getHits(issue).slice(0, 4);
 
-  const canvas = createCanvas(SIZE, SIZE);
+  const canvas = createCanvas(W, H);
   const ctx    = canvas.getContext('2d');
 
   // Background gradient
-  const grad = ctx.createLinearGradient(0, 0, 0, SIZE);
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
   grad.addColorStop(0, C.bgTop);
   grad.addColorStop(1, C.bgBot);
   ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, SIZE, SIZE);
+  ctx.fillRect(0, 0, W, H);
 
   // Left accent bar
   ctx.fillStyle = C.accent;
-  ctx.fillRect(0, 0, 10, SIZE);
+  ctx.fillRect(0, 0, 10, H);
 
   const PAD = 80;
-  const RIGHT = SIZE - PAD;
+  const RIGHT = W - PAD;
 
   // ── Header ──────────────────────────────────────────────────────────────────
   ctx.textBaseline = 'alphabetic';
@@ -132,18 +137,19 @@ function generateCard(issue) {
   }
 
   // ── Layout budget (computed bottom-up so nothing ever overflows) ───────────────
-  const maxW       = SIZE - PAD * 2;
-  const footerTop  = SIZE - 96;                 // everything above stays clear of footer
+  const maxW       = W - PAD * 2;
+  const footerTop  = H - 96;                    // everything above stays clear of footer
   const hitRowH    = 74;
   const hitsHdrH   = hits.length ? 58 : 0;
   const hitsBlockH = hits.length ? hitsHdrH + hits.length * hitRowH : 0;
   const dividerY   = hits.length ? footerTop - hitsBlockH - 28 : footerTop;
-  const headTop    = 196;
+  // Vertical cards get a tall safe-zone top margin (clear of TikTok's UI chrome).
+  const headTop    = vertical ? 380 : 196;
   const headBottom = (hits.length ? dividerY : footerTop) - 36;
   const headZone   = headBottom - headTop;
 
   // ── Headline (sized to fit its zone) ───────────────────────────────────────────
-  let fontSize = 92;
+  let fontSize = vertical ? 104 : 92;
   let lines, lineH;
   for (;;) {
     ctx.font = `${fontSize}px "${FONTS.black}"`;
@@ -154,7 +160,9 @@ function generateCard(issue) {
   }
   ctx.fillStyle = C.text;
   ctx.font = `${fontSize}px "${FONTS.black}"`;
-  let y = headTop + fontSize;                    // first baseline
+  // Vertical: center the headline in its (tall) zone; square: top-align.
+  const blockH = lines.length * lineH;
+  let y = headTop + fontSize + (vertical ? Math.max(0, (headZone - blockH) / 2) : 0);
   for (const line of lines) { ctx.fillText(line, PAD, y); y += lineH; }
 
   // ── Today's hits ──────────────────────────────────────────────────────────────
@@ -189,7 +197,7 @@ function generateCard(issue) {
   }
 
   // ── Footer ───────────────────────────────────────────────────────────────────
-  const footerY = SIZE - 56;
+  const footerY = H - 56;
   ctx.font = `24px "${FONTS.bold}"`;
   ctx.fillStyle = C.text2;
   ctx.fillText('guytalkmedia.com', PAD, footerY);
@@ -206,9 +214,14 @@ function generateCard(issue) {
   ctx.fillStyle = '#ffffff';
   ctx.fillText(pillText, pillX + 20, pillY + 29);
 
-  const outPath = path.join(OUTPUT_DIR, `${slug}.png`);
+  const outPath = path.join(outDir, `${slug}.png`);
   fs.writeFileSync(outPath, canvas.toBuffer('image/png'));
   return outPath;
 }
 
-module.exports = { generateCard };
+// 9:16 vertical card for TikTok / Reels — same brand system, taller frame.
+function generateTikTokCard(issue) {
+  return generateCard(issue, { format: 'vertical' });
+}
+
+module.exports = { generateCard, generateTikTokCard };

@@ -246,11 +246,13 @@ function buildSlots() {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Main entry — queue posts to Buffer.
-//   opts: { apiKey, dryRun, single, log }
+//   opts: { apiKey, dryRun, single, platforms, log }
+//     platforms: optional subset of ['x','instagram','tiktok'] (default all)
 //   returns: { dryRun, channels, issues: [...] }
 // ─────────────────────────────────────────────────────────────────────────────
-async function queueSocialPosts({ apiKey, dryRun = false, single = null, log = () => {} } = {}) {
+async function queueSocialPosts({ apiKey, dryRun = false, single = null, platforms = null, log = () => {} } = {}) {
   if (!apiKey && !dryRun) throw new Error('BUFFER_API_KEY not set');
+  const want = p => !platforms || platforms.includes(p);
 
   const files = selectIssueFiles(single);
 
@@ -285,7 +287,7 @@ async function queueSocialPosts({ apiKey, dryRun = false, single = null, log = (
     };
     const scheduled  = slots[slotIdx] || null;
     const cardUrl    = `${BASE_URL}/assets/social-cards/${slug}.png`;
-    const tiktokCard = `${BASE_URL}/assets/tiktok-cards/${slug}.jpg`;
+    const tiktokCard = `${BASE_URL}/assets/tiktok-cards/${slug}.png`;
     slotIdx++;
 
     const entry = { slug, title, scheduled: scheduled ? scheduled.toISOString() : null, results: {} };
@@ -299,15 +301,15 @@ async function queueSocialPosts({ apiKey, dryRun = false, single = null, log = (
       continue;
     }
 
-    if (channels.twitter) {
+    if (channels.twitter && want('x')) {
       try { await createPost(apiKey, channels.twitter.id, captions.x, scheduled); entry.results.x = 'queued'; log('     ✓ X queued'); }
       catch (e) { entry.results.x = `failed: ${e.message}`; log(`     ⚠  X failed: ${e.message}`); }
     }
-    if (channels.instagram) {
+    if (channels.instagram && want('instagram')) {
       try { await createPost(apiKey, channels.instagram.id, captions.instagram, scheduled, cardUrl, { instagram: { type: 'post', shouldShareToFeed: true } }); entry.results.instagram = 'queued'; log('     ✓ Instagram queued'); }
       catch (e) { entry.results.instagram = `failed: ${e.message}`; log(`     ⚠  Instagram failed: ${e.message}`); }
     }
-    if (channels.tiktok) {
+    if (channels.tiktok && want('tiktok')) {
       try { await createPost(apiKey, channels.tiktok.id, captions.tiktok, scheduled, tiktokCard); entry.results.tiktok = 'queued'; log('     ✓ TikTok queued'); }
       catch (e) { entry.results.tiktok = `failed: ${e.message}`; log(`     ⚠  TikTok failed: ${e.message}`); }
     }

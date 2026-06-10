@@ -470,12 +470,14 @@ async function main() {
     }
   }
 
-  // Social card
+  // Social cards: square (IG feed) + vertical (TikTok / Reels)
   if (!isPreview) {
     try {
-      const { generateCard } = require('./lib/social-card');
-      const cardPath = generateCard(issueData);
+      const { generateCard, generateTikTokCard } = require('./lib/social-card');
+      const cardPath   = generateCard(issueData);
+      const tiktokPath = generateTikTokCard(issueData);
       console.log(`   ✓ ${path.relative(ROOT, cardPath)}`);
+      console.log(`   ✓ ${path.relative(ROOT, tiktokPath)}`);
     } catch (e) {
       console.log(`   ⚠  Social card failed: ${e.message}`);
     }
