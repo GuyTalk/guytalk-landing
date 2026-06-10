@@ -356,9 +356,14 @@ Return compact JSON on one line. Every field is a single sentence ending with a 
 Use ONLY real facts from the context below; never invent stats, records, or events. Grounded but bold.
 Context: ${ctx}${repGuard}
 
+THE BAR ARGUMENT must be a SPECIFIC, debatable claim about a named team, player, or result — something a reasonable fan would argue back against. Stake out ONE side: a prediction, a ranking, an overrated/underrated call, a "X is better than Y," a "this proves/doesn't prove" claim. Name names.
+BANNED — these read as generic filler, never use them: meta-takes about media/attention/hype ("nobody cares", "where sports attention actually lives", "tells you everything about", "the real story is"); vague observations with no side; hedging ("kind of", "sort of", "you could argue"). Don't comment on the news — pick a fight about it.
+Good example: "Brunson closing this out at the Garden tonight ends the 'he's just a good playoff guy' talk — he's a top-5 point guard, full stop."
+Bad example: "The Dodgers put up 12 and nobody cares because everyone's watching the Finals." (meta, not a real argument)
+
 Return ONLY valid JSON on one line — no markdown:
-{"office":"The Office Take — one smart, measured sentence you can drop at work to sound like you've actually been paying attention. Insightful, slightly contrarian, not loud. Max 28 words.","bar":"The Bar Argument — one bold, debatable hot take that would genuinely start an argument among friends. Pick a side and commit. Confident and a little spicy, but grounded in today's real facts. Max 28 words."}`,
-      200
+{"office":"The Office Take — one smart, measured sentence you can drop at work to sound like you've actually been paying attention. Insightful, slightly contrarian, not loud. Max 28 words.","bar":"The Bar Argument — follow the rules above. Bold, specific, names names, picks a side. Max 28 words."}`,
+      220
     ),
 
     // 12. NHL — F1-style treatment (only if there's an NHL game)

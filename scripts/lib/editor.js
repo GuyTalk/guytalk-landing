@@ -93,6 +93,10 @@ function extractEditable(copy) {
       whatToSay:    i.whatToSay || '',
     })) : null,
     finalSharpTake: copy.finalSharpTake || '',
+    theTake: copy.theTake ? {
+      office: copy.theTake.office || '',
+      bar:    copy.theTake.bar || '',
+    } : null,
     glance: copy.glance ? { ...copy.glance } : null,
   };
 }
@@ -129,7 +133,7 @@ function mergeEdited(original, edited) {
       return str(ed, orig);
     });
   }
-  for (const sec of ['markets', 'golf', 'f1', 'nhl', 'upcomingPreview']) {
+  for (const sec of ['markets', 'golf', 'f1', 'nhl', 'upcomingPreview', 'theTake']) {
     if (edited[sec] && out[sec]) {
       for (const k of Object.keys(out[sec])) {
         if (typeof out[sec][k] === 'string') out[sec][k] = str(edited[sec][k], out[sec][k]);
@@ -286,6 +290,8 @@ A. CHECK FORMATTING. Plain prose only — strip any markdown (**bold**, #headers
 B. IMPROVE EVERY "WHAT TO SAY". These are the lines a reader drops in a group chat, at work, or at a bar (lead.whatToSay, golf.whatToSay, f1.whatToSay, culture[].whatToSay, markets.bringUp). Make them punchy, specific, and actually sayable out loud. Cut hedging. A great one sounds like a confident friend, not a press release.
 
 C. IMPROVE EVERY "WHY IT MATTERS". These justify the reader's attention (lead.whyBullet1/2, markets.whyBullet1/2, golf.whyCare1/2, f1.whyCare1/2, culture[].whyItMatters). Make the stakes concrete and non-obvious. Replace "this is big" with the actual reason it's big, using only RAW FACTS.
+
+C2. SHARPEN THE BAR ARGUMENT (theTake.bar). It must be a SPECIFIC, debatable claim about a named team, player, or result that a fan would argue back against — a prediction, ranking, overrated/underrated call, or "X over Y". REWRITE it if it's a generic meta-take about media/attention/hype (e.g. "nobody cares", "where sports attention actually lives", "tells you everything about"), a vague observation with no side, or hedged. Don't describe the news — pick a fight about it, using only RAW FACTS.
 
 D. ENFORCE THE BIBLE on every section — voice, banned phrases, structure.
 
