@@ -94,7 +94,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="brief-hero-banner" style="background-image:url('/assets/hero/nba.jpg')">
   <div class="bhb-inner">
-    <div class="bhb-eyebrow">NBA Finals - Game 3</div>
+    <div class="bhb-eyebrow">NBA Finals - Game 4 · Tonight 8:30 PM ET</div>
     <div class="bhb-teams">
       <img class="bhb-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/sa.png" alt="" loading="eager" onerror="this.style.display='none'">
       <span class="bhb-vs">SA<span class="bhb-at"> @ </span>NY</span>
@@ -512,6 +512,11 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
+  <a href="/brief/issue-044/" class="more-issue-card">
+    <span class="mi-num">#044</span>
+    <span class="mi-title">Spurs-Knicks decides it all tonight. Marlins pound Diamondbacks. Antonelli wins Monaco.</span>
+    <span class="mi-date">Wednesday, June 10, 2026</span>
+  </a>
   <a href="/brief/issue-042/" class="more-issue-card">
     <span class="mi-num">#042</span>
     <span class="mi-title">Spurs steal Game 3. Antonelli dominates Monaco. World Cup starts Thursday.</span>
@@ -521,11 +526,6 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     <span class="mi-num">#041</span>
     <span class="mi-title">Angels stun Dodgers in LA. Spurs-Knicks Game 3 tonight. Tech selling hard.</span>
     <span class="mi-date">Monday, June 8, 2026</span>
-  </a>
-  <a href="/brief/issue-040/" class="more-issue-card">
-    <span class="mi-num">#040</span>
-    <span class="mi-title">Astros demolish Oakland. Leclerc wins Monaco. Spurs-Knicks Game 3 tomorrow.</span>
-    <span class="mi-date">Sunday, June 7, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>
@@ -565,19 +565,30 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 <script>
 window.handleBriefSignup = function(e, form) {
   e.preventDefault();
-  var email = form.querySelector('input[type="email"]').value.trim();
+  var input = form.querySelector('input[type="email"]');
+  var email = input.value.trim();
   if (!email) return;
-  form.style.display = 'none';
-  document.getElementById('briefSubSuccess').style.display = 'block';
-  if (window.posthog) {
-    posthog.identify(email, { email: email });
-    posthog.capture('email_signup', { email: email, source: 'brief_footer' });
-  }
-  var fd = new FormData();
-  fd.append('email', email);
-  fetch('https://subscribe-forms.beehiiv.com/api/v3/forms/88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d/subscriptions', {
-    method: 'POST', mode: 'no-cors', body: fd
-  }).catch(function() {});
+  var btn = form.querySelector('button, [type="submit"]');
+  if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Signing up…'; }
+  // Create the subscription server-side (reliable) — only confirm on success.
+  fetch('/api/subscribe', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(function(r) { return r.json().catch(function(){ return { ok: r.ok }; }); })
+  .then(function(data) {
+    if (!data || !data.ok) throw new Error((data && data.error) || 'Signup failed');
+    if (window.posthog) {
+      posthog.identify(email, { email: email });
+      posthog.capture('email_signup', { email: email, source: 'brief_footer' });
+    }
+    form.style.display = 'none';
+    document.getElementById('briefSubSuccess').style.display = 'block';
+  })
+  .catch(function(err) {
+    if (btn) { btn.disabled = false; if (btn.dataset.label) btn.textContent = btn.dataset.label; }
+    if (input) { input.setCustomValidity((err && err.message) || 'Please try again.'); input.reportValidity(); setTimeout(function(){ input.setCustomValidity(''); }, 50); }
+  });
 };
 
 (function() {

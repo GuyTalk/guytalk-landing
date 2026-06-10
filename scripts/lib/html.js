@@ -437,19 +437,30 @@ ${buildMoreIssues(relatedIssues)}
 <script>
 window.handleBriefSignup = function(e, form) {
   e.preventDefault();
-  var email = form.querySelector('input[type="email"]').value.trim();
+  var input = form.querySelector('input[type="email"]');
+  var email = input.value.trim();
   if (!email) return;
-  form.style.display = 'none';
-  document.getElementById('briefSubSuccess').style.display = 'block';
-  if (window.posthog) {
-    posthog.identify(email, { email: email });
-    posthog.capture('email_signup', { email: email, source: 'brief_footer' });
-  }
-  var fd = new FormData();
-  fd.append('email', email);
-  fetch('https://subscribe-forms.beehiiv.com/api/v3/forms/88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d/subscriptions', {
-    method: 'POST', mode: 'no-cors', body: fd
-  }).catch(function() {});
+  var btn = form.querySelector('button, [type="submit"]');
+  if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Signing up…'; }
+  // Create the subscription server-side (reliable) — only confirm on success.
+  fetch('/api/subscribe', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(function(r) { return r.json().catch(function(){ return { ok: r.ok }; }); })
+  .then(function(data) {
+    if (!data || !data.ok) throw new Error((data && data.error) || 'Signup failed');
+    if (window.posthog) {
+      posthog.identify(email, { email: email });
+      posthog.capture('email_signup', { email: email, source: 'brief_footer' });
+    }
+    form.style.display = 'none';
+    document.getElementById('briefSubSuccess').style.display = 'block';
+  })
+  .catch(function(err) {
+    if (btn) { btn.disabled = false; if (btn.dataset.label) btn.textContent = btn.dataset.label; }
+    if (input) { input.setCustomValidity((err && err.message) || 'Please try again.'); input.reportValidity(); setTimeout(function(){ input.setCustomValidity(''); }, 50); }
+  });
 };
 
 (function() {

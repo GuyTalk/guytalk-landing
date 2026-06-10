@@ -206,7 +206,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
       <p class="other-score-note">Miami piled on 10 runs and never let Arizona climb back in.</p>
       <ul class="detail-list">
-        <li><span><span class="dl-label">Why it matters:</span> A double-digit road win is the kind of offensive outburst that carries a lineup's confidence into the next series.</span></li>
+        <li><span><span class="dl-label">Why it matters:</span> A double-digit road win is the kind of offensive outburst that carries a lineup into the next series.</span></li>
         <li><span><span class="dl-label">What to say:</span> Marlins bats went off — 10 runs will win you just about any night.</span></li>
       </ul>
     </div>
@@ -230,8 +230,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <div class="brief-img brief-img-sm"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Comerica_Park_Detroit_2014.jpg/1280px-Comerica_Park_Detroit_2014.jpg" alt="Comerica Park" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Comerica Park · Detroit, Michigan</div></div>
       <p class="other-score-note">Detroit hung 10 on Minnesota and cruised to a comfortable four-run win.</p>
       <ul class="detail-list">
-        <li><span><span class="dl-label">Why it matters:</span> Another 10-spot — the Tigers' offense did all the heavy lifting in a game that was never close.</span></li>
-        <li><span><span class="dl-label">What to say:</span> When you put up 10, you don't need much else to go right.</span></li>
+        <li><span><span class="dl-label">Why it matters:</span> Another 10-spot — the Tigers’ offense did all the heavy lifting in a game that was never close.</span></li>
+        <li><span><span class="dl-label">What to say:</span> When you put up 10, you don’t need much else to go right.</span></li>
       </ul>
     </div>
 
@@ -604,19 +604,30 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 <script>
 window.handleBriefSignup = function(e, form) {
   e.preventDefault();
-  var email = form.querySelector('input[type="email"]').value.trim();
+  var input = form.querySelector('input[type="email"]');
+  var email = input.value.trim();
   if (!email) return;
-  form.style.display = 'none';
-  document.getElementById('briefSubSuccess').style.display = 'block';
-  if (window.posthog) {
-    posthog.identify(email, { email: email });
-    posthog.capture('email_signup', { email: email, source: 'brief_footer' });
-  }
-  var fd = new FormData();
-  fd.append('email', email);
-  fetch('https://subscribe-forms.beehiiv.com/api/v3/forms/88b2d1b6-d0c3-4d33-ac26-d69fd2158a3d/subscriptions', {
-    method: 'POST', mode: 'no-cors', body: fd
-  }).catch(function() {});
+  var btn = form.querySelector('button, [type="submit"]');
+  if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Signing up…'; }
+  // Create the subscription server-side (reliable) — only confirm on success.
+  fetch('/api/subscribe', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(function(r) { return r.json().catch(function(){ return { ok: r.ok }; }); })
+  .then(function(data) {
+    if (!data || !data.ok) throw new Error((data && data.error) || 'Signup failed');
+    if (window.posthog) {
+      posthog.identify(email, { email: email });
+      posthog.capture('email_signup', { email: email, source: 'brief_footer' });
+    }
+    form.style.display = 'none';
+    document.getElementById('briefSubSuccess').style.display = 'block';
+  })
+  .catch(function(err) {
+    if (btn) { btn.disabled = false; if (btn.dataset.label) btn.textContent = btn.dataset.label; }
+    if (input) { input.setCustomValidity((err && err.message) || 'Please try again.'); input.reportValidity(); setTimeout(function(){ input.setCustomValidity(''); }, 50); }
+  });
 };
 
 (function() {
