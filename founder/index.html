@@ -70,6 +70,8 @@
 
   /* Live analytics embed */
   .embed-frame { width: 100%; height: 720px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); }
+  .embed-foot { margin-top: 10px; font-size: 12.5px; color: var(--text-2); text-align: right; }
+  .embed-foot a { color: var(--text-2); text-decoration: underline; }
   .embed-empty { border: 1px dashed var(--border-light); border-radius: 12px; padding: 26px; background: var(--bg); font-size: 14px; color: var(--text-2); line-height: 1.6; }
   .embed-empty code { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; background: var(--surface); border: 1px solid var(--border); padding: 1px 6px; border-radius: 5px; }
   .embed-empty ol { margin: 10px 0 0 18px; }
@@ -214,7 +216,9 @@
     // Live PostHog embed (or setup instructions if sharing isn't enabled yet).
     var ap = document.getElementById('analyticsPanel');
     if (d.posthogEmbedUrl) {
-      ap.innerHTML = '<iframe class="embed-frame" src="' + esc(d.posthogEmbedUrl) + '" allowfullscreen title="GuyTalk live analytics"></iframe>';
+      var fullUrl = (d.links||{}).posthogShared || (d.links||{}).posthogFounder || '#';
+      ap.innerHTML = '<iframe class="embed-frame" src="' + esc(d.posthogEmbedUrl) + '" allowfullscreen loading="lazy" title="GuyTalk live analytics"></iframe>'
+        + '<div class="embed-foot">Live from PostHog · <a href="' + esc(fullUrl) + '" target="_blank" rel="noopener">Open full dashboard ↗</a></div>';
     } else {
       ap.innerHTML = '<div class="embed-empty"><strong>Live charts aren\'t turned on yet.</strong> To embed your PostHog Founder Overview here:'
         + '<ol><li>Open the <a href="' + esc((d.links||{}).posthogFounder || '#') + '" target="_blank" rel="noopener">Founder Overview dashboard</a>.</li>'

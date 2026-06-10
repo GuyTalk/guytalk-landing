@@ -103,10 +103,13 @@ module.exports = async function handler(req, res) {
     generatedAt: new Date().toISOString(),
     beehiiv,
     publishing: publishing(),
-    posthogEmbedUrl: process.env.POSTHOG_EMBED_URL || null,
+    // Live PostHog Founder Overview, shared publicly and embedded here. An env
+    // var still overrides if the shared link is ever rotated.
+    posthogEmbedUrl: process.env.POSTHOG_EMBED_URL || 'https://us.posthog.com/embedded/IPjWuaaf0lJrwGc8AcXtoS4oBfqK1w',
     changelog: readChangelog(),
     links: {
       posthogFounder: 'https://us.posthog.com/project/428450/dashboard/1681629',
+      posthogShared: 'https://us.posthog.com/shared/IPjWuaaf0lJrwGc8AcXtoS4oBfqK1w',
       posthogLive: 'https://us.posthog.com/project/428450/dashboard/1681616',
       beehiiv: 'https://app.beehiiv.com',
       site: 'https://www.guytalkmedia.com',
