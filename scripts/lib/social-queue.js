@@ -98,45 +98,82 @@ async function createPost(apiKey, channelId, text, scheduledAt, imageUrl, metada
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Pull the per-category one-liners (sports / markets / golf / f1 / …) the brief
+// already writes. These are the real "today's hits" — used as caption bullets
+// and on the social card.
+// ─────────────────────────────────────────────────────────────────────────────
+const HIT_ORDER = [
+  ['sports',   '🏀'],
+  ['markets',  '📈'],
+  ['golf',     '⛳'],
+  ['f1',       '🏎️'],
+  ['worldcup', '⚽'],
+  ['culture',  '🎬'],
+];
+
+function todaysHits(issue) {
+  const hits = issue.copy?.todaysHits || {};
+  return HIT_ORDER
+    .map(([key, icon]) => ({ key, icon, text: (hits[key] || '').trim() }))
+    .filter(h => h.text);
+}
+
+// Issue-specific hashtags — derived from the headline + hits text, capped so the
+// block reads like a person tagged it, not a bot dumping every tag every day.
+function buildHashtags(issue) {
+  const hits = issue.copy?.todaysHits || {};
+  const blob = `${issue.title || ''} ${Object.values(hits).join(' ')}`.toLowerCase();
+  const tags = ['#GuyTalk'];
+  const add = t => { if (!tags.includes(t)) tags.push(t); };
+
+  if (/\bnba finals\b/.test(blob)) add('#NBAFinals');
+  if (/\bnba\b|finals/.test(blob)) add('#NBA');
+  if (/\bmlb\b|baseball|dodgers|yankees|world series/.test(blob)) add('#MLB');
+  if (/\bnfl\b|football|quarterback/.test(blob)) add('#NFL');
+  if (/\bnhl\b|stanley cup|hockey/.test(blob)) add('#NHL');
+  if (hits.markets || /stocks?|nasdaq|s&p|qqq|nvda|tesla|yields?|fed\b/.test(blob)) { add('#Markets'); add('#Stocks'); }
+  if (hits.golf || /\bpga\b|golf|masters\b/.test(blob)) { add('#Golf'); add('#PGATour'); }
+  if (hits.f1 || /\bf1\b|formula 1|grand prix|monaco/.test(blob)) add('#F1');
+  if (hits.worldcup || /world cup/.test(blob)) add('#WorldCup');
+
+  return tags.slice(0, 8).join(' ');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Build caption per platform
 // ─────────────────────────────────────────────────────────────────────────────
 function buildCaption(issue, platform) {
-  const { title, copy, slug, sports, markets, golf, upcoming, f1 } = issue;
-  const bullets = copy?.sharpTake?.bullets || [];
+  const { title, copy, slug } = issue;
   const briefUrl = `${BASE_URL}/brief/${slug}/`;
 
-  const hook = (() => {
-    if (bullets[0]) return bullets[0];
-    if (upcoming?.length) return `${upcoming[0].note || upcoming[0].shortName} tips off ${upcoming[0].daysAhead <= 1 ? 'tomorrow' : 'this week'}.`;
-    if (sports?.length) {
-      const g = sports[0];
-      const w = g.home?.winner ? g.home : g.away;
-      const l = g.home?.winner ? g.away : g.home;
-      return `${w.team} ${w.score}–${l.score} over ${l.team}.`;
-    }
-    return 'Five minutes. Everything you need.';
-  })();
+  // Hook leads with the actual story, not stale schedule data.
+  const hook = (copy?.keyTakeaway || copy?.deck || issue.deck || title || '').trim();
 
-  const bulletLines = bullets.slice(0, 3).map(b => `→ ${b}`).join('\n');
-
-  const coreTags    = ['#GuyTalk', '#DailyBrief', '#MorningRead'];
-  const sportsTags  = upcoming?.length ? ['#NBAFinals', '#NBA'] : sports?.length ? ['#Sports', '#NBA'] : ['#Sports'];
-  const marketsTags = markets?.SPY ? ['#Markets', '#Investing'] : [];
-  const golfTags    = golf?.leaders?.[0] ? ['#Golf', '#PGATour'] : [];
-  const f1Tags      = f1?.name ? ['#F1', '#Formula1'] : [];
-  const allTags     = [...coreTags, ...sportsTags, ...marketsTags, ...golfTags, ...f1Tags, '#MensLifestyle'].join(' ');
+  const hits = todaysHits(issue);
+  const hitLines = hits.slice(0, 4).map(h => `${h.icon} ${h.text}`).join('\n');
+  const tags = buildHashtags(issue);
 
   if (platform === 'x' || platform === 'twitter') {
-    const shortBullet = bullets[0] ? `\n\n${bullets[0]}` : '';
-    return `${title}${shortBullet}\n\nguytalkmedia.com/brief/${slug}/`.trim();
+    // X: punchy headline + link. (No hashtag spam.)
+    return `${title}\n\nThe full 5-minute brief 👇\nguytalkmedia.com/brief/${slug}/`.trim();
   }
 
   if (platform === 'tiktok') {
-    return `${hook}\n\n${title}\n\n${bulletLines || '→ Full breakdown in bio'}\n\nLink in bio 👆\n\n${allTags}`.trim();
+    return [
+      title,
+      hitLines || hook,
+      'Full brief — link in bio 👆',
+      tags,
+    ].filter(Boolean).join('\n\n').trim();
   }
 
   // Instagram
-  return `${hook}\n\n${title}\n\n${bulletLines || '→ Full brief at the link.'}\n\nLink in bio 👆 — ${briefUrl}\n\n${allTags}`.trim();
+  return [
+    title,
+    hitLines ? `Today's hits:\n${hitLines}` : hook,
+    `The full 5-minute brief → link in bio 👆\n${briefUrl}`,
+    tags,
+  ].filter(Boolean).join('\n\n').trim();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

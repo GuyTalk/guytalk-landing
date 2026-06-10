@@ -7,45 +7,47 @@ const { createCanvas, registerFont } = require('canvas');
 const OUTPUT_DIR = path.join(__dirname, '..', '..', 'assets', 'social-cards');
 
 const C = {
-  bg:      '#0A1628',
-  surface: '#111E33',
-  accent:  '#2B6FFF',
-  text:    '#F0EDE8',
-  text2:   '#8A9BBB',
-  border:  '#1D2D47',
-  green:   '#16A34A',
-  amber:   '#B87C35',
+  bgTop:   '#0C1B33',
+  bgBot:   '#070F1F',
+  accent:  '#3B82F6',
+  text:    '#F4F6FB',
+  text2:   '#9DB0D0',
+  border:  '#1E2E4A',
+  cats: {                       // per-category accent for the hit rows
+    sports:   '#3B82F6',
+    markets:  '#22C55E',
+    golf:     '#EAB308',
+    f1:       '#EF4444',
+    worldcup: '#14B8A6',
+    culture:  '#A855F7',
+  },
 };
 
 const SIZE = 1080;
 
-// Try to register Inter if TTF is available; falls back to system sans-serif
-function tryRegisterFonts() {
-  const fontsDir = path.join(__dirname, '..', '..', 'assets', 'fonts');
-  const pairs = [
-    ['Inter-Regular.ttf', { family: 'GT', weight: 'regular' }],
-    ['Inter-Bold.ttf',    { family: 'GT', weight: 'bold' }],
-  ];
-  for (const [file, opts] of pairs) {
-    const fp = path.join(fontsDir, file);
-    if (fs.existsSync(fp)) {
-      try { registerFont(fp, opts); } catch (_) {}
-    }
-  }
-}
-tryRegisterFonts();
+// Register Inter so the canvas actually has the weights we ask for. The old
+// card asked for `-apple-system` which node-canvas can't resolve, so every
+// size silently fell back to a tiny default — that's why cards were near-blank.
+let FONTS = { black: 'sans-serif', bold: 'sans-serif', regular: 'sans-serif' };
+(function registerFonts() {
+  const dir = path.join(__dirname, '..', '..', 'assets', 'fonts');
+  const reg = (file, family) => {
+    const fp = path.join(dir, file);
+    if (fs.existsSync(fp)) { try { registerFont(fp, { family }); return true; } catch (_) {} }
+    return false;
+  };
+  if (reg('Inter-Black.ttf',   'Inter Black'))   FONTS.black   = 'Inter Black';
+  if (reg('Inter-Bold.ttf',    'Inter Bold'))    FONTS.bold    = 'Inter Bold';
+  if (reg('Inter-Regular.ttf', 'Inter'))         FONTS.regular = 'Inter';
+})();
 
 function drawRoundRect(ctx, x, y, w, h, r) {
   ctx.beginPath();
   ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.arcTo(x + w, y, x + w, y + r, r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
-  ctx.lineTo(x + r, y + h);
-  ctx.arcTo(x, y + h, x, y + h - r, r);
-  ctx.lineTo(x, y + r);
-  ctx.arcTo(x, y, x + r, y, r);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
   ctx.closePath();
 }
 
@@ -55,15 +57,29 @@ function wrapText(ctx, text, maxWidth) {
   let line = '';
   for (const word of words) {
     const test = line ? line + ' ' + word : word;
-    if (ctx.measureText(test).width > maxWidth && line) {
-      lines.push(line);
-      line = word;
-    } else {
-      line = test;
-    }
+    if (ctx.measureText(test).width > maxWidth && line) { lines.push(line); line = word; }
+    else line = test;
   }
   if (line) lines.push(line);
   return lines;
+}
+
+function truncateToWidth(ctx, text, maxWidth) {
+  if (ctx.measureText(text).width <= maxWidth) return text;
+  let t = text;
+  while (t.length > 1 && ctx.measureText(t + '…').width > maxWidth) t = t.slice(0, -1);
+  return t.replace(/[\s;,]+$/, '') + '…';
+}
+
+// Pull the per-category one-liners the brief already writes.
+const HIT_ORDER = ['sports', 'markets', 'golf', 'f1', 'worldcup', 'culture'];
+const HIT_LABEL = { sports: 'SPORTS', markets: 'MARKETS', golf: 'GOLF', f1: 'F1', worldcup: 'WORLD CUP', culture: 'CULTURE' };
+
+function getHits(issue) {
+  const hits = issue.copy?.todaysHits || {};
+  return HIT_ORDER
+    .map(key => ({ key, label: HIT_LABEL[key], text: (hits[key] || '').trim() }))
+    .filter(h => h.text);
 }
 
 function generateCard(issue) {
@@ -71,145 +87,125 @@ function generateCard(issue) {
 
   const { num, slug, date, title, copy } = issue;
   const label    = `#${String(num).padStart(3, '0')}`;
-  // date may be a full string ("Tuesday, June 2, 2026") or ISO — use as-is if already formatted
   const dateStr  = date
     ? (/^\d{4}-\d{2}-\d{2}$/.test(date)
         ? new Date(date + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-        : date.replace(/^[A-Za-z]+,\s*/, ''))  // strip "Tuesday, " prefix
+        : date.replace(/^[A-Za-z]+,\s*/, ''))
     : '';
   const headline = copy?.title || title || 'GuyTalk Daily Brief';
-  const bullets  = (copy?.sharpTake?.bullets || []).slice(0, 3);
+  const hits     = getHits(issue).slice(0, 4);
 
   const canvas = createCanvas(SIZE, SIZE);
   const ctx    = canvas.getContext('2d');
 
-  // Background
-  ctx.fillStyle = C.bg;
+  // Background gradient
+  const grad = ctx.createLinearGradient(0, 0, 0, SIZE);
+  grad.addColorStop(0, C.bgTop);
+  grad.addColorStop(1, C.bgBot);
+  ctx.fillStyle = grad;
   ctx.fillRect(0, 0, SIZE, SIZE);
-
-  // Subtle grid lines
-  ctx.strokeStyle = C.border;
-  ctx.lineWidth = 1;
-  ctx.globalAlpha = 0.4;
-  for (let i = 0; i < 10; i++) {
-    const y = 140 + i * 95;
-    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(SIZE, y); ctx.stroke();
-  }
-  ctx.globalAlpha = 1;
 
   // Left accent bar
   ctx.fillStyle = C.accent;
-  ctx.fillRect(0, 0, 7, SIZE);
+  ctx.fillRect(0, 0, 10, SIZE);
 
-  // ── Header ────────────────────────────────────────────────────────────────
-  const PAD = 72;
+  const PAD = 80;
+  const RIGHT = SIZE - PAD;
 
-  // Wordmark "GuyTalk."
-  ctx.font = 'bold 48px -apple-system, "Helvetica Neue", Arial, sans-serif';
+  // ── Header ──────────────────────────────────────────────────────────────────
+  ctx.textBaseline = 'alphabetic';
+  ctx.font = `40px "${FONTS.black}"`;
   ctx.fillStyle = C.text;
-  ctx.fillText('GuyTalk', PAD, 96);
-  const wordmarkW = ctx.measureText('GuyTalk').width;
+  ctx.fillText('GuyTalk', PAD, 104);
+  const wW = ctx.measureText('GuyTalk').width;
   ctx.fillStyle = C.accent;
-  ctx.fillText('.', PAD + wordmarkW, 96);
+  ctx.fillText('.', PAD + wW + 2, 104);
 
-  // Issue label (top right)
-  ctx.font = 'bold 17px -apple-system, "Helvetica Neue", Arial, sans-serif';
+  ctx.font = `22px "${FONTS.bold}"`;
   ctx.fillStyle = C.accent;
   const issueLabel = `ISSUE ${label}`;
-  const issueLabelW = ctx.measureText(issueLabel).width;
-  ctx.fillText(issueLabel, SIZE - PAD - issueLabelW, 82);
-
-  // Date (top right, below issue)
+  ctx.fillText(issueLabel, RIGHT - ctx.measureText(issueLabel).width, 92);
   if (dateStr) {
-    ctx.font = '16px -apple-system, "Helvetica Neue", Arial, sans-serif';
+    ctx.font = `20px "${FONTS.regular}"`;
     ctx.fillStyle = C.text2;
-    const dateW = ctx.measureText(dateStr).width;
-    ctx.fillText(dateStr, SIZE - PAD - dateW, 106);
+    ctx.fillText(dateStr, RIGHT - ctx.measureText(dateStr).width, 122);
   }
 
-  // Header divider
-  ctx.strokeStyle = C.border;
-  ctx.lineWidth = 1;
-  ctx.globalAlpha = 0.8;
-  ctx.beginPath(); ctx.moveTo(PAD, 128); ctx.lineTo(SIZE - PAD, 128); ctx.stroke();
-  ctx.globalAlpha = 1;
+  // ── Layout budget (computed bottom-up so nothing ever overflows) ───────────────
+  const maxW       = SIZE - PAD * 2;
+  const footerTop  = SIZE - 96;                 // everything above stays clear of footer
+  const hitRowH    = 74;
+  const hitsHdrH   = hits.length ? 58 : 0;
+  const hitsBlockH = hits.length ? hitsHdrH + hits.length * hitRowH : 0;
+  const dividerY   = hits.length ? footerTop - hitsBlockH - 28 : footerTop;
+  const headTop    = 196;
+  const headBottom = (hits.length ? dividerY : footerTop) - 36;
+  const headZone   = headBottom - headTop;
 
-  // ── Headline ───────────────────────────────────────────────────────────────
-  const headlineMaxW = SIZE - PAD * 2;
-  let fontSize = 88;
-  ctx.font = `900 ${fontSize}px -apple-system, "Helvetica Neue", Arial, sans-serif`;
-  let headlineLines = wrapText(ctx, headline, headlineMaxW);
-
-  // Scale down if too many lines
-  while (headlineLines.length > 3 && fontSize > 56) {
-    fontSize -= 4;
-    ctx.font = `900 ${fontSize}px -apple-system, "Helvetica Neue", Arial, sans-serif`;
-    headlineLines = wrapText(ctx, headline, headlineMaxW);
+  // ── Headline (sized to fit its zone) ───────────────────────────────────────────
+  let fontSize = 92;
+  let lines, lineH;
+  for (;;) {
+    ctx.font = `${fontSize}px "${FONTS.black}"`;
+    lines = wrapText(ctx, headline, maxW);
+    lineH = fontSize * 1.07;
+    if (lines.length * lineH <= headZone || fontSize <= 48) break;
+    fontSize -= 3;
   }
-  headlineLines = headlineLines.slice(0, 3);
-
-  const lineH    = fontSize * 1.08;
-  const blockH   = headlineLines.length * lineH;
-  const topArea  = 158;
-  const btmArea  = bullets.length > 0 ? 350 : 130;
-  const available = SIZE - topArea - btmArea;
-  const startY   = topArea + (available - blockH) / 2 + fontSize * 0.85;
-
   ctx.fillStyle = C.text;
-  headlineLines.forEach((line, i) => {
-    ctx.fillText(line, PAD, startY + i * lineH);
-  });
+  ctx.font = `${fontSize}px "${FONTS.black}"`;
+  let y = headTop + fontSize;                    // first baseline
+  for (const line of lines) { ctx.fillText(line, PAD, y); y += lineH; }
 
-  // ── Bullets ────────────────────────────────────────────────────────────────
-  if (bullets.length > 0) {
-    const bulletColors = [C.accent, C.green, C.amber];
-    const bulletTop = SIZE - btmArea + 20;
-
-    // Divider above bullets
+  // ── Today's hits ──────────────────────────────────────────────────────────────
+  if (hits.length) {
     ctx.strokeStyle = C.border;
-    ctx.lineWidth = 1;
-    ctx.globalAlpha = 0.8;
-    ctx.beginPath(); ctx.moveTo(PAD, bulletTop); ctx.lineTo(SIZE - PAD, bulletTop); ctx.stroke();
-    ctx.globalAlpha = 1;
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(PAD, dividerY); ctx.lineTo(RIGHT, dividerY); ctx.stroke();
 
-    bullets.forEach((b, i) => {
-      const y = bulletTop + 38 + i * 68;
-      // Arrow
-      ctx.font = `bold 20px -apple-system, "Helvetica Neue", Arial, sans-serif`;
-      ctx.fillStyle = bulletColors[i] || C.accent;
-      ctx.fillText('→', PAD, y);
+    ctx.font = `22px "${FONTS.bold}"`;
+    ctx.fillStyle = C.text2;
+    ctx.fillText("TODAY'S HITS", PAD, dividerY + 42);
 
-      // Bullet text
-      const bText = b.length > 68 ? b.slice(0, 68) + '…' : b;
-      ctx.font = `20px -apple-system, "Helvetica Neue", Arial, sans-serif`;
-      ctx.fillStyle = C.text2;
-      ctx.fillText(bText, PAD + 34, y);
-    });
+    let ry = dividerY + hitsHdrH + 38;
+    for (const hit of hits) {
+      // Colored category chip
+      ctx.font = `20px "${FONTS.bold}"`;
+      const chipText = hit.label;
+      const chipW = ctx.measureText(chipText).width + 28;
+      drawRoundRect(ctx, PAD, ry - 27, chipW, 38, 8);
+      ctx.fillStyle = C.cats[hit.key] || C.accent;
+      ctx.fill();
+      ctx.fillStyle = '#0A0F1A';
+      ctx.fillText(chipText, PAD + 14, ry);
+
+      // Hit text — single line, truncated to fit so rows stay uniform
+      ctx.font = `30px "${FONTS.bold}"`;
+      ctx.fillStyle = C.text;
+      const textX = PAD + chipW + 22;
+      ctx.fillText(truncateToWidth(ctx, hit.text, RIGHT - textX), textX, ry);
+      ry += hitRowH;
+    }
   }
 
-  // ── Footer ─────────────────────────────────────────────────────────────────
-  const footerY = SIZE - 44;
-
-  ctx.font = `bold 17px -apple-system, "Helvetica Neue", Arial, sans-serif`;
+  // ── Footer ───────────────────────────────────────────────────────────────────
+  const footerY = SIZE - 56;
+  ctx.font = `24px "${FONTS.bold}"`;
   ctx.fillStyle = C.text2;
   ctx.fillText('guytalkmedia.com', PAD, footerY);
 
-  // "FREE DAILY BRIEF" pill
   const pillText = 'FREE DAILY BRIEF';
-  ctx.font = `bold 14px -apple-system, "Helvetica Neue", Arial, sans-serif`;
-  const pillW = ctx.measureText(pillText).width + 36;
-  const pillH = 32;
-  const pillX = SIZE - PAD - pillW;
-  const pillY = footerY - 22;
-
-  drawRoundRect(ctx, pillX, pillY, pillW, pillH, 8);
+  ctx.font = `18px "${FONTS.bold}"`;
+  const pillW = ctx.measureText(pillText).width + 40;
+  const pillH = 44;
+  const pillX = RIGHT - pillW;
+  const pillY = footerY - 30;
+  drawRoundRect(ctx, pillX, pillY, pillW, pillH, 10);
   ctx.fillStyle = C.accent;
   ctx.fill();
-
   ctx.fillStyle = '#ffffff';
-  ctx.fillText(pillText, pillX + 18, pillY + 21);
+  ctx.fillText(pillText, pillX + 20, pillY + 29);
 
-  // Save
   const outPath = path.join(OUTPUT_DIR, `${slug}.png`);
   fs.writeFileSync(outPath, canvas.toBuffer('image/png'));
   return outPath;
