@@ -147,17 +147,11 @@ function clipFromFrame(framePath, dur, out) {
     { stdio: 'ignore' });
 }
 
-function main() {
-  const single = process.argv.find(a => a.startsWith('--issue='))?.replace('--issue=', '') || null;
-  const files = fs.readdirSync(DATA_DIR).filter(f => /^issue-\d+\.json$/.test(f)).sort();
-  const pick = single ? files.find(f => f.includes(single)) : files[files.length - 1];
-  if (!pick) { console.error('No matching issue.'); process.exit(1); }
-
-  const issue = JSON.parse(fs.readFileSync(path.join(DATA_DIR, pick), 'utf8'));
+// Build the video for a given issue object. Returns the output mp4 path.
+// `log` is optional (silent when omitted), so the brief pipeline can call it quietly.
+function generateVideo(issue, { log = () => {} } = {}) {
   issue._dateStr = issue.date ? issue.date.replace(/^[A-Za-z]+,\s*/, '') : '';
   if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
-
-  console.log(`\n  🎬 Building video for ${issue.slug} — ${issue.title?.slice(0, 50)}\n`);
 
   const slides = slidesFor(issue);
   const clips = [];
@@ -167,10 +161,9 @@ function main() {
     clipFromFrame(fp, s.dur, clip);
     clips.push(clip);
     fs.unlinkSync(fp);
-    console.log(`     ✓ slide ${i + 1}/${slides.length} (${s.dur}s)`);
+    log(`     ✓ slide ${i + 1}/${slides.length} (${s.dur}s)`);
   });
 
-  // Concat clips
   const listFile = path.join(os.tmpdir(), 'gtv_list.txt');
   fs.writeFileSync(listFile, clips.map(c => `file '${c}'`).join('\n'));
   const out = path.join(OUT_DIR, `${issue.slug}.mp4`);
@@ -180,10 +173,23 @@ function main() {
 
   clips.forEach(c => fs.unlinkSync(c));
   fs.unlinkSync(listFile);
+  return out;
+}
 
-  const secs = slides.reduce((a, s) => a + s.dur, 0).toFixed(1);
+function main() {
+  const single = process.argv.find(a => a.startsWith('--issue='))?.replace('--issue=', '') || null;
+  const files = fs.readdirSync(DATA_DIR).filter(f => /^issue-\d+\.json$/.test(f)).sort();
+  const pick = single ? files.find(f => f.includes(single)) : files[files.length - 1];
+  if (!pick) { console.error('No matching issue.'); process.exit(1); }
+
+  const issue = JSON.parse(fs.readFileSync(path.join(DATA_DIR, pick), 'utf8'));
+  console.log(`\n  🎬 Building video for ${issue.slug} — ${issue.title?.slice(0, 50)}\n`);
+  const out = generateVideo(issue, { log: console.log });
+  const secs = slidesFor(issue).reduce((a, s) => a + s.dur, 0).toFixed(1);
   console.log(`\n  ✅ ${path.relative(ROOT, out)}  (~${secs}s, 1080×1920)`);
   console.log(`     Post to TikTok / Reels / Shorts — add trending audio in-app.\n`);
 }
 
-main();
+module.exports = { generateVideo, slidesFor };
+
+if (require.main === module) main();

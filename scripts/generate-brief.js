@@ -483,6 +483,15 @@ async function main() {
     } catch (e) {
       console.log(`   ⚠  Social card failed: ${e.message}`);
     }
+
+    // Daily "what to say" video (resilient — never let it break the brief)
+    try {
+      const { generateVideo } = require('./generate-video');
+      const videoPath = generateVideo(issueData);
+      console.log(`   ✓ ${path.relative(ROOT, videoPath)}  (post to TikTok/Reels — add trending audio)`);
+    } catch (e) {
+      console.log(`   ⚠  Video skipped: ${e.message}`);
+    }
   }
 
   // ── Review checklist ───────────────────────────────────────────────────────
