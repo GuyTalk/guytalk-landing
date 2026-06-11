@@ -1196,9 +1196,15 @@ em { font-style: italic; }
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 55% at 50% -10%, rgba(43,111,255,0.2), transparent 65%);
+  background: radial-gradient(ellipse 80% 55% at 50% -10%, rgba(43,111,255,0.22), transparent 65%);
   pointer-events: none;
+  animation: briefHeroGlow 10s ease-in-out infinite;
 }
+@keyframes briefHeroGlow {
+  0%, 100% { opacity: 0.82; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.07); }
+}
+@media (prefers-reduced-motion: reduce) { .brief-hero-area::before { animation: none; } }
 .brief-hero-inner {
   position: relative;
   max-width: var(--max-w);
