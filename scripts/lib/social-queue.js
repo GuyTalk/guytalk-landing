@@ -252,7 +252,10 @@ function buildSlots() {
 // ─────────────────────────────────────────────────────────────────────────────
 async function queueSocialPosts({ apiKey, dryRun = false, single = null, platforms = null, log = () => {} } = {}) {
   if (!apiKey && !dryRun) throw new Error('BUFFER_API_KEY not set');
-  const want = p => !platforms || platforms.includes(p);
+  // TikTok is handled manually (Higgsfield short-form video), so auto-posting
+  // defaults to X + Instagram only. Pass `platforms` explicitly to override.
+  const active = platforms || ['x', 'instagram'];
+  const want = p => active.includes(p);
 
   const files = selectIssueFiles(single);
 
