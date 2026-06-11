@@ -579,6 +579,7 @@ async function fetchGolf() {
       pos: c.status?.position?.displayName || (c.order != null ? String(c.order) : ''),
       name: c.athlete?.displayName || '',
       flag: c.athlete?.flag?.href || '',
+      link: athleteLink(c.athlete),
       score: c.score != null ? String(c.score) : 'E',
       thru: c.status?.thru != null ? String(c.status.thru) : (c.status?.displayValue || ''),
     }));
@@ -623,10 +624,13 @@ function slamPurse(name) {
   const m = GRAND_SLAMS.find((s) => new RegExp(s.name.replace(/\s+/g, '\\s*'), 'i').test(name || ''));
   return m ? m.purse : null;
 }
-function tennisPlayerLink(athlete) {
+// Generic ESPN athlete → player-profile link (works for tennis, golf, etc.).
+function athleteLink(athlete) {
   const links = athlete?.links || [];
-  const pc = links.find((l) => (l.rel || []).includes('playercard')) || links.find((l) => (l.rel || []).includes('athlete')) || links[0];
-  return pc?.href || (athlete?.id ? `https://www.espn.com/tennis/player/_/id/${athlete.id}` : '');
+  const pc = links.find((l) => (l.rel || []).includes('playercard'))
+    || links.find((l) => (l.rel || []).includes('athlete'))
+    || links.find((l) => /^https/.test(l.href || ''));
+  return pc?.href || '';
 }
 
 // Tennis (ATP + WTA). Tournaments carry a `major` flag = Grand Slam. Results are
@@ -661,10 +665,10 @@ async function fetchTennis() {
       results.push({
         winner: w.athlete?.displayName || w.athlete?.shortName || '',
         winnerFlag: w.athlete?.flag?.href || '',
-        winnerLink: tennisPlayerLink(w.athlete),
+        winnerLink: athleteLink(w.athlete),
         loser: l.athlete?.displayName || l.athlete?.shortName || '',
         loserFlag: l.athlete?.flag?.href || '',
-        loserLink: tennisPlayerLink(l.athlete),
+        loserLink: athleteLink(l.athlete),
         score,
       });
     }
@@ -672,7 +676,7 @@ async function fetchTennis() {
     const topRanked = (rk?.rankings?.[0]?.ranks || []).slice(0, 5).map((r) => ({
       rank: r.current,
       name: r.athlete?.displayName || r.athlete?.shortName || '',
-      link: tennisPlayerLink(r.athlete),
+      link: athleteLink(r.athlete),
     })).filter((p) => p.name);
 
     out.push({
@@ -747,6 +751,7 @@ function deriveLiveNow({ scoreboard, f1, golf }) {
     cards.push({
       kind: 'f1', importance: 100, title: f1.event, status: 'live',
       statusText: `Formula 1 · ${f1.sessionLabel}`,
+      link: f1.eventLink ? f1.eventLink.url : '',
       lines: f1.positions.slice(0, 3).map((p) => ({ left: `P${p.pos} ${p.driver}`, right: p.team || '' })),
       leader: f1.positions[0] ? `${f1.positions[0].driver} leads` : '',
     });
@@ -757,6 +762,7 @@ function deriveLiveNow({ scoreboard, f1, golf }) {
     cards.push({
       kind: 'golf', importance: 85 + (golf.isMajor ? 10 : 0), title: golf.event, status: 'live',
       statusText: `Golf · ${golf.statusText}`,
+      link: golf.eventLink ? golf.eventLink.url : '',
       lines: golf.leaderboard.slice(0, 3).map((p) => ({ left: `${p.pos} ${p.name}`, right: p.score })),
       leader: top ? `${top.name} ${top.score}` : '',
     });
@@ -769,6 +775,7 @@ function deriveLiveNow({ scoreboard, f1, golf }) {
         cards.push({
           kind: 'game', importance: g.importance, title: `${g.away.abbr} @ ${g.home.abbr}`, status: 'live',
           statusText: `${g.headline || lg.label} · ${g.statusText}`,
+          link: g.eventLink ? g.eventLink.url : '',
           lines: [
             { left: g.away.name, right: g.away.score, logo: g.away.logo },
             { left: g.home.name, right: g.home.score, logo: g.home.logo },
@@ -791,13 +798,15 @@ function deriveLiveNow({ scoreboard, f1, golf }) {
     sched.push({
       kind: 'f1', importance: 100, title: f1.event, status: 'upcoming',
       statusText: `Formula 1 · ${f1.statusText || 'Upcoming'}`,
+      link: f1.eventLink ? f1.eventLink.url : '',
       lines: f1.grid ? [{ left: `Pole: ${f1.grid.driver}`, right: f1.grid.team || '' }] : [], leader: '',
     });
   }
   if (golf && (golf.state === 'pre' || golf.state === 'upcoming') && golf.event) {
     sched.push({
       kind: 'golf', importance: 80, title: golf.event, status: 'upcoming',
-      statusText: `Golf · ${golf.statusText || 'Tees off soon'}`, lines: [], leader: '',
+      statusText: `Golf · ${golf.statusText || 'Tees off soon'}`,
+      link: golf.eventLink ? golf.eventLink.url : '', lines: [], leader: '',
     });
   }
   if (scoreboard) {
@@ -807,6 +816,7 @@ function deriveLiveNow({ scoreboard, f1, golf }) {
         sched.push({
           kind: 'game', importance: g.importance, title: `${g.away.abbr} @ ${g.home.abbr}`, status: 'upcoming',
           statusText: `${g.headline || lg.label} · ${g.statusText}`,
+          link: g.eventLink ? g.eventLink.url : '',
           lines: [{ left: g.away.name, right: '', logo: g.away.logo }, { left: g.home.name, right: '', logo: g.home.logo }], leader: '',
         });
       }

@@ -235,14 +235,17 @@ function LiveEventCard(ev) {
   const lines = ev.lines.map(
     (l) => `<div class="ev-line"><span class="l">${l.logo ? `<img class="ev-logo" src="${esc(l.logo)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}${esc(l.left)}</span><span class="r">${esc(l.right)}</span></div>`
   ).join('');
-  return `<div class="card">
+  const inner = `
     <div class="ev-head">
       <div><div class="ev-title">${esc(ev.title)}</div><div class="ev-status">${esc(ev.statusText)}</div></div>
       ${STATUS_PILL[ev.status] || ''}
     </div>
     ${lines}
-    ${ev.leader ? `<div class="ev-foot">${esc(ev.leader)}</div>` : ''}
-  </div>`;
+    ${ev.leader ? `<div class="ev-foot">${esc(ev.leader)}</div>` : `<div class="ev-foot ev-foot-cta">View on ESPN →</div>`}`;
+  // Whole card links to the game on ESPN when we have a real link.
+  return ev.link
+    ? `<a class="card card-link" href="${esc(ev.link)}" target="_blank" rel="noopener" data-livecard="1">${inner}</a>`
+    : `<div class="card">${inner}</div>`;
 }
 
 /** LiveLeaderboard — ranked table (F1 + golf).
@@ -1046,7 +1049,7 @@ function FeaturedGolfCard(g) {
       statusText: golf.statusText + (golf.leaderScore ? ` · Leader ${golf.leaderScore}` : '') + cut,
       state: golf.state, leaderHighlight: true, showMarks: true, subHead: 'Leaderboard',
       rows: (golf.leaderboard || []).map((p) => ({
-        pos: p.pos, name: p.name, flag: p.flag, sub: p.thru ? `Thru ${p.thru}` : '',
+        pos: p.pos, name: p.name, flag: p.flag, href: p.link, sub: p.thru ? `Thru ${p.thru}` : '',
         val: p.score, valClass: String(p.score).trim().startsWith('-') ? 'neg' : '',
       })),
     });
@@ -1213,6 +1216,7 @@ function FeaturedGolfCard(g) {
       if (!a || !window.posthog) return;
       let ev = null;
       if (a.classList.contains('hl-btn')) ev = 'live_highlight_click';
+      else if (a.classList.contains('card-link')) ev = 'live_event_click';
       else if (a.classList.contains('lb-link') || a.classList.contains('nm-link')) ev = 'live_profile_click';
       else if (a.closest('.story-head') || a.closest('.story-src') || a.closest('.talk-src')) ev = 'live_story_click';
       if (ev) posthog.capture(ev, { href: a.href, text: (a.textContent || '').trim().slice(0, 60) });

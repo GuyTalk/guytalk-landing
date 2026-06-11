@@ -220,8 +220,17 @@
   /* GENERIC CARD */
   .card {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 18px 16px;
+    border-radius: 14px; padding: 18px 18px 16px; display: block;
+    transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
   }
+  .card-link { text-decoration: none; color: inherit; cursor: pointer; }
+  .card:hover {
+    transform: translateY(-3px); box-shadow: 0 10px 26px rgba(15,23,36,0.12);
+    border-color: rgba(43,111,255,0.35);
+  }
+  /* "View on ESPN" hint only shows on hover, so cards stay clean at rest */
+  .ev-foot-cta { color: var(--text-3); opacity: 0; transition: opacity 0.16s ease; }
+  .card:hover .ev-foot-cta { opacity: 1; color: var(--accent); }
 
   /* LIVE EVENT CARD */
   .ev-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
