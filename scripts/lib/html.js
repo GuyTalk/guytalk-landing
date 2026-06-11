@@ -1079,14 +1079,21 @@ ${itemsHtml}
 function buildRec({ num }) {
   const rec = RECS[(num + 3) % RECS.length];
 
+  const recImg = rec.imageUrl
+    ? `<div class="rec-img"><img src="${esc(rec.imageUrl)}" alt="${esc(rec.brand || rec.title)}" loading="lazy" onerror="this.closest('.rec-img').classList.add('rec-img-failed');this.remove()"><span class="rec-img-ph">${esc(rec.brand || '')}</span></div>`
+    : (rec.brand ? `<div class="rec-img rec-img-failed"><span class="rec-img-ph">${esc(rec.brand)}</span></div>` : '');
+
   return `  <section class="brief-section" id="the-rec">
     <div class="section-label sl-markets">The Rec</div>
 
-    <div class="brief-rec">
-      <div class="rec-label">This week's pick</div>
-      <div class="rec-title">${esc(rec.title)}</div>
-      <p class="rec-body">${esc(rec.body)}</p>
-      <a href="${esc(rec.url)}" target="_blank" rel="noopener" class="rec-link">${esc(rec.cta)}</a>
+    <div class="brief-rec${recImg ? ' brief-rec--media' : ''}">
+      ${recImg}
+      <div class="rec-content">
+        <div class="rec-label">This week's pick</div>
+        <div class="rec-title">${esc(rec.title)}</div>
+        <p class="rec-body">${esc(rec.body)}</p>
+        <a href="${esc(rec.url)}" target="_blank" rel="noopener" class="rec-link">${esc(rec.cta)}</a>
+      </div>
     </div>
   </section>`;
 }
