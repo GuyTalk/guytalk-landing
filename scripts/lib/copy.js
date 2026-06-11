@@ -207,7 +207,7 @@ CATEGORY RULES (strictly enforced):
 - "golf": golf tournaments ONLY
 - "f1": Formula 1 ONLY
 - "worldcup": FIFA World Cup ONLY (do not put culture content here)
-- "culture": movies, TV, music, gaming, celebrity, tech trends, streaming
+- "culture": what men 25-45 talk about — big movies/TV/streaming, gaming, tech & gadgets, sports business, a major music moment. AVOID celebrity gossip/breakups/who's-dating-who unless genuinely massive.
 
 Return ONLY valid JSON on one line — no markdown, no code fences:
 {"keyTakeaway":"2-3 sentences max. Big picture across sports, markets, culture. 20-second summary. No hype.","sports":"Tagline for sports section. Under 12 words.","markets":"Tagline for markets. Under 10 words. Include a number.","golf":"Tagline for golf. Under 10 words.","f1":"Tagline for F1. Under 10 words.","worldcup":"Tagline for World Cup (countdown, teams, venues). Under 10 words.","culture":"Tagline for culture/entertainment. Under 10 words. Must be about entertainment/gaming/TV/music — NOT sports scores."}`,
@@ -344,7 +344,9 @@ Return ONLY valid JSON on one line — no markdown:
     ask(
       `GuyTalk culture: 3 quick hits for men 25-45. Today: ${TODAY}.
 Return ONLY valid JSON array with exactly 3 objects — no markdown, no extra text:
-[{"topic":"Headline. Max 8 words.","whatHappened":"One sentence — what actually happened.","whyItMatters":"One sentence — why a guy should care.","whatToSay":"One casual conversation line. Natural, not forced.","tag":"Celebrity|Music|Sports Biz|TV|Tech|Culture|Streaming"}]
+[{"topic":"Headline. Max 8 words.","whatHappened":"One sentence — what actually happened.","whyItMatters":"One sentence — why a guy should care.","whatToSay":"One casual conversation line. Natural, not forced.","tag":"Music|Sports Biz|TV|Tech|Gaming|Movies|Streaming"}]
+
+AUDIENCE FILTER (important): pick what men 25-45 actually talk about — big movies/TV/streaming drops, gaming, tech & gadgets, sports business/media deals, a major album or artist moment, a viral thing guys are quoting. AVOID celebrity relationship gossip, who's-dating-who, breakups, and reality-TV drama (e.g. "[Celebrity] and [Celebrity] split") UNLESS it's genuinely massive and universal. If the only trending "culture" is gossip, prefer a tech/gaming/movie story or the streaming pick instead.
 
 Items 1 and 2: Real stories from trending data. Different categories — don't do two of the same type.
 ${streamingPick ? `Item 3 — a watch recommendation for "${streamingPick.head.replace('Watch this: ', '')}": {"topic":"${streamingPick.head.replace('Watch this: ', '')}","whatHappened":"${streamingPick.body.split('.')[0]}.","whyItMatters":"One sentence on the vibe/genre and why it's worth a guy's night — general framing only, do NOT invent plot, cast, awards, or box-office.","whatToSay":"One natural recommendation line you'd actually say to a friend.","tag":"Streaming"}` : 'Item 3: One streaming/watch rec (action, thriller, crime, or prestige drama — no animated/kids/family). whyItMatters = vibe + why worth watching; whatToSay = a natural rec line. No invented facts.'}

@@ -1756,7 +1756,18 @@ function buildWorldCup({ worldCup, copy }) {
     return `      <li><span>${esc(m.away.team)} vs ${esc(m.home.team)} — upcoming</span></li>`;
   }).join('\n');
 
-  const previewBanner = !active.length ? `
+  // Countdown / day-of-tournament, computed from the issue date.
+  const OPEN = Date.parse('2026-06-11T00:00:00-04:00');
+  const FINAL = Date.parse('2026-07-19T00:00:00-04:00');
+  const now = worldCup[0]?._issueDate ? Date.parse(worldCup[0]._issueDate) : Date.now();
+  const dayMs = 86400000;
+  let countStat;
+  if (now < OPEN)       countStat = { num: Math.max(0, Math.ceil((OPEN - now) / dayMs)), lbl: 'Days Away' };
+  else if (now <= FINAL) countStat = { num: `Day ${Math.max(1, Math.floor((now - OPEN) / dayMs) + 1)}`, lbl: 'Of the Cup' };
+  else                  countStat = { num: 16, lbl: 'Venues' };
+
+  // Always show the banner — it's the biggest event on the planet; make it pop.
+  const banner = `
     <div class="wc-preview-banner">
       <div class="wc-banner-hosts"><span class="wc-flag">🇺🇸</span><span class="wc-flag">🇨🇦</span><span class="wc-flag">🇲🇽</span></div>
       <div class="wc-banner-title">FIFA World Cup 2026</div>
@@ -1764,17 +1775,22 @@ function buildWorldCup({ worldCup, copy }) {
       <div class="wc-banner-stats">
         <div class="wc-stat"><span class="wc-stat-num">48</span><span class="wc-stat-lbl">Teams</span></div>
         <div class="wc-stat"><span class="wc-stat-num">104</span><span class="wc-stat-lbl">Matches</span></div>
-        <div class="wc-stat"><span class="wc-stat-num">16</span><span class="wc-stat-lbl">Venues</span></div>
+        <div class="wc-stat"><span class="wc-stat-num">${esc(String(countStat.num))}</span><span class="wc-stat-lbl">${esc(countStat.lbl)}</span></div>
       </div>
-    </div>` : '';
+    </div>`;
+
+  const context = active.length
+    ? `<p>The biggest sporting event on the planet — and it's in your backyard. Group stage runs through July 2; only the top two from each of the 12 groups (plus the best third-place sides) survive. Worth knowing who's already through and who's on the brink.</p>`
+    : `<p>48 teams, 104 matches, three host countries — the first expanded World Cup, and most of it on US soil. The one event that everyone, everywhere, will be talking about for a month straight.</p>`;
 
   return `  <section class="brief-section" id="worldcup">
     <div class="section-label sl-culture">World Cup 2026</div>
-${previewBanner}
+${banner}
+    ${context}
     <ul class="detail-list">
 ${matchRows}
       <li><span><span class="dl-label">USA opener:</span> USA vs Paraguay, June 12 · SoFi Stadium · 9pm ET · Fox</span></li>
-      <li><span><span class="dl-label">Final:</span> July 19 · MetLife Stadium</span></li>
+      <li><span><span class="dl-label">Final:</span> July 19 · MetLife Stadium, New York</span></li>
     </ul>
   </section>`;
 }
