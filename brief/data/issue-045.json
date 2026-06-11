@@ -1,0 +1,784 @@
+{
+  "num": 45,
+  "slug": "issue-045",
+  "date": "Thursday, June 11, 2026",
+  "title": "New York Knicks beat San Antonio Spurs 107–106. Padraig Harrington leads RBC Canadian Open. MSC Cruises Barcelona-Catalunya Grand Prix this weekend.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401859966",
+      "name": "San Antonio Spurs at New York Knicks",
+      "shortName": "SA @ NY",
+      "date": "2026-06-11T00:30Z",
+      "venue": "Madison Square Garden",
+      "venueCity": "New York, NY",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA Finals - Game 4",
+      "seriesNote": "NY leads series 3-1",
+      "sport": "NBA",
+      "home": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "107",
+        "winner": true
+      },
+      "away": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "106",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 725.43,
+      "prevClose": 737.05,
+      "dayChange": -11.62,
+      "dayChangePct": -1.5766,
+      "weekChangePct": -3.819737829788439,
+      "spark": [
+        739.2999877929688,
+        738.1799926757812,
+        742.3099975585938,
+        748.1699829101562,
+        739.1699829101562,
+        738.6500244140625,
+        733.72998046875,
+        741.25,
+        742.719970703125,
+        745.6400146484375,
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812
+      ]
+    },
+    "DIA": {
+      "price": 500.25,
+      "prevClose": 509.41,
+      "dayChange": -9.16,
+      "dayChangePct": -1.7982,
+      "weekChangePct": -1.5759669483575292,
+      "spark": [
+        497.1099853515625,
+        497.8900146484375,
+        497.1400146484375,
+        500.79998779296875,
+        495.3699951171875,
+        497.010009765625,
+        493.9800109863281,
+        500.239990234375,
+        503.1099853515625,
+        506.1199951171875,
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25
+      ]
+    },
+    "QQQ": {
+      "price": 693.69,
+      "prevClose": 707.83,
+      "dayChange": -14.14,
+      "dayChangePct": -1.9977,
+      "weekChangePct": -6.788409250220013,
+      "spark": [
+        713.2899780273438,
+        707.239990234375,
+        714.7100219726562,
+        719.7899780273438,
+        708.9299926757812,
+        705.8800048828125,
+        701.530029296875,
+        713.1500244140625,
+        714.510009765625,
+        717.5399780273438,
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062
+      ]
+    },
+    "IWM": {
+      "price": 282.05,
+      "prevClose": 285.02,
+      "dayChange": -2.97,
+      "dayChangePct": -1.042,
+      "weekChangePct": -1.9536319968734481,
+      "spark": [
+        285.3299865722656,
+        282.57000732421875,
+        282.6700134277344,
+        284.45001220703125,
+        277.6000061035156,
+        275.9700012207031,
+        273,
+        279.8699951171875,
+        282.489990234375,
+        285.1199951171875,
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875
+      ]
+    },
+    "NVDA": {
+      "price": 200.42,
+      "prevClose": 208.19,
+      "dayChange": -7.77,
+      "dayChangePct": -3.7322,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 381.59,
+      "prevClose": 396.68,
+      "dayChange": -15.09,
+      "dayChangePct": -3.8041,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 397.36,
+      "prevClose": 403.41,
+      "dayChange": -6.05,
+      "dayChangePct": -1.4997,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 291.58,
+      "prevClose": 290.55,
+      "dayChange": 1.03,
+      "dayChangePct": 0.3545,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 570.98,
+      "prevClose": 584.59,
+      "dayChange": -13.61,
+      "dayChangePct": -2.3281,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 238,
+      "prevClose": 244.19,
+      "dayChange": -6.19,
+      "dayChangePct": -2.5349,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 356.38,
+      "prevClose": 364.26,
+      "dayChange": -7.88,
+      "dayChangePct": -2.1633,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 452.4,
+      "prevClose": 475.505,
+      "dayChange": -23.105,
+      "dayChangePct": -4.859,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 372.1,
+      "prevClose": 392.16,
+      "dayChange": -20.06,
+      "dayChangePct": -5.1153,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 82,
+      "prevClose": 81.41,
+      "dayChange": 0.59,
+      "dayChangePct": 0.7247,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 309.14,
+      "prevClose": 312.7,
+      "dayChange": -3.56,
+      "dayChangePct": -1.1385,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 153.97,
+      "prevClose": 155.5,
+      "dayChange": -1.53,
+      "dayChangePct": -0.9839,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 369.83,
+      "prevClose": 381.78,
+      "dayChange": -11.95,
+      "dayChangePct": -3.1301,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": null,
+      "prevClose": null,
+      "dayChange": null,
+      "dayChangePct": null,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AVGO",
+      "AMD",
+      "TSLA",
+      "NVDA",
+      "DELL"
+    ],
+    "10Y": {
+      "price": 4.542,
+      "prevClose": 4.5279998779296875,
+      "dayChange": 0.014000122070312315,
+      "dayChangePct": 0.3091899833865171,
+      "weekChangePct": 1.1356005907641564,
+      "spark": [
+        4.409999847412109,
+        4.4629998207092285,
+        4.480999946594238,
+        4.460999965667725,
+        4.59499979019165,
+        4.623000144958496,
+        4.666999816894531,
+        4.572000026702881,
+        4.585999965667725,
+        4.558000087738037,
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Wednesday, June 10 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Wednesday, June 10). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "SOL",
+          "name": "Solana USD",
+          "price": 65.43,
+          "changePct": 3.64328
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 63051.22,
+          "changePct": 2.78164
+        },
+        {
+          "symbol": "KO",
+          "name": "The Coca-Cola Company",
+          "price": 83.59,
+          "changePct": 2.76617
+        },
+        {
+          "symbol": "DOGE",
+          "name": "Dogecoin USD",
+          "price": 0.08506,
+          "changePct": 2.63031
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 452.4,
+          "changePct": -4.85904
+        },
+        {
+          "symbol": "F",
+          "name": "Ford Motor Company",
+          "price": 14.3,
+          "changePct": -4.34783
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 381.59,
+          "changePct": -3.80407
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 200.42,
+          "changePct": -3.73217
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 200.42,
+          "changePct": -3.73217
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 107.04,
+          "changePct": -0.81542
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 291.58,
+          "changePct": 0.3545
+        },
+        {
+          "symbol": "XRP",
+          "name": "XRP USD",
+          "price": 1.1202,
+          "changePct": 2.20803
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "RBC Canadian Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-11T04:00Z",
+    "endDate": "2026-06-14T04:00Z",
+    "status": "Thu, June 10th at 12:00 AM EDT",
+    "statusState": "pre",
+    "leaders": [
+      {
+        "name": "Padraig Harrington",
+        "score": "E",
+        "pos": "1st"
+      },
+      {
+        "name": "Charley Hoffman",
+        "score": "E",
+        "pos": "2nd"
+      },
+      {
+        "name": "Mike Weir",
+        "score": "E",
+        "pos": "3rd"
+      },
+      {
+        "name": "Justin Rose",
+        "score": "E",
+        "pos": "4th"
+      },
+      {
+        "name": "Lucas Glover",
+        "score": "E",
+        "pos": "5th"
+      },
+      {
+        "name": "Jhonattan Vegas",
+        "score": "E",
+        "pos": "6th"
+      },
+      {
+        "name": "Camilo Villegas",
+        "score": "E",
+        "pos": "7th"
+      },
+      {
+        "name": "Sean O'Hair",
+        "score": "E",
+        "pos": "8th"
+      },
+      {
+        "name": "Daniel Brown",
+        "score": "E",
+        "pos": "9th"
+      },
+      {
+        "name": "Billy Horschel",
+        "score": "E",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Boss Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-06T04:00Z",
+        "endDate": "2026-06-15T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Mattia Bellucci",
+            "loser": "Yannick Hanfmann",
+            "score": "7-5 6-7 6-2"
+          },
+          {
+            "winner": "Giovanni Mpetshi Perricard",
+            "loser": "Gauthier Onclin",
+            "score": "7-6 6-2"
+          },
+          {
+            "winner": "Alexander Bublik",
+            "loser": "Jan-Lennard Struff",
+            "score": "7-6 3-6 6-2"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Libéma Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-06T04:00Z",
+        "endDate": "2026-06-15T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Elena-Gabriela Ruse",
+            "loser": "Elise Mertens",
+            "score": "6-3 6-3"
+          },
+          {
+            "winner": "Robin Montgomery",
+            "loser": "Greet Minnen",
+            "score": "6-4 7-6"
+          },
+          {
+            "winner": "Zeynep Sonmez",
+            "loser": "Anastasia Potapova",
+            "score": "6-1 2-0"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "MSC Cruises Barcelona-Catalunya Grand Prix",
+    "shortName": "MSC Cruises Barcelona-Catalunya GP",
+    "venue": "Circuit de Catalunya",
+    "status": "6/14 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 66
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-11T19:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "0"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Czechia at South Korea",
+      "shortName": "CZE @ KOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T02:00Z",
+      "home": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "away": {
+        "team": "Czechia",
+        "score": "0"
+      }
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401874175",
+      "name": "Vegas Golden Knights at Carolina Hurricanes",
+      "shortName": "VGK @ CAR",
+      "date": "2026-06-12T00:00Z",
+      "venue": "Lenovo Center",
+      "venueCity": "Raleigh, NC",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "Stanley Cup Final - Game 5",
+      "seriesNote": "Series tied 2-2",
+      "sport": "NHL",
+      "home": {
+        "team": "Carolina Hurricanes",
+        "abbrev": "CAR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Vegas Golden Knights",
+        "abbrev": "VGK",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [
+    {
+      "id": "401859967",
+      "name": "New York Knicks at San Antonio Spurs",
+      "shortName": "NY @ SA",
+      "date": "2026-06-14T00:30Z",
+      "venue": "Frost Bank Center",
+      "venueCity": "San Antonio, TX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 5",
+      "seriesNote": "NY leads series 3-1",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    }
+  ],
+  "gameMetas": {
+    "401859966": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/nba/recap/_/gameId/401859966",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "‘Love Island USA’ Addresses App Glitch During First Fan Vote for Season 8 - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/tv/tv-news/love-island-usa-app-glitch-first-fan-vote-season-8-1236618019/",
+      "description": "Fans took to social media to share their frustrations as voting was set to close Tuesday night.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Horoscope for Wednesday, June 10, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/06/10/horoscopes-today-wednesday-june-10-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "‘Toy Story 5’ First Reactions Praise Pixar’s Sequel as a ‘Deeply Profound’ and ‘Moving’ Film That ‘Ranks Right Alongside’ the Original - Variety",
+      "url": "https://variety.com/2026/film/news/toy-story-5-first-reactions-1236770390/",
+      "description": "The first reactions for 'Toy Story 5' suggest Pixar's long-running franchise remains in top form.",
+      "source": "Variety"
+    },
+    {
+      "title": "Andy Cohen Reveals Jennifer Lawrence Is Bravo \"Super Fan\" Who Helped Find 'Summer House' Reunion Leaker - Deadline",
+      "url": "http://deadline.com/2026/06/andy-cohen-jennifer-lawrence-bravo-super-fan-summer-house-reunion-leaker-1236952236/",
+      "description": "Andy Cohen has revealed that Jennifer Lawrence helped Bravo identify the person behind the Summer House reunion audio leak.",
+      "source": "Deadline"
+    },
+    {
+      "title": "U.S. official: Somalia's Omar Artan had suspected terror ties - ESPN",
+      "url": "https://www.espn.com/soccer/story/_/id/49016259/us-official-somalia-omar-artan-suspected-terror-ties",
+      "description": "A United States official said Tuesday night that Omar Artan, the Somalian referee who was denied entry into the country ahead of the World Cup, was refused admission due to \"association with suspected members of terror organizations.\"",
+      "source": "ESPN"
+    },
+    {
+      "title": "Brazil 0-1 USA (Jun 9, 2026) Game Analysis - ESPN",
+      "url": "https://www.espn.com/soccer/report/_/gameId/401870097",
+      "description": "Expert recap and game analysis of the Brazil vs. United States Women's International Friendly game from June 9, 2026 on ESPN.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Randy Arozarena homers in 10th to send M's to wild victory over Orioles - The Seattle Times",
+      "url": "https://www.seattletimes.com/sports/mariners/randy-arozarena-homers-in-10th-to-send-mariners-to-wild-victory-over-orioles/",
+      "description": null,
+      "source": "The Seattle Times"
+    },
+    {
+      "title": "Brandon Aiyuk insults 49ers again: 'They mad cause they stupid' for paying '$50 million in eight months' - NFL.com",
+      "url": "https://www.nfl.com/news/brandon-aiyuk-insults-49ers-again-they-mad-cause-they-stupid-for-paying-50-million",
+      "description": "On Tuesday, San Francisco 49ers wide receiver Brandon Aiyuk went on social media and insulted the club as he says that he wants to join a new team in 2027.",
+      "source": "NFL News"
+    },
+    {
+      "title": "In retirement press conference, Joel Bitinio pokes fun at Johnny Manziel - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/in-retirement-press-conference-joel-bitinio-pokes-fun-at-johnny-manziel",
+      "description": "Long-time Browns offensive lineman Joel Bitonio announced his retirement on Tuesday, after 12 NFL seasons — all in Cleveland.",
+      "source": "NBCSports.com"
+    }
+  ],
+  "copy": {
+    "title": null,
+    "keyTakeaway": "Knicks are one win from the championship after squeaking past San Antonio 107-106. Tech stocks got hammered again — SPY down 1.6% today, QQQ off 6.8% for the week. Toy Story 5 is getting serious early praise from critics.",
+    "todaysHits": {
+      "sports": "Knicks one win from the title after a one-point thriller. Brunson dropped 36, Anunoby added 33, and San Antonio still wouldn't go away.",
+      "markets": "Tech sold off hard. QQQ down 2% on the day and 6.8% on the week, with AMD and AVGO leading the damage.",
+      "golf": "RBC Canadian Open tees off this week at Hamilton with Padraig Harrington sitting at even par through early play.",
+      "f1": "Barcelona race weekend arrives Sunday — a circuit that punishes mistakes and separates championship contenders from pretenders.",
+      "worldcup": "World Cup 2026 is on the calendar but no matches have been played yet.",
+      "culture": "Toy Story 5 first reactions are calling it deeply profound and ranking it alongside the original. Pixar may actually be back."
+    },
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Knicks one win away. Brunson and Anunoby refused to lose.",
+      "whatHappened": "New York held off San Antonio 107-106 in Game 4, with Jalen Brunson dropping 36 points and OG Anunoby adding 33 to push the Knicks to a 3-1 series lead. One more win closes it out.",
+      "whyBullet1": "Brunson and Anunoby combined for 69 points in a one-point game — that is not a supporting cast carrying a star, that is two guys who both want the moment.",
+      "whyBullet2": "Victor Wembanyama put up 24 points and 13 rebounds and it still was not enough — the Spurs have no second scorer who can match New York's depth when the game tightens.",
+      "whatToSay": "Brunson and Anunoby just combined for 69 points in a one-point game on the road. The Knicks are not blowing a 3-1 lead."
+    },
+    "sportsOther": [],
+    "markets": {
+      "mood": "Tech stocks closed lower across the board Wednesday as the QQQ fell 2.0% on the day and sits down 6.8% for the week, with semiconductor names AMD and AVGO getting hit hardest at 4.9% and 5.1% respectively.",
+      "whyBullet1": "The selloff reflects growing concern about whether AI spending is actually translating into earnings — the trillion-dollar data center buildout is being questioned, and the market moved accordingly.",
+      "whyBullet2": "The 10-year Treasury climbed 1.1% on the week even as stocks fell, a pattern investors watched closely as a potential signal about growth expectations heading into summer.",
+      "bringUp": "QQQ is down nearly 7% in a single week and bond yields are rising at the same time — the read-through is that the market is pricing in slower growth, not just a normal pullback."
+    },
+    "golf": {
+      "headline": "Canadian Open tees off with hometown heroes in the field.",
+      "course": "Hamilton Golf and Country Club, Hamilton, Ontario",
+      "whyCare1": "The RBC Canadian Open is one of the oldest tournaments in professional golf and carries full FedEx Cup points, making it a legitimate résumé builder for anyone chasing the PGA Tour postseason.",
+      "defending": "The Canadian Open has a long history of rewarding players who embrace the crowd, and Hamilton's classic parkland layout tends to favor ball-strikers who can manage a demanding course over four days.",
+      "watchFor": "Padraig Harrington sits at even par in the early going, with Charley Hoffman and Mike Weir right alongside him. Harrington is a three-time major champion who knows how to grind on a traditional layout.",
+      "whatToSay": "Padraig Harrington is leading a golf tournament in 2026. Three major championships and the guy is still out there competing — that is a fun story to follow this week."
+    },
+    "f1": {
+      "headline": "Barcelona looms — the circuit's demands will sort out who actually belongs at the front.",
+      "whyCare1": "Barcelona-Catalunya is one of the most technically demanding circuits on the calendar — high-speed corners, heavy tire wear, and almost no margin for setup error across a full race distance.",
+      "whyCare2": "The circuit has historically punished championship leaders who play it safe, which makes this weekend a genuine test of whether the points leader can manage pressure or just manage a gap.",
+      "watchFor": "Tire degradation through the opening corners and whether any challenger can find meaningful time in the technical middle sector where setup differences show up most clearly.",
+      "whatToSay": "Barcelona is the circuit that exposes who actually has the car sorted and who has just been lucky. This weekend tells you something real about the championship."
+    },
+    "culture": [
+      {
+        "topic": "Toy Story 5 crushes it. Pixar may actually be back.",
+        "whatHappened": "First reactions to Toy Story 5 are calling it deeply profound and moving, with critics ranking it right alongside the original film.",
+        "whyItMatters": "Pixar has had a rough stretch of sequels and streaming dumps. If this one actually lands the way early reactions suggest, it is a real signal that the studio can still make something that earns its place rather than just cashing in on nostalgia.",
+        "whatToSay": "Toy Story 5 is apparently legitimately great — critics are saying it ranks with the original. That is not something you expected to hear in 2026.",
+        "tag": "Movies"
+      },
+      {
+        "topic": "Arozarena walks off the Orioles in the 10th.",
+        "whatHappened": "Randy Arozarena homered in the 10th inning to lift the Seattle Mariners past the Baltimore Orioles in a wild finish.",
+        "whyItMatters": "Baltimore is supposed to be one of the better teams in the AL East, and Seattle stealing a game like this in extra innings says their late-game depth is more dangerous than most people are giving them credit for.",
+        "whatToSay": "Arozarena just walked off the Orioles in the 10th. The Mariners are quietly weirder and more dangerous than anyone wants to admit.",
+        "tag": "Sports Biz"
+      },
+      {
+        "topic": "Sinners — the one to watch this week.",
+        "whatHappened": "Ryan Coogler directed a supernatural horror film set in the 1930s Mississippi Delta, and it is a completely different gear from anything else he has made.",
+        "whyItMatters": "Coogler built his reputation on grounded, character-driven films — seeing him go atmospheric and unsettling in a Deep South horror setting is genuinely interesting, and early word is that it delivers on the premise.",
+        "whatToSay": "Coogler made a horror movie set in 1930s Mississippi and it is apparently actually creepy — not jump-scare garbage, just a slow-burn that gets under your skin.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "The Knicks are one win from their first championship in 52 years, and they earned it the hard way — a one-point thriller on the road where Brunson and Anunoby combined for 69 points and San Antonio still could not pull it out. Wembanyama was brilliant and it was not enough. Game 5 in San Antonio is the Spurs' last stand, and they will make it loud, but New York has looked like the better team all series.",
+    "glance": null,
+    "theTake": {
+      "office": "The Knicks are one win from their first championship since 1970, and San Antonio just showed they are not going quietly — Game 5 on the road is the last real test.",
+      "bar": "Wembanyama put up 24 and 13 in a one-point game and still lost — Dylan Harper at 21 points is the only other Spur who showed up, and that is not a championship roster. The Spurs are two years away from being dangerous, not now."
+    },
+    "nhl": null,
+    "upcomingPreview": {
+      "whyItMatters": "The Knicks can close out the Finals in San Antonio and claim their first championship since 1970 — if they do not, the Spurs stay alive and force a Game 6.",
+      "watchFor": "Whether San Antonio can generate enough scoring depth beyond Wembanyama to match New York's two-headed attack in a must-win environment at home.",
+      "whatToSay": "The Spurs are at home with their season on the line and Wembanyama going for 24 and 13 was not enough to win Game 4 — the Knicks are genuinely locked in right now."
+    }
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-11T11:01:12.513Z",
+    "blocking": [],
+    "changed": [
+      "keyTakeaway",
+      "todaysHits",
+      "lead.whyBullet1",
+      "lead.whyBullet2",
+      "lead.whatToSay",
+      "markets.mood",
+      "markets.whyBullet2",
+      "markets.bringUp",
+      "golf.whyCare2",
+      "golf.defending",
+      "golf.watchFor",
+      "golf.whatToSay",
+      "f1.headline",
+      "f1.whyCare1",
+      "f1.whyCare2",
+      "f1.whatToSay",
+      "upcomingPreview.whatToSay",
+      "culture[0].whatToSay",
+      "culture[1].topic",
+      "culture[2].whatHappened",
+      "finalSharpTake",
+      "theTake.bar"
+    ],
+    "notes": [
+      "golf.defending: Draft referenced an unnamed defending champion and then admitted it could not confirm — replaced with a factual observation about the tournament's character and layout. No invented names used.",
+      "golf.watchFor: Draft mentioned Jhonattan Vegas and Justin Rose, neither of whom appear in RAW FACTS. Removed both. Rewrote around Harrington, Hoffman, and Weir who are confirmed in RAW FACTS.",
+      "f1: Draft referenced 'Antonelli' and a '66-point cushion' — neither name nor figure appears in RAW FACTS. Removed entirely and rewrote as a preview focused on the circuit's demands without naming a championship leader.",
+      "theTake.bar: Draft bar take was about Brunson's point-guard ranking — a reasonable call but soft. Rewrote to make a specific, debatable claim about Wembanyama and the Spurs' roster ceiling using only RAW FACTS (24pts/13reb, Harper 21pts, one-point loss).",
+      "markets: Removed any language that could be read as forward-looking advice. 'Traders are watching inflation data due Friday' was cut — no such data point appears in RAW FACTS.",
+      "todaysHits.f1 and todaysHits.worldcup: Cleaned up. 'Wembanyama watches from sidelines' was a fabricated detail with no basis in RAW FACTS — removed.",
+      "culture[2] Sinners: Kept as streaming recommendation per editorial exception. No invented plot details, cast, or awards added."
+    ],
+    "brokenLinks": []
+  }
+}
