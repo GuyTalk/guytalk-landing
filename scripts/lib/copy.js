@@ -202,7 +202,7 @@ Context: ${ctx}`,
 Trending: ${trendText || 'none'}
 
 CATEGORY RULES (strictly enforced):
-- "sports": baseball, basketball, NHL, NFL trades/news, tennis (esp. Grand Slams: Wimbledon, US/French/Australian Open) — NOT culture, NOT gaming
+- "sports": ANYTHING big in sports right now — don't limit to a fixed list. Core leagues (NBA, MLB, NHL, NFL), tennis (esp. Grand Slams: Wimbledon, US/French/Australian Open), boxing/UFC marquee fights, the Olympics, college football/basketball playoffs, records broken, major trades. Lead with whatever is actually the biggest sports moment. (Golf and F1 have their own sections.) — NOT culture, NOT gaming
 - "markets": stocks, rates, crypto, economy ONLY
 - "golf": golf tournaments ONLY
 - "f1": Formula 1 ONLY

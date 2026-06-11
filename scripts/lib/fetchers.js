@@ -708,7 +708,9 @@ async function fetchTennis() {
 async function fetchTrending() {
   const items = [];
 
-  const subs = ['nba', 'formula1', 'soccer', 'investing', 'golf', 'baseball', 'movies', 'entertainment'];
+  // Core sports + a catch-all (r/sports) and combat/football so "anything big"
+  // (a marquee fight, a college playoff, a record) surfaces — not just the leagues.
+  const subs = ['sports', 'nba', 'nfl', 'formula1', 'soccer', 'tennis', 'mma', 'investing', 'golf', 'baseball', 'movies', 'entertainment'];
   for (const sub of subs) {
     try {
       const res = await fetch(`https://www.reddit.com/r/${sub}/hot.json?limit=5`, {
