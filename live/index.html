@@ -290,14 +290,14 @@
     border-color: rgba(43,111,255,0.35);
   }
   .lb-name { font-weight: 600; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .lb-name .sub { display: block; font-weight: 400; font-size: 12px; color: var(--text-3); }
+  .lb-name .sub, .lb-name-block .sub { display: block; font-weight: 400; font-size: 12px; color: var(--text-3); }
   .lb-val { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; color: var(--text); text-align: right; }
   .lb-val.neg { color: var(--green); }
   .lb-sub-head { padding: 12px 18px 8px; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); border-top: 1px solid var(--border); background: rgba(0,0,0,0.015); }
 
   /* SCOREBOARD */
-  .league-block { margin-bottom: 26px; }
-  .league-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); margin-bottom: 10px; }
+  .league-block { margin-bottom: 30px; }
+  .league-name { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.01em; color: var(--text); margin: 0 0 13px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
   .sc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
   /* Tennis results card */
   .tns-card { padding: 16px 18px; }
@@ -686,7 +686,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
 
 <nav aria-label="Primary">
   <div class="nav-inner">
-    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span><span class="tm">™</span></a>
+    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span></a>
     <div class="nav-links">
       <a href="/live/" class="nav-link nav-link-live is-active"><span class="nav-live-dot"></span>Live</a>
       <a href="/brief/" class="nav-link">Today's Brief</a>
@@ -866,7 +866,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
 </main>
 
 <footer>
-  <div class="footer-brand">GuyTalk<span class="dot">.</span><span class="tm">™</span></div>
+  <div class="footer-brand">GuyTalk<span class="dot">.</span></div>
   <div class="footer-links">
     <a href="/">Home</a>
     <a href="/live/">Live</a>

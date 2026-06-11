@@ -9,7 +9,7 @@ function buildTickerItems(issue) {
   const m = issue.markets || {};
   const tickers = ['SPY', 'QQQ', 'NVDA', 'TSLA', 'BTC'];
   for (const sym of tickers) {
-    if (m[sym]?.dayChangePct !== undefined) {
+    if (m[sym]?.dayChangePct != null) {
       const pct = m[sym].dayChangePct;
       const cls = pct >= 0 ? 'ticker-up' : 'ticker-down';
       const sign = pct >= 0 ? '+' : '';
@@ -331,7 +331,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <nav>
   <div class="nav-inner">
-    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span><span class="tm">™</span></a>
+    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span></a>
     <a href="/#signup" class="nav-cta">Subscribe Free →</a>
   </div>
 </nav>
@@ -364,7 +364,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </main>
 
 <footer>
-  <div class="footer-brand">GuyTalk<span class="dot">.</span><span class="tm">™</span></div>
+  <div class="footer-brand">GuyTalk<span class="dot">.</span></div>
   <div class="footer-links">
     <a href="/">Home</a>
     <a href="https://instagram.com/guytalkmedia" target="_blank" rel="noopener">Instagram</a>

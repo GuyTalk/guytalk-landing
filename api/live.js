@@ -357,7 +357,7 @@ function f1Positions(comp, teamByDriver, profileByDriver) {
         driver: name,
         team: teamByDriver[name] || teamByDriver[c.athlete?.shortName] || teamByDriver[last] || '',
         flag: c.athlete?.flag?.href || '',
-        profileUrl: profileByDriver[name] || profileByDriver[last] || '',
+        profileUrl: f1DriverProfile(name) || profileByDriver[name] || profileByDriver[last] || '',
         winner: !!c.winner,
       };
     });
@@ -465,7 +465,7 @@ async function fetchF1() {
     name: `${d.Driver?.givenName || ''} ${d.Driver?.familyName || ''}`.trim(),
     team: d.Constructors?.[0]?.name || '',
     points: Number(d.points),
-    profileUrl: d.Driver?.url || '',
+    profileUrl: f1DriverProfile(`${d.Driver?.givenName || ''} ${d.Driver?.familyName || ''}`.trim()) || d.Driver?.url || '',
   }));
   const constructorStandings =
     (con?.MRData?.StandingsTable?.StandingsLists?.[0]?.ConstructorStandings || [])
@@ -598,9 +598,9 @@ async function fetchGolf() {
       pos: c.status?.position?.displayName || (c.order != null ? String(c.order) : ''),
       name: c.athlete?.displayName || '',
       flag: c.athlete?.flag?.href || '',
-      link: athleteLink(c.athlete),
+      link: golfPlayerLink(c),
       score: c.score != null ? String(c.score) : 'E',
-      thru: c.status?.thru != null ? String(c.status.thru) : (c.status?.displayValue || ''),
+      thru: (c.status?.thru != null ? String(c.status.thru) : '') || golfThru(c),
     }));
 
   const leader = leaderboard[0] || null;
@@ -650,6 +650,39 @@ function athleteLink(athlete) {
     || links.find((l) => (l.rel || []).includes('athlete'))
     || links.find((l) => /^https/.test(l.href || ''));
   return pc?.href || '';
+}
+
+const slugify = (s) => String(s || '').toLowerCase().normalize('NFD')
+  .replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+// Official F1.com driver profile — what fans expect from an F1 driver link (not
+// Wikipedia). Slugs are first-last; a few drivers go by a common name.
+const F1_SLUG_OVERRIDE = { 'andrea kimi antonelli': 'kimi-antonelli' };
+function f1DriverProfile(name) {
+  if (!name) return '';
+  const slug = F1_SLUG_OVERRIDE[name.toLowerCase().trim()] || slugify(name);
+  return slug ? `https://www.formula1.com/en/drivers/${slug}` : '';
+}
+
+// ESPN golf scoreboard puts the athlete id on the COMPETITOR (type 'athlete'),
+// not inside athlete.links — so build the player profile from it.
+function golfPlayerLink(c) {
+  const direct = athleteLink(c && c.athlete);
+  if (direct) return direct;
+  const id = c && c.id;
+  if (!id || c.type !== 'athlete') return '';
+  const slug = slugify(c.athlete && c.athlete.displayName);
+  return `https://www.espn.com/golf/player/_/id/${id}${slug ? '/' + slug : ''}`;
+}
+
+// Holes played in the current round, from ESPN's per-round linescores. Returns
+// 'F' for a completed round, '' when play hasn't started.
+function golfThru(c) {
+  let holes = 0;
+  for (const r of (c && c.linescores) || []) {
+    if (Array.isArray(r.linescores) && r.linescores.length) holes = r.linescores.length;
+  }
+  return holes ? (holes >= 18 ? 'F' : String(holes)) : '';
 }
 
 // Tennis (ATP + WTA). Tournaments carry a `major` flag = Grand Slam. Results are

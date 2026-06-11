@@ -688,7 +688,7 @@ function nbaContext(g) {
     // box line in Key stat, the human angle in What to say — no restating the
     // same number twice.
     return [
-      { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}.${f.series ? ` ${seriesClean(f)} in the ${f.series.name}.` : ''}` },
+      { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}.${f.series ? ` ${seriesClean(f)} in the ${seriesLabel(f, g)}.` : ''}` },
       tp && { label: 'Key stat', key: true, text: `${tp.name} led all scorers with ${tp.pts}${tp.reb != null && tp.ast != null ? ` (${tp.reb} reb, ${tp.ast} ast)` : ''}.` },
       { label: 'What to say', say: true, text: tp
         ? `"${tp.name} was the difference — ${w.name} look like the team to beat."`
@@ -703,15 +703,29 @@ function nbaContext(g) {
   const recLine = (homeRec.total || awayRec.total)
     ? `${g.home.name} ${homeRec.total}${homeRec.split ? ` (${homeRec.split} home)` : ''} · ${g.away.name} ${awayRec.total}${awayRec.split ? ` (${awayRec.split} away)` : ''}`
     : '';
+  const st = seriesStakes(f, g);
+  let why, take;
+  if (st && st.canClinch && st.leader) {
+    why = `${st.leader.name} can close out the ${seriesLabel(f, g)} tonight — win and they're champions; ${st.trailer.name} are a loss away from going home.`;
+    take = `${st.leader.name} have controlled this series and they finish it tonight — no need for a Game ${st.gamesPlayed + 2}.`;
+  } else if (st && st.tied) {
+    why = `${seriesLabel(f, g)} dead even at ${st.hi}-${st.hi} — tonight's winner grabs the series lead with everything still to play for.`;
+    take = `A coin-flip series comes down to whoever owns the fourth quarter — give me the home crowd to swing it.`;
+  } else if (st && st.leader) {
+    why = `${st.leader.name} lead the ${seriesLabel(f, g)} ${st.hi}-${st.lo} and can tighten the screws tonight; ${st.trailer.name} have to answer or it's nearly over.`;
+    take = `${st.leader.name} are the better team right now — they don't give a lead like this back.`;
+  } else if (f.series) {
+    why = `${g.headline || 'Tonight'} — ${seriesClean(f)}, and every game swings it now.`;
+  } else {
+    why = `${g.away.name} visit ${g.home.name} with real stakes.`;
+  }
   return [
-    { label: 'Why it matters', text: f.series
-        ? `${g.headline || 'Tonight'} — ${seriesClean(f)}, and every game swings it now.`
-        : `${g.away.name} visit ${g.home.name} with real stakes.` },
+    { label: 'Why it matters', text: why },
     recLine && { label: 'Key stat', key: true, text: `${recLine}.` },
     { label: 'What to say', say: true, text: matchup
         ? `"${f.series ? seriesClean(f) : (g.headline || 'Big one tonight')} — ${matchup} on points per game."`
         : `"${g.home.name}–${g.away.name} should be a good one."` },
-    f.series && { label: 'Hot take', take: true, text: `${seriesClean(f)} — tonight basically is the series; whoever blinks first goes home.` },
+    take && { label: 'Hot take', take: true, text: take },
   ];
 }
 
@@ -723,7 +737,7 @@ function nbaWhatYouMissed(g) {
   const tp = f.topPerformer;
   // Four distinct rows: result, the series state (stated once, here), the standout
   // line, and a forward-looking takeaway — never the same series record twice.
-  const storyline = f.series ? `${f.series.name} — ${seriesClean(f)}` : (g.headline || `${w.name} take down ${l.name}`);
+  const storyline = f.series ? `${seriesLabel(f, g)} — ${seriesClean(f)}` : (g.headline || `${w.name} take down ${l.name}`);
   return WhatYouMissed([
     { k: 'Winner', v: `${w.name} ${w.score}–${l.score}` },
     { k: 'Biggest storyline', v: storyline },
@@ -755,6 +769,32 @@ function seriesTakeaway(f, w) {
     return `${hi}-${lo} in the series, with the momentum swinging.`;
   }
   return `${w.name} take control of the series.`;
+}
+
+// Parse a playoff series into stakes for an UPCOMING/LIVE game: who leads, who
+// trails, whether it's level, and whether tonight is a potential close-out
+// (best-of-seven → a 3-win lead can clinch). Drives the "why it matters" punch.
+function seriesStakes(f, g) {
+  if (!f.series) return null;
+  const nums = (f.series.summary.match(/\d+/g) || []).map(Number);
+  if (nums.length < 2) return null;
+  const hi = Math.max(nums[0], nums[1]), lo = Math.min(nums[0], nums[1]);
+  const tied = hi === lo;
+  const cand = [g.home, g.away];
+  const leader = tied ? null : (
+    cand.find((t) => t.abbr && new RegExp(`\\b${t.abbr}\\b`, 'i').test(f.series.summary))
+    || cand.find((t) => t.name && f.series.summary.toLowerCase().includes(t.name.toLowerCase()))
+    || null);
+  const trailer = leader ? (leader === g.home ? g.away : g.home) : null;
+  return { hi, lo, tied, leader, trailer, canClinch: hi === 3, gamesPlayed: hi + lo };
+}
+
+// A clean series name. ESPN's playoff-series label can be generic ("Playoff
+// Series"), so prefer the game headline ("Stanley Cup Final - Game 5" →
+// "Stanley Cup Final"), which is reliably specific.
+function seriesLabel(f, g) {
+  const h = (g.headline || '').replace(/\s*[-–]\s*Game\s*\d+\b.*$/i, '').trim();
+  return h || (f.series && f.series.name) || 'the series';
 }
 
 /* ---- MLB game context (from g.facts; data comes free off the scoreboard) ---- */
@@ -829,7 +869,7 @@ function summaryReadContext(g) {
     const l = g.home.winner ? g.away : g.home;
     const wl = leaderBy(w.abbr);
     return [
-      { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}.${f.series ? ` ${seriesClean(f)} in the ${f.series.name}.` : ''}` },
+      { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}.${f.series ? ` ${seriesClean(f)} in the ${seriesLabel(f, g)}.` : ''}` },
       wl && { label: 'Key stat', key: true, text: `${wl.name} led the way${wl.cat ? ` (${wl.cat.toLowerCase()})` : ''}: ${wl.line}.` },
       { label: 'What to say', say: true, text: wl
         ? `"${wl.name} was the difference — ${w.name} look like the team to beat."`
@@ -844,15 +884,34 @@ function summaryReadContext(g) {
     : '';
   const hl = leaderBy(g.home.abbr), al = leaderBy(g.away.abbr);
   const matchup = (hl && al) ? `${al.name} (${al.line}) vs ${hl.name} (${hl.line})` : '';
+  const st = seriesStakes(f, g);
+  const hockey = f.league === 'nhl';
+  let why, take;
+  if (st && st.canClinch && st.leader) {
+    why = `${st.leader.name} can close out the ${seriesLabel(f, g)} tonight — win and ${hockey ? 'they lift the Cup' : "it's over"}; ${st.trailer.name} are a loss from elimination.`;
+    take = hockey
+      ? `${st.leader.name} have the goaltending edge — they slam the door tonight rather than give ${st.trailer.name} life.`
+      : `${st.leader.name} have controlled this series and they close it out tonight.`;
+  } else if (st && st.tied) {
+    why = `${seriesLabel(f, g)} knotted at ${st.hi}-${st.hi} — tonight's winner ${hockey ? 'skates off with' : 'grabs'} control of the series.`;
+    take = hockey
+      ? `A series this even comes down to whichever goalie steals a game — and someone's about to.`
+      : `Dead even, so tonight is effectively the swing game of the series.`;
+  } else if (st && st.leader) {
+    why = `${st.leader.name} lead the ${seriesLabel(f, g)} ${st.hi}-${st.lo}; ${st.trailer.name} need an answer tonight or it slips away.`;
+    take = `${st.leader.name} are the better team and they're playing like it.`;
+  } else if (f.series) {
+    why = `${g.headline || 'Tonight'} — ${seriesClean(f)}, and every game swings it now.`;
+  } else {
+    why = `${g.away.name} visit ${g.home.name} with real stakes.`;
+  }
   return [
-    { label: 'Why it matters', text: f.series
-        ? `${g.headline || 'Tonight'} — ${seriesClean(f)}, and every game swings it now.`
-        : `${g.away.name} visit ${g.home.name} with real stakes.` },
+    { label: 'Why it matters', text: why },
     recLine && { label: 'Key stat', key: true, text: `${recLine}.` },
     { label: 'What to say', say: true, text: matchup
         ? `"Keep an eye on ${matchup} — that's the matchup that decides it."`
         : `"${g.home.name}–${g.away.name} should be a good one."` },
-    f.series && { label: 'Hot take', take: true, text: `${seriesClean(f)} — tonight basically is the series; whoever blinks first goes home.` },
+    take && { label: 'Hot take', take: true, text: take },
   ];
 }
 
@@ -862,7 +921,7 @@ function summaryWhatYouMissed(g) {
   const w = g.home.winner ? g.home : g.away;
   const l = g.home.winner ? g.away : g.home;
   const wl = (f.leaders || []).find((x) => x.abbr === w.abbr);
-  const storyline = f.series ? `${f.series.name} — ${seriesClean(f)}` : (g.headline || `${w.name} take down ${l.name}`);
+  const storyline = f.series ? `${seriesLabel(f, g)} — ${seriesClean(f)}` : (g.headline || `${w.name} take down ${l.name}`);
   return WhatYouMissed([
     { k: 'Winner', v: `${w.name} ${w.score}–${l.score}` },
     { k: 'Biggest storyline', v: storyline },
@@ -1173,26 +1232,26 @@ function FeaturedGolfCard(g) {
     const el = $('scoreboardWrap');
     if (!real || !real.length) { el.innerHTML = emptyBox('No games on the board right now.'); return; }
 
-    // Marquee: spotlight the single biggest game (live > upcoming > final, then importance).
+    // The single biggest game across every league (live > upcoming > final, then importance).
     const all = real.flatMap((lg) => lg.games);
     const rank = { in: 0, pre: 1, post: 2 };
     const big = all.filter((g) => g.isBig)
       .sort((a, b) => (rank[a.state] - rank[b.state]) || (b.importance - a.importance))[0];
-    const marquee = big ? Marquee(big) : '';
 
-    // GuyTalk Read under the marquee for the overall biggest game...
-    const bigRead = big ? gameRead(big, 'marquee-read') : '';
-
-    // ...and for each league's top game in its own block (skip the marquee game
-    // so it isn't shown twice). Only renders where the server attached facts.
-    el.innerHTML = marquee + bigRead + real.map((lg) => {
-      const top = lg.games[0];
-      const read = (top && top !== big) ? gameRead(top, 'game-read') : '';
+    // Each sport gets one clear, prominent heading. The hero game's marquee +
+    // Read live INSIDE their league's block (no floating card, no duplication),
+    // and the hero game isn't repeated as a small card below — keeps it condensed.
+    el.innerHTML = real.map((lg) => {
+      const isHero = big && lg.games.includes(big);
+      const readGame = isHero ? big : lg.games[0];
+      const hero = isHero ? Marquee(big) : '';
+      const read = (readGame && readGame.facts) ? gameRead(readGame, isHero ? 'marquee-read' : 'game-read') : '';
+      const cards = lg.games.filter((gm) => !(isHero && gm === big)).map(ScoreboardCard).join('');
       return `
       <div class="league-block">
         <div class="league-name">${esc(lg.label)}</div>
-        ${read}
-        <div class="grid grid-scores">${lg.games.map(ScoreboardCard).join('')}</div>
+        ${hero}${read}
+        ${cards ? `<div class="grid grid-scores">${cards}</div>` : ''}
       </div>`;
     }).join('');
   }
