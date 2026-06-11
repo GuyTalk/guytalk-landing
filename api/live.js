@@ -160,6 +160,57 @@ function nbaTopPerformer(summary) {
   } catch (_) { return null; }
 }
 
+// Best highlight clip from a game summary — prefer a recap/finish, else the first
+// clip. Returns the ESPN video-page link + thumbnail (+ direct mp4 for later use).
+function pickHighlight(summary) {
+  const vids = (summary && summary.videos) || [];
+  if (!vids.length) return null;
+  const v = vids.find((x) => /recap|highlight|final|stun|classic|clinch|win|beat|comeback|buzzer|overtime|walk-?off/i.test(x.headline || '')) || vids[0];
+  const links = v.links || {};
+  const src = links.source || {};
+  const mp4 = (src.HD && src.HD.href) || (typeof src.href === 'string' ? src.href : '') || (src.full && src.full.href) || '';
+  const thumb = v.thumbnail || (v.posterImages && (v.posterImages.default || {}).href) || '';
+  const web = (links.web && links.web.href) || (links.mobile && links.mobile.href) || '';
+  if (!thumb && !web) return null;
+  return { title: v.headline || 'Highlights', web, mp4, thumb, duration: v.duration || null };
+}
+
+// For an UPCOMING/LIVE series game, the previous completed game: score, the
+// standout performer, and a highlight video. This is the "what just happened"
+// that makes a Game 5 feel like a Game 5. One extra summary fetch.
+async function lastSeriesGame(summary, sport, league) {
+  try {
+    const groups = (summary && summary.seasonseries) || [];
+    const play = groups.find((g) => g.type === 'playoff') || groups.find((g) => /playoff/i.test(g.seriesLabel || ''));
+    if (!play) return null;
+    const events = play.events || [];
+    let idx = -1;
+    events.forEach((e, i) => { if ((e.statusType || {}).completed) idx = i; });
+    if (idx < 0) return null;
+    const comps = events[idx].competitors || [];
+    const win = comps.find((c) => c.winner) || comps[0];
+    const lose = comps.find((c) => c !== win) || comps[1];
+    if (!win || !lose) return null;
+    const ab = (c) => ((c.team || {}).abbreviation || '').toUpperCase();
+    const gd = await json(`${ESPN}/${sport}/${league}/summary?event=${events[idx].id}`);
+    let performer = null;
+    if (league === 'nba') {
+      const p = nbaTopPerformer(gd);
+      if (p) performer = { name: p.name, line: `${p.pts} pts${p.reb != null ? `, ${p.reb} reb` : ''}${p.ast != null ? `, ${p.ast} ast` : ''}` };
+    } else {
+      const L = summaryLeaders(gd, league === 'nhl' ? ['points', 'goals', 'assists'] : ['passingYards', 'rushingYards', 'receivingYards'])[0];
+      if (L) performer = { name: L.name, line: `${L.line}${L.cat ? ` ${L.cat.toLowerCase()}` : ''}` };
+    }
+    return {
+      gameLabel: `Game ${idx + 1}`,
+      winner: { abbr: ab(win), score: String(win.score) },
+      loser: { abbr: ab(lose), score: String(lose.score) },
+      performer,
+      video: pickHighlight(gd),
+    };
+  } catch (_) { return null; }
+}
+
 // ESPN's summary returns BOTH a "Regular Season Series" (season head-to-head,
 // e.g. two October meetings → "Series tied 1-1") and the actual "Playoff Series"
 // (e.g. "NY leads series 3-1") in the same `series` array — sometimes both with
@@ -201,7 +252,10 @@ async function nbaGameFacts(eventId) {
       return L ? { abbr, name: L.athlete?.displayName || '', val: L.displayValue } : null;
     }).filter(Boolean);
     const topPerformer = (state === 'in' || state === 'post') ? nbaTopPerformer(d) : null;
-    return { league: 'nba', state, series, teams, topScorers, topPerformer };
+    const facts = { league: 'nba', state, series, teams, topScorers, topPerformer };
+    // Upcoming/live playoff game: enrich with the previous game (score, hero, video).
+    if (series && state !== 'post') facts.lastGame = await lastSeriesGame(d, 'basketball', 'nba');
+    return facts;
   } catch (_) { return null; }
 }
 
@@ -250,7 +304,9 @@ async function summaryGameFacts(league, sport, eventId, leaderPriority) {
         split: c.homeAway === 'home' ? g('home') : g('road'),
       };
     });
-    return { league, state, series, teams, leaders: summaryLeaders(d, leaderPriority) };
+    const facts = { league, state, series, teams, leaders: summaryLeaders(d, leaderPriority) };
+    if (series && state !== 'post') facts.lastGame = await lastSeriesGame(d, sport, league);
+    return facts;
   } catch (_) { return null; }
 }
 

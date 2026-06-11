@@ -719,9 +719,12 @@ function nbaContext(g) {
   } else {
     why = `${g.away.name} visit ${g.home.name} with real stakes.`;
   }
+  const lgp = f.lastGame && f.lastGame.performer;
   return [
     { label: 'Why it matters', text: why },
-    recLine && { label: 'Key stat', key: true, text: `${recLine}.` },
+    { label: 'Key stat', key: true, text: lgp
+        ? `${lgp.name} led all scorers with ${lgp.line} in ${f.lastGame.gameLabel}.`
+        : (recLine ? `${recLine}.` : '') },
     { label: 'What to say', say: true, text: matchup
         ? `"${f.series ? seriesClean(f) : (g.headline || 'Big one tonight')} — ${matchup} on points per game."`
         : `"${g.home.name}–${g.away.name} should be a good one."` },
@@ -905,9 +908,12 @@ function summaryReadContext(g) {
   } else {
     why = `${g.away.name} visit ${g.home.name} with real stakes.`;
   }
+  const lgp = f.lastGame && f.lastGame.performer;
   return [
     { label: 'Why it matters', text: why },
-    recLine && { label: 'Key stat', key: true, text: `${recLine}.` },
+    { label: 'Key stat', key: true, text: lgp
+        ? `${lgp.name} led the way with ${lgp.line} in ${f.lastGame.gameLabel}.`
+        : (recLine ? `${recLine}.` : '') },
     { label: 'What to say', say: true, text: matchup
         ? `"Keep an eye on ${matchup} — that's the matchup that decides it."`
         : `"${g.home.name}–${g.away.name} should be a good one."` },
@@ -930,6 +936,26 @@ function summaryWhatYouMissed(g) {
   ]);
 }
 
+/* LastGameCard — for an upcoming/live playoff game, a visual recap of the
+ * previous game: score, the standout line, and a highlight clip you can watch. */
+function LastGameCard(lg) {
+  if (!lg || !lg.winner || !lg.loser) return '';
+  const score = `<span class="lg-win">${esc(lg.winner.abbr)} ${esc(lg.winner.score)}</span><span class="lg-sep">·</span>${esc(lg.loser.abbr)} ${esc(lg.loser.score)}`;
+  const perf = lg.performer ? `<div class="lg-perf"><span class="lg-perf-name">${esc(lg.performer.name)}</span> ${esc(lg.performer.line)}</div>` : '';
+  const v = lg.video;
+  const video = (v && (v.thumb || v.web))
+    ? `<a class="lg-video" href="${esc(v.web || '#')}" target="_blank" rel="noopener" aria-label="Watch highlights">
+        ${v.thumb ? `<img src="${esc(v.thumb)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}
+        <span class="lg-play" aria-hidden="true">▶</span>
+        ${v.title ? `<span class="lg-vtitle">${esc(v.title)}</span>` : ''}
+      </a>`
+    : '';
+  return `<div class="lastgame-card">
+    <div class="lg-head"><span class="lg-kicker">Last game${lg.gameLabel ? ` · ${esc(lg.gameLabel)}` : ''}</span><span class="lg-score">${score}</span></div>
+    ${video}${perf}
+  </div>`;
+}
+
 /* Dispatch the right builder for a game that carries server-computed facts. */
 function gameRead(g, cls) {
   if (!g || !g.facts) return '';
@@ -939,7 +965,7 @@ function gameRead(g, cls) {
   else if (lg === 'nhl' || lg === 'nfl') { rows = summaryReadContext(g); wym = summaryWhatYouMissed(g); }
   else { rows = nbaContext(g); wym = nbaWhatYouMissed(g); }
   if (!rows) return '';
-  return `<div class="stack ${cls || 'marquee-read'}">${ContextCard(rows, g.state === 'in', g.league)}${wym}</div>`;
+  return `<div class="stack ${cls || 'marquee-read'}">${ContextCard(rows, g.state === 'in', g.league)}${wym}${LastGameCard(g.facts.lastGame)}</div>`;
 }
 
 function golfWhatYouMissed(g) {
