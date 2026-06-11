@@ -1058,6 +1058,36 @@ function FeaturedGolfCard(g) {
     el.innerHTML = `<div class="grid-golf">${board}<div class="stack">${ContextCard(golfRows, golf.state === 'in', 'Golf')}${FeaturedGolfCard(golf)}${golfWhatYouMissed(golf)}</div></div>`;
   }
 
+  function renderTennis(real) {
+    const tennis = real || (IS_DEV ? MOCK.tennis : null);
+    setBadge('badge-tennis', real ? 'live' : (tennis ? 'mock' : null));
+    const el = $('tennisWrap');
+    if (!el) return;
+    if (!tennis || !tennis.tours || !tennis.tours.length) { el.innerHTML = emptyBox('No tennis events right now.'); return; }
+    const cards = tennis.tours.map((t) => {
+      const slam = t.isMajor ? '<span class="tns-slam">Grand Slam</span>' : '';
+      const rows = (t.results || []).slice().reverse().map((r) => `
+        <div class="tns-row">
+          <span class="tns-match">
+            ${r.winnerFlag ? `<img class="tns-flag" src="${esc(r.winnerFlag)}" alt="" loading="lazy">` : ''}
+            <span class="tns-w">${esc(r.winner)}</span>
+            <span class="tns-def">def.</span>
+            ${r.loserFlag ? `<img class="tns-flag" src="${esc(r.loserFlag)}" alt="" loading="lazy">` : ''}
+            <span class="tns-l">${esc(r.loser)}</span>
+          </span>
+          <span class="tns-score">${esc(r.score || '')}</span>
+        </div>`).join('') || '<div class="tns-none">No completed matches yet.</div>';
+      return `<div class="tns-card sc-card">
+        <div class="tns-head">
+          <div class="tns-title"><span class="tns-tour">${esc(t.tour)}</span> ${esc(t.name)} ${slam}</div>
+          <span class="tns-status">${esc(t.statusText || '')}</span>
+        </div>
+        ${rows}
+      </div>`;
+    }).join('');
+    el.innerHTML = `<div class="grid-two">${cards}</div>`;
+  }
+
   function renderScoreboard(real) {
     setBadge('badge-scores', real ? 'live' : null);
     const el = $('scoreboardWrap');
@@ -1137,6 +1167,7 @@ function FeaturedGolfCard(g) {
     $('liveNow').innerHTML = sk(4);
     $('f1Wrap').innerHTML = sk(2);
     $('golfWrap').innerHTML = sk(1);
+    if ($('tennisWrap')) $('tennisWrap').innerHTML = sk(2);
     $('scoreboardWrap').innerHTML = sk(2);
     $('marketsWrap').innerHTML = sk(8);
     // Rundown band stays hidden until real AI synthesis arrives (no fake placeholder).
@@ -1160,6 +1191,7 @@ function FeaturedGolfCard(g) {
     renderLiveNow(p.liveNow);
     renderF1(p.f1);
     renderGolf(p.golf);
+    renderTennis(p.tennis);
     renderScoreboard(p.scoreboard);
     renderMarkets(p.markets);
     // Sections 6 & 7 are handled by refreshTalk() / renderTalk() (separate feed).
@@ -1173,6 +1205,7 @@ function FeaturedGolfCard(g) {
     setMeta('meta-live',     p.liveNow    ? 'ESPN' : '');
     setMeta('meta-f1',       p.f1         ? 'ESPN · Jolpica' : '');
     setMeta('meta-golf',     p.golf       ? 'ESPN' : '');
+    setMeta('meta-tennis',   p.tennis     ? 'ESPN' : '');
     setMeta('meta-scores',   p.scoreboard ? 'ESPN' : '');
     setMeta('meta-markets',  p.markets    ? 'Finnhub' : '');
     // meta-trending / meta-talking are owned by renderTalk() (separate feed).
@@ -1183,6 +1216,9 @@ function FeaturedGolfCard(g) {
     if (liveN) setText('desc-live', `${liveN} event${liveN > 1 ? 's' : ''} in focus right now, ranked by what matters.`);
     if (p.f1) setText('desc-f1', `${p.f1.event} · ${p.f1.sessionLabel}`);
     if (p.golf) setText('desc-golf', `${shortEvent(p.golf.event)} · ${p.golf.statusText}`);
+    if (p.tennis && p.tennis.tours && p.tennis.tours.length) {
+      setText('desc-tennis', p.tennis.tours.map((t) => `${t.tour} ${t.name}`).join(' · ') + (p.tennis.anyMajor ? ' · GRAND SLAM' : ''));
+    }
     if (p.scoreboard) {
       const liveG = p.scoreboard.reduce((n, lg) => n + lg.games.filter((g) => g.state === 'in').length, 0);
       setText('desc-scores', liveG

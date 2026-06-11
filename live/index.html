@@ -272,6 +272,22 @@
   .league-block { margin-bottom: 26px; }
   .league-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); margin-bottom: 10px; }
   .sc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  /* Tennis results card */
+  .tns-card { padding: 16px 18px; }
+  .tns-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .tns-title { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 15px; color: var(--text); }
+  .tns-tour { color: var(--accent); }
+  .tns-slam { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); background: var(--amber-muted); padding: 2px 7px; border-radius: 5px; margin-left: 4px; vertical-align: middle; }
+  .tns-status { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); }
+  .tns-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 0; font-size: 13.5px; }
+  .tns-row + .tns-row { border-top: 1px solid var(--border); }
+  .tns-match { display: flex; align-items: center; gap: 6px; min-width: 0; flex-wrap: wrap; }
+  .tns-flag { width: 18px; height: 13px; object-fit: cover; border-radius: 2px; }
+  .tns-w { font-weight: 700; color: var(--text); }
+  .tns-def { color: var(--text-3); font-size: 11.5px; }
+  .tns-l { color: var(--text-2); }
+  .tns-score { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 12.5px; color: var(--text-2); white-space: nowrap; }
+  .tns-none { font-size: 13px; color: var(--text-3); padding: 6px 0; }
   .sc-tag {
     font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 9.5px;
     letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent);
@@ -653,6 +669,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
   <div class="scroll-dot active" data-target="live-now" title="Live Now"><span class="dot-label">Live Now</span></div>
   <div class="scroll-dot" data-target="f1" title="F1"><span class="dot-label">F1</span></div>
   <div class="scroll-dot" data-target="golf" title="Golf"><span class="dot-label">Golf</span></div>
+  <div class="scroll-dot" data-target="tennis" title="Tennis"><span class="dot-label">Tennis</span></div>
   <div class="scroll-dot" data-target="scoreboard" title="Scores"><span class="dot-label">Scores</span></div>
   <div class="scroll-dot" data-target="markets" title="Markets"><span class="dot-label">Markets</span></div>
   <div class="scroll-dot" data-target="trending" title="Trending"><span class="dot-label">Trending</span></div>
@@ -719,11 +736,25 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <div id="golfWrap"></div>
   </section>
 
-  <!-- SECTION 4 — SPORTS SCOREBOARD -->
-  <section class="live-section" id="scoreboard">
+  <!-- TENNIS — ATP + WTA, Grand Slam aware -->
+  <section class="live-section" id="tennis">
     <div class="section-head">
       <div class="section-head-top">
         <span class="section-idx">04</span>
+        <h2 class="section-h">Tennis</h2>
+        <span id="badge-tennis"></span>
+        <span class="section-meta" id="meta-tennis"></span>
+      </div>
+      <p class="section-desc" id="desc-tennis">ATP &amp; WTA — the tours, the majors, and who's winning.</p>
+    </div>
+    <div id="tennisWrap"></div>
+  </section>
+
+  <!-- SECTION 5 — SPORTS SCOREBOARD -->
+  <section class="live-section" id="scoreboard">
+    <div class="section-head">
+      <div class="section-head-top">
+        <span class="section-idx">05</span>
         <h2 class="section-h">Scoreboard</h2>
         <span id="badge-scores"></span>
         <span class="section-meta" id="meta-scores"></span>
@@ -737,7 +768,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
   <section class="live-section" id="markets">
     <div class="section-head">
       <div class="section-head-top">
-        <span class="section-idx">05</span>
+        <span class="section-idx">06</span>
         <h2 class="section-h">Markets</h2>
         <span id="badge-markets"></span>
         <span class="section-meta" id="meta-markets"></span>
@@ -756,7 +787,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
   <section class="live-section" id="trending">
     <div class="section-head">
       <div class="section-head-top">
-        <span class="section-idx">06</span>
+        <span class="section-idx">07</span>
         <h2 class="section-h">Trending Stories</h2>
         <span id="badge-trending"></span>
         <span class="section-meta" id="meta-trending"></span>
@@ -770,7 +801,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
   <section class="live-section" id="talking">
     <div class="section-head">
       <div class="section-head-top">
-        <span class="section-idx">07</span>
+        <span class="section-idx">08</span>
         <h2 class="section-h">What Everyone's Talking About</h2>
         <span id="badge-talking"></span>
         <span class="section-meta" id="meta-talking"></span>

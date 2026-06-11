@@ -603,6 +603,56 @@ async function fetchGolf() {
   };
 }
 
+/* --------------------------------------------------------------------- Tennis */
+
+// Tennis (ATP + WTA). Tournaments carry a `major` flag = Grand Slam. Results are
+// gender-matched to the tour (combined events expose both draws). Real data only.
+async function fetchTennis() {
+  const tours = [['atp', 'ATP'], ['wta', 'WTA']];
+  const out = [];
+  for (const [slug, label] of tours) {
+    const data = await json(`${ESPN}/tennis/${slug}/scoreboard`);
+    const events = data?.events || [];
+    if (!events.length) continue;
+    const ev = events.find((e) => e.major) || events[0];
+    const wantGender = label === 'WTA' ? /women/i : /\bmen/i;
+    const groupings = ev.groupings || [];
+    const singles = groupings.find((g) => {
+      const n = g.grouping?.displayName || g.grouping?.name || '';
+      return /singles/i.test(n) && wantGender.test(n);
+    }) || groupings.find((g) => /singles/i.test(g.grouping?.displayName || g.grouping?.name || ''));
+
+    const results = [];
+    for (const c of (singles?.competitions || [])) {
+      if (c.status?.type?.state !== 'post') continue;
+      const comp = c.competitors || [];
+      const w = comp.find((x) => x.winner), l = comp.find((x) => !x.winner);
+      if (!w || !l) continue;
+      const score = (w.linescores || [])
+        .map((ls, i) => `${ls.value}-${l.linescores?.[i]?.value ?? ''}`)
+        .filter((s) => s !== '-').join(' ');
+      results.push({
+        winner: w.athlete?.displayName || w.athlete?.shortName || '',
+        winnerFlag: w.athlete?.flag?.href || '',
+        loser: l.athlete?.displayName || l.athlete?.shortName || '',
+        loserFlag: l.athlete?.flag?.href || '',
+        score,
+      });
+    }
+
+    out.push({
+      tour: label,
+      name: ev.shortName || ev.name || `${label} Tour`,
+      isMajor: !!ev.major,
+      statusText: ev.status?.type?.description || ev.status?.type?.shortDetail || '',
+      eventLink: espnLink(ev.links),
+      results: results.slice(-5),
+    });
+  }
+  if (!out.length) return null;
+  return { anyMajor: out.some((t) => t.isMajor), tours: out };
+}
+
 /* -------------------------------------------------------------------- Markets */
 
 // 10-Year Treasury YIELD via Yahoo Finance (^TNX) — keyless. Returns the actual
@@ -735,8 +785,8 @@ module.exports = async function handler(req, res) {
   const finnhubKey = process.env.FINNHUB_API_KEY;
 
   try {
-    const [scoreboard, f1, golf, markets] = await Promise.all([
-      fetchScoreboards(), fetchF1(), fetchGolf(), fetchMarkets(finnhubKey),
+    const [scoreboard, f1, golf, tennis, markets] = await Promise.all([
+      fetchScoreboards(), fetchF1(), fetchGolf(), fetchTennis(), fetchMarkets(finnhubKey),
     ]);
 
     const liveNow = deriveLiveNow({ scoreboard, f1, golf });
@@ -749,12 +799,13 @@ module.exports = async function handler(req, res) {
         liveNow:    liveNow    ? 'espn'    : null,
         f1:         f1         ? 'espn+jolpica' : null,
         golf:       golf       ? 'espn'    : null,
+        tennis:     tennis     ? 'espn'    : null,
         scoreboard: scoreboard ? 'espn'    : null,
         markets:    markets    ? 'finnhub' : null,
         trending:     'editorial',   // no live source yet
         talkingAbout: 'editorial',   // no live source yet
       },
-      liveNow, f1, golf, scoreboard, markets,
+      liveNow, f1, golf, tennis, scoreboard, markets,
       trending: null,
       talkingAbout: null,
     });
