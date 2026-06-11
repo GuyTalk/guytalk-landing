@@ -160,6 +160,19 @@ function nbaTopPerformer(summary) {
   } catch (_) { return null; }
 }
 
+// ESPN's summary returns BOTH a "Regular Season Series" (season head-to-head,
+// e.g. two October meetings → "Series tied 1-1") and the actual "Playoff Series"
+// (e.g. "NY leads series 3-1") in the same `series` array — sometimes both with
+// description "NBA Finals". We only ever want the postseason one; the regular-
+// season head-to-head is meaningless mid-playoffs and was showing a stale record.
+function pickPlayoffSeries(hc) {
+  const ser = (hc && hc.series) || [];
+  const s = ser.find((x) => x.type === 'playoff' || /playoff/i.test(x.title || ''));
+  if (!s || !s.summary) return null;
+  const name = (s.description && !/regular\s*season/i.test(s.description)) ? s.description : (s.title || 'The series');
+  return { name, summary: s.summary };
+}
+
 // Verified facts for one NBA game from the ESPN summary endpoint:
 // series state, team records (with the split that matters for this venue),
 // scoring leaders (season avg pre-game, game leaders once it tips), and the
@@ -170,8 +183,7 @@ async function nbaGameFacts(eventId) {
     const hc = d?.header?.competitions?.[0];
     if (!hc) return null;
     const state = hc.status?.type?.state;
-    const s0 = (hc.series || [])[0] || null;
-    const series = s0 && s0.summary ? { name: s0.description || 'The series', summary: s0.summary } : null;
+    const series = pickPlayoffSeries(hc);
     const teams = (hc.competitors || []).map((c) => {
       const recs = c.record || [];
       const g = (t) => (recs.find((r) => r.type === t) || {}).summary || '';
@@ -224,13 +236,10 @@ async function summaryGameFacts(league, sport, eventId, leaderPriority) {
     const hc = d?.header?.competitions?.[0];
     if (!hc) return null;
     const state = hc.status?.type?.state;
-    // ESPN returns a head-to-head "Regular Season Series" for in-season games;
-    // that's not the playoff stakes we mean by a series, so only keep post-season
-    // ones (e.g. "Stanley Cup Final", "First Round").
-    const s0 = (hc.series || [])[0] || null;
-    const series = (s0 && s0.summary && !/regular\s*season/i.test(s0.description || ''))
-      ? { name: s0.description || 'The series', summary: s0.summary }
-      : null;
+    // ESPN returns a head-to-head "Regular Season Series" alongside the playoff
+    // series; that's not the playoff stakes we mean, so keep only the post-season
+    // one (e.g. "Stanley Cup Final", "First Round").
+    const series = pickPlayoffSeries(hc);
     const teams = (hc.competitors || []).map((c) => {
       const recs = c.record || [];
       const g = (t) => (recs.find((r) => r.type === t) || {}).summary || '';
@@ -289,9 +298,19 @@ async function fetchScoreboards() {
       const data = await json(`${ESPN}/${lg.sport}/${lg.league}/scoreboard`);
       const games = (data?.events || []).map((e) => parseGame(e, lg)).filter(Boolean);
       const order = { in: 0, post: 1, pre: 2 };
-      games.sort((a, b) =>
-        (order[a.state] ?? 3) - (order[b.state] ?? 3) || b.importance - a.importance
-      );
+      games.sort((a, b) => {
+        const byState = (order[a.state] ?? 3) - (order[b.state] ?? 3);
+        if (byState) return byState;
+        const byImp = b.importance - a.importance;
+        if (byImp) return byImp;
+        // Same state + importance (e.g. several completed Finals games in one
+        // payload): break by time so we feature the MOST RECENT result — never a
+        // stale game whose series state has since changed (e.g. "tied 1-1" when
+        // the series is actually 3-1). Upcoming games tie-break to the soonest.
+        const ta = a.startDate ? +new Date(a.startDate) : 0;
+        const tb = b.startDate ? +new Date(b.startDate) : 0;
+        return a.state === 'pre' ? ta - tb : tb - ta;
+      });
       return { key: lg.key, label: lg.label, games: games.slice(0, 8) };
     })
   );

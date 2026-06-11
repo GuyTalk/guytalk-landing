@@ -679,20 +679,21 @@ function nbaContext(g) {
   if (!f) return null;
   const homeRec = (f.teams || []).find((t) => t.homeAway === 'home') || {};
   const awayRec = (f.teams || []).find((t) => t.homeAway === 'away') || {};
-  const seriesLow = f.series ? f.series.summary.replace(/^Series\s+/i, '').toLowerCase() : ''; // "tied 1-1"
 
   if (f.state === 'post') {
     const w = g.home.winner ? g.home : g.away;
     const l = g.home.winner ? g.away : g.home;
     const tp = f.topPerformer;
-    const line = tp ? `${tp.pts}${tp.reb != null ? `/${tp.reb}` : ''}${tp.ast != null ? `/${tp.ast}` : ''}` : '';
+    // Each line earns its place: the score + series go in Why it matters, the
+    // box line in Key stat, the human angle in What to say — no restating the
+    // same number twice.
     return [
-      { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}${f.series ? ` — ${f.series.name} now ${seriesLow}` : ''}.` },
+      { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}.${f.series ? ` ${seriesClean(f)} in the ${f.series.name}.` : ''}` },
       tp && { label: 'Key stat', key: true, text: `${tp.name} led all scorers with ${tp.pts}${tp.reb != null && tp.ast != null ? ` (${tp.reb} reb, ${tp.ast} ast)` : ''}.` },
       { label: 'What to say', say: true, text: tp
-        ? `"${tp.name} went for ${line} and ${w.name} took it ${w.score}-${l.score}."`
-        : `"${w.name} got it done, ${w.score}-${l.score}."` },
-      { label: 'Hot take', take: true, text: `${w.name} are the better team here — ${f.series ? 'this series is theirs to lose' : 'and it showed'}.` },
+        ? `"${tp.name} was the difference — ${w.name} look like the team to beat."`
+        : `"${w.name} took care of business and look the part."` },
+      { label: 'Hot take', take: true, text: `${w.name} are the better team here${f.series ? ' — this series is theirs to lose' : ''}.` },
     ];
   }
 
@@ -704,13 +705,13 @@ function nbaContext(g) {
     : '';
   return [
     { label: 'Why it matters', text: f.series
-        ? `${g.headline || 'Tonight'}: the ${f.series.name} is ${seriesLow} — every game swings it now.`
+        ? `${g.headline || 'Tonight'} — ${seriesClean(f)}, and every game swings it now.`
         : `${g.away.name} visit ${g.home.name} with real stakes.` },
     recLine && { label: 'Key stat', key: true, text: `${recLine}.` },
     { label: 'What to say', say: true, text: matchup
-        ? `"${f.series ? `${f.series.name} ${seriesLow}` : (g.headline || 'Big one tonight')} — ${matchup} on points per game."`
+        ? `"${f.series ? seriesClean(f) : (g.headline || 'Big one tonight')} — ${matchup} on points per game."`
         : `"${g.home.name}–${g.away.name} should be a good one."` },
-    f.series && { label: 'Hot take', take: true, text: `Series ${seriesLow} means tonight basically is the series — whoever blinks first goes home.` },
+    f.series && { label: 'Hot take', take: true, text: `${seriesClean(f)} — tonight basically is the series; whoever blinks first goes home.` },
   ];
 }
 
@@ -720,14 +721,41 @@ function nbaWhatYouMissed(g) {
   const w = g.home.winner ? g.home : g.away;
   const l = g.home.winner ? g.away : g.home;
   const tp = f.topPerformer;
+  // Four distinct rows: result, the series state (stated once, here), the standout
+  // line, and a forward-looking takeaway — never the same series record twice.
+  const storyline = f.series ? `${f.series.name} — ${seriesClean(f)}` : (g.headline || `${w.name} take down ${l.name}`);
   return WhatYouMissed([
     { k: 'Winner', v: `${w.name} ${w.score}–${l.score}` },
-    { k: 'Biggest storyline', v: f.series ? `${f.series.name}: ${f.series.summary}` : (g.headline || '') },
+    { k: 'Biggest storyline', v: storyline },
     { k: 'Best performance', v: tp ? `${tp.name} — ${tp.pts} pts${tp.reb != null ? `, ${tp.reb} reb` : ''}${tp.ast != null ? `, ${tp.ast} ast` : ''}` : '' },
-    { k: 'Key takeaway', v: f.series ? `${f.series.name} now ${seriesLowOf(f)}` : `${w.name} get the W` },
+    { k: 'Key takeaway', v: seriesTakeaway(f, w) },
   ]);
 }
 function seriesLowOf(f) { return f.series ? f.series.summary.replace(/^Series\s+/i, '').toLowerCase() : ''; }
+function capFirst(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+// Clean, case-PRESERVED series record straight from ESPN: "Tied 1-1",
+// "New York leads 3-1". Used wherever the record reads as its own clause so we
+// never lowercase a team name into "new york leads 3-1".
+function seriesClean(f) {
+  if (!f.series) return '';
+  // "Series tied 1-1" → "Tied 1-1"; "NY leads series 3-1" → "NY leads 3-1".
+  const s = f.series.summary.replace(/^Series\s+/i, '').replace(/\bseries\s+(?=\d)/i, '');
+  return capFirst(s);
+}
+// A forward-looking takeaway derived from the series score — distinct from the
+// bare record so it never just repeats the storyline line.
+function seriesTakeaway(f, w) {
+  if (!f.series) return `${w.name} grab the win and the momentum.`;
+  const nums = (f.series.summary.match(/\d+/g) || []).map(Number);
+  if (nums.length >= 2) {
+    const hi = Math.max(nums[0], nums[1]), lo = Math.min(nums[0], nums[1]);
+    if (hi === lo) return `All square at ${hi}-${hi} — the next game tilts the whole series.`;
+    if (hi >= 3 && hi - lo >= 2) return `A 3-${lo} stranglehold — the next win closes it out.`;
+    if (hi >= 3) return `Up 3-${lo} with a chance to close it out next game.`;
+    return `${hi}-${lo} in the series, with the momentum swinging.`;
+  }
+  return `${w.name} take control of the series.`;
+}
 
 /* ---- MLB game context (from g.facts; data comes free off the scoreboard) ---- */
 
@@ -746,8 +774,8 @@ function mlbContext(g) {
       { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}.` },
       perf && { label: 'Key stat', key: true, text: `${perf.name} led the way: ${perf.line}.` },
       { label: 'What to say', say: true, text: perf
-        ? `"${perf.name} went ${perf.line} as ${w.name} took down ${l.name} ${w.score}-${l.score}."`
-        : `"${w.name} beat ${l.name} ${w.score}-${l.score}."` },
+        ? `"${perf.name} was the difference — ${w.name} are rolling."`
+        : `"${w.name} took care of business against ${l.name}."` },
       { label: 'Hot take', take: true, text: `${w.name} are quietly the team nobody wants to face right now.` },
     ];
   }
@@ -794,7 +822,6 @@ function summaryReadContext(g) {
   if (!f) return null;
   const homeF = (f.teams || []).find((t) => t.homeAway === 'home') || {};
   const awayF = (f.teams || []).find((t) => t.homeAway === 'away') || {};
-  const seriesLow = f.series ? f.series.summary.replace(/^Series\s+/i, '').toLowerCase() : '';
   const leaderBy = (abbr) => (f.leaders || []).find((l) => l.abbr === abbr);
 
   if (f.state === 'post') {
@@ -802,12 +829,12 @@ function summaryReadContext(g) {
     const l = g.home.winner ? g.away : g.home;
     const wl = leaderBy(w.abbr);
     return [
-      { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}${f.series ? ` — ${f.series.name} now ${seriesLow}` : ''}.` },
+      { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}-${l.score}.${f.series ? ` ${seriesClean(f)} in the ${f.series.name}.` : ''}` },
       wl && { label: 'Key stat', key: true, text: `${wl.name} led the way${wl.cat ? ` (${wl.cat.toLowerCase()})` : ''}: ${wl.line}.` },
       { label: 'What to say', say: true, text: wl
-        ? `"${wl.name} put up ${wl.line} and ${w.name} took it ${w.score}-${l.score}."`
-        : `"${w.name} got it done, ${w.score}-${l.score}."` },
-      { label: 'Hot take', take: true, text: `${w.name} are the better team here — ${f.series ? 'this series is theirs to lose' : 'and it showed'}.` },
+        ? `"${wl.name} was the difference — ${w.name} look like the team to beat."`
+        : `"${w.name} took care of business and look the part."` },
+      { label: 'Hot take', take: true, text: `${w.name} are the better team here${f.series ? ' — this series is theirs to lose' : ''}.` },
     ];
   }
 
@@ -819,13 +846,13 @@ function summaryReadContext(g) {
   const matchup = (hl && al) ? `${al.name} (${al.line}) vs ${hl.name} (${hl.line})` : '';
   return [
     { label: 'Why it matters', text: f.series
-        ? `${g.headline || 'Tonight'}: the ${f.series.name} is ${seriesLow} — every game swings it now.`
+        ? `${g.headline || 'Tonight'} — ${seriesClean(f)}, and every game swings it now.`
         : `${g.away.name} visit ${g.home.name} with real stakes.` },
     recLine && { label: 'Key stat', key: true, text: `${recLine}.` },
     { label: 'What to say', say: true, text: matchup
         ? `"Keep an eye on ${matchup} — that's the matchup that decides it."`
         : `"${g.home.name}–${g.away.name} should be a good one."` },
-    f.series && { label: 'Hot take', take: true, text: `Series ${seriesLow} means tonight basically is the series — whoever blinks first goes home.` },
+    f.series && { label: 'Hot take', take: true, text: `${seriesClean(f)} — tonight basically is the series; whoever blinks first goes home.` },
   ];
 }
 
@@ -835,11 +862,12 @@ function summaryWhatYouMissed(g) {
   const w = g.home.winner ? g.home : g.away;
   const l = g.home.winner ? g.away : g.home;
   const wl = (f.leaders || []).find((x) => x.abbr === w.abbr);
+  const storyline = f.series ? `${f.series.name} — ${seriesClean(f)}` : (g.headline || `${w.name} take down ${l.name}`);
   return WhatYouMissed([
     { k: 'Winner', v: `${w.name} ${w.score}–${l.score}` },
-    { k: 'Biggest storyline', v: f.series ? `${f.series.name}: ${f.series.summary}` : (g.headline || `${w.name} take down ${l.name}`) },
+    { k: 'Biggest storyline', v: storyline },
     { k: 'Best performance', v: wl ? `${wl.name} — ${wl.line}` : '' },
-    { k: 'Key takeaway', v: f.series ? `${f.series.name} now ${seriesLowOf(f)}` : `${w.name} get the W` },
+    { k: 'Key takeaway', v: f.series ? seriesTakeaway(f, w) : `${w.name} grab the win and the momentum.` },
   ]);
 }
 
@@ -1027,6 +1055,11 @@ function FeaturedGolfCard(g) {
     }) : '';
 
     const f1Rows = f1Context(f1);
+    // Parity with golf/tennis "purse" — F1 pays no per-race cash purse, so the
+    // real "winning amount" is the championship points the win is worth.
+    if (f1.phase !== 'result') {
+      f1Rows.push({ label: 'On the line', text: '25 points to the race winner — the biggest single-race haul in the championship, and a real swing in the title race.' });
+    }
     if (f1.nextRace) {
       const nr = f1.nextRace;
       const d = nr.date ? new Date(nr.date + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
@@ -1168,8 +1201,45 @@ function FeaturedGolfCard(g) {
     setBadge('badge-markets', real ? 'live' : null);
     const el = $('marketsWrap');
     if (!real || !real.length) { el.innerHTML = `<div class="empty" style="grid-column:1/-1">Market data unavailable right now.</div>`; return; }
-    el.innerHTML = real.map(MarketCard).join('') +
+    const synopsis = marketsSynopsis(real);
+    el.innerHTML =
+      (synopsis ? `<div class="mk-synopsis"><span class="mk-synopsis-label">The Read</span>${esc(synopsis)}</div>` : '') +
+      real.map(MarketCard).join('') +
       `<p class="mk-disclaimer">Market data is informational only and is not investment advice. Values via index-tracking proxies; figures may be delayed.</p>`;
+  }
+
+  // Plain-English read on the tape — describes what moved and by how much. Purely
+  // descriptive (no advice), built only from the live figures already on screen.
+  function marketsSynopsis(rows) {
+    const by = {};
+    rows.forEach((r) => { if (r && r.key) by[r.key] = r; });
+    const idx = ['spx', 'dow', 'ndq', 'rut'].map((k) => by[k]).filter(Boolean);
+    if (!idx.length) return '';
+    const pos = idx.filter((r) => r.changePercent > 0.05).length;
+    const neg = idx.filter((r) => r.changePercent < -0.05).length;
+    let mood;
+    if (pos && !neg) mood = 'Stocks are broadly higher';
+    else if (neg && !pos) mood = 'Stocks are broadly lower';
+    else if (pos > neg) mood = 'Stocks are mostly higher';
+    else if (neg > pos) mood = 'Stocks are mostly lower';
+    else mood = 'Stocks are mixed';
+    const pct = (r) => `${r.changePercent >= 0 ? '+' : ''}${r.changePercent.toFixed(2)}%`;
+    const lead = idx.slice().sort((a, b) => Math.abs(b.changePercent) - Math.abs(a.changePercent))[0];
+    let s = mood;
+    const spx = by.spx;
+    if (spx) {
+      s += Math.abs(spx.changePercent) <= 0.05
+        ? ' — the S&P 500 essentially flat'
+        : ` — the S&P 500 ${spx.changePercent >= 0 ? 'up' : 'down'} ${Math.abs(spx.changePercent).toFixed(2)}%`;
+    }
+    if (lead && (!spx || lead.key !== 'spx')) s += `, with the ${lead.label} ${lead.changePercent >= 0 ? 'leading' : 'lagging'} at ${pct(lead)}`;
+    s += '.';
+    const extras = [];
+    if (by.gold) extras.push(`gold ${by.gold.changePercent >= 0 ? 'up' : 'down'} ${Math.abs(by.gold.changePercent).toFixed(1)}%`);
+    if (by.oil) extras.push(`crude ${by.oil.changePercent >= 0 ? 'up' : 'down'} ${Math.abs(by.oil.changePercent).toFixed(1)}%`);
+    if (by.tnx) extras.push(`the 10-year yield at ${Number(by.tnx.value).toFixed(2)}%`);
+    if (extras.length) s += ` ${capFirst(extras.join(', '))}.`;
+    return s;
   }
 
   // Sections 6 & 7 — driven by the separate, slower /api/talk feed.
