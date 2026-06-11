@@ -138,6 +138,11 @@
   .wordmark .dot { color: var(--accent); }
   .wordmark .tm { font-size: 0.42em; vertical-align: super; font-weight: 700; letter-spacing: 0; margin-left: 1px; color: var(--text-secondary); }
   @keyframes gtLivePulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.35; transform:scale(0.82); } }
+  /* Nav links — grow + brighten on hover so they feel alive */
+  .nav-link { font-size: 14px; font-weight: 600; color: var(--text-secondary); display: inline-flex; align-items: center; gap: 5px; transform-origin: center; transition: color 0.18s ease, transform 0.18s ease; }
+  .nav-link:hover { color: var(--accent); transform: scale(1.16); }
+  .nav-link-live { color: var(--text); }
+  .nav-live-pip { width: 7px; height: 7px; border-radius: 50%; background: #DC2626; animation: gtLivePulse 2s ease-in-out infinite; }
   .nav-cta {
     font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
     padding: 9px 18px; background: var(--accent); color: white; border-radius: 8px;
@@ -914,12 +919,12 @@
   <div class="nav-inner">
     <div class="wordmark">GuyTalk<span class="dot">.</span><span class="tm">™</span></div>
     <div class="nav-menu" style="display:flex;align-items:center;gap:24px;">
-      <a href="/live/" style="font-size:14px;font-weight:600;color:var(--text);transition:color 0.15s;display:inline-flex;align-items:center;gap:5px;"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#DC2626;animation:gtLivePulse 2s ease-in-out infinite;"></span>Live</a>
-      <a href="/brief/issue-044/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Today's Brief</a>
-      <a href="/briefs/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Archive</a>
-      <a href="/about/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">About</a>
-      <a href="/reviews/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Reviews</a>
-      <a href="/advertise/" style="font-size:14px;font-weight:600;color:var(--text-secondary);transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">Advertise</a>
+      <a href="/live/" class="nav-link nav-link-live"><span class="nav-live-pip"></span>Live</a>
+      <a href="/brief/issue-044/" class="nav-link">Today's Brief</a>
+      <a href="/briefs/" class="nav-link">Archive</a>
+      <a href="/about/" class="nav-link">About</a>
+      <a href="/reviews/" class="nav-link">Reviews</a>
+      <a href="/advertise/" class="nav-link">Advertise</a>
       <a href="#signup" class="nav-cta">Get the brief →</a>
     </div>
   </div>
@@ -934,11 +939,11 @@
   <div class="container">
     <div class="pill">
       <span class="pill-dot"></span>
-      The Relevance Brief · Free · 5 min
+      Don't be the last guy to know · Free · 5 min
     </div>
     <h1>
-      <span class="h1-line">Don't be the</span>
-      <span class="h1-line h1-accent">last guy to know.</span>
+      <span class="h1-line">The Relevance</span>
+      <span class="h1-line h1-accent">Brief.</span>
     </h1>
     <p class="hero-sub">
       Sports, markets, and culture — <strong>every morning in 5 minutes</strong>. What happened, why it matters, and what to bring up. Free, no algorithm.
