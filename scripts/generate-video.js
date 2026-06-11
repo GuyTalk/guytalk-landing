@@ -52,6 +52,17 @@ function wrap(ctx, text, maxW) {
   return lines;
 }
 
+// Trim to a clean sentence end (preferred) or word boundary — never mid-word.
+function trimTo(text, max) {
+  text = String(text).trim();
+  if (text.length <= max) return text;
+  const slice = text.slice(0, max);
+  const sentenceEnd = Math.max(slice.lastIndexOf('. '), slice.lastIndexOf('! '), slice.lastIndexOf('? '));
+  if (sentenceEnd > max * 0.5) return slice.slice(0, sentenceEnd + 1).trim();
+  const lastSpace = slice.lastIndexOf(' ');
+  return (lastSpace > 0 ? slice.slice(0, lastSpace) : slice).replace(/[\s,;:]+$/, '') + '…';
+}
+
 // ── Frame renderer ──────────────────────────────────────────────────────────────
 function frame(issue, slide, idx) {
   const canvas = createCanvas(W, H);
@@ -71,13 +82,8 @@ function frame(issue, slide, idx) {
   ctx.fillStyle = C.accent; ctx.fillText('.', PAD + ww + 2, 150);
   if (issue._dateStr) { ctx.font = `24px "${F.reg}"`; ctx.fillStyle = C.text2; const d = issue._dateStr; ctx.fillText(d, W - PAD - ctx.measureText(d).width, 150); }
 
-  // Optional kicker
-  if (slide.kicker) {
-    ctx.font = `26px "${F.bold}"`; ctx.fillStyle = slide.kickerColor || C.accent;
-    ctx.fillText(slide.kicker.toUpperCase(), PAD, 320);
-  }
-
-  // Main lines (auto-sized, centered vertically in the safe zone)
+  // Main lines (auto-sized). Compute the block first so the kicker can sit
+  // right above it instead of being stranded near the top.
   const maxW = W - PAD * 2;
   let size = slide.size || 96;
   let lines;
@@ -91,12 +97,16 @@ function frame(issue, slide, idx) {
   }
   const lh = size * 1.1;
   const blockH = lines.length * lh;
-  let y = (H - blockH) / 2 + size * 0.82;
-  ctx.font = `${size}px "${F.black}"`; ctx.fillStyle = C.text;
-  for (const ln of lines) {
-    if (ln.__chip) { /* handled below */ }
-    ctx.fillText(ln, PAD, y); y += lh;
+  let y = (H - blockH) / 2 + size * 0.82;   // baseline of first line, vertically centered
+
+  // Kicker — anchored just above the text block
+  if (slide.kicker) {
+    ctx.font = `26px "${F.bold}"`; ctx.fillStyle = slide.kickerColor || C.accent;
+    ctx.fillText(slide.kicker.toUpperCase(), PAD, y - size * 0.72 - 30);
   }
+
+  ctx.font = `${size}px "${F.black}"`; ctx.fillStyle = C.text;
+  for (const ln of lines) { ctx.fillText(ln, PAD, y); y += lh; }
 
   // Footer
   if (slide.footer) {
@@ -126,7 +136,7 @@ function slidesFor(issue) {
     { kicker: 'Today’s headline', lines: [headline], size: 92, dur: 3.4 },
   ];
   if (hits.length) slides.push({ kicker: 'Today’s hits', lines: hits, size: 56, dur: 4.0 });
-  if (take)        slides.push({ kicker: 'The line to drop', lines: [take.length > 180 ? take.slice(0, 178) + '…' : take], size: 60, dur: 4.2 });
+  if (take)        slides.push({ kicker: 'The line to drop', lines: [trimTo(take, 175)], size: 60, dur: 4.2 });
   slides.push({ lines: ['Read it free.', 'Every morning.'], size: 100, footer: 'guytalkmedia.com', cta: 'Link in bio →', dur: 2.8 });
   return slides;
 }
