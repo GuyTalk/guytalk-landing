@@ -112,7 +112,7 @@
   .scroll-dot:hover .dot-label { opacity: 0.85; }
   .scroll-dot.active { background: var(--accent); border-color: var(--accent); transform: scale(1.5); box-shadow: 0 0 8px rgba(43,111,255,0.35); }
   .scroll-dot.active .dot-label { opacity: 1; color: var(--text); }
-  .dot-label { position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 600; white-space: nowrap; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-2); opacity: 0.4; transition: opacity 0.25s ease; cursor: pointer; user-select: none; }
+  .dot-label { position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 700; white-space: nowrap; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); opacity: 0.7; transition: opacity 0.25s ease; cursor: pointer; user-select: none; }
   @media (max-width: 1180px) { .scroll-nav { display: none; } }
   .live-eyebrow {
     display: inline-flex; align-items: center; gap: 7px;
@@ -158,9 +158,27 @@
   .rundown-skel { height: 14px; border-radius: 4px; background: rgba(255,255,255,0.10); margin-top: 8px; }
   .rundown-skel.s2 { width: 92%; } .rundown-skel.s3 { width: 78%; }
 
+  /* UMBRELLA HEADS — the three pillars: Sports / Markets / Culture */
+  .umbrella { margin: 60px 0 6px; padding-bottom: 13px; border-bottom: 2px solid var(--text); scroll-margin-top: 80px; }
+  .umbrella:first-of-type { margin-top: 8px; }
+  .umbrella-row { display: flex; align-items: center; gap: 12px; }
+  .umbrella-idx {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px;
+    color: var(--accent); background: var(--accent-muted); border-radius: 6px; padding: 5px 9px; line-height: 1;
+  }
+  .umbrella-h {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 38px;
+    letter-spacing: -0.04em; color: var(--text); line-height: 1;
+  }
+  .umbrella-sub { font-size: 15px; color: var(--text-2); margin-top: 10px; max-width: 660px; line-height: 1.5; }
+
   /* SECTION SCAFFOLD */
   .live-section { margin-top: 40px; scroll-margin-top: 80px; }
   .live-section:first-of-type { margin-top: 8px; }
+  /* Subsections nested under an umbrella read smaller and tighter */
+  .live-section.sub { margin-top: 28px; }
+  .section-head.is-sub { border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 14px; }
+  .section-head.is-sub .section-h { font-size: 20px; letter-spacing: -0.025em; }
   .section-head { margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid var(--border); }
   .section-head-top { display: flex; align-items: center; gap: 11px; flex-wrap: wrap; }
   .section-idx {
@@ -639,6 +657,7 @@
     .live-title { font-size: 38px; }
     .live-sub { font-size: 16px; }
     .section-h { font-size: 21px; }
+    .umbrella-h { font-size: 30px; }
     .section-meta { margin-left: 0; flex-basis: 100%; margin-top: 4px; }
     .spot-name { font-size: 21px; }
     .spot-flag { width: 44px; height: 30px; }
@@ -677,14 +696,9 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
 </nav>
 
 <nav class="scroll-nav" aria-hidden="true" id="liveScrollNav">
-  <div class="scroll-dot active" data-target="live-now" title="Live Now"><span class="dot-label">Live Now</span></div>
-  <div class="scroll-dot" data-target="f1" title="F1"><span class="dot-label">F1</span></div>
-  <div class="scroll-dot" data-target="golf" title="Golf"><span class="dot-label">Golf</span></div>
-  <div class="scroll-dot" data-target="tennis" title="Tennis"><span class="dot-label">Tennis</span></div>
-  <div class="scroll-dot" data-target="scoreboard" title="Scores"><span class="dot-label">Scores</span></div>
-  <div class="scroll-dot" data-target="markets" title="Markets"><span class="dot-label">Markets</span></div>
-  <div class="scroll-dot" data-target="trending" title="Trending"><span class="dot-label">Trending</span></div>
-  <div class="scroll-dot" data-target="talking" title="Talk"><span class="dot-label">Talk</span></div>
+  <div class="scroll-dot active" data-target="umb-sports" title="Sports"><span class="dot-label">Sports</span></div>
+  <div class="scroll-dot" data-target="umb-markets" title="Markets"><span class="dot-label">Markets</span></div>
+  <div class="scroll-dot" data-target="umb-culture" title="Culture"><span class="dot-label">Culture</span></div>
 </nav>
 
 <main class="page-wrap">
@@ -705,12 +719,20 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <p class="rundown-text" id="rundownText"></p>
   </section>
 
-  <!-- SECTION 1 — LIVE NOW -->
-  <section class="live-section" id="live-now">
-    <div class="section-head is-live">
+  <!-- ══════════════════════ 01 · SPORTS ══════════════════════ -->
+  <div class="umbrella" id="umb-sports">
+    <div class="umbrella-row">
+      <span class="umbrella-idx">01</span>
+      <h2 class="umbrella-h">Sports</h2>
+    </div>
+    <p class="umbrella-sub">Whatever's live and whatever's relevant right now — ranked by what matters, across every sport.</p>
+  </div>
+
+  <!-- Live Now -->
+  <section class="live-section sub" id="live-now">
+    <div class="section-head is-live is-sub">
       <div class="section-head-top">
-        <span class="section-idx">01</span>
-        <h2 class="section-h">Live Now</h2>
+        <h3 class="section-h">Live Now</h3>
         <span id="badge-live"></span>
         <span class="section-meta" id="meta-live"></span>
       </div>
@@ -719,12 +741,11 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <div class="grid grid-live" id="liveNow"></div>
   </section>
 
-  <!-- SECTION 2 — FORMULA 1 -->
-  <section class="live-section" id="f1">
-    <div class="section-head">
+  <!-- Formula 1 -->
+  <section class="live-section sub" id="f1">
+    <div class="section-head is-sub">
       <div class="section-head-top">
-        <span class="section-idx">02</span>
-        <h2 class="section-h">Formula 1</h2>
+        <h3 class="section-h">Formula 1</h3>
         <span id="badge-f1"></span>
         <span class="section-meta" id="meta-f1"></span>
       </div>
@@ -733,12 +754,11 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <div class="grid grid-two" id="f1Wrap"></div>
   </section>
 
-  <!-- SECTION 3 — GOLF -->
-  <section class="live-section" id="golf">
-    <div class="section-head">
+  <!-- Golf -->
+  <section class="live-section sub" id="golf">
+    <div class="section-head is-sub">
       <div class="section-head-top">
-        <span class="section-idx">03</span>
-        <h2 class="section-h">Golf</h2>
+        <h3 class="section-h">Golf</h3>
         <span id="badge-golf"></span>
         <span class="section-meta" id="meta-golf"></span>
       </div>
@@ -747,12 +767,11 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <div id="golfWrap"></div>
   </section>
 
-  <!-- TENNIS — ATP + WTA, Grand Slam aware -->
-  <section class="live-section" id="tennis">
-    <div class="section-head">
+  <!-- Tennis — ATP + WTA, Grand Slam aware -->
+  <section class="live-section sub" id="tennis">
+    <div class="section-head is-sub">
       <div class="section-head-top">
-        <span class="section-idx">04</span>
-        <h2 class="section-h">Tennis</h2>
+        <h3 class="section-h">Tennis</h3>
         <span id="badge-tennis"></span>
         <span class="section-meta" id="meta-tennis"></span>
       </div>
@@ -761,12 +780,11 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <div id="tennisWrap"></div>
   </section>
 
-  <!-- SECTION 5 — SPORTS SCOREBOARD -->
-  <section class="live-section" id="scoreboard">
-    <div class="section-head">
+  <!-- Scoreboard -->
+  <section class="live-section sub" id="scoreboard">
+    <div class="section-head is-sub">
       <div class="section-head-top">
-        <span class="section-idx">05</span>
-        <h2 class="section-h">Scoreboard</h2>
+        <h3 class="section-h">Scoreboard</h3>
         <span id="badge-scores"></span>
         <span class="section-meta" id="meta-scores"></span>
       </div>
@@ -775,16 +793,22 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <div id="scoreboardWrap"></div>
   </section>
 
-  <!-- SECTION 5 — MARKETS -->
-  <section class="live-section" id="markets">
-    <div class="section-head">
+  <!-- ══════════════════════ 02 · MARKETS ══════════════════════ -->
+  <div class="umbrella" id="umb-markets">
+    <div class="umbrella-row">
+      <span class="umbrella-idx">02</span>
+      <h2 class="umbrella-h">Markets</h2>
+    </div>
+    <p class="umbrella-sub">Indices, crypto, and commodities — and a search for any ticker. Informational only, not investment advice.</p>
+  </div>
+
+  <section class="live-section sub" id="markets">
+    <div class="section-head is-sub">
       <div class="section-head-top">
-        <span class="section-idx">06</span>
-        <h2 class="section-h">Markets</h2>
+        <h3 class="section-h">The Tape</h3>
         <span id="badge-markets"></span>
         <span class="section-meta" id="meta-markets"></span>
       </div>
-      <p class="section-desc">Indices, crypto, and commodities. Informational only — not investment advice.</p>
     </div>
     <div class="mk-search">
       <span class="mk-search-icon" aria-hidden="true">⌕</span>
@@ -794,12 +818,20 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <div class="grid grid-markets" id="marketsWrap"></div>
   </section>
 
-  <!-- SECTION 6 — TRENDING STORIES -->
-  <section class="live-section" id="trending">
-    <div class="section-head">
+  <!-- ══════════════════════ 03 · CULTURE ══════════════════════ -->
+  <div class="umbrella" id="umb-culture">
+    <div class="umbrella-row">
+      <span class="umbrella-idx">03</span>
+      <h2 class="umbrella-h">Culture</h2>
+    </div>
+    <p class="umbrella-sub">The stories driving conversation — and exactly what to say when they come up.</p>
+  </div>
+
+  <!-- Trending Stories -->
+  <section class="live-section sub" id="trending">
+    <div class="section-head is-sub">
       <div class="section-head-top">
-        <span class="section-idx">07</span>
-        <h2 class="section-h">Trending Stories</h2>
+        <h3 class="section-h">Trending Stories</h3>
         <span id="badge-trending"></span>
         <span class="section-meta" id="meta-trending"></span>
       </div>
@@ -808,12 +840,11 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <div class="grid grid-stories" id="trendingWrap"></div>
   </section>
 
-  <!-- SECTION 7 — WHAT EVERYONE IS TALKING ABOUT -->
-  <section class="live-section" id="talking">
-    <div class="section-head">
+  <!-- What Everyone's Talking About -->
+  <section class="live-section sub" id="talking">
+    <div class="section-head is-sub">
       <div class="section-head-top">
-        <span class="section-idx">08</span>
-        <h2 class="section-h">What Everyone's Talking About</h2>
+        <h3 class="section-h">What Everyone's Talking About</h3>
         <span id="badge-talking"></span>
         <span class="section-meta" id="meta-talking"></span>
       </div>

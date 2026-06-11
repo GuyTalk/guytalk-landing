@@ -547,9 +547,9 @@ em { font-style: italic; }
   display: flex; align-items: center; gap: 11px; text-decoration: none; border-bottom: 0;
   font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3);
-  opacity: 0.65; transition: opacity 0.15s ease, color 0.15s ease;
+  opacity: 0.78; transition: opacity 0.15s ease, color 0.15s ease;
 }
-.bsn-link .bsn-txt { transform: translateX(6px); opacity: 0; transition: opacity 0.15s ease, transform 0.15s ease; }
+.bsn-link .bsn-txt { transform: none; opacity: 1; transition: opacity 0.15s ease, transform 0.15s ease; }
 .bsn-link:hover { opacity: 1; color: var(--text); }
 .bsn-link:hover .bsn-txt { opacity: 1; transform: none; }
 .bsn-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-light); flex-shrink: 0; transition: background 0.15s ease, transform 0.15s ease; }

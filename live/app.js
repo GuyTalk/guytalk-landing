@@ -1032,10 +1032,21 @@ function FeaturedGolfCard(g) {
       const d = nr.date ? new Date(nr.date + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
       f1Rows.push({ label: 'Next race', text: `${nr.name}${nr.circuit ? ` · ${nr.circuit}` : ''}${nr.location ? ` · ${nr.location}` : ''}${d ? ` · ${d}` : ''}` });
     }
+    // Balance the two columns. An upcoming race with no grid/field set yet leaves
+    // the left stack nearly empty (no positions → no board rows, no spotlight, no
+    // recap), so anchor it with the championship standings instead of stranding
+    // everything on the right.
+    const hasField = (f1.positions || []).length > 0;
+    const leftCards = [board, FeaturedF1Card(f1), f1WhatYouMissed(f1)];
+    const rightCards = [ContextCard(f1Rows, isLive, 'Formula 1'), standings, constructors];
+    if (!hasField && standings) {
+      leftCards.push(standings);
+      rightCards.splice(rightCards.indexOf(standings), 1);
+    }
     el.innerHTML =
       F1CircuitBanner(f1) +
-      `<div class="stack">${board}${FeaturedF1Card(f1)}${f1WhatYouMissed(f1)}</div>` +
-      `<div class="stack">${ContextCard(f1Rows, isLive, 'Formula 1')}${standings}${constructors}</div>`;
+      `<div class="stack">${leftCards.join('')}</div>` +
+      `<div class="stack">${rightCards.join('')}</div>`;
   }
 
   function renderGolf(real) {
