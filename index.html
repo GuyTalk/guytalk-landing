@@ -907,11 +907,11 @@
 
 <nav class="scroll-nav" aria-hidden="true" id="scrollNav">
   <div class="scroll-dot active" data-index="0" title="Top"><span class="dot-label">Top</span></div>
-  <div class="scroll-dot" data-index="1" title="Where It Works"><span class="dot-label">Where It Works</span></div>
+  <div class="scroll-dot" data-index="1" title="How It Works"><span class="dot-label">How It Works</span></div>
   <div class="scroll-dot" data-index="2" title="The Brief"><span class="dot-label">The Brief</span></div>
-  <div class="scroll-dot" data-index="3" title="Group Chat"><span class="dot-label">Group Chat</span></div>
-  <div class="scroll-dot" data-index="4" title="How It Works"><span class="dot-label">How It Works</span></div>
-  <div class="scroll-dot" data-index="5" title="The App"><span class="dot-label">The App</span></div>
+  <div class="scroll-dot" data-index="3" title="The App"><span class="dot-label">The App</span></div>
+  <div class="scroll-dot" data-index="4" title="Group Chat"><span class="dot-label">Group Chat</span></div>
+  <div class="scroll-dot" data-index="5" title="Where It Works"><span class="dot-label">Where It Works</span></div>
   <div class="scroll-dot" data-index="6" title="Founder"><span class="dot-label">Founder</span></div>
 </nav>
 
@@ -1002,67 +1002,82 @@
   </div>
 </section>
 
-<!-- PHOTO SPLIT -->
-<section class="photo-split">
+<!-- LIVE FEATURE -->
+<section class="live-feature">
+  <style>
+    .live-feature { padding: 40px 0 8px; }
+    .livef-card { position: relative; display: block; overflow: hidden; border-radius: 24px; padding: 38px 36px 32px;
+      background: linear-gradient(135deg,#0C1B33 0%,#0A1428 58%,#0F1724 100%); border: 1px solid rgba(43,111,255,0.28);
+      text-decoration: none; color: #fff; box-shadow: 0 18px 50px rgba(10,20,40,0.28); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+    .livef-card:hover { transform: translateY(-4px); box-shadow: 0 26px 70px rgba(10,20,40,0.38); border-color: rgba(43,111,255,0.55); }
+    .livef-glow { position: absolute; width: 420px; height: 420px; right: -120px; top: -160px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(43,111,255,0.40), transparent 65%); filter: blur(8px); animation: livefGlow 6s ease-in-out infinite; pointer-events: none; }
+    @keyframes livefGlow { 0%,100%{ transform: translate(0,0) scale(1); opacity:.8 } 50%{ transform: translate(-24px,18px) scale(1.12); opacity:1 } }
+    .livef-top { position: relative; display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .livef-badge { display: inline-flex; align-items: center; gap: 8px; font-family: 'Inter Tight',sans-serif; font-weight: 800; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #FF6B6B; }
+    .livef-pip { width: 9px; height: 9px; border-radius: 50%; background: #FF5252; box-shadow: 0 0 0 0 rgba(255,82,82,.7); animation: livefPip 1.6s ease-out infinite; }
+    @keyframes livefPip { 0%{ box-shadow: 0 0 0 0 rgba(255,82,82,.7) } 70%{ box-shadow: 0 0 0 10px rgba(255,82,82,0) } 100%{ box-shadow: 0 0 0 0 rgba(255,82,82,0) } }
+    .livef-updated { font-family: 'JetBrains Mono',monospace; font-size: 11px; letter-spacing: .04em; color: rgba(244,246,251,.5); }
+    .livef-h { position: relative; font-family: 'Inter Tight',sans-serif; font-weight: 900; font-size: clamp(28px,4.4vw,44px); line-height: 1.05; letter-spacing: -0.03em; color: #F4F6FB; margin: 0 0 12px; }
+    .livef-h em { font-style: normal; color: #4DA3FF; }
+    .livef-sub { position: relative; font-size: 16px; line-height: 1.55; color: rgba(244,246,251,.72); max-width: 640px; margin: 0 0 24px; }
+    .livef-tiles { position: relative; display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 26px; }
+    .livef-tile { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); border-radius: 14px; padding: 16px 16px 14px; transition: background .2s ease, transform .2s ease, border-color .2s ease; }
+    .livef-card:hover .livef-tile { background: rgba(255,255,255,0.07); }
+    .livef-tile:hover { transform: translateY(-3px); border-color: rgba(43,111,255,0.45); }
+    .lft-k { font-family: 'Inter Tight',sans-serif; font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 6px; }
+    .lft-v { font-family: 'Inter Tight',sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: #F4F6FB; line-height: 1; }
+    .lft-up { color: #4ADE80; }
+    .lft-s { font-family: 'JetBrains Mono',monospace; font-size: 10.5px; letter-spacing: .04em; color: rgba(244,246,251,.5); margin-top: 6px; text-transform: uppercase; }
+    .livef-cta { position: relative; display: inline-flex; align-items: center; gap: 10px; font-family: 'Inter Tight',sans-serif; font-weight: 800; font-size: 16px; color: #fff; background: #2B6FFF; padding: 13px 22px; border-radius: 12px; box-shadow: 0 8px 22px rgba(43,111,255,0.4); }
+    .livef-arrow { transition: transform .25s ease; }
+    .livef-card:hover .livef-arrow { transform: translateX(5px); }
+    @media (max-width: 640px) { .livef-tiles { grid-template-columns: 1fr; } .livef-card { padding: 28px 20px 24px; } }
+  </style>
   <div class="container">
-    <div class="photo-split-inner">
-      <div class="photo-split-copy fade-up">
-        <div class="photo-split-eyebrow">Five minutes. Every morning.</div>
-        <h2 class="photo-split-headline">The brief that fits in your commute.</h2>
-        <p class="photo-split-body">Before the meeting. Before the group chat blows up. Before someone asks your take on last night's game — GuyTalk puts you in the room first.</p>
-        <div class="photo-split-stats">
-          <div class="pss-item"><div class="pss-num">5 min</div><div class="pss-label">Average read time</div></div>
-          <div class="pss-item"><div class="pss-num">Daily</div><div class="pss-label">Every weekday morning</div></div>
-          <div class="pss-item"><div class="pss-num">Free</div><div class="pss-label">No paywall, ever</div></div>
-        </div>
+    <a class="livef-card" href="/live/">
+      <div class="livef-glow" aria-hidden="true"></div>
+      <div class="livef-top">
+        <span class="livef-badge"><span class="livef-pip"></span>GuyTalk Live</span>
+        <span class="livef-updated">Updated seconds ago</span>
       </div>
-      <div class="photo-split-img-wrap fade-up">
-        <img src="/assets/website-images/hero-morning-guy.jpg" alt="Guy reading GuyTalk brief over morning coffee" loading="lazy">
-        <div class="photo-split-badge">
-          <div class="psb-name">The morning read.</div>
-          <div class="psb-role">Before anyone else knows.</div>
-        </div>
+      <h2 class="livef-h">The brief isn't the whole story.<br>See what's happening <em>right now</em>.</h2>
+      <p class="livef-sub">Live scores, markets, rankings, and the stories moving the room — refreshed in real time. The brief tells you what mattered this morning. Live tells you what's happening this second.</p>
+      <div class="livef-tiles">
+        <div class="livef-tile"><div class="lft-k">Live scores</div><div class="lft-v">6 leagues</div><div class="lft-s">NBA · NHL · MLB · NFL…</div></div>
+        <div class="livef-tile"><div class="lft-k">Markets</div><div class="lft-v lft-up">Real-time</div><div class="lft-s">Indices · crypto · any ticker</div></div>
+        <div class="livef-tile"><div class="lft-k">Trending</div><div class="lft-v">Right now</div><div class="lft-s">What everyone's talking about</div></div>
       </div>
-    </div>
+      <span class="livef-cta">Open GuyTalk Live <span class="livef-arrow" aria-hidden="true">&rarr;</span></span>
+    </a>
   </div>
 </section>
 
-<!-- SCENARIOS -->
-<section class="scenarios" data-nav="1">
+<!-- FRAMEWORK -->
+<section class="framework" data-nav="1">
   <div class="container">
-    <div class="section-eyebrow">The social utility</div>
-    <h2 class="section-title">Know what to say in any room.</h2>
-    <p class="section-sub">Not just the group chat. Every conversation you'll have today — before you have it.</p>
+    <div class="section-eyebrow">How it works</div>
+    <h2 class="section-title">Every story. Three layers.</h2>
+    <p class="section-sub">GuyTalk takes what happened and gives you the context, the stakes, and the take — every time.</p>
 
-    <div class="scenarios-grid">
-      <div class="scenario-card scenario-card--third scenario-card--markets fade-up">
-        <div class="scenario-context"><span class="s-icon">💼</span> The Office</div>
-        <div class="scenario-quote">Did you catch what yields did yesterday? That's why the whole sector got sold this morning.</div>
-        <div class="scenario-source sc-src--markets">From the Markets Brief</div>
+    <div class="fw-grid">
+      <div class="fw-step fade-up">
+        <div class="fw-num">01</div>
+        <div class="fw-title">What happened.</div>
+        <div class="fw-desc">Every story starts with a clean account of what actually went down. Sharp, direct, no spin. You read it, you know it.</div>
+        <div class="fw-eg">"Nvidia crossed $4 trillion in market cap this week."</div>
       </div>
-
-      <div class="scenario-card scenario-card--third scenario-card--sports fade-up">
-        <div class="scenario-context"><span class="s-icon">💬</span> The Group Chat</div>
-        <div class="scenario-quote">Knicks haven't been in the Finals since 1999. Wembanyama is 20 years old and playing for a chip. This series has no bad angle.</div>
-        <div class="scenario-source sc-src--sports">From the Sports Brief</div>
+      <div class="fw-step fade-up">
+        <div class="fw-num">02</div>
+        <div class="fw-title">Why it matters.</div>
+        <div class="fw-desc">Not just the news — the context that makes it relevant to your actual conversations. Why this story, why now, why you should care.</div>
+        <div class="fw-eg fw-eg--culture">"It's not just a stock move. Every major tech company guided AI capex higher — Nvidia is the only one selling the shovels."</div>
       </div>
-
-      <div class="scenario-card scenario-card--third scenario-card--culture fade-up">
-        <div class="scenario-context"><span class="s-icon">🍺</span> The Happy Hour</div>
-        <div class="scenario-quote">That CEO tweet everyone's losing their mind about? Here's what actually happened.</div>
-        <div class="scenario-source sc-src--culture">From the Culture Brief</div>
-      </div>
-
-      <div class="scenario-card scenario-card--half scenario-card--sports fade-up">
-        <div class="scenario-context"><span class="s-icon">🏎️</span> The Saturday Morning</div>
-        <div class="scenario-quote">Monaco weekend — 78 laps through Monaco's streets, zero room for error. The circuit doesn't care how fast your car is.</div>
-        <div class="scenario-source sc-src--sports">From the Sports Brief</div>
-      </div>
-
-      <div class="scenario-card scenario-card--half scenario-card--markets fade-up">
-        <div class="scenario-context"><span class="s-icon">🤝</span> The Networking Event</div>
-        <div class="scenario-quote">S&P held flat despite the noise — market's waiting on the next jobs print. That one number could reset the whole summer trade.</div>
-        <div class="scenario-source sc-src--markets">From the Markets Brief</div>
+      <div class="fw-step fade-up">
+        <div class="fw-num">03</div>
+        <div class="fw-title">What to bring up.</div>
+        <div class="fw-desc">The office take. The bar argument. The group chat angle. We hand you the angle that lands in any conversation — so you walk in ready.</div>
+        <div class="fw-eg fw-eg--sports">"The real story isn't Nvidia's price. It's that Microsoft, Google, and Meta are all still accelerating infrastructure spend. That's what's driving it."</div>
       </div>
     </div>
   </div>
@@ -1071,8 +1086,8 @@
 <!-- SAMPLE BRIEF -->
 <section class="brief-section" id="brief" data-nav="2">
   <div class="container">
-    <div class="section-eyebrow">From the brief</div>
-    <h2 class="section-title">Five minutes. Here's one.</h2>
+    <div class="section-eyebrow">The Brief</div>
+    <h2 class="section-title">Here's an example.</h2>
     <p class="section-sub">Quick scan. Real substance. The take that makes you the most informed guy in the room.</p>
 
     <div class="brief-mock fade-up">
@@ -1109,8 +1124,93 @@
   </div>
 </section>
 
+<!-- APP PREVIEW -->
+<section class="app-section" data-nav="3">
+  <div class="container">
+    <div class="app-inner">
+      <div class="app-text fade-up">
+        <div class="app-eyebrow">In Development</div>
+        <h2 class="app-title">The GuyTalk App.</h2>
+        <p class="app-sub">Your brief, your teams, your stocks — in one place. Built to get you out in five minutes and designed around your actual life.</p>
+        <div class="app-features">
+          <div class="app-feat">
+            <div class="app-feat-title">Push alerts when stories drop</div>
+            <div class="app-feat-desc">No notification spam. Just the brief — the moment it's ready, when you want it.</div>
+          </div>
+          <div class="app-feat">
+            <div class="app-feat-title">Your teams. Your stocks.</div>
+            <div class="app-feat-desc">Follow specific franchises, individual stocks, or crypto. Get context around what you actually track.</div>
+          </div>
+          <div class="app-feat">
+            <div class="app-feat-title">Swipe to read. Nothing else.</div>
+            <div class="app-feat-desc">Designed to get you out in five. No infinite scroll. No algorithm deciding what you see next.</div>
+          </div>
+          <div class="app-feat">
+            <div class="app-feat-title">Offline. Always.</div>
+            <div class="app-feat-desc">Save issues. Read anywhere. Own your information without a Wi-Fi requirement.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-frame fade-up" id="phoneFrame">
+        <div class="phone-notch"></div>
+        <div class="phone-statusbar">
+          <span class="phone-wm">GuyTalk<span class="dot">.</span></span>
+          <span class="phone-time">9:41</span>
+        </div>
+        <div class="phone-overflow">
+          <div class="phone-slides-track" id="phoneSlidesTrack">
+            <div class="phone-slide">
+              <div class="phone-notif">
+                <div class="phone-notif-icon">GT</div>
+                <div>
+                  <div class="phone-notif-from">GuyTalk · now</div>
+                  <div class="phone-notif-body">Today's brief is ready. NBA Finals: Knicks-Spurs Game 1 tomorrow. Monaco this Sunday.</div>
+                </div>
+              </div>
+              <div class="phone-brief-item"><span class="phone-cat phone-cat-sports">Sports</span><span class="phone-hl">Knicks at Spurs — Finals Game 1 tomorrow night.</span></div>
+              <div class="phone-brief-item"><span class="phone-cat phone-cat-sports">Sports</span><span class="phone-hl">Monaco Grand Prix on Sunday. Qualifying Saturday.</span></div>
+              <div class="phone-brief-item"><span class="phone-cat phone-cat-markets">Markets</span><span class="phone-hl">S&P flat. Jobs report Friday sets the tone.</span></div>
+              <div class="phone-btn">Read today's brief →</div>
+            </div>
+            <div class="phone-slide">
+              <div class="phone-back">← Sports</div>
+              <div class="phone-story-cat">Sports</div>
+              <div class="phone-story-hl">NBA Finals: Knicks at Spurs, Game 1 tomorrow</div>
+              <div class="phone-story-body">Knicks haven't been here since 1999. Wembanyama plays his first Finals at 22. San Antonio beat OKC in 7 to earn this — New York is looking for redemption 25 years in the making.</div>
+              <div class="phone-stats">
+                <div class="phone-stat"><div class="phone-stat-num">22</div><div class="phone-stat-lbl">WEMBY AGE</div></div>
+                <div class="phone-stat"><div class="phone-stat-num">G1</div><div class="phone-stat-lbl">TOMORROW</div></div>
+                <div class="phone-stat"><div class="phone-stat-num">1999</div><div class="phone-stat-lbl">LAST NYK RUN</div></div>
+              </div>
+            </div>
+            <div class="phone-slide">
+              <div class="phone-slide-label">Markets</div>
+              <div class="phone-mkt-row"><span class="phone-mkt-sym">SPY</span><span class="phone-mkt-chg up">+0.1%</span></div>
+              <div class="phone-mkt-row"><span class="phone-mkt-sym">QQQ</span><span class="phone-mkt-chg up">+0.5%</span></div>
+              <div class="phone-mkt-row"><span class="phone-mkt-sym">BTC</span><span class="phone-mkt-chg dn">−6.0%</span></div>
+              <div class="phone-mkt-row"><span class="phone-mkt-sym">NVDA</span><span class="phone-mkt-chg dn">−0.7%</span></div>
+              <div class="phone-mkt-take">Tech mega-caps splitting. NVDA giving back gains while QQQ holds. Jobs report Friday — that number sets the tone for June rate expectations.</div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-controls">
+          <button class="phone-ctrl-btn" id="phonePrev" aria-label="Previous screen">&#8249;</button>
+          <div class="phone-dots" id="phoneDots">
+            <div class="phone-dot phone-dot-active"></div>
+            <div class="phone-dot"></div>
+            <div class="phone-dot"></div>
+          </div>
+          <button class="phone-ctrl-btn" id="phoneNext" aria-label="Next screen">&#8250;</button>
+        </div>
+        <div class="phone-home"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- GROUP CHAT -->
-<div class="chat-section" data-nav="3">
+<div class="chat-section" data-nav="4">
   <div class="container">
     <div class="chat-intro">
       <div class="chat-live-badge">
@@ -1197,125 +1297,10 @@
   </div>
 </div>
 
-<!-- FRAMEWORK -->
-<section class="framework" data-nav="4">
-  <div class="container">
-    <div class="section-eyebrow">The framework</div>
-    <h2 class="section-title">Every story. Three layers.</h2>
-    <p class="section-sub">GuyTalk takes what happened and gives you the context, the stakes, and the take — every time.</p>
-
-    <div class="fw-grid">
-      <div class="fw-step fade-up">
-        <div class="fw-num">01</div>
-        <div class="fw-title">What happened.</div>
-        <div class="fw-desc">Every story starts with a clean account of what actually went down. Sharp, direct, no spin. You read it, you know it.</div>
-        <div class="fw-eg">"Nvidia crossed $4 trillion in market cap this week."</div>
-      </div>
-      <div class="fw-step fade-up">
-        <div class="fw-num">02</div>
-        <div class="fw-title">Why it matters.</div>
-        <div class="fw-desc">Not just the news — the context that makes it relevant to your actual conversations. Why this story, why now, why you should care.</div>
-        <div class="fw-eg fw-eg--culture">"It's not just a stock move. Every major tech company guided AI capex higher — Nvidia is the only one selling the shovels."</div>
-      </div>
-      <div class="fw-step fade-up">
-        <div class="fw-num">03</div>
-        <div class="fw-title">What to bring up.</div>
-        <div class="fw-desc">The office take. The bar argument. The group chat angle. We hand you the angle that lands in any conversation — so you walk in ready.</div>
-        <div class="fw-eg fw-eg--sports">"The real story isn't Nvidia's price. It's that Microsoft, Google, and Meta are all still accelerating infrastructure spend. That's what's driving it."</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- APP PREVIEW -->
-<section class="app-section" data-nav="5">
-  <div class="container">
-    <div class="app-inner">
-      <div class="app-text fade-up">
-        <div class="app-eyebrow">In Development</div>
-        <h2 class="app-title">The GuyTalk App.</h2>
-        <p class="app-sub">Your brief, your teams, your stocks — in one place. Built to get you out in five minutes and designed around your actual life.</p>
-        <div class="app-features">
-          <div class="app-feat">
-            <div class="app-feat-title">Push alerts when stories drop</div>
-            <div class="app-feat-desc">No notification spam. Just the brief — the moment it's ready, when you want it.</div>
-          </div>
-          <div class="app-feat">
-            <div class="app-feat-title">Your teams. Your stocks.</div>
-            <div class="app-feat-desc">Follow specific franchises, individual stocks, or crypto. Get context around what you actually track.</div>
-          </div>
-          <div class="app-feat">
-            <div class="app-feat-title">Swipe to read. Nothing else.</div>
-            <div class="app-feat-desc">Designed to get you out in five. No infinite scroll. No algorithm deciding what you see next.</div>
-          </div>
-          <div class="app-feat">
-            <div class="app-feat-title">Offline. Always.</div>
-            <div class="app-feat-desc">Save issues. Read anywhere. Own your information without a Wi-Fi requirement.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="phone-frame fade-up" id="phoneFrame">
-        <div class="phone-notch"></div>
-        <div class="phone-statusbar">
-          <span class="phone-wm">GuyTalk<span class="dot">.</span></span>
-          <span class="phone-time">9:41</span>
-        </div>
-        <div class="phone-overflow">
-          <div class="phone-slides-track" id="phoneSlidesTrack">
-            <div class="phone-slide">
-              <div class="phone-notif">
-                <div class="phone-notif-icon">GT</div>
-                <div>
-                  <div class="phone-notif-from">GuyTalk · now</div>
-                  <div class="phone-notif-body">Today's brief is ready. NBA Finals: Knicks-Spurs Game 1 tomorrow. Monaco this Sunday.</div>
-                </div>
-              </div>
-              <div class="phone-brief-item"><span class="phone-cat phone-cat-sports">Sports</span><span class="phone-hl">Knicks at Spurs — Finals Game 1 tomorrow night.</span></div>
-              <div class="phone-brief-item"><span class="phone-cat phone-cat-sports">Sports</span><span class="phone-hl">Monaco Grand Prix on Sunday. Qualifying Saturday.</span></div>
-              <div class="phone-brief-item"><span class="phone-cat phone-cat-markets">Markets</span><span class="phone-hl">S&P flat. Jobs report Friday sets the tone.</span></div>
-              <div class="phone-btn">Read today's brief →</div>
-            </div>
-            <div class="phone-slide">
-              <div class="phone-back">← Sports</div>
-              <div class="phone-story-cat">Sports</div>
-              <div class="phone-story-hl">NBA Finals: Knicks at Spurs, Game 1 tomorrow</div>
-              <div class="phone-story-body">Knicks haven't been here since 1999. Wembanyama plays his first Finals at 22. San Antonio beat OKC in 7 to earn this — New York is looking for redemption 25 years in the making.</div>
-              <div class="phone-stats">
-                <div class="phone-stat"><div class="phone-stat-num">22</div><div class="phone-stat-lbl">WEMBY AGE</div></div>
-                <div class="phone-stat"><div class="phone-stat-num">G1</div><div class="phone-stat-lbl">TOMORROW</div></div>
-                <div class="phone-stat"><div class="phone-stat-num">1999</div><div class="phone-stat-lbl">LAST NYK RUN</div></div>
-              </div>
-            </div>
-            <div class="phone-slide">
-              <div class="phone-slide-label">Markets</div>
-              <div class="phone-mkt-row"><span class="phone-mkt-sym">SPY</span><span class="phone-mkt-chg up">+0.1%</span></div>
-              <div class="phone-mkt-row"><span class="phone-mkt-sym">QQQ</span><span class="phone-mkt-chg up">+0.5%</span></div>
-              <div class="phone-mkt-row"><span class="phone-mkt-sym">BTC</span><span class="phone-mkt-chg dn">−6.0%</span></div>
-              <div class="phone-mkt-row"><span class="phone-mkt-sym">NVDA</span><span class="phone-mkt-chg dn">−0.7%</span></div>
-              <div class="phone-mkt-take">Tech mega-caps splitting. NVDA giving back gains while QQQ holds. Jobs report Friday — that number sets the tone for June rate expectations.</div>
-            </div>
-          </div>
-        </div>
-        <div class="phone-controls">
-          <button class="phone-ctrl-btn" id="phonePrev" aria-label="Previous screen">&#8249;</button>
-          <div class="phone-dots" id="phoneDots">
-            <div class="phone-dot phone-dot-active"></div>
-            <div class="phone-dot"></div>
-            <div class="phone-dot"></div>
-          </div>
-          <button class="phone-ctrl-btn" id="phoneNext" aria-label="Next screen">&#8250;</button>
-        </div>
-        <div class="phone-home"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- SCENARIO PHOTOS -->
-<section class="scenario-photos">
+<section class="scenario-photos" data-nav="5">
   <div class="container">
-    <div class="section-eyebrow">Where it pays off</div>
+    <div class="section-eyebrow">Where it works</div>
     <h2 class="section-title fade-up">The conversations you'll actually have.</h2>
     <div class="sp-grid">
       <div class="sp-card fade-up">
@@ -1339,6 +1324,68 @@
         <div class="sp-label">The Tailgate</div>
         <div class="sp-desc">Game day. Everyone's got takes. Yours are grounded — you know the injury report, the series context, and what actually matters.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENARIOS -->
+<section class="scenarios">
+  <div class="container">
+    <div class="section-eyebrow">The social utility</div>
+    <h2 class="section-title">Know what to say in any room.</h2>
+    <p class="section-sub">Not just the group chat. Every conversation you'll have today — before you have it.</p>
+
+    <div class="scenarios-grid">
+      <div class="scenario-card scenario-card--third scenario-card--markets fade-up">
+        <div class="scenario-context"><span class="s-icon">💼</span> The Office</div>
+        <div class="scenario-quote">Did you catch what yields did yesterday? That's why the whole sector got sold this morning.</div>
+        <div class="scenario-source sc-src--markets">From the Markets Brief</div>
+      </div>
+
+      <div class="scenario-card scenario-card--third scenario-card--sports fade-up">
+        <div class="scenario-context"><span class="s-icon">💬</span> The Group Chat</div>
+        <div class="scenario-quote">Knicks haven't been in the Finals since 1999. Wembanyama is 20 years old and playing for a chip. This series has no bad angle.</div>
+        <div class="scenario-source sc-src--sports">From the Sports Brief</div>
+      </div>
+
+      <div class="scenario-card scenario-card--third scenario-card--culture fade-up">
+        <div class="scenario-context"><span class="s-icon">🍺</span> The Happy Hour</div>
+        <div class="scenario-quote">That CEO tweet everyone's losing their mind about? Here's what actually happened.</div>
+        <div class="scenario-source sc-src--culture">From the Culture Brief</div>
+      </div>
+
+      <div class="scenario-card scenario-card--half scenario-card--sports fade-up">
+        <div class="scenario-context"><span class="s-icon">🏎️</span> The Saturday Morning</div>
+        <div class="scenario-quote">Monaco weekend — 78 laps through Monaco's streets, zero room for error. The circuit doesn't care how fast your car is.</div>
+        <div class="scenario-source sc-src--sports">From the Sports Brief</div>
+      </div>
+
+      <div class="scenario-card scenario-card--half scenario-card--markets fade-up">
+        <div class="scenario-context"><span class="s-icon">🤝</span> The Networking Event</div>
+        <div class="scenario-quote">S&P held flat despite the noise — market's waiting on the next jobs print. That one number could reset the whole summer trade.</div>
+        <div class="scenario-source sc-src--markets">From the Markets Brief</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER NOTE -->
+<section data-nav="6">
+  <div class="container">
+    <div class="section-eyebrow">Why I built this</div>
+    <h2 class="section-title">Straight from the founder.</h2>
+
+    <div class="founder fade-up">
+      <div class="founder-head">
+        <div class="founder-avatar"><img src="/assets/website-images/founder-jake.jpg" alt="Jake Williams"></div>
+        <div>
+          <div class="founder-name">Jake Williams</div>
+          <div class="founder-role">Founder · GuyTalk</div>
+        </div>
+      </div>
+      <p>I was spending two hours a day scrolling — and somehow still felt like I was behind. ESPN had endless hot takes. Morning Brew talked finance like I was a banker. Twitter was a war zone. Nothing was built for me.</p>
+      <p>GuyTalk is the brief I wanted: the stuff that actually comes up when you're with people — sports, markets, culture — written sharp, kept short, with a real point of view. Not a summary. An actual take, from someone who read everything and filtered it down to what matters.</p>
+      <p>Built for guys who want to walk into the day informed, not exhausted. If that sounds like you, join below.</p>
     </div>
   </div>
 </section>
@@ -1378,27 +1425,6 @@
       <div class="pull-quote">"found it through reddit, was skeptical. three months later I still read it every morning before I check anything else. it's not that I know more &mdash; it's that I'm not guessing anymore."</div>
       <div class="pull-attr"><strong>&mdash; Matt D.</strong> &nbsp; Columbus, OH</div>
       <a href="/reviews/" class="pull-link">Read more stories →</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOUNDER NOTE -->
-<section data-nav="6">
-  <div class="container">
-    <div class="section-eyebrow">Why I built this</div>
-    <h2 class="section-title">Straight from the founder.</h2>
-
-    <div class="founder fade-up">
-      <div class="founder-head">
-        <div class="founder-avatar"><img src="/assets/website-images/founder-jake.jpg" alt="Jake Williams"></div>
-        <div>
-          <div class="founder-name">Jake Williams</div>
-          <div class="founder-role">Founder · GuyTalk</div>
-        </div>
-      </div>
-      <p>I was spending two hours a day scrolling — and somehow still felt like I was behind. ESPN had endless hot takes. Morning Brew talked finance like I was a banker. Twitter was a war zone. Nothing was built for me.</p>
-      <p>GuyTalk is the brief I wanted: the stuff that actually comes up when you're with people — sports, markets, culture — written sharp, kept short, with a real point of view. Not a summary. An actual take, from someone who read everything and filtered it down to what matters.</p>
-      <p>Built for guys who want to walk into the day informed, not exhausted. If that sounds like you, join below.</p>
     </div>
   </div>
 </section>
