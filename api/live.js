@@ -605,13 +605,40 @@ async function fetchGolf() {
 
 /* --------------------------------------------------------------------- Tennis */
 
+// The four majors define the season. Hardcoded calendar (with public total purses)
+// so we can always answer "does this matter / when's the next one" — ESPN's feed
+// doesn't carry purse or a reliable forward schedule.
+const GRAND_SLAMS = [
+  { name: 'Australian Open', start: '2026-01-12', loc: 'Melbourne',  purse: '$60M' },
+  { name: 'French Open',     start: '2026-05-24', loc: 'Paris',      purse: '$64M' },
+  { name: 'Wimbledon',       start: '2026-06-29', loc: 'London',     purse: '$67M' },
+  { name: 'US Open',         start: '2026-08-31', loc: 'New York',   purse: '$90M' },
+];
+function nextGrandSlam() {
+  const now = Date.now();
+  return GRAND_SLAMS.find((s) => Date.parse(s.start) >= now)
+    || { name: 'Australian Open', start: '2027-01-11', loc: 'Melbourne', purse: '$60M' };
+}
+function slamPurse(name) {
+  const m = GRAND_SLAMS.find((s) => new RegExp(s.name.replace(/\s+/g, '\\s*'), 'i').test(name || ''));
+  return m ? m.purse : null;
+}
+function tennisPlayerLink(athlete) {
+  const links = athlete?.links || [];
+  const pc = links.find((l) => (l.rel || []).includes('playercard')) || links.find((l) => (l.rel || []).includes('athlete')) || links[0];
+  return pc?.href || (athlete?.id ? `https://www.espn.com/tennis/player/_/id/${athlete.id}` : '');
+}
+
 // Tennis (ATP + WTA). Tournaments carry a `major` flag = Grand Slam. Results are
 // gender-matched to the tour (combined events expose both draws). Real data only.
 async function fetchTennis() {
   const tours = [['atp', 'ATP'], ['wta', 'WTA']];
   const out = [];
   for (const [slug, label] of tours) {
-    const data = await json(`${ESPN}/tennis/${slug}/scoreboard`);
+    const [data, rk] = await Promise.all([
+      json(`${ESPN}/tennis/${slug}/scoreboard`),
+      json(`${ESPN}/tennis/${slug}/rankings`).catch(() => null),
+    ]);
     const events = data?.events || [];
     if (!events.length) continue;
     const ev = events.find((e) => e.major) || events[0];
@@ -634,23 +661,33 @@ async function fetchTennis() {
       results.push({
         winner: w.athlete?.displayName || w.athlete?.shortName || '',
         winnerFlag: w.athlete?.flag?.href || '',
+        winnerLink: tennisPlayerLink(w.athlete),
         loser: l.athlete?.displayName || l.athlete?.shortName || '',
         loserFlag: l.athlete?.flag?.href || '',
+        loserLink: tennisPlayerLink(l.athlete),
         score,
       });
     }
+
+    const topRanked = (rk?.rankings?.[0]?.ranks || []).slice(0, 5).map((r) => ({
+      rank: r.current,
+      name: r.athlete?.displayName || r.athlete?.shortName || '',
+      link: tennisPlayerLink(r.athlete),
+    })).filter((p) => p.name);
 
     out.push({
       tour: label,
       name: ev.shortName || ev.name || `${label} Tour`,
       isMajor: !!ev.major,
+      purse: ev.major ? slamPurse(ev.name || ev.shortName) : null,
       statusText: ev.status?.type?.description || ev.status?.type?.shortDetail || '',
       eventLink: espnLink(ev.links),
+      topRanked,
       results: results.slice(-5),
     });
   }
   if (!out.length) return null;
-  return { anyMajor: out.some((t) => t.isMajor), tours: out };
+  return { anyMajor: out.some((t) => t.isMajor), nextMajor: nextGrandSlam(), tours: out };
 }
 
 /* -------------------------------------------------------------------- Markets */

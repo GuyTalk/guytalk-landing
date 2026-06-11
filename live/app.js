@@ -1058,34 +1058,67 @@ function FeaturedGolfCard(g) {
     el.innerHTML = `<div class="grid-golf">${board}<div class="stack">${ContextCard(golfRows, golf.state === 'in', 'Golf')}${FeaturedGolfCard(golf)}${golfWhatYouMissed(golf)}</div></div>`;
   }
 
+  // "The GuyTalk Read" for tennis — ranks, stakes, next major, what to say.
+  function tennisContext(tennis) {
+    const rows = [];
+    const major = tennis.tours.find((x) => x.isMajor);
+    const atp = tennis.tours.find((x) => x.tour === 'ATP');
+    const wta = tennis.tours.find((x) => x.tour === 'WTA');
+    const primary = tennis.tours[0];
+
+    rows.push({ label: 'Why it matters', text: major
+      ? `${major.name} is a Grand Slam — one of the four majors that decide careers and the rankings.${major.purse ? ` ${major.purse} on the line.` : ''}`
+      : `${primary.name} is a regular tour stop — a tune-up, not a major. The real stakes come at the Slams.` });
+
+    const no1 = [];
+    if (atp?.topRanked?.[0]) no1.push(`${atp.topRanked[0].name} (ATP)`);
+    if (wta?.topRanked?.[0]) no1.push(`${wta.topRanked[0].name} (WTA)`);
+    if (no1.length) rows.push({ label: 'World #1', key: true, text: `${no1.join(' · ')} top the rankings right now.` });
+
+    if (tennis.nextMajor) {
+      const nm = tennis.nextMajor;
+      const d = new Date(nm.start + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+      rows.push({ label: 'Next major', text: `${nm.name} — ${nm.loc}, starts ${d}${nm.purse ? ` · ${nm.purse} purse` : ''}.` });
+    }
+
+    rows.push({ label: 'What to say', say: true, text: major
+      ? `"Every round at ${major.name} matters now — this is where the season actually gets decided."`
+      : `"Just tune-up tennis before ${tennis.nextMajor ? tennis.nextMajor.name : 'the next Slam'} — watch who's finding form early."` });
+    return rows;
+  }
+
   function renderTennis(real) {
     const tennis = real || (IS_DEV ? MOCK.tennis : null);
     setBadge('badge-tennis', real ? 'live' : (tennis ? 'mock' : null));
     const el = $('tennisWrap');
     if (!el) return;
     if (!tennis || !tennis.tours || !tennis.tours.length) { el.innerHTML = emptyBox('No tennis events right now.'); return; }
+    const player = (name, link) => link
+      ? `<a class="nm-link" href="${esc(link)}" target="_blank" rel="noopener">${esc(name)}</a>` : esc(name);
     const cards = tennis.tours.map((t) => {
       const slam = t.isMajor ? '<span class="tns-slam">Grand Slam</span>' : '';
       const rows = (t.results || []).slice().reverse().map((r) => `
         <div class="tns-row">
           <span class="tns-match">
             ${r.winnerFlag ? `<img class="tns-flag" src="${esc(r.winnerFlag)}" alt="" loading="lazy">` : ''}
-            <span class="tns-w">${esc(r.winner)}</span>
+            <span class="tns-w">${player(r.winner, r.winnerLink)}</span>
             <span class="tns-def">def.</span>
             ${r.loserFlag ? `<img class="tns-flag" src="${esc(r.loserFlag)}" alt="" loading="lazy">` : ''}
-            <span class="tns-l">${esc(r.loser)}</span>
+            <span class="tns-l">${player(r.loser, r.loserLink)}</span>
           </span>
           <span class="tns-score">${esc(r.score || '')}</span>
         </div>`).join('') || '<div class="tns-none">No completed matches yet.</div>';
+      const ranks = (t.topRanked || []).slice(0, 3).map((p) => `#${esc(p.rank)} ${player(p.name, p.link)}`).join(' · ');
       return `<div class="tns-card sc-card">
         <div class="tns-head">
           <div class="tns-title"><span class="tns-tour">${esc(t.tour)}</span> ${esc(t.name)} ${slam}</div>
           <span class="tns-status">${esc(t.statusText || '')}</span>
         </div>
+        ${ranks ? `<div class="tns-ranks"><span class="tns-ranks-lbl">Top ranked</span> ${ranks}</div>` : ''}
         ${rows}
       </div>`;
     }).join('');
-    el.innerHTML = `<div class="grid-two">${cards}</div>`;
+    el.innerHTML = `<div class="grid-golf"><div class="stack">${cards}</div><div class="stack">${ContextCard(tennisContext(tennis), false, 'Tennis')}</div></div>`;
   }
 
   function renderScoreboard(real) {
