@@ -6,7 +6,7 @@ require('dotenv').config({ path: '.env.local' });
 const fs   = require('fs');
 const path = require('path');
 
-const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTrending } = require('./lib/fetchers');
+const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending } = require('./lib/fetchers');
 const { generateCopy }                                      = require('./lib/copy');
 const { editBrief }                                         = require('./lib/editor');
 const { buildHtml }                                         = require('./lib/html');
@@ -100,10 +100,10 @@ async function regenAll() {
     if (regenCopy) {
       console.log(`  ✍️  Regenerating AI copy for ${slug}...`);
       try {
-        const { sports, markets, golf, trending, f1, worldCup, nhl, upcoming } = issueData;
+        const { sports, markets, golf, tennis, trending, f1, worldCup, nhl, upcoming } = issueData;
         const boxScores = {};
         const streamingPick = STREAMING_PICKS[(issueData.num || 0) % STREAMING_PICKS.length];
-        issueData.copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, nhl, upcoming, boxScores, prev3: [], streamingPick });
+        issueData.copy = await generateCopy({ sports, markets, golf, tennis, trending, f1, worldCup, nhl, upcoming, boxScores, prev3: [], streamingPick });
         if (issueData.copy?.title) issueData.title = issueData.copy.title;
         fs.writeFileSync(jsonPath, JSON.stringify(issueData, null, 2));
         console.log(`     ✓ Copy: "${issueData.copy?.title || 'generated'}"`);
@@ -157,7 +157,7 @@ function autoTitle({ sports, golf, f1, worldCup, upcoming }) {
 // Build a plain-text "raw facts" block for the editorial pass.
 // The editor may ONLY use these facts — it edits wording, never invents data.
 // ─────────────────────────────────────────────────────────────────────────────
-function buildFactsContext({ sports, markets, golf, f1, worldCup, nhl, upcoming, boxScores, trending }) {
+function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending }) {
   const lines = [];
 
   if (sports?.length) {
@@ -192,6 +192,14 @@ function buildFactsContext({ sports, markets, golf, f1, worldCup, nhl, upcoming,
     const lb = golf.leaders?.slice(0, 3).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ') || 'no leaderboard yet';
     const status = golf.statusState === 'post' ? 'Finished' : golf.statusState === 'in' ? 'In Progress' : 'Starting this week';
     lines.push(`GOLF: ${golf.name} — ${status}. Leaderboard: ${lb}`);
+  }
+
+  if (tennis?.tours?.length) {
+    tennis.tours.forEach(t => {
+      const tag = t.isMajor ? `${t.tour} GRAND SLAM` : t.tour;
+      const res = t.results?.length ? ` Recent: ${t.results.map(r => `${r.winner} def. ${r.loser} ${r.score}`).join('; ')}` : '';
+      lines.push(`TENNIS (${tag}): ${t.name} — ${t.status || 'in progress'}.${res}`);
+    });
   }
 
   if (worldCup?.length) {
@@ -250,7 +258,7 @@ async function main() {
   // ── Fetch data ─────────────────────────────────────────────────────────────
   console.log('📡 Fetching data...');
 
-  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult, screenersResult, nhlResult] = await Promise.allSettled([
+  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult, screenersResult, nhlResult, tennisResult] = await Promise.allSettled([
     fetchNBA(),
     fetchMarkets(),
     fetchGolf(),
@@ -260,6 +268,7 @@ async function main() {
     fetchNBAUpcoming(),
     fetchMarketScreeners(),
     fetchNHL(),
+    fetchTennis(),
   ]);
 
   let sports       = sportsResult.status    === 'fulfilled' ? sportsResult.value    : null;
@@ -280,6 +289,11 @@ async function main() {
   let   f1         = f1Result.status        === 'fulfilled' ? f1Result.value        : null;
   const worldCup   = wcResult.status        === 'fulfilled' ? wcResult.value        : null;
   const upcoming   = upcomingResult.status  === 'fulfilled' ? upcomingResult.value  : null;
+  const tennis     = tennisResult.status    === 'fulfilled' ? tennisResult.value    : null;
+  if (tennis) {
+    const slam = tennis.anyMajor ? ' ⭐ GRAND SLAM' : '';
+    console.log(`   ✓ Tennis:${slam} ${tennis.tours.map(t => `${t.tour} ${t.name}`).join(', ')}`);
+  }
 
   // Fetch box scores + highlight meta for any games (real player stats + recap links)
   let boxScores = {};
@@ -359,7 +373,7 @@ async function main() {
       };
     }
     const streamingPick = STREAMING_PICKS[issueNum % STREAMING_PICKS.length];
-    copy = await generateCopy({ sports, markets, golf, trending, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick });
+    copy = await generateCopy({ sports, markets, golf, tennis, trending, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick });
     if (copy) {
       if (copy.title)          console.log(`   ✓ Headline: "${copy.title}"`);
       if (copy.lead)           console.log(`   ✓ Sports angle`);
@@ -384,7 +398,7 @@ async function main() {
   if (copy) {
     console.log('\n🧐 Editorial pass — Claude enforcing the GuyTalk Editorial Bible...');
     try {
-      const facts = buildFactsContext({ sports, markets, golf, f1, worldCup, nhl, upcoming, boxScores, trending });
+      const facts = buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending });
       const links = (trending || []).map(t => t.url).filter(Boolean);
       const result = await editBrief({ copy, context: facts, links });
       copy = result.copy;
@@ -422,6 +436,7 @@ async function main() {
     sports,
     markets,
     golf,
+    tennis,
     f1,
     worldCup,
     nhl,

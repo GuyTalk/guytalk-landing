@@ -64,7 +64,7 @@ function parseJson(raw) {
   return null;
 }
 
-async function generateCopy({ sports, markets, golf, trending, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick }) {
+async function generateCopy({ sports, markets, golf, tennis, trending, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey || apiKey.includes('your_') || apiKey.includes('_here')) return null;
 
@@ -136,11 +136,21 @@ async function generateCopy({ sports, markets, golf, trending, f1, worldCup, nhl
     ? `World Cup 2026 opens June 11 — ${worldCup.filter(m => m.statusState === 'in' || m.statusState === 'post').length} match(es) played`
     : null;
 
+  // Tennis: lead with a Grand Slam if one's running; otherwise the week's events.
+  const tennisText = tennis?.tours?.length
+    ? tennis.tours.map(t => {
+        const tag = t.isMajor ? `${t.tour} GRAND SLAM` : t.tour;
+        const r = t.results?.[t.results.length - 1];
+        return `${tag} ${t.name}${t.status ? ` (${t.status})` : ''}${r ? `: ${r.winner} def. ${r.loser} ${r.score}` : ''}`;
+      }).join('; ')
+    : null;
+
   const ctx = [
     gamesText || (upcomingText ? `Upcoming: ${upcomingText}` : null),
     upcomingText && gamesText ? `Upcoming: ${upcomingText}` : null,
     f1Text,
     golfText,
+    tennisText ? `Tennis: ${tennisText}` : null,
     wcText,
     mktText ? `Markets: ${mktText}` : null,
   ].filter(Boolean).join(' | ');
@@ -192,7 +202,7 @@ Context: ${ctx}`,
 Trending: ${trendText || 'none'}
 
 CATEGORY RULES (strictly enforced):
-- "sports": baseball, basketball, NHL, NFL trades/news — NOT culture, NOT gaming
+- "sports": baseball, basketball, NHL, NFL trades/news, tennis (esp. Grand Slams: Wimbledon, US/French/Australian Open) — NOT culture, NOT gaming
 - "markets": stocks, rates, crypto, economy ONLY
 - "golf": golf tournaments ONLY
 - "f1": Formula 1 ONLY
@@ -212,6 +222,7 @@ ${mainGameLeaders ? `Player stats (ONLY use these — never invent): ${mainGameL
 ${upcomingText ? `Upcoming: ${upcomingText}` : ''}
 ${f1Text ? f1Text : ''}
 ${golfText ? golfText : ''}
+${tennisText ? `Tennis: ${tennisText}` : ''}
 
 Games are listed 0-indexed: ${(sports || []).map((g, i) => {
   const w = g.home.winner ? g.home : g.away;

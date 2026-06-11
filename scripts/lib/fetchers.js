@@ -643,6 +643,66 @@ async function fetchGolf() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Tennis (ATP + WTA). Tournaments carry a `major` flag = Grand Slam. Singles
+// results live under groupings. Real data only — no fabricated matches.
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchTennis() {
+  const tours = [['atp', 'ATP'], ['wta', 'WTA']];
+  const out = [];
+  for (const [slug, label] of tours) {
+    try {
+      const res = await fetch(`https://site.api.espn.com/apis/site/v2/sports/tennis/${slug}/scoreboard`, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+      if (!res.ok) continue;
+      const data = await res.json();
+      const events = data.events || [];
+      if (!events.length) continue;
+      // Prefer a Grand Slam; otherwise the featured event of the week.
+      const ev = events.find(e => e.major) || events[0];
+      const addr = ev.venue?.address || {};
+      // Match the tour's own draw (combined events expose both Men's & Women's
+      // Singles, so the wrong one would attribute men's results under WTA).
+      const wantGender = label === 'WTA' ? /women/i : /\bmen/i;
+      const groupings = ev.groupings || [];
+      const singles = groupings.find(g => {
+        const n = g.grouping?.displayName || g.grouping?.name || '';
+        return /singles/i.test(n) && wantGender.test(n);
+      }) || groupings.find(g => /singles/i.test(g.grouping?.displayName || g.grouping?.name || ''));
+
+      const results = [];
+      for (const c of (singles?.competitions || [])) {
+        if (c.status?.type?.state !== 'post') continue; // completed only
+        const comp = c.competitors || [];
+        const w = comp.find(x => x.winner), l = comp.find(x => !x.winner);
+        if (!w || !l) continue;
+        const score = (w.linescores || [])
+          .map((ls, i) => `${ls.value}-${l.linescores?.[i]?.value ?? ''}`)
+          .filter(s => s !== '-').join(' ');
+        results.push({
+          winner: w.athlete?.displayName || w.athlete?.shortName || 'Unknown',
+          loser:  l.athlete?.displayName || l.athlete?.shortName || 'Unknown',
+          score,
+        });
+      }
+
+      out.push({
+        tour: label,
+        name: ev.shortName || ev.name || `${label} Tour`,
+        isMajor: !!ev.major,
+        venue: ev.venue?.fullName || '',
+        location: [addr.city, addr.state || addr.country].filter(Boolean).join(', '),
+        date: ev.date || null,
+        endDate: ev.endDate || null,
+        status: ev.status?.type?.description || ev.status?.type?.shortDetail || '',
+        results: results.slice(-3).filter(r => r.winner !== 'Unknown'),
+      });
+    } catch (_) {}
+    await new Promise(r => setTimeout(r, 250));
+  }
+  if (!out.length) return null;
+  return { anyMajor: out.some(t => t.isMajor), tours: out };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Culture/trending: Reddit hot posts + optional NewsAPI headlines
 // ─────────────────────────────────────────────────────────────────────────────
 async function fetchTrending() {
@@ -692,4 +752,4 @@ async function fetchTrending() {
   return items;
 }
 
-module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTrending };
+module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending };
