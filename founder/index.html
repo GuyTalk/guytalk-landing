@@ -24,12 +24,30 @@
   a { color: var(--accent); text-decoration: none; }
   .wrap { max-width: 980px; margin: 0 auto; padding: 40px 24px 80px; }
 
-  .fhead { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
-  .wordmark { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.03em; }
+  /* Dark hero header — premium control-center look (matches /live) */
+  .fhero {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #0C1B33 0%, #0A1428 60%, #0F1724 100%);
+    border: 1px solid var(--border); border-radius: 18px;
+    padding: 26px 30px 24px; margin-bottom: 18px;
+    box-shadow: 0 14px 40px rgba(12,27,51,0.18);
+  }
+  .fhero::after {
+    content: ""; position: absolute; top: -50%; right: -6%; width: 360px; height: 360px;
+    pointer-events: none; background: radial-gradient(circle, rgba(59,130,246,0.28), transparent 68%);
+    animation: fglow 9s ease-in-out infinite;
+  }
+  @keyframes fglow { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-24px,18px) scale(1.12); } }
+  .fhero > * { position: relative; z-index: 1; }
+  .fhead { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .wordmark { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.03em; color: #F4F6FB; }
   .wordmark .dot { color: var(--accent); }
-  .feyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-3); }
+  .feyebrow { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6691E6; margin-bottom: 4px; }
   .fhead-right { display: flex; align-items: center; gap: 14px; }
-  .fsub { color: var(--text-2); font-size: 15px; margin-bottom: 24px; }
+  .fsub { color: rgba(244,246,251,0.72); font-size: 15px; margin: 14px 0 0; }
+  .fhero .refresh { color: rgba(244,246,251,0.9); border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.07); }
+  .fhero .refresh:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .fhero .logout { color: rgba(244,246,251,0.55); }
   .refresh { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); cursor: pointer; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 11px; transition: background 0.12s; }
   .refresh:hover { background: var(--accent-muted); }
   .refresh:disabled { opacity: 0.5; cursor: default; }
@@ -130,14 +148,19 @@
 </div>
 
 <div id="dashView" class="wrap" style="display:none">
-  <div class="fhead">
-    <div class="wordmark">GuyTalk<span class="dot">.</span> <span class="feyebrow">/ founder</span></div>
-    <div class="fhead-right">
-      <button class="refresh" id="refreshBtn">↻ Refresh</button>
-      <span class="logout" id="logoutBtn">Log out</span>
+  <div class="fhero">
+    <div class="fhead">
+      <div>
+        <div class="feyebrow">Founder Control</div>
+        <div class="wordmark">GuyTalk<span class="dot">.</span></div>
+      </div>
+      <div class="fhead-right">
+        <button class="refresh" id="refreshBtn">↻ Refresh</button>
+        <span class="logout" id="logoutBtn">Log out</span>
+      </div>
     </div>
+    <p class="fsub">Everything that's going on — at a glance.</p>
   </div>
-  <p class="fsub">Everything that's going on — at a glance.</p>
 
   <div class="stat-grid" id="statGrid"></div>
 
