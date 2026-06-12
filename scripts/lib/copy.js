@@ -64,7 +64,7 @@ function parseJson(raw) {
   return null;
 }
 
-async function generateCopy({ sports, markets, golf, tennis, trending, topStories, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick }) {
+async function generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey || apiKey.includes('your_') || apiKey.includes('_here')) return null;
 
@@ -167,6 +167,21 @@ async function generateCopy({ sports, markets, golf, tennis, trending, topStorie
     ? 'BIGGEST STORIES TODAY (real, web-researched — the ★ is the single biggest thing a guy needs to know today; it usually outranks a regular-season game): '
       + stories.map((s) => `${s.isLead ? '★' : '•'} [${s.category}] ${s.headline}`).join('  ;;  ')
     : '';
+
+  // Web-sourced section facts (Change 1) — real, current facts the structured
+  // feeds can't see. Injected into the matching section prompt as grounded facts.
+  const sectionWeb = (key) => {
+    const r = sectionStories?.[key];
+    if (!r || r.no_data) return null;
+    return `${r.headline ? r.headline + ' — ' : ''}${r.fact || ''}`.trim() || null;
+  };
+  const nhlWeb  = sectionWeb('nhl');
+  const f1Web   = sectionWeb('f1');
+  const golfWeb = sectionWeb('golf');
+  const cultureWeb = (sectionStories?.culture || [])
+    .filter(c => c && !c.no_data)
+    .map(c => `${c.headline ? c.headline + ' — ' : ''}${c.fact || ''}`.trim())
+    .filter(Boolean);
 
   // Repetition guard from last 3 briefs
   const coveredEvents = (prev3 || [])
@@ -306,7 +321,7 @@ Return ONLY valid JSON on one line — no markdown:
             const status = golf.statusState === 'post' ? 'Finished' : golf.statusState === 'in' ? 'In Progress' : 'Has NOT started yet';
 
             if (started) {
-              return `GuyTalk golf: ${golf.name} — ${status}. Leaderboard: ${lb || 'no leaderboard yet'}.${coveredLine}
+              return `GuyTalk golf: ${golf.name} — ${status}. Leaderboard: ${lb || 'no leaderboard yet'}.${coveredLine}${golfWeb ? `\nWEB-SOURCED FACT (real, current — use it): ${golfWeb}` : ''}
 ${golf.statusState === 'post' ? 'If this event is in the ALREADY COVERED list above, do not re-report the finish as fresh — give a one-line wrap and point ahead to the tour moving on (do NOT invent the next tournament\'s name or field).' : ''}
 Return ONLY valid JSON on one line — no markdown:
 {"headline":"Max 10 words — what's happening at ${golf.name}.","whyCare1":"One sentence — why this tournament matters (stakes, prestige, course).","whyCare2":"One sentence — the leaderboard situation or a specific angle.","watchFor":"One thing to track — a player, a battle, a scoring target.","whatToSay":"One casual conversational line."}`;
@@ -346,7 +361,8 @@ Return ONLY valid JSON on one line — no markdown:
             if (isPost && w?.champPos != null) bits.push(`sits P${w.champPos} in the championship${w.champPoints != null ? ` with ${w.champPoints} pts` : ''}`);
             if (f1.champLeader?.lead != null) bits.push(`${f1.champLeader.name} leads the title race by ${f1.champLeader.lead} pts`);
             const statLine = bits.length ? `\nReal season stats (use ONLY these for any numbers/records): ${bits.join('; ')}.` : '';
-            return `GuyTalk F1: ${f1.name}. ${raceLine}.${statLine}
+            const f1WebLine = f1Web ? `\nWEB-SOURCED FACT (real, current — use it): ${f1Web}` : '';
+            return `GuyTalk F1: ${f1.name}. ${raceLine}.${statLine}${f1WebLine}
 A driver's team/constructor is ONLY the name shown in parentheses next to them. NEVER guess or state a driver's team if it is not given.
 STATS RULE (hard): you may include ONE interesting stat in "whatToSay" or "whyCare2", but ONLY using the season stats provided above. NEVER invent records, streaks, "first/most/youngest/oldest", or any number not given. If no stat is provided, don't cite one.
 Return ONLY valid JSON on one line — no markdown:
@@ -415,7 +431,7 @@ Return ONLY valid JSON on one line — no markdown:
         : `Upcoming: ${g.away.team} at ${g.home.team}`;
       const meta = `${g.note || ''}${g.seriesNote ? ` — ${g.seriesNote}` : ''}${g.venue ? ` — ${g.venue}${g.venueCity ? `, ${g.venueCity}` : ''}` : ''}`;
       return ask(
-        `GuyTalk NHL section. ${g.note || 'NHL game'}. ${line}. ${meta}.
+        `GuyTalk NHL section. ${g.note || 'NHL game'}. ${line}. ${meta}.${nhlWeb ? `\nWEB-SOURCED FACT (real, current — use it): ${nhlWeb}` : ''}
 Use ONLY the facts above — never invent scores, records, or stats not given.
 Return ONLY valid JSON on one line — no markdown:
 {"headline":"Max 10 words — the angle.","whyCare1":"One sentence — why this game/series matters right now.","whyCare2":"One sentence — series state or stakes (who leads, what a win does).","watchFor":"One specific thing to track.","whatToSay":"One casual conversation line."}`,

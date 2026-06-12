@@ -11,7 +11,7 @@ const { generateCopy }                                      = require('./lib/cop
 const { editBrief }                                         = require('./lib/editor');
 const { buildHtml }                                         = require('./lib/html');
 const { buildArchive }                                      = require('./lib/archive');
-const { fetchTopStories }                                   = require('./lib/research');
+const { fetchTopStories, fetchSectionStories }              = require('./lib/research');
 const { STREAMING_PICKS }                                   = require('./lib/db');
 
 const ROOT      = path.join(__dirname, '..');
@@ -158,7 +158,7 @@ function autoTitle({ sports, golf, f1, worldCup, upcoming }) {
 // Build a plain-text "raw facts" block for the editorial pass.
 // The editor may ONLY use these facts — it edits wording, never invents data.
 // ─────────────────────────────────────────────────────────────────────────────
-function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending, topStories }) {
+function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending, topStories, sectionStories }) {
   const lines = [];
 
   if (sports?.length) {
@@ -247,6 +247,24 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
   if (trending?.length) {
     lines.push('TRENDING HEADLINES (for culture/context):');
     trending.slice(0, 8).forEach(t => lines.push(`- [${t.source}] ${t.title}`));
+  }
+
+  // Per-section web research (Change 1) — sourced facts for NHL/F1/Golf + culture.
+  if (sectionStories && Object.keys(sectionStories).length) {
+    const sec = [];
+    const fmt = (label, r) => {
+      if (!r || r.no_data) return;
+      sec.push(`${label}: ${r.headline || r.fact}${r.fact && r.headline ? ` — ${r.fact}` : ''}${r.url ? ` (source: ${r.url})` : ''}`);
+    };
+    fmt('NHL (web)', sectionStories.nhl);
+    fmt('F1 (web)', sectionStories.f1);
+    fmt('GOLF (web)', sectionStories.golf);
+    (sectionStories.culture || []).forEach((c, i) => fmt(`CULTURE ${i + 1} (web)`, c));
+    if (sec.length) {
+      lines.push('');
+      lines.push('SECTION RESEARCH (web-sourced, real — use as grounded facts):');
+      lines.push(...sec.map(s => `- ${s}`));
+    }
   }
 
   return lines.join('\n') || '(no data available)';
@@ -365,6 +383,7 @@ async function main() {
   // ── Generate AI copy ───────────────────────────────────────────────────────
   console.log('\n✍️  Generating GuyTalk copy with Claude Haiku...');
   let copy = null;
+  let sectionStories = {};
   try {
     const prev3 = loadPreviousBriefs(3);
     if (prev3.length) console.log(`   ✓ Repetition guard: loaded ${prev3.length} previous brief(s)`);
@@ -389,7 +408,19 @@ async function main() {
       };
     }
     const streamingPick = STREAMING_PICKS[issueNum % STREAMING_PICKS.length];
-    copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick });
+
+    // ── Per-section web research (Change 1) — grounds NHL/F1/Golf/Culture + hero ──
+    // Runs after the F1-pivot so the F1 search reflects the race we'll actually
+    // cover. Sections with nothing concrete come back no_data and get skipped.
+    console.log('   🔎 Per-section web research (NHL, F1, Golf, Culture, hero)...');
+    try {
+      const leadSubject = (topStories.find(s => s.isLead) || topStories[0])?.headline || null;
+      sectionStories = await fetchSectionStories({ dateLabel: date, nhl, f1, golf, leadSubject });
+    } catch (e) {
+      console.log(`   ⚠  Section research failed (non-blocking): ${e.message}`);
+    }
+
+    copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick });
     if (copy) {
       if (copy.title)          console.log(`   ✓ Headline: "${copy.title}"`);
       if (copy.lead)           console.log(`   ✓ Sports angle`);
@@ -414,7 +445,7 @@ async function main() {
   if (copy) {
     console.log('\n🧐 Editorial pass — Claude enforcing the GuyTalk Editorial Bible...');
     try {
-      const facts = buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending, topStories });
+      const facts = buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending, topStories, sectionStories });
       const links = (trending || []).map(t => t.url).filter(Boolean);
       const result = await editBrief({ copy, context: facts, links });
       copy = result.copy;
@@ -460,6 +491,10 @@ async function main() {
     gameMetas,
     trending,
     topStories,
+    sectionStories,
+    heroImage: (sectionStories?.heroImage && !sectionStories.heroImage.no_data)
+      ? sectionStories.heroImage.url
+      : null,
     copy,
     editor:  editorMeta,
   };
