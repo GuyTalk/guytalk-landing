@@ -94,12 +94,11 @@ if [ "$GEN_EXIT" -eq 0 ]; then
         echo "   ✓ Editorial pass reviewed this brief" >> "$LOG_FILE"
       fi
 
-      # ── Auto-update landing page brief-story links ──────────────────────────
-      PREV_ISSUE=$(ls -d "$PROJECT_DIR/brief/issue-"??? 2>/dev/null | sort | tail -2 | head -1 | xargs basename 2>/dev/null)
-      if [ -n "$PREV_ISSUE" ] && [ "$PREV_ISSUE" != "$ISSUE" ]; then
-        sed -i '' "s|brief/${PREV_ISSUE}/|brief/${ISSUE}/|g" "$PROJECT_DIR/index.html" 2>/dev/null
-        echo "   ✓ index.html updated: ${PREV_ISSUE} → ${ISSUE}" >> "$LOG_FILE"
-      fi
+      # ── Refresh the homepage from the new brief (replaces the old sed href bump) ──
+      # update-homepage.js rewrites the "From the brief" preview, the phone-mockup
+      # slides, and the group-chat block from the latest issue JSON, and repoints
+      # every /brief/issue-NNN/ link. Fail-open: leaves index.html unchanged on any error.
+      "$NODE" "$PROJECT_DIR/scripts/update-homepage.js" 2>&1 | tee -a "$LOG_FILE"
 
       # ── Stage to `pending` (NOT public) → publishes only on Jake's approval ──
       # The brief is pushed to the `pending` branch, which Vercel does NOT deploy
