@@ -7,18 +7,20 @@
     }
   },
   "functions": {
-    "api/approve.js":       { "maxDuration": 60 },
-    "api/ticker.js":        { "maxDuration": 15 },
-    "api/live.js":          { "maxDuration": 15 },
-    "api/talk.js":          { "maxDuration": 30 },
-    "api/beehiiv-sync.js":  { "maxDuration": 15 },
-    "api/subscribe.js":     { "maxDuration": 15 },
-    "api/quote.js":         { "maxDuration": 15 },
-    "api/social-queue.js":  { "maxDuration": 60, "includeFiles": "brief/data/**" }
+    "api/approve.js":         { "maxDuration": 60 },
+    "api/ticker.js":          { "maxDuration": 15 },
+    "api/live.js":            { "maxDuration": 15, "includeFiles": "brief/data/live-culture.json" },
+    "api/talk.js":            { "maxDuration": 30 },
+    "api/refresh-culture.js": { "maxDuration": 30 },
+    "api/beehiiv-sync.js":    { "maxDuration": 15 },
+    "api/subscribe.js":       { "maxDuration": 15 },
+    "api/quote.js":           { "maxDuration": 15 },
+    "api/social-queue.js":    { "maxDuration": 60, "includeFiles": "brief/data/**" }
   },
   "crons": [
     { "path": "/api/beehiiv-sync", "schedule": "33 11 * * *" },
-    { "path": "/api/social-queue", "schedule": "0 13 * * *" }
+    { "path": "/api/social-queue", "schedule": "0 13 * * *" },
+    { "path": "/api/refresh-culture", "schedule": "0 */4 * * *" }
   ],
   "headers": [
     {

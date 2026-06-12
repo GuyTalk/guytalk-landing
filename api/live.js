@@ -23,8 +23,26 @@
  *     completed; otherwise the race is treated as upcoming (grid + next time).
  */
 
+const fs   = require('fs');
+const path = require('path');
+
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports';
 const CURRENT_YEAR = new Date().getUTCFullYear();
+
+// Live Culture/Trending headlines — refreshed every 4h by api/refresh-culture.js
+// (committed to brief/data/live-culture.json). Read-only here; empty array if the
+// file is missing or unreadable so the Live page degrades to its empty state.
+function loadLiveCulture() {
+  try {
+    const p = path.join(process.cwd(), 'brief', 'data', 'live-culture.json');
+    if (!fs.existsSync(p)) return [];
+    const d = JSON.parse(fs.readFileSync(p, 'utf8'));
+    const stories = Array.isArray(d) ? d : (Array.isArray(d.stories) ? d.stories : []);
+    return stories.filter(s => s && s.headline);
+  } catch (_) {
+    return [];
+  }
+}
 
 const SCOREBOARD_LEAGUES = [
   { key: 'nba', label: 'NBA',                base: 5, sport: 'basketball', league: 'nba' },
@@ -945,6 +963,7 @@ module.exports = async function handler(req, res) {
     ]);
 
     const liveNow = deriveLiveNow({ scoreboard, f1, golf });
+    const trending = loadLiveCulture();   // NewsAPI headlines, refreshed every 4h
 
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
     return res.json({
@@ -957,11 +976,11 @@ module.exports = async function handler(req, res) {
         tennis:     tennis     ? 'espn'    : null,
         scoreboard: scoreboard ? 'espn'    : null,
         markets:    markets    ? 'finnhub' : null,
-        trending:     'editorial',   // no live source yet
+        trending:     trending.length ? 'NewsAPI' : null,
         talkingAbout: 'editorial',   // no live source yet
       },
       liveNow, f1, golf, tennis, scoreboard, markets,
-      trending: null,
+      trending: trending.length ? trending : null,
       talkingAbout: null,
     });
   } catch (err) {
