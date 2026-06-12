@@ -12,7 +12,12 @@ WRITING RULES:
 - Short sentences. Vary rhythm: short punch, longer follow-through, short punch.
 - Name specific people, teams, numbers. Vague = useless.
 - Lead with the most interesting angle. Scores are the least interesting thing.
-- Every piece of writing answers: What happened? Why does it matter? What do I say?
+STRUCTURE — every item uses exactly these three labels, in this order, no substitutions:
+WHAT HAPPENED: One sentence. Specific. Named person or team. Score, stat, or number if applicable. Never vague.
+WHY IT MATTERS: One to two sentences. Non-obvious stakes — what changes, what it signals, why a normal person should care. Never "this matters because it's significant."
+WHAT TO BRING UP: One sentence. A specific take or hook a 28-year-old can say out loud in a group chat or at a bar. Not a summary. Has a point of view.
+
+These three labels appear verbatim in the output. Never substitute "The angle," "Watch for," "The read," "The takeaway," or anything else.
 - Casual language: "The Knicks got exposed" beats "New York underperformed."
 - Clarity over sounding clever.
 
@@ -239,8 +244,14 @@ CATEGORY RULES (strictly enforced):
 - "worldcup": FIFA World Cup ONLY (do not put culture content here)
 - "culture": what men 25-45 talk about — big movies/TV/streaming, gaming, tech & gadgets, sports business, a major music moment. AVOID celebrity gossip/breakups/who's-dating-who unless genuinely massive.
 
+TODAY'S HITS — the "sports", "markets", and "culture" fields are the three Today's Hits items. Each is exactly 2–3 sentences of plain prose (NOT a tagline, NOT labeled):
+  Sentence 1: What happened — named, specific, with a number/score where applicable.
+  Sentence 2: Why it matters or the non-obvious angle.
+  Sentence 3 (optional): What changes next / what to watch / the one-liner to bring up.
+  No bullet points. No labels. No "WHAT HAPPENED:" prefixes. Just the prose.
+
 Return ONLY valid JSON on one line — no markdown, no code fences:
-{"keyTakeaway":"2-3 sentences max. Big picture across sports, markets, culture. 20-second summary. No hype.","sports":"Tagline for sports section. Under 12 words.","markets":"Tagline for markets. Under 10 words. Include a number.","golf":"Tagline for golf. Under 10 words.","f1":"Tagline for F1. Under 10 words.","worldcup":"Tagline for World Cup (countdown, teams, venues). Under 10 words.","culture":"Tagline for culture/entertainment. Under 10 words. Must be about entertainment/gaming/TV/music — NOT sports scores."}`,
+{"keyTakeaway":"2-3 sentences max. Big picture across sports, markets, culture. 20-second summary. No hype.","sports":"Today's Hits — Sports. 2-3 sentences per the format above. Named team/player + result/number, then why it matters.","markets":"Today's Hits — Markets. 2-3 sentences per the format above. Must include a real number; observe and explain, never advise.","golf":"Tagline for golf. Under 10 words.","f1":"Tagline for F1. Under 10 words.","worldcup":"Tagline for World Cup (countdown, teams, venues). Under 10 words.","culture":"Today's Hits — Culture. 2-3 sentences per the format above. Entertainment/gaming/TV/music — NOT sports scores. Named thing + why people care."}`,
       350
     ),
 
