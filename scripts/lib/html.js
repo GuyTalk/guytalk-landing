@@ -206,20 +206,23 @@ function buildHtml(issue, relatedIssues) {
   const hasGolf = golf?.name != null;
   const hasNHL = !!(nhl && (nhl.final || nhl.next));
 
-  // Right-rail scroll-spy nav — fills the desktop margin + tracks where you are.
+  // Right-rail scroll-spy nav — top-level Sports/Markets/Culture, with the sports
+  // subsections (NHL/F1/Golf/World Cup) indented under Sports. Third tuple element
+  // flags a subsection link.
   const sideLinks = [
     ['top', 'Top'],
-    ['the-lead', 'The Lead'],
-    hasNHL  ? ['nhl', 'NHL'] : null,
-    hasF1   ? ['f1', 'F1'] : null,
-    hasGolf ? ['golf', 'Golf'] : null,
-    hasWC   ? ['worldcup', 'World Cup'] : null,
+    ['sports', 'Sports'],
+    ['the-lead', 'The Lead', true],
+    hasNHL  ? ['nhl', 'NHL', true] : null,
+    hasF1   ? ['f1', 'F1', true] : null,
+    hasGolf ? ['golf', 'Golf', true] : null,
+    hasWC   ? ['worldcup', 'World Cup', true] : null,
     ['markets', 'Markets'],
     ['culture', 'Culture'],
     ['sharp-take', 'Sharp Take'],
   ].filter(Boolean);
   const sideNavHtml = `<nav class="brief-sidenav" aria-label="On this page">
-${sideLinks.map(([id, label]) => `  <a href="#${id}" class="bsn-link" data-target="${id}"><span class="bsn-txt">${esc(label)}</span><span class="bsn-dot"></span></a>`).join('\n')}
+${sideLinks.map(([id, label, sub]) => `  <a href="#${id}" class="bsn-link${sub ? ' bsn-sub' : ''}" data-target="${id}"${sub ? ' style="padding-left:14px;font-size:0.92em;opacity:0.85;"' : ''}><span class="bsn-txt">${esc(label)}</span><span class="bsn-dot"></span></a>`).join('\n')}
 </nav>`;
 
   // Designed hero banner for the top event: a self-hosted sport photo darkened
@@ -342,11 +345,11 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </div>
     <nav class="section-jump" aria-label="Jump to section">
       <a href="#sports" class="sj-link">Sports</a>
-      <a href="#the-take" class="sj-link sj-link-take">The Take</a>${hasNHL ? `\n      <a href="#nhl" class="sj-link">NHL</a>` : ''}${hasF1 ? `\n      <a href="#f1" class="sj-link">F1</a>` : ''}${hasGolf ? `\n      <a href="#golf" class="sj-link">Golf</a>` : ''}${hasWC ? `\n      <a href="#worldcup" class="sj-link">World Cup</a>` : ''}
       <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
-      <a href="#sharp-take" class="sj-link">Sharp Take</a>
-    </nav>
+    </nav>${(hasNHL || hasF1 || hasGolf || hasWC) ? `
+    <nav class="section-subjump" aria-label="Jump to sports subsection" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;padding-left:14px;font-size:0.85em;opacity:0.8;">${hasNHL ? `\n      <a href="#nhl" class="sj-link sj-sub">NHL</a>` : ''}${hasF1 ? `\n      <a href="#f1" class="sj-link sj-sub">F1</a>` : ''}${hasGolf ? `\n      <a href="#golf" class="sj-link sj-sub">Golf</a>` : ''}${hasWC ? `\n      <a href="#worldcup" class="sj-link sj-sub">World Cup</a>` : ''}
+    </nav>` : ''}
   </div>
 </div>
 
@@ -363,7 +366,7 @@ ${buildTopModule(issue)}
 
 ${buildLead(issue)}
 
-${hasNHL ? buildNHL(issue) : ''}
+${hasNHL ? `<div class="sport-subsection">${buildNHL(issue)}</div>` : ''}
 
 <a href="/live/" class="brief-live-cta">
   <span class="blc-dot"></span>
@@ -378,11 +381,11 @@ ${buildTheTake(issue)}
 
 ${buildSports(issue)}
 
-${hasF1 ? buildF1(issue) : ''}
+${hasF1 ? `<div class="sport-subsection">${buildF1(issue)}</div>` : ''}
 
-${hasGolf ? buildGolf(issue) : ''}
+${hasGolf ? `<div class="sport-subsection">${buildGolf(issue)}</div>` : ''}
 
-${hasWC ? buildWorldCup(issue) : ''}
+${hasWC ? `<div class="sport-subsection">${buildWorldCup(issue)}</div>` : ''}
 
 <div class="brief-inline-cta">
   <div class="bic-inner">
