@@ -64,7 +64,7 @@ function parseJson(raw) {
   return null;
 }
 
-async function generateCopy({ sports, markets, golf, tennis, trending, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick }) {
+async function generateCopy({ sports, markets, golf, tennis, trending, topStories, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey || apiKey.includes('your_') || apiKey.includes('_here')) return null;
 
@@ -155,6 +155,19 @@ async function generateCopy({ sports, markets, golf, tennis, trending, f1, world
     mktText ? `Markets: ${mktText}` : null,
   ].filter(Boolean).join(' | ');
 
+  // Web-researched biggest stories of the day (real, sourced). These are the
+  // organic-news layer — a guy needs to know the single biggest story (★) above
+  // any regular-season game. The single biggest market/business story may carry
+  // a "depth" answer (market impact / index inclusion / how to participate /
+  // historical comps) — use it in the Markets section.
+  const stories = Array.isArray(topStories) ? topStories : [];
+  const leadStory = stories.find((s) => s.isLead) || stories[0] || null;
+  const leadMarketStory = stories.find((s) => s.depth && /Market|Business/i.test(s.category || '')) || null;
+  const topStoriesText = stories.length
+    ? 'BIGGEST STORIES TODAY (real, web-researched — the ★ is the single biggest thing a guy needs to know today; it usually outranks a regular-season game): '
+      + stories.map((s) => `${s.isLead ? '★' : '•'} [${s.category}] ${s.headline}`).join('  ;;  ')
+    : '';
+
   // Repetition guard from last 3 briefs
   const coveredEvents = (prev3 || [])
     .flatMap(b => [b.f1State === 'post' ? b.f1Event : '', b.golfState === 'post' ? b.golfEvent : ''])
@@ -192,6 +205,7 @@ ${prev3.map((b, i) => `${i + 1} day(s) ago — Lead angle: "${b.sportsThesis || 
       `Write the headline for today's GuyTalk issue. Plain text — no quotes, no colons, no markdown. Max 12 words.
 Three punchy fragments separated by periods. Name real people and events. Never vague.
 Good examples: "Wembanyama's Finals debut tonight. Pirates demolish Astros. World Cup in nine days." / "Knicks stole Game 1. Nvidia craters on yields. Memorial starts Thursday."
+${topStoriesText ? `${topStoriesText}\nLEAD the headline with the ★ story when it's genuinely the biggest thing today (a record IPO, a major ruling, a huge launch) — it beats a regular-season score. Still include a sports fragment and one more.` : ''}
 Context: ${ctx}`,
       80
     ),
@@ -200,6 +214,7 @@ Context: ${ctx}`,
     ask(
       `Today's GuyTalk context: ${ctx}
 Trending: ${trendText || 'none'}
+${topStoriesText ? `${topStoriesText}\nThe "markets" hit MUST be the biggest market/business story above (the ★ if it's Markets/Business). The "keyTakeaway" should mention the single biggest story of the day.` : ''}
 
 CATEGORY RULES (strictly enforced):
 - "sports": ANYTHING big in sports right now — don't limit to a fixed list. Core leagues (NBA, MLB, NHL, NFL), tennis (esp. Grand Slams: Wimbledon, US/French/Australian Open), boxing/UFC marquee fights, the Olympics, college football/basketball playoffs, records broken, major trades. Lead with whatever is actually the biggest sports moment. (Golf and F1 have their own sections.) — NOT culture, NOT gaming
@@ -260,6 +275,7 @@ Return ONLY a valid JSON array — one object per game, in the SAME order, no ma
     markets && mktText
       ? ask(
           `GuyTalk markets section. Data: ${mktText}
+${leadMarketStory ? `\nBIGGEST MARKET/BUSINESS STORY TODAY — LEAD THE SECTION WITH THIS: ${leadMarketStory.headline}\nWhat happened: ${leadMarketStory.whatHappened}\nDEPTH (weave into the headlines + bullets — market impact, index inclusion, how a regular person can participate, historical comps): ${leadMarketStory.depth}` : ''}
 
 MARKET TIMING (hard requirement): ${markets?.__meta?.framing || 'Only use the word "today" if it is accurate for the current US market session.'}
 Use accurate phrasing like "closed at", "looking to open", or "as of … ET". If you say "today", it must actually be today.
@@ -275,8 +291,8 @@ The Markets section answers three questions only:
 3. Why are people talking about it?
 
 Return ONLY valid JSON on one line — no markdown:
-{"mood":"One sentence — what happened in markets today and why. Include one real number. Plain English.","whyBullet1":"One sentence — why this matters in context. Explain, don't advise. Example: 'Treasury yields moved because...' not 'investors should...'","whyBullet2":"What professionals are watching in the next 2-3 days. Name a specific data print or event. Include the day of week.","bringUp":"One quotable market fact. Must include a real number. Explain something — do not tell anyone what to do with it."}`,
-          300
+{"headlines":[{"head":"Quick headline #1 — the biggest market/business story today (the IPO/ruling/print above if there is one)","sub":"1-2 sentences: what it is + what it means for the market; for a major event, also touch index impact / how to participate / historical comp"},{"head":"Quick headline #2 — the next biggest real market move from the data","sub":"one sentence"},{"head":"Quick headline #3 — another real market move or the rates/economy angle","sub":"one sentence"}],"mood":"One sentence — what happened in markets today and why. Include one real number. Plain English.","whyBullet1":"One sentence — why this matters in context. Explain, don't advise. Example: 'Treasury yields moved because...' not 'investors should...'","whyBullet2":"What professionals are watching in the next 2-3 days. Name a specific data print or event. Include the day of week.","bringUp":"One quotable market fact. Must include a real number. Explain something — do not tell anyone what to do with it."}`,
+          600
         )
       : Promise.resolve(null),
 

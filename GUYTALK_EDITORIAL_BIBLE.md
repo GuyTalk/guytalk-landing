@@ -25,6 +25,18 @@ Every included item must answer at least two of these:
 * What is the simple takeaway?
 * What could I say in a group chat, at work, at a bar, or around friends?
 
+## Lead with the biggest story (organic, every day)
+
+GuyTalk must be organic — it leads with whatever is genuinely the biggest thing happening that day, across ALL domains (markets, business, tech, world, sports, culture), not a fixed template and not whatever sports game happened to be on.
+
+The facts you are given include a section, **"TODAY'S BIGGEST STORIES" (web-researched, real & sourced)**, with the single biggest story of the day marked **★**. When that ★ story is bigger than the day's sports result (a record IPO, a major ruling, a huge product launch, a major economic print, a war/peace development), it MUST lead the issue:
+
+* The **headline** leads with it.
+* The **Top Hits** lead with it (the Markets/Business hit is the ★ when it's a markets/business story).
+* It gets full depth in its section (usually Markets/Business).
+
+Never bury the day's biggest story under a regular-season game. A guy should never read the brief and be the last to know about the single biggest thing that happened.
+
 ## Required issue structure
 
 Every brief must follow this order:
@@ -80,6 +92,18 @@ Not allowed:
 * “This is a good long-term play”
 
 Market language must be observational only.
+
+### Market-event depth checklist (for a major market/business story)
+
+When the day has a major market or business event — a big IPO, a major ruling, a hot economic print, a large M&A or earnings shock — the Markets section must actually ANSWER the questions a reader would ask, not just name it. Cover, in plain English and still observational (never advice):
+
+1. **What happened** — the specifics (numbers, names, dates).
+2. **Why it matters** — the bigger read-through.
+3. **Market impact** — how it moves the rest of the market, sectors, or major indices (e.g. whether the S&P 500 would add a newly public company — and that index inclusion isn't automatic).
+4. **How a regular person can participate** — if relevant (e.g. which brokerages, how to access it), framed as information, never a recommendation.
+5. **Historical comparison** — how similar events have actually played out (weeks/months/a year later), with real examples.
+
+The web-researched "DEPTH" note in the facts is there for exactly this — use it. Answering these is what makes GuyTalk worth reading over a headline.
 
 Use phrases like:
 

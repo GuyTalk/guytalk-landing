@@ -11,6 +11,7 @@ const { generateCopy }                                      = require('./lib/cop
 const { editBrief }                                         = require('./lib/editor');
 const { buildHtml }                                         = require('./lib/html');
 const { buildArchive }                                      = require('./lib/archive');
+const { fetchTopStories }                                   = require('./lib/research');
 const { STREAMING_PICKS }                                   = require('./lib/db');
 
 const ROOT      = path.join(__dirname, '..');
@@ -103,7 +104,7 @@ async function regenAll() {
         const { sports, markets, golf, tennis, trending, f1, worldCup, nhl, upcoming } = issueData;
         const boxScores = {};
         const streamingPick = STREAMING_PICKS[(issueData.num || 0) % STREAMING_PICKS.length];
-        issueData.copy = await generateCopy({ sports, markets, golf, tennis, trending, f1, worldCup, nhl, upcoming, boxScores, prev3: [], streamingPick });
+        issueData.copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories: issueData.topStories || [], f1, worldCup, nhl, upcoming, boxScores, prev3: [], streamingPick });
         if (issueData.copy?.title) issueData.title = issueData.copy.title;
         fs.writeFileSync(jsonPath, JSON.stringify(issueData, null, 2));
         console.log(`     ✓ Copy: "${issueData.copy?.title || 'generated'}"`);
@@ -157,7 +158,7 @@ function autoTitle({ sports, golf, f1, worldCup, upcoming }) {
 // Build a plain-text "raw facts" block for the editorial pass.
 // The editor may ONLY use these facts — it edits wording, never invents data.
 // ─────────────────────────────────────────────────────────────────────────────
-function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending }) {
+function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending, topStories }) {
   const lines = [];
 
   if (sports?.length) {
@@ -230,6 +231,19 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
     if (mkt) lines.push(`MARKETS: ${mkt}`);
   }
 
+  if (topStories?.length) {
+    lines.push('');
+    lines.push("TODAY'S BIGGEST STORIES (web-researched, real & sourced — LEAD THE BRIEF WITH THESE; the ★ is the single biggest story of the day):");
+    topStories.forEach((s) => {
+      lines.push(`${s.isLead ? '★' : '-'} [${s.category}] ${s.headline}`);
+      if (s.whatHappened) lines.push(`   what happened: ${s.whatHappened}`);
+      if (s.whyItMatters) lines.push(`   why it matters: ${s.whyItMatters}`);
+      if (s.depth) lines.push(`   DEPTH (use this — market impact / index inclusion / how to participate / historical comps): ${s.depth}`);
+      if (s.whatToSay) lines.push(`   what to say: ${s.whatToSay}`);
+      if (Array.isArray(s.sources) && s.sources[0]) lines.push(`   source: ${s.sources[0]}`);
+    });
+  }
+
   if (trending?.length) {
     lines.push('TRENDING HEADLINES (for culture/context):');
     trending.slice(0, 8).forEach(t => lines.push(`- [${t.source}] ${t.title}`));
@@ -258,7 +272,7 @@ async function main() {
   // ── Fetch data ─────────────────────────────────────────────────────────────
   console.log('📡 Fetching data...');
 
-  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult, screenersResult, nhlResult, tennisResult] = await Promise.allSettled([
+  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult, screenersResult, nhlResult, tennisResult, topStoriesResult] = await Promise.allSettled([
     fetchNBA(),
     fetchMarkets(),
     fetchGolf(),
@@ -269,6 +283,7 @@ async function main() {
     fetchMarketScreeners(),
     fetchNHL(),
     fetchTennis(),
+    fetchTopStories(),   // organic web-researched top stories (the day's biggest news, with sources)
   ]);
 
   let sports       = sportsResult.status    === 'fulfilled' ? sportsResult.value    : null;
@@ -286,6 +301,7 @@ async function main() {
   }
   const golf       = golfResult.status      === 'fulfilled' ? golfResult.value      : null;
   const trending   = trendingResult.status  === 'fulfilled' ? trendingResult.value  : null;
+  const topStories = topStoriesResult.status === 'fulfilled' ? (topStoriesResult.value || []) : [];
   let   f1         = f1Result.status        === 'fulfilled' ? f1Result.value        : null;
   const worldCup   = wcResult.status        === 'fulfilled' ? wcResult.value        : null;
   const upcoming   = upcomingResult.status  === 'fulfilled' ? upcomingResult.value  : null;
@@ -373,7 +389,7 @@ async function main() {
       };
     }
     const streamingPick = STREAMING_PICKS[issueNum % STREAMING_PICKS.length];
-    copy = await generateCopy({ sports, markets, golf, tennis, trending, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick });
+    copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick });
     if (copy) {
       if (copy.title)          console.log(`   ✓ Headline: "${copy.title}"`);
       if (copy.lead)           console.log(`   ✓ Sports angle`);
@@ -398,7 +414,7 @@ async function main() {
   if (copy) {
     console.log('\n🧐 Editorial pass — Claude enforcing the GuyTalk Editorial Bible...');
     try {
-      const facts = buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending });
+      const facts = buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending, topStories });
       const links = (trending || []).map(t => t.url).filter(Boolean);
       const result = await editBrief({ copy, context: facts, links });
       copy = result.copy;
@@ -443,6 +459,7 @@ async function main() {
     upcoming,
     gameMetas,
     trending,
+    topStories,
     copy,
     editor:  editorMeta,
   };
