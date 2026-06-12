@@ -110,6 +110,29 @@ function buildMarketRows(data) {
   return rows;
 }
 
+// Three phone stat tiles from the lead story's game (real scores/teams), or null
+// when the lead isn't a completed game (then the existing tiles are left as-is).
+function buildStatTiles(data) {
+  const c = data.copy || {};
+  const games = data.sports || [];
+  const gi = typeof c.lead?.gameIndex === 'number' ? c.lead.gameIndex : 0;
+  const g = games[gi] || games[0];
+  if (!g || !g.home || !g.away) return null;
+  const w = g.home.winner ? g.home : g.away;
+  const l = g.home.winner ? g.away : g.home;
+  const ws = parseInt(w.score, 10), ls = parseInt(l.score, 10);
+  if (!Number.isFinite(ws) || !Number.isFinite(ls)) return null; // upcoming / no score
+  const abbr = (s) => String(s.abbrev || s.team || '').toUpperCase().slice(0, 5);
+  const tiles = [
+    { num: String(w.score), lbl: abbr(w) },
+    { num: String(l.score), lbl: abbr(l) },
+  ];
+  const series = String(g.seriesNote || '').match(/(\d+)\s*[-–]\s*(\d+)/);
+  if (series) tiles.push({ num: `${series[1]}-${series[2]}`, lbl: 'SERIES' });
+  else tiles.push({ num: (g.sport || 'FINAL').toUpperCase(), lbl: (g.status || 'FINAL').toUpperCase() });
+  return tiles;
+}
+
 function main() {
   const data = loadLatestIssue();
   if (!data || !data.copy) { warn('no usable brief JSON found — index.html unchanged'); return; }
@@ -178,6 +201,16 @@ ${aStories.map(storyHtml).join('\n\n')}
   const sportsLead = pick('sports') || sections[0];
   replaceOnce('phone story-hl', /(<div class="phone-story-hl">)[^<]*(<\/div>)/, leaf(esc(shorten(sportsLead.headline, 70))));
   replaceOnce('phone story-body', /(<div class="phone-story-body">)[^<]*(<\/div>)/, leaf(esc(sportsLead.snippet)));
+  // Slide 2 stat tiles: real numbers from the lead game (score/teams + context).
+  const statTiles = buildStatTiles(data);
+  if (statTiles) {
+    const tilesHtml = statTiles.map(t =>
+      `                <div class="phone-stat"><div class="phone-stat-num">${esc(t.num)}</div><div class="phone-stat-lbl">${esc(t.lbl)}</div></div>`
+    ).join('\n');
+    replaceOnce('phone stat-tiles',
+      /<div class="phone-stats">[\s\S]*?<\/div>(\s*<\/div>\s*<div class="phone-slide">)/,
+      (_m, p1) => `<div class="phone-stats">\n${tilesHtml}\n              </div>` + p1);
+  } else warn('lead is not a completed game — stat tiles left as-is');
   // Slide 3: market rows + take
   const mktRows = buildMarketRows(data);
   if (mktRows.length) {
