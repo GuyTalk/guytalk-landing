@@ -1801,29 +1801,30 @@ function buildWorldCup({ worldCup, copy }) {
   else if (now <= FINAL) countStat = { num: `Day ${Math.max(1, Math.floor((now - OPEN) / dayMs) + 1)}`, lbl: 'Of the Cup' };
   else                  countStat = { num: 16, lbl: 'Venues' };
 
-  // Always show the banner — it's the biggest event on the planet; make it pop.
-  const banner = `
-    <div class="wc-preview-banner">
-      <div class="wc-banner-hosts"><span class="wc-flag">🇺🇸</span><span class="wc-flag">🇨🇦</span><span class="wc-flag">🇲🇽</span></div>
-      <div class="wc-banner-title">FIFA World Cup 2026</div>
-      <div class="wc-banner-sub">June 11 — July 19 · USA / Canada / Mexico</div>
-      <div class="wc-banner-stats">
-        <div class="wc-stat"><span class="wc-stat-num">48</span><span class="wc-stat-lbl">Teams</span></div>
-        <div class="wc-stat"><span class="wc-stat-num">104</span><span class="wc-stat-lbl">Matches</span></div>
-        <div class="wc-stat"><span class="wc-stat-num">${esc(String(countStat.num))}</span><span class="wc-stat-lbl">${esc(countStat.lbl)}</span></div>
-      </div>
-    </div>`;
+  const wc = copy?.worldCup || {};
+  const dayLabel = String(countStat.num).startsWith('Day') ? String(countStat.num) : `${countStat.num} ${countStat.lbl}`;
 
-  const context = active.length
-    ? `<p>The biggest sporting event on the planet — and it's in your backyard. Group stage runs through July 2; only the top two from each of the 12 groups (plus the best third-place sides) survive. Worth knowing who's already through and who's on the brink.</p>`
-    : `<p>48 teams, 104 matches, three host countries — the first expanded World Cup, and most of it on US soil. The one event that everyone, everywhere, will be talking about for a month straight.</p>`;
+  // Real event photo (like every other section), not a flat gradient card.
+  const img = wc.image || 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Afici%C3%B3n_del_Estadio_azteca_final_2019.jpg/1280px-Afici%C3%B3n_del_Estadio_azteca_final_2019.jpg';
+  const imgCap = wc.imageCap || 'Estadio Azteca · Mexico City · The World Cup opener';
+  const imgHtml = `    <div class="brief-img"><img src="${esc(img)}" alt="${esc(imgCap)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(imgCap)}</div></div>`;
+
+  const headline = wc.headline || 'The World Cup is here.';
+  const resultRows = active.map(m => `      <li><span><span class="dl-label">Result:</span> ${esc(m.away.team)} ${esc(m.away.score)}–${esc(m.home.score)} ${esc(m.home.team)} (Final)</span></li>`).join('\n');
+  const upcomingRows = upcoming.slice(0, 2).map(m => `      <li><span>${esc(m.away.team)} vs ${esc(m.home.team)} — upcoming</span></li>`).join('\n');
 
   return `  <section class="brief-section" id="worldcup">
     <div class="section-label sl-culture">World Cup 2026</div>
-${banner}
-    ${context}
+${imgHtml}
+    <h3>${esc(headline)}</h3>
+    <div class="where-line"><span class="where-pin">◍</span>June 11 – July 19 · USA / Canada / Mexico · ${esc(dayLabel)}</div>
     <ul class="detail-list">
-${matchRows}
+      ${wc.whatHappened ? `<li><span><span class="dl-label">What happened:</span> ${esc(wc.whatHappened)}</span></li>` : ''}
+      ${wc.whyItMatters ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(wc.whyItMatters)}</span></li>` : ''}
+      ${wc.whatToSay ? `<li><span><span class="dl-label">What to bring up:</span> ${esc(wc.whatToSay)}</span></li>` : ''}
+      <li><span><span class="dl-label">Format:</span> 48 teams, 104 matches, 12 groups — the first expanded, three-country World Cup.</span></li>
+${resultRows}
+${upcomingRows}
       <li><span><span class="dl-label">USA opener:</span> USA vs Paraguay, June 12 · SoFi Stadium · 9pm ET · Fox</span></li>
       <li><span><span class="dl-label">Final:</span> July 19 · MetLife Stadium, New York</span></li>
     </ul>
