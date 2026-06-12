@@ -725,6 +725,9 @@ em { font-style: italic; }
 .mkt-headlines li::before { content: '▪'; position: absolute; left: 4px; top: 12px; color: var(--accent); font-size: 12px; }
 .mkh-head { display: block; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: -0.01em; color: var(--text); line-height: 1.3; }
 .mkh-sub { display: block; font-size: 14px; color: var(--text-2); line-height: 1.55; margin-top: 5px; }
+/* Feature hero (non-game lead, e.g. a markets/IPO day) */
+.bhb-feature-title { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: clamp(26px, 4vw, 40px); line-height: 1.04; letter-spacing: -0.03em; color: #fff; max-width: 78%; margin: 8px 0 6px; text-shadow: 0 2px 14px rgba(0,0,0,0.55); }
+.brief-hero-banner--feature .bhb-venue { color: rgba(255,255,255,0.82); }
 /* The Rec — with a product image */
 .brief-rec--media { display: grid; grid-template-columns: 172px 1fr; gap: 22px; align-items: center; }
 .rec-img {

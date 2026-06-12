@@ -242,7 +242,16 @@ ${sideLinks.map(([id, label]) => `  <a href="#${id}" class="bsn-link" data-targe
     : heroBase;
   const hAway = heroGame ? espnLogo(heroGame.away.abbrev, heroSport) : null;
   const hHome = heroGame ? espnLogo(heroGame.home.abbrev, heroSport) : null;
-  const heroImgHtml = heroGame
+  const ho = issue.heroOverride;
+  const heroImgHtml = ho
+    ? `<div class="brief-hero-banner brief-hero-banner--feature" style="background-image:url('${esc(ho.image)}')">
+  <div class="bhb-inner">
+    ${ho.eyebrow ? `<div class="bhb-eyebrow">${esc(ho.eyebrow)}</div>` : ''}
+    ${ho.title ? `<div class="bhb-feature-title">${esc(ho.title)}</div>` : ''}
+    ${ho.sub ? `<div class="bhb-venue">${esc(ho.sub)}</div>` : ''}
+  </div>
+</div>`
+    : heroGame
     ? `<div class="brief-hero-banner" style="background-image:url('/assets/hero/${heroKey}.jpg')">
   <div class="bhb-inner">
     ${heroEyebrow ? `<div class="bhb-eyebrow">${esc(heroEyebrow)}</div>` : ''}
@@ -354,6 +363,8 @@ ${buildTopModule(issue)}
 
 ${buildLead(issue)}
 
+${hasNHL ? buildNHL(issue) : ''}
+
 <a href="/live/" class="brief-live-cta">
   <span class="blc-dot"></span>
   <div class="blc-inner">
@@ -366,8 +377,6 @@ ${buildLead(issue)}
 ${buildTheTake(issue)}
 
 ${buildSports(issue)}
-
-${hasNHL ? buildNHL(issue) : ''}
 
 ${hasF1 ? buildF1(issue) : ''}
 
@@ -1335,8 +1344,8 @@ function buildTopModule({ copy, golf, f1, worldCup, markets, sports, upcoming })
   // Today's Hits = three umbrellas only: Sports, Markets, Culture. Specific
   // sports (golf/F1/NHL/WC) live in their own sections, not here.
   const hitItems = [
-    hits?.sports   ? { tag: 'Sports',  anchor: '#sports',  text: hits.sports,  cls: 'hit-sports'  } : null,
     hits?.markets  ? { tag: 'Markets', anchor: '#markets', text: hits.markets, cls: 'hit-markets' } : null,
+    hits?.sports   ? { tag: 'Sports',  anchor: '#sports',  text: hits.sports,  cls: 'hit-sports'  } : null,
     hits?.culture  ? { tag: 'Culture', anchor: '#culture', text: hits.culture, cls: 'hit-culture' } : null,
   ].filter(Boolean);
 
@@ -1366,6 +1375,16 @@ ${hitItems.map(h => `    <a href="${h.anchor}" class="hit-item ${h.cls}">
 // ─────────────────────────────────────────────────────────────────────────────
 function buildLead({ sports, upcoming, copy }) {
   const lead = copy?.lead;
+
+  // A championship game tonight/tomorrow leads the brief — never a regular-season
+  // result. The MLB scores move down to "More Sports".
+  const champ = (upcoming || []).find(u => /final|finals|championship|stanley cup|elimination/i.test(`${u.note || ''} ${u.shortName || ''} ${u.name || ''}`));
+  if (champ) {
+    return `  <section class="brief-section" id="the-lead">
+    <div class="section-label sl-sports">The Lead</div>
+${buildUpcomingGameCard(champ, copy?.upcomingPreview)}
+  </section>`;
+  }
 
   // AI tells us which game index is the lead story — default to 0
   const gameIdx = (lead?.gameIndex >= 0 && lead?.gameIndex < (sports?.length || 0))
@@ -1446,12 +1465,14 @@ ${whatHappened ? `    <p>${esc(whatHappened)}</p>` : ''}
 // SPORTS — other scores + Watch Next card
 // ─────────────────────────────────────────────────────────────────────────────
 function buildSports({ sports, copy, upcoming }) {
-  // All games except the lead game (lead.gameIndex or index 0)
+  // If a championship game is leading the brief, it's already shown up top — keep
+  // every MLB result here in "More Sports" and don't repeat the watch-next card.
+  const champ = (upcoming || []).find(u => /final|finals|championship|stanley cup|elimination/i.test(`${u.note || ''} ${u.shortName || ''} ${u.name || ''}`));
   const leadIdx = copy?.lead?.gameIndex ?? 0;
-  const otherGames = (sports || []).filter((_, i) => i !== leadIdx);
+  const otherGames = champ ? (sports || []) : (sports || []).filter((_, i) => i !== leadIdx);
 
-  // Watch Next card for upcoming playoff/finals game
-  const watchNextCard = upcoming?.length ? buildUpcomingGameCard(upcoming[0], copy?.upcomingPreview) : '';
+  // Watch Next card for upcoming playoff/finals game (suppressed when it's the lead)
+  const watchNextCard = champ ? '' : (upcoming?.length ? buildUpcomingGameCard(upcoming[0], copy?.upcomingPreview) : '');
 
   if (!otherGames.length && !watchNextCard) return '';
 
@@ -1732,8 +1753,10 @@ function buildF1({ f1, copy }) {
   const whatToSay = fd.whatToSay || '';
 
   const circuitImg = f1CircuitImage(f1.name);
-  const imgHtml = circuitImg
-    ? `    <div class="brief-img"><img src="${esc(circuitImg.urls[0])}" alt="${esc(circuitImg.cap)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(circuitImg.cap)}</div></div>`
+  const f1ImgSrc = f1.imageUrl || (circuitImg && circuitImg.urls[0]);
+  const f1ImgCap = f1.imageCap || (circuitImg && circuitImg.cap) || '';
+  const imgHtml = f1ImgSrc
+    ? `    <div class="brief-img"><img src="${esc(f1ImgSrc)}" alt="${esc(f1ImgCap)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(f1ImgCap)}</div></div>`
     : '';
   const circuitWhere = circuitImg ? circuitImg.cap.split(' · ').slice(0, 2).join(' · ') : (f1.name || '');
   const f1WhereHtml = circuitWhere ? `    <div class="where-line"><span class="where-pin">◍</span>${esc(circuitWhere)}</div>` : '';

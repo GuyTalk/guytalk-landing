@@ -2,7 +2,7 @@
   "num": 46,
   "slug": "issue-046",
   "date": "Friday, June 12, 2026",
-  "title": "Dodgers edge Pirates. Knicks face elimination tomorrow. AMD rallies hard.",
+  "title": "SpaceX goes public — the largest IPO ever. Knicks fight elimination. Carolina one win from the Cup.",
   "deck": "Five minutes. Everything you need.",
   "sports": [
     {
@@ -555,9 +555,26 @@
       "lead": 66
     },
     "results": [],
-    "nextRace": null
+    "nextRace": null,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Piastri_2025_Espagne_Grand_Prix.jpg/1600px-Piastri_2025_Espagne_Grand_Prix.jpg",
+    "imageCap": "Circuit de Barcelona-Catalunya · Spain"
   },
   "worldCup": [
+    {
+      "name": "South Africa at Mexico",
+      "shortName": "RSA @ MEX",
+      "status": "Final",
+      "statusState": "post",
+      "date": "2026-06-11T20:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "2"
+      },
+      "away": {
+        "team": "South Africa",
+        "score": "0"
+      }
+    },
     {
       "name": "Bosnia-Herzegovina at Canada",
       "shortName": "BIH @ CAN",
@@ -709,11 +726,11 @@
     }
   ],
   "copy": {
-    "title": "Dodgers edge Pirates. Knicks face elimination tomorrow. AMD rallies hard.",
+    "title": "SpaceX goes public — the largest IPO ever. Knicks fight elimination. Carolina one win from the Cup.",
     "keyTakeaway": "Knicks-Spurs NBA Finals Game 5 is tomorrow and New York's season is on the line. Tech stocks ripped today with AMD up 8% and Dell up 5.8%, even as the broader market stays choppy on the week. The RBC Canadian Open has a five-way logjam at the top heading into the weekend.",
     "todaysHits": {
       "sports": "Knicks-Spurs Finals Game 5 tomorrow — New York wins it all or the Spurs force Game 6.",
-      "markets": "Tech leads the bounce: AMD up 8%, Dell up 5.8%, QQQ up 3.4% on the day.",
+      "markets": "SpaceX goes public today — the largest IPO in history, debuting on the Nasdaq as SPCX at a ~$1.75 trillion valuation.",
       "golf": "Five players deadlocked at 6-under at the Canadian Open, including Brooks Koepka.",
       "f1": "Barcelona-Catalunya Grand Prix is this weekend — F1 heads to Spain.",
       "worldcup": "World Cup 2026 is on the horizon and the host city chaos is already a story.",
@@ -841,5 +858,11 @@
       "golf.defending and golf.course left as empty strings per original draft structure — no defending champion data in RAW FACTS to populate these fields."
     ],
     "brokenLinks": []
+  },
+  "heroOverride": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Liftoff_of_SpaceX_Demo-2.jpg/1920px-Liftoff_of_SpaceX_Demo-2.jpg",
+    "eyebrow": "Markets · The main event",
+    "title": "SpaceX goes public — the largest IPO in history",
+    "sub": "Debuts on the Nasdaq today as SPCX · ~$1.75 trillion valuation"
   }
 }

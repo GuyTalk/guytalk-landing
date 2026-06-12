@@ -318,14 +318,6 @@ const RECS = [
     imageUrl: 'https://images.ctfassets.net/rbzqg6pelgqa/3CCQWI1KRdKsfMkGIgNfls/1db1bc98dbbca4f4c288cca02729e964/Not_a_whoop_member_image__1_.png',
   },
   {
-    title: 'The Athletic — the sports writing you\'re paying for on X for free, but worse.',
-    body: `The Athletic is $12.99/year during promos (check for the current deal) and the NBA Finals coverage alone this week is better than anything published elsewhere. The honest trade-off: there's a lot of content and most of it isn't about your team. The writers are the best in the business, which means the reading feels like actual journalism instead of engagement bait. If you already spend 30 minutes a day on sports takes, redirect that to The Athletic and you'll be smarter about your own sports opinions within two weeks.`,
-    url: 'https://theathletic.com',
-    cta: 'Try The Athletic →',
-    brand: 'The Athletic',
-    imageUrl: 'https://theathletic.com/app/themes/athletic/assets/img/open-graph-asset.png',
-  },
-  {
     title: 'Levels — one month of continuous glucose monitoring changes how you eat permanently.',
     body: `Levels puts a sensor on your arm and shows what your blood sugar does in real time for 30 days. The insight most people get in week one: that the "healthy" foods they eat are causing major spikes, and the foods they thought were bad aren't. You'll change two or three things and keep them changed for years. The honest flaw: $199 for the first month is a lot for data you could get cheaper elsewhere — but the visual feedback loop is what actually creates behavior change. Worth one month as an experiment.`,
     url: 'https://www.levelshealth.com',
