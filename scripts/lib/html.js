@@ -1548,6 +1548,10 @@ function buildMarkets({ markets, copy, date }) {
   const whyBullet1 = md.whyBullet1 || '';
   const whyBullet2 = md.whyBullet2 || '';
   const bringUp    = md.bringUp    || '';
+  const headlines  = Array.isArray(md.headlines) ? md.headlines.filter(h => h && h.head) : [];
+  const headlinesHtml = headlines.length ? `    <ul class="mkt-headlines">
+${headlines.map(h => `      <li><span class="mkh-head">${esc(h.head)}</span>${h.sub ? `<span class="mkh-sub">${esc(h.sub)}</span>` : ''}</li>`).join('\n')}
+    </ul>` : '';
 
   // ── Core index tiles — always present (S&P, Dow, Nasdaq, Russell 2000, 10Y) ──
   const coreList = (CORE_TICKERS && CORE_TICKERS.length) ? CORE_TICKERS : ['SPY', 'QQQ', '10Y'];
@@ -1615,6 +1619,7 @@ ${moverRows}
 
   return `  <section class="brief-section" id="markets">
     <div class="section-label sl-markets">The Close</div>
+${headlinesHtml}
     ${mood ? `<p class="markets-mood">${esc(mood)}</p>` : ''}
 
     <div class="mkt-card">

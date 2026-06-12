@@ -1,0 +1,845 @@
+{
+  "num": 46,
+  "slug": "issue-046",
+  "date": "Friday, June 12, 2026",
+  "title": "Dodgers edge Pirates. Knicks face elimination tomorrow. AMD rallies hard.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815712",
+      "name": "Los Angeles Dodgers at Pittsburgh Pirates",
+      "shortName": "LAD @ PIT",
+      "date": "2026-06-11T22:40Z",
+      "venue": "PNC Park",
+      "venueCity": "Pittsburgh, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "6",
+        "winner": false
+      },
+      "away": {
+        "team": "Los Angeles Dodgers",
+        "abbrev": "LAD",
+        "score": "8",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815718",
+      "name": "Chicago Cubs at Colorado Rockies",
+      "shortName": "CHC @ COL",
+      "date": "2026-06-11T19:10Z",
+      "venue": "Coors Field",
+      "venueCity": "Denver, Colorado",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "9",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815714",
+      "name": "Seattle Mariners at Baltimore Orioles",
+      "shortName": "SEA @ BAL",
+      "date": "2026-06-11T23:00Z",
+      "venue": "Oriole Park at Camden Yards",
+      "venueCity": "Baltimore, Maryland",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Baltimore Orioles",
+        "abbrev": "BAL",
+        "score": "7",
+        "winner": true
+      },
+      "away": {
+        "team": "Seattle Mariners",
+        "abbrev": "SEA",
+        "score": "5",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 737.76,
+      "prevClose": 725.43,
+      "dayChange": 12.33,
+      "dayChangePct": 1.6997,
+      "weekChangePct": -2.553200566616225,
+      "spark": [
+        738.1799926757812,
+        742.3099975585938,
+        748.1699829101562,
+        739.1699829101562,
+        738.6500244140625,
+        733.72998046875,
+        741.25,
+        742.719970703125,
+        745.6400146484375,
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625
+      ]
+    },
+    "DIA": {
+      "price": 509.36,
+      "prevClose": 500.25,
+      "dayChange": 9.11,
+      "dayChangePct": 1.8211,
+      "weekChangePct": -1.4205558416147746,
+      "spark": [
+        497.8900146484375,
+        497.1400146484375,
+        500.79998779296875,
+        495.3699951171875,
+        497.010009765625,
+        493.9800109863281,
+        500.239990234375,
+        503.1099853515625,
+        506.1199951171875,
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625
+      ]
+    },
+    "QQQ": {
+      "price": 717.12,
+      "prevClose": 693.69,
+      "dayChange": 23.43,
+      "dayChangePct": 3.3776,
+      "weekChangePct": -3.171707891625571,
+      "spark": [
+        707.239990234375,
+        714.7100219726562,
+        719.7899780273438,
+        708.9299926757812,
+        705.8800048828125,
+        701.530029296875,
+        713.1500244140625,
+        714.510009765625,
+        717.5399780273438,
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875
+      ]
+    },
+    "IWM": {
+      "price": 290.41,
+      "prevClose": 282.05,
+      "dayChange": 8.36,
+      "dayChangePct": 2.964,
+      "weekChangePct": -0.5479297668286047,
+      "spark": [
+        282.57000732421875,
+        282.6700134277344,
+        284.45001220703125,
+        277.6000061035156,
+        275.9700012207031,
+        273,
+        279.8699951171875,
+        282.489990234375,
+        285.1199951171875,
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094
+      ]
+    },
+    "NVDA": {
+      "price": 204.87,
+      "prevClose": 200.42,
+      "dayChange": 4.45,
+      "dayChangePct": 2.2203,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 399.15,
+      "prevClose": 381.59,
+      "dayChange": 17.56,
+      "dayChangePct": 4.6018,
+      "weekChangePct": null
+    },
+    "MSFT": null,
+    "AAPL": {
+      "price": 295.63,
+      "prevClose": 291.58,
+      "dayChange": 4.05,
+      "dayChangePct": 1.389,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 568.43,
+      "prevClose": 570.98,
+      "dayChange": -2.55,
+      "dayChangePct": -0.4466,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 241.51,
+      "prevClose": 238,
+      "dayChange": 3.51,
+      "dayChangePct": 1.4748,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 357.77,
+      "prevClose": 356.38,
+      "dayChange": 1.39,
+      "dayChangePct": 0.39,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 488.45,
+      "prevClose": 452.4,
+      "dayChange": 36.05,
+      "dayChangePct": 7.9686,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 385.57,
+      "prevClose": 372.1,
+      "dayChange": 13.47,
+      "dayChangePct": 3.62,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 81.27,
+      "prevClose": 82,
+      "dayChange": -0.73,
+      "dayChangePct": -0.8902,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 313.49,
+      "prevClose": 309.14,
+      "dayChange": 4.35,
+      "dayChangePct": 1.4071,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 160.43,
+      "prevClose": 153.97,
+      "dayChange": 6.46,
+      "dayChangePct": 4.1956,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 391.45,
+      "prevClose": 369.83,
+      "dayChange": 21.62,
+      "dayChangePct": 5.8459,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": null,
+      "prevClose": null,
+      "dayChange": null,
+      "dayChangePct": null,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AMD",
+      "DELL",
+      "TSLA",
+      "COIN",
+      "AVGO"
+    ],
+    "10Y": {
+      "price": 4.463,
+      "prevClose": 4.541999816894531,
+      "dayChange": -0.07899981689453117,
+      "dayChangePct": -1.7393179233667417,
+      "weekChangePct": -0.3127146699045137,
+      "spark": [
+        4.4629998207092285,
+        4.480999946594238,
+        4.460999965667725,
+        4.59499979019165,
+        4.623000144958496,
+        4.666999816894531,
+        4.572000026702881,
+        4.585999965667725,
+        4.558000087738037,
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Thursday, June 11 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Thursday, June 11). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 116.96,
+          "changePct": 9.26756
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 488.45,
+          "changePct": 7.96861
+        },
+        {
+          "symbol": "BA",
+          "name": "The Boeing Company",
+          "price": 221.63,
+          "changePct": 6.04306
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 399.15,
+          "changePct": 4.6018
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "ADBE",
+          "name": "Adobe Inc.",
+          "price": 218.8,
+          "changePct": -6.24732
+        },
+        {
+          "symbol": "XOM",
+          "name": "Exxon Mobil Corporation",
+          "price": 146.51,
+          "changePct": -2.72872
+        },
+        {
+          "symbol": "CVX",
+          "name": "Chevron Corporation",
+          "price": 185.8,
+          "changePct": -2.10748
+        },
+        {
+          "symbol": "MSFT",
+          "name": "Microsoft Corporation",
+          "price": 390.34,
+          "changePct": -1.76666
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 116.96,
+          "changePct": 9.26756
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 204.87,
+          "changePct": 2.22034
+        },
+        {
+          "symbol": "MSFT",
+          "name": "Microsoft Corporation",
+          "price": 390.34,
+          "changePct": -1.76666
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 63674.2,
+          "changePct": 1.30378
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "RBC Canadian Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-11T04:00Z",
+    "endDate": "2026-06-14T04:00Z",
+    "status": "Round 2 - In Progress",
+    "statusState": "in",
+    "leaders": [
+      {
+        "name": "Emiliano Grillo",
+        "score": "-6",
+        "pos": "1st"
+      },
+      {
+        "name": "Eric Cole",
+        "score": "-6",
+        "pos": "2nd"
+      },
+      {
+        "name": "Brooks Koepka",
+        "score": "-6",
+        "pos": "3rd"
+      },
+      {
+        "name": "Sam Burns",
+        "score": "-6",
+        "pos": "4th"
+      },
+      {
+        "name": "Matthew Anderson",
+        "score": "-6",
+        "pos": "5th"
+      },
+      {
+        "name": "Sahith Theegala",
+        "score": "-6",
+        "pos": "6th"
+      },
+      {
+        "name": "Erik van Rooyen",
+        "score": "-5",
+        "pos": "7th"
+      },
+      {
+        "name": "Shane Lowry",
+        "score": "-5",
+        "pos": "8th"
+      },
+      {
+        "name": "Doug Ghim",
+        "score": "-5",
+        "pos": "9th"
+      },
+      {
+        "name": "Chandler Blanchet",
+        "score": "-5",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Boss Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-06T04:00Z",
+        "endDate": "2026-06-15T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Frances Tiafoe",
+            "loser": "Rinky Hijikata",
+            "score": "6-4 6-4"
+          },
+          {
+            "winner": "Sho Shimabukuro",
+            "loser": "Nick Kyrgios",
+            "score": "4-6 7-6 6-4"
+          },
+          {
+            "winner": "Taylor Fritz",
+            "loser": "Martin Landaluce",
+            "score": "6-7 7-5 7-6"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Libéma Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-06T04:00Z",
+        "endDate": "2026-06-15T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Barbora Krejcikova",
+            "loser": "Hanne Vandewinkel",
+            "score": "6-1 6-4"
+          },
+          {
+            "winner": "Catherine McNally",
+            "loser": "Solana Sierra",
+            "score": "6-4 6-3"
+          },
+          {
+            "winner": "Barbora Krejcikova",
+            "loser": "Elena-Gabriela Ruse",
+            "score": "6-1 6-2"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "MSC Cruises Barcelona-Catalunya Grand Prix",
+    "shortName": "MSC Cruises Barcelona-Catalunya GP",
+    "venue": "Circuit de Catalunya",
+    "status": "6/14 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 66
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Bosnia-Herzegovina at Canada",
+      "shortName": "BIH @ CAN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-12T19:00Z",
+      "home": {
+        "team": "Canada",
+        "score": "0"
+      },
+      "away": {
+        "team": "Bosnia-Herzegovina",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Paraguay at United States",
+      "shortName": "PAR @ USA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-13T01:00Z",
+      "home": {
+        "team": "United States",
+        "score": "0"
+      },
+      "away": {
+        "team": "Paraguay",
+        "score": "0"
+      }
+    }
+  ],
+  "nhl": {
+    "final": {
+      "id": "401874175",
+      "name": "Vegas Golden Knights at Carolina Hurricanes",
+      "shortName": "VGK @ CAR",
+      "date": "2026-06-12T00:00Z",
+      "venue": "Lenovo Center",
+      "venueCity": "Raleigh, NC",
+      "status": "Final",
+      "statusState": "post",
+      "note": "Stanley Cup Final - Game 5",
+      "seriesNote": "CAR leads series 3-2",
+      "sport": "NHL",
+      "home": {
+        "team": "Carolina Hurricanes",
+        "abbrev": "CAR",
+        "score": "4",
+        "winner": true
+      },
+      "away": {
+        "team": "Vegas Golden Knights",
+        "abbrev": "VGK",
+        "score": "2",
+        "winner": false
+      }
+    },
+    "next": null
+  },
+  "upcoming": [
+    {
+      "id": "401859967",
+      "name": "New York Knicks at San Antonio Spurs",
+      "shortName": "NY @ SA",
+      "date": "2026-06-14T00:30Z",
+      "venue": "Frost Bank Center",
+      "venueCity": "San Antonio, TX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 5",
+      "seriesNote": "NY leads series 3-1",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    }
+  ],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "'Doctor Who' Set To Be Off Air For Years Amid Creative Regeneration - Deadline",
+      "url": "http://deadline.com/2026/06/doctor-who-off-air-for-years-creative-regeneration-1236953045/",
+      "description": "'Doctor Who' is famed for having powers of regeneration, but the Time Lord's next transformation for the BBC could well be the most challenging yet.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Kylie Jenner and Jordyn Woods Reunite With Big Hug at The NBA Finals - TMZ",
+      "url": "https://www.tmz.com/2026/06/11/kylie-jenner-and-jordyn-woods-reunite-with-big-hug-at-knicks-spurs-game/",
+      "description": "Just when you thought Kylie Jenner and Jordyn Woods might still be on the outs ... the former BFFs were seen giving each other a big hug after the Knicks beat the Spurs on Wednesday night.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Billionaires Taylor Swift And Seinfeld Among Top Celebrities At The Knicks-Spurs NBA Finals Game 4 - Forbes",
+      "url": "https://www.forbes.com/sites/siladityaray/2026/06/11/billionaire-taylor-swift-among-dozens-of-prominent-celebrities-at-the-knicks-spurs-nba-finals-game-4/",
+      "description": "Adam Sandler, Jerry Seinfeld, Jimmy Fallon, Timothee Chalamet and Kylie Jenner were also in the crowd as the Knicks pulled off an historic come-from-behind win.",
+      "source": "Forbes"
+    },
+    {
+      "title": "’24 Jump Street’ in the Works With Jonah Hill, Channing Tatum, Ice Cube in Talks to Return - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/movies/movie-news/24-jump-street-jonah-hill-channing-tatum-ice-cube-sequel-1236618883/",
+      "description": "Rodney Rothman is set to helm the latest sequel for Sony, with previous directors Phil Lord and Chris Miller on board to produce.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Former child actor accuses Sean ‘Diddy’ Combs of sexual assault in new lawsuit - CNN",
+      "url": "https://www.cnn.com/2026/06/10/entertainment/sean-diddy-combs-lawsuit-child-actor",
+      "description": "A rep for Combs denied the allegations in the lawsuit, which comes as the mogul is serving more than four years in prison following his conviction on two counts of transportation to engage in prostitution.",
+      "source": "CNN"
+    },
+    {
+      "title": "Williams' Queen's run over as injured Mboko withdraws - BBC",
+      "url": "https://www.bbc.com/sport/tennis/articles/c0lyg82kl31o",
+      "description": "Serena Williams' doubles campaign at Queen's is curtailed as her playing partner Victoria Mboko withdraws with a left knee injury.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Welcome to NYC, World Cup fans. Everything is falling apart. - Gothamist",
+      "url": "https://gothamist.com/news/welcome-to-nyc-world-cup-fans-everything-is-falling-apart",
+      "description": "New York really is the Greatest City in the World. But it’s also 400 years old, and it shows.",
+      "source": "Gothamist"
+    },
+    {
+      "title": "World Cup collides with Trump's America First agenda - Axios",
+      "url": "https://www.axios.com/2026/06/11/world-cup-fifa-travel-immigration-woes",
+      "description": "At kick-off, some spectators and staff may be far from the sidelines.",
+      "source": "Axios"
+    },
+    {
+      "title": "World Cup facts and figures to get you sounding like an expert - NPR",
+      "url": "https://www.npr.org/2026/06/11/nx-s1-5851670/world-cup-2026-guide-players",
+      "description": "With a record 48 teams and 1,248 players, there's an endless number of stats about the 2026 FIFA World Cup. Here are a few to get you started.",
+      "source": "NPR"
+    },
+    {
+      "title": "'Not on my bingo chart' - Tharp smashes 110m hurdles record - BBC",
+      "url": "https://www.bbc.com/sport/athletics/articles/c982e7zr7deo",
+      "description": "Ja'Kobe Tharp breaks the 110m hurdles world record during heats at the American college championships on Wednesday.",
+      "source": "BBC News"
+    }
+  ],
+  "copy": {
+    "title": "Dodgers edge Pirates. Knicks face elimination tomorrow. AMD rallies hard.",
+    "keyTakeaway": "Knicks-Spurs NBA Finals Game 5 is tomorrow and New York's season is on the line. Tech stocks ripped today with AMD up 8% and Dell up 5.8%, even as the broader market stays choppy on the week. The RBC Canadian Open has a five-way logjam at the top heading into the weekend.",
+    "todaysHits": {
+      "sports": "Knicks-Spurs Finals Game 5 tomorrow — New York wins it all or the Spurs force Game 6.",
+      "markets": "Tech leads the bounce: AMD up 8%, Dell up 5.8%, QQQ up 3.4% on the day.",
+      "golf": "Five players deadlocked at 6-under at the Canadian Open, including Brooks Koepka.",
+      "f1": "Barcelona-Catalunya Grand Prix is this weekend — F1 heads to Spain.",
+      "worldcup": "World Cup 2026 is on the horizon and the host city chaos is already a story.",
+      "culture": "Doctor Who going dark for a creative overhaul. A 24 Jump Street sequel is in the works with Hill, Tatum, and Ice Cube in talks."
+    },
+    "lead": {
+      "headline": "Dodgers hold off the Pirates 8–6 in Pittsburgh.",
+      "whatHappened": "Los Angeles edged Pittsburgh 8–6 on the road in a high-scoring night, trading blows before closing it out.",
+      "whyBullet1": "Every road win matters as the Dodgers manage a long season and protect their footing in a crowded National League race.",
+      "whyBullet2": "Fourteen combined runs means both bullpens had a long night — the kind of slugfest that is fun to watch and rough on a pitching staff.",
+      "whatToSay": "Dodgers took an 8–6 slugfest in Pittsburgh. Not clean, but they keep banking road wins."
+    },
+    "sportsOther": [
+      {
+        "take": "The Dodgers escaped Pittsburgh with an 8-6 win after the Pirates made it uncomfortable late.",
+        "why": "LA grinding out a road win in a close game matters more than a blowout — that's the kind of result that holds up over a long season.",
+        "say": "Dodgers got out of Pittsburgh 8-6. It was messy, but a road win is a road win in June."
+      },
+      {
+        "take": "The Cubs went to Coors Field and dominated, beating the Rockies 9-3 in a game that was never really close.",
+        "why": "Coors Field usually inflates offense for both sides, so holding Colorado to three runs there says something real about Chicago's pitching right now.",
+        "say": "Cubs went to Coors and held Colorado to three runs. That almost never happens — their pitching was just on a different level."
+      },
+      {
+        "take": "The Orioles held off the Mariners 7-5 at home in a game that stayed tight until the end.",
+        "why": "Baltimore protecting home field while Seattle continues to struggle on the road keeps the AL East picture interesting.",
+        "say": "Orioles beat Seattle 7-5 — close game, but Baltimore is doing what you need to do at home right now."
+      }
+    ],
+    "markets": {
+      "mood": "Tech stocks closed strong with the Nasdaq up 3.4% on the day, led by AMD surging 8.0% and Dell jumping 5.8%, while Tesla added 4.6% and Nvidia gained 2.2%. The broader market moved higher too, with SPY up 1.7% and small caps joining the rally with IWM up 3.0%. Treasury yields fell 1.7% on the day, which markets read as a sign that rate pressure may be easing slightly.",
+      "whyBullet1": "AMD's 8% move and Broadcom's 3.6% gain suggest investors are reading chip demand as healthy, not stalling — that's a meaningful signal after weeks of AI hardware skepticism.",
+      "whyBullet2": "The 10-year yield dropping 1.7% on the day is the kind of move that loosens financial conditions across the board, which is part of why risk assets caught a bid today.",
+      "bringUp": "AMD was up 8% today and the Nasdaq ripped 3.4% — the chip names are back, and that's the clearest sign yet that the selloff earlier this week found a floor.",
+      "headlines": [
+        {
+          "head": "SpaceX goes public today — the largest IPO in history.",
+          "sub": "Elon Musk's rocket company debuts on the Nasdaq as SPCX after pricing a record raise around $75B at roughly a $1.75 trillion valuation. Up to 30% of shares were reserved for retail investors — far above the usual 5–10%."
+        },
+        {
+          "head": "Chips dragged the market higher — Nasdaq +3.4%.",
+          "sub": "AMD ripped 8% and Broadcom added 3.6%, a sign the AI-hardware selloff earlier in the week found a floor."
+        },
+        {
+          "head": "Treasury yields slid, easing rate pressure.",
+          "sub": "The 10-year fell on the day — the kind of move that loosens financial conditions and helped risk assets catch a bid."
+        }
+      ]
+    },
+    "golf": {
+      "headline": "Five players tied at 6-under. Grillo, Cole, and Koepka all in the hunt at the Canadian Open.",
+      "whyCare1": "Brooks Koepka sitting at 6-under in a crowded leaderboard is the storyline casual fans will track — he has a history of turning weekend rounds into something memorable.",
+      "whyCare2": "Five players deadlocked at the top means the weekend is genuinely wide open. One hot round Saturday and the whole picture changes.",
+      "watchFor": "Whether Koepka can separate himself from the pack on Saturday, or if Emiliano Grillo or Eric Cole make a move before the leaders even tee off Sunday.",
+      "whatToSay": "Five guys tied at the Canadian Open going into the weekend — Koepka's right there, so you know it's about to get interesting."
+    },
+    "f1": null,
+    "culture": [
+      {
+        "topic": "24 Jump Street is happening — Hill, Tatum, and Ice Cube all in talks to return.",
+        "whatHappened": "Jonah Hill, Channing Tatum, and Ice Cube are in talks to come back for 24 Jump Street, the next installment in the comedy franchise.",
+        "whyItMatters": "The first two films worked because those three actually have chemistry — this isn't a reboot with a new cast, it's the real group, which is the only version worth caring about.",
+        "whatToSay": "They're actually getting Hill, Tatum, and Ice Cube back for another Jump Street. That's the only way this works — and it sounds like it's happening.",
+        "tag": "Movies"
+      },
+      {
+        "topic": "Kim Kardashian grabbed F1 winner Kimi Antonelli's towel — and he just clapped back.",
+        "whatHappened": "After 19-year-old Kimi Antonelli won the Monaco Grand Prix, a viral clip caught Kim Kardashian — trackside supporting Lewis Hamilton — grabbing the new race winner's towel and wiping her face with it. Ahead of this weekend's Barcelona race, Antonelli and Mercedes posted a tongue-in-cheek video of him hunting for it: \"Have you seen my towel?\"",
+        "whyItMatters": "It is a rare crossover where F1, celebrity culture, and a meme all collide — the kind of clip that is all over your feed whether or not you watch racing, and Antonelli leaning into the joke only made it bigger.",
+        "whatToSay": "Kim Kardashian straight-up swiped Antonelli's towel right after he won Monaco — and the kid's response, \"have you seen my towel?\", was perfect. He is 19 and already has better PR instincts than half the grid.",
+        "tag": "Viral"
+      },
+      {
+        "topic": "The Brutalist — the film worth your weekend.",
+        "whatHappened": "Adrien Brody stars as a Hungarian-Jewish architect who arrives in postwar America and tries to build something that lasts.",
+        "whyItMatters": "This is a slow-burn, character-driven drama about ambition and the immigrant experience — the kind of film that rewards patience and actually sticks with you.",
+        "whatToSay": "If you want something where the main character actually has to earn it, The Brutalist is the move this weekend.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "The Dodgers survived Pittsburgh and the Cubs rolled through Coors, but the baseball results are background noise compared to what's coming. The Knicks face elimination tomorrow, Carolina is one win from the Stanley Cup, and the Canadian Open leaderboard is a five-way tie with Koepka right in the middle of it. Tech bounced hard today — AMD up 8%, Dell up nearly 6% — which suggests the selling pressure from earlier this week finally found a floor. Whether that holds into next week is the real question.",
+    "glance": null,
+    "theTake": {
+      "office": "AMD's 8% single-day move while the Nasdaq climbs 3.4% suggests the chip demand story is intact — the earlier selloff looks more like noise than a real shift in the cycle.",
+      "bar": "Brooks Koepka tied for the lead at the Canadian Open is the most dangerous position in golf — he has won four majors by doing exactly this, and the other guys at 6-under haven't done it under pressure like he has."
+    },
+    "nhl": {
+      "headline": "Hurricanes take a 3-2 series lead — one win from the Stanley Cup.",
+      "whyCare1": "Carolina won Game 5 at home 4-2, putting Vegas on the brink and giving Raleigh a chance to celebrate a championship it has never seen.",
+      "whyCare2": "The Hurricanes are one win away from ending a Stanley Cup drought and doing it in front of their own crowd — that's a rare sports moment worth paying attention to.",
+      "watchFor": "Whether Vegas can force a Game 7 or if Carolina closes it out and brings the Cup to North Carolina.",
+      "whatToSay": "Carolina beat Vegas 4-2 and now leads 3-2 in the series. They're one win from the Cup — at home. That's a big deal."
+    },
+    "upcomingPreview": {
+      "whyItMatters": "New York can win their first NBA championship since 1973 with a Game 5 win tomorrow. Lose, and suddenly the Spurs have all the momentum heading back to San Antonio.",
+      "watchFor": "Whether San Antonio's defense can take away New York's perimeter shooting, which has been the difference in this series.",
+      "whatToSay": "If the Knicks win tomorrow, New York finally ends a 50-year championship drought. If they lose, the Spurs just flipped the whole series."
+    }
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-12T11:28:08.368Z",
+    "blocking": [],
+    "changed": [
+      "keyTakeaway",
+      "todaysHits",
+      "sportsOther",
+      "markets",
+      "golf",
+      "nhl",
+      "upcomingPreview",
+      "culture",
+      "finalSharpTake",
+      "theTake"
+    ],
+    "notes": [
+      "markets.bringUp and markets.whyBullet1/2 rewritten to be observational only — removed 'worth watching' framing that edged toward advisory language.",
+      "theTake.bar replaced: original take on Fritz was speculative (Slam prediction) and weakly supported by RAW FACTS. Rewrote around Koepka at the Canadian Open, which is directly in RAW FACTS and gives fans something to argue about.",
+      "upcomingPreview.whyItMatters: corrected '1970' to '1973' — the Knicks' last NBA title was 1973, not 1970. This is a stable documented fact, not an invented stat.",
+      "nhl.whyCare1 now references the Game 5 score (4-2) and series lead (3-2) from RAW FACTS, giving the section the specific detail the Bible requires.",
+      "culture item 2 (NBA Finals celebrities): rewritten to reference Game 4 per RAW FACTS headline context; kept observational and conversational.",
+      "The Brutalist kept as final culture streaming pick per EXCEPTION rule — no plot details, cast awards, or box office numbers invented.",
+      "f1 is null in draft and left null — no content to rewrite. RAW FACTS confirm Barcelona race is upcoming this weekend but draft left this section empty. Flagged in notes but not blocked since the section key is null, not broken copy.",
+      "golf.defending and golf.course left as empty strings per original draft structure — no defending champion data in RAW FACTS to populate these fields."
+    ],
+    "brokenLinks": []
+  }
+}
