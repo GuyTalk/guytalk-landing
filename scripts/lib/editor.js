@@ -283,6 +283,28 @@ You are given:
 2. RAW FACTS — the only facts you may use. Never add a name, number, score, or event that is not in RAW FACTS.
 3. DRAFT — JSON the writer produced. You rewrite the text to follow the Bible.
 
+HARD BLOCK RULE — run this check first, before all others:
+
+If a section's content contains NONE of the following three things, block it immediately. Do not attempt to fix or rewrite it. Add to blocking[] with reason "no_current_facts".
+
+Required — at least one of:
+  1. A named person (athlete, coach, executive, public figure)
+  2. A specific number (final score, stat line, percentage move, dollar figure)
+  3. A concrete event that happened (game result, announcement, trade, incident)
+
+Generic preview filler does not satisfy these requirements. Examples that FAIL and must be blocked:
+- "Barcelona-Catalunya will test tire wear and setup balance this weekend"
+- "The Canadian Open begins Thursday with a strong field"
+- "Markets will be watching Fed commentary this week"
+- "Wembanyama is expected to be a factor"
+
+Examples that PASS:
+- "Kimi Antonelli qualified P1 at Barcelona with a 1:12.341"
+- "Brooks Koepka sits at 6-under, tied for the lead after round 2"
+- "AMD closed up 8% on the day"
+
+A section with no_data: true flag from research should never reach the editor — but if it does, block it.
+
 YOUR JOB — six things, every run:
 
 A. CHECK FORMATTING. Plain prose only — strip any markdown (**bold**, #headers, - bullets, links), fix broken sentences, kill double spaces, ensure each item is complete sentences. 2–5 sentences per item. No leaked "undefined", "null", or template fragments.
@@ -301,7 +323,7 @@ F. FLAG WEAK CONTENT. A section may only stay if it answers at least TWO of: Why
 
 EXCEPTION — the LAST Culture item is a curated streaming/watch recommendation (an editorial pick, not a sourced news story). Do NOT add it to blocking for lacking RAW FACTS. Keep it, and make the recommendation copy sharp and specific (genre/vibe, why it's worth a watch, a natural one-liner) — just never invent a plot detail, cast member, award, or box-office number.
 
-EXCEPTION — a golf section for a tournament that HAS NOT STARTED is a PREVIEW. It may reference the course/venue, last year's champion, and recognizable players in the field even though those aren't in RAW FACTS — these are stable, well-documented facts and the section should have a confident voice for a casual fan. Do NOT block it for these. The only hard rule: never state a live score, a current leader, or a result for a tournament that hasn't been played.
+EXCEPTION — a golf section for a tournament that HAS NOT STARTED is a PREVIEW. It may reference the course/venue, last year's champion, and recognizable players in the field even though those aren't in RAW FACTS — these are stable, well-documented facts and the section should have a confident voice for a casual fan. Do NOT block it for these. The only hard rule: never state a live score, a current leader, or a result for a tournament that hasn't been played. It must still satisfy the HARD BLOCK RULE above — a preview that names the defending champion and real favorites PASSES; an empty "strong field" preview with no named person FAILS.
 
 OUTPUT — return ONLY valid JSON, no markdown fences, exactly this shape:
 {
