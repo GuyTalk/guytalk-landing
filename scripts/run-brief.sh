@@ -78,7 +78,7 @@ if [ "$GEN_EXIT" -eq 0 ]; then
       echo "" >> "$LOG_FILE"
       echo "   ✗ QA failed — skipping push + review email." >> "$LOG_FILE"
       echo "     Fix the issues above, then run manually:" >> "$LOG_FILE"
-      echo "     npm run brief:qa && git add -A && git commit -m 'fix ${ISSUE}' && git push" >> "$LOG_FILE"
+      echo "     npm run brief:qa && git add -A && git commit -m 'fix ${ISSUE}' && git push origin HEAD:pending --force-with-lease" >> "$LOG_FILE"
       osascript -e "display notification \"${ISSUE}: QA issues found — fix before pushing\" with title \"GuyTalk Brief ⚠\" subtitle \"Review email NOT sent\""
     else
       echo "   ✓ QA passed" >> "$LOG_FILE"
@@ -101,9 +101,13 @@ if [ "$GEN_EXIT" -eq 0 ]; then
         echo "   ✓ index.html updated: ${PREV_ISSUE} → ${ISSUE}" >> "$LOG_FILE"
       fi
 
-      # ── Auto-publish: commit + push → Vercel deploys automatically ──────────
+      # ── Stage to `pending` (NOT public) → publishes only on Jake's approval ──
+      # The brief is pushed to the `pending` branch, which Vercel does NOT deploy
+      # to production. api/approve.js fast-forwards main → pending on approval —
+      # that is the moment it goes live. Nothing reaches guytalkmedia.com until
+      # Jake taps approve.
       echo "" >> "$LOG_FILE"
-      echo "   📤 Publishing to website..." >> "$LOG_FILE"
+      echo "   📤 Staging to pending branch (not public yet)..." >> "$LOG_FILE"
 
       cd "$PROJECT_DIR" || exit 1
 
@@ -112,17 +116,19 @@ if [ "$GEN_EXIT" -eq 0 ]; then
       GIT_EXIT=${PIPESTATUS[0]}
 
       if [ "$GIT_EXIT" -eq 0 ]; then
-        git push origin main 2>&1 | tee -a "$LOG_FILE"
+        # Push the new commit to `pending` (disposable staging branch; force-with-lease
+        # is safe because pending only ever mirrors the latest brief on top of main).
+        git push origin HEAD:pending --force-with-lease 2>&1 | tee -a "$LOG_FILE"
         PUSH_EXIT=${PIPESTATUS[0]}
 
         if [ "$PUSH_EXIT" -eq 0 ]; then
-          echo "   ✓ Pushed — Vercel deploying..." >> "$LOG_FILE"
+          echo "   ✓ Staged to pending — NOT public until approved." >> "$LOG_FILE"
 
           # ── Send review email to Jake's phone ──────────────────────────────
           echo "   📱 Sending review notification..." >> "$LOG_FILE"
           "$NODE" "$PROJECT_DIR/scripts/notify-review.js" 2>&1 | tee -a "$LOG_FILE"
 
-          osascript -e "display notification \"${ISSUE} live — review email sent to your phone\" with title \"GuyTalk Brief ✓\" subtitle \"Tap approve to send to subscribers\""
+          osascript -e "display notification \"${ISSUE} staged — review email sent. Tap approve to publish + send.\" with title \"GuyTalk Brief ✓\" subtitle \"Not public until you approve\""
 
         else
           echo "   ✗ Git push failed" >> "$LOG_FILE"

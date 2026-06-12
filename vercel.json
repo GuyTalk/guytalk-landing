@@ -1,6 +1,11 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "git": {
+    "deploymentEnabled": {
+      "pending": false
+    }
+  },
   "functions": {
     "api/approve.js":       { "maxDuration": 60 },
     "api/ticker.js":        { "maxDuration": 15 },

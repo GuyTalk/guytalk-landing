@@ -32,6 +32,73 @@ const PUB_ID          = 'pub_d4c6a5c9-3ff9-4986-b17a-9e5650d915be';
 const SITE_URL        = 'https://www.guytalkmedia.com';
 const FROM_EMAIL      = process.env.FROM_EMAIL || 'GuyTalk <onboarding@resend.dev>';
 
+// ── Publish gate: brief lives on the `pending` branch until Jake approves ──────
+// run-brief.sh pushes each generated brief to `pending` (never `main`), so Vercel
+// never deploys it to production until approval. On approval we fast-forward
+// `main` → `pending` via the GitHub API, which triggers the normal production
+// deploy. Because the brief is NOT in this (main-built) function's bundle yet, we
+// also READ the brief data from `pending` over the API rather than local disk.
+const GITHUB_PAT  = process.env.GITHUB_PAT;
+const GH_OWNER    = 'GuyTalk';
+const GH_REPO     = 'guytalk-landing';
+const STAGE_BRANCH = 'pending';
+
+function ghFetch(apiPath, opts = {}) {
+  return fetch(`https://api.github.com${apiPath}`, {
+    ...opts,
+    headers: {
+      'Authorization': `Bearer ${GITHUB_PAT}`,
+      'Accept': 'application/vnd.github+json',
+      'User-Agent': 'GuyTalk-Approve',
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(opts.headers || {}),
+    },
+  });
+}
+
+// Read the latest issue's data from the pending branch (the just-generated brief).
+async function getLatestBriefFromPending() {
+  if (!GITHUB_PAT) return null;
+  try {
+    const listRes = await ghFetch(`/repos/${GH_OWNER}/${GH_REPO}/contents/brief/data?ref=${STAGE_BRANCH}`);
+    if (!listRes.ok) return null;
+    const files = await listRes.json();
+    if (!Array.isArray(files)) return null;
+    const issues = files
+      .map(f => f && f.name)
+      .filter(n => /^issue-\d{3}\.json$/.test(n))
+      .sort();
+    if (!issues.length) return null;
+    const latest = issues[issues.length - 1];
+    const fileRes = await ghFetch(
+      `/repos/${GH_OWNER}/${GH_REPO}/contents/brief/data/${latest}?ref=${STAGE_BRANCH}`,
+      { headers: { Accept: 'application/vnd.github.raw' } }
+    );
+    if (!fileRes.ok) return null;
+    const data = JSON.parse(await fileRes.text());
+    return { data, slug: latest.replace('.json', '') };
+  } catch {
+    return null;
+  }
+}
+
+// Fast-forward main → pending. This publishes the approved brief to production.
+// Non-force: succeeds only if main is an ancestor of pending (a clean fast-forward).
+async function fastForwardMainToPending() {
+  const refRes = await ghFetch(`/repos/${GH_OWNER}/${GH_REPO}/git/ref/heads/${STAGE_BRANCH}`);
+  if (!refRes.ok) throw new Error(`could not read ${STAGE_BRANCH} ref (HTTP ${refRes.status})`);
+  const sha = (await refRes.json())?.object?.sha;
+  if (!sha) throw new Error(`no commit sha on ${STAGE_BRANCH}`);
+  const upRes = await ghFetch(`/repos/${GH_OWNER}/${GH_REPO}/git/refs/heads/main`, {
+    method: 'PATCH',
+    body: JSON.stringify({ sha, force: false }),
+  });
+  if (!upRes.ok) {
+    const body = await upRes.text().catch(() => '');
+    throw new Error(`could not fast-forward main (HTTP ${upRes.status}) ${body}`.trim());
+  }
+}
+
 // ── Idempotency: write a lock file to /tmp after a successful send ────────────
 // Prevents double-sends within the same Vercel warm instance (~5-10 min window).
 function getLockPath(slug) {
@@ -385,10 +452,11 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // Get brief data
-  const brief = getLatestBrief();
+  // Get brief data — prefer the pending branch (the just-generated, not-yet-public
+  // brief); fall back to the local bundle only if the GitHub read is unavailable.
+  const brief = (await getLatestBriefFromPending()) || getLatestBrief();
   if (!brief) {
-    res.status(404).send(errorPage('No brief data found in deployment.'));
+    res.status(404).send(errorPage('No brief data found on the pending branch.'));
     return;
   }
   const { data, slug } = brief;
@@ -404,6 +472,21 @@ module.exports = async (req, res) => {
   // ── Step 2: Idempotency check ─────────────────────────────────────────────
   if (isAlreadySent(slug)) {
     res.status(200).send(alreadySentPage(slug));
+    return;
+  }
+
+  // ── Step 2b: Publish to the website (fast-forward main → pending) ──────────
+  // This is the moment the brief goes public. We do it BEFORE the subscriber
+  // send so the links in the email resolve to a live page. If it fails we stop
+  // here and send nothing — better no email than an email to a 404.
+  if (!GITHUB_PAT) {
+    res.status(500).send(errorPage('GITHUB_PAT not set — cannot publish the brief. Add it in Vercel env, then tap approve again.'));
+    return;
+  }
+  try {
+    await fastForwardMainToPending();
+  } catch (err) {
+    res.status(500).send(errorPage(`Could not publish the brief to the website: ${err.message}`));
     return;
   }
 

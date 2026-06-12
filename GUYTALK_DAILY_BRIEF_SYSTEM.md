@@ -32,12 +32,15 @@ Male, 25–45, college-educated, has a 401(k), watches sports, plays golf occasi
 Local Mac (launchd 7am)
     └── scripts/generate-brief.js        ← fetches data + calls Claude
     └── scripts/qa-brief.js              ← blocks or warns on quality issues
-    └── git push origin main             ← triggers Vercel deploy
+    └── git push origin HEAD:pending     ← STAGES brief (Vercel does NOT deploy pending)
     └── scripts/notify-review.js         ← emails Jake at j.rwilliams284@gmail.com
 
 Jake's phone → taps approve button in review email
-    └── GET /api/approve?token=TOKEN     ← confirmation page (prefetch-safe)
-    └── GET /api/approve?token=TOKEN&go=1← sends to subscribers + posts to X
+    └── GET /api/approve?token=TOKEN     ← confirmation page (prefetch-safe; reads brief from pending)
+    └── GET /api/approve?token=TOKEN&go=1← fast-forwards main→pending (GOES LIVE) → sends → posts to X
+
+Publish gate: nothing reaches guytalkmedia.com until approval. main only ever
+contains approved briefs. Requires GITHUB_PAT in Vercel env (contents:write).
 
 Manual (Jake): npm run social:queue     ← queues Instagram + TikTok via Buffer
 ```
@@ -364,6 +367,10 @@ X_ACCESS_TOKEN
 X_ACCESS_TOKEN_SECRET
 BUFFER_API_KEY                # Rename from buffer_API_KEY (lowercase b) — pending
 PO_BOX                        # Add before next subscriber send
+GITHUB_PAT                    # REQUIRED for publish gate — fast-forwards main→pending
+                              #   on approval. Needs repo contents:write on
+                              #   GuyTalk/guytalk-landing. Without it, approve shows
+                              #   an error and sends nothing.
 ```
 
 ---
