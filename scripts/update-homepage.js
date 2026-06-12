@@ -201,16 +201,23 @@ ${aStories.map(storyHtml).join('\n\n')}
   const sportsLead = pick('sports') || sections[0];
   replaceOnce('phone story-hl', /(<div class="phone-story-hl">)[^<]*(<\/div>)/, leaf(esc(shorten(sportsLead.headline, 70))));
   replaceOnce('phone story-body', /(<div class="phone-story-body">)[^<]*(<\/div>)/, leaf(esc(sportsLead.snippet)));
-  // Slide 2 stat tiles: real numbers from the lead game (score/teams + context).
+  // Slide 2 stat tiles: real numbers from the lead game (score/teams + context),
+  // or hide the row when the lead has no clean numbers (never show stale tiles).
+  // The wrapper is always kept in the DOM (display toggled) so a later run with a
+  // real completed game can re-populate it — removing it would be unrecoverable.
   const statTiles = buildStatTiles(data);
+  const statsRe = /<div class="phone-stats"[^>]*>[\s\S]*?<\/div>(\s*<\/div>\s*<div class="phone-slide">)/;
   if (statTiles) {
     const tilesHtml = statTiles.map(t =>
       `                <div class="phone-stat"><div class="phone-stat-num">${esc(t.num)}</div><div class="phone-stat-lbl">${esc(t.lbl)}</div></div>`
     ).join('\n');
-    replaceOnce('phone stat-tiles',
-      /<div class="phone-stats">[\s\S]*?<\/div>(\s*<\/div>\s*<div class="phone-slide">)/,
+    replaceOnce('phone stat-tiles', statsRe,
       (_m, p1) => `<div class="phone-stats">\n${tilesHtml}\n              </div>` + p1);
-  } else warn('lead is not a completed game — stat tiles left as-is');
+  } else {
+    warn('lead has no clean numbers — hiding the stat row');
+    replaceOnce('phone stat-tiles (hidden)', statsRe,
+      (_m, p1) => `<div class="phone-stats" style="display:none"></div>` + p1);
+  }
   // Slide 3: market rows + take
   const mktRows = buildMarketRows(data);
   if (mktRows.length) {

@@ -89,7 +89,36 @@ async function generateCopy({ sports, markets, golf, tennis, trending, topStorie
       max_tokens: maxTokens,
       messages: [{ role: 'user', content: `${BRAND_VOICE}\n\n${prompt}` }],
     });
-    return res.content[0].text.trim();
+    const block = res.content?.find(b => b.type === 'text') || res.content?.[0];
+    // A max_tokens stop truncates the JSON mid-string — surface it so askJson retries.
+    const text = (block?.text || '').trim();
+    if (res.stop_reason === 'max_tokens') {
+      console.log(`   ⚠  copy: hit max_tokens (${maxTokens}) — output may be truncated`);
+    }
+    return text;
+  }
+
+  // For prompts that MUST return parseable JSON (glance, the take, etc.). Retries
+  // once on an empty/unparseable parse and logs a warning instead of silently
+  // yielding null — the downstream sections fall back to canned copy otherwise,
+  // which is how "Today at a Glance" intermittently went 0/5 with no signal.
+  async function askJson(label, prompt, maxTokens = 400, model) {
+    let lastRaw = null;
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      let raw;
+      try { raw = model ? await ask(prompt, maxTokens, model) : await ask(prompt, maxTokens); }
+      catch (e) {
+        console.log(`   ⚠  ${label}: API error (attempt ${attempt}/2) — ${e.message}`);
+        continue;
+      }
+      lastRaw = raw;
+      const parsed = parseJson(raw);
+      const filled = parsed && (Array.isArray(parsed) ? parsed.length : Object.keys(parsed).length);
+      if (filled) return raw;
+      console.log(`   ⚠  ${label}: empty/unparseable JSON (attempt ${attempt}/2)` +
+        (attempt < 2 ? ' — retrying' : ' — falling back to template copy'));
+    }
+    return lastRaw; // let downstream parseJson() return null and trigger fallbacks
   }
 
   // ── Build context ───────────────────────────────────────────────────────────
@@ -408,13 +437,15 @@ Context: ${ctx}${repGuard}`,
       150
     ),
 
-    // 10. Today at a Glance — 5 labeled bullets
-    ask(
+    // 10. Today at a Glance — 5 labeled bullets. Must parse as JSON; askJson
+    // retries once and warns rather than silently going 0/5. Budget raised to 400
+    // so five full sentences never truncate mid-string (the old 200 cap did).
+    askJson('Today at a Glance',
       `Write "Today at a Glance" for GuyTalk. Five short lines. Context: ${ctx}
 
-Return compact JSON on one line. Every field is a single sentence ending with a period. No markdown:
+Return compact JSON on one line. Every field is ONE short sentence (max 18 words) ending with a period. No markdown:
 {"sports":"[main sports result or preview — include score or key fact]","market":"[market summary — include one number]","bestConvo":"[best conversation starter from today — specific]","watchNext":"[one thing to watch in next 24-48 hours]","quickRec":"[quick rec or reminder from today's brief]"}`,
-      200
+      400
     ),
 
     // 11. The Take — Office Take (smart, portable) + Bar Argument (spicy, debatable)
