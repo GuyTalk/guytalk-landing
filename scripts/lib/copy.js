@@ -391,11 +391,11 @@ Return ONLY valid JSON array with exactly 3 objects — no markdown, no extra te
 
 AUDIENCE FILTER (important): pick what men 25-45 actually talk about — big movies/TV/streaming drops, gaming, tech & gadgets, sports business/media deals, a major album or artist moment, a viral thing guys are quoting. AVOID celebrity relationship gossip, who's-dating-who, breakups, and reality-TV drama (e.g. "[Celebrity] and [Celebrity] split") UNLESS it's genuinely massive and universal. If the only trending "culture" is gossip, prefer a tech/gaming/movie story or the streaming pick instead.
 
-Items 1 and 2: Real stories from trending data. Different categories — don't do two of the same type.
+Items 1 and 2: Real stories from the WEB-RESEARCHED CULTURE FACTS below. Different categories — don't do two of the same type. If only one usable fact is found, write item 2 from a genuinely current June 2026 culture/entertainment story you actually know — never invent specifics.
 ${streamingPick ? `Item 3 — a watch recommendation for "${streamingPick.head.replace('Watch this: ', '')}": {"topic":"${streamingPick.head.replace('Watch this: ', '')}","whatHappened":"${streamingPick.body.split('.')[0]}.","whyItMatters":"One sentence on the vibe/genre and why it's worth a guy's night — general framing only, do NOT invent plot, cast, awards, or box-office.","whatToSay":"One natural recommendation line you'd actually say to a friend.","tag":"Streaming"}` : 'Item 3: One streaming/watch rec (action, thriller, crime, or prestige drama — no animated/kids/family). whyItMatters = vibe + why worth watching; whatToSay = a natural rec line. No invented facts.'}
 
-Only use stories confirmed in trending data — never invent events.
-Trending: ${trendText || 'Use knowledge of June 2026 current events.'}`,
+Only use stories confirmed in the web-researched facts below — never invent events.
+WEB-RESEARCHED CULTURE FACTS (real, sourced — Change 5): ${cultureWeb.length ? cultureWeb.map((c, i) => `${i + 1}. ${c}`).join(' | ') : '(none found — use a well-known current June 2026 culture story; never fabricate specifics)'}`,
       500
     ),
 

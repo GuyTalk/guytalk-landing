@@ -703,32 +703,13 @@ async function fetchTennis() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Culture/trending: Reddit hot posts + optional NewsAPI headlines
+// Trending headlines: NewsAPI top-headlines (optional context layer).
+// Reddit hot.json was removed (Change 5) — Culture now comes entirely from the
+// per-section web_search calls in research.js (fetchSectionStories). This feed
+// remains only as a light trending-context signal for non-Culture sections.
 // ─────────────────────────────────────────────────────────────────────────────
 async function fetchTrending() {
   const items = [];
-
-  // Core sports + a catch-all (r/sports) and combat/football so "anything big"
-  // (a marquee fight, a college playoff, a record) surfaces — not just the leagues.
-  const subs = ['sports', 'nba', 'nfl', 'formula1', 'soccer', 'tennis', 'mma', 'investing', 'golf', 'baseball', 'movies', 'entertainment'];
-  for (const sub of subs) {
-    try {
-      const res = await fetch(`https://www.reddit.com/r/${sub}/hot.json?limit=5`, {
-        headers: { 'User-Agent': 'GuyTalk-Brief-Generator/1.0 (guytalkdaily@gmail.com)' },
-      });
-      if (!res.ok) continue;
-      const data = await res.json();
-      (data.data?.children || []).forEach(p => {
-        items.push({
-          title: p.data.title,
-          url: `https://reddit.com${p.data.permalink}`,
-          score: p.data.score,
-          source: `r/${sub}`,
-        });
-      });
-    } catch (_) {}
-    await new Promise(r => setTimeout(r, 350));
-  }
 
   const newsKey = process.env.NEWS_API_KEY;
   if (newsKey) {
