@@ -75,8 +75,16 @@ function buildArchive(rootDir) {
     } catch (_) { return null; }
   }).filter(Boolean);
 
-  // Drop placeholder/test issues and keep only the latest issue per date
-  const filtered = allIssues.filter(d => d.title && !d.title.startsWith('REPLACE'));
+  // Drop placeholder/test issues, LLM-refusal briefs (e.g. #010–013 whose titles
+  // are raw "I don't have any … data" refusals), and keep only the latest issue
+  // per date. The brief/issue-NNN/ pages stay reachable by direct URL for
+  // integrity, but a refusal must never be listed in the public archive.
+  const looksLikeRefusal = (t) =>
+    /^\s*(i (don'?t|do not) have|i can'?t|i cannot|i'?m sorry|i am sorry|i'?m unable|as an ai|without (specific|any) (information|data))/i.test(t) ||
+    /\bdon'?t have (any )?(sports|market|news|current)/i.test(t);
+  const filtered = allIssues.filter(d =>
+    d.title && !d.title.startsWith('REPLACE') && !looksLikeRefusal(d.title)
+  );
   const byDate = new Map();
   for (const d of filtered) {
     const key = d.date || '';
