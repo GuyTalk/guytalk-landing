@@ -12,12 +12,12 @@ WRITING RULES:
 - Short sentences. Vary rhythm: short punch, longer follow-through, short punch.
 - Name specific people, teams, numbers. Vague = useless.
 - Lead with the most interesting angle. Scores are the least interesting thing.
-STRUCTURE — every item uses exactly these three labels, in this order, no substitutions:
+STRUCTURE — every body item is built from these three beats, in this order:
 WHAT HAPPENED: One sentence. Specific. Named person or team. Score, stat, or number if applicable. Never vague.
 WHY IT MATTERS: One to two sentences. Non-obvious stakes — what changes, what it signals, why a normal person should care. Never "this matters because it's significant."
 WHAT TO BRING UP: One sentence. A specific take or hook a 28-year-old can say out loud in a group chat or at a bar. Not a summary. Has a point of view.
 
-These three labels appear verbatim in the output. Never substitute "The angle," "Watch for," "The read," "The takeaway," or anything else.
+The brief's template prints these three labels for you. When a prompt asks for JSON, put each beat in its matching field (e.g. whatHappened / whyBullet1 + whyBullet2 / whatToSay) — do NOT write the words "WHAT HAPPENED:", "WHY IT MATTERS:", or "WHAT TO BRING UP:" inside any value, and NEVER add these labels to a headline, tagline, or any one-line field.
 - Casual language: "The Knicks got exposed" beats "New York underperformed."
 - Clarity over sounding clever.
 
@@ -396,7 +396,7 @@ ${streamingPick ? `Item 3 — a watch recommendation for "${streamingPick.head.r
 
 Only use stories confirmed in the web-researched facts below — never invent events.
 WEB-RESEARCHED CULTURE FACTS (real, sourced — Change 5): ${cultureWeb.length ? cultureWeb.map((c, i) => `${i + 1}. ${c}`).join(' | ') : '(none found — use a well-known current June 2026 culture story; never fabricate specifics)'}`,
-      500
+      1000
     ),
 
     // 9. Final Sharp Take — 80-100 words, 3-4 sentences
