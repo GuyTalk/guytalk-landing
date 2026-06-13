@@ -18,6 +18,8 @@ const SYMBOLS = [
 // The ticker shows markets-only on off days rather than displaying stale headlines.
 
 const ESPN_LEAGUES = [
+  { sport: 'soccer',     league: 'fifa.world' },
+  { sport: 'soccer',     league: 'usa.1' },
   { sport: 'basketball', league: 'nba' },
   { sport: 'baseball',   league: 'mlb' },
   { sport: 'hockey',     league: 'nhl' },

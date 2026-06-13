@@ -45,6 +45,10 @@ function loadLiveCulture() {
 }
 
 const SCOREBOARD_LEAGUES = [
+  // World Cup gets top priority (base 9) while the tournament runs — it outranks
+  // every domestic league. Sits above the rest so it always leads the scoreboard.
+  { key: 'worldcup', label: 'World Cup',        base: 9, sport: 'soccer',     league: 'fifa.world' },
+  { key: 'mls', label: 'MLS',                base: 3, sport: 'soccer',     league: 'usa.1' },
   { key: 'nba', label: 'NBA',                base: 5, sport: 'basketball', league: 'nba' },
   { key: 'nhl', label: 'NHL',                base: 5, sport: 'hockey',     league: 'nhl' },
   { key: 'nfl', label: 'NFL',                base: 6, sport: 'football',   league: 'nfl' },
