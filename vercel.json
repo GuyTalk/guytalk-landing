@@ -20,7 +20,7 @@
   "crons": [
     { "path": "/api/beehiiv-sync", "schedule": "33 11 * * *" },
     { "path": "/api/social-queue", "schedule": "0 13 * * *" },
-    { "path": "/api/refresh-culture", "schedule": "0 */4 * * *" }
+    { "path": "/api/refresh-culture", "schedule": "0 12 * * *" }
   ],
   "headers": [
     {

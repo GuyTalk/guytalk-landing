@@ -1,0 +1,28 @@
+# Refreshes the Live page's Culture/Trending headlines every 4 hours.
+#
+# Why this exists: Vercel's Hobby plan only allows DAILY cron jobs, so the
+# 4-hourly refresh can't run as a Vercel cron (vercel.json keeps a once-daily
+# run of /api/refresh-culture as a guaranteed backstop). This free GitHub
+# Actions schedule hits the same public endpoint every 4h to keep culture fresh.
+#
+# Auth: api/refresh-culture.js only requires a bearer token if CRON_SECRET is
+# set in Vercel. If you have set it there, add a matching repo secret named
+# CRON_SECRET (Settings → Secrets and variables → Actions) and this passes it.
+# If CRON_SECRET is not set in Vercel, the endpoint is open and this still works.
+name: Refresh Live Culture
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'   # every 4 hours, UTC
+  workflow_dispatch: {}        # allow manual runs from the Actions tab
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call /api/refresh-culture
+        run: |
+          curl -fsS --max-time 60 \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "https://www.guytalkmedia.com/api/refresh-culture" \
+            && echo "refresh-culture triggered OK"
