@@ -35,7 +35,6 @@ async function main() {
 
   const { data, slug } = brief;
   const num        = String(data.num).padStart(3, '0');
-  const briefUrl   = `${SITE_URL}/brief/${slug}/`;
   const approveUrl = `${SITE_URL}/api/approve?token=${APPROVAL_TOKEN}`;
 
   // Quick look bullets
@@ -109,23 +108,14 @@ async function main() {
         <table width="100%" cellpadding="0" cellspacing="0">${bulletsHtml}</table>
       </div>` : ''}
 
-      <!-- Primary CTA: Approve + Send -->
-      <table cellpadding="0" cellspacing="0" style="width:100%;margin-bottom:10px;">
+      <!-- Primary CTA: Approve + Send. The headline + Quick look above are the
+           preview; there's no "read full brief" link because the brief still
+           lives on the pending branch pre-approval and that URL would 404. -->
+      <table cellpadding="0" cellspacing="0" style="width:100%;">
         <tr>
           <td style="background:#16A34A;border-radius:10px;text-align:center;">
             <a href="${approveUrl}" style="display:block;padding:15px 24px;font-weight:700;font-size:15px;color:#fff;text-decoration:none;letter-spacing:-0.01em;">
               ✓ Send to subscribers →
-            </a>
-          </td>
-        </tr>
-      </table>
-
-      <!-- Secondary CTA: Review first -->
-      <table cellpadding="0" cellspacing="0" style="width:100%;">
-        <tr>
-          <td style="border:1.5px solid #E5E2DB;border-radius:10px;text-align:center;">
-            <a href="${briefUrl}" style="display:block;padding:13px 24px;font-weight:600;font-size:14px;color:#0F1724;text-decoration:none;">
-              Read the full brief first →
             </a>
           </td>
         </tr>

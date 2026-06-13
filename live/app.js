@@ -1256,18 +1256,25 @@ function FeaturedGolfCard(g) {
   function renderScoreboard(real) {
     setBadge('badge-scores', real ? 'live' : null);
     const el = $('scoreboardWrap');
-    if (!real || !real.length) { el.innerHTML = emptyBox('No games on the board right now.'); return; }
 
-    // The single biggest game across every league (live > upcoming > final, then importance).
-    const all = real.flatMap((lg) => lg.games);
-    const rank = { in: 0, pre: 1, post: 2 };
+    // Only surface leagues with something happening NOW — a live game or a final
+    // score. Drop upcoming-only ('pre') fixtures so the page never renders a raw
+    // list of future games, and hide any league left with nothing to show.
+    const leagues = (real || [])
+      .map((lg) => ({ ...lg, games: lg.games.filter((g) => g.state === 'in' || g.state === 'post') }))
+      .filter((lg) => lg.games.length > 0);
+    if (!leagues.length) { el.innerHTML = emptyBox('No games in progress right now.'); return; }
+
+    // The single biggest game across every league (live > final, then importance).
+    const all = leagues.flatMap((lg) => lg.games);
+    const rank = { in: 0, post: 1 };
     const big = all.filter((g) => g.isBig)
-      .sort((a, b) => (rank[a.state] - rank[b.state]) || (b.importance - a.importance))[0];
+      .sort((a, b) => ((rank[a.state] ?? 2) - (rank[b.state] ?? 2)) || (b.importance - a.importance))[0];
 
     // Each sport gets one clear, prominent heading. The hero game's marquee +
     // Read live INSIDE their league's block (no floating card, no duplication),
     // and the hero game isn't repeated as a small card below — keeps it condensed.
-    el.innerHTML = real.map((lg) => {
+    el.innerHTML = leagues.map((lg) => {
       const isHero = big && lg.games.includes(big);
       const readGame = isHero ? big : lg.games[0];
       const hero = isHero ? Marquee(big) : '';

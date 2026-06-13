@@ -222,7 +222,10 @@
   /* CARD GRID */
   .grid { display: grid; gap: 14px; }
   .grid-live { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-  .grid-scores { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  /* Match the F1/Golf board layout above: a fixed 2-column grid (not auto-fill)
+     so game cards keep a consistent width down the page instead of reflowing to
+     3–4 narrow columns and shifting the layout mid-section. */
+  .grid-scores { grid-template-columns: 1fr 1fr; gap: 16px; }
   .grid-markets { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   .grid-two { grid-template-columns: 1fr 1fr; gap: 16px; }
   .grid-stories { grid-template-columns: 1fr; gap: 0; }
@@ -298,7 +301,7 @@
   /* SCOREBOARD */
   .league-block { margin-bottom: 30px; }
   .league-name { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.01em; color: var(--text); margin: 0 0 13px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
-  .sc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  .sc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }
   /* Tennis results card */
   .tns-card { padding: 16px 18px; }
   .tns-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
@@ -669,6 +672,7 @@
 
   @media (max-width: 720px) {
     .grid-two { grid-template-columns: 1fr; }
+    .grid-scores { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
     .page-wrap { padding: 28px 18px 80px; }

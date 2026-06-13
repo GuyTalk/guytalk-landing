@@ -328,7 +328,6 @@ function buildEmailHtml(data, slug, unsubEmail) {
 // ── Confirmation page (shown on first tap — prevents email prefetch sends) ────
 function confirmPage(data, slug, subscriberCount, token) {
   const num      = String(data.num).padStart(3, '0');
-  const briefUrl = `${SITE_URL}/brief/${slug}/`;
   const sendUrl  = `/api/approve?token=${encodeURIComponent(token)}&go=1`;
   const subLine  = subscriberCount != null ? `${subscriberCount} subscriber${subscriberCount !== 1 ? 's' : ''}` : 'your subscribers';
 
@@ -363,7 +362,6 @@ function confirmPage(data, slug, subscriberCount, token) {
   .bullets{background:#F8F7F4;border-radius:8px;padding:12px 16px;margin:0 0 24px;}
   .sub-count{font-size:14px;color:#6E6862;margin:0 0 20px;}
   .btn-send{display:block;width:100%;padding:15px;background:#16A34A;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:15px;text-align:center;margin-bottom:10px;}
-  .btn-read{display:block;width:100%;padding:13px;border:1.5px solid #E5E2DB;color:#0F1724;text-decoration:none;border-radius:10px;font-weight:600;font-size:14px;text-align:center;}
   .note{font-size:11px;color:#B0ADA8;text-align:center;margin-top:16px;line-height:1.6;}
 </style>
 </head>
@@ -377,7 +375,6 @@ function confirmPage(data, slug, subscriberCount, token) {
   ${warnBox}
   <p class="sub-count">This will send to <strong>${subLine}</strong>.</p>
   <a href="${sendUrl}" class="btn-send">Confirm — Send to ${subLine} →</a>
-  <a href="${briefUrl}" class="btn-read" target="_blank">Read the full brief first →</a>
   <p class="note">Only you can see this page.<br>Tap the green button to send.</p>
 </div>
 </body></html>`;
