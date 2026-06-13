@@ -58,27 +58,35 @@ async function fetchSportsItems() {
       const comp = event.competitions?.[0];
       if (!comp) continue;
 
-      const statusName = comp.status?.type?.name;
-      const detail     = comp.status?.type?.shortDetail || '';
+      const type        = comp.status?.type || {};
+      const detail      = type.shortDetail || '';
       const competitors = comp.competitors || [];
       if (competitors.length < 2) continue;
 
-      if (statusName === 'STATUS_FINAL') {
-        const sorted   = [...competitors].sort((a, b) => Number(b.score) - Number(a.score));
-        const winner   = sorted[0].team.abbreviation.toUpperCase();
-        const winScore = sorted[0].score;
-        const loseScore = sorted[1].score;
-        const ot = /ot/i.test(detail) ? ' IN OT' : '';
-        finals.push({
-          label: `${winner} WIN${ot} · ${winScore}–${loseScore}`,
-          logos: [sorted[0].team?.logo, sorted[1].team?.logo].filter(Boolean),
-        });
+      // Short team code, with fallbacks — some soccer teams lack an abbreviation,
+      // and the old `.team.abbreviation.toUpperCase()` would throw and kill the loop.
+      const abbr = (c) =>
+        (c?.team?.abbreviation || c?.team?.shortDisplayName || c?.team?.name || '').toUpperCase();
 
-      } else if (statusName === 'STATUS_SCHEDULED') {
+      // `completed` is the sport-agnostic "game is over" flag: it covers both
+      // STATUS_FINAL (US sports) and STATUS_FULL_TIME (soccer), so soccer results
+      // actually surface. `state === 'pre'` is the matching flag for upcoming games.
+      if (type.completed === true) {
+        const sorted = [...competitors].sort((a, b) => Number(b.score) - Number(a.score));
+        const a = sorted[0], b = sorted[1];
+        const aAb = abbr(a), bAb = abbr(b);
+        if (!aAb || !bAb) continue;
+        const ot = /ot/i.test(detail) ? ' IN OT' : '';
+        // Draws are common in soccer — never crown a winner on equal scores.
+        const label = Number(a.score) === Number(b.score)
+          ? `${aAb} ${a.score}–${b.score} ${bAb} · DRAW`
+          : `${aAb} WIN${ot} · ${a.score}–${b.score}`;
+        finals.push({ label, logos: [a.team?.logo, b.team?.logo].filter(Boolean) });
+
+      } else if (type.state === 'pre') {
         const awayC = competitors.find(c => c.homeAway === 'away');
         const homeC = competitors.find(c => c.homeAway === 'home');
-        const home = homeC?.team?.abbreviation?.toUpperCase();
-        const away = awayC?.team?.abbreviation?.toUpperCase();
+        const home = abbr(homeC), away = abbr(awayC);
         const time = formatGameTime(comp.date);
         if (home && away && time) {
           scheduled.push({
