@@ -110,26 +110,43 @@ function buildMarketRows(data) {
   return rows;
 }
 
-// Three phone stat tiles from the lead story's game (real scores/teams), or null
-// when the lead isn't a completed game (then the existing tiles are left as-is).
+// Three phone stat tiles for slide 2 — one real number each from MARKETS,
+// SPORTS, and CULTURE in the day's brief. Each tile has a safe fallback so a
+// missing value degrades to a placeholder instead of breaking. Always returns
+// exactly three tiles (the row stays visible).
 function buildStatTiles(data) {
   const c = data.copy || {};
+  const tiles = [];
+
+  // 1) MARKET — the S&P (SPY) day move, else the first ticker with a day move.
+  const mkt = data.markets || {};
+  let mktPick = (mkt.SPY && typeof mkt.SPY.dayChangePct === 'number') ? ['S&P 500', mkt.SPY.dayChangePct] : null;
+  if (!mktPick) {
+    for (const [sym, q] of Object.entries(mkt)) {
+      if (q && typeof q.dayChangePct === 'number') { mktPick = [sym, q.dayChangePct]; break; }
+    }
+  }
+  tiles.push(mktPick
+    ? { num: `${mktPick[1] >= 0 ? '+' : '−'}${Math.abs(mktPick[1]).toFixed(1)}%`, lbl: mktPick[0] }
+    : { num: '5', lbl: 'MIN READ' });
+
+  // 2) SPORTS — winning score + team from the day's lead game.
   const games = data.sports || [];
   const gi = typeof c.lead?.gameIndex === 'number' ? c.lead.gameIndex : 0;
   const g = games[gi] || games[0];
-  if (!g || !g.home || !g.away) return null;
-  const w = g.home.winner ? g.home : g.away;
-  const l = g.home.winner ? g.away : g.home;
-  const ws = parseInt(w.score, 10), ls = parseInt(l.score, 10);
-  if (!Number.isFinite(ws) || !Number.isFinite(ls)) return null; // upcoming / no score
-  const abbr = (s) => String(s.abbrev || s.team || '').toUpperCase().slice(0, 5);
-  const tiles = [
-    { num: String(w.score), lbl: abbr(w) },
-    { num: String(l.score), lbl: abbr(l) },
-  ];
-  const series = String(g.seriesNote || '').match(/(\d+)\s*[-–]\s*(\d+)/);
-  if (series) tiles.push({ num: `${series[1]}-${series[2]}`, lbl: 'SERIES' });
-  else tiles.push({ num: (g.sport || 'FINAL').toUpperCase(), lbl: (g.status || 'FINAL').toUpperCase() });
+  const win = (g && g.home && g.away) ? (g.home.winner ? g.home : g.away) : null;
+  const ws = win ? parseInt(win.score, 10) : NaN;
+  tiles.push((Number.isFinite(ws) && (win.abbrev || win.team))
+    ? { num: String(ws), lbl: String(win.abbrev || win.team).toUpperCase().slice(0, 5) }
+    : { num: '3', lbl: 'TOPICS' });
+
+  // 3) CULTURE / MISC — how many culture picks are in today's brief, else the
+  // issue number (always present).
+  const cultureCount = Array.isArray(c.culture) ? c.culture.length : 0;
+  tiles.push(cultureCount > 0
+    ? { num: String(cultureCount), lbl: 'CULTURE' }
+    : { num: data.num != null ? `#${pad(data.num)}` : '5', lbl: data.num != null ? 'ISSUE' : 'MIN READ' });
+
   return tiles;
 }
 
@@ -201,23 +218,18 @@ ${aStories.map(storyHtml).join('\n\n')}
   const sportsLead = pick('sports') || sections[0];
   replaceOnce('phone story-hl', /(<div class="phone-story-hl">)[^<]*(<\/div>)/, leaf(esc(shorten(sportsLead.headline, 70))));
   replaceOnce('phone story-body', /(<div class="phone-story-body">)[^<]*(<\/div>)/, leaf(esc(sportsLead.snippet)));
-  // Slide 2 stat tiles: real numbers from the lead game (score/teams + context),
-  // or hide the row when the lead has no clean numbers (never show stale tiles).
-  // The wrapper is always kept in the DOM (display toggled) so a later run with a
-  // real completed game can re-populate it — removing it would be unrecoverable.
+  // Slide 2 stat tiles: one real number each from markets, sports, and culture
+  // (buildStatTiles handles per-tile fallbacks, so it always returns three).
+  // Injected via FUNCTION replacement so a '$', '%', '+' or '−' in a value is
+  // never misread as a $1 backreference. The [^>]*> tolerates a stale
+  // style="display:none" from older builds and restores a visible row.
   const statTiles = buildStatTiles(data);
-  const statsRe = /<div class="phone-stats"[^>]*>[\s\S]*?<\/div>(\s*<\/div>\s*<div class="phone-slide">)/;
-  if (statTiles) {
-    const tilesHtml = statTiles.map(t =>
-      `                <div class="phone-stat"><div class="phone-stat-num">${esc(t.num)}</div><div class="phone-stat-lbl">${esc(t.lbl)}</div></div>`
-    ).join('\n');
-    replaceOnce('phone stat-tiles', statsRe,
-      (_m, p1) => `<div class="phone-stats">\n${tilesHtml}\n              </div>` + p1);
-  } else {
-    warn('lead has no clean numbers — hiding the stat row');
-    replaceOnce('phone stat-tiles (hidden)', statsRe,
-      (_m, p1) => `<div class="phone-stats" style="display:none"></div>` + p1);
-  }
+  const tilesHtml = statTiles.map(t =>
+    `                <div class="phone-stat"><div class="phone-stat-num">${esc(t.num)}</div><div class="phone-stat-lbl">${esc(t.lbl)}</div></div>`
+  ).join('\n');
+  replaceOnce('phone stat-tiles',
+    /<div class="phone-stats"[^>]*>[\s\S]*?<\/div>(\s*<\/div>\s*<div class="phone-slide">)/,
+    (_m, p1) => `<div class="phone-stats">\n${tilesHtml}\n              </div>` + p1);
   // Slide 3: market rows + take
   const mktRows = buildMarketRows(data);
   if (mktRows.length) {
