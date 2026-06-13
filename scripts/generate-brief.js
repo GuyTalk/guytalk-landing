@@ -13,7 +13,7 @@ const { buildHtml }                                         = require('./lib/htm
 const { buildArchive }                                      = require('./lib/archive');
 const { fetchTopStories, fetchSectionStories }              = require('./lib/research');
 const { STREAMING_PICKS }                                   = require('./lib/db');
-const { GENERATION_WARNINGS, resetWarnings, formatWarnings } = require('./lib/warnings');
+const { GENERATION_WARNINGS, addWarning, resetWarnings, formatWarnings } = require('./lib/warnings');
 
 const ROOT      = path.join(__dirname, '..');
 const BRIEF_DIR = path.join(ROOT, 'brief');
@@ -464,6 +464,7 @@ async function main() {
       } else {
         console.log(`   ⚠  NOT editor-reviewed: ${editorMeta.reason}`);
         console.log(`   ⚠  Brief will publish on the Claude draft only (fail-open).`);
+        addWarning('editor', 'failed', editorMeta.reason || 'editor pass did not run');
       }
       if (editorMeta.brokenLinks?.length) {
         console.log(`   🔗 ${editorMeta.brokenLinks.length} broken source link(s):`);
@@ -472,6 +473,7 @@ async function main() {
     } catch (err) {
       editorMeta = { reviewed: false, blocking: [], changed: [], notes: [], brokenLinks: [], reason: `editor crashed: ${err.message}` };
       console.log(`   ⚠  Editorial pass crashed: ${err.message} — keeping Claude draft (fail-open)`);
+      addWarning('editor', 'failed', `crashed: ${err.message}`);
     }
   }
 
