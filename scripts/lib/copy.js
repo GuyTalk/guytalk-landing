@@ -1,5 +1,7 @@
 'use strict';
 
+const { addWarning } = require('./warnings');
+
 const TODAY = new Date().toLocaleDateString('en-US', {
   weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
 });
@@ -112,20 +114,29 @@ async function generateCopy({ sports, markets, golf, tennis, trending, topStorie
   // canned copy otherwise, which is how "Today at a Glance" went 0/5 with no
   // signal. On final failure it returns the last raw response so the template's
   // own fallbacks fill any missing fields (never crashes).
-  async function askJson(label, prompt, maxTokens = 800, { model, minFields = 1 } = {}) {
+  // `section`, when set, records retries/failures in GENERATION_WARNINGS so the
+  // morning run/approval sees them. `delayMs` waits before the retry (the section
+  // calls use 2s to ride out a transient API blip).
+  async function askJson(label, prompt, maxTokens = 800, { model, minFields = 1, delayMs = 0, section } = {}) {
     let lastRaw = null;
     for (let attempt = 1; attempt <= 2; attempt++) {
+      let threw = false;
       let raw;
       try { raw = model ? await ask(prompt, maxTokens, model) : await ask(prompt, maxTokens); }
       catch (e) {
+        threw = true;
         console.warn(`   ⚠  ${label}: API error (attempt ${attempt}/2) — ${e.message}`);
-        continue;
+        if (section) addWarning(section, attempt < 2 ? 'retry' : 'failed', e.message);
       }
-      lastRaw = raw;
-      const filled = usableFieldCount(parseJson(raw));
-      if (filled >= minFields) return raw;
-      console.warn(`   ⚠  ${label}: only ${filled} usable field(s), need ${minFields} (attempt ${attempt}/2)` +
-        (attempt < 2 ? ' — retrying' : ' — using template fallbacks'));
+      if (!threw) {
+        lastRaw = raw;
+        const filled = usableFieldCount(parseJson(raw));
+        if (filled >= minFields) return raw;
+        console.warn(`   ⚠  ${label}: only ${filled} usable field(s), need ${minFields} (attempt ${attempt}/2)` +
+          (attempt < 2 ? ' — retrying' : ' — using template fallbacks'));
+        if (section) addWarning(section, attempt < 2 ? 'retry' : 'failed', `${filled}/${minFields} fields`);
+      }
+      if (attempt < 2 && delayMs) await new Promise((r) => setTimeout(r, delayMs));
     }
     return lastRaw; // partial/null → downstream parseJson() + template fallbacks
   }
@@ -362,7 +373,7 @@ Return ONLY valid JSON on one line — no markdown:
 
     // 6. Golf — tight format
     golf?.name
-      ? ask(
+      ? askJson('Golf',
           (() => {
             const started = golf.statusState === 'post' || golf.statusState === 'in';
             const lb = golf.leaders?.slice(0, 5).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ') || '';
@@ -387,13 +398,13 @@ Return ONLY valid JSON on one line — no markdown:
 {"headline":"Max 10 words — the storyline going in (a preview, not a result).","course":"Real course/venue + city (e.g. 'TPC Toronto at Osprey Valley, Ontario'). Name it if you know it.","whyCare1":"One sentence — why this event matters / what's at stake (FedEx Cup, prestige, field strength).","defending":"One sentence — who WON it last year and the storyline (name the champion if you know it).","watchFor":"Who to watch to win — name 2-3 recognizable favorites or marquee names expected in the field. Framed as 'worth watching', NOT as current leaders.","whatToSay":"One casual, confident line a casual fan could drop — about the matchup/storyline, not a fake leaderboard."}`;
           })(),
           320,
-          golfStarted ? undefined : 'claude-sonnet-4-6'
+          { model: golfStarted ? undefined : 'claude-sonnet-4-6', delayMs: 2000, section: 'golf' }
         )
       : Promise.resolve(null),
 
     // 7. F1 — tight format
     f1?.name
-      ? ask(
+      ? askJson('F1',
           (() => {
             const isPost = f1.results?.length && f1.statusState === 'post';
             const whenTxt = f1.daysAway == null ? 'this weekend'
@@ -417,12 +428,13 @@ STATS RULE (hard): you may include ONE interesting stat in "whatToSay" or "whyCa
 Return ONLY valid JSON on one line — no markdown:
 {"headline":"Max 10 words.","whyCare1":"One sentence — what makes this race or result significant.","whyCare2":"One sentence — championship battle or circuit-specific detail.","watchFor":"One thing to track. Specific.","whatToSay":"One casual conversation line — weave in the real season stat if available."}`;
           })(),
-          220
+          220,
+          { delayMs: 2000, section: 'f1' }
         )
       : Promise.resolve(null),
 
     // 8. Culture — 3 quick hits
-    ask(
+    askJson('Culture',
       `GuyTalk culture: 3 quick hits for men 25-45. Today: ${TODAY}.
 Return ONLY valid JSON array with exactly 3 objects — no markdown, no extra text:
 [{"topic":"Headline. Max 8 words.","whatHappened":"One sentence — what actually happened.","whyItMatters":"One sentence — why a guy should care.","whatToSay":"One casual conversation line. Natural, not forced.","tag":"Music|Sports Biz|TV|Tech|Gaming|Movies|Streaming"}]
@@ -434,7 +446,7 @@ ${streamingPick ? `Item 3 — a watch recommendation for "${streamingPick.head.r
 
 Only use stories confirmed in the web-researched facts below — never invent events.
 WEB-RESEARCHED CULTURE FACTS (real, sourced — Change 5): ${cultureWeb.length ? cultureWeb.map((c, i) => `${i + 1}. ${c}`).join(' | ') : '(none found — use a well-known current June 2026 culture story; never fabricate specifics)'}`,
-      1000
+      1000, { delayMs: 2000, section: 'culture' }
     ),
 
     // 9. Final Sharp Take — 80-100 words, 3-4 sentences
@@ -482,12 +494,12 @@ Return ONLY valid JSON on one line — no markdown:
         ? `Result: ${(g.home.winner ? g.home : g.away).team} won ${Math.max(+g.home.score, +g.away.score)}–${Math.min(+g.home.score, +g.away.score)}`
         : `Upcoming: ${g.away.team} at ${g.home.team}`;
       const meta = `${g.note || ''}${g.seriesNote ? ` — ${g.seriesNote}` : ''}${g.venue ? ` — ${g.venue}${g.venueCity ? `, ${g.venueCity}` : ''}` : ''}`;
-      return ask(
+      return askJson('NHL',
         `GuyTalk NHL section. ${g.note || 'NHL game'}. ${line}. ${meta}.${nhlWeb ? `\nWEB-SOURCED FACT (real, current — use it): ${nhlWeb}` : ''}
 Use ONLY the facts above — never invent scores, records, or stats not given.
 Return ONLY valid JSON on one line — no markdown:
 {"headline":"Max 10 words — the angle.","whyCare1":"One sentence — why this game/series matters right now.","whyCare2":"One sentence — series state or stakes (who leads, what a win does).","watchFor":"One specific thing to track.","whatToSay":"One casual conversation line."}`,
-        220
+        220, { delayMs: 2000, section: 'nhl' }
       );
     })(),
 

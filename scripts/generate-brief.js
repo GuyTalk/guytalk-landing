@@ -13,6 +13,7 @@ const { buildHtml }                                         = require('./lib/htm
 const { buildArchive }                                      = require('./lib/archive');
 const { fetchTopStories, fetchSectionStories }              = require('./lib/research');
 const { STREAMING_PICKS }                                   = require('./lib/db');
+const { GENERATION_WARNINGS, resetWarnings, formatWarnings } = require('./lib/warnings');
 
 const ROOT      = path.join(__dirname, '..');
 const BRIEF_DIR = path.join(ROOT, 'brief');
@@ -275,6 +276,7 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
   if (process.argv.includes('--regen')) return regenAll();
+  resetWarnings(); // start each run with a clean section-warnings slate
   const isPreview = process.argv.includes('--preview');
   const issueNum  = getNextIssueNum();
   const today     = new Date();
@@ -497,6 +499,9 @@ async function main() {
       : null,
     copy,
     editor:  editorMeta,
+    // Section retries / failures / editor hard-blocks from this run, persisted so
+    // the approval email can surface them (populated by generateCopy + editBrief).
+    generationWarnings: [...GENERATION_WARNINGS],
   };
 
   // ── Write files ────────────────────────────────────────────────────────────
@@ -590,6 +595,15 @@ async function main() {
   checks.push(`□ [AUTO]   briefs/index.html archive updated automatically`);
 
   checks.forEach(c => console.log(`  ${c}`));
+
+  // Section-generation warnings (retries / failures / editor hard-blocks) — make
+  // them loud at the end of the run so they're caught before approval.
+  if (GENERATION_WARNINGS.length) {
+    console.log(`\n  ⚠️  GENERATION WARNINGS (${GENERATION_WARNINGS.length}) — sections that retried, failed, or were blocked:`);
+    console.log(formatWarnings());
+  } else {
+    console.log(`\n  ✅ No generation warnings — all sections generated cleanly on the first try.`);
+  }
 
   if (isPreview) {
     console.log(`\n  📄 File saved: ~/Projects/GuyTalk/brief/preview/index.html`);

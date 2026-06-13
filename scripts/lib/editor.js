@@ -29,6 +29,7 @@
 
 const fs   = require('fs');
 const path = require('path');
+const { addWarning } = require('./warnings');
 
 const BIBLE_PATH = path.join(__dirname, '..', '..', 'GUYTALK_EDITORIAL_BIBLE.md');
 
@@ -381,6 +382,9 @@ ${JSON.stringify(editable)}`;
   const blocking = Array.isArray(report.blocking)
     ? report.blocking.filter(b => b && b.section && b.reason)
     : [];
+  // Surface hard-blocked sections in the run-wide warnings instead of letting them
+  // fall through to QA silently.
+  for (const b of blocking) addWarning(b.section, 'blocked', b.reason);
   const changed = Array.isArray(report.changed) ? report.changed.filter(Boolean) : [];
   const notes   = Array.isArray(report.notes)   ? report.notes.filter(Boolean)   : [];
 

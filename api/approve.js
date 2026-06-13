@@ -337,6 +337,17 @@ function confirmPage(data, slug, subscriberCount, token) {
     `<p style="font-size:14px;color:#444;margin:6px 0;"><span style="color:#2B6FFF;font-weight:700;margin-right:6px;">→</span>${b}</p>`
   ).join('');
 
+  // Surface this run's section warnings (retries / failures / editor hard-blocks)
+  // so they're seen before sending. Empty block when the run was clean.
+  const escH = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const warns = Array.isArray(data.generationWarnings) ? data.generationWarnings : [];
+  const warnBox = warns.length
+    ? `<div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:8px;padding:12px 16px;margin:0 0 20px;">
+         <p style="font-size:11px;font-weight:700;color:#9A3412;margin:0 0 6px;text-transform:uppercase;letter-spacing:0.1em;">⚠ ${warns.length} generation warning${warns.length !== 1 ? 's' : ''}</p>
+         ${warns.map(w => `<p style="font-size:13px;color:#7C2D12;margin:3px 0;"><strong>${escH(w.section)}</strong> — ${escH(w.kind)}${w.detail ? `: ${escH(w.detail)}` : ''}</p>`).join('')}
+       </div>`
+    : '';
+
   return `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GuyTalk — Confirm Send</title>
@@ -363,6 +374,7 @@ function confirmPage(data, slug, subscriberCount, token) {
   <h1>${data.title}</h1>
   <p class="date">${data.date}</p>
   <div class="bullets">${bulletRows}</div>
+  ${warnBox}
   <p class="sub-count">This will send to <strong>${subLine}</strong>.</p>
   <a href="${sendUrl}" class="btn-send">Confirm — Send to ${subLine} →</a>
   <a href="${briefUrl}" class="btn-read" target="_blank">Read the full brief first →</a>
