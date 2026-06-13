@@ -286,6 +286,12 @@ ${sideLinks.map(([id, label, sub]) => `  <a href="#${id}" class="bsn-link${sub ?
 <title>${esc(seoTitle)}</title>
 <meta name="description" content="${esc(seoDesc)}">
 <link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GuyTalk">
+<link rel="apple-touch-icon" href="/assets/logo/guytalk-icon-192.png">
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="https://www.guytalkmedia.com/brief/${slug}/">
 <meta property="og:title"       content="${esc(title)}">
