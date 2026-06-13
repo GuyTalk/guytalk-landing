@@ -6,12 +6,13 @@
 // "today's brief" is available offline after its first view without the SW
 // needing to hardcode a daily-changing issue URL.
 const CACHE = 'guytalk-v2';
-const CORE = ['/', '/briefs/'];
+const CORE = ['/']; // homepage only — a clean 200; everything else is runtime-cached
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE)
       .then((cache) => cache.addAll(CORE))
+      .catch(() => {}) // never let a precache miss block activation
       .then(() => self.skipWaiting())
   );
 });
