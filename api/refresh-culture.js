@@ -1,10 +1,13 @@
-// Vercel cron — refreshes the Live page's Culture/Trending section.
+// Vercel cron — refreshes the Live page's Culture section.
 //
-// Runs every 4 hours (see vercel.json crons). Fetches the top US headlines from
-// NewsAPI across business / entertainment / technology / sports, picks the top 6
-// (round-robin across categories for variety), and commits them to
-// brief/data/live-culture.json via the GitHub API. api/live.js then serves that
-// file as `trending`.
+// Fetches the top entertainment headlines (pageSize 8) from NewsAPI, maps each to
+// { headline, source, url, summary } (summary = description, truncated to 200
+// chars), and commits them to brief/data/live-culture.json via the GitHub API.
+// api/live.js then serves that file under the `culture` key.
+//
+// Schedule: a daily Vercel cron runs this as a backstop (Hobby plan forbids
+// sub-daily crons); a GitHub Actions workflow hits the endpoint every 4h for
+// true freshness. See .github/workflows/refresh-culture.yml + vercel.json.
 //
 // Why a git commit instead of writing the file directly: Vercel functions run on
 // a read-only filesystem and the cron + live.js are separate lambdas, so a written
@@ -18,8 +21,7 @@ const GH_OWNER     = 'GuyTalk';
 const GH_REPO      = 'guytalk-landing';
 const FILE_PATH    = 'brief/data/live-culture.json';
 
-const CATEGORIES = ['business', 'entertainment', 'technology', 'sports'];
-const CAT_LABEL  = { business: 'Business', entertainment: 'Entertainment', technology: 'Technology', sports: 'Sports' };
+const MAX_SUMMARY = 200; // chars; NewsAPI descriptions can run long
 
 function ghFetch(apiPath, opts = {}) {
   return fetch(`https://api.github.com${apiPath}`, {
@@ -34,49 +36,33 @@ function ghFetch(apiPath, opts = {}) {
   });
 }
 
-// Fetch each category, tag the articles, round-robin into a top-6 with variety.
-async function fetchHeadlines() {
-  const byCat = {};
-  await Promise.all(CATEGORIES.map(async (cat) => {
-    byCat[cat] = [];
-    try {
-      const res = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=us&category=${cat}&pageSize=5&apiKey=${NEWS_API_KEY}`,
-        { headers: { 'User-Agent': 'GuyTalk-Culture-Cron' } }
-      );
-      if (!res.ok) return;
-      const json = await res.json();
-      (json.articles || []).forEach((a) => {
-        if (!a.title || a.title === '[Removed]') return;
-        byCat[cat].push({
-          category: CAT_LABEL[cat],
-          headline: a.title,
-          summary:  a.description || '',
-          url:      a.url || '',
-          source:   a.source?.name || '',
-        });
-      });
-    } catch (_) { /* skip this category */ }
-  }));
+// description → summary, trimmed to MAX_SUMMARY chars (with an ellipsis so the
+// cut never lands mid-thought past the limit).
+function toSummary(desc) {
+  const t = String(desc || '').trim();
+  return t.length > MAX_SUMMARY ? `${t.slice(0, MAX_SUMMARY - 1).trimEnd()}…` : t;
+}
 
-  // Round-robin across categories so all four are represented in the top 6.
-  const out = [];
-  const seen = new Set();
-  for (let i = 0; out.length < 6; i++) {
-    let added = false;
-    for (const cat of CATEGORIES) {
-      const item = byCat[cat][i];
-      if (!item) continue;
-      const key = item.headline.toLowerCase();
-      if (seen.has(key)) continue;
-      seen.add(key);
-      out.push(item);
-      added = true;
-      if (out.length >= 6) break;
-    }
-    if (!added) break; // no category has an item at this index — done
-  }
-  return out;
+// Top entertainment headlines for the Live "culture" section. Maps each article
+// to { category, headline, source, url, summary }. category is fixed to
+// "Entertainment" so the story card keeps its label; the other four are the
+// fields the spec requires.
+async function fetchHeadlines() {
+  const res = await fetch(
+    `https://newsapi.org/v2/top-headlines?category=entertainment&language=en&pageSize=8&apiKey=${NEWS_API_KEY}`,
+    { headers: { 'User-Agent': 'GuyTalk-Culture-Cron' } }
+  );
+  if (!res.ok) throw new Error(`NewsAPI HTTP ${res.status}`);
+  const json = await res.json();
+  return (json.articles || [])
+    .filter((a) => a.title && a.title !== '[Removed]')
+    .map((a) => ({
+      category: 'Entertainment',
+      headline: a.title,
+      source:   a.source?.name || '',
+      url:      a.url || '',
+      summary:  toSummary(a.description),
+    }));
 }
 
 // Create-or-update brief/data/live-culture.json on main via the GitHub API.

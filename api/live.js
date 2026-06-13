@@ -973,7 +973,7 @@ module.exports = async function handler(req, res) {
     ]);
 
     const liveNow = deriveLiveNow({ scoreboard, f1, golf });
-    const trending = loadLiveCulture();   // NewsAPI headlines, refreshed every 4h
+    const culture = loadLiveCulture();   // NewsAPI entertainment headlines (refresh-culture cron)
 
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
     return res.json({
@@ -986,11 +986,11 @@ module.exports = async function handler(req, res) {
         tennis:     tennis     ? 'espn'    : null,
         scoreboard: scoreboard ? 'espn'    : null,
         markets:    markets    ? 'finnhub' : null,
-        trending:     trending.length ? 'NewsAPI' : null,
+        culture:      culture.length ? 'NewsAPI' : null,
         talkingAbout: 'editorial',   // no live source yet
       },
       liveNow, f1, golf, tennis, scoreboard, markets,
-      trending: trending.length ? trending : null,
+      culture: culture.length ? culture : null,
       talkingAbout: null,
     });
   } catch (err) {

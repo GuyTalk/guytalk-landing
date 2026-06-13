@@ -1343,9 +1343,9 @@ function FeaturedGolfCard(g) {
       }
     }
 
-    const trendLive = !!(p && p.trending && p.trending.length);
+    const trendLive = !!(p && p.culture && p.culture.length);
     const talkLive = !!(p && p.talkingAbout && p.talkingAbout.length);
-    const stories = trendLive ? p.trending : (IS_DEV ? MOCK.trending : null);
+    const stories = trendLive ? p.culture : (IS_DEV ? MOCK.trending : null);
     const talks = talkLive ? p.talkingAbout : (IS_DEV ? MOCK.talkingAbout : null);
 
     $('trendingWrap').innerHTML = (stories && stories.length)
@@ -1357,7 +1357,7 @@ function FeaturedGolfCard(g) {
 
     const iso = (p && p.updatedAt) || new Date().toISOString();
     setBadge('badge-trending', trendLive ? 'live' : (IS_DEV ? 'editorial' : null));
-    setMeta('meta-trending', trendLive ? (p.sources?.trending || 'Live') : (IS_DEV ? 'Editorial' : ''), iso);
+    setMeta('meta-trending', trendLive ? (p.sources?.culture || 'Live') : (IS_DEV ? 'Editorial' : ''), iso);
 
     const ts = talkLive ? p.sources?.talkingAbout : null; // 'ai' | 'derived'
     setBadge('badge-talking', talkLive ? (ts === 'ai' ? 'ai' : 'derived') : (IS_DEV ? 'editorial' : null));
