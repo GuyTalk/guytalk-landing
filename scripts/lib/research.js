@@ -133,13 +133,12 @@ Return ONLY a JSON array (no prose before or after, no markdown fence) of 4-6 ob
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Per-section web research (Change 1) — NHL, F1, Golf, Culture (×2), hero image.
+// Per-section web research — Culture (×2) + hero image only.
 //
-// The structured feeds can't see "did the NHL game happen / what's the golf
-// leaderboard / what's trending in culture right now". These searches fill that
-// in with real, sourced facts so every section is grounded — and, critically,
-// flag `no_data: true` when nothing concrete is found, so the editor can hard-
-// block an empty section instead of letting the writer invent filler.
+// Sports are no longer hardcoded here; they're discovered dynamically (see
+// fetchDynamicSports below). This module still grounds the culture section and
+// finds a fresh hero image, flagging `no_data: true` when nothing concrete is
+// found so the editor can hard-block an empty section instead of inventing filler.
 //
 // Each search is its own web_search call, run in parallel, returning ONE compact
 // object: { headline, source, url, fact, no_data }. Fail-open everywhere.
@@ -200,7 +199,7 @@ If you cannot find a result containing at least one of (a named person, a specif
   };
 }
 
-async function fetchSectionStories({ dateLabel, nhl, f1, golf, leadSubject } = {}) {
+async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImageUrls = [] } = {}) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return {};
   let Anthropic;
@@ -211,27 +210,13 @@ async function fetchSectionStories({ dateLabel, nhl, f1, golf, leadSubject } = {
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
   });
 
-  const f1Name   = f1?.name || f1?.shortName || null;
-  const golfName = golf?.name || null;
-
-  // Build the job list. Each job runs one web_search call (Change 1 spec).
-  const jobs = [];
-  jobs.push({ key: 'nhl', instruction: 'You are researching the NHL Stanley Cup Final for a daily brief.',
-    query: `NHL Stanley Cup Final ${today} game result OR score OR recap` });
-
-  if (f1Name) jobs.push({ key: 'f1', instruction: 'You are researching the current Formula 1 race weekend. Distinguish a completed session from an upcoming one.',
-    query: `Formula 1 ${f1Name} ${today} qualifying result OR race result OR practice` });
-
-  if (golfName) jobs.push({ key: 'golf', instruction: 'You are researching the current PGA Tour golf tournament leaderboard.',
-    query: `${golfName} leaderboard ${today} round leader score` });
-
-  jobs.push({ key: 'culture1', instruction: 'You are finding the single most-talked-about sports/entertainment/culture story for men 25-45 right now. Avoid celebrity gossip.',
-    query: `trending today ${today} sports entertainment culture viral` });
-  jobs.push({ key: 'culture2', instruction: 'You are finding a notable movie, TV, music, or viral culture moment from today. Avoid celebrity relationship gossip.',
-    query: `${today} movie news OR celebrity news OR viral clip OR Twitter trending` });
-
-  if (leadSubject) jobs.push({ key: 'heroImage', instruction: 'Find ONE real, current image URL for the subject below. Prefer ESPN CDN for sports subjects, Wikimedia for everything else. The "url" field must be a direct image/page URL.',
-    query: `${leadSubject} ${today} site:espn.com OR site:en.wikipedia.org image` });
+  // Culture only — sports are discovered dynamically (fetchDynamicSports).
+  const jobs = [
+    { key: 'culture1', instruction: 'You are finding the single most-talked-about sports/entertainment/culture story for men 25-45 right now. Avoid celebrity gossip.',
+      query: `trending today ${today} sports entertainment culture viral` },
+    { key: 'culture2', instruction: 'You are finding a notable movie, TV, music, or viral culture moment from today. Avoid celebrity relationship gossip.',
+      query: `${today} movie news OR celebrity news OR viral clip OR Twitter trending` },
+  ];
 
   const settled = await Promise.allSettled(
     jobs.map(j => runSectionSearch(client, j).then(r => ({ key: j.key, r })))
@@ -241,20 +226,225 @@ async function fetchSectionStories({ dateLabel, nhl, f1, golf, leadSubject } = {
   const culture = [];
   for (const s of settled) {
     if (s.status !== 'fulfilled') continue;
-    const { key, r } = s.value;
-    if (key === 'culture1' || key === 'culture2') {
-      if (r && !r.no_data) culture.push(r);
-    } else {
-      out[key] = r || { no_data: true };
-    }
+    const { r } = s.value;
+    if (r && !r.no_data) culture.push(r);
   }
   out.culture = culture;        // 0–2 sourced culture items
   out.cultureNoData = culture.length === 0;
 
-  const summarize = (k) => out[k]?.no_data ? `${k}:no_data` : `${k}:ok`;
-  console.log(`   ✓ Section research: ${['nhl','f1','golf'].filter(k => out[k]).map(summarize).join(' ')} culture:${culture.length} hero:${out.heroImage && !out.heroImage.no_data ? 'ok' : 'none'}`);
+  // Hero image for the news lead — fresh per issue (date + issue number in the
+  // query), and never the same URL as the previous issue (dedup + one retry).
+  if (leadSubject) {
+    out.heroImage = await findFreshImage(client, {
+      subject: leadSubject, today, issueNum, avoid: prevImageUrls,
+      prefer: 'Prefer ESPN CDN for sports subjects, Wikimedia for everything else.',
+    });
+  }
+
+  console.log(`   ✓ Section research: culture:${culture.length} hero:${out.heroImage && !out.heroImage.no_data ? 'ok' : 'none'}`);
 
   return out;
 }
 
-module.exports = { fetchTopStories, fetchSectionStories };
+// ─────────────────────────────────────────────────────────────────────────────
+// Dynamic sports discovery — replaces the old hardcoded NHL/F1/Golf/World Cup
+// searches. Each morning we find what sports are ACTUALLY generating coverage,
+// then pull sourced facts (and, for individual sports, a highlight video + an
+// action photo) for each. Nothing with no concrete fact survives.
+//
+//   Step 1  broad discovery → 3-5 { name, category: 'individual'|'team' }
+//   Step 2  per sport: targeted facts; individual → highlight video + photo;
+//           team → optional game photo. Every image query carries the date +
+//           issue number and avoids the previous issue's image URLs.
+//   Step 3  the top-ranked surviving story is The Lead.
+//
+// Export: { lead, sports: [{ name, label, category, headline, facts,
+//                            imageUrl, videoUrl, source, url, isLead }] }
+// Fail-open: returns { lead: null, sports: [] } on any error.
+// ─────────────────────────────────────────────────────────────────────────────
+
+// One web_search call that must return a single real URL (or null).
+async function runUrlSearch(client, { instruction, query }) {
+  const prompt = `${instruction}
+Run this web search and use ONLY real results you actually find: ${query}
+
+Return ONLY a single JSON object — no prose, no markdown fence:
+{"url":"https://direct-real-working-url"}
+If you cannot find a real, working URL, return exactly: {"none":true}`;
+  const messages = [{ role: 'user', content: prompt }];
+  let res = await client.messages.create({
+    model: RESEARCH_MODEL, max_tokens: 1500, thinking: { type: 'adaptive' },
+    tools: [{ type: 'web_search_20260209', name: 'web_search' }], messages,
+  });
+  let c = 0;
+  while (res.stop_reason === 'pause_turn' && c < MAX_CONTINUATIONS) {
+    messages.push({ role: 'assistant', content: res.content });
+    res = await client.messages.create({
+      model: RESEARCH_MODEL, max_tokens: 1500, thinking: { type: 'adaptive' },
+      tools: [{ type: 'web_search_20260209', name: 'web_search' }], messages,
+    });
+    c += 1;
+  }
+  const text = (res.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n').trim();
+  const obj = extractJsonObject(text);
+  if (!obj || obj.none === true || !obj.url) return null;
+  const url = String(obj.url).trim();
+  return /^https?:\/\//.test(url) ? url : null;
+}
+
+// Find a real image URL for `subject`, fresh for this issue and never matching a
+// URL the previous issue used. One dedup retry with a modified query.
+async function findFreshImage(client, { subject, today, issueNum, avoid = [], prefer = '' }) {
+  const avoidSet = new Set(avoid.filter(Boolean));
+  const instr = `Find ONE real, current image of: ${subject}. ${prefer} The URL must be a direct image or image-page URL.${avoidSet.size ? ` Do NOT return any of these already-used URLs: ${[...avoidSet].join(' , ')}` : ''}`;
+  const q1 = `${subject} ${today} issue ${issueNum || ''} action photo site:espn.com OR site:en.wikipedia.org image`;
+  let url = await runUrlSearch(client, { instruction: instr, query: q1 });
+  if (url && avoidSet.has(url)) {
+    // Duplicate of the previous issue — search again with a different framing.
+    url = await runUrlSearch(client, {
+      instruction: instr,
+      query: `${subject} latest different photo ${today} site:en.wikipedia.org OR site:gettyimages.com OR site:espn.com`,
+    });
+  }
+  return url && !avoidSet.has(url) ? { url, no_data: false } : { no_data: true };
+}
+
+// Discovery tags each story 'individual' or 'team'. We trust that tag; anything
+// missing or unexpected defaults to 'team' (per spec: when ambiguous, team). No
+// sport names are hardcoded here — the category comes entirely from discovery.
+function normalizeCategory(category) {
+  return String(category || '').toLowerCase() === 'individual' ? 'individual' : 'team';
+}
+
+async function discoverSports(client, today) {
+  const prompt = `You are the sports editor of GuyTalk, a daily brief for men 25-45. Today is ${today}.
+
+Run these two web searches and read what comes back:
+1. "top sports news today ${today}"
+2. "biggest sports stories right now ${today}"
+
+From the results, identify the 3-5 sports or events ACTUALLY generating the most coverage today — a finished game or series, a live tournament, a major result, or a marquee matchup. Use the real sport/league/tournament/team/athlete names you see.
+
+Rank by how big the story is RIGHT NOW (importance, not recency alone).
+
+For each, set "category":
+- "individual" = one or a few competitors you can put a face to (F1, Golf, Tennis, UFC, Boxing, MMA, track, cycling, skiing, NASCAR, etc.)
+- "team" = team leagues (NBA, NFL, MLB, NHL, soccer, World Cup, etc.)
+When unsure, use "team".
+
+Return ONLY a JSON array (no prose, no markdown fence), most important first:
+[{"name":"display name of the sport/event, e.g. 'NBA Finals', 'Stanley Cup Final', 'Roland Garros', 'UFC 312'","category":"individual" | "team"}]`;
+  const messages = [{ role: 'user', content: prompt }];
+  let res = await client.messages.create({
+    model: RESEARCH_MODEL, max_tokens: 4000, thinking: { type: 'adaptive' },
+    tools: [{ type: 'web_search_20260209', name: 'web_search' }], messages,
+  });
+  let c = 0;
+  while (res.stop_reason === 'pause_turn' && c < MAX_CONTINUATIONS) {
+    messages.push({ role: 'assistant', content: res.content });
+    res = await client.messages.create({
+      model: RESEARCH_MODEL, max_tokens: 4000, thinking: { type: 'adaptive' },
+      tools: [{ type: 'web_search_20260209', name: 'web_search' }], messages,
+    });
+    c += 1;
+  }
+  const text = (res.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n').trim();
+  const arr = extractJsonArray(text);
+  if (!Array.isArray(arr)) return [];
+  const seen = new Set();
+  const out = [];
+  for (const cand of arr) {
+    const name = cand && String(cand.name || '').trim();
+    if (!name) continue;
+    const key = name.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push({ name, category: normalizeCategory(cand.category) });
+    if (out.length >= 5) break;
+  }
+  return out;
+}
+
+async function fetchDynamicSports({ dateLabel, issueNum, prevImageUrls = [] } = {}) {
+  const empty = { lead: null, sports: [] };
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) { console.log('   ⚠  Dynamic sports skipped — ANTHROPIC_API_KEY missing'); return empty; }
+  let Anthropic;
+  try { Anthropic = require('@anthropic-ai/sdk'); }
+  catch { console.log('   ⚠  Dynamic sports skipped — @anthropic-ai/sdk not installed'); return empty; }
+  const client = new (Anthropic.default || Anthropic)({ apiKey });
+
+  const today = dateLabel || new Date().toLocaleDateString('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
+  });
+
+  // ── Step 1 — discovery ──────────────────────────────────────────────────────
+  let candidates = [];
+  try { candidates = await discoverSports(client, today); }
+  catch (e) { console.log(`   ⚠  Sports discovery failed (non-blocking): ${e.message}`); return empty; }
+  if (!candidates.length) { console.log('   ⚠  Sports discovery returned no candidates'); return empty; }
+  console.log(`   ✓ Discovered ${candidates.length}: ${candidates.map(c => `${c.name} [${c.category}]`).join(', ')}`);
+
+  // ── Step 2 — targeted facts (+ video/photo for individual; photo for team) ──
+  const avoid = (prevImageUrls || []).filter(Boolean);
+  const settled = await Promise.allSettled(candidates.map(async (cand) => {
+    const facts = await runSectionSearch(client, {
+      instruction: `You are researching today's ${cand.name} for a daily brief. Pull the single most important concrete result/news: who, what happened, the score or outcome, and one key name or number.`,
+      query: `${cand.name} results highlights news ${today}`,
+    });
+    if (!facts || facts.no_data || !facts.fact) return { cand, facts: null };
+
+    let videoUrl = null, imageUrl = null;
+    if (cand.category === 'individual') {
+      // A real highlight clip (only kept if genuinely found) + an action photo
+      // of the athlete from THIS event.
+      [videoUrl, imageUrl] = await Promise.all([
+        runUrlSearch(client, {
+          instruction: `Find ONE real highlight video of ${cand.name} from ${today}. Only a real video page (YouTube, the official league/tour, or a broadcaster). Never a search page.`,
+          query: `${cand.name} highlight video ${today}`,
+        }),
+        findFreshImage(client, {
+          subject: `${cand.name} ${facts.headline || ''} athlete in action`, today, issueNum, avoid,
+          prefer: 'Prefer an action photo of the specific athlete/driver/fighter from this event. ESPN/Getty/Wikimedia are all fine.',
+        }).then(r => (r && !r.no_data ? r.url : null)),
+      ]);
+    } else {
+      // Team sports: one game photo if a good one comes back, else text-only.
+      imageUrl = await findFreshImage(client, {
+        subject: `${cand.name} ${facts.headline || ''} game`, today, issueNum, avoid,
+        prefer: 'Prefer a photo from this game/match. ESPN/Getty/Wikimedia are fine.',
+      }).then(r => (r && !r.no_data ? r.url : null));
+    }
+
+    return {
+      cand,
+      facts,
+      sport: {
+        name: cand.name,
+        label: cand.name,
+        category: cand.category,
+        headline: facts.headline || cand.name,
+        facts: facts.fact,
+        source: facts.source || '',
+        url: facts.url || '',
+        imageUrl: imageUrl || null,
+        videoUrl: videoUrl || null,
+        isLead: false,
+      },
+    };
+  }));
+
+  // ── Step 3 — rank survivors; top = The Lead. No facts → dropped. ────────────
+  const sports = [];
+  for (const s of settled) {
+    if (s.status !== 'fulfilled' || !s.value || !s.value.sport) continue;
+    sports.push(s.value.sport);
+  }
+  if (!sports.length) { console.log('   ⚠  No discovered sport returned concrete facts — sports will fall back to structured feeds'); return empty; }
+  sports[0].isLead = true;
+  const lead = sports[0];
+  console.log(`   ✓ Dynamic sports (${sports.length}): ${sports.map(s => `${s.isLead ? '★ ' : ''}${s.label} [${s.category}]${s.videoUrl ? ' 🎬' : ''}${s.imageUrl ? ' 🖼' : ''}`).join('  ·  ')}`);
+  return { lead, sports };
+}
+
+module.exports = { fetchTopStories, fetchSectionStories, fetchDynamicSports };
