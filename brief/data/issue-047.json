@@ -1,0 +1,981 @@
+{
+  "num": 47,
+  "slug": "issue-047",
+  "date": "Saturday, June 13, 2026",
+  "title": "SpaceX pulls off the biggest IPO in history. Yankees fall to Toronto. World Cup underway on home soil.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815727",
+      "name": "Houston Astros at Kansas City Royals",
+      "shortName": "HOU @ KC",
+      "date": "2026-06-13T00:10Z",
+      "venue": "Kauffman Stadium",
+      "venueCity": "Kansas City, Missouri",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Kansas City Royals",
+        "abbrev": "KC",
+        "score": "8",
+        "winner": false
+      },
+      "away": {
+        "team": "Houston Astros",
+        "abbrev": "HOU",
+        "score": "10",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815730",
+      "name": "St. Louis Cardinals at Minnesota Twins",
+      "shortName": "STL @ MIN",
+      "date": "2026-06-13T00:10Z",
+      "venue": "Target Field",
+      "venueCity": "Minneapolis, Minnesota",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Minnesota Twins",
+        "abbrev": "MIN",
+        "score": "9",
+        "winner": true
+      },
+      "away": {
+        "team": "St. Louis Cardinals",
+        "abbrev": "STL",
+        "score": "8",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815723",
+      "name": "New York Yankees at Toronto Blue Jays",
+      "shortName": "NYY @ TOR",
+      "date": "2026-06-12T23:37Z",
+      "venue": "Rogers Centre",
+      "venueCity": "Toronto, Ontario",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Toronto Blue Jays",
+        "abbrev": "TOR",
+        "score": "8",
+        "winner": true
+      },
+      "away": {
+        "team": "New York Yankees",
+        "abbrev": "NYY",
+        "score": "5",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 741.75,
+      "prevClose": 737.76,
+      "dayChange": 3.99,
+      "dayChangePct": 0.5408,
+      "weekChangePct": 0.5694545829495965,
+      "spark": [
+        742.3099975585938,
+        748.1699829101562,
+        739.1699829101562,
+        738.6500244140625,
+        733.72998046875,
+        741.25,
+        742.719970703125,
+        745.6400146484375,
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75
+      ]
+    },
+    "DIA": {
+      "price": 513.06,
+      "prevClose": 509.36,
+      "dayChange": 3.7,
+      "dayChangePct": 0.7264,
+      "weekChangePct": 0.6592088900331293,
+      "spark": [
+        497.1400146484375,
+        500.79998779296875,
+        495.3699951171875,
+        497.010009765625,
+        493.9800109863281,
+        500.239990234375,
+        503.1099853515625,
+        506.1199951171875,
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938
+      ]
+    },
+    "QQQ": {
+      "price": 721.34,
+      "prevClose": 717.12,
+      "dayChange": 4.22,
+      "dayChangePct": 0.5885,
+      "weekChangePct": 2.30902369979561,
+      "spark": [
+        714.7100219726562,
+        719.7899780273438,
+        708.9299926757812,
+        705.8800048828125,
+        701.530029296875,
+        713.1500244140625,
+        714.510009765625,
+        717.5399780273438,
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688
+      ]
+    },
+    "IWM": {
+      "price": 292.95,
+      "prevClose": 290.41,
+      "dayChange": 2.54,
+      "dayChangePct": 0.8746,
+      "weekChangePct": 4.012073974220904,
+      "spark": [
+        282.6700134277344,
+        284.45001220703125,
+        277.6000061035156,
+        275.9700012207031,
+        273,
+        279.8699951171875,
+        282.489990234375,
+        285.1199951171875,
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125
+      ]
+    },
+    "NVDA": {
+      "price": 205.19,
+      "prevClose": 204.87,
+      "dayChange": 0.32,
+      "dayChangePct": 0.1562,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 406.43,
+      "prevClose": 399.15,
+      "dayChange": 7.28,
+      "dayChangePct": 1.8239,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 390.74,
+      "prevClose": 390.34,
+      "dayChange": 0.4,
+      "dayChangePct": 0.1025,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 291.13,
+      "prevClose": 295.63,
+      "dayChange": -4.5,
+      "dayChangePct": -1.5222,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 566.98,
+      "prevClose": 568.43,
+      "dayChange": -1.45,
+      "dayChangePct": -0.2551,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 238.55,
+      "prevClose": 241.51,
+      "dayChange": -2.96,
+      "dayChangePct": -1.2256,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 359.68,
+      "prevClose": 357.77,
+      "dayChange": 1.91,
+      "dayChangePct": 0.5339,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 511.57,
+      "prevClose": 488.45,
+      "dayChange": 23.12,
+      "dayChangePct": 4.7333,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 382.07,
+      "prevClose": 385.57,
+      "dayChange": -3.5,
+      "dayChangePct": -0.9077,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 80.34,
+      "prevClose": 81.27,
+      "dayChange": -0.93,
+      "dayChangePct": -1.1443,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 320.72,
+      "prevClose": 313.49,
+      "dayChange": 7.23,
+      "dayChangePct": 2.3063,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 159.78,
+      "prevClose": 160.43,
+      "dayChange": -0.65,
+      "dayChangePct": -0.4052,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 395.57,
+      "prevClose": 391.45,
+      "dayChange": 4.12,
+      "dayChangePct": 1.0525,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": null,
+      "prevClose": null,
+      "dayChange": null,
+      "dayChangePct": null,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AMD",
+      "JPM",
+      "TSLA",
+      "AAPL",
+      "AMZN"
+    ],
+    "10Y": {
+      "price": 4.487,
+      "prevClose": 4.4629998207092285,
+      "dayChange": 0.024000179290771584,
+      "dayChangePct": 0.5377589122770264,
+      "weekChangePct": -1.0802420053820767,
+      "spark": [
+        4.480999946594238,
+        4.460999965667725,
+        4.59499979019165,
+        4.623000144958496,
+        4.666999816894531,
+        4.572000026702881,
+        4.585999965667725,
+        4.558000087738037,
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, June 12 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, June 12). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 124.57,
+          "changePct": 6.5065
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 511.57,
+          "changePct": 4.73334
+        },
+        {
+          "symbol": "GS",
+          "name": "The Goldman Sachs Group, Inc.",
+          "price": 1062.75,
+          "changePct": 2.6177
+        },
+        {
+          "symbol": "JPM",
+          "name": "JPMorgan Chase & Co.",
+          "price": 320.72,
+          "changePct": 2.30629
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "ADBE",
+          "name": "Adobe Inc.",
+          "price": 204.02,
+          "changePct": -6.75503
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 127.99,
+          "changePct": -2.35734
+        },
+        {
+          "symbol": "NKE",
+          "name": "NIKE, Inc.",
+          "price": 44.93,
+          "changePct": -2.24108
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 291.13,
+          "changePct": -1.52217
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 124.57,
+          "changePct": 6.5065
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 205.19,
+          "changePct": 0.1562
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 406.43,
+          "changePct": 1.82388
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 63807.56,
+          "changePct": 0.65835
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "RBC Canadian Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-11T04:00Z",
+    "endDate": "2026-06-14T04:00Z",
+    "status": "Round 2 - Play Complete",
+    "statusState": "in",
+    "leaders": [
+      {
+        "name": "Ben James",
+        "score": "-10",
+        "pos": "1st"
+      },
+      {
+        "name": "Haotong Li",
+        "score": "-9",
+        "pos": "2nd"
+      },
+      {
+        "name": "Keith Mitchell",
+        "score": "-9",
+        "pos": "3rd"
+      },
+      {
+        "name": "Jackson Suber",
+        "score": "-9",
+        "pos": "4th"
+      },
+      {
+        "name": "Jesper Svensson",
+        "score": "-9",
+        "pos": "5th"
+      },
+      {
+        "name": "Sam Burns",
+        "score": "-9",
+        "pos": "6th"
+      },
+      {
+        "name": "Bud Cauley",
+        "score": "-8",
+        "pos": "7th"
+      },
+      {
+        "name": "Tommy Fleetwood",
+        "score": "-8",
+        "pos": "8th"
+      },
+      {
+        "name": "Ryan Fox",
+        "score": "-8",
+        "pos": "9th"
+      },
+      {
+        "name": "Brice Garnett",
+        "score": "-8",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Boss Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-06T04:00Z",
+        "endDate": "2026-06-15T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Alexander Bublik",
+            "loser": "Giovanni Mpetshi Perricard",
+            "score": "7-6 7-6"
+          },
+          {
+            "winner": "Taylor Fritz",
+            "loser": "Mattia Bellucci",
+            "score": "5-7 7-5 7-5"
+          },
+          {
+            "winner": "Jiri Lehecka",
+            "loser": "Frances Tiafoe",
+            "score": "6-4 7-6"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Libéma Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-06T04:00Z",
+        "endDate": "2026-06-15T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Magda Linette",
+            "loser": "Zeynep Sonmez",
+            "score": "6-4 6-2"
+          },
+          {
+            "winner": "Robin Montgomery",
+            "loser": "Daria Snigur",
+            "score": "6-4 6-4"
+          },
+          {
+            "winner": "Ajla Tomljanovic",
+            "loser": "Catherine McNally",
+            "score": "6-4 6-4"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "MSC Cruises Barcelona-Catalunya Grand Prix",
+    "shortName": "MSC Cruises Barcelona-Catalunya GP",
+    "venue": "Circuit de Catalunya",
+    "status": "6/14 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 66
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Switzerland at Qatar",
+      "shortName": "SUI @ QAT",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-13T19:00Z",
+      "home": {
+        "team": "Qatar",
+        "score": "0"
+      },
+      "away": {
+        "team": "Switzerland",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Morocco at Brazil",
+      "shortName": "MAR @ BRA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-13T22:00Z",
+      "home": {
+        "team": "Brazil",
+        "score": "0"
+      },
+      "away": {
+        "team": "Morocco",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Scotland at Haiti",
+      "shortName": "SCO @ HAI",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-14T01:00Z",
+      "home": {
+        "team": "Haiti",
+        "score": "0"
+      },
+      "away": {
+        "team": "Scotland",
+        "score": "0"
+      }
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401874176",
+      "name": "Carolina Hurricanes at Vegas Golden Knights",
+      "shortName": "CAR @ VGK",
+      "date": "2026-06-15T00:00Z",
+      "venue": "T-Mobile Arena",
+      "venueCity": "Las Vegas, NV",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "Stanley Cup Final - Game 6",
+      "seriesNote": "CAR leads series 3-2",
+      "sport": "NHL",
+      "home": {
+        "team": "Vegas Golden Knights",
+        "abbrev": "VGK",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Carolina Hurricanes",
+        "abbrev": "CAR",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [
+    {
+      "id": "401859967",
+      "name": "New York Knicks at San Antonio Spurs",
+      "shortName": "NY @ SA",
+      "date": "2026-06-14T00:30Z",
+      "venue": "Frost Bank Center",
+      "venueCity": "San Antonio, TX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Finals - Game 5",
+      "seriesNote": "NY leads series 3-1",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    }
+  ],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Love Island USA fans outraged after voting results are postponed one day due to system crash - the-sun.com",
+      "url": "https://www.the-sun.com/tv/16490556/love-island-usa-fans-outraged-voting-results-postponed-crash/",
+      "description": "",
+      "source": "The-sun.com"
+    },
+    {
+      "title": "Rick James' Son Tazman Johnson In Jail, Facing Drug Charges - TMZ",
+      "url": "https://www.tmz.com/2026/06/12/rick-james-son-tazman-johnson-jailed-on-drug-charges/",
+      "description": "Rick James' son, Tazman Johnson, is currently locked up in the Los Angeles County Jail facing serious drug charges involving Fentanyl ... TMZ has learned.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Quavo: Valet Allegedly Slapped By Rapper Moving to Collect $1 Million Judgment - TMZ",
+      "url": "https://www.tmz.com/2026/06/12/valet-files-to-collect-judgment-from-quavo/",
+      "description": "The Vegas valet who says Quavo slapped him is on the hunt to collect the 7-figure sum he won in court from the Migos member ... TMZ has learned.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Horoscope for Friday, June 12, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/06/12/horoscopes-today-friday-june-12-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Taylor Swift Thanks Family, Tears Up at Songwriters Hall of Fame 2026 - Variety",
+      "url": "https://variety.com/2026/music/news/taylor-swift-songwriters-hall-of-fame-acceptance-speech-1236779180/",
+      "description": "Taylor Swift thanked her family for making sacrifices during her acceptance speech at the Songwriters Hall of Fame 2026.",
+      "source": "Variety"
+    },
+    {
+      "title": "Seahawks unveil Super Bowl rings - The Seattle Times",
+      "url": "https://www.seattletimes.com/sports/seahawks/seahawks-receive-their-super-bowl-rings/",
+      "description": "The Seahawks called them “the largest and most technologically advanced Super Bowl ring ever created.\"",
+      "source": "The Seattle Times"
+    },
+    {
+      "title": "Hwang In-beom sparks South Korea’s 2-1 comeback win over the Czech Republic at the World Cup - AP News",
+      "url": "https://apnews.com/article/world-cup-south-korea-czech-republic-score-496e7772dde95ca0af90b5074fdb13d9",
+      "description": "Hwang In-beom has led South Korea to a 2-1 comeback win over the Czech Republic in the World Cup. Hwang scored the Koreans' first goal and assisted on Oh Hyeon-gyu’s decisive strike in a game played in front of hundreds of empty seats at Mexico's Guadalajara …",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Caitlin Clark's Final Box Score Stats, Highlights as Fever Beat Sky With Sophie Cunningham Out - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25439275-caitlin-clarks-final-box-score-stats-highlights-fever-beat-sky-sophie-cunningham-out",
+      "description": "It took overtime, but the Indiana Fever are now officially on a winning streak.",
+      "source": "Bleacher Report"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Markets",
+      "headline": "SpaceX pulls off the biggest IPO in history; SPCX closes up 19%",
+      "whatHappened": "SpaceX priced its IPO at $135, raised roughly $75 billion at about a $1.77 trillion valuation — the largest stock-market debut ever — then opened at $150 and closed its first day at $161.11 on Nasdaq under ticker SPCX, a gain of about 19%.",
+      "whyItMatters": "It's the richest company ever to go public and instantly one of the ten most valuable U.S. stocks, putting Elon Musk's rocket-and-Starlink empire (plus its xAI tie-in) into millions of regular brokerage accounts for the first time.",
+      "depth": "Despite the size, the broad market barely moved — the S&P 500 closed at a record-ish 7,431.46 (+0.50%), the Dow rose while the Nasdaq slipped about 0.3% as money rotated out of pricey hyperscalers (Microsoft, Amazon, Oracle each off ~2%) and into the new name. The old fear that a mega-IPO 'drains liquidity and signals a market top' has historic basis, but TheStreet's Rev Shark argued the math doesn't support it this time. Key catch on index participation: S&P Global declined to change its rules, and SPCX fails the GAAP-profitability test, so it cannot enter the S&P 500 yet — analysts don't expect inclusion until SpaceX is profitable (mid-2027 at the earliest), at which point forced index-fund buying could top $50 billion. A regular person can buy SPCX outright on Nasdaq now (options on the stock begin June 16), but with only a 3%-5% public float and heavy retail demand, expect violent swings; index-fund holders won't get automatic exposure until the profitability bar is cleared.",
+      "whatToSay": "My take: a $1.8 trillion price tag on a company that isn't even S&P-eligible is wild — but if you bet against Musk's rockets you've lost every time so far.",
+      "sources": [
+        "https://www.cnbc.com/2026/06/12/spacex-ipo-spcx-live-updates.html",
+        "https://www.nbcnews.com/business/markets/spacex-ipo-stock-price-rcna349760",
+        "https://www.bbntimes.com/global-economy/s-p-500-index-closes-at-7-431-46-0-50-amid-spacex-ipo-and-iran-peace-talks",
+        "https://finance.yahoo.com/markets/stocks/articles/spacex-faces-delay-p-500-100109864.html",
+        "https://spotgamma.com/spacex-ipo-index-changes-spotgamma/"
+      ],
+      "isLead": true
+    },
+    {
+      "category": "World",
+      "headline": "U.S. and Iran say a peace deal to end the 'Twelve-Day War' is all but done",
+      "whatHappened": "Pakistan's prime minister said the 'final, agreed-upon text' of a U.S.-Iran peace deal — the so-called Islamabad Memorandum of Understanding — has been reached, though Iran has not firmly committed and Trump publicly dismissed leaked terms as 'fake.'",
+      "whyItMatters": "A ceasefire would wind down a war that sent oil markets and stocks lurching all month (the Dow fell 900 points on June 10 over fears of new strikes), and oil prices fell Friday on the prospect of a deal.",
+      "depth": "",
+      "whatToSay": "Honestly, when Pakistan is the one brokering peace between Washington and Tehran, you know 2026 has gone fully sideways.",
+      "sources": [
+        "https://www.cbsnews.com/live-updates/iran-war-us-trump-peace-deal-agreement/",
+        "https://www.cnn.com/2026/06/12/world/live-news/iran-war-trump-israel",
+        "https://thehill.com/homenews/administration/5921744-donald-trump-leaked-iran-deal-middle-east-conflict/"
+      ],
+      "isLead": false
+    },
+    {
+      "category": "Business",
+      "headline": "DOJ clears Paramount Skydance's $110B takeover of Warner Bros. Discovery",
+      "whatHappened": "The Justice Department's antitrust division cleared Paramount Skydance's roughly $110 billion acquisition of Warner Bros. Discovery without any divestitures or conditions, concluding it doesn't threaten competition; several state attorneys general are still reviewing it.",
+      "whyItMatters": "The deal would fuse Paramount with the owner of HBO Max, CNN and Warner Bros. Pictures — a Hollywood mega-studio that reshapes what you stream, who makes your movies, and how the news business consolidates.",
+      "depth": "",
+      "whatToSay": "So one company will own HBO, CNN, Paramount and the Batman movies — cord-cutting was supposed to give us more choices, not fewer.",
+      "sources": [
+        "https://www.cnbc.com/2026/06/12/paramount-wbd-merger-approval-doj.html",
+        "https://www.quiverquant.com/news/DOJ+Clears+Paramount+Skydance%E2%80%99s+$110+Billion+Warner+Bros.+Discovery+Acquisition+Without+Conditions"
+      ],
+      "isLead": false
+    },
+    {
+      "category": "Tech",
+      "headline": "Anthropic overtakes OpenAI as the world's most valuable AI startup — and files for an IPO",
+      "whatHappened": "Anthropic raised about $65 billion at a $965 billion valuation, eclipsing OpenAI as the most valuable AI startup, and has confidentially filed for an IPO of its own.",
+      "whyItMatters": "With SpaceX, Anthropic and OpenAI all marching toward the public markets, the AI boom is about to move from private mega-rounds into stocks ordinary investors can actually buy — and the Claude-maker is now the one to beat.",
+      "depth": "",
+      "whatToSay": "Claude quietly passing OpenAI to a near-trillion-dollar valuation is the AI plot twist nobody outside the Valley is talking about yet.",
+      "sources": [
+        "https://www.bloomberg.com/news/articles/2026-05-28/anthropic-raises-at-965-billion-valuation-eclipsing-openai",
+        "https://fortune.com/2026/06/01/anthropic-confidentially-files-ipo-965-billion-valuation/"
+      ],
+      "isLead": false
+    },
+    {
+      "category": "Culture",
+      "headline": "World Cup kicks off on home soil — USMNT thumps Paraguay 4-1",
+      "whatHappened": "The 2026 FIFA World Cup, co-hosted by the U.S., Canada and Mexico, opened this week, and the U.S. men's national team launched its tournament with a dominant 4-1 win over Paraguay.",
+      "whyItMatters": "It's the biggest sporting event ever staged in North America, running all summer in cities across the U.S. — the one TV everyone at the bar will be watching, and the Americans just made a statement.",
+      "depth": "",
+      "whatToSay": "4-1 in the opener on home soil — I didn't think I'd care about this USMNT, and now I've already cleared my July calendar.",
+      "sources": [
+        "https://www.cnn.com/2026/06/12/sport/live-news/world-cup-group-b-d-opening-matches",
+        "https://www.nbcnews.com/sports/soccer/live-blog/fifa-world-cup-2026-june-12-live-updates-rcna349721"
+      ],
+      "isLead": false
+    }
+  ],
+  "sectionStories": {
+    "nhl": {
+      "no_data": true
+    },
+    "f1": {
+      "headline": "Russell tops FP1 at 2026 Barcelona-Catalunya GP as Mercedes leads Friday running",
+      "source": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/2026_Barcelona-Catalunya_Grand_Prix",
+      "fact": "George Russell (Mercedes) topped the completed first free practice session on 12 June 2026, ahead of Oscar Piastri and Charles Leclerc",
+      "no_data": false
+    },
+    "golf": {
+      "headline": "Ben James leads RBC Canadian Open by one at 10-under ahead of Round 3",
+      "source": "Lineups",
+      "url": "https://www.lineups.com/betting/2026-rbc-canadian-open-top-draftkings-showdown-plays-live-bets-ahead-of-round-3/",
+      "fact": "Ben James holds a one-stroke lead at 10-under-par at the halfway point of the 2026 RBC Canadian Open",
+      "no_data": false
+    },
+    "heroImage": {
+      "headline": "SpaceX Soars 19% in Record Nasdaq Debut, Biggest IPO in History",
+      "source": "Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:SpaceX-Logo.svg",
+      "fact": "Elon Musk's SpaceX (SPCX) closed its first trading day up 19.34% at $161.11 on June 12, 2026, after pricing its record IPO at $135 per share.",
+      "no_data": false
+    },
+    "culture": [
+      {
+        "headline": "2026 FIFA World Cup kicks off as USA opens against Paraguay",
+        "source": "TODAY.com",
+        "url": "https://www.today.com/trending",
+        "fact": "The 2026 World Cup — the first ever co-hosted by three nations (United States, Mexico and Canada) — officially kicked off June 11 in Mexico City, with the U.S. led by Christian Pulisic opening its run against Paraguay.",
+        "no_data": false
+      },
+      {
+        "headline": "Netflix in Talks for 'KPop Demon Hunters' Live World Tour in 2027",
+        "source": "IMDb",
+        "url": "https://www.imdb.com/news/ni65757045/",
+        "fact": "Netflix is negotiating with concert promoters to stage arena shows featuring songs from 'KPop Demon Hunters,' which won Best Animated Feature and Best Original Song at the 2026 Oscars, with a tour targeted for 2027 ahead of the planned sequel.",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false
+  },
+  "heroImage": "https://commons.wikimedia.org/wiki/File:SpaceX-Logo.svg",
+  "copy": {
+    "title": "SpaceX pulls off the biggest IPO in history. Yankees fall to Toronto. World Cup underway on home soil.",
+    "keyTakeaway": "SpaceX went public today at a $1.77 trillion valuation — the largest IPO ever — closing up 19% on its first day while money rotated out of big tech and into smaller names. The World Cup is live on home soil and the U.S. opened with a 4-1 statement win over Paraguay. Tonight, the Knicks can end a 56-year drought in Game 5 of the NBA Finals.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 2,
+      "headline": "SpaceX goes public at $1.77 trillion — the biggest IPO in history closes up 19%",
+      "whatHappened": "SpaceX priced its IPO at $135 a share, raised roughly $75 billion, and opened its first day of trading on Nasdaq under the ticker SPCX at $150 before closing at $161.11 — a 19% gain. The company debuted at a $1.77 trillion valuation, instantly making it one of the ten most valuable U.S. stocks and putting Elon Musk's rocket-and-Starlink empire into regular brokerage accounts for the first time.",
+      "whyBullet1": "SpaceX is now richer than Coca-Cola, Nike, and most of the S&P 500 — but it can't actually join the S&P 500 yet because it fails the GAAP profitability test. Analysts don't expect index inclusion until mid-2027 at the earliest, at which point forced index-fund buying could exceed $50 billion.",
+      "whyBullet2": "The IPO triggered a visible rotation: money left Microsoft, Amazon, and Apple (each down roughly 2%) and chased the new name. The old fear that a mega-IPO drains market liquidity and signals a top has historic basis, but the broad market barely flinched — the S&P 500 closed at a record-ish 7,431.46, up 0.5% on the day.",
+      "whatToSay": "SpaceX is worth $1.77 trillion and it's not even profitable enough to get into the S&P 500 yet — but if you've bet against Musk's rockets at any point in the last decade, you've lost every single time."
+    },
+    "sportsOther": [
+      {
+        "take": "Astros beat the Royals 10-8 in a back-and-forth slugfest that came down to the late innings.",
+        "why": "Houston's offense stayed alive when it mattered, showing they can win shootouts on the road against division competition.",
+        "say": "Astros aren't messing around — they'll trade punches with anyone and just outlast you."
+      },
+      {
+        "take": "Twins edged the Cardinals 9-8 in a one-run game that could have gone either way.",
+        "why": "Minnesota held serve at home against a Cardinals team that can hit, which matters for playoff positioning as the season tightens.",
+        "say": "These one-run games tell you everything — Twins are built to grind out close ones."
+      },
+      {
+        "take": "Blue Jays took down the Yankees 8-5, a three-run decision that feels bigger than the margin.",
+        "why": "Toronto beat New York in their own house, and that kind of statement win sticks in divisional races when wild card positioning gets serious.",
+        "say": "Yankees getting handled by Toronto in their own building — that's not supposed to happen this often."
+      }
+    ],
+    "markets": {
+      "headlines": [
+        {
+          "head": "SpaceX IPO closes up 19% in historic $1.77 trillion debut",
+          "sub": "SPCX priced at $135, raised roughly $75 billion, and closed Friday at $161.11 on its first day — the largest stock-market IPO ever. The broad market barely flinched (S&P 500 +0.5%), but money rotated hard out of hyperscalers like Microsoft, Amazon, and Oracle into the new name. S&P Global kept SPCX out of the 500 for now because SpaceX isn't GAAP-profitable yet — analysts expect inclusion mid-2027, which could trigger $50 billion in forced index-fund buying. A regular person can buy shares outright on Nasdaq now (options start June 16), but with only a 3%-5% public float and heavy retail demand, expect big swings."
+        },
+        {
+          "head": "Small caps crush it; IWM up 4% for the week",
+          "sub": "Russell 2000 closed Friday up 0.9%, capping a 4.0% weekly gain as money rotates away from mega-cap tech into beaten-down value names."
+        },
+        {
+          "head": "Treasury yields rise; 10-year closes 0.5% higher on the week",
+          "sub": "The 10-year closed Friday at +0.5% daily but -1.1% on the week, signaling bond traders are pricing in growth headwinds heading into next week's data."
+        }
+      ],
+      "mood": "SpaceX's monster IPO stole the spotlight Friday, but the real story was money leaving expensive big tech and chasing smaller names and new opportunities — a rotation that rarely happens without a reason.",
+      "whyBullet1": "The mega-IPO liquidity-drain fear didn't materialize — the S&P 500 closed up 0.5% at a record-ish 7,431.46. What was real was the rotation signal: Microsoft, Amazon, and Apple each fell roughly 2% as traders moved out of stretched valuations and into the new name. AMD jumped 4.7% and small caps (IWM) are up 4.0% on the week, which tells you where the appetite is right now.",
+      "whyBullet2": "SPCX is available to buy outright on Nasdaq now, with options beginning June 16 — but with only a 3-5% public float and heavy retail demand, expect violent price swings. Index-fund holders won't get automatic exposure until SpaceX clears the S&P 500 profitability bar, which analysts peg at mid-2027 at the earliest.",
+      "bringUp": "SpaceX closed its first trading day at $161.11 — up 19% — at a $1.77 trillion valuation, and it still can't get into the S&P 500 because it hasn't turned a GAAP profit. That's the wildest sentence in finance today."
+    },
+    "golf": {
+      "headline": "Ben James leads the RBC Canadian Open by one shot after 36 holes.",
+      "whyCare1": "The RBC Canadian Open is the PGA Tour's longest-running event outside the U.S. — winning here carries real weight, and the leaderboard is genuinely tight heading into the weekend.",
+      "whyCare2": "Haotong Li and Keith Mitchell are both sitting at 9-under, just one shot back of James — four players are within striking distance, so this is far from over.",
+      "watchFor": "Whether Ben James can hold his one-shot lead through Round 3 or if Li or Mitchell get hot and force a Sunday showdown.",
+      "whatToSay": "Ben James leads at 10-under but Li and Mitchell are right there at 9 — one good round Saturday and this leaderboard looks completely different."
+    },
+    "f1": {
+      "headline": "Barcelona Grand Prix weekend is live — and George Russell topped Friday practice for Mercedes.",
+      "whyCare1": "George Russell went fastest in FP1 at the 2026 Barcelona-Catalunya Grand Prix, ahead of Oscar Piastri and Charles Leclerc. Barcelona rewards precision and tire management over raw speed, so Russell topping the session is a genuine signal, not just a Friday fluke.",
+      "whyCare2": "Barcelona's technical demands often shuffle the grid between practice and qualifying — setup changes and track evolution mean Friday pace doesn't always hold, which makes Saturday's session the real tell for who's actually quick.",
+      "watchFor": "Whether Mercedes can carry Russell's Friday pace into qualifying, and how the tire strategies shake out for the race — this circuit punishes teams that get setup wrong.",
+      "whatToSay": "Russell was fastest in practice at Barcelona, which is notable because this track usually exposes whoever isn't dialed in — Mercedes looks dialed in right now."
+    },
+    "culture": [
+      {
+        "topic": "USA opens World Cup with a 4-1 statement win over Paraguay",
+        "whatHappened": "The 2026 FIFA World Cup — the first ever co-hosted by three nations (United States, Mexico, and Canada) — is officially underway, and the U.S. men's national team opened with a dominant 4-1 win over Paraguay. Christian Pulisic led the charge in what is the biggest sporting event ever staged in North America.",
+        "whyItMatters": "The tournament runs all summer in cities across the U.S., and the Americans just made a statement in the opener. A 4-1 result on home soil changes the conversation around this team — people who weren't planning to watch are now watching.",
+        "whatToSay": "4-1 in the opener on home soil — I didn't think I'd care about this USMNT, and now I've already cleared my July calendar.",
+        "tag": "Sports Biz"
+      },
+      {
+        "topic": "Netflix is turning KPop Demon Hunters into a live world tour",
+        "whatHappened": "Netflix is in talks with concert promoters to stage arena shows featuring music from KPop Demon Hunters — the animated film that won Best Animated Feature and Best Original Song at the 2026 Oscars — with a world tour targeted for 2027 ahead of a planned sequel.",
+        "whyItMatters": "Netflix proved an animated film can dominate the Oscars, and now they're betting on turning that win into live touring revenue. It's a direct play at blurring the line between streaming content and concert promotion — and it's a model nobody has really cracked yet.",
+        "whatToSay": "Netflix gave an animated movie two Oscars and now they're making it a concert tour — that's genuinely where entertainment is headed and most people haven't caught up yet.",
+        "tag": "Streaming"
+      },
+      {
+        "topic": "Dept. Q — this weekend's watch",
+        "whatHappened": "Danish crime series following a cold case unit in Copenhagen — Scandinavian noir with an odd-couple detective pairing and cases that spiral in directions you don't see coming.",
+        "whyItMatters": "It's the kind of show that grabs you Friday night and you're three episodes deep before you realize it's midnight — smart plotting, real tension, no filler.",
+        "whatToSay": "If you burned through The Killing and need something with that same slow-burn darkness, Dept. Q is exactly it.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Today had two things happening at once. SpaceX went public at $1.77 trillion and reminded everyone that Elon Musk's companies operate on a different scale than normal business logic — the stock popped 19% on day one for a company that can't even qualify for the S&P 500 yet. Meanwhile, the World Cup is live on home soil and the U.S. just beat Paraguay 4-1, which means casual fans who weren't paying attention are about to start paying attention. The NBA Finals Game 5 tonight could end a 56-year Knicks drought. It's a genuinely stacked Friday.",
+    "glance": {
+      "sports": "USA beats Paraguay 4-1 in the World Cup opener; Yankees fall 8-5 to Toronto; Astros outlast Kansas City 10-8.",
+      "market": "SpaceX IPO closes at $161.11, up 19% on day one. Small caps up 4.0% on the week while mega-cap tech stumbles.",
+      "bestConvo": "AMD jumped 4.7% today while Apple dropped 1.5% — the rotation out of big tech is real and it's happening fast.",
+      "watchNext": "NBA Finals Game 5 tonight: Knicks in San Antonio, one win from ending a 56-year drought.",
+      "quickRec": "Ben James leads the RBC Canadian Open at 10-under with Li and Mitchell one back — Round 3 tees off today."
+    },
+    "theTake": {
+      "office": "SpaceX closed up 19% on its first trading day — but with only a 3-5% public float and no path into the S&P 500 until mid-2027, the real fireworks may still be ahead of it.",
+      "bar": "The Knicks close this out tonight in five — San Antonio doesn't have enough offensive firepower without home court to extend this series, and New York's defense has been too good all postseason."
+    },
+    "nhl": {
+      "headline": "Carolina Hurricanes at Vegas Golden Knights — Game 6, Stanley Cup Final, tonight.",
+      "whyCare1": "Carolina leads the series 3-2 and one win ends it — the Hurricanes would claim their first Stanley Cup since 2006. Vegas is playing elimination hockey at home at T-Mobile Arena, which is as loud and hostile as it gets.",
+      "whyCare2": "A Carolina win closes the series tonight. A Vegas win forces a Game 7 back in Raleigh — two completely different storylines hinge on one game.",
+      "watchFor": "Which team's depth scoring shows up — Carolina's third and fourth lines have been the difference in this series.",
+      "whatToSay": "Carolina is one win from ending a 20-year drought tonight — Vegas has to win or go home, and that's the best possible setup for a Game 6."
+    },
+    "upcomingPreview": {
+      "whyItMatters": "The Knicks can close out the NBA Finals tonight in Game 5 and win their first championship since 1970 — a 56-year drought that would end in San Antonio. A Spurs win forces a Game 6 back in New York.",
+      "watchFor": "Whether New York's defense can contain the Spurs in crunch time and whether San Antonio's offense can generate enough to stay alive.",
+      "whatToSay": "If the Knicks close this out tonight, they're ending a 56-year drought — that's generational for New York fans and the whole city feels it."
+    }
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-13T11:06:37.493Z",
+    "blocking": [],
+    "changed": [
+      "title",
+      "keyTakeaway",
+      "lead",
+      "markets",
+      "golf",
+      "f1",
+      "nhl",
+      "upcomingPreview",
+      "culture[0]",
+      "culture[1]",
+      "culture[2]",
+      "finalSharpTake",
+      "theTake",
+      "glance"
+    ],
+    "notes": [
+      "Lead was rewritten to reflect the ★ story (SpaceX IPO) per the Editorial Bible's rule that the biggest story of the day must lead the brief — the Yankees-Blue Jays game was demoted to sportsOther.",
+      "sportsOther already contained the Blue Jays-Yankees item as a duplicate of the old lead; kept all three items since the draft had them and they all pass the hard block rule with scores and results.",
+      "markets.whyBullet2 contained implicit forward-looking language about the jobs print and Fed speak — removed entirely as it was not in RAW FACTS and edged toward advisory framing. Replaced with factual SPCX float/index-inclusion detail from RAW FACTS depth note.",
+      "f1 headline and whyCare1 were rewritten to use George Russell (named person, FP1 result) from SECTION RESEARCH rather than the invented Antonelli championship-lead figure, which was not in RAW FACTS.",
+      "theTake.bar was rewritten from a generic 'power vs. pitching' observation into a specific, debatable prediction about the NBA Finals Game 5 outcome using named teams and a concrete claim.",
+      "culture[0] updated to reflect the RAW FACTS result (4-1 win, Christian Pulisic) rather than the draft's preview framing ('kick off tonight') since the game has already been played per RAW FACTS.",
+      "The Dept. Q culture item is a streaming recommendation and was kept per the editorial exception; copy sharpened.",
+      "keyTakeaway was blank in the draft — written fresh per Bible rules (2-4 sentences, vibe of the day).",
+      "No sections blocked — all sections either had sufficient RAW FACTS or qualified under an editorial exception."
+    ],
+    "brokenLinks": []
+  },
+  "generationWarnings": []
+}
