@@ -50,11 +50,17 @@ const SCOREBOARD_LEAGUES = [
   { key: 'worldcup', label: 'World Cup',        base: 9, sport: 'soccer',     league: 'fifa.world' },
   { key: 'mls', label: 'MLS',                base: 3, sport: 'soccer',     league: 'usa.1' },
   { key: 'nba', label: 'NBA',                base: 5, sport: 'basketball', league: 'nba' },
+  { key: 'wnba', label: 'WNBA',              base: 3, sport: 'basketball', league: 'wnba' },
   { key: 'nhl', label: 'NHL',                base: 5, sport: 'hockey',     league: 'nhl' },
   { key: 'nfl', label: 'NFL',                base: 6, sport: 'football',   league: 'nfl' },
   { key: 'mlb', label: 'MLB',                base: 3, sport: 'baseball',   league: 'mlb' },
   { key: 'cfb', label: 'College Football',   base: 4, sport: 'football',   league: 'college-football' },
   { key: 'cbb', label: 'College Basketball', base: 3, sport: 'basketball', league: 'mens-college-basketball' },
+  // Big international soccer. Each only renders when ESPN returns games for it
+  // (withGames filter), so off-season leagues never show an empty section.
+  { key: 'epl',      label: 'Premier League',   base: 5, sport: 'soccer', league: 'eng.1' },
+  { key: 'ucl',      label: 'Champions League', base: 6, sport: 'soccer', league: 'uefa.champions' },
+  { key: 'concacaf', label: 'CONCACAF',         base: 5, sport: 'soccer', league: 'concacaf.champions' },
 ];
 
 const MARKET_SYMBOLS = [
