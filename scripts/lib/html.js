@@ -194,6 +194,124 @@ ${items}
 </div>`;
 }
 
+// Stable anchor id from a sport/event label (for the nested sidebar + sections).
+function slugId(s) {
+  return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'sport';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Today at a Glance (TOP) — three labeled one-sentence lines: Sports / Markets /
+// Culture. The hit list a reader scans before scrolling. Prefers the purpose-
+// built copy.glance lines, then the first sentence of Today's Hits, then raw data.
+// ─────────────────────────────────────────────────────────────────────────────
+function buildTodayGlanceTop(issue) {
+  const copy = issue.copy || {};
+  const g = copy.glance || {};
+  const hits = copy.todaysHits || {};
+  const firstSentence = (t) => t ? String(t).replace(/\n/g, ' ').trim().split(/(?<=[.!?])\s+/)[0] : '';
+
+  const sportsFb = (() => {
+    const lead = (issue.dynamicSports || [])[0];
+    if (lead) return lead.headline || lead.facts || lead.label;
+    const sp = issue.sports?.[0];
+    if (sp) { const w = sp.home.winner ? sp.home : sp.away, l = sp.home.winner ? sp.away : sp.home; return `${w.team} ${w.score}–${l.score} ${l.team}.`; }
+    return '';
+  })();
+  const marketFb = (() => {
+    const spy = issue.markets?.SPY;
+    return (spy && spy.dayChangePct != null) ? `S&P 500 ${spy.dayChangePct >= 0 ? '+' : ''}${spy.dayChangePct.toFixed(1)}% on the day.` : '';
+  })();
+  const cultureFb = copy.culture?.[0]?.topic || copy.culture?.[0]?.head || '';
+
+  const rows = [
+    { k: 'Sports',  anchor: '#sports',  v: g.sports  || firstSentence(hits.sports)  || sportsFb,  cls: 'hit-sports'  },
+    { k: 'Markets', anchor: '#markets', v: g.markets || firstSentence(hits.markets) || marketFb,  cls: 'hit-markets' },
+    { k: 'Culture', anchor: '#culture', v: g.culture || firstSentence(hits.culture) || cultureFb, cls: 'hit-culture' },
+  ].filter(r => r.v);
+  if (!rows.length) return '';
+
+  return `  <div class="glance-card glance-top">
+    <div class="glance-head"><span class="glance-dot"></span>Today at a Glance</div>
+    <div class="glance-rows">
+${rows.map(r => `      <a class="glance-row ${r.cls}" href="${r.anchor}">
+        <span class="glance-k">${esc(r.k)}</span>
+        <span class="glance-v">${esc(r.v)}</span>
+        <span class="glance-arr">→</span>
+      </a>`).join('\n')}
+    </div>
+  </div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Dynamic sports card. Every sports section — The Lead and every subsection —
+// uses the three-label text (What happened / Why it matters / What to bring up),
+// grounded in sourced facts. The card STYLE is set by discovery's category:
+//   individual → athlete action photo on top, text, then an optional
+//                "Watch the moment →" highlight link (only if a real videoUrl).
+//   team       → text first, then one optional game photo. No video, no spotlight.
+// Text is always required: if there's no text we never ship an image-only card,
+// and `facts` (always sourced) backs the "What happened" line so that can't happen.
+// ─────────────────────────────────────────────────────────────────────────────
+function buildSportsCard(s, isLead) {
+  if (!s) return '';
+  const cat = s.category === 'individual' ? 'individual' : 'team';
+  const whatHappened  = s.whatHappened || s.facts || '';
+  const whyItMatters  = s.whyItMatters || '';
+  const whatToBringUp = s.whatToBringUp || '';
+  if (!whatHappened && !whyItMatters && !whatToBringUp) return ''; // never image-only
+
+  const imgHtml = s.imageUrl
+    ? `    <div class="brief-img sport-card-img"><img src="${esc(s.imageUrl)}" alt="${esc(s.label || s.name)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>`
+    : '';
+  const videoHtml = (cat === 'individual' && s.videoUrl)
+    ? `    <a class="watch-moment" href="${esc(s.videoUrl)}" target="_blank" rel="noopener">Watch the moment →</a>`
+    : '';
+  const label = isLead ? 'The Lead' : (s.label || s.name);
+  const id    = isLead ? 'the-lead' : slugId(s.label || s.name);
+
+  const detail = `    <ul class="detail-list">
+      ${whatHappened  ? `<li><span><span class="dl-label">What happened:</span> ${esc(whatHappened)}</span></li>`   : ''}
+      ${whyItMatters  ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyItMatters)}</span></li>`   : ''}
+      ${whatToBringUp ? `<li><span><span class="dl-label">What to bring up:</span> ${esc(whatToBringUp)}</span></li>` : ''}
+    </ul>`;
+
+  const body = cat === 'individual'
+    ? `${imgHtml}
+    <h3>${esc(s.headline || label)}</h3>
+${detail}
+${videoHtml}`
+    : `    <h3>${esc(s.headline || label)}</h3>
+${detail}
+${imgHtml}`;
+
+  return `  <section class="brief-section sport-card sport-${cat}${isLead ? ' sport-lead' : ''}" id="${esc(id)}">
+    <div class="section-label sl-sports">${esc(label)}</div>
+${body}
+  </section>`;
+}
+
+// Sports umbrella body: dynamic discovery (preferred) → The Lead + subsections.
+// Falls back to the structured renderers when discovery is empty (API down etc.)
+// so the brief never loses its sports section.
+function buildSportsBody(issue) {
+  const dyn = Array.isArray(issue.dynamicSports) ? issue.dynamicSports : [];
+  if (dyn.length) {
+    return dyn.map((s, i) => buildSportsCard(s, i === 0)).filter(Boolean).join('\n');
+  }
+  // Fallback — legacy structured sections.
+  const { nhl, f1, golf, worldCup } = issue;
+  const hasNHL = !!(nhl && (nhl.final || nhl.next));
+  return [
+    buildLead(issue),
+    hasNHL ? `<div class="sport-subsection">${buildNHL(issue)}</div>` : '',
+    buildSports(issue),
+    f1?.name ? `<div class="sport-subsection">${buildF1(issue)}</div>` : '',
+    golf?.name ? `<div class="sport-subsection">${buildGolf(issue)}</div>` : '',
+    worldCup?.length ? `<div class="sport-subsection">${buildWorldCup(issue)}</div>` : '',
+  ].filter(Boolean).join('\n');
+}
+
 function buildHtml(issue, relatedIssues) {
   const { num, slug, date, title, deck, sports, markets, golf, f1, worldCup, nhl, upcoming, gameMetas, trending, copy } = issue;
   const label = `#${String(num).padStart(3, '0')}`;
@@ -206,24 +324,39 @@ function buildHtml(issue, relatedIssues) {
   const hasGolf = golf?.name != null;
   const hasNHL = !!(nhl && (nhl.final || nhl.next));
 
-  // Right-rail scroll-spy nav — top-level Sports/Markets/Culture, with the sports
-  // subsections (NHL/F1/Golf/World Cup) indented under Sports. Third tuple element
-  // flags a subsection link.
+  // Right-rail scroll-spy nav — three top-level anchors (Sports / Markets /
+  // Culture) plus Sharp Take, with the sports subsections nested + indented under
+  // Sports. The subsections are generated dynamically from what discovery returned
+  // today (The Lead, then each discovered sport); they are NOT a fixed flat list.
+  const dynNav = Array.isArray(issue.dynamicSports) ? issue.dynamicSports : [];
+  const sportsSubs = dynNav.length
+    ? dynNav.map((s, i) => i === 0 ? ['the-lead', 'The Lead', true] : [slugId(s.label || s.name), s.label || s.name, true])
+    : [
+        ['the-lead', 'The Lead', true],
+        hasNHL  ? ['nhl', 'NHL', true] : null,
+        hasF1   ? ['f1', 'F1', true] : null,
+        hasGolf ? ['golf', 'Golf', true] : null,
+        hasWC   ? ['worldcup', 'World Cup', true] : null,
+      ].filter(Boolean);
   const sideLinks = [
     ['top', 'Top'],
     ['sports', 'Sports'],
-    ['the-lead', 'The Lead', true],
-    hasNHL  ? ['nhl', 'NHL', true] : null,
-    hasF1   ? ['f1', 'F1', true] : null,
-    hasGolf ? ['golf', 'Golf', true] : null,
-    hasWC   ? ['worldcup', 'World Cup', true] : null,
+    ...sportsSubs,
     ['markets', 'Markets'],
     ['culture', 'Culture'],
     ['sharp-take', 'Sharp Take'],
-  ].filter(Boolean);
+  ];
   const sideNavHtml = `<nav class="brief-sidenav" aria-label="On this page">
-${sideLinks.map(([id, label, sub]) => `  <a href="#${id}" class="bsn-link${sub ? ' bsn-sub' : ''}" data-target="${id}"${sub ? ' style="padding-left:14px;font-size:0.92em;opacity:0.85;"' : ''}><span class="bsn-txt">${esc(label)}</span><span class="bsn-dot"></span></a>`).join('\n')}
+${sideLinks.map(([id, label, sub]) => `  <a href="#${id}" class="bsn-link${sub ? ' bsn-sub' : ''}" data-target="${id}"${sub ? ' style="padding-left:18px;font-size:0.92em;opacity:0.85;"' : ''}><span class="bsn-txt">${esc(label)}</span><span class="bsn-dot"></span></a>`).join('\n')}
 </nav>`;
+
+  // Hero-area sub-jump chips — the discovered sports (skipping The Lead, which is
+  // already the headline act). Empty when there are no subsections.
+  const subjumpHtml = sportsSubs.length > 1
+    ? `
+    <nav class="section-subjump" aria-label="Jump to sports subsection" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;padding-left:14px;font-size:0.85em;opacity:0.8;">${sportsSubs.slice(1).map(([id, label]) => `\n      <a href="#${id}" class="sj-link sj-sub">${esc(label)}</a>`).join('')}
+    </nav>`
+    : '';
 
   // Designed hero banner for the top event: a self-hosted sport photo darkened
   // behind the team logos (ESPN CDN) + event + venue. Self-hosted bg can't 404,
@@ -353,9 +486,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <a href="#sports" class="sj-link">Sports</a>
       <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
-    </nav>${(hasNHL || hasF1 || hasGolf || hasWC) ? `
-    <nav class="section-subjump" aria-label="Jump to sports subsection" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;padding-left:14px;font-size:0.85em;opacity:0.8;">${hasNHL ? `\n      <a href="#nhl" class="sj-link sj-sub">NHL</a>` : ''}${hasF1 ? `\n      <a href="#f1" class="sj-link sj-sub">F1</a>` : ''}${hasGolf ? `\n      <a href="#golf" class="sj-link sj-sub">Golf</a>` : ''}${hasWC ? `\n      <a href="#worldcup" class="sj-link sj-sub">World Cup</a>` : ''}
-    </nav>` : ''}
+    </nav>${subjumpHtml}
   </div>
 </div>
 
@@ -366,13 +497,11 @@ ${sideNavHtml}
 
 ${heroImgHtml}
 
-${buildTopModule(issue)}
+${buildTodayGlanceTop(issue)}
 
 <div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
 
-${buildLead(issue)}
-
-${hasNHL ? `<div class="sport-subsection">${buildNHL(issue)}</div>` : ''}
+${buildSportsBody(issue)}
 
 <a href="/live/" class="brief-live-cta">
   <span class="blc-dot"></span>
@@ -382,16 +511,6 @@ ${hasNHL ? `<div class="sport-subsection">${buildNHL(issue)}</div>` : ''}
   </div>
   <span class="blc-btn">Open GuyTalk Live →</span>
 </a>
-
-${buildTheTake(issue)}
-
-${buildSports(issue)}
-
-${hasF1 ? `<div class="sport-subsection">${buildF1(issue)}</div>` : ''}
-
-${hasGolf ? `<div class="sport-subsection">${buildGolf(issue)}</div>` : ''}
-
-${hasWC ? `<div class="sport-subsection">${buildWorldCup(issue)}</div>` : ''}
 
 <div class="brief-inline-cta">
   <div class="bic-inner">
@@ -411,9 +530,11 @@ ${buildCulture(issue)}
 
 ${buildRec(issue)}
 
-${buildFinalSharpTake(issue)}
+<div class="umbrella-head" id="sharp-take"><h2 class="umbrella-title">Sharp Take</h2></div>
 
-${buildTodayAtAGlance(issue)}
+${buildTheTake(issue)}
+
+${buildFinalSharpTake(issue)}
 
 </article>
 
@@ -1937,7 +2058,7 @@ ${itemsHtml}
 function buildFinalSharpTake({ copy }) {
   const text = copy?.finalSharpTake;
   if (!text) return '';
-  return `  <div class="sharp-take" id="sharp-take">
+  return `  <div class="sharp-take">
     <div class="sharp-take-label">Final Sharp Take</div>
     <p>${esc(text)}</p>
   </div>`;

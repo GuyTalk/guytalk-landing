@@ -11,7 +11,7 @@ const { generateCopy }                                      = require('./lib/cop
 const { editBrief }                                         = require('./lib/editor');
 const { buildHtml }                                         = require('./lib/html');
 const { buildArchive }                                      = require('./lib/archive');
-const { fetchTopStories, fetchSectionStories }              = require('./lib/research');
+const { fetchTopStories, fetchSectionStories, fetchDynamicSports } = require('./lib/research');
 const { STREAMING_PICKS }                                   = require('./lib/db');
 const { GENERATION_WARNINGS, addWarning, resetWarnings, formatWarnings } = require('./lib/warnings');
 
@@ -66,6 +66,24 @@ function loadPreviousBriefs(n = 3) {
       };
     } catch (_) { return null; }
   }).filter(Boolean);
+}
+
+// Every image URL the previous issue used (hero + per-sport). Passed to research
+// so today's image searches avoid them — we never publish a repeated image.
+function loadPrevImageUrls() {
+  const dataDir = path.join(BRIEF_DIR, 'data');
+  if (!fs.existsSync(dataDir)) return [];
+  const files = fs.readdirSync(dataDir).filter(f => /^issue-\d{3}\.json$/.test(f)).sort();
+  const last = files[files.length - 1];
+  if (!last) return [];
+  try {
+    const d = JSON.parse(fs.readFileSync(path.join(dataDir, last), 'utf8'));
+    const urls = [];
+    if (d.heroImage) urls.push(d.heroImage);
+    (d.dynamicSports || []).forEach(s => { if (s.imageUrl) urls.push(s.imageUrl); });
+    if (d.sectionStories?.heroImage?.url) urls.push(d.sectionStories.heroImage.url);
+    return [...new Set(urls.filter(Boolean))];
+  } catch (_) { return []; }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -386,6 +404,7 @@ async function main() {
   console.log('\n✍️  Generating GuyTalk copy with Claude Haiku...');
   let copy = null;
   let sectionStories = {};
+  let dynamicSports = [];
   try {
     const prev3 = loadPreviousBriefs(3);
     if (prev3.length) console.log(`   ✓ Repetition guard: loaded ${prev3.length} previous brief(s)`);
@@ -411,18 +430,37 @@ async function main() {
     }
     const streamingPick = STREAMING_PICKS[issueNum % STREAMING_PICKS.length];
 
-    // ── Per-section web research (Change 1) — grounds NHL/F1/Golf/Culture + hero ──
-    // Runs after the F1-pivot so the F1 search reflects the race we'll actually
-    // cover. Sections with nothing concrete come back no_data and get skipped.
-    console.log('   🔎 Per-section web research (NHL, F1, Golf, Culture, hero)...');
-    try {
-      const leadSubject = (topStories.find(s => s.isLead) || topStories[0])?.headline || null;
-      sectionStories = await fetchSectionStories({ dateLabel: date, nhl, f1, golf, leadSubject });
-    } catch (e) {
-      console.log(`   ⚠  Section research failed (non-blocking): ${e.message}`);
-    }
+    // ── Web research — dynamic sports discovery + culture/hero, in parallel ─────
+    // Discovery finds the sports actually generating coverage today (no hardcoded
+    // list); culture/hero ground the rest. Image searches avoid the previous
+    // issue's image URLs so we never publish a repeated image.
+    const prevImageUrls = loadPrevImageUrls();
+    console.log('   🔎 Web research: dynamic sports discovery + culture + hero...');
+    const leadSubject = (topStories.find(s => s.isLead) || topStories[0])?.headline || null;
+    const [secRes, dynRes] = await Promise.allSettled([
+      fetchSectionStories({ dateLabel: date, leadSubject, issueNum, prevImageUrls }),
+      fetchDynamicSports({ dateLabel: date, issueNum, prevImageUrls }),
+    ]);
+    sectionStories = secRes.status === 'fulfilled' ? (secRes.value || {}) : {};
+    if (secRes.status === 'rejected') console.log(`   ⚠  Section research failed (non-blocking): ${secRes.reason?.message || secRes.reason}`);
+    const dynamic = dynRes.status === 'fulfilled' ? (dynRes.value || { lead: null, sports: [] }) : { lead: null, sports: [] };
+    if (dynRes.status === 'rejected') console.log(`   ⚠  Dynamic sports failed (non-blocking): ${dynRes.reason?.message || dynRes.reason}`);
+    dynamicSports = Array.isArray(dynamic.sports) ? dynamic.sports : [];
 
-    copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick });
+    // Final dedup safety net: drop any image that still matches the previous issue
+    // (research already avoids them, but never publish a repeat — render text-only).
+    const prevSet = new Set(prevImageUrls);
+    dynamicSports.forEach(s => { if (s.imageUrl && prevSet.has(s.imageUrl)) s.imageUrl = null; });
+
+    copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick });
+
+    // Merge the three-label beats (from copy) into each discovered sport so the
+    // template renders What happened / Why it matters / What to bring up per card.
+    if (dynamicSports.length) {
+      const beats = Array.isArray(copy?.dynamicSportsText) ? copy.dynamicSportsText : [];
+      dynamicSports = dynamicSports.map((s, i) => ({ ...s, ...(beats[i] || {}) }));
+      console.log(`   ✓ Discovered sports (${dynamicSports.length}): ${dynamicSports.map(s => `${s.isLead ? '★ ' : ''}${s.label} [${s.category}]`).join(', ')}`);
+    }
     if (copy) {
       if (copy.title)          console.log(`   ✓ Headline: "${copy.title}"`);
       if (copy.lead)           console.log(`   ✓ Sports angle`);
@@ -496,6 +534,7 @@ async function main() {
     trending,
     topStories,
     sectionStories,
+    dynamicSports,
     heroImage: (sectionStories?.heroImage && !sectionStories.heroImage.no_data)
       ? sectionStories.heroImage.url
       : null,
