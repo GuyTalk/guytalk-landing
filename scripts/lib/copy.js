@@ -71,7 +71,7 @@ function parseJson(raw) {
   return null;
 }
 
-async function generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick }) {
+async function generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey || apiKey.includes('your_') || apiKey.includes('_here')) return null;
 
@@ -237,6 +237,15 @@ async function generateCopy({ sports, markets, golf, tennis, trending, topStorie
     .map(c => `${c.headline ? c.headline + ' — ' : ''}${c.fact || ''}`.trim())
     .filter(Boolean);
 
+  // Dynamically discovered sports (research.js). Each carries real, sourced facts
+  // and a category (individual|team). We write the three-label beats — WHAT
+  // HAPPENED / WHY IT MATTERS / WHAT TO BRING UP — for every one, grounded ONLY
+  // in the provided facts (the card style is chosen later by category).
+  const dynSports = Array.isArray(dynamicSports) ? dynamicSports : [];
+  const dynSportsList = dynSports
+    .map((s, i) => `${i + 1}. [${s.label || s.name}] (${s.category}) — ${s.headline || ''} — FACTS: ${s.facts || ''}`)
+    .join('\n');
+
   // Repetition guard from last 3 briefs
   const coveredEvents = (prev3 || [])
     .flatMap(b => [b.f1State === 'post' ? b.f1Event : '', b.golfState === 'post' ? b.golfEvent : ''])
@@ -267,6 +276,7 @@ ${prev3.map((b, i) => `${i + 1} day(s) ago — Lead angle: "${b.sportsThesis || 
     theTakeR,
     nhlR,
     upcomingPreviewR,
+    dynamicSportsR,
   ] = await Promise.allSettled([
 
     // 1. Brief headline
@@ -458,16 +468,18 @@ Context: ${ctx}${repGuard}`,
       150
     ),
 
-    // 10. Today at a Glance — 5 labeled bullets. Must parse as JSON; askJson
-    // retries once (and warns) if it comes back with fewer than 3 usable fields,
-    // rather than silently going 0/5. Budget raised to 800 so five full sentences
-    // never truncate mid-string (the old 200 cap did).
+    // 10. Today at a Glance — exactly THREE labeled one-sentence lines (Sports /
+    // Markets / Culture). This is the hit list at the very top of the brief:
+    // someone reads three lines and knows their day. Must parse as JSON; askJson
+    // retries once and warns if fewer than 2 usable fields come back.
     askJson('Today at a Glance',
-      `Write "Today at a Glance" for GuyTalk. Five short lines. Context: ${ctx}
+      `Write "Today at a Glance" for GuyTalk — exactly three lines, the single biggest story in each lane. Context: ${ctx}
+${topStoriesText ? `${topStoriesText}\nThe "sports" line should reflect the top sports story; "markets" the biggest market/business story; "culture" the biggest culture story.` : ''}
 
-Return compact JSON on one line. Every field is ONE short sentence (max 18 words) ending with a period. No markdown:
-{"sports":"[main sports result or preview — include score or key fact]","market":"[market summary — include one number]","bestConvo":"[best conversation starter from today — specific]","watchNext":"[one thing to watch in next 24-48 hours]","quickRec":"[quick rec or reminder from today's brief]"}`,
-      800, { minFields: 3 }
+Each value is ONE sentence, max 20 words, specific and NAMED (a team/player/number for sports, a real number for markets, a named thing for culture). No labels inside the value, no markdown.
+Return compact JSON on one line:
+{"sports":"[top sports story — named, with a score or key fact]","markets":"[top market story — include one real number; observe, never advise]","culture":"[top culture story — a named movie/show/album/game/etc.]"}`,
+      400, { minFields: 2 }
     ),
 
     // 11. The Take — Office Take (smart, portable) + Bar Argument (spicy, debatable)
@@ -513,6 +525,24 @@ Return ONLY valid JSON on one line — no markdown:
           200
         )
       : Promise.resolve(null),
+
+    // 14. Dynamic sports — the three-label beats for EVERY discovered sport (The
+    // Lead + every subsection), grounded ONLY in the sourced facts. Same beats
+    // for individual and team sports; the card style differs later, the text
+    // does not. Aligned 1:1 with the dynamicSports array, in order.
+    dynSports.length
+      ? askJson('Dynamic sports',
+          `For EACH sports story below, write three labeled beats in GuyTalk voice. Use ONLY the facts given — never invent a score, name, stat, or result that is not present. If a story's facts are thin, keep the beats short rather than inventing.
+
+Stories (in this exact order):
+${dynSportsList}
+
+Return ONLY a valid JSON array — one object per story, in the SAME order, no markdown:
+[{"whatHappened":"One sentence. Specific. Named person or team and the real result from the facts.","whyItMatters":"One to two sentences. Why anyone should care — stakes, what it changes.","whatToBringUp":"One sentence a 28-year-old could actually say out loud at a bar or the office."}]`,
+          Math.min(2200, 260 * dynSports.length + 200),
+          { minFields: 1, section: 'sports' }
+        )
+      : Promise.resolve(null),
   ]);
 
   const get = r => r.status === 'fulfilled' ? r.value : null;
@@ -524,6 +554,7 @@ Return ONLY valid JSON on one line — no markdown:
   const f1Data       = parseJson(get(f1R));
   const cultureArr   = parseJson(get(cultureR));
   const glanceData   = parseJson(get(glanceR));
+  const dynSportsBeats = parseJson(get(dynamicSportsR));
 
   return {
     title:          clean(get(titleR)),
@@ -551,6 +582,13 @@ Return ONLY valid JSON on one line — no markdown:
     theTake:        parseJson(get(theTakeR)),
     nhl:            parseJson(get(nhlR)),
     upcomingPreview: parseJson(get(upcomingPreviewR)),
+    // Three-label beats aligned 1:1 with the dynamicSports array (merged into it
+    // by generate-brief.js). Empty object per story when the call misfired.
+    dynamicSportsText: Array.isArray(dynSportsBeats)
+      ? dynSportsBeats.map(o => (o && typeof o === 'object')
+          ? { whatHappened: clean(o.whatHappened) || '', whyItMatters: clean(o.whyItMatters) || '', whatToBringUp: clean(o.whatToBringUp) || '' }
+          : {})
+      : null,
   };
 }
 
