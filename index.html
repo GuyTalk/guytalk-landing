@@ -279,6 +279,15 @@
     background: #4ADE80; box-shadow: 0 0 8px rgba(74,222,128,0.75);
     animation: pulse-dot 2s ease-in-out infinite;
   }
+  /* Markets-closed state: amber, steady (no pulse) — the % shown is the last close, not live movement. */
+  .ticker-live.is-closed { color: rgba(255,255,255,0.78); }
+  .ticker-live.is-closed .ticker-live-dot {
+    background: #B87C35; box-shadow: 0 0 8px rgba(184,124,53,0.6); animation: none;
+  }
+  .ticker-status {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em; color: #C79A5B;
+  }
   .ticker-hdr-cats {
     display: flex; gap: 12px; align-items: center;
     font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
@@ -865,7 +874,8 @@
   }
   .rv-card:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,0.10); border-color: rgba(43,111,255,0.3); }
   .rv-stars { font-size: 13px; color: #F59E0B; letter-spacing: 2px; }
-  .rv-text { font-size: 15px; color: var(--text-secondary); line-height: 1.6; font-style: italic; flex: 1; }
+  .rv-head { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+  .rv-text { font-size: 15px; color: var(--text-secondary); line-height: 1.6; flex: 1; }
   .rv-person { display: flex; align-items: center; gap: 12px; margin-top: auto; }
   .rv-avatar {
     width: 36px; height: 36px; border-radius: 50%;
@@ -926,7 +936,7 @@
     <div class="wordmark">GuyTalk<span class="dot">.</span></div>
     <div class="nav-menu" style="display:flex;align-items:center;gap:24px;">
       <a href="/live/" class="nav-link nav-link-live"><span class="nav-live-pip"></span>Live</a>
-      <a href="/brief/issue-048/" class="nav-link">Today's Brief</a>
+      <a href="/brief/issue-049/" class="nav-link">Today's Brief</a>
       <a href="/briefs/" class="nav-link">Archive</a>
       <a href="#signup" class="nav-cta">Get the brief →</a>
     </div>
@@ -955,7 +965,7 @@
     <!-- TICKER -->
     <div class="ticker-wrap">
       <div class="ticker-hdr">
-        <span class="ticker-live"><span class="ticker-live-dot"></span>Live</span>
+        <span class="ticker-live" id="tickerLive"><span class="ticker-live-dot"></span><span id="tickerLiveLabel">Live</span></span>
         <a class="ticker-hdr-cats" href="/live">
           <span class="tkc-markets">Markets</span>
           <span class="tkc-sep">·</span>
@@ -969,17 +979,21 @@
         <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-up">+0.16%</span></div>
         <div class="ticker-item"><span class="ticker-sym">TSLA</span><span class="ticker-up">+1.82%</span></div>
         <div class="ticker-item"><span class="ticker-divider">—</span></div>
-        <div class="ticker-item"><span class="ticker-sport">NEW YORK KNICKS 94  SAN ANTONIO SPURS 90  · NBA FINALS - GAME 5</span></div>
-        <div class="ticker-item"><span class="ticker-sport">F1 MSC CRUISES BARCELONA-CATALUNYA GRAND PRIX  · TBD THIS WEEKEND</span></div>
-        <div class="ticker-item"><span class="ticker-sport">JACKSON SUBER LEADS  RBC CANADIAN OPEN  AT -13</span></div>
+        <div class="ticker-item"><span class="ticker-sport">COLORADO ROCKIES 23  ATHLETICS 9  · COL @ ATH</span></div>
+        <div class="ticker-item"><span class="ticker-sport">WASHINGTON NATIONALS 10  SEATTLE MARINERS 1  · SEA @ WSH</span></div>
+        <div class="ticker-item"><span class="ticker-sport">NEW YORK YANKEES 8  TORONTO BLUE JAYS 3  · NYY @ TOR</span></div>
+        <div class="ticker-item"><span class="ticker-sport">F1 MSC CRUISES BARCELONA-CATALUNYA GRAND PRIX  · Lewis Hamilton FINAL</span></div>
+        <div class="ticker-item"><span class="ticker-sport">BUD CAULEY WINS  RBC CANADIAN OPEN  AT -17</span></div>
         <div class="ticker-item"><span class="ticker-sym">SPY</span><span class="ticker-up">+0.54%</span></div>
         <div class="ticker-item"><span class="ticker-sym">QQQ</span><span class="ticker-up">+0.59%</span></div>
         <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-up">+0.16%</span></div>
         <div class="ticker-item"><span class="ticker-sym">TSLA</span><span class="ticker-up">+1.82%</span></div>
         <div class="ticker-item"><span class="ticker-divider">—</span></div>
-        <div class="ticker-item"><span class="ticker-sport">NEW YORK KNICKS 94  SAN ANTONIO SPURS 90  · NBA FINALS - GAME 5</span></div>
-        <div class="ticker-item"><span class="ticker-sport">F1 MSC CRUISES BARCELONA-CATALUNYA GRAND PRIX  · TBD THIS WEEKEND</span></div>
-        <div class="ticker-item"><span class="ticker-sport">JACKSON SUBER LEADS  RBC CANADIAN OPEN  AT -13</span></div>
+        <div class="ticker-item"><span class="ticker-sport">COLORADO ROCKIES 23  ATHLETICS 9  · COL @ ATH</span></div>
+        <div class="ticker-item"><span class="ticker-sport">WASHINGTON NATIONALS 10  SEATTLE MARINERS 1  · SEA @ WSH</span></div>
+        <div class="ticker-item"><span class="ticker-sport">NEW YORK YANKEES 8  TORONTO BLUE JAYS 3  · NYY @ TOR</span></div>
+        <div class="ticker-item"><span class="ticker-sport">F1 MSC CRUISES BARCELONA-CATALUNYA GRAND PRIX  · Lewis Hamilton FINAL</span></div>
+        <div class="ticker-item"><span class="ticker-sport">BUD CAULEY WINS  RBC CANADIAN OPEN  AT -17</span></div>
       </div></div>
     </div>
 
@@ -1040,7 +1054,7 @@
       <div class="livef-glow" aria-hidden="true"></div>
       <div class="livef-top">
         <span class="livef-badge"><span class="livef-pip"></span>GuyTalk Live</span>
-        <span class="livef-updated">Updated seconds ago</span>
+        <span class="livef-updated">Real-time</span>
       </div>
       <h2 class="livef-h">The brief isn't the whole story.<br>See what's happening <em>right now</em>.</h2>
       <p class="livef-sub">Live scores, markets, rankings, and the stories moving the room — refreshed in real time. The brief tells you what mattered this morning. Live tells you what's happening this second.</p>
@@ -1093,32 +1107,32 @@
 
     <div class="brief-mock fade-up">
       <div class="brief-header">
-        <div class="brief-date">Sunday, June 14, 2026</div>
-        <div class="brief-issue">ISSUE #048</div>
+        <div class="brief-date">Monday, June 15, 2026</div>
+        <div class="brief-issue">ISSUE #049</div>
       </div>
       <div class="brief-body">
-        <div class="brief-greeting">SpaceX pulls off the biggest IPO in history. Yankees fall to Toronto. World Cup underway on home soil.</div>
-        <div class="brief-intro">SpaceX went public today at a $1.77 trillion valuation — the largest IPO ever — closing up 19% on its first day while money rotated out of big tech and into smaller names. The World Cup is live on home soil and the U.S. opened with a 4-1 statement win over Paraguay. Tonight, the Knicks can end a 56-year drought in Game 5 of the NBA Finals.</div>
+        <div class="brief-greeting">Trump brokers Iran peace deal. SpaceX IPO shatters records. Hamilton dominates Barcelona.</div>
+        <div class="brief-intro">The biggest story today isn't on a scoreboard — Trump announced a U.S.-Iran peace deal that could reopen the Strait of Hormuz and send gas prices lower by the Fourth of July. SpaceX completed the largest IPO in history at a $2 trillion valuation, and your 401(k) is probably buying Musk's rockets whether you asked for it or not. On the field, Hamilton finally got a win in red at Barcelona, Carolina closed out Vegas for the Stanley Cup, and Bud Cauley ran away with the Canadian Open.</div>
 
-        <a class="brief-story" href="/brief/issue-048/#sports" target="_blank" rel="noopener">
+        <a class="brief-story" href="/brief/issue-049/#sports" target="_blank" rel="noopener">
           <div class="brief-cat bc-sports">Sports</div>
-          <div class="brief-headline">SpaceX goes public at $1.77 trillion — the biggest IPO in history closes up 19%</div>
-          <div class="brief-snippet">SpaceX priced its IPO at $135 a share, raised roughly $75 billion, and opened its first day of trading on Nasdaq under the ticker SPCX at $150 before closing at $161.11 — a 19% gain. The company debuted at a $1.77 trillion valuation, instantly making it one of the ten most valuable U.S. stocks and putting Elon Musk's rocket-and-Starlink empire into regular brokerage accounts for the first time.</div>
-          <div class="brief-bring bb-sports"><span class="brief-bring-label">Bring up →</span> "SpaceX is worth $1.77 trillion and it's not even profitable enough to get into the S&amp;P 500 yet — but if you've bet against Musk's rockets at any point in the last decade, you've lost every single time."</div>
+          <div class="brief-headline">Trump announces U.S.-Iran peace deal — Strait of Hormuz set to reopen, oil tumbles</div>
+          <div class="brief-snippet">President Trump announced a U.S.-Iran peace agreement and said the Strait of Hormuz will reopen once the deal is formally signed. Qatari negotiators flew to Tehran to finalize terms after weeks of U.S.-Israeli strikes on Iran. U.S. crude dropped roughly 5.5% to around $80 a barrel — its lowest since March.</div>
+          <div class="brief-bring bb-sports"><span class="brief-bring-label">Bring up →</span> "If the ink actually dries on this one, cheaper gas by the Fourth of July is the kind of peace dividend people feel at the pump before they feel it anywhere else."</div>
         </a>
 
-        <a class="brief-story" href="/brief/issue-048/#markets" target="_blank" rel="noopener">
+        <a class="brief-story" href="/brief/issue-049/#markets" target="_blank" rel="noopener">
           <div class="brief-cat bc-markets">Markets</div>
-          <div class="brief-headline">SpaceX IPO closes up 19% in historic $1.77 trillion debut</div>
-          <div class="brief-snippet">SPCX priced at $135, raised roughly $75 billion, and closed Friday at $161.11 on its first day — the largest stock-market IPO ever. The broad market barely flinched (S&amp;P 500 +0.5%), but money rotated hard out of hyperscalers like Microsoft, Amazon, and Oracle into the new name. S&amp;P Global kept SPCX out of the 500 for now because SpaceX isn't GAAP-profitable yet — analysts expect inclusion mid-2027, which could trigger $50 billion in forced index-fund buying. A regular person can buy shares outright on Nasdaq now (options start June 16), but with only a 3%-5% public float and heavy retail demand, expect big swings.</div>
-          <div class="brief-bring bb-markets"><span class="brief-bring-label">Office take →</span> "SpaceX closed its first trading day at $161.11 — up 19% — at a $1.77 trillion valuation, and it still can't get into the S&amp;P 500 because it hasn't turned a GAAP profit. That's the wildest sentence in finance today."</div>
+          <div class="brief-headline">SpaceX IPO becomes the largest ever; index inclusion domino falls next</div>
+          <div class="brief-snippet">SPCX raised $75B-plus at a $160.95 close Friday, valuing the company above $2 trillion. The real story: Nasdaq's new 15-day rule means QQQ funds add it in late June or July, and total-market trackers like VTI could grab it within 5 trading days — forcing billions in index buying over the summer.</div>
+          <div class="brief-bring bb-markets"><span class="brief-bring-label">Office take →</span> "SpaceX raised over $75 billion in one IPO — nearly triple what Alibaba raised in 2014. But the real story is the index rule change: passive funds tracking the Nasdaq-100 will be forced to buy in late June, which means your 401(k) is probably getting exposure to Musk's rockets whether you asked for it or not."</div>
         </a>
 
-        <a class="brief-story" href="/brief/issue-048/#culture" target="_blank" rel="noopener">
+        <a class="brief-story" href="/brief/issue-049/#culture" target="_blank" rel="noopener">
           <div class="brief-cat bc-culture">Culture</div>
-          <div class="brief-headline">USA opens World Cup with a 4-1 statement win over Paraguay</div>
-          <div class="brief-snippet">The tournament runs all summer in cities across the U.S., and the Americans just made a statement in the opener. A 4-1 result on home soil changes the conversation around this team — people who weren't planning to watch are now watching.</div>
-          <div class="brief-bring bb-culture"><span class="brief-bring-label">Bring up →</span> "4-1 in the opener on home soil — I didn't think I'd care about this USMNT, and now I've already cleared my July calendar."</div>
+          <div class="brief-headline">World Cup 2026 opener: Mexico beats South Africa 2-0 with three red cards</div>
+          <div class="brief-snippet">Three ejections in the first game of the tournament sets a tone. The ref wasn't letting anything slide, home-field pressure was real, and the expanded 48-team field is already delivering the kind of chaos that makes group-stage soccer worth watching.</div>
+          <div class="brief-bring bb-culture"><span class="brief-bring-label">Bring up →</span> "Three red cards in the World Cup opener — first time that's ever happened. This tournament is not messing around."</div>
         </a>
       </div>
     </div>
@@ -1166,22 +1180,22 @@
                 <div class="phone-notif-icon">GT</div>
                 <div>
                   <div class="phone-notif-from">GuyTalk · now</div>
-                  <div class="phone-notif-body">Today's brief is ready. SpaceX goes public at $1.77 trillion — the biggest IPO in history SpaceX IPO closes up 19% in historic $1.77 trillion debut</div>
+                  <div class="phone-notif-body">Today's brief is ready. Trump announces U.S.-Iran peace deal — Strait of Hormuz set to SpaceX IPO becomes the largest ever; index inclusion domino</div>
                 </div>
               </div>
-              <div class="phone-brief-item"><span class="phone-cat phone-cat-sports">Sports</span><span class="phone-hl">SpaceX goes public at $1.77 trillion — the biggest IPO in history closes up 19%</span></div>
-              <div class="phone-brief-item"><span class="phone-cat phone-cat-markets">Markets</span><span class="phone-hl">SpaceX IPO closes up 19% in historic $1.77 trillion debut</span></div>
-              <div class="phone-brief-item"><span class="phone-cat phone-cat-culture">Culture</span><span class="phone-hl">USA opens World Cup with a 4-1 statement win over Paraguay</span></div>
+              <div class="phone-brief-item"><span class="phone-cat phone-cat-sports">Sports</span><span class="phone-hl">Trump announces U.S.-Iran peace deal — Strait of Hormuz set to reopen, oil</span></div>
+              <div class="phone-brief-item"><span class="phone-cat phone-cat-markets">Markets</span><span class="phone-hl">SpaceX IPO becomes the largest ever; index inclusion domino falls next</span></div>
+              <div class="phone-brief-item"><span class="phone-cat phone-cat-culture">Culture</span><span class="phone-hl">World Cup 2026 opener: Mexico beats South Africa 2-0 with three red cards</span></div>
               <div class="phone-btn">Read today's brief →</div>
             </div>
             <div class="phone-slide">
               <div class="phone-back">← Sports</div>
               <div class="phone-story-cat">Sports</div>
-              <div class="phone-story-hl">SpaceX goes public at $1.77 trillion — the biggest IPO in history</div>
-              <div class="phone-story-body">SpaceX priced its IPO at $135 a share, raised roughly $75 billion, and opened its first day of trading on Nasdaq under the ticker SPCX at $150 before closing at $161.11 — a 19% gain. The company debuted at a $1.77 trillion valuation, instantly making it one of the ten most valuable U.S. stocks and putting Elon Musk's rocket-and-Starlink empire into regular brokerage accounts for the first time.</div>
+              <div class="phone-story-hl">Trump announces U.S.-Iran peace deal — Strait of Hormuz set to</div>
+              <div class="phone-story-body">President Trump announced a U.S.-Iran peace agreement and said the Strait of Hormuz will reopen once the deal is formally signed. Qatari negotiators flew to Tehran to finalize terms after weeks of U.S.-Israeli strikes on Iran. U.S. crude dropped roughly 5.5% to around $80 a barrel — its lowest since March.</div>
               <div class="phone-stats">
                 <div class="phone-stat"><div class="phone-stat-num">+0.5%</div><div class="phone-stat-lbl">S&amp;P 500</div></div>
-                <div class="phone-stat"><div class="phone-stat-num">8</div><div class="phone-stat-lbl">TOR</div></div>
+                <div class="phone-stat"><div class="phone-stat-num">23</div><div class="phone-stat-lbl">COL</div></div>
                 <div class="phone-stat"><div class="phone-stat-num">3</div><div class="phone-stat-lbl">CULTURE</div></div>
               </div>
             </div>
@@ -1191,7 +1205,7 @@
               <div class="phone-mkt-row"><span class="phone-mkt-sym">QQQ</span><span class="phone-mkt-chg up">+0.6%</span></div>
               <div class="phone-mkt-row"><span class="phone-mkt-sym">NVDA</span><span class="phone-mkt-chg up">+0.2%</span></div>
               <div class="phone-mkt-row"><span class="phone-mkt-sym">TSLA</span><span class="phone-mkt-chg up">+1.8%</span></div>
-              <div class="phone-mkt-take">SpaceX's monster IPO stole the spotlight Friday, but the real story was money leaving expensive big tech and chasing smaller names and new opportunities — a rotation that rarely</div>
+              <div class="phone-mkt-take">Markets closed broadly higher Monday — small caps led the way with IWM up 0.9%, semiconductors ran with AMD surging 4.7%, and JPMorgan jumped 2.3%, while mega-cap tech was mixed</div>
             </div>
           </div>
         </div>
@@ -1242,29 +1256,29 @@
         <div class="msg-row fade-up">
           <div class="msg-sender ms-j">Jake</div>
           <div class="msg-bubs">
-            <div class="msg-bub">SpaceX is worth $1.77 trillion and it's not even profitable enough to get into the S&amp;P 500 yet — but if</div>
-            <div class="msg-bub">SpaceX closed its first trading day at $161.11 — up 19% — at a $1.77 trillion valuation, and it still can't</div>
+            <div class="msg-bub">If the ink actually dries on this one, cheaper gas by the Fourth of July is the kind of peace dividend people</div>
+            <div class="msg-bub">SpaceX raised over $75 billion in one IPO — nearly triple what Alibaba raised in 2014.</div>
           </div>
         </div>
 
         <div class="msg-row fade-up">
           <div class="msg-sender ms-a">Alex</div>
           <div class="msg-bubs">
-            <div class="msg-bub">4-1 in the opener on home soil — I didn't think I'd care about this USMNT, and now I've already cleared my</div>
+            <div class="msg-bub">Three red cards in the World Cup opener — first time that's ever happened.</div>
           </div>
         </div>
 
         <div class="msg-row fade-up">
           <div class="msg-sender ms-r">Ryan</div>
           <div class="msg-bubs">
-            <div class="msg-bub">Russell was fastest in practice at Barcelona, which is notable because this track usually exposes whoever</div>
+            <div class="msg-bub">Lewis finally got one on the board in red at Barcelona — but he's 41 points back of Antonelli with half the</div>
           </div>
         </div>
 
         <div class="msg-row fade-up">
           <div class="msg-sender ms-m">Mark</div>
           <div class="msg-bubs">
-            <div class="msg-bub">Ben James leads at 10-under but Li and Mitchell are right there at 9 — one good round Saturday and this</div>
+            <div class="msg-bub">Bud Cauley just beat Fitzpatrick and Hovland by two and three shots at the Canadian Open.</div>
           </div>
         </div>
 
@@ -1273,13 +1287,13 @@
           <div class="msg-gt-card">
             <div class="msg-gt-hdr">
               <span class="msg-gt-hdr-title">Today's Brief</span>
-              <span class="msg-gt-hdr-issue">Sunday, June 14, 2026</span>
+              <span class="msg-gt-hdr-issue">Monday, June 15, 2026</span>
             </div>
             <div class="msg-gt-body">
-              <div class="msg-gt-item">SpaceX goes public at $1.77 trillion — the biggest IPO in history</div>
-              <div class="msg-gt-item">SpaceX IPO closes up 19% in historic $1.77 trillion debut</div>
-              <div class="msg-gt-item">USA opens World Cup with a 4-1 statement win over Paraguay</div>
-              <div class="msg-gt-item">Barcelona Grand Prix weekend is live — and George Russell topped</div>
+              <div class="msg-gt-item">Trump announces U.S.-Iran peace deal — Strait of Hormuz set to</div>
+              <div class="msg-gt-item">SpaceX IPO becomes the largest ever; index inclusion domino falls next</div>
+              <div class="msg-gt-item">World Cup 2026 opener: Mexico beats South Africa 2-0 with three red</div>
+              <div class="msg-gt-item">Hamilton wins Barcelona in Ferrari — first victory of 2026</div>
             </div>
             <a href="#brief" class="msg-gt-foot">Read today's brief</a>
           </div>
@@ -1391,41 +1405,28 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- WHY IT WORKS -->
 <section class="testimonials">
   <div class="container">
-    <div class="section-eyebrow">What readers say</div>
+    <div class="section-eyebrow">Why it works</div>
     <h2 class="section-title fade-up">Don't be the last guy to know.</h2>
     <div class="reviews-strip">
       <div class="rv-card fade-up">
-        <div class="rv-stars">★★★★★</div>
-        <div class="rv-text">my buddy texted asking how I knew about the Myles Garrett trade before him. told him I read a 5-minute email. he still doesn't believe me</div>
-        <div class="rv-person">
-          <div class="rv-avatar" style="background:linear-gradient(135deg,#16A34A,#4ADE80)">DS</div>
-          <div><div class="rv-name">Dan S.</div><div class="rv-role">VP of Sales · Austin, TX</div></div>
-        </div>
+        <div class="rv-head">Five minutes, fully caught up</div>
+        <div class="rv-text">Sports, markets, and the stories actually moving the room — distilled into one email you can finish before your coffee's cold.</div>
       </div>
       <div class="rv-card fade-up">
-        <div class="rv-stars">★★★★★</div>
-        <div class="rv-text">used to have 6 tabs open before client calls just to sound prepared. now I have one email. the market context alone is worth it</div>
-        <div class="rv-person">
-          <div class="rv-avatar" style="background:linear-gradient(135deg,#2B6FFF,#6B9FFF)">JT</div>
-          <div><div class="rv-name">James T.</div><div class="rv-role">Financial Advisor · Boston, MA</div></div>
-        </div>
+        <div class="rv-head">Context, not just scores</div>
+        <div class="rv-text">We don't just tell you what moved. We tell you why it matters — so you can carry the conversation instead of nodding along.</div>
       </div>
       <div class="rv-card fade-up">
-        <div class="rv-stars">★★★★★</div>
-        <div class="rv-text">showed up to the group chat already knowing the Finals storyline before anyone texted. that doesn't happen to me usually</div>
-        <div class="rv-person">
-          <div class="rv-avatar" style="background:linear-gradient(135deg,#0F766E,#2DD4BF)">RK</div>
-          <div><div class="rv-name">Ryan K.</div><div class="rv-role">Surgeon · Phoenix, AZ</div></div>
-        </div>
+        <div class="rv-head">Never caught flat-footed</div>
+        <div class="rv-text">Walk into the group chat, the client call, or the Monday meeting already knowing the story everyone's about to bring up.</div>
       </div>
     </div>
     <div class="pull-quote-section fade-up">
-      <div class="pull-quote">"found it through reddit, was skeptical. three months later I still read it every morning before I check anything else. it's not that I know more &mdash; it's that I'm not guessing anymore."</div>
-      <div class="pull-attr"><strong>&mdash; Matt D.</strong> &nbsp; Columbus, OH</div>
-      <a href="/reviews/" class="pull-link">Read more stories →</a>
+      <div class="pull-quote">Free, five minutes, every morning. The difference between guessing and knowing — that's the whole pitch.</div>
+      <a href="#signup" class="pull-link">Get the brief →</a>
     </div>
   </div>
 </section>
@@ -1604,11 +1605,25 @@ window.handleSignup = function(e, form) {
       if (!res.ok) throw new Error();
       var data = await res.json();
       var markets = data.markets || [], sports = data.sports || [];
+      var mkt = data.marketStatus || { open: true, label: 'Live', note: '' };
+
+      // Relabel the header badge so we never imply live trading when markets are closed.
+      var liveEl = document.getElementById('tickerLive');
+      var labelEl = document.getElementById('tickerLiveLabel');
+      if (liveEl && labelEl) {
+        liveEl.classList.toggle('is-closed', !mkt.open);
+        labelEl.textContent = mkt.label || (mkt.open ? 'Live' : 'Markets closed');
+      }
+
       var mktHtml = markets.map(function (m) {
         var arrow = m.dir === 'up' ? '▲' : '▼';
         return '<div class="ticker-item"><span class="ticker-sym">' + m.sym + '</span>' +
           '<span class="ticker-' + m.dir + '">' + arrow + ' ' + m.change + '%</span></div>';
       }).join('');
+      // When closed, lead the markets group with the close context (e.g. "At Friday's close").
+      if (!mkt.open && mkt.note) {
+        mktHtml = '<div class="ticker-item"><span class="ticker-status">' + mkt.note + '</span></div>' + mktHtml;
+      }
       var sptHtml = sports.map(function (s) {
         var logos = (s.logos || []).map(function (u) {
           return '<img class="ticker-logo" src="' + u + '" alt="" loading="lazy" decoding="async">';
