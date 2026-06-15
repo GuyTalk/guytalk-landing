@@ -274,7 +274,10 @@ async function editBrief({ copy, context, links }) {
   }
 
   const model  = process.env.ANTHROPIC_EDITOR_MODEL || DEFAULT_MODEL;
-  const client = new (Anthropic.default || Anthropic)({ apiKey });
+  // Cap the editorial call so a slow/hung Anthropic request can't stall the whole
+  // 7am pipeline (and the review email). On 2026-06-15 this call hung ~18 min with
+  // no timeout. 90s/attempt × 1 retry ≈ 3 min worst case, then fail-open to the draft.
+  const client = new (Anthropic.default || Anthropic)({ apiKey, timeout: 90000, maxRetries: 1 });
   const editable = extractEditable(copy);
 
   const system = `You are the GuyTalk Editor — the final editorial gate before a daily brief publishes.

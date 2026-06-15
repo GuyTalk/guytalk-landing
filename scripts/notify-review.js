@@ -36,6 +36,7 @@ async function main() {
   const { data, slug } = brief;
   const num        = String(data.num).padStart(3, '0');
   const approveUrl = `${SITE_URL}/api/approve?token=${APPROVAL_TOKEN}`;
+  const previewUrl = `${SITE_URL}/api/preview?token=${APPROVAL_TOKEN}`;
 
   // Quick look bullets
   const bullets = [];
@@ -108,9 +109,20 @@ async function main() {
         <table width="100%" cellpadding="0" cellspacing="0">${bulletsHtml}</table>
       </div>` : ''}
 
-      <!-- Primary CTA: Approve + Send. The headline + Quick look above are the
-           preview; there's no "read full brief" link because the brief still
-           lives on the pending branch pre-approval and that URL would 404. -->
+      <!-- Secondary CTA: read the FULL brief before sending. /api/preview serves
+           the staged brief from the pending branch (rendered on the prod domain so
+           styles/images resolve) — read-only, publishes nothing. -->
+      <table cellpadding="0" cellspacing="0" style="width:100%;margin-bottom:10px;">
+        <tr>
+          <td style="border:1.5px solid #0F1724;border-radius:10px;text-align:center;">
+            <a href="${previewUrl}" target="_blank" style="display:block;padding:13px 24px;font-weight:700;font-size:15px;color:#0F1724;text-decoration:none;letter-spacing:-0.01em;">
+              Preview the full brief →
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Primary CTA: Approve + Send. Preview above lets you read it first. -->
       <table cellpadding="0" cellspacing="0" style="width:100%;">
         <tr>
           <td style="background:#16A34A;border-radius:10px;text-align:center;">
