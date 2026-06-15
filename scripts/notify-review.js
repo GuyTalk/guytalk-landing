@@ -11,7 +11,7 @@ const path = require('path');
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const APPROVAL_TOKEN = process.env.APPROVAL_TOKEN;
 const SITE_URL       = 'https://www.guytalkmedia.com';
-const NOTIFY_EMAIL   = 'j.rwilliams284@gmail.com';
+const NOTIFY_EMAIL   = process.env.NOTIFY_EMAIL || 'j.rwilliams284@gmail.com';
 const FROM_EMAIL     = process.env.FROM_EMAIL || 'GuyTalk <onboarding@resend.dev>';
 const ROOT           = path.join(__dirname, '..');
 
