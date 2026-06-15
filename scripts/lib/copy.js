@@ -243,7 +243,7 @@ async function generateCopy({ sports, markets, golf, tennis, trending, topStorie
   // in the provided facts (the card style is chosen later by category).
   const dynSports = Array.isArray(dynamicSports) ? dynamicSports : [];
   const dynSportsList = dynSports
-    .map((s, i) => `${i + 1}. [${s.label || s.name}] (${s.category}) — ${s.headline || ''} — FACTS: ${s.facts || ''}`)
+    .map((s, i) => `${i + 1}. [${s.label || s.name}] (${s.category}) — ${s.headline || ''} — FACTS: ${s.facts || ''}${s.background ? ` — BACKGROUND: ${s.background}` : ''}`)
     .join('\n');
 
   // Repetition guard from last 3 briefs
@@ -536,11 +536,13 @@ Return ONLY valid JSON on one line — no markdown:
 
 NOVEL/RARE EVENT CONTEXT: if a story is clearly a first-ever, an unusual venue, or a debut format (e.g. "UFC Freedom 250" — the promotion's first card on the White House lawn), open "whatHappened" with ONE short context clause naming what makes it novel, then the result. Example: "UFC Freedom 250, the promotion's first-ever card on the White House lawn, saw Gaethje stop Topuria in the third." Keep it to one clause — not a paragraph — and only when the facts support it (never invent the novelty). For routine events, no context clause.
 
+BACKGROUND FACT (required when given): when a story has a BACKGROUND fact, "whyItMatters" MUST use at least one concrete background fact (the drought, streak, record, first career win, or stakes), written so someone who doesn't follow the sport gets why it's a big deal. One strong fact, GuyTalk voice — not a history lesson. Never invent a background fact that isn't given.
+
 Stories (in this exact order):
 ${dynSportsList}
 
 Return ONLY a valid JSON array — one object per story, in the SAME order, no markdown:
-[{"whatHappened":"One sentence (a novel/rare event may lead with one short context clause per the rule above). Specific. Named person or team and the real result from the facts.","whyItMatters":"One to two sentences. Why anyone should care — stakes, what it changes.","whatToBringUp":"One sentence a 28-year-old could actually say out loud at a bar or the office."}]`,
+[{"whatHappened":"One sentence (a novel/rare event may lead with one short context clause per the rule above). Specific. Named person or team and the real result from the facts.","whyItMatters":"One to two sentences, using the BACKGROUND fact when one is given. Why anyone should care — stakes, what it changes.","whatToBringUp":"One sentence a 28-year-old could actually say out loud at a bar or the office."}]`,
           Math.min(2200, 260 * dynSports.length + 200),
           { minFields: 1, section: 'sports' }
         )

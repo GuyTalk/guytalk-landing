@@ -129,6 +129,19 @@ const LEAGUE_AFFINITY = [
   { score: 2, patterns: [/\bsoccer\b/i, /\bworld cup\b/i, /\bpremier league\b/i, /\btennis\b/i] },
 ];
 
+// EDITORIAL DECISION 1 — "lean American / relatable." When stories are close in
+// importance, favor US teams/athletes/storylines. A small tiebreaker (max +4) on
+// top of tier+affinity — enough to break a near-tie, never enough to vault a
+// routine result over a title-decider. Tune freely.
+const US_AFFINITY = [
+  { score: 4, patterns: [/\busmnt\b/i, /\bteam usa\b/i, /\bu\.?s\.? (?:men|women|national team)\b/i, /\bunited states\b/i, /\bamerican\b/i] },
+];
+
+function usAffinityBonus(text) {
+  for (const a of US_AFFINITY) if (a.patterns.some((re) => re.test(text))) return a.score;
+  return 0;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Helpers
 // ─────────────────────────────────────────────────────────────────────────────
@@ -155,8 +168,47 @@ function scoreImportance({ name = '', headline = '', facts = '', isFinalResult =
   for (const a of LEAGUE_AFFINITY) {
     if (a.patterns.some((re) => re.test(text))) { affinity = a.score; break; }
   }
-  const bonus = (isFinalResult ? SCORE_BONUS.isFinalResult : 0) + affinity;
+  const bonus = (isFinalResult ? SCORE_BONUS.isFinalResult : 0) + affinity + usAffinityBonus(text);
   return { score: tierScore + bonus, tier };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3) CATEGORY SOURCE OF TRUTH
+//
+//    One map decides where a topic belongs, used everywhere (glance, sidebar,
+//    section order, and the within-issue dedup). The rule (editorial decision):
+//      - Combat sports (UFC/MMA/boxing) and soccer (World Cup/USMNT) = SPORTS.
+//      - Culture = entertainment / music / streaming / TV / film / gaming /
+//        lifestyle ONLY — never a game result, fight, or match.
+//    classifyTopic(text) → 'sports' | 'markets' | 'culture' | null (unknown).
+// ─────────────────────────────────────────────────────────────────────────────
+const CATEGORY_PATTERNS = {
+  sports: [
+    /\bnba\b/i, /\bnfl\b/i, /\bnhl\b/i, /\bmlb\b/i, /\bwnba\b/i,
+    /\bufc\b/i, /\bmma\b/i, /\bboxing\b/i, /\bfight(?:er|ers|night|s)?\b/i, /\bknockout\b/i, /\bTKO\b/, /\bdef\.\b/i,
+    /\bsoccer\b/i, /\bworld cup\b/i, /\busmnt\b/i, /\bfifa\b/i, /\bpremier league\b/i, /\bla liga\b/i, /\bchampions league\b/i,
+    /\bgolf\b/i, /\bpga\b/i, /\bf1\b/i, /formula\s*1/i, /grand prix/i, /\btennis\b/i, /\batp\b/i, /\bwta\b/i,
+    /\bplayoff\b/i, /\bfinals?\b/i, /\bstanley cup\b/i, /\bgame\s*\d/i, /\bquarterback\b/i,
+  ],
+  markets: [
+    /\bstocks?\b/i, /\bmarkets?\b/i, /\bnasdaq\b/i, /\bs&p\b/i, /\bdow\b/i, /\bearnings\b/i, /\bipo\b/i,
+    /\bfed\b/i, /\binflation\b/i, /\bcrypto\b/i, /\bbitcoin\b/i, /\byields?\b/i, /\boil\b/i, /\brate (?:cut|hike)/i,
+  ],
+  culture: [
+    /\bmovie\b/i, /\bfilm\b/i, /\bnetflix\b/i, /\bhbo\b/i, /\bstreaming\b/i, /\bseason\b/i, /\bseries premiere\b/i,
+    /\balbum\b/i, /\bmusic\b/i, /\bsong\b/i, /\btour\b/i, /\bconcert\b/i, /\bvideo game\b/i, /\bgaming\b/i,
+    /\bshow\b/i, /\bTV\b/, /\btrailer\b/i, /\bbox office\b/i,
+  ],
+};
+
+function classifyTopic(text) {
+  const t = String(text || '');
+  if (!t.trim()) return null;
+  // Sports wins ties (a "World Cup tour" is sports, not a music tour) — check first.
+  if (CATEGORY_PATTERNS.sports.some((re) => re.test(t))) return 'sports';
+  if (CATEGORY_PATTERNS.markets.some((re) => re.test(t))) return 'markets';
+  if (CATEGORY_PATTERNS.culture.some((re) => re.test(t))) return 'culture';
+  return null;
 }
 
 module.exports = {
@@ -164,4 +216,5 @@ module.exports = {
   IMPORTANCE_TIERS,
   isExcluded,
   scoreImportance,
+  classifyTopic,
 };

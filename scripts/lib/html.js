@@ -152,7 +152,7 @@ function buildSeoTitle(issue) {
     parts.push(`${w.team} ${w.score}-${l.score}`);
   }
   if (f1?.name) parts.push(f1.shortName || f1.name.split(' ').slice(0, 3).join(' '));
-  if (golf?.leaders?.[0]) parts.push(golf.leaders[0].name + ' leads');
+  if (golf?.leaders?.[0]) parts.push(golf.leaders[0].name + (golf.statusState === 'post' ? ' wins' : ' leads'));
   if (parts.length) return `${parts.slice(0, 2).join(' · ')} — GuyTalk Daily Brief`;
   return title ? `${title.slice(0, 70)} — GuyTalk` : `GuyTalk Daily Brief`;
 }
@@ -168,7 +168,7 @@ function buildSeoDesc(issue) {
     pieces.push(`${w.team} ${w.score}-${l.score} ${l.team}.`);
   }
   if (f1?.name) pieces.push(`${f1.shortName || f1.name} ${f1.statusState === 'post' ? 'results' : 'preview'}.`);
-  if (golf?.leaders?.[0]) pieces.push(`${golf.leaders[0].name} leads ${(golf.name || '').replace(/pres\. by .*/i,'').trim()}.`);
+  if (golf?.leaders?.[0]) pieces.push(`${golf.leaders[0].name} ${golf.statusState === 'post' ? 'wins' : 'leads'} ${(golf.name || '').replace(/pres\. by .*/i,'').trim()}.`);
   if (worldCup?.length) pieces.push('World Cup 2026 coverage.');
   pieces.push('Markets, culture, and more. Free daily brief from GuyTalk.');
   return pieces.slice(0, 4).join(' ');
@@ -202,8 +202,11 @@ function slugId(s) {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Today at a Glance (TOP) — three labeled one-sentence lines: Sports / Markets /
-// Culture. The hit list a reader scans before scrolling. Prefers the purpose-
-// built copy.glance lines, then the first sentence of Today's Hits, then raw data.
+// Culture. Generated from the SAME ranked/selected story objects that produce
+// The Lead and the section order — NOT an independent query (Fix 1). So the
+// Sports line is always the issue's Lead (the top-scored sports story), Markets
+// is the top market story this issue used, Culture is the top culture item.
+// copy.glance / Today's Hits are last-ditch fallbacks only.
 // ─────────────────────────────────────────────────────────────────────────────
 function buildTodayGlanceTop(issue) {
   const copy = issue.copy || {};
@@ -211,23 +214,34 @@ function buildTodayGlanceTop(issue) {
   const hits = copy.todaysHits || {};
   const firstSentence = (t) => t ? String(t).replace(/\n/g, ' ').trim().split(/(?<=[.!?])\s+/)[0] : '';
 
-  const sportsFb = (() => {
+  // SPORTS = the issue's Lead (dynamicSports[0]) — the same object that opens the
+  // Sports section. Guarantees the Lead appears in the glance and kills stale/
+  // Tier-3 picks (no independent query). Structured feed only if no ranked lead.
+  const sportsV = (() => {
     const lead = (issue.dynamicSports || [])[0];
-    if (lead) return lead.headline || lead.facts || lead.label;
+    if (lead) return lead.headline || firstSentence(lead.whatHappened) || lead.facts || lead.label;
     const sp = issue.sports?.[0];
     if (sp) { const w = sp.home.winner ? sp.home : sp.away, l = sp.home.winner ? sp.away : sp.home; return `${w.team} ${w.score}–${l.score} ${l.team}.`; }
-    return '';
+    return firstSentence(hits.sports) || g.sports || '';
   })();
-  const marketFb = (() => {
+
+  // MARKETS = the top market story the Markets section actually led with.
+  const marketsV = (() => {
+    const m = copy.markets || {};
+    const top = (Array.isArray(m.headlines) && m.headlines[0] && m.headlines[0].head) || m.mood || '';
+    if (top) return top;
     const spy = issue.markets?.SPY;
-    return (spy && spy.dayChangePct != null) ? `S&P 500 ${spy.dayChangePct >= 0 ? '+' : ''}${spy.dayChangePct.toFixed(1)}% on the day.` : '';
+    if (spy && spy.dayChangePct != null) return `S&P 500 ${spy.dayChangePct >= 0 ? '+' : ''}${spy.dayChangePct.toFixed(1)}% on the day.`;
+    return firstSentence(hits.markets) || g.markets || '';
   })();
-  const cultureFb = copy.culture?.[0]?.topic || copy.culture?.[0]?.head || '';
+
+  // CULTURE = the top culture item selected for the Culture section.
+  const cultureV = copy.culture?.[0]?.topic || copy.culture?.[0]?.head || firstSentence(hits.culture) || g.culture || '';
 
   const rows = [
-    { k: 'Sports',  anchor: '#sports',  v: g.sports  || firstSentence(hits.sports)  || sportsFb,  cls: 'hit-sports'  },
-    { k: 'Markets', anchor: '#markets', v: g.markets || firstSentence(hits.markets) || marketFb,  cls: 'hit-markets' },
-    { k: 'Culture', anchor: '#culture', v: g.culture || firstSentence(hits.culture) || cultureFb, cls: 'hit-culture' },
+    { k: 'Sports',  anchor: '#sports',  v: sportsV,  cls: 'hit-sports'  },
+    { k: 'Markets', anchor: '#markets', v: marketsV, cls: 'hit-markets' },
+    { k: 'Culture', anchor: '#culture', v: cultureV, cls: 'hit-culture' },
   ].filter(r => r.v);
   if (!rows.length) return '';
 
@@ -357,12 +371,21 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
   };
 
   const sideNavHtml = `<style>
-  .brief-sidenav .bsn-group .bsn-children{max-height:0;overflow:hidden;transition:max-height .28s ease;}
-  .brief-sidenav .bsn-group.open .bsn-children{max-height:600px;}
+  /* Accordion (Fix 7). The rail is right-aligned, so children are INSET from the
+     right edge (margin-right) to read as a clean indent beneath the parent —
+     not widened leftward. Consistent inset + smaller dots = clear hierarchy. */
+  .brief-sidenav .bsn-group{display:flex;flex-direction:column;align-items:flex-end;}
+  .brief-sidenav .bsn-children{display:flex;flex-direction:column;align-items:flex-end;gap:14px;max-height:0;margin-top:0;overflow:hidden;transition:max-height .28s ease,margin-top .28s ease;}
+  .brief-sidenav .bsn-group.open .bsn-children{max-height:600px;margin-top:14px;}
   .brief-sidenav .bsn-caret{display:inline-block;width:1em;margin-right:2px;font-size:.78em;opacity:.65;transition:transform .2s ease;cursor:pointer;}
   .brief-sidenav .bsn-group.open .bsn-caret{transform:rotate(90deg);}
-  .brief-sidenav .bsn-parent .bsn-txt{font-weight:600;}
-  .brief-sidenav .bsn-sub{padding-left:20px;font-size:0.92em;opacity:0.85;}
+  .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;}
+  .brief-sidenav .bsn-sub{margin-right:16px;font-size:0.92em;opacity:0.8;}
+  .brief-sidenav .bsn-sub .bsn-dot{width:6px;height:6px;}
+  /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
+     so faces/players show instead of a jersey-number zoom. */
+  .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
+  .brief-hero-banner--feature{background-position:center 20%;}
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   ${navLink('top', 'Top')}

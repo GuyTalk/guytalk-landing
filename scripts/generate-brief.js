@@ -12,7 +12,7 @@ const { editBrief }                                         = require('./lib/edi
 const { buildHtml }                                         = require('./lib/html');
 const { buildArchive }                                      = require('./lib/archive');
 const { fetchTopStories, fetchSectionStories, fetchDynamicSports } = require('./lib/research');
-const { isExcluded }                                        = require('./lib/editorial-config');
+const { isExcluded, classifyTopic, scoreImportance }        = require('./lib/editorial-config');
 const { STREAMING_PICKS }                                   = require('./lib/db');
 const { GENERATION_WARNINGS, addWarning, resetWarnings, formatWarnings } = require('./lib/warnings');
 
@@ -215,6 +215,64 @@ function buildHeroOverride(dynamicSports) {
     title: lead.headline || lead.label || lead.name,
     sub: lead.label || lead.name,
   };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Fix 4 — a completed tournament with a notable winner ALWAYS gets a Sports
+// section. Dynamic discovery sometimes omits golf even when it just finished; the
+// structured golf data + the (editor-reviewed) golf copy are real, so we map them
+// into a Sports card, score it, and re-sort so it lands by importance. Skipped if
+// a golf card is already present (within-issue dedup) or the event isn't over.
+// ─────────────────────────────────────────────────────────────────────────────
+function injectCompletedGolf(dynamicSports, golf, copy, sectionStories) {
+  const dyn = Array.isArray(dynamicSports) ? dynamicSports.slice() : [];
+  if (!golf || golf.statusState !== 'post' || !golf.leaders || !golf.leaders[0]) return dyn;
+  // Already represented by a discovered card? (dedup)
+  if (dyn.some((s) => /\bgolf\b|\bpga\b/i.test(`${s.name || ''} ${s.label || ''} ${s.facts || ''}`))) return dyn;
+
+  const w = golf.leaders[0];
+  const cg = copy && copy.golf ? copy.golf : {};
+  const background = (sectionStories && sectionStories.golf && (sectionStories.golf.background || sectionStories.golf.fact)) || '';
+  const headline = cg.headline || `${w.name} wins the ${golf.name} at ${w.score}`;
+  const card = {
+    name: golf.name,
+    label: golf.name,
+    category: 'individual',
+    headline,
+    whatHappened: cg.headline || `${w.name} won the ${golf.name} at ${w.score}.`,
+    whyItMatters: [cg.whyCare1, cg.whyCare2].filter(Boolean).join(' ') || (background ? background : ''),
+    whatToBringUp: cg.whatToSay || '',
+    facts: `${w.name} won the ${golf.name} at ${w.score}.`,
+    background,
+    source: '', url: '',
+    imageUrl: null, // no faked/building image — Fix 6 prefers none over a wrong shot
+    videoUrl: null,
+    isLead: false,
+  };
+  const { score, tier } = scoreImportance({ name: golf.name, headline, facts: card.facts, isFinalResult: true });
+  card.importance = score; card.tier = tier;
+
+  dyn.push(card);
+  // Re-sort by importance (stable) and re-flag The Lead.
+  dyn.forEach((s, i) => { if (s.importance == null) { const r = scoreImportance({ name: s.name, headline: s.headline, facts: s.facts }); s.importance = r.score; s.tier = r.tier; } s._r = i; s.isLead = false; });
+  dyn.sort((a, b) => (b.importance - a.importance) || (a._r - b._r));
+  dyn.forEach((s) => { delete s._r; });
+  if (dyn.length) dyn[0].isLead = true;
+  console.log(`   ✓ Golf injected as a Sports card (T${tier}/${score}) — "${headline}"`);
+  return dyn;
+}
+
+// Culture = entertainment only (Fix 2). Drop any culture item that classifies as
+// a sports story (UFC/soccer/World Cup/game result) — those belong to Sports, and
+// this also removes the cross-section duplicate (e.g. World Cup in Sports AND
+// Culture). Never drops below one item.
+function filterCultureToEntertainment(copy) {
+  if (!copy || !Array.isArray(copy.culture)) return;
+  const kept = copy.culture.filter((c) => classifyTopic(`${c.topic || ''} ${c.whatHappened || ''}`) !== 'sports');
+  if (kept.length && kept.length !== copy.culture.length) {
+    console.log(`   ⤫  Culture: dropped ${copy.culture.length - kept.length} sports item(s) — Culture is entertainment only`);
+    copy.culture = kept;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -482,7 +540,7 @@ async function main() {
     console.log('   🔎 Web research: dynamic sports discovery + culture + hero...');
     const leadSubject = (topStories.find(s => s.isLead) || topStories[0])?.headline || null;
     const [secRes, dynRes] = await Promise.allSettled([
-      fetchSectionStories({ dateLabel: date, leadSubject, issueNum, prevImageUrls }),
+      fetchSectionStories({ dateLabel: date, leadSubject, issueNum, prevImageUrls, golf }),
       fetchDynamicSports({ dateLabel: date, issueNum, prevImageUrls }),
     ]);
     sectionStories = secRes.status === 'fulfilled' ? (secRes.value || {}) : {};
@@ -565,6 +623,12 @@ async function main() {
       addWarning('editor', 'failed', `crashed: ${err.message}`);
     }
   }
+
+  // ── Round-2 post-processing (run on the final, editor-reviewed copy) ────────
+  //   Fix 2: Culture is entertainment-only (drops sports items + cross-section dupes).
+  //   Fix 4: a completed tournament (golf) always gets a Sports card, ranked in.
+  filterCultureToEntertainment(copy);
+  dynamicSports = injectCompletedGolf(dynamicSports, golf, copy, sectionStories);
 
   // ── Assemble issue data object ─────────────────────────────────────────────
   const issueData = {

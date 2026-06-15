@@ -21,8 +21,8 @@
  * fabricates scores, prices, or standings.
  */
 
-// Opus for the editorial judgment + synthesis. Override via env if needed.
-const RESEARCH_MODEL = process.env.ANTHROPIC_RESEARCH_MODEL || 'claude-opus-4-8';
+// Sonnet for research + discovery. Override via env if needed.
+const RESEARCH_MODEL = process.env.ANTHROPIC_RESEARCH_MODEL || 'claude-sonnet-4-6';
 const MAX_CONTINUATIONS = 4; // web-search server loop may pause_turn; resume a few times
 
 const { isExcluded, scoreImportance } = require('./editorial-config');
@@ -158,12 +158,21 @@ function extractJsonObject(text) {
 }
 
 // One grounded web_search call → a single normalized fact object (or no_data).
-async function runSectionSearch(client, { query, instruction }) {
+// When wantBackground is set, we also ask for ONE background/context fact (a
+// drought, streak, record, first career win, the stakes, or what makes it
+// unusual) — the human-interest detail that "Why it matters" needs (Fix 5).
+async function runSectionSearch(client, { query, instruction, wantBackground = false } = {}) {
+  const bgField = wantBackground
+    ? `,"background":"one BACKGROUND/context fact for someone who doesn't follow it: a drought ('first title since 1973'), a streak, a record, a first career win, the stakes, or what makes it unusual — a real, searchable fact, not filler"`
+    : '';
+  const bgRule = wantBackground
+    ? `\nAlso find ONE background fact (drought/streak/record/first-time/stakes). If you genuinely can't find one, set "background":"" — never invent it.`
+    : '';
   const prompt = `${instruction}
-Run this web search and use only what you actually find: ${query}
+Run this web search and use only what you actually find: ${query}${bgRule}
 
 Return ONLY a single JSON object — no prose, no markdown fence:
-{"headline":"tight, specific headline","source":"publisher name","url":"https://real-source","fact":"one key fact: a NAMED person, a specific NUMBER (score/stat/%/$), or a concrete EVENT that happened"}
+{"headline":"tight, specific headline","source":"publisher name","url":"https://real-source","fact":"one key fact: a NAMED person, a specific NUMBER (score/stat/%/$), or a concrete EVENT that happened"${bgField}}
 
 If you cannot find a result containing at least one of (a named person, a specific number, a concrete event that happened), return exactly:
 {"no_data":true}`;
@@ -194,15 +203,16 @@ If you cannot find a result containing at least one of (a named person, a specif
   // A result is only usable if it actually carries a concrete fact.
   if (!obj.fact || !String(obj.fact).trim()) return { no_data: true };
   return {
-    headline: obj.headline || '',
-    source:   obj.source || '',
-    url:      Array.isArray(obj.sources) ? obj.sources[0] : (obj.url || ''),
-    fact:     String(obj.fact).trim(),
-    no_data:  false,
+    headline:   obj.headline || '',
+    source:     obj.source || '',
+    url:        Array.isArray(obj.sources) ? obj.sources[0] : (obj.url || ''),
+    fact:       String(obj.fact).trim(),
+    background: obj.background ? String(obj.background).trim() : '',
+    no_data:    false,
   };
 }
 
-async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImageUrls = [] } = {}) {
+async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImageUrls = [], golf } = {}) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return {};
   let Anthropic;
@@ -213,13 +223,26 @@ async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImage
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
   });
 
-  // Culture only — sports are discovered dynamically (fetchDynamicSports).
+  // Culture only — ENTERTAINMENT/music/streaming/TV/film/gaming/lifestyle.
+  // NEVER sports: game results, fights (UFC/boxing), or matches (soccer/World
+  // Cup) belong to the Sports section (fetchDynamicSports), not Culture (Fix 2).
+  const NO_SPORTS = ' Do NOT return any sports result, game, match, fight (UFC/boxing/MMA), or soccer/World Cup story — those are covered elsewhere. Entertainment, music, streaming, TV, film, gaming, or lifestyle only.';
   const jobs = [
-    { key: 'culture1', instruction: 'You are finding the single most-talked-about sports/entertainment/culture story for men 25-45 right now. Avoid celebrity gossip.',
-      query: `trending today ${today} sports entertainment culture viral` },
-    { key: 'culture2', instruction: 'You are finding a notable movie, TV, music, or viral culture moment from today. Avoid celebrity relationship gossip.',
-      query: `${today} movie news OR celebrity news OR viral clip OR Twitter trending` },
+    { key: 'culture1', instruction: 'You are finding the single most-talked-about ENTERTAINMENT/culture story for men 25-45 right now (movies, TV, streaming, music, gaming, tech, lifestyle). Avoid celebrity gossip.' + NO_SPORTS,
+      query: `trending today ${today} movies TV streaming music gaming culture` },
+    { key: 'culture2', instruction: 'You are finding a notable movie, TV, music, gaming, or viral culture moment from today. Avoid celebrity relationship gossip.' + NO_SPORTS,
+      query: `${today} movie OR TV show OR album OR video game OR viral clip news` },
   ];
+
+  // Golf-winner background (Fix 5) — when a tournament just finished, find the
+  // human-interest fact (first PGA Tour win, drought-breaker, milestone). Stored
+  // under 'golf' so copy.js (golf prompt) and the editor's RAW FACTS pick it up.
+  if (golf && golf.statusState === 'post' && golf.leaders && golf.leaders[0]) {
+    const w = golf.leaders[0];
+    jobs.push({ key: 'golf', wantBackground: true,
+      instruction: `You are researching ${w.name}'s win at the ${golf.name} (final, ${w.score}). Find the single most important BACKGROUND fact: is this his first career PGA Tour win, his first in N years, a drought-breaker, or a notable milestone? State it specifically.`,
+      query: `${w.name} ${golf.name} winner first PGA Tour win years drought ${today}` });
+  }
 
   const settled = await Promise.allSettled(
     jobs.map(j => runSectionSearch(client, j).then(r => ({ key: j.key, r })))
@@ -229,8 +252,10 @@ async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImage
   const culture = [];
   for (const s of settled) {
     if (s.status !== 'fulfilled') continue;
-    const { r } = s.value;
-    if (r && !r.no_data) culture.push(r);
+    const { key, r } = s.value;
+    if (!r || r.no_data) continue;
+    if (key === 'golf') out.golf = r;          // routed to the golf section, NOT culture
+    else culture.push(r);
   }
   out.culture = culture;        // 0–2 sourced culture items
   out.cultureNoData = culture.length === 0;
@@ -244,7 +269,7 @@ async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImage
     });
   }
 
-  console.log(`   ✓ Section research: culture:${culture.length} hero:${out.heroImage && !out.heroImage.no_data ? 'ok' : 'none'}`);
+  console.log(`   ✓ Section research: culture:${culture.length}${out.golf ? ' golf-bg:ok' : ''} hero:${out.heroImage && !out.heroImage.no_data ? 'ok' : 'none'}`);
 
   return out;
 }
@@ -406,10 +431,17 @@ async function fetchDynamicSports({ dateLabel, issueNum, prevImageUrls = [] } = 
 
   // ── Step 2 — targeted facts (+ video/photo for individual; photo for team) ──
   const avoid = (prevImageUrls || []).filter(Boolean);
+  // World Cup / international soccer is consolidated into ONE Sports item led by
+  // the US team's game when there is one (editorial decision 2 / Fix 2).
+  const isWorldCup = (name) => /world cup|fifa|usmnt|soccer/i.test(name);
   const settled = await Promise.allSettled(candidates.map(async (cand) => {
+    const wc = isWorldCup(cand.name);
     const facts = await runSectionSearch(client, {
-      instruction: `You are researching today's ${cand.name} for a daily brief. Pull the single most important concrete result/news: who, what happened, the score or outcome, and one key name or number.`,
-      query: `${cand.name} results highlights news ${today}`,
+      instruction: wc
+        ? `You are researching today's ${cand.name} for a US daily brief. LEAD with the U.S. men's national team (USMNT) game if they played today — who they beat/lost to and the score — then you may add other notable results in the "fact" as a short trailing clause. If the USMNT did not play, give the single biggest result.`
+        : `You are researching today's ${cand.name} for a daily brief. Pull the single most important concrete result/news: who, what happened, the score or outcome, and one key name or number.`,
+      query: wc ? `USMNT United States World Cup result today ${today}` : `${cand.name} results highlights news ${today}`,
+      wantBackground: true,
     });
     if (!facts || facts.no_data || !facts.fact) return { cand, facts: null };
 
@@ -424,14 +456,14 @@ async function fetchDynamicSports({ dateLabel, issueNum, prevImageUrls = [] } = 
         }),
         findFreshImage(client, {
           subject: `${cand.name} ${facts.headline || ''} athlete in action`, today, issueNum, avoid,
-          prefer: 'Prefer an action photo of the specific athlete/driver/fighter from this event. ESPN/Getty/Wikimedia are all fine.',
+          prefer: 'Prefer a LANDSCAPE action photo of the specific athlete/driver/fighter from this event. ESPN/Getty/Wikimedia are all fine. NOT a stadium/arena building or logo.',
         }).then(r => (r && !r.no_data ? r.url : null)),
       ]);
     } else {
       // Team sports: one game photo if a good one comes back, else text-only.
       imageUrl = await findFreshImage(client, {
-        subject: `${cand.name} ${facts.headline || ''} game`, today, issueNum, avoid,
-        prefer: 'Prefer a photo from this game/match. ESPN/Getty/Wikimedia are fine.',
+        subject: `${cand.name} ${facts.headline || ''} players in action`, today, issueNum, avoid,
+        prefer: 'Prefer a LANDSCAPE photo of PLAYERS in action from this game/match. ESPN/Getty/Wikimedia are fine. NOT a stadium/arena building exterior, NOT a logo or trophy on a table.',
       }).then(r => (r && !r.no_data ? r.url : null));
     }
 
@@ -444,6 +476,7 @@ async function fetchDynamicSports({ dateLabel, issueNum, prevImageUrls = [] } = 
         category: cand.category,
         headline: facts.headline || cand.name,
         facts: facts.fact,
+        background: facts.background || '',
         source: facts.source || '',
         url: facts.url || '',
         imageUrl: imageUrl || null,

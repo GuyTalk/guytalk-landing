@@ -20,6 +20,20 @@
 
 const IMAGE_EXT_RE = /\.(jpe?g|png|webp|gif|avif)(?:[?#].*)?$/i;
 
+// Filename/URL signals that the image is NOT the people/action in the story —
+// a stadium/arena building, an aerial/exterior, a logo, a map, or a trophy on a
+// stand. We'd rather show no image than a building (Fix 6). Decoded + matched
+// against the URL path (e.g. Wikimedia "PNC_Arena_Raleigh.JPG").
+const IRRELEVANT_RE = /(arena|stadium|ballpark|ground|building|exterior|aerial|drone|panorama|skyline|map|logo|crest|emblem|wordmark|signage|entrance|facade|fa%C3%A7ade|trophy|cup_?\(|venue)/i;
+
+function looksIrrelevant(url) {
+  try {
+    const path = decodeURIComponent(new URL(url).pathname);
+    const file = path.split('/').pop() || path;
+    return IRRELEVANT_RE.test(file);
+  } catch { return IRRELEVANT_RE.test(String(url)); }
+}
+
 const BROWSER_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
   'Accept': 'image/avif,image/webp,image/png,image/*,text/html;q=0.8,*/*;q=0.5',
@@ -101,14 +115,21 @@ async function isLiveImage(url) {
  * @param {boolean} [opts.allowArticleOgImage=true] follow article pages to their og:image
  * @returns {Promise<string|null>} a confirmed image URL, or null to drop it
  */
-async function resolveAndValidate(url, { allowArticleOgImage = true } = {}) {
+async function resolveAndValidate(url, { allowArticleOgImage = true, requireRelevant = true } = {}) {
   if (!url || typeof url !== 'string') return null;
   let candidate = url.trim();
   if (!/^https?:\/\//i.test(candidate)) return null;
 
+  // 0) Relevance gate (Fix 6): drop stadium/arena/logo/trophy/aerial shots up
+  //    front — prefer no image over a building. Checked on the source URL before
+  //    resolution (the giveaway is usually in the filename).
+  if (requireRelevant && looksIrrelevant(candidate)) return null;
+
   // 1) Known-source resolution.
   const wiki = resolveWikimedia(candidate);
   if (wiki) candidate = wiki;
+  // Re-check the resolved filename too (FilePath keeps the original name).
+  if (requireRelevant && looksIrrelevant(candidate)) return null;
 
   // 2) If it already looks/serves like an image, validate and accept.
   if (IMAGE_EXT_RE.test(candidate) || wiki) {
@@ -123,7 +144,7 @@ async function resolveAndValidate(url, { allowArticleOgImage = true } = {}) {
   // 3) Looks like a page (ESPN recap/story, news article). Try its og:image.
   if (allowArticleOgImage) {
     const og = await extractOgImage(candidate);
-    if (og) {
+    if (og && !(requireRelevant && looksIrrelevant(og))) {
       const ogResolved = resolveWikimedia(og) || og;
       if (await isLiveImage(ogResolved)) return ogResolved;
     }
@@ -132,4 +153,4 @@ async function resolveAndValidate(url, { allowArticleOgImage = true } = {}) {
   return null;
 }
 
-module.exports = { resolveAndValidate, resolveWikimedia, extractOgImage, isLiveImage, IMAGE_EXT_RE };
+module.exports = { resolveAndValidate, resolveWikimedia, extractOgImage, isLiveImage, looksIrrelevant, IMAGE_EXT_RE };
