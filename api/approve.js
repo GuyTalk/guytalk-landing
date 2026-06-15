@@ -82,20 +82,39 @@ async function getLatestBriefFromPending() {
   }
 }
 
-// Fast-forward main → pending. This publishes the approved brief to production.
-// Non-force: succeeds only if main is an ancestor of pending (a clean fast-forward).
-async function fastForwardMainToPending() {
+// Publish the approved brief to production by advancing `main` to include `pending`.
+//   Fast path  — main is an ancestor of pending → clean fast-forward (no merge commit).
+//   Diverged   — main has commits pending lacks (the Live-culture cron commits straight
+//                to main between brief generation and approval), so a non-force FF 4xxes.
+//                We then MERGE pending into main via the GitHub merges API, which
+//                reconciles both histories. Without this, every culture-cron commit that
+//                lands between gen and approval silently broke the publish.
+async function publishPendingToMain() {
   const refRes = await ghFetch(`/repos/${GH_OWNER}/${GH_REPO}/git/ref/heads/${STAGE_BRANCH}`);
   if (!refRes.ok) throw new Error(`could not read ${STAGE_BRANCH} ref (HTTP ${refRes.status})`);
   const sha = (await refRes.json())?.object?.sha;
   if (!sha) throw new Error(`no commit sha on ${STAGE_BRANCH}`);
-  const upRes = await ghFetch(`/repos/${GH_OWNER}/${GH_REPO}/git/refs/heads/main`, {
+
+  // Try a clean fast-forward first.
+  const ffRes = await ghFetch(`/repos/${GH_OWNER}/${GH_REPO}/git/refs/heads/main`, {
     method: 'PATCH',
     body: JSON.stringify({ sha, force: false }),
   });
-  if (!upRes.ok) {
-    const body = await upRes.text().catch(() => '');
-    throw new Error(`could not fast-forward main (HTTP ${upRes.status}) ${body}`.trim());
+  if (ffRes.ok) return;
+
+  // FF rejected (almost always main↔pending divergence) → merge pending into main.
+  const mergeRes = await ghFetch(`/repos/${GH_OWNER}/${GH_REPO}/merges`, {
+    method: 'POST',
+    body: JSON.stringify({
+      base: 'main',
+      head: STAGE_BRANCH,
+      commit_message: `Publish approved brief (merge ${STAGE_BRANCH} → main)`,
+    }),
+  });
+  if (mergeRes.status === 204) return; // main already contains pending — nothing to do
+  if (!mergeRes.ok) {
+    const body = await mergeRes.text().catch(() => '');
+    throw new Error(`could not publish main←${STAGE_BRANCH} (FF ${ffRes.status}, merge ${mergeRes.status}) ${body}`.trim());
   }
 }
 
@@ -484,7 +503,7 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // ── Step 2b: Publish to the website (fast-forward main → pending) ──────────
+  // ── Step 2b: Publish to the website (advance main to include pending) ──────
   // This is the moment the brief goes public. We do it BEFORE the subscriber
   // send so the links in the email resolve to a live page. If it fails we stop
   // here and send nothing — better no email than an email to a 404.
@@ -493,7 +512,7 @@ module.exports = async (req, res) => {
     return;
   }
   try {
-    await fastForwardMainToPending();
+    await publishPendingToMain();
   } catch (err) {
     res.status(500).send(errorPage(`Could not publish the brief to the website: ${err.message}`));
     return;
