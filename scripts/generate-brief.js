@@ -12,6 +12,7 @@ const { editBrief }                                         = require('./lib/edi
 const { buildHtml }                                         = require('./lib/html');
 const { buildArchive }                                      = require('./lib/archive');
 const { fetchTopStories, fetchSectionStories, fetchDynamicSports } = require('./lib/research');
+const { isExcluded }                                        = require('./lib/editorial-config');
 const { STREAMING_PICKS }                                   = require('./lib/db');
 const { GENERATION_WARNINGS, addWarning, resetWarnings, formatWarnings } = require('./lib/warnings');
 
@@ -171,6 +172,49 @@ function autoTitle({ sports, golf, f1, worldCup, upcoming }) {
     parts.push('World Cup action underway.');
   }
   return parts.slice(0, 3).join(' ') || 'GuyTalk Daily Brief.';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Hero = the issue's #1 story (the ranked Lead from research.js), never a
+// hardcoded sport or a low-priority structured game. Its image must already be
+// validated (research.js drops non-images), and it must be RELEVANT — we only
+// use an image attached to the lead's own card or to a fellow Tier-1/2 story,
+// never a generic stock photo. If no ranked lead has a valid image we fall back
+// to the brand hero graphic for the lead's sport (never a wrong/mismatched photo).
+// Returns a heroOverride object the template renders as a feature banner, or null.
+// ─────────────────────────────────────────────────────────────────────────────
+function heroKeyForLabel(label) {
+  const t = String(label || '').toLowerCase();
+  if (/\bnba\b|basketball/.test(t)) return 'nba';
+  if (/\bnhl\b|stanley|hockey/.test(t)) return 'nhl';
+  if (/\bmlb\b|baseball|world series/.test(t)) return 'mlb';
+  if (/\bf1\b|formula|grand prix/.test(t)) return 'f1';
+  if (/golf|pga|masters|open championship/.test(t)) return 'golf';
+  return 'default';
+}
+
+function buildHeroOverride(dynamicSports) {
+  const dyn = Array.isArray(dynamicSports) ? dynamicSports : [];
+  if (!dyn.length) return null;            // no ranked lead → template's own fallback
+  const lead = dyn[0];
+
+  // Prefer the lead's own (validated, relevant) image; else the next Tier-1/2
+  // story that has one. Never borrow an image from an unrelated low-tier card.
+  let image = lead.imageUrl || null;
+  let imageReal = !!image;
+  if (!image) {
+    const alt = dyn.find((s) => s.imageUrl && (s.tier == null || s.tier <= 2));
+    if (alt) { image = alt.imageUrl; imageReal = true; }
+  }
+  if (!image) { image = `/assets/hero/${heroKeyForLabel(lead.label || lead.name)}.jpg`; imageReal = false; }
+
+  return {
+    image,
+    imageReal,                              // real photo vs. brand fallback graphic
+    eyebrow: lead.isLead ? 'The Lead' : (lead.label || lead.name),
+    title: lead.headline || lead.label || lead.name,
+    sub: lead.label || lead.name,
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -447,6 +491,13 @@ async function main() {
     if (dynRes.status === 'rejected') console.log(`   ⚠  Dynamic sports failed (non-blocking): ${dynRes.reason?.message || dynRes.reason}`);
     dynamicSports = Array.isArray(dynamic.sports) ? dynamic.sports : [];
 
+    // Section-inclusion safety net (editorial-config.js): discovery already drops
+    // EXCLUDEd leagues, but enforce it again here so a renamed variant (e.g.
+    // "Women's NBA") can never slip into a published section.
+    const beforeExcl = dynamicSports.length;
+    dynamicSports = dynamicSports.filter((s) => !isExcluded(s.label || s.name));
+    if (dynamicSports.length !== beforeExcl) console.log(`   ⤫  Dropped ${beforeExcl - dynamicSports.length} excluded sport(s) per editorial-config`);
+
     // Final dedup safety net: drop any image that still matches the previous issue
     // (research already avoids them, but never publish a repeat — render text-only).
     const prevSet = new Set(prevImageUrls);
@@ -538,6 +589,9 @@ async function main() {
     heroImage: (sectionStories?.heroImage && !sectionStories.heroImage.no_data)
       ? sectionStories.heroImage.url
       : null,
+    // Hero banner = the ranked #1 story (Fix 1's Lead), with a validated/relevant
+    // image or the brand fallback graphic — never the structured-feed marquee game.
+    heroOverride: buildHeroOverride(dynamicSports),
     copy,
     editor:  editorMeta,
     // Section retries / failures / editor hard-blocks from this run, persisted so

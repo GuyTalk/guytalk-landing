@@ -534,11 +534,13 @@ Return ONLY valid JSON on one line — no markdown:
       ? askJson('Dynamic sports',
           `For EACH sports story below, write three labeled beats in GuyTalk voice. Use ONLY the facts given — never invent a score, name, stat, or result that is not present. If a story's facts are thin, keep the beats short rather than inventing.
 
+NOVEL/RARE EVENT CONTEXT: if a story is clearly a first-ever, an unusual venue, or a debut format (e.g. "UFC Freedom 250" — the promotion's first card on the White House lawn), open "whatHappened" with ONE short context clause naming what makes it novel, then the result. Example: "UFC Freedom 250, the promotion's first-ever card on the White House lawn, saw Gaethje stop Topuria in the third." Keep it to one clause — not a paragraph — and only when the facts support it (never invent the novelty). For routine events, no context clause.
+
 Stories (in this exact order):
 ${dynSportsList}
 
 Return ONLY a valid JSON array — one object per story, in the SAME order, no markdown:
-[{"whatHappened":"One sentence. Specific. Named person or team and the real result from the facts.","whyItMatters":"One to two sentences. Why anyone should care — stakes, what it changes.","whatToBringUp":"One sentence a 28-year-old could actually say out loud at a bar or the office."}]`,
+[{"whatHappened":"One sentence (a novel/rare event may lead with one short context clause per the rule above). Specific. Named person or team and the real result from the facts.","whyItMatters":"One to two sentences. Why anyone should care — stakes, what it changes.","whatToBringUp":"One sentence a 28-year-old could actually say out loud at a bar or the office."}]`,
           Math.min(2200, 260 * dynSports.length + 200),
           { minFields: 1, section: 'sports' }
         )

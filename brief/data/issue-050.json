@@ -1,0 +1,1041 @@
+{
+  "num": 50,
+  "slug": "issue-050",
+  "date": "Monday, June 15, 2026",
+  "title": "Iran deal cuts oil prices. SpaceX raises $75 billion. World Cup starts today.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815762",
+      "name": "Colorado Rockies at Athletics Athletics",
+      "shortName": "COL @ ATH",
+      "date": "2026-06-14T19:05Z",
+      "venue": "Las Vegas Ballpark",
+      "venueCity": "Las Vegas, Nevada",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "9",
+        "winner": false
+      },
+      "away": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "23",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815755",
+      "name": "Seattle Mariners at Washington Nationals",
+      "shortName": "SEA @ WSH",
+      "date": "2026-06-14T17:35Z",
+      "venue": "Nationals Park",
+      "venueCity": "Washington, District of Columbia",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Washington Nationals",
+        "abbrev": "WSH",
+        "score": "10",
+        "winner": true
+      },
+      "away": {
+        "team": "Seattle Mariners",
+        "abbrev": "SEA",
+        "score": "1",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815753",
+      "name": "New York Yankees at Toronto Blue Jays",
+      "shortName": "NYY @ TOR",
+      "date": "2026-06-14T17:37Z",
+      "venue": "Rogers Centre",
+      "venueCity": "Toronto, Ontario",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Toronto Blue Jays",
+        "abbrev": "TOR",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Yankees",
+        "abbrev": "NYY",
+        "score": "8",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 755.91,
+      "prevClose": 741.75,
+      "dayChange": 14.16,
+      "dayChangePct": 1.909,
+      "weekChangePct": 2.223969853146375,
+      "spark": [
+        739.1699829101562,
+        738.6500244140625,
+        733.72998046875,
+        741.25,
+        742.719970703125,
+        745.6400146484375,
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        755.659912109375
+      ]
+    },
+    "DIA": {
+      "price": 520.23,
+      "prevClose": 513.06,
+      "dayChange": 7.17,
+      "dayChangePct": 1.3975,
+      "weekChangePct": 2.2322210717306064,
+      "spark": [
+        495.3699951171875,
+        497.010009765625,
+        493.9800109863281,
+        500.239990234375,
+        503.1099853515625,
+        506.1199951171875,
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        520.27001953125
+      ]
+    },
+    "QQQ": {
+      "price": 743.99,
+      "prevClose": 721.34,
+      "dayChange": 22.65,
+      "dayChangePct": 3.14,
+      "weekChangePct": 3.8529742055359057,
+      "spark": [
+        708.9299926757812,
+        705.8800048828125,
+        701.530029296875,
+        713.1500244140625,
+        714.510009765625,
+        717.5399780273438,
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        743.659912109375
+      ]
+    },
+    "IWM": {
+      "price": 295.83,
+      "prevClose": 292.95,
+      "dayChange": 2.88,
+      "dayChangePct": 0.9831,
+      "weekChangePct": 4.065332175546502,
+      "spark": [
+        277.6000061035156,
+        275.9700012207031,
+        273,
+        279.8699951171875,
+        282.489990234375,
+        285.1199951171875,
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        295.6600036621094
+      ]
+    },
+    "NVDA": {
+      "price": 212.23,
+      "prevClose": 205.19,
+      "dayChange": 7.04,
+      "dayChangePct": 3.431,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 410.08,
+      "prevClose": 406.43,
+      "dayChange": 3.65,
+      "dayChangePct": 0.8981,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 400.22,
+      "prevClose": 390.74,
+      "dayChange": 9.48,
+      "dayChangePct": 2.4262,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 296.99,
+      "prevClose": 291.13,
+      "dayChange": 5.86,
+      "dayChangePct": 2.0128,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 596.7,
+      "prevClose": 566.98,
+      "dayChange": 29.72,
+      "dayChangePct": 5.2418,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 245.99,
+      "prevClose": 238.55,
+      "dayChange": 7.44,
+      "dayChangePct": 3.1188,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 370.87,
+      "prevClose": 359.68,
+      "dayChange": 11.19,
+      "dayChangePct": 3.1111,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 550.25,
+      "prevClose": 511.57,
+      "dayChange": 38.68,
+      "dayChangePct": 7.561,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 392.63,
+      "prevClose": 382.07,
+      "dayChange": 10.56,
+      "dayChangePct": 2.7639,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 81.22,
+      "prevClose": 80.34,
+      "dayChange": 0.88,
+      "dayChangePct": 1.0953,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 321.36,
+      "prevClose": 320.72,
+      "dayChange": 0.64,
+      "dayChangePct": 0.1996,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 173.05,
+      "prevClose": 159.78,
+      "dayChange": 13.27,
+      "dayChangePct": 8.3052,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 410.54,
+      "prevClose": 395.57,
+      "dayChange": 14.97,
+      "dayChangePct": 3.7844,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": null,
+      "prevClose": null,
+      "dayChange": null,
+      "dayChangePct": null,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "COIN",
+      "AMD",
+      "META",
+      "DELL",
+      "NVDA"
+    ],
+    "10Y": {
+      "price": 4.459,
+      "prevClose": 4.486999988555908,
+      "dayChange": -0.027999988555908573,
+      "dayChangePct": -0.6240247075400609,
+      "weekChangePct": -2.0430589815713835,
+      "spark": [
+        4.59499979019165,
+        4.623000144958496,
+        4.666999816894531,
+        4.572000026702881,
+        4.585999965667725,
+        4.558000087738037,
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.459000110626221
+      ]
+    },
+    "__meta": {
+      "state": "open",
+      "tableTitle": "Markets open",
+      "tableSub": "as of 12:46 PM ET today",
+      "framing": "US stock markets are OPEN right now (intraday). Use present tense — \"is trading\", \"up/down on the day so far\". Do NOT say \"closed\"."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "XRP",
+          "name": "XRP USD",
+          "price": 1.2826,
+          "changePct": 12.05661
+        },
+        {
+          "symbol": "ETH",
+          "name": "Ethereum USD",
+          "price": 1842.97,
+          "changePct": 10.9461
+        },
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 172.63,
+          "changePct": 8.04231
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 550.0205,
+          "changePct": 7.51618
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "XOM",
+          "name": "Exxon Mobil Corporation",
+          "price": 141.795,
+          "changePct": -3.54738
+        },
+        {
+          "symbol": "CVX",
+          "name": "Chevron Corporation",
+          "price": 180.76,
+          "changePct": -3.45049
+        },
+        {
+          "symbol": "KO",
+          "name": "The Coca-Cola Company",
+          "price": 80.46,
+          "changePct": -2.61438
+        },
+        {
+          "symbol": "JNJ",
+          "name": "Johnson & Johnson",
+          "price": 236.56,
+          "changePct": -1.78935
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 128.43,
+          "changePct": 3.09866
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 212.001,
+          "changePct": 3.31936
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 409.235,
+          "changePct": 0.69016
+        },
+        {
+          "symbol": "ETH",
+          "name": "Ethereum USD",
+          "price": 1842.97,
+          "changePct": 10.9461
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "RBC Canadian Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-11T04:00Z",
+    "endDate": "2026-06-14T04:00Z",
+    "status": "Final",
+    "statusState": "post",
+    "leaders": [
+      {
+        "name": "Bud Cauley",
+        "score": "-17",
+        "pos": "1st"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-15",
+        "pos": "2nd"
+      },
+      {
+        "name": "Viktor Hovland",
+        "score": "-14",
+        "pos": "3rd"
+      },
+      {
+        "name": "Jimmy Stanger",
+        "score": "-13",
+        "pos": "4th"
+      },
+      {
+        "name": "Brice Garnett",
+        "score": "-13",
+        "pos": "5th"
+      },
+      {
+        "name": "Jesper Svensson",
+        "score": "-13",
+        "pos": "6th"
+      },
+      {
+        "name": "Jackson Suber",
+        "score": "-13",
+        "pos": "7th"
+      },
+      {
+        "name": "Aldrich Potgieter",
+        "score": "-12",
+        "pos": "8th"
+      },
+      {
+        "name": "Sudarshan Yellamaraju",
+        "score": "-12",
+        "pos": "9th"
+      },
+      {
+        "name": "Ryan Fox",
+        "score": "-12",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Terra Wortmann Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-13T04:00Z",
+        "endDate": "2026-06-22T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Terence Atmane",
+            "loser": "Martin Landaluce",
+            "score": "6-3 3-6 7-6"
+          },
+          {
+            "winner": "Felix Auger-Aliassime",
+            "loser": "Nuno Borges",
+            "score": "6-3 3-6 6-3"
+          },
+          {
+            "winner": "Frances Tiafoe",
+            "loser": "Flavio Cobolli",
+            "score": "6-2 7-6"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "VANDA Pharmaceuticals Berlin Tennis Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-13T04:00Z",
+        "endDate": "2026-06-22T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Nikola Bartunkova",
+            "loser": "Diana Shnaider",
+            "score": "6-2 6-7 6-3"
+          },
+          {
+            "winner": "Diane Parry",
+            "loser": "Anhelina Kalinina",
+            "score": "6-4 7-5"
+          },
+          {
+            "winner": "Rebeka Masarova",
+            "loser": "Mia Pohankova",
+            "score": "6-1 6-4"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Lenovo Austrian Grand Prix",
+    "shortName": "Lenovo Austrian Grand Prix",
+    "venue": "",
+    "status": "Upcoming",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 41
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 11
+  },
+  "worldCup": [
+    {
+      "name": "Cape Verde at Spain",
+      "shortName": "CPV @ ESP",
+      "status": "First Half",
+      "statusState": "in",
+      "date": "2026-06-15T16:00Z",
+      "home": {
+        "team": "Spain",
+        "score": "0"
+      },
+      "away": {
+        "team": "Cape Verde",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Egypt at Belgium",
+      "shortName": "EGY @ BEL",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-15T19:00Z",
+      "home": {
+        "team": "Belgium",
+        "score": "0"
+      },
+      "away": {
+        "team": "Egypt",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Uruguay at Saudi Arabia",
+      "shortName": "URU @ KSA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-15T22:00Z",
+      "home": {
+        "team": "Saudi Arabia",
+        "score": "0"
+      },
+      "away": {
+        "team": "Uruguay",
+        "score": "0"
+      }
+    },
+    {
+      "name": "New Zealand at Iran",
+      "shortName": "NZL @ IRN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-16T01:00Z",
+      "home": {
+        "team": "Iran",
+        "score": "0"
+      },
+      "away": {
+        "team": "New Zealand",
+        "score": "0"
+      }
+    }
+  ],
+  "nhl": {
+    "final": {
+      "id": "401874176",
+      "name": "Carolina Hurricanes at Vegas Golden Knights",
+      "shortName": "CAR @ VGK",
+      "date": "2026-06-15T00:00Z",
+      "venue": "T-Mobile Arena",
+      "venueCity": "Las Vegas, NV",
+      "status": "Final",
+      "statusState": "post",
+      "note": "Stanley Cup Final - Game 6",
+      "seriesNote": "CAR wins series 4-2",
+      "sport": "NHL",
+      "home": {
+        "team": "Vegas Golden Knights",
+        "abbrev": "VGK",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Carolina Hurricanes",
+        "abbrev": "CAR",
+        "score": "3",
+        "winner": true
+      }
+    },
+    "next": null
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Disclosure Day Box Office Opening, Masters of the Universe Suffers Huge Drop - Variety",
+      "url": "https://variety.com/2026/film/box-office/spielberg-disclosure-day-box-office-opening-masters-of-the-universe-huge-drop-obsession-shatters-expectations-1236780872/",
+      "description": "\"Disclosure Day,\" a sci-fi adventure from Steven Spielberg, opened to No. 1 at the domestic box office with $44 million from 3,824 theaters.",
+      "source": "Variety"
+    },
+    {
+      "title": "\"It's a Good Life\" for actor Bill Mumy - CBS News",
+      "url": "https://www.cbsnews.com/news/its-a-good-life-for-actor-bill-mumy-twilight-zone-lost-in-space/",
+      "description": "Now 72, the former child star of such classic TV series as \"The Twilight Zone\" and \"Lost in Space\" avoided the dangers that other young actors faced while pursuing a Hollywood career, as an Emmy-nominated songwriter, touring musician and recording artist.",
+      "source": "CBS News"
+    },
+    {
+      "title": "Taylor Swift Switches Up Her Signature Style With a Witchy Boho Look for Theater Date Night With Travis Kelce - instyle.com",
+      "url": "https://www.instyle.com/taylor-swift-witchy-boho-theater-date-travis-kelce-11997687",
+      "description": "Taylor Swift and fiancé Travis Kelce enjoyed a date night at 'Oh, Mary!' on Broadway. The singer wore a deep maroon velvet dress with stacked boho necklaces.",
+      "source": "InStyle"
+    },
+    {
+      "title": "‘I Want To Say Something to the Swifties’ — Jalen Brunson Has a Message for Taylor Swift Fans After Recent Knicks Drama - Yahoo Sports",
+      "url": "https://www.profootballnetwork.com/nba/jalen-brunson-taylor-swift-monica-mcnutt-june-2026/?utm_medium=rss&amp;utm_source=nordot",
+      "description": "The New York Knicks are NBA champions for the first time since 1973, overcoming another deficit to defeat the San Antonio Spurs 94-90 in Game 5 at the Frost ...",
+      "source": "Pro Football Network"
+    },
+    {
+      "title": "Milania Giudice Responds to Arrest News With Cryptic Posts - okmagazine.com",
+      "url": "https://okmagazine.com/p/milania-giudice-responds-arrest-news-cryptic-instagram-posts/",
+      "description": "Milania Giudice shared cryptic posts after news surfaced that she was arrested due to simple assault.",
+      "source": "OK!"
+    },
+    {
+      "title": "Mayhem mars euphoria as New York City celebrates the Knicks' first championship in 53 years - Yahoo Sports",
+      "url": "https://sports.yahoo.com/articles/us-knicks-fans-champs-064849120.html",
+      "description": "It was bedlam on Broadway as the New York Knicks won their first NBA championship in 53 years on Saturday night, with exuberant celebrations marred by mayhem...",
+      "source": "Yahoo Entertainment"
+    },
+    {
+      "title": "F1 Barcelona GP: Lewis Hamilton takes maiden Ferrari win as Kimi Antonelli retires late - Motorsport.com",
+      "url": "https://www.motorsport.com/f1/news/f1-barcelona-gp-race-report/10830256/",
+      "description": "The seven-time world champion finally took his maiden win for Ferrari on the day Antonelli retired late on",
+      "source": "Motorsport.com"
+    },
+    {
+      "title": "A king with 3 teams - Politico",
+      "url": "https://www.politico.com/live-updates/2026/06/14/world-cup-2026/netherlands-curacao-Argentina -00961574",
+      "description": "Willem-Alexander of the Netherlands has an official obligation to root for two World Cup competitors, and a soft spot for a third.",
+      "source": "Politico"
+    },
+    {
+      "title": "Jalen Brunson's $113M Pay Cut Praised by Mike Brown After Knicks Win 1st NBA Title in 53 Years - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25440340-jalen-brunsons-113m-pay-cut-praised-mike-brown-after-knicks-win-1st-nba-title-53-years",
+      "description": "Jalen Brunson's decision to take a $113 million pay cut with the New York Knicks helped clear the way for the team to become champions for the first time since 1973, and head coach Mike Brown had nothing but positive things to say about the guard after the te…",
+      "source": "Bleacher Report"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Markets",
+      "headline": "Wall Street rips, oil cracks below $81 as U.S. and Iran reach peace framework",
+      "whatHappened": "After the U.S. and Iran announced a peace framework Sunday night that calls for a permanent ceasefire and the reopening of the Strait of Hormuz, the S&P 500 gained 1.49%, the Dow rose 1.20% and the Nasdaq surged 2.38% on Monday, June 15; crude oil fell about 5.5% to roughly $80 a barrel, now down 23% over the past month.",
+      "whyItMatters": "This is the single event moving stocks, bonds, gas prices and global risk appetite today — cheaper oil eases inflation pressure right before the Fed's June 16-17 meeting, and a reopened Hormuz unclogs roughly a fifth of the world's seaborne oil.",
+      "depth": "Index impact is broad rather than a single name: the rally was led by rate-sensitive tech (Nasdaq +2.38%) while energy lagged as crude sank, and Japan's Nikkei jumped to a record overnight — a classic 'geopolitical relief' rotation out of oil and into growth. A regular person participates mainly through broad exposure (S&P 500 / total-market index funds and ETFs) rather than any one stock, and lower crude tends to show up at the gas pump within weeks; the Fed meeting Wed. is the next swing factor with no rate change expected. Historically these oil-shock resolutions resolve bullishly: after the 1990-91 Gulf War, oil had spiked ~135% and the S&P fell 16-18%, then rebounded roughly 26-29% in 1991 once the conflict ended and crude collapsed, and the 2003 Iraq invasion saw a similar 'buy the resolution' rebound — though the deal isn't formally signed until June 19 in Switzerland, leaving headline risk.",
+      "whatToSay": "My take: the market already 'signed' this deal before the diplomats did — the real tell was oil falling 20% in a month, not the press conference.",
+      "sources": [
+        "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-15-2026",
+        "https://tradingeconomics.com/commodity/crude-oil",
+        "https://www.aljazeera.com/economy/2026/6/15/stock-markets-soar-oil-falls-as-us-iran-confirm-deal-to-end-war",
+        "https://247wallst.com/investing/2026/03/09/wall-street-is-pointing-to-the-1990-gulf-war-playbook-and-the-signal-is-unmistakable/"
+      ],
+      "isLead": true
+    },
+    {
+      "category": "Business",
+      "headline": "SpaceX pulls off the biggest IPO ever, raising $75 billion",
+      "whatHappened": "SpaceX priced its IPO at $135 a share on Thursday, June 11, selling about 555.6 million shares to raise $75 billion — the largest initial public offering on record — at a valuation near $1.77 trillion.",
+      "whyItMatters": "It instantly makes SpaceX one of the most valuable U.S. companies, larger than Tesla (~$1.6T), and turns the rocket-and-Starlink business into a stock regular investors can finally own.",
+      "depth": "",
+      "whatToSay": "Honestly, a $75 billion raise for a company that lands its own rockets makes every other 2026 IPO look like a lemonade stand.",
+      "sources": [
+        "https://www.npr.org/2026/06/11/nx-s1-5853199/spacex-ipo-price-elon-musk",
+        "https://www.cnbc.com/2026/06/03/spacex-ipo-stock-price-roadshow-musk.html"
+      ],
+      "isLead": false
+    },
+    {
+      "category": "Tech",
+      "headline": "Apple finally ships its AI Siri — running on Google's Gemini",
+      "whatHappened": "At WWDC on June 8, Apple unveiled a rebuilt 'Siri AI' powered by Apple Intelligence with Google Gemini under the hood, promising a more conversational, app-aware assistant in a standalone app, though Apple said it won't launch in Europe or China due to regulatory hurdles.",
+      "whyItMatters": "It's Apple's long-delayed attempt to catch up in the AI race, and leaning on Google's Gemini signals even the world's biggest company couldn't go it alone on frontier AI.",
+      "depth": "",
+      "whatToSay": "Wild that the most powerful company on earth basically admitted it had to rent Google's brain to make Siri usable.",
+      "sources": [
+        "https://techcrunch.com/2026/06/09/wwdc-2026-everything-announced-on-siri-ai-os-27-apple-intelligence-and-more/",
+        "https://www.cnbc.com/2026/06/08/apple-wwdc-2026-live-updates.html"
+      ],
+      "isLead": false
+    },
+    {
+      "category": "World",
+      "headline": "Russia hammers Kyiv overnight, setting the 1,000-year-old Pechersk Lavra ablaze",
+      "whatHappened": "A large-scale Russian missile and drone attack on June 15 killed at least five people and injured dozens in Kyiv and sparked a fire at the Dormition Cathedral of the Kyiv Pechersk Lavra, one of Ukraine's most significant religious landmarks, with a separate strike in Kharkiv killing five more, including emergency responders.",
+      "whyItMatters": "Even as the Middle East cools, Russia is escalating in Ukraine — and the attack landed as G7 leaders gathered in Évian, France, with the war topping the agenda.",
+      "depth": "",
+      "whatToSay": "Everyone's watching Iran, but Russia just torched a thousand-year-old cathedral the same morning the G7 sat down to talk about it.",
+      "sources": [
+        "https://kyivindependent.com/russian-attack-june-14-2026/",
+        "https://www.npr.org/sections/news",
+        "https://www.france24.com/en/europe/20260615-trump-to"
+      ],
+      "isLead": false
+    },
+    {
+      "category": "Culture",
+      "headline": "World Cup kicks off on U.S. soil and the USMNT comes out swinging",
+      "whatHappened": "The 2026 FIFA World Cup — hosted across the U.S., Canada and Mexico — is underway, and the U.S. men's team opened with a 4-1 rout of Paraguay at SoFi Stadium, with Christian Pulisic setting up early goals and Folarin Balogun starring before Pulisic was subbed at halftime as a precaution.",
+      "whyItMatters": "It's the biggest sporting event on the planet, played in American backyards for the first time in 32 years, and a dream start for a host nation that badly needed one.",
+      "depth": "",
+      "whatToSay": "A 4-1 opener with Pulisic pulling strings — for once being the host might actually mean something for the USMNT.",
+      "sources": [
+        "https://www.cbsnews.com/news/u-s-cruises-past-paraguay-in-world-cup-opener/",
+        "https://www.espn.com/soccer/story/_/id/49045878/usa-paraguay-2026-world-cup-balogun-pulisic-reyna"
+      ],
+      "isLead": false
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Justin Gaethje upsets Ilia Topuria via 4th-round TKO to claim UFC lightweight title at historic White House card",
+        "source": "ESPN",
+        "url": "https://www.espn.com/mma/story/_/id/49015148/ufc-white-house-freedom-250-live-results-analysis-ilia-topuria-justin-gaethje-alex-pereira-ciryl-gane",
+        "fact": "Justin Gaethje defeated previously undefeated champion Ilia Topuria by fourth-round TKO (corner stoppage) in the main event of UFC Freedom 250 on the White House South Lawn on June 14, 2026 — the first UFC card ever held at the White House, with all seven bouts ending in knockouts.",
+        "no_data": false
+      },
+      {
+        "headline": "'Love Island USA' Executive Producer James Barker Dies During Fiji Filming",
+        "source": "TMZ",
+        "url": "https://www.tmz.com/",
+        "fact": "Executive Producer James Barker passed away in Fiji after an unexpected medical emergency; ITV America and Peacock will honor him in Tuesday's episode of Love Island USA.",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/91/New_York_Stock_Exchange%2C_Manhattan%2C_New_York_%287236984682%29.jpg",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "NBA Finals",
+      "label": "NBA Finals",
+      "category": "team",
+      "headline": "Knicks win 2026 NBA Finals 4-1 over Spurs for first title since 1973",
+      "facts": "The New York Knicks beat the San Antonio Spurs 4-1 to win their first NBA championship since 1973.",
+      "source": "NBA.com",
+      "url": "https://www.nba.com/",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Jalen_Brunson_%28cropped%29.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "importance": 113,
+      "tier": 1,
+      "whatHappened": "The New York Knicks beat the San Antonio Spurs 4-1 to win the 2026 NBA Finals, capturing their first championship since 1973.",
+      "whyItMatters": "New York ends a 53-year drought and silences every voice that said the Knicks couldn't close out a Finals. This changes how the city talks about basketball for the next decade.",
+      "whatToBringUp": "The Knicks finally did it — and it only took them longer than the Spurs took to win five rings."
+    },
+    {
+      "name": "Stanley Cup Final",
+      "label": "Stanley Cup Final",
+      "category": "team",
+      "headline": "Hurricanes blank Golden Knights 3-0 in Game 6 to win 2026 Stanley Cup",
+      "facts": "Carolina won Game 6 by a 3-0 shutout (goalie Brandon Bussi) to clinch their first Stanley Cup since 2006, beating Vegas in six games.",
+      "source": "CBS Sports",
+      "url": "https://www.cbssports.com/nhl/news/2026-stanley-cup-final-game-6-live-updates-score-highlights/live/",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/PNC_Arena_Raleigh.JPG",
+      "videoUrl": null,
+      "isLead": false,
+      "importance": 108,
+      "tier": 1,
+      "whatHappened": "The Carolina Hurricanes shut out the Vegas Golden Knights 3-0 in Game 6 with Brandon Bussi in net to win the 2026 Stanley Cup in six games, their first title since 2006.",
+      "whyItMatters": "Vegas built a team to compete every year and never got back to the Finals after their debut run, while Carolina broke a 20-year title drought with a goalie who showed up when it mattered most.",
+      "whatToBringUp": "Brandon Bussi just got his name on the Cup in the biggest game of his life — that's the kind of playoff story no money can buy."
+    },
+    {
+      "name": "ATP Tour",
+      "label": "ATP Tour",
+      "category": "individual",
+      "headline": "Majchrzak stuns de Minaur for maiden ATP title in 's-Hertogenbosch, cracks Top 50",
+      "facts": "Kamil Majchrzak beat second seed Alex de Minaur 6-3, 2-6, 7-6(5) at the Libema Open for his first ATP Tour title, after also defeating top seed Felix Auger-Aliassime and Daniil Medvedev en route.",
+      "source": "ATP Tour",
+      "url": "https://www.atptour.com/en/news/de-minaur-majchrzak-shertogenbosch-2026-final-report",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Majchrzak_RG21_(2)_(51376823294).jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "importance": 108,
+      "tier": 1,
+      "whatHappened": "Kamil Majchrzak beat second seed Alex de Minaur 6-3, 2-6, 7-6(5) at the Libema Open in 's-Hertogenbosch to win his first ATP Tour title, after also defeating top seed Felix Auger-Aliassime and Daniil Medvedev en route.",
+      "whyItMatters": "Majchrzak didn't just win a tournament — he ran through top-10 names to do it, which means he's broken through a mental barrier that kept him stuck below the top 50 until now.",
+      "whatToBringUp": "A guy nobody had ranked in the top 50 just beat Medvedev and Auger-Aliassime in the same week — that's a coming-out party."
+    },
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "FIFA World Cup 2026",
+      "category": "team",
+      "headline": "Sweden cruise past Tunisia 5-1 in World Cup Group F opener",
+      "facts": "Alexander Isak scored one goal and added two assists as Sweden beat Tunisia 5-1 in Monterrey, with Yasin Ayari netting a brace and Viktor Gyökeres adding a goal and an assist.",
+      "source": "SBS News",
+      "url": "https://www.sbs.com.au/news/article/fifa-world-cup-2026-results-june-15/ocls1mcso",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/21/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "importance": 30,
+      "tier": 3,
+      "whatHappened": "Sweden crushed Tunisia 5-1 in Monterrey in their Group F opener at the 2026 World Cup, with Alexander Isak scoring once and adding two assists, Yasin Ayari netting a brace, and Viktor Gyökeres adding a goal and an assist.",
+      "whyItMatters": "Sweden showed they can score at will in group play, which means other teams in that bracket are already thinking about the knockout round without them.",
+      "whatToBringUp": "Sweden dropped five on Tunisia in the opener — that's the kind of statement that makes people respect you on the draw sheet."
+    }
+  ],
+  "heroImage": "https://upload.wikimedia.org/wikipedia/commons/9/91/New_York_Stock_Exchange%2C_Manhattan%2C_New_York_%287236984682%29.jpg",
+  "heroOverride": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Jalen_Brunson_%28cropped%29.jpg",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "Knicks win 2026 NBA Finals 4-1 over Spurs for first title since 1973",
+    "sub": "NBA Finals"
+  },
+  "copy": {
+    "title": "Iran deal cuts oil prices. SpaceX raises $75 billion. World Cup starts today.",
+    "keyTakeaway": "The U.S.-Iran peace framework sent Wall Street ripping, crude oil below $81, and the Nasdaq up 2.38% — all before the deal is even formally signed. Meanwhile the World Cup opened on American soil with a 4-1 USMNT statement win, the Hurricanes closed out Vegas for the Stanley Cup, and Gaethje shocked the world at the White House. A lot happened today.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "U.S.-Iran peace framework sends Wall Street surging and oil crashing",
+      "whatHappened": "After the U.S. and Iran announced a peace framework Sunday night — including a permanent ceasefire and the reopening of the Strait of Hormuz — the S&P 500 gained 1.49%, the Dow rose 1.20%, and the Nasdaq surged 2.38% on Monday. Crude oil fell roughly 5.5% to about $80 a barrel, now down 23% over the past month.",
+      "whyBullet1": "A reopened Strait of Hormuz uncorks roughly a fifth of the world's seaborne oil supply. Cheaper crude eases inflation pressure right before the Fed's June 16-17 meeting, which is why rate-sensitive tech led the rally while energy lagged.",
+      "whyBullet2": "History says buy the resolution: after the Gulf War ended in 1991, the S&P rebounded roughly 26-29% once crude collapsed, and 2003 saw a similar pattern. The deal isn't formally signed until June 19 in Switzerland, so headline risk is still live.",
+      "whatToSay": "The market already signed this deal before the diplomats did — the real tell was oil falling 23% in a month, not the press conference."
+    },
+    "sportsOther": [
+      {
+        "take": "Rockies demolished Oakland 23-9. That is not a baseball game, that is a mercy killing.",
+        "why": "Colorado's offense went nuclear — you do not score 23 runs unless something completely broke on the other side. For the Athletics, a rebuilding franchise still finding its footing in Sacramento, this kind of blowout is a painful signal of just how far the roster has to go.",
+        "say": "The Rockies put up 23 on Oakland. At some point you have to wonder if the A's are tanking on purpose or just genuinely that bad right now."
+      },
+      {
+        "take": "Nationals shut out Seattle 10-1. The Mariners showed up and immediately regretted it.",
+        "why": "One run in a full game means Washington's pitching was untouchable and Seattle could not generate anything meaningful. That is the kind of loss that lingers — it is not just a bad day, it is a statement from a team that was not supposed to be making statements.",
+        "say": "Nationals blanked the Mariners 10-1. Seattle basically forfeited after the second inning."
+      },
+      {
+        "take": "Yankees beat Toronto 8-3 on the road. New York's offense did exactly what it is supposed to do in a division game.",
+        "why": "Eight runs against a division rival in enemy territory is a statement. Toronto cannot keep pace with New York right now, and road wins in the AL East in June matter when you are building separation.",
+        "say": "Yankees went into Toronto and just took it. That is the kind of win that matters in July when teams are jockeying for position."
+      }
+    ],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Wall Street rips as U.S. and Iran seal peace framework—oil crashes below $81",
+          "sub": "After Sunday's ceasefire announcement and Strait of Hormuz reopening deal, the S&P 500 jumped 1.49%, the Nasdaq surged 2.38%, and crude collapsed 5.5% to roughly $80 a barrel, now down 23% in a month. This is a textbook geopolitical relief trade: tech and growth stocks rally on lower rates and risk-off energy, while oil-dependent sectors lag. Historically these resolutions resolve bullishly—after the 1991 Gulf War, the S&P rebounded 26-29% once crude tanked—though the formal signing isn't until June 19 in Switzerland, leaving headline risk live."
+        },
+        {
+          "head": "Semiconductor and AI names lead the charge—AMD +7.6%, NVDA +3.4%, COIN +8.3%",
+          "sub": "Rate-sensitive tech led the rally as the 10-year yield fell 6 basis points; the Nasdaq outpaced the broader market and small caps (IWM) climbed 1.0% intraday."
+        },
+        {
+          "head": "Fed meets Wednesday with no rate change expected—next real swing factor after the Iran deal",
+          "sub": "Treasury yields are down 2.0% on the week, signaling market pricing for eventual cuts, but Powell's messaging will matter more than the hold itself."
+        }
+      ],
+      "mood": "Wall Street erupted on the U.S.-Iran peace framework and a 5.5% crash in crude oil. The Nasdaq surged 2.38%, the S&P gained 1.49%, and the broad rally was led by rate-sensitive tech as geopolitical risk unwound. AMD closed up 7.6%, META up 5.2%, and COIN up 8.3% on the day.",
+      "whyBullet1": "Crude falling to roughly $80 — down 23% over the past month — signals lower gas prices at the pump within weeks and reduced inflation pressure heading into the Fed's June 16-17 meeting. No rate change is expected, but a calmer oil picture gives the Fed more room to maneuver later in the year.",
+      "whyBullet2": "The formal signing is set for June 19 in Switzerland, meaning the deal is not locked yet. Any headline that disrupts that timeline is a live swing factor for markets this week.",
+      "bringUp": "Oil is down 23% in a month and the Nasdaq is up 2.38% today alone — markets have learned to buy the resolution, not fear the conflict. The Fed meeting Wednesday is the next real test."
+    },
+    "golf": {
+      "headline": "Bud Cauley wins the RBC Canadian Open at 17-under",
+      "whyCare1": "The Canadian Open is one of the oldest events on the PGA Tour and a genuine proving ground. Cauley finished at 17-under, two clear of Matt Fitzpatrick at 15-under and Viktor Hovland at 14-under — a clean win over a quality leaderboard.",
+      "whyCare2": "Cauley is not a household name yet, but finishing ahead of Fitzpatrick and Hovland — two players with major and Ryder Cup pedigree — is the kind of result that changes how the tour looks at you.",
+      "watchFor": "Whether Cauley can sustain this form heading into the summer stretch. Beating Fitzpatrick and Hovland in the same week is not a fluke — it is a résumé line.",
+      "whatToSay": "Bud Cauley just beat Fitzpatrick and Hovland by two and three shots. That is not a lucky Sunday — that is a guy announcing himself."
+    },
+    "f1": null,
+    "culture": [
+      {
+        "topic": "Gaethje stuns Topuria at the White House UFC card",
+        "whatHappened": "Justin Gaethje knocked out previously undefeated champion Ilia Topuria via fourth-round TKO at UFC Freedom 250 on the White House South Lawn on June 14, claiming the lightweight title. It was the first UFC event ever held at the White House, and every single one of the seven bouts on the card ended in a knockout.",
+        "whyItMatters": "Topuria was the one guy everyone said could not be beaten — undefeated, technically elite, and a heavy favorite. Gaethje took him out in the fourth at 1600 Pennsylvania Avenue, on a card where nobody went the distance. Combat sports have officially crossed into the highest seats of American culture.",
+        "whatToSay": "Gaethje just took out the one guy everyone said was unbeatable, and he did it on the White House lawn. That card was absolutely unhinged — seven fights, seven knockouts.",
+        "tag": "Sports Biz"
+      },
+      {
+        "topic": "World Cup 2026 opens on U.S. soil with a USMNT statement",
+        "whatHappened": "The 2026 FIFA World Cup — hosted across the U.S., Canada, and Mexico — is underway. The U.S. men's team opened with a 4-1 rout of Paraguay at SoFi Stadium, with Christian Pulisic setting up early goals and Folarin Balogun starring before Pulisic was subbed at halftime as a precaution.",
+        "whyItMatters": "This is the biggest sporting event on the planet, played in American backyards for the first time in 32 years. A 4-1 opener is exactly the dream start a host nation needs — and Pulisic pulling strings before being rested suggests the U.S. is managing this run carefully.",
+        "whatToSay": "A 4-1 opener with Pulisic pulling strings and Balogun starring — for once being the host might actually mean something for the USMNT.",
+        "tag": "Sports Biz"
+      },
+      {
+        "topic": "Ripley — the show worth watching this week",
+        "whatHappened": "Eight episodes shot entirely in black and white across Italy, following a con man working his way through 1960s Europe.",
+        "whyItMatters": "Ripley is a slow-burn psychological thriller that looks like a classic film noir but plays like modern prestige TV. It is the kind of show where everyone in the room actually puts their phone down.",
+        "whatToSay": "If you want to feel like you are watching a genuine classic film but it came out last year, Ripley is the one.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Tech ran hard today — QQQ up 3.1%, AMD up 7.6%, META up 5.2% — and the honest reason is geopolitical relief, not an earnings surprise. The Iran deal removed a ceiling on growth stocks that had been sitting there for months. The Fed meeting Wednesday is the next real test. If Powell sounds cautious, some of today's move gives back fast.",
+    "glance": {
+      "sports": "Hurricanes win the Stanley Cup with a 3-0 shutout in Game 6. Rockies demolished the Athletics 23-9. Yankees beat Toronto 8-3 on the road.",
+      "markets": "Wall Street surged on the U.S.-Iran peace framework as oil fell 5.5% to roughly $80 a barrel. Nasdaq up 2.38%, AMD up 7.6%, META up 5.2%.",
+      "culture": "World Cup 2026 opens on U.S. soil with the USMNT routing Paraguay 4-1. Gaethje shocks Topuria at the White House UFC card."
+    },
+    "theTake": {
+      "office": "Tech's on a tear — QQQ up 3.9% this week, AMD and META leading — and the driver is an Iran peace deal, not earnings. The market bought the resolution before the ink dried.",
+      "bar": "Cauley wins at 17-under and finishes two ahead of Fitzpatrick and three ahead of Hovland. That leaderboard is not soft — Cauley is a legitimate tour threat right now, not a one-week wonder."
+    },
+    "nhl": {
+      "headline": "Hurricanes shut out Vegas 3-0 in Game 6 to win the Stanley Cup",
+      "whyCare1": "Carolina won their first Stanley Cup since 2006, closing it out with a 3-0 shutout on the road at T-Mobile Arena. The Hurricanes took the series 4-2, finishing it in Vegas — not an easy place to close anything out.",
+      "whyCare2": "This was not a dominant wire-to-wire run. Carolina survived a series that had real tension, and winning it on the road in Game 6 with a shutout is exactly the kind of finish that gets remembered.",
+      "watchFor": "Whether Carolina's core stays together this offseason or management decides to shake things up after nearly letting a winnable series slip away.",
+      "whatToSay": "Hurricanes won the Cup with a shutout in Vegas. First one since 2006 — and they had to earn every game of it."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "The New York Knicks beat the San Antonio Spurs 4-1 to win the 2026 NBA Finals, capturing their first championship since 1973.",
+        "whyItMatters": "New York ends a 53-year drought and silences every voice that said the Knicks couldn't close out a Finals. This changes how the city talks about basketball for the next decade.",
+        "whatToBringUp": "The Knicks finally did it — and it only took them longer than the Spurs took to win five rings."
+      },
+      {
+        "whatHappened": "The Carolina Hurricanes shut out the Vegas Golden Knights 3-0 in Game 6 with Brandon Bussi in net to win the 2026 Stanley Cup in six games, their first title since 2006.",
+        "whyItMatters": "Vegas built a team to compete every year and never got back to the Finals after their debut run, while Carolina broke a 20-year title drought with a goalie who showed up when it mattered most.",
+        "whatToBringUp": "Brandon Bussi just got his name on the Cup in the biggest game of his life — that's the kind of playoff story no money can buy."
+      },
+      {
+        "whatHappened": "Kamil Majchrzak beat second seed Alex de Minaur 6-3, 2-6, 7-6(5) at the Libema Open in 's-Hertogenbosch to win his first ATP Tour title, after also defeating top seed Felix Auger-Aliassime and Daniil Medvedev en route.",
+        "whyItMatters": "Majchrzak didn't just win a tournament — he ran through top-10 names to do it, which means he's broken through a mental barrier that kept him stuck below the top 50 until now.",
+        "whatToBringUp": "A guy nobody had ranked in the top 50 just beat Medvedev and Auger-Aliassime in the same week — that's a coming-out party."
+      },
+      {
+        "whatHappened": "Sweden crushed Tunisia 5-1 in Monterrey in their Group F opener at the 2026 World Cup, with Alexander Isak scoring once and adding two assists, Yasin Ayari netting a brace, and Viktor Gyökeres adding a goal and an assist.",
+        "whyItMatters": "Sweden showed they can score at will in group play, which means other teams in that bracket are already thinking about the knockout round without them.",
+        "whatToBringUp": "Sweden dropped five on Tunisia in the opener — that's the kind of statement that makes people respect you on the draw sheet."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-15T17:04:42.062Z",
+    "blocking": [],
+    "changed": [
+      "title",
+      "keyTakeaway",
+      "lead",
+      "markets",
+      "golf",
+      "nhl",
+      "sportsOther",
+      "culture[0] (Gaethje — sharpened)",
+      "culture[1] (replaced Eras Tour with World Cup — sourced)",
+      "culture[2] (Ripley — sharpened)",
+      "finalSharpTake",
+      "theTake.bar",
+      "theTake.office",
+      "glance"
+    ],
+    "notes": [
+      "The Eras Tour item in culture[1] was blocked and replaced with the World Cup USMNT opener, which is sourced in RAW FACTS and TODAY'S BIGGEST STORIES. The tour revenue figures ($2B, 170+ shows) do not appear in any provided RAW FACTS and could not be verified — including them would violate the no-invented-facts rule.",
+      "The lead was correctly reassigned from the Rockies blowout to the Iran peace framework / market rally, which is the ★ story of the day per editorial rules.",
+      "theTake.bar was rewritten from a generic Colorado take to a specific, debatable claim about Cauley's Canadian Open win over a named quality leaderboard.",
+      "All markets language kept observational — no buy/sell/hold or advice language present in final copy.",
+      "F1 section remains null as the Austrian GP is upcoming and the draft passed it as null; the Barcelona GP result (Hamilton win, Antonelli retirement) appears in TRENDING HEADLINES but not in RAW FACTS with sufficient detail to build a compliant section.",
+      "SpaceX IPO story from TODAY'S BIGGEST STORIES was not given a dedicated section in the draft structure — noted for future brief consideration but not added since the draft structure did not include a Business section slot.",
+      "[auto] Cleared stale culture[1] \"Eras Tour\" block — that item was already replaced with the sourced World Cup story; the block referenced removed content."
+    ],
+    "brokenLinks": []
+  },
+  "generationWarnings": [
+    {
+      "section": "f1",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    }
+  ]
+}

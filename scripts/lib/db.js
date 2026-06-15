@@ -376,7 +376,11 @@ const RECS = [
   {
     title: 'Birdies Whisky 12-year — the single malt that earns a question at dinner.',
     body: `Scottish distillery founded in 2012, makes one expression, sells for $68 at Total Wine. The point isn't that it's exceptional — it's that it's the most credible answer to "what are you drinking?" at a price that doesn't feel performative. Pour it neat, let someone ask about it, say "Scottish distillery from 2012, they only do one." That's the whole conversation and it works. The honest flaw: it's good, not great. If you want great, buy Glenfarclas 15 at $75. If you want a bottle that prompts a conversation, buy Birdies.`,
-    url: 'https://www.totalwine.com',
+    // Total Wine search URL that lands on the product results, not the bare
+    // homepage. imageUrl stays null — no reliable, validated bottle shot to use,
+    // and per the brief's image rules we never fake one (the card renders with
+    // the brand placeholder instead of a dead link).
+    url: 'https://www.totalwine.com/search/all?text=Birdies%20whisky',
     cta: 'Find It at Total Wine →',
     brand: 'Birdies',
     imageUrl: null,

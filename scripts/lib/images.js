@@ -1,0 +1,135 @@
+'use strict';
+
+/**
+ * Image resolution + validation for the brief pipeline.
+ *
+ * The research layer (research.js) asks a model for "a real image URL." Left
+ * alone, it cheerfully returns things that are NOT images:
+ *   - Wikimedia file-DESCRIPTION pages:  …/wiki/File:Foo.jpg   (an HTML page)
+ *   - ESPN/article pages:                …/nba/recap/_/gameId/… (an HTML page)
+ * These render as broken <img>s. This module:
+ *   1. RESOLVES known sources to a direct image URL where possible
+ *      (Wikimedia File: → Special:FilePath; article page → its og:image).
+ *   2. VALIDATES the result actually is an image (extension OR an image/*
+ *      Content-Type on a HEAD/GET), dropping anything that isn't.
+ *
+ * Fail-closed for images (a bad image is worse than none): if we can't confirm
+ * a URL is a real image, resolveAndValidate() returns null and the caller ships
+ * the card/hero with no image rather than a dead link.
+ */
+
+const IMAGE_EXT_RE = /\.(jpe?g|png|webp|gif|avif)(?:[?#].*)?$/i;
+
+const BROWSER_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+  'Accept': 'image/avif,image/webp,image/png,image/*,text/html;q=0.8,*/*;q=0.5',
+};
+
+function withTimeout(ms) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), ms);
+  return { signal: ctrl.signal, done: () => clearTimeout(timer) };
+}
+
+// Wikimedia "wiki/File:Name.jpg" (or /wiki/Special:FilePath, or a Commons
+// /wiki/File: link) → the canonical direct file URL via Special:FilePath, which
+// 302s to the real upload.wikimedia.org binary. Returns null if it isn't one.
+function resolveWikimedia(url) {
+  try {
+    const u = new URL(url);
+    if (!/(^|\.)wikimedia\.org$|(^|\.)wikipedia\.org$/i.test(u.hostname)) return null;
+    // Already a direct upload binary — leave it.
+    if (/^upload\./i.test(u.hostname)) return null;
+    const m = u.pathname.match(/\/wiki\/(?:Special:FilePath\/|File:)(.+)$/i);
+    if (!m) return null;
+    const file = decodeURIComponent(m[1]).replace(/^File:/i, '');
+    return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}`;
+  } catch { return null; }
+}
+
+// Pull an og:image / twitter:image out of an article/landing page's HTML.
+// Used for ESPN/news URLs that point at a story, not a photo. Returns a URL or null.
+async function extractOgImage(url) {
+  const t = withTimeout(6000);
+  try {
+    const res = await fetch(url, { redirect: 'follow', signal: t.signal, headers: { ...BROWSER_HEADERS, Accept: 'text/html,*/*' } });
+    if (!res.ok) return null;
+    const ct = res.headers.get('content-type') || '';
+    if (!/text\/html/i.test(ct)) return null;
+    const html = (await res.text()).slice(0, 200000); // head is plenty; cap memory
+    const metas = [
+      /<meta[^>]+property=["']og:image(?::secure_url)?["'][^>]+content=["']([^"']+)["']/i,
+      /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i,
+      /<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i,
+    ];
+    for (const re of metas) {
+      const m = html.match(re);
+      if (m && m[1]) {
+        try { return new URL(m[1], url).toString(); } catch { /* skip */ }
+      }
+    }
+    return null;
+  } catch { return null; }
+  finally { t.done(); }
+}
+
+// HEAD (then GET) probe — true only if the response is actually an image.
+async function isLiveImage(url) {
+  const probe = async (method) => {
+    const t = withTimeout(6000);
+    try {
+      const res = await fetch(url, { method, redirect: 'follow', signal: t.signal, headers: BROWSER_HEADERS });
+      const ct = (res.headers.get('content-type') || '').toLowerCase();
+      return { ok: res.ok, status: res.status, isImg: ct.startsWith('image/'), hasCt: !!ct };
+    } catch { return null; }
+    finally { t.done(); }
+  };
+  let r = await probe('HEAD');
+  // Many CDNs reject/blank HEAD — confirm with a GET before judging.
+  if (!r || !r.ok || (!r.isImg && !r.hasCt) || [403, 405, 501].includes(r.status)) {
+    const g = await probe('GET');
+    if (g) r = g;
+  }
+  return !!(r && r.ok && r.isImg);
+}
+
+/**
+ * Resolve a candidate image URL to a direct, validated image — or null.
+ *
+ * @param {string} url
+ * @param {object} [opts]
+ * @param {boolean} [opts.allowArticleOgImage=true] follow article pages to their og:image
+ * @returns {Promise<string|null>} a confirmed image URL, or null to drop it
+ */
+async function resolveAndValidate(url, { allowArticleOgImage = true } = {}) {
+  if (!url || typeof url !== 'string') return null;
+  let candidate = url.trim();
+  if (!/^https?:\/\//i.test(candidate)) return null;
+
+  // 1) Known-source resolution.
+  const wiki = resolveWikimedia(candidate);
+  if (wiki) candidate = wiki;
+
+  // 2) If it already looks/serves like an image, validate and accept.
+  if (IMAGE_EXT_RE.test(candidate) || wiki) {
+    if (await isLiveImage(candidate)) return candidate;
+    // Wikimedia FilePath that didn't validate (rare) — give up on it.
+    if (wiki) return null;
+  } else if (await isLiveImage(candidate)) {
+    // No image extension but the server says image/* — accept it.
+    return candidate;
+  }
+
+  // 3) Looks like a page (ESPN recap/story, news article). Try its og:image.
+  if (allowArticleOgImage) {
+    const og = await extractOgImage(candidate);
+    if (og) {
+      const ogResolved = resolveWikimedia(og) || og;
+      if (await isLiveImage(ogResolved)) return ogResolved;
+    }
+  }
+
+  return null;
+}
+
+module.exports = { resolveAndValidate, resolveWikimedia, extractOgImage, isLiveImage, IMAGE_EXT_RE };

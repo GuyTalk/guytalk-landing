@@ -338,16 +338,38 @@ function buildHtml(issue, relatedIssues) {
         hasGolf ? ['golf', 'Golf', true] : null,
         hasWC   ? ['worldcup', 'World Cup', true] : null,
       ].filter(Boolean);
-  const sideLinks = [
-    ['top', 'Top'],
-    ['sports', 'Sports'],
-    ...sportsSubs,
-    ['markets', 'Markets'],
-    ['culture', 'Culture'],
-    ['sharp-take', 'Sharp Take'],
-  ];
-  const sideNavHtml = `<nav class="brief-sidenav" aria-label="On this page">
-${sideLinks.map(([id, label, sub]) => `  <a href="#${id}" class="bsn-link${sub ? ' bsn-sub' : ''}" data-target="${id}"${sub ? ' style="padding-left:18px;font-size:0.92em;opacity:0.85;"' : ''}><span class="bsn-txt">${esc(label)}</span><span class="bsn-dot"></span></a>`).join('\n')}
+  // Nested accordion: three clickable top-level parents (Sports / Markets /
+  // Culture); the Sports subsections (The Lead + each discovered sport) nest and
+  // indent under Sports and expand/collapse. Clicking a parent caret toggles its
+  // children; clicking a parent/child label jumps to that section. Top + Sharp
+  // Take stay as plain top-level links.
+  const navLink = (id, label, cls = '') =>
+    `<a href="#${id}" class="bsn-link${cls ? ' ' + cls : ''}" data-target="${esc(id)}"><span class="bsn-txt">${esc(label)}</span><span class="bsn-dot"></span></a>`;
+
+  const navGroup = (id, label, children, openByDefault) => {
+    if (!children.length) return navLink(id, label, 'bsn-parent'); // parent with no subsections = plain link
+    return `  <div class="bsn-group${openByDefault ? ' open' : ''}" data-group="${esc(id)}">
+    <a href="#${id}" class="bsn-link bsn-parent" data-target="${esc(id)}"><span class="bsn-caret" role="button" tabindex="0" aria-label="Toggle ${esc(label)} subsections">▸</span><span class="bsn-txt">${esc(label)}</span><span class="bsn-dot"></span></a>
+    <div class="bsn-children">
+${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).join('\n')}
+    </div>
+  </div>`;
+  };
+
+  const sideNavHtml = `<style>
+  .brief-sidenav .bsn-group .bsn-children{max-height:0;overflow:hidden;transition:max-height .28s ease;}
+  .brief-sidenav .bsn-group.open .bsn-children{max-height:600px;}
+  .brief-sidenav .bsn-caret{display:inline-block;width:1em;margin-right:2px;font-size:.78em;opacity:.65;transition:transform .2s ease;cursor:pointer;}
+  .brief-sidenav .bsn-group.open .bsn-caret{transform:rotate(90deg);}
+  .brief-sidenav .bsn-parent .bsn-txt{font-weight:600;}
+  .brief-sidenav .bsn-sub{padding-left:20px;font-size:0.92em;opacity:0.85;}
+</style>
+<nav class="brief-sidenav" aria-label="On this page">
+  ${navLink('top', 'Top')}
+${navGroup('sports', 'Sports', sportsSubs.map(([id, label]) => [id, label]), true)}
+${navGroup('markets', 'Markets', [], false)}
+${navGroup('culture', 'Culture', [], false)}
+  ${navLink('sharp-take', 'Sharp Take')}
 </nav>`;
 
   // Hero-area sub-jump chips — the discovered sports (skipping The Lead, which is
@@ -657,6 +679,24 @@ window.handleBriefSignup = function(e, form) {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
+})();
+
+// Sidebar accordion — the caret toggles a parent's subsections open/closed
+// without jumping; the parent/child labels still jump to their section.
+(function () {
+  var carets = [].slice.call(document.querySelectorAll('.brief-sidenav .bsn-caret'));
+  carets.forEach(function (caret) {
+    function toggle(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var group = caret.closest('.bsn-group');
+      if (group) group.classList.toggle('open');
+    }
+    caret.addEventListener('click', toggle);
+    caret.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') toggle(e);
+    });
+  });
 })();
 </script>
 

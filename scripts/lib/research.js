@@ -25,6 +25,9 @@
 const RESEARCH_MODEL = process.env.ANTHROPIC_RESEARCH_MODEL || 'claude-opus-4-8';
 const MAX_CONTINUATIONS = 4; // web-search server loop may pause_turn; resume a few times
 
+const { isExcluded, scoreImportance } = require('./editorial-config');
+const { resolveAndValidate }          = require('./images');
+
 function extractJsonArray(text) {
   if (!text) return null;
   // Strip a ```json fence if present; the model often narrates before the array.
@@ -293,20 +296,33 @@ If you cannot find a real, working URL, return exactly: {"none":true}`;
 }
 
 // Find a real image URL for `subject`, fresh for this issue and never matching a
-// URL the previous issue used. One dedup retry with a modified query.
+// URL the previous issue used. Every candidate is resolved to a direct image
+// (Wikimedia File: → Special:FilePath, article page → og:image) and validated
+// (must serve image/*) before it's accepted — a URL that can't be confirmed as a
+// real image is dropped, never embedded as a dead link (see images.js).
+// One dedup retry with a modified query.
 async function findFreshImage(client, { subject, today, issueNum, avoid = [], prefer = '' }) {
   const avoidSet = new Set(avoid.filter(Boolean));
-  const instr = `Find ONE real, current image of: ${subject}. ${prefer} The URL must be a direct image or image-page URL.${avoidSet.size ? ` Do NOT return any of these already-used URLs: ${[...avoidSet].join(' , ')}` : ''}`;
+  const instr = `Find ONE real, current image of: ${subject}. ${prefer} Prefer a DIRECT image URL (ending in .jpg/.png/.webp), e.g. an upload.wikimedia.org file or an ESPN/Getty photo CDN — NOT a Wikipedia "File:" page and NOT an article/recap page.${avoidSet.size ? ` Do NOT return any of these already-used URLs: ${[...avoidSet].join(' , ')}` : ''}`;
   const q1 = `${subject} ${today} issue ${issueNum || ''} action photo site:espn.com OR site:en.wikipedia.org image`;
-  let url = await runUrlSearch(client, { instruction: instr, query: q1 });
-  if (url && avoidSet.has(url)) {
-    // Duplicate of the previous issue — search again with a different framing.
-    url = await runUrlSearch(client, {
+
+  // Resolve + validate a raw candidate; honor the avoid set on the FINAL url.
+  const accept = async (raw) => {
+    if (!raw) return null;
+    const valid = await resolveAndValidate(raw);
+    if (!valid || avoidSet.has(valid)) return null;
+    return valid;
+  };
+
+  let url = await accept(await runUrlSearch(client, { instruction: instr, query: q1 }));
+  if (!url) {
+    // Either none found, a dupe, or it failed validation — try a different framing.
+    url = await accept(await runUrlSearch(client, {
       instruction: instr,
-      query: `${subject} latest different photo ${today} site:en.wikipedia.org OR site:gettyimages.com OR site:espn.com`,
-    });
+      query: `${subject} latest different direct photo ${today} site:upload.wikimedia.org OR site:gettyimages.com OR site:espn.com`,
+    }));
   }
-  return url && !avoidSet.has(url) ? { url, no_data: false } : { no_data: true };
+  return url ? { url, no_data: false } : { no_data: true };
 }
 
 // Discovery tags each story 'individual' or 'team'. We trust that tag; anything
@@ -356,6 +372,9 @@ Return ONLY a JSON array (no prose, no markdown fence), most important first:
   for (const cand of arr) {
     const name = cand && String(cand.name || '').trim();
     if (!name) continue;
+    // Section-inclusion rules (editorial-config.js) — drop EXCLUDEd leagues
+    // (e.g. WNBA) before they ever pull facts or an image.
+    if (isExcluded(name)) { console.log(`   ⤫  Sports discovery: excluded "${name}" per editorial-config`); continue; }
     const key = name.toLowerCase();
     if (seen.has(key)) continue;
     seen.add(key);
@@ -434,16 +453,34 @@ async function fetchDynamicSports({ dateLabel, issueNum, prevImageUrls = [] } = 
     };
   }));
 
-  // ── Step 3 — rank survivors; top = The Lead. No facts → dropped. ────────────
+  // ── Step 3 — score by importance, sort desc; top = The Lead. No facts → dropped.
+  // Discovery order is recency/coverage-biased (it once led with a World Cup
+  // GROUP-STAGE result over an NBA title + a Stanley Cup). We override it with an
+  // explicit, tunable importance score (see editorial-config.js): a title-decider
+  // or historic first (Tier 1) beats a routine result (Tier 3), and the Sports
+  // subsections render in score order, not a fixed league order.
   const sports = [];
   for (const s of settled) {
     if (s.status !== 'fulfilled' || !s.value || !s.value.sport) continue;
     sports.push(s.value.sport);
   }
   if (!sports.length) { console.log('   ⚠  No discovered sport returned concrete facts — sports will fall back to structured feeds'); return empty; }
+
+  const FINAL_RESULT_RE = /\b(final|won|wins|beat|def\.|defeated|clinch|champions?|title|crowned)\b/i;
+  sports.forEach((s, i) => {
+    const isFinalResult = FINAL_RESULT_RE.test(`${s.headline} ${s.facts}`);
+    const { score, tier } = scoreImportance({ name: s.name, headline: s.headline, facts: s.facts, isFinalResult });
+    s.importance = score;
+    s.tier = tier;
+    s._discoveryRank = i; // stable tiebreak: preserve discovery order within a score
+    s.isLead = false;
+  });
+  // Highest score first; ties keep discovery order.
+  sports.sort((a, b) => (b.importance - a.importance) || (a._discoveryRank - b._discoveryRank));
+  sports.forEach((s) => { delete s._discoveryRank; });
   sports[0].isLead = true;
   const lead = sports[0];
-  console.log(`   ✓ Dynamic sports (${sports.length}): ${sports.map(s => `${s.isLead ? '★ ' : ''}${s.label} [${s.category}]${s.videoUrl ? ' 🎬' : ''}${s.imageUrl ? ' 🖼' : ''}`).join('  ·  ')}`);
+  console.log(`   ✓ Dynamic sports ranked (${sports.length}): ${sports.map(s => `${s.isLead ? '★ ' : ''}${s.label} [T${s.tier}/${s.importance}]${s.videoUrl ? ' 🎬' : ''}${s.imageUrl ? ' 🖼' : ''}`).join('  ·  ')}`);
   return { lead, sports };
 }
 
