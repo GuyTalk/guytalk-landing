@@ -51,6 +51,18 @@ async function fetchSportsItems() {
   const finals = [];
   const scheduled = [];
 
+  // Date-window guard. ESPN's scoreboard endpoints return the *next* slate when a
+  // league is out of season — e.g. in June the NFL endpoint serves upcoming Week 1
+  // (Sept) games, which surfaced as "NE AT SEA" etc. A season-year check doesn't
+  // catch these (they ARE the current season year), so we bound by game date:
+  // only show recent finals and the imminent slate. Off-season games dated months
+  // out fall outside the window and are dropped, leaving that sport empty.
+  const now = Date.now();
+  const HOUR = 3600 * 1000;
+  const FINAL_LOOKBACK_MS  = 48 * HOUR;  // recent results only
+  const PRE_LOOKAHEAD_MS   = 36 * HOUR;  // tonight + tomorrow's slate
+  const gameTime = (c) => { const t = Date.parse(c?.date || ''); return Number.isNaN(t) ? null : t; };
+
   for (const data of responses) {
     if (!data?.events) continue;
 
@@ -72,6 +84,9 @@ async function fetchSportsItems() {
       // STATUS_FINAL (US sports) and STATUS_FULL_TIME (soccer), so soccer results
       // actually surface. `state === 'pre'` is the matching flag for upcoming games.
       if (type.completed === true) {
+        // Drop stale finals (e.g. the last NFL game from months ago).
+        const gt = gameTime(comp);
+        if (gt !== null && now - gt > FINAL_LOOKBACK_MS) continue;
         const sorted = [...competitors].sort((a, b) => Number(b.score) - Number(a.score));
         const a = sorted[0], b = sorted[1];
         const aAb = abbr(a), bAb = abbr(b);
@@ -84,6 +99,10 @@ async function fetchSportsItems() {
         finals.push({ label, logos: [a.team?.logo, b.team?.logo].filter(Boolean) });
 
       } else if (type.state === 'pre') {
+        // Only the imminent slate — this is what filters out off-season leagues
+        // whose "next" scheduled games are weeks or months away.
+        const gt = gameTime(comp);
+        if (gt === null || gt - now > PRE_LOOKAHEAD_MS || gt < now - 6 * HOUR) continue;
         const awayC = competitors.find(c => c.homeAway === 'away');
         const homeC = competitors.find(c => c.homeAway === 'home');
         const home = abbr(homeC), away = abbr(awayC);
@@ -101,6 +120,56 @@ async function fetchSportsItems() {
   // Cap finals at 4 and scheduled at 4 to avoid MLB flooding the ticker
   const combined = [...finals.slice(0, 4), ...scheduled.slice(0, 4)];
   return combined.length > 0 ? combined : null;
+}
+
+// ── US market hours ──────────────────────────────────────────────────────────
+// The marquee shows market % change under a "Live" badge. On weekends / holidays
+// / after-hours those numbers are the last close, not live movement, so we tell
+// the client the real status and it relabels the badge ("Markets closed · At
+// Friday's close") instead of implying live trading. NYSE regular session is
+// 9:30–16:00 ET, Mon–Fri, minus the holidays below.
+const MARKET_HOLIDAYS = new Set([
+  // 2026
+  '2026-01-01', '2026-01-19', '2026-02-16', '2026-04-03', '2026-05-25',
+  '2026-06-19', '2026-07-03', '2026-09-07', '2026-11-26', '2026-12-25',
+  // 2027
+  '2027-01-01', '2027-01-18', '2027-02-15', '2027-03-26', '2027-05-31',
+  '2027-06-18', '2027-07-05', '2027-09-06', '2027-11-25', '2027-12-24',
+]);
+
+function etParts(d) {
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York', weekday: 'short',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  });
+  return Object.fromEntries(fmt.formatToParts(d).map(p => [p.type, p.value]));
+}
+
+function usMarketStatus(now = new Date()) {
+  const HOUR = 3600 * 1000;
+  const isTradingDay = (p) => {
+    const ds = `${p.year}-${p.month}-${p.day}`;
+    return p.weekday !== 'Sat' && p.weekday !== 'Sun' && !MARKET_HOLIDAYS.has(ds);
+  };
+  const p = etParts(now);
+  const mins = Number(p.hour) * 60 + Number(p.minute);
+  const open = isTradingDay(p) && mins >= 570 && mins < 960; // 9:30–16:00 ET
+  if (open) return { open: true, label: 'Live', note: '' };
+
+  // Walk back to the most recent day whose close has already passed.
+  let lastClose = '';
+  let probe = now;
+  for (let i = 0; i < 10; i++) {
+    const pp = etParts(probe);
+    const closedForDay = i > 0 || (Number(pp.hour) * 60 + Number(pp.minute)) >= 960;
+    if (isTradingDay(pp) && closedForDay) {
+      lastClose = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'long' }).format(probe);
+      break;
+    }
+    probe = new Date(probe.getTime() - 24 * HOUR);
+  }
+  return { open: false, label: 'Markets closed', note: lastClose ? `At ${lastClose}'s close` : '' };
 }
 
 module.exports = async function handler(req, res) {
@@ -135,7 +204,7 @@ module.exports = async function handler(req, res) {
     const sports = sportsItems || [];
 
     res.setHeader('Cache-Control', 's-maxage=1800, stale-while-revalidate=3600');
-    return res.json({ markets, sports });
+    return res.json({ markets, sports, marketStatus: usMarketStatus() });
   } catch (err) {
     return res.status(500).json({ error: 'Failed to fetch data' });
   }

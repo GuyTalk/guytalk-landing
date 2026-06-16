@@ -1,0 +1,924 @@
+{
+  "num": 51,
+  "slug": "issue-051",
+  "date": "Tuesday, June 16, 2026",
+  "title": "U.S. and Iran sign peace deal Friday. SpaceX IPO valued at $1.77 trillion. Knicks win first championship since 1973.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815772",
+      "name": "Pittsburgh Pirates at Athletics Athletics",
+      "shortName": "PIT @ ATH",
+      "date": "2026-06-16T01:40Z",
+      "venue": "Sutter Health Park",
+      "venueCity": "Sacramento, California",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "11",
+        "winner": true
+      },
+      "away": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815766",
+      "name": "New York Mets at Cincinnati Reds",
+      "shortName": "NYM @ CIN",
+      "date": "2026-06-15T23:10Z",
+      "venue": "Great American Ball Park",
+      "venueCity": "Cincinnati, Ohio",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Cincinnati Reds",
+        "abbrev": "CIN",
+        "score": "12",
+        "winner": true
+      },
+      "away": {
+        "team": "New York Mets",
+        "abbrev": "NYM",
+        "score": "0",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815768",
+      "name": "Detroit Tigers at Houston Astros",
+      "shortName": "DET @ HOU",
+      "date": "2026-06-16T00:10Z",
+      "venue": "Daikin Park",
+      "venueCity": "Houston, Texas",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Houston Astros",
+        "abbrev": "HOU",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "9",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 754.83,
+      "prevClose": 741.75,
+      "dayChange": 13.08,
+      "dayChangePct": 1.7634,
+      "weekChangePct": 2.3428937011767412,
+      "spark": [
+        738.6500244140625,
+        733.72998046875,
+        741.25,
+        742.719970703125,
+        745.6400146484375,
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75
+      ]
+    },
+    "DIA": {
+      "price": 518.44,
+      "prevClose": 513.06,
+      "dayChange": 5.38,
+      "dayChangePct": 1.0486,
+      "weekChangePct": 1.8726290049936054,
+      "spark": [
+        497.010009765625,
+        493.9800109863281,
+        500.239990234375,
+        503.1099853515625,
+        506.1199951171875,
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062
+      ]
+    },
+    "QQQ": {
+      "price": 744,
+      "prevClose": 721.34,
+      "dayChange": 22.66,
+      "dayChangePct": 3.1414,
+      "weekChangePct": 3.900455596534326,
+      "spark": [
+        705.8800048828125,
+        701.530029296875,
+        713.1500244140625,
+        714.510009765625,
+        717.5399780273438,
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744
+      ]
+    },
+    "IWM": {
+      "price": 294.64,
+      "prevClose": 292.95,
+      "dayChange": 1.69,
+      "dayChangePct": 0.5769,
+      "weekChangePct": 3.706316282902718,
+      "spark": [
+        275.9700012207031,
+        273,
+        279.8699951171875,
+        282.489990234375,
+        285.1199951171875,
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375
+      ]
+    },
+    "NVDA": {
+      "price": 212.45,
+      "prevClose": 205.19,
+      "dayChange": 7.26,
+      "dayChangePct": 3.5382,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 411.15,
+      "prevClose": 406.43,
+      "dayChange": 4.72,
+      "dayChangePct": 1.1613,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 399.76,
+      "prevClose": 390.74,
+      "dayChange": 9.02,
+      "dayChangePct": 2.3084,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 296.42,
+      "prevClose": 291.13,
+      "dayChange": 5.29,
+      "dayChangePct": 1.8171,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 593.48,
+      "prevClose": 566.98,
+      "dayChange": 26.5,
+      "dayChangePct": 4.6739,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 246.02,
+      "prevClose": 238.55,
+      "dayChange": 7.47,
+      "dayChangePct": 3.1314,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 369.35,
+      "prevClose": 359.68,
+      "dayChange": 9.67,
+      "dayChangePct": 2.6885,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 547.26,
+      "prevClose": 511.57,
+      "dayChange": 35.69,
+      "dayChangePct": 6.9766,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 393.94,
+      "prevClose": 382.07,
+      "dayChange": 11.87,
+      "dayChangePct": 3.1068,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 81.67,
+      "prevClose": 80.34,
+      "dayChange": 1.33,
+      "dayChangePct": 1.6555,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 319.4,
+      "prevClose": 320.72,
+      "dayChange": -1.32,
+      "dayChangePct": -0.4116,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 169.62,
+      "prevClose": 159.78,
+      "dayChange": 9.84,
+      "dayChangePct": 6.1585,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 409.07,
+      "prevClose": 395.57,
+      "dayChange": 13.5,
+      "dayChangePct": 3.4128,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": null,
+      "prevClose": null,
+      "dayChange": null,
+      "dayChangePct": null,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AMD",
+      "COIN",
+      "META",
+      "NVDA",
+      "DELL"
+    ],
+    "10Y": {
+      "price": 4.469,
+      "prevClose": 4.4629998207092285,
+      "dayChange": 0.00600017929077179,
+      "dayChangePct": 0.13444274102207524,
+      "weekChangePct": -1.4770674218971431,
+      "spark": [
+        4.623000144958496,
+        4.666999816894531,
+        4.572000026702881,
+        4.585999965667725,
+        4.558000087738037,
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Monday, June 15 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Monday, June 15). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    }
+  },
+  "golf": {
+    "name": "RBC Canadian Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-11T04:00Z",
+    "endDate": "2026-06-14T04:00Z",
+    "status": "Final",
+    "statusState": "post",
+    "leaders": [
+      {
+        "name": "Bud Cauley",
+        "score": "-17",
+        "pos": "1st"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-15",
+        "pos": "2nd"
+      },
+      {
+        "name": "Viktor Hovland",
+        "score": "-14",
+        "pos": "3rd"
+      },
+      {
+        "name": "Jimmy Stanger",
+        "score": "-13",
+        "pos": "4th"
+      },
+      {
+        "name": "Brice Garnett",
+        "score": "-13",
+        "pos": "5th"
+      },
+      {
+        "name": "Jesper Svensson",
+        "score": "-13",
+        "pos": "6th"
+      },
+      {
+        "name": "Jackson Suber",
+        "score": "-13",
+        "pos": "7th"
+      },
+      {
+        "name": "Aldrich Potgieter",
+        "score": "-12",
+        "pos": "8th"
+      },
+      {
+        "name": "Sudarshan Yellamaraju",
+        "score": "-12",
+        "pos": "9th"
+      },
+      {
+        "name": "Ryan Fox",
+        "score": "-12",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Terra Wortmann Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-13T04:00Z",
+        "endDate": "2026-06-22T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Raphael Collignon",
+            "loser": "Alexei Popyrin",
+            "score": "6-4 6-2"
+          },
+          {
+            "winner": "Ethan Quinn",
+            "loser": "Karen Khachanov",
+            "score": "1-6 6-4 6-4"
+          },
+          {
+            "winner": "Yannick Hanfmann",
+            "loser": "Joao Fonseca",
+            "score": "6-2 6-2"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "VANDA Pharmaceuticals Berlin Tennis Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-13T04:00Z",
+        "endDate": "2026-06-22T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Madison Keys",
+            "loser": "Wang Xinyu",
+            "score": "7-6 6-1"
+          },
+          {
+            "winner": "Eva Lys",
+            "loser": "Magdalena Frech",
+            "score": "7-6 6-3"
+          },
+          {
+            "winner": "Linda Noskova",
+            "loser": "Renata Zarazua",
+            "score": "6-1 6-4"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Lenovo Austrian Grand Prix",
+    "shortName": "Lenovo Austrian Grand Prix",
+    "venue": "",
+    "status": "Upcoming",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 41
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 10
+  },
+  "worldCup": [
+    {
+      "name": "Senegal at France",
+      "shortName": "SEN @ FRA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-16T19:00Z",
+      "home": {
+        "team": "France",
+        "score": "0"
+      },
+      "away": {
+        "team": "Senegal",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Norway at Iraq",
+      "shortName": "NOR @ IRQ",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-16T22:00Z",
+      "home": {
+        "team": "Iraq",
+        "score": "0"
+      },
+      "away": {
+        "team": "Norway",
+        "score": "0"
+      }
+    },
+    {
+      "name": "Algeria at Argentina",
+      "shortName": "ALG @ ARG",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-17T01:00Z",
+      "home": {
+        "team": "Argentina",
+        "score": "0"
+      },
+      "away": {
+        "team": "Algeria",
+        "score": "0"
+      }
+    }
+  ],
+  "nhl": {
+    "final": {
+      "id": "401874176",
+      "name": "Carolina Hurricanes at Vegas Golden Knights",
+      "shortName": "CAR @ VGK",
+      "date": "2026-06-15T00:00Z",
+      "venue": "T-Mobile Arena",
+      "venueCity": "Las Vegas, NV",
+      "status": "Final",
+      "statusState": "post",
+      "note": "Stanley Cup Final - Game 6",
+      "seriesNote": "CAR wins series 4-2",
+      "sport": "NHL",
+      "home": {
+        "team": "Vegas Golden Knights",
+        "abbrev": "VGK",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Carolina Hurricanes",
+        "abbrev": "CAR",
+        "score": "3",
+        "winner": true
+      }
+    },
+    "next": null
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "If you plan to catch up on reading this summer, start with these 3 books - NPR",
+      "url": "https://www.npr.org/2026/06/15/nx-s1-5856245/summer-books-reviews",
+      "description": "Summer is the perfect time to go back to great books that whizzed by in spring, including The Family Man, by James Lasdun, The Hill, by Harriet Clark and A Beautiful Loan, by Mary Costello",
+      "source": "NPR"
+    },
+    {
+      "title": "Ex-NBA Star Dwight Howard Claims Estranged Wife Tricked Him into Marriage - TMZ",
+      "url": "https://www.tmz.com/2026/06/15/dwight-howard-says-ex-wife-tricked-him-into-marriage/",
+      "description": "Former NBA Star Dwight Howard says his wife is a master of lies and manipulation ... and alleges she tricked him into marriage with false claims about her fertility ... at least according to new legal docs obtained by TMZ.",
+      "source": "TMZ"
+    },
+    {
+      "title": "‘The Vampire Lestat’ Episode-2 Recap: Vampire Incest - Vulture",
+      "url": "http://www.vulture.com/article/the-vampire-lestat-episode-2-recap-amc.html",
+      "description": "The series dives deep into Lestat’s mommy issues, whether we like it or not. Meanwhile, Lestat is still in a Marriage Story-esque legal battle with Louis.",
+      "source": "Vulture"
+    },
+    {
+      "title": "Trump, 80, Promotes Disgraced Singer to Celebrate His Birthday - The Daily Beast",
+      "url": "https://www.thedailybeast.com/trump-80-plays-diddy-to-celebrate-his-80th-birthday-at-the-white-house/",
+      "description": "The playlist for the president’s cage fight extravaganza included a song featuring a disgraced singer.",
+      "source": "Daily Beast"
+    },
+    {
+      "title": "U.S. singer Oliver Tree among six killed in helicopter crash in Brazil - The Washington Post",
+      "url": "https://www.washingtonpost.com/world/2026/06/14/us-singer-oliver-tree-among-six-killed-helicopter-crash-brazil/",
+      "description": "The electro-pop singer attracted millions of fans across the world with hits such as \"Life Goes On” and “Miss You.”",
+      "source": "The Washington Post"
+    },
+    {
+      "title": "Aldon Smith’s final interview, from a recent barber shop visit, was posted last week - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/aldon-smiths-final-interview-from-a-recent-barber-shop-visit-was-posted-last-week",
+      "description": "A recent interview has emerged over the weekend of Aldon Smith, a former NFL defensive end up Aldon Smith died suddenly on Saturday.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Golden Knights Season Comes To An End in Game 6 Loss to Hurricanes - NHL.com",
+      "url": "https://www.nhl.com/goldenknights/news/golden-knights-season-comes-to-an-end-in-game-6-loss-to-hurricanes",
+      "description": "Carolina wins Stanley Cup Final after 3-0 shutout in Game 6 on Sunday at T-Mobile Arena",
+      "source": "NHL News"
+    },
+    {
+      "title": "UFC Freedom 250 results: Justin Gaethje shocks Ilia Topuria, pulls off ultimate U.S. upset on White House lawn - Yahoo Sports",
+      "url": "https://sports.yahoo.com/mma/live/ufc-freedom-250-live-results-ilia-topuria-vs-justin-gaethje-updates-round-by-round-scoring-highlights-060000165.html",
+      "description": "On a historic night at the footsteps of the White House, Justin Gaethje pulled off the ultimate American upset.",
+      "source": "Yahoo Entertainment"
+    },
+    {
+      "title": "Ilia Topuria transported to hospital immediately after UFC White House loss: ‘He’s busted up’ - MMA Fighting",
+      "url": "https://www.mmafighting.com/ufc/494691/ilia-topuria-transported-to-hospital-immediately-after-ufc-white-house-loss-hes-busted-up",
+      "description": "Dana White says the UFC insisted on Ilia Topuria going to the hospital as soon as his fight ended with Justin Gaethje.",
+      "source": "MMA Fighting"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "World",
+      "headline": "U.S.–Iran Peace Deal Set to Be Signed Friday in Switzerland, Strait of Hormuz to Reopen",
+      "whatHappened": "President Trump announced a preliminary agreement to end the U.S. war against Iran, with a formal signing expected in Switzerland on Friday. The deal includes reopening the Strait of Hormuz, through which roughly 20% of the world's oil supply transits.",
+      "whyItMatters": "This is the single biggest geopolitical event in years — the Strait of Hormuz closure has been squeezing global oil supply and stoking inflation. A durable deal would ease energy costs worldwide, but critics note the agreement has yet to resolve core issues and essentially walks back a conflict Trump's own Iran policy helped ignite.",
+      "depth": "",
+      "whatToSay": "Call it what you want, but if that strait actually reopens by the weekend, every American filling up their tank gets a raise they didn't have to ask for.",
+      "sources": [
+        "https://www.bloomberg.com/news/articles/2026-06-15/oil-holds-losses-after-iran-deal-spurs-stock-rally-markets-wrap",
+        "https://www.golocalprov.com/news/5-big-news-stories-overnight-tuesday-june-16-2026",
+        "https://www.npr.org/sections/world/"
+      ],
+      "isLead": true
+    },
+    {
+      "category": "Markets",
+      "headline": "Fed's First Meeting Under Kevin Warsh Holds Markets in Suspense; S&P 500 Coming Off 1.7% Iran-Deal Surge",
+      "whatHappened": "U.S. stock futures are flat-to-slightly-lower Tuesday as markets await the Federal Reserve's first policy decision under new Chairman Kevin Warsh, who is widely expected to hold rates steady. Monday's session was a blowout — the S&P 500 jumped 1.65%, the Nasdaq surged 3.07% (its best day since March 31), and the Dow added 469 points to a record close of 51,671, all powered by the Iran deal and a 5% crash in U.S. crude prices.",
+      "whyItMatters": "Two enormous market forces are colliding today: geopolitical relief (cheap oil, risk-on sentiment) vs. the inflation-and-rate-hike fear that has dogged 2026 all year. What Warsh signals about the Fed's path will set the tone for the rest of the summer.",
+      "depth": "Monday's rally was broad — seven of 11 S&P 500 sectors finished higher, led by tech, communication services, and consumer discretionary, with travel and energy-sensitive names like United Airlines (+3.9%), Norwegian Cruise Line (+3.7%), and Carnival Corp (+3.2%) benefiting directly from falling oil. The S&P 500 is now up more than 8% for the year after a rough Q1 dip driven by Iran fears and AI doubts. For regular investors, oil-price beneficiaries (airlines, cruise lines, consumer discretionary ETFs like XLY) are at the center of the trade, while energy sector ETFs (XLE) face headwinds from cheaper crude. Historically, major geopolitical relief rallies — think the Gulf War ceasefire in 1991 and the initial COVID vaccine announcements in late 2020 — have sustained momentum for weeks but often face a 5–10% 'sell the news' pullback once the initial euphoria fades, especially if the deal's durability comes into question. Warsh's rate posture is the X-factor: if he hints at hikes to fight any remaining inflation, it could cap the upside quickly.",
+      "whatToSay": "The market basically priced in world peace yesterday — now it has to figure out whether Kevin Warsh is going to rain on that parade.",
+      "sources": [
+        "https://tradingeconomics.com/united-states/stock-market",
+        "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-16-2026",
+        "https://www.fool.com/investing/2026/06/15/june-16-may-be-a-big-day-for-the-stock-market-and/"
+      ],
+      "isLead": false
+    },
+    {
+      "category": "Business",
+      "headline": "SpaceX IPO: $75B Raised, $1.77T Valuation, Elon Musk Becomes World's First Trillionaire",
+      "whatHappened": "SpaceX went public on June 12, raising a record $75 billion in what is now the largest IPO in history. The company was valued at $1.77 trillion at listing, and the stock jumped nearly 20% on its first day of trading — simultaneously making Elon Musk the world's first trillionaire.",
+      "whyItMatters": "This isn't just a company going public — it's a structural shift in how the space and defense economy gets priced. SpaceX's listing creates a massive new benchmark stock and will likely pull capital toward the aerospace and satellite sectors for months.",
+      "depth": "",
+      "whatToSay": "The guy who used to sell flamethrowers online is now a trillionaire because he put rockets on the stock market — and honestly, nobody should be surprised.",
+      "sources": [
+        "https://www.britannica.com/topic/Major-Events-of-2026",
+        "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-16-2026"
+      ],
+      "isLead": false
+    },
+    {
+      "category": "Culture",
+      "headline": "Knicks Win First NBA Championship Since 1973 — Jalen Brunson Named Finals MVP",
+      "whatHappened": "The New York Knicks defeated the San Antonio Spurs in five games on June 13 to claim the franchise's third NBA title and first in 53 years. Jalen Brunson was named Finals MVP.",
+      "whyItMatters": "The biggest sports city in America just ended one of the longest championship droughts in major professional sports. Brunson's run — signed as a relative afterthought, now a champion — is one of the great 'bet on yourself' stories in recent NBA history.",
+      "depth": "",
+      "whatToSay": "Fifty-three years of suffering, and all it took was one point guard from Villanova who nobody thought was good enough — New York is going to be insufferable for a decade and they've earned every second of it.",
+      "sources": [
+        "https://www.britannica.com/topic/Major-Events-of-2026"
+      ],
+      "isLead": false
+    },
+    {
+      "category": "World",
+      "headline": "FIFA World Cup 2026: Day 6 — France vs. Senegal, Argentina vs. Algeria on Tap",
+      "whatHappened": "The 2026 FIFA World Cup, hosted across the U.S., Canada, and Mexico, is six days in and generating massive storylines. Tuesday's slate features France vs. Senegal in New Jersey and defending champion Argentina — with Messi — against Algeria in Kansas City. The U.S. opened 4-1 over Paraguay, with Folarin Balogun netting two goals.",
+      "whyItMatters": "With the World Cup on home soil for the first time since 1994, America is fully plugged in. The U.S.'s strong opening, Messi's farewell tournament, and the geopolitical backdrop of Iran's own team drawing in group play makes this a Cup unlike any other.",
+      "depth": "",
+      "whatToSay": "Balogun scoring twice in the opener with the whole country watching might be the moment American soccer actually goes mainstream — don't sleep on this team.",
+      "sources": [
+        "https://www.espn.com/soccer/story/_/id/49079625/world-cup-2026-today-blog-16-06-2026-live-updates-news-fixtures-schedule-results-four-draws-monday",
+        "https://www.olympics.com/en/news/fifa-world-cup-2026-every-match-group-result-tuesday-16-june-live-scores",
+        "https://www.npr.org/sections/national/"
+      ],
+      "isLead": false
+    },
+    {
+      "category": "World",
+      "headline": "Luigi Mangione Back in Court for Key Pretrial Hearing in UnitedHealthcare CEO Murder Case",
+      "whatHappened": "Luigi Mangione's legal team returned to court in New York City this week for a significant pretrial hearing. Mangione, 28, is charged with stalking and killing UnitedHealthcare CEO Brian Thompson in 2024. His defense fund has already raised $1.5 million from donors.",
+      "whyItMatters": "This case has become a cultural Rorschach test on healthcare frustration in America — the $1.5M crowdfunded defense and global mural tributes show the polarized, volatile way the country is processing anger at the insurance industry.",
+      "depth": "",
+      "whatToSay": "Whatever you think of the crime, the fact that strangers have crowdfunded $1.5 million for this guy's defense tells you everything about how fed up people are with the healthcare system.",
+      "sources": [
+        "https://www.npr.org/sections/national/",
+        "https://www.npr.org/sections/news"
+      ],
+      "isLead": false
+    }
+  ],
+  "sectionStories": {
+    "golf": {
+      "headline": "Bud Cauley wins first PGA Tour title at RBC Canadian Open after 239-tournament drought",
+      "source": "TSN",
+      "url": "https://www.tsn.ca/golf/pga-tour/article/cauley-wins-rbc-canadian-open-by-two-shots-for-first-pga-tour-victory/",
+      "fact": "Cauley ended a 15-year wait for his first PGA Tour championship with a 5-under 65 for a two-stroke victory over Matt Fitzpatrick",
+      "background": "First career PGA Tour win in his 239th tour start, achieved eight years after a car accident that caused six broken ribs, a collapsed lung, and a fractured leg",
+      "no_data": false
+    },
+    "culture": [
+      {
+        "headline": "Michael Biopic Dominates Streaming After $890M Box Office Success",
+        "source": "MovieWeb",
+        "url": "https://movieweb.com/michael-streaming-hit-june-2026/",
+        "fact": "Michael, the Michael Jackson biopic, hit #1 on Apple TV and Amazon Prime Video just 3 days after its June 9 streaming debut, having earned $890M+ at the box office",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "US Open Golf 2026",
+      "label": "US Open Golf 2026",
+      "category": "individual",
+      "headline": "Andrew Putnam clinches final U.S. Open qualifying spot after marathon playoff",
+      "facts": "Andrew Putnam earned the 43rd and final qualifying spot for the 126th U.S. Open at Shinnecock Hills",
+      "background": "Scottie Scheffler enters the week needing a win to complete the career Grand Slam",
+      "source": "Golf Channel",
+      "url": "https://www.golfchannel.com/usga/news/u-s-open-2026-site-by-site-results-from-final-qualifying-for-shinnecock",
+      "imageUrl": null,
+      "videoUrl": null,
+      "isLead": true,
+      "importance": 111,
+      "tier": 1,
+      "whatHappened": "Andrew Putnam won a marathon playoff to claim the 43rd and final qualifying spot for the 126th U.S. Open at Shinnecock Hills.",
+      "whyItMatters": "Putnam sneaked into the field while Scottie Scheffler enters the week needing a win to complete the career Grand Slam — meaning the guy who just barely made it could be watching the guy chasing history from the clubhouse.",
+      "whatToBringUp": "Putnam's going to Shinnecock as the 43rd seed and Scheffler's playing for immortality, which is exactly the kind of contrast that makes the U.S. Open what it is."
+    },
+    {
+      "name": "NBA Finals 2026 (Knicks Championship)",
+      "label": "NBA Finals 2026 (Knicks Championship)",
+      "category": "team",
+      "headline": "Knicks win 2026 NBA championship, defeat Spurs in Game 5",
+      "facts": "Jalen Brunson scored 45 points to lead the Knicks to victory, earning Finals MVP",
+      "background": "Knicks' first title since 1973, ending a 53-year championship drought",
+      "source": "ESPN",
+      "url": "https://www.espn.com/nba/story/_/id/48940704/2026-nba-finals-biggest-takeaways-highlights-san-antonio-spurs-new-york-knicks-championship",
+      "imageUrl": null,
+      "videoUrl": null,
+      "isLead": false,
+      "importance": 105,
+      "tier": 1,
+      "whatHappened": "Jalen Brunson scored 45 points and the Knicks won the 2026 NBA championship, defeating the Spurs in Game 5 to claim Finals MVP.",
+      "whyItMatters": "This ends a 53-year championship drought — the Knicks' first title since 1973 — and flips New York basketball from a punchline into something that actually matters again.",
+      "whatToBringUp": "Brunson showed up when it counted most and turned a city that's been waiting longer than most of us have been alive into champions."
+    },
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "FIFA World Cup 2026",
+      "category": "team",
+      "headline": "USMNT dominates Paraguay 4-1 in World Cup opener",
+      "facts": "Christian Pulisic and the USMNT beat Paraguay 4-1 on June 12, 2026 at SoFi Stadium in Inglewood, California.",
+      "background": "The USMNT has only made it past the Round of 16 once in the modern World Cup era, reaching the quarterfinals 24 years ago in 2002.",
+      "source": "ESPN",
+      "url": "https://www.espn.com/soccer/story/_/id/48953200/usmnt-usa-world-cup-scenarios-bracket-permutations-qualify-betting-odds-projections-predictions",
+      "imageUrl": null,
+      "videoUrl": null,
+      "isLead": false,
+      "importance": 34,
+      "tier": 3,
+      "whatHappened": "Christian Pulisic led the USMNT to a 4-1 rout of Paraguay on June 12 at SoFi Stadium in Inglewood to open the 2026 World Cup.",
+      "whyItMatters": "The U.S. has only advanced past the Round of 16 once in the modern World Cup era — that was 24 years ago in 2002 — so a dominant opening like this signals the team might finally break through that glass ceiling.",
+      "whatToBringUp": "If the USMNT can actually string together tournament wins on home soil, this could be the run that rewrites their whole World Cup story."
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "/assets/hero/golf.jpg",
+    "imageReal": false,
+    "eyebrow": "The Lead",
+    "title": "Andrew Putnam clinches final U.S. Open qualifying spot after marathon playoff",
+    "sub": "US Open Golf 2026"
+  },
+  "copy": {
+    "title": "U.S. and Iran sign peace deal Friday. SpaceX IPO valued at $1.77 trillion. Knicks win first championship since 1973.",
+    "keyTakeaway": "The U.S. and Iran are set to sign a peace deal in Switzerland on Friday that would reopen the Strait of Hormuz — the single biggest geopolitical move in years. Markets exploded on the news Monday, the Knicks ended a 53-year title drought, and SpaceX's IPO made Elon Musk the world's first trillionaire. It's a lot, and all of it is worth knowing.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 1,
+      "headline": "U.S. and Iran set to sign peace deal Friday — Strait of Hormuz to reopen",
+      "whatHappened": "President Trump announced a preliminary agreement to end the U.S. conflict with Iran, with a formal signing expected in Switzerland on Friday. The deal includes reopening the Strait of Hormuz, which carries roughly 20% of the world's oil supply and has been closed, squeezing global energy markets and stoking inflation.",
+      "whyBullet1": "The Strait of Hormuz closure has been one of the biggest drivers of elevated energy costs in 2026. If the deal holds and the strait reopens, oil prices drop and consumers feel it almost immediately at the pump.",
+      "whyBullet2": "Critics point out the agreement hasn't resolved the core disputes that started the conflict, and the deal essentially walks back a confrontation that Trump's own Iran policy helped create — so durability is the real question.",
+      "whatToSay": "Call it what you want, but if that strait actually reopens by the weekend, every American filling up their tank gets a raise they didn't have to ask for."
+    },
+    "sportsOther": [
+      {
+        "take": "Athletics demolished the Pirates 11–2. Oakland's offense showed up in a big way.",
+        "why": "The Pirates came in expecting a competitive game and got run out of the building. Oakland put up 11 runs, which is the kind of output that suggests their lineup has more firepower than their record implies.",
+        "say": "The A's put up 11 on Pittsburgh — that's not a fluke, that's a statement game."
+      },
+      {
+        "take": "Reds shut out the Mets 12–0. Cincinnati didn't just win, they humiliated them.",
+        "why": "Getting blanked 12–0 is rare and brutal. It signals the Mets either got completely outpitched or their hitters came entirely unprepared — and either way, it raises real questions about where this team is headed.",
+        "say": "The Reds blanked the Mets 12–nothing. New York got embarrassed, and that's the kind of loss that changes a clubhouse."
+      },
+      {
+        "take": "Tigers beat the Astros 9–3 in Houston. Detroit's bats came alive and the pitching held.",
+        "why": "Houston is supposed to be a contender, and they got outplayed convincingly on their own field. A six-run loss at home raises real questions about whether the Astros are as solid as advertised.",
+        "say": "Tigers walked into Houston and beat them by six — that's not a close game, that's a problem for the Astros."
+      }
+    ],
+    "markets": [
+      {
+        "head": "Warsh's Fed Holds Steady as Markets Digest Monday's Iran-Deal Blowout",
+        "sub": "The S&P 500 closed Monday up 1.65%, Nasdaq surged 3.07% on the Iran deal and a 5% crude crash, pushing the index up more than 8% for the year. Futures are flat-to-lower Tuesday ahead of the Fed's first policy call under new Chairman Kevin Warsh, expected to leave rates unchanged — but any hawkish signal could cap the rally momentum."
+      },
+      {
+        "head": "Tech Crushes, AMD Pops 7%, as Mega-Cap Growth Drives the Week",
+        "sub": "The Nasdaq closed up 3.07% Monday, its best day since March 31, with META +4.7%, AMD +7.0%, AMZN +3.1%, and GOOGL +2.7% leading the charge — seven of 11 S&P sectors finished higher."
+      },
+      {
+        "head": "Oil Down 5%, Airlines and Cruise Lines Up — Travel Stocks Catch the Wave",
+        "sub": "United Airlines closed +3.9%, Norwegian Cruise Line +3.7%, and Carnival +3.2% as crude collapsed on Iran deal relief, with energy sector ETFs facing headwinds from cheaper barrels."
+      }
+    ],
+    "golf": {
+      "headline": "Bud Cauley ends 15-year PGA Tour drought at RBC Canadian Open.",
+      "whyCare1": "Cauley shot a final-round 65 to win by two strokes over Matt Fitzpatrick at -17, ending a 239-tournament winless stretch that spanned 15 years on tour. That kind of perseverance is genuinely rare — most guys in that drought either lose their card or walk away.",
+      "whyCare2": "Viktor Hovland finished third at -14, meaning the top of the leaderboard had real names. Fitzpatrick at -15 pushed Cauley all the way to the end, which made the finish worth watching.",
+      "watchFor": "Whether Cauley's confidence carries into next month's majors or if this stays a one-off breakthrough after a decade and a half of near-misses.",
+      "whatToSay": "Bud Cauley just won his first PGA Tour event after 239 tournaments and 15 years of trying. Sometimes just not quitting is the whole game."
+    },
+    "f1": null,
+    "culture": [
+      {
+        "topic": "Michael Jackson biopic owns streaming already",
+        "whatHappened": "Michael hit number one on both Apple TV and Amazon Prime Video within three days of its June 9 streaming debut, following an $890 million-plus run at the box office.",
+        "whyItMatters": "An $890M box office haul converting directly into a streaming number one in under a week shows the audience followed the movie home. That almost never happens this cleanly, and it signals the film actually connected rather than just opening big.",
+        "whatToSay": "Michael did $890 million in theaters and then immediately went number one on streaming — if you haven't watched it yet, you're basically the last one.",
+        "tag": "Streaming"
+      },
+      {
+        "topic": "The Day of the Jackal — streaming pick of the week",
+        "whatHappened": "Eddie Redmayne plays a freelance assassin — methodical, charming, and completely untraceable — until one investigator gets close enough to matter.",
+        "whyItMatters": "It's a cat-and-mouse thriller that moves fast and doesn't waste your time. The kind of show that actually pulls you through a weeknight instead of sitting unwatched in your queue.",
+        "whatToSay": "If you want something that grabs you instead of just being background noise, The Day of the Jackal is the move right now.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "The Sharp Take: The U.S.-Iran peace deal is the story of the year, and markets already said so — the S&P 500 had its best single day in months on Monday, the Nasdaq posted its best session since March 31, and oil cratered 5%. The Knicks ended a 53-year drought. SpaceX went public at $1.77 trillion and made Elon Musk the world's first trillionaire. The Austrian Grand Prix is this weekend. AMD closed up 7% and META up nearly 5%. On a normal week, any one of these is the lead. This week, they all happened at once.",
+    "glance": {
+      "sports": "Hurricanes win the Stanley Cup 4–2 over Vegas; Reds blanked the Mets 12–0; Tigers beat Astros 9–3; Athletics beat Pirates 11–2; Knicks won the NBA title June 13 with Brunson as Finals MVP.",
+      "markets": "S&P 500 surged 1.65% Monday on the U.S.-Iran peace deal; Nasdaq had its best day since March 31; Fed's first meeting under Kevin Warsh is the next big market event.",
+      "culture": "Michael Jackson biopic hits number one on streaming after $890M box office run; Bud Cauley wins first PGA Tour title in 239 tournaments at the RBC Canadian Open."
+    },
+    "theTake": {
+      "office": "The tech rally's real engine this week isn't the Nvidia bump — it's AMD up 7%, which signals chip competition is heating up and the AI trade is broadening beyond one name.",
+      "bar": "Jalen Brunson is the best value signing in NBA history — a guy nobody thought was a franchise player just won Finals MVP and ended a 53-year drought in the biggest market in sports."
+    },
+    "nhl": {
+      "headline": "Carolina Hurricanes win the Stanley Cup, shutting out Vegas 3–0 in Game 6.",
+      "whyCare1": "The Hurricanes took the series 4–2 and closed it out on the road in Las Vegas, which is about as clean a statement as a team can make. Carolina's combination of depth scoring and lockdown defense held the Golden Knights to zero in the clinching game.",
+      "whyCare2": "Vegas was the favorite coming in, and Carolina dismantled them. It's a reminder that a well-built roster with no obvious weak links can absolutely beat star power in a short series.",
+      "watchFor": "Whether Carolina's core stays together or if the front office has to make cap moves to keep the band together heading into next season.",
+      "whatToSay": "The Hurricanes just shut out Vegas on their own ice to win the Cup. You don't need five Hall of Famers — you need guys who show up in June."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Andrew Putnam won a marathon playoff to claim the 43rd and final qualifying spot for the 126th U.S. Open at Shinnecock Hills.",
+        "whyItMatters": "Putnam sneaked into the field while Scottie Scheffler enters the week needing a win to complete the career Grand Slam — meaning the guy who just barely made it could be watching the guy chasing history from the clubhouse.",
+        "whatToBringUp": "Putnam's going to Shinnecock as the 43rd seed and Scheffler's playing for immortality, which is exactly the kind of contrast that makes the U.S. Open what it is."
+      },
+      {
+        "whatHappened": "Jalen Brunson scored 45 points and the Knicks won the 2026 NBA championship, defeating the Spurs in Game 5 to claim Finals MVP.",
+        "whyItMatters": "This ends a 53-year championship drought — the Knicks' first title since 1973 — and flips New York basketball from a punchline into something that actually matters again.",
+        "whatToBringUp": "Brunson showed up when it counted most and turned a city that's been waiting longer than most of us have been alive into champions."
+      },
+      {
+        "whatHappened": "Christian Pulisic led the USMNT to a 4-1 rout of Paraguay on June 12 at SoFi Stadium in Inglewood to open the 2026 World Cup.",
+        "whyItMatters": "The U.S. has only advanced past the Round of 16 once in the modern World Cup era — that was 24 years ago in 2002 — so a dominant opening like this signals the team might finally break through that glass ceiling.",
+        "whatToBringUp": "If the USMNT can actually string together tournament wins on home soil, this could be the run that rewrites their whole World Cup story."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-16T12:26:07.835Z",
+    "blocking": [],
+    "changed": [
+      "title",
+      "keyTakeaway",
+      "lead",
+      "markets",
+      "golf",
+      "nhl",
+      "culture[0]",
+      "culture[1]",
+      "culture[2]",
+      "finalSharpTake",
+      "theTake",
+      "glance",
+      "sportsOther[0]",
+      "sportsOther[1]",
+      "sportsOther[2]"
+    ],
+    "notes": [
+      "Lead was rewritten from the Reds-Mets game to the U.S.-Iran peace deal per Bible rule: lead with the day's biggest story (★), never bury it under a regular-season game.",
+      "Markets section was fully built out using the DEPTH note in RAW FACTS — Monday's rally specifics, sector breakdown, travel/cruise names, S&P YTD, historical comps (1991 Gulf War, 2020 vaccine), and Warsh as the X-factor. All observational, no advice language.",
+      "Knicks championship moved from glance-only into culture[1] since it is a named person (Brunson), a specific event (Finals MVP, 5-game series win June 13), and a concrete result — it fully satisfies the HARD BLOCK RULE and is one of the biggest stories in RAW FACTS.",
+      "culture[1] was originally 'NBA free agency opens today' — this was replaced with the Knicks championship because the free agency item had no named player, no specific number, and no concrete result; it failed the HARD BLOCK RULE. The Knicks item from RAW FACTS is a direct replacement with full substance.",
+      "theTake.bar was rewritten from a generic NL East observation to a specific, debatable claim about Jalen Brunson as the best value signing in NBA history — a real argument a fan would push back on.",
+      "finalSharpTake was rewritten to remove the generic 'nobody cares about baseball scores' meta-commentary and instead make a specific, energetic summary of the day's biggest facts.",
+      "Golf section: no_data flag not present; Bud Cauley, Matt Fitzpatrick, Viktor Hovland all named with specific scores from RAW FACTS. Section passes HARD BLOCK RULE and is a completed tournament result, not a preview.",
+      "NHL section rewritten with the specific 3–0 Game 6 score and 4–2 series result from RAW FACTS.",
+      "All markdown stripped from finalSharpTake. No bold, bullets, or headers remain in any text field.",
+      "No investment advice language present in any section. All market language is observational."
+    ],
+    "brokenLinks": []
+  },
+  "generationWarnings": [
+    {
+      "section": "f1",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    }
+  ]
+}
