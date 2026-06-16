@@ -50,6 +50,8 @@ function extractEditable(copy) {
       whatHappened: copy.lead.whatHappened || '',
       whyBullet1:   copy.lead.whyBullet1 || '',
       whyBullet2:   copy.lead.whyBullet2 || '',
+      theRead:      copy.lead.theRead || '',
+      ammo:         Array.isArray(copy.lead.ammo) ? [...copy.lead.ammo] : [],
       whatToSay:    copy.lead.whatToSay || '',
     } : null,
     sportsOther: Array.isArray(copy.sportsOther) ? [...copy.sportsOther] : [],
@@ -58,6 +60,8 @@ function extractEditable(copy) {
       whyBullet1: copy.markets.whyBullet1 || '',
       whyBullet2: copy.markets.whyBullet2 || '',
       bringUp:    copy.markets.bringUp || '',
+      theRead:    copy.markets.theRead || '',
+      ammo:       Array.isArray(copy.markets.ammo) ? [...copy.markets.ammo] : [],
     } : null,
     golf: copy.golf ? {
       headline:  copy.golf.headline || '',
@@ -66,6 +70,8 @@ function extractEditable(copy) {
       whyCare2:  copy.golf.whyCare2 || '',
       defending: copy.golf.defending || '',
       watchFor:  copy.golf.watchFor || '',
+      theRead:   copy.golf.theRead || '',
+      ammo:      Array.isArray(copy.golf.ammo) ? [...copy.golf.ammo] : [],
       whatToSay: copy.golf.whatToSay || '',
     } : null,
     f1: copy.f1 ? {
@@ -73,6 +79,8 @@ function extractEditable(copy) {
       whyCare1:  copy.f1.whyCare1 || '',
       whyCare2:  copy.f1.whyCare2 || '',
       watchFor:  copy.f1.watchFor || '',
+      theRead:   copy.f1.theRead || '',
+      ammo:      Array.isArray(copy.f1.ammo) ? [...copy.f1.ammo] : [],
       whatToSay: copy.f1.whatToSay || '',
     } : null,
     nhl: copy.nhl ? {
@@ -80,17 +88,23 @@ function extractEditable(copy) {
       whyCare1:  copy.nhl.whyCare1 || '',
       whyCare2:  copy.nhl.whyCare2 || '',
       watchFor:  copy.nhl.watchFor || '',
+      theRead:   copy.nhl.theRead || '',
+      ammo:      Array.isArray(copy.nhl.ammo) ? [...copy.nhl.ammo] : [],
       whatToSay: copy.nhl.whatToSay || '',
     } : null,
     upcomingPreview: copy.upcomingPreview ? {
       whyItMatters: copy.upcomingPreview.whyItMatters || '',
       watchFor:     copy.upcomingPreview.watchFor || '',
+      theRead:      copy.upcomingPreview.theRead || '',
+      ammo:         Array.isArray(copy.upcomingPreview.ammo) ? [...copy.upcomingPreview.ammo] : [],
       whatToSay:    copy.upcomingPreview.whatToSay || '',
     } : null,
     culture: Array.isArray(copy.culture) ? copy.culture.map(i => ({
       topic:        i.topic || i.head || '',
       whatHappened: i.whatHappened || '',
       whyItMatters: i.whyItMatters || '',
+      theRead:      i.theRead || '',
+      ammo:         Array.isArray(i.ammo) ? [...i.ammo] : [],
       whatToSay:    i.whatToSay || '',
     })) : null,
     finalSharpTake: copy.finalSharpTake || '',
@@ -119,17 +133,23 @@ function mergeEdited(original, edited) {
     }
   }
   if (edited.lead && out.lead) {
-    for (const k of ['headline', 'whatHappened', 'whyBullet1', 'whyBullet2', 'whatToSay']) {
+    for (const k of ['headline', 'whatHappened', 'whyBullet1', 'whyBullet2', 'theRead', 'whatToSay']) {
       out.lead[k] = str(edited.lead[k], out.lead[k]);
     }
+    if (Array.isArray(edited.lead.ammo) && edited.lead.ammo.length) out.lead.ammo = edited.lead.ammo;
   }
   if (Array.isArray(edited.sportsOther) && Array.isArray(out.sportsOther)) {
     out.sportsOther = out.sportsOther.map((orig, i) => {
       const ed = edited.sportsOther[i];
-      // sportsOther entries are { take, why, say } objects.
       if (orig && typeof orig === 'object') {
         const e = ed && typeof ed === 'object' ? ed : {};
-        return { take: str(e.take, orig.take), why: str(e.why, orig.why), say: str(e.say, orig.say) };
+        return {
+          take: str(e.take, orig.take),
+          why: str(e.why, orig.why),
+          theRead: str(e.theRead, orig.theRead),
+          ammo: Array.isArray(e.ammo) && e.ammo.length ? e.ammo : (orig.ammo || []),
+          say: str(e.say, orig.say),
+        };
       }
       return str(ed, orig);
     });
@@ -139,6 +159,7 @@ function mergeEdited(original, edited) {
       for (const k of Object.keys(out[sec])) {
         if (typeof out[sec][k] === 'string') out[sec][k] = str(edited[sec][k], out[sec][k]);
       }
+      if (Array.isArray(edited[sec]?.ammo) && edited[sec].ammo.length) out[sec].ammo = edited[sec].ammo;
     }
   }
   if (Array.isArray(edited.culture) && Array.isArray(out.culture)) {
@@ -149,6 +170,8 @@ function mergeEdited(original, edited) {
         topic:        str(e.topic, item.topic || item.head),
         whatHappened: str(e.whatHappened, item.whatHappened),
         whyItMatters: str(e.whyItMatters, item.whyItMatters),
+        theRead:      str(e.theRead, item.theRead),
+        ammo:         Array.isArray(e.ammo) && e.ammo.length ? e.ammo : (item.ammo || []),
         whatToSay:    str(e.whatToSay, item.whatToSay),
       };
     });
@@ -291,6 +314,10 @@ HARD BLOCK RULE — run this check first, before all others:
 
 If a section's content contains NONE of the following three things, block it immediately. Do not attempt to fix or rewrite it. Add to blocking[] with reason "no_current_facts".
 
+NO-AMMO BLOCK RULE — run after the hard block check:
+
+Any news, sports, markets, or culture section (lead, markets, golf when active, f1, sportsOther entries, dynamicSportsText entries, culture items 1–2) with fewer than 3 items in its ammo[] array must be added to blocking[] with reason "no_ammo". Exception: culture item 3 (curated watch/streaming rec) and pure preview sections where no result exists yet (e.g. upcomingPreview). If ammo[] is missing or empty, that counts as zero — block it.
+
 Required — at least one of:
   1. A named person (athlete, coach, executive, public figure)
   2. A specific number (final score, stat line, percentage move, dollar figure)
@@ -314,6 +341,10 @@ YOUR JOB — six things, every run:
 A. CHECK FORMATTING. Plain prose only — strip any markdown (**bold**, #headers, - bullets, links), fix broken sentences, kill double spaces, ensure each item is complete sentences. 2–5 sentences per item. No leaked "undefined", "null", or template fragments.
 
 B. IMPROVE EVERY "WHAT TO SAY". These are the lines a reader drops in a group chat, at work, or at a bar (lead.whatToSay, golf.whatToSay, f1.whatToSay, culture[].whatToSay, markets.bringUp). Make them punchy, specific, and actually sayable out loud. Cut hedging. A great one sounds like a confident friend, not a press release.
+
+B2. SHARPEN THE GUYTALK READ (theRead). This is the most opinionated beat — what the story really means, who benefits, who looks bad, the broader signal. Every section has a theRead field. Rewrite it to be as sharp and grounded as the best take a smart person would share at a bar — 3–5 sentences, opinionated but rooted only in RAW FACTS. Markets theRead must stay observational (never advice). Never add a name, number, or event not in RAW FACTS.
+
+B3. VERIFY CONVERSATION AMMO (ammo). Every section's ammo[] array must contain 3–5 short, specific, sourced facts that a reader could drop into real conversation (age, contract, earnings, record, stat, purse, the key play, the quote). Remove any ammo item that is a vague restatement or a take rather than a fact. Do not add facts not in RAW FACTS. If the ammo[] array has fewer than 3 verifiable items after removal, the section must go to blocking[] with reason "no_ammo".
 
 C. IMPROVE EVERY "WHY IT MATTERS". These justify the reader's attention (lead.whyBullet1/2, markets.whyBullet1/2, golf.whyCare1/2, f1.whyCare1/2, culture[].whyItMatters). Make the stakes concrete and non-obvious. Replace "this is big" with the actual reason it's big, using only RAW FACTS.
 

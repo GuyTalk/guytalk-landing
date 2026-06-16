@@ -258,6 +258,23 @@ ${rows.map(r => `      <a class="glance-row ${r.cls}" href="${r.anchor}">
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Conversation-intelligence blocks: The GuyTalk Read + Conversation Ammo.
+// Shared by sports cards, markets, golf, F1, and culture items.
+// ─────────────────────────────────────────────────────────────────────────────
+function convoBlocks(s) {
+  if (!s) return '';
+  const read = s.theRead || '';
+  const ammo = Array.isArray(s.ammo) ? s.ammo.filter(Boolean) : [];
+  const readHtml = read
+    ? `      <li><span><span class="dl-label">The GuyTalk Read:</span> ${esc(read)}</span></li>`
+    : '';
+  const ammoHtml = ammo.length
+    ? `      <li class="ammo-item"><span class="dl-label">Conversation Ammo:</span><ul class="ammo-list">${ammo.map(a => `<li>${esc(a)}</li>`).join('')}</ul></li>`
+    : '';
+  return [readHtml, ammoHtml].filter(Boolean).join('\n');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Dynamic sports card. Every sports section — The Lead and every subsection —
 // uses the three-label text (What happened / Why it matters / What to bring up),
 // grounded in sourced facts. The card STYLE is set by discovery's category:
@@ -287,6 +304,7 @@ function buildSportsCard(s, isLead) {
   const detail = `    <ul class="detail-list">
       ${whatHappened  ? `<li><span><span class="dl-label">What happened:</span> ${esc(whatHappened)}</span></li>`   : ''}
       ${whyItMatters  ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyItMatters)}</span></li>`   : ''}
+${convoBlocks(s)}
       ${whatToBringUp ? `<li><span><span class="dl-label">What to bring up:</span> ${esc(whatToBringUp)}</span></li>` : ''}
     </ul>`;
 
@@ -1850,6 +1868,7 @@ ${indexTiles}
       ${whyBullet1 ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyBullet1)}</span></li>` : ''}
       ${whyBullet2 ? `<li><span><span class="dl-label">Watch for:</span> ${esc(whyBullet2)}</span></li>` : ''}
       ${bringUp    ? `<li><span><span class="dl-label">What to bring up:</span> ${esc(bringUp)}</span></li>` : ''}
+${convoBlocks(copy?.markets)}
     </ul>
   </section>`;
 }
@@ -1928,6 +1947,7 @@ ${golfWhereHtml}
       ${defending ? `<li><span><span class="dl-label">Last year:</span> ${esc(defending)}</span></li>`     : ''}
       ${whyCare2  ? `<li><span><span class="dl-label">The angle:</span> ${esc(whyCare2)}</span></li>`        : ''}
       ${watchFor  ? `<li><span><span class="dl-label">${started ? 'Watch for' : 'In the running'}:</span> ${esc(watchFor)}</span></li>` : ''}
+${convoBlocks(copy?.golf)}
       ${whatToSay ? `<li><span><span class="dl-label">What to say:</span> ${esc(whatToSay)}</span></li>`          : ''}
     </ul>
   </section>`;
@@ -1963,6 +1983,7 @@ ${f1WhereHtml}
       ${whyCare1  ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyCare1)}</span></li>`  : ''}
       ${whyCare2  ? `<li><span><span class="dl-label">Championship:</span> ${esc(whyCare2)}</span></li>`   : ''}
       ${watchFor  ? `<li><span><span class="dl-label">Watch for:</span> ${esc(watchFor)}</span></li>`       : ''}
+${convoBlocks(copy?.f1)}
       ${whatToSay ? `<li><span><span class="dl-label">What to say:</span> ${esc(whatToSay)}</span></li>`    : ''}
     </ul>
   </section>`;
@@ -2102,6 +2123,8 @@ function buildCulture({ copy }) {
           <div class="culture-head">${esc(head)}</div>
           ${item.whatHappened ? `<p class="culture-line"><strong>What happened:</strong> ${esc(item.whatHappened)}</p>` : ''}
           ${item.whyItMatters ? `<p class="culture-line"><strong>Why it matters:</strong> ${esc(item.whyItMatters)}</p>` : ''}
+          ${item.theRead      ? `<p class="culture-line"><strong>The GuyTalk Read:</strong> ${esc(item.theRead)}</p>`    : ''}
+          ${Array.isArray(item.ammo) && item.ammo.filter(Boolean).length ? `<p class="culture-line"><strong>Conversation Ammo:</strong></p><ul class="ammo-list">${item.ammo.filter(Boolean).map(a => `<li>${esc(a)}</li>`).join('')}</ul>` : ''}
           ${item.whatToSay    ? `<p class="culture-line"><strong>What to say:</strong> ${esc(item.whatToSay)}</p>`       : ''}
         </div>
       </li>`;

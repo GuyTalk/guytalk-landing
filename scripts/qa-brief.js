@@ -98,12 +98,20 @@ function allText(issue) {
   const c = issue.copy || {};
   const parts = [
     c.keyTakeaway,
-    c.lead?.headline, c.lead?.whatHappened, c.lead?.whyBullet1, c.lead?.whyBullet2, c.lead?.whatToSay,
+    c.lead?.headline, c.lead?.whatHappened, c.lead?.whyBullet1, c.lead?.whyBullet2,
+    c.lead?.theRead, ...(c.lead?.ammo || []), c.lead?.whatToSay,
     c.markets?.mood, c.markets?.whyBullet1, c.markets?.whyBullet2, c.markets?.bringUp,
-    c.golf?.headline, c.golf?.whyCare1, c.golf?.whyCare2, c.golf?.watchFor, c.golf?.whatToSay,
-    c.f1?.headline, c.f1?.whyCare1, c.f1?.whyCare2, c.f1?.watchFor, c.f1?.whatToSay,
-    ...(c.sportsOther || []).flatMap(o => o && typeof o === 'object' ? [o.take, o.why, o.say] : [o]),
-    ...(c.culture || []).flatMap(i => [i.topic || i.head, i.whatHappened, i.whyItMatters, i.whatToSay]),
+    c.markets?.theRead, ...(c.markets?.ammo || []),
+    c.golf?.headline, c.golf?.whyCare1, c.golf?.whyCare2, c.golf?.watchFor,
+    c.golf?.theRead, ...(c.golf?.ammo || []), c.golf?.whatToSay,
+    c.f1?.headline, c.f1?.whyCare1, c.f1?.whyCare2, c.f1?.watchFor,
+    c.f1?.theRead, ...(c.f1?.ammo || []), c.f1?.whatToSay,
+    c.nhl?.headline, c.nhl?.whyCare1, c.nhl?.whyCare2,
+    c.nhl?.theRead, ...(c.nhl?.ammo || []), c.nhl?.whatToSay,
+    ...(c.sportsOther || []).flatMap(o => o && typeof o === 'object'
+      ? [o.take, o.why, o.theRead, ...(o.ammo || []), o.say] : [o]),
+    ...(c.culture || []).flatMap(i => [i.topic || i.head, i.whatHappened, i.whyItMatters, i.theRead, ...(i.ammo || []), i.whatToSay]),
+    ...(c.dynamicSportsText || []).flatMap(d => [d.whatHappened, d.whyItMatters, d.theRead, ...(d.ammo || []), d.whatToBringUp]),
     c.finalSharpTake,
     c.glance?.sports, c.glance?.market, c.glance?.bestConvo, c.glance?.watchNext, c.glance?.quickRec,
     ...(Object.values(c.todaysHits || {})),
@@ -119,6 +127,8 @@ function marketsText(issue) {
     c.markets?.whyBullet1,
     c.markets?.whyBullet2,
     c.markets?.bringUp,
+    c.markets?.theRead,
+    ...(c.markets?.ammo || []),
     c.glance?.market,
   ].filter(Boolean).join(' ').toLowerCase();
 }
@@ -215,6 +225,26 @@ function main() {
   if (ed?.brokenLinks?.length) {
     warn(`${ed.brokenLinks.length} broken source link(s)`, ed.brokenLinks.map(l => `${l.url} (${l.reason})`).join(' | '));
   }
+
+  // 3c. NO-AMMO GATE — hard fail if any required section has < 3 ammo items
+  console.log('\n  [Conversation Ammo]');
+  const ammoSections = [
+    ...(copy?.lead ? [{ label: 'lead', ammo: copy.lead.ammo }] : []),
+    ...(copy?.markets ? [{ label: 'markets', ammo: copy.markets.ammo }] : []),
+    ...(copy?.golf ? [{ label: 'golf', ammo: copy.golf.ammo }] : []),
+    ...(copy?.f1 ? [{ label: 'f1', ammo: copy.f1.ammo }] : []),
+    ...(copy?.nhl ? [{ label: 'nhl', ammo: copy.nhl.ammo }] : []),
+    ...(copy?.sportsOther || []).map((o, i) => ({ label: `sportsOther[${i}]`, ammo: o?.ammo })),
+    ...(copy?.dynamicSportsText || []).map((d, i) => ({ label: `dynamicSports[${i}]`, ammo: d?.ammo })),
+    // culture items 1 and 2 (index 0 and 1) require ammo; item 3 (index 2) is a watch rec, exempt
+    ...(copy?.culture || []).slice(0, 2).map((c, i) => ({ label: `culture[${i + 1}]`, ammo: c?.ammo })),
+  ];
+  const ammoFails = ammoSections.filter(s => !Array.isArray(s.ammo) || s.ammo.filter(Boolean).length < 3);
+  run(
+    'Conversation Ammo: all required sections have ≥3 items',
+    ammoFails.length === 0,
+    ammoFails.length ? `Missing/thin ammo in: ${ammoFails.map(s => `${s.label}(${(s.ammo || []).length})`).join(', ')}` : undefined
+  );
 
   // 4. MARKETS COMPLIANCE — hard fail (no investment advice)
   console.log('\n  [Markets Compliance]');

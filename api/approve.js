@@ -456,6 +456,32 @@ function errorPage(msg) {
 </div></body></html>`;
 }
 
+function notReviewedPage(slug, token) {
+  return `<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GuyTalk — Editorial Review Required</title>
+<style>
+  body{margin:0;padding:40px 20px;font-family:-apple-system,sans-serif;background:#FFF9EC;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+  .card{background:#fff;border:2px solid #F59E0B;border-radius:16px;padding:40px 32px;max-width:480px;width:100%;text-align:center;}
+  .icon{font-size:48px;margin-bottom:16px;}
+  h1{font-size:22px;font-weight:800;color:#92400E;margin:0 0 8px;}
+  p{font-size:14px;color:#6E6862;margin:0 0 20px;}
+  .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  a.primary{display:inline-block;padding:12px 24px;background:#F59E0B;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:14px;}
+  a.secondary{display:inline-block;padding:12px 24px;background:#fff;color:#92400E;border:2px solid #F59E0B;text-decoration:none;border-radius:10px;font-weight:700;font-size:14px;}
+</style></head>
+<body><div class="card">
+  <div class="icon">⚠️</div>
+  <h1>Brief not editor-reviewed.</h1>
+  <p>The editorial pass did not run for this issue — the brief was written by the AI drafter only and has not been reviewed against the GuyTalk Editorial Bible. Publishing an unreviewed brief risks quality regressions.</p>
+  <p>To publish anyway, use the force link below. To run the editorial pass first, open your terminal and run: <code>node scripts/lib/editor.js</code></p>
+  <div class="actions">
+    <a class="secondary" href="/brief/${slug}/">Preview brief →</a>
+    <a class="primary" href="/api/approve?token=${encodeURIComponent(token)}&go=1&force=1">Publish anyway (unreviewed)</a>
+  </div>
+</div></body></html>`;
+}
+
 // ── Handler ───────────────────────────────────────────────────────────────────
 module.exports = async (req, res) => {
   if (req.method !== 'GET') {
@@ -500,6 +526,17 @@ module.exports = async (req, res) => {
   // ── Step 2: Idempotency check ─────────────────────────────────────────────
   if (isAlreadySent(slug)) {
     res.status(200).send(alreadySentPage(slug));
+    return;
+  }
+
+  // ── Step 2a: Editorial review gate ────────────────────────────────────────
+  // Block publish if the editorial pass did not run (reviewed: false) unless the
+  // caller explicitly passes force=1 — that's the intentional escape hatch for
+  // API outages or emergency bypasses. The warn page explains what happened and
+  // offers both options so the operator can make an informed call.
+  const wasReviewed = data?.editor?.reviewed === true;
+  if (!wasReviewed && req.query.force !== '1') {
+    res.status(200).send(notReviewedPage(slug, token));
     return;
   }
 

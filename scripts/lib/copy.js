@@ -14,12 +14,14 @@ WRITING RULES:
 - Short sentences. Vary rhythm: short punch, longer follow-through, short punch.
 - Name specific people, teams, numbers. Vague = useless.
 - Lead with the most interesting angle. Scores are the least interesting thing.
-STRUCTURE — every body item is built from these three beats, in this order:
+STRUCTURE — every body item is built from these five beats, in this order:
 WHAT HAPPENED: One sentence. Specific. Named person or team. Score, stat, or number if applicable. Never vague.
 WHY IT MATTERS: One to two sentences. Non-obvious stakes — what changes, what it signals, why a normal person should care. Never "this matters because it's significant."
-WHAT TO BRING UP: One sentence. A specific take or hook a 28-year-old can say out loud in a group chat or at a bar. Not a summary. Has a point of view.
+THE GUYTALK READ: 3–5 sentences. The strongest, sharpest take — what it really means, who benefits, who looks bad, the broader signal, what smart people are saying. Opinionated but grounded in fact. Markets = observational only (never advice).
+CONVERSATION AMMO: A JSON array of 3–5 short fact strings. Specific, sourced facts people actually ask about: age, college, contract, earnings, purse/payout, first win, streak, record, ranking, the key play, the quote, the drama. Markets: valuation, deal size, market cap vs. a comp, the historical parallel. Facts only — no takes, no opinions. Minimum 3 items required.
+WHAT TO SAY: One natural sentence a reader could say in a group chat, at work, at a bar. Has a point of view.
 
-The brief's template prints these three labels for you. When a prompt asks for JSON, put each beat in its matching field (e.g. whatHappened / whyBullet1 + whyBullet2 / whatToSay) — do NOT write the words "WHAT HAPPENED:", "WHY IT MATTERS:", or "WHAT TO BRING UP:" inside any value, and NEVER add these labels to a headline, tagline, or any one-line field.
+When a prompt asks for JSON, put each beat in its matching field (whatHappened / whyBullet1 + whyBullet2 / theRead / ammo:[] / whatToSay). Do NOT write the beat labels inside any value. Never add these labels to a headline, tagline, or any one-line field.
 - Casual language: "The Knicks got exposed" beats "New York underperformed."
 - Clarity over sounding clever.
 
@@ -58,6 +60,11 @@ function clean(text) {
     .replace(/^\s*(Sports|Markets|Golf|Culture|GuyTalk|F1|Formula)\s*:\s*/i, '')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
+}
+
+function cleanAmmo(text) {
+  if (!text) return '';
+  return String(text).replace(/\*\*(.*?)\*\*/gs, '$1').replace(/\*(.*?)\*/gs, '$1').trim();
 }
 
 function parseJson(raw) {
@@ -330,7 +337,7 @@ Games are listed 0-indexed: ${(sports || []).map((g, i) => {
 }).join(' | ')}
 
 Return ONLY valid JSON on one line — no markdown:
-{"gameIndex":0,"headline":"Max 10 words. The angle, not the score.","whatHappened":"1-2 sentences. Plain language. Most interesting angle first.","whyBullet1":"One sentence. The main reason this matters today.","whyBullet2":"One sentence. A different angle.","whatToSay":"One natural conversational line."}
+{"gameIndex":0,"headline":"Max 10 words. The angle, not the score.","whatHappened":"1-2 sentences. Plain language. Most interesting angle first.","whyBullet1":"One sentence. The main reason this matters today.","whyBullet2":"One sentence. A different angle.","theRead":"3-5 sentences. The GuyTalk Read — the real angle, who benefits, what it signals. Opinionated, grounded.","ammo":["Specific sourced fact 1","Specific sourced fact 2","Specific sourced fact 3"],"whatToSay":"One natural conversational line."}
 
 gameIndex must be the index number (0, 1, 2...) of the game your headline and copy are about. If headline is about game at index 1, set gameIndex:1.${repGuard}`,
       400
@@ -351,7 +358,7 @@ ${sports.map((g, i) => {
 }).join('\n')}
 
 Return ONLY a valid JSON array — one object per game, in the SAME order, no markdown:
-[{"take":"≤18 words — what happened and the sharpest angle, NOT just the score","why":"One sentence — why it matters or the bigger context","say":"One natural line a guy could drop in conversation"}]`,
+[{"take":"≤18 words — what happened and the sharpest angle, NOT just the score","why":"One sentence — why it matters or the bigger context","theRead":"2-4 sentences. The GuyTalk Read — the real angle, what it signals.","ammo":["Specific fact 1","Specific fact 2","Specific fact 3"],"say":"One natural line a guy could drop in conversation"}]`,
           600
         )
       : Promise.resolve(null),
@@ -376,7 +383,7 @@ The Markets section answers three questions only:
 3. Why are people talking about it?
 
 Return ONLY valid JSON on one line — no markdown:
-{"headlines":[{"head":"Quick headline #1 — the biggest market/business story today (the IPO/ruling/print above if there is one)","sub":"1-2 sentences: what it is + what it means for the market; for a major event, also touch index impact / how to participate / historical comp"},{"head":"Quick headline #2 — the next biggest real market move from the data","sub":"one sentence"},{"head":"Quick headline #3 — another real market move or the rates/economy angle","sub":"one sentence"}],"mood":"One sentence — what happened in markets today and why. Include one real number. Plain English.","whyBullet1":"One sentence — why this matters in context. Explain, don't advise. Example: 'Treasury yields moved because...' not 'investors should...'","whyBullet2":"What professionals are watching in the next 2-3 days. Name a specific data print or event. Include the day of week.","bringUp":"One quotable market fact. Must include a real number. Explain something — do not tell anyone what to do with it."}`,
+{"headlines":[{"head":"Quick headline #1 — the biggest market/business story today (the IPO/ruling/print above if there is one)","sub":"1-2 sentences: what it is + what it means for the market; for a major event, also touch index impact / how to participate / historical comp"},{"head":"Quick headline #2 — the next biggest real market move from the data","sub":"one sentence"},{"head":"Quick headline #3 — another real market move or the rates/economy angle","sub":"one sentence"}],"mood":"One sentence — what happened in markets today and why. Include one real number. Plain English.","whyBullet1":"One sentence — why this matters in context. Explain, don't advise. Example: 'Treasury yields moved because...' not 'investors should...'","whyBullet2":"What professionals are watching in the next 2-3 days. Name a specific data print or event. Include the day of week.","bringUp":"One quotable market fact. Must include a real number. Explain something — do not tell anyone what to do with it.","theRead":"3-5 sentences. The GuyTalk Read — the real market angle, what it signals, who it affects. Observational only, never advice.","ammo":["Real number or market fact 1","Real number or market fact 2","Real number or market fact 3"]}`,
           600
         )
       : Promise.resolve(null),
@@ -394,7 +401,7 @@ Return ONLY valid JSON on one line — no markdown:
               return `GuyTalk golf: ${golf.name} — ${status}. Leaderboard: ${lb || 'no leaderboard yet'}.${coveredLine}${golfWeb ? `\nWEB-SOURCED FACT (real, current — use it): ${golfWeb}` : ''}
 ${golf.statusState === 'post' ? 'If this event is in the ALREADY COVERED list above, do not re-report the finish as fresh — give a one-line wrap and point ahead to the tour moving on (do NOT invent the next tournament\'s name or field).' : ''}
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words — what's happening at ${golf.name}.","whyCare1":"One sentence — why this tournament matters (stakes, prestige, course).","whyCare2":"One sentence — the leaderboard situation or a specific angle.","watchFor":"One thing to track — a player, a battle, a scoring target.","whatToSay":"One casual conversational line."}`;
+{"headline":"Max 10 words — what's happening at ${golf.name}.","whyCare1":"One sentence — why this tournament matters (stakes, prestige, course).","whyCare2":"One sentence — the leaderboard situation or a specific angle.","watchFor":"One thing to track — a player, a battle, a scoring target.","theRead":"2-4 sentences. The GuyTalk Read — stakes, storyline, what a real golf fan is watching for.","ammo":["Fact 1 from the data — purse, score, or leaderboard detail","Fact 2","Fact 3"],"whatToSay":"One casual conversational line."}`;
             }
 
             // PREVIEW (not started): give it real voice for a casual fan. The course,
@@ -405,7 +412,7 @@ CRITICAL: there is NO leaderboard and NO results yet. NEVER say anyone is "leadi
 Players teeing off this week: ${fieldNames || '(field not listed)'}.
 Use your knowledge of THIS specific tournament to name the real course + city and last year's champion. Be specific and confident — this is exactly the context a casual fan needs. If you genuinely don't know a fact, give an honest general line rather than a vague non-answer (never fabricate a name you're unsure of).
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words — the storyline going in (a preview, not a result).","course":"Real course/venue + city (e.g. 'TPC Toronto at Osprey Valley, Ontario'). Name it if you know it.","whyCare1":"One sentence — why this event matters / what's at stake (FedEx Cup, prestige, field strength).","defending":"One sentence — who WON it last year and the storyline (name the champion if you know it).","watchFor":"Who to watch to win — name 2-3 recognizable favorites or marquee names expected in the field. Framed as 'worth watching', NOT as current leaders.","whatToSay":"One casual, confident line a casual fan could drop — about the matchup/storyline, not a fake leaderboard."}`;
+{"headline":"Max 10 words — the storyline going in (a preview, not a result).","course":"Real course/venue + city (e.g. 'TPC Toronto at Osprey Valley, Ontario'). Name it if you know it.","whyCare1":"One sentence — why this event matters / what's at stake (FedEx Cup, prestige, field strength).","defending":"One sentence — who WON it last year and the storyline (name the champion if you know it).","watchFor":"Who to watch to win — name 2-3 recognizable favorites or marquee names expected in the field. Framed as 'worth watching', NOT as current leaders.","theRead":"2-4 sentences. The GuyTalk Read — what makes this tournament interesting for a casual fan right now.","ammo":["Fact 1 — purse, course history, or field stat","Fact 2","Fact 3"],"whatToSay":"One casual, confident line a casual fan could drop — about the matchup/storyline, not a fake leaderboard."}`;
           })(),
           320,
           { model: golfStarted ? undefined : 'claude-sonnet-4-6', delayMs: 2000, section: 'golf' }
@@ -436,7 +443,7 @@ Return ONLY valid JSON on one line — no markdown:
 A driver's team/constructor is ONLY the name shown in parentheses next to them. NEVER guess or state a driver's team if it is not given.
 STATS RULE (hard): you may include ONE interesting stat in "whatToSay" or "whyCare2", but ONLY using the season stats provided above. NEVER invent records, streaks, "first/most/youngest/oldest", or any number not given. If no stat is provided, don't cite one.
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words.","whyCare1":"One sentence — what makes this race or result significant.","whyCare2":"One sentence — championship battle or circuit-specific detail.","watchFor":"One thing to track. Specific.","whatToSay":"One casual conversation line — weave in the real season stat if available."}`;
+{"headline":"Max 10 words.","whyCare1":"One sentence — what makes this race or result significant.","whyCare2":"One sentence — championship battle or circuit-specific detail.","watchFor":"One thing to track. Specific.","theRead":"2-4 sentences. The GuyTalk Read — championship context, what this result means for the title fight.","ammo":["Real stat 1 from the provided season data","Real stat 2","Real stat 3"],"whatToSay":"One casual conversation line — weave in the real season stat if available."}`;
           })(),
           220,
           { delayMs: 2000, section: 'f1' }
@@ -447,7 +454,7 @@ Return ONLY valid JSON on one line — no markdown:
     askJson('Culture',
       `GuyTalk culture: 3 quick hits for men 25-45. Today: ${TODAY}.
 Return ONLY valid JSON array with exactly 3 objects — no markdown, no extra text:
-[{"topic":"Headline. Max 8 words.","whatHappened":"One sentence — what actually happened.","whyItMatters":"One sentence — why a guy should care.","whatToSay":"One casual conversation line. Natural, not forced.","tag":"Music|Sports Biz|TV|Tech|Gaming|Movies|Streaming"}]
+[{"topic":"Headline. Max 8 words.","whatHappened":"One sentence — what actually happened.","whyItMatters":"One sentence — why a guy should care.","theRead":"2-3 sentences. The GuyTalk Read — the real angle, who it affects, the broader signal.","ammo":["Specific fact 1","Specific fact 2","Specific fact 3"],"whatToSay":"One casual conversation line. Natural, not forced.","tag":"Music|Sports Biz|TV|Tech|Gaming|Movies|Streaming"}]
 
 AUDIENCE FILTER (important): pick what men 25-45 actually talk about — big movies/TV/streaming drops, gaming, tech & gadgets, sports business/media deals, a major album or artist moment, a viral thing guys are quoting. AVOID celebrity relationship gossip, who's-dating-who, breakups, and reality-TV drama (e.g. "[Celebrity] and [Celebrity] split") UNLESS it's genuinely massive and universal. If the only trending "culture" is gossip, prefer a tech/gaming/movie story or the streaming pick instead.
 
@@ -510,7 +517,7 @@ Return ONLY valid JSON on one line — no markdown:
         `GuyTalk NHL section. ${g.note || 'NHL game'}. ${line}. ${meta}.${nhlWeb ? `\nWEB-SOURCED FACT (real, current — use it): ${nhlWeb}` : ''}
 Use ONLY the facts above — never invent scores, records, or stats not given.
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words — the angle.","whyCare1":"One sentence — why this game/series matters right now.","whyCare2":"One sentence — series state or stakes (who leads, what a win does).","watchFor":"One specific thing to track.","whatToSay":"One casual conversation line."}`,
+{"headline":"Max 10 words — the angle.","whyCare1":"One sentence — why this game/series matters right now.","whyCare2":"One sentence — series state or stakes (who leads, what a win does).","watchFor":"One specific thing to track.","theRead":"2-4 sentences. The GuyTalk Read — the real stakes, what this game means for the series.","ammo":["Specific fact 1 from the data","Specific fact 2","Specific fact 3"],"whatToSay":"One casual conversation line."}`,
         220, { delayMs: 2000, section: 'nhl' }
       );
     })(),
@@ -521,7 +528,7 @@ Return ONLY valid JSON on one line — no markdown:
           `GuyTalk preview of an UPCOMING game: ${upcomingText}${upcoming[0].seriesNote ? ` (${upcoming[0].seriesNote})` : ''}.
 Use ONLY these facts — never invent stats. This game has NOT happened yet, so do not state a result.
 Return ONLY valid JSON on one line — no markdown:
-{"whyItMatters":"One sentence — what's at stake in this game and why people care.","watchFor":"One specific thing to watch for.","whatToSay":"One casual conversation line about the matchup."}`,
+{"whyItMatters":"One sentence — what's at stake in this game and why people care.","watchFor":"One specific thing to watch for.","theRead":"2-3 sentences. The GuyTalk Read — the storyline, what a win means, who has the edge.","ammo":["Specific fact 1 from the data","Specific fact 2","Specific fact 3"],"whatToSay":"One casual conversation line about the matchup."}`,
           200
         )
       : Promise.resolve(null),
@@ -542,8 +549,8 @@ Stories (in this exact order):
 ${dynSportsList}
 
 Return ONLY a valid JSON array — one object per story, in the SAME order, no markdown:
-[{"whatHappened":"One sentence (a novel/rare event may lead with one short context clause per the rule above). Specific. Named person or team and the real result from the facts.","whyItMatters":"One to two sentences, using the BACKGROUND fact when one is given. Why anyone should care — stakes, what it changes.","whatToBringUp":"One sentence a 28-year-old could actually say out loud at a bar or the office."}]`,
-          Math.min(2200, 260 * dynSports.length + 200),
+[{"whatHappened":"One sentence (a novel/rare event may lead with one short context clause per the rule above). Specific. Named person or team and the real result from the facts.","whyItMatters":"One to two sentences, using the BACKGROUND fact when one is given. Why anyone should care — stakes, what it changes.","theRead":"2-4 sentences. The GuyTalk Read — what it really means, the broader angle, who benefits.","ammo":["Specific sourced fact 1","Specific sourced fact 2","Specific sourced fact 3"],"whatToBringUp":"One sentence a 28-year-old could actually say out loud at a bar or the office."}]`,
+          Math.min(3200, 360 * dynSports.length + 300),
           { minFields: 1, section: 'sports' }
         )
       : Promise.resolve(null),
@@ -574,7 +581,7 @@ Return ONLY a valid JSON array — one object per story, in the SAME order, no m
     lead:           leadData,
     sportsOther:    (Array.isArray(parseJson(get(sportsOtherR))) ? parseJson(get(sportsOtherR)) : [])
                       .map(o => o && typeof o === 'object'
-                        ? { take: clean(o.take), why: clean(o.why), say: clean(o.say) }
+                        ? { take: clean(o.take), why: clean(o.why), theRead: clean(o.theRead), ammo: Array.isArray(o.ammo) ? o.ammo.map(a => cleanAmmo(a)) : [], say: clean(o.say) }
                         : { take: clean(o) })
                       .filter(o => o.take || o.why || o.say),
     markets:        marketsData,
@@ -590,7 +597,7 @@ Return ONLY a valid JSON array — one object per story, in the SAME order, no m
     // by generate-brief.js). Empty object per story when the call misfired.
     dynamicSportsText: Array.isArray(dynSportsBeats)
       ? dynSportsBeats.map(o => (o && typeof o === 'object')
-          ? { whatHappened: clean(o.whatHappened) || '', whyItMatters: clean(o.whyItMatters) || '', whatToBringUp: clean(o.whatToBringUp) || '' }
+          ? { whatHappened: clean(o.whatHappened) || '', whyItMatters: clean(o.whyItMatters) || '', theRead: clean(o.theRead) || '', ammo: Array.isArray(o.ammo) ? o.ammo.map(a => cleanAmmo(a)) : [], whatToBringUp: clean(o.whatToBringUp) || '' }
           : {})
       : null,
   };
