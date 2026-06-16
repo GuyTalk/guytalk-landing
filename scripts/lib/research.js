@@ -1,18 +1,18 @@
 'use strict';
 
 /**
- * Daily "biggest stories" research — cost-controlled rewrite.
+ * Daily research layer — pipeline-v2 cost rewrite.
  *
- * Two model tiers to cut per-run cost from ~$20 to ~$1-3:
- *   SYNTH_MODEL   (Sonnet) — broad synthesis: top stories + sports discovery (2 calls, adaptive thinking)
- *   EXTRACT_MODEL (Haiku)  — narrow extraction: facts, images, URLs (all other calls, no thinking)
+ * Cost target: <$0.50/run
+ *   fetchDynamicSports  — ZERO model/search calls; built from structured feeds.
+ *   fetchTopStories     — NewsAPI headlines → 1 Haiku call + 1 Sonnet search (market depth only).
+ *   fetchSectionStories — NewsAPI entertainment (culture) + og:image for hero; zero web searches.
  *
  * All knobs are env-overridable:
  *   ANTHROPIC_RESEARCH_MODEL   — override SYNTH_MODEL  (default: claude-sonnet-4-6)
  *   ANTHROPIC_EXTRACT_MODEL    — override EXTRACT_MODEL (default: claude-haiku-4-5-20251001)
  *   RESEARCH_MAX_CONTINUATIONS — max pause_turn resumes per call (default: 2)
- *   RESEARCH_MAX_SPORTS        — max sports discovered (default: 3)
- *   RESEARCH_HIGHLIGHT_VIDEOS  — set to "1" to re-enable highlight video search (default: off)
+ *   RESEARCH_MAX_SPORTS        — max sports sections (default: 3)
  *
  * Fail-open: any error returns [] / {} so generation never blocks.
  */
@@ -20,12 +20,12 @@
 const SYNTH_MODEL   = process.env.ANTHROPIC_RESEARCH_MODEL || 'claude-sonnet-4-6';
 const EXTRACT_MODEL = process.env.ANTHROPIC_EXTRACT_MODEL  || 'claude-haiku-4-5-20251001';
 
-const MAX_CONTINUATIONS       = parseInt(process.env.RESEARCH_MAX_CONTINUATIONS || '2', 10);
-const MAX_SPORTS              = parseInt(process.env.RESEARCH_MAX_SPORTS        || '3', 10);
-const ENABLE_HIGHLIGHT_VIDEOS = process.env.RESEARCH_HIGHLIGHT_VIDEOS === '1';
+const MAX_CONTINUATIONS = parseInt(process.env.RESEARCH_MAX_CONTINUATIONS || '2', 10);
+const MAX_SPORTS        = parseInt(process.env.RESEARCH_MAX_SPORTS        || '3', 10);
 
 const { isExcluded, scoreImportance } = require('./editorial-config');
-const { resolveAndValidate }          = require('./images');
+const { extractOgImage, isLiveImage, resolveAthleteImage, SECTION_FALLBACKS } = require('./images');
+const { PLAYERS } = require('./db');
 
 function extractJsonArray(text) {
   if (!text) return null;
@@ -58,9 +58,8 @@ function getText(res) {
   return (res.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n').trim();
 }
 
-// Shared runner: caps web_search via max_uses, optional adaptive thinking.
-// allowed_callers:'direct' lets Haiku (which lacks programmatic tool calling) use web_search.
-// Mutates `messages` in-place so continuation context accumulates naturally.
+// Shared runner for web_search calls — caps usage via max_uses.
+// allowed_callers:'direct' required for Haiku (lacks programmatic tool calling).
 async function runSearch(client, { model, messages, maxTokens, maxUses, useThinking = false }) {
   const toolDef = { type: 'web_search_20260209', name: 'web_search', max_uses: maxUses, allowed_callers: ['direct'] };
   const base = {
@@ -79,369 +78,400 @@ async function runSearch(client, { model, messages, maxTokens, maxUses, useThink
   return res;
 }
 
+// NewsAPI helper — fetch headlines from one or more categories.
+async function fetchNewsHeadlines(categories, { pageSize = 10 } = {}) {
+  const newsKey = process.env.NEWS_API_KEY;
+  if (!newsKey) return [];
+  const items = [];
+  for (const cat of categories) {
+    try {
+      const res = await fetch(
+        `https://newsapi.org/v2/top-headlines?country=us&category=${cat}&pageSize=${pageSize}&apiKey=${newsKey}`
+      );
+      if (!res.ok) continue;
+      const data = await res.json();
+      (data.articles || []).forEach(a => {
+        if (a.title && a.url && !a.title.includes('[Removed]')) {
+          items.push({
+            title:       a.title.replace(/\s*[\-\|]\s*[^-|]+$/, '').trim(),
+            url:         a.url,
+            description: a.description || '',
+            source:      a.source?.name || '',
+          });
+        }
+      });
+    } catch (_) {}
+  }
+  return items;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
-// Top stories — SYNTH_MODEL, adaptive thinking, max_uses=3
+// Top stories — NewsAPI headlines → Haiku ranking (text-only) +
+//               ONE Sonnet search for lead market/business depth.
 // ─────────────────────────────────────────────────────────────────────────────
 async function fetchTopStories({ dateLabel } = {}) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) { console.log('   ⚠  Research skipped — ANTHROPIC_API_KEY missing'); return []; }
+
+  const today = dateLabel || new Date().toLocaleDateString('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
+  });
+
+  // Step 1 — fetch headlines via NewsAPI (business, tech, general)
+  const headlines = await fetchNewsHeadlines(['business', 'technology', 'general'], { pageSize: 10 });
+  if (!headlines.length) {
+    console.log('   ⚠  NewsAPI returned no headlines — falling back to web search');
+    return fetchTopStoriesViaSearch({ today, apiKey });
+  }
 
   let Anthropic;
   try { Anthropic = require('@anthropic-ai/sdk'); }
   catch { console.log('   ⚠  Research skipped — @anthropic-ai/sdk not installed'); return []; }
   const client = new (Anthropic.default || Anthropic)({ apiKey });
 
-  const today = dateLabel || new Date().toLocaleDateString('en-US', {
-    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
-  });
+  // Step 2 — Haiku ranks + formats (no web_search, text-only)
+  const bulletList = headlines.slice(0, 20).map(
+    (h, i) => `${i + 1}. [${h.source}] ${h.title}${h.description ? ` — ${h.description.slice(0, 120)}` : ''} (${h.url})`
+  ).join('\n');
 
-  const prompt = `You are the lead editor of GuyTalk, a daily brief for men 25-45 who want to walk into any room informed. Today is ${today}.
+  const rankPrompt = `You are the lead editor of GuyTalk, a daily brief for men 25-45. Today is ${today}.
 
-Search the web for the BIGGEST, most relevant news stories happening RIGHT NOW — the things people are actually talking about today. Cover business & markets, tech, world/national news, and major culture. EXCLUDE routine sports scores (a separate feed handles those), but DO include a genuinely massive sports-business or championship story if it is one of the day's biggest stories.
+Here are today's top news headlines:
+${bulletList}
 
-Rank by real importance, not recency alone. The #1 story should be the single thing a smart guy most needs to know today.
+Pick the 4-6 most important stories for a male 25-45 audience (business, tech, world, culture — NOT routine sports scores). Rank by genuine importance; #1 is what a smart man most needs to know today.
 
-For the single biggest MARKET or BUSINESS story, you MUST answer these in the "depth" field: how it affects the rest of the market and major indices (e.g. is the S&P 500 likely to add it), how a regular person can participate if relevant, and the historical comparison (how similar events have played out weeks/months/a year later). Be specific and grounded in what you found.
+For the single biggest MARKET or BUSINESS story, set "depth" to 2-4 sentences on: how it affects the S&P 500/major indices, how a regular person can participate, and a historical comparison. Set "depth": "" for all other stories.
 
-Rules:
-- Only include stories you actually found in search and can cite with a real source URL.
-- Be factual and specific (names, numbers, dates). Never invent a detail. If you cannot verify a claim, leave it out.
-- Opinion is allowed only in "whatToSay" (label it as a take, not reporting).
-- No investment advice — describe what happened and what it means, never "buy/sell/should".
+Return ONLY a JSON array (no prose, no markdown fence):
+[{
+  "category": "Markets" | "Business" | "Tech" | "World" | "Culture",
+  "headline": "tight, specific headline",
+  "whatHappened": "1-2 factual sentences",
+  "whyItMatters": "1-2 sentences why a guy should care",
+  "depth": "market depth for the lead business/market story; empty string otherwise",
+  "whatToSay": "one opinionated line a guy would actually say",
+  "sources": ["<url from the list above>"],
+  "isLead": true for the single biggest story, false for others
+}]`;
 
-Return ONLY a JSON array (no prose before or after, no markdown fence) of 4-6 objects:
-[
-  {
-    "category": "Markets" | "Business" | "Tech" | "World" | "Culture",
-    "headline": "tight, specific headline",
-    "whatHappened": "1-2 sentences, specific and factual",
-    "whyItMatters": "1-2 sentences on why a guy should care",
-    "depth": "ONLY for the single biggest market/business story: 2-4 sentences on market impact + index implications + how to participate + historical comps. Empty string otherwise.",
-    "whatToSay": "one natural, opinionated line a guy would actually say out loud",
-    "sources": ["https://...", "https://..."],
-    "isLead": true for the single biggest overall story, false for the rest
+  let stories = [];
+  try {
+    const messages = [{ role: 'user', content: rankPrompt }];
+    const res = await client.messages.create({ model: EXTRACT_MODEL, max_tokens: 3000, messages });
+    stories = extractJsonArray(getText(res)) || [];
+    stories = stories.filter(s => s?.headline);
+  } catch (e) {
+    console.log(`   ⚠  Haiku ranking failed: ${e.message}`);
+    return [];
   }
-]`;
+  if (!stories.length) return [];
+
+  // Step 3 — ONE Sonnet search for market depth on the lead business/market story
+  const marketStory = stories.find(s => s.isLead && ['Markets', 'Business'].includes(s.category))
+    || stories.find(s => ['Markets', 'Business'].includes(s.category));
+  if (marketStory && !marketStory.depth) {
+    try {
+      const depthMessages = [{
+        role: 'user',
+        content: `For this story: "${marketStory.headline}" — search for:
+1. How it affects the S&P 500 and other major indices
+2. How a regular person might participate or is affected
+3. Historical comparison: how similar events played out weeks/months later
+
+Return ONLY: {"depth":"2-4 concrete sentences covering all three points"}`,
+      }];
+      const depthRes = await runSearch(client, {
+        model: SYNTH_MODEL, messages: depthMessages, maxTokens: 800, maxUses: 2, useThinking: false,
+      });
+      const depthObj = extractJsonObject(getText(depthRes));
+      if (depthObj?.depth) marketStory.depth = depthObj.depth;
+    } catch (_) { /* non-blocking — depth stays empty */ }
+  }
+
+  const lead = stories.find(s => s.isLead) || stories[0];
+  console.log(`   ✓ Top stories: ${stories.length} from NewsAPI (lead: "${lead.headline.slice(0, 55)}…")`);
+  return stories;
+}
+
+// Fallback: original web_search path when NEWS_API_KEY is absent.
+async function fetchTopStoriesViaSearch({ today, apiKey }) {
+  let Anthropic;
+  try { Anthropic = require('@anthropic-ai/sdk'); } catch { return []; }
+  const client = new (Anthropic.default || Anthropic)({ apiKey });
+
+  const prompt = `You are the lead editor of GuyTalk, a daily brief for men 25-45. Today is ${today}.
+
+Search for the BIGGEST news stories right now — business, markets, tech, world, culture. Exclude routine sports scores. Only include stories with real source URLs.
+
+Return ONLY a JSON array of 4-6 objects:
+[{
+  "category": "Markets" | "Business" | "Tech" | "World" | "Culture",
+  "headline": "tight, specific headline",
+  "whatHappened": "1-2 factual sentences",
+  "whyItMatters": "1-2 sentences",
+  "depth": "2-4 sentences for the biggest market/business story; empty string otherwise",
+  "whatToSay": "one opinionated line",
+  "sources": ["https://..."],
+  "isLead": true for the single biggest story
+}]`;
 
   try {
     const messages = [{ role: 'user', content: prompt }];
-    // No adaptive thinking here — web search provides grounding, and thinking
-    // causes this call to exceed the 10-min SDK timeout with 3 searches queued.
-    const res = await runSearch(client, {
-      model: SYNTH_MODEL, messages, maxTokens: 8000, maxUses: 3, useThinking: false,
-    });
-    const text = getText(res);
-    const stories = extractJsonArray(text);
-    if (!Array.isArray(stories) || !stories.length) {
-      console.log('   ⚠  Research returned no parseable stories');
-      return [];
+    const res = await runSearch(client, { model: SYNTH_MODEL, messages, maxTokens: 8000, maxUses: 3, useThinking: false });
+    const clean = (extractJsonArray(getText(res)) || []).filter(s => s?.headline && Array.isArray(s.sources) && s.sources.length);
+    if (clean.length) {
+      const lead = clean.find(s => s.isLead) || clean[0];
+      console.log(`   ✓ Top stories (web search fallback): ${clean.length} (lead: "${lead.headline.slice(0, 48)}…")`);
     }
-    const clean = stories.filter(s => s && s.headline && Array.isArray(s.sources) && s.sources.length);
-    console.log(`   ✓ Research: ${clean.length} sourced top stories (lead: "${(clean.find(s => s.isLead) || clean[0]).headline.slice(0, 48)}…")`);
     return clean;
   } catch (e) {
-    console.log(`   ⚠  Research failed (non-blocking): ${e.message}`);
+    console.log(`   ⚠  Top stories (web search) failed: ${e.message}`);
     return [];
   }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Section extraction — EXTRACT_MODEL (Haiku), no thinking, max_uses=1
+// Section stories — NewsAPI entertainment (culture) + og:image for hero.
+// Zero model calls, zero web searches.
 // ─────────────────────────────────────────────────────────────────────────────
+async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImageUrls = [], golf, topStories = [] } = {}) {
+  const SPORTS_RE = /\b(nba|nfl|nhl|mlb|mls|soccer|ufc|mma|fight(?:er|s)?|boxing|game\s+\d|match|playoff|championship|score|world\s+cup)\b/i;
 
-async function runSectionSearch(client, { query, instruction, wantBackground = false } = {}) {
-  const bgField = wantBackground
-    ? `,"background":"one BACKGROUND/context fact for someone who doesn't follow it: a drought ('first title since 1973'), a streak, a record, a first career win, the stakes, or what makes it unusual — a real, searchable fact, not filler"`
-    : '';
-  const bgRule = wantBackground
-    ? `\nAlso find ONE background fact (drought/streak/record/first-time/stakes). If you genuinely can't find one, set "background":"" — never invent it.`
-    : '';
-  const prompt = `${instruction}
-Run this web search and use only what you actually find: ${query}${bgRule}
-
-Return ONLY a single JSON object — no prose, no markdown fence:
-{"headline":"tight, specific headline","source":"publisher name","url":"https://real-source","fact":"one concrete detail: a NAMED title/person, a specific NUMBER, a concrete EVENT, or a new release with its name and what's happening"${bgField}}
-
-If you genuinely cannot find any relevant result at all, return exactly:
-{"no_data":true}`;
-
-  try {
-    const messages = [{ role: 'user', content: prompt }];
-    const res = await runSearch(client, {
-      model: EXTRACT_MODEL, messages, maxTokens: 1500, maxUses: 1, useThinking: false,
-    });
-    const text = getText(res);
-    const obj = extractJsonObject(text);
-    if (!obj || obj.no_data === true) return { no_data: true };
-    if (!obj.fact || !String(obj.fact).trim()) return { no_data: true };
-    return {
-      headline:   obj.headline || '',
-      source:     obj.source || '',
-      url:        Array.isArray(obj.sources) ? obj.sources[0] : (obj.url || ''),
-      fact:       String(obj.fact).trim(),
-      background: obj.background ? String(obj.background).trim() : '',
-      no_data:    false,
-    };
-  } catch (e) { console.log(`   ⚠  Section search error (${query.slice(0, 40)}): ${e.message}`); return { no_data: true }; }
-}
-
-async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImageUrls = [], golf } = {}) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) return {};
-  let Anthropic;
-  try { Anthropic = require('@anthropic-ai/sdk'); } catch { return {}; }
-  const client = new (Anthropic.default || Anthropic)({ apiKey });
-
-  const today = dateLabel || new Date().toLocaleDateString('en-US', {
-    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
-  });
-
-  const NO_SPORTS = ' Do NOT return any sports result, game, match, fight (UFC/boxing/MMA), or soccer/World Cup story — those are covered elsewhere. Entertainment, music, streaming, TV, film, gaming, or lifestyle only.';
-  // New releases (movies in theaters, shows dropping on streaming, albums out today) are
-  // fully valid culture items — the fact field should name the title and what happened.
-  const RELEASE_NOTE = ' A new movie release, streaming drop, album, or game launch counts as a strong pick — name the title and the release detail as the fact.';
-  const jobs = [
-    {
-      key: 'culture1',
-      instruction: 'You are finding the single most-talked-about ENTERTAINMENT/culture story for men 25-45 right now (movies, TV, streaming, music, gaming, tech, lifestyle). Avoid celebrity relationship gossip.' + NO_SPORTS + RELEASE_NOTE,
-      query: `trending today ${today} movies TV streaming music gaming culture new release`,
-    },
-    {
-      key: 'culture2',
-      instruction: 'You are finding a notable movie in theaters, TV episode, streaming drop, album release, or video game launch from today or this week. Avoid celebrity relationship gossip.' + NO_SPORTS + RELEASE_NOTE,
-      query: `${today} new movie release OR streaming premiere OR album drop OR video game launch`,
-    },
-  ];
-
-  if (golf && golf.statusState === 'post' && golf.leaders && golf.leaders[0]) {
-    const w = golf.leaders[0];
-    jobs.push({
-      key: 'golf',
-      wantBackground: true,
-      instruction: `You are researching ${w.name}'s win at the ${golf.name} (final, ${w.score}). Find the single most important BACKGROUND fact: is this his first career PGA Tour win, his first in N years, a drought-breaker, or a notable milestone? State it specifically.`,
-      query: `${w.name} ${golf.name} winner first PGA Tour win years drought ${today}`,
-    });
-  }
-
-  const settled = await Promise.allSettled(
-    jobs.map(j => runSectionSearch(client, j).then(r => ({ key: j.key, r })))
-  );
-
-  const out = {};
+  // Culture from NewsAPI entertainment — filter out any sports results
   const culture = [];
-  for (const s of settled) {
-    if (s.status !== 'fulfilled') continue;
-    const { key, r } = s.value;
-    if (!r || r.no_data) continue;
-    if (key === 'golf') out.golf = r;
-    else culture.push(r);
+  const newsItems = await fetchNewsHeadlines(['entertainment'], { pageSize: 10 });
+  for (const a of newsItems) {
+    if (SPORTS_RE.test(a.title)) continue;
+    culture.push({
+      headline:   a.title,
+      source:     a.source,
+      url:        a.url,
+      fact:       a.description || a.title,
+      background: '',
+      no_data:    false,
+    });
+    if (culture.length >= 3) break;
   }
-  out.culture = culture;
-  out.cultureNoData = culture.length === 0;
 
-  // Hero image — single attempt only; generate-brief.js nulls repeats at render time
+  // Hero image: og:image from the top story's first source URL
+  let heroImage = null;
   if (leadSubject) {
-    out.heroImage = await findFreshImage(client, {
-      subject: leadSubject, today, issueNum, avoid: prevImageUrls,
-      prefer: 'Prefer ESPN CDN for sports subjects, Wikimedia for everything else.',
-    });
-  }
-
-  console.log(`   ✓ Section research: culture:${culture.length}${out.golf ? ' golf-bg:ok' : ''} hero:${out.heroImage && !out.heroImage.no_data ? 'ok' : 'none'}`);
-
-  return out;
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// URL extraction — EXTRACT_MODEL, no thinking, max_uses=1
-// ─────────────────────────────────────────────────────────────────────────────
-
-async function runUrlSearch(client, { instruction, query }) {
-  const prompt = `${instruction}
-Run this web search and use ONLY real results you actually find: ${query}
-
-Return ONLY a single JSON object — no prose, no markdown fence:
-{"url":"https://direct-real-working-url"}
-If you cannot find a real, working URL, return exactly: {"none":true}`;
-  try {
-    const messages = [{ role: 'user', content: prompt }];
-    const res = await runSearch(client, {
-      model: EXTRACT_MODEL, messages, maxTokens: 800, maxUses: 1, useThinking: false,
-    });
-    const text = getText(res);
-    const obj = extractJsonObject(text);
-    if (!obj || obj.none === true || !obj.url) return null;
-    const url = String(obj.url).trim();
-    return /^https?:\/\//.test(url) ? url : null;
-  } catch (e) { console.log(`   ⚠  URL search error: ${e.message}`); return null; }
-}
-
-// Single-attempt image search — no retry. generate-brief.js nulls any URL that
-// repeats the previous issue, so a miss just renders text-only instead of paying
-// for a second search call.
-async function findFreshImage(client, { subject, today, issueNum, avoid = [], prefer = '' }) {
-  const avoidSet = new Set(avoid.filter(Boolean));
-  const instr = `Find ONE real, current image of: ${subject}. ${prefer} Prefer a DIRECT image URL (ending in .jpg/.png/.webp), e.g. an upload.wikimedia.org file or an ESPN/Getty photo CDN — NOT a Wikipedia "File:" page and NOT an article/recap page.${avoidSet.size ? ` Do NOT return any of these already-used URLs: ${[...avoidSet].join(' , ')}` : ''}`;
-  const q = `${subject} ${today} issue ${issueNum || ''} action photo site:espn.com OR site:en.wikipedia.org image`;
-
-  const raw = await runUrlSearch(client, { instruction: instr, query: q });
-  if (!raw) return { no_data: true };
-  const valid = await resolveAndValidate(raw);
-  if (!valid || avoidSet.has(valid)) return { no_data: true };
-  return { url: valid, no_data: false };
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Dynamic sports discovery
-//   Step 1: discoverSports — SYNTH_MODEL, adaptive thinking, max_uses=2
-//   Step 2: per-sport facts + images — EXTRACT_MODEL, no thinking, max_uses=1
-//   Step 3: rank by importance; top = The Lead
-// ─────────────────────────────────────────────────────────────────────────────
-
-function normalizeCategory(category) {
-  return String(category || '').toLowerCase() === 'individual' ? 'individual' : 'team';
-}
-
-async function discoverSports(client, today) {
-  const prompt = `You are the sports editor of GuyTalk, a daily brief for men 25-45. Today is ${today}.
-
-Run these two web searches and read what comes back:
-1. "top sports news today ${today}"
-2. "biggest sports stories right now ${today}"
-
-From the results, identify the ${MAX_SPORTS}-${MAX_SPORTS + 2} sports or events ACTUALLY generating the most coverage today — a finished game or series, a live tournament, a major result, or a marquee matchup. Use the real sport/league/tournament/team/athlete names you see.
-
-Rank by how big the story is RIGHT NOW (importance, not recency alone).
-
-For each, set "category":
-- "individual" = one or a few competitors you can put a face to (F1, Golf, Tennis, UFC, Boxing, MMA, track, cycling, skiing, NASCAR, etc.)
-- "team" = team leagues (NBA, NFL, MLB, NHL, soccer, World Cup, etc.)
-When unsure, use "team".
-
-Return ONLY a JSON array (no prose, no markdown fence), most important first:
-[{"name":"display name of the sport/event, e.g. 'NBA Finals', 'Stanley Cup Final', 'Roland Garros', 'UFC 312'","category":"individual" | "team"}]`;
-
-  const messages = [{ role: 'user', content: prompt }];
-  const res = await runSearch(client, {
-    model: SYNTH_MODEL, messages, maxTokens: 3000, maxUses: 2, useThinking: true,
-  });
-  const text = getText(res);
-  const arr = extractJsonArray(text);
-  if (!Array.isArray(arr)) return [];
-  const seen = new Set();
-  const out = [];
-  for (const cand of arr) {
-    const name = cand && String(cand.name || '').trim();
-    if (!name) continue;
-    if (isExcluded(name)) { console.log(`   ⤫  Sports discovery: excluded "${name}" per editorial-config`); continue; }
-    const key = name.toLowerCase();
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push({ name, category: normalizeCategory(cand.category) });
-    if (out.length >= MAX_SPORTS) break;
-  }
-  return out;
-}
-
-async function fetchDynamicSports({ dateLabel, issueNum, prevImageUrls = [] } = {}) {
-  const empty = { lead: null, sports: [] };
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) { console.log('   ⚠  Dynamic sports skipped — ANTHROPIC_API_KEY missing'); return empty; }
-  let Anthropic;
-  try { Anthropic = require('@anthropic-ai/sdk'); }
-  catch { console.log('   ⚠  Dynamic sports skipped — @anthropic-ai/sdk not installed'); return empty; }
-  const client = new (Anthropic.default || Anthropic)({ apiKey });
-
-  const today = dateLabel || new Date().toLocaleDateString('en-US', {
-    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
-  });
-
-  let candidates = [];
-  try { candidates = await discoverSports(client, today); }
-  catch (e) { console.log(`   ⚠  Sports discovery failed (non-blocking): ${e.message}`); return empty; }
-  if (!candidates.length) { console.log('   ⚠  Sports discovery returned no candidates'); return empty; }
-  console.log(`   ✓ Discovered ${candidates.length}: ${candidates.map(c => `${c.name} [${c.category}]`).join(', ')}`);
-
-  const avoid = (prevImageUrls || []).filter(Boolean);
-  const isWorldCup = (name) => /world cup|fifa|usmnt|soccer/i.test(name);
-
-  const settled = await Promise.allSettled(candidates.map(async (cand) => {
-    const wc = isWorldCup(cand.name);
-    const facts = await runSectionSearch(client, {
-      instruction: wc
-        ? `You are researching today's ${cand.name} for a US daily brief. LEAD with the U.S. men's national team (USMNT) game if they played today — who they beat/lost to and the score — then you may add other notable results in the "fact" as a short trailing clause. If the USMNT did not play, give the single biggest result.`
-        : `You are researching today's ${cand.name} for a daily brief. Pull the single most important concrete result/news: who, what happened, the score or outcome, and one key name or number.`,
-      query: wc ? `USMNT United States World Cup result today ${today}` : `${cand.name} results highlights news ${today}`,
-      wantBackground: true,
-    });
-    if (!facts || facts.no_data || !facts.fact) return { cand, facts: null };
-
-    let videoUrl = null, imageUrl = null;
-    if (cand.category === 'individual') {
-      const tasks = [
-        ENABLE_HIGHLIGHT_VIDEOS
-          ? runUrlSearch(client, {
-              instruction: `Find ONE real highlight video of ${cand.name} from ${today}. Only a real video page (YouTube, the official league/tour, or a broadcaster). Never a search page.`,
-              query: `${cand.name} highlight video ${today}`,
-            })
-          : Promise.resolve(null),
-        findFreshImage(client, {
-          subject: `${cand.name} ${facts.headline || ''} athlete in action`, today, issueNum, avoid,
-          prefer: 'Prefer a LANDSCAPE action photo of the specific athlete/driver/fighter from this event. ESPN/Getty/Wikimedia are all fine. NOT a stadium/arena building or logo.',
-        }).then(r => (r && !r.no_data ? r.url : null)),
-      ];
-      [videoUrl, imageUrl] = await Promise.all(tasks);
-    } else {
-      imageUrl = await findFreshImage(client, {
-        subject: `${cand.name} ${facts.headline || ''} players in action`, today, issueNum, avoid,
-        prefer: 'Prefer a LANDSCAPE photo of PLAYERS in action from this game/match. ESPN/Getty/Wikimedia are fine. NOT a stadium/arena building exterior, NOT a logo or trophy on a table.',
-      }).then(r => (r && !r.no_data ? r.url : null));
+    const prevSet = new Set((prevImageUrls || []).filter(Boolean));
+    const stories = Array.isArray(topStories) ? topStories : [];
+    const leadStory = stories.find(s => s.isLead) || stories[0];
+    const sourceUrl = leadStory?.sources?.[0];
+    if (sourceUrl) {
+      try {
+        const og = await extractOgImage(sourceUrl);
+        if (og && !prevSet.has(og) && await isLiveImage(og)) {
+          heroImage = { url: og, no_data: false };
+        }
+      } catch (_) {}
     }
-
-    return {
-      cand,
-      facts,
-      sport: {
-        name:       cand.name,
-        label:      cand.name,
-        category:   cand.category,
-        headline:   facts.headline || cand.name,
-        facts:      facts.fact,
-        background: facts.background || '',
-        source:     facts.source || '',
-        url:        facts.url || '',
-        imageUrl:   imageUrl || null,
-        videoUrl:   videoUrl || null,
-        isLead:     false,
-      },
-    };
-  }));
-
-  const sports = [];
-  for (const s of settled) {
-    if (s.status !== 'fulfilled' || !s.value || !s.value.sport) continue;
-    sports.push(s.value.sport);
+    if (!heroImage) heroImage = { no_data: true };
   }
-  if (!sports.length) {
-    console.log('   ⚠  No discovered sport returned concrete facts — sports will fall back to structured feeds');
+
+  const out = { culture: culture.slice(0, 2), cultureNoData: culture.length === 0, heroImage };
+  console.log(`   ✓ Section research: culture:${out.culture.length} hero:${out.heroImage && !out.heroImage.no_data ? 'ok' : 'none'}`);
+  return out;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Dynamic sports — built from structured feed data. Zero model calls.
+//
+// Accepts the same feed objects generate-brief.js already fetches:
+//   sports   = NBA/MLB game array (from fetchNBA / fetchMLB)
+//   nhl      = { final, next } (from fetchNHL)
+//   f1       = race object (from fetchF1)
+//   golf     = leaderboard (from fetchGolf)
+//   tennis   = { anyMajor, tours } (from fetchTennis)
+//   worldCup = match array (from fetchWorldCup)
+//   upcoming = upcoming NBA/MLB games (from fetchNBAUpcoming)
+//
+// Returns { lead, sports } — same shape as before so html.js / copy.js are unchanged.
+// ─────────────────────────────────────────────────────────────────────────────
+
+function lookupPlayer(name) {
+  if (!name) return null;
+  const lower = name.toLowerCase();
+  const hit = Object.entries(PLAYERS).find(([n]) => n.toLowerCase() === lower);
+  return hit ? hit[1] : null; // { sport, id, slug }
+}
+
+async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls = [] } = {}) {
+  const empty = { lead: null, sports: [] };
+  const candidates = [];
+
+  // ── NBA / MLB ──────────────────────────────────────────────────────────────
+  if (sports?.length) {
+    const g = sports[0];
+    const isPost = g.home.winner !== undefined && (g.home.winner || g.away.winner);
+    const w = g.home.winner ? g.home : g.away;
+    const l = g.home.winner ? g.away : g.home;
+    const sportLabel = String(g.sport || 'NBA').toUpperCase();
+    const seriesPart = g.seriesNote ? ` (${g.seriesNote})` : '';
+    const note       = g.note || g.shortName || `${g.away.team} at ${g.home.team}`;
+    const headline   = isPost
+      ? `${w.team} ${w.score}–${l.score} over ${l.team}${seriesPart}`
+      : `${g.away.team} vs. ${g.home.team} tonight${seriesPart}`;
+    const facts      = isPost
+      ? `${w.team} beat ${l.team} ${w.score}–${l.score}${seriesPart}`
+      : `${g.away.team} vs. ${g.home.team}${seriesPart}`;
+    const { score: imp } = scoreImportance({ name: `${sportLabel} ${note}`, headline, facts, isFinalResult: isPost });
+    candidates.push({
+      name: note, label: sportLabel, category: 'team',
+      headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
+      _score: imp, _isFinal: isPost, _sport: String(g.sport || 'nba').toLowerCase(),
+    });
+  }
+
+  // ── NHL ───────────────────────────────────────────────────────────────────
+  const nhlGame = nhl?.final || nhl?.next;
+  if (nhlGame) {
+    const isPost     = !!nhl.final;
+    const g          = nhlGame;
+    const seriesPart = g.seriesNote ? ` (${g.seriesNote})` : '';
+    const note       = g.note || g.shortName || '';
+    let headline, facts;
+    if (isPost) {
+      const w = g.home.winner ? g.home : g.away;
+      const l = g.home.winner ? g.away : g.home;
+      headline = `${w.team} ${w.score}–${l.score}${seriesPart}`;
+      facts    = `${w.team} beat ${l.team} ${w.score}–${l.score}${seriesPart}`;
+    } else {
+      headline = `${g.away?.team} at ${g.home?.team}${seriesPart}`;
+      facts    = headline;
+    }
+    const { score: imp } = scoreImportance({ name: `NHL ${note}`, headline, facts, isFinalResult: isPost });
+    candidates.push({
+      name: note || headline, label: 'NHL', category: 'team',
+      headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
+      _score: imp, _isFinal: isPost, _sport: 'nhl',
+    });
+  }
+
+  // ── F1 ────────────────────────────────────────────────────────────────────
+  if (f1?.name) {
+    const isPost   = f1.statusState === 'post' && !!f1.results?.length;
+    const winner   = isPost ? f1.results[0] : null;
+    const headline = isPost
+      ? `${winner.driver} wins ${f1.shortName || f1.name}`
+      : `${f1.name} — this weekend`;
+    const facts    = isPost
+      ? `P1 ${winner.driver} (${winner.team}), P2 ${f1.results[1]?.driver || '—'}, P3 ${f1.results[2]?.driver || '—'}`
+      : `${f1.name} upcoming`;
+    const { score: imp } = scoreImportance({ name: f1.name, headline, facts, isFinalResult: isPost });
+    candidates.push({
+      name: f1.name, label: 'F1', category: 'individual',
+      headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
+      _score: imp, _isFinal: isPost, _sport: 'f1', _f1Winner: winner,
+    });
+  }
+
+  // ── Golf ──────────────────────────────────────────────────────────────────
+  if (golf?.name) {
+    const isPost   = golf.statusState === 'post';
+    const isIn     = golf.statusState === 'in';
+    const leader   = golf.leaders?.[0];
+    const headline = isPost && leader
+      ? `${leader.name} wins ${golf.name}`
+      : `${golf.name}${isIn ? ' — in progress' : ' — this week'}`;
+    const topThree = (golf.leaders || []).slice(0, 3);
+    const facts    = topThree.length
+      ? topThree.map(l2 => `${l2.pos || ''} ${l2.name}: ${l2.score}`.trim()).join(', ')
+      : golf.name;
+    const { score: imp } = scoreImportance({ name: golf.name, headline, facts, isFinalResult: isPost });
+    candidates.push({
+      name: golf.name, label: 'Golf', category: 'individual',
+      headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
+      _score: imp, _isFinal: isPost, _sport: 'golf', _golfLeader: leader,
+    });
+  }
+
+  // ── Tennis (Grand Slams only) ─────────────────────────────────────────────
+  if (tennis?.anyMajor) {
+    const slam = tennis.tours?.find(t => t.isMajor);
+    if (slam?.results?.length) {
+      const r        = slam.results[slam.results.length - 1];
+      const headline = `${r.winner} at ${slam.name}`;
+      const facts    = slam.results.map(r2 => `${r2.winner} d. ${r2.loser}`).join('; ');
+      const { score: imp } = scoreImportance({ name: `Grand Slam ${slam.name}`, headline, facts, isFinalResult: false });
+      candidates.push({
+        name: slam.name, label: 'Tennis', category: 'individual',
+        headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
+        _score: imp, _isFinal: false, _sport: 'tennis',
+      });
+    }
+  }
+
+  // ── World Cup ─────────────────────────────────────────────────────────────
+  if (worldCup?.length) {
+    const USA_RE = /\bunited states\b|\busmnt\b/i;
+    const featured = worldCup.find(m => USA_RE.test(m.home.team) || USA_RE.test(m.away.team))
+      || worldCup.find(m => m.statusState === 'post') || worldCup[0];
+    if (featured) {
+      const isPost = featured.statusState === 'post';
+      let headline, facts;
+      if (isPost) {
+        const hs = parseInt(featured.home.score, 10) || 0;
+        const as = parseInt(featured.away.score, 10) || 0;
+        const [wt, ws, lt, ls] = hs >= as
+          ? [featured.home.team, hs, featured.away.team, as]
+          : [featured.away.team, as, featured.home.team, hs];
+        headline = `${wt} ${ws}–${ls} ${lt}`;
+        facts = worldCup.filter(m => m.statusState === 'post').map(m => {
+          const mh = parseInt(m.home.score, 10) || 0;
+          const ma = parseInt(m.away.score, 10) || 0;
+          const [wt2, ws2, lt2, ls2] = mh >= ma ? [m.home.team, mh, m.away.team, ma] : [m.away.team, ma, m.home.team, mh];
+          return `${wt2} ${ws2}–${ls2} ${lt2}`;
+        }).join('; ');
+      } else {
+        headline = `${featured.away.team} vs. ${featured.home.team}`;
+        facts    = headline;
+      }
+      const { score: imp } = scoreImportance({ name: 'World Cup USMNT FIFA 2026', headline, facts, isFinalResult: isPost });
+      candidates.push({
+        name: 'FIFA World Cup 2026', label: 'World Cup', category: 'team',
+        headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
+        _score: imp, _isFinal: isPost, _sport: 'worldcup',
+      });
+    }
+  }
+
+  // ── Filter, rank, take top MAX_SPORTS ─────────────────────────────────────
+  const filtered = candidates.filter(c => !isExcluded(c.name) && !isExcluded(c.label));
+  if (!filtered.length) {
+    console.log('   ⚠  No feed data produced valid sports candidates — check feed fetchers');
     return empty;
   }
+  filtered.sort((a, b) => b._score - a._score);
+  const top = filtered.slice(0, MAX_SPORTS);
 
-  const FINAL_RESULT_RE = /\b(final|won|wins|beat|def\.|defeated|clinch|champions?|title|crowned)\b/i;
-  sports.forEach((s, i) => {
-    const isFinalResult = FINAL_RESULT_RE.test(`${s.headline} ${s.facts}`);
-    const { score, tier } = scoreImportance({ name: s.name, headline: s.headline, facts: s.facts, isFinalResult });
-    s.importance = score;
-    s.tier = tier;
-    s._discoveryRank = i;
-    s.isLead = false;
-  });
-  sports.sort((a, b) => (b.importance - a.importance) || (a._discoveryRank - b._discoveryRank));
-  sports.forEach(s => { delete s._discoveryRank; });
-  sports[0].isLead = true;
-  const lead = sports[0];
-  console.log(`   ✓ Dynamic sports ranked (${sports.length}): ${sports.map(s => `${s.isLead ? '★ ' : ''}${s.label} [T${s.tier}/${s.importance}]${s.videoUrl ? ' 🎬' : ''}${s.imageUrl ? ' 🖼' : ''}`).join('  ·  ')}`);
-  return { lead, sports };
+  // ── Resolve images in parallel ────────────────────────────────────────────
+  const prevSet = new Set((prevImageUrls || []).filter(Boolean));
+  await Promise.allSettled(top.map(async (s) => {
+    let img = null;
+    if (s.label === 'Golf' && s._golfLeader) {
+      // ESPN golf headshot (espnId comes direct from fetchGolf)
+      const espnId = s._golfLeader.espnId || lookupPlayer(s._golfLeader.name)?.id;
+      img = await resolveAthleteImage({ sport: 'golf', espnId, section: 'golf' });
+    } else if (s.label === 'F1' && s._f1Winner?.driver) {
+      const playerData = lookupPlayer(s._f1Winner.driver);
+      img = await resolveAthleteImage({ sport: 'f1', espnId: playerData?.id, section: 'sports' });
+    } else {
+      // Team sport: use sport-specific hero fallback
+      img = SECTION_FALLBACKS[s._sport] || SECTION_FALLBACKS.sports;
+    }
+    // Skip if URL was used in the previous issue
+    s.imageUrl = (img && !prevSet.has(img)) ? img : null;
+    // Clean internal bookkeeping fields
+    delete s._score; delete s._isFinal; delete s._sport; delete s._golfLeader; delete s._f1Winner;
+  }));
+
+  top[0].isLead = true;
+  console.log(`   ✓ Feed sports (${top.length}): ${top.map(s => `${s.isLead ? '★ ' : ''}${s.label}${s.imageUrl ? ' 🖼' : ''}`).join(', ')}`);
+  return { lead: top[0], sports: top };
 }
 
 module.exports = { fetchTopStories, fetchSectionStories, fetchDynamicSports };
