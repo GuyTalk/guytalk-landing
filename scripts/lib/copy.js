@@ -78,7 +78,7 @@ function parseJson(raw) {
   return null;
 }
 
-async function generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick }) {
+async function generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick, factPack }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey || apiKey.includes('your_') || apiKey.includes('_here')) return null;
 
@@ -223,7 +223,11 @@ async function generateCopy({ sports, markets, golf, tennis, trending, topStorie
   // historical comps) — use it in the Markets section.
   const stories = Array.isArray(topStories) ? topStories : [];
   const leadStory = stories.find((s) => s.isLead) || stories[0] || null;
-  const leadMarketStory = stories.find((s) => s.depth && /Market|Business/i.test(s.category || '')) || null;
+  const leadMarketStory = (() => {
+    const s = stories.find((s) => s.depth && /Market|Business/i.test(s.category || '')) || null;
+    if (!s || !Array.isArray(factPack?.markets?.ammo) || !factPack.markets.ammo.length) return s;
+    return { ...s, depth: [s.depth, `AMMO FACTS: ${factPack.markets.ammo.join(' | ')}`].filter(Boolean).join(' | ') };
+  })();
   const topStoriesText = stories.length
     ? 'BIGGEST STORIES TODAY (real, web-researched — the ★ is the single biggest thing a guy needs to know today; it usually outranks a regular-season game): '
       + stories.map((s) => `${s.isLead ? '★' : '•'} [${s.category}] ${s.headline}`).join('  ;;  ')
@@ -231,26 +235,45 @@ async function generateCopy({ sports, markets, golf, tennis, trending, topStorie
 
   // Web-sourced section facts (Change 1) — real, current facts the structured
   // feeds can't see. Injected into the matching section prompt as grounded facts.
+  // factPack ammo is appended here so it flows to section prompts without
+  // changing any prompt template strings — purely additive.
   const sectionWeb = (key) => {
     const r = sectionStories?.[key];
-    if (!r || r.no_data) return null;
-    return `${r.headline ? r.headline + ' — ' : ''}${r.fact || ''}`.trim() || null;
+    const base = (!r || r.no_data) ? '' : `${r.headline ? r.headline + ' — ' : ''}${r.fact || ''}`.trim();
+    const fp = factPack?.[key];
+    const ammoStr = Array.isArray(fp?.ammo) && fp.ammo.length ? `AMMO FACTS: ${fp.ammo.join(' | ')}` : '';
+    return [base, ammoStr].filter(Boolean).join(' | ') || null;
   };
   const nhlWeb  = sectionWeb('nhl');
   const f1Web   = sectionWeb('f1');
   const golfWeb = sectionWeb('golf');
+  const fpCulture = Array.isArray(factPack?.culture) ? factPack.culture : [];
   const cultureWeb = (sectionStories?.culture || [])
     .filter(c => c && !c.no_data)
-    .map(c => `${c.headline ? c.headline + ' — ' : ''}${c.fact || ''}`.trim())
+    .map((c, i) => {
+      const base = `${c.headline ? c.headline + ' — ' : ''}${c.fact || ''}`.trim();
+      const ammoStr = Array.isArray(fpCulture[i]?.ammo) && fpCulture[i].ammo.length
+        ? `AMMO FACTS: ${fpCulture[i].ammo.join(' | ')}`
+        : '';
+      return [base, ammoStr].filter(Boolean).join(' | ');
+    })
     .filter(Boolean);
 
   // Dynamically discovered sports (research.js). Each carries real, sourced facts
   // and a category (individual|team). We write the three-label beats — WHAT
   // HAPPENED / WHY IT MATTERS / WHAT TO BRING UP — for every one, grounded ONLY
   // in the provided facts (the card style is chosen later by category).
+  // factPack.sports ammo is appended per-sport so Haiku has richer ammo targets.
   const dynSports = Array.isArray(dynamicSports) ? dynamicSports : [];
+  const fpSportsMap = Object.fromEntries(
+    (factPack?.sports || []).map(fp => [(fp.label || '').toLowerCase(), fp])
+  );
   const dynSportsList = dynSports
-    .map((s, i) => `${i + 1}. [${s.label || s.name}] (${s.category}) — ${s.headline || ''} — FACTS: ${s.facts || ''}${s.background ? ` — BACKGROUND: ${s.background}` : ''}`)
+    .map((s, i) => {
+      const fpAmmo = fpSportsMap[(s.label || s.name || '').toLowerCase()]?.ammo;
+      const ammoStr = Array.isArray(fpAmmo) && fpAmmo.length ? ` — AMMO FACTS: ${fpAmmo.join(' | ')}` : '';
+      return `${i + 1}. [${s.label || s.name}] (${s.category}) — ${s.headline || ''} — FACTS: ${s.facts || ''}${s.background ? ` — BACKGROUND: ${s.background}` : ''}${ammoStr}`;
+    })
     .join('\n');
 
   // Repetition guard from last 3 briefs
