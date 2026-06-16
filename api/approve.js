@@ -366,6 +366,11 @@ function confirmPage(data, slug, subscriberCount, token) {
        </div>`
     : '';
 
+  const fpSections = data.factPack ? Object.keys(data.factPack).filter(k => data.factPack[k] != null) : [];
+  const fpNote = fpSections.length
+    ? `<p style="font-size:12px;color:#15803D;margin:0 0 16px;">✓ Fact Pack enriched — ${fpSections.join(', ')}</p>`
+    : `<p style="font-size:12px;color:#9E9891;margin:0 0 16px;">Fact Pack: not available (no OPENAI_API_KEY or skipped)</p>`;
+
   return `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GuyTalk — Confirm Send</title>
@@ -392,6 +397,7 @@ function confirmPage(data, slug, subscriberCount, token) {
   <p class="date">${data.date}</p>
   <div class="bullets">${bulletRows}</div>
   ${warnBox}
+  ${fpNote}
   <p class="sub-count">This will send to <strong>${subLine}</strong>.</p>
   <a href="${sendUrl}" class="btn-send">Confirm — Send to ${subLine} →</a>
   <p class="note">Only you can see this page.<br>Tap the green button to send.</p>

@@ -12,6 +12,7 @@ const { editBrief }                                         = require('./lib/edi
 const { buildHtml }                                         = require('./lib/html');
 const { buildArchive }                                      = require('./lib/archive');
 const { fetchTopStories, fetchSectionStories, fetchDynamicSports } = require('./lib/research');
+const { fetchFactPack }                                             = require('./lib/factpack');
 const { isExcluded, classifyTopic, scoreImportance }        = require('./lib/editorial-config');
 const { STREAMING_PICKS }                                   = require('./lib/db');
 const { GENERATION_WARNINGS, addWarning, resetWarnings, formatWarnings } = require('./lib/warnings');
@@ -549,6 +550,19 @@ async function main() {
     if (dynRes.status === 'rejected') console.log(`   ⚠  Dynamic sports failed (non-blocking): ${dynRes.reason?.message || dynRes.reason}`);
     dynamicSports = Array.isArray(dynamic.sports) ? dynamic.sports : [];
 
+    // Fact Pack — one bundled OpenAI call enriching ammo for both generateCopy() and editBrief().
+    // Runs after research so sectionStories and dynamicSports are available. Fail-open: null = Phase 1.
+    let factPack = null;
+    if (process.env.OPENAI_API_KEY) {
+      try {
+        factPack = await fetchFactPack({ topStories, dynamicSports, sectionStories });
+      } catch (err) {
+        console.log(`   ⚠  Fact Pack failed (non-blocking): ${err.message}`);
+      }
+    } else {
+      console.log('   ⚠  Fact Pack skipped — no OPENAI_API_KEY');
+    }
+
     // Section-inclusion safety net (editorial-config.js): discovery already drops
     // EXCLUDEd leagues, but enforce it again here so a renamed variant (e.g.
     // "Women's NBA") can never slip into a published section.
@@ -561,7 +575,7 @@ async function main() {
     const prevSet = new Set(prevImageUrls);
     dynamicSports.forEach(s => { if (s.imageUrl && prevSet.has(s.imageUrl)) s.imageUrl = null; });
 
-    copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick });
+    copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick, factPack });
 
     // Merge the three-label beats (from copy) into each discovered sport so the
     // template renders What happened / Why it matters / What to bring up per card.
@@ -595,8 +609,18 @@ async function main() {
     console.log('\n🧐 Editorial pass — Claude enforcing the GuyTalk Editorial Bible...');
     try {
       const facts = buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending, topStories, sectionStories });
+      const factsWithPack = factPack
+        ? facts + '\n\nFACT PACK AMMO (structured, verified — use to check and sharpen ammo arrays in the copy):\n' +
+          Object.entries(factPack)
+            .map(([k, v]) => {
+              if (Array.isArray(v)) return v.map((item, i) => Array.isArray(item?.ammo) && item.ammo.length ? `- ${k.toUpperCase()} ${i + 1}: ${item.ammo.join(' | ')}` : '').filter(Boolean).join('\n');
+              return Array.isArray(v?.ammo) && v.ammo.length ? `- ${k.toUpperCase()}: ${v.ammo.join(' | ')}` : '';
+            })
+            .filter(Boolean)
+            .join('\n')
+        : facts;
       const links = (trending || []).map(t => t.url).filter(Boolean);
-      const result = await editBrief({ copy, context: facts, links });
+      const result = await editBrief({ copy, context: factsWithPack, links });
       copy = result.copy;
       editorMeta = result.editor;
       if (editorMeta.reviewed) {
@@ -658,6 +682,7 @@ async function main() {
     heroOverride: buildHeroOverride(dynamicSports),
     copy,
     editor:  editorMeta,
+    factPack: factPack || null,
     // Section retries / failures / editor hard-blocks from this run, persisted so
     // the approval email can surface them (populated by generateCopy + editBrief).
     generationWarnings: [...GENERATION_WARNINGS],

@@ -70,6 +70,10 @@ async function main() {
   if (data.copy?.culture?.[0]?.head) {
     bullets.push(`<b>Culture:</b> ${data.copy.culture[0].head}`);
   }
+  const fpSections = data.factPack ? Object.keys(data.factPack).filter(k => data.factPack[k] != null) : [];
+  if (fpSections.length) {
+    bullets.push(`<b>Fact Pack:</b> ${fpSections.length} section(s) enriched — ${fpSections.join(', ')}`);
+  }
 
   const bulletsHtml = bullets.map(b =>
     `<tr><td style="padding:8px 0;font-size:14px;line-height:1.5;color:#444;border-top:1px solid #eee;">
