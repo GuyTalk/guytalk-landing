@@ -191,15 +191,15 @@ If a topic needs more than 5 sentences, it probably needs to be tightened.
 
 Keep sections visually consistent.
 
-Each story should follow this general format:
+Each story follows this FIVE-part format, in this exact order:
 
 ### Topic headline
 
-**What happened:**
-**Why it matters:**
-**What to bring up:**
-
-This can be lightly adapted, but the logic must stay consistent.
+**What happened:** Basic facts only. 1–2 sentences, named, with a real number.
+**Why it matters:** First-order implication for a normal reader. 1–2 sentences.
+**The GuyTalk Read:** The strongest beat. What it really means — what it signals, who benefits, who looks bad, the broader angle, what smart people take away. 3–5 sentences, opinionated but grounded in fact. Markets stays observational, never advice.
+**Conversation Ammo:** 3–5 specific, sourced facts people actually ask about (age, college, contract, earnings, purse/payout, first win, streak, record, ranking impact, the key play, the quote, the drama; markets: valuation, deal size, market cap vs. a comp, the historical parallel). Facts only — never a take. REQUIRED: no story publishes without it.
+**What to say:** One natural sentence a reader could repeat in a group chat, office, bar, or client conversation. Has a point of view.
 
 ## Final quality check
 
@@ -213,3 +213,34 @@ Before publishing, review every item and ask:
 6. Does this feel like GuyTalk, not a generic newsletter?
 
 If any answer is no, rewrite or remove the item.
+
+## Three-tier source system
+
+Every story and ammo fact must come from a rated source:
+
+**Tier 1 — Primary (require for facts):** League and team official sources (nba.com, nfl.com, mlb.com, nhl.com, pgatour.com, formula1.com), wire services (Reuters, AP News), financial data (cnbc.com, sec.gov), ESPN.
+
+**Tier 2 — Context (good for background):** Sports business press (Front Office Sports, SBJ, The Athletic), financial press (MarketWatch, Yahoo Finance), entertainment trade (Variety, Hollywood Reporter, Billboard).
+
+**Tier 3 — Signal only (never cite as fact):** X/Twitter, Reddit, Barstool, TikTok, YouTube. These show what people are talking about — they are not factual sources.
+
+## Publish gates
+
+A brief may not publish if:
+
+1. **No ammo:** Any news/sports/markets/culture section (Lead, Markets, Golf when active, F1, sportsOther entries, dynamicSportsText entries, Culture items 1–2) has fewer than 3 verifiable conversation-ammo items. Exception: Culture item 3 (curated watch rec) and pure preview sections.
+2. **Unreviewed:** The editorial pass did not run (reviewed: false) and no explicit force=1 override is present.
+3. **Blocked sections:** The editor flagged one or more sections as unable to meet the Bible standard.
+
+## Image rules
+
+Images must be rights-clear for editorial use. Prefer in this order:
+
+1. Wikimedia Commons (freely licensed)
+2. Official venue, stadium, or team media
+3. Official league/tour photos
+4. Public domain
+
+**Never use:** Getty Images, broadcast screenshots, ESPN thumbnails, wire-service photos, or athlete headshots unless from official team/league media.
+
+**Crop guidance:** Prefer venue or stadium over faces. When a person must be shown, use official media, not a wire action shot.

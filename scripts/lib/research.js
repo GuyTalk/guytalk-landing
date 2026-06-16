@@ -58,6 +58,16 @@ function getText(res) {
   return (res.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n').trim();
 }
 
+function sourceTier(url) {
+  if (!url) return 2;
+  const u = String(url).toLowerCase();
+  const t1 = ['espn.com', 'nba.com', 'nfl.com', 'mlb.com', 'nhl.com', 'pgatour.com', 'formula1.com', 'reuters.com', 'apnews.com', 'cnbc.com', 'sec.gov'];
+  const t3 = ['twitter.com', 'x.com', 'reddit.com', 'tiktok.com', 'youtube.com', 'barstool', 'instagram.com'];
+  if (t1.some(d => u.includes(d))) return 1;
+  if (t3.some(d => u.includes(d))) return 3;
+  return 2;
+}
+
 // Shared runner for web_search calls — caps usage via max_uses.
 // allowed_callers:'direct' required for Haiku (lacks programmatic tool calling).
 async function runSearch(client, { model, messages, maxTokens, maxUses, useThinking = false }) {
@@ -160,7 +170,7 @@ Return ONLY a JSON array (no prose, no markdown fence):
     const messages = [{ role: 'user', content: rankPrompt }];
     const res = await client.messages.create({ model: EXTRACT_MODEL, max_tokens: 3000, messages });
     stories = extractJsonArray(getText(res)) || [];
-    stories = stories.filter(s => s?.headline);
+    stories = stories.filter(s => s?.headline).map(s => ({ ...s, tier: sourceTier(Array.isArray(s.sources) ? s.sources[0] : '') }));
   } catch (e) {
     console.log(`   ⚠  Haiku ranking failed: ${e.message}`);
     return [];
@@ -219,7 +229,9 @@ Return ONLY a JSON array of 4-6 objects:
   try {
     const messages = [{ role: 'user', content: prompt }];
     const res = await runSearch(client, { model: SYNTH_MODEL, messages, maxTokens: 8000, maxUses: 3, useThinking: false });
-    const clean = (extractJsonArray(getText(res)) || []).filter(s => s?.headline && Array.isArray(s.sources) && s.sources.length);
+    const clean = (extractJsonArray(getText(res)) || [])
+      .filter(s => s?.headline && Array.isArray(s.sources) && s.sources.length)
+      .map(s => ({ ...s, tier: sourceTier(s.sources[0]) }));
     if (clean.length) {
       const lead = clean.find(s => s.isLead) || clean[0];
       console.log(`   ✓ Top stories (web search fallback): ${clean.length} (lead: "${lead.headline.slice(0, 48)}…")`);
@@ -439,6 +451,9 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
     }
   }
 
+  // All candidates built from ESPN structured feeds — Tier 1 by definition.
+  candidates.forEach(c => { c.tier = 1; });
+
   // ── Filter, rank, take top MAX_SPORTS ─────────────────────────────────────
   const filtered = candidates.filter(c => !isExcluded(c.name) && !isExcluded(c.label));
   if (!filtered.length) {
@@ -452,13 +467,11 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
   const prevSet = new Set((prevImageUrls || []).filter(Boolean));
   await Promise.allSettled(top.map(async (s) => {
     let img = null;
-    if (s.label === 'Golf' && s._golfLeader) {
-      // ESPN golf headshot (espnId comes direct from fetchGolf)
-      const espnId = s._golfLeader.espnId || lookupPlayer(s._golfLeader.name)?.id;
-      img = await resolveAthleteImage({ sport: 'golf', espnId, section: 'golf' });
-    } else if (s.label === 'F1' && s._f1Winner?.driver) {
-      const playerData = lookupPlayer(s._f1Winner.driver);
-      img = await resolveAthleteImage({ sport: 'f1', espnId: playerData?.id, section: 'sports' });
+    // Prefer venue/course images (Wikimedia Commons, official media) over ESPN headshots.
+    // buildGolf/buildF1 in html.js have their own curated course/circuit fallbacks,
+    // so null here means html.js falls back cleanly — no ESPN thumbnail or headshot needed.
+    if (s.label === 'Golf' || s.label === 'F1') {
+      img = SECTION_FALLBACKS[s._sport] || null;
     } else {
       // Team sport: use sport-specific hero fallback
       img = SECTION_FALLBACKS[s._sport] || SECTION_FALLBACKS.sports;
