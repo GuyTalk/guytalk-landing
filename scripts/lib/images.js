@@ -153,4 +153,73 @@ async function resolveAndValidate(url, { allowArticleOgImage = true, requireRele
   return null;
 }
 
-module.exports = { resolveAndValidate, resolveWikimedia, extractOgImage, isLiveImage, looksIrrelevant, IMAGE_EXT_RE };
+// ─────────────────────────────────────────────────────────────────────────────
+// Section fallbacks — existing hero assets; always served from local disk.
+// ─────────────────────────────────────────────────────────────────────────────
+const SECTION_FALLBACKS = {
+  lead:    '/assets/hero/default.jpg',
+  sports:  '/assets/hero/nba.jpg',
+  nba:     '/assets/hero/nba.jpg',
+  mlb:     '/assets/hero/mlb.jpg',
+  nhl:     '/assets/hero/nhl.jpg',
+  f1:      '/assets/hero/f1.jpg',
+  golf:    '/assets/hero/golf.jpg',
+  markets: '/assets/hero/default.jpg',
+  culture: '/assets/hero/default.jpg',
+  rec:     '/assets/hero/default.jpg',
+};
+
+// ESPN headshot CDN builders per sport.
+const ESPN_HEADSHOT = {
+  nba:  (id) => `https://a.espncdn.com/i/headshots/nba/players/full/${id}.png`,
+  mlb:  (id) => `https://a.espncdn.com/i/headshots/mlb/players/full/${id}.png`,
+  golf: (id) => `https://a.espncdn.com/i/headshots/golf/players/full/${id}.png`,
+  f1:   (id) => `https://a.espncdn.com/i/headshots/racing/drivers/full/${id}.png`,
+  nhl:  (id) => `https://a.espncdn.com/i/headshots/nhl/players/full/${id}.png`,
+};
+
+function espnHeadshot(sport, id) {
+  if (!id) return null;
+  const builder = ESPN_HEADSHOT[String(sport || '').toLowerCase()];
+  return builder ? builder(id) : null;
+}
+
+// Try a list of candidate URLs in order; return the first confirmed live image.
+async function firstLiveImage(urls) {
+  for (const url of (urls || []).filter(Boolean)) {
+    if (await isLiveImage(url)) return url;
+  }
+  return null;
+}
+
+// Resolve an athlete image: ESPN headshot CDN → article og:image → section fallback.
+async function resolveAthleteImage({ sport, espnId, articleUrl, section = 'sports' }) {
+  const candidates = [];
+  const headshot = espnHeadshot(sport, espnId);
+  if (headshot) candidates.push(headshot);
+  if (articleUrl) {
+    try {
+      const og = await extractOgImage(articleUrl);
+      if (og && !looksIrrelevant(og)) candidates.push(og);
+    } catch (_) {}
+  }
+  const live = await firstLiveImage(candidates);
+  return live || SECTION_FALLBACKS[section] || SECTION_FALLBACKS.sports;
+}
+
+// Resolve an article image: og:image → preset URL → section fallback.
+async function resolveArticleImage({ articleUrl, preset, section = 'lead' }) {
+  if (articleUrl) {
+    try {
+      const og = await extractOgImage(articleUrl);
+      if (og && !looksIrrelevant(og) && await isLiveImage(og)) return og;
+    } catch (_) {}
+  }
+  if (preset && await isLiveImage(preset)) return preset;
+  return SECTION_FALLBACKS[section] || SECTION_FALLBACKS.lead;
+}
+
+module.exports = {
+  resolveAndValidate, resolveWikimedia, extractOgImage, isLiveImage, looksIrrelevant, IMAGE_EXT_RE,
+  SECTION_FALLBACKS, ESPN_HEADSHOT, espnHeadshot, firstLiveImage, resolveAthleteImage, resolveArticleImage,
+};

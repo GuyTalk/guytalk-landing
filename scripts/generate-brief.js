@@ -537,11 +537,11 @@ async function main() {
     // list); culture/hero ground the rest. Image searches avoid the previous
     // issue's image URLs so we never publish a repeated image.
     const prevImageUrls = loadPrevImageUrls();
-    console.log('   🔎 Web research: dynamic sports discovery + culture + hero...');
+    console.log('   🔎 Research: building sports from feeds + culture from NewsAPI...');
     const leadSubject = (topStories.find(s => s.isLead) || topStories[0])?.headline || null;
     const [secRes, dynRes] = await Promise.allSettled([
-      fetchSectionStories({ dateLabel: date, leadSubject, issueNum, prevImageUrls, golf }),
-      fetchDynamicSports({ dateLabel: date, issueNum, prevImageUrls }),
+      fetchSectionStories({ dateLabel: date, leadSubject, issueNum, prevImageUrls, golf, topStories }),
+      fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls }),
     ]);
     sectionStories = secRes.status === 'fulfilled' ? (secRes.value || {}) : {};
     if (secRes.status === 'rejected') console.log(`   ⚠  Section research failed (non-blocking): ${secRes.reason?.message || secRes.reason}`);
