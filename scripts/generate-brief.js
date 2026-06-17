@@ -436,6 +436,44 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// In feed-only mode (no OpenAI web search), filter NewsAPI topStories to
+// Tier-1 sources only. Drops stories with no URL, unknown sources, or
+// known filler domains (Britannica, Wikipedia event lists, tabloids, etc.).
+// ─────────────────────────────────────────────────────────────────────────────
+const TIER1_DOMAINS = [
+  'cnbc.com', 'wsj.com', 'reuters.com', 'apnews.com', 'bloomberg.com',
+  'nytimes.com', 'washingtonpost.com', 'bbc.com', 'bbc.co.uk', 'axios.com',
+  'politico.com', 'ft.com', 'marketwatch.com', 'theguardian.com',
+  'espn.com', 'nba.com', 'nhl.com', 'mlb.com', 'nfl.com', 'pgatour.com',
+  'formula1.com', 'theathletic.com', 'frontofficesports.com',
+  'variety.com', 'hollywoodreporter.com', 'ign.com', 'polygon.com',
+  'rollingstone.com', 'pitchfork.com', 'billboard.com', 'deadline.com',
+  'sec.gov', 'cbsnews.com', 'nbcnews.com', 'abcnews.go.com', 'npr.org',
+  'techcrunch.com', 'theverge.com', 'wired.com', 'arstechnica.com',
+];
+const BLOCKED_DOMAINS = [
+  'britannica.com', 'wikipedia.org', 'wikimedia.org',
+  'nypost.com/gossip', 'tmz.com', 'pagesix.com', 'dailymail.co.uk',
+  'thesun.co.uk', 'mirror.co.uk',
+];
+
+function domainOf(url) {
+  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; }
+}
+
+function filterToTrustedSources(stories) {
+  if (!Array.isArray(stories)) return [];
+  return stories.filter(s => {
+    const urls = Array.isArray(s.sources) ? s.sources : [];
+    if (!urls.length) return false;                    // no source URL → drop
+    const dom = domainOf(urls[0]);
+    if (!dom) return false;
+    if (BLOCKED_DOMAINS.some(b => dom.includes(b) || urls[0].includes(b))) return false;
+    return TIER1_DOMAINS.some(t => dom.includes(t));  // must match a trusted domain
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Main
 // ─────────────────────────────────────────────────────────────────────────────
 async function main() {
@@ -494,16 +532,30 @@ async function main() {
   // ── OpenAI research pack (PRIMARY story source) ───────────────────────────
   const researchPack = openAIResearchResult.status === 'fulfilled' ? (openAIResearchResult.value || null) : null;
   if (openAIResearchResult.status === 'rejected') {
-    console.log(`   ⚠  OpenAI Research rejected: ${openAIResearchResult.reason?.message || openAIResearchResult.reason}`);
+    console.log(`   ✗ OpenAI research threw: ${openAIResearchResult.reason?.message || openAIResearchResult.reason}`);
   }
 
-  // topStories: prefer research pack, fall back to NewsAPI/Haiku ranking
+  // researchMode is the source of truth for the whole pipeline's quality level.
+  // 'openai-search' = gpt-4.1 actually searched the web and returned verified stories.
+  // 'feed-only'     = web search unavailable; using ESPN + Tier-1-filtered NewsAPI only.
+  const researchMode = researchPack?.searchActive ? 'openai-search' : 'feed-only';
+
+  // topStories: prefer research pack; in feed-only mode filter NewsAPI to Tier-1 sources only.
   const topStoriesRaw = topStoriesResult.status === 'fulfilled' ? (topStoriesResult.value || []) : [];
-  const topStories = researchPack ? researchPackToTopStories(researchPack) : topStoriesRaw;
-  if (researchPack) {
-    console.log(`   ✓ Research pack: ${researchPack.stories?.length || 0} stories (replacing NewsAPI path)`);
+  const topStories = researchPack
+    ? researchPackToTopStories(researchPack)
+    : filterToTrustedSources(topStoriesRaw);
+
+  if (researchMode === 'openai-search') {
+    console.log(`   ✓ OpenAI research active — ${researchPack.stories?.length || 0} web-verified stories`);
   } else {
-    console.log(`   ⚠  Research pack unavailable — using NewsAPI fallback (${topStories.length} stories)`);
+    console.log('');
+    console.log('   📋 FEED-ONLY MODE — OpenAI web research unavailable');
+    console.log(`      Sports: ESPN structured feeds only`);
+    console.log(`      Stories: Tier-1 sources only (${topStories.length} passed, ${topStoriesRaw.length - topStories.length} dropped)`);
+    console.log(`      Culture: trusted entertainment sources only — no filler`);
+    console.log('      Verification degraded — publish gate will apply stricter checks');
+    console.log('');
   }
   const worldCup   = wcResult.status        === 'fulfilled' ? wcResult.value        : null;
   const upcoming   = upcomingResult.status  === 'fulfilled' ? upcomingResult.value  : null;
@@ -609,15 +661,27 @@ async function main() {
     sectionStories = secRes.status === 'fulfilled' ? (secRes.value || {}) : {};
 
     // Override culture with research pack items when available — they are web-verified
-    // and scored for quality. NewsAPI entertainment is kept as fallback only.
+    // and scored for quality. In feed-only mode, filter NewsAPI culture to trusted
+    // entertainment sources only; no random filler or tabloid items.
     if (researchPack) {
       const rpCulture = researchPackToCulture(researchPack);
       if (rpCulture.length) {
         sectionStories.culture = rpCulture;
         console.log(`   ✓ Culture: ${rpCulture.length} item(s) from OpenAI research pack`);
-      } else if (sectionStories.culture?.length) {
-        console.log(`   ✓ Culture: ${sectionStories.culture.length} item(s) from NewsAPI fallback`);
       }
+    } else {
+      // Feed-only: filter culture to trusted entertainment sources only
+      const rawCulture = sectionStories.culture || [];
+      const filtered = rawCulture.filter(c => {
+        const url = c.url || '';
+        if (!url) return false;
+        const dom = domainOf(url);
+        return TIER1_DOMAINS.some(t => dom.includes(t));
+      });
+      if (filtered.length !== rawCulture.length) {
+        console.log(`   📋 Culture: filtered ${rawCulture.length - filtered.length} low-confidence item(s) in feed-only mode (${filtered.length} kept)`);
+      }
+      sectionStories.culture = filtered;
     }
     if (secRes.status === 'rejected') console.log(`   ⚠  Section research failed (non-blocking): ${secRes.reason?.message || secRes.reason}`);
     const dynamic = dynRes.status === 'fulfilled' ? (dynRes.value || { lead: null, sports: [] }) : { lead: null, sports: [] };
@@ -757,6 +821,9 @@ async function main() {
     editor:  editorMeta,
     factPack: factPack || null,
     researchPack: researchPack || null,
+    // 'openai-search' = gpt-4.1 web search was active and verified stories.
+    // 'feed-only'     = web search unavailable; ESPN + Tier-1 NewsAPI only.
+    researchMode,
     // Section retries / failures / editor hard-blocks from this run, persisted so
     // the approval email can surface them (populated by generateCopy + editBrief).
     generationWarnings: [...GENERATION_WARNINGS],

@@ -77,10 +77,26 @@ async function verifyBrief({ issueData, researchPack }) {
 
   const verifyPrompt = `You are the final fact-checker for GuyTalk. Today is ${issueData.date || 'today'}.
 
+CRITICAL RULES — READ BEFORE EVALUATING ANYTHING:
+
+1. ESPN STRUCTURED DATA IS GROUND TRUTH FOR SPORTS SCORES AND SERIES RESULTS.
+   If ESPN says "CAR wins series 4-2", that is correct, even if the research pack says otherwise.
+   When research pack conflicts with ESPN data on a sports score/result: trust ESPN, warn about the research pack inconsistency — do NOT block the ESPN-aligned copy.
+
+2. ESPN data is SPORT-SPECIFIC.
+   Hockey (NHL) data CANNOT contradict basketball (NBA) claims.
+   Baseball (MLB) data cannot contradict soccer or any other sport.
+   If ESPN data for the relevant sport is absent, that is "unverifiable" → WARNING, not a block.
+   Only use sport X's ESPN data to evaluate sport X's claims.
+
+3. PRIORITY HIERARCHY for sports: ESPN structured data > research pack > no evidence.
+
 ESTABLISHED FACTS (do not flag these as errors):
 - Donald Trump is the 47th President of the United States (won 2024 election, second term 2025–2029). References to "Trump" in current political news are correct.
 - The 2026 FIFA World Cup is currently in progress (hosted by USA/Canada/Mexico, begins June 11 2026).
 - Lewis Hamilton drives for Ferrari in F1 in 2025–2026 (left Mercedes after 2024 season).
+- Carolina Hurricanes previously won the Stanley Cup in 2006. Any 2026 win would be their SECOND championship, not their first. Claims of "first in franchise history" are WRONG and should be flagged.
+- U.S. Open Golf 2026 is held at Pinehurst No. 2 in North Carolina.
 
 
 Cross-check the BRIEF CLAIMS against the EVIDENCE below. Flag anything invented, stale, future-projected, or unverified.
@@ -106,7 +122,8 @@ IF NO research evidence (the RESEARCHED section says "(no research pack — high
   DO NOT use unverified_major, invented, stale, or future flags on business/culture/political news stories when there is no research pack — you have no evidence to contradict them, so they must be warnings only.
 
 FLAG as BLOCKING in all cases:
-- A sports result that DIRECTLY CONTRADICTS ESPN data: e.g. ESPN says Team A won but the copy says Team B won; ESPN says the score was 3-0 but the copy says 4-1; ESPN says series 4-2 but the copy says 4-0. SILENT ≠ CONTRADICTION — if ESPN data doesn't mention a stat (e.g., consecutive shutouts), that is a WARNING, not a block.
+- A sports result where ESPN data for THAT SPORT explicitly says something DIFFERENT: e.g. ESPN says "CAR wins series 4-2" but the copy says "VGK won". SILENT ≠ CONTRADICTION — if ESPN data doesn't mention the sport at all (e.g. no NBA entry), or doesn't mention a specific stat (e.g., consecutive shutouts), that is a WARNING, not a block. NEVER use flag "contradicts_espn" when ESPN data is simply absent for the sport/event being claimed.
+- A claim that directly contradicts an ESTABLISHED FACT listed above (e.g. "Hurricanes' first title" when they won in 2006; "Oakmont" when the U.S. Open is at Pinehurst). These are blocking, not warnings, even without an ESPN entry.
 - A clearly FORWARD-LOOKING event presented as already completed — e.g. "Election results in" when the election hasn't happened, or language like "will happen" treated as past tense. NOT just "unverified" news.
 - Content clearly from a Britannica "Major Events of 2026"-style speculative page (future projections)
 - A fabricated player stat (specific points/goals/yards) that directly contradicts ESPN box scores

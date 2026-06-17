@@ -364,6 +364,15 @@ F. FLAG WEAK CONTENT. A section may only stay if it answers at least TWO of: Why
 
 EXCEPTION — the LAST Culture item is a curated streaming/watch recommendation (an editorial pick, not a sourced news story). Do NOT add it to blocking for lacking RAW FACTS. Keep it, and make the recommendation copy sharp and specific (genre/vibe, why it's worth a watch, a natural one-liner) — just never invent a plot detail, cast member, award, or box-office number.
 
+CULTURE CONTENT RULES — mandatory. If a culture section fails no_ammo and there is no quality replacement in RAW FACTS, add it to blocking[]. Do NOT replace it with the following categories, even if they appear in TRENDING HEADLINES:
+- Celebrity divorce, breakup, relationship drama, romance rumors, "spotted together", "calls it quits"
+- Custody battles
+- Horoscopes, astrology, zodiac
+- Red carpet looks, "best dressed", fashion rankings
+- Plastic surgery, cosmetic procedure stories
+- Dating rumors, baby shower, gender reveal
+Any culture replacement story must be: a major streaming/entertainment release, significant tech/cultural moment, mainstream viral event, or music news that men 25-45 are actually discussing. If nothing qualifies, block the section.
+
 EXCEPTION — a golf section for a tournament that HAS NOT STARTED is a PREVIEW. It may reference the course/venue, last year's champion, and recognizable players in the field even though those aren't in RAW FACTS — these are stable, well-documented facts and the section should have a confident voice for a casual fan. Do NOT block it for these. The only hard rule: never state a live score, a current leader, or a result for a tournament that hasn't been played. It must still satisfy the HARD BLOCK RULE above — a preview that names the defending champion and real favorites PASSES; an empty "strong field" preview with no named person FAILS.
 
 OUTPUT — return ONLY valid JSON, no markdown fences, exactly this shape:
