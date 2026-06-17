@@ -356,7 +356,9 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
 
   if (golf?.name) {
     const lb = golf.leaders?.slice(0, 3).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ') || 'no leaderboard yet';
-    const status = golf.statusState === 'post' ? 'Finished' : golf.statusState === 'in' ? 'In Progress' : 'Starting this week';
+    const status = golf.statusState === 'post' ? 'FINISHED — final results below'
+      : golf.statusState === 'in' ? 'IN PROGRESS — live leaderboard below, no winner yet'
+      : 'NOT YET STARTED — upcoming, no scores yet';
     // Known 2026 major venues — prevent Haiku from pulling wrong venue from training data
     const GOLF_VENUES = {
       'U.S. Open': 'Pinehurst No. 2, North Carolina',

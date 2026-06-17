@@ -144,6 +144,8 @@ FLAG as BLOCKING in all cases:
 - A story flagged as "stale" ONLY if it is more than 48 hours old. Stories from yesterday (within 36 hours) are NOT stale for this brief — that is our deliberate window. Never flag yesterday's news as stale.
 - Content clearly from a Britannica "Major Events of 2026"-style speculative page (future projections)
 - A fabricated player stat (specific points/goals/yards) that directly contradicts ESPN box scores
+- A golf section claiming a winner or champion when ESPN golf statusState is NOT 'post' (in-progress tournaments have no winner yet). Block if copy says "won" or "champion" for an in-progress event.
+- A culture story that covers celebrity personal-life content (celibacy, abstinence, dating choices, relationship status reveals) that is not confirmed as a genuinely massive national conversation story. Use flag "low_relevance". This applies even with a research pack.
 
 FLAG as WARNING (never blocking):
 - A real-seeming current news story not confirmed in the research pack or ESPN data (could be real, just unverified here)
@@ -157,6 +159,7 @@ DO NOT flag:
 - Reasonable editorial framing of confirmed facts
 - Subjective takes, opinions, or voice choices
 - Stories that are likely real but just not in the provided evidence
+- Current political events or major national news (Iran deal, executive actions, major policy news) — these are real current news; only block if directly contradicted by verified evidence
 
 Return ONLY valid JSON:
 {
@@ -189,7 +192,7 @@ Return ONLY valid JSON:
     const hasResearch = researchPack?.stories?.length > 0;
     // In feed-only mode the only valid blocking flags are ESPN/market-feed/established-fact contradictions.
     // Demote everything else (unverified_major, invented, stale, future) to warnings.
-    const FEED_ONLY_BLOCK_FLAGS = new Set(['contradicts_espn', 'contradicts_established_fact', 'contradicts_market_feed']);
+    const FEED_ONLY_BLOCK_FLAGS = new Set(['contradicts_espn', 'contradicts_established_fact', 'contradicts_market_feed', 'low_relevance']);
     const rawBlocking = Array.isArray(result.blocking)
       ? result.blocking.filter(b => b?.claim && b?.reason)
       : [];

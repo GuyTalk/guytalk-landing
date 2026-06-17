@@ -65,7 +65,77 @@ const PLAYERS = {
   'Ludvig Aberg':              { sport: 'golf', id: '9999001',  slug: 'ludvig-aberg' },
   'Shane Lowry':               { sport: 'golf', id: '3139',     slug: 'shane-lowry' },
   'Tommy Fleetwood':           { sport: 'golf', id: '1225',     slug: 'tommy-fleetwood' },
+  // Golf — current US Open / major contenders
+  'Harry Higgs':               { sport: 'golf', id: '9095',     slug: 'harry-higgs' },
+  'Taylor Montgomery':         { sport: 'golf', id: '10637',    slug: 'taylor-montgomery' },
+  'Chandler Phillips':         { sport: 'golf', id: '10984',    slug: 'chandler-phillips' },
+  // F1 — current grid
+  'Kimi Antonelli':            { sport: 'f1',   id: '5073282',  slug: 'andrea-kimi-antonelli' },
+  'Oscar Piastri':             { sport: 'f1',   id: '4702619',  slug: 'oscar-piastri' },
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Entity link database: teams, venues, leagues, orgs → canonical URL
+// Used by linkifyEntities() in html.js for contextual hyperlinks.
+// ─────────────────────────────────────────────────────────────────────────────
+const ENTITY_LINKS = {
+  // NHL teams
+  'Carolina Hurricanes':    { url: 'https://www.nhl.com/hurricanes',    cls: 'entity-team' },
+  'Vegas Golden Knights':   { url: 'https://www.nhl.com/goldenknights', cls: 'entity-team' },
+  'Florida Panthers':       { url: 'https://www.nhl.com/panthers',      cls: 'entity-team' },
+  'Edmonton Oilers':        { url: 'https://www.nhl.com/oilers',        cls: 'entity-team' },
+  // NBA teams
+  'New York Knicks':        { url: 'https://www.nba.com/knicks',        cls: 'entity-team' },
+  'San Antonio Spurs':      { url: 'https://www.nba.com/spurs',         cls: 'entity-team' },
+  'Oklahoma City Thunder':  { url: 'https://www.nba.com/thunder',       cls: 'entity-team' },
+  // F1 teams
+  'Ferrari':                { url: 'https://www.formula1.com/en/teams/Ferrari.html', cls: 'entity-team' },
+  'Mercedes':               { url: 'https://www.formula1.com/en/teams/Mercedes.html', cls: 'entity-team' },
+  'McLaren':                { url: 'https://www.formula1.com/en/teams/McLaren.html', cls: 'entity-team' },
+  // Leagues / orgs
+  'UFC':                    { url: 'https://www.ufc.com',               cls: 'entity-org' },
+  'PGA Tour':               { url: 'https://www.pgatour.com',           cls: 'entity-org' },
+  'USGA':                   { url: 'https://www.usga.org',              cls: 'entity-org' },
+  'Formula 1':              { url: 'https://www.formula1.com',          cls: 'entity-org' },
+  // Golf venues
+  'Pinehurst No. 2':        { url: 'https://www.pinehurst.com/golf/courses/no-2/', cls: 'entity-venue', context: "Donald Ross's masterpiece — crowned bentgrass greens that reject anything less than a perfect strike. The toughest U.S. Open setup in golf." },
+  'Augusta National':       { url: 'https://www.masters.com',           cls: 'entity-venue', context: 'Home of The Masters — the most exclusive golf club in the world.' },
+  'Royal Portrush':         { url: 'https://royalportrushgolfclub.com', cls: 'entity-venue' },
+  // F1 circuits
+  'Red Bull Ring':          { url: 'https://www.redbullring.com',       cls: 'entity-venue', context: "Red Bull's home circuit in Austria — short, fast, high-altitude, and one of the best overtaking venues on the calendar." },
+  'Silverstone':            { url: 'https://www.silverstone.co.uk',     cls: 'entity-venue', context: 'The home of British motorsport — fast, flowing, and one of the most demanding circuits for mechanical grip.' },
+  // Notable venues
+  'Madison Square Garden':  { url: 'https://www.msg.com',              cls: 'entity-venue', context: "The World's Most Famous Arena — home of the New York Knicks and one of the most iconic sports venues in America." },
+  // Companies
+  'OpenAI':                 { url: 'https://www.cnbc.com/quotes/PRIVATE:OPENAI', cls: 'entity-company' },
+  'SpaceX':                 { url: 'https://www.cnbc.com/quotes/PRIVATE:SPACEX', cls: 'entity-company' },
+  'Nvidia':                 { url: 'https://www.cnbc.com/quotes/NVDA',  cls: 'entity-company' },
+  'Tesla':                  { url: 'https://www.cnbc.com/quotes/TSLA',  cls: 'entity-company' },
+  'Netflix':                { url: 'https://www.cnbc.com/quotes/NFLX',  cls: 'entity-company' },
+};
+
+// Wrap the FIRST occurrence of `name` in `html` with an entity link.
+function entityLink(html, name) {
+  const entry = ENTITY_LINKS[name];
+  if (!entry) return html;
+  const idx = html.indexOf(name);
+  if (idx < 0) return html;
+  // Don't double-link (check if already inside an <a> tag)
+  const before = html.slice(0, idx);
+  if ((before.match(/<a\b/g) || []).length > (before.match(/<\/a>/g) || []).length) return html;
+  return before +
+    `<a href="${entry.url}" class="${entry.cls}" target="_blank" rel="noopener">${name}</a>` +
+    html.slice(idx + name.length);
+}
+
+// Apply entityLink for all known entities. Longest names first to avoid partial matches.
+function linkifyEntities(html) {
+  if (!html) return html;
+  let result = html;
+  const names = Object.keys(ENTITY_LINKS).sort((a, b) => b.length - a.length);
+  for (const name of names) result = entityLink(result, name);
+  return result;
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Ticker config: display order + Morningstar links
@@ -470,4 +540,4 @@ const STREAMING_PICKS = [
   },
 ];
 
-module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT, LARGECAP_UNIVERSE, CRYPTO_UNIVERSE, PRODUCTS, RECS, STREAMING_PICKS, esc, playerLink, tickerLink, fmtPrice, fmtPct };
+module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT, LARGECAP_UNIVERSE, CRYPTO_UNIVERSE, PRODUCTS, RECS, STREAMING_PICKS, esc, playerLink, tickerLink, fmtPrice, fmtPct, ENTITY_LINKS, entityLink, linkifyEntities };

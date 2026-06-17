@@ -54,11 +54,12 @@ async function fetchOpenAIResearch({ date, recentIssues = [] } = {}) {
 Use web search to find the most important CONFIRMED stories happening TODAY. Only include real, verified events — never speculation, future projections, or "major events of 2026"-style pages.
 
 SEARCH for all of these:
-1. Major sports results from the last 24 hours: NBA, NHL, MLB, World Cup 2026, UFC/boxing if a card happened, F1 if a race just finished or is this weekend, golf if a major tournament is in progress
+1. Major sports results from the last 24 hours: NBA, NHL, MLB, World Cup 2026, UFC/boxing/MMA if a card happened, F1 if a race just finished or is this weekend, golf if a major tournament is in progress
 2. Markets/business: biggest market moves and corporate news today
 3. Culture: what men 25-45 are actually talking about — major streaming drops, big tech announcements, major music moments, viral mainstream moments. NOT celebrity gossip/divorce/relationship drama/horoscopes
-4. Current events: major widely-relevant news (politically neutral)
-5. The most genuinely interesting story that fits none of the above
+4. Current events: major widely-relevant news (politically neutral), including White House or major political stories men 25-45 would actually discuss
+5. Major internet/culture moments: the biggest story men 25-45 are genuinely talking about today — major viral moments, notable public figures making real news, significant entertainment/tech/cultural announcements
+6. UFC specifically: is there a UFC card this weekend or recent results? Any Dana White / UFC business news or a White House-UFC story?
 
 TRUSTED SOURCES only — search these specifically:
 Sports: ESPN, NBA.com, NHL.com, MLB.com, The Athletic, Front Office Sports
@@ -70,17 +71,21 @@ EXCLUDE entirely:
 - Speculative/future-event pages (Britannica "events of 2026", Wikipedia "in this year")
 - Unconfirmed events (if you did not find a source confirming it happened, skip it)
 - Horoscopes, custody battles, celebrity dating/divorce/gossip, tabloid filler
+- Celebrity personal-life filler: celibacy/abstinence/dating/relationship reveals unless the person is a truly massive cultural figure AND the story has crossed mainstream national conversation (ESPN, AP, CNN, NYT coverage)
+- "People magazine" content — personal choices, body/health stories, romance rumors — that a man would not realistically bring up at work or a bar
 - Stories more than 36 hours old (unless clearly the biggest ongoing story)
 - Championship/death/acquisition claims from a single soft or unclear source${avoidLine}
 
 SCORING per story (1-5):
 - freshness: confirmed today = 5; 36h old = 1
 - confidence: 3+ Tier-1 outlets confirmed = 5; single vague source = 1
-- conversation: a 30-year-old would bring this up at work/bar = 5
+- conversation: "Would a normal 30-year-old man ACTUALLY bring this up at work or a bar today?" 5 = absolutely yes, 1 = probably not, 0 = definitely not. Celebrity personal-life stories score max 1 unless truly massive national news
 - variety: fills a category gap = 5
 
-SELECT 6-9 stories: 2-4 sports, 1-2 markets/business, 1-2 culture, 0-1 current events.
-Set isLead:true on the single biggest story. Include ALL rejected candidates.
+SELECT 6-9 stories: 2-4 sports, 1-2 markets/business, 1-2 culture/current events.
+Culture picks MUST score 4+ on conversation. If no culture story scores 4+, report it as rejected and note what was considered.
+Prefer UFC/boxing results, major political moments, significant internet/viral moments, or notable entertainment news over celebrity personal-life content.
+Set isLead:true on the single biggest story. Include ALL rejected candidates with reason.
 
 Return ONLY valid JSON (no markdown fences):
 {
