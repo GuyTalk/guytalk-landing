@@ -269,7 +269,7 @@ function convoBlocks(s) {
     ? `      <li><span><span class="dl-label">The GuyTalk Read:</span> ${esc(read)}</span></li>`
     : '';
   const ammoHtml = ammo.length
-    ? `      <li class="ammo-item"><span class="dl-label">Conversation Ammo:</span><ul class="ammo-list">${ammo.map(a => `<li>${esc(a)}</li>`).join('')}</ul></li>`
+    ? `      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list">${ammo.map(a => `<li>${esc(a)}</li>`).join('')}</ul></li>`
     : '';
   return [readHtml, ammoHtml].filter(Boolean).join('\n');
 }
@@ -397,9 +397,10 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
   .brief-sidenav .bsn-group.open .bsn-children{max-height:600px;margin-top:14px;}
   .brief-sidenav .bsn-caret{display:inline-block;width:1em;margin-right:2px;font-size:.78em;opacity:.65;transition:transform .2s ease;cursor:pointer;}
   .brief-sidenav .bsn-group.open .bsn-caret{transform:rotate(90deg);}
-  .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;}
-  .brief-sidenav .bsn-sub{margin-right:16px;font-size:0.92em;opacity:0.8;}
-  .brief-sidenav .bsn-sub .bsn-dot{width:6px;height:6px;}
+  .brief-sidenav .bsn-link{font-size:0.95em;}
+  .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
+  .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
+  .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
   /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
      so faces/players show instead of a jersey-number zoom. */
   .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
@@ -407,7 +408,7 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   ${navLink('top', 'Top')}
-${navGroup('sports', 'Sports', sportsSubs.map(([id, label]) => [id, label]), true)}
+${navGroup('sports', 'Sports', sportsSubs.map(([id, label]) => [id, label]), false)}
 ${navGroup('markets', 'Markets', [], false)}
 ${navGroup('culture', 'Culture', [], false)}
   ${navLink('sharp-take', 'Sharp Take')}

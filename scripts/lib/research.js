@@ -247,14 +247,35 @@ Return ONLY a JSON array of 4-6 objects:
 // Section stories — NewsAPI entertainment (culture) + og:image for hero.
 // Zero model calls, zero web searches.
 // ─────────────────────────────────────────────────────────────────────────────
+// Headlines that should never appear as culture items — tabloid filler with zero
+// conversation value for a 25-45 male audience. Checked case-insensitively.
+const CULTURE_BLOCKLIST = [
+  'horoscope', 'zodiac', 'astrology',
+  'custody battle', 'custody fight', 'custody dispute',
+  'cheating scandal', 'cheating on',
+  'divorce filing', 'files for divorce', 'finalizes divorce',
+  'baby shower', 'gender reveal',
+  'dating rumor', 'spotted together', 'romance rumor', 'new couple',
+  'breakup', 'split from', 'calls it quits',
+  'plastic surgery', 'cosmetic surgery',
+  'red carpet look', 'best dressed', 'worst dressed',
+];
+
+function isCultureBlocked(title) {
+  const t = (title || '').toLowerCase();
+  return CULTURE_BLOCKLIST.some(b => t.includes(b));
+}
+
 async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImageUrls = [], golf, topStories = [] } = {}) {
   const SPORTS_RE = /\b(nba|nfl|nhl|mlb|mls|soccer|ufc|mma|fight(?:er|s)?|boxing|game\s+\d|match|playoff|championship|score|world\s+cup)\b/i;
 
-  // Culture from NewsAPI entertainment — filter out any sports results
+  // Culture from NewsAPI entertainment — filter out sports AND low-quality filler.
+  // This is the fallback path used only when OpenAI research doesn't supply culture items.
   const culture = [];
-  const newsItems = await fetchNewsHeadlines(['entertainment'], { pageSize: 10 });
+  const newsItems = await fetchNewsHeadlines(['entertainment'], { pageSize: 15 });
   for (const a of newsItems) {
     if (SPORTS_RE.test(a.title)) continue;
+    if (isCultureBlocked(a.title)) continue;
     culture.push({
       headline:   a.title,
       source:     a.source,
@@ -345,14 +366,15 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
     const g          = nhlGame;
     const seriesPart = g.seriesNote ? ` (${g.seriesNote})` : '';
     const note       = g.note || g.shortName || '';
+    const notePart   = note ? ` [${note}]` : '';
     let headline, facts;
     if (isPost) {
       const w = g.home.winner ? g.home : g.away;
       const l = g.home.winner ? g.away : g.home;
-      headline = `${w.team} ${w.score}–${l.score}${seriesPart}`;
-      facts    = `${w.team} beat ${l.team} ${w.score}–${l.score}${seriesPart}`;
+      headline = `${w.team} ${w.score}–${l.score}${seriesPart}${notePart}`;
+      facts    = `${w.team} beat ${l.team} ${w.score}–${l.score}${seriesPart}${notePart}`;
     } else {
-      headline = `${g.away?.team} at ${g.home?.team}${seriesPart}`;
+      headline = `${g.away?.team} at ${g.home?.team}${seriesPart}${notePart}`;
       facts    = headline;
     }
     const { score: imp } = scoreImportance({ name: `NHL ${note}`, headline, facts, isFinalResult: isPost });
