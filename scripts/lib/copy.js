@@ -228,8 +228,13 @@ async function generateCopy({ sports, markets, golf, tennis, trending, topStorie
     if (!s || !Array.isArray(factPack?.markets?.ammo) || !factPack.markets.ammo.length) return s;
     return { ...s, depth: [s.depth, `AMMO FACTS: ${factPack.markets.ammo.join(' | ')}`].filter(Boolean).join(' | ') };
   })();
+  const SPORTS_CATS = new Set(['Sports','NBA','NHL','MLB','NFL','UFC','F1','Golf','World Cup','Soccer']);
+  const leadIsNonSports = leadStory && !SPORTS_CATS.has(leadStory.category || '');
+  const leadContextLine = leadIsNonSports
+    ? `\n⚠ TODAY'S LEAD IS NON-SPORTS: [${leadStory.category}] "${leadStory.headline}" — this is the single biggest story today and should be the first thing discussed in the brief, before any sports.\n`
+    : '';
   const topStoriesText = stories.length
-    ? 'BIGGEST STORIES TODAY (real, web-researched — the ★ is the single biggest thing a guy needs to know today; it usually outranks a regular-season game): '
+    ? leadContextLine + 'BIGGEST STORIES TODAY (real, web-researched — the ★ is the single biggest thing a guy needs to know today; it usually outranks a regular-season game): '
       + stories.map((s) => `${s.isLead ? '★' : '•'} [${s.category}] ${s.headline}`).join('  ;;  ')
     : '';
 
