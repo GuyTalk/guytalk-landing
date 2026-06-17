@@ -137,6 +137,21 @@ If Monaco, Silverstone, Miami, Vegas, or any major race is mentioned, explain wh
 Golf rule:
 If a tournament is mentioned, include the winner, notable contender, course/storyline, and why casual fans might care.
 
+**Golf major verification checklist (permanent — applies to every major preview or recap):**
+Before writing any golf major section, verify ALL of the following from current sources — never from model memory:
+1. Tournament year and correct major name
+2. Venue (course name, city/state) — confirmed from USGA/PGA/R&A official site
+3. Exact dates the event runs
+4. Defending champion — the player who won the PREVIOUS YEAR'S edition of this specific major. Must be verified from a current source (pgatour.com, espn.com, usga.org, etc.).
+5. Prior winners (all-time or recent) if referenced
+6. Current field storylines (contenders, injuries, records at stake)
+7. Whether the event is upcoming (preview) or in-progress or completed — write tense accordingly
+
+**"Defending champion" is a HARD BLOCK rule:**
+Never write "defending champion" or name a specific player as defending unless that claim has been verified from a current, sourced search result within this pipeline run. A wrong defending champion claim in any section (story body, Final Sharp Take, condensed summary, email preview, social copy) is a blocking error.
+
+Reference: 2025 U.S. Open was won by J.J. Spaun at Oakmont Country Club. He is the defending champion for the 2026 U.S. Open at Shinnecock Hills.
+
 ## Culture rules
 
 Culture cannot feel like random headlines.
@@ -213,6 +228,30 @@ Before publishing, review every item and ask:
 6. Does this feel like GuyTalk, not a generic newsletter?
 
 If any answer is no, rewrite or remove the item.
+
+## Condensed section fact-check rule (permanent)
+
+The following sections are condensed by nature and must be treated as a separate fact-check pass before approval:
+
+- Final Sharp Take
+- Today at a Glance
+- Hero dek / headline
+- Email preview text
+- Social copy (X, IG, Buffer posts)
+- All other summary or teaser sections
+
+**Rule:** Every factual claim in a condensed section must have already appeared — and been verified — in the main story data of the same issue. Condensed sections must NOT introduce new claims.
+
+**If a condensed section mentions any of the following, it must be independently verified or removed:**
+- Scores or margins (e.g. "12-2 blowout," "won by ten")
+- Winners or losers of games, series, or events
+- Defending champions
+- Player or team standings, rankings, or records
+- Injuries, suspensions, or roster changes
+- Market levels, index percentages, or price targets
+- Dates, venues, or event timing
+
+**How to apply:** After generating each condensed section, cross-reference it claim-by-claim against the main issue body. Any claim that cannot be traced to verified main story data must be removed or rewritten to remove the specific assertion. When uncertain, remove the claim — never guess.
 
 ## Three-tier source system
 
