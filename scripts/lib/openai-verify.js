@@ -41,9 +41,9 @@ async function verifyBrief({ issueData, researchPack }) {
     claims.push(`SPORT [${s.label}]: ${s.headline || ''} — ${s.whatHappened || s.facts || ''}`);
     (s.ammo || []).filter(Boolean).forEach(a => claims.push(`  AMMO: ${a}`));
   });
-  (issueData.topStories || []).forEach(s =>
-    claims.push(`TOP STORY: ${s.headline} — ${s.whatHappened || ''}`)
-  );
+  // topStories are background research inputs used to generate copy, not published
+  // content. Verifying raw feed headlines against ESPN creates false blocks (e.g.
+  // a NewsAPI preview headline published before the game ended). Skip them here.
   (copy.culture || []).forEach((c, i) =>
     claims.push(`CULTURE ${i + 1}: ${c.topic || c.head || ''} — ${c.whatHappened || ''}`)
   );
@@ -198,6 +198,12 @@ Return ONLY valid JSON:
       : [];
     const demoted = [];
     const blocking = rawBlocking.filter(b => {
+      // Drop self-contradictory blocks where the model's own reason says ESPN confirms
+      // the claim (happens when gpt-4o confuses itself on ambiguous framing).
+      if (b.reason && /espn.*confirm|confirm.*espn|should pass|thus.*pass/i.test(b.reason)) {
+        demoted.push(b);
+        return false;
+      }
       if (!hasResearch && !FEED_ONLY_BLOCK_FLAGS.has(b.flag)) {
         demoted.push(b);
         return false;

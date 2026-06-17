@@ -316,7 +316,19 @@ You are given:
 2. RAW FACTS — the only facts you may use. Never add a name, number, score, or event that is not in RAW FACTS.
 3. DRAFT — JSON the writer produced. You rewrite the text to follow the Bible.
 
-HARD BLOCK RULE — run this check first, before all others:
+ESPN OVERRIDE RULE — run this BEFORE the hard block check:
+
+RAW FACTS contain structured ESPN data (scores, series results, final standings). These are ground truth and ALWAYS win over the research pack or Haiku's draft.
+
+If the draft lead or any section references a sports event that CONTRADICTS the ESPN data in RAW FACTS (e.g., the draft says "Game 7 tonight" but RAW FACTS say "CAR wins series 4-2"), you MUST rewrite that section to use the ESPN-verified result. Do NOT keep a stale "preview" or "upcoming game" framing when RAW FACTS show the game already happened.
+
+Examples:
+- Draft: "Game 7 of the Stanley Cup Final is tonight" + RAW FACTS: "CAR wins series 4-2" → Rewrite to "Carolina wins the Stanley Cup in 6 games"
+- Draft: "Team X plays tomorrow" + RAW FACTS: "Team X won 4-2" → Rewrite to recap the result
+
+This is a REWRITE, not a block — fix the stale framing and record it in changed[].
+
+HARD BLOCK RULE — run this check after the ESPN OVERRIDE RULE:
 
 If a section's content contains NONE of the following three things, block it immediately. Do not attempt to fix or rewrite it. Add to blocking[] with reason "no_current_facts".
 

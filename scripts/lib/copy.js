@@ -477,16 +477,22 @@ Return ONLY valid JSON on one line — no markdown:
     askJson('Culture',
       `GuyTalk culture: 3 quick hits for men 25-45. Today: ${TODAY}.
 Return ONLY valid JSON array with exactly 3 objects — no markdown, no extra text:
-[{"topic":"Headline. Max 8 words.","whatHappened":"One sentence — what actually happened.","whyItMatters":"One sentence — why a guy should care.","theRead":"2-3 sentences. The GuyTalk Read — the real angle, who it affects, the broader signal.","ammo":["Specific fact 1","Specific fact 2","Specific fact 3"],"whatToSay":"One casual conversation line. Natural, not forced.","tag":"Music|Sports Biz|TV|Tech|Gaming|Movies|Streaming"}]
+[{"topic":"Headline. Max 8 words.","whatHappened":"One sentence — what actually happened.","whyItMatters":"One sentence — why a guy should care.","theRead":"2-3 sentences. The GuyTalk Read — the real angle, who it affects, the broader signal.","ammo":["Specific fact 1","Specific fact 2","Specific fact 3"],"whatToSay":"One casual conversation line. Natural, not forced.","tag":"Music|Sports Biz|TV|Tech|Gaming|Movies|Streaming|UFC|Current Events"}]
 
-AUDIENCE FILTER (important): pick what men 25-45 actually talk about — big movies/TV/streaming drops, gaming, tech & gadgets, sports business/media deals, a major album or artist moment, a viral thing guys are quoting. AVOID celebrity relationship gossip, who's-dating-who, breakups, and reality-TV drama (e.g. "[Celebrity] and [Celebrity] split") UNLESS it's genuinely massive and universal. If the only trending "culture" is gossip, prefer a tech/gaming/movie story or the streaming pick instead.
+RELEVANCE GATE — every culture story must pass this test: "Would a normal 30-year-old man actually bring this up at work or a bar today?" If the answer is "probably not", skip it.
+HARD EXCLUDES: celebrity relationship gossip, dating/breakup/split news, celibacy or abstinence reveals, personal relationship choices (e.g. "[Celebrity] says they've been celibate for X years"), custody battles, reality-TV drama, red carpet fashion, plastic surgery, "who's dating who", horoscopes. These are NEVER acceptable regardless of trending status.
+GOOD PICKS: major streaming/TV drops, big tech announcements, notable entertainment news, UFC fights/drama, significant viral moments men are actually discussing, major gaming releases, music/album moments, White House or major political story men would talk about, notable deaths that men would mention.
 
-Items 1 and 2: Real stories from the WEB-RESEARCHED CULTURE FACTS below. Different categories — don't do two of the same type. If only one usable fact is found, write item 2 from a genuinely current June 2026 culture/entertainment story you actually know — never invent specifics.
+SOURCE PRIORITY — use in this order:
+1. WEB-RESEARCHED CULTURE FACTS below (verified stories, use these first)
+2. BROADER TODAY'S STORIES below (research pack — any Tech/Business/UFC/Current Events story a man would discuss as culture)
+3. Only if both above are empty: a genuinely well-known June 2026 story — but only name things you are confident are real and current; do not invent specifics.
+
 ${streamingPick ? `Item 3 — a watch recommendation for "${streamingPick.head.replace('Watch this: ', '')}": {"topic":"${streamingPick.head.replace('Watch this: ', '')}","whatHappened":"${streamingPick.body.split('.')[0]}.","whyItMatters":"One sentence on the vibe/genre and why it's worth a guy's night — general framing only, do NOT invent plot, cast, awards, or box-office.","whatToSay":"One natural recommendation line you'd actually say to a friend.","tag":"Streaming"}` : 'Item 3: One streaming/watch rec (action, thriller, crime, or prestige drama — no animated/kids/family). whyItMatters = vibe + why worth watching; whatToSay = a natural rec line. No invented facts.'}
 
-Only use stories confirmed in the web-researched facts below — never invent events.
-WEB-RESEARCHED CULTURE FACTS (real, sourced — Change 5): ${cultureWeb.length ? cultureWeb.map((c, i) => `${i + 1}. ${c}`).join(' | ') : '(none found — use a well-known current June 2026 culture story; never fabricate specifics)'}`,
-      1000, { delayMs: 2000, section: 'culture' }
+WEB-RESEARCHED CULTURE FACTS: ${cultureWeb.length ? cultureWeb.map((c, i) => `${i + 1}. ${c}`).join(' | ') : '(none)'}
+BROADER TODAY'S STORIES (use any that pass the relevance gate): ${topStoriesText || '(none)'}`,
+      1200, { delayMs: 2000, section: 'culture' }
     ),
 
     // 9. Final Sharp Take — 80-100 words, 3-4 sentences
