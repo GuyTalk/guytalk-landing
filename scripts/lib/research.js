@@ -415,16 +415,17 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
     const headline = isPost && leader
       ? `${leader.name} wins ${golf.name}`
       : `${golf.name}${isIn ? ' — in progress' : ' — this week'}`;
+    const hasStarted = golf.hasStarted === true;
     const topThree = (golf.leaders || []).slice(0, 3);
     const leaderStr = topThree.length
       ? topThree.map(l2 => `${l2.pos || ''} ${l2.name}: ${l2.score}`.trim()).join(', ')
       : golf.name;
-    // Prefix in-progress facts with explicit status so Haiku never writes "won"
-    const facts = isIn
-      ? `LEADERBOARD (IN PROGRESS — no winner yet): ${leaderStr}`
-      : isPost
-        ? `FINAL RESULT: ${leaderStr}`
-        : leaderStr;
+    // Prefix facts with explicit status so Haiku never invents scores or winners
+    const facts = isPost
+      ? `FINAL RESULT: ${leaderStr}`
+      : (isIn && hasStarted)
+        ? `LEADERBOARD (IN PROGRESS — no winner yet): ${leaderStr}`
+        : `PREVIEW ONLY — tournament has not started. No scores or leaders exist yet. Write as a preview: course, favorites, what to watch.`;
     const { score: imp } = scoreImportance({ name: golf.name, headline, facts, isFinalResult: isPost });
     candidates.push({
       name: golf.name, label: 'Golf', category: 'individual',

@@ -355,10 +355,6 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
   }
 
   if (golf?.name) {
-    const lb = golf.leaders?.slice(0, 3).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ') || 'no leaderboard yet';
-    const status = golf.statusState === 'post' ? 'FINISHED — final results below'
-      : golf.statusState === 'in' ? 'IN PROGRESS — live leaderboard below, no winner yet'
-      : 'NOT YET STARTED — upcoming, no scores yet';
     // Known 2026 major venues — prevent Haiku from pulling wrong venue from training data
     const GOLF_VENUES = {
       'U.S. Open': 'Pinehurst No. 2, North Carolina',
@@ -367,7 +363,31 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
       'PGA Championship': 'Quail Hollow Club, Charlotte',
     };
     const venue = golf.venue || Object.entries(GOLF_VENUES).find(([k]) => (golf.name||'').includes(k))?.[1] || '';
-    lines.push(`GOLF: ${golf.name}${venue ? ` at ${venue}` : ''} — ${status}. Leaderboard: ${lb}`);
+    if (golf.statusState === 'post') {
+      const lb = (golf.leaders || []).slice(0, 3).map(l => `${l.name} ${l.score}`).join(', ') || '(no leaderboard)';
+      lines.push(`GOLF: ${golf.name}${venue ? ` at ${venue}` : ''} — FINISHED. Final leaderboard: ${lb}`);
+    } else if (golf.hasStarted && golf.statusState === 'in') {
+      const lb = (golf.leaders || []).slice(0, 3).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ') || '(no leaderboard)';
+      lines.push(`GOLF: ${golf.name}${venue ? ` at ${venue}` : ''} — IN PROGRESS — live leaderboard, no winner yet. Leaderboard: ${lb}`);
+    } else {
+      // Tournament not yet started — write preview only, NO scores or leaders
+      const VENUE_CONTEXT = {
+        'Pinehurst No. 2': "Donald Ross's 1907 masterpiece — the crowned bentgrass greens reject any approach that isn't hit perfectly. Pinehurst No. 2 has hosted 5 U.S. Opens; even par is typically enough to win.",
+        'Royal Portrush': 'Links golf on the Antrim coast — wind is the defining factor; distance control matters more than raw power.',
+        'Augusta National': 'Home of The Masters — the most exclusive major venue; second-shot placement is everything here.',
+        'Quail Hollow Club': 'Charlotte, NC — known for "The Green Mile", the brutally difficult finishing stretch of 16-17-18.',
+      };
+      const venueCtx = Object.entries(VENUE_CONTEXT).find(([k]) => venue.includes(k))?.[1] || '';
+      const FAVORITES = {
+        'U.S. Open': 'Scottie Scheffler (world No. 1), Rory McIlroy (career Grand Slam on the line), Bryson DeChambeau (defending U.S. Open champion)',
+        'The Open Championship': 'Rory McIlroy, Jon Rahm, Shane Lowry',
+        'Masters': 'Scottie Scheffler, Rory McIlroy, Jon Rahm',
+        'PGA Championship': 'Scottie Scheffler, Xander Schauffele, Brooks Koepka',
+      };
+      const favoritesKey = Object.keys(FAVORITES).find(k => (golf.name||'').includes(k));
+      const favorites = favoritesKey ? FAVORITES[favoritesKey] : '';
+      lines.push(`GOLF PREVIEW (NOT YET STARTED — no scores, no leaderboard): ${golf.name}${venue ? ` at ${venue}` : ''}. ${venueCtx ? `VENUE: ${venueCtx}` : ''} ${favorites ? `FAVORITES: ${favorites}.` : ''} Write this as a preview — what to watch for, who analysts expect to contend, why this major/tournament matters. Do NOT state any scores, current standings, or leader names from this tournament.`);
+    }
   }
 
   if (tennis?.tours?.length) {

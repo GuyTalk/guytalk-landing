@@ -627,6 +627,14 @@ async function fetchGolf() {
     const addr = comp?.venue?.address || ev.venue?.address || {};
     const location = [addr.city, addr.state || addr.country].filter(Boolean).join(', ');
 
+    // Detect if competitive play has actually started: at least one player has
+    // a score that is not E (even par). If everyone is at E, the tournament field
+    // has been announced but no rounds have been played yet.
+    const hasStarted = leaders.some(l => {
+      const s = (l.score || '').trim();
+      return s !== '' && s !== 'E' && s !== '0' && s !== '+0';
+    });
+
     return {
       name: ev.name || 'PGA Tour',
       venue: comp?.venue?.fullName || ev.venue?.fullName || '',
@@ -634,8 +642,9 @@ async function fetchGolf() {
       date: ev.date || comp?.date || null,
       endDate: ev.endDate || null,
       status: statusDetail,
-      statusState,
-      leaders,
+      statusState: hasStarted ? statusState : (statusState === 'post' ? 'post' : 'pre'),
+      hasStarted,
+      leaders: hasStarted ? leaders : [],
     };
   } catch (_) {
     return null;
