@@ -108,7 +108,7 @@ ESTABLISHED FACTS (do not flag these as errors):
 - Lewis Hamilton drives for Ferrari in F1 in 2025–2026 (left Mercedes after 2024 season).
 - Carolina Hurricanes previously won the Stanley Cup in 2006. Any 2026 win would be their SECOND championship, not their first. Claims of "first in franchise history" are WRONG and should be flagged.
 - A 2026 Carolina Hurricanes Stanley Cup win ends a 20-YEAR drought (2006–2026 = 20 years). References to "20-year drought" or "first since 2006" are CORRECT — do NOT flag them.
-- U.S. Open Golf 2026 is held at Pinehurst No. 2 in North Carolina.
+- U.S. Open Golf 2026 is held at Shinnecock Hills in Southampton, New York (June 18–21).
 
 
 Cross-check the BRIEF CLAIMS against the EVIDENCE below. Flag anything invented, stale, future-projected, or unverified.
@@ -139,7 +139,7 @@ IF NO research evidence (the RESEARCHED section says "(no research pack — high
 FLAG as BLOCKING in all cases:
 - A market claim (index level, ticker %, direction) that directly contradicts MARKET FEED DATA above: use flag "contradicts_market_feed". If the feed says AMD +2.83%, copy claiming AMD fell is wrong.
 - A sports result where ESPN data for THAT SPORT explicitly says something DIFFERENT: e.g. ESPN says "CAR wins series 4-2" but the copy says "VGK won". SILENT ≠ CONTRADICTION — if ESPN data doesn't mention the sport at all (e.g. no NBA entry), or doesn't mention a specific stat (e.g., consecutive shutouts), that is a WARNING, not a block. NEVER use flag "contradicts_espn" when ESPN data is simply absent for the sport/event being claimed.
-- A claim that directly contradicts an ESTABLISHED FACT listed above (e.g. "Hurricanes' first title" when they won in 2006; "Oakmont" when the U.S. Open is at Pinehurst). These are blocking, not warnings, even without an ESPN entry.
+- A claim that directly contradicts an ESTABLISHED FACT listed above (e.g. "Hurricanes' first title" when they won in 2006; "Oakmont" or "Pinehurst" when the U.S. Open is at Shinnecock Hills). These are blocking, not warnings, even without an ESPN entry.
 - A clearly FORWARD-LOOKING event presented as already completed — e.g. "Election results in" when the election hasn't happened, or language like "will happen" treated as past tense. NOT just "unverified" news.
 - A story flagged as "stale" ONLY if it is more than 48 hours old. Stories from yesterday (within 36 hours) are NOT stale for this brief — that is our deliberate window. Never flag yesterday's news as stale.
 - Content clearly from a Britannica "Major Events of 2026"-style speculative page (future projections)

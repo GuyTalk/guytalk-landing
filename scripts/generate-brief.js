@@ -357,7 +357,7 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
   if (golf?.name) {
     // Known 2026 major venues — prevent Haiku from pulling wrong venue from training data
     const GOLF_VENUES = {
-      'U.S. Open': 'Pinehurst No. 2, North Carolina',
+      'U.S. Open': 'Shinnecock Hills, Southampton, New York',
       'The Open Championship': 'Royal Portrush, Northern Ireland',
       'Masters': 'Augusta National, Georgia',
       'PGA Championship': 'Quail Hollow Club, Charlotte',
@@ -372,7 +372,7 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
     } else {
       // Tournament not yet started — write preview only, NO scores or leaders
       const VENUE_CONTEXT = {
-        'Pinehurst No. 2': "Donald Ross's 1907 masterpiece — the crowned bentgrass greens reject any approach that isn't hit perfectly. Pinehurst No. 2 has hosted 5 U.S. Opens; even par is typically enough to win.",
+        'Shinnecock Hills': "One of the founding clubs of the USGA (1891) — a true links-style course on Long Island where wind off Peconic Bay is a constant factor. Fast, firm greens punish anything short of perfect contact. Par is a victory here.",
         'Royal Portrush': 'Links golf on the Antrim coast — wind is the defining factor; distance control matters more than raw power.',
         'Augusta National': 'Home of The Masters — the most exclusive major venue; second-shot placement is everything here.',
         'Quail Hollow Club': 'Charlotte, NC — known for "The Green Mile", the brutally difficult finishing stretch of 16-17-18.',
