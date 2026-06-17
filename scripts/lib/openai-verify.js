@@ -52,6 +52,15 @@ async function verifyBrief({ issueData, researchPack }) {
   if (copy.nhl?.headline) claims.push(`NHL: ${copy.nhl.headline}`);
   // Final Sharp Take is a condensed section — verify it explicitly against the main story data
   if (copy.finalSharpTake) claims.push(`FINAL_SHARP_TAKE: ${copy.finalSharpTake}`);
+  // Culture items are separate AI passes — cross-check them for consistency with Markets
+  if (Array.isArray(copy.culture)) {
+    copy.culture.forEach((c, i) => {
+      if (c?.whatHappened) claims.push(`CULTURE_ITEM_${i + 1}: ${c.head || ''} — ${c.whatHappened}`);
+    });
+  }
+  // Glance rows (Today at a Glance) can independently introduce facts — verify them too
+  if (copy.glance?.markets) claims.push(`GLANCE_MARKETS: ${copy.glance.markets}`);
+  if (copy.glance?.sports)  claims.push(`GLANCE_SPORTS: ${copy.glance.sports}`);
 
   // ── Build market feed facts ──────────────────────────────────────────────────
   const marketFacts = [];
@@ -115,6 +124,14 @@ ESTABLISHED FACTS (do not flag these as errors):
 
 CONDENSED SECTION RULE:
 The FINAL_SHARP_TAKE and any Today at a Glance, hero dek, or social copy claims represent condensed summaries. Apply an extra check: every specific factual claim in a condensed section (score, winner, loser, defending champion, ranking, market level, date) must appear in the main brief claims above. If a condensed section introduces a new factual claim (a team or player not mentioned in the main story, a score not in ESPN data, a defending champion not in established facts), flag it as a BLOCKING error with flag "condensed_section_new_claim". Be especially strict about: scores, win/loss results, "demolished / blowout / obliterated" language with specific numbers, and defending champion claims.
+
+CROSS-SECTION CONSISTENCY RULE:
+Compare the CULTURE_ITEM_* claims against the MARKETS claim for the same event. If a culture item about the Fed, markets, or economic data contradicts the markets section on any of the following, flag it as BLOCKING with flag "cross_section_contradiction":
+- Fed rate level (e.g. culture says 5.25-5.5% but markets says 3.5-3.75%)
+- Rate direction (culture says "cuts" but markets says "hike")
+- Dot plot projection (culture says "two cuts" but markets says "one hike")
+- Index performance direction (culture says markets rose but markets says markets fell)
+Any CULTURE_ITEM that reuses the same Fed/market event as the main Markets section must match it exactly on rate level, direction, and percentage. Contradictions are blocking — not warnings.
 
 Cross-check the BRIEF CLAIMS against the EVIDENCE below. Flag anything invented, stale, future-projected, or unverified.
 
@@ -197,7 +214,7 @@ Return ONLY valid JSON:
     const hasResearch = researchPack?.stories?.length > 0;
     // In feed-only mode the only valid blocking flags are ESPN/market-feed/established-fact contradictions.
     // Demote everything else (unverified_major, invented, stale, future) to warnings.
-    const FEED_ONLY_BLOCK_FLAGS = new Set(['contradicts_espn', 'contradicts_established_fact', 'contradicts_market_feed', 'low_relevance', 'condensed_section_new_claim']);
+    const FEED_ONLY_BLOCK_FLAGS = new Set(['contradicts_espn', 'contradicts_established_fact', 'contradicts_market_feed', 'low_relevance', 'condensed_section_new_claim', 'cross_section_contradiction']);
     const rawBlocking = Array.isArray(result.blocking)
       ? result.blocking.filter(b => b?.claim && b?.reason)
       : [];

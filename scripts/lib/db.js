@@ -143,10 +143,10 @@ function linkifyEntities(html) {
 // ─────────────────────────────────────────────────────────────────────────────
 const TICKERS = {
   // ── Core indices — ALWAYS shown ──────────────────────────────────────────
-  'SPY':  { name: 'S&P 500',   finnhub: 'SPY',              ms: 'etfs/arcx/spy/quote',        display: 'S&P 500' },
-  'DIA':  { name: 'Dow Jones', finnhub: 'DIA',              ms: 'etfs/arcx/dia/quote',        display: 'Dow' },
-  'QQQ':  { name: 'Nasdaq 100',finnhub: 'QQQ',              ms: 'etfs/arcx/qqq/quote',        display: 'Nasdaq' },
-  'IWM':  { name: 'Russell 2000',finnhub: 'IWM',            ms: 'etfs/arcx/iwm/quote',        display: 'Russell 2000' },
+  'SPY':  { name: 'S&P 500',   finnhub: 'SPY',              ms: 'etfs/arcx/spy/quote',        display: 'SPY' },
+  'DIA':  { name: 'Dow Jones', finnhub: 'DIA',              ms: 'etfs/arcx/dia/quote',        display: 'DIA' },
+  'QQQ':  { name: 'Nasdaq 100',finnhub: 'QQQ',              ms: 'etfs/arcx/qqq/quote',        display: 'QQQ' },
+  'IWM':  { name: 'Russell 2000',finnhub: 'IWM',            ms: 'etfs/arcx/iwm/quote',        display: 'IWM' },
   '10Y':  { name: '10Y Yield', finnhub: null,               ms: null,                         display: '10Y Treasury', yahoo: '%5ETNX' },
   // ── Movers watchlist — rotates daily by biggest move ─────────────────────
   'NVDA': { name: 'Nvidia',    finnhub: 'NVDA',             ms: 'stocks/xnas/nvda/quote',     display: 'NVDA' },
