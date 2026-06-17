@@ -1884,7 +1884,7 @@ function golfCourseImage(tournamentName) {
   const courses = {
     memorial:    { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Muirfield_Village_Golf_Club.jpg/1280px-Muirfield_Village_Golf_Club.jpg', cap: 'Muirfield Village Golf Club · Dublin, Ohio · Host of The Memorial Tournament' },
     masters:     { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Augusta_National_Golf_Club_Masters_2011.jpg/1280px-Augusta_National_Golf_Club_Masters_2011.jpg', cap: 'Augusta National Golf Club · Augusta, Georgia' },
-    'us open':   { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Pinehurst_No2_2014.jpg/1280px-Pinehurst_No2_2014.jpg', cap: 'U.S. Open Golf Championship' },
+    'us open':   { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Shinnecock_Hills_Golf_Club.jpg/1280px-Shinnecock_Hills_Golf_Club.jpg', cap: 'U.S. Open · Shinnecock Hills Golf Club · Southampton, New York' },
     'open championship': { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Royal_Birkdale_Golf_Club_18th_green.jpg/1280px-Royal_Birkdale_Golf_Club_18th_green.jpg', cap: 'The Open Championship · The Royal & Ancient' },
     'pga championship': { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Valhalla_Golf_Club.jpg/1280px-Valhalla_Golf_Club.jpg', cap: 'PGA Championship' },
     players:     { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/TPC_Sawgrass_17th_hole.jpg/1280px-TPC_Sawgrass_17th_hole.jpg', cap: 'TPC Sawgrass · Ponte Vedra Beach, Florida · The Players Championship' },
