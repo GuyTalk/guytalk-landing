@@ -50,6 +50,8 @@ async function verifyBrief({ issueData, researchPack }) {
   if (copy.f1?.headline) claims.push(`F1: ${copy.f1.headline} — ${copy.f1.whyCare1 || ''}`);
   if (copy.golf?.headline) claims.push(`GOLF: ${copy.golf.headline} — ${copy.golf.whyCare1 || ''}`);
   if (copy.nhl?.headline) claims.push(`NHL: ${copy.nhl.headline}`);
+  // Final Sharp Take is a condensed section — verify it explicitly against the main story data
+  if (copy.finalSharpTake) claims.push(`FINAL_SHARP_TAKE: ${copy.finalSharpTake}`);
 
   // ── Build market feed facts ──────────────────────────────────────────────────
   const marketFacts = [];
@@ -109,7 +111,10 @@ ESTABLISHED FACTS (do not flag these as errors):
 - Carolina Hurricanes previously won the Stanley Cup in 2006. Any 2026 win would be their SECOND championship, not their first. Claims of "first in franchise history" are WRONG and should be flagged.
 - A 2026 Carolina Hurricanes Stanley Cup win ends a 20-YEAR drought (2006–2026 = 20 years). References to "20-year drought" or "first since 2006" are CORRECT — do NOT flag them.
 - U.S. Open Golf 2026 is held at Shinnecock Hills in Southampton, New York (June 18–21).
+- J.J. Spaun won the 2025 U.S. Open at Oakmont Country Club. He is the defending champion for the 2026 U.S. Open. Claims that Bryson DeChambeau or any other player is the 2026 U.S. Open defending champion are WRONG — flag as contradicts_established_fact.
 
+CONDENSED SECTION RULE:
+The FINAL_SHARP_TAKE and any Today at a Glance, hero dek, or social copy claims represent condensed summaries. Apply an extra check: every specific factual claim in a condensed section (score, winner, loser, defending champion, ranking, market level, date) must appear in the main brief claims above. If a condensed section introduces a new factual claim (a team or player not mentioned in the main story, a score not in ESPN data, a defending champion not in established facts), flag it as a BLOCKING error with flag "condensed_section_new_claim". Be especially strict about: scores, win/loss results, "demolished / blowout / obliterated" language with specific numbers, and defending champion claims.
 
 Cross-check the BRIEF CLAIMS against the EVIDENCE below. Flag anything invented, stale, future-projected, or unverified.
 
@@ -192,7 +197,7 @@ Return ONLY valid JSON:
     const hasResearch = researchPack?.stories?.length > 0;
     // In feed-only mode the only valid blocking flags are ESPN/market-feed/established-fact contradictions.
     // Demote everything else (unverified_major, invented, stale, future) to warnings.
-    const FEED_ONLY_BLOCK_FLAGS = new Set(['contradicts_espn', 'contradicts_established_fact', 'contradicts_market_feed', 'low_relevance']);
+    const FEED_ONLY_BLOCK_FLAGS = new Set(['contradicts_espn', 'contradicts_established_fact', 'contradicts_market_feed', 'low_relevance', 'condensed_section_new_claim']);
     const rawBlocking = Array.isArray(result.blocking)
       ? result.blocking.filter(b => b?.claim && b?.reason)
       : [];

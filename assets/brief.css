@@ -1437,10 +1437,12 @@ ul.ammo-list li {
   color: var(--text-2);
   border-top: 1px solid var(--border);
 }
-/* Bullet dot */
+/* Bullet dot — explicitly clears width/background set by .detail-list li::before
+   so the blue dot renders correctly whether or not the card is inside a detail-list. */
 ul.ammo-list li::before {
   content: '•'; flex-shrink: 0;
   color: var(--accent); font-size: 15px; line-height: 1.45;
+  width: auto; background: none; border-radius: 0; margin: 0;
 }
 /* Culture section spacing */
 .culture-item ul.ammo-list { margin: 10px 0 6px; }
