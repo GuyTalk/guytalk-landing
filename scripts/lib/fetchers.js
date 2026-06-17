@@ -486,6 +486,22 @@ async function fetchMarkets() {
     }
   }
 
+  // Real index levels via Yahoo Finance (^GSPC, ^DJI, ^IXIC, ^RUT) — keyless.
+  // Stored as results[sym].indexPrice / indexDisplay so the HTML tile can show
+  // true index values instead of ETF dollar prices.
+  for (const sym of ['SPY', 'DIA', 'QQQ', 'IWM']) {
+    const cfg = TICKERS[sym];
+    if (!cfg?.indexYahoo || !results[sym]) continue;
+    try {
+      const sp = await fetchYahooSpark(cfg.indexYahoo);
+      if (sp?.price) {
+        results[sym].indexPrice = sp.price;
+        results[sym].indexDisplay = cfg.indexDisplay;
+      }
+    } catch (_) {}
+    await new Promise(r => setTimeout(r, 120));
+  }
+
   // 10Y Treasury yield via Yahoo Finance (^TNX) — no API key required
   try {
     const yRes = await fetch(

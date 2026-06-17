@@ -538,6 +538,40 @@ em { font-style: italic; }
   .glance-arr { display: none; }
 }
 
+/* THE RUNDOWN — dark gradient narrative card (replaces Today at a Glance) */
+.rundown-band {
+  background: linear-gradient(135deg, #0F1724 0%, #1a2d50 100%);
+  border-radius: 16px; padding: 22px 28px 24px; margin: 0 0 36px;
+  box-shadow: 0 6px 24px rgba(15,23,36,0.18);
+}
+.rundown-label {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: #fff; margin-bottom: 12px;
+}
+.rundown-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.rundown-text {
+  font-size: 16.5px; line-height: 1.65; color: rgba(255,255,255,0.92);
+  font-weight: 400; margin: 0 0 18px;
+}
+.rbd-bullets { display: flex; flex-direction: column; gap: 10px; }
+.rbd-bullet { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: baseline; }
+.rbd-cat {
+  font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 10.5px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-left: 3px solid rgba(255,255,255,0.15); padding: 2px 0 2px 12px;
+  color: rgba(255,255,255,0.45);
+}
+.rbd-sports  .rbd-cat { color: var(--sports);  border-color: var(--sports); }
+.rbd-markets .rbd-cat { color: #6B9FFF;        border-color: #6B9FFF; }
+.rbd-culture .rbd-cat { color: var(--culture); border-color: var(--culture); }
+.rbd-line { font-size: 14.5px; line-height: 1.5; color: rgba(255,255,255,0.82); }
+@media (max-width: 560px) {
+  .rundown-band { padding: 18px 20px 20px; }
+  .rundown-text { font-size: 15.5px; }
+  .rbd-bullet { grid-template-columns: 72px 1fr; gap: 10px; }
+}
+
 /* Right-rail scroll-spy nav — fills the desktop margin, tracks your position */
 .brief-sidenav {
   position: fixed; top: 50%; right: 28px; transform: translateY(-50%); z-index: 40;
