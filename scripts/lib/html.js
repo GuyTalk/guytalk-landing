@@ -201,58 +201,83 @@ function slugId(s) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Today at a Glance (TOP) — three labeled one-sentence lines: Sports / Markets /
-// Culture. Generated from the SAME ranked/selected story objects that produce
-// The Lead and the section order — NOT an independent query (Fix 1). So the
-// Sports line is always the issue's Lead (the top-scored sports story), Markets
-// is the top market story this issue used, Culture is the top culture item.
-// copy.glance / Today's Hits are last-ditch fallbacks only.
+// THE RUNDOWN — dark navy gradient card at the top of each brief.
+// Replaces "Today at a Glance" with a narrative summary + 3 category bullets
+// (Sports / Markets / Culture) derived from the issue's own section data.
 // ─────────────────────────────────────────────────────────────────────────────
-function buildTodayGlanceTop(issue) {
+function buildRundown(issue) {
   const copy = issue.copy || {};
-  const g = copy.glance || {};
-  const hits = copy.todaysHits || {};
-  const firstSentence = (t) => t ? String(t).replace(/\n/g, ' ').trim().split(/(?<=[.!?])\s+/)[0] : '';
 
-  // SPORTS = the issue's Lead (dynamicSports[0]) — the same object that opens the
-  // Sports section. Guarantees the Lead appears in the glance and kills stale/
-  // Tier-3 picks (no independent query). Structured feed only if no ranked lead.
-  const sportsV = (() => {
-    const lead = (issue.dynamicSports || [])[0];
-    if (lead) return lead.headline || firstSentence(lead.whatHappened) || lead.facts || lead.label;
-    const sp = issue.sports?.[0];
-    if (sp) { const w = sp.home.winner ? sp.home : sp.away, l = sp.home.winner ? sp.away : sp.home; return `${w.team} ${w.score}–${l.score} ${l.team}.`; }
-    return firstSentence(hits.sports) || g.sports || '';
+  // Narrative: use AI-provided copy.rundownNarrative when set; else assemble
+  // from the top market story + sports lead + culture lead.
+  const narrative = (() => {
+    if (copy.rundownNarrative) return copy.rundownNarrative;
+    const parts = [];
+    const moodHead = (Array.isArray(copy.markets?.headlines) && copy.markets.headlines[0]?.head)
+      || copy.markets?.mood || '';
+    if (moodHead) parts.push(moodHead.replace(/\.$/, '') + '.');
+    const sportsLead = (issue.dynamicSports || [])[0];
+    if (sportsLead?.headline) parts.push(sportsLead.headline.replace(/\[.*$/g, '').trim().replace(/\.$/, '') + '.');
+    const cultureHead = copy.culture?.[0]?.head;
+    if (cultureHead) parts.push(cultureHead.replace(/\.$/, '') + '.');
+    return parts.filter(Boolean).join(' ');
   })();
 
-  // MARKETS = the top market story the Markets section actually led with.
-  const marketsV = (() => {
+  // Sports bullet — dynamic sports leads, F1 result, golf preview headline
+  const sportsBullet = (() => {
+    const parts = [];
+    (issue.dynamicSports || []).slice(0, 2).forEach(s => {
+      if (s.headline) parts.push(s.headline.replace(/\[.*$/g, '').trim());
+    });
+    if (issue.f1?.results?.[0]) {
+      const p1 = issue.f1.results[0];
+      parts.push(`${p1.driver} wins the ${issue.f1.shortName || issue.f1.name || 'race'}`);
+    }
+    if (copy.golf?.headline) parts.push(copy.golf.headline.replace(/—.*/g, '').trim());
+    return parts.slice(0, 3).join(' · ') || 'Scores and results inside.';
+  })();
+
+  // Markets bullet — market mood + broad index move summary
+  const marketsBullet = (() => {
+    const parts = [];
     const m = copy.markets || {};
-    const top = (Array.isArray(m.headlines) && m.headlines[0] && m.headlines[0].head) || m.mood || '';
-    if (top) return top;
-    const spy = issue.markets?.SPY;
-    if (spy && spy.dayChangePct != null) return `S&P 500 ${spy.dayChangePct >= 0 ? '+' : ''}${spy.dayChangePct.toFixed(1)}% on the day.`;
-    return firstSentence(hits.markets) || g.markets || '';
+    if (m.mood) parts.push(m.mood.split(/[.—–]/)[0].trim());
+    const qs = issue.markets || {};
+    const changes = [
+      qs.SPY?.dayChangePct != null && `S&P 500 ${qs.SPY.dayChangePct >= 0 ? '+' : ''}${qs.SPY.dayChangePct.toFixed(1)}%`,
+      qs.QQQ?.dayChangePct != null && `Nasdaq ${qs.QQQ.dayChangePct >= 0 ? '+' : ''}${qs.QQQ.dayChangePct.toFixed(1)}%`,
+    ].filter(Boolean).join(', ');
+    if (changes) parts.push(changes);
+    return parts.slice(0, 2).join(' · ') || 'Market data inside.';
   })();
 
-  // CULTURE = the top culture item selected for the Culture section.
-  const cultureV = copy.culture?.[0]?.topic || copy.culture?.[0]?.head || firstSentence(hits.culture) || g.culture || '';
+  // Culture bullet — top 2 culture item headlines, stripped after em-dash
+  const cultureBullet = (() => {
+    return (copy.culture || [])
+      .slice(0, 2)
+      .map(c => (c.head || c.topic || '').replace(/\s*[—–].*/g, '').trim())
+      .filter(Boolean)
+      .join(' · ') || 'Culture picks inside.';
+  })();
 
-  const rows = [
-    { k: 'Sports',  anchor: '#sports',  v: sportsV,  cls: 'hit-sports'  },
-    { k: 'Markets', anchor: '#markets', v: marketsV, cls: 'hit-markets' },
-    { k: 'Culture', anchor: '#culture', v: cultureV, cls: 'hit-culture' },
-  ].filter(r => r.v);
-  if (!rows.length) return '';
+  if (!narrative && !sportsBullet && !marketsBullet) return '';
 
-  return `  <div class="glance-card glance-top">
-    <div class="glance-head"><span class="glance-dot"></span>Today at a Glance</div>
-    <div class="glance-rows">
-${rows.map(r => `      <a class="glance-row ${r.cls}" href="${r.anchor}">
-        <span class="glance-k">${esc(r.k)}</span>
-        <span class="glance-v">${esc(r.v)}</span>
-        <span class="glance-arr">→</span>
-      </a>`).join('\n')}
+  return `  <div class="rundown-band">
+    <div class="rundown-label"><span class="rundown-dot"></span>The Rundown</div>
+    <p class="rundown-text">${esc(narrative)}</p>
+    <div class="rbd-bullets">
+      <div class="rbd-bullet rbd-sports">
+        <span class="rbd-cat">Sports</span>
+        <span class="rbd-line">${esc(sportsBullet)}</span>
+      </div>
+      <div class="rbd-bullet rbd-markets">
+        <span class="rbd-cat">Markets</span>
+        <span class="rbd-line">${esc(marketsBullet)}</span>
+      </div>
+      <div class="rbd-bullet rbd-culture">
+        <span class="rbd-cat">Culture</span>
+        <span class="rbd-line">${esc(cultureBullet)}</span>
+      </div>
     </div>
   </div>`;
 }
@@ -561,7 +586,7 @@ ${sideNavHtml}
 
 ${heroImgHtml}
 
-${buildTodayGlanceTop(issue)}
+${buildRundown(issue)}
 
 <div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
 
@@ -1785,13 +1810,18 @@ ${headlines.map(h => `      <li><span class="mkh-head">${esc(h.head)}</span>${h.
     const cfg = TICKERS[sym];
     const q   = markets[sym];
     if (!cfg || !q) return '';
-    const price  = q.price !== undefined && q.price !== null ? fmtPrice(sym, q.price) : '—';
+    // Prefer real index level over ETF price when Yahoo delivered it
+    const hasIndex = q.indexPrice != null;
+    const displayName = hasIndex ? (q.indexDisplay || cfg.indexDisplay || cfg.display || sym) : (cfg.display || sym);
+    const price = hasIndex
+      ? q.indexPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })
+      : (q.price !== undefined && q.price !== null ? fmtPrice(sym, q.price) : '—');
     const hasDay = q.dayChangePct !== null && q.dayChangePct !== undefined;
     const dayPct = hasDay ? fmtPct(q.dayChangePct) : '—';
     const dir    = hasDay ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
     const spark  = sparklineSvg(q.spark, dir);
     return `        <div class="mkt-tile ${dir}">
-          <div class="mt-name">${esc(cfg.display || sym)}</div>
+          <div class="mt-name">${esc(displayName)}</div>
           <div class="mt-price">${esc(price)}</div>
           <div class="mt-foot"><span class="mt-chg ${dir}">${hasDay ? esc(dayPct) : '—'}</span>${spark}</div>
         </div>`;
