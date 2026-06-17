@@ -407,7 +407,7 @@ The Markets section answers three questions only:
 
 Return ONLY valid JSON on one line — no markdown:
 {"headlines":[{"head":"Quick headline #1 — the biggest market/business story today (the IPO/ruling/print above if there is one)","sub":"1-2 sentences: what it is + what it means for the market; for a major event, also touch index impact / how to participate / historical comp"},{"head":"Quick headline #2 — the next biggest real market move from the data","sub":"one sentence"},{"head":"Quick headline #3 — another real market move or the rates/economy angle","sub":"one sentence"}],"mood":"One sentence — what happened in markets today and why. Include one real number. Plain English.","whyBullet1":"One sentence — why this matters in context. Explain, don't advise. Example: 'Treasury yields moved because...' not 'investors should...'","whyBullet2":"What professionals are watching in the next 2-3 days. Name a specific data print or event. Include the day of week.","bringUp":"One quotable market fact. Must include a real number. Explain something — do not tell anyone what to do with it.","theRead":"3-5 sentences. The GuyTalk Read — the real market angle, what it signals, who it affects. Observational only, never advice.","ammo":["Real number or market fact 1","Real number or market fact 2","Real number or market fact 3"]}`,
-          600
+          1200
         )
       : Promise.resolve(null),
 
@@ -437,7 +437,7 @@ Use your knowledge of THIS specific tournament to name the real course + city an
 Return ONLY valid JSON on one line — no markdown:
 {"headline":"Max 10 words — the storyline going in (a preview, not a result).","course":"Real course/venue + city (e.g. 'TPC Toronto at Osprey Valley, Ontario'). Name it if you know it.","whyCare1":"One sentence — why this event matters / what's at stake (FedEx Cup, prestige, field strength).","defending":"One sentence — who WON it last year and the storyline (name the champion if you know it).","watchFor":"Who to watch to win — name 2-3 recognizable favorites or marquee names expected in the field. Framed as 'worth watching', NOT as current leaders.","theRead":"2-4 sentences. The GuyTalk Read — what makes this tournament interesting for a casual fan right now.","ammo":["Fact 1 — purse, course history, or field stat","Fact 2","Fact 3"],"whatToSay":"One casual, confident line a casual fan could drop — about the matchup/storyline, not a fake leaderboard."}`;
           })(),
-          320,
+          golfStarted ? 480 : 700,
           { model: golfStarted ? undefined : 'claude-sonnet-4-6', delayMs: 2000, section: 'golf' }
         )
       : Promise.resolve(null),
@@ -466,10 +466,10 @@ Return ONLY valid JSON on one line — no markdown:
 A driver's team/constructor is ONLY the name shown in parentheses next to them. NEVER guess or state a driver's team if it is not given.
 STATS RULE (hard): you may include ONE interesting stat in "whatToSay" or "whyCare2", but ONLY using the season stats provided above. NEVER invent records, streaks, "first/most/youngest/oldest", or any number not given. If no stat is provided, don't cite one.
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words.","whyCare1":"One sentence — what makes this race or result significant.","whyCare2":"One sentence — championship battle or circuit-specific detail.","watchFor":"One thing to track. Specific.","theRead":"2-4 sentences. The GuyTalk Read — championship context, what this result means for the title fight.","ammo":["Real stat 1 from the provided season data","Real stat 2","Real stat 3"],"whatToSay":"One casual conversation line — weave in the real season stat if available."}`;
+{"headline":"Max 10 words.","whyCare1":"One sentence — what makes this race or result significant.","whyCare2":"One sentence — championship battle or circuit-specific detail.","watchFor":"One thing to track. Specific.","theRead":"2-4 sentences. The GuyTalk Read — championship context, what this result means for the title fight.","ammo":["Specific F1 fact 1 — season stat, circuit detail, championship gap, or driver story","Specific F1 fact 2","Specific F1 fact 3"],"whatToSay":"One casual conversation line — weave in the real season stat if available."}`;
           })(),
-          220,
-          { delayMs: 2000, section: 'f1' }
+          (f1.results?.length && f1.statusState === 'post') ? 380 : 500,
+          { model: (f1.results?.length && f1.statusState === 'post') ? undefined : 'claude-sonnet-4-6', delayMs: 2000, section: 'f1' }
         )
       : Promise.resolve(null),
 
@@ -541,7 +541,7 @@ Return ONLY valid JSON on one line — no markdown:
 Use ONLY the facts above — never invent scores, records, or stats not given.
 Return ONLY valid JSON on one line — no markdown:
 {"headline":"Max 10 words — the angle.","whyCare1":"One sentence — why this game/series matters right now.","whyCare2":"One sentence — series state or stakes (who leads, what a win does).","watchFor":"One specific thing to track.","theRead":"2-4 sentences. The GuyTalk Read — the real stakes, what this game means for the series.","ammo":["Specific fact 1 from the data","Specific fact 2","Specific fact 3"],"whatToSay":"One casual conversation line."}`,
-        220, { delayMs: 2000, section: 'nhl' }
+        380, { delayMs: 2000, section: 'nhl' }
       );
     })(),
 
@@ -583,7 +583,7 @@ Return ONLY a valid JSON array — one object per story, in the SAME order, no m
 
   const topModule    = parseJson(get(topModuleR));
   const leadData     = parseJson(get(leadR));
-  const marketsData  = parseJson(get(marketsR));
+  const marketsData  = (() => { const p = parseJson(get(marketsR)); return (p && !Array.isArray(p)) ? p : null; })();
   const golfData     = parseJson(get(golfR));
   const f1Data       = parseJson(get(f1R));
   const cultureArr   = parseJson(get(cultureR));

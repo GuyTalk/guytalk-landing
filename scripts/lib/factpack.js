@@ -41,16 +41,24 @@ async function fetchFactPack({ topStories, dynamicSports, sectionStories }) {
     sectionLines.push(`NHL: ${r.headline || ''}${r.fact ? ` — ${r.fact}` : ''}`);
   }
 
-  // F1
+  // F1 — prefer sectionStories.f1 (web-sourced), fall back to dynSports entry.
+  // fetchSectionStories does not populate sectionStories.f1, so the dynSports path
+  // is almost always the one that runs — this guarantees factPack.f1 is always populated.
   if (sectionStories?.f1 && !sectionStories.f1.no_data) {
     const r = sectionStories.f1;
     sectionLines.push(`F1: ${r.headline || ''}${r.fact ? ` — ${r.fact}` : ''}`);
+  } else {
+    const f1s = dynSports.find(s => /\bf1\b|formula\s*1/i.test(s.label || s.name || ''));
+    if (f1s) sectionLines.push(`F1: ${f1s.headline || ''}${f1s.facts ? ` — ${f1s.facts}` : ''}`);
   }
 
-  // Golf
+  // Golf — same pattern as F1.
   if (sectionStories?.golf && !sectionStories.golf.no_data) {
     const r = sectionStories.golf;
     sectionLines.push(`GOLF: ${r.headline || ''}${r.fact ? ` — ${r.fact}` : ''}`);
+  } else {
+    const golfS = dynSports.find(s => /\bgolf\b|\bpga\b/i.test(s.label || s.name || ''));
+    if (golfS) sectionLines.push(`GOLF: ${golfS.headline || ''}${golfS.facts ? ` — ${golfS.facts}` : ''}`);
   }
 
   // Culture

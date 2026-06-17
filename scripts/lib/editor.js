@@ -155,11 +155,17 @@ function mergeEdited(original, edited) {
     });
   }
   for (const sec of ['markets', 'golf', 'f1', 'nhl', 'upcomingPreview', 'theTake']) {
-    if (edited[sec] && out[sec]) {
-      for (const k of Object.keys(out[sec])) {
-        if (typeof out[sec][k] === 'string') out[sec][k] = str(edited[sec][k], out[sec][k]);
+    if (edited[sec]) {
+      if (!out[sec]) {
+        // Editor created this section from RAW FACTS when the draft had null (e.g. due to
+        // a truncated API response). Use the editor's version directly as the section copy.
+        out[sec] = edited[sec];
+      } else {
+        for (const k of Object.keys(out[sec])) {
+          if (typeof out[sec][k] === 'string') out[sec][k] = str(edited[sec][k], out[sec][k]);
+        }
+        if (Array.isArray(edited[sec]?.ammo) && edited[sec].ammo.length) out[sec].ammo = edited[sec].ammo;
       }
-      if (Array.isArray(edited[sec]?.ammo) && edited[sec].ammo.length) out[sec].ammo = edited[sec].ammo;
     }
   }
   if (Array.isArray(edited.culture) && Array.isArray(out.culture)) {
@@ -300,7 +306,7 @@ async function editBrief({ copy, context, links }) {
   // Cap the editorial call so a slow/hung Anthropic request can't stall the whole
   // 7am pipeline (and the review email). On 2026-06-15 this call hung ~18 min with
   // no timeout. 90s/attempt × 1 retry ≈ 3 min worst case, then fail-open to the draft.
-  const client = new (Anthropic.default || Anthropic)({ apiKey, timeout: 90000, maxRetries: 1 });
+  const client = new (Anthropic.default || Anthropic)({ apiKey, timeout: 180000, maxRetries: 1 });
   const editable = extractEditable(copy);
 
   const system = `You are the GuyTalk Editor — the final editorial gate before a daily brief publishes.
@@ -390,20 +396,31 @@ ${context || '(none provided)'}
 === DRAFT (rewrite text to follow the Bible) ===
 ${JSON.stringify(editable)}`;
 
+  // theRead + ammo across 10+ sections pushes output well past 4096 tokens.
+  // 8192 gives comfortable headroom; retry once on truncation.
+  const MAX_TOKENS = 8192;
+  const userMsg = `${user}\n\nReturn ONLY the JSON object described above, starting with {.`;
+
   let raw;
-  try {
-    const res = await client.messages.create({
-      model,
-      max_tokens: 4096,
-      temperature: 0.4,
-      system,
-      messages: [
-        { role: 'user', content: `${user}\n\nReturn ONLY the JSON object described above, starting with {.` },
-      ],
-    });
-    raw = (res.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
-  } catch (err) {
-    return skip(`Claude editor call failed: ${err.message}`);
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const res = await client.messages.create({
+        model,
+        max_tokens: MAX_TOKENS,
+        temperature: 0.4,
+        system,
+        messages: [{ role: 'user', content: userMsg }],
+      });
+      raw = (res.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+      if (res.stop_reason === 'max_tokens') {
+        console.log(`   ⚠  Editor hit max_tokens (${MAX_TOKENS}) on attempt ${attempt}/2 — output truncated`);
+        if (attempt < 2) { raw = null; continue; }
+      }
+      break;
+    } catch (err) {
+      if (attempt < 2) { console.log(`   ⚠  Editor call failed (attempt ${attempt}/2): ${err.message} — retrying`); continue; }
+      return skip(`Claude editor call failed: ${err.message}`);
+    }
   }
 
   const parsed = parseJson(raw);
@@ -413,8 +430,14 @@ ${JSON.stringify(editable)}`;
 
   const mergedCopy = mergeEdited(copy, parsed.copy);
   const report = parsed.report || {};
+  // Safety net: the editor sometimes puts a "fixed" item in blocking[] with a reason
+  // that says "no blocking issue remains" or "now compliant after rewrite". Per the
+  // system prompt, fixed items must go to changed/notes — never blocking. Filter them
+  // out here so a fixed-and-logged item doesn't trigger a hard QA block.
   const blocking = Array.isArray(report.blocking)
-    ? report.blocking.filter(b => b && b.section && b.reason)
+    ? report.blocking
+        .filter(b => b && b.section && b.reason)
+        .filter(b => !/no blocking issue|now compliant|has been.*rewritten|structural correction|no longer.*block|documents the (fix|change|correction)/i.test(b.reason))
     : [];
   // Surface hard-blocked sections in the run-wide warnings instead of letting them
   // fall through to QA silently.
