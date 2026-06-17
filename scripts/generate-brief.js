@@ -42,6 +42,7 @@ function researchPackToTopStories(pack) {
       sources:      Array.isArray(s.sources) ? s.sources : [],
       isLead:       !!s.isLead,
       tier:         1,                        // research-backed = always Tier 1
+      _category:    s.category || '',
       _context:     Array.isArray(s.context) ? s.context : [],
       _confidenceScore:   s.scores?.confidence || 5,
       _selectionReason:   s.selectionReason    || '',
@@ -195,7 +196,10 @@ async function regenAll() {
 }
 
 // Auto-generate a brief title from raw data when AI title generation fails
-function autoTitle({ sports, golf, f1, worldCup, upcoming }) {
+function autoTitle({ sports, golf, f1, worldCup, upcoming, topStories = [] }) {
+  const nonSportsLead = topStories.find(s => s.isLead && !['Sports','NBA','NHL','MLB','NFL','F1','Golf','World Cup','UFC'].includes(s.category || ''));
+  if (nonSportsLead) return nonSportsLead.headline || 'GuyTalk Daily Brief.';
+
   const parts = [];
   if (sports?.length) {
     const g = sports[0];
@@ -259,6 +263,36 @@ function buildHeroOverride(dynamicSports) {
     title: lead.headline || lead.label || lead.name,
     sub: lead.label || lead.name,
   };
+}
+
+// Returns a hero override from either the research-pack lead (if non-sports and high-scoring)
+// or the top dynamic sports card — whichever represents the single biggest story today.
+function buildSmartHeroOverride(dynamicSports, topStories) {
+  const researchLead = Array.isArray(topStories) ? topStories.find(s => s.isLead) : null;
+  const SPORTS_CATEGORIES = new Set(['Sports', 'NBA', 'NHL', 'MLB', 'NFL', 'UFC', 'F1', 'Golf', 'World Cup', 'Soccer']);
+  const isSportsLead = !researchLead || SPORTS_CATEGORIES.has(researchLead.category || '');
+
+  if (researchLead && !isSportsLead) {
+    const CATEGORY_HERO = {
+      Markets: '/assets/hero/default.jpg',
+      Business: '/assets/hero/default.jpg',
+      Tech: '/assets/hero/default.jpg',
+      'Current Events': '/assets/hero/default.jpg',
+      Politics: '/assets/hero/default.jpg',
+      'World Events': '/assets/hero/default.jpg',
+    };
+    const heroImg = CATEGORY_HERO[researchLead.category] || '/assets/hero/default.jpg';
+    return {
+      image: heroImg,
+      imageReal: false,
+      eyebrow: researchLead.category || 'The Lead',
+      title: researchLead.headline || '',
+      sub: researchLead.category || '',
+      isNonSportsLead: true,
+    };
+  }
+
+  return buildHeroOverride(dynamicSports);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -379,7 +413,7 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
       };
       const venueCtx = Object.entries(VENUE_CONTEXT).find(([k]) => venue.includes(k))?.[1] || '';
       const FAVORITES = {
-        'U.S. Open': 'Scottie Scheffler (world No. 1), Rory McIlroy (career Grand Slam on the line), Bryson DeChambeau (defending U.S. Open champion)',
+        'U.S. Open': 'Scottie Scheffler (world No. 1), Rory McIlroy (4-time major winner and past U.S. Open champion), Bryson DeChambeau (defending U.S. Open champion)',
         'The Open Championship': 'Rory McIlroy, Jon Rahm, Shane Lowry',
         'Masters': 'Scottie Scheffler, Rory McIlroy, Jon Rahm',
         'PGA Championship': 'Scottie Scheffler, Xander Schauffele, Brooks Koepka',
@@ -578,6 +612,15 @@ async function main() {
 
   if (researchMode === 'openai-search') {
     console.log(`   ✓ OpenAI research active — ${researchPack.stories?.length || 0} web-verified stories`);
+    const leadStoryForLog = topStories.find(s => s.isLead) || topStories[0];
+    if (leadStoryForLog) {
+      const isSportsCategory = ['Sports','NBA','NHL','MLB','NFL','UFC','F1','Golf','World Cup'].includes(leadStoryForLog.category || '');
+      console.log(`   ★ Today's lead: [${leadStoryForLog.category}] "${(leadStoryForLog.headline || '').slice(0, 70)}"`);
+      if (!isSportsCategory) console.log(`   ★ NON-SPORTS LEAD — ${leadStoryForLog.category} story takes the hero position`);
+      if (researchPack?.relevanceScan?.leadJustification) {
+        console.log(`   ★ Why: ${researchPack.relevanceScan.leadJustification.slice(0, 100)}`);
+      }
+    }
   } else {
     console.log('');
     console.log('   📋 FEED-ONLY MODE — OpenAI web research unavailable');
@@ -826,7 +869,7 @@ async function main() {
     num:     issueNum,
     slug,
     date,
-    title:   copy?.title || autoTitle({ sports, golf, f1, worldCup, upcoming }),
+    title:   copy?.title || autoTitle({ sports, golf, f1, worldCup, upcoming, topStories }),
     deck:    'Five minutes. Everything you need.',
     sports,
     markets,
@@ -846,7 +889,7 @@ async function main() {
       : null,
     // Hero banner = the ranked #1 story (Fix 1's Lead), with a validated/relevant
     // image or the brand fallback graphic — never the structured-feed marquee game.
-    heroOverride: buildHeroOverride(dynamicSports),
+    heroOverride: buildSmartHeroOverride(dynamicSports, topStories),
     copy,
     editor:  editorMeta,
     factPack: factPack || null,

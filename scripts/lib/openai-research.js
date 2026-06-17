@@ -53,13 +53,30 @@ async function fetchOpenAIResearch({ date, recentIssues = [] } = {}) {
 
 Use web search to find the most important CONFIRMED stories happening TODAY. Only include real, verified events — never speculation, future projections, or "major events of 2026"-style pages.
 
-SEARCH for all of these:
-1. Major sports results from the last 24 hours: NBA, NHL, MLB, World Cup 2026, UFC/boxing/MMA if a card happened, F1 if a race just finished or is this weekend, golf if a major tournament is in progress
-2. Markets/business: biggest market moves and corporate news today
-3. Culture: what men 25-45 are actually talking about — major streaming drops, big tech announcements, major music moments, viral mainstream moments. NOT celebrity gossip/divorce/relationship drama/horoscopes
-4. Current events: major widely-relevant news (politically neutral), including White House or major political stories men 25-45 would actually discuss
-5. Major internet/culture moments: the biggest story men 25-45 are genuinely talking about today — major viral moments, notable public figures making real news, significant entertainment/tech/cultural announcements
-6. UFC specifically: is there a UFC card this weekend or recent results? Any Dana White / UFC business news or a White House-UFC story?
+STEP 1 — BROAD DAILY SCAN (do this before selecting anything)
+Search across ALL SIX buckets and find the top 1-2 stories per bucket that are real, confirmed, and happening today:
+
+BUCKET A — Sports: NBA, NHL, MLB, NFL, UFC/MMA, F1, golf majors, World Cup, boxing
+BUCKET B — White House / Politics / Policy: executive actions, major legislation, presidential news, major federal agency decisions
+BUCKET C — Markets / Economy: Fed decisions, rate moves, big earnings, IPOs, major market moves, oil/commodities
+BUCKET D — Tech / AI / Business: landmark product launches, major acquisitions, significant earnings, AI breakthroughs
+BUCKET E — Culture / Entertainment: major streaming drops, mainstream viral moments, big music/film news men 25-45 actually discuss
+BUCKET F — Major World Events: wars, peace deals, disasters, elections, anything that dominated US national news today
+
+STEP 2 — STORY SELECTION
+From your scan, select the 6-9 stories most worth including. No fixed ratio — the best stories win regardless of category. On a day with a Stanley Cup win AND a Fed rate cut AND a major tech acquisition, all three may be in. On a slow sports day, markets or politics can dominate.
+
+SELECTION CRITERIA per story (score 1-5 each):
+- freshness: confirmed today or breaking = 5; 36h old = 1
+- confidence: 3+ Tier-1 outlets = 5; single vague source = 1
+- conversation: "Would a normal 30-year-old man ACTUALLY bring this up at work or a bar today?" 5 = yes without question, 1 = probably not
+- variety: fills a category gap across the 6 buckets = 5
+
+MINIMUM INCLUSION RULES:
+- At least 1 sports story (unless truly nothing happened — rare)
+- At least 1 markets/economy/business story
+- At least 1 culture/tech/world story
+- Sports should NOT fill more than 4 of 6-9 slots unless it was an exceptional sports day (Finals/Cup/Super Bowl level)
 
 TRUSTED SOURCES only — search these specifically:
 Sports: ESPN, NBA.com, NHL.com, MLB.com, The Athletic, Front Office Sports
@@ -82,10 +99,11 @@ SCORING per story (1-5):
 - conversation: "Would a normal 30-year-old man ACTUALLY bring this up at work or a bar today?" 5 = absolutely yes, 1 = probably not, 0 = definitely not. Celebrity personal-life stories score max 1 unless truly massive national news
 - variety: fills a category gap = 5
 
-SELECT 6-9 stories: 2-4 sports, 1-2 markets/business, 1-2 culture/current events.
-Culture picks MUST score 4+ on conversation. If no culture story scores 4+, report it as rejected and note what was considered.
+SELECT 6-9 stories using STEP 2 criteria above. Sports, markets, and culture/world/tech stories should each have representation unless a category had nothing worth reporting. No category floors or ceilings beyond the MINIMUM INCLUSION RULES above.
+Culture and politics picks MUST score 4+ on conversation. Sports picks must score 3+ on conversation (major results always qualify; obscure regular-season games do not).
 Prefer UFC/boxing results, major political moments, significant internet/viral moments, or notable entertainment news over celebrity personal-life content.
-Set isLead:true on the single biggest story. Include ALL rejected candidates with reason.
+Set isLead:true on the single most conversation-relevant story of the day. This is the story the most men 25-45 will be talking about. Sports SHOULD lead on Stanley Cup/NBA Finals/Super Bowl/major F1/major golf days. But on days with major Fed decisions, White House news, landmark tech announcements, or massive cultural moments, those should lead instead. Never default to sports just because sports data is available — lead with whatever actually matters most today.
+Include ALL rejected candidates with reason.
 
 Return ONLY valid JSON (no markdown fences):
 {
@@ -115,7 +133,16 @@ Return ONLY valid JSON (no markdown fences):
   "rejectedStories": [
     { "headline": "headline", "reason": "why rejected" }
   ],
-  "researchNotes": "brief summary of today's news landscape"
+  "researchNotes": "brief summary of today's news landscape",
+  "relevanceScan": {
+    "bucketA_sports": "top story found or (none)",
+    "bucketB_politics": "top story found or (none)",
+    "bucketC_markets": "top story found or (none)",
+    "bucketD_tech": "top story found or (none)",
+    "bucketE_culture": "top story found or (none)",
+    "bucketF_world": "top story found or (none)",
+    "leadJustification": "why isLead story was chosen over alternatives"
+  }
 }`;
 
   try {
@@ -233,6 +260,7 @@ Return ONLY valid JSON (no markdown fences):
       // a real search happened. Individual stories also have their own sources[].
       citationUrls,
       citationTitles,
+      relevanceScan: pack.relevanceScan || null,
       timestamp:   new Date().toISOString(),
       searchModel: SEARCH_MODEL,
       searchActive: true,   // only set when web_search_call completed or citations > 0

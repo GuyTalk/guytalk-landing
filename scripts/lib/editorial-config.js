@@ -61,6 +61,25 @@ const IMPORTANCE_TIERS = [
   {
     tier: 1,
     score: 100,
+    // Major non-sports moments that should lead the brief.
+    patterns: [
+      /\bfed (?:cuts?|raises?|hikes?|holds?)\b/i,
+      /\brate cut\b/i, /\brate hike\b/i,
+      /\bfed (?:decision|meeting|pivot)\b/i,
+      /\bwhite house\b/i,
+      /\bpresident (?:signs?|orders?|announces?|declares?)\b/i,
+      /\bexecutive order\b/i,
+      /\bsupreme court\b/i,
+      /\bsanctions?\b/i,
+      /\bwar (?:declared|begins?)\b/i,
+      /\bpeace deal\b/i, /\bceasefire\b/i,
+      /\blabor deal\b/i, /\bstrike\b/i,
+      /\bmarket crash\b/i, /\bcircuit breaker\b/i,
+    ],
+  },
+  {
+    tier: 1,
+    score: 100,
     // Title-deciders, historic firsts, finals/cup wins.
     patterns: [
       /\bfinals?\b/i,
@@ -127,6 +146,8 @@ const LEAGUE_AFFINITY = [
   { score: 4, patterns: [/\bnhl\b/i, /\bmlb\b/i, /\bufc\b/i, /\bcollege football\b/i, /\bcfb\b/i] },
   { score: 3, patterns: [/\bf1\b/i, /formula\s*1/i, /\bgolf\b/i, /\bpga\b/i, /\bboxing\b/i] },
   { score: 2, patterns: [/\bsoccer\b/i, /\bworld cup\b/i, /\bpremier league\b/i, /\btennis\b/i] },
+  { score: 4, patterns: [/\bwhite house\b/i, /\bpresident\b/i, /\bfed\b.*\brates?\b/i, /\brate cut\b/i, /\brate hike\b/i] },
+  { score: 3, patterns: [/\bipo\b/i, /\bacquisition\b/i, /\bearnings\b/i, /\bai\b.*\b(?:launch|release|breakthrough)\b/i] },
 ];
 
 // EDITORIAL DECISION 1 — "lean American / relatable." When stories are close in
@@ -157,7 +178,13 @@ function isExcluded(name) {
 // Score a sports story by importance. `text` should bundle every signal we have
 // (name + headline + facts), since tier keywords ("clinch", "Game 7", "Finals")
 // usually live in the headline/facts, not the bare league name.
-function scoreImportance({ name = '', headline = '', facts = '', isFinalResult = false } = {}) {
+function scoreImportance({ name = '', headline = '', facts = '', category = '', isFinalResult = false } = {}) {
+  // Non-sports categories from the research pack get a base Tier-2 floor (60),
+  // so a web-verified markets/politics/tech story always beats a routine sports result (20).
+  // Tier 1 patterns can still elevate them to 100.
+  const NON_SPORTS_CATEGORIES = ['Markets', 'Business', 'Tech', 'Current Events', 'Politics', 'World Events'];
+  const isNonSports = NON_SPORTS_CATEGORIES.some(c => category.toLowerCase().includes(c.toLowerCase()));
+
   const text = `${name} ${headline} ${facts}`;
   let tierScore = DEFAULT_TIER_SCORE;
   let tier = 3;
@@ -169,6 +196,10 @@ function scoreImportance({ name = '', headline = '', facts = '', isFinalResult =
     if (a.patterns.some((re) => re.test(text))) { affinity = a.score; break; }
   }
   const bonus = (isFinalResult ? SCORE_BONUS.isFinalResult : 0) + affinity + usAffinityBonus(text);
+
+  // Non-sports web-verified stories get a Tier-2 floor — they beat routine sports by default.
+  if (isNonSports && tierScore < 60) { tierScore = 60; tier = Math.min(tier, 2); }
+
   return { score: tierScore + bonus, tier };
 }
 
