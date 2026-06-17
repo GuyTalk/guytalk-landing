@@ -1,6 +1,6 @@
 'use strict';
 
-const { BRIEF_ROWS, TICKERS, CORE_TICKERS, PRODUCTS, RECS, esc, playerLink, tickerLink, fmtPrice, fmtPct } = require('./db');
+const { BRIEF_ROWS, TICKERS, CORE_TICKERS, PRODUCTS, RECS, esc, playerLink, tickerLink, fmtPrice, fmtPct, ENTITY_LINKS, entityLink, linkifyEntities } = require('./db');
 
 // Render AI prose (possibly multi-paragraph) into proper <p> tags
 function renderParas(text, fallback = '') {
@@ -475,7 +475,7 @@ ${navGroup('culture', 'Culture', [], false)}
   const smsShare  = `sms:?&body=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
   const mailShare = `mailto:?subject=${encodeURIComponent('You should read this')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`;
 
-  return `<!DOCTYPE html>
+  const page = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -744,6 +744,8 @@ window.handleBriefSignup = function(e, form) {
 
 </body>
 </html>`;
+  // Apply entity hyperlinks — wrap first mention of known entities (teams, venues, orgs)
+  return linkifyEntities(page);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

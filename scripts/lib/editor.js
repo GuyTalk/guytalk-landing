@@ -362,6 +362,8 @@ E. MARKETS COMPLIANCE. Observational ONLY. Never advise. No buy/sell/hold, "buyi
 
 F. FLAG WEAK CONTENT. A section may only stay if it answers at least TWO of: Why does this matter? Why would people be talking about it? What is the simple takeaway? What could I say about it? If you cannot make a section meet that bar using only the RAW FACTS, add it to report.blocking instead of faking it. Sports items need a specific player, play, moment, or storyline AND why it matters; if RAW FACTS lack the detail, block it — do not invent.
 
+RELEVANCE GATE (run before F): For culture items 1-2, ask: "Would a normal 30-year-old man actually bring this up at work or a bar today?" If the answer is "probably not", treat it the same as a no_ammo block — add to blocking[] with reason "low_conversation_relevance". Do not replace with another story from the blocked categories below.
+
 EXCEPTION — the LAST Culture item is a curated streaming/watch recommendation (an editorial pick, not a sourced news story). Do NOT add it to blocking for lacking RAW FACTS. Keep it, and make the recommendation copy sharp and specific (genre/vibe, why it's worth a watch, a natural one-liner) — just never invent a plot detail, cast member, award, or box-office number.
 
 CULTURE CONTENT RULES — mandatory. If a culture section fails no_ammo and there is no quality replacement in RAW FACTS, add it to blocking[]. Do NOT replace it with the following categories, even if they appear in TRENDING HEADLINES:
@@ -371,7 +373,14 @@ CULTURE CONTENT RULES — mandatory. If a culture section fails no_ammo and ther
 - Red carpet looks, "best dressed", fashion rankings
 - Plastic surgery, cosmetic procedure stories
 - Dating rumors, baby shower, gender reveal
-Any culture replacement story must be: a major streaming/entertainment release, significant tech/cultural moment, mainstream viral event, or music news that men 25-45 are actually discussing. If nothing qualifies, block the section.
+- Celebrity personal-life revelations: celibacy, abstinence, relationship choices, "waiting for marriage", personal health/lifestyle choices — these are not mainstream conversation for men 25-45
+- "Did you hear what X said about their personal life" stories that men would not realistically bring up at work or a bar
+Any culture replacement story must be: a major streaming/entertainment release, significant tech/cultural moment, mainstream viral event, UFC/sports-culture crossover, music news, or notable political/internet moment that men 25-45 are actually discussing. If nothing qualifies, block the section.
+
+GOLF STATUS RULE — check RAW FACTS for golf status BEFORE writing any golf copy:
+- If RAW FACTS say "IN PROGRESS": use LIVE leaderboard data only. Write "currently leading" or "after X rounds" — NEVER say "won" or "champion" for an ongoing tournament.
+- If RAW FACTS say "FINISHED": write as a completed result — "won", "claimed", "finished at X under".
+- If RAW FACTS say "NOT YET STARTED" or no scores exist: write as a PREVIEW — upcoming tournament, course context. Never state a leaderboard that doesn't exist yet.
 
 EXCEPTION — a golf section for a tournament that HAS NOT STARTED is a PREVIEW. It may reference the course/venue, last year's champion, and recognizable players in the field even though those aren't in RAW FACTS — these are stable, well-documented facts and the section should have a confident voice for a casual fan. Do NOT block it for these. The only hard rule: never state a live score, a current leader, or a result for a tournament that hasn't been played. It must still satisfy the HARD BLOCK RULE above — a preview that names the defending champion and real favorites PASSES; an empty "strong field" preview with no named person FAILS.
 
