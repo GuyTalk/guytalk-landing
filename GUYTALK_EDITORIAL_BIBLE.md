@@ -274,7 +274,7 @@ Every issue must be internally consistent. The following sections all describe t
 - Markets section (primary source of truth for market/Fed facts)
 - Culture section
 - Final Sharp Take
-- Today at a Glance
+- The Rundown module
 - Hero dek / headline
 - Email preview text / social copy
 
@@ -282,7 +282,11 @@ Every issue must be internally consistent. The following sections all describe t
 1. Fed rate level, rate direction (hike vs. cut), and dot plot language must be identical across all sections. If Markets says "rate hike," every other section must also say "rate hike." If Markets says 3.5%–3.75%, every other section must use the same rate.
 2. Score, result, or standing claimed in any section must match the corresponding main section.
 3. No section may independently generate facts — all sections must draw from the same verified fact sheet used to write the main sections.
-4. Before publication, run a cross-section sweep: read Markets + Culture + Sharp Take + Glance side by side and flag any conflicting claim. Reject if conflicts exist.
+4. Before publication, run a cross-section sweep: read Markets + Culture + Sharp Take + Rundown side by side and flag any conflicting claim. Reject if conflicts exist.
+
+**QA gate:** `qa-brief.js` check #12 automatically detects Markets vs. Culture Fed/rate-direction contradictions (hike vs. cut). This is a hard fail that blocks publication.
+
+**Canonical Fed framing pattern:** When the Fed meeting is the lead market story, the canonical framing must be written once in `copy.markets.mood` and then referenced (not independently rewritten) by Culture, Rundown, and condensed sections. The key facts — current rate range, dot plot projection, direction (hike or cut), comparison to prior expectation — must appear identically in every section that mentions them.
 
 ## Market index display rule (permanent)
 
@@ -302,8 +306,10 @@ The Rec section and any product/health recommendation must not:
 - Use language that implies medical advice or outcomes ("monitors your health," "optimizes your metabolism")
 - Overstate what a product does beyond what is observable
 
-**Correct framing:** "can show you how your body responds to food," "one month of data that changes how you think about eating," "worth one month as an experiment"
-**Wrong framing:** "changes how you eat permanently," "fixes your metabolism," "guaranteed results"
+**Correct framing:** "can show you how your body responds to food," "most people walk away rethinking two or three foods," "worth one month as an experiment"
+**Wrong framing:** "changes how you eat permanently," "you'll keep them changed for years," "fixes your metabolism," "guaranteed results," "will transform"
+
+**QA gate:** `qa-brief.js` check #3e automatically flags health/product guarantee language as a hard fail.
 
 ## Section image rule (permanent)
 

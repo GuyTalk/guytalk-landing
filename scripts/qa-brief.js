@@ -33,6 +33,29 @@ const BANNED_GENERAL = [
   'leverage the', 'leveraging the', 'canary in the coal mine',
 ];
 
+// ── Health/product recommendation — guaranteed-outcome phrases (hard fail) ────
+const HEALTH_CLAIM_VIOLATIONS = [
+  'changes how you eat permanently',
+  'permanently change',
+  'permanently changes',
+  'changes your health permanently',
+  'guaranteed results',
+  'fixes your metabolism',
+  'transforms your health',
+  'clinically proven to',
+  'will transform',
+  'will cure',
+  'will fix',
+  'medical advice',
+  'treats the condition',
+];
+
+// ── Market index names that must NOT be paired with ETF ticker prices ─────────
+// The rendered HTML must show real index levels (no $ prefix, reasonable magnitude)
+// when labeling tiles as S&P 500, Dow, Nasdaq, or Russell 2000.
+const INDEX_NAMES_IN_HTML  = ['S&amp;P 500', 'Dow', 'Nasdaq', 'Russell 2000'];
+const ETF_PRICE_PATTERN    = /\$\d{2,4}\.\d{2}/; // e.g. $745.96, $520.35
+
 // ── Markets compliance — investment advice phrases (hard fail) ────────────────
 const MARKETS_COMPLIANCE_VIOLATIONS = [
   'buying opportunity',
@@ -302,6 +325,47 @@ function main() {
     ammoFails.length ? `Missing/thin ammo in: ${ammoFails.map(s => `${s.label}(${(s.ammo || []).length})`).join(', ')}` : undefined
   );
 
+  // 3d. MARKET INDEX vs ETF LABEL CHECK — hard fail
+  // Scans the rendered HTML: if a tile is labeled with a real index name
+  // (S&P 500, Dow, Nasdaq, Russell 2000), its mt-price must NOT be an ETF
+  // dollar price (e.g. $745.96). Index levels have no $ prefix.
+  console.log('\n  [Market Index Integrity]');
+  if (html.exists) {
+    const rawHtml = require('fs').readFileSync(
+      require('path').join(__dirname, '..', 'brief', issue.slug || '', 'index.html'), 'utf8'
+    );
+    let etfAsMismatch = false;
+    for (const idxName of INDEX_NAMES_IN_HTML) {
+      const tileIdx = rawHtml.indexOf(`mt-name">${idxName}</`);
+      if (tileIdx === -1) continue;
+      const afterName = rawHtml.slice(tileIdx, tileIdx + 300);
+      if (ETF_PRICE_PATTERN.test(afterName)) {
+        etfAsMismatch = true;
+        run(
+          `Market tile: "${idxName}" must show index level (no $)`,
+          false,
+          `Found ETF-style dollar price under index label "${idxName}" — pipeline must fetch real index via Yahoo Finance (^GSPC/^DJI/^IXIC/^RUT)`
+        );
+      }
+    }
+    if (!etfAsMismatch) {
+      run('Market tiles: index labels paired with real index levels (no $ prefix)', true);
+    }
+  } else {
+    warn('Market index check skipped — HTML not found');
+  }
+
+  // 3e. HEALTH/PRODUCT CLAIM CHECK — hard fail
+  console.log('\n  [Health & Product Claims]');
+  const healthViolations = HEALTH_CLAIM_VIOLATIONS.filter(p => full.includes(p.toLowerCase()));
+  run(
+    'No guaranteed/permanent health outcome claims',
+    healthViolations.length === 0,
+    healthViolations.length
+      ? `Violation(s): "${healthViolations.join('", "')}" — soften to observational framing`
+      : undefined
+  );
+
   // 4. MARKETS COMPLIANCE — hard fail (no investment advice)
   console.log('\n  [Markets Compliance]');
   const complianceViolations = MARKETS_COMPLIANCE_VIOLATIONS.filter(p => mkt.includes(p));
@@ -369,17 +433,39 @@ function main() {
     );
   }
 
-  // 11. Today at a Glance (warn only — fallbacks exist in html.js)
-  const glance = copy?.glance;
-  const glanceFields = ['sports', 'market', 'bestConvo', 'watchNext', 'quickRec'].filter(k => glance?.[k]);
-  if (glanceFields.length < 4) {
-    warn(`Today at a Glance: only ${glanceFields.length}/5 fields — will use fallbacks`);
+  // 11. THE RUNDOWN module — verify narrative sources exist (warn only, fallbacks in html.js)
+  const hasRundownNarrative = !!(copy?.rundownNarrative);
+  const hasRundownFallbacks = !!(
+    ((copy?.markets?.headlines?.[0]?.head) || copy?.markets?.mood) &&
+    (issue.dynamicSports?.[0]?.headline)
+  );
+  if (!hasRundownNarrative && !hasRundownFallbacks) {
+    warn('The Rundown: no narrative sources — module will be empty. Ensure markets mood + sports lead are present.');
   } else {
-    check('Today at a Glance: 4+ fields populated', true);
+    check('The Rundown: narrative sources present', true);
     passed++;
   }
 
-  // 12. Golf refusal check (warn only)
+  // 12. CROSS-SECTION CONSISTENCY — Fed/macro framing must agree across sections
+  // Markets is the source of truth; Culture and condensed sections must not contradict.
+  console.log('\n  [Cross-Section Consistency]');
+  const mkMood = (copy?.markets?.mood || '').toLowerCase();
+  const cultText = (copy?.culture || []).map(c => [c.whatHappened, c.theRead, c.head].join(' ')).join(' ').toLowerCase();
+  const hikeMkt  = /hike|hawkish|rate.*up|increase.*rate/.test(mkMood);
+  const hikeCult = /hike|hawkish|rate.*up|increase.*rate/.test(cultText);
+  const cutMkt   = /\bcut\b|\bdovish\b|rate.*down|decrease.*rate/.test(mkMood) && !hikeMkt;
+  const cutCult  = /\bcut\b|\bdovish\b|rate.*down|decrease.*rate/.test(cultText) && !hikeCult;
+  // Only flag if Markets says hike but Culture says cut (or vice versa)
+  const fedContradiction = (hikeMkt && cutCult) || (cutMkt && hikeCult && !!(mkMood));
+  run(
+    'Fed/rate direction consistent: Markets and Culture agree',
+    !fedContradiction,
+    fedContradiction
+      ? `Markets mood says ${hikeMkt ? 'HIKE' : 'CUT'} but Culture copy says ${hikeCult ? 'HIKE' : 'CUT'} — one source of truth must feed all sections`
+      : undefined
+  );
+
+  // 13. Golf refusal check (warn only)
   const golfCopy = [copy?.golf?.whyCare1, copy?.golf?.whyCare2, copy?.golf?.watchFor].filter(Boolean).join(' ').toLowerCase();
   const isRefusal = REFUSAL_PHRASES.some(p => golfCopy.includes(p));
   if (isRefusal) warn('Golf copy looks like a refusal — review before publishing');
