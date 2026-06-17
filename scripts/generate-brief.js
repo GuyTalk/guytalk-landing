@@ -902,6 +902,42 @@ async function main() {
     generationWarnings: [...GENERATION_WARNINGS],
   };
 
+  // ── Verified fact sheet — written before verification for auditing ──────────
+  // Logs a human-readable table of verified facts (ESPN + research) that all
+  // sections should draw from. Future issues: cross-check condensed sections
+  // against this table before approving.
+  if (copy) {
+    try {
+      const factSheet = [];
+      factSheet.push(`VERIFIED FACT SHEET — ${slug} — ${new Date().toISOString()}`);
+      factSheet.push('='.repeat(72));
+      factSheet.push('SOURCE: ESPN structured data (ground truth)');
+      (sports || []).forEach(g => {
+        const w = g.home?.winner ? g.home : g.away, l = g.home?.winner ? g.away : g.home;
+        factSheet.push(`  [SPORT] ${w?.team} ${w?.score}–${l?.score} ${l?.team} (${g.status || ''})${g.seriesNote ? ' | ' + g.seriesNote : ''}`);
+      });
+      if (golf?.name) factSheet.push(`  [GOLF] ${golf.name} | venue: ${golf.venue || 'see established facts'} | status: ${golf.statusState}`);
+      if (f1?.name)   factSheet.push(`  [F1] ${f1.name} | P1: ${f1.results?.[0]?.driver || '?'} (${f1.results?.[0]?.team || '?'})`);
+      if (markets?.SPY?.dayChangePct != null) factSheet.push(`  [MARKETS] SPY ${markets.SPY.dayChangePct >= 0 ? '+' : ''}${markets.SPY.dayChangePct.toFixed(2)}% | DIA ${markets.DIA?.dayChangePct?.toFixed(2) || '?'}% | QQQ ${markets.QQQ?.dayChangePct?.toFixed(2) || '?'}%`);
+      factSheet.push('');
+      factSheet.push('SOURCE: OpenAI web research');
+      (researchPack?.stories || []).forEach(s => {
+        factSheet.push(`  [conf:${s.scores?.confidence || '?'}/5] ${s.headline} — ${(s.sourceNames || []).join(', ')}`);
+      });
+      factSheet.push('');
+      factSheet.push('SECTIONS USING VERIFIED FACTS:');
+      factSheet.push('  Markets, Lead, F1, Golf, Culture (must all agree on shared events)');
+      factSheet.push('  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy');
+      factSheet.push('  Rule: condensed sections must reuse facts from above — never introduce new claims');
+      factSheet.push('='.repeat(72));
+
+      const logDir = path.join(__dirname, '..', 'logs');
+      if (!fs.existsSync(logDir)) fs.mkdirSync(logDir, { recursive: true });
+      fs.writeFileSync(path.join(logDir, `factsheet-${slug}.txt`), factSheet.join('\n'));
+      console.log(`   ✓ Fact sheet: logs/factsheet-${slug}.txt`);
+    } catch (_) { /* non-blocking */ }
+  }
+
   // ── Final verification (OpenAI) — gate before the brief is pushed ──────────
   // Runs AFTER the full brief is assembled so it can check the complete final
   // copy, not just individual sections. pass = false blocks QA and the push.

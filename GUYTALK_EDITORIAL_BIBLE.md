@@ -253,6 +253,56 @@ The following sections are condensed by nature and must be treated as a separate
 
 **How to apply:** After generating each condensed section, cross-reference it claim-by-claim against the main issue body. Any claim that cannot be traced to verified main story data must be removed or rewritten to remove the specific assertion. When uncertain, remove the claim — never guess.
 
+## Cross-section consistency rule (permanent)
+
+Every issue must be internally consistent. The following sections all describe the same events and must not contradict each other:
+
+- Markets section (primary source of truth for market/Fed facts)
+- Culture section
+- Final Sharp Take
+- Today at a Glance
+- Hero dek / headline
+- Email preview text / social copy
+
+**Hard rules:**
+1. Fed rate level, rate direction (hike vs. cut), and dot plot language must be identical across all sections. If Markets says "rate hike," every other section must also say "rate hike." If Markets says 3.5%–3.75%, every other section must use the same rate.
+2. Score, result, or standing claimed in any section must match the corresponding main section.
+3. No section may independently generate facts — all sections must draw from the same verified fact sheet used to write the main sections.
+4. Before publication, run a cross-section sweep: read Markets + Culture + Sharp Take + Glance side by side and flag any conflicting claim. Reject if conflicts exist.
+
+## Market ticker label rule (permanent)
+
+The pipeline fetches ETF prices (SPY, DIA, QQQ, IWM) and displays them in market tiles. These must always be labeled with their ETF ticker symbol, not the underlying index name.
+
+**Correct:** SPY $745.96, DIA $520.35, QQQ $728.47, IWM $291.90
+**Wrong:** "S&P 500 $745.96", "Dow $520.35", "Nasdaq $728.47"
+
+Labeling ETF dollar prices as index names (S&P 500, Dow, Nasdaq) is misleading — index levels are order-of-magnitude different from ETF prices. Use ticker labels always.
+
+## Product and health recommendation rule (permanent)
+
+The Rec section and any product/health recommendation must not:
+- Make guaranteed or permanent behavior-change claims ("changes how you eat permanently," "will transform your health")
+- Use language that implies medical advice or outcomes ("monitors your health," "optimizes your metabolism")
+- Overstate what a product does beyond what is observable
+
+**Correct framing:** "can show you how your body responds to food," "one month of data that changes how you think about eating," "worth one month as an experiment"
+**Wrong framing:** "changes how you eat permanently," "fixes your metabolism," "guaranteed results"
+
+## Section image rule (permanent)
+
+Every issue must carry visuals for major sections. At minimum:
+
+- **Lead story** (NHL, NBA, MLB, NFL, or other featured sport): use `/assets/hero/{sport}.jpg`
+- **F1 section** (when present): use `/assets/hero/f1.jpg`
+- **Golf section** (when present): use the course image from `golfCourseImage()` — never a generic placeholder
+- **Markets hero**: use `/assets/hero/default.jpg`
+- **Culture/business**: image optional but must be from rights-clear sources
+
+If a section is generated without an image, that is a pipeline failure. Add an `onerror` handler on every image so missing images hide cleanly rather than showing broken icons.
+
+The `buildGolfBlock()` and `buildGolf()` functions must both call `golfCourseImage()` — never hardcode venue image URLs inline, so venue changes in the source function propagate everywhere automatically.
+
 ## Three-tier source system
 
 Every story and ammo fact must come from a rated source:

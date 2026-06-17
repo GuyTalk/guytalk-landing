@@ -1193,20 +1193,11 @@ function buildGolfBlock({ golf, copy }) {
       ? `<li><span><span class="dl-label">How it happened:</span>${esc(gd.recap || `${esc(leader.name)} closed out ${esc(golf.name)} in the final round.`)}</span></li>`
       : `<li><span><span class="dl-label">TV schedule:</span>${esc(gd.tvSchedule || 'Golf Channel/Peacock · NBC/CBS. Check local listings.')}</span></li>`;
 
-    // Course image for known venues
-    const golfImg = (() => {
-      const name = (golf.name || '').toLowerCase();
-      if (name.includes('memorial')) {
-        return `<div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Muirfield_Village_Golf_Club.jpg/1280px-Muirfield_Village_Golf_Club.jpg" alt="Muirfield Village Golf Club — host of the Memorial Tournament" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Muirfield Village Golf Club · Dublin, Ohio · Jack Nicklaus' design · Host of the Memorial Tournament</div></div>`;
-      }
-      if (name.includes('masters')) {
-        return `<div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Augusta_National_Golf_Club_drone%2C_aerial_view.jpg/1280px-Augusta_National_Golf_Club_drone%2C_aerial_view.jpg" alt="Augusta National Golf Club" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Augusta National Golf Club · Augusta, Georgia · Host of The Masters</div></div>`;
-      }
-      if (name.includes('us open') || name.includes('u.s. open')) {
-        return `<div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Oakmont_Country_Club_aerial_view.jpg/1280px-Oakmont_Country_Club_aerial_view.jpg" alt="US Open golf course" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">U.S. Open Golf Championship</div></div>`;
-      }
-      return '';
-    })();
+    // Course image — delegate to golfCourseImage() so venue is always current
+    const golfImgObj = golfCourseImage(golf.name);
+    const golfImg = golfImgObj
+      ? `<div class="brief-img"><img src="${esc(golfImgObj.url)}" alt="${esc(golfImgObj.cap)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">${esc(golfImgObj.cap)}</div></div>`
+      : '';
 
     return `
     <h3 id="golf">${heading}</h3>
