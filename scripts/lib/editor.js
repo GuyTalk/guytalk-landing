@@ -437,7 +437,14 @@ ${JSON.stringify(editable)}`;
   const blocking = Array.isArray(report.blocking)
     ? report.blocking
         .filter(b => b && b.section && b.reason)
-        .filter(b => !/no blocking issue|now compliant|has been.*rewritten|structural correction|no longer.*block|documents the (fix|change|correction)/i.test(b.reason))
+        .filter(b => {
+          const r = b.reason;
+          // The editor sometimes puts quality observations in blocking[] even when the section
+          // will publish — e.g. "publishes at minimum threshold", "Flagging for editorial
+          // awareness", or "documents the structural correction". These are notes, not hard
+          // blocks. Only keep items that are genuine publish stoppers.
+          return !/no blocking issue|now compliant|has been.*rewritten|structural correction|no longer.*block|documents the (fix|change|correction)|publishes at minimum threshold|flagging for editorial awareness/i.test(r);
+        })
     : [];
   // Surface hard-blocked sections in the run-wide warnings instead of letting them
   // fall through to QA silently.
