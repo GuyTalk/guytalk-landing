@@ -409,6 +409,33 @@ PRE-EVENT RULE (applies to golf, F1, and all sports previews):
 
 EXCEPTION — a golf section for a tournament that HAS NOT STARTED is a PREVIEW. It may reference the course/venue, last year's champion, and recognizable players in the field even though those aren't in RAW FACTS — these are stable, well-documented facts and the section should have a confident voice for a casual fan. Do NOT block it for these. The only hard rule: never state a live score, a current leader, or a result for a tournament that hasn't been played. It must still satisfy the HARD BLOCK RULE above — a preview that names the defending champion and real favorites PASSES; an empty "strong field" preview with no named person FAILS.
 
+HEADLINE STRUCTURE RULE — apply to all section headlines:
+- Section h3 headlines must be SHORT and STRONG — max 8 words. "Carolina wins the Stanley Cup" not "Carolina Hurricanes 3–0 (CAR wins series 4-2) [Stanley Cup Final - Game 6]".
+- Scores, series records, and bracketed ESPN data MUST NOT appear in h3 headlines. Put that detail in the "What happened" field instead.
+- For multi-story digest issues the page h1 may be a multi-headline sentence summary. The section h3 must always be clean and human.
+
+REPETITION RULE — each field must serve a distinct purpose:
+- "What happened": one or two sentences of pure fact — who, what, score, result. No opinions.
+- "Why it matters": the stakes, the context, the significance. NOT a restatement of what happened.
+- "The GuyTalk Read": the sharpest take — who looks good, who looks bad, what this signals. NOT a summary of the above.
+- "What to bring up" / "What to say": a natural, specific one-liner a real guy would actually drop in conversation. Should sound like something you'd say, NOT a compressed GuyTalk Read.
+- If two fields are saying the same thing, rewrite one to serve a different purpose. Flag it in report.notes if it can't be fixed without new facts.
+
+TODAY AT A GLANCE RULE:
+- Each glance row value must be 8 words or fewer. One clean, scannable line. No brackets, parentheses, or ESPN data format strings.
+- Good: "Hurricanes 3–0 Vegas in Game 6 · win Cup 4–2"
+- Bad: "Carolina Hurricanes 3–0 (CAR wins series 4-2) [Stanley Cup Final - Game 6] [CAR last won in 2006]"
+
+HYPERLINK RULE:
+- First mention of every named player, driver, golfer, or individual athlete in a section should be wrapped in an <a> tag linking to their Wikipedia page or official profile. Use class="entity-person".
+- First mention of every team uses the entity-team link (handled by linkifyEntities in the HTML layer — no action needed here).
+- First mention of every venue or course should link to its Wikipedia page or official site. Use class="entity-venue".
+
+VISUALS RULE:
+- Major sports sections (F1, Golf, lead sport) should include a course/circuit/venue image where one is available in the asset library.
+- F1: /assets/circuits/${circuitKey}.jpg. Golf: courseImgHtml from golfCourseImage(). Lead sport: /assets/hero/${sport}.jpg.
+- Do not invent or guess image URLs. Only use assets confirmed to exist.
+
 OUTPUT — return ONLY valid JSON, no markdown fences, exactly this shape:
 {
   "copy": { ...the DRAFT object with the SAME keys and array lengths, text rewritten to follow the Bible... },
