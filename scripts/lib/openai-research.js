@@ -154,18 +154,33 @@ Return ONLY valid JSON (no markdown fences):
       }
     });
 
-    // Hard gate: if no real source citations, the model did not search — refuse to proceed.
-    // Caller will fall back to feed-only mode.
-    if (citationUrls.length === 0) {
-      console.log('   ✗ OpenAI returned no citation URLs — model did not search (tool_choice:required may have been ignored)');
+    // ── Check whether the web_search tool actually fired ─────────────────────
+    // The authoritative signal is whether a web_search_call block with
+    // status=completed exists in the output — not whether citations appear in
+    // text (the model can search without adding inline citations).
+    const searchCallCompleted = (response.output || []).some(
+      b => b.type === 'web_search_call' && b.status === 'completed'
+    );
+
+    if (!searchCallCompleted && citationUrls.length === 0) {
+      console.log('   ✗ web_search tool did not fire (no web_search_call block, no citations)');
       console.log('   📋 Feed-only mode will run');
       return null;
+    }
+
+    const sourceCount = citationUrls.length;
+    if (!searchCallCompleted) {
+      // Citations present but no search_call block — still treat as searched
+      console.log(`   ⚠  web_search_call block absent but ${sourceCount} citation(s) found — treating as searched`);
     }
 
     // ── Parse the JSON research pack ─────────────────────────────────────────
     const cleaned = responseText.replace(/```json\s*/gi, '').replace(/```/g, '');
     const jsonStart = cleaned.indexOf('{');
-    if (jsonStart < 0) throw new Error('no JSON object in response');
+    if (jsonStart < 0) {
+      console.log('   ✗ no JSON in response (first 300 chars):', responseText.slice(0, 300));
+      throw new Error('no JSON object in response');
+    }
     const jsonEnd = cleaned.lastIndexOf('}');
     if (jsonEnd <= jsonStart) throw new Error('no closing brace in response');
 
@@ -200,7 +215,8 @@ Return ONLY valid JSON (no markdown fences):
     if (!pack.stories.some(s => s.isLead)) pack.stories[0].isLead = true;
 
     const lead = pack.stories.find(s => s.isLead) || pack.stories[0];
-    console.log(`   ✓ OpenAI research ACTIVE (${SEARCH_MODEL}, web_search, ${citationUrls.length} source URLs)`);
+    const srcSummary = citationUrls.length > 0 ? `${citationUrls.length} citation URLs` : 'search_call completed (no inline citations)';
+    console.log(`   ✓ OpenAI research ACTIVE (${SEARCH_MODEL}, web_search, ${srcSummary})`);
     console.log(`     Lead: "${(lead.headline || '').slice(0, 60)}"`);
     if (pack.rejectedStories?.length) {
       console.log(`     Rejected ${pack.rejectedStories.length}: ${pack.rejectedStories.slice(0, 3).map(r => (r.reason || '').slice(0, 45)).join(' | ')}`);
@@ -214,7 +230,7 @@ Return ONLY valid JSON (no markdown fences):
       citationTitles,
       timestamp:   new Date().toISOString(),
       searchModel: SEARCH_MODEL,
-      searchActive: true,   // only set when citationUrls.length > 0
+      searchActive: true,   // only set when web_search_call completed or citations > 0
     };
 
   } catch (err) {

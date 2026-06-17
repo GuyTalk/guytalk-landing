@@ -357,7 +357,15 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
   if (golf?.name) {
     const lb = golf.leaders?.slice(0, 3).map(l => `${l.name} ${l.score} (${l.pos})`).join(', ') || 'no leaderboard yet';
     const status = golf.statusState === 'post' ? 'Finished' : golf.statusState === 'in' ? 'In Progress' : 'Starting this week';
-    lines.push(`GOLF: ${golf.name} — ${status}. Leaderboard: ${lb}`);
+    // Known 2026 major venues — prevent Haiku from pulling wrong venue from training data
+    const GOLF_VENUES = {
+      'U.S. Open': 'Pinehurst No. 2, North Carolina',
+      'The Open Championship': 'Royal Portrush, Northern Ireland',
+      'Masters': 'Augusta National, Georgia',
+      'PGA Championship': 'Quail Hollow Club, Charlotte',
+    };
+    const venue = golf.venue || Object.entries(GOLF_VENUES).find(([k]) => (golf.name||'').includes(k))?.[1] || '';
+    lines.push(`GOLF: ${golf.name}${venue ? ` at ${venue}` : ''} — ${status}. Leaderboard: ${lb}`);
   }
 
   if (tennis?.tours?.length) {

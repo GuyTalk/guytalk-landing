@@ -416,9 +416,15 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
       ? `${leader.name} wins ${golf.name}`
       : `${golf.name}${isIn ? ' — in progress' : ' — this week'}`;
     const topThree = (golf.leaders || []).slice(0, 3);
-    const facts    = topThree.length
+    const leaderStr = topThree.length
       ? topThree.map(l2 => `${l2.pos || ''} ${l2.name}: ${l2.score}`.trim()).join(', ')
       : golf.name;
+    // Prefix in-progress facts with explicit status so Haiku never writes "won"
+    const facts = isIn
+      ? `LEADERBOARD (IN PROGRESS — no winner yet): ${leaderStr}`
+      : isPost
+        ? `FINAL RESULT: ${leaderStr}`
+        : leaderStr;
     const { score: imp } = scoreImportance({ name: golf.name, headline, facts, isFinalResult: isPost });
     candidates.push({
       name: golf.name, label: 'Golf', category: 'individual',
