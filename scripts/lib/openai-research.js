@@ -3,15 +3,24 @@
 /**
  * OpenAI research layer — the FIRST editorial step in every brief.
  *
- * Uses the OpenAI Responses API with the web_search_preview tool so the model
- * actually searches the web before selecting stories.
+ * Official pattern (Responses API + web_search tool):
+ *   https://developers.openai.com/api/docs/guides/tools-web-search
  *
- * Confirmed working model: gpt-4.1 via client.responses.create()
- * NOT available on this account: gpt-4o-search-preview, gpt-4o-mini-search-preview
+ * Key decisions:
+ *   - Tool type: 'web_search'  (NOT 'web_search_preview' — that's the legacy variant)
+ *   - tool_choice: 'required'  — force the model to search; never skip to training data
+ *   - search_context_size: 'high' — maximum result depth
+ *   - Sources verified via content[].annotations (type='url_citation')
+ *   - If no annotation sources are returned, the model did not actually search → return null
+ *   - researchPack.searchActive is ONLY true when real source URLs were returned
  *
- * Returns a researchPack object when web search succeeds, null otherwise.
- * Callers must treat null as "feed-only mode" — do NOT fall back to Chat
- * Completions without search (that produces plausible-sounding invented stories).
+ * Confirmed working on this account (June 2026):
+ *   model 'gpt-4.1' via client.responses.create() + { type: 'web_search' }
+ *   Returns 3+ url_citation annotations with real URLs on every call.
+ *
+ * NOT available on this account:
+ *   'gpt-4o-search-preview', 'gpt-4o-mini-search-preview' → 404
+ *   (deprecated, shutdown 2026-07-23)
  */
 
 const SEARCH_MODEL = process.env.OPENAI_RESEARCH_MODEL || 'gpt-4.1';
@@ -22,12 +31,12 @@ async function fetchOpenAIResearch({ date, recentIssues = [] } = {}) {
 
   let OpenAI;
   try { OpenAI = require('openai'); }
-  catch (_) { console.log('   ⚠  openai package not installed — research skipped'); return null; }
+  catch (_) { console.log('   ⚠  openai package not installed'); return null; }
 
   const client = new (OpenAI.default || OpenAI)({ apiKey });
 
   if (typeof client.responses?.create !== 'function') {
-    console.log('   ⚠  OpenAI Responses API not available in this SDK version — research skipped');
+    console.log('   ⚠  Responses API not available in SDK v' + require('openai/package.json').version);
     return null;
   }
 
@@ -42,38 +51,38 @@ async function fetchOpenAIResearch({ date, recentIssues = [] } = {}) {
 
   const prompt = `Today is ${todayStr}. You are the lead researcher and editor for GuyTalk, a daily brief for men ages 25-45.
 
-Search the web for the most important stories happening TODAY. Only include REAL, CONFIRMED events from trusted sources — never speculation, future projections, or "major events of 2026"-style pages.
+Use web search to find the most important CONFIRMED stories happening TODAY. Only include real, verified events — never speculation, future projections, or "major events of 2026"-style pages.
 
-SEARCH (cover all of these with actual web searches):
+SEARCH for all of these:
 1. Major sports results from the last 24 hours: NBA, NHL, MLB, World Cup 2026, UFC/boxing if a card happened, F1 if a race just finished or is this weekend, golf if a major tournament is in progress
 2. Markets/business: biggest market moves and corporate news today
-3. Culture: what men 25-45 are actually talking about — major streaming drops, big tech announcements, major music moments, viral mainstream moments. NOT celebrity gossip/relationship drama/horoscopes/custody battles
-4. Current events: major widely-relevant news (political neutrality required)
+3. Culture: what men 25-45 are actually talking about — major streaming drops, big tech announcements, major music moments, viral mainstream moments. NOT celebrity gossip/divorce/relationship drama/horoscopes
+4. Current events: major widely-relevant news (politically neutral)
 5. The most genuinely interesting story that fits none of the above
 
-TRUSTED SOURCES (search these specifically):
+TRUSTED SOURCES only — search these specifically:
 Sports: ESPN, NBA.com, NHL.com, MLB.com, The Athletic, Front Office Sports
 Markets: CNBC, Bloomberg, WSJ, Reuters, Yahoo Finance, MarketWatch
 Culture: Variety, Hollywood Reporter, Polygon, IGN, Rolling Stone, Pitchfork
 News: AP, Reuters, BBC, Politico, CNN
 
-NEVER include:
-- Speculative pages like "Major Events of 2026" or future-event lists
-- Britannica, Wikipedia "in this year" articles
-- Future results presented as completed (if you cannot confirm it happened, skip it)
+EXCLUDE entirely:
+- Speculative/future-event pages (Britannica "events of 2026", Wikipedia "in this year")
+- Unconfirmed events (if you did not find a source confirming it happened, skip it)
 - Horoscopes, custody battles, celebrity dating/divorce/gossip, tabloid filler
-- Stories more than 36 hours old unless clearly the biggest ongoing story
-- Unverified championship wins, deaths, deals, or "record" claims from a single soft source${avoidLine}
+- Stories more than 36 hours old (unless clearly the biggest ongoing story)
+- Championship/death/acquisition claims from a single soft or unclear source${avoidLine}
 
-SCORING — rate each story 1-5:
-- freshness: how new/breaking (5=confirmed today, 1=3+ days old)
-- confidence: how well-sourced (5=multiple Tier-1 outlets confirmed, 1=single vague source)
-- conversation: would a 30-year-old guy actually bring this up
-- variety: does this fill a category gap in the issue
+SCORING per story (1-5):
+- freshness: confirmed today = 5; 36h old = 1
+- confidence: 3+ Tier-1 outlets confirmed = 5; single vague source = 1
+- conversation: a 30-year-old would bring this up at work/bar = 5
+- variety: fills a category gap = 5
 
-SELECT 6-9 stories total: 2-4 sports, 1-2 markets/business, 1-2 culture, 0-1 current events. Set isLead:true on the single biggest story of the day. Include ALL rejected candidates with reasons.
+SELECT 6-9 stories: 2-4 sports, 1-2 markets/business, 1-2 culture, 0-1 current events.
+Set isLead:true on the single biggest story. Include ALL rejected candidates.
 
-Return ONLY valid JSON (no markdown):
+Return ONLY valid JSON (no markdown fences):
 {
   "stories": [
     {
@@ -88,14 +97,13 @@ Return ONLY valid JSON (no markdown):
       "context": [
         "specific verifiable fact 1 (number/stat/record)",
         "specific verifiable fact 2",
-        "specific verifiable fact 3",
-        "specific verifiable fact 4 (optional)"
+        "specific verifiable fact 3"
       ],
-      "whatToSay": "one natural line a 30-year-old would actually say at work or a bar",
-      "sources": ["https://real-url-you-actually-found"],
+      "whatToSay": "one natural line a 30-year-old would say at work or a bar",
+      "sources": ["https://real-url-you-found"],
       "sourceNames": ["ESPN"],
       "scores": { "freshness": 5, "confidence": 5, "conversation": 4, "variety": 4 },
-      "selectionReason": "why this story was selected",
+      "selectionReason": "why selected",
       "verificationConcerns": ""
     }
   ],
@@ -108,12 +116,13 @@ Return ONLY valid JSON (no markdown):
   try {
     const response = await client.responses.create({
       model: SEARCH_MODEL,
-      tools: [{ type: 'web_search_preview' }],
-      input: prompt,
+      tools: [{ type: 'web_search', search_context_size: 'high' }],
+      tool_choice: 'required',
       max_output_tokens: 6000,
+      input: prompt,
     });
 
-    // Extract text from response (handle both output_text shorthand and raw output array)
+    // ── Extract response text ─────────────────────────────────────────────────
     let responseText = response.output_text || '';
     if (!responseText && Array.isArray(response.output)) {
       responseText = response.output
@@ -123,68 +132,99 @@ Return ONLY valid JSON (no markdown):
         .map(c => c.text || c.output_text || '')
         .join('');
     }
+    if (!responseText) throw new Error('empty response text');
 
-    if (!responseText) throw new Error('empty response from OpenAI Responses API');
+    // ── Extract source citations from annotations ─────────────────────────────
+    // Official pattern: sources are in content[].annotations, type='url_citation'
+    // These are the URLs the model actually visited — their presence proves a real search ran.
+    const citationUrls = [];
+    const citationTitles = [];
+    (response.output || []).forEach(block => {
+      if (block.type === 'message') {
+        (block.content || []).forEach(c => {
+          (c.annotations || []).forEach(a => {
+            if (a.type === 'url_citation' && a.url) {
+              // Strip OpenAI tracking param before storing
+              const clean = a.url.replace(/[?&]utm_source=openai/, '').replace(/[?&]$/, '');
+              citationUrls.push(clean);
+              citationTitles.push(a.title || '');
+            }
+          });
+        });
+      }
+    });
 
-    // Extract JSON from response (model may prepend/append prose, or truncate)
+    // Hard gate: if no real source citations, the model did not search — refuse to proceed.
+    // Caller will fall back to feed-only mode.
+    if (citationUrls.length === 0) {
+      console.log('   ✗ OpenAI returned no citation URLs — model did not search (tool_choice:required may have been ignored)');
+      console.log('   📋 Feed-only mode will run');
+      return null;
+    }
+
+    // ── Parse the JSON research pack ─────────────────────────────────────────
     const cleaned = responseText.replace(/```json\s*/gi, '').replace(/```/g, '');
-    const start = cleaned.indexOf('{');
-    if (start < 0) throw new Error('no JSON object in response');
-    const end = cleaned.lastIndexOf('}');
-    if (end <= start) throw new Error('no closing brace in response');
+    const jsonStart = cleaned.indexOf('{');
+    if (jsonStart < 0) throw new Error('no JSON object in response');
+    const jsonEnd = cleaned.lastIndexOf('}');
+    if (jsonEnd <= jsonStart) throw new Error('no closing brace in response');
 
     let pack;
     try {
-      pack = JSON.parse(cleaned.slice(start, end + 1));
+      pack = JSON.parse(cleaned.slice(jsonStart, jsonEnd + 1));
     } catch (parseErr) {
-      // Partial truncation recovery: find the last complete story object
-      const storiesStart = cleaned.indexOf('"stories"', start);
-      const arrStart     = cleaned.indexOf('[', storiesStart);
-      if (storiesStart < 0 || arrStart < 0) throw parseErr;
-      // Walk backwards from the parse error to find the last complete object
-      let body = cleaned.slice(arrStart);
-      const lastClose = body.lastIndexOf('}');
-      if (lastClose < 0) throw parseErr;
-      body = body.slice(0, lastClose + 1) + ']';
-      try {
-        const stories = JSON.parse(body);
-        if (!Array.isArray(stories) || !stories.length) throw parseErr;
-        console.log(`   ⚠  JSON truncated — recovered ${stories.length} complete stories`);
-        pack = { stories, rejectedStories: [], researchNotes: 'response truncated' };
-      } catch (_) {
-        throw parseErr;
+      // Partial-truncation recovery: find the last complete story object
+      const storiesStart = cleaned.indexOf('"stories"', jsonStart);
+      const arrStart     = storiesStart >= 0 ? cleaned.indexOf('[', storiesStart) : -1;
+      if (arrStart >= 0) {
+        const body = cleaned.slice(arrStart);
+        const lastClose = body.lastIndexOf('}');
+        if (lastClose > 0) {
+          try {
+            const stories = JSON.parse(body.slice(0, lastClose + 1) + ']');
+            if (Array.isArray(stories) && stories.length) {
+              console.log(`   ⚠  JSON truncated — recovered ${stories.length} complete stories`);
+              pack = { stories, rejectedStories: [], researchNotes: 'response truncated' };
+            }
+          } catch (_) {}
+        }
       }
+      if (!pack) throw parseErr;
     }
 
     if (!Array.isArray(pack.stories) || !pack.stories.length) {
-      throw new Error('research returned no stories');
+      throw new Error('research pack has no stories');
     }
 
     // Ensure exactly one isLead
-    const hasLead = pack.stories.some(s => s.isLead);
-    if (!hasLead) pack.stories[0].isLead = true;
+    if (!pack.stories.some(s => s.isLead)) pack.stories[0].isLead = true;
 
     const lead = pack.stories.find(s => s.isLead) || pack.stories[0];
-    console.log(`   ✓ OpenAI research active (${SEARCH_MODEL} + web search): ${pack.stories.length} stories — lead: "${(lead.headline || '').slice(0, 55)}"`);
+    console.log(`   ✓ OpenAI research ACTIVE (${SEARCH_MODEL}, web_search, ${citationUrls.length} source URLs)`);
+    console.log(`     Lead: "${(lead.headline || '').slice(0, 60)}"`);
     if (pack.rejectedStories?.length) {
-      console.log(`   ↩ Rejected ${pack.rejectedStories.length}: ${pack.rejectedStories.slice(0, 3).map(r => (r.reason || '').slice(0, 40)).join(' | ')}`);
+      console.log(`     Rejected ${pack.rejectedStories.length}: ${pack.rejectedStories.slice(0, 3).map(r => (r.reason || '').slice(0, 45)).join(' | ')}`);
     }
 
     return {
       ...pack,
-      timestamp: new Date().toISOString(),
+      // Top-level citation URLs from annotations — these are the URLs that prove
+      // a real search happened. Individual stories also have their own sources[].
+      citationUrls,
+      citationTitles,
+      timestamp:   new Date().toISOString(),
       searchModel: SEARCH_MODEL,
-      searchActive: true,
+      searchActive: true,   // only set when citationUrls.length > 0
     };
+
   } catch (err) {
-    // Distinguish model-not-found from other errors (useful for diagnosing account issues)
     const is404 = err.status === 404 || err.code === 'model_not_found';
     if (is404) {
-      console.log(`   ✗ OpenAI research unavailable: ${SEARCH_MODEL} returned 404 (model not on this account)`);
+      console.log(`   ✗ ${SEARCH_MODEL} returned 404 (not on this account tier)`);
     } else {
       console.log(`   ✗ OpenAI research failed: ${err.message}`);
     }
-    console.log('   📋 Running in feed-only mode — ESPN + filtered NewsAPI only');
+    console.log('   📋 Feed-only mode will run');
     return null;
   }
 }
