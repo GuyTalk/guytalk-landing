@@ -1403,3 +1403,49 @@ em { font-style: italic; }
 }
 .mkt-row { transition: background 0.12s ease; border-radius: 6px; }
 .mkt-row:hover { background: var(--surface-2); }
+
+/* ================================================================
+   WHAT TO KNOW CARD
+   ================================================================ */
+/* Remove the detail-list flex-row treatment for ammo items */
+.detail-list li.ammo-item { display: block; padding: 10px 0 6px; }
+.detail-list li.ammo-item::before { display: none; }
+/* Inline dl-label superseded by card header */
+.detail-list li.ammo-item > .dl-label { display: none; }
+
+/* Card shell */
+ul.ammo-list {
+  list-style: none; padding: 0; margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+/* Dark "WHAT TO KNOW" header row */
+ul.ammo-list::before {
+  content: 'WHAT TO KNOW';
+  display: block;
+  background: var(--text); color: #fff;
+  font-family: 'Inter Tight', sans-serif; font-weight: 800;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 9px 16px;
+}
+/* Fact rows */
+ul.ammo-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 16px;
+  font-size: 14.5px; line-height: 1.52;
+  color: var(--text-2);
+  border-top: 1px solid var(--border);
+}
+/* Bullet dot */
+ul.ammo-list li::before {
+  content: '•'; flex-shrink: 0;
+  color: var(--accent); font-size: 15px; line-height: 1.45;
+}
+/* Culture section spacing */
+.culture-item ul.ammo-list { margin: 10px 0 6px; }
+
+@media (max-width: 600px) {
+  ul.ammo-list::before { padding: 8px 14px; }
+  ul.ammo-list li { font-size: 14px; padding: 9px 14px; }
+}
