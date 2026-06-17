@@ -269,22 +269,28 @@ function isCultureBlocked(title) {
 async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImageUrls = [], golf, topStories = [] } = {}) {
   const SPORTS_RE = /\b(nba|nfl|nhl|mlb|mls|soccer|ufc|mma|fight(?:er|s)?|boxing|game\s+\d|match|playoff|championship|score|world\s+cup)\b/i;
 
-  // Culture from NewsAPI entertainment — filter out sports AND low-quality filler.
+  // Culture from NewsAPI — filter out sports AND low-quality filler.
   // This is the fallback path used only when OpenAI research doesn't supply culture items.
+  // Primary: entertainment. If < 3 quality items, extend with technology then general.
   const culture = [];
-  const newsItems = await fetchNewsHeadlines(['entertainment'], { pageSize: 15 });
-  for (const a of newsItems) {
-    if (SPORTS_RE.test(a.title)) continue;
-    if (isCultureBlocked(a.title)) continue;
-    culture.push({
-      headline:   a.title,
-      source:     a.source,
-      url:        a.url,
-      fact:       a.description || a.title,
-      background: '',
-      no_data:    false,
-    });
+  const CULTURE_CATEGORIES = ['entertainment', 'technology', 'general'];
+  for (const cat of CULTURE_CATEGORIES) {
     if (culture.length >= 3) break;
+    const newsItems = await fetchNewsHeadlines([cat], { pageSize: 15 });
+    for (const a of newsItems) {
+      if (culture.length >= 3) break;
+      if (SPORTS_RE.test(a.title)) continue;
+      if (isCultureBlocked(a.title)) continue;
+      if (culture.some(c => c.url === a.url)) continue; // no dupes across categories
+      culture.push({
+        headline:   a.title,
+        source:     a.source,
+        url:        a.url,
+        fact:       a.description || a.title,
+        background: '',
+        no_data:    false,
+      });
+    }
   }
 
   // Hero image: og:image from the top story's first source URL
@@ -305,7 +311,7 @@ async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImage
     if (!heroImage) heroImage = { no_data: true };
   }
 
-  const out = { culture: culture.slice(0, 2), cultureNoData: culture.length === 0, heroImage };
+  const out = { culture: culture.slice(0, 3), cultureNoData: culture.length === 0, heroImage };
   console.log(`   ✓ Section research: culture:${out.culture.length} hero:${out.heroImage && !out.heroImage.no_data ? 'ok' : 'none'}`);
   return out;
 }

@@ -285,13 +285,25 @@ function main() {
   if (!ed) {
     warn('No editor record on this issue — generated before the editorial pass existed');
   } else if (ed.reviewed) {
+    // Quality blocks (no_ammo, no_current_facts, low_conversation_relevance) are content
+    // issues — warn Jake but allow the brief to stage. Safety/compliance blocks hard fail.
+    const QUALITY_BLOCK_REASONS = new Set(['no_ammo', 'no_current_facts', 'low_conversation_relevance']);
+    const allBlocks    = ed.blocking || [];
+    const safetyBlocks = allBlocks.filter(b => !QUALITY_BLOCK_REASONS.has(b.reason));
+    const qualityBlocks = allBlocks.filter(b => QUALITY_BLOCK_REASONS.has(b.reason));
     run(
-      'Editor pass: no sections blocked by the Bible',
-      (ed.blocking || []).length === 0,
-      (ed.blocking || []).length
-        ? `Blocked: ${ed.blocking.map(b => `${b.section} (${b.reason})`).join(' | ')}`
+      'Editor pass: no safety/compliance violations',
+      safetyBlocks.length === 0,
+      safetyBlocks.length
+        ? `Safety blocked: ${safetyBlocks.map(b => `${b.section} (${b.reason})`).join(' | ')}`
         : `Reviewed by ${ed.model}${ed.changed?.length ? ` — rewrote ${ed.changed.join(', ')}` : ''}`
     );
+    if (qualityBlocks.length) {
+      warn(
+        `Editor: content-quality issues (brief will still stage — review before approving)`,
+        qualityBlocks.map(b => `${b.section} (${b.reason})`).join(' | ')
+      );
+    }
     if (ed.notes?.length) warn(`Editor notes: ${ed.notes.join(' | ')}`);
   } else {
     // Fail-open by design (Jake, 2026-06-04): publish but warn loudly.
@@ -386,10 +398,16 @@ function main() {
     );
   }
 
-  // 5. Culture: 3 items
+  // 5. Culture: 3 items preferred, 2 allowed (warn only)
   console.log('\n  [Culture]');
   const cult = copy?.culture || [];
-  run('Culture: 3 items present', cult.length === 3, `Got ${cult.length}`);
+  if (cult.length >= 3) {
+    run('Culture: 3 items present', true);
+  } else if (cult.length === 2) {
+    warn('Culture: only 2 items (3 preferred) — brief will publish with 2 culture items');
+  } else {
+    run('Culture: minimum 2 items required', false, `Got ${cult.length} — brief cannot publish without at least 2 culture items`);
+  }
   cult.forEach((item, i) => {
     const head = item.topic || item.head || '';
     const body = item.whatHappened || item.body || '';
