@@ -156,7 +156,7 @@ function warn(label, detail) {
 // ── Main ─────────────────────────────────────────────────────────────────────
 function main() {
   const arg   = process.argv[2];
-  const slug  = arg?.startsWith('issue-') ? arg : null;
+  const slug  = arg?.startsWith('issue-') ? arg : (arg === 'preview' ? 'preview' : null);
   const issue = loadIssue(slug);
   const { copy, sports, markets, upcoming, golf } = issue;
 
@@ -198,6 +198,28 @@ function main() {
     );
   } else {
     warn('HTML file not found — run generator first');
+  }
+
+  // 3a. OPENAI VERIFICATION — hard gate (must pass before push to pending)
+  console.log('\n  [OpenAI Verification]');
+  const vfy = issue.verification;
+  if (!vfy) {
+    warn('No verification record — generated before the verification pass existed');
+  } else if (vfy.skipped) {
+    warn('Verification skipped — ' + (vfy.reason || 'OPENAI_API_KEY missing or crashed'));
+  } else if (!vfy.pass) {
+    run(
+      'OpenAI verification: no blocking issues',
+      false,
+      `FAILED: ${(vfy.blocking || []).map(b => `[${b.section}] ${b.flag}: ${b.reason}`).join(' | ')}`
+    );
+  } else {
+    run(
+      'OpenAI verification: PASS',
+      true,
+      vfy.verificationSummary || `${(vfy.warnings || []).length} warning(s)`
+    );
+    if (vfy.warnings?.length) warn(`Verification warnings: ${vfy.warnings.map(w => `[${w.section}] ${w.note}`).join(' | ')}`);
   }
 
   // 3b. EDITORIAL BIBLE — the Claude editor's verdict (hard gate)

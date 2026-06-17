@@ -1,0 +1,192 @@
+'use strict';
+
+/**
+ * OpenAI verification layer — the FINAL gate before publish.
+ *
+ * Cross-checks the built brief's factual claims against:
+ *   1. The OpenAI research pack (what was actually found with source URLs)
+ *   2. ESPN structured feed data (ground truth for scores/results)
+ *
+ * Returns { pass, blocking: [], warnings: [], ... }
+ * pass = false → qa-brief.js hard-blocks the push to pending.
+ *
+ * Fail-open: if OpenAI is unavailable the call returns pass:true with skipped:true
+ * so the brief can still ship with a loud warning — the streak survives an outage.
+ */
+
+const VERIFY_MODEL = process.env.OPENAI_VERIFY_MODEL || 'gpt-4o';
+
+async function verifyBrief({ issueData, researchPack }) {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    return { pass: true, skipped: true, reason: 'no OPENAI_API_KEY — verification skipped', blocking: [], warnings: [] };
+  }
+
+  let OpenAI;
+  try { OpenAI = require('openai'); }
+  catch (_) { return { pass: true, skipped: true, reason: 'openai not installed', blocking: [], warnings: [] }; }
+
+  const client = new (OpenAI.default || OpenAI)({ apiKey });
+  const copy = issueData.copy || {};
+
+  // ── Build brief claims list ──────────────────────────────────────────────────
+  const claims = [];
+
+  if (copy.lead?.headline)   claims.push(`LEAD: ${copy.lead.headline} — ${copy.lead.whatHappened || ''}`);
+  if (copy.markets?.mood)    claims.push(`MARKETS: ${copy.markets.mood}`);
+  if (Array.isArray(copy.markets?.headlines)) {
+    copy.markets.headlines.forEach(h => h?.head && claims.push(`MARKETS HEADLINE: ${h.head}`));
+  }
+  (issueData.dynamicSports || []).forEach(s => {
+    claims.push(`SPORT [${s.label}]: ${s.headline || ''} — ${s.whatHappened || s.facts || ''}`);
+    (s.ammo || []).filter(Boolean).forEach(a => claims.push(`  AMMO: ${a}`));
+  });
+  (issueData.topStories || []).forEach(s =>
+    claims.push(`TOP STORY: ${s.headline} — ${s.whatHappened || ''}`)
+  );
+  (copy.culture || []).forEach((c, i) =>
+    claims.push(`CULTURE ${i + 1}: ${c.topic || c.head || ''} — ${c.whatHappened || ''}`)
+  );
+  if (copy.f1?.headline) claims.push(`F1: ${copy.f1.headline} — ${copy.f1.whyCare1 || ''}`);
+  if (copy.golf?.headline) claims.push(`GOLF: ${copy.golf.headline} — ${copy.golf.whyCare1 || ''}`);
+  if (copy.nhl?.headline) claims.push(`NHL: ${copy.nhl.headline}`);
+
+  // ── Build ESPN structured data ───────────────────────────────────────────────
+  const espnFacts = [];
+  (issueData.sports || []).forEach(g => {
+    const w = g.home?.winner ? g.home : g.away, l = g.home?.winner ? g.away : g.home;
+    espnFacts.push(`ESPN: ${w.team} ${w.score}–${l.score} ${l.team} (${g.status})${g.seriesNote ? ' [' + g.seriesNote + ']' : ''}`);
+  });
+  if (issueData.nhl?.final) {
+    const g = issueData.nhl.final;
+    const w = g.home?.winner ? g.home : g.away, l = g.home?.winner ? g.away : g.home;
+    const context = [g.note, g.seriesNote].filter(Boolean).join(' | ');
+    espnFacts.push(`ESPN NHL: ${w.team} ${w.score}–${l.score} ${l.team}${context ? ' [' + context + ']' : ''}`);
+  }
+  if (issueData.f1?.results?.length && issueData.f1.statusState === 'post') {
+    espnFacts.push(`ESPN F1: ${issueData.f1.name} — P1: ${issueData.f1.results[0].driver} (${issueData.f1.results[0].team})`);
+  }
+  if (issueData.golf?.leaders?.[0]) {
+    espnFacts.push(`ESPN Golf: ${issueData.golf.name} — Leader: ${issueData.golf.leaders[0].name} ${issueData.golf.leaders[0].score} (${issueData.golf.statusState})`);
+  }
+
+  // ── Build research pack evidence ─────────────────────────────────────────────
+  const researchEvidence = (researchPack?.stories || []).map(s =>
+    `RESEARCHED [conf:${s.scores?.confidence || '?'}/5]: ${s.headline} — sources: ${(s.sourceNames || []).join(', ')}`
+  );
+
+  const verifyPrompt = `You are the final fact-checker for GuyTalk. Today is ${issueData.date || 'today'}.
+
+ESTABLISHED FACTS (do not flag these as errors):
+- Donald Trump is the 47th President of the United States (won 2024 election, second term 2025–2029). References to "Trump" in current political news are correct.
+- The 2026 FIFA World Cup is currently in progress (hosted by USA/Canada/Mexico, begins June 11 2026).
+- Lewis Hamilton drives for Ferrari in F1 in 2025–2026 (left Mercedes after 2024 season).
+
+
+Cross-check the BRIEF CLAIMS against the EVIDENCE below. Flag anything invented, stale, future-projected, or unverified.
+
+=== ESPN STRUCTURED DATA (ground truth for scores/results — these are correct) ===
+${espnFacts.length ? espnFacts.join('\n') : '(none)'}
+
+=== OPENAI RESEARCH EVIDENCE (real stories with confirmed sources) ===
+${researchEvidence.length ? researchEvidence.join('\n') : '(no research pack — higher risk of unverified claims)'}
+
+=== BRIEF CLAIMS TO VERIFY ===
+${claims.join('\n')}
+
+IMPORTANT — calibrate strictly based on what evidence is available:
+
+IF research evidence IS provided (several RESEARCHED lines above):
+  BLOCKING: claim contradicts research evidence OR claims a championship/death/major deal/IPO that research marked unverified.
+  WARNING: plausible but not confirmed in evidence.
+
+IF NO research evidence (the RESEARCHED section says "(no research pack — higher risk of unverified claims)"):
+  BLOCKING: ONLY if a claim directly contradicts ESPN scores/winners/teams. Nothing else is a block.
+  WARNING: anything plausible but unverifiable from the available data.
+  DO NOT use unverified_major, invented, stale, or future flags on business/culture/political news stories when there is no research pack — you have no evidence to contradict them, so they must be warnings only.
+
+FLAG as BLOCKING in all cases:
+- A sports result that DIRECTLY CONTRADICTS ESPN data: e.g. ESPN says Team A won but the copy says Team B won; ESPN says the score was 3-0 but the copy says 4-1; ESPN says series 4-2 but the copy says 4-0. SILENT ≠ CONTRADICTION — if ESPN data doesn't mention a stat (e.g., consecutive shutouts), that is a WARNING, not a block.
+- A clearly FORWARD-LOOKING event presented as already completed — e.g. "Election results in" when the election hasn't happened, or language like "will happen" treated as past tense. NOT just "unverified" news.
+- Content clearly from a Britannica "Major Events of 2026"-style speculative page (future projections)
+- A fabricated player stat (specific points/goals/yards) that directly contradicts ESPN box scores
+
+FLAG as WARNING (never blocking):
+- A real-seeming current news story not confirmed in the research pack or ESPN data (could be real, just unverified here)
+- Minor unverifiable details (salary, age, exact dollar amount)
+- Editorial framing or tone
+
+NEVER block a story just because it's "not in provided evidence" — that's a warning. Block only when the story is demonstrably wrong or clearly forward-looking speculation presented as news.
+
+DO NOT flag:
+- Claims matching ESPN structured data
+- Reasonable editorial framing of confirmed facts
+- Subjective takes, opinions, or voice choices
+- Stories that are likely real but just not in the provided evidence
+
+Return ONLY valid JSON:
+{
+  "pass": true,
+  "blocking": [
+    {
+      "section": "lead|sports|markets|culture|f1|golf|topStories",
+      "claim": "exact claim text",
+      "flag": "invented|stale|future|contradicts_espn|unverified_major",
+      "reason": "specific reason"
+    }
+  ],
+  "warnings": [
+    { "section": "section", "note": "concern" }
+  ],
+  "verificationSummary": "one-sentence overall confidence assessment"
+}`;
+
+  try {
+    const completion = await client.chat.completions.create({
+      model: VERIFY_MODEL,
+      max_tokens: 2000,
+      messages: [{ role: 'user', content: verifyPrompt }],
+      response_format: { type: 'json_object' },
+    });
+
+    const raw = completion.choices?.[0]?.message?.content || '';
+    const result = JSON.parse(raw);
+
+    const blocking = Array.isArray(result.blocking)
+      ? result.blocking.filter(b => b?.claim && b?.reason)
+      : [];
+    const warnings = Array.isArray(result.warnings)
+      ? result.warnings.filter(w => w?.note)
+      : [];
+    const pass = result.pass !== false && blocking.length === 0;
+
+    if (pass) {
+      console.log(`   ✓ Verification: PASS${warnings.length ? ` (${warnings.length} warning(s))` : ''}`);
+    } else {
+      console.log(`   ⛔ Verification: FAIL — ${blocking.length} blocking issue(s)`);
+      blocking.forEach(b => console.log(`      ⛔ [${b.section}] ${b.flag}: ${b.reason}`));
+    }
+    if (warnings.length) warnings.forEach(w => console.log(`      ⚠  [${w.section}] ${w.note}`));
+    if (result.verificationSummary) console.log(`      → ${result.verificationSummary}`);
+
+    return {
+      pass,
+      blocking,
+      warnings,
+      verificationSummary: result.verificationSummary || '',
+      model: VERIFY_MODEL,
+      timestamp: new Date().toISOString(),
+    };
+  } catch (err) {
+    console.log(`   ⚠  Verification failed: ${err.message} — treating as pass (fail-open)`);
+    return {
+      pass: true,
+      skipped: true,
+      reason: `verification crashed: ${err.message}`,
+      blocking: [],
+      warnings: [],
+    };
+  }
+}
+
+module.exports = { verifyBrief };

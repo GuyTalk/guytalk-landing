@@ -13,12 +13,55 @@ const { buildHtml }                                         = require('./lib/htm
 const { buildArchive }                                      = require('./lib/archive');
 const { fetchTopStories, fetchSectionStories, fetchDynamicSports } = require('./lib/research');
 const { fetchFactPack }                                             = require('./lib/factpack');
+const { fetchOpenAIResearch }                                       = require('./lib/openai-research');
+const { verifyBrief }                                               = require('./lib/openai-verify');
 const { isExcluded, classifyTopic, scoreImportance }        = require('./lib/editorial-config');
 const { STREAMING_PICKS }                                   = require('./lib/db');
 const { GENERATION_WARNINGS, addWarning, resetWarnings, formatWarnings } = require('./lib/warnings');
 
 const ROOT      = path.join(__dirname, '..');
 const BRIEF_DIR = path.join(ROOT, 'brief');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Research pack → topStories / sectionStories.culture adapters.
+// Claude's generateCopy() receives these in the same format it already expects,
+// but they are now sourced from OpenAI's web-searched, confidence-scored pack
+// instead of from unverified NewsAPI headlines ranked by Haiku.
+// ─────────────────────────────────────────────────────────────────────────────
+function researchPackToTopStories(pack) {
+  if (!pack?.stories?.length) return [];
+  return pack.stories
+    .filter(s => s.category !== 'Culture')
+    .map(s => ({
+      category:     s.category  || 'World',
+      headline:     s.headline  || '',
+      whatHappened: s.whatHappened || '',
+      whyItMatters: s.whyItMatters || '',
+      depth:        s.guytalkRead  || '',    // used by copy.js for market depth
+      whatToSay:    s.whatToSay    || '',
+      sources:      Array.isArray(s.sources) ? s.sources : [],
+      isLead:       !!s.isLead,
+      tier:         1,                        // research-backed = always Tier 1
+      _context:     Array.isArray(s.context) ? s.context : [],
+      _confidenceScore:   s.scores?.confidence || 5,
+      _selectionReason:   s.selectionReason    || '',
+      _verificationConcerns: s.verificationConcerns || '',
+    }));
+}
+
+function researchPackToCulture(pack) {
+  if (!pack?.stories?.length) return [];
+  return pack.stories
+    .filter(s => s.category === 'Culture')
+    .map(s => ({
+      headline:   s.headline   || '',
+      source:     (s.sourceNames || []).join(', '),
+      url:        (s.sources   || [])[0] || '',
+      fact:       s.whatHappened || '',
+      background: s.whyItMatters || '',
+      no_data:    false,
+    }));
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Detect the next issue number from existing brief/issue-NNN directories
@@ -413,7 +456,10 @@ async function main() {
   // ── Fetch data ─────────────────────────────────────────────────────────────
   console.log('📡 Fetching data...');
 
-  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult, screenersResult, nhlResult, tennisResult, topStoriesResult] = await Promise.allSettled([
+  // OpenAI research runs in parallel with ESPN feeds — it is the PRIMARY story
+  // discovery layer. fetchTopStories() (NewsAPI → Haiku) runs only as fallback.
+  const prev3ForResearch = loadPreviousBriefs(3);
+  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult, screenersResult, nhlResult, tennisResult, topStoriesResult, openAIResearchResult] = await Promise.allSettled([
     fetchNBA(),
     fetchMarkets(),
     fetchGolf(),
@@ -424,7 +470,8 @@ async function main() {
     fetchMarketScreeners(),
     fetchNHL(),
     fetchTennis(),
-    fetchTopStories(),   // organic web-researched top stories (the day's biggest news, with sources)
+    fetchTopStories(),   // fallback: NewsAPI → Haiku ranking (used when OpenAI research fails)
+    fetchOpenAIResearch({ date, recentIssues: prev3ForResearch }),  // PRIMARY research layer
   ]);
 
   let sports       = sportsResult.status    === 'fulfilled' ? sportsResult.value    : null;
@@ -442,8 +489,22 @@ async function main() {
   }
   const golf       = golfResult.status      === 'fulfilled' ? golfResult.value      : null;
   const trending   = trendingResult.status  === 'fulfilled' ? trendingResult.value  : null;
-  const topStories = topStoriesResult.status === 'fulfilled' ? (topStoriesResult.value || []) : [];
   let   f1         = f1Result.status        === 'fulfilled' ? f1Result.value        : null;
+
+  // ── OpenAI research pack (PRIMARY story source) ───────────────────────────
+  const researchPack = openAIResearchResult.status === 'fulfilled' ? (openAIResearchResult.value || null) : null;
+  if (openAIResearchResult.status === 'rejected') {
+    console.log(`   ⚠  OpenAI Research rejected: ${openAIResearchResult.reason?.message || openAIResearchResult.reason}`);
+  }
+
+  // topStories: prefer research pack, fall back to NewsAPI/Haiku ranking
+  const topStoriesRaw = topStoriesResult.status === 'fulfilled' ? (topStoriesResult.value || []) : [];
+  const topStories = researchPack ? researchPackToTopStories(researchPack) : topStoriesRaw;
+  if (researchPack) {
+    console.log(`   ✓ Research pack: ${researchPack.stories?.length || 0} stories (replacing NewsAPI path)`);
+  } else {
+    console.log(`   ⚠  Research pack unavailable — using NewsAPI fallback (${topStories.length} stories)`);
+  }
   const worldCup   = wcResult.status        === 'fulfilled' ? wcResult.value        : null;
   const upcoming   = upcomingResult.status  === 'fulfilled' ? upcomingResult.value  : null;
   const tennis     = tennisResult.status    === 'fulfilled' ? tennisResult.value    : null;
@@ -508,6 +569,7 @@ async function main() {
   let copy = null;
   let sectionStories = {};
   let dynamicSports = [];
+  let factPack = null;
   try {
     const prev3 = loadPreviousBriefs(3);
     if (prev3.length) console.log(`   ✓ Repetition guard: loaded ${prev3.length} previous brief(s)`);
@@ -538,13 +600,25 @@ async function main() {
     // list); culture/hero ground the rest. Image searches avoid the previous
     // issue's image URLs so we never publish a repeated image.
     const prevImageUrls = loadPrevImageUrls();
-    console.log('   🔎 Research: building sports from feeds + culture from NewsAPI...');
+    console.log('   🔎 Research: building sports from feeds + culture...');
     const leadSubject = (topStories.find(s => s.isLead) || topStories[0])?.headline || null;
     const [secRes, dynRes] = await Promise.allSettled([
       fetchSectionStories({ dateLabel: date, leadSubject, issueNum, prevImageUrls, golf, topStories }),
       fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls }),
     ]);
     sectionStories = secRes.status === 'fulfilled' ? (secRes.value || {}) : {};
+
+    // Override culture with research pack items when available — they are web-verified
+    // and scored for quality. NewsAPI entertainment is kept as fallback only.
+    if (researchPack) {
+      const rpCulture = researchPackToCulture(researchPack);
+      if (rpCulture.length) {
+        sectionStories.culture = rpCulture;
+        console.log(`   ✓ Culture: ${rpCulture.length} item(s) from OpenAI research pack`);
+      } else if (sectionStories.culture?.length) {
+        console.log(`   ✓ Culture: ${sectionStories.culture.length} item(s) from NewsAPI fallback`);
+      }
+    }
     if (secRes.status === 'rejected') console.log(`   ⚠  Section research failed (non-blocking): ${secRes.reason?.message || secRes.reason}`);
     const dynamic = dynRes.status === 'fulfilled' ? (dynRes.value || { lead: null, sports: [] }) : { lead: null, sports: [] };
     if (dynRes.status === 'rejected') console.log(`   ⚠  Dynamic sports failed (non-blocking): ${dynRes.reason?.message || dynRes.reason}`);
@@ -552,7 +626,6 @@ async function main() {
 
     // Fact Pack — one bundled OpenAI call enriching ammo for both generateCopy() and editBrief().
     // Runs after research so sectionStories and dynamicSports are available. Fail-open: null = Phase 1.
-    let factPack = null;
     if (process.env.OPENAI_API_KEY) {
       try {
         factPack = await fetchFactPack({ topStories, dynamicSports, sectionStories });
@@ -683,10 +756,25 @@ async function main() {
     copy,
     editor:  editorMeta,
     factPack: factPack || null,
+    researchPack: researchPack || null,
     // Section retries / failures / editor hard-blocks from this run, persisted so
     // the approval email can surface them (populated by generateCopy + editBrief).
     generationWarnings: [...GENERATION_WARNINGS],
   };
+
+  // ── Final verification (OpenAI) — gate before the brief is pushed ──────────
+  // Runs AFTER the full brief is assembled so it can check the complete final
+  // copy, not just individual sections. pass = false blocks QA and the push.
+  let verification = { pass: true, skipped: true, reason: 'not yet run', blocking: [], warnings: [] };
+  if (copy) {
+    console.log('\n🔍 Final verification (OpenAI)...');
+    try {
+      verification = await verifyBrief({ issueData, researchPack });
+    } catch (err) {
+      console.log(`   ⚠  Verification crashed: ${err.message} — treating as pass (fail-open)`);
+    }
+  }
+  issueData.verification = verification;
 
   // ── Write files ────────────────────────────────────────────────────────────
   console.log('\n📝 Writing files...');
