@@ -6,9 +6,15 @@
 <title>NBA Finals - Game 5 · MSC Cruises Barcelona-Catalunya GP — GuyTalk Daily Brief</title>
 <meta name="description" content="NBA Finals - Game 5 tomorrow. Los Angeles Dodgers 8-6 Pittsburgh Pirates. MSC Cruises Barcelona-Catalunya GP preview. Emiliano Grillo leads RBC Canadian Open.">
 <link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GuyTalk">
+<link rel="apple-touch-icon" href="/assets/logo/guytalk-icon-192.png">
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="https://www.guytalkmedia.com/brief/issue-046/">
-<meta property="og:title"       content="SpaceX goes public — the largest IPO ever. Knicks fight elimination. Carolina one win from the Cup.">
+<meta property="og:title"       content="<a href="https://www.cnbc.com/quotes/PRIVATE:SPACEX" class="entity-company" target="_blank" rel="noopener">SpaceX</a> goes public — the largest IPO ever. Knicks fight elimination. Carolina one win from the Cup.">
 <meta property="og:description" content="NBA Finals - Game 5 tomorrow. Los Angeles Dodgers 8-6 Pittsburgh Pirates. MSC Cruises Barcelona-Catalunya GP preview. Emiliano Grillo leads RBC Canadian Open.">
 <meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-cards/issue-046.png">
 <meta property="og:site_name"   content="GuyTalk">
@@ -31,12 +37,6 @@
 !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
 posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only'});
 </script>
-<!-- PWA -->
-<link rel="manifest" href="/manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="GuyTalk">
-<link rel="apple-touch-icon" href="/assets/logo/guytalk-icon-192.png">
 </head>
 <body>
 
@@ -71,27 +71,54 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </div>
     <nav class="section-jump" aria-label="Jump to section">
       <a href="#sports" class="sj-link">Sports</a>
-      <a href="#the-take" class="sj-link sj-link-take">The Take</a>
-      <a href="#nhl" class="sj-link">NHL</a>
-      <a href="#f1" class="sj-link">F1</a>
-      <a href="#golf" class="sj-link">Golf</a>
-      <a href="#worldcup" class="sj-link">World Cup</a>
       <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
-      <a href="#sharp-take" class="sj-link">Sharp Take</a>
+    </nav>
+    <nav class="section-subjump" aria-label="Jump to sports subsection" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;padding-left:14px;font-size:0.85em;opacity:0.8;">
+      <a href="#nhl" class="sj-link sj-sub">NHL</a>
+      <a href="#f1" class="sj-link sj-sub">F1</a>
+      <a href="#golf" class="sj-link sj-sub">Golf</a>
+      <a href="#worldcup" class="sj-link sj-sub">World Cup</a>
     </nav>
   </div>
 </div>
 
+<style>
+  /* Accordion (Fix 7). The rail is right-aligned, so children are INSET from the
+     right edge (margin-right) to read as a clean indent beneath the parent —
+     not widened leftward. Consistent inset + smaller dots = clear hierarchy. */
+  .brief-sidenav .bsn-group{display:flex;flex-direction:column;align-items:flex-end;}
+  .brief-sidenav .bsn-children{display:flex;flex-direction:column;align-items:flex-end;gap:14px;max-height:0;margin-top:0;overflow:hidden;transition:max-height .28s ease,margin-top .28s ease;}
+  .brief-sidenav .bsn-group.open .bsn-children{max-height:600px;margin-top:14px;}
+  .brief-sidenav .bsn-caret{display:inline-block;width:1em;margin-right:2px;font-size:.78em;opacity:.65;transition:transform .2s ease;cursor:pointer;}
+  .brief-sidenav .bsn-group.open .bsn-caret{transform:rotate(90deg);}
+  .brief-sidenav .bsn-link{font-size:0.95em;}
+  .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
+  .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
+  .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
+  /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
+     so faces/players show instead of a jersey-number zoom. */
+  .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
+  .brief-hero-banner--feature{background-position:center 20%;}
+  /* Rundown bullets — clickable anchor navigation. */
+  .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
+  .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
+  .rbd-bullet:hover .rbd-cat{text-decoration:underline;text-underline-offset:2px;}
+</style>
 <nav class="brief-sidenav" aria-label="On this page">
   <a href="#top" class="bsn-link" data-target="top"><span class="bsn-txt">Top</span><span class="bsn-dot"></span></a>
-  <a href="#the-lead" class="bsn-link" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
-  <a href="#nhl" class="bsn-link" data-target="nhl"><span class="bsn-txt">NHL</span><span class="bsn-dot"></span></a>
-  <a href="#f1" class="bsn-link" data-target="f1"><span class="bsn-txt">F1</span><span class="bsn-dot"></span></a>
-  <a href="#golf" class="bsn-link" data-target="golf"><span class="bsn-txt">Golf</span><span class="bsn-dot"></span></a>
-  <a href="#worldcup" class="bsn-link" data-target="worldcup"><span class="bsn-txt">World Cup</span><span class="bsn-dot"></span></a>
-  <a href="#markets" class="bsn-link" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
-  <a href="#culture" class="bsn-link" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
+  <div class="bsn-group" data-group="sports">
+    <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-caret" role="button" tabindex="0" aria-label="Toggle Sports subsections">▸</span><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
+    <div class="bsn-children">
+      <a href="#the-lead" class="bsn-link bsn-sub" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
+      <a href="#nhl" class="bsn-link bsn-sub" data-target="nhl"><span class="bsn-txt">NHL</span><span class="bsn-dot"></span></a>
+      <a href="#f1" class="bsn-link bsn-sub" data-target="f1"><span class="bsn-txt">F1</span><span class="bsn-dot"></span></a>
+      <a href="#golf" class="bsn-link bsn-sub" data-target="golf"><span class="bsn-txt">Golf</span><span class="bsn-dot"></span></a>
+      <a href="#worldcup" class="bsn-link bsn-sub" data-target="worldcup"><span class="bsn-txt">World Cup</span><span class="bsn-dot"></span></a>
+    </div>
+  </div>
+<a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
+<a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
   <a href="#sharp-take" class="bsn-link" data-target="sharp-take"><span class="bsn-txt">Sharp Take</span><span class="bsn-dot"></span></a>
 </nav>
 
@@ -106,26 +133,23 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   </div>
 </div>
 
-  <div class="top-module">
-    <div class="top-module-label">Today's Hits</div>
-  <div class="hits-list">
-    <a href="#markets" class="hit-item hit-markets">
-      <span class="hit-tag">Markets</span>
-      <span class="hit-text">SpaceX goes public today — the largest IPO in history, debuting on the Nasdaq as SPCX at a ~$1.75 trillion valuation.</span>
-    </a>
-    <a href="#sports" class="hit-item hit-sports">
-      <span class="hit-tag">Sports</span>
-      <span class="hit-text">Knicks-Spurs Finals Game 5 tomorrow — New York wins it all or the Spurs force Game 6.</span>
-    </a>
-    <a href="#culture" class="hit-item hit-culture">
-      <span class="hit-tag">Culture</span>
-      <span class="hit-text">Doctor Who going dark for a creative overhaul. A 24 Jump Street sequel is in the works with Hill, Tatum, and Ice Cube in talks.</span>
-    </a>
-  </div>
-  <div class="key-takeaway">
-    <div class="kt-label">Key Takeaway</div>
-    <p class="kt-text">Knicks-Spurs NBA Finals Game 5 is tomorrow and New York's season is on the line. Tech stocks ripped today with AMD up 8% and Dell up 5.8%, even as the broader market stays choppy on the week. The RBC Canadian Open has a five-way logjam at the top heading into the weekend.</p>
-  </div>
+  <div class="rundown-band">
+    <div class="rundown-label"><span class="rundown-dot"></span>The Rundown</div>
+    <p class="rundown-text">SpaceX goes public today — the largest IPO in history.</p>
+    <div class="rbd-bullets">
+      <a class="rbd-bullet rbd-sports" href="#sports">
+        <span class="rbd-cat">Sports</span>
+        <span class="rbd-line">Five players tied at 6-under. Grillo, Cole, and Koepka all in the hunt at the Canadian Open.</span>
+      </a>
+      <a class="rbd-bullet rbd-markets" href="#markets">
+        <span class="rbd-cat">Markets</span>
+        <span class="rbd-line">Tech stocks closed strong with the Nasdaq up 3 · S&amp;P 500 +1.7%, Nasdaq +3.4%</span>
+      </a>
+      <a class="rbd-bullet rbd-culture" href="#culture">
+        <span class="rbd-cat">Culture</span>
+        <span class="rbd-line">24 Jump Street is happening · Kim Kardashian stole the F1 race winner's towel</span>
+      </a>
+    </div>
   </div>
 
 <div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
@@ -133,7 +157,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <section class="brief-section" id="the-lead">
     <div class="section-label sl-sports">The Lead</div>
 
-    <h3>New York Knicks vs. San Antonio Spurs — NBA Finals - Game 5. Tomorrow, 8:30 PM ET.</h3>
+    <h3><a href="https://www.nba.com/knicks" class="entity-team" target="_blank" rel="noopener">New York Knicks</a> vs. <a href="https://www.nba.com/spurs" class="entity-team" target="_blank" rel="noopener">San Antonio Spurs</a> — NBA Finals - Game 5. Tomorrow, 8:30 PM ET.</h3>
     <div class="upcoming-card upcoming-finals">
       <div class="upcoming-label">Tomorrow · 8:30 PM ET — NBA Finals - Game 5</div>
       <div class="upcoming-matchup">
@@ -158,16 +182,15 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </ul>
     <div class="brief-img upcoming-arena-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/AT%26T_Center_2019.jpg/1280px-AT%26T_Center_2019.jpg" alt="AT&amp;T Center" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">AT&amp;T Center · San Antonio, Texas · Home of the Spurs</div></div>
   </section>
-
-  <section class="brief-section" id="nhl">
+<div class="sport-subsection">  <section class="brief-section" id="nhl">
     <div class="section-label sl-sports">NHL</div>
     <h3>Hurricanes take a 3-2 series lead — one win from the Stanley Cup.</h3>
     <div class="where-line"><span class="where-pin">◍</span>Lenovo Center · Raleigh, NC</div>
 
     <div class="scoreboard">
-      <div class="score-side"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/vgk.png" class="score-logo" alt="VGK" loading="lazy" onerror="this.style.display='none'"><div class="score-team">Vegas Golden Knights</div><div class="score-num">2</div></div>
+      <div class="score-side"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/vgk.png" class="score-logo" alt="VGK" loading="lazy" onerror="this.style.display='none'"><div class="score-team"><a href="https://www.nhl.com/goldenknights" class="entity-team" target="_blank" rel="noopener">Vegas Golden Knights</a></div><div class="score-num">2</div></div>
       <div class="score-center"><div class="score-meta">Stanley Cup Final - Game 5</div><div class="score-badge">CAR Win</div></div>
-      <div class="score-side"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/car.png" class="score-logo" alt="CAR" loading="lazy" onerror="this.style.display='none'"><div class="score-team">Carolina Hurricanes</div><div class="score-num">4</div></div>
+      <div class="score-side"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/car.png" class="score-logo" alt="CAR" loading="lazy" onerror="this.style.display='none'"><div class="score-team"><a href="https://www.nhl.com/hurricanes" class="entity-team" target="_blank" rel="noopener">Carolina Hurricanes</a></div><div class="score-num">4</div></div>
     </div>
     <ul class="detail-list">
       <li><span><span class="dl-label">Why it matters:</span> Carolina won Game 5 at home 4-2, putting Vegas on the brink and giving Raleigh a chance to celebrate a championship it has never seen.</span></li>
@@ -176,32 +199,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <li><span><span class="dl-label">What to say:</span> Carolina beat Vegas 4-2 and now leads 3-2 in the series. They're one win from the Cup — at home. That's a big deal.</span></li>
       <li><span><span class="dl-label">When:</span> Played 8:00 PM ET</span></li>
     </ul>
-  </section>
-
-<a href="/live/" class="brief-live-cta">
-  <span class="blc-dot"></span>
-  <div class="blc-inner">
-    <div class="blc-label">Happening Now</div>
-    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
-  </div>
-  <span class="blc-btn">Open GuyTalk Live →</span>
-</a>
-
-  <section class="brief-section take-section" id="the-take">
-    <div class="section-label sl-take">The Take</div>
-    <div class="take-grid">
-      <div class="take-card take-office">
-        <span class="take-label">Office Take</span>
-        <p class="take-text">SpaceX is about to be worth ~$1.75 trillion — bigger than every company on earth except a small handful — and its own prospectus says it will not be profitable any time soon. The whole market is selling other stuff today just to raise cash to buy it.</p>
-        <span class="take-hint">Drop this at work.</span>
-      </div>
-      <div class="take-card take-bar">
-        <span class="take-label">Bar Argument</span>
-        <p class="take-text">The Knicks blow this. Up 3-1, sure — but closing out a Finals on the road against a 22-year-old Wembanyama is exactly the spot New York has folded in for 50 years. Spurs win Game 5 and steal the series.</p>
-        <span class="take-hint">Start a fight with this one.</span>
-      </div></div>
-  </section>
-
+  </section></div>
   <section class="brief-section" id="sports-scores">
     <div class="section-label sl-sports">More Sports</div>
     <div class="other-scores-label">Other scores worth knowing</div>
@@ -279,21 +277,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </div>
 
   </section>
-
-  <section class="brief-section" id="f1">
-    <div class="section-label sl-sports">Formula 1</div>
+<div class="sport-subsection">  <section class="brief-section" id="f1">
+    <div class="section-label sl-sports"><a href="https://www.formula1.com" class="entity-org" target="_blank" rel="noopener">Formula 1</a></div>
     <div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Piastri_2025_Espagne_Grand_Prix.jpg/1280px-Piastri_2025_Espagne_Grand_Prix.jpg" alt="Circuit de Barcelona-Catalunya · Spain" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Circuit de Barcelona-Catalunya · Spain</div></div>
     <h3>Barcelona this weekend — the track that proves who is actually fast.</h3>
     <div class="where-line"><span class="where-pin">◍</span>Circuit de Barcelona-Catalunya · Spain</div>
     <ul class="detail-list">
       <li><span><span class="dl-label">Why it matters:</span> Kimi Antonelli, 19, leads the championship and is the breakout story of the season. Barcelona-Catalunya is F1's technical benchmark — fast corners, brutal tire wear — so it is the race that shows whether his car, and his title lead, are the real thing.</span></li>
       <li><span><span class="dl-label">Championship:</span> He is also a meme right now: Kim Kardashian grabbed his towel after he won Monaco, and he has leaned all the way into it heading into this weekend.</span></li>
-      <li><span><span class="dl-label">Watch for:</span> Whether Antonelli can back up the hype on a circuit that rewards balance over raw power — and which of the McLarens or Ferraris is closest if he slips.</span></li>
+      <li><span><span class="dl-label">Watch for:</span> Whether Antonelli can back up the hype on a circuit that rewards balance over raw power — and which of the <a href="https://www.formula1.com/en/teams/McLaren.html" class="entity-team" target="_blank" rel="noopener">McLaren</a>s or <a href="https://www.formula1.com/en/teams/Ferrari.html" class="entity-team" target="_blank" rel="noopener">Ferrari</a>s is closest if he slips.</span></li>
+
       <li><span><span class="dl-label">What to say:</span> There is a 19-year-old leading the F1 title, he just won Monaco, and now he is internet-famous because Kim Kardashian stole his towel. Barcelona tells you if he is the real deal.</span></li>
     </ul>
-  </section>
-
-  <section class="brief-section" id="golf">
+  </section></div>
+<div class="sport-subsection">  <section class="brief-section" id="golf">
     <div class="section-label sl-golf">Golf</div>
 
     <h3>Five players tied at 6-under. Grillo, Cole, and Koepka all in the hunt at the Canadian Open.</h3>
@@ -304,15 +301,15 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       
       <li><span><span class="dl-label">The angle:</span> Five players deadlocked at the top means the weekend is genuinely wide open. One hot round Saturday and the whole picture changes.</span></li>
       <li><span><span class="dl-label">Watch for:</span> Whether Koepka can separate himself from the pack on Saturday, or if Emiliano Grillo or Eric Cole make a move before the leaders even tee off Sunday.</span></li>
+
       <li><span><span class="dl-label">What to say:</span> Five guys tied at the Canadian Open going into the weekend — Koepka's right there, so you know it's about to get interesting.</span></li>
     </ul>
-  </section>
-
-  <section class="brief-section" id="worldcup">
+  </section></div>
+<div class="sport-subsection">  <section class="brief-section" id="worldcup">
     <div class="section-label sl-culture">World Cup 2026</div>
     <div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Afici%C3%B3n_del_Estadio_azteca_final_2019.jpg/1280px-Afici%C3%B3n_del_Estadio_azteca_final_2019.jpg" alt="Estadio Azteca · Mexico City · The World Cup opener" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Estadio Azteca · Mexico City · The World Cup opener</div></div>
     <h3>Mexico open the World Cup with a 2-0 win. The USA play their opener tonight.</h3>
-    <div class="where-line"><span class="where-pin">◍</span>June 11 – July 19 · USA / Canada / Mexico · Day 2</div>
+    <div class="where-line"><span class="where-pin">◍</span>June 11 – July 19 · USA / Canada / Mexico · Day 7</div>
     <ul class="detail-list">
       <li><span><span class="dl-label">What happened:</span> Mexico beat South Africa 2-0 at a packed Estadio Azteca to open the tournament — Julián Quiñones scored inside 10 minutes and Raúl Jiménez added a second — in a chaotic match that set a record with three red cards. The USA open their World Cup tonight against Paraguay at SoFi Stadium (9pm ET, Fox).</span></li>
       <li><span><span class="dl-label">Why it matters:</span> This is the first 48-team World Cup, across three countries, with most of it on US soil — a full month of the one event the entire planet stops for, and it is happening in your backyard.</span></li>
@@ -324,7 +321,16 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <li><span><span class="dl-label">USA opener:</span> USA vs Paraguay, June 12 · SoFi Stadium · 9pm ET · Fox</span></li>
       <li><span><span class="dl-label">Final:</span> July 19 · MetLife Stadium, New York</span></li>
     </ul>
-  </section>
+  </section></div>
+
+<a href="/live/" class="brief-live-cta">
+  <span class="blc-dot"></span>
+  <div class="blc-inner">
+    <div class="blc-label">Happening Now</div>
+    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
+  </div>
+  <span class="blc-btn">Open GuyTalk Live →</span>
+</a>
 
 <div class="brief-inline-cta">
   <div class="bic-inner">
@@ -343,7 +349,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <li><span class="mkh-head">How it hits the rest of the market.</span><span class="mkh-sub">It is the biggest IPO ever, so funds and retail are selling other holdings to free up cash for it — expect extra volatility, and even the Mag 7 could feel the pull. The catch: SpaceX is not profitable and says it will not be soon.</span></li>
       <li><span class="mkh-head">How the shares got split up.</span><span class="mkh-sub">Pre-IPO allocations ran through Schwab, Fidelity, Robinhood, E-Trade and SoFi — each with its own bar (Schwab wanted $100k; Fidelity dropped its minimum to $2k just for this one). Once it lists, SPCX trades on the Nasdaq like any other stock.</span></li>
     </ul>
-    <p class="markets-mood">Tech stocks closed strong with the Nasdaq up 3.4% on the day, led by AMD surging 8.0% and Dell jumping 5.8%, while Tesla added 4.6% and Nvidia gained 2.2%. The broader market moved higher too, with SPY up 1.7% and small caps joining the rally with IWM up 3.0%. Treasury yields fell 1.7% on the day, which markets read as a sign that rate pressure may be easing slightly.</p>
+    <p class="markets-mood">Tech stocks closed strong with the Nasdaq up 3.4% on the day, led by AMD surging 8.0% and Dell jumping 5.8%, while <a href="https://www.cnbc.com/quotes/TSLA" class="entity-company" target="_blank" rel="noopener">Tesla</a> added 4.6% and <a href="https://www.cnbc.com/quotes/NVDA" class="entity-company" target="_blank" rel="noopener">Nvidia</a> gained 2.2%. The broader market moved higher too, with SPY up 1.7% and small caps joining the rally with IWM up 3.0%. Treasury yields fell 1.7% on the day, which markets read as a sign that rate pressure may be easing slightly.</p>
 
     <div class="mkt-card">
       <div class="mkt-card-hd">
@@ -352,22 +358,22 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       </div>
       <div class="mkt-index-grid">
         <div class="mkt-tile up">
-          <div class="mt-name">S&amp;P 500</div>
+          <div class="mt-name">SPY</div>
           <div class="mt-price">$737.76</div>
           <div class="mt-foot"><span class="mt-chg up">+1.7%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,16.8 6.9,14.1 10.8,10.3 14.7,16.1 18.6,16.5 22.5,19.7 26.4,14.8 30.3,13.9 34.2,12.0 38.1,8.8 42.0,8.9 46.0,6.2 49.9,5.0 53.8,3.7 57.7,3.0 61.6,6.4 65.5,4.6 69.4,17.2 73.3,16.1 77.2,17.5 81.1,25.0 85.0,17.1" fill="none" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
         <div class="mkt-tile up">
-          <div class="mt-name">Dow</div>
+          <div class="mt-name">DIA</div>
           <div class="mt-price">$509.36</div>
           <div class="mt-foot"><span class="mt-chg up">+1.8%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,21.2 6.9,21.9 10.8,18.4 14.7,23.7 18.6,22.1 22.5,25.0 26.4,18.9 30.3,16.2 34.2,13.2 38.1,14.1 42.0,12.5 46.0,12.3 49.9,8.7 53.8,8.1 57.7,5.6 61.6,11.2 65.5,3.0 69.4,9.8 73.3,10.5 77.2,10.1 81.1,18.9 85.0,10.1" fill="none" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
         <div class="mkt-tile up">
-          <div class="mt-name">Nasdaq</div>
+          <div class="mt-name">QQQ</div>
           <div class="mt-price">$717.12</div>
           <div class="mt-foot"><span class="mt-chg up">+3.4%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,19.3 6.9,16.2 10.8,14.1 14.7,18.6 18.6,19.9 22.5,21.7 26.4,16.8 30.3,16.3 34.2,15.0 38.1,9.7 42.0,10.0 46.0,7.4 49.9,6.3 53.8,4.4 57.7,3.0 61.6,3.8 65.5,5.3 69.4,20.2 73.3,15.6 77.2,19.1 81.1,25.0 85.0,15.2" fill="none" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
         <div class="mkt-tile up">
-          <div class="mt-name">Russell 2000</div>
+          <div class="mt-name">IWM</div>
           <div class="mt-price">$290.41</div>
           <div class="mt-foot"><span class="mt-chg up">+3.0%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,13.9 6.9,13.8 10.8,11.8 14.7,19.7 18.6,21.6 22.5,25.0 26.4,17.1 30.3,14.0 34.2,11.0 38.1,4.8 42.0,4.9 46.0,3.0 49.9,4.8 53.8,6.5 57.7,3.4 61.6,8.0 65.5,3.0 69.4,15.0 73.3,12.2 77.2,11.1 81.1,14.5 85.0,4.9" fill="none" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
@@ -454,6 +460,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <li><span><span class="dl-label">Why it matters:</span> History says go in eyes open: mega-cap IPOs are usually rocky early. Facebook fell ~33% in its first year before eventually running up more than 1,500%; Rivian is still down ~85%; Uber and Alibaba both needed years to pay off. Size does not predict the outcome — the business does.</span></li>
       <li><span><span class="dl-label">Watch for:</span> Underneath the IPO noise, the tape was strong: the Nasdaq closed up 3.4%, AMD ripped 8%, and Treasury yields slipped — a sign the AI-hardware selloff earlier in the week found a floor.</span></li>
       <li><span><span class="dl-label">What to bring up:</span> SpaceX is about to be worth more than every company on earth except a handful — and it is not even profitable. Whether you buy a share or not, this is the biggest market event of the year.</span></li>
+
     </ul>
   </section>
 
@@ -470,6 +477,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="culture-head">24 Jump Street is happening — Hill, Tatum, and Ice Cube all in talks to return.</div>
           <p class="culture-line"><strong>What happened:</strong> Jonah Hill, Channing Tatum, and Ice Cube are in talks to come back for 24 Jump Street, the next installment in the comedy franchise.</p>
           <p class="culture-line"><strong>Why it matters:</strong> The first two films worked because those three actually have chemistry — this isn't a reboot with a new cast, it's the real group, which is the only version worth caring about.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> They're actually getting Hill, Tatum, and Ice Cube back for another Jump Street. That's the only way this works — and it sounds like it's happening.</p>
         </div>
       </li>
@@ -479,8 +488,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
             <span class="culture-tag ctag-sports">Viral</span>
           </div>
           <div class="culture-head">Kim Kardashian stole the F1 race winner's towel — and the internet has not stopped.</div>
-          <p class="culture-line"><strong>What happened:</strong> Kimi Antonelli, 19, won the Monaco Grand Prix — then a camera caught Kim Kardashian, trackside supporting Lewis Hamilton, casually grabbing the new winner's towel to wipe her own face. The clip went everywhere. Ahead of this weekend's Barcelona race, Antonelli and Mercedes leaned all the way in with a mock &quot;missing towel&quot; search: &quot;Have you seen my towel?&quot;</p>
+          <p class="culture-line"><strong>What happened:</strong> Kimi Antonelli, 19, won the Monaco Grand Prix — then a camera caught Kim Kardashian, trackside supporting Lewis Hamilton, casually grabbing the new winner's towel to wipe her own face. The clip went everywhere. Ahead of this weekend's Barcelona race, Antonelli and <a href="https://www.formula1.com/en/teams/Mercedes.html" class="entity-team" target="_blank" rel="noopener">Mercedes</a> leaned all the way in with a mock &quot;missing towel&quot; search: &quot;Have you seen my towel?&quot;</p>
           <p class="culture-line"><strong>Why it matters:</strong> It is the perfect crossover — F1, celebrity, and a meme in one clip — and it did more for Antonelli's profile in 48 hours than a season of results would. The kid handled it better than most veterans would have.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> Kim Kardashian straight-up swiped the F1 winner's towel at Monaco, and the 19-year-old's response — &quot;have you seen my towel?&quot; — was perfect. Best PR move on the grid.</p>
         </div>
       </li>
@@ -492,6 +503,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="culture-head">The Brutalist — the film worth your weekend.</div>
           <p class="culture-line"><strong>What happened:</strong> Adrien Brody stars as a Hungarian-Jewish architect who arrives in postwar America and tries to build something that lasts.</p>
           <p class="culture-line"><strong>Why it matters:</strong> This is a slow-burn, character-driven drama about ambition and the immigrant experience — the kind of film that rewards patience and actually sticks with you.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> If you want something where the main character actually has to earn it, The Brutalist is the move this weekend.</p>
         </div>
       </li>
@@ -512,40 +525,26 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </div>
   </section>
 
-  <div class="sharp-take" id="sharp-take">
+<div class="umbrella-head" id="sharp-take"><h2 class="umbrella-title">Sharp Take</h2></div>
+
+  <section class="brief-section take-section" id="the-take">
+    <div class="section-label sl-take">The Take</div>
+    <div class="take-grid">
+      <div class="take-card take-office">
+        <span class="take-label">Office Take</span>
+        <p class="take-text">SpaceX is about to be worth ~$1.75 trillion — bigger than every company on earth except a small handful — and its own prospectus says it will not be profitable any time soon. The whole market is selling other stuff today just to raise cash to buy it.</p>
+        <span class="take-hint">Drop this at work.</span>
+      </div>
+      <div class="take-card take-bar">
+        <span class="take-label">Bar Argument</span>
+        <p class="take-text">The Knicks blow this. Up 3-1, sure — but closing out a Finals on the road against a 22-year-old Wembanyama is exactly the spot New York has folded in for 50 years. Spurs win Game 5 and steal the series.</p>
+        <span class="take-hint">Start a fight with this one.</span>
+      </div></div>
+  </section>
+
+  <div class="sharp-take">
     <div class="sharp-take-label">Final Sharp Take</div>
     <p>The Dodgers survived Pittsburgh and the Cubs rolled through Coors, but the baseball results are background noise compared to what's coming. The Knicks face elimination tomorrow, Carolina is one win from the Stanley Cup, and the Canadian Open leaderboard is a five-way tie with Koepka right in the middle of it. Tech bounced hard today — AMD up 8%, Dell up nearly 6% — which suggests the selling pressure from earlier this week finally found a floor. Whether that holds into next week is the real question.</p>
-  </div>
-
-  <div class="glance-card">
-    <div class="glance-head"><span class="glance-dot"></span>Today at a Glance</div>
-    <div class="glance-rows">
-      <a class="glance-row hit-sports" href="#sports">
-        <span class="glance-k">Main story</span>
-        <span class="glance-v">Los Angeles Dodgers 8–6 Pittsburgh Pirates</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-markets" href="#markets">
-        <span class="glance-k">Market mood</span>
-        <span class="glance-v">SPY +1.7% — markets edged up</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-culture" href="#the-take">
-        <span class="glance-k">Best convo</span>
-        <span class="glance-v">The Knicks blow this. Up 3-1, sure — but closing out a Finals on the road against a 22-year-old Wembanyama is exactly the spot New York has folded in for 50 years. Spurs win Game 5 and steal the series.</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-sports" href="#sports">
-        <span class="glance-k">Watch next</span>
-        <span class="glance-v">NY @ SA (NBA Finals - Game 5) — tomorrow</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-culture" href="#culture">
-        <span class="glance-k">Quick rec</span>
-        <span class="glance-v">Watch this: The Brutalist — the film worth your weekend.</span>
-        <span class="glance-arr">→</span>
-      </a>
-    </div>
   </div>
 
 </article>
@@ -560,20 +559,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-045/" class="more-issue-card">
-    <span class="mi-num">#045</span>
-    <span class="mi-title">New York Knicks beat San Antonio Spurs 107–106. Padraig Harrington leads RBC Canadian Open. MSC Cruises Barcelona-Catalunya Grand Prix this weekend.</span>
-    <span class="mi-date">Thursday, June 11, 2026</span>
+  <a href="/brief/issue-053/" class="more-issue-card">
+    <span class="mi-num">#053</span>
+    <span class="mi-title">Fed signals 2026 rate hike. Hamilton wins in Barcelona. Messi ties World Cup scoring record.</span>
+    <span class="mi-date">Wednesday, June 17, 2026</span>
   </a>
-  <a href="/brief/issue-044/" class="more-issue-card">
-    <span class="mi-num">#044</span>
-    <span class="mi-title">Spurs-Knicks decides it all tonight. Marlins pound Diamondbacks. Antonelli wins Monaco.</span>
-    <span class="mi-date">Wednesday, June 10, 2026</span>
+  <a href="/brief/issue-052/" class="more-issue-card">
+    <span class="mi-num">#052</span>
+    <span class="mi-title">Dow hits record on Iran deal. Hurricanes win the Cup. OpenAI bleeds $34B annually.</span>
+    <span class="mi-date">Wednesday, June 17, 2026</span>
   </a>
-  <a href="/brief/issue-043/" class="more-issue-card">
-    <span class="mi-num">#043</span>
-    <span class="mi-title">Spurs steal Game 3. Antonelli wins Monaco. Tech stocks crater again.</span>
-    <span class="mi-date">Tuesday, June 9, 2026</span>
+  <a href="/brief/issue-051/" class="more-issue-card">
+    <span class="mi-num">#051</span>
+    <span class="mi-title">U.S. and Iran sign peace deal Friday. SpaceX IPO valued at $1.77 trillion. Knicks win first championship since 1973.</span>
+    <span class="mi-date">Tuesday, June 16, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>
@@ -614,7 +613,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   </div>
   <p class="footer-fine">
     Sports data via ESPN and Jolpica/Ergast. Market data via Finnhub.io; informational only, not investment advice.
-    GuyTalk is an independent publication and is not affiliated with or endorsed by ESPN, the NBA, MLB, NHL, NFL, Formula 1, the PGA Tour, or any league or team. Team names, logos, and trademarks are the property of their respective owners.
+    GuyTalk is an independent publication and is not affiliated with or endorsed by ESPN, the NBA, MLB, NHL, NFL, Formula 1, the <a href="https://www.pgatour.com" class="entity-org" target="_blank" rel="noopener">PGA Tour</a>, or any league or team. Team names, logos, and trademarks are the property of their respective owners.
   </p>
 </footer>
 
@@ -687,6 +686,24 @@ window.handleBriefSignup = function(e, form) {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
+})();
+
+// Sidebar accordion — the caret toggles a parent's subsections open/closed
+// without jumping; the parent/child labels still jump to their section.
+(function () {
+  var carets = [].slice.call(document.querySelectorAll('.brief-sidenav .bsn-caret'));
+  carets.forEach(function (caret) {
+    function toggle(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var group = caret.closest('.bsn-group');
+      if (group) group.classList.toggle('open');
+    }
+    caret.addEventListener('click', toggle);
+    caret.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') toggle(e);
+    });
+  });
 })();
 </script>
 

@@ -446,6 +446,42 @@ function main() {
     passed++;
   }
 
+  // 11b. RUNDOWN MARKET DATA CONSISTENCY — hard gate
+  // The Rundown bullet must use the same verified index data as the market cards.
+  // All three must agree: Rundown text, market-card tiles, Sharp Take.
+  // Rule: market data is centralized — no section invents its own S&P/Nasdaq/Dow move.
+  console.log('\n  [Rundown Market Data Consistency]');
+  {
+    const spy = markets?.SPY;
+    const qqq = markets?.QQQ;
+    const hasSpyData = spy && (spy.indexDayChangePct != null || spy.dayChangePct != null);
+    const hasQqqData = qqq && (qqq.indexDayChangePct != null || qqq.dayChangePct != null);
+    run(
+      'Rundown: market data present for S&P 500 and Nasdaq',
+      !!(hasSpyData && hasQqqData),
+      !hasSpyData ? 'SPY market data missing — Rundown will show fallback text' :
+      !hasQqqData ? 'QQQ market data missing — Rundown will show fallback text' : undefined
+    );
+    if (hasSpyData && spy.indexDayChangePct == null) {
+      warn('Rundown: S&P 500 using ETF day% (indexDayChangePct not populated) — true index % preferred');
+    }
+    if (hasQqqData && qqq.indexDayChangePct == null) {
+      warn('Rundown: Nasdaq using ETF day% (indexDayChangePct not populated) — true index % preferred');
+    }
+    // If both index and ETF % are present, they should agree within 0.5ppt.
+    // A large divergence means the wrong source is being used somewhere.
+    if (spy?.indexDayChangePct != null && spy?.dayChangePct != null) {
+      const diff = Math.abs(spy.indexDayChangePct - spy.dayChangePct);
+      if (diff > 0.5) {
+        run(
+          'Rundown: S&P 500 index% and ETF% agree (within 0.5ppt)',
+          false,
+          `index=${spy.indexDayChangePct.toFixed(2)}% ETF=${spy.dayChangePct.toFixed(2)}% — divergence ${diff.toFixed(2)}ppt may indicate stale ETF quote`
+        );
+      }
+    }
+  }
+
   // 12. CROSS-SECTION CONSISTENCY — Fed/macro framing must agree across sections
   // Markets is the source of truth; Culture and condensed sections must not contradict.
   console.log('\n  [Cross-Section Consistency]');

@@ -487,8 +487,9 @@ async function fetchMarkets() {
   }
 
   // Real index levels via Yahoo Finance (^GSPC, ^DJI, ^IXIC, ^RUT) — keyless.
-  // Stored as results[sym].indexPrice / indexDisplay so the HTML tile can show
-  // true index values instead of ETF dollar prices.
+  // Stored as results[sym].indexPrice / indexDisplay / indexDayChangePct so all
+  // sections (market tiles, Rundown bullet, Sharp Take) use the same true index
+  // values — never ETF dollar prices or independently calculated moves.
   for (const sym of ['SPY', 'DIA', 'QQQ', 'IWM']) {
     const cfg = TICKERS[sym];
     if (!cfg?.indexYahoo || !results[sym]) continue;
@@ -497,6 +498,11 @@ async function fetchMarkets() {
       if (sp?.price) {
         results[sym].indexPrice = sp.price;
         results[sym].indexDisplay = cfg.indexDisplay;
+        // True index day % — same source as the index level card.
+        // All prose sections must use this; never the ETF's dayChangePct.
+        if (sp.prevClose && sp.price) {
+          results[sym].indexDayChangePct = ((sp.price - sp.prevClose) / sp.prevClose) * 100;
+        }
       }
     } catch (_) {}
     await new Promise(r => setTimeout(r, 120));

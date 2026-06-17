@@ -237,15 +237,20 @@ function buildRundown(issue) {
     return parts.slice(0, 3).join(' · ') || 'Scores and results inside.';
   })();
 
-  // Markets bullet — market mood + broad index move summary
+  // Markets bullet — market mood + broad index move summary.
+  // Prefers indexDayChangePct (true ^GSPC / ^IXIC day %) over the ETF's
+  // dayChangePct. This is the same data the market-card tiles use — no section
+  // may independently calculate or invent S&P/Nasdaq/Dow moves.
   const marketsBullet = (() => {
     const parts = [];
     const m = copy.markets || {};
     if (m.mood) parts.push(m.mood.split(/[.—–]/)[0].trim());
     const qs = issue.markets || {};
+    const spyPct = qs.SPY?.indexDayChangePct ?? qs.SPY?.dayChangePct;
+    const qqqPct = qs.QQQ?.indexDayChangePct ?? qs.QQQ?.dayChangePct;
     const changes = [
-      qs.SPY?.dayChangePct != null && `S&P 500 ${qs.SPY.dayChangePct >= 0 ? '+' : ''}${qs.SPY.dayChangePct.toFixed(1)}%`,
-      qs.QQQ?.dayChangePct != null && `Nasdaq ${qs.QQQ.dayChangePct >= 0 ? '+' : ''}${qs.QQQ.dayChangePct.toFixed(1)}%`,
+      spyPct != null && `S&P 500 ${spyPct >= 0 ? '+' : ''}${spyPct.toFixed(1)}%`,
+      qqqPct != null && `Nasdaq ${qqqPct >= 0 ? '+' : ''}${qqqPct.toFixed(1)}%`,
     ].filter(Boolean).join(', ');
     if (changes) parts.push(changes);
     return parts.slice(0, 2).join(' · ') || 'Market data inside.';
@@ -266,18 +271,18 @@ function buildRundown(issue) {
     <div class="rundown-label"><span class="rundown-dot"></span>The Rundown</div>
     <p class="rundown-text">${esc(narrative)}</p>
     <div class="rbd-bullets">
-      <div class="rbd-bullet rbd-sports">
+      <a class="rbd-bullet rbd-sports" href="#sports">
         <span class="rbd-cat">Sports</span>
         <span class="rbd-line">${esc(sportsBullet)}</span>
-      </div>
-      <div class="rbd-bullet rbd-markets">
+      </a>
+      <a class="rbd-bullet rbd-markets" href="#markets">
         <span class="rbd-cat">Markets</span>
         <span class="rbd-line">${esc(marketsBullet)}</span>
-      </div>
-      <div class="rbd-bullet rbd-culture">
+      </a>
+      <a class="rbd-bullet rbd-culture" href="#culture">
         <span class="rbd-cat">Culture</span>
         <span class="rbd-line">${esc(cultureBullet)}</span>
-      </div>
+      </a>
     </div>
   </div>`;
 }
@@ -430,6 +435,10 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
      so faces/players show instead of a jersey-number zoom. */
   .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
   .brief-hero-banner--feature{background-position:center 20%;}
+  /* Rundown bullets — clickable anchor navigation. */
+  .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
+  .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
+  .rbd-bullet:hover .rbd-cat{text-decoration:underline;text-underline-offset:2px;}
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   ${navLink('top', 'Top')}
@@ -1816,9 +1825,11 @@ ${headlines.map(h => `      <li><span class="mkh-head">${esc(h.head)}</span>${h.
     const price = hasIndex
       ? q.indexPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })
       : (q.price !== undefined && q.price !== null ? fmtPrice(sym, q.price) : '—');
-    const hasDay = q.dayChangePct !== null && q.dayChangePct !== undefined;
-    const dayPct = hasDay ? fmtPct(q.dayChangePct) : '—';
-    const dir    = hasDay ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
+    // Prefer true index day% (from Yahoo ^GSPC/^IXIC etc.) over ETF dayChangePct.
+    const pct    = q.indexDayChangePct ?? q.dayChangePct;
+    const hasDay = pct !== null && pct !== undefined;
+    const dayPct = hasDay ? fmtPct(pct) : '—';
+    const dir    = hasDay ? (pct >= 0 ? 'up' : 'dn') : '';
     const spark  = sparklineSvg(q.spark, dir);
     return `        <div class="mkt-tile ${dir}">
           <div class="mt-name">${esc(displayName)}</div>

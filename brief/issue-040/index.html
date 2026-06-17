@@ -6,6 +6,12 @@
 <title>NBA Finals - Game 3 · Monaco GP — GuyTalk Daily Brief</title>
 <meta name="description" content="NBA Finals - Game 3 tomorrow. Houston Astros 13-2 Athletics. Monaco GP results. Ryan Gerard leads the Memorial Tournament.">
 <link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GuyTalk">
+<link rel="apple-touch-icon" href="/assets/logo/guytalk-icon-192.png">
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="https://www.guytalkmedia.com/brief/issue-040/">
 <meta property="og:title"       content="Astros demolish Oakland. Leclerc wins Monaco. Spurs-Knicks Game 3 tomorrow.">
@@ -31,12 +37,6 @@
 !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
 posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only'});
 </script>
-<!-- PWA -->
-<link rel="manifest" href="/manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="GuyTalk">
-<link rel="apple-touch-icon" href="/assets/logo/guytalk-icon-192.png">
 </head>
 <body>
 
@@ -71,25 +71,52 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </div>
     <nav class="section-jump" aria-label="Jump to section">
       <a href="#sports" class="sj-link">Sports</a>
-      <a href="#the-take" class="sj-link sj-link-take">The Take</a>
-      <a href="#f1" class="sj-link">F1</a>
-      <a href="#golf" class="sj-link">Golf</a>
-      <a href="#worldcup" class="sj-link">World Cup</a>
       <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
-      <a href="#sharp-take" class="sj-link">Sharp Take</a>
+    </nav>
+    <nav class="section-subjump" aria-label="Jump to sports subsection" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;padding-left:14px;font-size:0.85em;opacity:0.8;">
+      <a href="#f1" class="sj-link sj-sub">F1</a>
+      <a href="#golf" class="sj-link sj-sub">Golf</a>
+      <a href="#worldcup" class="sj-link sj-sub">World Cup</a>
     </nav>
   </div>
 </div>
 
+<style>
+  /* Accordion (Fix 7). The rail is right-aligned, so children are INSET from the
+     right edge (margin-right) to read as a clean indent beneath the parent —
+     not widened leftward. Consistent inset + smaller dots = clear hierarchy. */
+  .brief-sidenav .bsn-group{display:flex;flex-direction:column;align-items:flex-end;}
+  .brief-sidenav .bsn-children{display:flex;flex-direction:column;align-items:flex-end;gap:14px;max-height:0;margin-top:0;overflow:hidden;transition:max-height .28s ease,margin-top .28s ease;}
+  .brief-sidenav .bsn-group.open .bsn-children{max-height:600px;margin-top:14px;}
+  .brief-sidenav .bsn-caret{display:inline-block;width:1em;margin-right:2px;font-size:.78em;opacity:.65;transition:transform .2s ease;cursor:pointer;}
+  .brief-sidenav .bsn-group.open .bsn-caret{transform:rotate(90deg);}
+  .brief-sidenav .bsn-link{font-size:0.95em;}
+  .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
+  .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
+  .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
+  /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
+     so faces/players show instead of a jersey-number zoom. */
+  .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
+  .brief-hero-banner--feature{background-position:center 20%;}
+  /* Rundown bullets — clickable anchor navigation. */
+  .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
+  .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
+  .rbd-bullet:hover .rbd-cat{text-decoration:underline;text-underline-offset:2px;}
+</style>
 <nav class="brief-sidenav" aria-label="On this page">
   <a href="#top" class="bsn-link" data-target="top"><span class="bsn-txt">Top</span><span class="bsn-dot"></span></a>
-  <a href="#the-lead" class="bsn-link" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
-  <a href="#f1" class="bsn-link" data-target="f1"><span class="bsn-txt">F1</span><span class="bsn-dot"></span></a>
-  <a href="#golf" class="bsn-link" data-target="golf"><span class="bsn-txt">Golf</span><span class="bsn-dot"></span></a>
-  <a href="#worldcup" class="bsn-link" data-target="worldcup"><span class="bsn-txt">World Cup</span><span class="bsn-dot"></span></a>
-  <a href="#markets" class="bsn-link" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
-  <a href="#culture" class="bsn-link" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
+  <div class="bsn-group" data-group="sports">
+    <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-caret" role="button" tabindex="0" aria-label="Toggle Sports subsections">▸</span><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
+    <div class="bsn-children">
+      <a href="#the-lead" class="bsn-link bsn-sub" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
+      <a href="#f1" class="bsn-link bsn-sub" data-target="f1"><span class="bsn-txt">F1</span><span class="bsn-dot"></span></a>
+      <a href="#golf" class="bsn-link bsn-sub" data-target="golf"><span class="bsn-txt">Golf</span><span class="bsn-dot"></span></a>
+      <a href="#worldcup" class="bsn-link bsn-sub" data-target="worldcup"><span class="bsn-txt">World Cup</span><span class="bsn-dot"></span></a>
+    </div>
+  </div>
+<a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
+<a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
   <a href="#sharp-take" class="bsn-link" data-target="sharp-take"><span class="bsn-txt">Sharp Take</span><span class="bsn-dot"></span></a>
 </nav>
 
@@ -104,79 +131,79 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span class="bhb-vs">SA<span class="bhb-at"> @ </span>NY</span>
       <img class="bhb-logo" src="https://a.espncdn.com/i/teamlogos/nba/500/ny.png" alt="" loading="eager" onerror="this.style.display='none'">
     </div>
-    <div class="bhb-venue"><span class="where-pin">◍</span>Madison Square Garden · New York City</div>
+    <div class="bhb-venue"><span class="where-pin">◍</span><a href="https://www.msg.com" class="entity-venue" target="_blank" rel="noopener">Madison Square Garden</a> · New York City</div>
   </div>
 </div>
 
-  <div class="top-module">
-    <div class="top-module-label">Today's Hits</div>
-  <div class="hits-list">
-    <a href="#sports" class="hit-item hit-sports">
-      <span class="hit-tag">Sports</span>
-      <span class="hit-text">Knicks survive Game 2, lead Spurs 2-0 in Finals.</span>
-    </a>
-    <a href="#markets" class="hit-item hit-markets">
-      <span class="hit-tag">Markets</span>
-      <span class="hit-text">Tech selloff: QQQ -4.8%, NVDA -6.2%, TSLA -6.6%.</span>
-    </a>
-    <a href="#culture" class="hit-item hit-culture">
-      <span class="hit-tag">Culture</span>
-      <span class="hit-text">Taylor Swift, Travis Kelce planning July wedding at MSG.</span>
-    </a>
-  </div>
-  <div class="key-takeaway">
-    <div class="kt-label">Key Takeaway</div>
-    <p class="kt-text">Knicks are one win from the title after taking Game 2 at home. Tech stocks got crushed on a down market day. F1 heads to Canada after Leclerc's Monaco win.</p>
-  </div>
+  <div class="rundown-band">
+    <div class="rundown-label"><span class="rundown-dot"></span>The Rundown</div>
+    <p class="rundown-text">Tech stocks got hammered on a broad selloff, with the Nasdaq down 4.8% as the 10-year Treasury yield jumped 1.9% for the week, making bonds actually competitive again.</p>
+    <div class="rbd-bullets">
+      <a class="rbd-bullet rbd-sports" href="#sports">
+        <span class="rbd-cat">Sports</span>
+        <span class="rbd-line">Charles Leclerc wins the Monaco GP · Gerard and Poston tied at Muirfield Village heading into final round</span>
+      </a>
+      <a class="rbd-bullet rbd-markets" href="#markets">
+        <span class="rbd-cat">Markets</span>
+        <span class="rbd-line">Tech stocks got hammered on a broad selloff, with the Nasdaq down 4 · S&amp;P 500 -2.6%, Nasdaq -4.8%</span>
+      </a>
+      <a class="rbd-bullet rbd-culture" href="#culture">
+        <span class="rbd-cat">Culture</span>
+        <span class="rbd-line">Knicks take 2-0 series lead over Spurs · Anthony Head, Buffy's Giles, dead at 72</span>
+      </a>
+    </div>
   </div>
 
 <div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
 
   <section class="brief-section" id="the-lead">
     <div class="section-label sl-sports">The Lead</div>
-    <h3>Houston dismantled Oakland 13-2. Not even close.</h3>
 
-    <div class="scoreboard">
-      <div class="score-side">
-        <img src="https://a.espncdn.com/i/teamlogos/mlb/500/hou.png" class="score-logo" alt="HOU" loading="lazy" onerror="this.style.display='none'">
-        <div class="score-team">Houston Astros</div>
-        <div class="score-num">13</div>
+    <h3><a href="https://www.nba.com/spurs" class="entity-team" target="_blank" rel="noopener">San Antonio Spurs</a> vs. <a href="https://www.nba.com/knicks" class="entity-team" target="_blank" rel="noopener">New York Knicks</a> — NBA Finals - Game 3. Tomorrow.</h3>
+    <div class="upcoming-card upcoming-finals">
+      <div class="upcoming-label">Tomorrow — NBA Finals - Game 3</div>
+      <div class="upcoming-matchup">
+        <div class="upcoming-team">
+          <img src="https://a.espncdn.com/i/teamlogos/nba/500/sa.png" class="upcoming-logo" alt="SA" loading="lazy" onerror="this.style.display='none'">
+          <span>San Antonio Spurs</span>
+        </div>
+        <div class="upcoming-vs">NBA<br>FINALS</div>
+        <div class="upcoming-team upcoming-home">
+          <span>New York Knicks</span>
+          <img src="https://a.espncdn.com/i/teamlogos/nba/500/ny.png" class="upcoming-logo" alt="NY" loading="lazy" onerror="this.style.display='none'">
+        </div>
       </div>
-      <div class="score-center">
-        <div class="score-meta">Final</div>
-        <div class="score-badge">HOU Win</div>
-      </div>
-      <div class="score-side">
-        <img src="https://a.espncdn.com/i/teamlogos/mlb/500/ath.png" class="score-logo" alt="ATH" loading="lazy" onerror="this.style.display='none'">
-        <div class="score-team">Athletics</div>
-        <div class="score-num">2</div>
-      </div>
+      
+      <div class="upcoming-series">NY leads series 2-0</div>
+      <a href="https://www.espn.com/nba/game/_/gameId/401859965" target="_blank" rel="noopener" class="upcoming-link">Game info on ESPN →</a>
     </div>
-    <div class="where-line"><span class="where-pin">◍</span>Minute Maid Park · Houston, Texas  ·  Houston Astros at home</div>
-    <div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Minute_Maid_Park_2015.jpg/1280px-Minute_Maid_Park_2015.jpg" alt="Minute Maid Park" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Minute Maid Park · Houston, Texas</div></div>
 
-    <p>The Astros offense was in a different class Sunday, putting up double digits while the Athletics' bats stayed completely silent. This was a blowout that looked lopsided from the first inning.</p>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">Why it matters:</span> Houston's dominance at home sets a dangerous tone heading into the week—they're the team to beat in their division right now.</span></li>
-      <li><span><span class="dl-label">The other angle:</span> Oakland's offense has real problems, and a loss this bad suggests deeper issues than one bad game.</span></li>
-      <li><span><span class="dl-label">What to say:</span> If you're watching Houston down the stretch, they just showed you why people think they're dangerous.</span></li>
-    </ul>
+    <div class="brief-img upcoming-arena-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Madison_Square_Garden_2020.jpg/1280px-Madison_Square_Garden_2020.jpg" alt="Madison Square Garden" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Madison Square Garden · New York City · The World's Most Famous Arena</div></div>
   </section>
-
-<a href="/live/" class="brief-live-cta">
-  <span class="blc-dot"></span>
-  <div class="blc-inner">
-    <div class="blc-label">Happening Now</div>
-    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
-  </div>
-  <span class="blc-btn">Open GuyTalk Live →</span>
-</a>
-
-
-
   <section class="brief-section" id="sports-scores">
     <div class="section-label sl-sports">More Sports</div>
     <div class="other-scores-label">Other scores worth knowing</div>
+    <div class="other-score-card">
+      <div class="scoreboard scoreboard-sm">
+        <div class="score-side">
+          <img src="https://a.espncdn.com/i/teamlogos/mlb/500/hou.png" class="score-logo" alt="HOU" loading="lazy" onerror="this.style.display='none'">
+          <div class="score-team">Houston Astros</div>
+          <div class="score-num">13</div>
+        </div>
+        <div class="score-center">
+          <div class="score-meta">Final</div>
+          <div class="score-badge">HOU Win</div>
+        </div>
+        <div class="score-side right">
+          <div class="score-team loser">Athletics</div>
+          <div class="score-num loser">2</div>
+          <img src="https://a.espncdn.com/i/teamlogos/mlb/500/ath.png" class="score-logo loser" alt="ATH" loading="lazy" onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="brief-img brief-img-sm"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Minute_Maid_Park_2015.jpg/1280px-Minute_Maid_Park_2015.jpg" alt="Minute Maid Park" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Minute Maid Park · Houston, Texas</div></div>
+      <p class="other-score-note">Houston Astros beat Athletics 13–2, and it wasn’t close.</p>
+
+    </div>
     <div class="other-score-card">
       <div class="scoreboard scoreboard-sm">
         <div class="score-side">
@@ -220,44 +247,21 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
     </div>
 
-    <h3>San Antonio Spurs vs. New York Knicks — NBA Finals - Game 3. Tomorrow.</h3>
-    <div class="upcoming-card upcoming-finals">
-      <div class="upcoming-label">Tomorrow — NBA Finals - Game 3</div>
-      <div class="upcoming-matchup">
-        <div class="upcoming-team">
-          <img src="https://a.espncdn.com/i/teamlogos/nba/500/sa.png" class="upcoming-logo" alt="SA" loading="lazy" onerror="this.style.display='none'">
-          <span>San Antonio Spurs</span>
-        </div>
-        <div class="upcoming-vs">NBA<br>FINALS</div>
-        <div class="upcoming-team upcoming-home">
-          <span>New York Knicks</span>
-          <img src="https://a.espncdn.com/i/teamlogos/nba/500/ny.png" class="upcoming-logo" alt="NY" loading="lazy" onerror="this.style.display='none'">
-        </div>
-      </div>
-      
-      <div class="upcoming-series">NY leads series 2-0</div>
-      <a href="https://www.espn.com/nba/game/_/gameId/401859965" target="_blank" rel="noopener" class="upcoming-link">Game info on ESPN →</a>
-    </div>
-
-    <div class="brief-img upcoming-arena-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Madison_Square_Garden_2020.jpg/1280px-Madison_Square_Garden_2020.jpg" alt="Madison Square Garden" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Madison Square Garden · New York City · The World's Most Famous Arena</div></div>
   </section>
-
-
-
-  <section class="brief-section" id="f1">
-    <div class="section-label sl-sports">Formula 1</div>
+<div class="sport-subsection">  <section class="brief-section" id="f1">
+    <div class="section-label sl-sports"><a href="https://www.formula1.com" class="entity-org" target="_blank" rel="noopener">Formula 1</a></div>
     <div class="brief-img"><img src="/assets/circuits/monaco.jpg" alt="Circuit de Monaco · Monte Carlo · The most iconic 3.3 miles in motorsport" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Circuit de Monaco · Monte Carlo · The most iconic 3.3 miles in motorsport</div></div>
     <h3>Leclerc wins Monaco. Hamilton second. Verstappen third.</h3>
     <div class="where-line"><span class="where-pin">◍</span>Circuit de Monaco · Monte Carlo</div>
     <ul class="detail-list">
-      <li><span><span class="dl-label">Why it matters:</span> Leclerc's home circuit victory keeps Ferrari competitive in the championship fight.</span></li>
-      <li><span><span class="dl-label">Championship:</span> Hamilton's podium finish shows Mercedes can challenge at Monaco despite setup constraints on tight street circuits.</span></li>
+      <li><span><span class="dl-label">Why it matters:</span> Leclerc's home circuit victory keeps <a href="https://www.formula1.com/en/teams/Ferrari.html" class="entity-team" target="_blank" rel="noopener">Ferrari</a> competitive in the championship fight.</span></li>
+      <li><span><span class="dl-label">Championship:</span> Hamilton's podium finish shows <a href="https://www.formula1.com/en/teams/Mercedes.html" class="entity-team" target="_blank" rel="noopener">Mercedes</a> can challenge at Monaco despite setup constraints on tight street circuits.</span></li>
       <li><span><span class="dl-label">Watch for:</span> Whether Verstappen's third-place result signals a temporary dip or a broader pattern as the season progresses.</span></li>
+
       <li><span><span class="dl-label">What to say:</span> Leclerc finally delivered at home. Monaco always rewards the driver who nails the one qualifying lap that matters.</span></li>
     </ul>
-  </section>
-
-  <section class="brief-section" id="golf">
+  </section></div>
+<div class="sport-subsection">  <section class="brief-section" id="golf">
     <div class="section-label sl-golf">Golf</div>
     <div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Muirfield_Village_Golf_Club.jpg/1280px-Muirfield_Village_Golf_Club.jpg" alt="Muirfield Village Golf Club · Dublin, Ohio · Host of The Memorial Tournament" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Muirfield Village Golf Club · Dublin, Ohio · Host of The Memorial Tournament</div></div>
     <h3>Gerard and Poston tied at Muirfield Village heading into final round</h3>
@@ -268,30 +272,36 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       
       <li><span><span class="dl-label">The angle:</span> Muirfield Village is Jack Nicklaus's course and plays brutally tough — scoring at nine under is legitimately impressive.</span></li>
       <li><span><span class="dl-label">Watch for:</span> Whether Ryan Gerard can hold the lead Sunday or if J.T. Poston makes a move on the back nine.</span></li>
+
       <li><span><span class="dl-label">What to say:</span> Gerard's flying under the radar but he's right there with Poston — could be a serious final round.</span></li>
     </ul>
-  </section>
-
-  <section class="brief-section" id="worldcup">
+  </section></div>
+<div class="sport-subsection">  <section class="brief-section" id="worldcup">
     <div class="section-label sl-culture">World Cup 2026</div>
-
-    <div class="wc-preview-banner">
-      <div class="wc-banner-hosts"><span class="wc-flag">🇺🇸</span><span class="wc-flag">🇨🇦</span><span class="wc-flag">🇲🇽</span></div>
-      <div class="wc-banner-title">FIFA World Cup 2026</div>
-      <div class="wc-banner-sub">June 11 — July 19 · USA / Canada / Mexico</div>
-      <div class="wc-banner-stats">
-        <div class="wc-stat"><span class="wc-stat-num">48</span><span class="wc-stat-lbl">Teams</span></div>
-        <div class="wc-stat"><span class="wc-stat-num">104</span><span class="wc-stat-lbl">Matches</span></div>
-        <div class="wc-stat"><span class="wc-stat-num">16</span><span class="wc-stat-lbl">Venues</span></div>
-      </div>
-    </div>
+    <div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Afici%C3%B3n_del_Estadio_azteca_final_2019.jpg/1280px-Afici%C3%B3n_del_Estadio_azteca_final_2019.jpg" alt="Estadio Azteca · Mexico City · The World Cup opener" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Estadio Azteca · Mexico City · The World Cup opener</div></div>
+    <h3>The World Cup is here.</h3>
+    <div class="where-line"><span class="where-pin">◍</span>June 11 – July 19 · USA / Canada / Mexico · Day 7</div>
     <ul class="detail-list">
+      
+      
+      
+      <li><span><span class="dl-label">Format:</span> 48 teams, 104 matches, 12 groups — the first expanded, three-country World Cup.</span></li>
+
       <li><span>South Africa vs Mexico — upcoming</span></li>
       <li><span>Czechia vs South Korea — upcoming</span></li>
       <li><span><span class="dl-label">USA opener:</span> USA vs Paraguay, June 12 · SoFi Stadium · 9pm ET · Fox</span></li>
-      <li><span><span class="dl-label">Final:</span> July 19 · MetLife Stadium</span></li>
+      <li><span><span class="dl-label">Final:</span> July 19 · MetLife Stadium, New York</span></li>
     </ul>
-  </section>
+  </section></div>
+
+<a href="/live/" class="brief-live-cta">
+  <span class="blc-dot"></span>
+  <div class="blc-inner">
+    <div class="blc-label">Happening Now</div>
+    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
+  </div>
+  <span class="blc-btn">Open GuyTalk Live →</span>
+</a>
 
 <div class="brief-inline-cta">
   <div class="bic-inner">
@@ -305,6 +315,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
   <section class="brief-section" id="markets">
     <div class="section-label sl-markets">The Close</div>
+
     <p class="markets-mood">Tech stocks got hammered on a broad selloff, with the Nasdaq down 4.8% as the 10-year Treasury yield jumped 1.9% for the week, making bonds actually competitive again.</p>
 
     <div class="mkt-card">
@@ -314,12 +325,12 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       </div>
       <div class="mkt-index-grid">
         <div class="mkt-tile dn">
-          <div class="mt-name">S&amp;P 500</div>
+          <div class="mt-name">SPY</div>
           <div class="mt-price">$737.55</div>
           <div class="mt-foot"><span class="mt-chg dn">-2.6%</span></div>
         </div>
         <div class="mkt-tile dn">
-          <div class="mt-name">Nasdaq</div>
+          <div class="mt-name">QQQ</div>
           <div class="mt-price">$705.06</div>
           <div class="mt-foot"><span class="mt-chg dn">-4.8%</span></div>
         </div>
@@ -332,9 +343,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </div>
 
     <ul class="detail-list">
-      <li><span><span class="dl-label">Why it matters:</span> When Treasury yields spike that fast, growth stocks suffer because their future earnings are worth less in today's dollars. Nvidia, Tesla, and Dell all dropped 6%+ because they're priced on the assumption of cheap money that just got more expensive.</span></li>
+      <li><span><span class="dl-label">Why it matters:</span> When Treasury yields spike that fast, growth stocks suffer because their future earnings are worth less in today's dollars. <a href="https://www.cnbc.com/quotes/NVDA" class="entity-company" target="_blank" rel="noopener">Nvidia</a>, <a href="https://www.cnbc.com/quotes/TSLA" class="entity-company" target="_blank" rel="noopener">Tesla</a>, and Dell all dropped 6%+ because they're priced on the assumption of cheap money that just got more expensive.</span></li>
       <li><span><span class="dl-label">Watch for:</span> The inflation print on Thursday will tell you whether this selloff was justified or overdone. If CPI stays hot, the Fed stays stubborn, and yields keep climbing. If it cools, tech gets a chance to stabilize.</span></li>
       <li><span><span class="dl-label">What to bring up:</span> Bitcoin's up 3% while stocks tank, which is the first time in months it's decoupled from the Nasdaq in a down market. That's traders hedging against continued volatility or rotating to non-correlated assets.</span></li>
+
     </ul>
   </section>
 
@@ -351,6 +363,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="culture-head">Knicks take 2-0 series lead over Spurs</div>
           <p class="culture-line"><strong>What happened:</strong> New York won Games 1 and 2 of the NBA Finals against San Antonio, with the Knicks getting some favorable late-game calls and executing in crucial moments.</p>
           <p class="culture-line"><strong>Why it matters:</strong> The Knicks are one win away from their first championship since 1970, and MSG ticket prices for Games 3 and 4 just jumped hard — meaning the city actually believes this is happening.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> If the Knicks pull this off, New York loses its mind for a week straight.</p>
         </div>
       </li>
@@ -362,6 +376,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="culture-head">Anthony Head, Buffy's Giles, dead at 72</div>
           <p class="culture-line"><strong>What happened:</strong> The British actor who played the headmaster and father figure on Buffy the Vampire Slayer passed away, and the cast released a joint tribute.</p>
           <p class="culture-line"><strong>Why it matters:</strong> Giles was the moral center of that show — the guy who actually gave a damn — and losing him hits different if you grew up with that series.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> Giles made you want to read more and take yourself less seriously at the same time.</p>
         </div>
       </li>
@@ -373,6 +389,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="culture-head">Severance — Season 2</div>
           <p class="culture-line"><strong>What happened:</strong> The show about surgical work-life separation — employees literally split their memories at the office door — came back and picked up exactly where it left off.</p>
           <p class="culture-line"><strong>Why it matters:</strong> Worth your time.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> Just put it on.</p>
         </div>
       </li>
@@ -382,48 +400,24 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <section class="brief-section" id="the-rec">
     <div class="section-label sl-markets">The Rec</div>
 
-    <div class="brief-rec">
-      <div class="rec-label">This week's pick</div>
-      <div class="rec-title">AG1 — the supplement that works because it's the one you'll actually take.</div>
-      <p class="rec-body">One scoop of AG1 covers vitamins, minerals, probiotics, and adaptogens that most guys buy separately and skip four days a week. The honest version: it's not dramatically better than a quality multivitamin at $15/month — the real advantage is the $79/month cost is high enough that you actually use it, and it tastes fine mixed with water. The argument against: if you already have a consistent supplement routine, this is redundant and overpriced. If you don't — and most guys don't — this is cheaper than the stack you're already forgetting to take.</p>
-      <a href="https://drinkag1.com" target="_blank" rel="noopener" class="rec-link">Try AG1 →</a>
+    <div class="brief-rec brief-rec--media">
+      <div class="rec-img rec-img-failed"><span class="rec-img-ph">Napper</span></div>
+      <div class="rec-content">
+        <div class="rec-label">This week's pick</div>
+        <div class="rec-title">Napper Pro (iOS) — the 20-minute nap timer that actually wakes you up.</div>
+        <p class="rec-body">Napper tracks sleep onset using your phone's microphone and vibration — it detects when you fall asleep and times your nap from that moment, not from when you hit start. The result: a 20-minute nap that actually lands at 20 minutes post-sleep, which is the window that leaves you refreshed instead of groggy. Costs $4.99 once. Most people who try it use it multiple times per week. The honest flaw: you have to be somewhere quiet, which limits the use case. But for the home office, couch, or a hotel room on a travel day, this is the most useful $5 you'll spend on your phone.</p>
+        <a href="https://apps.apple.com/us/app/napper-power-nap-timer/id1498961328" target="_blank" rel="noopener" class="rec-link">Get Napper →</a>
+      </div>
     </div>
   </section>
 
-  <div class="sharp-take" id="sharp-take">
+<div class="umbrella-head" id="sharp-take"><h2 class="umbrella-title">Sharp Take</h2></div>
+
+
+
+  <div class="sharp-take">
     <div class="sharp-take-label">Final Sharp Take</div>
     <p>Tech got crushed today—QQQ down 4.8%, NVDA and TSLA both off 6.6%—but the real story is the 10-year Treasury climbing 1.9% on the week while stocks barely moved. Bond traders and equity traders are no longer on the same page about where rates go from here. Baseball was a bloodbath too, Houston demolished Oakland 13–2. Tomorrow the Spurs and Knicks play Game 3 of the Finals.</p>
-  </div>
-
-  <div class="glance-card">
-    <div class="glance-head"><span class="glance-dot"></span>Today at a Glance</div>
-    <div class="glance-rows">
-      <a class="glance-row hit-sports" href="#sports">
-        <span class="glance-k">Main story</span>
-        <span class="glance-v">Houston Astros 13–2 Athletics</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-markets" href="#markets">
-        <span class="glance-k">Market mood</span>
-        <span class="glance-v">SPY -2.6% — markets pulled back</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-culture" href="#the-take">
-        <span class="glance-k">Best convo</span>
-        <span class="glance-v">If the Knicks pull this off, New York loses its mind for a week straight.</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-sports" href="#sports">
-        <span class="glance-k">Watch next</span>
-        <span class="glance-v">SA @ NY (NBA Finals - Game 3) — tomorrow</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-culture" href="#culture">
-        <span class="glance-k">Quick rec</span>
-        <span class="glance-v">Watch this: Severance — Season 2</span>
-        <span class="glance-arr">→</span>
-      </a>
-    </div>
   </div>
 
 </article>
@@ -438,20 +432,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-044/" class="more-issue-card">
-    <span class="mi-num">#044</span>
-    <span class="mi-title">Spurs-Knicks decides it all tonight. Marlins pound Diamondbacks. Antonelli wins Monaco.</span>
-    <span class="mi-date">Wednesday, June 10, 2026</span>
+  <a href="/brief/issue-053/" class="more-issue-card">
+    <span class="mi-num">#053</span>
+    <span class="mi-title">Fed signals 2026 rate hike. Hamilton wins in Barcelona. Messi ties World Cup scoring record.</span>
+    <span class="mi-date">Wednesday, June 17, 2026</span>
   </a>
-  <a href="/brief/issue-043/" class="more-issue-card">
-    <span class="mi-num">#043</span>
-    <span class="mi-title">Spurs steal Game 3. Antonelli wins Monaco. Tech stocks crater again.</span>
-    <span class="mi-date">Tuesday, June 9, 2026</span>
+  <a href="/brief/issue-052/" class="more-issue-card">
+    <span class="mi-num">#052</span>
+    <span class="mi-title">Dow hits record on Iran deal. Hurricanes win the Cup. OpenAI bleeds $34B annually.</span>
+    <span class="mi-date">Wednesday, June 17, 2026</span>
   </a>
-  <a href="/brief/issue-042/" class="more-issue-card">
-    <span class="mi-num">#042</span>
-    <span class="mi-title">Spurs steal Game 3. Antonelli dominates Monaco. World Cup starts Thursday.</span>
-    <span class="mi-date">Tuesday, June 9, 2026</span>
+  <a href="/brief/issue-051/" class="more-issue-card">
+    <span class="mi-num">#051</span>
+    <span class="mi-title">U.S. and Iran sign peace deal Friday. SpaceX IPO valued at $1.77 trillion. Knicks win first championship since 1973.</span>
+    <span class="mi-date">Tuesday, June 16, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>
@@ -492,7 +486,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   </div>
   <p class="footer-fine">
     Sports data via ESPN and Jolpica/Ergast. Market data via Finnhub.io; informational only, not investment advice.
-    GuyTalk is an independent publication and is not affiliated with or endorsed by ESPN, the NBA, MLB, NHL, NFL, Formula 1, the PGA Tour, or any league or team. Team names, logos, and trademarks are the property of their respective owners.
+    GuyTalk is an independent publication and is not affiliated with or endorsed by ESPN, the NBA, MLB, NHL, NFL, Formula 1, the <a href="https://www.pgatour.com" class="entity-org" target="_blank" rel="noopener">PGA Tour</a>, or any league or team. Team names, logos, and trademarks are the property of their respective owners.
   </p>
 </footer>
 
@@ -565,6 +559,24 @@ window.handleBriefSignup = function(e, form) {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
+})();
+
+// Sidebar accordion — the caret toggles a parent's subsections open/closed
+// without jumping; the parent/child labels still jump to their section.
+(function () {
+  var carets = [].slice.call(document.querySelectorAll('.brief-sidenav .bsn-caret'));
+  carets.forEach(function (caret) {
+    function toggle(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var group = caret.closest('.bsn-group');
+      if (group) group.classList.toggle('open');
+    }
+    caret.addEventListener('click', toggle);
+    caret.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') toggle(e);
+    });
+  });
 })();
 </script>
 
