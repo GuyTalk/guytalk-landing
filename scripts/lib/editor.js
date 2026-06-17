@@ -392,7 +392,20 @@ Any culture replacement story must be: a major streaming/entertainment release, 
 GOLF STATUS RULE — check RAW FACTS for golf status BEFORE writing any golf copy:
 - If RAW FACTS say "IN PROGRESS": use LIVE leaderboard data only. Write "currently leading" or "after X rounds" — NEVER say "won" or "champion" for an ongoing tournament.
 - If RAW FACTS say "FINISHED": write as a completed result — "won", "claimed", "finished at X under".
-- If RAW FACTS say "NOT YET STARTED" or no scores exist: write as a PREVIEW — upcoming tournament, course context. Never state a leaderboard that doesn't exist yet.
+- If RAW FACTS say "NOT YET STARTED" or "PREVIEW" or no scores exist: write as a PREVIEW — upcoming tournament, course context. Never state a leaderboard, scores, or results that do not exist yet.
+
+GOLF/EVENT VENUE RULE — ALWAYS verify event date, venue, and location from RAW FACTS before writing:
+- Use the venue name exactly as it appears in RAW FACTS. Do NOT substitute a different venue from memory or training data.
+- If RAW FACTS say "Shinnecock Hills", write Shinnecock Hills — never Pinehurst, Oakmont, or any other course.
+- If venue data is absent or uncertain, write "this week's U.S. Open" (or equivalent) rather than guessing.
+- Include dates only if RAW FACTS confirm them. Never invent a tee time, round schedule, or start date.
+
+PRE-EVENT RULE (applies to golf, F1, and all sports previews):
+- If the event has NOT started (no scores, no results in RAW FACTS), you MUST write in future/preview tense only.
+- Language that is ALLOWED: "tees off Thursday", "field to watch", "defending champion", "course context", "favorites heading in", "worth watching for".
+- Language that is BANNED for pre-event: "won", "champion", "leads after round X", "shot a 68", "finished at X-under", any score or leaderboard position.
+- If source data is stale or the event status is unclear, default to cautious preview language rather than writing a definitive recap.
+- Never invent drama, round-by-round outcomes, or weather conditions for an event that hasn't happened.
 
 EXCEPTION — a golf section for a tournament that HAS NOT STARTED is a PREVIEW. It may reference the course/venue, last year's champion, and recognizable players in the field even though those aren't in RAW FACTS — these are stable, well-documented facts and the section should have a confident voice for a casual fan. Do NOT block it for these. The only hard rule: never state a live score, a current leader, or a result for a tournament that hasn't been played. It must still satisfy the HARD BLOCK RULE above — a preview that names the defending champion and real favorites PASSES; an empty "strong field" preview with no named person FAILS.
 
