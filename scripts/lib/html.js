@@ -2127,7 +2127,7 @@ function buildCulture({ copy }) {
           ${item.whatHappened ? `<p class="culture-line"><strong>What happened:</strong> ${esc(item.whatHappened)}</p>` : ''}
           ${item.whyItMatters ? `<p class="culture-line"><strong>Why it matters:</strong> ${esc(item.whyItMatters)}</p>` : ''}
           ${item.theRead      ? `<p class="culture-line"><strong>The GuyTalk Read:</strong> ${esc(item.theRead)}</p>`    : ''}
-          ${Array.isArray(item.ammo) && item.ammo.filter(Boolean).length ? `<p class="culture-line"><strong>What to Know:</strong></p><ul class="ammo-list">${item.ammo.filter(Boolean).map(a => `<li>${esc(a)}</li>`).join('')}</ul>` : ''}
+          ${Array.isArray(item.ammo) && item.ammo.filter(Boolean).length ? `<ul class="ammo-list">${item.ammo.filter(Boolean).map(a => `<li>${esc(a)}</li>`).join('')}</ul>` : ''}
           ${item.whatToSay    ? `<p class="culture-line"><strong>What to say:</strong> ${esc(item.whatToSay)}</p>`       : ''}
         </div>
       </li>`;
