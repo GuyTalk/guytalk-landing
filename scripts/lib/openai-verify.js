@@ -51,6 +51,16 @@ async function verifyBrief({ issueData, researchPack }) {
   if (copy.golf?.headline) claims.push(`GOLF: ${copy.golf.headline} — ${copy.golf.whyCare1 || ''}`);
   if (copy.nhl?.headline) claims.push(`NHL: ${copy.nhl.headline}`);
 
+  // ── Build market feed facts ──────────────────────────────────────────────────
+  const marketFacts = [];
+  if (issueData.markets && typeof issueData.markets === 'object') {
+    const LABELS = { SPY: 'S&P 500', DIA: 'Dow', QQQ: 'Nasdaq/QQQ', IWM: 'Russell 2000', '10Y': '10-Year Treasury' };
+    const tickers = Object.entries(issueData.markets)
+      .filter(([, v]) => typeof v?.dayChangePct === 'number')
+      .map(([sym, v]) => `${LABELS[sym] || sym} ${v.dayChangePct >= 0 ? '+' : ''}${v.dayChangePct.toFixed(2)}%`);
+    if (tickers.length) marketFacts.push(`MARKET FEED (real-time tickers): ${tickers.join(', ')}`);
+  }
+
   // ── Build ESPN structured data ───────────────────────────────────────────────
   const espnFacts = [];
   (issueData.sports || []).forEach(g => {
@@ -67,7 +77,8 @@ async function verifyBrief({ issueData, researchPack }) {
     espnFacts.push(`ESPN F1: ${issueData.f1.name} — P1: ${issueData.f1.results[0].driver} (${issueData.f1.results[0].team})`);
   }
   if (issueData.golf?.leaders?.[0]) {
-    espnFacts.push(`ESPN Golf: ${issueData.golf.name} — Leader: ${issueData.golf.leaders[0].name} ${issueData.golf.leaders[0].score} (${issueData.golf.statusState})`);
+    const top3 = issueData.golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score}`).join(', ');
+    espnFacts.push(`ESPN Golf: ${issueData.golf.name} — Top: ${top3} (${issueData.golf.statusState})`);
   }
 
   // ── Build research pack evidence ─────────────────────────────────────────────
@@ -96,10 +107,14 @@ ESTABLISHED FACTS (do not flag these as errors):
 - The 2026 FIFA World Cup is currently in progress (hosted by USA/Canada/Mexico, begins June 11 2026).
 - Lewis Hamilton drives for Ferrari in F1 in 2025–2026 (left Mercedes after 2024 season).
 - Carolina Hurricanes previously won the Stanley Cup in 2006. Any 2026 win would be their SECOND championship, not their first. Claims of "first in franchise history" are WRONG and should be flagged.
+- A 2026 Carolina Hurricanes Stanley Cup win ends a 20-YEAR drought (2006–2026 = 20 years). References to "20-year drought" or "first since 2006" are CORRECT — do NOT flag them.
 - U.S. Open Golf 2026 is held at Pinehurst No. 2 in North Carolina.
 
 
 Cross-check the BRIEF CLAIMS against the EVIDENCE below. Flag anything invented, stale, future-projected, or unverified.
+
+=== MARKET FEED DATA (real-time ticker prices — these are correct, treat like ESPN for sports) ===
+${marketFacts.length ? marketFacts.join('\n') : '(none)'}
 
 === ESPN STRUCTURED DATA (ground truth for scores/results — these are correct) ===
 ${espnFacts.length ? espnFacts.join('\n') : '(none)'}
@@ -122,9 +137,11 @@ IF NO research evidence (the RESEARCHED section says "(no research pack — high
   DO NOT use unverified_major, invented, stale, or future flags on business/culture/political news stories when there is no research pack — you have no evidence to contradict them, so they must be warnings only.
 
 FLAG as BLOCKING in all cases:
+- A market claim (index level, ticker %, direction) that directly contradicts MARKET FEED DATA above: use flag "contradicts_market_feed". If the feed says AMD +2.83%, copy claiming AMD fell is wrong.
 - A sports result where ESPN data for THAT SPORT explicitly says something DIFFERENT: e.g. ESPN says "CAR wins series 4-2" but the copy says "VGK won". SILENT ≠ CONTRADICTION — if ESPN data doesn't mention the sport at all (e.g. no NBA entry), or doesn't mention a specific stat (e.g., consecutive shutouts), that is a WARNING, not a block. NEVER use flag "contradicts_espn" when ESPN data is simply absent for the sport/event being claimed.
 - A claim that directly contradicts an ESTABLISHED FACT listed above (e.g. "Hurricanes' first title" when they won in 2006; "Oakmont" when the U.S. Open is at Pinehurst). These are blocking, not warnings, even without an ESPN entry.
 - A clearly FORWARD-LOOKING event presented as already completed — e.g. "Election results in" when the election hasn't happened, or language like "will happen" treated as past tense. NOT just "unverified" news.
+- A story flagged as "stale" ONLY if it is more than 48 hours old. Stories from yesterday (within 36 hours) are NOT stale for this brief — that is our deliberate window. Never flag yesterday's news as stale.
 - Content clearly from a Britannica "Major Events of 2026"-style speculative page (future projections)
 - A fabricated player stat (specific points/goals/yards) that directly contradicts ESPN box scores
 
@@ -169,12 +186,25 @@ Return ONLY valid JSON:
     const raw = completion.choices?.[0]?.message?.content || '';
     const result = JSON.parse(raw);
 
-    const blocking = Array.isArray(result.blocking)
+    const hasResearch = researchPack?.stories?.length > 0;
+    // In feed-only mode the only valid blocking flags are ESPN/market-feed/established-fact contradictions.
+    // Demote everything else (unverified_major, invented, stale, future) to warnings.
+    const FEED_ONLY_BLOCK_FLAGS = new Set(['contradicts_espn', 'contradicts_established_fact', 'contradicts_market_feed']);
+    const rawBlocking = Array.isArray(result.blocking)
       ? result.blocking.filter(b => b?.claim && b?.reason)
       : [];
-    const warnings = Array.isArray(result.warnings)
-      ? result.warnings.filter(w => w?.note)
-      : [];
+    const demoted = [];
+    const blocking = rawBlocking.filter(b => {
+      if (!hasResearch && !FEED_ONLY_BLOCK_FLAGS.has(b.flag)) {
+        demoted.push(b);
+        return false;
+      }
+      return true;
+    });
+    const warnings = [
+      ...(Array.isArray(result.warnings) ? result.warnings.filter(w => w?.note) : []),
+      ...demoted.map(b => ({ section: b.section, note: `[demoted] ${b.flag}: ${b.reason}` })),
+    ];
     const pass = result.pass !== false && blocking.length === 0;
 
     if (pass) {
