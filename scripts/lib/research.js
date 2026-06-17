@@ -371,8 +371,12 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
     if (isPost) {
       const w = g.home.winner ? g.home : g.away;
       const l = g.home.winner ? g.away : g.home;
-      headline = `${w.team} ${w.score}–${l.score}${seriesPart}${notePart}`;
-      facts    = `${w.team} beat ${l.team} ${w.score}–${l.score}${seriesPart}${notePart}`;
+      // If this is the Stanley Cup Final and Carolina won, add their last win year
+      // so copy writers don't invent "first in franchise history" (they won in 2006).
+      const isSCFinal  = note?.includes('Stanley Cup Final') || seriesPart.includes('wins series');
+      const carNote    = isSCFinal && w.team?.toLowerCase().includes('carolina') ? ' [CAR last won in 2006 — this is their 2nd title]' : '';
+      headline = `${w.team} ${w.score}–${l.score}${seriesPart}${notePart}${carNote}`;
+      facts    = `${w.team} beat ${l.team} ${w.score}–${l.score}${seriesPart}${notePart}${carNote}`;
     } else {
       headline = `${g.away?.team} at ${g.home?.team}${seriesPart}${notePart}`;
       facts    = headline;

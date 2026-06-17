@@ -3,14 +3,18 @@
 /**
  * OpenAI research layer — the FIRST editorial step in every brief.
  *
- * Uses OpenAI Responses API with web_search_preview to discover, verify, and rank
- * today's top stories before any copy is written. Replaces the old NewsAPI →
- * Haiku-ranking path, which had zero fact verification.
+ * Uses the OpenAI Responses API with the web_search_preview tool so the model
+ * actually searches the web before selecting stories.
  *
- * Falls back to null on any error so the caller continues with the old path.
+ * Confirmed working model: gpt-4.1 via client.responses.create()
+ * NOT available on this account: gpt-4o-search-preview, gpt-4o-mini-search-preview
+ *
+ * Returns a researchPack object when web search succeeds, null otherwise.
+ * Callers must treat null as "feed-only mode" — do NOT fall back to Chat
+ * Completions without search (that produces plausible-sounding invented stories).
  */
 
-const SEARCH_MODEL = process.env.OPENAI_RESEARCH_MODEL || 'gpt-4o-search-preview';
+const SEARCH_MODEL = process.env.OPENAI_RESEARCH_MODEL || 'gpt-4.1';
 
 async function fetchOpenAIResearch({ date, recentIssues = [] } = {}) {
   const apiKey = process.env.OPENAI_API_KEY;
@@ -21,6 +25,11 @@ async function fetchOpenAIResearch({ date, recentIssues = [] } = {}) {
   catch (_) { console.log('   ⚠  openai package not installed — research skipped'); return null; }
 
   const client = new (OpenAI.default || OpenAI)({ apiKey });
+
+  if (typeof client.responses?.create !== 'function') {
+    console.log('   ⚠  OpenAI Responses API not available in this SDK version — research skipped');
+    return null;
+  }
 
   const todayStr = date || new Date().toLocaleDateString('en-US', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
@@ -33,12 +42,12 @@ async function fetchOpenAIResearch({ date, recentIssues = [] } = {}) {
 
   const prompt = `Today is ${todayStr}. You are the lead researcher and editor for GuyTalk, a daily brief for men ages 25-45.
 
-Search for the most relevant stories TODAY across all categories. Only include REAL, CONFIRMED stories from trusted sources — never speculation or future projections.
+Search the web for the most important stories happening TODAY. Only include REAL, CONFIRMED events from trusted sources — never speculation, future projections, or "major events of 2026"-style pages.
 
-SEARCH (cover all of these):
-1. Major sports results today: NBA, NHL, MLB, World Cup 2026, UFC/boxing if a card happened, F1 only if a race is this weekend or just finished, golf only if a tournament is actively in progress
+SEARCH (cover all of these with actual web searches):
+1. Major sports results from the last 24 hours: NBA, NHL, MLB, World Cup 2026, UFC/boxing if a card happened, F1 if a race just finished or is this weekend, golf if a major tournament is in progress
 2. Markets/business: biggest market moves and corporate news today
-3. Culture: what men 25-45 are actually talking about — major streaming drops, big tech announcements, major music moments, viral mainstream moments. NOT celebrity gossip/relationship drama
+3. Culture: what men 25-45 are actually talking about — major streaming drops, big tech announcements, major music moments, viral mainstream moments. NOT celebrity gossip/relationship drama/horoscopes/custody battles
 4. Current events: major widely-relevant news (political neutrality required)
 5. The most genuinely interesting story that fits none of the above
 
@@ -50,18 +59,19 @@ News: AP, Reuters, BBC, Politico, CNN
 
 NEVER include:
 - Speculative pages like "Major Events of 2026" or future-event lists
+- Britannica, Wikipedia "in this year" articles
 - Future results presented as completed (if you cannot confirm it happened, skip it)
-- Horoscopes, custody battles, celebrity dating/divorce/gossip, random tabloid filler
-- Stories more than 36 hours old unless still clearly the biggest ongoing story
+- Horoscopes, custody battles, celebrity dating/divorce/gossip, tabloid filler
+- Stories more than 36 hours old unless clearly the biggest ongoing story
 - Unverified championship wins, deaths, deals, or "record" claims from a single soft source${avoidLine}
 
-SCORING — rate each story 1-5 on:
-- freshness: how new/breaking (5=breaking today, 1=3+ days old)
+SCORING — rate each story 1-5:
+- freshness: how new/breaking (5=confirmed today, 1=3+ days old)
 - confidence: how well-sourced (5=multiple Tier-1 outlets confirmed, 1=single vague source)
-- conversation: would a 30-year-old guy actually bring this up (5=everyone's talking about it)
+- conversation: would a 30-year-old guy actually bring this up
 - variety: does this fill a category gap in the issue
 
-SELECT 6-9 stories total: 2-4 sports, 1-2 markets/business, 1-2 culture, 0-1 current events. Set isLead:true on the single most important story of the day (may be any category). Include ALL rejected candidates with reasons.
+SELECT 6-9 stories total: 2-4 sports, 1-2 markets/business, 1-2 culture, 0-1 current events. Set isLead:true on the single biggest story of the day. Include ALL rejected candidates with reasons.
 
 Return ONLY valid JSON (no markdown):
 {
@@ -82,7 +92,7 @@ Return ONLY valid JSON (no markdown):
         "specific verifiable fact 4 (optional)"
       ],
       "whatToSay": "one natural line a 30-year-old would actually say at work or a bar",
-      "sources": ["https://real-url"],
+      "sources": ["https://real-url-you-actually-found"],
       "sourceNames": ["ESPN"],
       "scores": { "freshness": 5, "confidence": 5, "conversation": 4, "variety": 4 },
       "selectionReason": "why this story was selected",
@@ -96,52 +106,55 @@ Return ONLY valid JSON (no markdown):
 }`;
 
   try {
-    let responseText = '';
+    const response = await client.responses.create({
+      model: SEARCH_MODEL,
+      tools: [{ type: 'web_search_preview' }],
+      input: prompt,
+      max_output_tokens: 6000,
+    });
 
-    let usedSearch = false;
-    if (typeof client.responses?.create === 'function') {
-      try {
-        const response = await client.responses.create({
-          model: SEARCH_MODEL,
-          tools: [{ type: 'web_search_preview' }],
-          input: prompt,
-        });
-        // Handle both output_text convenience property and raw output array
-        responseText = response.output_text || '';
-        if (!responseText && Array.isArray(response.output)) {
-          responseText = response.output
-            .filter(b => b.type === 'message')
-            .flatMap(b => Array.isArray(b.content) ? b.content : [b.content])
-            .filter(c => c?.type === 'output_text' || c?.type === 'text')
-            .map(c => c.text || c.output_text || '')
-            .join('');
-        }
-        if (responseText) usedSearch = true;
-      } catch (searchErr) {
-        // 404 = model not available on this account — fall through to Chat Completions
-        if (searchErr.status === 404 || searchErr.status === 400 || searchErr.code === 'model_not_found') {
-          console.log(`   ⚠  ${SEARCH_MODEL} not available (${searchErr.status || searchErr.code}) — using gpt-4o (no live web search)`);
-        } else {
-          throw searchErr;
-        }
-      }
+    // Extract text from response (handle both output_text shorthand and raw output array)
+    let responseText = response.output_text || '';
+    if (!responseText && Array.isArray(response.output)) {
+      responseText = response.output
+        .filter(b => b.type === 'message')
+        .flatMap(b => Array.isArray(b.content) ? b.content : [b.content])
+        .filter(c => c?.type === 'output_text' || c?.type === 'text')
+        .map(c => c.text || c.output_text || '')
+        .join('');
     }
 
-    if (!responseText) {
-      // Web search was not available. A Chat Completions call without search would
-      // generate plausible-sounding but potentially invented stories — worse than the
-      // NewsAPI → Haiku fallback which at least uses real current headlines. Return
-      // null so the caller falls back to the trusted NewsAPI path.
-      console.log('   ⚠  OpenAI web search unavailable — skipping research (NewsAPI fallback will run)');
-      return null;
-    }
+    if (!responseText) throw new Error('empty response from OpenAI Responses API');
 
-    // Extract JSON from response (model may prepend/append prose)
+    // Extract JSON from response (model may prepend/append prose, or truncate)
     const cleaned = responseText.replace(/```json\s*/gi, '').replace(/```/g, '');
     const start = cleaned.indexOf('{');
-    const end   = cleaned.lastIndexOf('}');
-    if (start < 0 || end <= start) throw new Error('no JSON object in OpenAI response');
-    const pack = JSON.parse(cleaned.slice(start, end + 1));
+    if (start < 0) throw new Error('no JSON object in response');
+    const end = cleaned.lastIndexOf('}');
+    if (end <= start) throw new Error('no closing brace in response');
+
+    let pack;
+    try {
+      pack = JSON.parse(cleaned.slice(start, end + 1));
+    } catch (parseErr) {
+      // Partial truncation recovery: find the last complete story object
+      const storiesStart = cleaned.indexOf('"stories"', start);
+      const arrStart     = cleaned.indexOf('[', storiesStart);
+      if (storiesStart < 0 || arrStart < 0) throw parseErr;
+      // Walk backwards from the parse error to find the last complete object
+      let body = cleaned.slice(arrStart);
+      const lastClose = body.lastIndexOf('}');
+      if (lastClose < 0) throw parseErr;
+      body = body.slice(0, lastClose + 1) + ']';
+      try {
+        const stories = JSON.parse(body);
+        if (!Array.isArray(stories) || !stories.length) throw parseErr;
+        console.log(`   ⚠  JSON truncated — recovered ${stories.length} complete stories`);
+        pack = { stories, rejectedStories: [], researchNotes: 'response truncated' };
+      } catch (_) {
+        throw parseErr;
+      }
+    }
 
     if (!Array.isArray(pack.stories) || !pack.stories.length) {
       throw new Error('research returned no stories');
@@ -152,7 +165,7 @@ Return ONLY valid JSON (no markdown):
     if (!hasLead) pack.stories[0].isLead = true;
 
     const lead = pack.stories.find(s => s.isLead) || pack.stories[0];
-    console.log(`   ✓ OpenAI Research: ${pack.stories.length} stories — lead: "${(lead.headline || '').slice(0, 55)}"`);
+    console.log(`   ✓ OpenAI research active (${SEARCH_MODEL} + web search): ${pack.stories.length} stories — lead: "${(lead.headline || '').slice(0, 55)}"`);
     if (pack.rejectedStories?.length) {
       console.log(`   ↩ Rejected ${pack.rejectedStories.length}: ${pack.rejectedStories.slice(0, 3).map(r => (r.reason || '').slice(0, 40)).join(' | ')}`);
     }
@@ -161,9 +174,17 @@ Return ONLY valid JSON (no markdown):
       ...pack,
       timestamp: new Date().toISOString(),
       searchModel: SEARCH_MODEL,
+      searchActive: true,
     };
   } catch (err) {
-    console.log(`   ⚠  OpenAI Research failed: ${err.message} — falling back to NewsAPI path`);
+    // Distinguish model-not-found from other errors (useful for diagnosing account issues)
+    const is404 = err.status === 404 || err.code === 'model_not_found';
+    if (is404) {
+      console.log(`   ✗ OpenAI research unavailable: ${SEARCH_MODEL} returned 404 (model not on this account)`);
+    } else {
+      console.log(`   ✗ OpenAI research failed: ${err.message}`);
+    }
+    console.log('   📋 Running in feed-only mode — ESPN + filtered NewsAPI only');
     return null;
   }
 }

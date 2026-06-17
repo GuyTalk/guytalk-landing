@@ -164,6 +164,24 @@ function main() {
   console.log(`  GuyTalk Brief QA — ${issue.slug || 'latest'} · ${issue.date || '?'}`);
   console.log(`${'═'.repeat(50)}\n`);
 
+  // ── Research mode banner — must be the first thing QA reports ────────────────
+  const researchMode = issue.researchMode || (issue.researchPack?.searchActive ? 'openai-search' : 'feed-only');
+  console.log('  [Research Mode]');
+  if (researchMode === 'openai-search') {
+    const model = issue.researchPack?.searchModel || 'unknown';
+    console.log(`  ✅ OpenAI research ACTIVE — ${model} with live web search`);
+    console.log(`     ${issue.researchPack?.stories?.length || 0} web-verified stories`);
+    if (issue.researchPack?.rejectedStories?.length) {
+      console.log(`     ${issue.researchPack.rejectedStories.length} rejected: ${issue.researchPack.rejectedStories.slice(0, 2).map(r => r.reason?.slice(0, 50)).join(' | ')}`);
+    }
+  } else {
+    console.log('  ⚠️  FEED-ONLY MODE — OpenAI web research was unavailable for this issue');
+    console.log('     Sports: ESPN structured feeds only');
+    console.log('     Stories: Tier-1 source filter applied');
+    console.log('     Verification confidence: DEGRADED');
+  }
+  console.log('');
+
   let passed = 0, failed = 0;
   function run(label, pass, detail) {
     if (check(label, pass, detail)) passed++; else failed++;
@@ -206,7 +224,16 @@ function main() {
   if (!vfy) {
     warn('No verification record — generated before the verification pass existed');
   } else if (vfy.skipped) {
-    warn('Verification skipped — ' + (vfy.reason || 'OPENAI_API_KEY missing or crashed'));
+    if (researchMode === 'feed-only') {
+      // In feed-only mode, skipped verification = we have no independent fact-check at all.
+      run(
+        'Feed-only mode: OpenAI verification skipped',
+        false,
+        'BLOCKED: feed-only mode requires verification to pass (no research pack = no independent fact-check). Fix: ensure OPENAI_API_KEY is set.'
+      );
+    } else {
+      warn('Verification skipped — ' + (vfy.reason || 'OPENAI_API_KEY missing or crashed'));
+    }
   } else if (!vfy.pass) {
     run(
       'OpenAI verification: no blocking issues',
@@ -214,12 +241,19 @@ function main() {
       `FAILED: ${(vfy.blocking || []).map(b => `[${b.section}] ${b.flag}: ${b.reason}`).join(' | ')}`
     );
   } else {
-    run(
-      'OpenAI verification: PASS',
-      true,
-      vfy.verificationSummary || `${(vfy.warnings || []).length} warning(s)`
-    );
-    if (vfy.warnings?.length) warn(`Verification warnings: ${vfy.warnings.map(w => `[${w.section}] ${w.note}`).join(' | ')}`);
+    // Verification passed. In feed-only mode, surface warnings more loudly.
+    const label = researchMode === 'feed-only'
+      ? 'Feed-only mode: verification PASS (degraded confidence)'
+      : 'OpenAI verification: PASS';
+    run(label, true, vfy.verificationSummary || `${(vfy.warnings || []).length} warning(s)`);
+    if (vfy.warnings?.length) {
+      if (researchMode === 'feed-only') {
+        console.log(`     ⚠️  Feed-only warnings (no web search to confirm these):`);
+        vfy.warnings.forEach(w => console.log(`        • [${w.section}] ${w.note}`));
+      } else {
+        warn(`Verification warnings: ${vfy.warnings.map(w => `[${w.section}] ${w.note}`).join(' | ')}`);
+      }
+    }
   }
 
   // 3b. EDITORIAL BIBLE — the Claude editor's verdict (hard gate)
@@ -355,7 +389,12 @@ function main() {
   console.log(`  ${passed} passed · ${failed} failed\n`);
 
   if (failed === 0) {
-    console.log('  ✅ Brief passes QA — ready to deploy.\n');
+    if (researchMode === 'feed-only') {
+      console.log('  ✅ Brief passes QA (feed-only mode — degraded confidence)\n');
+      console.log('     OpenAI web research was unavailable. Review top stories carefully before approving.\n');
+    } else {
+      console.log('  ✅ Brief passes QA — ready to deploy.\n');
+    }
   } else {
     console.log('  ❌ Fix the issues above before sending.\n');
     process.exit(1);
