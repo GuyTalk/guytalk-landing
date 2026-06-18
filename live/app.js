@@ -69,6 +69,18 @@
  *  @property {number} change @property {number} changePercent @property {'up'|'down'} direction */
 /** @typedef {Object} TrendingStory @property {string} category @property {string} headline @property {string} summary @property {string} why */
 /** @typedef {Object} TalkingPoint @property {string} topic @property {string} matters @property {string} say */
+/**
+ * @typedef {Object} MMAPayload
+ * @property {string} event           e.g. "UFC 317: Pantoja vs. Royval 2"
+ * @property {'pre'|'in'|'post'} state
+ * @property {string} statusText
+ * @property {{label:string,url:string}|null} eventLink
+ * @property {string} leagueLogo
+ * @property {{name:string,flag:string,record:string,winner:boolean,link:string}|null} fighter1
+ * @property {{name:string,flag:string,record:string,winner:boolean,link:string}|null} fighter2
+ * @property {string} weightClass
+ * @property {{fighter1:string,fighter2:string,winner:string,loser:string,method:string,state:string}[]} bouts
+ */
 
 /* =============================================================================
  * 2. MOCK DATA  — DEVELOPMENT-ONLY fallbacks (never shown as live in prod).
@@ -125,6 +137,23 @@ const MOCK = {
       summary: 'No rollout, no single — just a midnight release that lit up the charts.',
       why: "It's the album your group chat is arguing about all week." },
   ],
+
+  /** @type {MMAPayload} — upcoming UFC event (dev placeholder) */
+  mma: {
+    event: 'UFC Fight Night: Main Event',
+    state: 'pre',
+    statusText: 'Saturday · 10 PM ET',
+    eventLink: null,
+    leagueLogo: '',
+    fighter1: { name: 'Dustin Poirier', flag: '', record: '30-9', winner: false, link: '' },
+    fighter2: { name: 'Charles Oliveira', flag: '', record: '34-10', winner: false, link: '' },
+    weightClass: 'Lightweight Bout',
+    bouts: [
+      { fighter1: 'Dustin Poirier', fighter2: 'Charles Oliveira', winner: '', loser: '', method: '', state: 'pre' },
+      { fighter1: 'Dan Hooker', fighter2: 'Beneil Dariush', winner: '', loser: '', method: '', state: 'pre' },
+      { fighter1: 'Kevin Holland', fighter2: 'Michel Pereira', winner: '', loser: '', method: '', state: 'pre' },
+    ],
+  },
 
   /** @type {TalkingPoint[]} — the uniquely-GuyTalk section; editorial */
   talkingAbout: [
@@ -293,6 +322,12 @@ function ContextCard(rows, live, tag) {
     <div class="ctx-head"><span class="gt">The GuyTalk Read<span class="dot">.</span></span>${tag ? `<span class="tag">${esc(tag)}</span>` : ''}</div>
     <div class="ctx-body">${body}</div>
   </div>`;
+}
+
+/** HighlightLink — standalone "Watch highlights" button for light-bg sections. */
+function HighlightLink(href, label) {
+  if (!href) return '';
+  return `<a class="hl-link" href="${esc(href)}" target="_blank" rel="noopener"><span class="pl">▶</span> ${esc(label || 'Watch highlights →')}</a>`;
 }
 
 /** EventSpotlight — editorial hero card: colour-block hero + one strong visual
@@ -986,6 +1021,53 @@ function golfWhatYouMissed(g) {
   ]);
 }
 
+/* ---- MMA/UFC context (main event) ---- */
+
+function mmaContext(mma) {
+  const rows = [];
+  const f1 = mma.fighter1, f2 = mma.fighter2;
+  const mainFight = (f1 && f2) ? `${f1.name} vs. ${f2.name}` : (mma.event || 'UFC');
+
+  if (mma.state === 'post') {
+    const winner = (f1 && f1.winner) ? f1 : (f2 && f2.winner ? f2 : null);
+    const loser  = winner === f1 ? f2 : f1;
+    rows.push({ label: 'Main event result', text: winner
+      ? `${winner.name} defeats ${loser?.name || '—'}${mma.weightClass ? ` — ${mma.weightClass}` : ''}.`
+      : `${mainFight} is in the books.` });
+    if (winner?.record) rows.push({ label: 'Record', key: true, text: `${winner.name} moves to ${winner.record}.` });
+    rows.push({ label: 'What to say', say: true, text: winner
+      ? `"${winner.name} looked elite tonight — that's a title-contender performance."`
+      : `"${mainFight} delivered. That's why UFC is the best combat sport on the planet."` });
+    rows.push({ label: 'Hot take', take: true, text: winner
+      ? `${winner.name} is the next in line for a title shot after that.`
+      : `Both fighters left everything in the octagon — the rematch writes itself.` });
+  } else if (mma.state === 'in') {
+    rows.push({ label: "It's happening now", text: `${mainFight} is live right now${mma.weightClass ? ` — ${mma.weightClass}` : ''}.` });
+    if (f1?.record && f2?.record) rows.push({ label: 'Records', key: true, text: `${f1.name} (${f1.record}) · ${f2.name} (${f2.record}).` });
+    rows.push({ label: 'What to say', say: true, text: `"${mainFight} is going right now — one punch and this whole card changes."` });
+  } else {
+    rows.push({ label: 'Why it matters', text: `${mainFight}${mma.weightClass ? ` (${mma.weightClass})` : ''} — a high-stakes fight with real implications at the top of the division.` });
+    if (f1?.record && f2?.record) rows.push({ label: 'Records', key: true, text: `${f1.name} ${f1.record} vs. ${f2.name} ${f2.record}.` });
+    rows.push({ label: 'What to say', say: true, text: `"${f1?.name || 'One'} vs. ${f2?.name || 'the other'} — two guys who can end it at any second. That's the purest kind of fight."` });
+    rows.push({ label: 'Hot take', take: true, text: `This is the matchup the division needed — the winner is one fight away from the belt.` });
+  }
+  return rows;
+}
+
+function mmaWhatYouMissed(mma) {
+  if (!mma || mma.state !== 'post') return '';
+  const f1 = mma.fighter1, f2 = mma.fighter2;
+  const winner = (f1 && f1.winner) ? f1 : (f2 && f2.winner ? f2 : null);
+  if (!winner) return '';
+  const loser = winner === f1 ? f2 : f1;
+  return WhatYouMissed([
+    { k: 'Winner',        v: winner.name },
+    { k: 'Record',        v: winner.record ? `Improved to ${winner.record}` : '' },
+    { k: 'Opponent',      v: loser?.name || '' },
+    { k: 'Key takeaway',  v: `${winner.name} takes the win${mma.weightClass ? ` — ${mma.weightClass}` : ''}.` },
+  ]);
+}
+
 /** FeaturedF1Card — winner/leader/pole spotlight for the F1 section. */
 function FeaturedF1Card(f1) {
   const p0 = (f1.positions || [])[0];
@@ -1154,9 +1236,14 @@ function FeaturedGolfCard(g) {
     // the left stack nearly empty (no positions → no board rows, no spotlight, no
     // recap), so anchor it with the championship standings instead of stranding
     // everything on the right.
+    const f1HlUrl = (f1.eventLink?.url) || (() => {
+      const q = encodeURIComponent(`${f1.event} ${f1.phase === 'result' ? 'race highlights' : 'highlights'}`);
+      return `https://www.youtube.com/results?search_query=${q}`;
+    })();
+
     const hasField = (f1.positions || []).length > 0;
     const leftCards = [board, FeaturedF1Card(f1), f1WhatYouMissed(f1)];
-    const rightCards = [ContextCard(f1Rows, isLive, 'Formula 1'), standings, constructors];
+    const rightCards = [ContextCard(f1Rows, isLive, 'Formula 1'), standings, constructors, HighlightLink(f1HlUrl, f1.eventLink ? 'Watch on ESPN →' : 'Watch highlights →')];
     if (!hasField && standings) {
       leftCards.push(standings);
       rightCards.splice(rightCards.indexOf(standings), 1);
@@ -1187,7 +1274,11 @@ function FeaturedGolfCard(g) {
     if (golf.course) golfExtra.push({ label: 'Course', text: `${golf.course}${golf.location ? ` · ${golf.location}` : ''}` });
     if (golf.purse) golfExtra.push({ label: 'Purse', text: `${golf.purse}${golf.winnerShare ? ` · Winner takes ${golf.winnerShare}` : ''}` });
     golfRows.unshift(...golfExtra);
-    el.innerHTML = `<div class="grid-golf">${board}<div class="stack">${ContextCard(golfRows, golf.state === 'in', 'Golf')}${FeaturedGolfCard(golf)}${golfWhatYouMissed(golf)}</div></div>`;
+    const golfHlUrl = (golf.eventLink?.url) || (() => {
+      const q = encodeURIComponent(`${golf.event || 'PGA Tour'} highlights`);
+      return `https://www.youtube.com/results?search_query=${q}`;
+    })();
+    el.innerHTML = `<div class="grid-golf">${board}<div class="stack">${ContextCard(golfRows, golf.state === 'in', 'Golf')}${FeaturedGolfCard(golf)}${golfWhatYouMissed(golf)}${HighlightLink(golfHlUrl, golf.eventLink ? 'Watch on ESPN →' : 'Watch highlights →')}</div></div>`;
   }
 
   // "The GuyTalk Read" for tennis — ranks, stakes, next major, what to say.
@@ -1217,6 +1308,68 @@ function FeaturedGolfCard(g) {
       ? `"Every round at ${major.name} matters now — this is where the season actually gets decided."`
       : `"Just tune-up tennis before ${tennis.nextMajor ? tennis.nextMajor.name : 'the next Slam'} — watch who's finding form early."` });
     return rows;
+  }
+
+  function renderMMA(real) {
+    const mma = real || (IS_DEV ? MOCK.mma : null);
+    setBadge('badge-mma', real ? 'live' : (mma ? 'mock' : null));
+    const el = $('mmaWrap');
+    if (!el) return;
+    if (!mma) { el.innerHTML = emptyBox('No UFC event on the schedule right now.'); return; }
+
+    const isLive = mma.state === 'in';
+    const f1 = mma.fighter1, f2 = mma.fighter2;
+
+    // Fight card list: main event first, most-recent results at top.
+    const boutRows = (mma.bouts || []).map((b) => {
+      const isResult = b.state === 'post';
+      const nameHtml = isResult && b.winner
+        ? `<span class="lb-name"><strong>${esc(b.winner)}</strong> def. ${esc(b.loser)}${b.method ? ` <em style="font-size:12px;color:var(--text-3)">· ${esc(b.method)}</em>` : ''}</span>`
+        : `<span class="lb-name">${esc(b.fighter1)} vs. ${esc(b.fighter2)}</span>`;
+      return `<div class="lb-row">
+        <span class="lb-pos" style="min-width:20px;text-align:center">${isResult ? '✓' : '–'}</span>
+        <span class="lb-name-row" style="flex:1">${nameHtml}</span>
+        <span class="lb-val" style="font-size:11px">${esc(isResult ? 'Final' : 'On card')}</span>
+      </div>`;
+    }).join('');
+
+    const fightCard = `<div class="lb">
+      <div class="lb-head">
+        <div><div class="lb-event">${esc(mma.event || 'UFC')}</div><div class="lb-status">${esc(mma.statusText || '')}</div></div>
+        ${STATUS_PILL[mma.state] || ''}
+      </div>
+      <div class="lb-sub-head">Fight Card</div>
+      ${boutRows || '<div style="padding:12px 0;color:var(--text-3);font-size:14px">Bouts updating…</div>'}
+    </div>`;
+
+    // Spotlight the winner (post) or main event headliner (pre/live).
+    const featFighter = (mma.state === 'post' && (f1?.winner ? f1 : f2)) || f1;
+    const spotHtml = featFighter ? EventSpotlight({
+      eyebrow: mma.state === 'post' ? 'Main Event Winner' : isLive ? 'Main Event — Live' : 'Main Event',
+      icon: '🥊',
+      flag:    featFighter.flag,
+      name:    featFighter.name,
+      subText: mma.weightClass || (f2 ? `vs. ${f2.name}` : ''),
+      accent:  '#DC2626',
+      watermark: mma.leagueLogo,
+      link:    mma.eventLink || null,
+      stats:   [
+        { num: featFighter.record || '—', label: 'Record' },
+        mma.state === 'post'
+          ? { num: mma.bouts?.filter((b) => b.state === 'post').length || '—', label: 'Results in' }
+          : { num: mma.bouts?.length || '—', label: 'Bouts on card' },
+      ],
+    }) : '';
+
+    const hlUrl = (mma.eventLink?.url) || (() => {
+      const q = encodeURIComponent(`${mma.event || 'UFC'} highlights`);
+      return `https://www.youtube.com/results?search_query=${q}`;
+    })();
+
+    el.innerHTML = `<div class="grid-golf">
+      <div class="stack">${fightCard}${spotHtml}</div>
+      <div class="stack">${ContextCard(mmaContext(mma), isLive, 'UFC')}${mmaWhatYouMissed(mma)}${HighlightLink(hlUrl, mma.eventLink ? 'Watch on ESPN →' : 'Watch highlights →')}</div>
+    </div>`;
   }
 
   function renderTennis(real) {
@@ -1377,6 +1530,7 @@ function FeaturedGolfCard(g) {
     $('f1Wrap').innerHTML = sk(2);
     $('golfWrap').innerHTML = sk(1);
     if ($('tennisWrap')) $('tennisWrap').innerHTML = sk(2);
+    if ($('mmaWrap')) $('mmaWrap').innerHTML = sk(2);
     $('scoreboardWrap').innerHTML = sk(2);
     $('marketsWrap').innerHTML = sk(8);
     // Rundown band stays hidden until real AI synthesis arrives (no fake placeholder).
@@ -1402,6 +1556,7 @@ function FeaturedGolfCard(g) {
     renderF1(p.f1);
     renderGolf(p.golf);
     renderTennis(p.tennis);
+    renderMMA(p.mma);
     renderScoreboard(p.scoreboard);
     renderMarkets(p.markets);
     // Sections 6 & 7 are handled by refreshTalk() / renderTalk() (separate feed).
@@ -1416,6 +1571,7 @@ function FeaturedGolfCard(g) {
     setMeta('meta-f1',       p.f1         ? 'ESPN · Jolpica' : '');
     setMeta('meta-golf',     p.golf       ? 'ESPN' : '');
     setMeta('meta-tennis',   p.tennis     ? 'ESPN' : '');
+    setMeta('meta-mma',      p.mma        ? 'ESPN' : '');
     setMeta('meta-scores',   p.scoreboard ? 'ESPN' : '');
     setMeta('meta-markets',  p.markets    ? 'Finnhub' : '');
     // meta-trending / meta-talking are owned by renderTalk() (separate feed).
@@ -1426,6 +1582,7 @@ function FeaturedGolfCard(g) {
     if (liveN) setText('desc-live', `${liveN} event${liveN > 1 ? 's' : ''} in focus right now, ranked by what matters.`);
     if (p.f1) setText('desc-f1', `${p.f1.event} · ${p.f1.sessionLabel}`);
     if (p.golf) setText('desc-golf', `${shortEvent(p.golf.event)} · ${p.golf.statusText}`);
+    if (p.mma) setText('desc-mma', `${shortEvent(p.mma.event)} · ${p.mma.statusText || p.mma.state}`);
     if (p.tennis && p.tennis.tours && p.tennis.tours.length) {
       setText('desc-tennis', p.tennis.tours.map((t) => `${t.tour} ${t.name}`).join(' · ') + (p.tennis.anyMajor ? ' · GRAND SLAM' : ''));
     }

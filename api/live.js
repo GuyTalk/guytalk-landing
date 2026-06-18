@@ -875,12 +875,88 @@ async function fetchMarkets(key) {
   return filled.length ? filled : null;
 }
 
+/* --------------------------------------------------------------------- MMA/UFC */
+
+async function fetchMMA() {
+  const data = await json(`${ESPN}/mma/ufc/scoreboard`);
+  const event = data?.events?.[0];
+  if (!event) return null;
+
+  // Year safeguard — drop stale events from a prior season.
+  const year = event.season?.year || data?.leagues?.[0]?.season?.year;
+  if (year && year !== CURRENT_YEAR) return null;
+
+  const comps = (event.competitions || []).slice();
+  if (!comps.length) return null;
+
+  // ESPN orders bouts prelims-first; the main event is the last (highest-order) bout.
+  const mainEvent = comps[comps.length - 1];
+  const status = mainEvent.status?.type || {};
+  const state = status.state; // 'pre' | 'in' | 'post'
+
+  const fighter = (c) => ({
+    name: c.athlete?.displayName || c.athlete?.shortName || '',
+    flag: c.athlete?.flag?.href || '',
+    record: (c.records || [])[0]?.summary || '',
+    winner: !!c.winner,
+    link: athleteLink(c.athlete),
+  });
+
+  const fighters = (mainEvent.competitors || []).map(fighter);
+
+  // Weight class is typically in competition notes
+  const weightClass = (mainEvent.notes || [])[0]?.headline || '';
+
+  // Top bouts: main card last 6, reversed so main event is first in the list.
+  const bouts = comps.slice(-6).reverse().map((c) => {
+    const fc = (c.competitors || []).map(fighter);
+    const cState = c.status?.type?.state;
+    const w = fc.find((x) => x.winner);
+    const l = fc.find((x) => !x.winner);
+    const methodNote = (c.notes || []).find((n) => !/weight/i.test(n.headline || ''));
+    return {
+      fighter1: fc[0]?.name || '',
+      fighter2: fc[1]?.name || '',
+      winner: w?.name || '',
+      loser:  l?.name || '',
+      method: methodNote?.headline || '',
+      state:  cState || 'pre',
+    };
+  });
+
+  return {
+    event:      event.name || event.shortName || 'UFC',
+    state,
+    statusText: status.detail || status.shortDetail || '',
+    eventLink:  espnLink(event.links),
+    leagueLogo: pickLogo(data?.leagues?.[0]?.logos),
+    fighter1:   fighters[0] || null,
+    fighter2:   fighters[1] || null,
+    weightClass,
+    bouts,
+  };
+}
+
 /* ----------------------------------------------------------------- Live Now */
 
 // Importance-ranked: F1 live > golf live (major boosted) > postseason/big games
 // > ordinary live games. Only genuinely in-progress events appear here.
-function deriveLiveNow({ scoreboard, f1, golf }) {
+function deriveLiveNow({ scoreboard, f1, golf, mma }) {
   const cards = [];
+
+  if (mma && mma.state === 'in') {
+    const fn1 = mma.fighter1?.name || '', fn2 = mma.fighter2?.name || '';
+    cards.push({
+      kind: 'mma', importance: 92, title: mma.event, status: 'live',
+      statusText: `UFC · ${mma.statusText || 'In progress'}`,
+      link: mma.eventLink ? mma.eventLink.url : '',
+      lines: fn1 && fn2 ? [
+        { left: fn1, right: mma.fighter1.record || '' },
+        { left: fn2, right: mma.fighter2.record || '' },
+      ] : [],
+      leader: fn1 && fn2 ? `${fn1} vs. ${fn2}` : '',
+    });
+  }
 
   if (f1 && f1.phase === 'live') {
     cards.push({
@@ -929,6 +1005,19 @@ function deriveLiveNow({ scoreboard, f1, golf }) {
   // Nothing live right now → show what's ON THE SLATE so this is never blank:
   // tonight's scheduled games + any upcoming F1/golf, tagged as upcoming.
   const sched = [];
+  if (mma && mma.state === 'pre' && mma.event) {
+    const fn1 = mma.fighter1?.name || '', fn2 = mma.fighter2?.name || '';
+    sched.push({
+      kind: 'mma', importance: 88, title: mma.event, status: 'upcoming',
+      statusText: `UFC · ${mma.statusText || 'Upcoming'}`,
+      link: mma.eventLink ? mma.eventLink.url : '',
+      lines: fn1 && fn2 ? [
+        { left: fn1, right: mma.fighter1.record || '' },
+        { left: fn2, right: mma.fighter2.record || '' },
+      ] : [],
+      leader: fn1 && fn2 ? `Main event: ${fn1} vs. ${fn2}` : '',
+    });
+  }
   if (f1 && f1.phase === 'upcoming' && f1.event) {
     sched.push({
       kind: 'f1', importance: 100, title: f1.event, status: 'upcoming',
@@ -967,11 +1056,11 @@ module.exports = async function handler(req, res) {
   const finnhubKey = process.env.FINNHUB_API_KEY;
 
   try {
-    const [scoreboard, f1, golf, tennis, markets] = await Promise.all([
-      fetchScoreboards(), fetchF1(), fetchGolf(), fetchTennis(), fetchMarkets(finnhubKey),
+    const [scoreboard, f1, golf, tennis, mma, markets] = await Promise.all([
+      fetchScoreboards(), fetchF1(), fetchGolf(), fetchTennis(), fetchMMA(), fetchMarkets(finnhubKey),
     ]);
 
-    const liveNow = deriveLiveNow({ scoreboard, f1, golf });
+    const liveNow = deriveLiveNow({ scoreboard, f1, golf, mma });
     const culture = loadLiveCulture();   // NewsAPI entertainment headlines (refresh-culture cron)
 
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
@@ -984,11 +1073,12 @@ module.exports = async function handler(req, res) {
         golf:       golf       ? 'espn'    : null,
         tennis:     tennis     ? 'espn'    : null,
         scoreboard: scoreboard ? 'espn'    : null,
+        mma:        mma        ? 'espn'    : null,
         markets:    markets    ? 'finnhub' : null,
         culture:      culture.length ? 'NewsAPI' : null,
         talkingAbout: 'editorial',   // no live source yet
       },
-      liveNow, f1, golf, tennis, scoreboard, markets,
+      liveNow, f1, golf, tennis, mma, scoreboard, markets,
       culture: culture.length ? culture : null,
       talkingAbout: null,
     });

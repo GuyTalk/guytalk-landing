@@ -613,6 +613,17 @@
   .hl-btn:hover { background: rgba(255,255,255,0.28); color: #fff; text-decoration: none; }
   .hl-btn .pl { font-size: 9px; }
   .spot-link-row { position: relative; margin-top: 13px; }
+  /* Standalone highlight link (light-background sections — F1, Golf, UFC) */
+  .hl-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.02em;
+    padding: 7px 14px; border-radius: 8px;
+    background: var(--accent-muted); color: var(--accent);
+    border: 1px solid rgba(43,111,255,0.22); white-space: nowrap; margin-top: 2px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .hl-link:hover { background: var(--accent); color: #fff; text-decoration: none; }
+  .hl-link .pl { font-size: 10px; }
 
   /* TRENDING (live) — source links */
   .story-head a { color: var(--text); text-decoration: none; }
@@ -806,6 +817,19 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
       <p class="section-desc" id="desc-tennis">ATP &amp; WTA — the tours, the majors, and who's winning.</p>
     </div>
     <div id="tennisWrap"></div>
+  </section>
+
+  <!-- UFC / MMA -->
+  <section class="live-section sub" id="mma">
+    <div class="section-head is-sub">
+      <div class="section-head-top">
+        <h3 class="section-h">UFC &amp; MMA</h3>
+        <span id="badge-mma"></span>
+        <span class="section-meta" id="meta-mma"></span>
+      </div>
+      <p class="section-desc" id="desc-mma">The next fight card, main event matchup, and what to say about it.</p>
+    </div>
+    <div id="mmaWrap"></div>
   </section>
 
   <!-- Scoreboard -->
