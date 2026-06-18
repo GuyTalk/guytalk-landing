@@ -5,8 +5,17 @@
 
 require('dotenv').config({ path: '.env.local' });
 
-const fs   = require('fs');
-const path = require('path');
+const fs            = require('fs');
+const path          = require('path');
+const { execSync }  = require('child_process');
+
+function getRunMeta() {
+  const ts = new Date().toLocaleString('en-US', { timeZone: 'America/New_York', hour12: true,
+    weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  let commit = 'unknown';
+  try { commit = execSync('git rev-parse --short HEAD', { cwd: path.join(__dirname, '..') }).toString().trim(); } catch (_) {}
+  return { ts, commit };
+}
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const APPROVAL_TOKEN = process.env.APPROVAL_TOKEN;
@@ -37,6 +46,7 @@ async function main() {
   const num        = String(data.num).padStart(3, '0');
   const approveUrl = `${SITE_URL}/api/approve?token=${APPROVAL_TOKEN}`;
   const previewUrl = `${SITE_URL}/api/preview?token=${APPROVAL_TOKEN}`;
+  const { ts: runTs, commit: runCommit } = getRunMeta();
 
   // Quick look bullets
   const bullets = [];
@@ -143,7 +153,8 @@ async function main() {
   <tr><td style="padding:20px 0 0;text-align:center;">
     <p style="font-size:11px;color:#B0ADA8;margin:0;line-height:1.6;">
       This is your private review email. Only you can see this.<br>
-      Tap the green button to send to all subscribers.
+      Tap the green button to send to all subscribers.<br>
+      <span style="font-family:monospace;font-size:10px;">run: ${runTs} &nbsp;·&nbsp; commit: ${runCommit}</span>
     </p>
   </td></tr>
 

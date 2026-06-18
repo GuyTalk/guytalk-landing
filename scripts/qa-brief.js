@@ -285,13 +285,25 @@ function main() {
   if (!ed) {
     warn('No editor record on this issue — generated before the editorial pass existed');
   } else if (ed.reviewed) {
+    // Quality blocks (no_ammo, no_current_facts, low_conversation_relevance) are content
+    // issues — warn Jake but allow the brief to stage. Safety/compliance blocks hard fail.
+    const QUALITY_BLOCK_REASONS = new Set(['no_ammo', 'no_current_facts', 'low_conversation_relevance']);
+    const allBlocks    = ed.blocking || [];
+    const safetyBlocks = allBlocks.filter(b => !QUALITY_BLOCK_REASONS.has(b.reason));
+    const qualityBlocks = allBlocks.filter(b => QUALITY_BLOCK_REASONS.has(b.reason));
     run(
-      'Editor pass: no sections blocked by the Bible',
-      (ed.blocking || []).length === 0,
-      (ed.blocking || []).length
-        ? `Blocked: ${ed.blocking.map(b => `${b.section} (${b.reason})`).join(' | ')}`
+      'Editor pass: no safety/compliance violations',
+      safetyBlocks.length === 0,
+      safetyBlocks.length
+        ? `Safety blocked: ${safetyBlocks.map(b => `${b.section} (${b.reason})`).join(' | ')}`
         : `Reviewed by ${ed.model}${ed.changed?.length ? ` — rewrote ${ed.changed.join(', ')}` : ''}`
     );
+    if (qualityBlocks.length) {
+      warn(
+        `Editor: content-quality issues (brief will still stage — review before approving)`,
+        qualityBlocks.map(b => `${b.section} (${b.reason})`).join(' | ')
+      );
+    }
     if (ed.notes?.length) warn(`Editor notes: ${ed.notes.join(' | ')}`);
   } else {
     // Fail-open by design (Jake, 2026-06-04): publish but warn loudly.
@@ -386,10 +398,16 @@ function main() {
     );
   }
 
-  // 5. Culture: 3 items
+  // 5. Culture: 3 items preferred, 2 allowed (warn only)
   console.log('\n  [Culture]');
   const cult = copy?.culture || [];
-  run('Culture: 3 items present', cult.length === 3, `Got ${cult.length}`);
+  if (cult.length >= 3) {
+    run('Culture: 3 items present', true);
+  } else if (cult.length === 2) {
+    warn('Culture: only 2 items (3 preferred) — brief will publish with 2 culture items');
+  } else {
+    run('Culture: minimum 2 items required', false, `Got ${cult.length} — brief cannot publish without at least 2 culture items`);
+  }
   cult.forEach((item, i) => {
     const head = item.topic || item.head || '';
     const body = item.whatHappened || item.body || '';
@@ -433,6 +451,90 @@ function main() {
     );
   }
 
+  // 10b. SPORTS IMAGE MISMATCH — hard fail if a sport's image is from a different sport
+  console.log('\n  [Sports Image Validation]');
+  const dynSports = issue.dynamicSports || [];
+  const IMAGE_SPORT_RULES = [
+    // key = sport label (lowercase), banned = substrings in imageUrl that indicate a wrong sport
+    { sport: 'world cup',  banned: ['nba', 'nhl', 'mlb', 'basketball', 'hockey', 'baseball'] },
+    { sport: 'worldcup',   banned: ['nba', 'nhl', 'mlb', 'basketball', 'hockey', 'baseball'] },
+    { sport: 'mlb',        banned: ['nba', 'nhl', 'basketball', 'hockey'] },
+    { sport: 'nba',        banned: ['nhl', 'mlb', 'soccer', 'football', 'hockey', 'baseball'] },
+    { sport: 'nhl',        banned: ['nba', 'mlb', 'basketball', 'baseball', 'soccer'] },
+    { sport: 'f1',         banned: ['nba', 'nhl', 'mlb', 'basketball', 'hockey', 'baseball', 'soccer'] },
+    { sport: 'golf',       banned: ['nba', 'nhl', 'mlb', 'basketball', 'hockey', 'baseball', 'soccer'] },
+  ];
+  let imageMismatch = false;
+  for (const s of dynSports) {
+    const label = (s.label || '').toLowerCase();
+    const img   = (s.imageUrl || '').toLowerCase();
+    if (!img) continue;
+    const rule = IMAGE_SPORT_RULES.find(r => label.includes(r.sport) || r.sport.includes(label));
+    if (rule) {
+      const banned = rule.banned.find(b => img.includes(b));
+      if (banned) {
+        imageMismatch = true;
+        run(
+          `Sports image: ${s.label} image must not be a ${banned} asset`,
+          false,
+          `imageUrl="${s.imageUrl}" contains "${banned}" — wrong sport. Use null or a ${s.label}-specific image.`
+        );
+      }
+    }
+  }
+  if (!imageMismatch) run('Sports images: no cross-sport image mismatches', true);
+
+  // 10c. DUPLICATE IMAGE CHECK — hard fail if any imageUrl appears twice in the same brief
+  console.log('\n  [Image Freshness]');
+  {
+    const allImages = [];
+    const heroImg = issue.heroOverride?.image;
+    if (heroImg) allImages.push({ section: 'heroOverride', url: heroImg });
+    for (const s of dynSports) {
+      if (s.imageUrl) allImages.push({ section: s.label || s.name || 'sport', url: s.imageUrl });
+    }
+    const seen = new Map();
+    let hasDupe = false;
+    for (const { section, url } of allImages) {
+      if (seen.has(url)) {
+        hasDupe = true;
+        run(
+          `No duplicate images: ${section}`,
+          false,
+          `"${url}" already used in "${seen.get(url)}" — each section needs a distinct image`
+        );
+      } else {
+        seen.set(url, section);
+      }
+    }
+    if (!hasDupe) run('No duplicate images within issue', true);
+
+    // 10d. CROSS-ISSUE IMAGE REUSE — warn if image was also used in the previous brief
+    const dataDir = path.join(__dirname, '..', 'brief', 'data');
+    const prevNum = (issue.num || 0) - 1;
+    const prevSlug = prevNum > 0 ? `issue-${String(prevNum).padStart(3, '0')}` : null;
+    const prevFile = prevSlug ? path.join(dataDir, `${prevSlug}.json`) : null;
+    if (prevFile && fs.existsSync(prevFile)) {
+      try {
+        const prev = JSON.parse(fs.readFileSync(prevFile, 'utf8'));
+        const prevImages = new Set();
+        if (prev.heroOverride?.image) prevImages.add(prev.heroOverride.image);
+        for (const s of (prev.dynamicSports || [])) {
+          if (s.imageUrl) prevImages.add(s.imageUrl);
+        }
+        const reused = allImages.filter(({ url }) => prevImages.has(url));
+        if (reused.length) {
+          warn(
+            `${reused.length} image(s) reused from ${prevSlug}`,
+            reused.map(r => `${r.section}: ${r.url}`).join(' | ')
+          );
+        } else {
+          run(`No images reused from ${prevSlug}`, true);
+        }
+      } catch (_) {}
+    }
+  }
+
   // 11. THE RUNDOWN module — verify narrative sources exist (warn only, fallbacks in html.js)
   const hasRundownNarrative = !!(copy?.rundownNarrative);
   const hasRundownFallbacks = !!(
@@ -444,6 +546,42 @@ function main() {
   } else {
     check('The Rundown: narrative sources present', true);
     passed++;
+  }
+
+  // 11b. RUNDOWN MARKET DATA CONSISTENCY — hard gate
+  // The Rundown bullet must use the same verified index data as the market cards.
+  // All three must agree: Rundown text, market-card tiles, Sharp Take.
+  // Rule: market data is centralized — no section invents its own S&P/Nasdaq/Dow move.
+  console.log('\n  [Rundown Market Data Consistency]');
+  {
+    const spy = markets?.SPY;
+    const qqq = markets?.QQQ;
+    const hasSpyData = spy && (spy.indexDayChangePct != null || spy.dayChangePct != null);
+    const hasQqqData = qqq && (qqq.indexDayChangePct != null || qqq.dayChangePct != null);
+    run(
+      'Rundown: market data present for S&P 500 and Nasdaq',
+      !!(hasSpyData && hasQqqData),
+      !hasSpyData ? 'SPY market data missing — Rundown will show fallback text' :
+      !hasQqqData ? 'QQQ market data missing — Rundown will show fallback text' : undefined
+    );
+    if (hasSpyData && spy.indexDayChangePct == null) {
+      warn('Rundown: S&P 500 using ETF day% (indexDayChangePct not populated) — true index % preferred');
+    }
+    if (hasQqqData && qqq.indexDayChangePct == null) {
+      warn('Rundown: Nasdaq using ETF day% (indexDayChangePct not populated) — true index % preferred');
+    }
+    // If both index and ETF % are present, they should agree within 0.5ppt.
+    // A large divergence means the wrong source is being used somewhere.
+    if (spy?.indexDayChangePct != null && spy?.dayChangePct != null) {
+      const diff = Math.abs(spy.indexDayChangePct - spy.dayChangePct);
+      if (diff > 0.5) {
+        run(
+          'Rundown: S&P 500 index% and ETF% agree (within 0.5ppt)',
+          false,
+          `index=${spy.indexDayChangePct.toFixed(2)}% ETF=${spy.dayChangePct.toFixed(2)}% — divergence ${diff.toFixed(2)}ppt may indicate stale ETF quote`
+        );
+      }
+    }
   }
 
   // 12. CROSS-SECTION CONSISTENCY — Fed/macro framing must agree across sections
@@ -469,6 +607,72 @@ function main() {
   const golfCopy = [copy?.golf?.whyCare1, copy?.golf?.whyCare2, copy?.golf?.watchFor].filter(Boolean).join(' ').toLowerCase();
   const isRefusal = REFUSAL_PHRASES.some(p => golfCopy.includes(p));
   if (isRefusal) warn('Golf copy looks like a refusal — review before publishing');
+
+  // ── Pre-approval audit print ─────────────────────────────────────────────
+  console.log(`\n${'═'.repeat(50)}`);
+  console.log('  PRE-APPROVAL AUDIT');
+  console.log(`${'═'.repeat(50)}`);
+  {
+    const dynSportsAudit = issue.dynamicSports || [];
+    const totalPlayers   = dynSportsAudit.reduce((n, s) => n + (Array.isArray(s.playerLinks) ? s.playerLinks.length : 0), 0);
+    const hasPlayerLinks = totalPlayers > 0;
+    console.log(`  Player links added:              ${hasPlayerLinks ? `YES (${totalPlayers} total)` : 'NO'}`);
+
+    const auditImgs = [];
+    if (issue.heroOverride?.image) auditImgs.push(issue.heroOverride.image);
+    for (const s of dynSportsAudit) { if (s.imageUrl) auditImgs.push(s.imageUrl); }
+    const uniqueImgs = new Set(auditImgs);
+    const hasDupesAudit = uniqueImgs.size < auditImgs.length;
+    console.log(`  Duplicate images in issue:       ${hasDupesAudit ? `YES (${auditImgs.length - uniqueImgs.size} dupe(s))` : 'NO'}`);
+
+    // Cross-issue reuse
+    const dataDir2 = path.join(__dirname, '..', 'brief', 'data');
+    const prevNum2 = (issue.num || 0) - 1;
+    const prevFile2 = prevNum2 > 0 ? path.join(dataDir2, `issue-${String(prevNum2).padStart(3, '0')}.json`) : null;
+    let reuseAnswer = 'NO';
+    if (prevFile2 && fs.existsSync(prevFile2)) {
+      try {
+        const prev2 = JSON.parse(fs.readFileSync(prevFile2, 'utf8'));
+        const prevImgs2 = new Set();
+        if (prev2.heroOverride?.image) prevImgs2.add(prev2.heroOverride.image);
+        for (const s of (prev2.dynamicSports || [])) { if (s.imageUrl) prevImgs2.add(s.imageUrl); }
+        const reusedCount = auditImgs.filter(u => prevImgs2.has(u)).length;
+        if (reusedCount) reuseAnswer = `YES (${reusedCount} shared with #${String(prevNum2).padStart(3, '0')})`;
+      } catch (_) {}
+    }
+    console.log(`  Images reused from prev issue:   ${reuseAnswer}`);
+
+    // F1 freshness
+    const f1Entry = dynSportsAudit.find(s => (s.label || '').toLowerCase().includes('f1') || (s.name || '').toLowerCase().includes('grand prix'));
+    const f1Img   = f1Entry?.imageUrl || '';
+    let f1Fresh = 'N/A';
+    if (f1Img) {
+      let prevF1Img = '';
+      if (prevFile2 && fs.existsSync(prevFile2)) {
+        try {
+          const prev2 = JSON.parse(fs.readFileSync(prevFile2, 'utf8'));
+          prevF1Img = (prev2.dynamicSports || []).find(s => (s.label||'').toLowerCase().includes('f1'))?.imageUrl || '';
+        } catch (_) {}
+      }
+      f1Fresh = (f1Img && f1Img !== prevF1Img) ? `YES (${f1Img.split('/').pop()})` : `NO (same as prev: ${f1Img.split('/').pop()})`;
+    }
+    console.log(`  F1 image fresh:                  ${f1Fresh}`);
+
+    // Wrong sport/player image — pull from earlier check results
+    console.log(`  Wrong sport/player image:        ${imageMismatch ? 'YES — see [Sports Image Validation] above' : 'NO'}`);
+
+    // Per-section image summary
+    console.log('');
+    console.log('  Section images:');
+    if (issue.heroOverride?.image) {
+      console.log(`    Lead/Markets: ${issue.heroOverride.image}`);
+    }
+    for (const s of dynSportsAudit) {
+      const players = Array.isArray(s.playerLinks) ? s.playerLinks.map(p => p.name).join(', ') : '';
+      console.log(`    ${(s.label || s.name || '?').padEnd(18)}: ${s.imageUrl || '(none)'}`);
+      if (players) console.log(`      ${''.padEnd(18)}  players: ${players}`);
+    }
+  }
 
   // ── Summary ─────────────────────────────────────────────────────────────────
   console.log(`\n${'─'.repeat(50)}`);

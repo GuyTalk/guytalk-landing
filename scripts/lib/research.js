@@ -21,7 +21,7 @@ const SYNTH_MODEL   = process.env.ANTHROPIC_RESEARCH_MODEL || 'claude-sonnet-4-6
 const EXTRACT_MODEL = process.env.ANTHROPIC_EXTRACT_MODEL  || 'claude-haiku-4-5-20251001';
 
 const MAX_CONTINUATIONS = parseInt(process.env.RESEARCH_MAX_CONTINUATIONS || '2', 10);
-const MAX_SPORTS        = parseInt(process.env.RESEARCH_MAX_SPORTS        || '3', 10);
+const MAX_SPORTS        = parseInt(process.env.RESEARCH_MAX_SPORTS        || '4', 10);
 
 const { isExcluded, scoreImportance } = require('./editorial-config');
 const { extractOgImage, isLiveImage, resolveAthleteImage, SECTION_FALLBACKS } = require('./images');
@@ -269,22 +269,28 @@ function isCultureBlocked(title) {
 async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImageUrls = [], golf, topStories = [] } = {}) {
   const SPORTS_RE = /\b(nba|nfl|nhl|mlb|mls|soccer|ufc|mma|fight(?:er|s)?|boxing|game\s+\d|match|playoff|championship|score|world\s+cup)\b/i;
 
-  // Culture from NewsAPI entertainment — filter out sports AND low-quality filler.
+  // Culture from NewsAPI — filter out sports AND low-quality filler.
   // This is the fallback path used only when OpenAI research doesn't supply culture items.
+  // Primary: entertainment. If < 3 quality items, extend with technology then general.
   const culture = [];
-  const newsItems = await fetchNewsHeadlines(['entertainment'], { pageSize: 15 });
-  for (const a of newsItems) {
-    if (SPORTS_RE.test(a.title)) continue;
-    if (isCultureBlocked(a.title)) continue;
-    culture.push({
-      headline:   a.title,
-      source:     a.source,
-      url:        a.url,
-      fact:       a.description || a.title,
-      background: '',
-      no_data:    false,
-    });
+  const CULTURE_CATEGORIES = ['entertainment', 'technology', 'general'];
+  for (const cat of CULTURE_CATEGORIES) {
     if (culture.length >= 3) break;
+    const newsItems = await fetchNewsHeadlines([cat], { pageSize: 15 });
+    for (const a of newsItems) {
+      if (culture.length >= 3) break;
+      if (SPORTS_RE.test(a.title)) continue;
+      if (isCultureBlocked(a.title)) continue;
+      if (culture.some(c => c.url === a.url)) continue; // no dupes across categories
+      culture.push({
+        headline:   a.title,
+        source:     a.source,
+        url:        a.url,
+        fact:       a.description || a.title,
+        background: '',
+        no_data:    false,
+      });
+    }
   }
 
   // Hero image: og:image from the top story's first source URL
@@ -305,7 +311,7 @@ async function fetchSectionStories({ dateLabel, leadSubject, issueNum, prevImage
     if (!heroImage) heroImage = { no_data: true };
   }
 
-  const out = { culture: culture.slice(0, 2), cultureNoData: culture.length === 0, heroImage };
+  const out = { culture: culture.slice(0, 3), cultureNoData: culture.length === 0, heroImage };
   console.log(`   ✓ Section research: culture:${out.culture.length} hero:${out.heroImage && !out.heroImage.no_data ? 'ok' : 'none'}`);
   return out;
 }
@@ -452,30 +458,69 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
 
   // ── World Cup ─────────────────────────────────────────────────────────────
   if (worldCup?.length) {
-    const USA_RE = /\bunited states\b|\busmnt\b/i;
-    const featured = worldCup.find(m => USA_RE.test(m.home.team) || USA_RE.test(m.away.team))
-      || worldCup.find(m => m.statusState === 'post') || worldCup[0];
+    const USA_RE = /\bunited states\b|\busmnt\b|\busa\b/i;
+
+    // Prefer completed games — biggest result first (highest combined goals = most exciting)
+    const completed = worldCup.filter(m => m.statusState === 'post');
+    const scheduled = worldCup.filter(m => m.statusState === 'pre' || m.statusState === 'in');
+
+    // Pick the most compelling completed match: US game first, then highest-scoring
+    const featured = completed.find(m => USA_RE.test(m.home.team) || USA_RE.test(m.away.team))
+      || completed.sort((a, b) => {
+          const goalsB = (parseInt(b.home.score,10)||0) + (parseInt(b.away.score,10)||0);
+          const goalsA = (parseInt(a.home.score,10)||0) + (parseInt(a.away.score,10)||0);
+          return goalsB - goalsA;
+        })[0]
+      || scheduled.find(m => USA_RE.test(m.home.team) || USA_RE.test(m.away.team))
+      || scheduled[0];
+
     if (featured) {
       const isPost = featured.statusState === 'post';
       let headline, facts;
+
       if (isPost) {
+        // Rich recap: headline on the biggest game, full yesterday slate + scorers as facts
         const hs = parseInt(featured.home.score, 10) || 0;
         const as = parseInt(featured.away.score, 10) || 0;
         const [wt, ws, lt, ls] = hs >= as
           ? [featured.home.team, hs, featured.away.team, as]
           : [featured.away.team, as, featured.home.team, hs];
         headline = `${wt} ${ws}–${ls} ${lt}`;
-        facts = worldCup.filter(m => m.statusState === 'post').map(m => {
+
+        // Full results recap with scorers
+        const recapLines = completed.map(m => {
           const mh = parseInt(m.home.score, 10) || 0;
           const ma = parseInt(m.away.score, 10) || 0;
           const [wt2, ws2, lt2, ls2] = mh >= ma ? [m.home.team, mh, m.away.team, ma] : [m.away.team, ma, m.home.team, mh];
-          return `${wt2} ${ws2}–${ls2} ${lt2}`;
-        }).join('; ');
+          const scorers = (m.goals || [])
+            .filter(g => g.player)
+            .map(g => `${g.player} (${g.clock}${g.type.includes('Penalty') ? ' pen' : ''})`)
+            .join(', ');
+          const note = m.espnNote ? ` NOTE: ${m.espnNote.slice(0, 120)}` : '';
+          return `${wt2} ${ws2}–${ls2} ${lt2}${scorers ? ` | Scorers: ${scorers}` : ''}${note}`;
+        }).join('\n');
+
+        // Today's upcoming slate for "what to watch next"
+        const upcomingLines = scheduled.length
+          ? `\nTODAY'S FIXTURES: ${scheduled.map(m => {
+              const t = m.date ? new Date(m.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) : '';
+              return `${m.away.team} vs. ${m.home.team}${t ? ` (${t} EDT)` : ''}`;
+            }).join('; ')}`
+          : '';
+
+        facts = `YESTERDAY'S WORLD CUP RESULTS:\n${recapLines}${upcomingLines}\n\nPLAYERS TO KNOW (link these in copy using class="entity-person" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as "Players to Know" in the section. Write a proper recap, not a fixture list.`;
       } else {
-        headline = `${featured.away.team} vs. ${featured.home.team}`;
-        facts    = headline;
+        // No completed results — preview today's slate with group context
+        const allMatches = scheduled;
+        headline = allMatches.length > 1
+          ? `FIFA World Cup 2026 — ${allMatches.length} matches today`
+          : `${featured.away.team} vs. ${featured.home.team}`;
+        facts = `TODAY'S WORLD CUP SLATE:\n${allMatches.map(m => {
+          const t = m.date ? new Date(m.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) : '';
+          return `${m.away.team} vs. ${m.home.team}${t ? ` (${t} EDT)` : ''}`;
+        }).join('\n')}\nWrite as a World Cup preview: group stakes, key storylines, players to watch. Do NOT invent scores.`;
       }
-      const { score: imp } = scoreImportance({ name: 'World Cup USMNT FIFA 2026', headline, facts, isFinalResult: isPost });
+      const { score: imp } = scoreImportance({ name: 'World Cup FIFA 2026 championship soccer', headline, facts, isFinalResult: isPost });
       candidates.push({
         name: 'FIFA World Cup 2026', label: 'World Cup', category: 'team',
         headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
@@ -496,19 +541,28 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
   filtered.sort((a, b) => b._score - a._score);
   const top = filtered.slice(0, MAX_SPORTS);
 
-  // ── Resolve images in parallel ────────────────────────────────────────────
+  // ── Resolve images via web search + static fallback ─────────────────────
   const prevSet = new Set((prevImageUrls || []).filter(Boolean));
+  let imgSearch;
+  try { imgSearch = require('./imageSearch'); } catch (_) {}
+
   await Promise.allSettled(top.map(async (s) => {
     let img = null;
-    // Prefer venue/course images (Wikimedia Commons, official media) over ESPN headshots.
-    // buildGolf/buildF1 in html.js have their own curated course/circuit fallbacks,
-    // so null here means html.js falls back cleanly — no ESPN thumbnail or headshot needed.
-    if (s.label === 'Golf' || s.label === 'F1') {
-      img = SECTION_FALLBACKS[s._sport] || null;
-    } else {
-      // Team sport: use sport-specific hero fallback
-      img = SECTION_FALLBACKS[s._sport] || SECTION_FALLBACKS.sports;
+
+    // Web-search path: ask OpenAI to find a real action photo for this specific story.
+    if (imgSearch) {
+      const query = imgSearch.buildSportImageQuery(s);
+      if (query) {
+        const staticFallback = SECTION_FALLBACKS[s._sport] || null;
+        img = await imgSearch.searchWebImage(query, { fallback: staticFallback });
+      }
     }
+
+    // Static fallback when search is unavailable or returned nothing.
+    if (!img) {
+      img = SECTION_FALLBACKS[s._sport] || null;
+    }
+
     // Skip if URL was used in the previous issue
     s.imageUrl = (img && !prevSet.has(img)) ? img : null;
     // Clean internal bookkeeping fields

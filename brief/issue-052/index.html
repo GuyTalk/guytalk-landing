@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="/assets/logo/guytalk-icon-192.png">
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="https://www.guytalkmedia.com/brief/issue-052/">
-<meta property="og:title"       content="Dow hits record on Iran deal. Hurricanes win the Cup. OpenAI bleeds $34B annually.">
+<meta property="og:title"       content="Dow hits record on Iran deal. Hurricanes win the Cup. <a href="https://www.cnbc.com/quotes/PRIVATE:OPENAI" class="entity-company" target="_blank" rel="noopener">OpenAI</a> bleeds $34B annually.">
 <meta property="og:description" content="New York Yankees 12-2 Chicago White Sox. Lenovo Austrian Grand Prix preview. Harry Higgs leads U.S. Open. World Cup 2026 coverage.">
 <meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-cards/issue-052.png">
 <meta property="og:site_name"   content="GuyTalk">
@@ -70,7 +70,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
-      <a href="#sports" class="sj-link">Sports</a>
+      <a href="#sports" class="sj-link sj-lead">Sports</a>
       <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
     </nav>
@@ -90,27 +90,36 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   .brief-sidenav .bsn-group.open .bsn-children{max-height:600px;margin-top:14px;}
   .brief-sidenav .bsn-caret{display:inline-block;width:1em;margin-right:2px;font-size:.78em;opacity:.65;transition:transform .2s ease;cursor:pointer;}
   .brief-sidenav .bsn-group.open .bsn-caret{transform:rotate(90deg);}
-  .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;}
-  .brief-sidenav .bsn-sub{margin-right:16px;font-size:0.92em;opacity:0.8;}
-  .brief-sidenav .bsn-sub .bsn-dot{width:6px;height:6px;}
-  /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
-     so faces/players show instead of a jersey-number zoom. */
+  .brief-sidenav .bsn-link{font-size:0.95em;}
+  .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
+  .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
+  .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
+  /* Images: keep a clean landscape ratio, crop to top so faces show. */
   .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
   .brief-hero-banner--feature{background-position:center 20%;}
+  /* Photo credit — subtle caption beneath images */
+  .brief-img-credit{font-size:10px;color:#9E9891;text-align:right;padding:3px 4px 0;letter-spacing:0.02em;}
+  /* GuyTalk Pick block */
+  .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
+  .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
+  .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
+  /* Player chips */
+  .player-chips{margin:10px 0 6px;}
+  .pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9E9891;margin-bottom:6px;}
+  .pc-list{display:flex;flex-wrap:wrap;gap:5px;}
+  .player-chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#0F1724;background:#F0EDE8;border-radius:20px;padding:3px 11px;text-decoration:none;border:1px solid #E5E2DB;transition:background .15s;}
+  .player-chip:hover{background:#E5E2DB;}
+  /* Rundown bullets — clickable anchor navigation. */
+  .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
+  .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
+  .rbd-bullet:hover .rbd-cat{text-decoration:underline;text-underline-offset:2px;}
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   <a href="#top" class="bsn-link" data-target="top"><span class="bsn-txt">Top</span><span class="bsn-dot"></span></a>
-  <div class="bsn-group open" data-group="sports">
-    <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-caret" role="button" tabindex="0" aria-label="Toggle Sports subsections">▸</span><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
-    <div class="bsn-children">
-      <a href="#the-lead" class="bsn-link bsn-sub" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
-      <a href="#f1" class="bsn-link bsn-sub" data-target="f1"><span class="bsn-txt">F1</span><span class="bsn-dot"></span></a>
-      <a href="#golf" class="bsn-link bsn-sub" data-target="golf"><span class="bsn-txt">Golf</span><span class="bsn-dot"></span></a>
-    </div>
-  </div>
-<a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
-<a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
+  <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
+  <a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
   <a href="#sharp-take" class="bsn-link" data-target="sharp-take"><span class="bsn-txt">Sharp Take</span><span class="bsn-dot"></span></a>
+  <a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
 </nav>
 
 <article class="brief-article" id="briefArticle">
@@ -119,71 +128,88 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 <div class="brief-hero-banner brief-hero-banner--feature" style="background-image:url('/assets/hero/nhl.jpg')">
   <div class="bhb-inner">
     <div class="bhb-eyebrow">The Lead</div>
-    <div class="bhb-feature-title">Carolina Hurricanes 3–0 (CAR wins series 4-2)</div>
+    <div class="bhb-feature-title"><a href="https://www.nhl.com/hurricanes" class="entity-team" target="_blank" rel="noopener">Carolina Hurricanes</a> 3–0 (CAR wins series 4-2)</div>
     <div class="bhb-venue">NHL</div>
   </div>
 </div>
 
-  <div class="glance-card glance-top">
-    <div class="glance-head"><span class="glance-dot"></span>Today at a Glance</div>
-    <div class="glance-rows">
-      <a class="glance-row hit-sports" href="#sports">
-        <span class="glance-k">Sports</span>
-        <span class="glance-v">Carolina Hurricanes 3–0 (CAR wins series 4-2)</span>
-        <span class="glance-arr">→</span>
+  <div class="rundown-band">
+    <div class="rundown-label"><span class="rundown-dot"></span>The Rundown</div>
+    <p class="rundown-text">Trump Admin Seals Iran Nuclear Deal; Dow Hits Record, Oil Crashes. Carolina Hurricanes 3–0 (CAR wins series 4-2).</p>
+    <div class="rbd-bullets">
+      <a class="rbd-bullet rbd-sports" href="#sports">
+        <span class="rbd-cat">Sports</span>
+        <span class="rbd-line">Carolina Hurricanes 3–0 (CAR wins series 4-2) · Lenovo Austrian Grand Prix — this weekend · U.S. Open Opens at Oakmont</span>
       </a>
-      <a class="glance-row hit-markets" href="#markets">
-        <span class="glance-k">Markets</span>
-        <span class="glance-v">Trump Admin Seals Iran Nuclear Deal; Dow Hits Record, Oil Crashes</span>
-        <span class="glance-arr">→</span>
+      <a class="rbd-bullet rbd-markets" href="#markets">
+        <span class="rbd-cat">Markets</span>
+        <span class="rbd-line">The Iran deal rewired the market in a single session · S&amp;P 500 -0.6%, Nasdaq -1.9%</span>
       </a>
-      <a class="glance-row hit-culture" href="#culture">
-        <span class="glance-k">Culture</span>
-        <span class="glance-v">Marlon Wayans scores on both fronts</span>
-        <span class="glance-arr">→</span>
+      <a class="rbd-bullet rbd-culture" href="#culture">
+        <span class="rbd-cat">Culture</span>
+        <span class="rbd-line">Marlon Wayans scores on both fronts · Severance Season 2 is back</span>
       </a>
     </div>
   </div>
 
 <div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
 
-  <section class="brief-section sport-card sport-team sport-lead" id="the-lead">
+  <section class="brief-section sport-card sport-lead" id="the-lead">
     <div class="section-label sl-sports">The Lead</div>
-    <h3>Carolina Hurricanes 3–0 (CAR wins series 4-2)</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Carolina Hurricanes shut out Vegas 3–0 to win the Stanley Cup Final 4–2.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Carolina finally broke through after decades of playoff heartbreak — the franchise has never won a Cup in its modern history. This is the first championship for a market that's been waiting since it relocated from Hartford in 1997.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> Vegas got exposed when it mattered most. The Golden Knights built their rep on closing out series, but the Hurricanes' defense suffocated them when the stakes were highest. Carolina's goaltending and depth up front showed that big-money rosters don't always win in May. This is what a complete team looks like in June.</span></li>
-      <li class="ammo-item"><span class="dl-label">Conversation Ammo:</span><ul class="ammo-list"><li>Vegas Golden Knights founded in 2017; never won a Cup before this run</li><li>Carolina Hurricanes relocated from Hartford in 1997; zero Stanley Cup titles in franchise history</li><li>Series went to Game 6; Hurricanes won final three games without allowing a goal</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> Carolina just ended 29 years of organizational pain — nobody expected that shutout barrage.</span></li>
-    </ul>
-    <div class="brief-img sport-card-img"><img src="/assets/hero/nhl.jpg" alt="NHL" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
+    <div class="brief-img sport-card-img"><img src="/assets/hero/nhl.jpg" alt="The Lead" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">NHL</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Carolina Hurricanes 3–0 (CAR wins series 4-2)</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Carolina Hurricanes shut out Vegas 3–0 to win the Stanley Cup Final 4–2.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Carolina finally broke through after decades of playoff heartbreak — the franchise has never won a Cup in its modern history. This is the first championship for a market that's been waiting since it relocated from Hartford in 1997.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">Vegas got exposed when it mattered most. The Golden Knights built their rep on closing out series, but the Hurricanes' defense suffocated them when the stakes were highest. Carolina's goaltending and depth up front showed that big-money rosters don't always win in May. This is what a complete team looks like in June.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li><a href="https://www.nhl.com/goldenknights" class="entity-team" target="_blank" rel="noopener">Vegas Golden Knights</a> founded in 2017; never won a Cup before this run</li><li>Carolina Hurricanes relocated from Hartford in 1997; zero Stanley Cup titles in franchise history</li><li>Series went to Game 6; Hurricanes won final three games without allowing a goal</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Carolina just ended 29 years of organizational pain — nobody expected that shutout barrage."</div></div></div>
+
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-individual" id="f1">
+  <section class="brief-section sport-card" id="f1">
     <div class="section-label sl-sports">F1</div>
     <div class="brief-img sport-card-img"><img src="/assets/hero/f1.jpg" alt="F1" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
-    <h3>Lenovo Austrian Grand Prix — this weekend</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> The Lenovo Austrian Grand Prix is scheduled for this weekend.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Red Bull's home race in Spielberg is always a statement event — the team usually brings upgrades and runs harder than anyone when the crowd is behind them.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> Austria matters because Red Bull treats it like a second championship decider. Spielberg is where they flex, where strategy gets aggressive, and where their drivers know the margin for error is basically zero. Smart money watches what they bring to the car.</span></li>
-      <li class="ammo-item"><span class="dl-label">Conversation Ammo:</span><ul class="ammo-list"><li>Lenovo Austrian Grand Prix takes place at Red Bull Ring in Spielberg</li><li>Red Bull Racing is based in Milton Keynes but owns the circuit</li><li>Austrian GP is weekend event; qualifying and race TBD</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> Red Bull doesn't mess around at their home race — watch their setup choices this weekend.</span></li>
-    </ul>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">F1</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Lenovo Austrian Grand Prix — this weekend</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">The Lenovo Austrian Grand Prix is scheduled for this weekend.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Red Bull's home race in Spielberg is always a statement event — the team usually brings upgrades and runs harder than anyone when the crowd is behind them.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">Austria matters because Red Bull treats it like a second championship decider. Spielberg is where they flex, where strategy gets aggressive, and where their drivers know the margin for error is basically zero. Smart money watches what they bring to the car.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>Lenovo Austrian Grand Prix takes place at <a href="https://www.redbullring.com" class="entity-venue" target="_blank" rel="noopener">Red Bull Ring</a> in Spielberg</li><li>Red Bull Racing is based in Milton Keynes but owns the circuit</li><li>Austrian GP is weekend event; qualifying and race TBD</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Red Bull doesn't mess around at their home race — watch their setup choices this weekend."</div></div></div>
 
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-individual" id="golf">
+  <section class="brief-section sport-card" id="golf">
     <div class="section-label sl-sports">Golf</div>
     <div class="brief-img sport-card-img"><img src="/assets/hero/golf.jpg" alt="Golf" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
-    <h3>U.S. Open — this week</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Harry Higgs, Taylor Montgomery, and Chandler Phillips are tied at even par after 54 holes of the U.S. Open.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Three players heading into the final round deadlocked means the course is playing brutal and nobody's separated themselves. The U.S. Open is designed to punish — parity like this means the final 18 will come down to who avoids the biggest mistakes.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> Even par at the U.S. Open after three rounds signals a track that's eating up the field. Higgs, Montgomery, and Phillips are still in the hunt because they haven't done anything special — they've just survived. The winner won't be the best player; he'll be the one who hits the right shots in the right spots on Sunday when everyone's tired and the pressure is real.</span></li>
-      <li class="ammo-item"><span class="dl-label">Conversation Ammo:</span><ul class="ammo-list"><li>Harry Higgs at even par (E), tied for lead</li><li>Taylor Montgomery at even par (E), tied for lead</li><li>Chandler Phillips at even par (E), tied for lead</li><li>U.S. Open final round this week</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> Three guys tied at even after 54 holes — the U.S. Open is destroying everyone.</span></li>
-    </ul>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">Golf</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">U.S. Open — this week</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Harry Higgs, Taylor Montgomery, and Chandler Phillips are tied at even par after 54 holes of the U.S. Open.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Three players heading into the final round deadlocked means the course is playing brutal and nobody's separated themselves. The U.S. Open is designed to punish — parity like this means the final 18 will come down to who avoids the biggest mistakes.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">Even par at the U.S. Open after three rounds signals a track that's eating up the field. Higgs, Montgomery, and Phillips are still in the hunt because they haven't done anything special — they've just survived. The winner won't be the best player; he'll be the one who hits the right shots in the right spots on Sunday when everyone's tired and the pressure is real.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>Harry Higgs at even par (E), tied for lead</li><li>Taylor Montgomery at even par (E), tied for lead</li><li>Chandler Phillips at even par (E), tied for lead</li><li>U.S. Open final round this week</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Three guys tied at even after 54 holes — the U.S. Open is destroying everyone."</div></div></div>
 
+      </div>
+    </div>
   </section>
 
 <a href="/live/" class="brief-live-cta">
@@ -203,7 +229,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <a href="/#signup" class="bic-btn">Subscribe free →</a>
 </div>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Markets</h2></div>
+<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>
 
   <section class="brief-section" id="markets">
     <div class="section-label sl-markets">The Close</div>
@@ -221,22 +247,22 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       </div>
       <div class="mkt-index-grid">
         <div class="mkt-tile dn">
-          <div class="mt-name">S&amp;P 500</div>
+          <div class="mt-name">SPY</div>
           <div class="mt-price">$750.33</div>
           <div class="mt-foot"><span class="mt-chg dn">-0.6%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,16.5 7.1,19.7 11.2,14.8 15.3,13.9 19.4,12.0 23.5,8.8 27.6,8.9 31.7,6.2 35.8,5.0 39.9,3.7 44.0,3.0 48.1,6.4 52.2,4.6 56.3,17.2 60.4,16.1 64.5,17.5 68.6,25.0 72.7,17.1 76.8,14.5 80.9,6.1 85.0,9.0" fill="none" stroke="#DC2626" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
         <div class="mkt-tile up">
-          <div class="mt-name">Dow</div>
+          <div class="mt-name">DIA</div>
           <div class="mt-price">$521.44</div>
           <div class="mt-foot"><span class="mt-chg up">+0.6%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,22.6 7.1,25.0 11.2,20.0 15.3,17.7 19.4,15.3 23.5,16.0 27.6,14.7 31.7,14.5 35.8,11.5 39.9,11.0 44.0,8.9 48.1,13.6 52.2,6.8 56.3,12.4 60.4,13.0 64.5,12.6 68.6,20.0 72.7,12.7 76.8,9.7 80.9,5.4 85.0,3.0" fill="none" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
         <div class="mkt-tile dn">
-          <div class="mt-name">Nasdaq</div>
+          <div class="mt-name">QQQ</div>
           <div class="mt-price">$729.86</div>
           <div class="mt-foot"><span class="mt-chg dn">-1.9%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,19.9 7.1,21.7 11.2,16.8 15.3,16.3 19.4,15.0 23.5,9.7 27.6,10.0 31.7,7.4 35.8,6.3 39.9,4.4 44.0,3.0 48.1,3.8 52.2,5.3 56.3,20.2 60.4,15.6 64.5,19.1 68.6,25.0 72.7,15.2 76.8,13.4 80.9,3.9 85.0,9.8" fill="none" stroke="#DC2626" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
         <div class="mkt-tile dn">
-          <div class="mt-name">Russell 2000</div>
+          <div class="mt-name">IWM</div>
           <div class="mt-price">$292.08</div>
           <div class="mt-foot"><span class="mt-chg dn">-0.9%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,22.0 7.1,25.0 11.2,18.0 15.3,15.4 19.4,12.7 23.5,7.2 27.6,7.3 31.7,5.7 35.8,7.3 39.9,8.8 44.0,6.0 48.1,10.1 52.2,5.7 56.3,16.2 60.4,13.7 64.5,12.8 68.6,15.8 72.7,7.3 76.8,4.7 80.9,3.0 85.0,5.6" fill="none" stroke="#DC2626" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
@@ -252,8 +278,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="mover-row dn"><div class="mv-name"><a href="https://www.morningstar.com/stocks/xnas/amd/quote" class="ticker">AMD</a><span class="mv-full">AMD</span></div><div class="mv-price">$507.29</div><div class="mv-chg"><span class="pct-badge dn">-7.3%</span></div></div>
           <div class="mover-row dn"><div class="mv-name"><a href="https://www.morningstar.com/stocks/xnas/avgo/quote" class="ticker">AVGO</a><span class="mv-full">Broadcom</span></div><div class="mv-price">$376.71</div><div class="mv-chg"><span class="pct-badge dn">-4.4%</span></div></div>
           <div class="mover-row up"><div class="mv-name"><a href="https://www.morningstar.com/stocks/xnys/jpm/quote" class="ticker">JPM</a><span class="mv-full">JPMorgan</span></div><div class="mv-price">$331.14</div><div class="mv-chg"><span class="pct-badge up">+3.7%</span></div></div>
-          <div class="mover-row dn"><div class="mv-name"><a href="https://www.morningstar.com/stocks/xnas/nflx/quote" class="ticker">NFLX</a><span class="mv-full">Netflix</span></div><div class="mv-price">$78.72</div><div class="mv-chg"><span class="pct-badge dn">-3.6%</span></div></div>
-          <div class="mover-row dn"><div class="mv-name"><a href="https://www.morningstar.com/stocks/xnas/nvda/quote" class="ticker">NVDA</a><span class="mv-full">Nvidia</span></div><div class="mv-price">$207.41</div><div class="mv-chg"><span class="pct-badge dn">-2.4%</span></div></div>
+          <div class="mover-row dn"><div class="mv-name"><a href="https://www.morningstar.com/stocks/xnas/nflx/quote" class="ticker">NFLX</a><span class="mv-full"><a href="https://www.cnbc.com/quotes/NFLX" class="entity-company" target="_blank" rel="noopener">Netflix</a></span></div><div class="mv-price">$78.72</div><div class="mv-chg"><span class="pct-badge dn">-3.6%</span></div></div>
+          <div class="mover-row dn"><div class="mv-name"><a href="https://www.morningstar.com/stocks/xnas/nvda/quote" class="ticker">NVDA</a><span class="mv-full"><a href="https://www.cnbc.com/quotes/NVDA" class="entity-company" target="_blank" rel="noopener">Nvidia</a></span></div><div class="mv-price">$207.41</div><div class="mv-chg"><span class="pct-badge dn">-2.4%</span></div></div>
         </div>
       </div>
     </div>
@@ -263,11 +289,11 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <li><span><span class="dl-label">Watch for:</span> Geopolitical de-escalations of this scale historically spark two-to-four-week rallies before normalization — watch Thursday jobless claims and any Fed speaker commentary for signals on whether this move has legs.</span></li>
       <li><span><span class="dl-label">What to bring up:</span> AMD fell 7.3% and AVGO dropped 4.4% — the market was unwinding supply-chain hedging premiums that semiconductor names had been carrying, not punishing their fundamentals.</span></li>
       <li><span><span class="dl-label">The GuyTalk Read:</span> The Iran deal is a classic risk-on rotation trigger: peace kills the scarcity premium in energy, which lowers inflation expectations, which makes bonds more attractive, which gives the Fed more room — and the Dow hits a record. The chip sector's pain is a separate story: AMD and AVGO weren't sold because AI demand collapsed, they were sold because the hedging rationale that had been propping up their premiums evaporated. The S&amp;P and Dow rallying together on reduced energy input costs is the cleaner read. The two-to-four-week historical rally pattern is real, but it has always faded when labor data stayed hot — Thursday's jobless claims print will tell you whether this move has a second leg or is already priced.</span></li>
-      <li class="ammo-item"><span class="dl-label">Conversation Ammo:</span><ul class="ammo-list"><li>Dow closed at a record high; Nasdaq jumped 3% on the Iran deal</li><li>AMD fell 7.3%, AVGO dropped 4.4% on supply-chain hedge unwinding</li><li>10-year Treasury yield fell 2.4% on the week as inflation expectations compressed</li><li>S&amp;P 500 and Dow both rallied on reduced energy input costs benefiting consumer discretionary</li><li>Historical comps: major geopolitical de-escalations have sparked 2-4 week rallies before normalization</li></ul></li>
+      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>Dow closed at a record high; Nasdaq jumped 3% on the Iran deal</li><li>AMD fell 7.3%, AVGO dropped 4.4% on supply-chain hedge unwinding</li><li>10-year Treasury yield fell 2.4% on the week as inflation expectations compressed</li><li>S&amp;P 500 and Dow both rallied on reduced energy input costs benefiting consumer discretionary</li><li>Historical comps: major geopolitical de-escalations have sparked 2-4 week rallies before normalization</li></ul></li>
     </ul>
   </section>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Culture</h2></div>
+<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>
 
   <section class="brief-section" id="culture">
     <div class="section-label sl-culture">The Scene</div>
@@ -281,7 +307,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <p class="culture-line"><strong>What happened:</strong> Scary Movie 6 became a megahit, and Wayans' ex simultaneously dropped a custody battle over their daughter — a clean sweep of professional and personal noise in the same week.</p>
           <p class="culture-line"><strong>Why it matters:</strong> Scary Movie 6 hitting big proves the parody-comedy lane still works in 2026, and Wayans gets to enjoy the victory lap without court drama hanging over it.</p>
           <p class="culture-line"><strong>The GuyTalk Read:</strong> Wayans has been in the business long enough that a franchise revival landing this well is not a given — parody comedy is a graveyard of sequels nobody asked for. Scary Movie 6 bucking that trend says something about his read on what audiences actually want. The custody situation resolving at the same moment is just good timing stacking up. He is moving forward on every front.</p>
-          <p class="culture-line"><strong>Conversation Ammo:</strong></p><ul class="ammo-list"><li>Marlon Wayans stars in Scary Movie 6, which became a megahit</li><li>Wayans' ex dropped the custody battle over their daughter</li><li>Scary Movie 6 is the latest entry in the long-running parody franchise</li></ul>
+          <ul class="ammo-list"><li>Marlon Wayans stars in Scary Movie 6, which became a megahit</li><li>Wayans' ex dropped the custody battle over their daughter</li><li>Scary Movie 6 is the latest entry in the long-running parody franchise</li></ul>
           <p class="culture-line"><strong>What to say:</strong> Marlon Wayans just had the week of his life — hit comedy, custody stuff done, clean slate.</p>
         </div>
       </li>
@@ -294,7 +320,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <p class="culture-line"><strong>What happened:</strong> Severance — the show about surgical work-life separation where employees literally split their memories at the office door — returned for Season 2 and picked up exactly where it left off.</p>
           <p class="culture-line"><strong>Why it matters:</strong> A smart, visually stunning sci-fi thriller that does not talk down to you is rare; this one came back without losing the thread.</p>
           <p class="culture-line"><strong>The GuyTalk Read:</strong> If you watched Season 1, Season 2 delivers the payoff you were waiting for. It is the kind of show that rewards focus and makes you want to text people about theories. Perfect for a guy who wants something that thinks as hard as he does.</p>
-          <p class="culture-line"><strong>Conversation Ammo:</strong></p><ul class="ammo-list"><li>Severance Season 2 returned in 2026</li><li>The show centers on surgical memory separation between work and personal life</li><li>Season 2 picks up directly from the Season 1 cliffhangers</li></ul>
+          <ul class="ammo-list"><li>Severance Season 2 returned in 2026</li><li>The show centers on surgical memory separation between work and personal life</li><li>Season 2 picks up directly from the Season 1 cliffhangers</li></ul>
           <p class="culture-line"><strong>What to say:</strong> Severance came back and it is exactly as twisted as you remember — might be the watch of the summer.</p>
         </div>
       </li>
@@ -304,10 +330,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
             <span class="culture-tag ctag-sports">Sports Biz</span>
           </div>
           <div class="culture-head">Dana White: No More White House Fight Nights</div>
-          <p class="culture-line"><strong>What happened:</strong> UFC boss Dana White told reporters he would never stage another fight card at the White House, walking back the recently held South Lawn event.</p>
+          <p class="culture-line"><strong>What happened:</strong> <a href="https://www.ufc.com" class="entity-org" target="_blank" rel="noopener">UFC</a> boss Dana White told reporters he would never stage another fight card at the White House, walking back the recently held South Lawn event.</p>
           <p class="culture-line"><strong>Why it matters:</strong> White built the UFC on outsider credibility, and the White House backdrop was apparently an experiment that did not land with fight fans the way he hoped.</p>
           <p class="culture-line"><strong>The GuyTalk Read:</strong> Dana White saying never again this fast is the fastest walk-back in recent UFC history. The White House card was a spectacle built for a news cycle, not for fight fans. White knows his audience — what they got was a political backdrop instead of an arena. The fact that he killed the concept immediately says more than the card itself did.</p>
-          <p class="culture-line"><strong>Conversation Ammo:</strong></p><ul class="ammo-list"><li>Dana White told NPR he will never stage another UFC event at the White House</li><li>The UFC held a fight card on the White House South Lawn in 2026</li><li>Dana White has promoted the UFC since 2001, growing it from near-bankruptcy to a multi-billion dollar sports property</li></ul>
+          <ul class="ammo-list"><li>Dana White told NPR he will never stage another UFC event at the White House</li><li>The UFC held a fight card on the White House South Lawn in 2026</li><li>Dana White has promoted the UFC since 2001, growing it from near-bankruptcy to a multi-billion dollar sports property</li></ul>
           <p class="culture-line"><strong>What to say:</strong> Dana White held a fight on the White House lawn and immediately said never again — which tells you everything you need to know about how it actually went.</p>
         </div>
       </li>
@@ -318,7 +344,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     <div class="section-label sl-markets">The Rec</div>
 
     <div class="brief-rec brief-rec--media">
-      <div class="rec-img"><img src="https://images.ctfassets.net/rbzqg6pelgqa/3CCQWI1KRdKsfMkGIgNfls/1db1bc98dbbca4f4c288cca02729e964/Not_a_whoop_member_image__1_.png" alt="Whoop" loading="lazy" onerror="this.closest('.rec-img').classList.add('rec-img-failed');this.remove()"><span class="rec-img-ph">Whoop</span></div>
+      <div class="rec-img"><img src="https://cdn.shopify.com/s/files/1/0344/8518/4748/files/WHOOP_4.0_Band_Collection_2.jpg" alt="Whoop" loading="lazy" onerror="this.closest('.rec-img').classList.add('rec-img-failed');this.remove()"><span class="rec-img-ph">Whoop</span></div>
       <div class="rec-content">
         <div class="rec-label">This week's pick</div>
         <div class="rec-title">Whoop 4.0 — recovery tracking that changes what you schedule on hard days.</div>
@@ -362,20 +388,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-051/" class="more-issue-card">
-    <span class="mi-num">#051</span>
-    <span class="mi-title">U.S. and Iran sign peace deal Friday. SpaceX IPO valued at $1.77 trillion. Knicks win first championship since 1973.</span>
-    <span class="mi-date">Tuesday, June 16, 2026</span>
+  <a href="/brief/issue-056/" class="more-issue-card">
+    <span class="mi-num">#056</span>
+    <span class="mi-title">DR Congo stuns Portugal 1-1. Fed holds rates steady. Yankees demolish White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-050/" class="more-issue-card">
-    <span class="mi-num">#050</span>
-    <span class="mi-title">Iran deal cuts oil prices. SpaceX raises $75 billion. World Cup starts today.</span>
-    <span class="mi-date">Monday, June 15, 2026</span>
+  <a href="/brief/issue-055/" class="more-issue-card">
+    <span class="mi-num">#055</span>
+    <span class="mi-title">Fed signals rate hikes ahead. Pirates dominate Athletics. Yankees roll past White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-049/" class="more-issue-card">
-    <span class="mi-num">#049</span>
-    <span class="mi-title">Trump brokers Iran peace deal. SpaceX IPO shatters records. Hamilton dominates Barcelona.</span>
-    <span class="mi-date">Monday, June 15, 2026</span>
+  <a href="/brief/issue-054/" class="more-issue-card">
+    <span class="mi-num">#054</span>
+    <span class="mi-title">Fed holds rates steady, signals future hikes. Pirates demolish Athletics. U.S. Open underway at Shinnecock.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>
@@ -416,7 +442,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   </div>
   <p class="footer-fine">
     Sports data via ESPN and Jolpica/Ergast. Market data via Finnhub.io; informational only, not investment advice.
-    GuyTalk is an independent publication and is not affiliated with or endorsed by ESPN, the NBA, MLB, NHL, NFL, Formula 1, the PGA Tour, or any league or team. Team names, logos, and trademarks are the property of their respective owners.
+    GuyTalk is an independent publication and is not affiliated with or endorsed by ESPN, the NBA, MLB, NHL, NFL, <a href="https://www.formula1.com" class="entity-org" target="_blank" rel="noopener">Formula 1</a>, the <a href="https://www.pgatour.com" class="entity-org" target="_blank" rel="noopener">PGA Tour</a>, or any league or team. Team names, logos, and trademarks are the property of their respective owners.
   </p>
 </footer>
 

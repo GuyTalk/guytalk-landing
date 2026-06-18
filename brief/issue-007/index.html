@@ -3,9 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oklahoma City Thunder 123-108 · Si Woo Kim leads — GuyTalk Daily Brief</title>
-<meta name="description" content="Oklahoma City Thunder 123-108 San Antonio Spurs. Si Woo Kim leads THE CJ CUP Byron Nelson. Markets, culture, and more. Free daily brief from GuyTalk.">
+<title><a href="https://www.nba.com/thunder" class="entity-team" target="_blank" rel="noopener">Oklahoma City Thunder</a> 123-108 · Si Woo Kim leads — GuyTalk Daily Brief</title>
+<meta name="description" content="Oklahoma City Thunder 123-108 <a href="https://www.nba.com/spurs" class="entity-team" target="_blank" rel="noopener">San Antonio Spurs</a>. Si Woo Kim leads THE CJ CUP Byron Nelson. Markets, culture, and more. Free daily brief from GuyTalk.">
 <link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<!-- PWA -->
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GuyTalk">
+<link rel="apple-touch-icon" href="/assets/logo/guytalk-icon-192.png">
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="https://www.guytalkmedia.com/brief/issue-007/">
 <meta property="og:title"       content="Thunder crush Spurs in San Antonio. Si Woo Kim leads Byron Nelson. Tech splits today.">
@@ -31,12 +37,6 @@
 !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
 posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only'});
 </script>
-<!-- PWA -->
-<link rel="manifest" href="/manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="GuyTalk">
-<link rel="apple-touch-icon" href="/assets/logo/guytalk-icon-192.png">
 </head>
 <body>
 
@@ -70,23 +70,55 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
-      <a href="#sports" class="sj-link">Sports</a>
-      <a href="#the-take" class="sj-link sj-link-take">The Take</a>
-      <a href="#golf" class="sj-link">Golf</a>
+      <a href="#sports" class="sj-link sj-lead">Sports</a>
       <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
-      <a href="#sharp-take" class="sj-link">Sharp Take</a>
+    </nav>
+    <nav class="section-subjump" aria-label="Jump to sports subsection" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;padding-left:14px;font-size:0.85em;opacity:0.8;">
+      <a href="#golf" class="sj-link sj-sub">Golf</a>
     </nav>
   </div>
 </div>
 
+<style>
+  /* Accordion (Fix 7). The rail is right-aligned, so children are INSET from the
+     right edge (margin-right) to read as a clean indent beneath the parent —
+     not widened leftward. Consistent inset + smaller dots = clear hierarchy. */
+  .brief-sidenav .bsn-group{display:flex;flex-direction:column;align-items:flex-end;}
+  .brief-sidenav .bsn-children{display:flex;flex-direction:column;align-items:flex-end;gap:14px;max-height:0;margin-top:0;overflow:hidden;transition:max-height .28s ease,margin-top .28s ease;}
+  .brief-sidenav .bsn-group.open .bsn-children{max-height:600px;margin-top:14px;}
+  .brief-sidenav .bsn-caret{display:inline-block;width:1em;margin-right:2px;font-size:.78em;opacity:.65;transition:transform .2s ease;cursor:pointer;}
+  .brief-sidenav .bsn-group.open .bsn-caret{transform:rotate(90deg);}
+  .brief-sidenav .bsn-link{font-size:0.95em;}
+  .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
+  .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
+  .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
+  /* Images: keep a clean landscape ratio, crop to top so faces show. */
+  .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
+  .brief-hero-banner--feature{background-position:center 20%;}
+  /* Photo credit — subtle caption beneath images */
+  .brief-img-credit{font-size:10px;color:#9E9891;text-align:right;padding:3px 4px 0;letter-spacing:0.02em;}
+  /* GuyTalk Pick block */
+  .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
+  .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
+  .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
+  /* Player chips */
+  .player-chips{margin:10px 0 6px;}
+  .pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9E9891;margin-bottom:6px;}
+  .pc-list{display:flex;flex-wrap:wrap;gap:5px;}
+  .player-chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#0F1724;background:#F0EDE8;border-radius:20px;padding:3px 11px;text-decoration:none;border:1px solid #E5E2DB;transition:background .15s;}
+  .player-chip:hover{background:#E5E2DB;}
+  /* Rundown bullets — clickable anchor navigation. */
+  .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
+  .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
+  .rbd-bullet:hover .rbd-cat{text-decoration:underline;text-underline-offset:2px;}
+</style>
 <nav class="brief-sidenav" aria-label="On this page">
   <a href="#top" class="bsn-link" data-target="top"><span class="bsn-txt">Top</span><span class="bsn-dot"></span></a>
-  <a href="#the-lead" class="bsn-link" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
-  <a href="#golf" class="bsn-link" data-target="golf"><span class="bsn-txt">Golf</span><span class="bsn-dot"></span></a>
-  <a href="#markets" class="bsn-link" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
-  <a href="#culture" class="bsn-link" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
+  <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
+  <a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
   <a href="#sharp-take" class="bsn-link" data-target="sharp-take"><span class="bsn-txt">Sharp Take</span><span class="bsn-dot"></span></a>
+  <a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
 </nav>
 
 <article class="brief-article" id="briefArticle">
@@ -104,26 +136,23 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   </div>
 </div>
 
-  <div class="top-module">
-    <div class="top-module-label">Today's Hits</div>
-  <div class="hits-list">
-    <a href="#sports" class="hit-item hit-sports">
-      <span class="hit-tag">Sports</span>
-      <span class="hit-text">Thunder 123, Spurs 108—OKC up 2-1 in West Finals.</span>
-    </a>
-    <a href="#markets" class="hit-item hit-markets">
-      <span class="hit-tag">Markets</span>
-      <span class="hit-text">SPY and QQQ both up 0.4%. NVDA drops 1.9%.</span>
-    </a>
-    <a href="#culture" class="hit-item hit-culture">
-      <span class="hit-tag">Culture</span>
-      <span class="hit-text">Yam Madar heads to LSU for 5M annual package.</span>
-    </a>
-  </div>
-  <div class="key-takeaway">
-    <div class="kt-label">Key Takeaway</div>
-    <p class="kt-text">Thunder took Game 3 and control of the West Finals. SGA's running the offense at an elite level. Tech stocks mostly flat while crypto treads water.</p>
-  </div>
+  <div class="rundown-band">
+    <div class="rundown-label"><span class="rundown-dot"></span>The Rundown</div>
+    <p class="rundown-text">Tech had a schizo day — chip stocks got hammered while everything else treaded water, SPY and QQQ both up 0.4% because <a href="https://www.cnbc.com/quotes/NVDA" class="entity-company" target="_blank" rel="noopener">Nvidia</a>'s -1.9% dive got offset by Apple's +1.3% pop and <a href="https://www.cnbc.com/quotes/TSLA" class="entity-company" target="_blank" rel="noopener">Tesla</a>'s +2.0% rip.</p>
+    <div class="rbd-bullets">
+      <a class="rbd-bullet rbd-sports" href="#sports">
+        <span class="rbd-cat">Sports</span>
+        <span class="rbd-line">Si Woo Kim leads CJ Cup Byron Nelson at 20-under.</span>
+      </a>
+      <a class="rbd-bullet rbd-markets" href="#markets">
+        <span class="rbd-cat">Markets</span>
+        <span class="rbd-line">Tech had a schizo day · S&amp;P 500 +0.4%, Nasdaq +0.4%</span>
+      </a>
+      <a class="rbd-bullet rbd-culture" href="#culture">
+        <span class="rbd-cat">Culture</span>
+        <span class="rbd-line">Yam Madar takes five million to play college ball · McCain absolutely levels Wembanyama on court</span>
+      </a>
+    </div>
   </div>
 
 <div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
@@ -158,6 +187,21 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <li><span><span class="dl-label">What to say:</span> If the Thunder win Game 4, we're looking at an OKC Finals run. The Spurs had their window here and didn't capitalize.</span></li>
     </ul>
   </section>
+<div class="sport-subsection">  <section class="brief-section" id="golf">
+    <div class="section-label sl-golf">Golf</div>
+
+    <h3>Si Woo Kim leads CJ Cup Byron Nelson at 20-under.</h3>
+    <div class="where-line"><span class="where-pin">◍</span>Round 3 - In Progress</div>
+    <p class="leaderboard-line"><span class="player">Si Woo Kim</span> -20, <span class="player">Wyndham Clark</span> -18, <a href="https://www.pgatour.com/players/player.4686091.scottie-scheffler.html" class="player" target="_blank" rel="noopener">Scottie Scheffler</a> -17</p>
+    <ul class="detail-list">
+      <li><span><span class="dl-label">Why it matters:</span> This is a FedEx Cup event—results directly shape playoff seeding and bonus money distribution.</span></li>
+      
+      <li><span><span class="dl-label">The angle:</span> Scottie Scheffler's three shots back means we're watching whether the year's best player can close late in the season or if someone else finally breaks through.</span></li>
+      <li><span><span class="dl-label">Watch for:</span> Can Kim hold off Clark and Scheffler over the final rounds, or does one of them make a run? Kim's at 20-under—that's hot enough that cooling off becomes the real threat.</span></li>
+
+      <li><span><span class="dl-label">What to say:</span> Si Woo's playing lights out, but Scottie doesn't lose tournaments. This one's far from over.</span></li>
+    </ul>
+  </section></div>
 
 <a href="/live/" class="brief-live-cta">
   <span class="blc-dot"></span>
@@ -168,31 +212,6 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <span class="blc-btn">Open GuyTalk Live →</span>
 </a>
 
-
-
-
-
-
-
-
-
-  <section class="brief-section" id="golf">
-    <div class="section-label sl-golf">Golf</div>
-
-    <h3>Si Woo Kim leads CJ Cup Byron Nelson at 20-under.</h3>
-    <div class="where-line"><span class="where-pin">◍</span>Round 3 - In Progress</div>
-    <p class="leaderboard-line"><span class="player">Si Woo Kim</span> -20, <span class="player">Wyndham Clark</span> -18, <a href="https://www.espn.com/golf/player/_/id/4686091/scottie-scheffler" class="player">Scottie Scheffler</a> -17</p>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">Why it matters:</span> This is a FedEx Cup event—results directly shape playoff seeding and bonus money distribution.</span></li>
-      
-      <li><span><span class="dl-label">The angle:</span> Scottie Scheffler's three shots back means we're watching whether the year's best player can close late in the season or if someone else finally breaks through.</span></li>
-      <li><span><span class="dl-label">Watch for:</span> Can Kim hold off Clark and Scheffler over the final rounds, or does one of them make a run? Kim's at 20-under—that's hot enough that cooling off becomes the real threat.</span></li>
-      <li><span><span class="dl-label">What to say:</span> Si Woo's playing lights out, but Scottie doesn't lose tournaments. This one's far from over.</span></li>
-    </ul>
-  </section>
-
-
-
 <div class="brief-inline-cta">
   <div class="bic-inner">
     <div class="bic-label">Free · Daily · 5 Minutes</div>
@@ -201,10 +220,11 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <a href="/#signup" class="bic-btn">Subscribe free →</a>
 </div>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Markets</h2></div>
+<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>
 
   <section class="brief-section" id="markets">
     <div class="section-label sl-markets">The Close</div>
+
     <p class="markets-mood">Tech had a schizo day — chip stocks got hammered while everything else treaded water, SPY and QQQ both up 0.4% because Nvidia's -1.9% dive got offset by Apple's +1.3% pop and Tesla's +2.0% rip.</p>
 
     <div class="mkt-card">
@@ -214,12 +234,12 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       </div>
       <div class="mkt-index-grid">
         <div class="mkt-tile up">
-          <div class="mt-name">S&amp;P 500</div>
+          <div class="mt-name">SPY</div>
           <div class="mt-price">$745.66</div>
           <div class="mt-foot"><span class="mt-chg up">+0.4%</span></div>
         </div>
         <div class="mkt-tile up">
-          <div class="mt-name">Nasdaq</div>
+          <div class="mt-name">QQQ</div>
           <div class="mt-price">$717.56</div>
           <div class="mt-foot"><span class="mt-chg up">+0.4%</span></div>
         </div>
@@ -230,10 +250,11 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <li><span><span class="dl-label">Why it matters:</span> If you've got tech-heavy index funds, today's split personality matters because Nvidia weakness usually signals cooling demand, which affects your entire portfolio's upside.</span></li>
       <li><span><span class="dl-label">Watch for:</span> Watch the Fed speakers Thursday and Friday — if any of them hint at rate cuts still coming, that reverses today's chip selloff in a hurry.</span></li>
       <li><span><span class="dl-label">What to bring up:</span> Bitcoin basically flatlined at -0.0% while equities moved around, which means crypto's finally acting like a real asset instead of a casino — that's either boring or boring in a good way depending on your risk tolerance.</span></li>
+
     </ul>
   </section>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Culture</h2></div>
+<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>
 
   <section class="brief-section" id="culture">
     <div class="section-label sl-culture">The Scene</div>
@@ -246,6 +267,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="culture-head">Yam Madar takes five million to play college ball</div>
           <p class="culture-line"><strong>What happened:</strong> Yam Madar, a 25-year-old drafted by the Celtics in 2020, agreed to a deal with LSU to play college basketball for 5 million dollars per season.</p>
           <p class="culture-line"><strong>Why it matters:</strong> The money is so absurd that even a guy who couldn't stick in the NBA is getting paid like a star. College basketball just became a legitimate alternative path.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> Did you see what LSU is throwing at Madar? Five million a year to play college ball. The NBA's third tier isn't worth it anymore.</p>
         </div>
       </li>
@@ -257,6 +280,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="culture-head">McCain absolutely levels Wembanyama on court</div>
           <p class="culture-line"><strong>What happened:</strong> Jared McCain bodied Victor Wembanyama with a hit so hard Wembanyama's head snapped back like he took an elbow to the face.</p>
           <p class="culture-line"><strong>Why it matters:</strong> Wembanyama is the future franchise player everyone's supposed to be protecting. McCain just reminded everyone that the playoffs still have physicality and consequences.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> McCain sent Wembanyama flying last night. That's the kind of playoff statement that changes a series.</p>
         </div>
       </li>
@@ -268,6 +293,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="culture-head">The Accountant 2</div>
           <p class="culture-line"><strong>What happened:</strong> Ben Affleck returns as the autistic forensic accountant who's also a lethal contractor.</p>
           <p class="culture-line"><strong>Why it matters:</strong> Worth your time.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> Just put it on.</p>
         </div>
       </li>
@@ -277,43 +304,24 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <section class="brief-section" id="the-rec">
     <div class="section-label sl-markets">The Rec</div>
 
-    <div class="brief-rec">
-      <div class="rec-label">This week's pick</div>
-      <div class="rec-title">1Password — fix your password situation before something forces you to.</div>
-      <p class="rec-body">If you're reusing passwords or relying on your browser's keychain, you're one data breach away from a bad month. 1Password generates, stores, and autofills unique passwords across every device. The family plan covers five people for $5/month. Honest trade-off: takes one focused hour to migrate everything over from wherever you currently store passwords, and that hour is genuinely annoying. After that you stop thinking about it forever. Do it before you're forced to by something worse.</p>
-      <a href="https://1password.com" target="_blank" rel="noopener" class="rec-link">Try 1Password →</a>
+    <div class="brief-rec brief-rec--media">
+      <div class="rec-img rec-img-failed"><span class="rec-img-ph">Napper</span></div>
+      <div class="rec-content">
+        <div class="rec-label">This week's pick</div>
+        <div class="rec-title">Napper Pro (iOS) — the 20-minute nap timer that actually wakes you up.</div>
+        <p class="rec-body">Napper tracks sleep onset using your phone's microphone and vibration — it detects when you fall asleep and times your nap from that moment, not from when you hit start. The result: a 20-minute nap that actually lands at 20 minutes post-sleep, which is the window that leaves you refreshed instead of groggy. Costs $4.99 once. Most people who try it use it multiple times per week. The honest flaw: you have to be somewhere quiet, which limits the use case. But for the home office, couch, or a hotel room on a travel day, this is the most useful $5 you'll spend on your phone.</p>
+        <a href="https://apps.apple.com/us/app/napper-power-nap-timer/id1498961328" target="_blank" rel="noopener" class="rec-link">Get Napper →</a>
+      </div>
     </div>
   </section>
 
-  <div class="sharp-take" id="sharp-take">
+<div class="umbrella-head" id="sharp-take"><h2 class="umbrella-title">Sharp Take</h2></div>
+
+
+
+  <div class="sharp-take">
     <div class="sharp-take-label">Final Sharp Take</div>
     <p>Oklahoma City's defense is suffocating San Antonio right now. The Thunder won Game 3 convincingly, 123-108, and they're up 2-1 in the series because they're forcing turnovers and controlling the paint. San Antonio's got no answer. This looks like a Western Finals coronation waiting to happen unless the Spurs find a completely different approach in Game 4, and honestly, there's no sign they will.</p>
-  </div>
-
-  <div class="glance-card">
-    <div class="glance-head"><span class="glance-dot"></span>Today at a Glance</div>
-    <div class="glance-rows">
-      <a class="glance-row hit-sports" href="#sports">
-        <span class="glance-k">Main story</span>
-        <span class="glance-v">Oklahoma City Thunder 123–108 San Antonio Spurs</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-markets" href="#markets">
-        <span class="glance-k">Market mood</span>
-        <span class="glance-v">SPY +0.4% — markets edged up</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-culture" href="#the-take">
-        <span class="glance-k">Best convo</span>
-        <span class="glance-v">Did you see what LSU is throwing at Madar? Five million a year to play college ball. The NBA's third tier isn't worth it anymore.</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-culture" href="#culture">
-        <span class="glance-k">Quick rec</span>
-        <span class="glance-v">Watch this: The Accountant 2</span>
-        <span class="glance-arr">→</span>
-      </a>
-    </div>
   </div>
 
 </article>
@@ -328,20 +336,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-044/" class="more-issue-card">
-    <span class="mi-num">#044</span>
-    <span class="mi-title">Spurs-Knicks decides it all tonight. Marlins pound Diamondbacks. Antonelli wins Monaco.</span>
-    <span class="mi-date">Wednesday, June 10, 2026</span>
+  <a href="/brief/issue-056/" class="more-issue-card">
+    <span class="mi-num">#056</span>
+    <span class="mi-title">DR Congo stuns Portugal 1-1. Fed holds rates steady. Yankees demolish White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-043/" class="more-issue-card">
-    <span class="mi-num">#043</span>
-    <span class="mi-title">Spurs steal Game 3. Antonelli wins Monaco. Tech stocks crater again.</span>
-    <span class="mi-date">Tuesday, June 9, 2026</span>
+  <a href="/brief/issue-055/" class="more-issue-card">
+    <span class="mi-num">#055</span>
+    <span class="mi-title">Fed signals rate hikes ahead. Pirates dominate Athletics. Yankees roll past White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-042/" class="more-issue-card">
-    <span class="mi-num">#042</span>
-    <span class="mi-title">Spurs steal Game 3. Antonelli dominates Monaco. World Cup starts Thursday.</span>
-    <span class="mi-date">Tuesday, June 9, 2026</span>
+  <a href="/brief/issue-054/" class="more-issue-card">
+    <span class="mi-num">#054</span>
+    <span class="mi-title">Fed holds rates steady, signals future hikes. Pirates demolish Athletics. U.S. Open underway at Shinnecock.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>
@@ -382,7 +390,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   </div>
   <p class="footer-fine">
     Sports data via ESPN and Jolpica/Ergast. Market data via Finnhub.io; informational only, not investment advice.
-    GuyTalk is an independent publication and is not affiliated with or endorsed by ESPN, the NBA, MLB, NHL, NFL, Formula 1, the PGA Tour, or any league or team. Team names, logos, and trademarks are the property of their respective owners.
+    GuyTalk is an independent publication and is not affiliated with or endorsed by ESPN, the NBA, MLB, NHL, NFL, <a href="https://www.formula1.com" class="entity-org" target="_blank" rel="noopener">Formula 1</a>, the <a href="https://www.pgatour.com" class="entity-org" target="_blank" rel="noopener">PGA Tour</a>, or any league or team. Team names, logos, and trademarks are the property of their respective owners.
   </p>
 </footer>
 
@@ -455,6 +463,24 @@ window.handleBriefSignup = function(e, form) {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
+})();
+
+// Sidebar accordion — the caret toggles a parent's subsections open/closed
+// without jumping; the parent/child labels still jump to their section.
+(function () {
+  var carets = [].slice.call(document.querySelectorAll('.brief-sidenav .bsn-caret'));
+  carets.forEach(function (caret) {
+    function toggle(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var group = caret.closest('.bsn-group');
+      if (group) group.classList.toggle('open');
+    }
+    caret.addEventListener('click', toggle);
+    caret.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') toggle(e);
+    });
+  });
 })();
 </script>
 

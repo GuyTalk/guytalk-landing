@@ -16,7 +16,7 @@ const { fetchFactPack }                                             = require('.
 const { fetchOpenAIResearch }                                       = require('./lib/openai-research');
 const { verifyBrief }                                               = require('./lib/openai-verify');
 const { isExcluded, classifyTopic, scoreImportance }        = require('./lib/editorial-config');
-const { STREAMING_PICKS }                                   = require('./lib/db');
+const { STREAMING_PICKS, buildPlayerLinksFromFacts, PLAYERS, officialPlayerUrl } = require('./lib/db');
 const { GENERATION_WARNINGS, addWarning, resetWarnings, formatWarnings } = require('./lib/warnings');
 
 const ROOT      = path.join(__dirname, '..');
@@ -109,6 +109,8 @@ function loadPreviousBriefs(n = 3) {
         f1State:    d.f1?.statusState || '',
         golfEvent:  d.golf?.name || '',
         golfState:  d.golf?.statusState || '',
+        nhlGame:    d.nhl?.final?.note || d.nhl?.final?.shortName || '',
+        nhlFinal:   !!(d.nhl?.final),
       };
     } catch (_) { return null; }
   }).filter(Boolean);
@@ -254,7 +256,8 @@ function buildHeroOverride(dynamicSports) {
     const alt = dyn.find((s) => s.imageUrl && (s.tier == null || s.tier <= 2));
     if (alt) { image = alt.imageUrl; imageReal = true; }
   }
-  if (!image) { image = `/assets/hero/${heroKeyForLabel(lead.label || lead.name)}.jpg`; imageReal = false; }
+  // Never fall back to default.jpg (it's a soccer field) — null is better than wrong
+  if (!image) { const key = heroKeyForLabel(lead.label || lead.name); image = key !== 'default' ? `/assets/hero/${key}.jpg` : null; imageReal = false; }
 
   return {
     image,
@@ -267,24 +270,26 @@ function buildHeroOverride(dynamicSports) {
 
 // Returns a hero override from either the research-pack lead (if non-sports and high-scoring)
 // or the top dynamic sports card — whichever represents the single biggest story today.
-function buildSmartHeroOverride(dynamicSports, topStories) {
+async function buildSmartHeroOverride(dynamicSports, topStories) {
   const researchLead = Array.isArray(topStories) ? topStories.find(s => s.isLead) : null;
   const SPORTS_CATEGORIES = new Set(['Sports', 'NBA', 'NHL', 'MLB', 'NFL', 'UFC', 'F1', 'Golf', 'World Cup', 'Soccer']);
   const isSportsLead = !researchLead || SPORTS_CATEGORIES.has(researchLead.category || '');
 
   if (researchLead && !isSportsLead) {
-    const CATEGORY_HERO = {
-      Markets: '/assets/hero/default.jpg',
-      Business: '/assets/hero/default.jpg',
-      Tech: '/assets/hero/default.jpg',
-      'Current Events': '/assets/hero/default.jpg',
-      Politics: '/assets/hero/default.jpg',
-      'World Events': '/assets/hero/default.jpg',
-    };
-    const heroImg = CATEGORY_HERO[researchLead.category] || '/assets/hero/default.jpg';
+    // Search for a real photo — never fall back to default.jpg (it's a soccer field)
+    let heroImg = null;
+    let imageReal = false;
+    try {
+      const { searchWebImage, buildLeadImageQuery } = require('./lib/imageSearch');
+      const query = buildLeadImageQuery({ title: researchLead.headline, eyebrow: researchLead.category });
+      if (query) {
+        heroImg = await searchWebImage(query, { fallback: null });
+        imageReal = !!heroImg;
+      }
+    } catch (_) {}
     return {
       image: heroImg,
-      imageReal: false,
+      imageReal,
       eyebrow: researchLead.category || 'The Lead',
       title: researchLead.headline || '',
       sub: researchLead.category || '',
@@ -579,7 +584,7 @@ async function main() {
   let sports       = sportsResult.status    === 'fulfilled' ? sportsResult.value    : null;
   const markets    = marketsResult.status   === 'fulfilled' ? marketsResult.value   : null;
   const screeners  = screenersResult.status === 'fulfilled' ? screenersResult.value : null;
-  const nhl        = nhlResult.status === 'fulfilled' ? nhlResult.value : null;
+  let nhl          = nhlResult.status === 'fulfilled' ? nhlResult.value : null;
   if (nhl) console.log(`   ✓ NHL: ${nhl.final ? nhl.final.shortName + ' (Final)' : ''}${nhl.next ? ` next: ${nhl.next.shortName}` : ''}`);
   // Attach market-wide screeners (FMP) to the markets object so they're saved
   // with the issue and rendered. Falls back to watchlist movers if no FMP key.
@@ -702,6 +707,17 @@ async function main() {
     // Don't re-report a completed race we already covered — pivot to a preview of
     // the next track. Swapping f1 to a 'pre'/no-results object makes the whole
     // downstream pipeline (copy + circuit image) treat it as an upcoming race.
+    // NHL repetition guard — don't re-report a completed game already in the last brief.
+    // When the same game fires again (e.g. Hurricanes Cup win the morning after), null
+    // out nhl.final so fetchDynamicSports treats it as no active NHL story.
+    const nhlGameNote = nhl?.final?.note || nhl?.final?.shortName || '';
+    const nhlAlreadyCovered = nhlGameNote && nhl?.final
+      && prev3.some(p => p.nhlFinal && p.nhlGame && p.nhlGame === nhlGameNote);
+    if (nhlAlreadyCovered) {
+      console.log(`   ↪ NHL: ${nhlGameNote} already covered — dropping from today's brief`);
+      nhl = { ...nhl, final: null };
+    }
+
     const f1AlreadyCovered = f1?.name && f1.statusState === 'post'
       && prev3.some(p => p.f1Event && p.f1Event === f1.name && p.f1State === 'post');
     if (f1AlreadyCovered && f1.nextRace?.name) {
@@ -785,14 +801,70 @@ async function main() {
     const prevSet = new Set(prevImageUrls);
     dynamicSports.forEach(s => { if (s.imageUrl && prevSet.has(s.imageUrl)) s.imageUrl = null; });
 
+    // Enrich golf object with known purse data (ESPN doesn't return purse amounts)
+    if (golf?.name) {
+      const GOLF_PURSE = {
+        'U.S. Open':             { total: '$21,500,000', winner: '$3,870,000' },
+        'Masters':               { total: '$20,000,000', winner: '$3,600,000' },
+        'The Open Championship': { total: '$17,000,000', winner: '$3,100,000' },
+        'PGA Championship':      { total: '$17,000,000', winner: '$3,100,000' },
+        'Players Championship':  { total: '$25,000,000', winner: '$4,500,000' },
+        'Arnold Palmer':         { total: '$20,000,000', winner: '$3,600,000' },
+        'Genesis Invitational':  { total: '$20,000,000', winner: '$3,600,000' },
+        'FedEx St. Jude':        { total: '$20,000,000', winner: '$3,600,000' },
+        'BMW Championship':      { total: '$20,000,000', winner: '$3,600,000' },
+        'Tour Championship':     { total: '$100,000,000', winner: '$18,000,000' },
+      };
+      const purseKey = Object.keys(GOLF_PURSE).find(k => (golf.name || '').includes(k));
+      if (purseKey) golf.purse = GOLF_PURSE[purseKey];
+    }
+
     copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick, factPack });
 
     // Merge the three-label beats (from copy) into each discovered sport so the
     // template renders What happened / Why it matters / What to bring up per card.
     if (dynamicSports.length) {
       const beats = Array.isArray(copy?.dynamicSportsText) ? copy.dynamicSportsText : [];
-      dynamicSports = dynamicSports.map((s, i) => ({ ...s, ...(beats[i] || {}) }));
-      console.log(`   ✓ Discovered sports (${dynamicSports.length}): ${dynamicSports.map(s => `${s.isLead ? '★ ' : ''}${s.label} [${s.category}]`).join(', ')}`);
+      dynamicSports = dynamicSports.map((s, i) => {
+        const merged = { ...s, ...(beats[i] || {}) };
+        // Auto-generate player links from known players mentioned in facts/headline
+        if (!merged.playerLinks?.length) {
+          const links = buildPlayerLinksFromFacts(merged.facts, merged.headline);
+          if (links.length) merged.playerLinks = links;
+        }
+        // F1 preview cards rarely name drivers in facts — inject the top grid drivers
+        if (!merged.playerLinks?.length && (merged._sport === 'f1' || /formula.?1|grand prix/i.test(merged.name || ''))) {
+          const f1Drivers = Object.entries(PLAYERS)
+            .filter(([, p]) => p.sport === 'f1')
+            .slice(0, 6)
+            .map(([name, p]) => ({ name, url: officialPlayerUrl(p) }));
+          if (f1Drivers.length) merged.playerLinks = f1Drivers;
+        }
+        // Golf cards: inject course + purse into merged entry for ctx-card rendering
+        if (merged.label === 'Golf' || /open championship|masters|pga championship|us open/i.test(merged.name || '')) {
+          if (!merged.course) merged.course = copy?.golf?.course || golf?.course || null;
+          if (golf?.purse) {
+            if (!merged.purse) merged.purse = `${golf.purse.total} total — winner takes ${golf.purse.winner}`;
+            const purseAmmo = `${golf.name} total purse: ${golf.purse.total} — winner takes ${golf.purse.winner}`;
+            if (!Array.isArray(merged.ammo)) merged.ammo = [];
+            if (!merged.ammo.some(a => /purse|\$/.test(a))) merged.ammo.push(purseAmmo);
+          }
+        }
+        return merged;
+      });
+      // Search for YouTube highlight videos — one per sport, in parallel
+      try {
+        const { searchWebVideo, buildSportVideoQuery } = require('./lib/imageSearch');
+        const videoResults = await Promise.allSettled(
+          dynamicSports.map(s => (!s.videoUrl && buildSportVideoQuery(s)) ? searchWebVideo(buildSportVideoQuery(s)) : Promise.resolve(null))
+        );
+        dynamicSports = dynamicSports.map((s, i) => ({
+          ...s,
+          videoUrl: s.videoUrl || videoResults[i]?.value || null,
+        }));
+      } catch (_) {}
+
+      console.log(`   ✓ Discovered sports (${dynamicSports.length}): ${dynamicSports.map(s => `${s.isLead ? '★ ' : ''}${s.label} [${s.category}]${s.playerLinks?.length ? ` (${s.playerLinks.length} players)` : ''}${s.videoUrl ? ' 🎬' : ''}`).join(', ')}`);
     }
     if (copy) {
       if (copy.title)          console.log(`   ✓ Headline: "${copy.title}"`);
@@ -889,7 +961,7 @@ async function main() {
       : null,
     // Hero banner = the ranked #1 story (Fix 1's Lead), with a validated/relevant
     // image or the brand fallback graphic — never the structured-feed marquee game.
-    heroOverride: buildSmartHeroOverride(dynamicSports, topStories),
+    heroOverride: await buildSmartHeroOverride(dynamicSports, topStories),
     copy,
     editor:  editorMeta,
     factPack: factPack || null,

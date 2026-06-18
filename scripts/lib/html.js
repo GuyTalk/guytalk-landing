@@ -2,6 +2,14 @@
 
 const { BRIEF_ROWS, TICKERS, CORE_TICKERS, PRODUCTS, RECS, esc, playerLink, tickerLink, fmtPrice, fmtPct, ENTITY_LINKS, entityLink, linkifyEntities } = require('./db');
 
+// Strip HTML tags from editor-injected text before HTML-escaping it.
+// The editorial pass (editor.js) inserts <a> anchors directly into JSON text
+// fields. When we then call esc() those brackets escape to &lt; and render as
+// visible plain text. Stripping first lets esc() produce clean output, and
+// linkifyEntities() at the end of buildHtml() re-adds any entity links that
+// belong in the final HTML.
+const stripHtmlTags = s => (s || '').replace(/<[^>]+>/g, '');
+
 // Render AI prose (possibly multi-paragraph) into proper <p> tags
 function renderParas(text, fallback = '') {
   if (!text) return fallback ? `<p>${fallback}</p>` : '';
@@ -194,6 +202,32 @@ ${items}
 </div>`;
 }
 
+// Infer photo credit label from image URL domain.
+function imageCreditFromUrl(url) {
+  if (!url) return null;
+  try {
+    const host = new URL(url).hostname.replace('www.', '');
+    if (/ap\.org|apnews\.com|apimages/.test(host))   return 'AP';
+    if (/espn\.com|espncdn\.com/.test(host))          return 'ESPN';
+    if (/mlb\.com|mlbstatic\.com/.test(host))         return 'MLB';
+    if (/nba\.com/.test(host))                        return 'NBA';
+    if (/nhl\.com/.test(host))                        return 'NHL';
+    if (/formula1\.com/.test(host))                   return 'Formula 1';
+    if (/pgatour\.com/.test(host))                    return 'PGA Tour';
+    if (/gettyimages|gett\.com/.test(host))           return 'Getty Images';
+    if (/cloudinary\.com/.test(host))                 return 'AP / Getty';
+    if (/reuters\.com/.test(host))                    return 'Reuters';
+    if (/usatoday\.com/.test(host))                   return 'USA Today';
+    if (/si\.com/.test(host))                         return 'Sports Illustrated';
+    if (/theathletic\.com/.test(host))                return 'The Athletic';
+    if (/cbssports\.com/.test(host))                  return 'CBS Sports';
+    if (/foxsports\.com/.test(host))                  return 'Fox Sports';
+    if (/fifa\.com/.test(host))                       return 'FIFA';
+    if (/wikimedia\.org/.test(host))                  return 'Wikimedia Commons';
+    return null;
+  } catch { return null; }
+}
+
 // Stable anchor id from a sport/event label (for the nested sidebar + sections).
 function slugId(s) {
   return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -237,15 +271,20 @@ function buildRundown(issue) {
     return parts.slice(0, 3).join(' · ') || 'Scores and results inside.';
   })();
 
-  // Markets bullet — market mood + broad index move summary
+  // Markets bullet — market mood + broad index move summary.
+  // Prefers indexDayChangePct (true ^GSPC / ^IXIC day %) over the ETF's
+  // dayChangePct. This is the same data the market-card tiles use — no section
+  // may independently calculate or invent S&P/Nasdaq/Dow moves.
   const marketsBullet = (() => {
     const parts = [];
     const m = copy.markets || {};
     if (m.mood) parts.push(m.mood.split(/[.—–]/)[0].trim());
     const qs = issue.markets || {};
+    const spyPct = qs.SPY?.indexDayChangePct ?? qs.SPY?.dayChangePct;
+    const qqqPct = qs.QQQ?.indexDayChangePct ?? qs.QQQ?.dayChangePct;
     const changes = [
-      qs.SPY?.dayChangePct != null && `S&P 500 ${qs.SPY.dayChangePct >= 0 ? '+' : ''}${qs.SPY.dayChangePct.toFixed(1)}%`,
-      qs.QQQ?.dayChangePct != null && `Nasdaq ${qs.QQQ.dayChangePct >= 0 ? '+' : ''}${qs.QQQ.dayChangePct.toFixed(1)}%`,
+      spyPct != null && `S&P 500 ${spyPct >= 0 ? '+' : ''}${spyPct.toFixed(1)}%`,
+      qqqPct != null && `Nasdaq ${qqqPct >= 0 ? '+' : ''}${qqqPct.toFixed(1)}%`,
     ].filter(Boolean).join(', ');
     if (changes) parts.push(changes);
     return parts.slice(0, 2).join(' · ') || 'Market data inside.';
@@ -266,18 +305,18 @@ function buildRundown(issue) {
     <div class="rundown-label"><span class="rundown-dot"></span>The Rundown</div>
     <p class="rundown-text">${esc(narrative)}</p>
     <div class="rbd-bullets">
-      <div class="rbd-bullet rbd-sports">
+      <a class="rbd-bullet rbd-sports" href="#sports">
         <span class="rbd-cat">Sports</span>
         <span class="rbd-line">${esc(sportsBullet)}</span>
-      </div>
-      <div class="rbd-bullet rbd-markets">
+      </a>
+      <a class="rbd-bullet rbd-markets" href="#markets">
         <span class="rbd-cat">Markets</span>
         <span class="rbd-line">${esc(marketsBullet)}</span>
-      </div>
-      <div class="rbd-bullet rbd-culture">
+      </a>
+      <a class="rbd-bullet rbd-culture" href="#culture">
         <span class="rbd-cat">Culture</span>
         <span class="rbd-line">${esc(cultureBullet)}</span>
-      </div>
+      </a>
     </div>
   </div>`;
 }
@@ -300,51 +339,77 @@ function convoBlocks(s) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Dynamic sports card. Every sports section — The Lead and every subsection —
-// uses the three-label text (What happened / Why it matters / What to bring up),
-// grounded in sourced facts. The card STYLE is set by discovery's category:
-//   individual → athlete action photo on top, text, then an optional
-//                "Watch the moment →" highlight link (only if a real videoUrl).
-//   team       → text first, then one optional game photo. No video, no spotlight.
-// Text is always required: if there's no text we never ship an image-only card,
-// and `facts` (always sourced) backs the "What happened" line so that can't happen.
+// Dynamic sports card — Live-page ctx-card format.
+// Dark header "THE GUYTALK READ." + red-dot labeled rows + green Pick button.
+// Image (if any) sits above the card; video link appended inside card body.
 // ─────────────────────────────────────────────────────────────────────────────
 function buildSportsCard(s, isLead) {
   if (!s) return '';
-  const cat = s.category === 'individual' ? 'individual' : 'team';
   const whatHappened  = s.whatHappened || s.facts || '';
   const whyItMatters  = s.whyItMatters || '';
   const whatToBringUp = s.whatToBringUp || '';
-  if (!whatHappened && !whyItMatters && !whatToBringUp) return ''; // never image-only
+  if (!whatHappened && !whyItMatters && !whatToBringUp) return '';
 
-  const imgHtml = s.imageUrl
-    ? `    <div class="brief-img sport-card-img"><img src="${esc(s.imageUrl)}" alt="${esc(s.label || s.name)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>`
-    : '';
-  const videoHtml = (cat === 'individual' && s.videoUrl)
-    ? `    <a class="watch-moment" href="${esc(s.videoUrl)}" target="_blank" rel="noopener">Watch the moment →</a>`
-    : '';
   const label = isLead ? 'The Lead' : (s.label || s.name);
   const id    = isLead ? 'the-lead' : slugId(s.label || s.name);
 
-  const detail = `    <ul class="detail-list">
-      ${whatHappened  ? `<li><span><span class="dl-label">What happened:</span> ${esc(whatHappened)}</span></li>`   : ''}
-      ${whyItMatters  ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyItMatters)}</span></li>`   : ''}
-${convoBlocks(s)}
-      ${whatToBringUp ? `<li><span><span class="dl-label">What to bring up:</span> ${esc(whatToBringUp)}</span></li>` : ''}
-    </ul>`;
+  const credit  = imageCreditFromUrl(s.imageUrl);
+  const imgHtml = s.imageUrl
+    ? `    <div class="brief-img sport-card-img"><img src="${esc(s.imageUrl)}" alt="${esc(label)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">${credit ? `<div class="brief-img-credit">Photo: ${esc(credit)}</div>` : ''}</div>`
+    : '';
 
-  const body = cat === 'individual'
-    ? `${imgHtml}
-    <h3>${esc(s.headline || label)}</h3>
-${detail}
-${videoHtml}`
-    : `    <h3>${esc(s.headline || label)}</h3>
-${detail}
-${imgHtml}`;
+  const rows = [];
 
-  return `  <section class="brief-section sport-card sport-${cat}${isLead ? ' sport-lead' : ''}" id="${esc(id)}">
+  // Golf-specific context rows
+  if (s.course) rows.push(`      <div class="ctx-row"><div class="ctx-label">Course</div><div class="ctx-text">${esc(s.course)}</div></div>`);
+  if (s.purse)  rows.push(`      <div class="ctx-row"><div class="ctx-label">Purse</div><div class="ctx-text">${esc(s.purse)}</div></div>`);
+
+  if (whatHappened)  rows.push(`      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">${esc(whatHappened)}</div></div>`);
+  if (whyItMatters)  rows.push(`      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">${esc(whyItMatters)}</div></div>`);
+
+  // The GuyTalk Read — featured insight
+  if (s.theRead) rows.push(`      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">${esc(s.theRead)}</div></div>`);
+
+  // What to Know — ammo bullets
+  const ammo = Array.isArray(s.ammo) ? s.ammo.filter(Boolean) : [];
+  if (ammo.length) {
+    rows.push(`      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list">${ammo.map(a => `<li>${esc(a)}</li>`).join('')}</ul></div>`);
+  }
+
+  if (whatToBringUp) rows.push(`      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"${esc(whatToBringUp)}"</div></div></div>`);
+
+  // Players to Know — name + bio
+  if (Array.isArray(s.playerLinks) && s.playerLinks.length) {
+    const { PLAYERS } = require('./db');
+    const items = s.playerLinks.map(p => {
+      const bio = (PLAYERS[p.name] || {}).bio || '';
+      return `          <li class="pbio-item"><a href="${esc(p.url)}" target="_blank" rel="noopener" class="pbio-name">${esc(p.name)}</a>${bio ? `<span class="pbio-bio">${esc(bio)}</span>` : ''}</li>`;
+    }).join('\n');
+    rows.push(`      <div class="ctx-row"><div class="ctx-label">Players to know</div><ul class="pbio-list">\n${items}\n        </ul></div>`);
+  }
+
+  // Video link
+  if (s.videoUrl) rows.push(`      <div class="ctx-row"><a class="watch-moment" href="${esc(s.videoUrl)}" target="_blank" rel="noopener">Watch highlights →</a></div>`);
+
+  // GuyTalk's Pick — green button
+  const pickHtml = s.ourPick
+    ? `      <div class="ctx-pick"><span class="ctx-pick-label">GuyTalk's Pick</span><span class="ctx-pick-text">${esc(s.ourPick)}</span></div>`
+    : '';
+
+  return `  <section class="brief-section sport-card${isLead ? ' sport-lead' : ''}" id="${esc(id)}">
     <div class="section-label sl-sports">${esc(label)}</div>
-${body}
+${imgHtml}
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">${esc(s.label || s.name || '')}</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">${esc(s.headline || label)}</h3>
+${rows.join('\n')}
+${pickHtml}
+      </div>
+    </div>
   </section>`;
 }
 
@@ -380,6 +445,10 @@ function buildHtml(issue, relatedIssues) {
   const hasWC  = worldCup?.length > 0;
   const hasGolf = golf?.name != null;
   const hasNHL = !!(nhl && (nhl.final || nhl.next));
+
+  // Editorial section order — computed early so sidebar nav + jump links + body all agree.
+  const isMarketsLead = !!issue.heroOverride?.isNonSportsLead;
+  const bodyOrder = isMarketsLead ? ['markets', 'sports', 'culture'] : ['sports', 'markets', 'culture'];
 
   // Right-rail scroll-spy nav — three top-level anchors (Sports / Markets /
   // Culture) plus Sharp Take, with the sports subsections nested + indented under
@@ -426,17 +495,32 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
   .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
   .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
   .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
-  /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
-     so faces/players show instead of a jersey-number zoom. */
+  /* Images: keep a clean landscape ratio, crop to top so faces show. */
   .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
   .brief-hero-banner--feature{background-position:center 20%;}
+  /* Photo credit — subtle caption beneath images */
+  .brief-img-credit{font-size:10px;color:#9E9891;text-align:right;padding:3px 4px 0;letter-spacing:0.02em;}
+  /* GuyTalk Pick block */
+  .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
+  .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
+  .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
+  /* Player chips */
+  .player-chips{margin:10px 0 6px;}
+  .pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9E9891;margin-bottom:6px;}
+  .pc-list{display:flex;flex-wrap:wrap;gap:5px;}
+  .player-chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#0F1724;background:#F0EDE8;border-radius:20px;padding:3px 11px;text-decoration:none;border:1px solid #E5E2DB;transition:background .15s;}
+  .player-chip:hover{background:#E5E2DB;}
+  /* Rundown bullets — clickable anchor navigation. */
+  .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
+  .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
+  .rbd-bullet:hover .rbd-cat{text-decoration:underline;text-underline-offset:2px;}
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   ${navLink('top', 'Top')}
-${navGroup('sports', 'Sports', sportsSubs.map(([id, label]) => [id, label]), false)}
-${navGroup('markets', 'Markets', [], false)}
-${navGroup('culture', 'Culture', [], false)}
+  ${bodyOrder.includes('sports')  ? navLink('sports',  'Sports',  'bsn-parent') : ''}
+  ${bodyOrder.includes('markets') ? navLink('markets', 'Markets', 'bsn-parent') : ''}
   ${navLink('sharp-take', 'Sharp Take')}
+  ${bodyOrder.includes('culture') ? navLink('culture', 'Culture', 'bsn-parent') : ''}
 </nav>`;
 
   // Hero-area sub-jump chips — the discovered sports (skipping The Lead, which is
@@ -492,6 +576,32 @@ ${navGroup('culture', 'Culture', [], false)}
 
   const seoTitle = buildSeoTitle(issue);
   const seoDesc  = buildSeoDesc(issue);
+
+  const _sportsSection  = `<div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>\n\n${buildSportsBody(issue)}`;
+  const _marketsSection = `<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>\n\n${buildMarkets(issue)}`;
+  const _cultureSection = `<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>\n\n${buildCulture(issue)}`;
+  const _sectionMap = { sports: _sportsSection, markets: _marketsSection, culture: _cultureSection };
+
+  const _liveCta = `<a href="/live/" class="brief-live-cta">
+  <span class="blc-dot"></span>
+  <div class="blc-inner">
+    <div class="blc-label">Happening Now</div>
+    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
+  </div>
+  <span class="blc-btn">Open GuyTalk Live →</span>
+</a>
+
+<div class="brief-inline-cta">
+  <div class="bic-inner">
+    <div class="bic-label">Free · Daily · 5 Minutes</div>
+    <p class="bic-text">Get GuyTalk in your inbox every morning — before you check anything else.</p>
+  </div>
+  <a href="/#signup" class="bic-btn">Subscribe free →</a>
+</div>`;
+
+  const _bodySections = bodyOrder.map((key, i) =>
+    `${_sectionMap[key]}${i === 0 ? '\n\n' + _liveCta : ''}`
+  ).join('\n\n');
 
   // Word-of-mouth share links (the growth wedge: "don't be the last guy to know")
   const shareUrl  = `https://www.guytalkmedia.com/brief/${slug}/`;
@@ -572,9 +682,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
-      <a href="#sports" class="sj-link">Sports</a>
-      <a href="#markets" class="sj-link">Markets</a>
-      <a href="#culture" class="sj-link">Culture</a>
+      ${bodyOrder.map(k => `<a href="#${k}" class="sj-link${k === bodyOrder[0] ? ' sj-lead' : ''}">${k.charAt(0).toUpperCase() + k.slice(1)}</a>`).join('\n      ')}
     </nav>${subjumpHtml}
   </div>
 </div>
@@ -588,34 +696,7 @@ ${heroImgHtml}
 
 ${buildRundown(issue)}
 
-<div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
-
-${buildSportsBody(issue)}
-
-<a href="/live/" class="brief-live-cta">
-  <span class="blc-dot"></span>
-  <div class="blc-inner">
-    <div class="blc-label">Happening Now</div>
-    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
-  </div>
-  <span class="blc-btn">Open GuyTalk Live →</span>
-</a>
-
-<div class="brief-inline-cta">
-  <div class="bic-inner">
-    <div class="bic-label">Free · Daily · 5 Minutes</div>
-    <p class="bic-text">Get GuyTalk in your inbox every morning — before you check anything else.</p>
-  </div>
-  <a href="/#signup" class="bic-btn">Subscribe free →</a>
-</div>
-
-<div class="umbrella-head"><h2 class="umbrella-title">Markets</h2></div>
-
-${buildMarkets(issue)}
-
-<div class="umbrella-head"><h2 class="umbrella-title">Culture</h2></div>
-
-${buildCulture(issue)}
+${_bodySections}
 
 ${buildRec(issue)}
 
@@ -1816,9 +1897,11 @@ ${headlines.map(h => `      <li><span class="mkh-head">${esc(h.head)}</span>${h.
     const price = hasIndex
       ? q.indexPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })
       : (q.price !== undefined && q.price !== null ? fmtPrice(sym, q.price) : '—');
-    const hasDay = q.dayChangePct !== null && q.dayChangePct !== undefined;
-    const dayPct = hasDay ? fmtPct(q.dayChangePct) : '—';
-    const dir    = hasDay ? (q.dayChangePct >= 0 ? 'up' : 'dn') : '';
+    // Prefer true index day% (from Yahoo ^GSPC/^IXIC etc.) over ETF dayChangePct.
+    const pct    = q.indexDayChangePct ?? q.dayChangePct;
+    const hasDay = pct !== null && pct !== undefined;
+    const dayPct = hasDay ? fmtPct(pct) : '—';
+    const dir    = hasDay ? (pct >= 0 ? 'up' : 'dn') : '';
     const spark  = sparklineSvg(q.spark, dir);
     return `        <div class="mkt-tile ${dir}">
           <div class="mt-name">${esc(displayName)}</div>
@@ -2145,11 +2228,11 @@ function buildCulture({ copy }) {
             <span class="culture-tag ${tagCls[tag] || 'ctag-sports'}">${esc(tag)}</span>
           </div>
           <div class="culture-head">${esc(head)}</div>
-          ${item.whatHappened ? `<p class="culture-line"><strong>What happened:</strong> ${esc(item.whatHappened)}</p>` : ''}
-          ${item.whyItMatters ? `<p class="culture-line"><strong>Why it matters:</strong> ${esc(item.whyItMatters)}</p>` : ''}
-          ${item.theRead      ? `<p class="culture-line"><strong>The GuyTalk Read:</strong> ${esc(item.theRead)}</p>`    : ''}
-          ${Array.isArray(item.ammo) && item.ammo.filter(Boolean).length ? `<ul class="ammo-list">${item.ammo.filter(Boolean).map(a => `<li>${esc(a)}</li>`).join('')}</ul>` : ''}
-          ${item.whatToSay    ? `<p class="culture-line"><strong>What to say:</strong> ${esc(item.whatToSay)}</p>`       : ''}
+          ${item.whatHappened ? `<p class="culture-line"><strong>What happened:</strong> ${esc(stripHtmlTags(item.whatHappened))}</p>` : ''}
+          ${item.whyItMatters ? `<p class="culture-line"><strong>Why it matters:</strong> ${esc(stripHtmlTags(item.whyItMatters))}</p>` : ''}
+          ${item.theRead      ? `<p class="culture-line"><strong>The GuyTalk Read:</strong> ${esc(stripHtmlTags(item.theRead))}</p>`    : ''}
+          ${Array.isArray(item.ammo) && item.ammo.filter(Boolean).length ? `<ul class="ammo-list">${item.ammo.filter(Boolean).map(a => `<li>${esc(stripHtmlTags(a))}</li>`).join('')}</ul>` : ''}
+          ${item.whatToSay    ? `<p class="culture-line"><strong>What to say:</strong> ${esc(stripHtmlTags(item.whatToSay))}</p>`       : ''}
         </div>
       </li>`;
   }).join('\n');

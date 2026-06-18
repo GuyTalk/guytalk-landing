@@ -6,72 +6,87 @@
 // ─────────────────────────────────────────────────────────────────────────────
 const PLAYERS = {
   // NBA – ECF
-  'Jalen Brunson':             { sport: 'nba',  id: '3934672',  slug: 'jalen-brunson' },
-  'Donovan Mitchell':          { sport: 'nba',  id: '3908809',  slug: 'donovan-mitchell' },
-  'Karl-Anthony Towns':        { sport: 'nba',  id: '3136193',  slug: 'karl-anthony-towns' },
-  'Darius Garland':            { sport: 'nba',  id: '4277905',  slug: 'darius-garland' },
-  'Evan Mobley':               { sport: 'nba',  id: '4432163',  slug: 'evan-mobley' },
-  'Josh Hart':                 { sport: 'nba',  id: '2578578',  slug: 'josh-hart' },
-  'Mikal Bridges':             { sport: 'nba',  id: '3134870',  slug: 'mikal-bridges' },
+  'Jalen Brunson':             { sport: 'nba',  id: '3934672',  slug: 'jalen-brunson',              bio: 'Knicks · elite scorer in clutch moments' },
+  'Donovan Mitchell':          { sport: 'nba',  id: '3908809',  slug: 'donovan-mitchell',           bio: 'Cavaliers · "Spida" · perennial All-Star guard' },
+  'Karl-Anthony Towns':        { sport: 'nba',  id: '3136193',  slug: 'karl-anthony-towns',         bio: 'Knicks · elite shooting big man' },
+  'Darius Garland':            { sport: 'nba',  id: '4277905',  slug: 'darius-garland',             bio: 'Cavaliers · facilitating point guard' },
+  'Evan Mobley':               { sport: 'nba',  id: '4432163',  slug: 'evan-mobley',                bio: 'Cavaliers · Defensive Player of the Year caliber' },
+  'Josh Hart':                 { sport: 'nba',  id: '2578578',  slug: 'josh-hart',                  bio: 'Knicks · motor, hustle, limitless minutes' },
+  'Mikal Bridges':             { sport: 'nba',  id: '3134870',  slug: 'mikal-bridges',              bio: 'Knicks · versatile two-way wing' },
   // NBA – WCF
-  'Shai Gilgeous-Alexander':   { sport: 'nba',  id: '4278073',  slug: 'shai-gilgeous-alexander' },
-  'Victor Wembanyama':         { sport: 'nba',  id: '5104157',  slug: 'victor-wembanyama' },
-  'Stephon Castle':            { sport: 'nba',  id: '4845367',  slug: 'stephon-castle' },
-  'Chet Holmgren':             { sport: 'nba',  id: '4432638',  slug: 'chet-holmgren' },
-  'Luguentz Dort':             { sport: 'nba',  id: '4066409',  slug: 'luguentz-dort' },
+  'Shai Gilgeous-Alexander':   { sport: 'nba',  id: '4278073',  slug: 'shai-gilgeous-alexander',    bio: 'Thunder · MVP-caliber scorer, elite shot creator' },
+  'Victor Wembanyama':         { sport: 'nba',  id: '5104157',  slug: 'victor-wembanyama',          bio: 'Spurs · alien athlete, generational defensive force' },
+  'Stephon Castle':            { sport: 'nba',  id: '4845367',  slug: 'stephon-castle',             bio: 'Spurs · 2024 lottery pick, rising playmaker' },
+  'Chet Holmgren':             { sport: 'nba',  id: '4432638',  slug: 'chet-holmgren',              bio: 'Thunder · stretch-5 with elite rim protection' },
+  'Luguentz Dort':             { sport: 'nba',  id: '4066409',  slug: 'luguentz-dort',              bio: 'Thunder · lockdown defender, underrated scorer' },
   // NBA – other
-  'LeBron James':              { sport: 'nba',  id: '1966',     slug: 'lebron-james' },
-  'Stephen Curry':             { sport: 'nba',  id: '3975',     slug: 'stephen-curry' },
-  'Giannis Antetokounmpo':     { sport: 'nba',  id: '3032977',  slug: 'giannis-antetokounmpo' },
-  'Jayson Tatum':              { sport: 'nba',  id: '4065648',  slug: 'jayson-tatum' },
-  'Kevin Durant':              { sport: 'nba',  id: '3202',     slug: 'kevin-durant' },
-  'Nikola Jokic':              { sport: 'nba',  id: '3112335',  slug: 'nikola-jokic' },
-  'Luka Doncic':               { sport: 'nba',  id: '3945274',  slug: 'luka-doncic' },
-  'Anthony Edwards':           { sport: 'nba',  id: '4594268',  slug: 'anthony-edwards' },
+  'LeBron James':              { sport: 'nba',  id: '1966',     slug: 'lebron-james',               bio: 'Lakers · widely considered the greatest of all time' },
+  'Stephen Curry':             { sport: 'nba',  id: '3975',     slug: 'stephen-curry',              bio: 'Warriors · revolutionized the game from 3-point range' },
+  'Giannis Antetokounmpo':     { sport: 'nba',  id: '3032977',  slug: 'giannis-antetokounmpo',      bio: 'Bucks · "Greek Freak" · unstoppable force to the rim' },
+  'Jayson Tatum':              { sport: 'nba',  id: '4065648',  slug: 'jayson-tatum',               bio: 'Celtics · 2024 champion, face of the franchise' },
+  'Kevin Durant':              { sport: 'nba',  id: '3202',     slug: 'kevin-durant',               bio: 'Suns · arguably the most skilled scorer ever' },
+  'Nikola Jokic':              { sport: 'nba',  id: '3112335',  slug: 'nikola-jokic',               bio: 'Nuggets · 3× MVP · best passing big man in history' },
+  'Luka Doncic':               { sport: 'nba',  id: '3945274',  slug: 'luka-doncic',                bio: 'Lakers · orchestrates offense like no one in the game' },
+  'Anthony Edwards':           { sport: 'nba',  id: '4594268',  slug: 'anthony-edwards',            bio: 'Timberwolves · "Ant-Man" · ascending face of the NBA' },
   // MLB – top stars
-  'Shohei Ohtani':              { sport: 'mlb', id: '4697985',  slug: 'shohei-ohtani' },
-  'Aaron Judge':                { sport: 'mlb', id: '4196466',  slug: 'aaron-judge' },
-  'Juan Soto':                  { sport: 'mlb', id: '4195502',  slug: 'juan-soto' },
-  'Mookie Betts':               { sport: 'mlb', id: '4157272',  slug: 'mookie-betts' },
-  'Freddie Freeman':            { sport: 'mlb', id: '4020',     slug: 'freddie-freeman' },
-  'Ronald Acuna Jr.':           { sport: 'mlb', id: '4243706',  slug: 'ronald-acuna-jr' },
-  'Bryce Harper':               { sport: 'mlb', id: '33140',    slug: 'bryce-harper' },
-  'Fernando Tatis Jr.':         { sport: 'mlb', id: '4243770',  slug: 'fernando-tatis-jr' },
-  'Paul Skenes':                { sport: 'mlb', id: '4895670',  slug: 'paul-skenes' },
-  'Cody Bellinger':             { sport: 'mlb', id: '4097870',  slug: 'cody-bellinger' },
+  'Shohei Ohtani':              { sport: 'mlb', id: '4697985',  slug: 'shohei-ohtani',              bio: 'Dodgers · elite pitcher AND hitter — one-of-a-kind talent' },
+  'Aaron Judge':                { sport: 'mlb', id: '4196466',  slug: 'aaron-judge',                bio: 'Yankees · AL MVP · towering power hitter' },
+  'Juan Soto':                  { sport: 'mlb', id: '4195502',  slug: 'juan-soto',                  bio: 'Mets · .400-OBP machine, elite run producer' },
+  'Mookie Betts':               { sport: 'mlb', id: '4157272',  slug: 'mookie-betts',               bio: 'Dodgers · Gold Glove RF, elite contact hitter' },
+  'Freddie Freeman':            { sport: 'mlb', id: '4020',     slug: 'freddie-freeman',            bio: 'Dodgers · 2020 World Series MVP, beloved clubhouse leader' },
+  'Ronald Acuna Jr.':           { sport: 'mlb', id: '4243706',  slug: 'ronald-acuna-jr',            bio: 'Braves · 2023 unanimous NL MVP, speed + power combo' },
+  'Bryce Harper':               { sport: 'mlb', id: '33140',    slug: 'bryce-harper',               bio: 'Phillies · 2022 NL MVP, postseason performer' },
+  'Fernando Tatis Jr.':         { sport: 'mlb', id: '4243770',  slug: 'fernando-tatis-jr',          bio: 'Padres · electric shortstop, must-see play-maker' },
+  'Paul Skenes':                { sport: 'mlb', id: '4895670',  slug: 'paul-skenes',                bio: 'Pirates · 2024 NL ROY, elite stuff from day one' },
+  'Cody Bellinger':             { sport: 'mlb', id: '4097870',  slug: 'cody-bellinger',             bio: 'Cubs · former NL MVP, strong defensive outfielder' },
   // F1 drivers
-  'Max Verstappen':             { sport: 'f1',  id: '3990',     slug: 'max-verstappen' },
-  'Lewis Hamilton':             { sport: 'f1',  id: '1025',     slug: 'lewis-hamilton' },
-  'Charles Leclerc':            { sport: 'f1',  id: '4592730',  slug: 'charles-leclerc' },
-  'Lando Norris':               { sport: 'f1',  id: '4702614',  slug: 'lando-norris' },
-  'Carlos Sainz':               { sport: 'f1',  id: '4429619',  slug: 'carlos-sainz' },
-  'George Russell':             { sport: 'f1',  id: '4686350',  slug: 'george-russell' },
-  'Kimi Antonelli':             { sport: 'f1',  id: '5073282',  slug: 'kimi-antonelli' },
+  'Max Verstappen':             { sport: 'f1',  id: '3990',     slug: 'max-verstappen',   f1Slug: 'max-verstappen',            bio: 'Red Bull · 4× world champion, dominant era driver' },
+  'Lewis Hamilton':             { sport: 'f1',  id: '1025',     slug: 'lewis-hamilton',   f1Slug: 'lewis-hamilton',            bio: 'Ferrari · 7× world champion, motorsport GOAT' },
+  'Charles Leclerc':            { sport: 'f1',  id: '4592730',  slug: 'charles-leclerc',  f1Slug: 'charles-leclerc',           bio: 'Ferrari · Monaco native · championship contender' },
+  'Lando Norris':               { sport: 'f1',  id: '4702614',  slug: 'lando-norris',     f1Slug: 'lando-norris',              bio: 'McLaren · 2025 world champion, overtook Verstappen' },
+  'Carlos Sainz':               { sport: 'f1',  id: '4429619',  slug: 'carlos-sainz',     f1Slug: 'carlos-sainz',              bio: 'Williams · 2024 Australian GP winner, consistent front-runner' },
+  'George Russell':             { sport: 'f1',  id: '4686350',  slug: 'george-russell',   f1Slug: 'george-russell',            bio: 'Mercedes · technical specialist, single-lap pace machine' },
+  'Kimi Antonelli':             { sport: 'f1',  id: '5073282',  slug: 'kimi-antonelli',   f1Slug: 'andrea-kimi-antonelli',     bio: 'Mercedes · 18-year-old rookie, tipped as the next star' },
+  'Oscar Piastri':              { sport: 'f1',  id: '4702619',  slug: 'oscar-piastri',    f1Slug: 'oscar-piastri',             bio: "McLaren · Norris's title rival, razor-sharp race craft" },
+  // Soccer / World Cup 2026
+  'Harry Kane':                 { sport: 'soccer', id: '157529',  slug: 'harry-kane',        fifaSlug: 'harry-kane',       wikiSlug: 'Harry_Kane',                                     bio: 'England captain · all-time leading scorer' },
+  'Jude Bellingham':            { sport: 'soccer', id: '4251614', slug: 'jude-bellingham',    fifaSlug: 'jude-bellingham',  wikiSlug: 'Jude_Bellingham',                                bio: 'Real Madrid · England · most creative force in the squad' },
+  'Marcus Rashford':            { sport: 'soccer', id: '3146590', slug: 'marcus-rashford',    fifaSlug: 'marcus-rashford',  wikiSlug: 'Marcus_Rashford',                                bio: 'Man United · electric winger, pace and clinical finishing' },
+  'Cristiano Ronaldo':          { sport: 'soccer', id: '93869',   slug: 'cristiano-ronaldo',  fifaSlug: 'cristiano-ronaldo', wikiSlug: 'Cristiano_Ronaldo',                             bio: 'Portugal legend · 900+ career goals, chasing a World Cup' },
+  'Lionel Messi':               { sport: 'soccer', id: '45843',   slug: 'lionel-messi',       fifaSlug: 'lionel-messi',     wikiSlug: 'Lionel_Messi',                                   bio: 'Inter Miami · 2022 World Cup winner · widely the greatest ever' },
+  'Kylian Mbappé':              { sport: 'soccer', id: '3729512', slug: 'kylian-mbappe',      fifaSlug: 'kylian-mbappe',    wikiSlug: 'Kylian_Mbappé',                                  bio: 'Real Madrid · France · arguably the best player alive' },
+  'Erling Haaland':             { sport: 'soccer', id: '4318050', slug: 'erling-haaland',     fifaSlug: 'erling-haaland',   wikiSlug: 'Erling_Haaland',                                 bio: 'Man City · Norway · goal machine, impossible finishing rate' },
+  'Bukayo Saka':                { sport: 'soccer', id: '4318088', slug: 'bukayo-saka',         wikiSlug: 'Bukayo_Saka',                                                                   bio: 'Arsenal · England · right-side tormentor, PL elite' },
+  'Phil Foden':                 { sport: 'soccer', id: '3906882', slug: 'phil-foden',          wikiSlug: 'Phil_Foden',                                                                    bio: 'Man City · England · Pep Guardiola\'s most trusted creative' },
+  'Vinicius Jr.':               { sport: 'soccer', id: '4217293', slug: 'vinicius-junior',     wikiSlug: 'Vini_Jr.',                                                                      bio: 'Real Madrid · Brazil · dribbler and Champions League clutch player' },
+  'Romano Schmid':              { sport: 'soccer', id: '4568166', slug: 'romano-schmid',       wikiSlug: 'Romano_Schmid',                                                                 bio: 'Werder Bremen · Austria captain' },
+  'Luis Díaz':                  { sport: 'soccer', id: '3943007', slug: 'luis-diaz',           wikiSlug: 'Luis_Díaz_(footballer,_born_1997)',                                             bio: "Liverpool · Colombia · most dangerous attacker in the squad" },
+  'USMNT':                      { sport: 'soccer', slug: 'usmnt', wikiSlug: 'United_States_men%27s_national_soccer_team' },
   // Golf – PGA
-  'Scottie Scheffler':         { sport: 'golf', id: '4686091',  slug: 'scottie-scheffler' },
-  'Rory McIlroy':              { sport: 'golf', id: '3448',     slug: 'rory-mcilroy' },
-  'Jon Rahm':                  { sport: 'golf', id: '4848699',  slug: 'jon-rahm' },
-  'Xander Schauffele':         { sport: 'golf', id: '4848706',  slug: 'xander-schauffele' },
-  'Collin Morikawa':           { sport: 'golf', id: '4848693',  slug: 'collin-morikawa' },
-  'Patrick Cantlay':           { sport: 'golf', id: '4848690',  slug: 'patrick-cantlay' },
-  'Viktor Hovland':            { sport: 'golf', id: '4848721',  slug: 'viktor-hovland' },
-  'Brooks Koepka':             { sport: 'golf', id: '1225',     slug: 'brooks-koepka' },
-  'Bryson DeChambeau':         { sport: 'golf', id: '3470310',  slug: 'bryson-dechambeau' },
-  'Tony Finau':                { sport: 'golf', id: '4848696',  slug: 'tony-finau' },
-  'Max Homa':                  { sport: 'golf', id: '4848704',  slug: 'max-homa' },
-  'Russell Henley':            { sport: 'golf', id: '4848715',  slug: 'russell-henley' },
-  'Eric Cole':                 { sport: 'golf', id: '10122',    slug: 'eric-cole' },
-  'Ben Griffin':               { sport: 'golf', id: '5769',     slug: 'ben-griffin' },
-  'Ludvig Aberg':              { sport: 'golf', id: '9999001',  slug: 'ludvig-aberg' },
-  'Shane Lowry':               { sport: 'golf', id: '3139',     slug: 'shane-lowry' },
-  'Tommy Fleetwood':           { sport: 'golf', id: '1225',     slug: 'tommy-fleetwood' },
+  'Scottie Scheffler':         { sport: 'golf', id: '4686091',  slug: 'scottie-scheffler',           bio: 'World No. 1 · Masters champion · dominant on tour' },
+  'Rory McIlroy':              { sport: 'golf', id: '3448',     slug: 'rory-mcilroy',                bio: '4 major titles · best iron player in the world' },
+  'Jon Rahm':                  { sport: 'golf', id: '4848699',  slug: 'jon-rahm',                    bio: 'LIV Golf · former No. 1 · major winner' },
+  'Xander Schauffele':         { sport: 'golf', id: '4848706',  slug: 'xander-schauffele',           bio: 'PGA champion · elite under pressure' },
+  'Collin Morikawa':           { sport: 'golf', id: '4848693',  slug: 'collin-morikawa',             bio: '2-time major winner · surgical ball-striker' },
+  'Patrick Cantlay':           { sport: 'golf', id: '4848690',  slug: 'patrick-cantlay',             bio: 'Former No. 1 · exceptional putter' },
+  'Viktor Hovland':            { sport: 'golf', id: '4848721',  slug: 'viktor-hovland',              bio: 'Norwegian · former FedEx Cup champion' },
+  'Brooks Koepka':             { sport: 'golf', id: '1225',     slug: 'brooks-koepka',               bio: '5-time major winner · raises game at major venues' },
+  'Bryson DeChambeau':         { sport: 'golf', id: '3470310',  slug: 'bryson-dechambeau',           bio: 'Defending US Open champion · longest hitter in the game' },
+  'Tony Finau':                { sport: 'golf', id: '4848696',  slug: 'tony-finau',                  bio: 'Multiple PGA Tour wins · powerful tee-to-green game' },
+  'Max Homa':                  { sport: 'golf', id: '4848704',  slug: 'max-homa',                    bio: '6 PGA Tour wins · known for humor and consistency' },
+  'Russell Henley':            { sport: 'golf', id: '4848715',  slug: 'russell-henley',              bio: 'Veteran PGA Tour winner · accurate iron player' },
+  'Eric Cole':                 { sport: 'golf', id: '10122',    slug: 'eric-cole',                   bio: '2023 Rocket Classic winner · rising consistency' },
+  'Ben Griffin':               { sport: 'golf', id: '5769',     slug: 'ben-griffin',                 bio: 'Tour card earner turned multiple winner' },
+  'Ludvig Aberg':              { sport: 'golf', id: '9999001',  slug: 'ludvig-aberg',                bio: 'Swedish rookie · first-year PGA player with major pedigree' },
+  'Shane Lowry':               { sport: 'golf', id: '3139',     slug: 'shane-lowry',                 bio: '2019 Open champion · gritty links specialist' },
+  'Tommy Fleetwood':           { sport: 'golf', id: '1225',     slug: 'tommy-fleetwood',             bio: 'Ryder Cup stalwart · patient, precise ball-striker' },
   // Golf — current US Open / major contenders
-  'Harry Higgs':               { sport: 'golf', id: '9095',     slug: 'harry-higgs' },
-  'Taylor Montgomery':         { sport: 'golf', id: '10637',    slug: 'taylor-montgomery' },
-  'Chandler Phillips':         { sport: 'golf', id: '10984',    slug: 'chandler-phillips' },
+  'Harry Higgs':               { sport: 'golf', id: '9095',     slug: 'harry-higgs',                 bio: 'Fan favorite · big hitter, big personality' },
+  'Taylor Montgomery':         { sport: 'golf', id: '10637',    slug: 'taylor-montgomery',           bio: 'Rising PGA Tour player, strong iron game' },
+  'Chandler Phillips':         { sport: 'golf', id: '10984',    slug: 'chandler-phillips',           bio: 'Web.com Tour standout, breaking through on Tour' },
   // F1 — current grid
-  'Kimi Antonelli':            { sport: 'f1',   id: '5073282',  slug: 'andrea-kimi-antonelli' },
-  'Oscar Piastri':             { sport: 'f1',   id: '4702619',  slug: 'oscar-piastri' },
+  'Kimi Antonelli':            { sport: 'f1',   id: '5073282',  slug: 'andrea-kimi-antonelli',       bio: 'Mercedes · 18-year-old rookie, tipped as the next star' },
+  'Oscar Piastri':             { sport: 'f1',   id: '4702619',  slug: 'oscar-piastri',               bio: "McLaren · Norris's title rival, razor-sharp race craft" },
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -217,12 +232,63 @@ function esc(s) {
 function playerLink(name) {
   const p = PLAYERS[name];
   if (!p) return `<span class="player">${esc(name)}</span>`;
-  let base;
-  if (p.sport === 'golf') base = `https://www.espn.com/golf/player/_/id/${p.id}/${p.slug}`;
-  else if (p.sport === 'mlb') base = `https://www.espn.com/mlb/player/_/id/${p.id}/${p.slug}`;
-  else if (p.sport === 'f1') base = `https://www.espn.com/racing/driver/_/id/${p.id}/${p.slug}`;
-  else base = `https://www.espn.com/nba/player/_/id/${p.id}/${p.slug}`;
-  return `<a href="${base}" class="player">${esc(name)}</a>`;
+  const url = officialPlayerUrl(p);
+  return `<a href="${url}" class="player" target="_blank" rel="noopener">${esc(name)}</a>`;
+}
+
+// Build the best available URL for a player, in priority order:
+// FIFA → F1.com → PGA Tour → MLB.com → NBA.com → ESPN → Wikipedia
+function officialPlayerUrl(p) {
+  if (!p) return '#';
+  if (p.sport === 'soccer') {
+    // ESPN Soccer is the most reliable soccer profile (FIFA player URLs are unstable)
+    if (p.id) return `https://www.espn.com/soccer/player/_/id/${p.id}/${p.slug}`;
+    if (p.wikiSlug) return `https://en.wikipedia.org/wiki/${p.wikiSlug}`;
+  }
+  if (p.sport === 'f1') {
+    // Formula1.com official driver profile
+    if (p.f1Slug) return `https://www.formula1.com/en/drivers/${p.f1Slug}`;
+    if (p.id) return `https://www.espn.com/racing/driver/_/id/${p.id}/${p.slug}`;
+  }
+  if (p.sport === 'golf') {
+    // PGA Tour official profile
+    if (p.id) return `https://www.pgatour.com/players/player.${p.id}.${p.slug}.html`;
+  }
+  if (p.sport === 'mlb') {
+    // MLB.com official profile
+    if (p.id && p.slug) return `https://www.mlb.com/player/${p.slug}-${p.id}`;
+    if (p.id) return `https://www.espn.com/mlb/player/_/id/${p.id}/${p.slug}`;
+  }
+  if (p.sport === 'nba') {
+    // NBA.com official profile
+    if (p.id) return `https://www.nba.com/player/${p.id}`;
+  }
+  // ESPN fallback
+  if (p.id && p.slug) {
+    const espnBase = { nba: 'nba', mlb: 'mlb', f1: 'racing/driver', golf: 'golf', nhl: 'nhl' };
+    const path = espnBase[p.sport] || p.sport;
+    return `https://www.espn.com/${path}/player/_/id/${p.id}/${p.slug}`;
+  }
+  // Wikipedia last resort
+  if (p.wikiSlug) return `https://en.wikipedia.org/wiki/${p.wikiSlug}`;
+  return '#';
+}
+
+// Build a playerLinks array for a dynamicSports card.
+// Scans the combined facts+headline text for known player names and returns
+// [{name, url}] using the official profile priority order.
+function buildPlayerLinksFromFacts(facts, headline) {
+  const text = `${facts || ''} ${headline || ''}`;
+  const found = [];
+  const seen  = new Set();
+  for (const [name, p] of Object.entries(PLAYERS)) {
+    if (seen.has(name)) continue;
+    if (text.includes(name)) {
+      seen.add(name);
+      found.push({ name, url: officialPlayerUrl(p) });
+    }
+  }
+  return found;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -385,7 +451,7 @@ const RECS = [
     url: 'https://www.whoop.com',
     cta: 'Try Whoop →',
     brand: 'Whoop',
-    imageUrl: 'https://images.ctfassets.net/rbzqg6pelgqa/3CCQWI1KRdKsfMkGIgNfls/1db1bc98dbbca4f4c288cca02729e964/Not_a_whoop_member_image__1_.png',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0344/8518/4748/files/WHOOP_4.0_Band_Collection_2.jpg',
   },
   {
     title: 'Levels — one month of continuous glucose monitoring changes how you eat permanently.',
@@ -401,7 +467,7 @@ const RECS = [
     url: 'https://ouraring.com',
     cta: 'Try Oura →',
     brand: 'Oura',
-    imageUrl: null,
+    imageUrl: 'https://ouraring.com/img/pages/homepage/hero-ring-gen3.jpg',
   },
   {
     title: 'Bose QuietComfort 45 — the headphones that are better than the ones getting reviews.',
@@ -409,7 +475,7 @@ const RECS = [
     url: 'https://www.bose.com/c/headphones',
     cta: 'Shop Bose →',
     brand: 'Bose',
-    imageUrl: null,
+    imageUrl: 'https://assets.bose.com/content/dam/cloudassets/Bose_DAM/Web/consumer_electronics/global/products/headphones/quietcomfort_45/product_silo_images/qc45_PDP_hero_black-S1.png',
   },
   {
     title: 'Eight Sleep Pod 4 — the most direct solution to waking up hot at 3am.',
@@ -433,7 +499,7 @@ const RECS = [
     url: 'https://drinkag1.com',
     cta: 'Try AG1 →',
     brand: 'AG1',
-    imageUrl: null,
+    imageUrl: 'https://drinkag1.com/cdn/shop/files/AG1-Pouch-Travel-Packets-Primary_001.jpg',
   },
   {
     title: 'Peloton App — the gym content that works in any hotel room.',
@@ -540,4 +606,4 @@ const STREAMING_PICKS = [
   },
 ];
 
-module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT, LARGECAP_UNIVERSE, CRYPTO_UNIVERSE, PRODUCTS, RECS, STREAMING_PICKS, esc, playerLink, tickerLink, fmtPrice, fmtPct, ENTITY_LINKS, entityLink, linkifyEntities };
+module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT, LARGECAP_UNIVERSE, CRYPTO_UNIVERSE, PRODUCTS, RECS, STREAMING_PICKS, esc, playerLink, officialPlayerUrl, buildPlayerLinksFromFacts, tickerLink, fmtPrice, fmtPct, ENTITY_LINKS, entityLink, linkifyEntities };

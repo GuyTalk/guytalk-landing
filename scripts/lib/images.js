@@ -157,16 +157,19 @@ async function resolveAndValidate(url, { allowArticleOgImage = true, requireRele
 // Section fallbacks — existing hero assets; always served from local disk.
 // ─────────────────────────────────────────────────────────────────────────────
 const SECTION_FALLBACKS = {
-  lead:    '/assets/hero/default.jpg',
-  sports:  '/assets/hero/nba.jpg',
-  nba:     '/assets/hero/nba.jpg',
-  mlb:     '/assets/hero/mlb.jpg',
-  nhl:     '/assets/hero/nhl.jpg',
-  f1:      '/assets/hero/f1.jpg',
-  golf:    '/assets/hero/golf.jpg',
-  markets: '/assets/hero/default.jpg',
-  culture: '/assets/hero/default.jpg',
-  rec:     '/assets/hero/default.jpg',
+  lead:     '/assets/hero/default.jpg',
+  sports:   '/assets/hero/default.jpg',  // generic — never use a sport-specific image as catch-all
+  nba:      '/assets/hero/nba.jpg',
+  mlb:      null,                         // mlb.jpg contains Aaron Judge — null forces no-image until replaced
+  nhl:      '/assets/hero/nhl.jpg',
+  f1:       '/assets/hero/f1.jpg',
+  golf:     '/assets/hero/golf.jpg',
+  worldcup: null,                         // no generic soccer image yet — null is correct until one is added
+  soccer:   null,
+  tennis:   null,
+  markets:  '/assets/hero/default.jpg',
+  culture:  '/assets/hero/default.jpg',
+  rec:      '/assets/hero/default.jpg',
 };
 
 // ESPN headshot CDN builders per sport.

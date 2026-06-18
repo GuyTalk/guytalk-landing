@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="/assets/logo/guytalk-icon-192.png">
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="https://www.guytalkmedia.com/brief/issue-047/">
-<meta property="og:title"       content="SpaceX pulls off the biggest IPO in history. Yankees fall to Toronto. World Cup underway on home soil.">
+<meta property="og:title"       content="<a href="https://www.cnbc.com/quotes/PRIVATE:SPACEX" class="entity-company" target="_blank" rel="noopener">SpaceX</a> pulls off the biggest IPO in history. Yankees fall to Toronto. World Cup underway on home soil.">
 <meta property="og:description" content="NBA Finals - Game 5 tomorrow. Houston Astros 10-8 Kansas City Royals. MSC Cruises Barcelona-Catalunya GP preview. Ben James leads RBC Canadian Open.">
 <meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-cards/issue-047.png">
 <meta property="og:site_name"   content="GuyTalk">
@@ -70,7 +70,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
-      <a href="#sports" class="sj-link">Sports</a>
+      <a href="#sports" class="sj-link sj-lead">Sports</a>
       <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
     </nav>
@@ -83,17 +83,45 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   </div>
 </div>
 
+<style>
+  /* Accordion (Fix 7). The rail is right-aligned, so children are INSET from the
+     right edge (margin-right) to read as a clean indent beneath the parent —
+     not widened leftward. Consistent inset + smaller dots = clear hierarchy. */
+  .brief-sidenav .bsn-group{display:flex;flex-direction:column;align-items:flex-end;}
+  .brief-sidenav .bsn-children{display:flex;flex-direction:column;align-items:flex-end;gap:14px;max-height:0;margin-top:0;overflow:hidden;transition:max-height .28s ease,margin-top .28s ease;}
+  .brief-sidenav .bsn-group.open .bsn-children{max-height:600px;margin-top:14px;}
+  .brief-sidenav .bsn-caret{display:inline-block;width:1em;margin-right:2px;font-size:.78em;opacity:.65;transition:transform .2s ease;cursor:pointer;}
+  .brief-sidenav .bsn-group.open .bsn-caret{transform:rotate(90deg);}
+  .brief-sidenav .bsn-link{font-size:0.95em;}
+  .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
+  .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
+  .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
+  /* Images: keep a clean landscape ratio, crop to top so faces show. */
+  .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
+  .brief-hero-banner--feature{background-position:center 20%;}
+  /* Photo credit — subtle caption beneath images */
+  .brief-img-credit{font-size:10px;color:#9E9891;text-align:right;padding:3px 4px 0;letter-spacing:0.02em;}
+  /* GuyTalk Pick block */
+  .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
+  .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
+  .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
+  /* Player chips */
+  .player-chips{margin:10px 0 6px;}
+  .pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9E9891;margin-bottom:6px;}
+  .pc-list{display:flex;flex-wrap:wrap;gap:5px;}
+  .player-chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#0F1724;background:#F0EDE8;border-radius:20px;padding:3px 11px;text-decoration:none;border:1px solid #E5E2DB;transition:background .15s;}
+  .player-chip:hover{background:#E5E2DB;}
+  /* Rundown bullets — clickable anchor navigation. */
+  .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
+  .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
+  .rbd-bullet:hover .rbd-cat{text-decoration:underline;text-underline-offset:2px;}
+</style>
 <nav class="brief-sidenav" aria-label="On this page">
   <a href="#top" class="bsn-link" data-target="top"><span class="bsn-txt">Top</span><span class="bsn-dot"></span></a>
-  <a href="#sports" class="bsn-link" data-target="sports"><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
-  <a href="#the-lead" class="bsn-link bsn-sub" data-target="the-lead" style="padding-left:14px;font-size:0.92em;opacity:0.85;"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
-  <a href="#nhl" class="bsn-link bsn-sub" data-target="nhl" style="padding-left:14px;font-size:0.92em;opacity:0.85;"><span class="bsn-txt">NHL</span><span class="bsn-dot"></span></a>
-  <a href="#f1" class="bsn-link bsn-sub" data-target="f1" style="padding-left:14px;font-size:0.92em;opacity:0.85;"><span class="bsn-txt">F1</span><span class="bsn-dot"></span></a>
-  <a href="#golf" class="bsn-link bsn-sub" data-target="golf" style="padding-left:14px;font-size:0.92em;opacity:0.85;"><span class="bsn-txt">Golf</span><span class="bsn-dot"></span></a>
-  <a href="#worldcup" class="bsn-link bsn-sub" data-target="worldcup" style="padding-left:14px;font-size:0.92em;opacity:0.85;"><span class="bsn-txt">World Cup</span><span class="bsn-dot"></span></a>
-  <a href="#markets" class="bsn-link" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
-  <a href="#culture" class="bsn-link" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
+  <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
+  <a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
   <a href="#sharp-take" class="bsn-link" data-target="sharp-take"><span class="bsn-txt">Sharp Take</span><span class="bsn-dot"></span></a>
+  <a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
 </nav>
 
 <article class="brief-article" id="briefArticle">
@@ -111,12 +139,23 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   </div>
 </div>
 
-  <div class="top-module">
-    <div class="top-module-label">Today's Hits</div>
-  <div class="key-takeaway">
-    <div class="kt-label">Key Takeaway</div>
-    <p class="kt-text">SpaceX went public today at a $1.77 trillion valuation — the largest IPO ever — closing up 19% on its first day while money rotated out of big tech and into smaller names. The World Cup is live on home soil and the U.S. opened with a 4-1 statement win over Paraguay. Tonight, the Knicks can end a 56-year drought in Game 5 of the NBA Finals.</p>
-  </div>
+  <div class="rundown-band">
+    <div class="rundown-label"><span class="rundown-dot"></span>The Rundown</div>
+    <p class="rundown-text">SpaceX IPO closes up 19% in historic $1.77 trillion debut.</p>
+    <div class="rbd-bullets">
+      <a class="rbd-bullet rbd-sports" href="#sports">
+        <span class="rbd-cat">Sports</span>
+        <span class="rbd-line">Ben James leads the RBC Canadian Open by one shot after 36 holes.</span>
+      </a>
+      <a class="rbd-bullet rbd-markets" href="#markets">
+        <span class="rbd-cat">Markets</span>
+        <span class="rbd-line">SpaceX's monster IPO stole the spotlight Friday, but the real story was money leaving expensive big tech and chasing smaller names and new opportunities · S&amp;P 500 +0.5%, Nasdaq +0.6%</span>
+      </a>
+      <a class="rbd-bullet rbd-culture" href="#culture">
+        <span class="rbd-cat">Culture</span>
+        <span class="rbd-line">USA opens World Cup with a 4-1 statement win over Paraguay · Netflix is turning KPop Demon Hunters into a live world tour</span>
+      </a>
+    </div>
   </div>
 
 <div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
@@ -124,7 +163,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <section class="brief-section" id="the-lead">
     <div class="section-label sl-sports">The Lead</div>
 
-    <h3>New York Knicks vs. San Antonio Spurs — NBA Finals - Game 5. Tonight, 8:30 PM ET.</h3>
+    <h3><a href="https://www.nba.com/knicks" class="entity-team" target="_blank" rel="noopener">New York Knicks</a> vs. <a href="https://www.nba.com/spurs" class="entity-team" target="_blank" rel="noopener">San Antonio Spurs</a> — NBA Finals - Game 5. Tonight, 8:30 PM ET.</h3>
     <div class="upcoming-card upcoming-finals">
       <div class="upcoming-label">Tonight · 8:30 PM ET — NBA Finals - Game 5</div>
       <div class="upcoming-matchup">
@@ -149,10 +188,9 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </ul>
     <div class="brief-img upcoming-arena-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/AT%26T_Center_2019.jpg/1280px-AT%26T_Center_2019.jpg" alt="AT&amp;T Center" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">AT&amp;T Center · San Antonio, Texas · Home of the Spurs</div></div>
   </section>
-
 <div class="sport-subsection">  <section class="brief-section" id="nhl">
     <div class="section-label sl-sports">NHL</div>
-    <h3>Carolina Hurricanes at Vegas Golden Knights — Game 6, Stanley Cup Final, tonight.</h3>
+    <h3><a href="https://www.nhl.com/hurricanes" class="entity-team" target="_blank" rel="noopener">Carolina Hurricanes</a> at <a href="https://www.nhl.com/goldenknights" class="entity-team" target="_blank" rel="noopener">Vegas Golden Knights</a> — Game 6, Stanley Cup Final, tonight.</h3>
     <div class="where-line"><span class="where-pin">◍</span>T-Mobile Arena · Las Vegas, NV</div>
 
     <div class="upcoming-card">
@@ -173,31 +211,6 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <li><span><span class="dl-label">When:</span> Puck drop 8:00 PM ET</span></li>
     </ul>
   </section></div>
-
-<a href="/live/" class="brief-live-cta">
-  <span class="blc-dot"></span>
-  <div class="blc-inner">
-    <div class="blc-label">Happening Now</div>
-    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
-  </div>
-  <span class="blc-btn">Open GuyTalk Live →</span>
-</a>
-
-  <section class="brief-section take-section" id="the-take">
-    <div class="section-label sl-take">The Take</div>
-    <div class="take-grid">
-      <div class="take-card take-office">
-        <span class="take-label">Office Take</span>
-        <p class="take-text">SpaceX closed up 19% on its first trading day — but with only a 3-5% public float and no path into the S&amp;P 500 until mid-2027, the real fireworks may still be ahead of it.</p>
-        <span class="take-hint">Drop this at work.</span>
-      </div>
-      <div class="take-card take-bar">
-        <span class="take-label">Bar Argument</span>
-        <p class="take-text">The Knicks close this out tonight in five — San Antonio doesn't have enough offensive firepower without home court to extend this series, and New York's defense has been too good all postseason.</p>
-        <span class="take-hint">Start a fight with this one.</span>
-      </div></div>
-  </section>
-
   <section class="brief-section" id="sports-scores">
     <div class="section-label sl-sports">More Sports</div>
     <div class="other-scores-label">Other scores worth knowing</div>
@@ -275,20 +288,19 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </div>
 
   </section>
-
 <div class="sport-subsection">  <section class="brief-section" id="f1">
-    <div class="section-label sl-sports">Formula 1</div>
+    <div class="section-label sl-sports"><a href="https://www.formula1.com" class="entity-org" target="_blank" rel="noopener">Formula 1</a></div>
     <div class="brief-img"><img src="/assets/circuits/barcelona.jpg" alt="Circuit de Barcelona-Catalunya · Spain" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Circuit de Barcelona-Catalunya · Spain</div></div>
-    <h3>Barcelona Grand Prix weekend is live — and George Russell topped Friday practice for Mercedes.</h3>
+    <h3>Barcelona Grand Prix weekend is live — and George Russell topped Friday practice for <a href="https://www.formula1.com/en/teams/Mercedes.html" class="entity-team" target="_blank" rel="noopener">Mercedes</a>.</h3>
     <div class="where-line"><span class="where-pin">◍</span>Circuit de Barcelona-Catalunya · Spain</div>
     <ul class="detail-list">
       <li><span><span class="dl-label">Why it matters:</span> George Russell went fastest in FP1 at the 2026 Barcelona-Catalunya Grand Prix, ahead of Oscar Piastri and Charles Leclerc. Barcelona rewards precision and tire management over raw speed, so Russell topping the session is a genuine signal, not just a Friday fluke.</span></li>
       <li><span><span class="dl-label">Championship:</span> Barcelona's technical demands often shuffle the grid between practice and qualifying — setup changes and track evolution mean Friday pace doesn't always hold, which makes Saturday's session the real tell for who's actually quick.</span></li>
       <li><span><span class="dl-label">Watch for:</span> Whether Mercedes can carry Russell's Friday pace into qualifying, and how the tire strategies shake out for the race — this circuit punishes teams that get setup wrong.</span></li>
+
       <li><span><span class="dl-label">What to say:</span> Russell was fastest in practice at Barcelona, which is notable because this track usually exposes whoever isn't dialed in — Mercedes looks dialed in right now.</span></li>
     </ul>
   </section></div>
-
 <div class="sport-subsection">  <section class="brief-section" id="golf">
     <div class="section-label sl-golf">Golf</div>
 
@@ -296,19 +308,19 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     <div class="where-line"><span class="where-pin">◍</span>Round 2 - Play Complete</div>
     <p class="leaderboard-line"><span class="player">Ben James</span> -10, <span class="player">Haotong Li</span> -9, <span class="player">Keith Mitchell</span> -9</p>
     <ul class="detail-list">
-      <li><span><span class="dl-label">Why it matters:</span> The RBC Canadian Open is the PGA Tour's longest-running event outside the U.S. — winning here carries real weight, and the leaderboard is genuinely tight heading into the weekend.</span></li>
+      <li><span><span class="dl-label">Why it matters:</span> The RBC Canadian Open is the <a href="https://www.pgatour.com" class="entity-org" target="_blank" rel="noopener">PGA Tour</a>'s longest-running event outside the U.S. — winning here carries real weight, and the leaderboard is genuinely tight heading into the weekend.</span></li>
       
       <li><span><span class="dl-label">The angle:</span> Haotong Li and Keith Mitchell are both sitting at 9-under, just one shot back of James — four players are within striking distance, so this is far from over.</span></li>
       <li><span><span class="dl-label">Watch for:</span> Whether Ben James can hold his one-shot lead through Round 3 or if Li or Mitchell get hot and force a Sunday showdown.</span></li>
+
       <li><span><span class="dl-label">What to say:</span> Ben James leads at 10-under but Li and Mitchell are right there at 9 — one good round Saturday and this leaderboard looks completely different.</span></li>
     </ul>
   </section></div>
-
 <div class="sport-subsection">  <section class="brief-section" id="worldcup">
     <div class="section-label sl-culture">World Cup 2026</div>
     <div class="brief-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Afici%C3%B3n_del_Estadio_azteca_final_2019.jpg/1280px-Afici%C3%B3n_del_Estadio_azteca_final_2019.jpg" alt="Estadio Azteca · Mexico City · The World Cup opener" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-cap">Estadio Azteca · Mexico City · The World Cup opener</div></div>
     <h3>The World Cup is here.</h3>
-    <div class="where-line"><span class="where-pin">◍</span>June 11 – July 19 · USA / Canada / Mexico · Day 3</div>
+    <div class="where-line"><span class="where-pin">◍</span>June 11 – July 19 · USA / Canada / Mexico · Day 8</div>
     <ul class="detail-list">
       
       
@@ -322,6 +334,15 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </ul>
   </section></div>
 
+<a href="/live/" class="brief-live-cta">
+  <span class="blc-dot"></span>
+  <div class="blc-inner">
+    <div class="blc-label">Happening Now</div>
+    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
+  </div>
+  <span class="blc-btn">Open GuyTalk Live →</span>
+</a>
+
 <div class="brief-inline-cta">
   <div class="bic-inner">
     <div class="bic-label">Free · Daily · 5 Minutes</div>
@@ -330,7 +351,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <a href="/#signup" class="bic-btn">Subscribe free →</a>
 </div>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Markets</h2></div>
+<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>
 
   <section class="brief-section" id="markets">
     <div class="section-label sl-markets">The Close</div>
@@ -348,22 +369,22 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       </div>
       <div class="mkt-index-grid">
         <div class="mkt-tile up">
-          <div class="mt-name">S&amp;P 500</div>
+          <div class="mt-name">SPY</div>
           <div class="mt-price">$741.75</div>
           <div class="mt-foot"><span class="mt-chg up">+0.5%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,14.1 6.9,10.3 10.8,16.1 14.7,16.5 18.6,19.7 22.5,14.8 26.4,13.9 30.3,12.0 34.2,8.8 38.1,8.9 42.0,6.2 46.0,5.0 49.9,3.7 53.8,3.0 57.7,6.4 61.6,4.6 65.5,17.2 69.4,16.1 73.3,17.5 77.2,25.0 81.1,17.1 85.0,14.5" fill="none" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
         <div class="mkt-tile up">
-          <div class="mt-name">Dow</div>
+          <div class="mt-name">DIA</div>
           <div class="mt-price">$513.06</div>
           <div class="mt-foot"><span class="mt-chg up">+0.7%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,21.9 6.9,18.4 10.8,23.7 14.7,22.1 18.6,25.0 22.5,18.9 26.4,16.2 30.3,13.2 34.2,14.1 38.1,12.5 42.0,12.3 46.0,8.7 49.9,8.1 53.8,5.6 57.7,11.2 61.6,3.0 65.5,9.8 69.4,10.5 73.3,10.1 77.2,18.9 81.1,10.1 85.0,6.5" fill="none" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
         <div class="mkt-tile up">
-          <div class="mt-name">Nasdaq</div>
+          <div class="mt-name">QQQ</div>
           <div class="mt-price">$721.34</div>
           <div class="mt-foot"><span class="mt-chg up">+0.6%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,16.2 6.9,14.1 10.8,18.6 14.7,19.9 18.6,21.7 22.5,16.8 26.4,16.3 30.3,15.0 34.2,9.7 38.1,10.0 42.0,7.4 46.0,6.3 49.9,4.4 53.8,3.0 57.7,3.8 61.6,5.3 65.5,20.2 69.4,15.6 73.3,19.1 77.2,25.0 81.1,15.2 85.0,13.4" fill="none" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
         <div class="mkt-tile up">
-          <div class="mt-name">Russell 2000</div>
+          <div class="mt-name">IWM</div>
           <div class="mt-price">$292.95</div>
           <div class="mt-foot"><span class="mt-chg up">+0.9%</span><svg class="mt-spark" width="88" height="28" viewBox="0 0 88 28" preserveAspectRatio="none" aria-hidden="true"><polyline points="3.0,14.3 6.9,12.4 10.8,19.9 14.7,21.7 18.6,25.0 22.5,17.4 26.4,14.5 30.3,11.6 34.2,5.7 38.1,5.8 42.0,4.0 46.0,5.8 49.9,7.4 53.8,4.4 57.7,8.8 61.6,4.0 65.5,15.5 69.4,12.7 73.3,11.7 77.2,15.0 81.1,5.8 85.0,3.0" fill="none" stroke="#16A34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
@@ -432,7 +453,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
             <span class="trk-price">$205.19</span>
             <span class="pct-badge up">+0.2%</span>
           </div>
-          <div class="trk-row" title="Tesla, Inc.">
+          <div class="trk-row" title="<a href="https://www.cnbc.com/quotes/TSLA" class="entity-company" target="_blank" rel="noopener">Tesla</a>, Inc.">
             <span class="trk-sym">TSLA</span>
             <span class="trk-price">$406.43</span>
             <span class="pct-badge up">+1.8%</span>
@@ -450,10 +471,11 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <li><span><span class="dl-label">Why it matters:</span> The mega-IPO liquidity-drain fear didn't materialize — the S&amp;P 500 closed up 0.5% at a record-ish 7,431.46. What was real was the rotation signal: Microsoft, Amazon, and Apple each fell roughly 2% as traders moved out of stretched valuations and into the new name. AMD jumped 4.7% and small caps (IWM) are up 4.0% on the week, which tells you where the appetite is right now.</span></li>
       <li><span><span class="dl-label">Watch for:</span> SPCX is available to buy outright on Nasdaq now, with options beginning June 16 — but with only a 3-5% public float and heavy retail demand, expect violent price swings. Index-fund holders won't get automatic exposure until SpaceX clears the S&amp;P 500 profitability bar, which analysts peg at mid-2027 at the earliest.</span></li>
       <li><span><span class="dl-label">What to bring up:</span> SpaceX closed its first trading day at $161.11 — up 19% — at a $1.77 trillion valuation, and it still can't get into the S&amp;P 500 because it hasn't turned a GAAP profit. That's the wildest sentence in finance today.</span></li>
+
     </ul>
   </section>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Culture</h2></div>
+<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>
 
   <section class="brief-section" id="culture">
     <div class="section-label sl-culture">The Scene</div>
@@ -466,6 +488,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="culture-head">USA opens World Cup with a 4-1 statement win over Paraguay</div>
           <p class="culture-line"><strong>What happened:</strong> The 2026 FIFA World Cup — the first ever co-hosted by three nations (United States, Mexico, and Canada) — is officially underway, and the U.S. men's national team opened with a dominant 4-1 win over Paraguay. Christian Pulisic led the charge in what is the biggest sporting event ever staged in North America.</p>
           <p class="culture-line"><strong>Why it matters:</strong> The tournament runs all summer in cities across the U.S., and the Americans just made a statement in the opener. A 4-1 result on home soil changes the conversation around this team — people who weren't planning to watch are now watching.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> 4-1 in the opener on home soil — I didn't think I'd care about this USMNT, and now I've already cleared my July calendar.</p>
         </div>
       </li>
@@ -477,6 +501,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="culture-head">Netflix is turning KPop Demon Hunters into a live world tour</div>
           <p class="culture-line"><strong>What happened:</strong> Netflix is in talks with concert promoters to stage arena shows featuring music from KPop Demon Hunters — the animated film that won Best Animated Feature and Best Original Song at the 2026 Oscars — with a world tour targeted for 2027 ahead of a planned sequel.</p>
           <p class="culture-line"><strong>Why it matters:</strong> Netflix proved an animated film can dominate the Oscars, and now they're betting on turning that win into live touring revenue. It's a direct play at blurring the line between streaming content and concert promotion — and it's a model nobody has really cracked yet.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> Netflix gave an animated movie two Oscars and now they're making it a concert tour — that's genuinely where entertainment is headed and most people haven't caught up yet.</p>
         </div>
       </li>
@@ -488,6 +514,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
           <div class="culture-head">Dept. Q — this weekend's watch</div>
           <p class="culture-line"><strong>What happened:</strong> Danish crime series following a cold case unit in Copenhagen — Scandinavian noir with an odd-couple detective pairing and cases that spiral in directions you don't see coming.</p>
           <p class="culture-line"><strong>Why it matters:</strong> It's the kind of show that grabs you Friday night and you're three episodes deep before you realize it's midnight — smart plotting, real tension, no filler.</p>
+          
+          
           <p class="culture-line"><strong>What to say:</strong> If you burned through The Killing and need something with that same slow-burn darkness, Dept. Q is exactly it.</p>
         </div>
       </li>
@@ -498,7 +526,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     <div class="section-label sl-markets">The Rec</div>
 
     <div class="brief-rec brief-rec--media">
-      <div class="rec-img rec-img-failed"><span class="rec-img-ph">AG1</span></div>
+      <div class="rec-img"><img src="https://drinkag1.com/cdn/shop/files/AG1-Pouch-Travel-Packets-Primary_001.jpg" alt="AG1" loading="lazy" onerror="this.closest('.rec-img').classList.add('rec-img-failed');this.remove()"><span class="rec-img-ph">AG1</span></div>
       <div class="rec-content">
         <div class="rec-label">This week's pick</div>
         <div class="rec-title">AG1 — the supplement that works because it's the one you'll actually take.</div>
@@ -508,40 +536,26 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </div>
   </section>
 
-  <div class="sharp-take" id="sharp-take">
+<div class="umbrella-head" id="sharp-take"><h2 class="umbrella-title">Sharp Take</h2></div>
+
+  <section class="brief-section take-section" id="the-take">
+    <div class="section-label sl-take">The Take</div>
+    <div class="take-grid">
+      <div class="take-card take-office">
+        <span class="take-label">Office Take</span>
+        <p class="take-text">SpaceX closed up 19% on its first trading day — but with only a 3-5% public float and no path into the S&amp;P 500 until mid-2027, the real fireworks may still be ahead of it.</p>
+        <span class="take-hint">Drop this at work.</span>
+      </div>
+      <div class="take-card take-bar">
+        <span class="take-label">Bar Argument</span>
+        <p class="take-text">The Knicks close this out tonight in five — San Antonio doesn't have enough offensive firepower without home court to extend this series, and New York's defense has been too good all postseason.</p>
+        <span class="take-hint">Start a fight with this one.</span>
+      </div></div>
+  </section>
+
+  <div class="sharp-take">
     <div class="sharp-take-label">Final Sharp Take</div>
     <p>Today had two things happening at once. SpaceX went public at $1.77 trillion and reminded everyone that Elon Musk's companies operate on a different scale than normal business logic — the stock popped 19% on day one for a company that can't even qualify for the S&amp;P 500 yet. Meanwhile, the World Cup is live on home soil and the U.S. just beat Paraguay 4-1, which means casual fans who weren't paying attention are about to start paying attention. The NBA Finals Game 5 tonight could end a 56-year Knicks drought. It's a genuinely stacked Friday.</p>
-  </div>
-
-  <div class="glance-card">
-    <div class="glance-head"><span class="glance-dot"></span>Today at a Glance</div>
-    <div class="glance-rows">
-      <a class="glance-row hit-sports" href="#sports">
-        <span class="glance-k">Main story</span>
-        <span class="glance-v">USA beats Paraguay 4-1 in the World Cup opener; Yankees fall 8-5 to Toronto; Astros outlast Kansas City 10-8.</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-markets" href="#markets">
-        <span class="glance-k">Market mood</span>
-        <span class="glance-v">SpaceX IPO closes at $161.11, up 19% on day one. Small caps up 4.0% on the week while mega-cap tech stumbles.</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-culture" href="#the-take">
-        <span class="glance-k">Best convo</span>
-        <span class="glance-v">AMD jumped 4.7% today while Apple dropped 1.5% — the rotation out of big tech is real and it's happening fast.</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-sports" href="#sports">
-        <span class="glance-k">Watch next</span>
-        <span class="glance-v">NBA Finals Game 5 tonight: Knicks in San Antonio, one win from ending a 56-year drought.</span>
-        <span class="glance-arr">→</span>
-      </a>
-      <a class="glance-row hit-culture" href="#culture">
-        <span class="glance-k">Quick rec</span>
-        <span class="glance-v">Ben James leads the RBC Canadian Open at 10-under with Li and Mitchell one back — Round 3 tees off today.</span>
-        <span class="glance-arr">→</span>
-      </a>
-    </div>
   </div>
 
 </article>
@@ -556,20 +570,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-046/" class="more-issue-card">
-    <span class="mi-num">#046</span>
-    <span class="mi-title">SpaceX goes public — the largest IPO ever. Knicks fight elimination. Carolina one win from the Cup.</span>
-    <span class="mi-date">Friday, June 12, 2026</span>
+  <a href="/brief/issue-056/" class="more-issue-card">
+    <span class="mi-num">#056</span>
+    <span class="mi-title">DR Congo stuns Portugal 1-1. Fed holds rates steady. Yankees demolish White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-045/" class="more-issue-card">
-    <span class="mi-num">#045</span>
-    <span class="mi-title">New York Knicks beat San Antonio Spurs 107–106. Padraig Harrington leads RBC Canadian Open. MSC Cruises Barcelona-Catalunya Grand Prix this weekend.</span>
-    <span class="mi-date">Thursday, June 11, 2026</span>
+  <a href="/brief/issue-055/" class="more-issue-card">
+    <span class="mi-num">#055</span>
+    <span class="mi-title">Fed signals rate hikes ahead. Pirates dominate Athletics. Yankees roll past White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-044/" class="more-issue-card">
-    <span class="mi-num">#044</span>
-    <span class="mi-title">Spurs-Knicks decides it all tonight. Marlins pound Diamondbacks. Antonelli wins Monaco.</span>
-    <span class="mi-date">Wednesday, June 10, 2026</span>
+  <a href="/brief/issue-054/" class="more-issue-card">
+    <span class="mi-num">#054</span>
+    <span class="mi-title">Fed holds rates steady, signals future hikes. Pirates demolish Athletics. U.S. Open underway at Shinnecock.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>
@@ -683,6 +697,24 @@ window.handleBriefSignup = function(e, form) {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   onScroll();
+})();
+
+// Sidebar accordion — the caret toggles a parent's subsections open/closed
+// without jumping; the parent/child labels still jump to their section.
+(function () {
+  var carets = [].slice.call(document.querySelectorAll('.brief-sidenav .bsn-caret'));
+  carets.forEach(function (caret) {
+    function toggle(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var group = caret.closest('.bsn-group');
+      if (group) group.classList.toggle('open');
+    }
+    caret.addEventListener('click', toggle);
+    caret.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') toggle(e);
+    });
+  });
 })();
 </script>
 
