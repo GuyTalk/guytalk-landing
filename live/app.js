@@ -1470,9 +1470,13 @@ function FeaturedGolfCard(g) {
     const hlLabel = featured.eventLink ? 'Watch on ESPN →' : 'Watch highlights →';
 
     const champCard = (!others.length && featured.state === 'post') ? ChampionHighlightCard(featured, tag) : '';
+    const useWide = others.length > 4;
+    const leftOthers = useWide ? [] : others;
+    const wideOthers = useWide ? others : [];
     el.innerHTML =
-      `<div class="stack">${Marquee(featured)}${champCard}${others.length ? `<div class="grid grid-scores">${others.map(ScoreboardCard).join('')}</div>` : ''}</div>` +
-      `<div class="stack">${ContextCard(rows, isLive, tag)}${wym}${last}${HighlightLink(hlUrl, hlLabel)}</div>`;
+      `<div class="stack">${Marquee(featured)}${champCard}${leftOthers.length ? `<div class="grid grid-scores">${leftOthers.map(ScoreboardCard).join('')}</div>` : ''}</div>` +
+      `<div class="stack">${ContextCard(rows, isLive, tag)}${wym}${last}${HighlightLink(hlUrl, hlLabel)}</div>` +
+      (wideOthers.length ? `<div class="grid grid-three" style="grid-column:1/-1">${wideOthers.map(ScoreboardCard).join('')}</div>` : '');
   }
 
   function renderNBA(scoreboard) {
@@ -1664,9 +1668,9 @@ function FeaturedGolfCard(g) {
       }
     }
 
-    const trendLive = !!(p && p.culture && p.culture.length);
+    const trendLive = !!(p && p.trending && p.trending.length);
     const talkLive = !!(p && p.talkingAbout && p.talkingAbout.length);
-    const stories = trendLive ? p.culture : (IS_DEV ? MOCK.trending : null);
+    const stories = trendLive ? p.trending : (IS_DEV ? MOCK.trending : null);
     const talks = talkLive ? p.talkingAbout : (IS_DEV ? MOCK.talkingAbout : null);
 
     renderMarketNews(stories);
@@ -1680,7 +1684,7 @@ function FeaturedGolfCard(g) {
 
     const iso = (p && p.updatedAt) || new Date().toISOString();
     setBadge('badge-trending', trendLive ? 'live' : (IS_DEV ? 'editorial' : null));
-    setMeta('meta-trending', trendLive ? (p.sources?.culture || 'Live') : (IS_DEV ? 'Editorial' : ''), iso);
+    setMeta('meta-trending', trendLive ? (p.sources?.trending || 'Live') : (IS_DEV ? 'Editorial' : ''), iso);
 
     const ts = talkLive ? p.sources?.talkingAbout : null; // 'ai' | 'derived'
     setBadge('badge-talking', talkLive ? (ts === 'ai' ? 'ai' : 'derived') : (IS_DEV ? 'editorial' : null));
@@ -2001,7 +2005,9 @@ function FeaturedGolfCard(g) {
     const el = $('marketNewsWrap');
     if (!el) return;
     const BIZ = /business|finance|economy|market|stock|trade|fed|treasury|crypto|spacex|tesla|apple|nvidia|tech|ai|earnings|gdp|inflation/i;
-    const picks = (stories || []).filter(s => BIZ.test((s.category || '') + ' ' + (s.headline || ''))).slice(0, 2);
+    const allStories = stories || [];
+    const bizPicks = allStories.filter(s => BIZ.test((s.category || '') + ' ' + (s.headline || '')));
+    const picks = (bizPicks.length ? bizPicks : allStories).slice(0, 2);
     if (!picks.length) { el.hidden = true; return; }
     el.hidden = false;
     el.innerHTML = picks.map(s => {
@@ -2021,6 +2027,27 @@ function FeaturedGolfCard(g) {
     LiveEventCard, LiveLeaderboard, ScoreboardCard, MarketCard, TrendingStoryCard,
     TalkingPointCard, ContextCard, EventSpotlight, Marquee,
   }};
+
+  // ── Section background tints — shifts as you scroll through Sports/Markets/Culture ──
+  (function () {
+    const MAP = [
+      { id: 'umb-sports',  bg: '#EEF4FF' },
+      { id: 'umb-markets', bg: '#EAF8EF' },
+      { id: 'umb-culture', bg: '#FEF4E8' },
+    ];
+    const DEFAULT = '#F9F8F5';
+    let current = DEFAULT;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const hit = MAP.find(m => m.id === e.target.id);
+          const next = hit ? hit.bg : DEFAULT;
+          if (next !== current) { current = next; document.body.style.backgroundColor = next; }
+        }
+      });
+    }, { threshold: 0.15 });
+    MAP.forEach(m => { const el = document.getElementById(m.id); if (el) obs.observe(el); });
+  })();
 
   paintSkeletons();
   renderTalk(null);   // instant editorial paint for sections 6 & 7 before the feed lands
