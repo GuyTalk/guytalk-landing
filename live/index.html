@@ -30,7 +30,6 @@
     background: var(--bg); color: var(--text);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
-    transition: background-color 1s ease;
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
@@ -675,49 +674,22 @@
   .footer-fine a { color: var(--text-3); text-decoration: underline; }
   .footer-fine a:hover { color: var(--text-2); }
 
-  /* ANIMATED BACKGROUND SCENE — emoji elements that drift across the page */
-  #bgScene {
-    position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden;
+  /* MARKET NEWS WIRE — business headlines below the tape */
+  .mk-wire-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--green); border-radius: 12px; padding: 14px 16px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .bg-item {
-    position: absolute; user-select: none; line-height: 1;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    will-change: transform;
+  .mk-wire-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(15,23,36,0.09); }
+  .mk-wire-cat {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 6px;
   }
-
-  /* Slide left → right */
-  @keyframes bg-slide-r {
-    from { transform: translateX(-14vw); }
-    to   { transform: translateX(112vw); }
-  }
-  /* Slide right → left (flip the emoji so it faces left) */
-  @keyframes bg-slide-l {
-    from { transform: translateX(112vw) scaleX(-1); }
-    to   { transform: translateX(-14vw) scaleX(-1); }
-  }
-  /* Bouncing ball arc across the screen */
-  @keyframes bg-bounce-r {
-    0%   { transform: translateX(-10vw) translateY(0)     rotate(0deg);   }
-    13%  { transform: translateX(13vw)  translateY(-65px) rotate(90deg);  }
-    27%  { transform: translateX(27vw)  translateY(0)     rotate(180deg); }
-    40%  { transform: translateX(40vw)  translateY(-45px) rotate(270deg); }
-    54%  { transform: translateX(54vw)  translateY(0)     rotate(360deg); }
-    67%  { transform: translateX(67vw)  translateY(-28px) rotate(450deg); }
-    81%  { transform: translateX(81vw)  translateY(0)     rotate(540deg); }
-    100% { transform: translateX(112vw) translateY(0)     rotate(640deg); }
-  }
-  /* Parabolic arc (football field goal, golf shot) */
-  @keyframes bg-arc-r {
-    0%   { transform: translateX(-5vw)  translateY(0px);    }
-    40%  { transform: translateX(45vw)  translateY(-150px); }
-    100% { transform: translateX(112vw) translateY(30px);   }
-  }
-  /* Float upward (charts, notes, money) */
-  @keyframes bg-float-up {
-    from { transform: translateY(108vh) rotate(-6deg); }
-    to   { transform: translateY(-12vh) rotate(6deg);  }
-  }
+  .mk-wire-head { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: -0.01em; color: var(--text); line-height: 1.35; margin-bottom: 6px; }
+  .mk-wire-link { color: var(--text); text-decoration: none; }
+  .mk-wire-link:hover { color: var(--accent); }
+  .mk-wire-sum { font-size: 13px; color: var(--text-2); line-height: 1.5; margin-bottom: 8px; }
+  .mk-wire-src { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); }
 
   /* CHAMPION HIGHLIGHT CARD — fills blank left column for finished championships */
   .champ-card {
@@ -880,9 +852,6 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
 <link rel="apple-touch-icon" href="/assets/logo/guytalk-icon-192.png">
 </head>
 <body>
-
-<!-- Animated section scene overlay — populated by app.js -->
-<div id="bgScene" aria-hidden="true"></div>
 
 <nav aria-label="Primary">
   <div class="nav-inner">
@@ -1091,6 +1060,8 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
       <div id="mkSearchResults" class="mk-search-results" hidden></div>
     </div>
     <div class="grid grid-markets" id="marketsWrap"></div>
+    <!-- Market news headlines — business stories from the wire -->
+    <div id="marketNewsWrap" class="grid" style="grid-template-columns:1fr 1fr;gap:14px;margin-top:14px" hidden></div>
   </section>
 
   <!-- ══════════════════════ 03 · CULTURE ══════════════════════ -->

@@ -396,26 +396,23 @@ function ScoreboardCard(g) {
   const gameUrl = g.eventLink?.url || null;
   const side = (t, otherScore) => {
     const losing = g.state === 'post' && t.score !== '' && Number(t.score) < Number(otherScore);
-    const abbr = `<span class="sc-abbr">${esc(t.abbr || t.name)}</span>`;
     return `<div class="sc-team${losing ? ' loser' : ''}">
-      <span class="nm">${teamMark(t.logo, t.abbr, t.color)}${abbr}${t.record ? `<span class="sc-rec">${esc(t.record)}</span>` : ''}</span>
+      <span class="nm">${teamMark(t.logo, t.abbr, t.color)}<span class="sc-abbr">${esc(t.abbr || t.name)}</span>${t.record ? `<span class="sc-rec">${esc(t.record)}</span>` : ''}</span>
       <span class="sc-score">${esc(t.score !== '' ? t.score : '—')}</span>
     </div>`;
   };
   const statusBit = g.state === 'in'
     ? `<span class="pill pill-live"><span class="nav-live-dot"></span>Live</span> ${esc(g.statusText)}`
     : esc(g.statusText);
-  const gamecastLink = gameUrl
-    ? ` · <a href="${esc(gameUrl)}" target="_blank" rel="noopener" class="ev-foot-cta" style="opacity:1;color:var(--accent)">Gamecast →</a>`
-    : '';
-  const inner = `
+  const foot = gameUrl
+    ? `${statusBit} · <a href="${esc(gameUrl)}" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Gamecast →</a>`
+    : statusBit;
+  return `<div class="sc-card">
     ${g.isBig && g.headline ? `<div class="sc-tag">${esc(g.headline)}</div>` : ''}
     ${side(g.away, g.home.score)}
     ${side(g.home, g.away.score)}
-    <div class="sc-foot">${statusBit}${gamecastLink}</div>`;
-  return gameUrl
-    ? `<a class="sc-card" href="${esc(gameUrl)}" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none">${inner}</a>`
-    : `<div class="sc-card">${inner}</div>`;
+    <div class="sc-foot">${foot}</div>
+  </div>`;
 }
 
 // Map a market tile to the Yahoo symbol its value represents, so a click opens
@@ -1672,6 +1669,8 @@ function FeaturedGolfCard(g) {
     const stories = trendLive ? p.culture : (IS_DEV ? MOCK.trending : null);
     const talks = talkLive ? p.talkingAbout : (IS_DEV ? MOCK.talkingAbout : null);
 
+    renderMarketNews(stories);
+
     $('trendingWrap').innerHTML = (stories && stories.length)
       ? stories.map(TrendingStoryCard).join('')
       : `<div class="empty" style="grid-column:1/-1">Live stories are refreshing — check back in a few minutes.</div>`;
@@ -1949,10 +1948,11 @@ function FeaturedGolfCard(g) {
     }
   });
 
-  // ── Confetti burst — fires once when a .champ-card scrolls into view ─────
+  // ── Confetti burst — fires once per page session when any .champ-card scrolls in
+  let _confettiFired = false;
   function launchConfetti(fromEl) {
-    if (fromEl._confettiDone) return;
-    fromEl._confettiDone = true;
+    if (_confettiFired) return;
+    _confettiFired = true;
     const canvas = document.createElement('canvas');
     canvas.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999;';
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
@@ -1996,87 +1996,26 @@ function FeaturedGolfCard(g) {
     document.querySelectorAll('.champ-card').forEach(el => obs.observe(el));
   }
 
-  // ── Animated section scenes (sports / markets / culture) ─────────────────
-  // Each entry: e=emoji, top=vertical lane, left=horizontal anchor (float-up only),
-  // anim=keyframe name, dur=duration, delay=animation-delay, sz=font-size, op=opacity.
-  const BG_SCENES = {
-    sports: [
-      { e:'🏎️', top:'18%', anim:'bg-slide-r', dur:'5s',   delay:'0s',    sz:'60px', op:.11 },
-      { e:'🏎️', top:'68%', anim:'bg-slide-r', dur:'6.5s', delay:'-3s',   sz:'44px', op:.08 },
-      { e:'🏀', top:'38%', anim:'bg-bounce-r', dur:'7s',  delay:'-2.5s', sz:'54px', op:.10 },
-      { e:'🏈', top:'50%', anim:'bg-arc-r',    dur:'7.5s',delay:'-4.5s', sz:'48px', op:.09 },
-      { e:'⚽', top:'75%', anim:'bg-bounce-r', dur:'9s',  delay:'-6s',   sz:'46px', op:.09 },
-      { e:'🏒', top:'28%', anim:'bg-slide-l',  dur:'10s', delay:'-5s',   sz:'46px', op:.08 },
-    ],
-    markets: [
-      { e:'🐂', top:'40%', anim:'bg-slide-r',   dur:'9s',  delay:'0s',   sz:'64px', op:.10 },
-      { e:'🐻', top:'62%', anim:'bg-slide-l',   dur:'11s', delay:'-4.5s',sz:'60px', op:.09 },
-      { e:'📈', top:'0',   left:'16%', anim:'bg-float-up', dur:'7s',  delay:'-2s',  sz:'54px', op:.09 },
-      { e:'💹', top:'0',   left:'46%', anim:'bg-float-up', dur:'9.5s',delay:'-5s',  sz:'48px', op:.08 },
-      { e:'💵', top:'0',   left:'78%', anim:'bg-float-up', dur:'11s', delay:'-8s',  sz:'50px', op:.08 },
-      { e:'💰', top:'0',   left:'32%', anim:'bg-float-up', dur:'13s', delay:'-3s',  sz:'42px', op:.07 },
-    ],
-    culture: [
-      { e:'🎬', top:'25%', anim:'bg-slide-r',   dur:'9s',  delay:'0s',    sz:'54px', op:.09 },
-      { e:'📱', top:'58%', anim:'bg-slide-l',   dur:'11s', delay:'-5.5s', sz:'50px', op:.09 },
-      { e:'🎭', top:'78%', anim:'bg-slide-r',   dur:'13s', delay:'-7s',   sz:'52px', op:.08 },
-      { e:'🎵', top:'0',   left:'20%', anim:'bg-float-up', dur:'7s',  delay:'-3s',  sz:'50px', op:.09 },
-      { e:'🎶', top:'0',   left:'60%', anim:'bg-float-up', dur:'9s',  delay:'-6s',  sz:'44px', op:.08 },
-      { e:'🍿', top:'0',   left:'84%', anim:'bg-float-up', dur:'11s', delay:'-9s',  sz:'46px', op:.08 },
-    ],
-  };
-
-  let _currentScene = null;
-  function setBgScene(key) {
-    if (_currentScene === key) return;
-    _currentScene = key;
-    const el = document.getElementById('bgScene');
+  // ── Market news stories — business/finance headlines below the tape ─────────
+  function renderMarketNews(stories) {
+    const el = $('marketNewsWrap');
     if (!el) return;
-    el.innerHTML = (BG_SCENES[key] || []).map(item => {
-      const parts = [
-        `top:${item.top || '0'}`,
-        item.left ? `left:${item.left}` : '',
-        `font-size:${item.sz || '48px'}`,
-        `animation-name:${item.anim}`,
-        `animation-duration:${item.dur}`,
-        `animation-delay:${item.delay}`,
-        `opacity:${item.op || 0.09}`,
-      ].filter(Boolean);
-      return `<span class="bg-item" style="${parts.join(';')}">${item.e}</span>`;
+    const BIZ = /business|finance|economy|market|stock|trade|fed|treasury|crypto|spacex|tesla|apple|nvidia|tech|ai|earnings|gdp|inflation/i;
+    const picks = (stories || []).filter(s => BIZ.test((s.category || '') + ' ' + (s.headline || ''))).slice(0, 2);
+    if (!picks.length) { el.hidden = true; return; }
+    el.hidden = false;
+    el.innerHTML = picks.map(s => {
+      const head = s.url
+        ? `<a href="${esc(s.url)}" target="_blank" rel="noopener" class="mk-wire-link">${esc(s.headline)}</a>`
+        : esc(s.headline);
+      return `<div class="mk-wire-card">
+        <div class="mk-wire-cat">${esc(s.category || 'Markets')}</div>
+        <div class="mk-wire-head">${head}</div>
+        ${s.summary ? `<p class="mk-wire-sum">${esc(s.summary)}</p>` : ''}
+        ${s.url ? `<div class="mk-wire-src">${esc(s.source || '')} →</div>` : ''}
+      </div>`;
     }).join('');
   }
-  function clearBgScene() {
-    if (_currentScene === null) return;
-    _currentScene = null;
-    const el = document.getElementById('bgScene');
-    if (el) el.innerHTML = '';
-  }
-
-  // ── Section background tint + scene swap ─────────────────────────────────
-  (function () {
-    const MAP = [
-      { id: 'umb-sports',  bg: '#EEF4FF', scene: 'sports'  },
-      { id: 'umb-markets', bg: '#EAF8EF', scene: 'markets' },
-      { id: 'umb-culture', bg: '#FEF4E8', scene: 'culture' },
-    ];
-    const DEFAULT = '#F9F8F5';
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const cfg = MAP.find(s => s.id === e.target.id);
-        if (cfg) { document.body.style.backgroundColor = cfg.bg; setBgScene(cfg.scene); }
-        else     { document.body.style.backgroundColor = DEFAULT; clearBgScene(); }
-      });
-    }, { threshold: 0, rootMargin: '-10% 0px -60% 0px' });
-    MAP.forEach(s => { const el = document.getElementById(s.id); if (el) obs.observe(el); });
-    const heroObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { document.body.style.backgroundColor = DEFAULT; clearBgScene(); }
-      });
-    }, { threshold: 0.05 });
-    const hero = document.querySelector('.live-hero');
-    if (hero) heroObs.observe(hero);
-  })();
 
   window.GuyTalkLive = { refresh, MOCK, openStock, components: {
     LiveEventCard, LiveLeaderboard, ScoreboardCard, MarketCard, TrendingStoryCard,
