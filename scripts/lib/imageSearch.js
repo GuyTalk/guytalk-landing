@@ -1,0 +1,162 @@
+'use strict';
+
+/**
+ * Web-search-powered image finder.
+ *
+ * Given a plain-language query ("FIFA World Cup England Croatia match photo"),
+ * asks OpenAI web_search to find recent news articles, then extracts og:images
+ * from the cited URLs. Falls back to a caller-supplied URL on failure.
+ *
+ * This is the right way to get contextually correct images: ask GPT to search,
+ * then scrape the og:image from whatever news pages it found. Don't ask GPT to
+ * invent direct image URLs — CDN links hallucinate badly.
+ */
+
+const { extractOgImage, isLiveImage, looksIrrelevant, resolveWikimedia, IMAGE_EXT_RE } = require('./images');
+
+const SEARCH_MODEL = process.env.OPENAI_RESEARCH_MODEL || 'gpt-4.1';
+
+/**
+ * Search for a contextually relevant action/news photo.
+ *
+ * @param {string} query   Plain-language description, e.g. "England Croatia World Cup 2026 match photo"
+ * @param {object} opts
+ * @param {string|null} opts.fallback  URL to return if search fails
+ * @returns {Promise<string|null>}
+ */
+async function searchWebImage(query, { fallback = null } = {}) {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) return fallback;
+
+  let OpenAI;
+  try { OpenAI = require('openai'); } catch (_) { return fallback; }
+
+  const client = new (OpenAI.default || OpenAI)({ apiKey });
+  if (typeof client.responses?.create !== 'function') return fallback;
+
+  const prompt = `Search for recent news coverage of: "${query}"
+
+Find the most recent articles (today or yesterday) from major sports/news outlets.
+I need articles that include good action or news photos.
+Just search and summarize what you found — I'll use the source URLs.`;
+
+  try {
+    const response = await client.responses.create({
+      model: SEARCH_MODEL,
+      tools: [{ type: 'web_search', search_context_size: 'medium' }],
+      tool_choice: 'required',
+      input: [{ role: 'user', content: prompt }],
+    });
+
+    // Extract citation URLs from annotations — this is the proven extraction pattern.
+    const citedUrls = [];
+    (response.output || []).forEach(block => {
+      if (block.type === 'message') {
+        (block.content || []).forEach(c => {
+          (c.annotations || []).forEach(a => {
+            if (a.type === 'url_citation' && a.url) {
+              const clean = a.url.replace(/[?&]utm_source=openai/, '').replace(/[?&]$/, '');
+              citedUrls.push(clean);
+            }
+          });
+        });
+      }
+    });
+
+    // Also scan response text for direct .jpg/.png/.webp URLs (rare but fast)
+    const text = response.output_text || (response.output || [])
+      .filter(b => b.type === 'message')
+      .flatMap(b => Array.isArray(b.content) ? b.content : [])
+      .filter(c => c?.type === 'output_text' || c?.type === 'text')
+      .map(c => c.text || '')
+      .join('');
+
+    const directImgUrls = (text.match(/https?:\/\/[^\s"'<>)]+\.(?:jpe?g|png|webp)(?:[?#][^\s"'<>)]*)?/gi) || []);
+
+    // Try direct image URLs first (fastest path — usually CDN links in og:image values)
+    for (const url of directImgUrls) {
+      const resolved = resolveWikimedia(url) || url;
+      if (!looksIrrelevant(resolved) && await isLiveImage(resolved)) {
+        console.log(`   🖼  imageSearch hit (direct): ${resolved.slice(0, 80)}`);
+        return resolved;
+      }
+    }
+
+    // Try og:image from each cited article — this is the main path
+    for (const url of citedUrls.slice(0, 6)) {
+      try {
+        const og = await extractOgImage(url);
+        if (og && !looksIrrelevant(og)) {
+          const ogResolved = resolveWikimedia(og) || og;
+          if (await isLiveImage(ogResolved)) {
+            console.log(`   🖼  imageSearch hit (og): ${ogResolved.slice(0, 80)}`);
+            return ogResolved;
+          }
+        }
+      } catch (_) { /* skip this URL */ }
+    }
+
+    console.log(`   ⚠  imageSearch: no valid image for "${query.slice(0, 60)}"`);
+    return fallback;
+  } catch (err) {
+    console.error(`[imageSearch] "${query.slice(0, 60)}": ${err.message}`);
+    return fallback;
+  }
+}
+
+/**
+ * Build a sport-specific image search query from a dynamicSports candidate object.
+ */
+function buildSportImageQuery(s) {
+  const sport   = s._sport || '';
+  const name    = s.name    || '';
+  const hl      = s.headline || '';
+
+  if (sport === 'worldcup') {
+    // Try to extract home team from headline like "England 4–2 Croatia"
+    const m = hl.match(/^([A-Za-z ]+?)\s+\d/);
+    const teams = m ? m[1].trim() : '';
+    return teams
+      ? `FIFA World Cup 2026 ${teams} match action photo soccer`
+      : 'FIFA World Cup 2026 soccer match action photo players';
+  }
+  if (sport === 'f1') {
+    return `Formula 1 ${name} 2026 race action photo`;
+  }
+  if (sport === 'golf') {
+    return `${name} golf 2026 action photo player swing`;
+  }
+  if (sport === 'mlb') {
+    const m = hl.match(/^(.+?)\s+\d+[–\-]/);
+    const team = m ? m[1].trim() : name;
+    return `${team} MLB baseball game action photo 2026`;
+  }
+  if (sport === 'nba') return 'NBA basketball playoff action photo 2026';
+  if (sport === 'nhl') return 'NHL Stanley Cup hockey action photo 2026';
+  if (sport === 'tennis') return `${name} tennis action photo 2026`;
+  return `${name} sports action photo`;
+}
+
+/**
+ * Build an image search query for a non-sports lead (markets, politics, tech).
+ */
+function buildLeadImageQuery(heroOverride) {
+  if (!heroOverride) return null;
+  const title = heroOverride.title || '';
+  const eyebrow = heroOverride.eyebrow || '';
+  if (!title) return null;
+
+  const lower = title.toLowerCase();
+  if (/fed\b|federal reserve|rate|powell|warsh/.test(lower)) {
+    return `Federal Reserve press conference photo ${title.slice(0, 40)} 2026`;
+  }
+  if (/market|stocks?|nasdaq|s&p|dow/.test(lower)) {
+    return `stock market news photo Wall Street 2026`;
+  }
+  if (/white house|president|executive/.test(lower)) {
+    return `White House president news photo 2026`;
+  }
+  return `${eyebrow} ${title.slice(0, 50)} news photo 2026`;
+}
+
+module.exports = { searchWebImage, buildSportImageQuery, buildLeadImageQuery };

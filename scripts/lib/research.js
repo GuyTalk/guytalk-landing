@@ -541,19 +541,28 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
   filtered.sort((a, b) => b._score - a._score);
   const top = filtered.slice(0, MAX_SPORTS);
 
-  // ── Resolve images in parallel ────────────────────────────────────────────
+  // ── Resolve images via web search + static fallback ─────────────────────
   const prevSet = new Set((prevImageUrls || []).filter(Boolean));
+  let imgSearch;
+  try { imgSearch = require('./imageSearch'); } catch (_) {}
+
   await Promise.allSettled(top.map(async (s) => {
     let img = null;
-    // Prefer venue/course images (Wikimedia Commons, official media) over ESPN headshots.
-    // buildGolf/buildF1 in html.js have their own curated course/circuit fallbacks,
-    // so null here means html.js falls back cleanly — no ESPN thumbnail or headshot needed.
-    if (s.label === 'Golf' || s.label === 'F1') {
-      img = SECTION_FALLBACKS[s._sport] || null;
-    } else {
-      // Team sport: use sport-specific hero fallback
-      img = SECTION_FALLBACKS[s._sport] || SECTION_FALLBACKS.sports;
+
+    // Web-search path: ask OpenAI to find a real action photo for this specific story.
+    if (imgSearch) {
+      const query = imgSearch.buildSportImageQuery(s);
+      if (query) {
+        const staticFallback = SECTION_FALLBACKS[s._sport] || null;
+        img = await imgSearch.searchWebImage(query, { fallback: staticFallback });
+      }
     }
+
+    // Static fallback when search is unavailable or returned nothing.
+    if (!img) {
+      img = SECTION_FALLBACKS[s._sport] || null;
+    }
+
     // Skip if URL was used in the previous issue
     s.imageUrl = (img && !prevSet.has(img)) ? img : null;
     // Clean internal bookkeeping fields

@@ -484,6 +484,57 @@ function main() {
   }
   if (!imageMismatch) run('Sports images: no cross-sport image mismatches', true);
 
+  // 10c. DUPLICATE IMAGE CHECK — hard fail if any imageUrl appears twice in the same brief
+  console.log('\n  [Image Freshness]');
+  {
+    const allImages = [];
+    const heroImg = issue.heroOverride?.image;
+    if (heroImg) allImages.push({ section: 'heroOverride', url: heroImg });
+    for (const s of dynSports) {
+      if (s.imageUrl) allImages.push({ section: s.label || s.name || 'sport', url: s.imageUrl });
+    }
+    const seen = new Map();
+    let hasDupe = false;
+    for (const { section, url } of allImages) {
+      if (seen.has(url)) {
+        hasDupe = true;
+        run(
+          `No duplicate images: ${section}`,
+          false,
+          `"${url}" already used in "${seen.get(url)}" — each section needs a distinct image`
+        );
+      } else {
+        seen.set(url, section);
+      }
+    }
+    if (!hasDupe) run('No duplicate images within issue', true);
+
+    // 10d. CROSS-ISSUE IMAGE REUSE — warn if image was also used in the previous brief
+    const dataDir = path.join(__dirname, '..', 'brief', 'data');
+    const prevNum = (issue.num || 0) - 1;
+    const prevSlug = prevNum > 0 ? `issue-${String(prevNum).padStart(3, '0')}` : null;
+    const prevFile = prevSlug ? path.join(dataDir, `${prevSlug}.json`) : null;
+    if (prevFile && fs.existsSync(prevFile)) {
+      try {
+        const prev = JSON.parse(fs.readFileSync(prevFile, 'utf8'));
+        const prevImages = new Set();
+        if (prev.heroOverride?.image) prevImages.add(prev.heroOverride.image);
+        for (const s of (prev.dynamicSports || [])) {
+          if (s.imageUrl) prevImages.add(s.imageUrl);
+        }
+        const reused = allImages.filter(({ url }) => prevImages.has(url));
+        if (reused.length) {
+          warn(
+            `${reused.length} image(s) reused from ${prevSlug}`,
+            reused.map(r => `${r.section}: ${r.url}`).join(' | ')
+          );
+        } else {
+          run(`No images reused from ${prevSlug}`, true);
+        }
+      } catch (_) {}
+    }
+  }
+
   // 11. THE RUNDOWN module — verify narrative sources exist (warn only, fallbacks in html.js)
   const hasRundownNarrative = !!(copy?.rundownNarrative);
   const hasRundownFallbacks = !!(
@@ -556,6 +607,72 @@ function main() {
   const golfCopy = [copy?.golf?.whyCare1, copy?.golf?.whyCare2, copy?.golf?.watchFor].filter(Boolean).join(' ').toLowerCase();
   const isRefusal = REFUSAL_PHRASES.some(p => golfCopy.includes(p));
   if (isRefusal) warn('Golf copy looks like a refusal — review before publishing');
+
+  // ── Pre-approval audit print ─────────────────────────────────────────────
+  console.log(`\n${'═'.repeat(50)}`);
+  console.log('  PRE-APPROVAL AUDIT');
+  console.log(`${'═'.repeat(50)}`);
+  {
+    const dynSportsAudit = issue.dynamicSports || [];
+    const totalPlayers   = dynSportsAudit.reduce((n, s) => n + (Array.isArray(s.playerLinks) ? s.playerLinks.length : 0), 0);
+    const hasPlayerLinks = totalPlayers > 0;
+    console.log(`  Player links added:              ${hasPlayerLinks ? `YES (${totalPlayers} total)` : 'NO'}`);
+
+    const auditImgs = [];
+    if (issue.heroOverride?.image) auditImgs.push(issue.heroOverride.image);
+    for (const s of dynSportsAudit) { if (s.imageUrl) auditImgs.push(s.imageUrl); }
+    const uniqueImgs = new Set(auditImgs);
+    const hasDupesAudit = uniqueImgs.size < auditImgs.length;
+    console.log(`  Duplicate images in issue:       ${hasDupesAudit ? `YES (${auditImgs.length - uniqueImgs.size} dupe(s))` : 'NO'}`);
+
+    // Cross-issue reuse
+    const dataDir2 = path.join(__dirname, '..', 'brief', 'data');
+    const prevNum2 = (issue.num || 0) - 1;
+    const prevFile2 = prevNum2 > 0 ? path.join(dataDir2, `issue-${String(prevNum2).padStart(3, '0')}.json`) : null;
+    let reuseAnswer = 'NO';
+    if (prevFile2 && fs.existsSync(prevFile2)) {
+      try {
+        const prev2 = JSON.parse(fs.readFileSync(prevFile2, 'utf8'));
+        const prevImgs2 = new Set();
+        if (prev2.heroOverride?.image) prevImgs2.add(prev2.heroOverride.image);
+        for (const s of (prev2.dynamicSports || [])) { if (s.imageUrl) prevImgs2.add(s.imageUrl); }
+        const reusedCount = auditImgs.filter(u => prevImgs2.has(u)).length;
+        if (reusedCount) reuseAnswer = `YES (${reusedCount} shared with #${String(prevNum2).padStart(3, '0')})`;
+      } catch (_) {}
+    }
+    console.log(`  Images reused from prev issue:   ${reuseAnswer}`);
+
+    // F1 freshness
+    const f1Entry = dynSportsAudit.find(s => (s.label || '').toLowerCase().includes('f1') || (s.name || '').toLowerCase().includes('grand prix'));
+    const f1Img   = f1Entry?.imageUrl || '';
+    let f1Fresh = 'N/A';
+    if (f1Img) {
+      let prevF1Img = '';
+      if (prevFile2 && fs.existsSync(prevFile2)) {
+        try {
+          const prev2 = JSON.parse(fs.readFileSync(prevFile2, 'utf8'));
+          prevF1Img = (prev2.dynamicSports || []).find(s => (s.label||'').toLowerCase().includes('f1'))?.imageUrl || '';
+        } catch (_) {}
+      }
+      f1Fresh = (f1Img && f1Img !== prevF1Img) ? `YES (${f1Img.split('/').pop()})` : `NO (same as prev: ${f1Img.split('/').pop()})`;
+    }
+    console.log(`  F1 image fresh:                  ${f1Fresh}`);
+
+    // Wrong sport/player image — pull from earlier check results
+    console.log(`  Wrong sport/player image:        ${imageMismatch ? 'YES — see [Sports Image Validation] above' : 'NO'}`);
+
+    // Per-section image summary
+    console.log('');
+    console.log('  Section images:');
+    if (issue.heroOverride?.image) {
+      console.log(`    Lead/Markets: ${issue.heroOverride.image}`);
+    }
+    for (const s of dynSportsAudit) {
+      const players = Array.isArray(s.playerLinks) ? s.playerLinks.map(p => p.name).join(', ') : '';
+      console.log(`    ${(s.label || s.name || '?').padEnd(18)}: ${s.imageUrl || '(none)'}`);
+      if (players) console.log(`      ${''.padEnd(18)}  players: ${players}`);
+    }
+  }
 
   // ── Summary ─────────────────────────────────────────────────────────────────
   console.log(`\n${'─'.repeat(50)}`);

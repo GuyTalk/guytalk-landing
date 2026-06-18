@@ -331,12 +331,19 @@ function buildSportsCard(s, isLead) {
   const label = isLead ? 'The Lead' : (s.label || s.name);
   const id    = isLead ? 'the-lead' : slugId(s.label || s.name);
 
+  const playerLinksHtml = Array.isArray(s.playerLinks) && s.playerLinks.length
+    ? `    <div class="player-links"><span class="dl-label">Players to Know:</span> ${
+        s.playerLinks.map(p => `<a href="${esc(p.url)}" target="_blank" rel="noopener" class="player-link">${esc(p.name)}</a>`).join(' · ')
+      }</div>`
+    : '';
+
   const detail = `    <ul class="detail-list">
       ${whatHappened  ? `<li><span><span class="dl-label">What happened:</span> ${esc(whatHappened)}</span></li>`   : ''}
       ${whyItMatters  ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyItMatters)}</span></li>`   : ''}
 ${convoBlocks(s)}
       ${whatToBringUp ? `<li><span><span class="dl-label">What to bring up:</span> ${esc(whatToBringUp)}</span></li>` : ''}
-    </ul>`;
+    </ul>
+${playerLinksHtml}`;
 
   const body = cat === 'individual'
     ? `${imgHtml}
