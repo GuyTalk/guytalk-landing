@@ -109,6 +109,8 @@ function loadPreviousBriefs(n = 3) {
         f1State:    d.f1?.statusState || '',
         golfEvent:  d.golf?.name || '',
         golfState:  d.golf?.statusState || '',
+        nhlGame:    d.nhl?.final?.note || d.nhl?.final?.shortName || '',
+        nhlFinal:   !!(d.nhl?.final),
       };
     } catch (_) { return null; }
   }).filter(Boolean);
@@ -579,7 +581,7 @@ async function main() {
   let sports       = sportsResult.status    === 'fulfilled' ? sportsResult.value    : null;
   const markets    = marketsResult.status   === 'fulfilled' ? marketsResult.value   : null;
   const screeners  = screenersResult.status === 'fulfilled' ? screenersResult.value : null;
-  const nhl        = nhlResult.status === 'fulfilled' ? nhlResult.value : null;
+  let nhl          = nhlResult.status === 'fulfilled' ? nhlResult.value : null;
   if (nhl) console.log(`   ✓ NHL: ${nhl.final ? nhl.final.shortName + ' (Final)' : ''}${nhl.next ? ` next: ${nhl.next.shortName}` : ''}`);
   // Attach market-wide screeners (FMP) to the markets object so they're saved
   // with the issue and rendered. Falls back to watchlist movers if no FMP key.
@@ -702,6 +704,17 @@ async function main() {
     // Don't re-report a completed race we already covered — pivot to a preview of
     // the next track. Swapping f1 to a 'pre'/no-results object makes the whole
     // downstream pipeline (copy + circuit image) treat it as an upcoming race.
+    // NHL repetition guard — don't re-report a completed game already in the last brief.
+    // When the same game fires again (e.g. Hurricanes Cup win the morning after), null
+    // out nhl.final so fetchDynamicSports treats it as no active NHL story.
+    const nhlGameNote = nhl?.final?.note || nhl?.final?.shortName || '';
+    const nhlAlreadyCovered = nhlGameNote && nhl?.final
+      && prev3.some(p => p.nhlFinal && p.nhlGame && p.nhlGame === nhlGameNote);
+    if (nhlAlreadyCovered) {
+      console.log(`   ↪ NHL: ${nhlGameNote} already covered — dropping from today's brief`);
+      nhl = { ...nhl, final: null };
+    }
+
     const f1AlreadyCovered = f1?.name && f1.statusState === 'post'
       && prev3.some(p => p.f1Event && p.f1Event === f1.name && p.f1State === 'post');
     if (f1AlreadyCovered && f1.nextRace?.name) {

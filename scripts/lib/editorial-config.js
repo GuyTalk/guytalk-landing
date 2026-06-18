@@ -102,6 +102,7 @@ const IMPORTANCE_TIERS = [
     tier: 2,
     score: 60,
     // Postseason / elimination / marquee matchups / tournament finals.
+    // World Cup group-stage matches score tier 2 — every WC game matters.
     patterns: [
       /\bplayoffs?\b/i,
       /\belimination\b/i,
@@ -115,6 +116,8 @@ const IMPORTANCE_TIERS = [
       /\b(?:masters|open|grand prix|gp)\b/i,
       /\bderby\b/i,
       /\brivalry\b/i,
+      /\bworld cup\b/i,
+      /\bfifa\b/i,
     ],
   },
   {
@@ -145,7 +148,8 @@ const LEAGUE_AFFINITY = [
   { score: 5, patterns: [/\bnfl\b/i, /\bnba\b/i] },
   { score: 4, patterns: [/\bnhl\b/i, /\bmlb\b/i, /\bufc\b/i, /\bcollege football\b/i, /\bcfb\b/i] },
   { score: 3, patterns: [/\bf1\b/i, /formula\s*1/i, /\bgolf\b/i, /\bpga\b/i, /\bboxing\b/i] },
-  { score: 2, patterns: [/\bsoccer\b/i, /\bworld cup\b/i, /\bpremier league\b/i, /\btennis\b/i] },
+  { score: 5, patterns: [/\bworld cup\b/i, /\bfifa\b/i, /\busmnt\b/i] },  // World Cup = NFL/NBA tier during the tournament
+  { score: 2, patterns: [/\bsoccer\b/i, /\bpremier league\b/i, /\btennis\b/i] },
   { score: 4, patterns: [/\bwhite house\b/i, /\bpresident\b/i, /\bfed\b.*\brates?\b/i, /\brate cut\b/i, /\brate hike\b/i] },
   { score: 3, patterns: [/\bipo\b/i, /\bacquisition\b/i, /\bearnings\b/i, /\bai\b.*\b(?:launch|release|breakthrough)\b/i] },
 ];

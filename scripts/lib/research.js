@@ -21,7 +21,7 @@ const SYNTH_MODEL   = process.env.ANTHROPIC_RESEARCH_MODEL || 'claude-sonnet-4-6
 const EXTRACT_MODEL = process.env.ANTHROPIC_EXTRACT_MODEL  || 'claude-haiku-4-5-20251001';
 
 const MAX_CONTINUATIONS = parseInt(process.env.RESEARCH_MAX_CONTINUATIONS || '2', 10);
-const MAX_SPORTS        = parseInt(process.env.RESEARCH_MAX_SPORTS        || '3', 10);
+const MAX_SPORTS        = parseInt(process.env.RESEARCH_MAX_SPORTS        || '4', 10);
 
 const { isExcluded, scoreImportance } = require('./editorial-config');
 const { extractOgImage, isLiveImage, resolveAthleteImage, SECTION_FALLBACKS } = require('./images');
@@ -478,10 +478,18 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
           return `${wt2} ${ws2}–${ls2} ${lt2}`;
         }).join('; ');
       } else {
-        headline = `${featured.away.team} vs. ${featured.home.team}`;
-        facts    = headline;
+        // No completed result yet — build a day-preview with the full slate
+        const allMatches = worldCup.filter(m => m.statusState === 'pre' || m.statusState === 'in');
+        const matchList  = allMatches.map(m => `${m.away.team} vs. ${m.home.team}`).join(', ');
+        headline = allMatches.length > 1
+          ? `FIFA World Cup 2026 — ${allMatches.length} matches today`
+          : `${featured.away.team} vs. ${featured.home.team}`;
+        facts = `TODAY'S WORLD CUP SLATE (all times EDT): ${allMatches.map(m => {
+          const t = m.date ? new Date(m.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) : '';
+          return `${m.away.team} vs. ${m.home.team}${t ? ` (${t})` : ''}`;
+        }).join('; ')}. Write as a World Cup preview covering today's matches, what's at stake in each group, and key storylines. Do NOT invent scores.`;
       }
-      const { score: imp } = scoreImportance({ name: 'World Cup USMNT FIFA 2026', headline, facts, isFinalResult: isPost });
+      const { score: imp } = scoreImportance({ name: 'World Cup USMNT FIFA 2026 soccer', headline, facts, isFinalResult: isPost });
       candidates.push({
         name: 'FIFA World Cup 2026', label: 'World Cup', category: 'team',
         headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
