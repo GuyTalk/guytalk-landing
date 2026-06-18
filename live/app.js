@@ -393,11 +393,10 @@ function Marquee(g) {
 
 /** ScoreboardCard — Section 4 (one game) */
 function ScoreboardCard(g) {
+  const gameUrl = g.eventLink?.url || null;
   const side = (t, otherScore) => {
     const losing = g.state === 'post' && t.score !== '' && Number(t.score) < Number(otherScore);
-    const abbr = t.link
-      ? `<a class="nm-link sc-abbr" href="${esc(t.link)}" target="_blank" rel="noopener">${esc(t.abbr || t.name)}</a>`
-      : `<span class="sc-abbr">${esc(t.abbr || t.name)}</span>`;
+    const abbr = `<span class="sc-abbr">${esc(t.abbr || t.name)}</span>`;
     return `<div class="sc-team${losing ? ' loser' : ''}">
       <span class="nm">${teamMark(t.logo, t.abbr, t.color)}${abbr}${t.record ? `<span class="sc-rec">${esc(t.record)}</span>` : ''}</span>
       <span class="sc-score">${esc(t.score !== '' ? t.score : '—')}</span>
@@ -406,12 +405,17 @@ function ScoreboardCard(g) {
   const statusBit = g.state === 'in'
     ? `<span class="pill pill-live"><span class="nav-live-dot"></span>Live</span> ${esc(g.statusText)}`
     : esc(g.statusText);
-  return `<div class="sc-card">
+  const gamecastLink = gameUrl
+    ? ` · <a href="${esc(gameUrl)}" target="_blank" rel="noopener" class="ev-foot-cta" style="opacity:1;color:var(--accent)">Gamecast →</a>`
+    : '';
+  const inner = `
     ${g.isBig && g.headline ? `<div class="sc-tag">${esc(g.headline)}</div>` : ''}
     ${side(g.away, g.home.score)}
     ${side(g.home, g.away.score)}
-    <div class="sc-foot">${statusBit}</div>
-  </div>`;
+    <div class="sc-foot">${statusBit}${gamecastLink}</div>`;
+  return gameUrl
+    ? `<a class="sc-card" href="${esc(gameUrl)}" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none">${inner}</a>`
+    : `<div class="sc-card">${inner}</div>`;
 }
 
 // Map a market tile to the Yahoo symbol its value represents, so a click opens
@@ -983,6 +987,28 @@ function summaryWhatYouMissed(g) {
   ]);
 }
 
+/* ChampionHighlightCard — fills the blank left column when a championship series
+ * has finished and there are no overflow games to show. Renders the winner's color
+ * + logo watermark as a clickable YouTube highlights card. */
+function ChampionHighlightCard(featured, tag) {
+  const winner = featured.home?.winner ? featured.home : featured.away?.winner ? featured.away : null;
+  if (!winner) return '';
+  const q = encodeURIComponent(`${winner.name} ${tag} champions highlights 2026`);
+  const hlUrl = featured.eventLink?.url || `https://www.youtube.com/results?search_query=${q}`;
+  const color = winner.color || '#2B6FFF';
+  const logo = winner.logo || '';
+  const seriesLine = featured.seriesText || featured.statusText || '';
+  return `<a class="champ-card" href="${esc(hlUrl)}" target="_blank" rel="noopener" style="--cc:${esc(color)}">
+    ${logo ? `<img class="champ-card-logo" src="${esc(logo)}" alt="" aria-hidden="true" onerror="this.style.display='none'">` : ''}
+    <div class="champ-card-body">
+      <div class="champ-badge">${esc(tag)} CHAMPIONS</div>
+      <div class="champ-name">${esc(winner.name)}</div>
+      ${seriesLine ? `<div class="champ-sub">${esc(seriesLine)}</div>` : ''}
+    </div>
+    <div class="champ-play">▶ Watch Highlights</div>
+  </a>`;
+}
+
 /* LastGameCard — for an upcoming/live playoff game, a visual recap of the
  * previous game: score, the standout line, and a highlight clip you can watch. */
 function LastGameCard(lg) {
@@ -1441,8 +1467,9 @@ function FeaturedGolfCard(g) {
     })();
     const hlLabel = featured.eventLink ? 'Watch on ESPN →' : 'Watch highlights →';
 
+    const champCard = (!others.length && featured.state === 'post') ? ChampionHighlightCard(featured, tag) : '';
     el.innerHTML =
-      `<div class="stack">${Marquee(featured)}${others.length ? `<div class="grid grid-scores">${others.map(ScoreboardCard).join('')}</div>` : ''}</div>` +
+      `<div class="stack">${Marquee(featured)}${champCard}${others.length ? `<div class="grid grid-scores">${others.map(ScoreboardCard).join('')}</div>` : ''}</div>` +
       `<div class="stack">${ContextCard(rows, isLive, tag)}${wym}${last}${HighlightLink(hlUrl, hlLabel)}</div>`;
   }
 
