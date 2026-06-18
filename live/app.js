@@ -1372,6 +1372,98 @@ function FeaturedGolfCard(g) {
     </div>`;
   }
 
+  // ── Soccer / World Cup context ─────────────────────────────────────────────
+  function soccerContext(g) {
+    const isWC = /world.?cup|fifa/i.test(g.league || g.headline || '');
+    const w = g.home?.winner ? g.home : g.away;
+    const l = g.home?.winner ? g.away : g.home;
+    if (g.state === 'post') {
+      return [
+        { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}–${l.score}${isWC ? ' — World Cup 2026 group stage' : ''}.` },
+        { label: 'What to say', say: true, text: `"${w.name} took it ${w.score}–${l.score}${isWC ? ' — that changes the group table' : ''}."` },
+        { label: 'Hot take', take: true, text: `${w.name} are the most dangerous team in this ${isWC ? 'group' : 'run of form'} right now.` },
+      ];
+    }
+    return [
+      { label: 'What to watch', text: `${g.away.name} vs. ${g.home.name}${isWC ? ' — FIFA World Cup 2026' : ''}.` },
+      { label: 'What to say', say: true, text: `"${g.away.name}–${g.home.name} is the must-watch match today${isWC ? ' at the World Cup' : ''}."` },
+    ];
+  }
+
+  function soccerWhatYouMissed(g) {
+    if (g.state !== 'post') return '';
+    const w = g.home?.winner ? g.home : g.away;
+    const l = g.home?.winner ? g.away : g.home;
+    return WhatYouMissed([
+      { k: 'Winner', v: `${w.name} ${w.score}–${l.score}` },
+      { k: 'Biggest storyline', v: g.headline || `${w.name} beat ${l.name}` },
+      { k: 'Key takeaway', v: `${w.name} take the points and move up the table.` },
+    ]);
+  }
+
+  // ── Dedicated sport section renderers (NBA / MLB / NHL / Soccer) ───────────
+  // Each follows the F1/Golf pattern: left = marquee + overflow cards, right =
+  // ContextCard + WhatYouMissed + LastGameCard + HighlightLink.
+  function _renderLeague(opts) {
+    const { elId, badgeId, metaId, games, contextFn, wymFn, tag, emptyMsg } = opts;
+    const el = $(elId);
+    if (!el) return;
+    const live = games.some(g => g.state === 'in');
+    setBadge(badgeId, games.length ? (live ? 'live' : 'live') : null);
+    setMeta(metaId, games.length ? 'ESPN' : '', new Date().toISOString());
+    if (!games.length) { el.innerHTML = emptyBox(emptyMsg); return; }
+
+    const featured = games.slice().sort((a, b) =>
+      ({ in: 0, post: 1 }[a.state] ?? 2) - ({ in: 0, post: 1 }[b.state] ?? 2) ||
+      (b.importance || 0) - (a.importance || 0)
+    )[0];
+
+    const isLive = featured.state === 'in';
+    const others = games.filter(g => g !== featured);
+    const rows = (contextFn(featured) || []).filter(Boolean);
+    const wym = wymFn ? wymFn(featured) : '';
+    const last = LastGameCard(featured.facts?.lastGame);
+    const hlUrl = featured.eventLink?.url || (() => {
+      const q = encodeURIComponent(`${featured.headline || tag} highlights`);
+      return `https://www.youtube.com/results?search_query=${q}`;
+    })();
+    const hlLabel = featured.eventLink ? 'Watch on ESPN →' : 'Watch highlights →';
+
+    el.innerHTML =
+      `<div class="stack">${Marquee(featured)}${others.length ? `<div class="grid grid-scores">${others.map(ScoreboardCard).join('')}</div>` : ''}</div>` +
+      `<div class="stack">${ContextCard(rows, isLive, tag)}${wym}${last}${HighlightLink(hlUrl, hlLabel)}</div>`;
+  }
+
+  function renderNBA(scoreboard) {
+    const games = ((scoreboard || []).find(lg => lg.key === 'nba')?.games || [])
+      .filter(g => g.state === 'in' || g.state === 'post');
+    _renderLeague({ elId: 'nbaWrap', badgeId: 'badge-nba', metaId: 'meta-nba', games,
+      contextFn: nbaContext, wymFn: nbaWhatYouMissed, tag: 'NBA', emptyMsg: 'No NBA games today.' });
+  }
+
+  function renderMLB(scoreboard) {
+    const games = ((scoreboard || []).find(lg => lg.key === 'mlb')?.games || [])
+      .filter(g => g.state === 'in' || g.state === 'post');
+    _renderLeague({ elId: 'mlbWrap', badgeId: 'badge-mlb', metaId: 'meta-mlb', games,
+      contextFn: mlbContext, wymFn: mlbWhatYouMissed, tag: 'MLB', emptyMsg: 'No MLB games today.' });
+  }
+
+  function renderNHL(scoreboard) {
+    const games = ((scoreboard || []).find(lg => lg.key === 'nhl')?.games || [])
+      .filter(g => g.state === 'in' || g.state === 'post');
+    _renderLeague({ elId: 'nhlWrap', badgeId: 'badge-nhl', metaId: 'meta-nhl', games,
+      contextFn: summaryReadContext, wymFn: summaryWhatYouMissed, tag: 'NHL', emptyMsg: 'No NHL games today.' });
+  }
+
+  function renderSoccer(scoreboard) {
+    const SOCCER_KEYS = ['worldcup', 'mls', 'epl', 'ucl', 'concacaf'];
+    const games = (scoreboard || [])
+      .filter(lg => SOCCER_KEYS.includes(lg.key))
+      .flatMap(lg => lg.games.filter(g => g.state === 'in' || g.state === 'post'));
+    _renderLeague({ elId: 'soccerWrap', badgeId: 'badge-soccer', metaId: 'meta-soccer', games,
+      contextFn: soccerContext, wymFn: soccerWhatYouMissed, tag: 'World Cup', emptyMsg: 'No soccer matches right now.' });
+  }
+
   function renderTennis(real) {
     const tennis = real || (IS_DEV ? MOCK.tennis : null);
     setBadge('badge-tennis', real ? 'live' : (tennis ? 'mock' : null));
@@ -1410,10 +1502,10 @@ function FeaturedGolfCard(g) {
     setBadge('badge-scores', real ? 'live' : null);
     const el = $('scoreboardWrap');
 
-    // Only surface leagues with something happening NOW — a live game or a final
-    // score. Drop upcoming-only ('pre') fixtures so the page never renders a raw
-    // list of future games, and hide any league left with nothing to show.
+    // Sports with dedicated sections are excluded — only overflow leagues here.
+    const DEDICATED = new Set(['nba', 'mlb', 'nhl', 'worldcup', 'mls', 'epl', 'ucl', 'concacaf']);
     const leagues = (real || [])
+      .filter((lg) => !DEDICATED.has(lg.key))
       .map((lg) => ({ ...lg, games: lg.games.filter((g) => g.state === 'in' || g.state === 'post') }))
       .filter((lg) => lg.games.length > 0);
     if (!leagues.length) { el.innerHTML = emptyBox('No games in progress right now.'); return; }
@@ -1530,7 +1622,11 @@ function FeaturedGolfCard(g) {
     $('f1Wrap').innerHTML = sk(2);
     $('golfWrap').innerHTML = sk(1);
     if ($('tennisWrap')) $('tennisWrap').innerHTML = sk(2);
-    if ($('mmaWrap')) $('mmaWrap').innerHTML = sk(2);
+    if ($('mmaWrap'))    $('mmaWrap').innerHTML = sk(2);
+    if ($('nbaWrap'))    $('nbaWrap').innerHTML = sk(2);
+    if ($('mlbWrap'))    $('mlbWrap').innerHTML = sk(2);
+    if ($('nhlWrap'))    $('nhlWrap').innerHTML = sk(2);
+    if ($('soccerWrap')) $('soccerWrap').innerHTML = sk(2);
     $('scoreboardWrap').innerHTML = sk(2);
     $('marketsWrap').innerHTML = sk(8);
     // Rundown band stays hidden until real AI synthesis arrives (no fake placeholder).
@@ -1557,6 +1653,10 @@ function FeaturedGolfCard(g) {
     renderGolf(p.golf);
     renderTennis(p.tennis);
     renderMMA(p.mma);
+    renderNBA(p.scoreboard);
+    renderMLB(p.scoreboard);
+    renderNHL(p.scoreboard);
+    renderSoccer(p.scoreboard);
     renderScoreboard(p.scoreboard);
     renderMarkets(p.markets);
     // Sections 6 & 7 are handled by refreshTalk() / renderTalk() (separate feed).
@@ -1574,7 +1674,7 @@ function FeaturedGolfCard(g) {
     setMeta('meta-mma',      p.mma        ? 'ESPN' : '');
     setMeta('meta-scores',   p.scoreboard ? 'ESPN' : '');
     setMeta('meta-markets',  p.markets    ? 'Finnhub' : '');
-    // meta-trending / meta-talking are owned by renderTalk() (separate feed).
+    // meta-nba / mlb / nhl / soccer set inside _renderLeague(); meta-trending/talking by renderTalk().
 
     // Section identity: surface the live event name under each header.
     const setText = (id, t) => { const e = $(id); if (e && t) e.textContent = t; };
@@ -1587,10 +1687,23 @@ function FeaturedGolfCard(g) {
       setText('desc-tennis', p.tennis.tours.map((t) => `${t.tour} ${t.name}`).join(' · ') + (p.tennis.anyMajor ? ' · GRAND SLAM' : ''));
     }
     if (p.scoreboard) {
-      const liveG = p.scoreboard.reduce((n, lg) => n + lg.games.filter((g) => g.state === 'in').length, 0);
-      setText('desc-scores', liveG
-        ? `${liveG} game${liveG > 1 ? 's' : ''} live now across ${p.scoreboard.length} leagues.`
-        : `Latest scores across ${p.scoreboard.length} leagues.`);
+      // Update desc for each dedicated sport section
+      const lg = (key) => p.scoreboard.find(l => l.key === key);
+      const liveCount = (key) => (lg(key)?.games || []).filter(g => g.state === 'in').length;
+      const gameCount = (key) => (lg(key)?.games || []).filter(g => g.state === 'in' || g.state === 'post').length;
+      if (lg('nba')) setText('desc-nba', liveCount('nba') ? `${liveCount('nba')} game${liveCount('nba') > 1 ? 's' : ''} live now` : `${gameCount('nba')} game${gameCount('nba') !== 1 ? 's' : ''} today`);
+      if (lg('mlb')) setText('desc-mlb', liveCount('mlb') ? `${liveCount('mlb')} game${liveCount('mlb') > 1 ? 's' : ''} live now` : `${gameCount('mlb')} game${gameCount('mlb') !== 1 ? 's' : ''} today`);
+      if (lg('nhl')) setText('desc-nhl', liveCount('nhl') ? `${liveCount('nhl')} game${liveCount('nhl') > 1 ? 's' : ''} live now` : `Stanley Cup Playoffs`);
+      const wcGames = ['worldcup','mls','epl','ucl','concacaf'].flatMap(k => lg(k)?.games || []).filter(g => g.state === 'in' || g.state === 'post');
+      const wcLive  = wcGames.filter(g => g.state === 'in').length;
+      if (wcGames.length) setText('desc-soccer', wcLive ? `${wcLive} match${wcLive > 1 ? 'es' : ''} live now · World Cup 2026` : `${wcGames.length} match${wcGames.length !== 1 ? 'es' : ''} today`);
+      // Overflow scoreboard
+      const DEDICATED = new Set(['nba','mlb','nhl','worldcup','mls','epl','ucl','concacaf']);
+      const overflowLeagues = p.scoreboard.filter(l => !DEDICATED.has(l.key));
+      const liveG = overflowLeagues.reduce((n, l) => n + l.games.filter(g => g.state === 'in').length, 0);
+      if (overflowLeagues.length) setText('desc-scores', liveG
+        ? `${liveG} game${liveG > 1 ? 's' : ''} live now`
+        : `Latest scores across ${overflowLeagues.length} league${overflowLeagues.length !== 1 ? 's' : ''}.`);
     }
   }
 
