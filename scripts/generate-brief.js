@@ -840,6 +840,12 @@ async function main() {
             .map(([name, p]) => ({ name, url: officialPlayerUrl(p) }));
           if (f1Drivers.length) merged.playerLinks = f1Drivers;
         }
+        // Golf cards: inject purse fact into ammo so it appears in the "What to Know" block
+        if (golf?.purse && (merged.label === 'Golf' || /open championship|masters|pga championship/i.test(merged.name || ''))) {
+          const purseAmmo = `${golf.name} total purse: ${golf.purse.total} — winner takes ${golf.purse.winner}`;
+          if (!Array.isArray(merged.ammo)) merged.ammo = [];
+          if (!merged.ammo.some(a => /purse|\$/.test(a))) merged.ammo.push(purseAmmo);
+        }
         return merged;
       });
       // Search for YouTube highlight videos — one per sport, in parallel
