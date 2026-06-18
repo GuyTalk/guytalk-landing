@@ -207,25 +207,52 @@ function imageCreditFromUrl(url) {
   if (!url) return null;
   try {
     const host = new URL(url).hostname.replace('www.', '');
-    if (/ap\.org|apnews\.com|apimages/.test(host))   return 'AP';
-    if (/espn\.com|espncdn\.com/.test(host))          return 'ESPN';
-    if (/mlb\.com|mlbstatic\.com/.test(host))         return 'MLB';
-    if (/nba\.com/.test(host))                        return 'NBA';
-    if (/nhl\.com/.test(host))                        return 'NHL';
-    if (/formula1\.com/.test(host))                   return 'Formula 1';
-    if (/pgatour\.com/.test(host))                    return 'PGA Tour';
-    if (/gettyimages|gett\.com/.test(host))           return 'Getty Images';
-    if (/cloudinary\.com/.test(host))                 return 'AP / Getty';
-    if (/reuters\.com/.test(host))                    return 'Reuters';
-    if (/usatoday\.com/.test(host))                   return 'USA Today';
-    if (/si\.com/.test(host))                         return 'Sports Illustrated';
-    if (/theathletic\.com/.test(host))                return 'The Athletic';
-    if (/cbssports\.com/.test(host))                  return 'CBS Sports';
-    if (/foxsports\.com/.test(host))                  return 'Fox Sports';
-    if (/fifa\.com/.test(host))                       return 'FIFA';
-    if (/wikimedia\.org/.test(host))                  return 'Wikimedia Commons';
-    return null;
+    if (/ap\.org|apnews\.com|apimages/.test(host))        return 'AP';
+    if (/espn\.com|espncdn\.com/.test(host))              return 'ESPN';
+    if (/mlb\.com|mlbstatic\.com/.test(host))             return 'MLB';
+    if (/nba\.com/.test(host))                            return 'NBA';
+    if (/nhl\.com/.test(host))                            return 'NHL';
+    if (/formula1\.com/.test(host))                       return 'Formula 1';
+    if (/pgatour\.com/.test(host))                        return 'PGA Tour';
+    if (/gettyimages|gett\.com/.test(host))               return 'Getty Images';
+    if (/cloudinary\.com/.test(host))                     return 'AP / Getty';
+    if (/reuters\.com/.test(host))                        return 'Reuters';
+    if (/usatoday\.com|imagn\.com/.test(host))            return 'USA Today / Imagn';
+    if (/si\.com/.test(host))                             return 'Sports Illustrated';
+    if (/theathletic\.com/.test(host))                    return 'The Athletic';
+    if (/cbssports\.com/.test(host))                      return 'CBS Sports';
+    if (/foxsports\.com/.test(host))                      return 'Fox Sports';
+    if (/fifa\.com/.test(host))                           return 'FIFA';
+    if (/wikimedia\.org/.test(host))                      return 'Wikimedia Commons';
+    if (/nbcsports\.|brightspotcdn\.com/.test(host))      return 'NBC Sports';
+    if (/tycsports\.com/.test(host))                      return 'TyC Sports';
+    if (/bbc\.co\.uk|bbci\.co\.uk/.test(host))           return 'BBC Sport';
+    if (/skysports\.com/.test(host))                      return 'Sky Sports';
+    if (/goal\.com/.test(host))                           return 'Goal.com';
+    if (/sportingnews\.com/.test(host))                   return 'Sporting News';
+    if (/yimg\.com|yahoo\.com/.test(host))                return 'Yahoo Sports';
+    if (/marca\.com/.test(host))                          return 'Marca';
+    if (/bleacherreport\.com/.test(host))                 return 'Bleacher Report';
+    if (/nytimes\.com/.test(host))                        return 'New York Times';
+    if (/washingtonpost\.com/.test(host))                 return 'Washington Post';
+    if (/nbcnews\.com|msnbc\.com/.test(host))             return 'NBC News';
+    if (/hdnux\.com|hearst\.com/.test(host))              return 'Hearst';
+    // Generic fallback: use the registrable domain name
+    const parts = host.split('.');
+    const domain = parts.length >= 2 ? parts[parts.length - 2] : parts[0];
+    return domain.charAt(0).toUpperCase() + domain.slice(1);
   } catch { return null; }
+}
+
+function sportTypeClass(label) {
+  const l = (label || '').toLowerCase();
+  if (/world cup|soccer|football|mls|concacaf|uefa|copa/.test(l)) return 'ctx-sport-soccer';
+  if (/formula|f1|grand prix|gp/.test(l))                         return 'ctx-sport-f1';
+  if (/golf|pga|masters|open|ryder|presidents/.test(l))           return 'ctx-sport-golf';
+  if (/mlb|baseball/.test(l))                                     return 'ctx-sport-mlb';
+  if (/nba|basketball/.test(l))                                   return 'ctx-sport-nba';
+  if (/nhl|hockey/.test(l))                                       return 'ctx-sport-nhl';
+  return 'ctx-sport-default';
 }
 
 // Stable anchor id from a sport/event label (for the nested sidebar + sections).
@@ -350,12 +377,13 @@ function buildSportsCard(s, isLead) {
   const whatToBringUp = s.whatToBringUp || '';
   if (!whatHappened && !whyItMatters && !whatToBringUp) return '';
 
-  const label = isLead ? 'The Lead' : (s.label || s.name);
-  const id    = isLead ? 'the-lead' : slugId(s.label || s.name);
+  const label    = isLead ? 'The Lead' : (s.label || s.name);
+  const id       = isLead ? 'the-lead' : slugId(s.label || s.name);
+  const colorCls = sportTypeClass(s.label || s.name);
 
   const credit  = imageCreditFromUrl(s.imageUrl);
   const imgHtml = s.imageUrl
-    ? `    <div class="brief-img sport-card-img"><img src="${esc(s.imageUrl)}" alt="${esc(label)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">${credit ? `<div class="brief-img-credit">Photo: ${esc(credit)}</div>` : ''}</div>`
+    ? `    <div class="brief-img sport-card-img"><img src="${esc(s.imageUrl)}" alt="${esc(label)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">${credit ? `<div class="brief-img-credit">${esc(credit)}</div>` : ''}</div>`
     : '';
 
   const rows = [];
@@ -388,8 +416,12 @@ function buildSportsCard(s, isLead) {
     rows.push(`      <div class="ctx-row"><div class="ctx-label">Players to know</div><ul class="pbio-list">\n${items}\n        </ul></div>`);
   }
 
-  // Video link
-  if (s.videoUrl) rows.push(`      <div class="ctx-row"><a class="watch-moment" href="${esc(s.videoUrl)}" target="_blank" rel="noopener">Watch highlights →</a></div>`);
+  // Video link — use sourced URL if found, otherwise YouTube search fallback
+  const videoHref = s.videoUrl || (() => {
+    const q = encodeURIComponent(`${s.name || s.headline || label} highlights`);
+    return `https://www.youtube.com/results?search_query=${q}`;
+  })();
+  rows.push(`      <div class="ctx-row"><a class="watch-moment" href="${esc(videoHref)}" target="_blank" rel="noopener">Watch highlights →</a></div>`);
 
   // GuyTalk's Pick — green button
   const pickHtml = s.ourPick
@@ -399,7 +431,7 @@ function buildSportsCard(s, isLead) {
   return `  <section class="brief-section sport-card${isLead ? ' sport-lead' : ''}" id="${esc(id)}">
     <div class="section-label sl-sports">${esc(label)}</div>
 ${imgHtml}
-    <div class="ctx-card">
+    <div class="ctx-card ${esc(colorCls)}">
       <div class="ctx-head">
         <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
         <span class="ctx-tag">${esc(s.label || s.name || '')}</span>

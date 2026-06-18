@@ -1488,6 +1488,20 @@ ul.ammo-list li::before {
 
 /* ── ctx-card: Live-page style sport cards ─────────────────────────────────── */
 .ctx-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 16px; }
+/* Sport-specific top border accent */
+.ctx-sport-soccer { border-top: 3px solid var(--sports); }
+.ctx-sport-f1     { border-top: 3px solid #E10600; }
+.ctx-sport-golf   { border-top: 3px solid var(--amber); }
+.ctx-sport-mlb    { border-top: 3px solid var(--accent); }
+.ctx-sport-nba    { border-top: 3px solid var(--accent); }
+.ctx-sport-nhl    { border-top: 3px solid #0067B9; }
+/* Sport-specific tag color inside the dark header */
+.ctx-sport-soccer .ctx-tag { color: #4ADE80; }
+.ctx-sport-f1     .ctx-tag { color: #FCA5A5; }
+.ctx-sport-golf   .ctx-tag { color: #FCD34D; }
+.ctx-sport-mlb    .ctx-tag { color: #93C5FD; }
+.ctx-sport-nba    .ctx-tag { color: #93C5FD; }
+.ctx-sport-nhl    .ctx-tag { color: #7DD3FC; }
 .ctx-head { display: flex; align-items: center; gap: 8px; padding: 12px 18px; background: var(--text); color: #fff; }
 .ctx-title { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
 .ctx-dot { color: var(--red); }

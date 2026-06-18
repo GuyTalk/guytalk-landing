@@ -241,9 +241,9 @@ function playerLink(name) {
 function officialPlayerUrl(p) {
   if (!p) return '#';
   if (p.sport === 'soccer') {
-    // ESPN Soccer is the most reliable soccer profile (FIFA player URLs are unstable)
-    if (p.id) return `https://www.espn.com/soccer/player/_/id/${p.id}/${p.slug}`;
+    // Wikipedia is more reliable for soccer — ESPN soccer IDs vary by league/region
     if (p.wikiSlug) return `https://en.wikipedia.org/wiki/${p.wikiSlug}`;
+    if (p.id) return `https://www.espn.com/soccer/player/_/id/${p.id}/${p.slug}`;
   }
   if (p.sport === 'f1') {
     // Formula1.com official driver profile
