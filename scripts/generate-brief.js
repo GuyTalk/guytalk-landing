@@ -816,7 +816,19 @@ async function main() {
         }
         return merged;
       });
-      console.log(`   ✓ Discovered sports (${dynamicSports.length}): ${dynamicSports.map(s => `${s.isLead ? '★ ' : ''}${s.label} [${s.category}]${s.playerLinks?.length ? ` (${s.playerLinks.length} players)` : ''}`).join(', ')}`);
+      // Search for YouTube highlight videos — one per sport, in parallel
+      try {
+        const { searchWebVideo, buildSportVideoQuery } = require('./lib/imageSearch');
+        const videoResults = await Promise.allSettled(
+          dynamicSports.map(s => (!s.videoUrl && buildSportVideoQuery(s)) ? searchWebVideo(buildSportVideoQuery(s)) : Promise.resolve(null))
+        );
+        dynamicSports = dynamicSports.map((s, i) => ({
+          ...s,
+          videoUrl: s.videoUrl || videoResults[i]?.value || null,
+        }));
+      } catch (_) {}
+
+      console.log(`   ✓ Discovered sports (${dynamicSports.length}): ${dynamicSports.map(s => `${s.isLead ? '★ ' : ''}${s.label} [${s.category}]${s.playerLinks?.length ? ` (${s.playerLinks.length} players)` : ''}${s.videoUrl ? ' 🎬' : ''}`).join(', ')}`);
     }
     if (copy) {
       if (copy.title)          console.log(`   ✓ Headline: "${copy.title}"`);

@@ -194,6 +194,32 @@ ${items}
 </div>`;
 }
 
+// Infer photo credit label from image URL domain.
+function imageCreditFromUrl(url) {
+  if (!url) return null;
+  try {
+    const host = new URL(url).hostname.replace('www.', '');
+    if (/ap\.org|apnews\.com|apimages/.test(host))   return 'AP';
+    if (/espn\.com|espncdn\.com/.test(host))          return 'ESPN';
+    if (/mlb\.com|mlbstatic\.com/.test(host))         return 'MLB';
+    if (/nba\.com/.test(host))                        return 'NBA';
+    if (/nhl\.com/.test(host))                        return 'NHL';
+    if (/formula1\.com/.test(host))                   return 'Formula 1';
+    if (/pgatour\.com/.test(host))                    return 'PGA Tour';
+    if (/gettyimages|gett\.com/.test(host))           return 'Getty Images';
+    if (/cloudinary\.com/.test(host))                 return 'AP / Getty';
+    if (/reuters\.com/.test(host))                    return 'Reuters';
+    if (/usatoday\.com/.test(host))                   return 'USA Today';
+    if (/si\.com/.test(host))                         return 'Sports Illustrated';
+    if (/theathletic\.com/.test(host))                return 'The Athletic';
+    if (/cbssports\.com/.test(host))                  return 'CBS Sports';
+    if (/foxsports\.com/.test(host))                  return 'Fox Sports';
+    if (/fifa\.com/.test(host))                       return 'FIFA';
+    if (/wikimedia\.org/.test(host))                  return 'Wikimedia Commons';
+    return null;
+  } catch { return null; }
+}
+
 // Stable anchor id from a sport/event label (for the nested sidebar + sections).
 function slugId(s) {
   return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -322,11 +348,12 @@ function buildSportsCard(s, isLead) {
   const whatToBringUp = s.whatToBringUp || '';
   if (!whatHappened && !whyItMatters && !whatToBringUp) return ''; // never image-only
 
-  const imgHtml = s.imageUrl
-    ? `    <div class="brief-img sport-card-img"><img src="${esc(s.imageUrl)}" alt="${esc(s.label || s.name)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>`
+  const credit   = imageCreditFromUrl(s.imageUrl);
+  const imgHtml  = s.imageUrl
+    ? `    <div class="brief-img sport-card-img"><img src="${esc(s.imageUrl)}" alt="${esc(s.label || s.name)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">${credit ? `<div class="brief-img-credit">Photo: ${esc(credit)}</div>` : ''}</div>`
     : '';
-  const videoHtml = (cat === 'individual' && s.videoUrl)
-    ? `    <a class="watch-moment" href="${esc(s.videoUrl)}" target="_blank" rel="noopener">Watch the moment →</a>`
+  const videoHtml = s.videoUrl
+    ? `    <a class="watch-moment" href="${esc(s.videoUrl)}" target="_blank" rel="noopener">Watch highlights →</a>`
     : '';
   const label = isLead ? 'The Lead' : (s.label || s.name);
   const id    = isLead ? 'the-lead' : slugId(s.label || s.name);
@@ -337,13 +364,18 @@ function buildSportsCard(s, isLead) {
       }</div>`
     : '';
 
+  const pickHtml = s.ourPick
+    ? `    <div class="guytalk-pick"><span class="pick-label">GuyTalk's Pick</span><span class="pick-text">${esc(s.ourPick)}</span></div>`
+    : '';
+
   const detail = `    <ul class="detail-list">
       ${whatHappened  ? `<li><span><span class="dl-label">What happened:</span> ${esc(whatHappened)}</span></li>`   : ''}
       ${whyItMatters  ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyItMatters)}</span></li>`   : ''}
 ${convoBlocks(s)}
       ${whatToBringUp ? `<li><span><span class="dl-label">What to bring up:</span> ${esc(whatToBringUp)}</span></li>` : ''}
     </ul>
-${playerLinksHtml}`;
+${playerLinksHtml}
+${pickHtml}`;
 
   const body = cat === 'individual'
     ? `${imgHtml}
@@ -352,7 +384,8 @@ ${detail}
 ${videoHtml}`
     : `    <h3>${esc(s.headline || label)}</h3>
 ${detail}
-${imgHtml}`;
+${imgHtml}
+${videoHtml}`;
 
   return `  <section class="brief-section sport-card sport-${cat}${isLead ? ' sport-lead' : ''}" id="${esc(id)}">
     <div class="section-label sl-sports">${esc(label)}</div>
@@ -392,6 +425,10 @@ function buildHtml(issue, relatedIssues) {
   const hasWC  = worldCup?.length > 0;
   const hasGolf = golf?.name != null;
   const hasNHL = !!(nhl && (nhl.final || nhl.next));
+
+  // Editorial section order — computed early so sidebar nav + jump links + body all agree.
+  const isMarketsLead = !!issue.heroOverride?.isNonSportsLead;
+  const bodyOrder = isMarketsLead ? ['markets', 'sports', 'culture'] : ['sports', 'markets', 'culture'];
 
   // Right-rail scroll-spy nav — three top-level anchors (Sports / Markets /
   // Culture) plus Sharp Take, with the sports subsections nested + indented under
@@ -438,10 +475,15 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
   .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
   .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
   .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
-  /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
-     so faces/players show instead of a jersey-number zoom. */
+  /* Images: keep a clean landscape ratio, crop to top so faces show. */
   .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
   .brief-hero-banner--feature{background-position:center 20%;}
+  /* Photo credit — subtle caption beneath images */
+  .brief-img-credit{font-size:10px;color:#9E9891;text-align:right;padding:3px 4px 0;letter-spacing:0.02em;}
+  /* GuyTalk Pick block */
+  .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
+  .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
+  .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
   /* Rundown bullets — clickable anchor navigation. */
   .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
   .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
@@ -449,9 +491,12 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   ${navLink('top', 'Top')}
-${navGroup('sports', 'Sports', sportsSubs.map(([id, label]) => [id, label]), false)}
-${navGroup('markets', 'Markets', [], false)}
-${navGroup('culture', 'Culture', [], false)}
+${bodyOrder.map(key => {
+  if (key === 'sports')  return navGroup('sports',  'Sports',  sportsSubs.map(([id, label]) => [id, label]), false);
+  if (key === 'markets') return navGroup('markets', 'Markets', [], false);
+  if (key === 'culture') return navGroup('culture', 'Culture', [], false);
+  return '';
+}).join('\n')}
   ${navLink('sharp-take', 'Sharp Take')}
 </nav>`;
 
@@ -508,6 +553,32 @@ ${navGroup('culture', 'Culture', [], false)}
 
   const seoTitle = buildSeoTitle(issue);
   const seoDesc  = buildSeoDesc(issue);
+
+  const _sportsSection  = `<div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>\n\n${buildSportsBody(issue)}`;
+  const _marketsSection = `<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>\n\n${buildMarkets(issue)}`;
+  const _cultureSection = `<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>\n\n${buildCulture(issue)}`;
+  const _sectionMap = { sports: _sportsSection, markets: _marketsSection, culture: _cultureSection };
+
+  const _liveCta = `<a href="/live/" class="brief-live-cta">
+  <span class="blc-dot"></span>
+  <div class="blc-inner">
+    <div class="blc-label">Happening Now</div>
+    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
+  </div>
+  <span class="blc-btn">Open GuyTalk Live →</span>
+</a>
+
+<div class="brief-inline-cta">
+  <div class="bic-inner">
+    <div class="bic-label">Free · Daily · 5 Minutes</div>
+    <p class="bic-text">Get GuyTalk in your inbox every morning — before you check anything else.</p>
+  </div>
+  <a href="/#signup" class="bic-btn">Subscribe free →</a>
+</div>`;
+
+  const _bodySections = bodyOrder.map((key, i) =>
+    `${_sectionMap[key]}${i === 0 ? '\n\n' + _liveCta : ''}`
+  ).join('\n\n');
 
   // Word-of-mouth share links (the growth wedge: "don't be the last guy to know")
   const shareUrl  = `https://www.guytalkmedia.com/brief/${slug}/`;
@@ -588,9 +659,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
-      <a href="#sports" class="sj-link">Sports</a>
-      <a href="#markets" class="sj-link">Markets</a>
-      <a href="#culture" class="sj-link">Culture</a>
+      ${bodyOrder.map(k => `<a href="#${k}" class="sj-link${k === bodyOrder[0] ? ' sj-lead' : ''}">${k.charAt(0).toUpperCase() + k.slice(1)}</a>`).join('\n      ')}
     </nav>${subjumpHtml}
   </div>
 </div>
@@ -604,34 +673,7 @@ ${heroImgHtml}
 
 ${buildRundown(issue)}
 
-<div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
-
-${buildSportsBody(issue)}
-
-<a href="/live/" class="brief-live-cta">
-  <span class="blc-dot"></span>
-  <div class="blc-inner">
-    <div class="blc-label">Happening Now</div>
-    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
-  </div>
-  <span class="blc-btn">Open GuyTalk Live →</span>
-</a>
-
-<div class="brief-inline-cta">
-  <div class="bic-inner">
-    <div class="bic-label">Free · Daily · 5 Minutes</div>
-    <p class="bic-text">Get GuyTalk in your inbox every morning — before you check anything else.</p>
-  </div>
-  <a href="/#signup" class="bic-btn">Subscribe free →</a>
-</div>
-
-<div class="umbrella-head"><h2 class="umbrella-title">Markets</h2></div>
-
-${buildMarkets(issue)}
-
-<div class="umbrella-head"><h2 class="umbrella-title">Culture</h2></div>
-
-${buildCulture(issue)}
+${_bodySections}
 
 ${buildRec(issue)}
 

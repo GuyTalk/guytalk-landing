@@ -159,4 +159,92 @@ function buildLeadImageQuery(heroOverride) {
   return `${eyebrow} ${title.slice(0, 50)} news photo 2026`;
 }
 
-module.exports = { searchWebImage, buildSportImageQuery, buildLeadImageQuery };
+/**
+ * Search YouTube for highlight/recap video of a sports event.
+ * Returns a youtube.com/watch?v=... URL or null.
+ */
+async function searchWebVideo(query, { fallback = null } = {}) {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) return fallback;
+
+  let OpenAI;
+  try { OpenAI = require('openai'); } catch (_) { return fallback; }
+  const client = new (OpenAI.default || OpenAI)({ apiKey });
+  if (typeof client.responses?.create !== 'function') return fallback;
+
+  const prompt = `Find a YouTube highlight or recap video for: "${query}"
+
+I need the direct YouTube URL (youtube.com/watch?v=...) for an actual video — not a search results page. Look for official league channels, ESPN, or broadcast highlight clips.`;
+
+  try {
+    const response = await client.responses.create({
+      model: SEARCH_MODEL,
+      tools: [{ type: 'web_search', search_context_size: 'low' }],
+      tool_choice: 'required',
+      input: [{ role: 'user', content: prompt }],
+    });
+
+    const text = (response.output_text || (response.output || [])
+      .filter(b => b.type === 'message')
+      .flatMap(b => Array.isArray(b.content) ? b.content : [])
+      .map(c => c.text || '')
+      .join(''));
+
+    // YouTube watch URLs only (11-char video ID)
+    const ytMatch = text.match(/https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/);
+    if (ytMatch) {
+      console.log(`   🎬  videoSearch hit: ${ytMatch[0].slice(0, 80)}`);
+      return ytMatch[0];
+    }
+
+    // Try citation URLs for YouTube
+    const citedUrls = [];
+    (response.output || []).forEach(block => {
+      if (block.type === 'message') {
+        (block.content || []).forEach(c => {
+          (c.annotations || []).forEach(a => {
+            if (a.type === 'url_citation' && a.url) citedUrls.push(a.url);
+          });
+        });
+      }
+    });
+
+    const ytCitation = citedUrls.find(u => /youtube\.com\/watch\?v=/.test(u));
+    if (ytCitation) {
+      console.log(`   🎬  videoSearch hit (citation): ${ytCitation.slice(0, 80)}`);
+      return ytCitation;
+    }
+
+    return fallback;
+  } catch (err) {
+    console.error(`[searchWebVideo] "${query.slice(0, 60)}": ${err.message}`);
+    return fallback;
+  }
+}
+
+/**
+ * Build a sport-specific video search query for YouTube highlights.
+ */
+function buildSportVideoQuery(s) {
+  const sport = s._sport || '';
+  const hl    = s.headline || '';
+  const name  = s.name || '';
+
+  if (sport === 'worldcup') {
+    const m = hl.match(/^([A-Za-z ]+?)\s+\d/);
+    const teams = m ? m[1].trim() : '';
+    return teams ? `${teams} FIFA World Cup 2026 highlights YouTube` : null;
+  }
+  if (sport === 'f1') return `Formula 1 ${name} 2026 race highlights YouTube`;
+  if (sport === 'golf') return `${name} 2026 golf highlights YouTube`;
+  if (sport === 'mlb') {
+    const m = hl.match(/^(.+?)\s+\d+[–\-]/);
+    const team = m ? m[1].trim() : name;
+    return team ? `${team} MLB highlights 2026 YouTube` : null;
+  }
+  if (sport === 'nba') return `NBA ${name} highlights 2026 YouTube`;
+  if (sport === 'nhl') return `NHL ${name} highlights 2026 YouTube`;
+  return null;
+}
+
+module.exports = { searchWebImage, buildSportImageQuery, buildLeadImageQuery, searchWebVideo, buildSportVideoQuery };
