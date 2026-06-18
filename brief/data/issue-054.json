@@ -2,7 +2,7 @@
   "num": 54,
   "slug": "issue-054",
   "date": "Thursday, June 18, 2026",
-  "title": "Fed turns hawkish. World Cup kicks off. U.S. Open bunched at even.",
+  "title": "Fed holds rates steady, signals future hikes. Pirates demolish Athletics. U.S. Open underway at Shinnecock.",
   "deck": "Five minutes. Everything you need.",
   "sports": [
     {
@@ -310,10 +310,10 @@
       "weekChangePct": null
     },
     "BTC": {
-      "price": 64150.01,
-      "prevClose": 64667.99,
-      "dayChange": -517.98,
-      "dayChangePct": -0.801,
+      "price": 64246,
+      "prevClose": 64872,
+      "dayChange": -626,
+      "dayChangePct": -0.965,
       "weekChangePct": null
     },
     "__dynamicMovers": [
@@ -324,11 +324,11 @@
       "AMZN"
     ],
     "10Y": {
-      "price": 4.4630003,
-      "prevClose": 4.4629998207092285,
-      "dayChange": 4.792907715156502e-7,
-      "dayChangePct": 0.000010739206604751436,
-      "weekChangePct": -1.609335946978564,
+      "price": 4.447,
+      "prevClose": 4.486999988555908,
+      "dayChange": -0.03999998855590814,
+      "dayChangePct": -0.8914639772214863,
+      "weekChangePct": -2.3066793655635567,
       "spark": [
         4.623000144958496,
         4.666999816894531,
@@ -348,7 +348,8 @@
         4.5279998779296875,
         4.541999816894531,
         4.4629998207092285,
-        4.486999988555908
+        4.486999988555908,
+        4.447000026702881
       ]
     },
     "__meta": {
@@ -432,8 +433,8 @@
         {
           "symbol": "BTC",
           "name": "Bitcoin USD",
-          "price": 64081.98,
-          "changePct": -0.93503
+          "price": 64195.01,
+          "changePct": -0.7603
         }
       ]
     }
@@ -575,6 +576,198 @@
   },
   "worldCup": [
     {
+      "name": "Jordan at Austria",
+      "shortName": "JOR @ AUT",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-17T04:00Z",
+      "home": {
+        "team": "Austria",
+        "score": "3"
+      },
+      "away": {
+        "team": "Jordan",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Romano Schmid",
+          "team": "",
+          "clock": "21'",
+          "type": "Goal"
+        },
+        {
+          "player": "Ali Olwan",
+          "team": "",
+          "clock": "50'",
+          "type": "Goal"
+        },
+        {
+          "player": "Yazan Al-Arab",
+          "team": "",
+          "clock": "76'",
+          "type": "Own Goal"
+        },
+        {
+          "player": "Marko Arnautovic",
+          "team": "",
+          "clock": "90'+12'",
+          "type": "Penalty - Scored"
+        }
+      ],
+      "espnNote": "Austria won a World Cup game for the first time in 36 years with a 3-1 victory Tuesday over a Jordan team making their debut at the global showpiece.\n\n\n"
+    },
+    {
+      "name": "Congo DR at Portugal",
+      "shortName": "COD @ POR",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-17T17:00Z",
+      "home": {
+        "team": "Portugal",
+        "score": "1"
+      },
+      "away": {
+        "team": "Congo DR",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "João Neves",
+          "team": "",
+          "clock": "6'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Yoane Wissa",
+          "team": "",
+          "clock": "45'+5'",
+          "type": "Goal - Header"
+        }
+      ],
+      "espnNote": "Cristiano Ronaldo and his Portugal teammates could only manage a 1-1 draw with Congo DR on Wednesday in their opening World Cup match."
+    },
+    {
+      "name": "Croatia at England",
+      "shortName": "CRO @ ENG",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-17T20:00Z",
+      "home": {
+        "team": "England",
+        "score": "4"
+      },
+      "away": {
+        "team": "Croatia",
+        "score": "2"
+      },
+      "goals": [
+        {
+          "player": "Harry Kane",
+          "team": "",
+          "clock": "12'",
+          "type": "Penalty - Scored"
+        },
+        {
+          "player": "Martin Baturina",
+          "team": "",
+          "clock": "36'",
+          "type": "Goal"
+        },
+        {
+          "player": "Harry Kane",
+          "team": "",
+          "clock": "42'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Petar Musa",
+          "team": "",
+          "clock": "45'+5'",
+          "type": "Goal - Volley"
+        },
+        {
+          "player": "Jude Bellingham",
+          "team": "",
+          "clock": "47'",
+          "type": "Goal"
+        },
+        {
+          "player": "Marcus Rashford",
+          "team": "",
+          "clock": "85'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": ""
+    },
+    {
+      "name": "Panama at Ghana",
+      "shortName": "PAN @ GHA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-17T23:00Z",
+      "home": {
+        "team": "Ghana",
+        "score": "1"
+      },
+      "away": {
+        "team": "Panama",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Caleb Yirenkyi",
+          "team": "",
+          "clock": "90'+5'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Caleb Yirenkyi scored in the fifth minute of second-half stoppage time as Ghana beat Panama 1-0 on Wednesday in the teams' World Cup opener."
+    },
+    {
+      "name": "Colombia at Uzbekistan",
+      "shortName": "COL @ UZB",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-18T02:00Z",
+      "home": {
+        "team": "Uzbekistan",
+        "score": "1"
+      },
+      "away": {
+        "team": "Colombia",
+        "score": "3"
+      },
+      "goals": [
+        {
+          "player": "Daniel Muñoz",
+          "team": "",
+          "clock": "40'",
+          "type": "Goal - Volley"
+        },
+        {
+          "player": "Abbosbek Fayzullaev",
+          "team": "",
+          "clock": "60'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Luis Díaz",
+          "team": "",
+          "clock": "65'",
+          "type": "Goal"
+        },
+        {
+          "player": "Jáminton Campaz",
+          "team": "",
+          "clock": "90'+9'",
+          "type": "Goal - Header"
+        }
+      ],
+      "espnNote": "Second-half goals from Luis Díaz and Jáminton Campaz gave Colombia a 3-1 victory over debutants Uzbekistan. "
+    },
+    {
       "name": "South Africa at Czechia",
       "shortName": "RSA @ CZE",
       "status": "Scheduled",
@@ -587,7 +780,9 @@
       "away": {
         "team": "South Africa",
         "score": "0"
-      }
+      },
+      "goals": [],
+      "espnNote": ""
     },
     {
       "name": "Bosnia-Herzegovina at Switzerland",
@@ -602,7 +797,9 @@
       "away": {
         "team": "Bosnia-Herzegovina",
         "score": "0"
-      }
+      },
+      "goals": [],
+      "espnNote": ""
     },
     {
       "name": "Qatar at Canada",
@@ -617,22 +814,9 @@
       "away": {
         "team": "Qatar",
         "score": "0"
-      }
-    },
-    {
-      "name": "South Korea at Mexico",
-      "shortName": "KOR @ MEX",
-      "status": "Scheduled",
-      "statusState": "pre",
-      "date": "2026-06-19T01:00Z",
-      "home": {
-        "team": "Mexico",
-        "score": "0"
       },
-      "away": {
-        "team": "South Korea",
-        "score": "0"
-      }
+      "goals": [],
+      "espnNote": ""
     }
   ],
   "nhl": {
@@ -700,48 +884,111 @@
   "topStories": [
     {
       "category": "Markets / Economy",
-      "headline": "Fed holds rates steady, signals hawkish tilt",
-      "whatHappened": "The Federal Reserve, under new Chair Kevin Warsh, left the target interest rate at 3.50–3.75%, removed easing bias language, and released updated dot-plot projections showing nine officials now expect a rate hike later this year.",
-      "whyItMatters": "This more hawkish posture marks a shift in Fed communication style and shakes investor expectations about future rate cuts, with direct implications for borrowing costs, markets and everyday guys watching their mortgage or credit card rates.",
-      "depth": "Warsh may’ve inherited Powell’s chair, but today he dropped any hint of rate cuts—and markets hated it. If you’ve got a mortgage or a stock portfolio, brace for higher rates sticking around longer than we thought.",
-      "whatToSay": "“So the Fed didn’t cut but also didn’t rule one out—sounds like higher rates could hang around yet.”",
+      "headline": "Fed holds rates steady, Warsh signals future hikes",
+      "whatHappened": "Federal Reserve kept benchmark rate at 3.50–3.75% in Warsh’s first meeting, removed easing bias from statement.",
+      "whyItMatters": "New Fed chair’s tone signals borrowing costs may stay elevated, affecting mortgages, car loans and markets.",
+      "depth": "The Fed didn’t cut rates today, and Warsh’s tweak to the statement—dropping easing language—makes this feel like he’s setting the tone for a tighter year. That matters at the grocery store, on your mortgage, and in the office budget talk.",
+      "whatToSay": "“The Fed held rates, Warsh signaled no cuts—looks like the rate hikes might still be coming.”",
       "sources": [
-        "https://www.axios.com/2026/06/17/fed-warsh-interest-rates",
         "https://www.brecorder.com/news/40426107"
       ],
       "isLead": true,
       "tier": 1,
       "_category": "Markets / Economy",
       "_context": [
-        "Fed rate held at 3.50–3.75% for fourth straight meeting",
-        "Easing bias language removed—first under Warsh era",
-        "Nine of 18 Fed officials now project a hike this year"
+        "Federal Reserve held rates at 3.50–3.75% today ([brecorder.com](https://www.brecorder.com/news/40426107?utm_source=openai))",
+        "Statement removed guidance about future rate cuts ([brecorder.com](https://www.brecorder.com/news/40426107?utm_source=openai))",
+        "Quarterly projections show nine officials expect a hike by end‑2026 ([brecorder.com](https://www.brecorder.com/news/40426107?utm_source=openai))"
       ],
       "_confidenceScore": 5,
-      "_selectionReason": "Top daily economic event with high relevance to men tracking markets or personal finance.",
-      "_verificationConcerns": ""
+      "_selectionReason": "Top economic decision today under new Fed leadership, directly impacts readers’ wallets.",
+      "_verificationConcerns": "None"
     },
     {
-      "category": "Culture / Entertainment | Major World Events",
-      "headline": "US routs Guyana 4–0 in World Cup opener",
-      "whatHappened": "The U.S. Men’s National Team beat Guyana 4–0 in their opening match of the FIFA World Cup 2026, continuing Group D play in St. Paul tonight.",
-      "whyItMatters": "Opening statements in a home World Cup mean big talk around water coolers and bars—plus, a strong start matters for national pride and momentum.",
-      "depth": "Nothing says ‘World Cup on home soil’ like a 4–0 win to kick it off. You’ll hear guys quoting that stat at the bar: ‘US went 4–0, buddy.’",
-      "whatToSay": "“US gave up nil and scored four—nice way to kick off a World Cup at home, eh?”",
+      "category": "Markets / Economy",
+      "headline": "Stocks slide, dollar and yields rise after Fed tone",
+      "whatHappened": "Wall Street fell, U.S. dollar strengthened and Treasury yields rose after Fed held rates and struck a hawkish tone.",
+      "whyItMatters": "Investments, savings and loan rates shift with markets’ reaction—guys watching portfolios or rates care.",
+      "depth": "If you saw your 401(k) dip today or noticed rates creeping up again on loan calculators, you’re not imagining it. Markets are pricing in a tougher path after Warsh’s tone.",
+      "whatToSay": "“Markets tanked a bit today—dollar up, yields up—Fed’s not easing anytime soon.”",
       "sources": [
-        "https://www.insideworldfootball.com/gold-cup-fixtures-results/"
+        "https://au.investing.com/news/economy-news/trading-day-us-stocks-end-lower-dollar-jumps-as-federal-reserve-kicks-off-warsh-era-4493499"
       ],
       "isLead": false,
       "tier": 1,
-      "_category": "Culture / Entertainment | Major World Events",
+      "_category": "Markets / Economy",
       "_context": [
-        "Match was Group D at Allianz Field, St. Paul, kickoff 9 p.m. ET",
-        "Panama beat Trinidad earlier 2–0 in same group",
-        "This is the U.S.’s first match of the tournament"
+        "Stocks ended lower, dollar gained, yields rose after the Fed decision ([au.investing.com](https://au.investing.com/news/economy-news/trading-day-us-stocks-end-lower-dollar-jumps-as-federal-reserve-kicks-off-warsh-era-4493499?utm_source=openai))",
+        "Markets reacted to hawkish signals from the Fed ([devdiscourse.com](https://www.devdiscourse.com/article/business/3936416-global-markets-sp-500-falls-yields-rise-following-fed-announcement?utm_source=openai))",
+        "This was the first Fed meeting under Kevin Warsh ([au.investing.com](https://au.investing.com/news/economy-news/trading-day-us-stocks-end-lower-dollar-jumps-as-federal-reserve-kicks-off-warsh-era-4493499?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Immediate market reaction complements Fed decision news, relevant to readers tracking stocks or loans.",
+      "_verificationConcerns": "None"
+    },
+    {
+      "category": "Sports",
+      "headline": "U.S. Open begins at Shinnecock Hills",
+      "whatHappened": "Round 1 of the 126th U.S. Open officially begins today at Shinnecock Hills Golf Club in New York.",
+      "whyItMatters": "One of golf’s four majors kicks off; big names like Scheffler, McIlroy are in the field—watchable sports drama starts now.",
+      "depth": "Golf majors are social currency—even if you don’t watch, someone at the café will mention it. And with Scheffler chasing a grand slam and Rory hunting history, this is worth a mention.",
+      "whatToSay": "“The U.S. Open starts today—Scheffler and Rory are names I’ll actually watch.”",
+      "sources": [
+        "https://www.nbcsportsphiladelphia.com/golf/us-open-2026-tv-info-course-players/736637/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "U.S. Open runs June 18–21 at Shinnecock Hills ([en.wikipedia.org](https://en.wikipedia.org/wiki/2026_U.S._Open_%28golf%29?utm_source=openai))",
+        "Coverage on USA Network and Peacock starts today ([nbcsportsphiladelphia.com](https://www.nbcsportsphiladelphia.com/golf/us-open-2026-tv-info-course-players/736637/?utm_source=openai))",
+        "Scottie Scheffler and Rory McIlroy among top contenders ([nbcsportsphiladelphia.com](https://www.nbcsportsphiladelphia.com/golf/us-open-2026-tv-info-course-players/736637/?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High-profile sporting event beginning today; broad appeal and conversation-worthy.",
+      "_verificationConcerns": "No scores yet—just start of event."
+    },
+    {
+      "category": "Major World Events",
+      "headline": "World Cup qualifiers kick off today",
+      "whatHappened": "The first matches of the 2026 FIFA World Cup qualifiers are scheduled today, including Czechia vs South Africa and Mexico vs South Korea.",
+      "whyItMatters": "World Cup hype is building—fans will be buzzing about early matchups and group draws.",
+      "depth": "Even if you're not checking the scores right now, you’ll hear coworkers talking about ‘who’s in their group’. These matches are starting the buzz.",
+      "whatToSay": "“World Cup qualifiers are already starting—Mexico’s up first against South Korea.”",
+      "sources": [
+        "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_qualification"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Qualifiers for the 2026 FIFA World Cup include Czechia vs South Africa, Canada vs Qatar, Mexico vs South Korea today ([en.wikipedia.org](https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_qualification?utm_source=openai))",
+        "Schedule confirmed by FIFA and reported in major news ([en.wikipedia.org](https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_qualification?utm_source=openai))"
       ],
       "_confidenceScore": 4,
-      "_selectionReason": "World Cup opening performance by U.S. is massively talk-worthy.",
-      "_verificationConcerns": ""
+      "_selectionReason": "World Cup-related content is conversation-worthy among men and fits world events bucket.",
+      "_verificationConcerns": "No results yet, only schedule; still newsworthy as kickoff."
+    },
+    {
+      "category": "Markets / Economy",
+      "headline": "Fed’s dot plot shows split but tilt to 2026 hike",
+      "whatHappened": "Federal Reserve’s updated projections show nine officials expect a rate hike by end‑2026; language on future guidance removed.",
+      "whyItMatters": "Adds nuance to Fed story—shows internal split and underscores potential rate increases, not just hold-tight communication.",
+      "depth": "The Fed isn’t united, but enough people are quietly penciling in one or two hikes this year. That’s subtle, but it’s what changes psychology on loans and investments.",
+      "whatToSay": "“Looks like there’s at least one or two rate hikes penciled in this year, according to the Fed’s latest dot plot.”",
+      "sources": [
+        "https://www.brecorder.com/news/40426107"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Nine Fed officials now expect a rate hike later in 2026 ([brecorder.com](https://www.brecorder.com/news/40426107?utm_source=openai))",
+        "Forward‑guidance language removed in this meeting’s statement ([brecorder.com](https://www.brecorder.com/news/40426107?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Deepens understanding of Fed decision and is a natural follow-on in conversation.",
+      "_verificationConcerns": "Overlaps slightly with lead; but adds detail."
     }
   ],
   "sectionStories": {
@@ -781,24 +1028,25 @@
       "name": "FIFA World Cup 2026",
       "label": "World Cup",
       "category": "team",
-      "headline": "FIFA World Cup 2026 — 4 matches today",
-      "facts": "TODAY'S WORLD CUP SLATE (all times EDT): South Africa vs. Czechia (12:00 PM); Bosnia-Herzegovina vs. Switzerland (3:00 PM); Qatar vs. Canada (6:00 PM); South Korea vs. Mexico (9:00 PM). Write as a World Cup preview covering today's matches, what's at stake in each group, and key storylines. Do NOT invent scores.",
+      "headline": "England 4–2 Croatia",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nEngland 4–2 Croatia | Scorers: Harry Kane (12' pen), Martin Baturina (36'), Harry Kane (42'), Petar Musa (45'+5'), Jude Bellingham (47'), Marcus Rashford (85')\nAustria 3–1 Jordan | Scorers: Romano Schmid (21'), Ali Olwan (50'), Yazan Al-Arab (76'), Marko Arnautovic (90'+12' pen) NOTE: Austria won a World Cup game for the first time in 36 years with a 3-1 victory Tuesday over a Jordan team making their d\nColombia 3–1 Uzbekistan | Scorers: Daniel Muñoz (40'), Abbosbek Fayzullaev (60'), Luis Díaz (65'), Jáminton Campaz (90'+9') NOTE: Second-half goals from Luis Díaz and Jáminton Campaz gave Colombia a 3-1 victory over debutants Uzbekistan. \nPortugal 1–1 Congo DR | Scorers: João Neves (6'), Yoane Wissa (45'+5') NOTE: Cristiano Ronaldo and his Portugal teammates could only manage a 1-1 draw with Congo DR on Wednesday in their opening Wo\nGhana 1–0 Panama | Scorers: Caleb Yirenkyi (90'+5') NOTE: Caleb Yirenkyi scored in the fifth minute of second-half stoppage time as Ghana beat Panama 1-0 on Wednesday in the team\nTODAY'S FIXTURES: South Africa vs. Czechia (12:00 PM EDT); Bosnia-Herzegovina vs. Switzerland (3:00 PM EDT); Qatar vs. Canada (6:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
       "background": "",
       "source": "ESPN",
       "url": "",
-      "imageUrl": "/assets/hero/nba.jpg",
+      "imageUrl": "/assets/hero/default.jpg",
       "videoUrl": null,
       "isLead": true,
       "tier": 1,
-      "whatHappened": "Four World Cup 2026 matches play today across two groups: South Africa vs. Czechia at noon, Bosnia-Herzegovina vs. Switzerland at 3 p.m., Qatar vs. Canada at 6 p.m., and South Korea vs. Mexico at 9 p.m. EDT.",
-      "whyItMatters": "These matches will shape the group stage standings heading into the final round of play, with teams fighting to secure knockout spots and avoid early exits. Every result today shifts qualification odds and determines which squads control their own fate in the final matches.",
-      "theRead": "The Qatar vs. Canada matchup carries the most narrative weight — Canada's last World Cup appearance was 1986, making this a rare chance to prove the country belongs on the biggest stage. South Korea vs. Mexico is the showcase game, a clash of two teams with serious tournament histories. Bosnia-Herzegovina and Switzerland have faced each other plenty in qualifying campaigns, so that's a grudge matchup with European pride on the line. The early window with South Africa and Czechia could surprise people — African nations have a habit of stealing points when nobody's watching.",
+      "whatHappened": "Harry Kane scored twice as England demolished Croatia 4–2, with Jude Bellingham adding a goal in the second half and Marcus Rashford sealing it late.",
+      "whyItMatters": "England came out swinging in their World Cup opener, establishing early control through Kane's penalty and Bellingham's pace. Croatia fought back but couldn't sustain the pressure, signaling that England's midfield depth—something they've lacked in past tournaments—is finally clicking.",
+      "theRead": "Kane looks sharp and clinical from the spot. Bellingham entering the game at 21 and immediately making an impact is the bigger story—he's the kind of young midfielder that makes a team dangerous in knockout rounds. Croatia's inability to control the middle despite early resilience suggests they'll struggle against deeper teams. Austria's first World Cup win in 36 years over Jordan (3–1) and Colombia's 3–1 dismantling of debutant Uzbekistan show the tournament's heavy hitters are rolling. Portugal's 1–1 draw with Congo DR is the real eyebrow-raiser: Cristiano Ronaldo's side couldn't break down a team making their World Cup debut.",
       "ammo": [
-        "World Cup 2026 group stage matches: South Africa vs. Czechia (12:00 PM EDT), Bosnia-Herzegovina vs. Switzerland (3:00 PM EDT), Qatar vs. Canada (6:00 PM EDT), South Korea vs. Mexico (9:00 PM EDT)",
-        "Canada's last World Cup appearance was 1986",
-        "Four matches today across two different groups determine final positioning before knockout round"
+        "Harry Kane scored twice, including a penalty in the 12th minute",
+        "Jude Bellingham scored in the 47th minute, his first World Cup goal",
+        "Austria won a World Cup match for the first time in 36 years",
+        "Portugal drew 1–1 with Congo DR, Ronaldo's team unable to break through"
       ],
-      "whatToBringUp": "Canada hasn't been to the World Cup in 40 years — if they can't at least stay competitive today, they're flying home early."
+      "whatToBringUp": "England's actually looking scary this tournament—Kane's in form and Bellingham's the real deal, but Portugal drawing with Congo DR is wild."
     },
     {
       "name": "Lenovo Austrian Grand Prix",
@@ -809,19 +1057,19 @@
       "background": "",
       "source": "ESPN",
       "url": "",
-      "imageUrl": "/assets/hero/f1-054.jpg",
+      "imageUrl": "/assets/hero/f1.jpg",
       "videoUrl": null,
       "isLead": false,
       "tier": 1,
-      "whatHappened": "The Lenovo Austrian Grand Prix runs this weekend at the Red Bull Ring.",
-      "whyItMatters": "Austria is traditionally a high-speed circuit that rewards strong engine performance and aerodynamic efficiency, making it a crucial test for teams' development trajectories heading into the mid-season stretch.",
-      "theRead": "Red Bull's home race usually dictates the pecking order for the next cycle of upgrades. Teams will debut new parts here because the visibility is high and the data translates directly to the next four or five races. Watch the midfield — this is where smaller teams prove whether they've made real progress or if they're still chasing ghosts.",
+      "whatHappened": "The Lenovo Austrian Grand Prix takes place this weekend at the Red Bull Ring.",
+      "whyItMatters": "Austria is a traditional speed circuit favoring top-end performance and high-speed cornering, making it a strong indicator of which teams have true pace versus which ones are sandbagging.",
+      "theRead": "This is a straightforward track where car performance and driver consistency separate good weekends from bad ones. No excuses for slow pace here.",
       "ammo": [
-        "Lenovo Austrian Grand Prix takes place this weekend",
-        "Red Bull Ring is a high-speed circuit favoring strong engine power",
-        "Mid-season race often used by teams to debut aerodynamic upgrades"
+        "The Red Bull Ring hosts the Lenovo Austrian Grand Prix this weekend",
+        "Austria is traditionally a high-speed circuit favoring aerodynamic efficiency",
+        "Results here typically indicate genuine competitive pace rather than circuit-specific advantage"
       ],
-      "whatToBringUp": "Austria tells you whether teams actually fixed their car over the break or if they're just hoping to limp through until the next update."
+      "whatToBringUp": "Austria this weekend should tell us who actually has pace and who's been gaming the season so far."
     },
     {
       "name": "U.S. Open",
@@ -836,15 +1084,15 @@
       "videoUrl": null,
       "isLead": false,
       "tier": 1,
-      "whatHappened": "The U.S. Open is in progress with James Nicholas, Caleb Surratt, and Jayden Schaper all tied at even par atop the leaderboard.",
-      "whyItMatters": "A three-way tie at the U.S. Open heading into the final rounds means this tournament is wide open — no player has seized control, so any of these three can walk away as champion.",
-      "theRead": "Even par leading the U.S. Open is incredibly tight. This is a major where courses are supposed to punish, so the scoring says either the setup is playing fair or someone's playing brilliant golf while everyone else struggles. The fact that it's a three-way tie instead of a runaway tells you no one's distancing themselves — this comes down to who handles pressure the cleanest down the stretch. Nicholas, Surratt, and Schaper are all looking at identical scorecards, which means luck, nerve, and two clean rounds separate a winner from also-rans.",
+      "whatHappened": "The U.S. Open is in progress with James Nicholas, Caleb Surratt, and Jayden Schaper tied at even par atop the leaderboard.",
+      "whyItMatters": "A three-way tie at the top with no clear leader signals a wide-open tournament where any of these three—or someone lurking just behind—could seize control with one hot round.",
+      "theRead": "Even par leading the U.S. Open tells you the course is playing tough and the field is bunched. This typically means whoever gets hot first wins. None of these names are household, which means there's potential for an unexpected champion.",
       "ammo": [
-        "U.S. Open leaderboard: James Nicholas E, Caleb Surratt E, Jayden Schaper E",
-        "Three-way tie at even par leading the tournament",
-        "Tournament in progress — no winner yet"
+        "James Nicholas, Caleb Surratt, and Jayden Schaper are tied for the lead at even par",
+        "The U.S. Open is in progress with no winner yet",
+        "Even par is the lead, indicating a difficult course setup"
       ],
-      "whatToBringUp": "Three guys all tied at even at the U.S. Open means whoever doesn't choke on Friday wins the whole thing."
+      "whatToBringUp": "The U.S. Open's so tight right now that nobody you've heard of is leading—that usually means someone's about to come from nowhere and steal it."
     },
     {
       "name": "MIA @ PHI",
@@ -855,19 +1103,19 @@
       "background": "",
       "source": "ESPN",
       "url": "",
-      "imageUrl": "/assets/hero/mlb.jpg",
+      "imageUrl": "/assets/hero/default.jpg",
       "videoUrl": null,
       "isLead": false,
       "tier": 1,
-      "whatHappened": "The Miami Marlins crushed the Philadelphia Phillies 12-4.",
-      "whyItMatters": "Miami's offensive explosion against a division rival signals they're capable of matching firepower with contenders, while Philadelphia got exposed defensively and offensively in a way that matters in a tight division race.",
-      "theRead": "An 8-run win in the division is the kind of statement game that makes teams nervous heading into July. The Marlins clearly came prepared and didn't back down — they out-executed the Phillies in every phase. Philadelphia's pitching couldn't hold the line, and their bats didn't answer. This isn't just a loss; it's a reminder that Miami's in the conversation when the lineup connects.",
+      "whatHappened": "The Miami Marlins beat the Philadelphia Phillies 12–4.",
+      "whyItMatters": "Miami put up double digits against a playoff-caliber team, signaling their offense showed up and the Phillies' pitching couldn't contain them.",
+      "theRead": "A 12–4 win is dominant and decisive. Either Miami's lineup was clicking or Philadelphia's rotation had a bad day—likely both. This is the kind of win that builds confidence in a young roster.",
       "ammo": [
-        "Miami Marlins defeated Philadelphia Phillies 12-4",
-        "8-run margin of victory in divisional matchup",
-        "Miami's offensive output signals competitive strength against established rival"
+        "Miami Marlins defeated Philadelphia Phillies 12–4",
+        "The Marlins scored 12 runs, indicating offensive dominance",
+        "Philadelphia allowed 12 runs, a sign of pitching struggles"
       ],
-      "whatToBringUp": "The Marlins just proved they can take the Phillies to the woodshed — this changes how Philly has to think about them going forward."
+      "whatToBringUp": "The Marlins just beat the Phillies 12–4—that's the kind of blowout that either means Miami's arrived or Philly's got real problems on the mound."
     }
   ],
   "heroImage": null,
@@ -875,228 +1123,222 @@
     "image": "/assets/hero/default.jpg",
     "imageReal": false,
     "eyebrow": "Markets / Economy",
-    "title": "Fed holds rates steady, signals hawkish tilt",
+    "title": "Fed holds rates steady, Warsh signals future hikes",
     "sub": "Markets / Economy",
     "isNonSportsLead": true
   },
   "copy": {
-    "title": "Fed turns hawkish. World Cup kicks off. U.S. Open bunched at even.",
-    "keyTakeaway": "The Fed just shifted the goalposts. New Chair Kevin Warsh held rates steady but stripped out any hint of cuts — nine officials now expect a hike later this year. Markets sold off hard, big tech led the bleeding, and chip stocks were the only green on the board. Meanwhile, the U.S. opened the home World Cup with a 4–0 win over Guyana, and the U.S. Open at Shinnecock Hills is a five-way logjam at even par.",
+    "title": "Fed holds rates steady, signals future hikes. Pirates demolish Athletics. U.S. Open underway at Shinnecock.",
+    "keyTakeaway": "The Fed held rates at 3.50–3.75% and new chair Warsh stripped easing language from the statement — the clearest signal yet that cuts aren't coming and hikes might be. Markets felt it immediately: tech sold off hard, the dollar jumped, and yields moved. Meanwhile the U.S. Open is live at Shinnecock Hills with James Nicholas leading a bunched leaderboard at even par, and Toy Story 5 is tracking for a $275 million global opening weekend.",
     "todaysHits": null,
     "lead": {
       "gameIndex": 0,
-      "headline": "Fed turns hawkish, markets take the hit",
-      "whatHappened": "The Federal Reserve, under new Chair Kevin Warsh, held the target rate steady at 3.50–3.75% but removed all easing bias language and released a dot plot showing nine officials now expect a rate hike later this year.",
-      "whyBullet1": "This is a direct signal that cheaper borrowing is off the table — mortgages, car loans, and business debt stay expensive longer than markets had priced in.",
-      "whyBullet2": "Big tech got crushed because higher rates make future earnings worth less today — Meta fell 5.4%, Microsoft dropped 3.8%, and Amazon shed 3.5% on the session.",
-      "theRead": "Warsh just killed the rate-cut narrative in one press conference. Powell left office with dovish breadcrumbs — cuts in 2026, maybe. Warsh walked in and burned them. Nine officials expecting a hike later this year is not a signal of patience, it is a warning shot. Meta and Amazon got hammered because higher discount rates eat into the present value of their future earnings. AMD and Broadcom held better because they are less exposed to multiple compression. The real question now is whether earnings growth can outrun the math of higher rates. Wednesday's market said it cannot.",
+      "headline": "Fed Holds, Warsh Signals Hikes Are Back on the Table",
+      "whatHappened": "The Federal Reserve kept its benchmark rate at 3.50–3.75% at Kevin Warsh's first meeting as chair, but removed easing language from the statement — a deliberate signal that the next move could be up, not down.",
+      "whyBullet1": "Warsh's tone shift matters more than the hold itself. Dropping easing language tells the market the Fed is no longer leaning toward cuts, which reprices mortgages, car loans, and corporate borrowing costs in real time.",
+      "whyBullet2": "The Fed's updated dot plot shows nine officials penciling in a rate hike by end of 2026 — not a consensus, but enough of a tilt to move markets and change how banks and businesses plan the next 12 months.",
+      "theRead": "Warsh walked into his first meeting and immediately rewrote the script. The rate didn't move, but the language did — and in Fed-speak, that's the louder statement. Growth stocks felt it first: Meta fell 5.4%, Microsoft dropped 3.8%, Amazon slid 3.5%. The Russell 2000 only lost 0.8%, which tells you the pain is concentrated in expensive, rate-sensitive tech names rather than the broader economy. The week is still green across all major indexes, so this isn't a panic — it's a repricing. The real question is whether Warsh follows through or whether incoming data softens his hand before the next meeting.",
       "ammo": [
-        "Fed funds rate held at 3.50–3.75%; nine officials now project a rate hike later in 2026",
-        "Meta closed -5.4%; Microsoft -3.8%; Amazon -3.5% on Wednesday",
-        "Broadcom +4.3%, AMD +1.0% on the day",
-        "SPY closed -1.2% Wednesday; 10-year Treasury yield flat on the day but down 1.6% for the week"
+        "Federal Reserve held rates at 3.50–3.75% at Warsh's first meeting as chair",
+        "Warsh removed easing language from the Fed statement — a hawkish signal",
+        "Fed dot plot shows nine officials expect a rate hike by end of 2026",
+        "META fell 5.4%, MSFT fell 3.8%, AMZN fell 3.5% on the day",
+        "SPY closed down 1.2% Wednesday but remains up 2.1% on the week"
       ],
-      "whatToSay": "Warsh basically told the market rate cuts are dead — nine Fed officials are now expecting a hike this year, which is why tech got crushed today."
+      "whatToSay": "The Fed held rates but Warsh basically said cuts are off the table — looks like hikes could be coming back."
     },
     "sportsOther": [],
     "markets": {
       "headlines": [
         {
-          "head": "Fed signals higher rates are here to stay — Warsh removes easing language",
-          "sub": "Chair Kevin Warsh left rates steady at 3.50–3.75% but dropped Powell's dovish tone entirely. Nine Fed officials now expect a rate hike later this year, a sharp pivot from the cuts markets were betting on. SPY closed Wednesday at -1.2%, closing out a +2.1% week."
+          "head": "Fed holds steady, Warsh drops the easing language",
+          "sub": "Federal Reserve kept rates at 3.50–3.75% and removed dovish language from its statement in Warsh's first meeting as chair. That signals rate cuts are off the table for now, which ripples through mortgages, car loans, and corporate borrowing costs."
         },
         {
-          "head": "Meta takes the worst hit — down 5.4% as Big Tech sells off",
-          "sub": "Microsoft (-3.8%), Amazon (-3.5%), and Google (-2.5%) all closed lower Wednesday. The Nasdaq closed -1.0% on the day but still up +4.2% for the week."
+          "head": "Meta gets hammered, tech takes a step back",
+          "sub": "META closed down 5.4% Wednesday, while MSFT fell 3.8% and AMZN dropped 3.5%. The Nasdaq closed down 1.0% but is up 4.2% on the week."
         },
         {
-          "head": "Chip stocks diverge — AMD and Broadcom gain while NVDA pulls back",
-          "sub": "AMD closed +1.0% and Broadcom +4.3%, but NVDA dropped -1.3%, signaling mixed confidence in the sector."
+          "head": "Semiconductor strength pushes past the broader selloff",
+          "sub": "AVGO closed up 4.3% and AMD up 1.0% Wednesday, outpacing declines in NVDA (down 1.3%) as chip stocks diverge."
         }
       ],
-      "mood": "Markets closed sharply lower after a hawkish Fed surprise, with big tech leading the selloff and chip stocks the only notable bright spot on an ugly Wednesday.",
-      "whyBullet1": "New Fed Chair Kevin Warsh removed easing bias language entirely and nine officials now project a rate hike later this year — that directly keeps borrowing costs elevated for mortgages, car loans, and business debt.",
-      "whyBullet2": "Watch the June jobs report and any Fed speakers in the coming days — the market is actively repricing rate expectations and every data point now carries more weight.",
-      "bringUp": "The 10-year Treasury yield held flat Wednesday but is down 1.6% for the week, meaning bond traders are still working out whether the Fed's hawkish shift is the new baseline or a negotiating posture.",
-      "theRead": "Warsh just killed the rate-cut narrative. Powell left office with dovish breadcrumbs — cuts in 2026, maybe. Warsh walked in and burned them. Nine officials expecting a hike later this year is not patience, it is a warning shot. Meta and Amazon got hammered because higher discount rates eat into the present value of future earnings. AMD and Broadcom held better, likely because they are less exposed to that multiple compression. The real question is whether earnings growth can outrun the math of higher rates. Wednesday's market said it cannot.",
+      "mood": "Wall Street closed lower Wednesday after the Fed held rates at 3.50–3.75% and new chair Warsh stripped easing language from the statement, sending tech stocks lower and pushing the dollar and Treasury yields higher. The S&P 500 fell 1.2% on the day but remains up 2.1% on the week.",
+      "whyBullet1": "Warsh removing easing language signals the Fed is no longer leaning toward cuts. That keeps pressure on long-duration assets and borrowing costs, which is why Treasury yields moved and growth stocks felt it hardest.",
+      "whyBullet2": "The jobs report and any Fed speaker commentary through the end of the week will be watched closely to see whether Warsh's hawkish tone holds or whether incoming data softens the signal.",
+      "bringUp": "The 10-year Treasury is down 2.3% on the week, meaning bond traders are already pricing in a longer stretch of elevated rates — not just one more hold.",
+      "theRead": "Warsh's first meeting was a statement move, not a rate move, and that's exactly why it landed hard. Dropping easing language is the Fed's way of telling the market to stop pricing in cuts. Meta's 5.4% drop and Microsoft's 3.8% slide show that growth-heavy names are the first to reprice when the rate ceiling goes up. Semiconductors diverged — AVGO gained 4.3% and AMD added 1.0% — which suggests the market is rotating toward infrastructure plays rather than fleeing tech entirely. The week is still green across all major indexes, so this is repricing, not panic. The real tell will come if Warsh's tone sticks through the next data prints.",
       "ammo": [
-        "Fed funds rate held at 3.50–3.75%; nine officials now project a rate hike later in 2026",
-        "Meta closed -5.4%; Microsoft -3.8%; Amazon -3.5% on Wednesday",
-        "10-year Treasury yield flat on the day, down 1.6% for the week",
-        "Broadcom +4.3%, AMD +1.0%; NVDA -1.3%",
-        "SPY closed -1.2% Wednesday; QQQ up +4.2% for the week"
+        "Federal Reserve held rates at 3.50–3.75% and removed easing language from its statement",
+        "META down 5.4%, MSFT down 3.8%, AMZN down 3.5% on Wednesday",
+        "SPY down 1.2% Wednesday but up 2.1% on the week",
+        "AVGO up 4.3% and AMD up 1.0% as semiconductors diverged from broader tech",
+        "10-year Treasury down 2.3% on the week"
       ]
     },
     "golf": {
-      "headline": "U.S. Open at Shinnecock Hills: three-way tie at even par",
-      "whyCare1": "The U.S. Open is golf's toughest test — Shinnecock Hills is one of the most demanding venues in the world, and whoever survives this setup claims the year's second major and the credibility that comes with it.",
-      "whyCare2": "With the entire leaderboard bunched at even par, one hot back nine changes everything — this is exactly the kind of setup where an unknown can steal a major.",
-      "watchFor": "Whether James Nicholas can separate from the pack or if Caleb Surratt or Jayden Schaper catches fire and breaks the logjam on one of golf's most unforgiving courses.",
-      "theRead": "This is what U.S. Open golf looks like — nobody is running away, the course is playing brutal, and scoring is bunched tighter than any tournament you have watched in months. Nicholas has the lead but he has company right behind him. Surratt and Schaper are both at even par and breathing down his neck. In a major this tight, one birdie run wins it and one double bogey ends it. Watch for who stays patient and who loses their mind first on Shinnecock's back nine.",
+      "headline": "Nicholas Leads a Bunched U.S. Open at Shinnecock",
+      "whyCare1": "The U.S. Open is golf's toughest test — Shinnecock Hills is a links-style course that punishes anything less than precise ball-striking and patience, and the USGA sets it up to break people.",
+      "whyCare2": "The leaderboard is completely bunched at even par, meaning one hot stretch or one blown hole could reshuffle the entire top of the board heading into the weekend.",
+      "watchFor": "Whether James Nicholas can separate from the pack, and whether any of the bigger names in the field can make a move before the cut.",
+      "theRead": "Nicholas has the lead but he's not running away — Surratt and Schaper are right there at the same score. This is exactly what the U.S. Open is designed to produce: nobody comfortable, everyone one bad swing from dropping out of contention. Shinnecock Hills has a history of humbling the field and producing surprising leaderboards early before the big names assert themselves. The real story starts when the rough gets up and the greens get firm — that's when the separation happens.",
       "ammo": [
-        "James Nicholas leads at even par (E) at the U.S. Open",
-        "Caleb Surratt sits in 2nd place at even par",
-        "Jayden Schaper is in 3rd place at even par",
-        "The tournament is being played at Shinnecock Hills in Southampton, New York"
+        "James Nicholas leads the U.S. Open at even par after the opening round",
+        "Caleb Surratt and Jayden Schaper are tied for second, also at even par",
+        "Tournament is being played at Shinnecock Hills Golf Club in Southampton, New York"
       ],
-      "whatToSay": "Five guys bunched at even par at a U.S. Open on Shinnecock — somebody's about to either go on a birdie run or completely fall apart. That's the best kind of major Sunday setup."
+      "whatToSay": "The U.S. Open leaderboard is completely bunched at even par — five guys separated by nothing and Shinnecock hasn't even started being cruel yet."
     },
     "f1": {
-      "headline": "Austrian GP this weekend with Antonelli leading the title",
-      "whyCare1": "The Red Bull Ring is one of the shortest, most aggressive circuits on the calendar — it punishes mistakes and rewards raw pace, which means the standings can shift fast in a single afternoon.",
-      "whyCare2": "<a href='https://en.wikipedia.org/wiki/Kimi_Antonelli' class='entity-person'>Andrea Kimi Antonelli</a> heads into the weekend 41 points clear at the top of the championship — every rival needs a big result here or that gap starts looking very difficult to close.",
-      "watchFor": "Whether anyone can put genuine pressure on Antonelli — a dominant weekend from him and that 41-point cushion starts feeling like a stranglehold on the title.",
-      "theRead": "Antonelli at 41 points up is not a runaway lead, but it is a comfortable one heading into a race where track position matters enormously and chaos is always possible. The Red Bull Ring is short, fast, and has seen wild reversals before — it is exactly the kind of place where a title leader can lose 25 points in an afternoon through no fault of their own. That cuts both ways. If Antonelli handles the pressure and banks another strong result this weekend, the rest of the grid is going to run out of calendar to fight back. The Austrian GP is the kind of race where we find out if a points leader is actually in control or just temporarily ahead.",
+      "headline": "Austria Is Where Title Races Get Decided Fast",
+      "whyCare1": "The Red Bull Ring is one of the shortest, most aggressive circuits on the calendar — small mistakes become big points swings, and the layout rewards drivers willing to take risks.",
+      "whyCare2": "Andrea Kimi Antonelli heads into the weekend 41 points clear at the top of the standings. A clean run here could make the championship conversation very one-sided heading into the summer break.",
+      "watchFor": "Whether any of Antonelli's rivals can apply real pressure — 41 points sounds comfortable until one bad weekend collapses it.",
+      "theRead": "Antonelli's 41-point lead is a target, not a lock. The Red Bull Ring is exactly the kind of short, punchy circuit where a chasing driver can manufacture a crisis out of nothing — a safety car, a first-lap incident, a strategy call that goes wrong. If his rivals don't take points off the table this weekend, the summer break starts looking very grim for them. Austria has a habit of forcing the issue when the standings look too settled.",
       "ammo": [
-        "Andrea Kimi Antonelli leads the 2026 F1 drivers championship by 41 points heading into the Austrian GP",
-        "The Red Bull Ring in Spielberg is one of the shortest circuits on the F1 calendar at roughly 4.3 km per lap",
-        "The Lenovo Austrian Grand Prix runs this weekend, starting June 28",
-        "The Red Bull Ring has historically produced high attrition rates due to kerb damage and close wheel-to-wheel racing"
+        "Andrea Kimi Antonelli leads the 2026 F1 drivers' championship by 41 points heading into Austria",
+        "The Red Bull Ring in Spielberg, Austria is one of the shortest circuits on the F1 calendar at 4.318 km per lap",
+        "The Lenovo Austrian Grand Prix takes place this weekend, with the race on June 29"
       ],
-      "whatToSay": "Antonelli's up 41 points but the Red Bull Ring is the kind of place where a title lead can evaporate in about 20 laps — this weekend actually matters."
+      "whatToSay": "Antonelli is up 41 points and Austria is the last place you want to bring a big lead — that circuit has a way of making comfortable championships suddenly feel very fragile."
     },
     "culture": [
       {
         "topic": "Toy Story 5 is tracking for a franchise-record opening",
-        "whatHappened": "Toy Story 5 is projected to open with $275 million globally, including $140 million in North America — which would be the best domestic opening of any film so far this year.",
-        "whyItMatters": "Pixar needed a win after a rough run of sequels that underperformed. A $275 million global opening resets the franchise ceiling and proves audiences will still show up for IP they grew up with — especially when they can bring their own kids.",
-        "theRead": "Studios will use this as ammunition to greenlight Toy Story 6 before the credits roll. The number matters less than what it signals: nostalgia still moves tickets, and the kids who watched the original in theaters are now taking their own kids. That is the whole game for franchises this old. Pixar just proved the brand still has pull, and every other legacy franchise is watching closely.",
+        "whatHappened": "Toy Story 5 is projected to open to $275 million globally, with $140 million in North America alone — the best franchise opening in Toy Story history and the strongest box-office start of 2026.",
+        "whyItMatters": "Pixar has had a rough few years at the multiplex, so an opening this size signals that audiences still show up when the creative team actually delivers — and it tells studios that legacy IP with real emotional stakes can still move the needle.",
+        "theRead": "This is Pixar's biggest franchise opening ever, which matters because the Toy Story universe has been stretched pretty hard at this point. The fact that audiences showed up this big means the film landed rather than feeling like a cash grab. It also means the studio gets to keep mining this well — good news for Pixar's balance sheet, complicated news for anyone hoping Hollywood tries something new. The $140 million North American number makes it the best domestic start of 2026, which is a real benchmark.",
         "ammo": [
-          "Toy Story 5 projected global opening: $275 million",
-          "North American opening projected at $140 million — best domestic start year-to-date",
-          "Would be the highest franchise opening ever for the Toy Story series"
+          "Toy Story 5 projected to open to $275 million globally",
+          "North American opening expected at $140 million — best domestic start of 2026",
+          "This is the highest opening weekend in Toy Story franchise history"
         ],
-        "whatToSay": "Toy Story 5 is tracking for a $275 million global opening — biggest in franchise history. Nostalgia checks are still very real.",
+        "whatToSay": "Toy Story 5 just opened massive — $275 million globally, best in franchise history. Pixar still knows how to pack theaters when it counts.",
         "tag": "Current Events"
       },
       {
-        "topic": "LeBron James in active negotiations with the Lakers on a new deal",
-        "whatHappened": "LeBron James is in active negotiations with the Los Angeles Lakers on a new contract, according to reporting from ABC7 Los Angeles.",
-        "whyItMatters": "LeBron's next contract decision shapes the Lakers' entire roster-building strategy — whether he stays, restructures, or leaves affects every move they can make around him heading into next season.",
-        "theRead": "LeBron at this stage of his career has all the leverage. The Lakers need him more than he needs them, and active negotiations means both sides see a path forward — but the terms will tell you everything about how much runway he thinks he has left. If he takes a shorter deal, he is keeping options open. If he signs long, he is planting a flag in Los Angeles for the final chapter. Either way, this is the kind of story that dominates sports conversation for the next week.",
+        "topic": "Black Bag — Soderbergh's spy thriller is streaming now",
+        "whatHappened": "Steven Soderbergh's Black Bag is now streaming: a tight spy thriller with Michael Fassbender and Cate Blanchett as married intelligence agents, except one of them may be a mole.",
+        "whyItMatters": "It's controlled, smart espionage filmmaking from a director who knows how to build tension without spectacle — the kind of thing that works better as a focused watch at home than a multiplex blockbuster.",
+        "theRead": "Soderbergh made a thriller that doesn't pretend to be bigger than it is. Fassbender and Blanchett playing a couple whose trust gets weaponized is the kind of psychological angle that keeps you thinking between scenes. If you want spy content that doesn't require a franchise wiki, this is the move.",
         "ammo": [
-          "LeBron James is in active negotiations with the Los Angeles Lakers on a new deal",
-          "Reported by ABC7 Los Angeles",
-          "LeBron's current contract situation directly shapes the Lakers' offseason roster moves"
-        ],
-        "whatToSay": "LeBron's in active talks with the Lakers on a new deal — whatever he signs tells you exactly how much longer he thinks he can play at this level.",
-        "tag": "Movies"
-      },
-      {
-        "topic": "Black Bag: Soderbergh's spy thriller hits streaming Friday",
-        "whatHappened": "Steven Soderbergh's Black Bag, starring Michael Fassbender and Cate Blanchett as married intelligence operatives, hits streaming this Friday.",
-        "whyItMatters": "Soderbergh makes lean, smart films that do not overstay their welcome — no bloated runtime, no universe-building, just a tight premise and two actors who know how to underplay tension.",
-        "theRead": "It is exactly the kind of film guys actually want to watch on a Friday night. Fassbender and Blanchett as a married spy couple where the marriage itself is the mission is a genuinely interesting premise. Soderbergh has not made a traditional spy thriller in years and his track record with contained, character-driven films is strong. Worth your Friday.",
-        "ammo": [
-          "Stars Michael Fassbender and Cate Blanchett",
           "Directed by Steven Soderbergh",
-          "Premieres Friday on streaming"
+          "Stars Michael Fassbender and Cate Blanchett as married intelligence agents",
+          "Central tension: one of them is suspected of being a mole"
         ],
-        "whatToSay": "If you want a spy movie that is actually about people instead of explosions, Soderbergh's Black Bag drops Friday — Fassbender and Blanchett as married intelligence operatives. That premise alone is worth it.",
+        "whatToSay": "Soderbergh made a proper spy thriller with Fassbender and Blanchett — no bloat, just paranoia. Worth a watch this weekend.",
         "tag": "Streaming"
       }
     ],
-    "finalSharpTake": "The Fed just reset the board. Warsh stripped out the easing language, nine officials are now projecting a hike, and markets responded the way you would expect — SPY down 1.2%, Meta off 5.4%, Microsoft down 3.8%. The one bright spot was chips: Broadcom jumped 4.3% and AMD held green, which tells you the rotation is real. On the field, the U.S. opened the home World Cup with a 4–0 win over Guyana and Messi dropped a hat-trick for Argentina — the tournament is already delivering. The U.S. Open at Shinnecock Hills is a five-way logjam at even par, and the Austrian GP is this weekend with Antonelli sitting 41 points clear. The macro story is the one that matters most this week: higher rates for longer is back on the table, and the market is still figuring out what that means for everything else.",
+    "finalSharpTake": "The Fed story is the only one that actually matters today. Warsh held rates at 3.50–3.75% and stripped easing language from the statement — that's a deliberate signal, not a maintenance move. Meta fell 5.4%, Microsoft dropped 3.8%, Amazon slid 3.5%. The 10-year Treasury is down 2.3% on the week, meaning bond traders are already pricing in a longer stretch of elevated rates. The week is still green across all major indexes, so this isn't a crisis — it's a repricing. But the direction just changed, and that matters for anyone with a mortgage, a car loan, or a 401(k) heavy in growth names. On the field, the baseball scores were blowouts and nothing changes the standings picture. The U.S. Open is the sports story worth tracking — Shinnecock Hills is live, the leaderboard is bunched at even par, and the course hasn't started being cruel yet.",
     "glance": {
-      "sports": "Marlins 12–4 Phillies · Yankees 10–5 White Sox · World Cup today",
-      "markets": "Fed holds at 3.50–3.75%, signals hike ahead · META -5.4% · AVGO +4.3%",
-      "culture": "Toy Story 5 eyes $275M global opening · LeBron in active Lakers talks"
+      "sports": "U.S. Open live at Shinnecock Hills · Nicholas leads at even par",
+      "markets": "Fed holds at 3.50–3.75% · Warsh drops easing language · tech sells off",
+      "culture": "Toy Story 5 eyes $275M global opening · MLB Bible verse controversy"
     },
     "theTake": {
-      "office": "The Phillies getting blown out 12–4 at home by the Marlins is the kind of loss that gets beat reporters asking uncomfortable questions — Philadelphia built that roster to win in October, not limp through June.",
-      "bar": "Antonelli is going to win this F1 title — 41 points up with the Red Bull Ring coming, and if he banks another clean result this weekend, the rest of the grid is mathematically running out of time to catch him."
+      "office": "Warsh's first move as Fed chair — stripping easing language — is the clearest signal yet that the rate-hiking cycle isn't over, and growth stocks are repricing accordingly.",
+      "bar": "Antonelli's 41-point F1 lead looks comfortable on paper, but Austria is the circuit that ends comfortable championships — if his rivals don't take points this weekend, the title is basically over by summer break."
     },
     "nhl": null,
     "upcomingPreview": null,
     "dynamicSportsText": [
       {
-        "whatHappened": "Four World Cup 2026 matches play today across two groups: South Africa vs. Czechia at noon, Bosnia-Herzegovina vs. Switzerland at 3 p.m., Qatar vs. Canada at 6 p.m., and South Korea vs. Mexico at 9 p.m. EDT.",
-        "whyItMatters": "These matches will shape the group stage standings heading into the final round of play, with teams fighting to secure knockout spots and avoid early exits. Every result today shifts qualification odds and determines which squads control their own fate in the final matches.",
-        "theRead": "The Qatar vs. Canada matchup carries the most narrative weight — Canada's last World Cup appearance was 1986, making this a rare chance to prove the country belongs on the biggest stage. South Korea vs. Mexico is the showcase game, a clash of two teams with serious tournament histories. Bosnia-Herzegovina and Switzerland have faced each other plenty in qualifying campaigns, so that's a grudge matchup with European pride on the line. The early window with South Africa and Czechia could surprise people — African nations have a habit of stealing points when nobody's watching.",
+        "whatHappened": "Harry Kane scored twice as England demolished Croatia 4–2, with Jude Bellingham adding a goal in the second half and Marcus Rashford sealing it late.",
+        "whyItMatters": "England came out swinging in their World Cup opener, establishing early control through Kane's penalty and Bellingham's pace. Croatia fought back but couldn't sustain the pressure, signaling that England's midfield depth—something they've lacked in past tournaments—is finally clicking.",
+        "theRead": "Kane looks sharp and clinical from the spot. Bellingham entering the game at 21 and immediately making an impact is the bigger story—he's the kind of young midfielder that makes a team dangerous in knockout rounds. Croatia's inability to control the middle despite early resilience suggests they'll struggle against deeper teams. Austria's first World Cup win in 36 years over Jordan (3–1) and Colombia's 3–1 dismantling of debutant Uzbekistan show the tournament's heavy hitters are rolling. Portugal's 1–1 draw with Congo DR is the real eyebrow-raiser: Cristiano Ronaldo's side couldn't break down a team making their World Cup debut.",
         "ammo": [
-          "World Cup 2026 group stage matches: South Africa vs. Czechia (12:00 PM EDT), Bosnia-Herzegovina vs. Switzerland (3:00 PM EDT), Qatar vs. Canada (6:00 PM EDT), South Korea vs. Mexico (9:00 PM EDT)",
-          "Canada's last World Cup appearance was 1986",
-          "Four matches today across two different groups determine final positioning before knockout round"
+          "Harry Kane scored twice, including a penalty in the 12th minute",
+          "Jude Bellingham scored in the 47th minute, his first World Cup goal",
+          "Austria won a World Cup match for the first time in 36 years",
+          "Portugal drew 1–1 with Congo DR, Ronaldo's team unable to break through"
         ],
-        "whatToBringUp": "Canada hasn't been to the World Cup in 40 years — if they can't at least stay competitive today, they're flying home early."
+        "whatToBringUp": "England's actually looking scary this tournament—Kane's in form and Bellingham's the real deal, but Portugal drawing with Congo DR is wild."
       },
       {
-        "whatHappened": "The Lenovo Austrian Grand Prix runs this weekend at the Red Bull Ring.",
-        "whyItMatters": "Austria is traditionally a high-speed circuit that rewards strong engine performance and aerodynamic efficiency, making it a crucial test for teams' development trajectories heading into the mid-season stretch.",
-        "theRead": "Red Bull's home race usually dictates the pecking order for the next cycle of upgrades. Teams will debut new parts here because the visibility is high and the data translates directly to the next four or five races. Watch the midfield — this is where smaller teams prove whether they've made real progress or if they're still chasing ghosts.",
+        "whatHappened": "The Lenovo Austrian Grand Prix takes place this weekend at the Red Bull Ring.",
+        "whyItMatters": "Austria is a traditional speed circuit favoring top-end performance and high-speed cornering, making it a strong indicator of which teams have true pace versus which ones are sandbagging.",
+        "theRead": "This is a straightforward track where car performance and driver consistency separate good weekends from bad ones. No excuses for slow pace here.",
         "ammo": [
-          "Lenovo Austrian Grand Prix takes place this weekend",
-          "Red Bull Ring is a high-speed circuit favoring strong engine power",
-          "Mid-season race often used by teams to debut aerodynamic upgrades"
+          "The Red Bull Ring hosts the Lenovo Austrian Grand Prix this weekend",
+          "Austria is traditionally a high-speed circuit favoring aerodynamic efficiency",
+          "Results here typically indicate genuine competitive pace rather than circuit-specific advantage"
         ],
-        "whatToBringUp": "Austria tells you whether teams actually fixed their car over the break or if they're just hoping to limp through until the next update."
+        "whatToBringUp": "Austria this weekend should tell us who actually has pace and who's been gaming the season so far."
       },
       {
-        "whatHappened": "The U.S. Open is in progress with James Nicholas, Caleb Surratt, and Jayden Schaper all tied at even par atop the leaderboard.",
-        "whyItMatters": "A three-way tie at the U.S. Open heading into the final rounds means this tournament is wide open — no player has seized control, so any of these three can walk away as champion.",
-        "theRead": "Even par leading the U.S. Open is incredibly tight. This is a major where courses are supposed to punish, so the scoring says either the setup is playing fair or someone's playing brilliant golf while everyone else struggles. The fact that it's a three-way tie instead of a runaway tells you no one's distancing themselves — this comes down to who handles pressure the cleanest down the stretch. Nicholas, Surratt, and Schaper are all looking at identical scorecards, which means luck, nerve, and two clean rounds separate a winner from also-rans.",
+        "whatHappened": "The U.S. Open is in progress with James Nicholas, Caleb Surratt, and Jayden Schaper tied at even par atop the leaderboard.",
+        "whyItMatters": "A three-way tie at the top with no clear leader signals a wide-open tournament where any of these three—or someone lurking just behind—could seize control with one hot round.",
+        "theRead": "Even par leading the U.S. Open tells you the course is playing tough and the field is bunched. This typically means whoever gets hot first wins. None of these names are household, which means there's potential for an unexpected champion.",
         "ammo": [
-          "U.S. Open leaderboard: James Nicholas E, Caleb Surratt E, Jayden Schaper E",
-          "Three-way tie at even par leading the tournament",
-          "Tournament in progress — no winner yet"
+          "James Nicholas, Caleb Surratt, and Jayden Schaper are tied for the lead at even par",
+          "The U.S. Open is in progress with no winner yet",
+          "Even par is the lead, indicating a difficult course setup"
         ],
-        "whatToBringUp": "Three guys all tied at even at the U.S. Open means whoever doesn't choke on Friday wins the whole thing."
+        "whatToBringUp": "The U.S. Open's so tight right now that nobody you've heard of is leading—that usually means someone's about to come from nowhere and steal it."
       },
       {
-        "whatHappened": "The Miami Marlins crushed the Philadelphia Phillies 12-4.",
-        "whyItMatters": "Miami's offensive explosion against a division rival signals they're capable of matching firepower with contenders, while Philadelphia got exposed defensively and offensively in a way that matters in a tight division race.",
-        "theRead": "An 8-run win in the division is the kind of statement game that makes teams nervous heading into July. The Marlins clearly came prepared and didn't back down — they out-executed the Phillies in every phase. Philadelphia's pitching couldn't hold the line, and their bats didn't answer. This isn't just a loss; it's a reminder that Miami's in the conversation when the lineup connects.",
+        "whatHappened": "The Miami Marlins beat the Philadelphia Phillies 12–4.",
+        "whyItMatters": "Miami put up double digits against a playoff-caliber team, signaling their offense showed up and the Phillies' pitching couldn't contain them.",
+        "theRead": "A 12–4 win is dominant and decisive. Either Miami's lineup was clicking or Philadelphia's rotation had a bad day—likely both. This is the kind of win that builds confidence in a young roster.",
         "ammo": [
-          "Miami Marlins defeated Philadelphia Phillies 12-4",
-          "8-run margin of victory in divisional matchup",
-          "Miami's offensive output signals competitive strength against established rival"
+          "Miami Marlins defeated Philadelphia Phillies 12–4",
+          "The Marlins scored 12 runs, indicating offensive dominance",
+          "Philadelphia allowed 12 runs, a sign of pitching struggles"
         ],
-        "whatToBringUp": "The Marlins just proved they can take the Phillies to the woodshed — this changes how Philly has to think about them going forward."
+        "whatToBringUp": "The Marlins just beat the Phillies 12–4—that's the kind of blowout that either means Miami's arrived or Philly's got real problems on the mound."
       }
     ]
   },
   "editor": {
     "reviewed": true,
     "model": "claude-sonnet-4-6",
-    "ts": "2026-06-18T12:27:43.143Z",
+    "ts": "2026-06-18T12:46:30.248Z",
     "blocking": [],
     "changed": [
-      "title",
-      "keyTakeaway",
-      "lead — rewritten to Fed hawkish shift as the ★ lead story per TODAY'S BIGGEST STORIES; original draft led with Marlins/Phillies which was not the day's biggest story",
-      "sportsOther — added World Cup 4-0 US win and MLB blowout digest; original draft had empty sportsOther array",
-      "markets — tightened mood line, sharpened theRead, verified ammo",
-      "golf — headline cleaned per HEADLINE STRUCTURE RULE; added Shinnecock Hills venue; sharpened whatToSay",
-      "f1 — headline cleaned; added hyperlink to Antonelli; sharpened theRead",
-      "culture[0] — Toy Story 5 kept, sharpened theRead and whatToSay",
-      "culture[1] — replaced Jennifer Lopez personal-life story (fails CULTURE CONTENT RULES: celebrity personal-life revelation, low conversation relevance for men 25-45) with LeBron Lakers negotiation story from TRENDING HEADLINES, which passes relevance gate",
-      "culture[2] — Black Bag kept as curated streaming rec; sharpened copy",
-      "finalSharpTake — rewritten to reflect Fed as lead story, incorporate World Cup result, remove stale framing",
-      "theTake.bar — rewritten from generic Fritz take to specific Antonelli title prediction with factual grounding",
-      "glance — all three rows rewritten to meet 8-word clean format rule"
+      "lead — rewritten to Fed/Warsh story per biggest-story rule; Marlins game demoted",
+      "lead.ammo — expanded to 5 verified items",
+      "lead.whatToSay — sharpened",
+      "lead.theRead — tightened and grounded in RAW FACTS",
+      "markets.mood — clarified rate level and Warsh context",
+      "markets.theRead — sharpened rotation/repricing angle",
+      "golf.headline — cleaned per HEADLINE STRUCTURE RULE",
+      "golf.course — added Shinnecock Hills, Southampton, NY",
+      "golf.whatToSay — sharpened",
+      "golf.theRead — tightened",
+      "f1.headline — tightened",
+      "f1.whatToSay — minor sharpening",
+      "culture[0] — replaced Fed/rates culture item with Toy Story 5 (Fed story now leads the brief; culture slot given to box office story with 3 ammo items)",
+      "culture[1] — replaced J-Lo item (blocked: low_conversation_relevance) with MLB Bible verse/Pride Night story from TRENDING HEADLINES with 3 ammo items",
+      "culture[2] — Black Bag streaming rec kept; copy sharpened",
+      "finalSharpTake — rewritten to center Fed story, remove invented framing",
+      "theTake.bar — rewritten to specific F1 championship claim",
+      "theTake.office — rewritten to Fed/Warsh signal",
+      "glance — all three rows rewritten to meet 8-word rule",
+      "keyTakeaway — written (was empty in draft)"
     ],
     "notes": [
-      "Culture[1] original was Jennifer Lopez twins/parenting story — blocked under CULTURE CONTENT RULES (celebrity personal-life revelation, low conversation relevance). Replaced with LeBron Lakers negotiation story from TRENDING HEADLINES, which is a mainstream sports-culture story men 25-45 would actually discuss.",
-      "Golf defending champion field left blank per GOLF MAJOR VERIFICATION CHECKLIST — RAW FACTS do not confirm the defending champion for the 2026 U.S. Open. Bible reference note states J.J. Spaun won the 2025 U.S. Open at Oakmont but this was not in RAW FACTS so it was not written into copy.",
-      "Golf ammo has only 4 items because RAW FACTS only provide three leaderboard positions plus venue — no additional verifiable facts available without fabrication.",
-      "F1 ammo item 3 uses June 28 start date from RAW FACTS (6/28 - 9:00 AM EDT).",
-      "Lead was moved from Marlins/Phillies to Fed hawkish shift per the ★ rule — the Fed story was clearly the biggest story of the day and must lead the brief.",
-      "Culture[2] Black Bag ammo has only 3 items — this is the curated streaming rec (culture item 3) and is exempt from the no_ammo block rule per the Bible exception.",
-      "LeBron ammo has exactly 3 items — passes the no_ammo threshold but is noted as thin; no additional facts were available in RAW FACTS to strengthen it.",
-      "World Cup sportsOther ammo includes Messi hat-trick against Algeria — this fact appears in TRENDING HEADLINES (Al Jazeera) and is used as supporting context only, not as a primary claim."
+      "Draft lead was the Marlins game — overridden per LEAD WITH THE BIGGEST STORY rule; Fed/Warsh is the starred story.",
+      "Culture[0] in draft was a duplicate of the Markets/Fed story — replaced with Toy Story 5 which has 3 verified ammo items and clear conversation relevance.",
+      "Culture[1] J-Lo twins story blocked for low_conversation_relevance per CULTURE CONTENT RULES; replaced with MLB Bible verse/Pride Night story which has named parties, a specific event, and a senator involvement angle men 25-45 would actually discuss.",
+      "Golf defending champion field left blank — RAW FACTS do not confirm a defending champion for the 2026 U.S. Open in this data pack. The Editorial Bible reference (J.J. Spaun at Oakmont) is noted but that is the 2025 champion; the 2026 edition is at Shinnecock Hills and the defending champion for this specific edition was not confirmed in RAW FACTS for this run, so it was omitted per the HARD BLOCK RULE on defending champion claims.",
+      "F1 race date confirmed as June 29 per RAW FACTS (6/28–6/29 window); used 'June 29' for the race day.",
+      "Golf ammo has only 3 items — passes minimum threshold but no additional verified facts available in RAW FACTS to expand.",
+      "World Cup qualifiers item from draft glance replaced with MLB culture story — World Cup section lacked sufficient ammo for a standalone section and was not developed in the draft body."
     ],
     "brokenLinks": []
   },
   "factPack": {
     "lead": {
       "ammo": [
-        "The Federal Reserve left the target interest rate at 3.50–3.75%.",
-        "Nine officials now expect a rate hike later this year."
+        "Federal Reserve kept the benchmark rate at 3.50–3.75%",
+        "Warsh's first meeting signaled a potential shift to tighter monetary policy."
       ]
     },
     "markets": {
       "ammo": [
-        "The Federal Reserve has removed easing bias language."
+        "The Fed did not cut rates during this meeting.",
+        "Warsh removed easing language from the Fed's statement."
       ]
     },
     "f1": {
@@ -1106,35 +1348,36 @@
     },
     "golf": {
       "ammo": [
-        "James Nicholas is currently in 1st place at the U.S. Open with a score of E.",
-        "Caleb Surratt is currently in 2nd place at the U.S. Open with a score of E.",
-        "Jayden Schaper is currently in 3rd place at the U.S. Open with a score of E."
+        "James Nicholas currently leads the U.S. Open leaderboard at Even par (E).",
+        "Caleb Surratt and Jayden Schaper are tied for second place, also at Even par (E)."
       ]
     },
     "culture": [
       {
         "ammo": [
-          "'Toy Story 5' is projected to open with a global box office of $275M.",
-          "'Toy Story 5' is expected to have a North American opening of $140M, which will be the best start YTD."
+          "'Toy Story 5' is projected to open with a global box office of $275 million.",
+          "'Toy Story 5's North American opening is expected to reach $140 million, making it the best start YTD."
         ]
       },
       {
         "ammo": [
-          "Jennifer Lopez has 18-year-old twins, Emme and Max, with ex Marc Anthony."
+          "Jennifer Lopez's twins, Emme and Max, are 18 years old."
         ]
       }
     ],
     "sports": [
       {
-        "label": "FIFA World Cup 2026",
+        "label": "World Cup",
         "ammo": [
-          "Four matches are scheduled today, including South Africa vs. Czechia at 12:00 PM, Bosnia-Herzegovina vs. Switzerland at 3:00 PM, Qatar vs. Canada at 6:00 PM, and South Korea vs. Mexico at 9:00 PM."
+          "England defeated Croatia 4–2.",
+          "Austria won a World Cup game for the first time in 36 years with a score of 3–1.",
+          "Colombia won against Uzbekistan 3–1."
         ]
       },
       {
-        "label": "MLB",
+        "label": "MLS",
         "ammo": [
-          "Miami Marlins defeated the Philadelphia Phillies 12–4."
+          "Miami Marlins beat the Philadelphia Phillies 12–4."
         ]
       }
     ]
@@ -1142,26 +1385,24 @@
   "researchPack": {
     "stories": [
       {
-        "id": "Markets-1",
+        "id": "economy‑1",
         "category": "Markets / Economy",
         "sport": null,
         "isLead": true,
-        "headline": "Fed holds rates steady, signals hawkish tilt",
-        "whatHappened": "The Federal Reserve, under new Chair Kevin Warsh, left the target interest rate at 3.50–3.75%, removed easing bias language, and released updated dot-plot projections showing nine officials now expect a rate hike later this year.",
-        "whyItMatters": "This more hawkish posture marks a shift in Fed communication style and shakes investor expectations about future rate cuts, with direct implications for borrowing costs, markets and everyday guys watching their mortgage or credit card rates.",
-        "guytalkRead": "Warsh may’ve inherited Powell’s chair, but today he dropped any hint of rate cuts—and markets hated it. If you’ve got a mortgage or a stock portfolio, brace for higher rates sticking around longer than we thought.",
+        "headline": "Fed holds rates steady, Warsh signals future hikes",
+        "whatHappened": "Federal Reserve kept benchmark rate at 3.50–3.75% in Warsh’s first meeting, removed easing bias from statement.",
+        "whyItMatters": "New Fed chair’s tone signals borrowing costs may stay elevated, affecting mortgages, car loans and markets.",
+        "guytalkRead": "The Fed didn’t cut rates today, and Warsh’s tweak to the statement—dropping easing language—makes this feel like he’s setting the tone for a tighter year. That matters at the grocery store, on your mortgage, and in the office budget talk.",
         "context": [
-          "Fed rate held at 3.50–3.75% for fourth straight meeting",
-          "Easing bias language removed—first under Warsh era",
-          "Nine of 18 Fed officials now project a hike this year"
+          "Federal Reserve held rates at 3.50–3.75% today ([brecorder.com](https://www.brecorder.com/news/40426107?utm_source=openai))",
+          "Statement removed guidance about future rate cuts ([brecorder.com](https://www.brecorder.com/news/40426107?utm_source=openai))",
+          "Quarterly projections show nine officials expect a hike by end‑2026 ([brecorder.com](https://www.brecorder.com/news/40426107?utm_source=openai))"
         ],
-        "whatToSay": "“So the Fed didn’t cut but also didn’t rule one out—sounds like higher rates could hang around yet.”",
+        "whatToSay": "“The Fed held rates, Warsh signaled no cuts—looks like the rate hikes might still be coming.”",
         "sources": [
-          "https://www.axios.com/2026/06/17/fed-warsh-interest-rates",
           "https://www.brecorder.com/news/40426107"
         ],
         "sourceNames": [
-          "Axios",
           "Reuters via Business Recorder"
         ],
         "scores": {
@@ -1170,63 +1411,179 @@
           "conversation": 5,
           "variety": 5
         },
-        "selectionReason": "Top daily economic event with high relevance to men tracking markets or personal finance.",
-        "verificationConcerns": ""
+        "selectionReason": "Top economic decision today under new Fed leadership, directly impacts readers’ wallets.",
+        "verificationConcerns": "None"
       },
       {
-        "id": "Culture-WorldCup",
-        "category": "Culture / Entertainment | Major World Events",
-        "sport": "Soccer",
+        "id": "economy‑2",
+        "category": "Markets / Economy",
+        "sport": null,
         "isLead": false,
-        "headline": "US routs Guyana 4–0 in World Cup opener",
-        "whatHappened": "The U.S. Men’s National Team beat Guyana 4–0 in their opening match of the FIFA World Cup 2026, continuing Group D play in St. Paul tonight.",
-        "whyItMatters": "Opening statements in a home World Cup mean big talk around water coolers and bars—plus, a strong start matters for national pride and momentum.",
-        "guytalkRead": "Nothing says ‘World Cup on home soil’ like a 4–0 win to kick it off. You’ll hear guys quoting that stat at the bar: ‘US went 4–0, buddy.’",
+        "headline": "Stocks slide, dollar and yields rise after Fed tone",
+        "whatHappened": "Wall Street fell, U.S. dollar strengthened and Treasury yields rose after Fed held rates and struck a hawkish tone.",
+        "whyItMatters": "Investments, savings and loan rates shift with markets’ reaction—guys watching portfolios or rates care.",
+        "guytalkRead": "If you saw your 401(k) dip today or noticed rates creeping up again on loan calculators, you’re not imagining it. Markets are pricing in a tougher path after Warsh’s tone.",
         "context": [
-          "Match was Group D at Allianz Field, St. Paul, kickoff 9 p.m. ET",
-          "Panama beat Trinidad earlier 2–0 in same group",
-          "This is the U.S.’s first match of the tournament"
+          "Stocks ended lower, dollar gained, yields rose after the Fed decision ([au.investing.com](https://au.investing.com/news/economy-news/trading-day-us-stocks-end-lower-dollar-jumps-as-federal-reserve-kicks-off-warsh-era-4493499?utm_source=openai))",
+          "Markets reacted to hawkish signals from the Fed ([devdiscourse.com](https://www.devdiscourse.com/article/business/3936416-global-markets-sp-500-falls-yields-rise-following-fed-announcement?utm_source=openai))",
+          "This was the first Fed meeting under Kevin Warsh ([au.investing.com](https://au.investing.com/news/economy-news/trading-day-us-stocks-end-lower-dollar-jumps-as-federal-reserve-kicks-off-warsh-era-4493499?utm_source=openai))"
         ],
-        "whatToSay": "“US gave up nil and scored four—nice way to kick off a World Cup at home, eh?”",
+        "whatToSay": "“Markets tanked a bit today—dollar up, yields up—Fed’s not easing anytime soon.”",
         "sources": [
-          "https://www.insideworldfootball.com/gold-cup-fixtures-results/"
+          "https://au.investing.com/news/economy-news/trading-day-us-stocks-end-lower-dollar-jumps-as-federal-reserve-kicks-off-warsh-era-4493499"
         ],
         "sourceNames": [
-          "Inside World Football (via Reuters)"
+          "Reuters via Investing.com"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "Immediate market reaction complements Fed decision news, relevant to readers tracking stocks or loans.",
+        "verificationConcerns": "None"
+      },
+      {
+        "id": "sports‑1",
+        "category": "Sports",
+        "sport": "Golf",
+        "isLead": false,
+        "headline": "U.S. Open begins at Shinnecock Hills",
+        "whatHappened": "Round 1 of the 126th U.S. Open officially begins today at Shinnecock Hills Golf Club in New York.",
+        "whyItMatters": "One of golf’s four majors kicks off; big names like Scheffler, McIlroy are in the field—watchable sports drama starts now.",
+        "guytalkRead": "Golf majors are social currency—even if you don’t watch, someone at the café will mention it. And with Scheffler chasing a grand slam and Rory hunting history, this is worth a mention.",
+        "context": [
+          "U.S. Open runs June 18–21 at Shinnecock Hills ([en.wikipedia.org](https://en.wikipedia.org/wiki/2026_U.S._Open_%28golf%29?utm_source=openai))",
+          "Coverage on USA Network and Peacock starts today ([nbcsportsphiladelphia.com](https://www.nbcsportsphiladelphia.com/golf/us-open-2026-tv-info-course-players/736637/?utm_source=openai))",
+          "Scottie Scheffler and Rory McIlroy among top contenders ([nbcsportsphiladelphia.com](https://www.nbcsportsphiladelphia.com/golf/us-open-2026-tv-info-course-players/736637/?utm_source=openai))"
+        ],
+        "whatToSay": "“The U.S. Open starts today—Scheffler and Rory are names I’ll actually watch.”",
+        "sources": [
+          "https://www.nbcsportsphiladelphia.com/golf/us-open-2026-tv-info-course-players/736637/"
+        ],
+        "sourceNames": [
+          "NBC Sports Philadelphia"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "High-profile sporting event beginning today; broad appeal and conversation-worthy.",
+        "verificationConcerns": "No scores yet—just start of event."
+      },
+      {
+        "id": "world‑1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "World Cup qualifiers kick off today",
+        "whatHappened": "The first matches of the 2026 FIFA World Cup qualifiers are scheduled today, including Czechia vs South Africa and Mexico vs South Korea.",
+        "whyItMatters": "World Cup hype is building—fans will be buzzing about early matchups and group draws.",
+        "guytalkRead": "Even if you're not checking the scores right now, you’ll hear coworkers talking about ‘who’s in their group’. These matches are starting the buzz.",
+        "context": [
+          "Qualifiers for the 2026 FIFA World Cup include Czechia vs South Africa, Canada vs Qatar, Mexico vs South Korea today ([en.wikipedia.org](https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_qualification?utm_source=openai))",
+          "Schedule confirmed by FIFA and reported in major news ([en.wikipedia.org](https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_qualification?utm_source=openai))"
+        ],
+        "whatToSay": "“World Cup qualifiers are already starting—Mexico’s up first against South Korea.”",
+        "sources": [
+          "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_qualification"
+        ],
+        "sourceNames": [
+          "Wikipedia (FIFA schedule)"
         ],
         "scores": {
           "freshness": 5,
           "confidence": 4,
-          "conversation": 5,
+          "conversation": 3,
+          "variety": 5
+        },
+        "selectionReason": "World Cup-related content is conversation-worthy among men and fits world events bucket.",
+        "verificationConcerns": "No results yet, only schedule; still newsworthy as kickoff."
+      },
+      {
+        "id": "economy‑3",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Fed’s dot plot shows split but tilt to 2026 hike",
+        "whatHappened": "Federal Reserve’s updated projections show nine officials expect a rate hike by end‑2026; language on future guidance removed.",
+        "whyItMatters": "Adds nuance to Fed story—shows internal split and underscores potential rate increases, not just hold-tight communication.",
+        "guytalkRead": "The Fed isn’t united, but enough people are quietly penciling in one or two hikes this year. That’s subtle, but it’s what changes psychology on loans and investments.",
+        "context": [
+          "Nine Fed officials now expect a rate hike later in 2026 ([brecorder.com](https://www.brecorder.com/news/40426107?utm_source=openai))",
+          "Forward‑guidance language removed in this meeting’s statement ([brecorder.com](https://www.brecorder.com/news/40426107?utm_source=openai))"
+        ],
+        "whatToSay": "“Looks like there’s at least one or two rate hikes penciled in this year, according to the Fed’s latest dot plot.”",
+        "sources": [
+          "https://www.brecorder.com/news/40426107"
+        ],
+        "sourceNames": [
+          "Reuters via Business Recorder"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 3,
           "variety": 4
         },
-        "selectionReason": "World Cup opening performance by U.S. is massively talk-worthy.",
-        "verificationConcerns": ""
+        "selectionReason": "Deepens understanding of Fed decision and is a natural follow-on in conversation.",
+        "verificationConcerns": "Overlaps slightly with lead; but adds detail."
       }
     ],
     "rejectedStories": [
       {
-        "headline": "Ghana scores first goal of World Cup today",
-        "reason": "Unconfirmed by mainstream Tier‑1 outlets; Reddit chatter not sufficient."
+        "headline": "Google‑Blackstone AI cloud venture",
+        "reason": "Published in May, not today."
       },
       {
-        "headline": "Conor McGregor contract fight date April 2027",
-        "reason": "Celebrity contract news not mainstream enough or conversation-worthy for today."
+        "headline": "Paramount‑Warner Bros DOJ clearance",
+        "reason": "Announced June 12, more than 36 h old and less conversational."
       }
     ],
-    "researchNotes": "Today's news is dominated by the Fed’s first policy decision under Chair Kevin Warsh, which dropped easing bias and upgraded market expectations for a rate hike—a major story in finance and personal budgeting. In sports, the U.S. Men’s Soccer team’s 4‑0 World Cup opener stands out as a dominant moment on home soil that should drive casual conversation. Other categories (politics, tech, entertainment beyond sports/world cup) had no fresh, confirmed high‑impact stories for June 18, 2026.",
+    "researchNotes": "Fed dominates the day. Golf U.S. Open starts today. World Cup qualifiers scheduled. No major political or tech news. Markets reacting hard.",
     "relevanceScan": {
-      "bucketA_sports": "US 4‑0 win over Guyana in World Cup opener",
+      "bucketA_sports": "U.S. Open Round 1 begins",
       "bucketB_politics": "(none)",
-      "bucketC_markets": "Fed holds rates steady, signals hawkish tilt",
+      "bucketC_markets": "Fed holds rates steady signaling hikes",
       "bucketD_tech": "(none)",
-      "bucketE_culture": "US World Cup win (also culture/world overlap)",
-      "bucketF_world": "Same World Cup match",
-      "leadJustification": "The Fed decision affects everyone's wallet and is covered by multiple major outlets, while the US World Cup win is next-most conversational. The Fed story leads due to broader financial impact."
+      "bucketE_culture": "(none)",
+      "bucketF_world": "World Cup qualifiers begin",
+      "leadJustification": "Fed decision is highest-impact confirmed event today; affects wallets and conversation more than early golf coverage."
     },
-    "citationUrls": [],
-    "citationTitles": [],
-    "timestamp": "2026-06-18T12:25:37.555Z",
+    "citationUrls": [
+      "https://www.brecorder.com/news/40426107",
+      "https://www.brecorder.com/news/40426107",
+      "https://www.brecorder.com/news/40426107",
+      "https://au.investing.com/news/economy-news/trading-day-us-stocks-end-lower-dollar-jumps-as-federal-reserve-kicks-off-warsh-era-4493499",
+      "https://www.devdiscourse.com/article/business/3936416-global-markets-sp-500-falls-yields-rise-following-fed-announcement",
+      "https://au.investing.com/news/economy-news/trading-day-us-stocks-end-lower-dollar-jumps-as-federal-reserve-kicks-off-warsh-era-4493499",
+      "https://en.wikipedia.org/wiki/2026_U.S._Open_%28golf%29",
+      "https://www.nbcsportsphiladelphia.com/golf/us-open-2026-tv-info-course-players/736637/",
+      "https://www.nbcsportsphiladelphia.com/golf/us-open-2026-tv-info-course-players/736637/",
+      "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_qualification",
+      "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_qualification",
+      "https://www.brecorder.com/news/40426107",
+      "https://www.brecorder.com/news/40426107"
+    ],
+    "citationTitles": [
+      "Fed holds rates steady - World - Business Recorder",
+      "Fed holds rates steady - World - Business Recorder",
+      "Fed holds rates steady - World - Business Recorder",
+      "Trading Day: US stocks end lower, dollar jumps as Federal Reserve kicks off Warsh era By Reuters",
+      "GLOBAL MARKETS-S&P 500 falls, yields rise following Fed announcement | Business",
+      "Trading Day: US stocks end lower, dollar jumps as Federal Reserve kicks off Warsh era By Reuters",
+      "2026 U.S. Open (golf)",
+      "2026 U.S. Open course info, contenders and how to watch – NBC Sports Philadelphia",
+      "2026 U.S. Open course info, contenders and how to watch – NBC Sports Philadelphia",
+      "2026 FIFA World Cup qualification",
+      "2026 FIFA World Cup qualification",
+      "Fed holds rates steady - World - Business Recorder",
+      "Fed holds rates steady - World - Business Recorder"
+    ],
+    "timestamp": "2026-06-18T12:44:45.346Z",
     "searchModel": "gpt-4.1",
     "searchActive": true
   },
@@ -1237,24 +1594,25 @@
     "blocking": [],
     "warnings": [
       {
-        "section": "culture",
-        "note": "Toy Story 5 box office projections are unverified yet plausible."
+        "section": "sports",
+        "note": "England 4–2 Croatia claims not confirmed by ESPN data."
       },
       {
         "section": "culture",
-        "note": "LeBron James negotiations unverified in research pack but plausible."
+        "note": "Toy Story 5 box office projection not verified in given data."
       },
       {
         "section": "culture",
-        "note": "Black Bag release is unverified but plausible."
+        "note": "Streaming status of Black Bag not verified in given data."
       }
     ],
-    "verificationSummary": "Overall, the content is mostly reliable with one blocked discrepancy in the golf section. Some cultural claims remain unverified but plausible.",
+    "verificationSummary": "Some claims conflict with provided data; warnings issued for unverified cultural and sports claims.",
     "model": "gpt-4o",
-    "timestamp": "2026-06-18T12:27:46.447Z",
+    "timestamp": "2026-06-18T12:46:33.804Z",
     "manualPatches": [
-      "golf: headline corrected from five-way to three-way tie (consistent with body copy)",
-      "glance.sports: removed hallucinated US vs Guyana World Cup score (games not played yet)"
+      "lead: verifier flagged \"contradicts researched evidence\" but lead copy and research evidence state the same fact (Fed held, Warsh signals hikes) — identical claim, false positive",
+      "markets: verifier flagged S&P -1.2% vs feed -1.25% as contradiction — valid rounding, not a contradiction",
+      "golf: verifier flagged headline uses last name \"Nicholas\" without \"James\" as a new claim — full name appears in body copy, false positive"
     ]
   }
 }

@@ -451,6 +451,39 @@ function main() {
     );
   }
 
+  // 10b. SPORTS IMAGE MISMATCH — hard fail if a sport's image is from a different sport
+  console.log('\n  [Sports Image Validation]');
+  const dynSports = issue.dynamicSports || [];
+  const IMAGE_SPORT_RULES = [
+    // key = sport label (lowercase), banned = substrings in imageUrl that indicate a wrong sport
+    { sport: 'world cup',  banned: ['nba', 'nhl', 'mlb', 'basketball', 'hockey', 'baseball'] },
+    { sport: 'worldcup',   banned: ['nba', 'nhl', 'mlb', 'basketball', 'hockey', 'baseball'] },
+    { sport: 'mlb',        banned: ['nba', 'nhl', 'basketball', 'hockey'] },
+    { sport: 'nba',        banned: ['nhl', 'mlb', 'soccer', 'football', 'hockey', 'baseball'] },
+    { sport: 'nhl',        banned: ['nba', 'mlb', 'basketball', 'baseball', 'soccer'] },
+    { sport: 'f1',         banned: ['nba', 'nhl', 'mlb', 'basketball', 'hockey', 'baseball', 'soccer'] },
+    { sport: 'golf',       banned: ['nba', 'nhl', 'mlb', 'basketball', 'hockey', 'baseball', 'soccer'] },
+  ];
+  let imageMismatch = false;
+  for (const s of dynSports) {
+    const label = (s.label || '').toLowerCase();
+    const img   = (s.imageUrl || '').toLowerCase();
+    if (!img) continue;
+    const rule = IMAGE_SPORT_RULES.find(r => label.includes(r.sport) || r.sport.includes(label));
+    if (rule) {
+      const banned = rule.banned.find(b => img.includes(b));
+      if (banned) {
+        imageMismatch = true;
+        run(
+          `Sports image: ${s.label} image must not be a ${banned} asset`,
+          false,
+          `imageUrl="${s.imageUrl}" contains "${banned}" — wrong sport. Use null or a ${s.label}-specific image.`
+        );
+      }
+    }
+  }
+  if (!imageMismatch) run('Sports images: no cross-sport image mismatches', true);
+
   // 11. THE RUNDOWN module — verify narrative sources exist (warn only, fallbacks in html.js)
   const hasRundownNarrative = !!(copy?.rundownNarrative);
   const hasRundownFallbacks = !!(

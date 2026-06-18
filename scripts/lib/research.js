@@ -458,38 +458,69 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
 
   // ── World Cup ─────────────────────────────────────────────────────────────
   if (worldCup?.length) {
-    const USA_RE = /\bunited states\b|\busmnt\b/i;
-    const featured = worldCup.find(m => USA_RE.test(m.home.team) || USA_RE.test(m.away.team))
-      || worldCup.find(m => m.statusState === 'post') || worldCup[0];
+    const USA_RE = /\bunited states\b|\busmnt\b|\busa\b/i;
+
+    // Prefer completed games — biggest result first (highest combined goals = most exciting)
+    const completed = worldCup.filter(m => m.statusState === 'post');
+    const scheduled = worldCup.filter(m => m.statusState === 'pre' || m.statusState === 'in');
+
+    // Pick the most compelling completed match: US game first, then highest-scoring
+    const featured = completed.find(m => USA_RE.test(m.home.team) || USA_RE.test(m.away.team))
+      || completed.sort((a, b) => {
+          const goalsB = (parseInt(b.home.score,10)||0) + (parseInt(b.away.score,10)||0);
+          const goalsA = (parseInt(a.home.score,10)||0) + (parseInt(a.away.score,10)||0);
+          return goalsB - goalsA;
+        })[0]
+      || scheduled.find(m => USA_RE.test(m.home.team) || USA_RE.test(m.away.team))
+      || scheduled[0];
+
     if (featured) {
       const isPost = featured.statusState === 'post';
       let headline, facts;
+
       if (isPost) {
+        // Rich recap: headline on the biggest game, full yesterday slate + scorers as facts
         const hs = parseInt(featured.home.score, 10) || 0;
         const as = parseInt(featured.away.score, 10) || 0;
         const [wt, ws, lt, ls] = hs >= as
           ? [featured.home.team, hs, featured.away.team, as]
           : [featured.away.team, as, featured.home.team, hs];
         headline = `${wt} ${ws}–${ls} ${lt}`;
-        facts = worldCup.filter(m => m.statusState === 'post').map(m => {
+
+        // Full results recap with scorers
+        const recapLines = completed.map(m => {
           const mh = parseInt(m.home.score, 10) || 0;
           const ma = parseInt(m.away.score, 10) || 0;
           const [wt2, ws2, lt2, ls2] = mh >= ma ? [m.home.team, mh, m.away.team, ma] : [m.away.team, ma, m.home.team, mh];
-          return `${wt2} ${ws2}–${ls2} ${lt2}`;
-        }).join('; ');
+          const scorers = (m.goals || [])
+            .filter(g => g.player)
+            .map(g => `${g.player} (${g.clock}${g.type.includes('Penalty') ? ' pen' : ''})`)
+            .join(', ');
+          const note = m.espnNote ? ` NOTE: ${m.espnNote.slice(0, 120)}` : '';
+          return `${wt2} ${ws2}–${ls2} ${lt2}${scorers ? ` | Scorers: ${scorers}` : ''}${note}`;
+        }).join('\n');
+
+        // Today's upcoming slate for "what to watch next"
+        const upcomingLines = scheduled.length
+          ? `\nTODAY'S FIXTURES: ${scheduled.map(m => {
+              const t = m.date ? new Date(m.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) : '';
+              return `${m.away.team} vs. ${m.home.team}${t ? ` (${t} EDT)` : ''}`;
+            }).join('; ')}`
+          : '';
+
+        facts = `YESTERDAY'S WORLD CUP RESULTS:\n${recapLines}${upcomingLines}\n\nPLAYERS TO KNOW (link these in copy using class="entity-person" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as "Players to Know" in the section. Write a proper recap, not a fixture list.`;
       } else {
-        // No completed result yet — build a day-preview with the full slate
-        const allMatches = worldCup.filter(m => m.statusState === 'pre' || m.statusState === 'in');
-        const matchList  = allMatches.map(m => `${m.away.team} vs. ${m.home.team}`).join(', ');
+        // No completed results — preview today's slate with group context
+        const allMatches = scheduled;
         headline = allMatches.length > 1
           ? `FIFA World Cup 2026 — ${allMatches.length} matches today`
           : `${featured.away.team} vs. ${featured.home.team}`;
-        facts = `TODAY'S WORLD CUP SLATE (all times EDT): ${allMatches.map(m => {
+        facts = `TODAY'S WORLD CUP SLATE:\n${allMatches.map(m => {
           const t = m.date ? new Date(m.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) : '';
-          return `${m.away.team} vs. ${m.home.team}${t ? ` (${t})` : ''}`;
-        }).join('; ')}. Write as a World Cup preview covering today's matches, what's at stake in each group, and key storylines. Do NOT invent scores.`;
+          return `${m.away.team} vs. ${m.home.team}${t ? ` (${t} EDT)` : ''}`;
+        }).join('\n')}\nWrite as a World Cup preview: group stakes, key storylines, players to watch. Do NOT invent scores.`;
       }
-      const { score: imp } = scoreImportance({ name: 'World Cup USMNT FIFA 2026 soccer', headline, facts, isFinalResult: isPost });
+      const { score: imp } = scoreImportance({ name: 'World Cup FIFA 2026 championship soccer', headline, facts, isFinalResult: isPost });
       candidates.push({
         name: 'FIFA World Cup 2026', label: 'World Cup', category: 'team',
         headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,

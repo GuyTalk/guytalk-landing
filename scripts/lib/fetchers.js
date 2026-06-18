@@ -339,27 +339,58 @@ async function fetchF1() {
 // ─────────────────────────────────────────────────────────────────────────────
 async function fetchWorldCup() {
   try {
-    const url = 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard';
-    const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
-    if (!res.ok) return null;
-    const data = await res.json();
-    const events = (data.events || []).slice(0, 4);
-    if (!events.length) return null;
+    const BASE = 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard';
 
-    return events.map(ev => {
-      const comp = ev.competitions?.[0];
-      const home = comp?.competitors?.find(c => c.homeAway === 'home') || {};
-      const away = comp?.competitors?.find(c => c.homeAway === 'away') || {};
-      return {
-        name: ev.name,
-        shortName: ev.shortName || ev.name,
-        status: comp?.status?.type?.description || '',
-        statusState: ev.status?.type?.state || 'pre',
-        date: ev.date,
-        home: { team: home.team?.displayName || '', score: home.score || '' },
-        away: { team: away.team?.displayName || '', score: away.score || '' },
-      };
-    });
+    function parseEvents(events) {
+      return events.map(ev => {
+        const comp = ev.competitions?.[0];
+        const home = comp?.competitors?.find(c => c.homeAway === 'home') || {};
+        const away = comp?.competitors?.find(c => c.homeAway === 'away') || {};
+        // Extract goal scorers from competition details
+        const details = comp?.details || [];
+        const goals = details
+          .filter(d => (d.type?.text || '').toLowerCase().includes('goal') || (d.type?.text || '').toLowerCase().includes('penalty'))
+          .map(d => ({
+            player: d.athletes?.[0]?.displayName || d.athletesInvolved?.[0]?.displayName || '',
+            team: d.team?.displayName || '',
+            clock: d.clock?.displayValue || '',
+            type: d.type?.text || '',
+          }))
+          .filter(g => g.player);
+        const headline = comp?.notes?.[0]?.headline || comp?.headlines?.[0]?.description || '';
+        return {
+          name: ev.name,
+          shortName: ev.shortName || ev.name,
+          status: comp?.status?.type?.description || '',
+          statusState: ev.status?.type?.state || 'pre',
+          date: ev.date,
+          home: { team: home.team?.displayName || '', score: home.score || '' },
+          away: { team: away.team?.displayName || '', score: away.score || '' },
+          goals,
+          espnNote: headline,
+        };
+      });
+    }
+
+    // Fetch today's AND yesterday's scoreboards so the brief can recap completed games
+    const today     = new Date();
+    const yesterday = new Date(today); yesterday.setDate(yesterday.getDate() - 1);
+    const fmt = (d) => d.toISOString().slice(0, 10).replace(/-/g, '');
+
+    const [todayRes, yestRes] = await Promise.all([
+      fetch(BASE, { headers: { 'User-Agent': 'GuyTalk/1.0' } }),
+      fetch(`${BASE}?dates=${fmt(yesterday)}`, { headers: { 'User-Agent': 'GuyTalk/1.0' } }),
+    ]);
+
+    const todayEvents    = todayRes.ok    ? parseEvents((await todayRes.json()).events    || []) : [];
+    const yesterdayEvents = yestRes.ok   ? parseEvents((await yestRes.json()).events     || []) : [];
+
+    // Completed games from yesterday are the most actionable — put them first
+    const completed  = yesterdayEvents.filter(e => e.statusState === 'post');
+    const scheduled  = todayEvents.filter(e => e.statusState === 'pre' || e.statusState === 'in');
+
+    const all = [...completed, ...scheduled].slice(0, 8);
+    return all.length ? all : null;
   } catch (_) {
     return null;
   }
