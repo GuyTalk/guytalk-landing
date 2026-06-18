@@ -16,7 +16,7 @@ const { fetchFactPack }                                             = require('.
 const { fetchOpenAIResearch }                                       = require('./lib/openai-research');
 const { verifyBrief }                                               = require('./lib/openai-verify');
 const { isExcluded, classifyTopic, scoreImportance }        = require('./lib/editorial-config');
-const { STREAMING_PICKS }                                   = require('./lib/db');
+const { STREAMING_PICKS, buildPlayerLinksFromFacts }        = require('./lib/db');
 const { GENERATION_WARNINGS, addWarning, resetWarnings, formatWarnings } = require('./lib/warnings');
 
 const ROOT      = path.join(__dirname, '..');
@@ -256,7 +256,8 @@ function buildHeroOverride(dynamicSports) {
     const alt = dyn.find((s) => s.imageUrl && (s.tier == null || s.tier <= 2));
     if (alt) { image = alt.imageUrl; imageReal = true; }
   }
-  if (!image) { image = `/assets/hero/${heroKeyForLabel(lead.label || lead.name)}.jpg`; imageReal = false; }
+  // Never fall back to default.jpg (it's a soccer field) — null is better than wrong
+  if (!image) { const key = heroKeyForLabel(lead.label || lead.name); image = key !== 'default' ? `/assets/hero/${key}.jpg` : null; imageReal = false; }
 
   return {
     image,
@@ -269,24 +270,26 @@ function buildHeroOverride(dynamicSports) {
 
 // Returns a hero override from either the research-pack lead (if non-sports and high-scoring)
 // or the top dynamic sports card — whichever represents the single biggest story today.
-function buildSmartHeroOverride(dynamicSports, topStories) {
+async function buildSmartHeroOverride(dynamicSports, topStories) {
   const researchLead = Array.isArray(topStories) ? topStories.find(s => s.isLead) : null;
   const SPORTS_CATEGORIES = new Set(['Sports', 'NBA', 'NHL', 'MLB', 'NFL', 'UFC', 'F1', 'Golf', 'World Cup', 'Soccer']);
   const isSportsLead = !researchLead || SPORTS_CATEGORIES.has(researchLead.category || '');
 
   if (researchLead && !isSportsLead) {
-    const CATEGORY_HERO = {
-      Markets: '/assets/hero/default.jpg',
-      Business: '/assets/hero/default.jpg',
-      Tech: '/assets/hero/default.jpg',
-      'Current Events': '/assets/hero/default.jpg',
-      Politics: '/assets/hero/default.jpg',
-      'World Events': '/assets/hero/default.jpg',
-    };
-    const heroImg = CATEGORY_HERO[researchLead.category] || '/assets/hero/default.jpg';
+    // Search for a real photo — never fall back to default.jpg (it's a soccer field)
+    let heroImg = null;
+    let imageReal = false;
+    try {
+      const { searchWebImage, buildLeadImageQuery } = require('./lib/imageSearch');
+      const query = buildLeadImageQuery({ title: researchLead.headline, eyebrow: researchLead.category });
+      if (query) {
+        heroImg = await searchWebImage(query, { fallback: null });
+        imageReal = !!heroImg;
+      }
+    } catch (_) {}
     return {
       image: heroImg,
-      imageReal: false,
+      imageReal,
       eyebrow: researchLead.category || 'The Lead',
       title: researchLead.headline || '',
       sub: researchLead.category || '',
@@ -804,8 +807,16 @@ async function main() {
     // template renders What happened / Why it matters / What to bring up per card.
     if (dynamicSports.length) {
       const beats = Array.isArray(copy?.dynamicSportsText) ? copy.dynamicSportsText : [];
-      dynamicSports = dynamicSports.map((s, i) => ({ ...s, ...(beats[i] || {}) }));
-      console.log(`   ✓ Discovered sports (${dynamicSports.length}): ${dynamicSports.map(s => `${s.isLead ? '★ ' : ''}${s.label} [${s.category}]`).join(', ')}`);
+      dynamicSports = dynamicSports.map((s, i) => {
+        const merged = { ...s, ...(beats[i] || {}) };
+        // Auto-generate player links from known players mentioned in facts/headline
+        if (!merged.playerLinks?.length) {
+          const links = buildPlayerLinksFromFacts(merged.facts, merged.headline);
+          if (links.length) merged.playerLinks = links;
+        }
+        return merged;
+      });
+      console.log(`   ✓ Discovered sports (${dynamicSports.length}): ${dynamicSports.map(s => `${s.isLead ? '★ ' : ''}${s.label} [${s.category}]${s.playerLinks?.length ? ` (${s.playerLinks.length} players)` : ''}`).join(', ')}`);
     }
     if (copy) {
       if (copy.title)          console.log(`   ✓ Headline: "${copy.title}"`);
@@ -902,7 +913,7 @@ async function main() {
       : null,
     // Hero banner = the ranked #1 story (Fix 1's Lead), with a validated/relevant
     // image or the brand fallback graphic — never the structured-feed marquee game.
-    heroOverride: buildSmartHeroOverride(dynamicSports, topStories),
+    heroOverride: await buildSmartHeroOverride(dynamicSports, topStories),
     copy,
     editor:  editorMeta,
     factPack: factPack || null,

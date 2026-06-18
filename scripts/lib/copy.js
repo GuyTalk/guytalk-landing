@@ -319,7 +319,8 @@ ${prev3.map((b, i) => `${i + 1} day(s) ago — Lead angle: "${b.sportsThesis || 
       `Write the headline for today's GuyTalk issue. Plain text — no quotes, no colons, no markdown. Max 12 words.
 Three punchy fragments separated by periods. Name real people and events. Never vague.
 Good examples: "Wembanyama's Finals debut tonight. Pirates demolish Astros. World Cup in nine days." / "Knicks stole Game 1. Nvidia craters on yields. Memorial starts Thursday."
-${topStoriesText ? `${topStoriesText}\nLEAD the headline with the ★ story when it's genuinely the biggest thing today (a record IPO, a major ruling, a huge launch) — it beats a regular-season score. Still include a sports fragment and one more.` : ''}
+ORDER RULE: The three fragments must appear in editorial importance order — biggest story first, second-biggest second, third-biggest last. If the ★ story is Markets or Politics, it leads. If the biggest story is a World Cup result, it leads over a regular-season game.
+${topStoriesText ? `${topStoriesText}\nThe ★ story is always the first fragment. Order the remaining two by their real importance today.` : ''}
 Context: ${ctx}`,
       80
     ),

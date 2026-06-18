@@ -40,13 +40,28 @@ const PLAYERS = {
   'Paul Skenes':                { sport: 'mlb', id: '4895670',  slug: 'paul-skenes' },
   'Cody Bellinger':             { sport: 'mlb', id: '4097870',  slug: 'cody-bellinger' },
   // F1 drivers
-  'Max Verstappen':             { sport: 'f1',  id: '3990',     slug: 'max-verstappen' },
-  'Lewis Hamilton':             { sport: 'f1',  id: '1025',     slug: 'lewis-hamilton' },
-  'Charles Leclerc':            { sport: 'f1',  id: '4592730',  slug: 'charles-leclerc' },
-  'Lando Norris':               { sport: 'f1',  id: '4702614',  slug: 'lando-norris' },
-  'Carlos Sainz':               { sport: 'f1',  id: '4429619',  slug: 'carlos-sainz' },
-  'George Russell':             { sport: 'f1',  id: '4686350',  slug: 'george-russell' },
-  'Kimi Antonelli':             { sport: 'f1',  id: '5073282',  slug: 'kimi-antonelli' },
+  'Max Verstappen':             { sport: 'f1',  id: '3990',     slug: 'max-verstappen',   f1Slug: 'max-verstappen' },
+  'Lewis Hamilton':             { sport: 'f1',  id: '1025',     slug: 'lewis-hamilton',   f1Slug: 'lewis-hamilton' },
+  'Charles Leclerc':            { sport: 'f1',  id: '4592730',  slug: 'charles-leclerc',  f1Slug: 'charles-leclerc' },
+  'Lando Norris':               { sport: 'f1',  id: '4702614',  slug: 'lando-norris',     f1Slug: 'lando-norris' },
+  'Carlos Sainz':               { sport: 'f1',  id: '4429619',  slug: 'carlos-sainz',     f1Slug: 'carlos-sainz' },
+  'George Russell':             { sport: 'f1',  id: '4686350',  slug: 'george-russell',   f1Slug: 'george-russell' },
+  'Kimi Antonelli':             { sport: 'f1',  id: '5073282',  slug: 'kimi-antonelli',   f1Slug: 'andrea-kimi-antonelli' },
+  'Oscar Piastri':              { sport: 'f1',  id: '4702619',  slug: 'oscar-piastri',    f1Slug: 'oscar-piastri' },
+  // Soccer / World Cup 2026
+  'Harry Kane':                 { sport: 'soccer', id: '157529',  slug: 'harry-kane',        fifaSlug: 'harry-kane',       wikiSlug: 'Harry_Kane' },
+  'Jude Bellingham':            { sport: 'soccer', id: '4251614', slug: 'jude-bellingham',    fifaSlug: 'jude-bellingham',  wikiSlug: 'Jude_Bellingham' },
+  'Marcus Rashford':            { sport: 'soccer', id: '3146590', slug: 'marcus-rashford',    fifaSlug: 'marcus-rashford',  wikiSlug: 'Marcus_Rashford' },
+  'Cristiano Ronaldo':          { sport: 'soccer', id: '93869',   slug: 'cristiano-ronaldo',  fifaSlug: 'cristiano-ronaldo', wikiSlug: 'Cristiano_Ronaldo' },
+  'Lionel Messi':               { sport: 'soccer', id: '45843',   slug: 'lionel-messi',       fifaSlug: 'lionel-messi',     wikiSlug: 'Lionel_Messi' },
+  'Kylian Mbappé':              { sport: 'soccer', id: '3729512', slug: 'kylian-mbappe',      fifaSlug: 'kylian-mbappe',    wikiSlug: 'Kylian_Mbappé' },
+  'Erling Haaland':             { sport: 'soccer', id: '4318050', slug: 'erling-haaland',     fifaSlug: 'erling-haaland',   wikiSlug: 'Erling_Haaland' },
+  'Bukayo Saka':                { sport: 'soccer', id: '4318088', slug: 'bukayo-saka',         wikiSlug: 'Bukayo_Saka' },
+  'Phil Foden':                 { sport: 'soccer', id: '3906882', slug: 'phil-foden',          wikiSlug: 'Phil_Foden' },
+  'Vinicius Jr.':               { sport: 'soccer', id: '4217293', slug: 'vinicius-junior',     wikiSlug: 'Vini_Jr.' },
+  'Romano Schmid':              { sport: 'soccer', id: '4568166', slug: 'romano-schmid',       wikiSlug: 'Romano_Schmid' },
+  'Luis Díaz':                  { sport: 'soccer', id: '3943007', slug: 'luis-diaz',           wikiSlug: 'Luis_Díaz_(footballer,_born_1997)' },
+  'USMNT':                      { sport: 'soccer', slug: 'usmnt', wikiSlug: 'United_States_men%27s_national_soccer_team' },
   // Golf – PGA
   'Scottie Scheffler':         { sport: 'golf', id: '4686091',  slug: 'scottie-scheffler' },
   'Rory McIlroy':              { sport: 'golf', id: '3448',     slug: 'rory-mcilroy' },
@@ -217,12 +232,63 @@ function esc(s) {
 function playerLink(name) {
   const p = PLAYERS[name];
   if (!p) return `<span class="player">${esc(name)}</span>`;
-  let base;
-  if (p.sport === 'golf') base = `https://www.espn.com/golf/player/_/id/${p.id}/${p.slug}`;
-  else if (p.sport === 'mlb') base = `https://www.espn.com/mlb/player/_/id/${p.id}/${p.slug}`;
-  else if (p.sport === 'f1') base = `https://www.espn.com/racing/driver/_/id/${p.id}/${p.slug}`;
-  else base = `https://www.espn.com/nba/player/_/id/${p.id}/${p.slug}`;
-  return `<a href="${base}" class="player">${esc(name)}</a>`;
+  const url = officialPlayerUrl(p);
+  return `<a href="${url}" class="player" target="_blank" rel="noopener">${esc(name)}</a>`;
+}
+
+// Build the best available URL for a player, in priority order:
+// FIFA → F1.com → PGA Tour → MLB.com → NBA.com → ESPN → Wikipedia
+function officialPlayerUrl(p) {
+  if (!p) return '#';
+  if (p.sport === 'soccer') {
+    // ESPN Soccer is the most reliable soccer profile (FIFA player URLs are unstable)
+    if (p.id) return `https://www.espn.com/soccer/player/_/id/${p.id}/${p.slug}`;
+    if (p.wikiSlug) return `https://en.wikipedia.org/wiki/${p.wikiSlug}`;
+  }
+  if (p.sport === 'f1') {
+    // Formula1.com official driver profile
+    if (p.f1Slug) return `https://www.formula1.com/en/drivers/${p.f1Slug}`;
+    if (p.id) return `https://www.espn.com/racing/driver/_/id/${p.id}/${p.slug}`;
+  }
+  if (p.sport === 'golf') {
+    // PGA Tour official profile
+    if (p.id) return `https://www.pgatour.com/players/player.${p.id}.${p.slug}.html`;
+  }
+  if (p.sport === 'mlb') {
+    // MLB.com official profile
+    if (p.id && p.slug) return `https://www.mlb.com/player/${p.slug}-${p.id}`;
+    if (p.id) return `https://www.espn.com/mlb/player/_/id/${p.id}/${p.slug}`;
+  }
+  if (p.sport === 'nba') {
+    // NBA.com official profile
+    if (p.id) return `https://www.nba.com/player/${p.id}`;
+  }
+  // ESPN fallback
+  if (p.id && p.slug) {
+    const espnBase = { nba: 'nba', mlb: 'mlb', f1: 'racing/driver', golf: 'golf', nhl: 'nhl' };
+    const path = espnBase[p.sport] || p.sport;
+    return `https://www.espn.com/${path}/player/_/id/${p.id}/${p.slug}`;
+  }
+  // Wikipedia last resort
+  if (p.wikiSlug) return `https://en.wikipedia.org/wiki/${p.wikiSlug}`;
+  return '#';
+}
+
+// Build a playerLinks array for a dynamicSports card.
+// Scans the combined facts+headline text for known player names and returns
+// [{name, url}] using the official profile priority order.
+function buildPlayerLinksFromFacts(facts, headline) {
+  const text = `${facts || ''} ${headline || ''}`;
+  const found = [];
+  const seen  = new Set();
+  for (const [name, p] of Object.entries(PLAYERS)) {
+    if (seen.has(name)) continue;
+    if (text.includes(name)) {
+      seen.add(name);
+      found.push({ name, url: officialPlayerUrl(p) });
+    }
+  }
+  return found;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -540,4 +606,4 @@ const STREAMING_PICKS = [
   },
 ];
 
-module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT, LARGECAP_UNIVERSE, CRYPTO_UNIVERSE, PRODUCTS, RECS, STREAMING_PICKS, esc, playerLink, tickerLink, fmtPrice, fmtPct, ENTITY_LINKS, entityLink, linkifyEntities };
+module.exports = { PLAYERS, TICKERS, BRIEF_ROWS, FETCH_TICKERS, CORE_TICKERS, MOVERS_WATCHLIST, MOVERS_COUNT, LARGECAP_UNIVERSE, CRYPTO_UNIVERSE, PRODUCTS, RECS, STREAMING_PICKS, esc, playerLink, officialPlayerUrl, buildPlayerLinksFromFacts, tickerLink, fmtPrice, fmtPct, ENTITY_LINKS, entityLink, linkifyEntities };

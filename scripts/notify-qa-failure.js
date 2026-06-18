@@ -5,16 +5,27 @@
 
 require('dotenv').config({ path: '.env.local' });
 
-const fs   = require('fs');
-const path = require('path');
+const fs            = require('fs');
+const path          = require('path');
+const { execSync }  = require('child_process');
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const NOTIFY_EMAIL   = process.env.NOTIFY_EMAIL || 'j.rwilliams284@gmail.com';
 const FROM_EMAIL     = process.env.FROM_EMAIL   || 'GuyTalk <onboarding@resend.dev>';
 const ROOT           = path.join(__dirname, '..');
 
+function getRunMeta() {
+  const ts = new Date().toLocaleString('en-US', { timeZone: 'America/New_York', hour12: true,
+    weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  let commit = 'unknown';
+  try { commit = execSync('git rev-parse --short HEAD', { cwd: ROOT }).toString().trim(); } catch (_) {}
+  return { ts, commit };
+}
+
 async function main() {
   if (!RESEND_API_KEY) { console.log('   ⚠  RESEND_API_KEY not set — skipping QA failure email'); return; }
+
+  const { ts: runTs, commit: runCommit } = getRunMeta();
 
   // Grab today's log tail for context (last 60 lines)
   const today   = new Date().toISOString().slice(0, 10);
@@ -78,6 +89,13 @@ async function main() {
         </p>
       </div>
     </div>
+  </td></tr>
+
+  <tr><td style="padding:20px 0 0;text-align:center;">
+    <p style="font-size:11px;color:#B0ADA8;margin:0;line-height:1.6;">
+      This is your private QA failure alert. No email was sent to subscribers.<br>
+      <span style="font-family:monospace;font-size:10px;">run: ${runTs} &nbsp;·&nbsp; commit: ${runCommit}</span>
+    </p>
   </td></tr>
 
 </table>
