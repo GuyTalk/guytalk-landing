@@ -80,6 +80,7 @@ if [ "$GEN_EXIT" -eq 0 ]; then
       echo "     Fix the issues above, then run manually:" >> "$LOG_FILE"
       echo "     npm run brief:qa && git add -A && git commit -m 'fix ${ISSUE}' && git push origin HEAD:pending --force-with-lease" >> "$LOG_FILE"
       osascript -e "display notification \"${ISSUE}: QA issues found — fix before pushing\" with title \"GuyTalk Brief ⚠\" subtitle \"Review email NOT sent\""
+      "$NODE" "$PROJECT_DIR/scripts/notify-qa-failure.js" 2>&1 | tee -a "$LOG_FILE"
     else
       echo "   ✓ QA passed" >> "$LOG_FILE"
 

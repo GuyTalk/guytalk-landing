@@ -433,7 +433,7 @@ HYPERLINK RULE:
 
 VISUALS RULE:
 - Major sports sections (F1, Golf, lead sport) should include a course/circuit/venue image where one is available in the asset library.
-- F1: /assets/circuits/${circuitKey}.jpg. Golf: courseImgHtml from golfCourseImage(). Lead sport: /assets/hero/${sport}.jpg.
+- F1: /assets/circuits/{circuit-key}.jpg (e.g. austria, silverstone, monza). Golf: courseImgHtml from golfCourseImage(). Lead sport: /assets/hero/{sport}.jpg.
 - Do not invent or guess image URLs. Only use assets confirmed to exist.
 
 OUTPUT — return ONLY valid JSON, no markdown fences, exactly this shape:
