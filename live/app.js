@@ -455,14 +455,26 @@ function TrendingStoryCard(s, i) {
   </div>`;
 }
 
-/** TalkingPointCard — Section 7 (topic / why / what to say + source) */
+/** TalkingPointCard — ctx-card format: monospace header + labeled rows */
 function TalkingPointCard(t) {
-  return `<div class="talk-card">
-    <div class="talk-topic">${esc(t.topic)}</div>
-    <p class="talk-field"><b>Why it matters</b>${esc(t.matters)}</p>
-    ${t.stat ? `<p class="talk-field talk-stat"><b>Key stat</b>${esc(t.stat)}</p>` : ''}
-    <p class="talk-field talk-say"><b>What to say</b>${esc(t.say)}</p>
-    ${t.url ? `<p class="talk-src"><a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.source || 'Source')} →</a></p>` : ''}
+  return `<div class="talk2-card">
+    <div class="talk2-head">What Everyone's Talking About</div>
+    <div class="talk2-body">
+      <div class="talk2-topic">${esc(t.topic)}</div>
+      <div class="talk2-field">
+        <div class="talk2-lbl">Why people care</div>
+        <div class="talk2-val">${esc(t.matters)}</div>
+      </div>
+      ${t.stat ? `<div class="talk2-field">
+        <div class="talk2-lbl">Key stat</div>
+        <div class="talk2-val">${esc(t.stat)}</div>
+      </div>` : ''}
+      <div class="talk2-field talk2-say">
+        <div class="talk2-lbl">What to bring up</div>
+        <div class="talk2-val">${esc(t.say)}</div>
+      </div>
+      ${t.url ? `<p class="talk-src" style="margin-top:10px"><a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.source || 'Source')} →</a></p>` : ''}
+    </div>
   </div>`;
 }
 
@@ -1539,10 +1551,38 @@ function FeaturedGolfCard(g) {
     const el = $('marketsWrap');
     if (!real || !real.length) { el.innerHTML = `<div class="empty" style="grid-column:1/-1">Market data unavailable right now.</div>`; return; }
     const synopsis = marketsSynopsis(real);
-    el.innerHTML =
-      (synopsis ? `<div class="mk-synopsis"><span class="mk-synopsis-label">The Read</span>${esc(synopsis)}</div>` : '') +
-      real.map(MarketCard).join('') +
+    el.innerHTML = buildTapeCard(real, synopsis) + real.map(MarketCard).join('') +
       `<p class="mk-disclaimer">Market data is informational only and is not investment advice. Values via index-tracking proxies; figures may be delayed.</p>`;
+  }
+
+  function buildTapeCard(rows, synopsis) {
+    const by = {};
+    rows.forEach(r => { if (r && r.key) by[r.key] = r; });
+    const tapeRows = [
+      ['spx', 'S&P 500'], ['ndq', 'Nasdaq'], ['tnx', '10Y Yield'], ['btc', 'Bitcoin'],
+    ].map(([key, label]) => {
+      const r = by[key];
+      if (!r) return '';
+      let val, dir;
+      if (key === 'tnx') {
+        val = `${Number(r.value).toFixed(2)}%`;
+        dir = 'neutral';
+      } else if (key === 'btc') {
+        val = `$${Number(r.value).toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+        dir = r.changePercent > 0.1 ? 'up' : r.changePercent < -0.1 ? 'down' : 'neutral';
+      } else {
+        const pct = r.changePercent.toFixed(2);
+        val = `${r.changePercent >= 0 ? '+' : ''}${pct}%`;
+        dir = r.changePercent > 0.05 ? 'up' : r.changePercent < -0.05 ? 'down' : 'neutral';
+      }
+      return `<div class="tape-row"><span class="tape-row-label">${esc(label)}</span><span class="tape-row-val ${dir}">${esc(val)}</span></div>`;
+    }).join('');
+    if (!tapeRows.replace(/<[^>]+>/g, '').trim()) return '';
+    return `<div class="tape-card" style="grid-column:1/-1">
+      <div class="tape-label">The Tape</div>
+      <div class="tape-rows">${tapeRows}</div>
+      ${synopsis ? `<div class="tape-read"><b>Read</b>${esc(synopsis)}</div>` : ''}
+    </div>`;
   }
 
   // Plain-English read on the tape — describes what moved and by how much. Purely
