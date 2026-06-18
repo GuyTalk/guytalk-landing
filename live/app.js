@@ -998,12 +998,17 @@ function ChampionHighlightCard(featured, tag) {
   const color = winner.color || '#2B6FFF';
   const logo = winner.logo || '';
   const seriesLine = featured.seriesText || featured.statusText || '';
+  const logoHtml = logo
+    ? `<div class="champ-logo-wrap"><img class="champ-card-logo" src="${esc(logo)}" alt="${esc(winner.name)}" onerror="this.parentElement.style.display='none'"></div>`
+    : '';
   return `<a class="champ-card" href="${esc(hlUrl)}" target="_blank" rel="noopener" style="--cc:${esc(color)}">
-    ${logo ? `<img class="champ-card-logo" src="${esc(logo)}" alt="" aria-hidden="true" onerror="this.style.display='none'">` : ''}
-    <div class="champ-card-body">
-      <div class="champ-badge">${esc(tag)} CHAMPIONS</div>
-      <div class="champ-name">${esc(winner.name)}</div>
-      ${seriesLine ? `<div class="champ-sub">${esc(seriesLine)}</div>` : ''}
+    <div class="champ-banner">🏆 ${esc(tag)} CHAMPIONS</div>
+    <div class="champ-card-inner">
+      ${logoHtml}
+      <div class="champ-card-body">
+        <div class="champ-name">${esc(winner.name)}</div>
+        ${seriesLine ? `<div class="champ-sub">${esc(seriesLine)}</div>` : ''}
+      </div>
     </div>
     <div class="champ-play">▶ Watch Highlights</div>
   </a>`;
@@ -1726,6 +1731,7 @@ function FeaturedGolfCard(g) {
     renderSoccer(p.scoreboard);
     renderScoreboard(p.scoreboard);
     renderMarkets(p.markets);
+    observeChampCards();
     // Sections 6 & 7 are handled by refreshTalk() / renderTalk() (separate feed).
 
     const stamp = p.updatedAt || new Date().toISOString();
@@ -1942,6 +1948,76 @@ function FeaturedGolfCard(g) {
       e.preventDefault(); openStock(el.dataset.symbol, el.querySelector('.mk-label') ? el.querySelector('.mk-label').textContent : '');
     }
   });
+
+  // ── Confetti burst — fires once when a .champ-card scrolls into view ─────
+  function launchConfetti(fromEl) {
+    if (fromEl._confettiDone) return;
+    fromEl._confettiDone = true;
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999;';
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    const rect = fromEl.getBoundingClientRect();
+    const ox = rect.left + rect.width / 2, oy = rect.top + rect.height / 2;
+    const COLS = ['#FF6B6B','#FFD700','#4ECDC4','#45B7D1','#96CEB4','#FFEAA7','#FF8CC8','#A8D8EA'];
+    const ps = Array.from({ length: 110 }, () => ({
+      x: ox + (Math.random() - 0.5) * 80,
+      y: oy + (Math.random() - 0.5) * 40,
+      vx: (Math.random() - 0.5) * 12,
+      vy: Math.random() * -14 - 4,
+      sz: Math.random() * 10 + 5,
+      c: COLS[Math.floor(Math.random() * COLS.length)],
+      rot: Math.random() * 360, vr: (Math.random() - 0.5) * 9,
+      shape: Math.random() > 0.4 ? 'r' : 'c',
+    }));
+    const t0 = Date.now(), dur = 3200;
+    (function draw() {
+      const t = (Date.now() - t0) / dur;
+      if (t > 1) { canvas.remove(); return; }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ps.forEach(p => {
+        p.x += p.vx; p.y += p.vy; p.vy += 0.3; p.rot += p.vr;
+        const alpha = t < 0.65 ? 1 : Math.max(0, 1 - (t - 0.65) / 0.35);
+        ctx.globalAlpha = alpha; ctx.fillStyle = p.c;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot * Math.PI / 180);
+        if (p.shape === 'r') ctx.fillRect(-p.sz / 2, -p.sz / 4, p.sz, p.sz / 2);
+        else { ctx.beginPath(); ctx.arc(0, 0, p.sz / 2, 0, Math.PI * 2); ctx.fill(); }
+        ctx.restore();
+      });
+      requestAnimationFrame(draw);
+    })();
+  }
+
+  function observeChampCards() {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) launchConfetti(e.target); });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.champ-card').forEach(el => obs.observe(el));
+  }
+
+  // ── Section background shift — subtle tint per pillar ─────────────────────
+  (function () {
+    const MAP = [
+      { id: 'umb-sports',  bg: '#EEF4FF' },
+      { id: 'umb-markets', bg: '#EAF8EF' },
+      { id: 'umb-culture', bg: '#FEF4E8' },
+    ];
+    const DEFAULT = '#F9F8F5';
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const cfg = MAP.find(s => s.id === e.target.id);
+        document.body.style.backgroundColor = cfg ? cfg.bg : DEFAULT;
+      });
+    }, { threshold: 0, rootMargin: '-10% 0px -60% 0px' });
+    MAP.forEach(s => { const el = document.getElementById(s.id); if (el) obs.observe(el); });
+    const heroObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) document.body.style.backgroundColor = DEFAULT; });
+    }, { threshold: 0.05 });
+    const hero = document.querySelector('.live-hero');
+    if (hero) heroObs.observe(hero);
+  })();
 
   window.GuyTalkLive = { refresh, MOCK, openStock, components: {
     LiveEventCard, LiveLeaderboard, ScoreboardCard, MarketCard, TrendingStoryCard,

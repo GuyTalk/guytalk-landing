@@ -30,6 +30,7 @@
     background: var(--bg); color: var(--text);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+    transition: background-color 1s ease;
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
@@ -676,38 +677,40 @@
 
   /* CHAMPION HIGHLIGHT CARD — fills blank left column for finished championships */
   .champ-card {
-    border-radius: 14px; overflow: hidden; min-height: 170px; position: relative;
-    display: flex; flex-direction: column; justify-content: flex-end; text-decoration: none;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--cc, #2B6FFF) 75%, #000) 0%, #0B0F18 100%);
+    border-radius: 16px; overflow: hidden; min-height: 210px; position: relative;
+    display: flex; flex-direction: column; text-decoration: none;
+    background: linear-gradient(145deg, color-mix(in srgb, var(--cc, #2B6FFF) 88%, #000) 0%, color-mix(in srgb, var(--cc, #2B6FFF) 48%, #000) 100%);
     transition: transform 0.18s ease, box-shadow 0.18s ease;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+    box-shadow: 0 6px 28px rgba(0,0,0,0.22);
   }
-  .champ-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.28); text-decoration: none; }
-  .champ-card-logo {
-    position: absolute; right: -8px; bottom: -8px;
-    width: 150px; height: 150px; object-fit: contain;
-    opacity: 0.15; filter: brightness(0) invert(1); pointer-events: none;
+  .champ-card:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(0,0,0,0.32); text-decoration: none; }
+  .champ-banner {
+    background: linear-gradient(90deg, rgba(255,215,0,0.96), rgba(255,185,0,0.92), rgba(255,215,0,0.96));
+    padding: 10px 20px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 12.5px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: #1a1200;
   }
-  .champ-card-body { position: relative; z-index: 1; padding: 22px 22px 10px; }
-  .champ-badge {
-    font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 9.5px;
-    letter-spacing: 0.20em; text-transform: uppercase;
-    color: rgba(255,255,255,0.55); margin-bottom: 8px;
+  .champ-card-inner { display: flex; align-items: center; gap: 18px; padding: 18px 20px; flex: 1; }
+  .champ-logo-wrap {
+    width: 78px; height: 78px; border-radius: 14px; flex-shrink: 0;
+    background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; padding: 6px;
   }
+  .champ-card-logo { width: 100%; height: 100%; object-fit: contain; }
+  .champ-card-body { flex: 1; min-width: 0; }
   .champ-name {
-    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 24px;
-    letter-spacing: -0.04em; color: #fff; line-height: 1.05; margin-bottom: 5px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 30px;
+    letter-spacing: -0.04em; color: #fff; line-height: 1; margin-bottom: 6px;
   }
-  .champ-sub { font-size: 13px; color: rgba(255,255,255,0.62); }
+  .champ-sub { font-size: 13px; color: rgba(255,255,255,0.65); }
   .champ-play {
-    position: relative; z-index: 1; margin: 14px 22px 22px; align-self: flex-start;
+    margin: 0 20px 20px; align-self: flex-start;
     display: inline-flex; align-items: center; gap: 7px;
     font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 12px;
-    padding: 8px 16px; border-radius: 8px;
-    background: rgba(255,255,255,0.14); color: #fff;
-    border: 1px solid rgba(255,255,255,0.26); transition: background 0.15s ease;
+    padding: 9px 18px; border-radius: 9px;
+    background: rgba(255,255,255,0.18); color: #fff;
+    border: 1px solid rgba(255,255,255,0.30); transition: background 0.15s ease;
   }
-  .champ-card:hover .champ-play { background: rgba(255,255,255,0.24); }
+  .champ-card:hover .champ-play { background: rgba(255,255,255,0.30); }
 
   /* SPORTS CATEGORY NAV */
   .sports-nav {
