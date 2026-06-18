@@ -104,6 +104,12 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
   .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
   .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
+  /* Player chips */
+  .player-chips{margin:10px 0 6px;}
+  .pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9E9891;margin-bottom:6px;}
+  .pc-list{display:flex;flex-wrap:wrap;gap:5px;}
+  .player-chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#0F1724;background:#F0EDE8;border-radius:20px;padding:3px 11px;text-decoration:none;border:1px solid #E5E2DB;transition:background .15s;}
+  .player-chip:hover{background:#E5E2DB;}
   /* Rundown bullets — clickable anchor navigation. */
   .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
   .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
@@ -248,7 +254,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>Kane scored twice—a penalty in the 12th minute and again in the 42nd</li><li>Jude Bellingham scored in the 47th minute to extend the lead after Croatia pulled back to 2–2</li><li>Marcus Rashford added the fourth in the 85th minute</li><li>Croatia's Petar Musa scored in the 45th+5' to make it 2–2 at the half</li></ul></li>
       <li><span><span class="dl-label">What to bring up:</span> England put four past Croatia in one game—that's the kind of attack you have to respect when both Kane and Bellingham are clicking at the same time.</span></li>
     </ul>
-    <div class="player-links"><span class="dl-label">Players to Know:</span> <a href="https://www.espn.com/soccer/player/_/id/157529/harry-kane" target="_blank" rel="noopener" class="player-link">Harry Kane</a> · <a href="https://www.espn.com/soccer/player/_/id/4251614/jude-bellingham" target="_blank" rel="noopener" class="player-link">Jude Bellingham</a> · <a href="https://www.espn.com/soccer/player/_/id/3146590/marcus-rashford" target="_blank" rel="noopener" class="player-link">Marcus Rashford</a> · <a href="https://www.espn.com/soccer/player/_/id/93869/cristiano-ronaldo" target="_blank" rel="noopener" class="player-link">Cristiano Ronaldo</a> · <a href="https://www.espn.com/soccer/player/_/id/4568166/romano-schmid" target="_blank" rel="noopener" class="player-link">Romano Schmid</a> · <a href="https://www.espn.com/soccer/player/_/id/3943007/luis-diaz" target="_blank" rel="noopener" class="player-link">Luis Díaz</a></div>
+    <div class="player-chips">
+      <div class="pc-label">Players to Know</div>
+      <div class="pc-list"><a href="https://www.espn.com/soccer/player/_/id/157529/harry-kane" target="_blank" rel="noopener" class="player-chip">Harry Kane</a><a href="https://www.espn.com/soccer/player/_/id/4251614/jude-bellingham" target="_blank" rel="noopener" class="player-chip">Jude Bellingham</a><a href="https://www.espn.com/soccer/player/_/id/3146590/marcus-rashford" target="_blank" rel="noopener" class="player-chip">Marcus Rashford</a><a href="https://www.espn.com/soccer/player/_/id/93869/cristiano-ronaldo" target="_blank" rel="noopener" class="player-chip">Cristiano Ronaldo</a><a href="https://www.espn.com/soccer/player/_/id/4568166/romano-schmid" target="_blank" rel="noopener" class="player-chip">Romano Schmid</a><a href="https://www.espn.com/soccer/player/_/id/3943007/luis-diaz" target="_blank" rel="noopener" class="player-chip">Luis Díaz</a></div>
+    </div>
 
     <div class="brief-img sport-card-img"><img src="https://www.aljazeera.net/wp-content/uploads/2026/06/ap_6a332dc2204d8-1781738946.jpg?resize=1920%2C1440" alt="World Cup" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
 
@@ -264,7 +273,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>Austrian Grand Prix scheduled for this weekend</li><li>Red Bull Ring is a high-speed circuit favoring low-downforce setups</li><li>Average lap speed at this venue is among the fastest on the F1 calendar</li></ul></li>
       <li><span><span class="dl-label">What to bring up:</span> The Austrian GP is basically a qualifying race—everyone's flat out through turns 1 through 9, and one tenth of a second in practice determines the whole weekend.</span></li>
     </ul>
-
+    <div class="player-chips">
+      <div class="pc-label">Players to Know</div>
+      <div class="pc-list"><a href="https://www.formula1.com/en/drivers/max-verstappen" target="_blank" rel="noopener" class="player-chip">Max Verstappen</a><a href="https://www.formula1.com/en/drivers/lewis-hamilton" target="_blank" rel="noopener" class="player-chip">Lewis Hamilton</a><a href="https://www.formula1.com/en/drivers/charles-leclerc" target="_blank" rel="noopener" class="player-chip">Charles Leclerc</a><a href="https://www.formula1.com/en/drivers/lando-norris" target="_blank" rel="noopener" class="player-chip">Lando Norris</a><a href="https://www.formula1.com/en/drivers/carlos-sainz" target="_blank" rel="noopener" class="player-chip">Carlos Sainz</a><a href="https://www.formula1.com/en/drivers/george-russell" target="_blank" rel="noopener" class="player-chip">George Russell</a></div>
+    </div>
 
 
   </section>
@@ -310,7 +322,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
             <span class="culture-tag ctag-sports">Current Events</span>
           </div>
           <div class="culture-head">Jeremy Clarkson reveals aggressive cancer diagnosis</div>
-          <p class="culture-line"><strong>What happened:</strong> &lt;a href='https://en.wikipedia.org/wiki/Jeremy_Clarkson' class='entity-person'&gt;Jeremy Clarkson&lt;/a&gt;, the longtime Top Gear host and one of the most recognizable faces in British television, revealed he has been diagnosed with an aggressive form of cancer.</p>
+          <p class="culture-line"><strong>What happened:</strong> Jeremy Clarkson, the longtime Top Gear host and one of the most recognizable faces in British television, revealed he has been diagnosed with an aggressive form of cancer.</p>
           <p class="culture-line"><strong>Why it matters:</strong> Clarkson is a genuine cultural institution — Top Gear under his watch was one of the most-watched shows on the planet, and his blunt, unapologetic style made him a figure men across generations actually paid attention to.</p>
           <p class="culture-line"><strong>The GuyTalk Read:</strong> This is the kind of news that hits differently when it is someone who felt invincible on screen. Clarkson built his entire persona around being the guy who does not slow down — cars, controversy, farming, all of it at full throttle. An aggressive cancer diagnosis at his age reframes all of that. The reaction across social media was immediate and genuine, which tells you how much cultural weight he still carries even years after leaving the BBC. Whatever you thought of his opinions, the man made television worth watching.</p>
           <ul class="ammo-list"><li>Jeremy Clarkson revealed an aggressive cancer diagnosis publicly</li><li>Clarkson hosted Top Gear on the BBC for over a decade before departing in 2015</li><li>He most recently starred in Clarkson's Farm on Amazon Prime Video</li></ul>
@@ -350,7 +362,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     <div class="section-label sl-markets">The Rec</div>
 
     <div class="brief-rec brief-rec--media">
-      <div class="rec-img rec-img-failed"><span class="rec-img-ph">Bose</span></div>
+      <div class="rec-img"><img src="https://assets.bose.com/content/dam/cloudassets/Bose_DAM/Web/consumer_electronics/global/products/headphones/quietcomfort_45/product_silo_images/qc45_PDP_hero_black-S1.png" alt="Bose" loading="lazy" onerror="this.closest('.rec-img').classList.add('rec-img-failed');this.remove()"><span class="rec-img-ph">Bose</span></div>
       <div class="rec-content">
         <div class="rec-label">This week's pick</div>
         <div class="rec-title">Bose QuietComfort 45 — the headphones that are better than the ones getting reviews.</div>
@@ -394,20 +406,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-054/" class="more-issue-card">
-    <span class="mi-num">#054</span>
-    <span class="mi-title">Fed holds rates steady, signals future hikes. Pirates demolish Athletics. U.S. Open underway at Shinnecock.</span>
-    <span class="mi-date">Thursday, June 18, 2026</span>
-  </a>
-  <a href="/brief/issue-053/" class="more-issue-card">
-    <span class="mi-num">#053</span>
-    <span class="mi-title">Fed signals 2026 rate hike. Hamilton wins in Barcelona. Messi ties World Cup scoring record.</span>
-    <span class="mi-date">Wednesday, June 17, 2026</span>
+  <a href="/brief/issue-051/" class="more-issue-card">
+    <span class="mi-num">#051</span>
+    <span class="mi-title">U.S. and Iran sign peace deal Friday. SpaceX IPO valued at $1.77 trillion. Knicks win first championship since 1973.</span>
+    <span class="mi-date"></span>
   </a>
   <a href="/brief/issue-052/" class="more-issue-card">
     <span class="mi-num">#052</span>
     <span class="mi-title">Dow hits record on Iran deal. Hurricanes win the Cup. OpenAI bleeds $34B annually.</span>
-    <span class="mi-date">Wednesday, June 17, 2026</span>
+    <span class="mi-date"></span>
+  </a>
+  <a href="/brief/issue-053/" class="more-issue-card">
+    <span class="mi-num">#053</span>
+    <span class="mi-title">Fed signals 2026 rate hike. Hamilton wins in Barcelona. Messi ties World Cup scoring record.</span>
+    <span class="mi-date"></span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>

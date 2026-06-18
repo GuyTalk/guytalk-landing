@@ -16,7 +16,7 @@ const { fetchFactPack }                                             = require('.
 const { fetchOpenAIResearch }                                       = require('./lib/openai-research');
 const { verifyBrief }                                               = require('./lib/openai-verify');
 const { isExcluded, classifyTopic, scoreImportance }        = require('./lib/editorial-config');
-const { STREAMING_PICKS, buildPlayerLinksFromFacts }        = require('./lib/db');
+const { STREAMING_PICKS, buildPlayerLinksFromFacts, PLAYERS, officialPlayerUrl } = require('./lib/db');
 const { GENERATION_WARNINGS, addWarning, resetWarnings, formatWarnings } = require('./lib/warnings');
 
 const ROOT      = path.join(__dirname, '..');
@@ -801,6 +801,24 @@ async function main() {
     const prevSet = new Set(prevImageUrls);
     dynamicSports.forEach(s => { if (s.imageUrl && prevSet.has(s.imageUrl)) s.imageUrl = null; });
 
+    // Enrich golf object with known purse data (ESPN doesn't return purse amounts)
+    if (golf?.name) {
+      const GOLF_PURSE = {
+        'U.S. Open':             { total: '$21,500,000', winner: '$3,870,000' },
+        'Masters':               { total: '$20,000,000', winner: '$3,600,000' },
+        'The Open Championship': { total: '$17,000,000', winner: '$3,100,000' },
+        'PGA Championship':      { total: '$17,000,000', winner: '$3,100,000' },
+        'Players Championship':  { total: '$25,000,000', winner: '$4,500,000' },
+        'Arnold Palmer':         { total: '$20,000,000', winner: '$3,600,000' },
+        'Genesis Invitational':  { total: '$20,000,000', winner: '$3,600,000' },
+        'FedEx St. Jude':        { total: '$20,000,000', winner: '$3,600,000' },
+        'BMW Championship':      { total: '$20,000,000', winner: '$3,600,000' },
+        'Tour Championship':     { total: '$100,000,000', winner: '$18,000,000' },
+      };
+      const purseKey = Object.keys(GOLF_PURSE).find(k => (golf.name || '').includes(k));
+      if (purseKey) golf.purse = GOLF_PURSE[purseKey];
+    }
+
     copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick, factPack });
 
     // Merge the three-label beats (from copy) into each discovered sport so the
@@ -813,6 +831,14 @@ async function main() {
         if (!merged.playerLinks?.length) {
           const links = buildPlayerLinksFromFacts(merged.facts, merged.headline);
           if (links.length) merged.playerLinks = links;
+        }
+        // F1 preview cards rarely name drivers in facts — inject the top grid drivers
+        if (!merged.playerLinks?.length && (merged._sport === 'f1' || /formula.?1|grand prix/i.test(merged.name || ''))) {
+          const f1Drivers = Object.entries(PLAYERS)
+            .filter(([, p]) => p.sport === 'f1')
+            .slice(0, 6)
+            .map(([name, p]) => ({ name, url: officialPlayerUrl(p) }));
+          if (f1Drivers.length) merged.playerLinks = f1Drivers;
         }
         return merged;
       });

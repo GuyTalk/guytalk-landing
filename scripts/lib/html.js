@@ -2,6 +2,14 @@
 
 const { BRIEF_ROWS, TICKERS, CORE_TICKERS, PRODUCTS, RECS, esc, playerLink, tickerLink, fmtPrice, fmtPct, ENTITY_LINKS, entityLink, linkifyEntities } = require('./db');
 
+// Strip HTML tags from editor-injected text before HTML-escaping it.
+// The editorial pass (editor.js) inserts <a> anchors directly into JSON text
+// fields. When we then call esc() those brackets escape to &lt; and render as
+// visible plain text. Stripping first lets esc() produce clean output, and
+// linkifyEntities() at the end of buildHtml() re-adds any entity links that
+// belong in the final HTML.
+const stripHtmlTags = s => (s || '').replace(/<[^>]+>/g, '');
+
 // Render AI prose (possibly multi-paragraph) into proper <p> tags
 function renderParas(text, fallback = '') {
   if (!text) return fallback ? `<p>${fallback}</p>` : '';
@@ -359,9 +367,12 @@ function buildSportsCard(s, isLead) {
   const id    = isLead ? 'the-lead' : slugId(s.label || s.name);
 
   const playerLinksHtml = Array.isArray(s.playerLinks) && s.playerLinks.length
-    ? `    <div class="player-links"><span class="dl-label">Players to Know:</span> ${
-        s.playerLinks.map(p => `<a href="${esc(p.url)}" target="_blank" rel="noopener" class="player-link">${esc(p.name)}</a>`).join(' · ')
-      }</div>`
+    ? `    <div class="player-chips">
+      <div class="pc-label">Players to Know</div>
+      <div class="pc-list">${
+        s.playerLinks.map(p => `<a href="${esc(p.url)}" target="_blank" rel="noopener" class="player-chip">${esc(p.name)}</a>`).join('')
+      }</div>
+    </div>`
     : '';
 
   const pickHtml = s.ourPick
@@ -484,6 +495,12 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
   .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
   .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
   .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
+  /* Player chips */
+  .player-chips{margin:10px 0 6px;}
+  .pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9E9891;margin-bottom:6px;}
+  .pc-list{display:flex;flex-wrap:wrap;gap:5px;}
+  .player-chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#0F1724;background:#F0EDE8;border-radius:20px;padding:3px 11px;text-decoration:none;border:1px solid #E5E2DB;transition:background .15s;}
+  .player-chip:hover{background:#E5E2DB;}
   /* Rundown bullets — clickable anchor navigation. */
   .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
   .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
@@ -2205,11 +2222,11 @@ function buildCulture({ copy }) {
             <span class="culture-tag ${tagCls[tag] || 'ctag-sports'}">${esc(tag)}</span>
           </div>
           <div class="culture-head">${esc(head)}</div>
-          ${item.whatHappened ? `<p class="culture-line"><strong>What happened:</strong> ${esc(item.whatHappened)}</p>` : ''}
-          ${item.whyItMatters ? `<p class="culture-line"><strong>Why it matters:</strong> ${esc(item.whyItMatters)}</p>` : ''}
-          ${item.theRead      ? `<p class="culture-line"><strong>The GuyTalk Read:</strong> ${esc(item.theRead)}</p>`    : ''}
-          ${Array.isArray(item.ammo) && item.ammo.filter(Boolean).length ? `<ul class="ammo-list">${item.ammo.filter(Boolean).map(a => `<li>${esc(a)}</li>`).join('')}</ul>` : ''}
-          ${item.whatToSay    ? `<p class="culture-line"><strong>What to say:</strong> ${esc(item.whatToSay)}</p>`       : ''}
+          ${item.whatHappened ? `<p class="culture-line"><strong>What happened:</strong> ${esc(stripHtmlTags(item.whatHappened))}</p>` : ''}
+          ${item.whyItMatters ? `<p class="culture-line"><strong>Why it matters:</strong> ${esc(stripHtmlTags(item.whyItMatters))}</p>` : ''}
+          ${item.theRead      ? `<p class="culture-line"><strong>The GuyTalk Read:</strong> ${esc(stripHtmlTags(item.theRead))}</p>`    : ''}
+          ${Array.isArray(item.ammo) && item.ammo.filter(Boolean).length ? `<ul class="ammo-list">${item.ammo.filter(Boolean).map(a => `<li>${esc(stripHtmlTags(a))}</li>`).join('')}</ul>` : ''}
+          ${item.whatToSay    ? `<p class="culture-line"><strong>What to say:</strong> ${esc(stripHtmlTags(item.whatToSay))}</p>`       : ''}
         </div>
       </li>`;
   }).join('\n');

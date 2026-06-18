@@ -451,7 +451,7 @@ const RECS = [
     url: 'https://www.whoop.com',
     cta: 'Try Whoop →',
     brand: 'Whoop',
-    imageUrl: 'https://images.ctfassets.net/rbzqg6pelgqa/3CCQWI1KRdKsfMkGIgNfls/1db1bc98dbbca4f4c288cca02729e964/Not_a_whoop_member_image__1_.png',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0344/8518/4748/files/WHOOP_4.0_Band_Collection_2.jpg',
   },
   {
     title: 'Levels — one month of continuous glucose monitoring changes how you eat permanently.',
@@ -467,7 +467,7 @@ const RECS = [
     url: 'https://ouraring.com',
     cta: 'Try Oura →',
     brand: 'Oura',
-    imageUrl: null,
+    imageUrl: 'https://ouraring.com/img/pages/homepage/hero-ring-gen3.jpg',
   },
   {
     title: 'Bose QuietComfort 45 — the headphones that are better than the ones getting reviews.',
@@ -475,7 +475,7 @@ const RECS = [
     url: 'https://www.bose.com/c/headphones',
     cta: 'Shop Bose →',
     brand: 'Bose',
-    imageUrl: null,
+    imageUrl: 'https://assets.bose.com/content/dam/cloudassets/Bose_DAM/Web/consumer_electronics/global/products/headphones/quietcomfort_45/product_silo_images/qc45_PDP_hero_black-S1.png',
   },
   {
     title: 'Eight Sleep Pod 4 — the most direct solution to waking up hot at 3am.',
@@ -499,7 +499,7 @@ const RECS = [
     url: 'https://drinkag1.com',
     cta: 'Try AG1 →',
     brand: 'AG1',
-    imageUrl: null,
+    imageUrl: 'https://drinkag1.com/cdn/shop/files/AG1-Pouch-Travel-Packets-Primary_001.jpg',
   },
   {
     title: 'Peloton App — the gym content that works in any hotel room.',
