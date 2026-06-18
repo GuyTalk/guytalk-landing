@@ -70,8 +70,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
+      <a href="#markets" class="sj-link sj-lead">Markets</a>
       <a href="#sports" class="sj-link">Sports</a>
-      <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
     </nav>
     <nav class="section-subjump" aria-label="Jump to sports subsection" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;padding-left:14px;font-size:0.85em;opacity:0.8;">
@@ -95,10 +95,21 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
   .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
   .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
-  /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
-     so faces/players show instead of a jersey-number zoom. */
+  /* Images: keep a clean landscape ratio, crop to top so faces show. */
   .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
   .brief-hero-banner--feature{background-position:center 20%;}
+  /* Photo credit — subtle caption beneath images */
+  .brief-img-credit{font-size:10px;color:#9E9891;text-align:right;padding:3px 4px 0;letter-spacing:0.02em;}
+  /* GuyTalk Pick block */
+  .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
+  .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
+  .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
+  /* Player chips */
+  .player-chips{margin:10px 0 6px;}
+  .pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9E9891;margin-bottom:6px;}
+  .pc-list{display:flex;flex-wrap:wrap;gap:5px;}
+  .player-chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#0F1724;background:#F0EDE8;border-radius:20px;padding:3px 11px;text-decoration:none;border:1px solid #E5E2DB;transition:background .15s;}
+  .player-chip:hover{background:#E5E2DB;}
   /* Rundown bullets — clickable anchor navigation. */
   .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
   .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
@@ -106,18 +117,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   <a href="#top" class="bsn-link" data-target="top"><span class="bsn-txt">Top</span><span class="bsn-dot"></span></a>
-  <div class="bsn-group" data-group="sports">
-    <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-caret" role="button" tabindex="0" aria-label="Toggle Sports subsections">▸</span><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
-    <div class="bsn-children">
-      <a href="#the-lead" class="bsn-link bsn-sub" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
-      <a href="#f1" class="bsn-link bsn-sub" data-target="f1"><span class="bsn-txt">F1</span><span class="bsn-dot"></span></a>
-      <a href="#golf" class="bsn-link bsn-sub" data-target="golf"><span class="bsn-txt">Golf</span><span class="bsn-dot"></span></a>
-      <a href="#mlb" class="bsn-link bsn-sub" data-target="mlb"><span class="bsn-txt">MLB</span><span class="bsn-dot"></span></a>
-    </div>
-  </div>
-<a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
-<a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
+  <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
+  <a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
   <a href="#sharp-take" class="bsn-link" data-target="sharp-take"><span class="bsn-txt">Sharp Take</span><span class="bsn-dot"></span></a>
+  <a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
 </nav>
 
 <article class="brief-article" id="briefArticle">
@@ -150,81 +153,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </div>
   </div>
 
-<div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
-
-  <section class="brief-section sport-card sport-team sport-lead" id="the-lead">
-    <div class="section-label sl-sports">The Lead</div>
-    <h3>England 4–2 Croatia</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Harry Kane scored twice as England demolished Croatia 4–2, with Jude Bellingham adding a goal in the second half and Marcus Rashford sealing it late.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> England came out swinging in their World Cup opener, establishing early control through Kane's penalty and Bellingham's pace. Croatia fought back but couldn't sustain the pressure, signaling that England's midfield depth—something they've lacked in past tournaments—is finally clicking.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> Kane looks sharp and clinical from the spot. Bellingham entering the game at 21 and immediately making an impact is the bigger story—he's the kind of young midfielder that makes a team dangerous in knockout rounds. Croatia's inability to control the middle despite early resilience suggests they'll struggle against deeper teams. Austria's first World Cup win in 36 years over Jordan (3–1) and Colombia's 3–1 dismantling of debutant Uzbekistan show the tournament's heavy hitters are rolling. Portugal's 1–1 draw with Congo DR is the real eyebrow-raiser: Cristiano Ronaldo's side couldn't break down a team making their World Cup debut.</span></li>
-      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>Harry Kane scored twice, including a penalty in the 12th minute</li><li>Jude Bellingham scored in the 47th minute, his first World Cup goal</li><li>Austria won a World Cup match for the first time in 36 years</li><li>Portugal drew 1–1 with Congo DR, Ronaldo's team unable to break through</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> England's actually looking scary this tournament—Kane's in form and Bellingham's the real deal, but Portugal drawing with Congo DR is wild.</span></li>
-    </ul>
-    <div class="player-links"><span class="dl-label">Players to Know:</span> <a href="https://en.wikipedia.org/wiki/Harry_Kane" target="_blank" rel="noopener" class="player-link">Harry Kane</a> · <a href="https://en.wikipedia.org/wiki/Jude_Bellingham" target="_blank" rel="noopener" class="player-link">Jude Bellingham</a> · <a href="https://en.wikipedia.org/wiki/Marcus_Rashford" target="_blank" rel="noopener" class="player-link">Marcus Rashford</a> · <a href="https://en.wikipedia.org/wiki/Romano_Schmid" target="_blank" rel="noopener" class="player-link">Romano Schmid</a> · <a href="https://en.wikipedia.org/wiki/Cristiano_Ronaldo" target="_blank" rel="noopener" class="player-link">Cristiano Ronaldo</a></div>
-    <div class="brief-img sport-card-img"><img src="https://dims.apnews.com/dims4/default/6a99cc4/2147483647/strip/true/crop/4252x2833+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Ff5%2F2a%2F5569230ba55a4236261d8f20cf7d%2F2c4be83a69914fdabb03296bf1065f4b" alt="World Cup" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
-  </section>
-  <section class="brief-section sport-card sport-individual" id="f1">
-    <div class="section-label sl-sports">F1</div>
-    <div class="brief-img sport-card-img"><img src="/assets/hero/f1-054.jpg" alt="F1" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
-    <h3>Lenovo Austrian Grand Prix — this weekend</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> The Lenovo Austrian Grand Prix takes place this weekend at the <a href="https://www.redbullring.com" class="entity-venue" target="_blank" rel="noopener">Red Bull Ring</a>.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Austria is a traditional speed circuit favoring top-end performance and high-speed cornering, making it a strong indicator of which teams have true pace versus which ones are sandbagging.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> This is a straightforward track where car performance and driver consistency separate good weekends from bad ones. No excuses for slow pace here.</span></li>
-      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>The Red Bull Ring hosts the Lenovo Austrian Grand Prix this weekend</li><li>Austria is traditionally a high-speed circuit favoring aerodynamic efficiency</li><li>Results here typically indicate genuine competitive pace rather than circuit-specific advantage</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> Austria this weekend should tell us who actually has pace and who's been gaming the season so far.</span></li>
-    </ul>
-    <div class="player-links"><span class="dl-label">Players to Know:</span> <a href="https://www.formula1.com/en/drivers/max-verstappen" target="_blank" rel="noopener" class="player-link">Max Verstappen</a> · <a href="https://www.formula1.com/en/drivers/lando-norris" target="_blank" rel="noopener" class="player-link">Lando Norris</a> · <a href="https://www.formula1.com/en/drivers/charles-leclerc" target="_blank" rel="noopener" class="player-link">Charles Leclerc</a></div>
-
-  </section>
-  <section class="brief-section sport-card sport-individual" id="golf">
-    <div class="section-label sl-sports">Golf</div>
-    <div class="brief-img sport-card-img"><img src="https://res.cloudinary.com/graham-media-group/image/upload/f_auto/q_auto/c_thumb,w_700/v1/media/gmg/EHIJVD7HS5FMDKN36GGU5NY7TQ.jpg?_a=DATAg1iuZAA0" alt="Golf" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
-    <h3>U.S. Open — in progress</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> The U.S. Open is in progress with James Nicholas, Caleb Surratt, and Jayden Schaper tied at even par atop the leaderboard.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> A three-way tie at the top with no clear leader signals a wide-open tournament where any of these three—or someone lurking just behind—could seize control with one hot round.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> Even par leading the U.S. Open tells you the course is playing tough and the field is bunched. This typically means whoever gets hot first wins. None of these names are household, which means there's potential for an unexpected champion.</span></li>
-      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>James Nicholas, Caleb Surratt, and Jayden Schaper are tied for the lead at even par</li><li>The U.S. Open is in progress with no winner yet</li><li>Even par is the lead, indicating a difficult course setup</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> The U.S. Open's so tight right now that nobody you've heard of is leading—that usually means someone's about to come from nowhere and steal it.</span></li>
-    </ul>
-    <div class="player-links"><span class="dl-label">Players to Know:</span> <a href="https://www.pgatour.com/players/player.36689.james-nicholas.html" target="_blank" rel="noopener" class="player-link">James Nicholas</a> · <a href="https://www.pgatour.com/players/player.58026.caleb-surratt.html" target="_blank" rel="noopener" class="player-link">Caleb Surratt</a> · <a href="https://www.pgatour.com/players/player.28237.rory-mcilroy.html" target="_blank" rel="noopener" class="player-link">Rory McIlroy</a></div>
-
-  </section>
-  <section class="brief-section sport-card sport-team" id="mlb">
-    <div class="section-label sl-sports">MLB</div>
-    <h3>Miami Marlins 12–4 over Philadelphia Phillies</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> The Miami Marlins beat the Philadelphia Phillies 12–4.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Miami put up double digits against a playoff-caliber team, signaling their offense showed up and the Phillies' pitching couldn't contain them.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> A 12–4 win is dominant and decisive. Either Miami's lineup was clicking or Philadelphia's rotation had a bad day—likely both. This is the kind of win that builds confidence in a young roster.</span></li>
-      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>Miami Marlins defeated Philadelphia Phillies 12–4</li><li>The Marlins scored 12 runs, indicating offensive dominance</li><li>Philadelphia allowed 12 runs, a sign of pitching struggles</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> The Marlins just beat the Phillies 12–4—that's the kind of blowout that either means Miami's arrived or Philly's got real problems on the mound.</span></li>
-    </ul>
-
-    <div class="brief-img sport-card-img"><img src="https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/qs4wy5t32ex9fn7qjewi" alt="MLB" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
-  </section>
-
-<a href="/live/" class="brief-live-cta">
-  <span class="blc-dot"></span>
-  <div class="blc-inner">
-    <div class="blc-label">Happening Now</div>
-    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
-  </div>
-  <span class="blc-btn">Open GuyTalk Live →</span>
-</a>
-
-<div class="brief-inline-cta">
-  <div class="bic-inner">
-    <div class="bic-label">Free · Daily · 5 Minutes</div>
-    <p class="bic-text">Get GuyTalk in your inbox every morning — before you check anything else.</p>
-  </div>
-  <a href="/#signup" class="bic-btn">Subscribe free →</a>
-</div>
-
-<div class="umbrella-head"><h2 class="umbrella-title">Markets</h2></div>
+<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>
 
   <section class="brief-section" id="markets">
     <div class="section-label sl-markets">The Close</div>
@@ -349,7 +278,120 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </ul>
   </section>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Culture</h2></div>
+<a href="/live/" class="brief-live-cta">
+  <span class="blc-dot"></span>
+  <div class="blc-inner">
+    <div class="blc-label">Happening Now</div>
+    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
+  </div>
+  <span class="blc-btn">Open GuyTalk Live →</span>
+</a>
+
+<div class="brief-inline-cta">
+  <div class="bic-inner">
+    <div class="bic-label">Free · Daily · 5 Minutes</div>
+    <p class="bic-text">Get GuyTalk in your inbox every morning — before you check anything else.</p>
+  </div>
+  <a href="/#signup" class="bic-btn">Subscribe free →</a>
+</div>
+
+<div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
+
+  <section class="brief-section sport-card sport-lead" id="the-lead">
+    <div class="section-label sl-sports">The Lead</div>
+    <div class="brief-img sport-card-img"><img src="https://dims.apnews.com/dims4/default/6a99cc4/2147483647/strip/true/crop/4252x2833+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Ff5%2F2a%2F5569230ba55a4236261d8f20cf7d%2F2c4be83a69914fdabb03296bf1065f4b" alt="The Lead" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-credit">Photo: AP</div></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">World Cup</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">England 4–2 Croatia</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Harry Kane scored twice as England demolished Croatia 4–2, with Jude Bellingham adding a goal in the second half and Marcus Rashford sealing it late.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">England came out swinging in their World Cup opener, establishing early control through Kane's penalty and Bellingham's pace. Croatia fought back but couldn't sustain the pressure, signaling that England's midfield depth—something they've lacked in past tournaments—is finally clicking.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">Kane looks sharp and clinical from the spot. Bellingham entering the game at 21 and immediately making an impact is the bigger story—he's the kind of young midfielder that makes a team dangerous in knockout rounds. Croatia's inability to control the middle despite early resilience suggests they'll struggle against deeper teams. Austria's first World Cup win in 36 years over Jordan (3–1) and Colombia's 3–1 dismantling of debutant Uzbekistan show the tournament's heavy hitters are rolling. Portugal's 1–1 draw with Congo DR is the real eyebrow-raiser: Cristiano Ronaldo's side couldn't break down a team making their World Cup debut.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>Harry Kane scored twice, including a penalty in the 12th minute</li><li>Jude Bellingham scored in the 47th minute, his first World Cup goal</li><li>Austria won a World Cup match for the first time in 36 years</li><li>Portugal drew 1–1 with Congo DR, Ronaldo's team unable to break through</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"England's actually looking scary this tournament—Kane's in form and Bellingham's the real deal, but Portugal drawing with Congo DR is wild."</div></div></div>
+      <div class="ctx-row"><div class="ctx-label">Players to know</div><ul class="pbio-list">
+          <li class="pbio-item"><a href="https://en.wikipedia.org/wiki/Harry_Kane" target="_blank" rel="noopener" class="pbio-name">Harry Kane</a><span class="pbio-bio">England captain · all-time leading scorer</span></li>
+          <li class="pbio-item"><a href="https://en.wikipedia.org/wiki/Jude_Bellingham" target="_blank" rel="noopener" class="pbio-name">Jude Bellingham</a><span class="pbio-bio">Real Madrid · England · most creative force in the squad</span></li>
+          <li class="pbio-item"><a href="https://en.wikipedia.org/wiki/Marcus_Rashford" target="_blank" rel="noopener" class="pbio-name">Marcus Rashford</a><span class="pbio-bio">Man United · electric winger, pace and clinical finishing</span></li>
+          <li class="pbio-item"><a href="https://en.wikipedia.org/wiki/Romano_Schmid" target="_blank" rel="noopener" class="pbio-name">Romano Schmid</a><span class="pbio-bio">Werder Bremen · Austria captain</span></li>
+          <li class="pbio-item"><a href="https://en.wikipedia.org/wiki/Cristiano_Ronaldo" target="_blank" rel="noopener" class="pbio-name">Cristiano Ronaldo</a><span class="pbio-bio">Portugal legend · 900+ career goals, chasing a World Cup</span></li>
+        </ul></div>
+
+      </div>
+    </div>
+  </section>
+  <section class="brief-section sport-card" id="f1">
+    <div class="section-label sl-sports">F1</div>
+    <div class="brief-img sport-card-img"><img src="/assets/hero/f1-054.jpg" alt="F1" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">F1</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Lenovo Austrian Grand Prix — this weekend</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">The Lenovo Austrian Grand Prix takes place this weekend at the <a href="https://www.redbullring.com" class="entity-venue" target="_blank" rel="noopener">Red Bull Ring</a>.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Austria is a traditional speed circuit favoring top-end performance and high-speed cornering, making it a strong indicator of which teams have true pace versus which ones are sandbagging.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">This is a straightforward track where car performance and driver consistency separate good weekends from bad ones. No excuses for slow pace here.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>The Red Bull Ring hosts the Lenovo Austrian Grand Prix this weekend</li><li>Austria is traditionally a high-speed circuit favoring aerodynamic efficiency</li><li>Results here typically indicate genuine competitive pace rather than circuit-specific advantage</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Austria this weekend should tell us who actually has pace and who's been gaming the season so far."</div></div></div>
+      <div class="ctx-row"><div class="ctx-label">Players to know</div><ul class="pbio-list">
+          <li class="pbio-item"><a href="https://www.formula1.com/en/drivers/max-verstappen" target="_blank" rel="noopener" class="pbio-name">Max Verstappen</a><span class="pbio-bio">Red Bull · 4× world champion, dominant era driver</span></li>
+          <li class="pbio-item"><a href="https://www.formula1.com/en/drivers/lando-norris" target="_blank" rel="noopener" class="pbio-name">Lando Norris</a><span class="pbio-bio"><a href="https://www.formula1.com/en/teams/McLaren.html" class="entity-team" target="_blank" rel="noopener">McLaren</a> · 2025 world champion, overtook Verstappen</span></li>
+          <li class="pbio-item"><a href="https://www.formula1.com/en/drivers/charles-leclerc" target="_blank" rel="noopener" class="pbio-name">Charles Leclerc</a><span class="pbio-bio"><a href="https://www.formula1.com/en/teams/Ferrari.html" class="entity-team" target="_blank" rel="noopener">Ferrari</a> · Monaco native · championship contender</span></li>
+        </ul></div>
+
+      </div>
+    </div>
+  </section>
+  <section class="brief-section sport-card" id="golf">
+    <div class="section-label sl-sports">Golf</div>
+    <div class="brief-img sport-card-img"><img src="https://res.cloudinary.com/graham-media-group/image/upload/f_auto/q_auto/c_thumb,w_700/v1/media/gmg/EHIJVD7HS5FMDKN36GGU5NY7TQ.jpg?_a=DATAg1iuZAA0" alt="Golf" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-credit">Photo: AP / Getty</div></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">Golf</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">U.S. Open — in progress</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">The U.S. Open is in progress with James Nicholas, Caleb Surratt, and Jayden Schaper tied at even par atop the leaderboard.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">A three-way tie at the top with no clear leader signals a wide-open tournament where any of these three—or someone lurking just behind—could seize control with one hot round.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">Even par leading the U.S. Open tells you the course is playing tough and the field is bunched. This typically means whoever gets hot first wins. None of these names are household, which means there's potential for an unexpected champion.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>James Nicholas, Caleb Surratt, and Jayden Schaper are tied for the lead at even par</li><li>The U.S. Open is in progress with no winner yet</li><li>Even par is the lead, indicating a difficult course setup</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"The U.S. Open's so tight right now that nobody you've heard of is leading—that usually means someone's about to come from nowhere and steal it."</div></div></div>
+      <div class="ctx-row"><div class="ctx-label">Players to know</div><ul class="pbio-list">
+          <li class="pbio-item"><a href="https://www.pgatour.com/players/player.36689.james-nicholas.html" target="_blank" rel="noopener" class="pbio-name">James Nicholas</a></li>
+          <li class="pbio-item"><a href="https://www.pgatour.com/players/player.58026.caleb-surratt.html" target="_blank" rel="noopener" class="pbio-name">Caleb Surratt</a></li>
+          <li class="pbio-item"><a href="https://www.pgatour.com/players/player.28237.rory-mcilroy.html" target="_blank" rel="noopener" class="pbio-name">Rory McIlroy</a><span class="pbio-bio">4 major titles · best iron player in the world</span></li>
+        </ul></div>
+
+      </div>
+    </div>
+  </section>
+  <section class="brief-section sport-card" id="mlb">
+    <div class="section-label sl-sports">MLB</div>
+    <div class="brief-img sport-card-img"><img src="https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/qs4wy5t32ex9fn7qjewi" alt="MLB" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-credit">Photo: MLB</div></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">MLB</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Miami Marlins 12–4 over Philadelphia Phillies</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">The Miami Marlins beat the Philadelphia Phillies 12–4.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Miami put up double digits against a playoff-caliber team, signaling their offense showed up and the Phillies' pitching couldn't contain them.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">A 12–4 win is dominant and decisive. Either Miami's lineup was clicking or Philadelphia's rotation had a bad day—likely both. This is the kind of win that builds confidence in a young roster.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>Miami Marlins defeated Philadelphia Phillies 12–4</li><li>The Marlins scored 12 runs, indicating offensive dominance</li><li>Philadelphia allowed 12 runs, a sign of pitching struggles</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"The Marlins just beat the Phillies 12–4—that's the kind of blowout that either means Miami's arrived or Philly's got real problems on the mound."</div></div></div>
+
+      </div>
+    </div>
+  </section>
+
+<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>
 
   <section class="brief-section" id="culture">
     <div class="section-label sl-culture">The Scene</div>
@@ -387,7 +429,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     <div class="section-label sl-markets">The Rec</div>
 
     <div class="brief-rec brief-rec--media">
-      <div class="rec-img rec-img-failed"><span class="rec-img-ph">Oura</span></div>
+      <div class="rec-img"><img src="https://ouraring.com/img/pages/homepage/hero-ring-gen3.jpg" alt="Oura" loading="lazy" onerror="this.closest('.rec-img').classList.add('rec-img-failed');this.remove()"><span class="rec-img-ph">Oura</span></div>
       <div class="rec-content">
         <div class="rec-label">This week's pick</div>
         <div class="rec-title">Oura Ring Gen 3 — sleep tracking for guys who won't wear a wristband.</div>
@@ -431,22 +473,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-004/" class="more-issue-card">
-    <span class="mi-num">#004</span>
-    <span class="mi-title">I don't have any sports scores, market data, or current events for June 3, 2026 in your prompt. I need you to give me the specific information — games played, results, stock moves, news — so I can write the headline properly.
-
-Send me what happened today and I'll nail it.</span>
-    <span class="mi-date">Friday, May 23, 2026</span>
+  <a href="/brief/issue-056/" class="more-issue-card">
+    <span class="mi-num">#056</span>
+    <span class="mi-title">DR Congo stuns Portugal 1-1. Fed holds rates steady. Yankees demolish White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-005/" class="more-issue-card">
-    <span class="mi-num">#005</span>
-    <span class="mi-title">Thunder take 3-1 series lead. Si Woo Kim hunting CJ Cup. Tech mixed as Nvidia slides.</span>
-    <span class="mi-date">Saturday, May 23, 2026</span>
+  <a href="/brief/issue-055/" class="more-issue-card">
+    <span class="mi-num">#055</span>
+    <span class="mi-title">Fed signals rate hikes ahead. Pirates dominate Athletics. Yankees roll past White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-006/" class="more-issue-card">
-    <span class="mi-num">#006</span>
-    <span class="mi-title">Thunder crush Spurs in Game 3. Kim leads Byron Nelson at minus-19. Nvidia slides on chip concerns.</span>
-    <span class="mi-date">Saturday, May 23, 2026</span>
+  <a href="/brief/issue-053/" class="more-issue-card">
+    <span class="mi-num">#053</span>
+    <span class="mi-title">Fed signals 2026 rate hike. Hamilton wins in Barcelona. Messi ties World Cup scoring record.</span>
+    <span class="mi-date">Wednesday, June 17, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>

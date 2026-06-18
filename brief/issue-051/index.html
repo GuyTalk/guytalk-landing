@@ -70,7 +70,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
-      <a href="#sports" class="sj-link">Sports</a>
+      <a href="#sports" class="sj-link sj-lead">Sports</a>
       <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
     </nav>
@@ -94,10 +94,21 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
   .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
   .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
-  /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
-     so faces/players show instead of a jersey-number zoom. */
+  /* Images: keep a clean landscape ratio, crop to top so faces show. */
   .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
   .brief-hero-banner--feature{background-position:center 20%;}
+  /* Photo credit — subtle caption beneath images */
+  .brief-img-credit{font-size:10px;color:#9E9891;text-align:right;padding:3px 4px 0;letter-spacing:0.02em;}
+  /* GuyTalk Pick block */
+  .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
+  .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
+  .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
+  /* Player chips */
+  .player-chips{margin:10px 0 6px;}
+  .pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9E9891;margin-bottom:6px;}
+  .pc-list{display:flex;flex-wrap:wrap;gap:5px;}
+  .player-chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#0F1724;background:#F0EDE8;border-radius:20px;padding:3px 11px;text-decoration:none;border:1px solid #E5E2DB;transition:background .15s;}
+  .player-chip:hover{background:#E5E2DB;}
   /* Rundown bullets — clickable anchor navigation. */
   .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
   .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
@@ -105,17 +116,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   <a href="#top" class="bsn-link" data-target="top"><span class="bsn-txt">Top</span><span class="bsn-dot"></span></a>
-  <div class="bsn-group" data-group="sports">
-    <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-caret" role="button" tabindex="0" aria-label="Toggle Sports subsections">▸</span><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
-    <div class="bsn-children">
-      <a href="#the-lead" class="bsn-link bsn-sub" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
-      <a href="#nba-finals-2026-knicks-championship" class="bsn-link bsn-sub" data-target="nba-finals-2026-knicks-championship"><span class="bsn-txt">NBA Finals 2026 (Knicks Championship)</span><span class="bsn-dot"></span></a>
-      <a href="#fifa-world-cup-2026" class="bsn-link bsn-sub" data-target="fifa-world-cup-2026"><span class="bsn-txt">FIFA World Cup 2026</span><span class="bsn-dot"></span></a>
-    </div>
-  </div>
-<a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
-<a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
+  <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
+  <a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
   <a href="#sharp-take" class="bsn-link" data-target="sharp-take"><span class="bsn-txt">Sharp Take</span><span class="bsn-dot"></span></a>
+  <a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
 </nav>
 
 <article class="brief-article" id="briefArticle">
@@ -150,39 +154,56 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
 
-  <section class="brief-section sport-card sport-individual sport-lead" id="the-lead">
+  <section class="brief-section sport-card sport-lead" id="the-lead">
     <div class="section-label sl-sports">The Lead</div>
 
-    <h3>Andrew Putnam clinches final U.S. Open qualifying spot after marathon playoff</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Andrew Putnam won a marathon playoff to claim the 43rd and final qualifying spot for the 126th U.S. Open at Shinnecock Hills.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Putnam sneaked into the field while Scottie Scheffler enters the week needing a win to complete the career Grand Slam — meaning the guy who just barely made it could be watching the guy chasing history from the clubhouse.</span></li>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">US Open Golf 2026</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Andrew Putnam clinches final U.S. Open qualifying spot after marathon playoff</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Andrew Putnam won a marathon playoff to claim the 43rd and final qualifying spot for the 126th U.S. Open at Shinnecock Hills.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Putnam sneaked into the field while Scottie Scheffler enters the week needing a win to complete the career Grand Slam — meaning the guy who just barely made it could be watching the guy chasing history from the clubhouse.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Putnam's going to Shinnecock as the 43rd seed and Scheffler's playing for immortality, which is exactly the kind of contrast that makes the U.S. Open what it is."</div></div></div>
 
-      <li><span><span class="dl-label">What to bring up:</span> Putnam's going to Shinnecock as the 43rd seed and Scheffler's playing for immortality, which is exactly the kind of contrast that makes the U.S. Open what it is.</span></li>
-    </ul>
-
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-team" id="nba-finals-2026-knicks-championship">
+  <section class="brief-section sport-card" id="nba-finals-2026-knicks-championship">
     <div class="section-label sl-sports">NBA Finals 2026 (Knicks Championship)</div>
-    <h3>Knicks win 2026 NBA championship, defeat Spurs in Game 5</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Jalen Brunson scored 45 points and the Knicks won the 2026 NBA championship, defeating the Spurs in Game 5 to claim Finals MVP.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> This ends a 53-year championship drought — the Knicks' first title since 1973 — and flips New York basketball from a punchline into something that actually matters again.</span></li>
 
-      <li><span><span class="dl-label">What to bring up:</span> Brunson showed up when it counted most and turned a city that's been waiting longer than most of us have been alive into champions.</span></li>
-    </ul>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">NBA Finals 2026 (Knicks Championship)</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Knicks win 2026 NBA championship, defeat Spurs in Game 5</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Jalen Brunson scored 45 points and the Knicks won the 2026 NBA championship, defeating the Spurs in Game 5 to claim Finals MVP.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">This ends a 53-year championship drought — the Knicks' first title since 1973 — and flips New York basketball from a punchline into something that actually matters again.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Brunson showed up when it counted most and turned a city that's been waiting longer than most of us have been alive into champions."</div></div></div>
 
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-team" id="fifa-world-cup-2026">
+  <section class="brief-section sport-card" id="fifa-world-cup-2026">
     <div class="section-label sl-sports">FIFA World Cup 2026</div>
-    <h3>USMNT dominates Paraguay 4-1 in World Cup opener</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Christian Pulisic led the USMNT to a 4-1 rout of Paraguay on June 12 at SoFi Stadium in Inglewood to open the 2026 World Cup.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> The U.S. has only advanced past the Round of 16 once in the modern World Cup era — that was 24 years ago in 2002 — so a dominant opening like this signals the team might finally break through that glass ceiling.</span></li>
 
-      <li><span><span class="dl-label">What to bring up:</span> If the USMNT can actually string together tournament wins on home soil, this could be the run that rewrites their whole World Cup story.</span></li>
-    </ul>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">FIFA World Cup 2026</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">USMNT dominates Paraguay 4-1 in World Cup opener</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Christian Pulisic led the USMNT to a 4-1 rout of Paraguay on June 12 at SoFi Stadium in Inglewood to open the 2026 World Cup.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">The U.S. has only advanced past the Round of 16 once in the modern World Cup era — that was 24 years ago in 2002 — so a dominant opening like this signals the team might finally break through that glass ceiling.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"If the USMNT can actually string together tournament wins on home soil, this could be the run that rewrites their whole World Cup story."</div></div></div>
 
+      </div>
+    </div>
   </section>
 
 <a href="/live/" class="brief-live-cta">
@@ -202,7 +223,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <a href="/#signup" class="bic-btn">Subscribe free →</a>
 </div>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Markets</h2></div>
+<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>
 
   <section class="brief-section" id="markets">
     <div class="section-label sl-markets">The Close</div>
@@ -261,7 +282,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </ul>
   </section>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Culture</h2></div>
+<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>
 
   <section class="brief-section" id="culture">
     <div class="section-label sl-culture">The Scene</div>
@@ -343,20 +364,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-053/" class="more-issue-card">
-    <span class="mi-num">#053</span>
-    <span class="mi-title">Fed signals 2026 rate hike. Hamilton wins in Barcelona. Messi ties World Cup scoring record.</span>
-    <span class="mi-date">Wednesday, June 17, 2026</span>
+  <a href="/brief/issue-056/" class="more-issue-card">
+    <span class="mi-num">#056</span>
+    <span class="mi-title">DR Congo stuns Portugal 1-1. Fed holds rates steady. Yankees demolish White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-052/" class="more-issue-card">
-    <span class="mi-num">#052</span>
-    <span class="mi-title">Dow hits record on Iran deal. Hurricanes win the Cup. OpenAI bleeds $34B annually.</span>
-    <span class="mi-date">Wednesday, June 17, 2026</span>
+  <a href="/brief/issue-055/" class="more-issue-card">
+    <span class="mi-num">#055</span>
+    <span class="mi-title">Fed signals rate hikes ahead. Pirates dominate Athletics. Yankees roll past White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-050/" class="more-issue-card">
-    <span class="mi-num">#050</span>
-    <span class="mi-title">Iran deal cuts oil prices. SpaceX raises $75 billion. World Cup starts today.</span>
-    <span class="mi-date">Monday, June 15, 2026</span>
+  <a href="/brief/issue-054/" class="more-issue-card">
+    <span class="mi-num">#054</span>
+    <span class="mi-title">Fed holds rates steady, signals future hikes. Pirates demolish Athletics. U.S. Open underway at Shinnecock.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>

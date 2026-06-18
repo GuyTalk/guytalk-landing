@@ -339,68 +339,77 @@ function convoBlocks(s) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Dynamic sports card. Every sports section — The Lead and every subsection —
-// uses the three-label text (What happened / Why it matters / What to bring up),
-// grounded in sourced facts. The card STYLE is set by discovery's category:
-//   individual → athlete action photo on top, text, then an optional
-//                "Watch the moment →" highlight link (only if a real videoUrl).
-//   team       → text first, then one optional game photo. No video, no spotlight.
-// Text is always required: if there's no text we never ship an image-only card,
-// and `facts` (always sourced) backs the "What happened" line so that can't happen.
+// Dynamic sports card — Live-page ctx-card format.
+// Dark header "THE GUYTALK READ." + red-dot labeled rows + green Pick button.
+// Image (if any) sits above the card; video link appended inside card body.
 // ─────────────────────────────────────────────────────────────────────────────
 function buildSportsCard(s, isLead) {
   if (!s) return '';
-  const cat = s.category === 'individual' ? 'individual' : 'team';
   const whatHappened  = s.whatHappened || s.facts || '';
   const whyItMatters  = s.whyItMatters || '';
   const whatToBringUp = s.whatToBringUp || '';
-  if (!whatHappened && !whyItMatters && !whatToBringUp) return ''; // never image-only
+  if (!whatHappened && !whyItMatters && !whatToBringUp) return '';
 
-  const credit   = imageCreditFromUrl(s.imageUrl);
-  const imgHtml  = s.imageUrl
-    ? `    <div class="brief-img sport-card-img"><img src="${esc(s.imageUrl)}" alt="${esc(s.label || s.name)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">${credit ? `<div class="brief-img-credit">Photo: ${esc(credit)}</div>` : ''}</div>`
-    : '';
-  const videoHtml = s.videoUrl
-    ? `    <a class="watch-moment" href="${esc(s.videoUrl)}" target="_blank" rel="noopener">Watch highlights →</a>`
-    : '';
   const label = isLead ? 'The Lead' : (s.label || s.name);
   const id    = isLead ? 'the-lead' : slugId(s.label || s.name);
 
-  const playerLinksHtml = Array.isArray(s.playerLinks) && s.playerLinks.length
-    ? `    <div class="player-chips">
-      <div class="pc-label">Players to Know</div>
-      <div class="pc-list">${
-        s.playerLinks.map(p => `<a href="${esc(p.url)}" target="_blank" rel="noopener" class="player-chip">${esc(p.name)}</a>`).join('')
-      }</div>
-    </div>`
+  const credit  = imageCreditFromUrl(s.imageUrl);
+  const imgHtml = s.imageUrl
+    ? `    <div class="brief-img sport-card-img"><img src="${esc(s.imageUrl)}" alt="${esc(label)}" loading="lazy" onerror="this.closest('.brief-img').style.display='none'">${credit ? `<div class="brief-img-credit">Photo: ${esc(credit)}</div>` : ''}</div>`
     : '';
 
+  const rows = [];
+
+  // Golf-specific context rows
+  if (s.course) rows.push(`      <div class="ctx-row"><div class="ctx-label">Course</div><div class="ctx-text">${esc(s.course)}</div></div>`);
+  if (s.purse)  rows.push(`      <div class="ctx-row"><div class="ctx-label">Purse</div><div class="ctx-text">${esc(s.purse)}</div></div>`);
+
+  if (whatHappened)  rows.push(`      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">${esc(whatHappened)}</div></div>`);
+  if (whyItMatters)  rows.push(`      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">${esc(whyItMatters)}</div></div>`);
+
+  // The GuyTalk Read — featured insight
+  if (s.theRead) rows.push(`      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">${esc(s.theRead)}</div></div>`);
+
+  // What to Know — ammo bullets
+  const ammo = Array.isArray(s.ammo) ? s.ammo.filter(Boolean) : [];
+  if (ammo.length) {
+    rows.push(`      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list">${ammo.map(a => `<li>${esc(a)}</li>`).join('')}</ul></div>`);
+  }
+
+  if (whatToBringUp) rows.push(`      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"${esc(whatToBringUp)}"</div></div></div>`);
+
+  // Players to Know — name + bio
+  if (Array.isArray(s.playerLinks) && s.playerLinks.length) {
+    const { PLAYERS } = require('./db');
+    const items = s.playerLinks.map(p => {
+      const bio = (PLAYERS[p.name] || {}).bio || '';
+      return `          <li class="pbio-item"><a href="${esc(p.url)}" target="_blank" rel="noopener" class="pbio-name">${esc(p.name)}</a>${bio ? `<span class="pbio-bio">${esc(bio)}</span>` : ''}</li>`;
+    }).join('\n');
+    rows.push(`      <div class="ctx-row"><div class="ctx-label">Players to know</div><ul class="pbio-list">\n${items}\n        </ul></div>`);
+  }
+
+  // Video link
+  if (s.videoUrl) rows.push(`      <div class="ctx-row"><a class="watch-moment" href="${esc(s.videoUrl)}" target="_blank" rel="noopener">Watch highlights →</a></div>`);
+
+  // GuyTalk's Pick — green button
   const pickHtml = s.ourPick
-    ? `    <div class="guytalk-pick"><span class="pick-label">GuyTalk's Pick</span><span class="pick-text">${esc(s.ourPick)}</span></div>`
+    ? `      <div class="ctx-pick"><span class="ctx-pick-label">GuyTalk's Pick</span><span class="ctx-pick-text">${esc(s.ourPick)}</span></div>`
     : '';
 
-  const detail = `    <ul class="detail-list">
-      ${whatHappened  ? `<li><span><span class="dl-label">What happened:</span> ${esc(whatHappened)}</span></li>`   : ''}
-      ${whyItMatters  ? `<li><span><span class="dl-label">Why it matters:</span> ${esc(whyItMatters)}</span></li>`   : ''}
-${convoBlocks(s)}
-      ${whatToBringUp ? `<li><span><span class="dl-label">What to bring up:</span> ${esc(whatToBringUp)}</span></li>` : ''}
-    </ul>
-${playerLinksHtml}
-${pickHtml}`;
-
-  const body = cat === 'individual'
-    ? `${imgHtml}
-    <h3>${esc(s.headline || label)}</h3>
-${detail}
-${videoHtml}`
-    : `    <h3>${esc(s.headline || label)}</h3>
-${detail}
-${imgHtml}
-${videoHtml}`;
-
-  return `  <section class="brief-section sport-card sport-${cat}${isLead ? ' sport-lead' : ''}" id="${esc(id)}">
+  return `  <section class="brief-section sport-card${isLead ? ' sport-lead' : ''}" id="${esc(id)}">
     <div class="section-label sl-sports">${esc(label)}</div>
-${body}
+${imgHtml}
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">${esc(s.label || s.name || '')}</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">${esc(s.headline || label)}</h3>
+${rows.join('\n')}
+${pickHtml}
+      </div>
+    </div>
   </section>`;
 }
 
@@ -508,13 +517,10 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   ${navLink('top', 'Top')}
-${bodyOrder.map(key => {
-  if (key === 'sports')  return navGroup('sports',  'Sports',  sportsSubs.map(([id, label]) => [id, label]), false);
-  if (key === 'markets') return navGroup('markets', 'Markets', [], false);
-  if (key === 'culture') return navGroup('culture', 'Culture', [], false);
-  return '';
-}).join('\n')}
+  ${bodyOrder.includes('sports')  ? navLink('sports',  'Sports',  'bsn-parent') : ''}
+  ${bodyOrder.includes('markets') ? navLink('markets', 'Markets', 'bsn-parent') : ''}
   ${navLink('sharp-take', 'Sharp Take')}
+  ${bodyOrder.includes('culture') ? navLink('culture', 'Culture', 'bsn-parent') : ''}
 </nav>`;
 
   // Hero-area sub-jump chips — the discovered sports (skipping The Lead, which is

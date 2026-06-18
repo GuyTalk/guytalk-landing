@@ -70,8 +70,8 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
+      <a href="#markets" class="sj-link sj-lead">Markets</a>
       <a href="#sports" class="sj-link">Sports</a>
-      <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
     </nav>
     <nav class="section-subjump" aria-label="Jump to sports subsection" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;padding-left:14px;font-size:0.85em;opacity:0.8;">
@@ -94,10 +94,21 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
   .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
   .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
-  /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
-     so faces/players show instead of a jersey-number zoom. */
+  /* Images: keep a clean landscape ratio, crop to top so faces show. */
   .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
   .brief-hero-banner--feature{background-position:center 20%;}
+  /* Photo credit — subtle caption beneath images */
+  .brief-img-credit{font-size:10px;color:#9E9891;text-align:right;padding:3px 4px 0;letter-spacing:0.02em;}
+  /* GuyTalk Pick block */
+  .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
+  .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
+  .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
+  /* Player chips */
+  .player-chips{margin:10px 0 6px;}
+  .pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9E9891;margin-bottom:6px;}
+  .pc-list{display:flex;flex-wrap:wrap;gap:5px;}
+  .player-chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#0F1724;background:#F0EDE8;border-radius:20px;padding:3px 11px;text-decoration:none;border:1px solid #E5E2DB;transition:background .15s;}
+  .player-chip:hover{background:#E5E2DB;}
   /* Rundown bullets — clickable anchor navigation. */
   .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
   .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
@@ -105,17 +116,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   <a href="#top" class="bsn-link" data-target="top"><span class="bsn-txt">Top</span><span class="bsn-dot"></span></a>
-  <div class="bsn-group" data-group="sports">
-    <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-caret" role="button" tabindex="0" aria-label="Toggle Sports subsections">▸</span><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
-    <div class="bsn-children">
-      <a href="#the-lead" class="bsn-link bsn-sub" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
-      <a href="#f1" class="bsn-link bsn-sub" data-target="f1"><span class="bsn-txt">F1</span><span class="bsn-dot"></span></a>
-      <a href="#golf" class="bsn-link bsn-sub" data-target="golf"><span class="bsn-txt">Golf</span><span class="bsn-dot"></span></a>
-    </div>
-  </div>
-<a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
-<a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
+  <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
+  <a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
   <a href="#sharp-take" class="bsn-link" data-target="sharp-take"><span class="bsn-txt">Sharp Take</span><span class="bsn-dot"></span></a>
+  <a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
 </nav>
 
 <article class="brief-article" id="briefArticle">
@@ -148,65 +152,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </div>
   </div>
 
-<div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
-
-  <section class="brief-section sport-card sport-team sport-lead" id="the-lead">
-    <div class="section-label sl-sports">The Lead</div>
-    <h3>Carolina Hurricanes 3–0 (CAR wins series 4-2) [Stanley Cup Final - Game 6] [CAR last won in 2006 — this is their 2nd title]</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Carolina Hurricanes beat <a href="https://www.nhl.com/goldenknights" class="entity-team" target="_blank" rel="noopener">Vegas Golden Knights</a> 3–0 in Game 6 to win the Stanley Cup Final 4–2, capturing their second title in franchise history.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Carolina last won in 2006. This is their first championship in twenty years, ending a brutal drought and proving they're not a regular-season team that folds when it matters.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> Vegas built one of the best expansion franchises ever and still couldn't close it out. Carolina's defense was suffocating all series—they didn't win this with flashy offense, they won by making Vegas uncomfortable every shift. This validates their entire build. The real story is that Vegas has to wake up tomorrow knowing they had four chances to end it and didn't.</span></li>
-      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>Carolina last won Stanley Cup in 2006</li><li>This is the Hurricanes' 2nd title in franchise history</li><li>Series final score: Carolina 4, Vegas 2</li><li>Game 6 was 3–0, clinching shutout</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> Carolina's defense was so suffocating Vegas couldn't generate anything—that's how you win a Cup in 2026.</span></li>
-    </ul>
-
-  </section>
-  <section class="brief-section sport-card sport-individual" id="f1">
-    <div class="section-label sl-sports">F1</div>
-
-    <h3>Lewis Hamilton wins MSC Cruises Barcelona-Catalunya GP</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Lewis Hamilton won the MSC Cruises Barcelona-Catalunya GP in his <a href="https://www.formula1.com/en/teams/Ferrari.html" class="entity-team" target="_blank" rel="noopener">Ferrari</a>, with George Russell finishing second and Lando Norris third.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Hamilton's Ferrari move last season was the biggest driver swap in years. This win—his first in the championship-caliber machine—proves the pairing is working exactly as planned.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> Hamilton didn't just win a race, he sent a message that Ferrari made the right call and he's hungry. Russell in second keeps <a href="https://www.formula1.com/en/teams/Mercedes.html" class="entity-team" target="_blank" rel="noopener">Mercedes</a> respectable but can't deny Hamilton had the car and the pace today. Norris in third shows <a href="https://www.formula1.com/en/teams/McLaren.html" class="entity-team" target="_blank" rel="noopener">McLaren</a> is still quick but not dominant. The Ferrari gamble is paying off immediately.</span></li>
-      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>Lewis Hamilton drives for Ferrari as of 2025 season</li><li>Race: MSC Cruises Barcelona-Catalunya GP</li><li>P1: Hamilton (Ferrari), P2: Russell (Mercedes), P3: Norris (McLaren)</li><li>This is Hamilton's first victory since joining Ferrari</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> Hamilton's already winning with Ferrari—the Mercedes years feel like ancient history.</span></li>
-    </ul>
-
-  </section>
-  <section class="brief-section sport-card sport-individual" id="golf">
-    <div class="section-label sl-sports">Golf</div>
-
-    <h3>U.S. Open — this week</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> The U.S. Open begins this week at a course that will test precision, positioning, and mental toughness over raw power.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> The U.S. Open is the hardest major to win because it rewards accuracy over aggression. The <a href="https://www.usga.org" class="entity-org" target="_blank" rel="noopener">USGA</a> sets it up to punish mistakes, so whoever stays patient and commits to their game plan wins.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> The favorites will be players who can control their ball and stay composed under pressure—that's the U.S. Open formula. The course will play narrow and firm, which means distance off the tee matters way less than where your ball ends up. Short hitters who drive it straight will beat long hitters who spray it. This is the week where ego loses.</span></li>
-      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>U.S. Open is the USGA's major championship</li><li>U.S. Open is traditionally the hardest major to win</li><li>2026 U.S. Open runs this week</li><li>Course design favors accuracy and control over raw distance</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> U.S. Open week is when the golfers with actual games show up instead of just the guys who hit it far.</span></li>
-    </ul>
-
-  </section>
-
-<a href="/live/" class="brief-live-cta">
-  <span class="blc-dot"></span>
-  <div class="blc-inner">
-    <div class="blc-label">Happening Now</div>
-    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
-  </div>
-  <span class="blc-btn">Open GuyTalk Live →</span>
-</a>
-
-<div class="brief-inline-cta">
-  <div class="bic-inner">
-    <div class="bic-label">Free · Daily · 5 Minutes</div>
-    <p class="bic-text">Get GuyTalk in your inbox every morning — before you check anything else.</p>
-  </div>
-  <a href="/#signup" class="bic-btn">Subscribe free →</a>
-</div>
-
-<div class="umbrella-head"><h2 class="umbrella-title">Markets</h2></div>
+<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>
 
   <section class="brief-section" id="markets">
     <div class="section-label sl-markets">The Close</div>
@@ -270,7 +216,84 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </ul>
   </section>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Culture</h2></div>
+<a href="/live/" class="brief-live-cta">
+  <span class="blc-dot"></span>
+  <div class="blc-inner">
+    <div class="blc-label">Happening Now</div>
+    <p class="blc-text">Scores, markets, and standings are moving as you read. Follow live updates on GuyTalk Live.</p>
+  </div>
+  <span class="blc-btn">Open GuyTalk Live →</span>
+</a>
+
+<div class="brief-inline-cta">
+  <div class="bic-inner">
+    <div class="bic-label">Free · Daily · 5 Minutes</div>
+    <p class="bic-text">Get GuyTalk in your inbox every morning — before you check anything else.</p>
+  </div>
+  <a href="/#signup" class="bic-btn">Subscribe free →</a>
+</div>
+
+<div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
+
+  <section class="brief-section sport-card sport-lead" id="the-lead">
+    <div class="section-label sl-sports">The Lead</div>
+
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">NHL</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Carolina Hurricanes 3–0 (CAR wins series 4-2) [Stanley Cup Final - Game 6] [CAR last won in 2006 — this is their 2nd title]</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Carolina Hurricanes beat <a href="https://www.nhl.com/goldenknights" class="entity-team" target="_blank" rel="noopener">Vegas Golden Knights</a> 3–0 in Game 6 to win the Stanley Cup Final 4–2, capturing their second title in franchise history.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Carolina last won in 2006. This is their first championship in twenty years, ending a brutal drought and proving they're not a regular-season team that folds when it matters.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">Vegas built one of the best expansion franchises ever and still couldn't close it out. Carolina's defense was suffocating all series—they didn't win this with flashy offense, they won by making Vegas uncomfortable every shift. This validates their entire build. The real story is that Vegas has to wake up tomorrow knowing they had four chances to end it and didn't.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>Carolina last won Stanley Cup in 2006</li><li>This is the Hurricanes' 2nd title in franchise history</li><li>Series final score: Carolina 4, Vegas 2</li><li>Game 6 was 3–0, clinching shutout</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Carolina's defense was so suffocating Vegas couldn't generate anything—that's how you win a Cup in 2026."</div></div></div>
+
+      </div>
+    </div>
+  </section>
+  <section class="brief-section sport-card" id="f1">
+    <div class="section-label sl-sports">F1</div>
+
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">F1</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Lewis Hamilton wins MSC Cruises Barcelona-Catalunya GP</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Lewis Hamilton won the MSC Cruises Barcelona-Catalunya GP in his <a href="https://www.formula1.com/en/teams/Ferrari.html" class="entity-team" target="_blank" rel="noopener">Ferrari</a>, with George Russell finishing second and Lando Norris third.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Hamilton's Ferrari move last season was the biggest driver swap in years. This win—his first in the championship-caliber machine—proves the pairing is working exactly as planned.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">Hamilton didn't just win a race, he sent a message that Ferrari made the right call and he's hungry. Russell in second keeps <a href="https://www.formula1.com/en/teams/Mercedes.html" class="entity-team" target="_blank" rel="noopener">Mercedes</a> respectable but can't deny Hamilton had the car and the pace today. Norris in third shows <a href="https://www.formula1.com/en/teams/McLaren.html" class="entity-team" target="_blank" rel="noopener">McLaren</a> is still quick but not dominant. The Ferrari gamble is paying off immediately.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>Lewis Hamilton drives for Ferrari as of 2025 season</li><li>Race: MSC Cruises Barcelona-Catalunya GP</li><li>P1: Hamilton (Ferrari), P2: Russell (Mercedes), P3: Norris (McLaren)</li><li>This is Hamilton's first victory since joining Ferrari</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Hamilton's already winning with Ferrari—the Mercedes years feel like ancient history."</div></div></div>
+
+      </div>
+    </div>
+  </section>
+  <section class="brief-section sport-card" id="golf">
+    <div class="section-label sl-sports">Golf</div>
+
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">Golf</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">U.S. Open — this week</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">The U.S. Open begins this week at a course that will test precision, positioning, and mental toughness over raw power.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">The U.S. Open is the hardest major to win because it rewards accuracy over aggression. The <a href="https://www.usga.org" class="entity-org" target="_blank" rel="noopener">USGA</a> sets it up to punish mistakes, so whoever stays patient and commits to their game plan wins.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">The favorites will be players who can control their ball and stay composed under pressure—that's the U.S. Open formula. The course will play narrow and firm, which means distance off the tee matters way less than where your ball ends up. Short hitters who drive it straight will beat long hitters who spray it. This is the week where ego loses.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>U.S. Open is the USGA's major championship</li><li>U.S. Open is traditionally the hardest major to win</li><li>2026 U.S. Open runs this week</li><li>Course design favors accuracy and control over raw distance</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"U.S. Open week is when the golfers with actual games show up instead of just the guys who hit it far."</div></div></div>
+
+      </div>
+    </div>
+  </section>
+
+<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>
 
   <section class="brief-section" id="culture">
     <div class="section-label sl-culture">The Scene</div>
@@ -365,20 +388,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-052/" class="more-issue-card">
-    <span class="mi-num">#052</span>
-    <span class="mi-title">Dow hits record on Iran deal. Hurricanes win the Cup. OpenAI bleeds $34B annually.</span>
-    <span class="mi-date">Wednesday, June 17, 2026</span>
+  <a href="/brief/issue-056/" class="more-issue-card">
+    <span class="mi-num">#056</span>
+    <span class="mi-title">DR Congo stuns Portugal 1-1. Fed holds rates steady. Yankees demolish White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-051/" class="more-issue-card">
-    <span class="mi-num">#051</span>
-    <span class="mi-title">U.S. and Iran sign peace deal Friday. SpaceX IPO valued at $1.77 trillion. Knicks win first championship since 1973.</span>
-    <span class="mi-date">Tuesday, June 16, 2026</span>
+  <a href="/brief/issue-055/" class="more-issue-card">
+    <span class="mi-num">#055</span>
+    <span class="mi-title">Fed signals rate hikes ahead. Pirates dominate Athletics. Yankees roll past White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-050/" class="more-issue-card">
-    <span class="mi-num">#050</span>
-    <span class="mi-title">Iran deal cuts oil prices. SpaceX raises $75 billion. World Cup starts today.</span>
-    <span class="mi-date">Monday, June 15, 2026</span>
+  <a href="/brief/issue-054/" class="more-issue-card">
+    <span class="mi-num">#054</span>
+    <span class="mi-title">Fed holds rates steady, signals future hikes. Pirates demolish Athletics. U.S. Open underway at Shinnecock.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>

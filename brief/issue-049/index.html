@@ -70,7 +70,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
-      <a href="#sports" class="sj-link">Sports</a>
+      <a href="#sports" class="sj-link sj-lead">Sports</a>
       <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
     </nav>
@@ -96,10 +96,21 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
   .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
   .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
-  /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
-     so faces/players show instead of a jersey-number zoom. */
+  /* Images: keep a clean landscape ratio, crop to top so faces show. */
   .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
   .brief-hero-banner--feature{background-position:center 20%;}
+  /* Photo credit — subtle caption beneath images */
+  .brief-img-credit{font-size:10px;color:#9E9891;text-align:right;padding:3px 4px 0;letter-spacing:0.02em;}
+  /* GuyTalk Pick block */
+  .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
+  .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
+  .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
+  /* Player chips */
+  .player-chips{margin:10px 0 6px;}
+  .pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9E9891;margin-bottom:6px;}
+  .pc-list{display:flex;flex-wrap:wrap;gap:5px;}
+  .player-chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#0F1724;background:#F0EDE8;border-radius:20px;padding:3px 11px;text-decoration:none;border:1px solid #E5E2DB;transition:background .15s;}
+  .player-chip:hover{background:#E5E2DB;}
   /* Rundown bullets — clickable anchor navigation. */
   .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
   .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
@@ -107,19 +118,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   <a href="#top" class="bsn-link" data-target="top"><span class="bsn-txt">Top</span><span class="bsn-dot"></span></a>
-  <div class="bsn-group" data-group="sports">
-    <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-caret" role="button" tabindex="0" aria-label="Toggle Sports subsections">▸</span><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
-    <div class="bsn-children">
-      <a href="#the-lead" class="bsn-link bsn-sub" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
-      <a href="#nba-finals" class="bsn-link bsn-sub" data-target="nba-finals"><span class="bsn-txt">NBA Finals</span><span class="bsn-dot"></span></a>
-      <a href="#stanley-cup-final" class="bsn-link bsn-sub" data-target="stanley-cup-final"><span class="bsn-txt">Stanley Cup Final</span><span class="bsn-dot"></span></a>
-      <a href="#wnba" class="bsn-link bsn-sub" data-target="wnba"><span class="bsn-txt">WNBA</span><span class="bsn-dot"></span></a>
-      <a href="#ufc-freedom-250" class="bsn-link bsn-sub" data-target="ufc-freedom-250"><span class="bsn-txt">UFC Freedom 250</span><span class="bsn-dot"></span></a>
-    </div>
-  </div>
-<a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
-<a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
+  <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
+  <a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
   <a href="#sharp-take" class="bsn-link" data-target="sharp-take"><span class="bsn-txt">Sharp Take</span><span class="bsn-dot"></span></a>
+  <a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
 </nav>
 
 <article class="brief-article" id="briefArticle">
@@ -158,61 +160,90 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
 
-  <section class="brief-section sport-card sport-team sport-lead" id="the-lead">
+  <section class="brief-section sport-card sport-lead" id="the-lead">
     <div class="section-label sl-sports">The Lead</div>
-    <h3>Sweden cruise past Tunisia 5-1 in World Cup Group F opener</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Alexander Isak orchestrated Sweden's 5-1 demolition of Tunisia in Monterrey, scoring once and setting up two more while Yasin Ayari added a brace.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Sweden just signaled they're a real threat in Group F — Isak playing at this level means they can hurt anyone in the tournament. Tunisia got exposed immediately and now has zero margin for error.</span></li>
+    <div class="brief-img sport-card-img"><img src="https://commons.wikimedia.org/wiki/File:UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_3.jpg" alt="The Lead" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-credit">Photo: Wikimedia Commons</div></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">FIFA World Cup 2026</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Sweden cruise past Tunisia 5-1 in World Cup Group F opener</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Alexander Isak orchestrated Sweden's 5-1 demolition of Tunisia in Monterrey, scoring once and setting up two more while Yasin Ayari added a brace.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Sweden just signaled they're a real threat in Group F — Isak playing at this level means they can hurt anyone in the tournament. Tunisia got exposed immediately and now has zero margin for error.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"If Isak stays healthy, Sweden's going deeper than anyone thinks in this World Cup."</div></div></div>
 
-      <li><span><span class="dl-label">What to bring up:</span> If Isak stays healthy, Sweden's going deeper than anyone thinks in this World Cup.</span></li>
-    </ul>
-    <div class="brief-img sport-card-img"><img src="https://commons.wikimedia.org/wiki/File:UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_3.jpg" alt="FIFA World Cup 2026" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-team" id="nba-finals">
+  <section class="brief-section sport-card" id="nba-finals">
     <div class="section-label sl-sports">NBA Finals</div>
-    <h3>Knicks Win First NBA Title Since 1973, Beat Spurs 4-1; Brunson Named Finals MVP</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Jalen Brunson won Finals MVP as the Knicks beat the Spurs 4-1 in Game 5 on Saturday, 94-90, capturing New York's first title since 1973.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> The Knicks just ended 53 years of suffering. Brunson proved he's a closer at the biggest level, and New York's front office finally built something that works — that changes the whole Eastern Conference conversation.</span></li>
+    <div class="brief-img sport-card-img"><img src="https://www.espn.com/nba/recap/_/gameId/401859967" alt="NBA Finals" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-credit">Photo: ESPN</div></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">NBA Finals</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Knicks Win First NBA Title Since 1973, Beat Spurs 4-1; Brunson Named Finals MVP</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Jalen Brunson won Finals MVP as the Knicks beat the Spurs 4-1 in Game 5 on Saturday, 94-90, capturing New York's first title since 1973.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">The Knicks just ended 53 years of suffering. Brunson proved he's a closer at the biggest level, and New York's front office finally built something that works — that changes the whole Eastern Conference conversation.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"The Knicks broke the curse. That's wild."</div></div></div>
 
-      <li><span><span class="dl-label">What to bring up:</span> The Knicks broke the curse. That's wild.</span></li>
-    </ul>
-    <div class="brief-img sport-card-img"><img src="https://www.espn.com/nba/recap/_/gameId/401859967" alt="NBA Finals" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-team" id="stanley-cup-final">
+  <section class="brief-section sport-card" id="stanley-cup-final">
     <div class="section-label sl-sports">Stanley Cup Final</div>
-    <h3>Hurricanes win second Stanley Cup, blanking Golden Knights 3-0 in Game 6</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Brandon Bussi blanked the Golden Knights with 22 saves in Game 6 as Carolina beat Vegas 3-0 to win the Stanley Cup in six games, with Taylor Hall scoring 3:47 into the game.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> The Hurricanes finally got back on top 20 years after their last Cup. Bussi's shutdown performance showed goaltending still wins championships — Vegas couldn't score when it mattered most.</span></li>
+    <div class="brief-img sport-card-img"><img src="https://www.espn.com/nhl/story/_/id/49067491/carolina-hurricanes-win-game-6-raise-stanley-cup-vegas" alt="Stanley Cup Final" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-credit">Photo: ESPN</div></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">Stanley Cup Final</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Hurricanes win second Stanley Cup, blanking Golden Knights 3-0 in Game 6</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Brandon Bussi blanked the Golden Knights with 22 saves in Game 6 as Carolina beat Vegas 3-0 to win the Stanley Cup in six games, with Taylor Hall scoring 3:47 into the game.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">The Hurricanes finally got back on top 20 years after their last Cup. Bussi's shutdown performance showed goaltending still wins championships — Vegas couldn't score when it mattered most.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Bussi didn't let in a single puck when the Cup was on the line. That's the kind of performance you never forget."</div></div></div>
 
-      <li><span><span class="dl-label">What to bring up:</span> Bussi didn't let in a single puck when the Cup was on the line. That's the kind of performance you never forget.</span></li>
-    </ul>
-    <div class="brief-img sport-card-img"><img src="https://www.espn.com/nhl/story/_/id/49067491/carolina-hurricanes-win-game-6-raise-stanley-cup-vegas" alt="Stanley Cup Final" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-team" id="wnba">
+  <section class="brief-section sport-card" id="wnba">
     <div class="section-label sl-sports">WNBA</div>
-    <h3>Liberty rout Mystics 86-64 to clinch Commissioner's Cup championship berth</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Breanna Stewart posted 14 points, 12 rebounds and seven blocks while Jonquel Jones added 20 as New York routed Washington 86-64, running their streak to seven straight wins.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> The Liberty are rolling into the Commissioner's Cup finals on a stretch that shows their two-star core can carry a team. Seven straight means they're peaking at exactly the right time in the season.</span></li>
+    <div class="brief-img sport-card-img"><img src="https://www.espn.com/wnba/recap?gameId=401856990" alt="WNBA" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-credit">Photo: ESPN</div></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">WNBA</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Liberty rout Mystics 86-64 to clinch Commissioner's Cup championship berth</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Breanna Stewart posted 14 points, 12 rebounds and seven blocks while Jonquel Jones added 20 as New York routed Washington 86-64, running their streak to seven straight wins.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">The Liberty are rolling into the Commissioner's Cup finals on a stretch that shows their two-star core can carry a team. Seven straight means they're peaking at exactly the right time in the season.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Stewart and Jones are doing whatever they want right now — New York's defense is suffocating people."</div></div></div>
 
-      <li><span><span class="dl-label">What to bring up:</span> Stewart and Jones are doing whatever they want right now — New York's defense is suffocating people.</span></li>
-    </ul>
-    <div class="brief-img sport-card-img"><img src="https://www.espn.com/wnba/recap?gameId=401856990" alt="WNBA" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-individual" id="ufc-freedom-250">
+  <section class="brief-section sport-card" id="ufc-freedom-250">
     <div class="section-label sl-sports">UFC Freedom 250</div>
 
-    <h3>Gaethje stops Topuria to become undisputed lightweight champ at the White House</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Justin Gaethje stopped Ilia Topuria in the fourth round — Topuria's corner threw in the towel — to become the undisputed UFC lightweight champion at UFC Freedom 250 on the White House South Lawn. All seven fights on the card finished inside the distance.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Topuria was unbeaten and billed as the UFC's next pay-per-view star — Gaethje just took his belt on the biggest stage the promotion has ever built. Staging it on the South Lawn for Trump's 80th birthday makes it the most politically loaded card in MMA history.</span></li>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">UFC Freedom 250</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Gaethje stops Topuria to become undisputed lightweight champ at the White House</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Justin Gaethje stopped Ilia Topuria in the fourth round — Topuria's corner threw in the towel — to become the undisputed UFC lightweight champion at UFC Freedom 250 on the White House South Lawn. All seven fights on the card finished inside the distance.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Topuria was unbeaten and billed as the UFC's next pay-per-view star — Gaethje just took his belt on the biggest stage the promotion has ever built. Staging it on the South Lawn for Trump's 80th birthday makes it the most politically loaded card in MMA history.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Gaethje was supposed to be the gatekeeper. He walked into the White House and walked out undisputed champ."</div></div></div>
 
-      <li><span><span class="dl-label">What to bring up:</span> Gaethje was supposed to be the gatekeeper. He walked into the White House and walked out undisputed champ.</span></li>
-    </ul>
-
+      </div>
+    </div>
   </section>
 
 <a href="/live/" class="brief-live-cta">
@@ -232,7 +263,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <a href="/#signup" class="bic-btn">Subscribe free →</a>
 </div>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Markets</h2></div>
+<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>
 
   <section class="brief-section" id="markets">
     <div class="section-label sl-markets">The Close</div>
@@ -356,7 +387,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </ul>
   </section>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Culture</h2></div>
+<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>
 
   <section class="brief-section" id="culture">
     <div class="section-label sl-culture">The Scene</div>
@@ -451,20 +482,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-053/" class="more-issue-card">
-    <span class="mi-num">#053</span>
-    <span class="mi-title">Fed signals 2026 rate hike. Hamilton wins in Barcelona. Messi ties World Cup scoring record.</span>
-    <span class="mi-date">Wednesday, June 17, 2026</span>
+  <a href="/brief/issue-056/" class="more-issue-card">
+    <span class="mi-num">#056</span>
+    <span class="mi-title">DR Congo stuns Portugal 1-1. Fed holds rates steady. Yankees demolish White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-052/" class="more-issue-card">
-    <span class="mi-num">#052</span>
-    <span class="mi-title">Dow hits record on Iran deal. Hurricanes win the Cup. OpenAI bleeds $34B annually.</span>
-    <span class="mi-date">Wednesday, June 17, 2026</span>
+  <a href="/brief/issue-055/" class="more-issue-card">
+    <span class="mi-num">#055</span>
+    <span class="mi-title">Fed signals rate hikes ahead. Pirates dominate Athletics. Yankees roll past White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-051/" class="more-issue-card">
-    <span class="mi-num">#051</span>
-    <span class="mi-title">U.S. and Iran sign peace deal Friday. SpaceX IPO valued at $1.77 trillion. Knicks win first championship since 1973.</span>
-    <span class="mi-date">Tuesday, June 16, 2026</span>
+  <a href="/brief/issue-054/" class="more-issue-card">
+    <span class="mi-num">#054</span>
+    <span class="mi-title">Fed holds rates steady, signals future hikes. Pirates demolish Athletics. U.S. Open underway at Shinnecock.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>

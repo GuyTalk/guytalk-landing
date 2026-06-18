@@ -70,7 +70,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span>SPORTS · MARKETS · CULTURE</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
-      <a href="#sports" class="sj-link">Sports</a>
+      <a href="#sports" class="sj-link sj-lead">Sports</a>
       <a href="#markets" class="sj-link">Markets</a>
       <a href="#culture" class="sj-link">Culture</a>
     </nav>
@@ -95,10 +95,21 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   .brief-sidenav .bsn-parent .bsn-txt{font-weight:800;font-size:1em;letter-spacing:.01em;}
   .brief-sidenav .bsn-sub{margin-right:20px;font-size:0.82em;opacity:0.72;font-weight:500;}
   .brief-sidenav .bsn-sub .bsn-dot{width:5px;height:5px;opacity:.6;}
-  /* Images (Fix 6): keep a clean landscape ratio, but bias the crop to the TOP
-     so faces/players show instead of a jersey-number zoom. */
+  /* Images: keep a clean landscape ratio, crop to top so faces show. */
   .sport-card-img img{aspect-ratio:16/9;object-fit:cover;object-position:center 18%;background:var(--surface-2);}
   .brief-hero-banner--feature{background-position:center 20%;}
+  /* Photo credit — subtle caption beneath images */
+  .brief-img-credit{font-size:10px;color:#9E9891;text-align:right;padding:3px 4px 0;letter-spacing:0.02em;}
+  /* GuyTalk Pick block */
+  .guytalk-pick{display:flex;align-items:flex-start;gap:8px;background:#0F1724;border-radius:8px;padding:10px 14px;margin:10px 0 4px;}
+  .pick-label{white-space:nowrap;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#2B6FFF;padding-top:2px;}
+  .pick-text{font-size:13px;color:#E8E6E1;line-height:1.5;}
+  /* Player chips */
+  .player-chips{margin:10px 0 6px;}
+  .pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9E9891;margin-bottom:6px;}
+  .pc-list{display:flex;flex-wrap:wrap;gap:5px;}
+  .player-chip{display:inline-flex;align-items:center;font-size:12px;font-weight:600;color:#0F1724;background:#F0EDE8;border-radius:20px;padding:3px 11px;text-decoration:none;border:1px solid #E5E2DB;transition:background .15s;}
+  .player-chip:hover{background:#E5E2DB;}
   /* Rundown bullets — clickable anchor navigation. */
   .rbd-bullet{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;cursor:pointer;border-radius:8px;transition:opacity .15s ease,background .15s ease;-webkit-tap-highlight-color:transparent;}
   .rbd-bullet:hover,.rbd-bullet:focus-visible{opacity:.85;background:rgba(255,255,255,.07);outline:none;}
@@ -106,18 +117,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   <a href="#top" class="bsn-link" data-target="top"><span class="bsn-txt">Top</span><span class="bsn-dot"></span></a>
-  <div class="bsn-group" data-group="sports">
-    <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-caret" role="button" tabindex="0" aria-label="Toggle Sports subsections">▸</span><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
-    <div class="bsn-children">
-      <a href="#the-lead" class="bsn-link bsn-sub" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
-      <a href="#stanley-cup-final" class="bsn-link bsn-sub" data-target="stanley-cup-final"><span class="bsn-txt">Stanley Cup Final</span><span class="bsn-dot"></span></a>
-      <a href="#atp-tour" class="bsn-link bsn-sub" data-target="atp-tour"><span class="bsn-txt">ATP Tour</span><span class="bsn-dot"></span></a>
-      <a href="#fifa-world-cup-2026" class="bsn-link bsn-sub" data-target="fifa-world-cup-2026"><span class="bsn-txt">FIFA World Cup 2026</span><span class="bsn-dot"></span></a>
-    </div>
-  </div>
-<a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
-<a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
+  <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
+  <a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
   <a href="#sharp-take" class="bsn-link" data-target="sharp-take"><span class="bsn-txt">Sharp Take</span><span class="bsn-dot"></span></a>
+  <a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
 </nav>
 
 <article class="brief-article" id="briefArticle">
@@ -152,50 +155,73 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
 
-  <section class="brief-section sport-card sport-team sport-lead" id="the-lead">
+  <section class="brief-section sport-card sport-lead" id="the-lead">
     <div class="section-label sl-sports">The Lead</div>
-    <h3>Knicks win 2026 NBA Finals 4-1 over Spurs for first title since 1973</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> The <a href="https://www.nba.com/knicks" class="entity-team" target="_blank" rel="noopener">New York Knicks</a> beat the <a href="https://www.nba.com/spurs" class="entity-team" target="_blank" rel="noopener">San Antonio Spurs</a> 4-1 to win the 2026 NBA Finals, capturing their first championship since 1973.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> New York ends a 53-year drought and silences every voice that said the Knicks couldn't close out a Finals. This changes how the city talks about basketball for the next decade.</span></li>
+    <div class="brief-img sport-card-img"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Jalen_Brunson_%28cropped%29.jpg" alt="The Lead" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-credit">Photo: Wikimedia Commons</div></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">NBA Finals</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Knicks win 2026 NBA Finals 4-1 over Spurs for first title since 1973</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">The <a href="https://www.nba.com/knicks" class="entity-team" target="_blank" rel="noopener">New York Knicks</a> beat the <a href="https://www.nba.com/spurs" class="entity-team" target="_blank" rel="noopener">San Antonio Spurs</a> 4-1 to win the 2026 NBA Finals, capturing their first championship since 1973.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">New York ends a 53-year drought and silences every voice that said the Knicks couldn't close out a Finals. This changes how the city talks about basketball for the next decade.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"The Knicks finally did it — and it only took them longer than the Spurs took to win five rings."</div></div></div>
 
-      <li><span><span class="dl-label">What to bring up:</span> The Knicks finally did it — and it only took them longer than the Spurs took to win five rings.</span></li>
-    </ul>
-    <div class="brief-img sport-card-img"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Jalen_Brunson_%28cropped%29.jpg" alt="NBA Finals" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-team" id="stanley-cup-final">
+  <section class="brief-section sport-card" id="stanley-cup-final">
     <div class="section-label sl-sports">Stanley Cup Final</div>
-    <h3>Hurricanes blank Golden Knights 3-0 in Game 6 to win 2026 Stanley Cup</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> The <a href="https://www.nhl.com/hurricanes" class="entity-team" target="_blank" rel="noopener">Carolina Hurricanes</a> shut out the <a href="https://www.nhl.com/goldenknights" class="entity-team" target="_blank" rel="noopener">Vegas Golden Knights</a> 3-0 in Game 6 with Brandon Bussi in net to win the 2026 Stanley Cup in six games, their first title since 2006.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Vegas built a team to compete every year and never got back to the Finals after their debut run, while Carolina broke a 20-year title drought with a goalie who showed up when it mattered most.</span></li>
+    <div class="brief-img sport-card-img"><img src="https://upload.wikimedia.org/wikipedia/commons/1/13/PNC_Arena_Raleigh.JPG" alt="Stanley Cup Final" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-credit">Photo: Wikimedia Commons</div></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">Stanley Cup Final</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Hurricanes blank Golden Knights 3-0 in Game 6 to win 2026 Stanley Cup</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">The <a href="https://www.nhl.com/hurricanes" class="entity-team" target="_blank" rel="noopener">Carolina Hurricanes</a> shut out the <a href="https://www.nhl.com/goldenknights" class="entity-team" target="_blank" rel="noopener">Vegas Golden Knights</a> 3-0 in Game 6 with Brandon Bussi in net to win the 2026 Stanley Cup in six games, their first title since 2006.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Vegas built a team to compete every year and never got back to the Finals after their debut run, while Carolina broke a 20-year title drought with a goalie who showed up when it mattered most.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Brandon Bussi just got his name on the Cup in the biggest game of his life — that's the kind of playoff story no money can buy."</div></div></div>
 
-      <li><span><span class="dl-label">What to bring up:</span> Brandon Bussi just got his name on the Cup in the biggest game of his life — that's the kind of playoff story no money can buy.</span></li>
-    </ul>
-    <div class="brief-img sport-card-img"><img src="https://upload.wikimedia.org/wikipedia/commons/1/13/PNC_Arena_Raleigh.JPG" alt="Stanley Cup Final" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-individual" id="atp-tour">
+  <section class="brief-section sport-card" id="atp-tour">
     <div class="section-label sl-sports">ATP Tour</div>
-    <div class="brief-img sport-card-img"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Majchrzak_RG21_(2)_(51376823294).jpg" alt="ATP Tour" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
-    <h3>Majchrzak stuns de Minaur for maiden ATP title in 's-Hertogenbosch, cracks Top 50</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Kamil Majchrzak beat second seed Alex de Minaur 6-3, 2-6, 7-6(5) at the Libema Open in 's-Hertogenbosch to win his first ATP Tour title, after also defeating top seed Felix Auger-Aliassime and Daniil Medvedev en route.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Majchrzak didn't just win a tournament — he ran through top-10 names to do it, which means he's broken through a mental barrier that kept him stuck below the top 50 until now.</span></li>
+    <div class="brief-img sport-card-img"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Majchrzak_RG21_(2)_(51376823294).jpg" alt="ATP Tour" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-credit">Photo: Wikimedia Commons</div></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">ATP Tour</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Majchrzak stuns de Minaur for maiden ATP title in 's-Hertogenbosch, cracks Top 50</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Kamil Majchrzak beat second seed Alex de Minaur 6-3, 2-6, 7-6(5) at the Libema Open in 's-Hertogenbosch to win his first ATP Tour title, after also defeating top seed Felix Auger-Aliassime and Daniil Medvedev en route.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Majchrzak didn't just win a tournament — he ran through top-10 names to do it, which means he's broken through a mental barrier that kept him stuck below the top 50 until now.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"A guy nobody had ranked in the top 50 just beat Medvedev and Auger-Aliassime in the same week — that's a coming-out party."</div></div></div>
 
-      <li><span><span class="dl-label">What to bring up:</span> A guy nobody had ranked in the top 50 just beat Medvedev and Auger-Aliassime in the same week — that's a coming-out party.</span></li>
-    </ul>
-
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-team" id="fifa-world-cup-2026">
+  <section class="brief-section sport-card" id="fifa-world-cup-2026">
     <div class="section-label sl-sports">FIFA World Cup 2026</div>
-    <h3>Sweden cruise past Tunisia 5-1 in World Cup Group F opener</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Sweden crushed Tunisia 5-1 in Monterrey in their Group F opener at the 2026 World Cup, with Alexander Isak scoring once and adding two assists, Yasin Ayari netting a brace, and Viktor Gyökeres adding a goal and an assist.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Sweden showed they can score at will in group play, which means other teams in that bracket are already thinking about the knockout round without them.</span></li>
+    <div class="brief-img sport-card-img"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56.jpg" alt="FIFA World Cup 2026" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"><div class="brief-img-credit">Photo: Wikimedia Commons</div></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">FIFA World Cup 2026</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Sweden cruise past Tunisia 5-1 in World Cup Group F opener</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Sweden crushed Tunisia 5-1 in Monterrey in their Group F opener at the 2026 World Cup, with Alexander Isak scoring once and adding two assists, Yasin Ayari netting a brace, and Viktor Gyökeres adding a goal and an assist.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Sweden showed they can score at will in group play, which means other teams in that bracket are already thinking about the knockout round without them.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Sweden dropped five on Tunisia in the opener — that's the kind of statement that makes people respect you on the draw sheet."</div></div></div>
 
-      <li><span><span class="dl-label">What to bring up:</span> Sweden dropped five on Tunisia in the opener — that's the kind of statement that makes people respect you on the draw sheet.</span></li>
-    </ul>
-    <div class="brief-img sport-card-img"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/UEFA_EURO_qualifiers_Sweden_vs_Spain_20191015_Alexander_Isak_56.jpg" alt="FIFA World Cup 2026" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
+      </div>
+    </div>
   </section>
 
 <a href="/live/" class="brief-live-cta">
@@ -215,7 +241,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
   <a href="/#signup" class="bic-btn">Subscribe free →</a>
 </div>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Markets</h2></div>
+<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>
 
   <section class="brief-section" id="markets">
     <div class="section-label sl-markets">The Close</div>
@@ -339,7 +365,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
     </ul>
   </section>
 
-<div class="umbrella-head"><h2 class="umbrella-title">Culture</h2></div>
+<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>
 
   <section class="brief-section" id="culture">
     <div class="section-label sl-culture">The Scene</div>
@@ -434,20 +460,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-053/" class="more-issue-card">
-    <span class="mi-num">#053</span>
-    <span class="mi-title">Fed signals 2026 rate hike. Hamilton wins in Barcelona. Messi ties World Cup scoring record.</span>
-    <span class="mi-date">Wednesday, June 17, 2026</span>
+  <a href="/brief/issue-056/" class="more-issue-card">
+    <span class="mi-num">#056</span>
+    <span class="mi-title">DR Congo stuns Portugal 1-1. Fed holds rates steady. Yankees demolish White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-052/" class="more-issue-card">
-    <span class="mi-num">#052</span>
-    <span class="mi-title">Dow hits record on Iran deal. Hurricanes win the Cup. OpenAI bleeds $34B annually.</span>
-    <span class="mi-date">Wednesday, June 17, 2026</span>
+  <a href="/brief/issue-055/" class="more-issue-card">
+    <span class="mi-num">#055</span>
+    <span class="mi-title">Fed signals rate hikes ahead. Pirates dominate Athletics. Yankees roll past White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
-  <a href="/brief/issue-051/" class="more-issue-card">
-    <span class="mi-num">#051</span>
-    <span class="mi-title">U.S. and Iran sign peace deal Friday. SpaceX IPO valued at $1.77 trillion. Knicks win first championship since 1973.</span>
-    <span class="mi-date">Tuesday, June 16, 2026</span>
+  <a href="/brief/issue-054/" class="more-issue-card">
+    <span class="mi-num">#054</span>
+    <span class="mi-title">Fed holds rates steady, signals future hikes. Pirates demolish Athletics. U.S. Open underway at Shinnecock.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>

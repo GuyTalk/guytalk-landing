@@ -117,18 +117,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   <a href="#top" class="bsn-link" data-target="top"><span class="bsn-txt">Top</span><span class="bsn-dot"></span></a>
-  <div class="bsn-group" data-group="sports">
-    <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-caret" role="button" tabindex="0" aria-label="Toggle Sports subsections">▸</span><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
-    <div class="bsn-children">
-      <a href="#the-lead" class="bsn-link bsn-sub" data-target="the-lead"><span class="bsn-txt">The Lead</span><span class="bsn-dot"></span></a>
-      <a href="#f1" class="bsn-link bsn-sub" data-target="f1"><span class="bsn-txt">F1</span><span class="bsn-dot"></span></a>
-      <a href="#golf" class="bsn-link bsn-sub" data-target="golf"><span class="bsn-txt">Golf</span><span class="bsn-dot"></span></a>
-      <a href="#mlb" class="bsn-link bsn-sub" data-target="mlb"><span class="bsn-txt">MLB</span><span class="bsn-dot"></span></a>
-    </div>
-  </div>
-<a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
-<a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
+  <a href="#sports" class="bsn-link bsn-parent" data-target="sports"><span class="bsn-txt">Sports</span><span class="bsn-dot"></span></a>
+  <a href="#markets" class="bsn-link bsn-parent" data-target="markets"><span class="bsn-txt">Markets</span><span class="bsn-dot"></span></a>
   <a href="#sharp-take" class="bsn-link" data-target="sharp-take"><span class="bsn-txt">Sharp Take</span><span class="bsn-dot"></span></a>
+  <a href="#culture" class="bsn-link bsn-parent" data-target="culture"><span class="bsn-txt">Culture</span><span class="bsn-dot"></span></a>
 </nav>
 
 <article class="brief-article" id="briefArticle">
@@ -163,71 +155,97 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>
 
-  <section class="brief-section sport-card sport-team sport-lead" id="the-lead">
+  <section class="brief-section sport-card sport-lead" id="the-lead">
     <div class="section-label sl-sports">The Lead</div>
-    <h3>England 4–2 Croatia</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> England defeated Croatia 4–2 in their World Cup opener, with Harry Kane scoring twice from the penalty spot and Jude Bellingham adding a goal in the second half.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> England's aggressive setup paid off immediately—Kane's early penalty gave them control, and Bellingham's goal in the 47th minute essentially settled it. Croatia never recovered. This is the kind of statement win that carries momentum through group play.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> Kane looks sharp and clinical, which matters because he's still England's most reliable finisher in tight moments. Bellingham's run into the box showed he understands positioning at this level—not just athleticism, positioning. The worry for everyone else: England's defense gave up two soft goals but still won convincingly, so they have room to tighten up and become even harder to beat. Austria's first World Cup win in 36 years (3–1 over Jordan) and Colombia's 3–1 rout of debutants Uzbekistan, with Luis Díaz scoring in the second half, signal that the tournament's stronger teams are rolling early.</span></li>
-      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>Harry Kane scored twice, including a 12th-minute penalty, in England's 4–2 win over Croatia</li><li>Jude Bellingham scored in the 47th minute to put England up 3–1</li><li>Austria won a World Cup match for the first time in 36 years, beating Jordan 3–1 on Tuesday</li><li>Luis Díaz scored for Colombia in their 3–1 victory over Uzbekistan, a World Cup debutant</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> Harry Kane's already got two goals and we're barely through group play—that's the kind of start that wins tournaments, especially when your midfielder is 20 years old and scoring in the World Cup like Bellingham just did.</span></li>
-    </ul>
-    <div class="player-chips">
-      <div class="pc-label">Players to Know</div>
-      <div class="pc-list"><a href="https://www.espn.com/soccer/player/_/id/157529/harry-kane" target="_blank" rel="noopener" class="player-chip">Harry Kane</a><a href="https://www.espn.com/soccer/player/_/id/4251614/jude-bellingham" target="_blank" rel="noopener" class="player-chip">Jude Bellingham</a><a href="https://www.espn.com/soccer/player/_/id/3146590/marcus-rashford" target="_blank" rel="noopener" class="player-chip">Marcus Rashford</a><a href="https://www.espn.com/soccer/player/_/id/93869/cristiano-ronaldo" target="_blank" rel="noopener" class="player-chip">Cristiano Ronaldo</a><a href="https://www.espn.com/soccer/player/_/id/4568166/romano-schmid" target="_blank" rel="noopener" class="player-chip">Romano Schmid</a><a href="https://www.espn.com/soccer/player/_/id/3943007/luis-diaz" target="_blank" rel="noopener" class="player-chip">Luis Díaz</a></div>
+
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">World Cup</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">England 4–2 Croatia</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">England defeated Croatia 4–2 in their World Cup opener, with Harry Kane scoring twice from the penalty spot and Jude Bellingham adding a goal in the second half.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">England's aggressive setup paid off immediately—Kane's early penalty gave them control, and Bellingham's goal in the 47th minute essentially settled it. Croatia never recovered. This is the kind of statement win that carries momentum through group play.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">Kane looks sharp and clinical, which matters because he's still England's most reliable finisher in tight moments. Bellingham's run into the box showed he understands positioning at this level—not just athleticism, positioning. The worry for everyone else: England's defense gave up two soft goals but still won convincingly, so they have room to tighten up and become even harder to beat. Austria's first World Cup win in 36 years (3–1 over Jordan) and Colombia's 3–1 rout of debutants Uzbekistan, with Luis Díaz scoring in the second half, signal that the tournament's stronger teams are rolling early.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>Harry Kane scored twice, including a 12th-minute penalty, in England's 4–2 win over Croatia</li><li>Jude Bellingham scored in the 47th minute to put England up 3–1</li><li>Austria won a World Cup match for the first time in 36 years, beating Jordan 3–1 on Tuesday</li><li>Luis Díaz scored for Colombia in their 3–1 victory over Uzbekistan, a World Cup debutant</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Harry Kane's already got two goals and we're barely through group play—that's the kind of start that wins tournaments, especially when your midfielder is 20 years old and scoring in the World Cup like Bellingham just did."</div></div></div>
+      <div class="ctx-row"><div class="ctx-label">Players to know</div><ul class="pbio-list">
+          <li class="pbio-item"><a href="https://www.espn.com/soccer/player/_/id/157529/harry-kane" target="_blank" rel="noopener" class="pbio-name">Harry Kane</a><span class="pbio-bio">England captain · all-time leading scorer</span></li>
+          <li class="pbio-item"><a href="https://www.espn.com/soccer/player/_/id/4251614/jude-bellingham" target="_blank" rel="noopener" class="pbio-name">Jude Bellingham</a><span class="pbio-bio">Real Madrid · England · most creative force in the squad</span></li>
+          <li class="pbio-item"><a href="https://www.espn.com/soccer/player/_/id/3146590/marcus-rashford" target="_blank" rel="noopener" class="pbio-name">Marcus Rashford</a><span class="pbio-bio">Man United · electric winger, pace and clinical finishing</span></li>
+          <li class="pbio-item"><a href="https://www.espn.com/soccer/player/_/id/93869/cristiano-ronaldo" target="_blank" rel="noopener" class="pbio-name">Cristiano Ronaldo</a><span class="pbio-bio">Portugal legend · 900+ career goals, chasing a World Cup</span></li>
+          <li class="pbio-item"><a href="https://www.espn.com/soccer/player/_/id/4568166/romano-schmid" target="_blank" rel="noopener" class="pbio-name">Romano Schmid</a><span class="pbio-bio">Werder Bremen · Austria captain</span></li>
+          <li class="pbio-item"><a href="https://www.espn.com/soccer/player/_/id/3943007/luis-diaz" target="_blank" rel="noopener" class="pbio-name">Luis Díaz</a><span class="pbio-bio">Liverpool · Colombia · most dangerous attacker in the squad</span></li>
+        </ul></div>
+      <div class="ctx-pick"><span class="ctx-pick-label">GuyTalk's Pick</span><span class="ctx-pick-text">England advances first from their group because Kane thrives in knockout scenarios and their midfield depth is scary right now.</span></div>
+      </div>
     </div>
-    <div class="guytalk-pick"><span class="pick-label">GuyTalk's Pick</span><span class="pick-text">England advances first from their group because Kane thrives in knockout scenarios and their midfield depth is scary right now.</span></div>
-
-
   </section>
-  <section class="brief-section sport-card sport-individual" id="f1">
+  <section class="brief-section sport-card" id="f1">
     <div class="section-label sl-sports">F1</div>
     <div class="brief-img sport-card-img"><img src="https://media.tycsports.com/files/2026/06/09/956431/austria_1440x810.webp?v=1" alt="F1" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
-    <h3>Lenovo Austrian Grand Prix — this weekend</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> The Lenovo Austrian Grand Prix takes place this weekend at the <a href="https://www.redbullring.com" class="entity-venue" target="_blank" rel="noopener">Red Bull Ring</a>.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> Austria is a high-speed circuit favoring teams with strong aerodynamic efficiency and DRS straights—setup choices made this week will determine who's competitive on Sunday.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> The Red Bull Ring rewards precision and engine power in equal measure. Teams will have one practice session to dial in their cars before qualifying, so Friday data becomes critical for Sunday pace. Whoever nails the balance between downforce and top-end speed wins.</span></li>
-      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>The Red Bull Ring features two high-speed DRS zones and favors aerodynamic efficiency</li><li>Austrian Grand Prix is scheduled for this weekend as part of the 2026 F1 calendar</li><li>Setup decisions made in Friday practice directly impact qualifying and race competitiveness at this venue</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> The Austrian GP is all about getting the DRS straights right—if your team's engineers nail the setup window on Friday, you're probably winning Sunday.</span></li>
-    </ul>
-    <div class="player-chips">
-      <div class="pc-label">Players to Know</div>
-      <div class="pc-list"><a href="https://www.formula1.com/en/drivers/max-verstappen" target="_blank" rel="noopener" class="player-chip">Max Verstappen</a><a href="https://www.formula1.com/en/drivers/lewis-hamilton" target="_blank" rel="noopener" class="player-chip">Lewis Hamilton</a><a href="https://www.formula1.com/en/drivers/charles-leclerc" target="_blank" rel="noopener" class="player-chip">Charles Leclerc</a><a href="https://www.formula1.com/en/drivers/lando-norris" target="_blank" rel="noopener" class="player-chip">Lando Norris</a><a href="https://www.formula1.com/en/drivers/carlos-sainz" target="_blank" rel="noopener" class="player-chip">Carlos Sainz</a><a href="https://www.formula1.com/en/drivers/george-russell" target="_blank" rel="noopener" class="player-chip">George Russell</a></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">F1</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Lenovo Austrian Grand Prix — this weekend</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">The Lenovo Austrian Grand Prix takes place this weekend at the <a href="https://www.redbullring.com" class="entity-venue" target="_blank" rel="noopener">Red Bull Ring</a>.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">Austria is a high-speed circuit favoring teams with strong aerodynamic efficiency and DRS straights—setup choices made this week will determine who's competitive on Sunday.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">The Red Bull Ring rewards precision and engine power in equal measure. Teams will have one practice session to dial in their cars before qualifying, so Friday data becomes critical for Sunday pace. Whoever nails the balance between downforce and top-end speed wins.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>The Red Bull Ring features two high-speed DRS zones and favors aerodynamic efficiency</li><li>Austrian Grand Prix is scheduled for this weekend as part of the 2026 F1 calendar</li><li>Setup decisions made in Friday practice directly impact qualifying and race competitiveness at this venue</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"The Austrian GP is all about getting the DRS straights right—if your team's engineers nail the setup window on Friday, you're probably winning Sunday."</div></div></div>
+      <div class="ctx-row"><div class="ctx-label">Players to know</div><ul class="pbio-list">
+          <li class="pbio-item"><a href="https://www.formula1.com/en/drivers/max-verstappen" target="_blank" rel="noopener" class="pbio-name">Max Verstappen</a><span class="pbio-bio">Red Bull · 4× world champion, dominant era driver</span></li>
+          <li class="pbio-item"><a href="https://www.formula1.com/en/drivers/lewis-hamilton" target="_blank" rel="noopener" class="pbio-name">Lewis Hamilton</a><span class="pbio-bio"><a href="https://www.formula1.com/en/teams/Ferrari.html" class="entity-team" target="_blank" rel="noopener">Ferrari</a> · 7× world champion, motorsport GOAT</span></li>
+          <li class="pbio-item"><a href="https://www.formula1.com/en/drivers/charles-leclerc" target="_blank" rel="noopener" class="pbio-name">Charles Leclerc</a><span class="pbio-bio">Ferrari · Monaco native · championship contender</span></li>
+          <li class="pbio-item"><a href="https://www.formula1.com/en/drivers/lando-norris" target="_blank" rel="noopener" class="pbio-name">Lando Norris</a><span class="pbio-bio"><a href="https://www.formula1.com/en/teams/McLaren.html" class="entity-team" target="_blank" rel="noopener">McLaren</a> · 2025 world champion, overtook Verstappen</span></li>
+          <li class="pbio-item"><a href="https://www.formula1.com/en/drivers/carlos-sainz" target="_blank" rel="noopener" class="pbio-name">Carlos Sainz</a><span class="pbio-bio">Williams · 2024 Australian GP winner, consistent front-runner</span></li>
+          <li class="pbio-item"><a href="https://www.formula1.com/en/drivers/george-russell" target="_blank" rel="noopener" class="pbio-name">George Russell</a><span class="pbio-bio"><a href="https://www.formula1.com/en/teams/Mercedes.html" class="entity-team" target="_blank" rel="noopener">Mercedes</a> · technical specialist, single-lap pace machine</span></li>
+        </ul></div>
+
+      </div>
     </div>
-
-
   </section>
-  <section class="brief-section sport-card sport-individual" id="golf">
+  <section class="brief-section sport-card" id="golf">
     <div class="section-label sl-sports">Golf</div>
     <div class="brief-img sport-card-img"><img src="https://nbcsports.brightspotcdn.com/dims4/default/0758cc0/2147483647/strip/true/crop/4568x2570+0+13/resize/1440x810!/quality/90/?url=https%3A%2F%2Fnbc-sports-production-nbc-sports.s3.us-east-1.amazonaws.com%2Fbrightspot%2Fa4%2Fbc%2F9bbdbd1047faa98044906009ed7f%2Fhttps-api-imagn.com%2Frest%2Fdownload%2FimageID%3D29208081" alt="Golf" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
-    <h3>U.S. Open — in progress</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> Sam Burns and Ludvig Åberg are tied at 2-under leading the U.S. Open, with Kristoffer Reitan one shot back at 1-under.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> The U.S. Open is designed to break even or go backward—being at 2-under this early means Burns and Åberg have found something most players haven't, and that kind of greens-reading edge usually holds up under pressure.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> Burns leading suggests he's either dialed in his iron play or reading the greens with laser precision. Neither advantage vanishes when the stakes spike. Åberg at the same number means he's matched that efficiency, which is harder than it sounds on U.S. Open setups. Reitan staying within one shot keeps Sunday interesting, but in a grinding event like this, the guys already two clear usually stay two clear.</span></li>
-      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>Sam Burns leads the U.S. Open at 2-under par</li><li>Ludvig Åberg is tied for first at 2-under par</li><li>Kristoffer Reitan is third, one shot back at 1-under par</li><li>The U.S. Open is still in progress with no winner yet</li><li>U.S. Open total purse: $21,500,000 — winner takes $3,870,000</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> Two guys at 2-under in a U.S. Open is basically domination—Burns and Åberg have figured out how to score on a track where pars feel like birdies.</span></li>
-    </ul>
-
-    <div class="guytalk-pick"><span class="pick-label">GuyTalk's Pick</span><span class="pick-text">Sam Burns wins because he's made fewer mistakes than Åberg and typically closes tighter under major championship pressure.</span></div>
-
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">Golf</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">U.S. Open — in progress</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">Sam Burns and Ludvig Åberg are tied at 2-under leading the U.S. Open, with Kristoffer Reitan one shot back at 1-under.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">The U.S. Open is designed to break even or go backward—being at 2-under this early means Burns and Åberg have found something most players haven't, and that kind of greens-reading edge usually holds up under pressure.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">Burns leading suggests he's either dialed in his iron play or reading the greens with laser precision. Neither advantage vanishes when the stakes spike. Åberg at the same number means he's matched that efficiency, which is harder than it sounds on U.S. Open setups. Reitan staying within one shot keeps Sunday interesting, but in a grinding event like this, the guys already two clear usually stay two clear.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>Sam Burns leads the U.S. Open at 2-under par</li><li>Ludvig Åberg is tied for first at 2-under par</li><li>Kristoffer Reitan is third, one shot back at 1-under par</li><li>The U.S. Open is still in progress with no winner yet</li><li>U.S. Open total purse: $21,500,000 — winner takes $3,870,000</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"Two guys at 2-under in a U.S. Open is basically domination—Burns and Åberg have figured out how to score on a track where pars feel like birdies."</div></div></div>
+      <div class="ctx-pick"><span class="ctx-pick-label">GuyTalk's Pick</span><span class="ctx-pick-text">Sam Burns wins because he's made fewer mistakes than Åberg and typically closes tighter under major championship pressure.</span></div>
+      </div>
+    </div>
   </section>
-  <section class="brief-section sport-card sport-team" id="mlb">
+  <section class="brief-section sport-card" id="mlb">
     <div class="section-label sl-sports">MLB</div>
-    <h3>Miami Marlins 12–4 over Philadelphia Phillies</h3>
-    <ul class="detail-list">
-      <li><span><span class="dl-label">What happened:</span> The Miami Marlins beat the Philadelphia Phillies 12–4.</span></li>
-      <li><span><span class="dl-label">Why it matters:</span> An 8-run margin in a regular season game signals a complete breakdown for Philadelphia—either their offense stalled or Miami's pitching was sharp enough to kill any rally.</span></li>
-      <li><span><span class="dl-label">The GuyTalk Read:</span> An ugly loss like this stings but doesn't define a season. What matters is whether the Phillies bounce back tomorrow or let it compound. A 12-4 game usually means one team's bullpen got torched, and Philadelphia needs to check who threw and why.</span></li>
-      <li class="ammo-item"><span class="dl-label">What to Know:</span><ul class="ammo-list"><li>Miami Marlins defeated Philadelphia Phillies 12–4</li><li>The eight-run margin indicates a significant performance gap in a single game</li><li>Pittsburgh Pirates 12, Oakland Athletics 4 — and Yankees 10, White Sox 5 on the same day: three MLB blowouts, all won by 6+ runs</li></ul></li>
-      <li><span><span class="dl-label">What to bring up:</span> The Marlins just put 12 on the Phillies—that's the kind of game you forget about unless Philadelphia can't shake it tomorrow.</span></li>
-    </ul>
-
-
     <div class="brief-img sport-card-img"><img src="https://s.hdnux.com/photos/01/66/46/50/31091248/3/rawImage.jpg" alt="MLB" loading="lazy" onerror="this.closest('.brief-img').style.display='none'"></div>
+    <div class="ctx-card">
+      <div class="ctx-head">
+        <span class="ctx-title">THE GUYTALK READ<span class="ctx-dot">.</span></span>
+        <span class="ctx-tag">MLB</span>
+      </div>
+      <div class="ctx-body">
+        <h3 class="ctx-headline">Miami Marlins 12–4 over Philadelphia Phillies</h3>
+      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">The Miami Marlins beat the Philadelphia Phillies 12–4.</div></div>
+      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">An 8-run margin in a regular season game signals a complete breakdown for Philadelphia—either their offense stalled or Miami's pitching was sharp enough to kill any rally.</div></div>
+      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">An ugly loss like this stings but doesn't define a season. What matters is whether the Phillies bounce back tomorrow or let it compound. A 12-4 game usually means one team's bullpen got torched, and Philadelphia needs to check who threw and why.</div></div>
+      <div class="ctx-row"><div class="ctx-label">What to know</div><ul class="ammo-list"><li>Miami Marlins defeated Philadelphia Phillies 12–4</li><li>The eight-run margin indicates a significant performance gap in a single game</li><li>Pittsburgh Pirates 12, Oakland Athletics 4 — and Yankees 10, White Sox 5 on the same day: three MLB blowouts, all won by 6+ runs</li></ul></div>
+      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"The Marlins just put 12 on the Phillies—that's the kind of game you forget about unless Philadelphia can't shake it tomorrow."</div></div></div>
 
+      </div>
+    </div>
   </section>
 
 <a href="/live/" class="brief-live-cta">
@@ -393,20 +411,20 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="more-issues-block">
   <div class="more-issues-label">More issues</div>
-  <a href="/brief/issue-052/" class="more-issue-card">
-    <span class="mi-num">#052</span>
-    <span class="mi-title">Dow hits record on Iran deal. Hurricanes win the Cup. OpenAI bleeds $34B annually.</span>
-    <span class="mi-date"></span>
-  </a>
-  <a href="/brief/issue-053/" class="more-issue-card">
-    <span class="mi-num">#053</span>
-    <span class="mi-title">Fed signals 2026 rate hike. Hamilton wins in Barcelona. Messi ties World Cup scoring record.</span>
-    <span class="mi-date"></span>
+  <a href="/brief/issue-055/" class="more-issue-card">
+    <span class="mi-num">#055</span>
+    <span class="mi-title">Fed signals rate hikes ahead. Pirates dominate Athletics. Yankees roll past White Sox.</span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
   </a>
   <a href="/brief/issue-054/" class="more-issue-card">
     <span class="mi-num">#054</span>
     <span class="mi-title">Fed holds rates steady, signals future hikes. Pirates demolish Athletics. U.S. Open underway at Shinnecock.</span>
-    <span class="mi-date"></span>
+    <span class="mi-date">Thursday, June 18, 2026</span>
+  </a>
+  <a href="/brief/issue-053/" class="more-issue-card">
+    <span class="mi-num">#053</span>
+    <span class="mi-title">Fed signals 2026 rate hike. Hamilton wins in Barcelona. Messi ties World Cup scoring record.</span>
+    <span class="mi-date">Wednesday, June 17, 2026</span>
   </a>
   <a href="/briefs/" class="more-issues-all">Browse all issues →</a>
 </div>
