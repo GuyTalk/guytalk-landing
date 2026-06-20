@@ -287,10 +287,11 @@ function main() {
   } else if (ed.reviewed) {
     // Quality blocks (no_ammo, no_current_facts, low_conversation_relevance) are content
     // issues — warn Jake but allow the brief to stage. Safety/compliance blocks hard fail.
-    const QUALITY_BLOCK_REASONS = new Set(['no_ammo', 'no_current_facts', 'low_conversation_relevance']);
+    const QUALITY_BLOCK_REASONS = ['no_ammo', 'no_current_facts', 'low_conversation_relevance'];
+    const isQualityBlock = (b) => QUALITY_BLOCK_REASONS.some(r => b.reason?.startsWith(r));
     const allBlocks    = ed.blocking || [];
-    const safetyBlocks = allBlocks.filter(b => !QUALITY_BLOCK_REASONS.has(b.reason));
-    const qualityBlocks = allBlocks.filter(b => QUALITY_BLOCK_REASONS.has(b.reason));
+    const safetyBlocks = allBlocks.filter(b => !isQualityBlock(b));
+    const qualityBlocks = allBlocks.filter(b => isQualityBlock(b));
     run(
       'Editor pass: no safety/compliance violations',
       safetyBlocks.length === 0,

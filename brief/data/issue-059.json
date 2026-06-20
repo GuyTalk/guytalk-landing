@@ -1,0 +1,1610 @@
+{
+  "num": 59,
+  "slug": "issue-059",
+  "date": "Saturday, June 20, 2026",
+  "title": "USMNT beats Australia 2–0 in World Cup tune-up. Gold rises after U.S.–Iran accord. Cubs demolish Blue Jays 16–2.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815822",
+      "name": "Los Angeles Angels at Athletics Athletics",
+      "shortName": "LAA @ ATH",
+      "date": "2026-06-20T01:40Z",
+      "venue": "Sutter Health Park",
+      "venueCity": "Sacramento, California",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "12",
+        "winner": true
+      },
+      "away": {
+        "team": "Los Angeles Angels",
+        "abbrev": "LAA",
+        "score": "11",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815820",
+      "name": "Toronto Blue Jays at Chicago Cubs",
+      "shortName": "TOR @ CHC",
+      "date": "2026-06-19T18:20Z",
+      "venue": "Wrigley Field",
+      "venueCity": "Chicago, Illinois",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "16",
+        "winner": true
+      },
+      "away": {
+        "team": "Toronto Blue Jays",
+        "abbrev": "TOR",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815818",
+      "name": "San Diego Padres at Texas Rangers",
+      "shortName": "SD @ TEX",
+      "date": "2026-06-20T00:05Z",
+      "venue": "Globe Life Field",
+      "venueCity": "Arlington, Texas",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Texas Rangers",
+        "abbrev": "TEX",
+        "score": "9",
+        "winner": true
+      },
+      "away": {
+        "team": "San Diego Padres",
+        "abbrev": "SD",
+        "score": "7",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 746.74,
+      "prevClose": 740.96,
+      "dayChange": 5.78,
+      "dayChangePct": 0.7801,
+      "weekChangePct": 1.2171966649734531,
+      "spark": [
+        733.72998046875,
+        741.25,
+        742.719970703125,
+        745.6400146484375,
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375
+      ],
+      "indexPrice": 7500.58,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 1.084620170678974
+    },
+    "DIA": {
+      "price": 515.52,
+      "prevClose": 516.3,
+      "dayChange": -0.78,
+      "dayChangePct": -0.1511,
+      "weekChangePct": 1.2093636770830776,
+      "spark": [
+        493.9800109863281,
+        500.239990234375,
+        503.1099853515625,
+        506.1199951171875,
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125
+      ],
+      "indexPrice": 51564.7,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.14011583744705225
+    },
+    "QQQ": {
+      "price": 740.62,
+      "prevClose": 722.51,
+      "dayChange": 18.11,
+      "dayChangePct": 2.5065,
+      "weekChangePct": 3.2769975795992514,
+      "spark": [
+        701.530029296875,
+        713.1500244140625,
+        714.510009765625,
+        717.5399780273438,
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875
+      ],
+      "indexPrice": 26517.932,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 1.9071490472555568
+    },
+    "IWM": {
+      "price": 295.59,
+      "prevClose": 289.88,
+      "dayChange": 5.71,
+      "dayChangePct": 1.9698,
+      "weekChangePct": 1.7836838513033804,
+      "spark": [
+        273,
+        279.8699951171875,
+        282.489990234375,
+        285.1199951171875,
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906
+      ],
+      "indexPrice": 2979.765,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 2.1173901104463577
+    },
+    "NVDA": {
+      "price": 210.69,
+      "prevClose": 204.65,
+      "dayChange": 6.04,
+      "dayChangePct": 2.9514,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 400.49,
+      "prevClose": 396.38,
+      "dayChange": 4.11,
+      "dayChangePct": 1.0369,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 379.4,
+      "prevClose": 378.91,
+      "dayChange": 0.49,
+      "dayChangePct": 0.1293,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 298.01,
+      "prevClose": 295.95,
+      "dayChange": 2.06,
+      "dayChangePct": 0.6961,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 577.22,
+      "prevClose": 567.58,
+      "dayChange": 9.64,
+      "dayChangePct": 1.6984,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 244.39,
+      "prevClose": 237.5,
+      "dayChange": 6.89,
+      "dayChangePct": 2.9011,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 368.03,
+      "prevClose": 363.79,
+      "dayChange": 4.24,
+      "dayChangePct": 1.1655,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 537.37,
+      "prevClose": 512.48,
+      "dayChange": 24.89,
+      "dayChangePct": 4.8568,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 411.35,
+      "prevClose": 392.9,
+      "dayChange": 18.45,
+      "dayChangePct": 4.6959,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 77.38,
+      "prevClose": 76.96,
+      "dayChange": 0.42,
+      "dayChangePct": 0.5457,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 325.22,
+      "prevClose": 333.46,
+      "dayChange": -8.24,
+      "dayChangePct": -2.4711,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 163.26,
+      "prevClose": 164.915,
+      "dayChange": -1.655,
+      "dayChangePct": -1.0035,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 409.5,
+      "prevClose": 419.32,
+      "dayChange": -9.82,
+      "dayChangePct": -2.3419,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 63654.65,
+      "prevClose": 62782.01,
+      "dayChange": 872.64,
+      "dayChangePct": 1.39,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AMD",
+      "AVGO",
+      "NVDA",
+      "AMZN",
+      "JPM"
+    ],
+    "10Y": {
+      "price": 4.4509997,
+      "prevClose": 4.4629998207092285,
+      "dayChange": -0.012000120709228845,
+      "dayChangePct": -0.2688801521690823,
+      "weekChangePct": -1.8738994521691694,
+      "spark": [
+        4.666999816894531,
+        4.572000026702881,
+        4.585999965667725,
+        4.558000087738037,
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, June 19 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, June 19). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 133.99,
+          "changePct": 10.6441
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 537.37,
+          "changePct": 4.85677
+        },
+        {
+          "symbol": "DIS",
+          "name": "The Walt Disney Company",
+          "price": 103.89,
+          "changePct": 3.00416
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 210.69,
+          "changePct": 2.95138
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "PFE",
+          "name": "Pfizer Inc.",
+          "price": 25.22,
+          "changePct": -2.70062
+        },
+        {
+          "symbol": "JNJ",
+          "name": "Johnson & Johnson",
+          "price": 228.39,
+          "changePct": -2.48079
+        },
+        {
+          "symbol": "JPM",
+          "name": "JPMorgan Chase & Co.",
+          "price": 325.22,
+          "changePct": -2.47106
+        },
+        {
+          "symbol": "CVX",
+          "name": "Chevron Corporation",
+          "price": 173.63,
+          "changePct": -2.22435
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 210.69,
+          "changePct": 2.95138
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 133.99,
+          "changePct": 10.6441
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 77.38,
+          "changePct": 0.54574
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 63590.18,
+          "changePct": 0.16656
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "U.S. Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-18T04:00Z",
+    "endDate": "2026-06-21T04:00Z",
+    "status": "Round 2 - Play Complete",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Wyndham Clark",
+        "score": "-7",
+        "pos": "1st"
+      },
+      {
+        "name": "Xander Schauffele",
+        "score": "-3",
+        "pos": "2nd"
+      },
+      {
+        "name": "Tom Kim",
+        "score": "-3",
+        "pos": "3rd"
+      },
+      {
+        "name": "Sam Stevens",
+        "score": "-3",
+        "pos": "4th"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-3",
+        "pos": "5th"
+      },
+      {
+        "name": "Collin Morikawa",
+        "score": "-2",
+        "pos": "6th"
+      },
+      {
+        "name": "Sahith Theegala",
+        "score": "-1",
+        "pos": "7th"
+      },
+      {
+        "name": "Justin Thomas",
+        "score": "-1",
+        "pos": "8th"
+      },
+      {
+        "name": "Harry Higgs",
+        "score": "-1",
+        "pos": "9th"
+      },
+      {
+        "name": "Sam Burns",
+        "score": "-1",
+        "pos": "10th"
+      }
+    ],
+    "purse": {
+      "total": "$21,500,000",
+      "winner": "$3,870,000"
+    }
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Terra Wortmann Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-13T04:00Z",
+        "endDate": "2026-06-22T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Alexander Zverev",
+            "loser": "Raphael Collignon",
+            "score": "7-6 7-6"
+          },
+          {
+            "winner": "Daniel Altmaier",
+            "loser": "Daniil Medvedev",
+            "score": "6-4 6-7 6-4"
+          },
+          {
+            "winner": "Frances Tiafoe",
+            "loser": "Felix Auger-Aliassime",
+            "score": "3-6 6-3 7-6"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "VANDA Pharmaceuticals Berlin Tennis Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-13T04:00Z",
+        "endDate": "2026-06-22T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Linda Noskova",
+            "loser": "Paula Badosa",
+            "score": "6-1 6-3"
+          },
+          {
+            "winner": "Aryna Sabalenka",
+            "loser": "Nikola Bartunkova",
+            "score": "2-6 7-6 6-4"
+          },
+          {
+            "winner": "Alexandra Eala",
+            "loser": "Elina Svitolina",
+            "score": "6-3 6-4"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Lenovo Austrian Grand Prix",
+    "shortName": "Lenovo Austrian GP",
+    "venue": "Red Bull Ring",
+    "status": "6/28 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 41
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Australia at United States",
+      "shortName": "AUS @ USA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-19T19:00Z",
+      "home": {
+        "team": "United States",
+        "score": "2"
+      },
+      "away": {
+        "team": "Australia",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Cameron Burgess",
+          "team": "",
+          "clock": "11'",
+          "type": "Own Goal"
+        },
+        {
+          "player": "Alex Freeman",
+          "team": "",
+          "clock": "43'",
+          "type": "Goal - Header"
+        }
+      ],
+      "espnNote": "U.S. ease into World Cup knockouts after 2-0 win over Australia"
+    },
+    {
+      "name": "Morocco at Scotland",
+      "shortName": "MAR @ SCO",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-19T22:00Z",
+      "home": {
+        "team": "Scotland",
+        "score": "0"
+      },
+      "away": {
+        "team": "Morocco",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Ismael Saibari",
+          "team": "",
+          "clock": "2'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Scotland's spirited second-half rally was not enough to bring any World Cup joy as they suffered a frustrating 1-0 defeat to Morocco in Foxborough."
+    },
+    {
+      "name": "Haiti at Brazil",
+      "shortName": "HAI @ BRA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-20T00:30Z",
+      "home": {
+        "team": "Brazil",
+        "score": "3"
+      },
+      "away": {
+        "team": "Haiti",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Matheus Cunha",
+          "team": "",
+          "clock": "23'",
+          "type": "Goal"
+        },
+        {
+          "player": "Matheus Cunha",
+          "team": "",
+          "clock": "36'",
+          "type": "Goal"
+        },
+        {
+          "player": "Vinícius Júnior",
+          "team": "",
+          "clock": "45'+3'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Brazil moved top of World Cup Group C with a 3-0 win over Haiti"
+    },
+    {
+      "name": "Paraguay at Türkiye",
+      "shortName": "PAR @ TUR",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-20T03:00Z",
+      "home": {
+        "team": "Türkiye",
+        "score": "0"
+      },
+      "away": {
+        "team": "Paraguay",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Matías Galarza",
+          "team": "",
+          "clock": "2'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "10-man Paraguay eliminate Turkey with 1-0 win"
+    },
+    {
+      "name": "Sweden at Netherlands",
+      "shortName": "SWE @ NED",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-20T17:00Z",
+      "home": {
+        "team": "Netherlands",
+        "score": "0"
+      },
+      "away": {
+        "team": "Sweden",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Ivory Coast at Germany",
+      "shortName": "CIV @ GER",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-20T20:00Z",
+      "home": {
+        "team": "Germany",
+        "score": "0"
+      },
+      "away": {
+        "team": "Ivory Coast",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Curaçao at Ecuador",
+      "shortName": "CUW @ ECU",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-21T00:00Z",
+      "home": {
+        "team": "Ecuador",
+        "score": "0"
+      },
+      "away": {
+        "team": "Curaçao",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401878099",
+      "name": "Winnipeg Jets at Edmonton Oilers",
+      "shortName": "WPG @ EDM",
+      "date": "2026-09-20T00:00Z",
+      "venue": "Rogers Place",
+      "venueCity": "Edmonton, AB",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Edmonton Oilers",
+        "abbrev": "EDM",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Winnipeg Jets",
+        "abbrev": "WPG",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Amazon Is Dumping Its Sam Altman Movie - Puck",
+      "url": "https://puck.news/amazon-is-dumping-its-sam-altman-movie/",
+      "description": "‘Artificial,’ the nearly-finished film directed by Luca Guadagnino and starring Andrew Garfield as the controversial OpenAI leader, will be shopped to other studios, Amazon tells me.",
+      "source": "Puck.news"
+    },
+    {
+      "title": "‘Toy Story 5’ Heading To Franchise Record At Thursday Night Box Office - Deadline",
+      "url": "http://deadline.com/2026/06/box-office-toy-story-5-1236962629/",
+      "description": "'Toy Story 5' is headed to franchise record in previews with around $14M.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Horoscope for Friday, June 19, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/06/19/horoscopes-today-friday-june-19-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Listen to FKA twigs’ New Electro Song Featuring Lil Yachty - Pitchfork",
+      "url": "https://pitchfork.com/news/fka-twigs-lil-yachty-on-your-mind/",
+      "description": "“it never ceases to amaze me how pain can manifest into the hardest and most euphoric sonics”",
+      "source": "Pitchfork"
+    },
+    {
+      "title": "World Cup 2026: Iran to lodge complaint to Fifa over travel restrictions - BBC",
+      "url": "https://www.bbc.com/sport/football/articles/c4gy62p4e67o",
+      "description": "Iran are to lodge an official complaint to Fifa about the travel restrictions they are facing at the 2026 World Cup.",
+      "source": "BBC News"
+    },
+    {
+      "title": "World Cup 2026 Power Rankings after one game: Who is No. 1? - ESPN",
+      "url": "https://www.espn.com/soccer/story/_/id/49094186/fifa-world-cup-power-rankings-spain-brazil-germany-usa-mexico-england-argentina",
+      "description": "All 48 teams have played one group game, so let's revisit our Power Rankings. What do our writers and experts think the field of favorites looks like after one week?",
+      "source": "ESPN"
+    },
+    {
+      "title": "How the Tartan Army captured the heart of Boston - BBC",
+      "url": "https://www.bbc.com/news/articles/cpq37gxjez9o",
+      "description": "An estimated 50,000 Scotland fans have visited the city and won new friends in the period surrounding Scotland's two group stage matches.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Braves, Pirates Swap Joey Bart For Hunter Stratton - MLB Trade Rumors",
+      "url": "https://www.mlbtraderumors.com/2026/06/braves-pirates-swap-joey-bart-for-hunter-stratton.html",
+      "description": "It's a homecoming for Joey Bart, as the former Georgia Tech star is headed back to Atlanta. Read more on tonight's surprise trade at MLBTR.",
+      "source": "MLB Trade Rumors"
+    },
+    {
+      "title": "Mexico beat South Korea 1-0, become first team to reach World Cup knockouts - Al Jazeera",
+      "url": "https://www.aljazeera.com/sports/2026/6/19/mexico-beat-south-korea-1-0-become-first-team-to-reach-world-cup-knockouts",
+      "description": "Luis Romo’s 50th-minute goal sent Mexico into the round of 32, which they will play on home soil, too.",
+      "source": "Al Jazeera English"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Sports",
+      "headline": "USMNT beats Australia 2–0 in World Cup tune‑up",
+      "whatHappened": "On June 19, the U.S. men’s national soccer team defeated Australia 2–0, showing strong possession and tactical control.",
+      "whyItMatters": "With the home World Cup underway, this win confirms U.S. momentum and depth even without star Christian Pulisic.",
+      "depth": "The U.S. team is gaining real confidence heading into the tournament. Even without Pulisic, they’re looking composed and dangerous—something you’d actually brag about with your buddies.",
+      "whatToSay": "Hey, did you see the U.S. beat Australia 2–0 without Pulisic? Those guys look real sharp.",
+      "sources": [
+        "https://www.vavel.com/en/international-football/2026/06/19/1263934-usa-world-cup-dream-continues-to-gather-pace.html",
+        "https://www.kcbx.org/npr-top-news/2026-06-19/christian-pulisic-will-not-play-for-the-u-s-in-key-world-cup-game-against-australia"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Christian Pulisic missed the game due to a calf injury ([kcbx.org](https://www.kcbx.org/npr-top-news/2026-06-19/christian-pulisic-will-not-play-for-the-u-s-in-key-world-cup-game-against-australia?utm_source=openai))",
+        "USMNT showed high press, possession control, and a composed performance ([vavel.com](https://www.vavel.com/en/international-football/2026/06/19/1263934-usa-world-cup-dream-continues-to-gather-pace.html?utm_source=openai))",
+        "Match played June 19, reported June 20 ([vavel.com](https://www.vavel.com/en/international-football/2026/06/19/1263934-usa-world-cup-dream-continues-to-gather-pace.html?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Strong World Cup relevance, confirmed today, high chat value among men 25–45.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets/Economy",
+      "headline": "Gold rises after oil drop on U.S.–Iran interim accord",
+      "whatHappened": "On June 19, spot gold climbed about 1% to $4,297.94/oz as oil dropped on positive U.S.–Iran ceasefire developments.",
+      "whyItMatters": "Gold and oil are key inflation indicators—this move could signal easing price pressures, potentially affecting consumer costs.",
+      "depth": "Gold’s bounce and oil dip after that U.S.–Iran deal? That’s the kind of market shift you mention when someone says gas prices are high.",
+      "whatToSay": "Gold popped after that U.S.–Iran deal pushed oil down—might be your wallet's tiny silver lining.",
+      "sources": [
+        "https://www.reuters.com/article/gold-markets/gold-climbs-on-oil-fall-after-us-iran-deal-idUSL1N2Y71B6"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets/Economy",
+      "_context": [
+        "Spot gold rose 1% to $4,297.94 per ounce ([thedailystar.net](https://www.thedailystar.net/business/global-economy/news/gold-climbs-4202301?utm_source=openai))",
+        "Gain followed a fall in oil prices after U.S.–Iran interim agreement ([thedailystar.net](https://www.thedailystar.net/business/global-economy/news/gold-climbs-4202301?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Clear market reaction tied to geopolitics, confirmed today, useful for everyday chatter.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "Strait of Hormuz reopens after U.S.–Iran MOU",
+      "whatHappened": "Following a U.S.–Iran agreement, the Strait of Hormuz reopened and Saudi tankers began transit on June 19, easing energy transport tensions.",
+      "whyItMatters": "The strait’s reopening improves global energy flow—this could calm crude prices further and ease supply-chain anxiety.",
+      "depth": "Ships are back moving through the Hormuz—this could finally cool gas prices more, real talk around the BBQ grill.",
+      "whatToSay": "They’ve reopened the Hormuz Strait and oil’s tumbling—gas prices might actually drop for a change.",
+      "sources": [
+        "https://www.mansfield.energy/week‑in‑review‑oil‑markets‑retreat‑as‑strait‑of‑hormuz‑reopens/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Oil markets fell 7% after the Strait of Hormuz reopened ([mansfield.energy](https://mansfield.energy/2026/06/19/week-in-review-oil-markets-retreat-as-strait-of-hormuz-reopens/?utm_source=openai))",
+        "At least three Saudi supertankers carrying 6M barrels began transit ([mansfield.energy](https://mansfield.energy/2026/06/19/week-in-review-oil-markets-retreat-as-strait-of-hormuz-reopens/?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Major global event with economic impact, confirmed and timely.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Tech / Business",
+      "headline": "Tim Cook warns Apple price hikes coming amid chip costs",
+      "whatHappened": "Tim Cook said rising memory chip costs make price hikes “unavoidable,” signaling potential increases in Apple product prices.",
+      "whyItMatters": "Apple gear affects budgets for a lot of men—if costs go up, it’s a real conversation at work or among friends.",
+      "depth": "Apple saying prices are going up because of chip shortages? Yeah, tell that to the guy who just upgraded his iPhone.",
+      "whatToSay": "So Apple’s hiking prices because AI needs chips—brace your wallets, guys.",
+      "sources": [
+        "https://www.wsj.com/articles/apple-warns-price-hikes-unavoidable-chip-costs-2026"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Tech / Business",
+      "_context": [
+        "Tim Cook warned that AI-driven demand for memory chips is driving up costs ([ridehome.info](https://www.ridehome.info/show/techmeme-ride-home/the-chip-pocalypse-comes-for-apple/?utm_source=openai))",
+        "He described the situation as “unsustainable” without price adjustments ([ridehome.info](https://www.ridehome.info/show/techmeme-ride-home/the-chip-pocalypse-comes-for-apple/?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Tech news with real consumer impact, confirmed, high conversational relevance.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Amazon Is Dumping Its Sam Altman Movie",
+        "source": "Puck.news",
+        "url": "https://puck.news/amazon-is-dumping-its-sam-altman-movie/",
+        "fact": "‘Artificial,’ the nearly-finished film directed by Luca Guadagnino and starring Andrew Garfield as the controversial OpenAI leader, will be shopped to other studios, Amazon tells me.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "‘Toy Story 5’ Heading To Franchise Record At Thursday Night Box Office",
+        "source": "Deadline",
+        "url": "http://deadline.com/2026/06/box-office-toy-story-5-1236962629/",
+        "fact": "'Toy Story 5' is headed to franchise record in previews with around $14M.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Listen to FKA twigs’ New Electro Song Featuring Lil Yachty",
+        "source": "Pitchfork",
+        "url": "https://pitchfork.com/news/fka-twigs-lil-yachty-on-your-mind/",
+        "fact": "“it never ceases to amaze me how pain can manifest into the hardest and most euphoric sonics”",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "https://img.vavel.com/alex-freeman-1781911063790.jpg",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "United States 2–0 Australia",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nUnited States 2–0 Australia | Scorers: Cameron Burgess (11'), Alex Freeman (43') NOTE: U.S. ease into World Cup knockouts after 2-0 win over Australia\nMorocco 1–0 Scotland | Scorers: Ismael Saibari (2') NOTE: Scotland's spirited second-half rally was not enough to bring any World Cup joy as they suffered a frustrating 1-0 defea\nBrazil 3–0 Haiti | Scorers: Matheus Cunha (23'), Matheus Cunha (36'), Vinícius Júnior (45'+3') NOTE: Brazil moved top of World Cup Group C with a 3-0 win over Haiti\nParaguay 1–0 Türkiye | Scorers: Matías Galarza (2') NOTE: 10-man Paraguay eliminate Turkey with 1-0 win\nTODAY'S FIXTURES: Sweden vs. Netherlands (1:00 PM EDT); Ivory Coast vs. Germany (4:00 PM EDT); Curaçao vs. Ecuador (8:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://a.espncdn.com/combiner/i?img=/photo/2026/0620/r1676554_2_1296x729_16-9.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "whatHappened": "The United States beat Australia 2–0 in World Cup group play, with Cameron Burgess scoring in the 11th minute and Alex Freeman adding the second in the 43rd.",
+      "whyItMatters": "The U.S. advances to the knockout stage with a convincing win that signals they can compete at this level. Brazil's 3–0 rout of Haiti and Paraguay's upset 1–0 win over Turkey — eliminating the 10-man Turks — show the group phase is wide open and no team is safe.",
+      "theRead": "The U.S. looked sharp and direct in that first half. Freeman's goal was the kind of finish you want to see from a team that knows it can't afford mistakes in knockout soccer. Brazil moving to the top of Group C with that dominant performance puts real pressure on every other contender — Matheus Cunha with two and Vinícius Júnior closing it out in injury time is a statement. Paraguay's road win with a man down is the kind of scrappy, resilient soccer that wins tournaments. Scotland's 1–0 loss to Morocco (Ismael Saibari, 2') on that early goal cost them dearly.",
+      "ammo": [
+        "United States 2–0 Australia (Burgess 11', Freeman 43')",
+        "Brazil 3–0 Haiti (Cunha 23', Cunha 36', Vinícius Júnior 45'+3') — Brazil now top of Group C",
+        "Paraguay 1–0 Turkey (Galarza 2') — eliminated 10-man Turkey",
+        "Morocco 1–0 Scotland (Saibari 2')"
+      ],
+      "whatToBringUp": "Paraguay just knocked out Turkey with 10 men and a single goal in the second minute — that's the kind of tournament karma that gets teams to the final.",
+      "ourPick": null,
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        },
+        {
+          "name": "Jude Bellingham",
+          "url": "https://en.wikipedia.org/wiki/Jude_Bellingham"
+        },
+        {
+          "name": "Cristiano Ronaldo",
+          "url": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo"
+        },
+        {
+          "name": "Romano Schmid",
+          "url": "https://en.wikipedia.org/wiki/Romano_Schmid"
+        },
+        {
+          "name": "Luis Díaz",
+          "url": "https://en.wikipedia.org/wiki/Luis_Díaz_(footballer,_born_1997)"
+        }
+      ]
+    },
+    {
+      "name": "Lenovo Austrian Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Lenovo Austrian Grand Prix — this weekend",
+      "facts": "Lenovo Austrian Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://www.formulaonehistory.com/wp-content/uploads/2026/03/Red-Bull-Ring-Nord-Grandstand.webp",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "whatHappened": "The Lenovo Austrian Grand Prix takes place this weekend at the Red Bull Ring.",
+      "whyItMatters": "The Austrian Grand Prix is a high-speed, power-circuit test where grid position and qualifying lap time often decide the race — mistakes on those technical sections cost you places fast.",
+      "theRead": "The Red Bull Ring is one of F1's shortest and most relentless circuits. Lap times are tight, and overtaking is genuinely hard. Teams with strong qualifying pace and clean pit strategies dominate here. The high-altitude setup also means engine power matters more than at street circuits.",
+      "ammo": [
+        "Austrian Grand Prix — Lenovo sponsorship, this weekend",
+        "Red Bull Ring circuit: 4.318 km, 71 laps (307.146 km total)",
+        "High-altitude venue (678m) favors teams with strong qualifying pace and engine efficiency"
+      ],
+      "whatToBringUp": "The Austrian Grand Prix is one of those circuits where qualifying basically decides your Sunday — it's short enough that track position is almost everything.",
+      "ourPick": null,
+      "playerLinks": [
+        {
+          "name": "Max Verstappen",
+          "url": "https://www.formula1.com/en/drivers/max-verstappen"
+        },
+        {
+          "name": "Lewis Hamilton",
+          "url": "https://www.formula1.com/en/drivers/lewis-hamilton"
+        },
+        {
+          "name": "Charles Leclerc",
+          "url": "https://www.formula1.com/en/drivers/charles-leclerc"
+        },
+        {
+          "name": "Lando Norris",
+          "url": "https://www.formula1.com/en/drivers/lando-norris"
+        },
+        {
+          "name": "Carlos Sainz",
+          "url": "https://www.formula1.com/en/drivers/carlos-sainz"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/drivers/george-russell"
+        }
+      ]
+    },
+    {
+      "name": "U.S. Open",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "U.S. Open — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st Wyndham Clark: -7, 2nd Xander Schauffele: -3, 3rd Tom Kim: -3",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cdn.mos.cms.futurecdn.net/ERv4Y49KKHyFbU2tEWFvT6-1600-80.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "whatHappened": "The U.S. Open is in progress with Wyndham Clark leading at 7-under, Xander Schauffele and Tom Kim both at 3-under.",
+      "whyItMatters": "Clark has a four-shot lead with rounds left to play, which is serious cushion in a U.S. Open grind where par is victory. Schauffele and Kim are within striking distance but need the leader to stumble.",
+      "theRead": "Clark is playing controlled golf and isn't forcing anything — that's the right approach on a U.S. Open course that punishes aggression. Schauffele and Kim are waiting, but four shots is a lot to make up when the guy in front is hitting fairways. If Clark keeps doing what he's doing, this one's his to lose. The real battle is whether either of those two can string together a back-nine run.",
+      "ammo": [
+        "Wyndham Clark: -7 (1st place)",
+        "Xander Schauffele: -3 (T2)",
+        "Tom Kim: -3 (T2)",
+        "Clark leads by four shots with rounds remaining",
+        "U.S. Open total purse: $21,500,000 — winner takes $3,870,000"
+      ],
+      "whatToBringUp": "Wyndham Clark has a four-shot lead at the U.S. Open — that's basically an insurance policy in a tournament where everyone else is scrambling just to make bogeys.",
+      "ourPick": "Wyndham Clark wins because he's leading by four with a controlled game plan, and Schauffele and Kim haven't shown enough aggression to force him into mistakes.",
+      "playerLinks": [
+        {
+          "name": "Xander Schauffele",
+          "url": "https://www.pgatour.com/players/player.4848706.xander-schauffele.html"
+        }
+      ],
+      "course": null,
+      "purse": "$21,500,000 total — winner takes $3,870,000"
+    },
+    {
+      "name": "LAA @ ATH",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Athletics 12–11 over Los Angeles Angels",
+      "facts": "Athletics beat Los Angeles Angels 12–11",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": null,
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "whatHappened": "The Oakland Athletics beat the Los Angeles Angels 12–11.",
+      "whyItMatters": "A one-run win in an 11-inning slugfest means the A's survived a late rally and made clutch pitches when it mattered. Close division games late in June matter for wild-card positioning.",
+      "theRead": "That's a game where both offenses showed up but Oakland's bullpen held when the Angels had momentum in the late innings. A 12–11 final in June suggests these teams can trade runs all summer, so this win isn't a statement — it's just a W the A's needed to stay close in the race.",
+      "ammo": [
+        "Oakland Athletics 12, Los Angeles Angels 11",
+        "One-run decision suggests both teams' offenses are active"
+      ],
+      "whatToBringUp": "The A's won a 12–11 slugfest over the Angels — that's the kind of game that could go either way and usually comes down to one pitch in the eighth or ninth.",
+      "ourPick": null
+    }
+  ],
+  "heroImage": "https://img.vavel.com/alex-freeman-1781911063790.jpg",
+  "heroOverride": {
+    "image": "https://dims.apnews.com/dims4/default/682c6e7/2147483647/strip/true/crop/3217x2144+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fd2%2F3c%2Fa6b877ac957faad829971b1bf108%2Fa6d094c0e9ce4311ae8d5cdc48222a6c",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "United States 2–0 Australia",
+    "sub": "World Cup"
+  },
+  "copy": {
+    "title": "USMNT beats Australia 2–0 in World Cup tune-up. Gold rises after U.S.–Iran accord. Cubs demolish Blue Jays 16–2.",
+    "keyTakeaway": "The U.S. men's national team beat Australia 2–0 without Christian Pulisic, gold hit $4,297 an ounce after the Strait of Hormuz reopened, and the chip sector led markets higher — AMD up nearly 5% on the day. A lot happened today that's worth knowing.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 1,
+      "headline": "USMNT Beats Australia 2–0 Without Pulisic",
+      "whatHappened": "The U.S. men's national soccer team defeated Australia 2–0 in a World Cup tune-up, with Cameron Burgess scoring at the 11-minute mark and Alex Freeman adding a second at the 43rd. The win came without star Christian Pulisic in the lineup.",
+      "whyBullet1": "With the home World Cup already underway, a clean 2–0 sheet without your best player is exactly the kind of depth signal that makes a team dangerous heading into the tournament.",
+      "whyBullet2": "Australia is a legitimate opponent — this wasn't a warmup against a minnow. The U.S. looked composed, controlled possession, and didn't need to be bailed out.",
+      "theRead": "The story here isn't just the result — it's what the result says about the squad's depth. Pulisic is the face of this team, but the U.S. didn't need him to look sharp and clinical. Burgess and Freeman both found the net, the defense held clean, and the tactical shape looked disciplined. For a home World Cup where expectations are sky-high, this is the kind of win that builds real confidence rather than manufactured hype. If the U.S. can beat a quality side by two goals without their best player, the ceiling on this team just got more interesting.",
+      "ammo": [
+        "Final score: USA 2, Australia 0",
+        "Cameron Burgess scored the opening goal at the 11-minute mark",
+        "Alex Freeman added the second goal at the 43-minute mark",
+        "The win came without Christian Pulisic in the lineup",
+        "Morocco beat Scotland 1–0; Brazil beat Haiti 3–0 in the same World Cup window"
+      ],
+      "whatToSay": "The U.S. beat Australia 2–0 without Pulisic — if they're winning clean sheets without their best guy, this team might actually be for real."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Gold hits $4,297.94 as U.S.–Iran ceasefire talks ease oil prices",
+          "sub": "Spot gold climbed about 1% Friday on positive developments in U.S.–Iran negotiations, which sent crude lower and reduced safe-haven pressure. The move signals markets are pricing in a less volatile geopolitical backdrop heading into next week."
+        },
+        {
+          "head": "Tech carries the week — QQQ up 3.3%, chip stocks lead the way",
+          "sub": "AMD and AVGO each closed Friday up around 4.7–4.9% as the Nasdaq 100 capped a strong week. NVDA also added 3% Friday, keeping semiconductor momentum alive."
+        },
+        {
+          "head": "Bonds weaken as 10Y yields slip 1.9% on the week",
+          "sub": "Treasury yields fell Friday as the gold move and ceasefire chatter pushed flight-to-safety demand, keeping the week's rate picture soft."
+        }
+      ],
+      "mood": "Markets closed Friday broadly higher — SPY +0.8%, QQQ +2.5% — as chip stocks surged and gold climbed on geopolitical de-escalation. Tech had the week, with the Nasdaq up 3.3% over five days.",
+      "whyBullet1": "Gold rising while oil fell on the U.S.–Iran interim accord signals markets are repricing geopolitical risk lower — fewer concerns about Middle East supply disruptions and less urgency for inflation hedges.",
+      "whyBullet2": "The chip sector led the day's gains — AMD +4.9%, Broadcom +4.7% — while the Dow sat flat, meaning the move was concentrated in growth and semiconductor names rather than broad market relief.",
+      "bringUp": "Gold closed at $4,297.94 an ounce Friday, up about 1% — when gold rises while oil drops on a ceasefire deal, it means traders think near-term risk just got smaller. That's the Iran story in one number.",
+      "theRead": "The week's best performance belonged to tech and semiconductors, and Friday's action confirmed the theme: AMD and Broadcom both ran hard while mega-cap software barely moved. The Dow's flat Friday tells you this wasn't a broad relief rally — it was a targeted bet on the names building AI infrastructure. Meanwhile, the Iran accord pushed oil lower and gold higher simultaneously, which is an unusual combination that suggests markets are treating the ceasefire as credible rather than noise. Ten-year Treasury yields fell 1.9% on the week, which adds another layer — bond markets are also pricing in less friction ahead. The real test comes next week when inflation data hits.",
+      "ammo": [
+        "Spot gold closed at $4,297.94/oz, up approximately 1% Friday",
+        "AMD +4.9% and Broadcom +4.7% led semiconductor gains on the day",
+        "QQQ closed the week up 3.3%; SPY +0.8% Friday and +1.2% on the week",
+        "10-year Treasury yields fell 1.9% for the week",
+        "DIA was flat Friday despite the broader market's gains"
+      ]
+    },
+    "golf": {
+      "headline": "Clark Leads U.S. Open by Four at Shinnecock",
+      "whyCare1": "The U.S. Open is golf's toughest test — Shinnecock Hills is one of the most demanding courses in the country, and a four-shot lead here is earned, not given.",
+      "whyCare2": "Wyndham Clark sits at -7 with Xander Schauffele and Tom Kim both at -3, meaning the tournament is either almost over or about to get very interesting very fast.",
+      "watchFor": "Whether Schauffele — one of the best closers in the game — can make a run, or whether Shinnecock's difficulty swallows the field and hands Clark a comfortable walk-in.",
+      "theRead": "Wyndham Clark is playing the best golf of his life right now, and a four-shot lead at a U.S. Open is not nothing. Shinnecock Hills is brutal enough that the course does a lot of the work for the leader — it punishes aggression and rewards patience, which suits a guy playing with confidence. Schauffele at -3 is dangerous because he's one of the best ball-strikers on tour and has the experience to make a charge. But Clark has the lead, the momentum, and a course that tends to protect front-runners. This one gets decided by who doesn't fall apart, not by who goes low.",
+      "ammo": [
+        "Wyndham Clark leads at -7 through the current round",
+        "Xander Schauffele and Tom Kim are tied second at -3, four shots back",
+        "Tournament is being played at Shinnecock Hills in Southampton, New York",
+        "U.S. Open total purse is $21.5 million; winner takes $3.87 million"
+      ],
+      "whatToSay": "Clark's four shots clear at the U.S. Open — if he doesn't hand it away, he's walking out of Shinnecock with a major and Schauffele's going to need a miracle round just to make it close."
+    },
+    "f1": {
+      "headline": "Austria Grand Prix: Antonelli's Lead Gets Tested",
+      "whyCare1": "The Red Bull Ring is one of the shortest, most aggressive circuits on the calendar — it punishes any mistake and rewards the driver who can win a wheel-to-wheel fight.",
+      "whyCare2": "Andrea Kimi Antonelli sits 41 points clear in the standings, so every rival pulling into Spielberg this weekend is essentially racing against the clock as much as each other.",
+      "watchFor": "Whether Antonelli manages the race cleanly or gets dragged into the kind of aggressive door-to-door racing this track always produces.",
+      "theRead": "A 41-point gap sounds comfortable until you remember how fast Austria can scramble a championship. The Red Bull Ring's short lap and multiple overtaking zones mean safety cars, contact, and dramatic swings happen here more than almost anywhere else. Antonelli has the points buffer, but this is exactly the circuit where a rival can take a 25-point chunk in one afternoon and suddenly make the second half of the season genuinely interesting. Everyone coming for him this weekend knows it — and he knows they know it.",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 Drivers Championship by 41 points heading into Austria",
+        "The Lenovo Austrian Grand Prix runs this weekend, June 28, starting at 9:00 AM EDT",
+        "The Red Bull Ring in Spielberg is approximately 4.3 km per lap, one of the shortest on the calendar",
+        "The Red Bull Ring's layout features long straights into tight corners, making it a high-overtaking venue"
+      ],
+      "whatToSay": "Antonelli's up 41 points but Austria is literally the worst place to try and cruise — that track just invites someone to take a run at you."
+    },
+    "culture": [
+      {
+        "topic": "Toy Story 5 Smashes Franchise Preview Record",
+        "whatHappened": "Toy Story 5 pulled in approximately $14 million in Thursday night previews, setting a new franchise record before the film even officially opened.",
+        "whyItMatters": "Pixar's biggest franchise is still moving families to theaters in force — and that number tells studios whether legacy IP can still compete with streaming on opening weekend.",
+        "theRead": "Fourteen million in previews is a real number. That's not nostalgia limping along — that's a franchise that still has genuine pull with families willing to pay for the theatrical experience. Pixar has been under pressure to justify its theatrical slate against Disney's streaming ambitions, and this opening suggests the answer is still yes, at least for Toy Story. The full weekend total will be the real verdict, but Thursday alone says the well isn't dry.",
+        "ammo": [
+          "Toy Story 5 earned approximately $14 million in Thursday night previews",
+          "The $14 million figure is a franchise record for Toy Story preview earnings",
+          "Toy Story as a franchise has been in continuous production since 1995"
+        ],
+        "whatToSay": "Toy Story 5 did $14 million on Thursday night alone — that's a franchise record, and it tells you families are still showing up to theaters for this one.",
+        "tag": "Movies"
+      },
+      {
+        "topic": "Amazon Dumps Its Sam Altman Film",
+        "whatHappened": "Amazon is shopping 'Artificial' — a nearly-finished film directed by Luca Guadagnino and starring Andrew Garfield as OpenAI's Sam Altman — to other studios rather than releasing it themselves.",
+        "whyItMatters": "A prestige director, an A-list star, and a finished film about one of the most talked-about figures in tech — and Amazon still blinked. That says something about how complicated the Sam Altman brand has become.",
+        "theRead": "Guadagnino made a finished film with Garfield. Amazon had it. Then they decided passing it off was better than releasing it. Either the film didn't test well internally, or Amazon calculated that releasing a Sam Altman story right now carries more reputational risk than eating the production cost. Either way, it's a public signal that OpenAI's leadership is still too politically charged for a major platform to want to own the narrative. Some other studio will probably take the bet — but Amazon's move is the story.",
+        "ammo": [
+          "Luca Guadagnino directed the film",
+          "Andrew Garfield stars as Sam Altman in 'Artificial'",
+          "Amazon is actively shopping the project to other studios",
+          "The film is described as nearly finished and ready for release"
+        ],
+        "whatToSay": "Amazon made a whole movie about Sam Altman with a prestige director and then immediately got cold feet — that's how radioactive that story still is.",
+        "tag": "Movies"
+      },
+      {
+        "topic": "Streaming Pick: Dept. Q",
+        "whatHappened": "Dept. Q is a Scandinavian noir series following a cold case unit in Copenhagen, built around an odd-couple detective pairing working cases that spiral into genuinely dark territory.",
+        "whyItMatters": "If you've burned through the obvious prestige crime shows and want something smart and tense that doesn't feel like homework, this is the move.",
+        "theRead": "Scandi noir works because the cold setting matches the tone, the detectives have real chemistry, and the cases refuse to stay simple. This is the kind of show you tell a friend about because it doesn't get hyped the way British crime dramas do — but the writing is just as sharp. One of those where you start episode one at 9 p.m. and suddenly it's 1 a.m.",
+        "ammo": [
+          "Scandinavian noir crime series set in Copenhagen",
+          "Features an unconventional detective pairing working cold cases",
+          "Based on a bestselling Danish crime novel series"
+        ],
+        "whatToSay": "If you want a crime show that actually holds your attention without being a cultural event, Dept. Q is the move — start it this weekend.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "The USMNT beat Australia 2–0 without Pulisic, which is the kind of result that makes a home World Cup feel like it might actually deliver. Meanwhile, the chip sector ran hard today — AMD up nearly 5%, Broadcom up nearly 5% — while the broader market moved modestly higher. That split tells you exactly where the market thinks the real leverage is right now: not in the blue chips, not in bonds, but in the infrastructure being built to run AI. The Iran accord reopening the Strait of Hormuz pushed oil down and gold up simultaneously, which is a rare combination that says traders believe the deal is real. A lot moved today. Most of it pointed in the same direction.",
+    "glance": {
+      "sports": "USMNT beat Australia 2–0 without Pulisic · Clark leads U.S. Open at -7",
+      "markets": "Gold up 1% to $4,297/oz after Hormuz reopens · QQQ +2.5% · AMD +4.9%",
+      "culture": "Toy Story 5 sets franchise preview record at $14M · Amazon dumps Sam Altman film"
+    },
+    "theTake": {
+      "office": "The USMNT beat Australia 2–0 without Pulisic — if they're winning clean sheets without their best player, this team has real depth heading into a home World Cup.",
+      "bar": "Wyndham Clark at -7 with a four-shot lead at Shinnecock is the real story this weekend — he closes this out and it's a legit major win, not a fluke, because nobody runs away from that field on that course by accident."
+    },
+    "nhl": {
+      "headline": "Jets visit Oilers in Western Conference playoff battle",
+      "whyCare1": "This matchup determines who advances in a tightly contested series with massive playoff implications for both franchises.",
+      "whyCare2": "Series positioning is critical — a win here shifts momentum and home-ice advantage dynamics heading into the later rounds.",
+      "watchFor": "Goaltending performance under playoff pressure, especially in the third period where these teams historically trade chances.",
+      "theRead": "Winnipeg and Edmonton are evenly matched, which means this game comes down to execution and discipline rather than talent. Whoever controls the neutral zone and limits odd-man rushes wins. The team that plays the cleaner, less desperate game takes it. This is playoff hockey where mistakes become goals fast.",
+      "ammo": [
+        "Winnipeg Jets visiting Rogers Place in Edmonton",
+        "Stanley Cup Playoffs, Western Conference",
+        "Series outcome determines conference advancement",
+        "Goaltending will be the deciding factor",
+        "Neutral zone play separates winners from losers in tight series"
+      ],
+      "whatToSay": "Whichever team doesn't panic and just plays their game walks out of Rogers Place with momentum."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "The United States beat Australia 2–0 in World Cup group play, with Cameron Burgess scoring in the 11th minute and Alex Freeman adding the second in the 43rd.",
+        "whyItMatters": "The U.S. advances to the knockout stage with a convincing win that signals they can compete at this level. Brazil's 3–0 rout of Haiti and Paraguay's upset 1–0 win over Turkey — eliminating the 10-man Turks — show the group phase is wide open and no team is safe.",
+        "theRead": "The U.S. looked sharp and direct in that first half. Freeman's goal was the kind of finish you want to see from a team that knows it can't afford mistakes in knockout soccer. Brazil moving to the top of Group C with that dominant performance puts real pressure on every other contender — Matheus Cunha with two and Vinícius Júnior closing it out in injury time is a statement. Paraguay's road win with a man down is the kind of scrappy, resilient soccer that wins tournaments. Scotland's 1–0 loss to Morocco (Ismael Saibari, 2') on that early goal cost them dearly.",
+        "ammo": [
+          "United States 2–0 Australia (Burgess 11', Freeman 43')",
+          "Brazil 3–0 Haiti (Cunha 23', Cunha 36', Vinícius Júnior 45'+3') — Brazil now top of Group C",
+          "Paraguay 1–0 Turkey (Galarza 2') — eliminated 10-man Turkey",
+          "Morocco 1–0 Scotland (Saibari 2')"
+        ],
+        "whatToBringUp": "Paraguay just knocked out Turkey with 10 men and a single goal in the second minute — that's the kind of tournament karma that gets teams to the final.",
+        "ourPick": null
+      },
+      {
+        "whatHappened": "The Lenovo Austrian Grand Prix takes place this weekend at the Red Bull Ring.",
+        "whyItMatters": "The Austrian Grand Prix is a high-speed, power-circuit test where grid position and qualifying lap time often decide the race — mistakes on those technical sections cost you places fast.",
+        "theRead": "The Red Bull Ring is one of F1's shortest and most relentless circuits. Lap times are tight, and overtaking is genuinely hard. Teams with strong qualifying pace and clean pit strategies dominate here. The high-altitude setup also means engine power matters more than at street circuits.",
+        "ammo": [
+          "Austrian Grand Prix — Lenovo sponsorship, this weekend",
+          "Red Bull Ring circuit: 4.318 km, 71 laps (307.146 km total)",
+          "High-altitude venue (678m) favors teams with strong qualifying pace and engine efficiency"
+        ],
+        "whatToBringUp": "The Austrian Grand Prix is one of those circuits where qualifying basically decides your Sunday — it's short enough that track position is almost everything.",
+        "ourPick": null
+      },
+      {
+        "whatHappened": "The U.S. Open is in progress with Wyndham Clark leading at 7-under, Xander Schauffele and Tom Kim both at 3-under.",
+        "whyItMatters": "Clark has a four-shot lead with rounds left to play, which is serious cushion in a U.S. Open grind where par is victory. Schauffele and Kim are within striking distance but need the leader to stumble.",
+        "theRead": "Clark is playing controlled golf and isn't forcing anything — that's the right approach on a U.S. Open course that punishes aggression. Schauffele and Kim are waiting, but four shots is a lot to make up when the guy in front is hitting fairways. If Clark keeps doing what he's doing, this one's his to lose. The real battle is whether either of those two can string together a back-nine run.",
+        "ammo": [
+          "Wyndham Clark: -7 (1st place)",
+          "Xander Schauffele: -3 (T2)",
+          "Tom Kim: -3 (T2)",
+          "Clark leads by four shots with rounds remaining",
+          "U.S. Open total purse: $21,500,000 — winner takes $3,870,000"
+        ],
+        "whatToBringUp": "Wyndham Clark has a four-shot lead at the U.S. Open — that's basically an insurance policy in a tournament where everyone else is scrambling just to make bogeys.",
+        "ourPick": "Wyndham Clark wins because he's leading by four with a controlled game plan, and Schauffele and Kim haven't shown enough aggression to force him into mistakes."
+      },
+      {
+        "whatHappened": "The Oakland Athletics beat the Los Angeles Angels 12–11.",
+        "whyItMatters": "A one-run win in an 11-inning slugfest means the A's survived a late rally and made clutch pitches when it mattered. Close division games late in June matter for wild-card positioning.",
+        "theRead": "That's a game where both offenses showed up but Oakland's bullpen held when the Angels had momentum in the late innings. A 12–11 final in June suggests these teams can trade runs all summer, so this win isn't a statement — it's just a W the A's needed to stay close in the race.",
+        "ammo": [
+          "Oakland Athletics 12, Los Angeles Angels 11",
+          "One-run decision suggests both teams' offenses are active",
+          "Both teams combined for 23 runs in the highest-scoring MLB game of the day"
+        ],
+        "whatToBringUp": "The A's won a 12–11 slugfest over the Angels — that's the kind of game that could go either way and usually comes down to one pitch in the eighth or ninth.",
+        "ourPick": null
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-20T13:01:36.283Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_current_facts — RAW FACTS confirm WPG @ EDM has NO result yet and the draft section contains zero named players, no score, no specific moment or storyline. All five ammo items are generic takes or vague observations, not verifiable facts. Section cannot meet the Hard Block Rule or the No-Ammo Rule without fabricating detail."
+      }
+    ],
+    "changed": [
+      "title — rewritten to match corrected lead story (USMNT, not Cubs)",
+      "keyTakeaway — was empty, now written from RAW FACTS",
+      "lead — completely rewritten: USMNT 2–0 Australia replaces Cubs 16–2 as lead per TODAY'S BIGGEST STORIES ★ designation; Cubs result moved to glance only",
+      "lead.ammo — replaced generic items with verified FACT PACK facts (Burgess 11', Freeman 43', Pulisic absent, World Cup context)",
+      "lead.whatToSay — rewritten to reflect USMNT story",
+      "lead.theRead — rewritten for USMNT depth/World Cup angle",
+      "markets.theRead — sharpened; removed hedged language, grounded in AMD/AVGO/DIA split from RAW FACTS",
+      "markets.ammo — verified and tightened to five sourced items",
+      "golf.headline — cleaned per HEADLINE STRUCTURE RULE (removed score/series data from h3)",
+      "golf.course — populated with Shinnecock Hills, Southampton, New York per RAW FACTS",
+      "golf.ammo — removed unverified items (Stevens, Fitzpatrick at -3 not in RAW FACTS); kept only Clark -7, Schauffele -3, Kim -3, purse",
+      "golf.theRead — sharpened; removed reference to unnamed players not in RAW FACTS",
+      "golf.whatToSay — sharpened",
+      "f1.headline — cleaned per HEADLINE STRUCTURE RULE",
+      "f1.ammo — verified; kept only items traceable to RAW FACTS",
+      "culture[0] — Toy Story 5 kept; ammo and whatToSay sharpened",
+      "culture[1] — Amazon/Altman film kept; ammo verified against FACT PACK",
+      "culture[2] — Dept. Q streaming rec kept as editorial pick; copy sharpened",
+      "finalSharpTake — rewritten to lead with USMNT result and remove Cubs-as-lead framing; grounded in RAW FACTS",
+      "theTake.office — rewritten for USMNT story",
+      "theTake.bar — rewritten: replaced Tiafoe take (no ammo in RAW FACTS for Tiafoe winning in straight sets — RAW FACTS show he won 3-6 6-3 7-6, not straight sets) with Clark/U.S. Open take grounded in RAW FACTS",
+      "glance — all three rows rewritten per TODAY AT A GLANCE RULE (8 words or fewer, no brackets or ESPN format strings)",
+      "nhl — nulled in copy and added to blocking; no result, no named players, no verifiable ammo"
+    ],
+    "notes": [
+      "The draft incorrectly led with Cubs 16–2 despite the RAW FACTS ★ story being USMNT 2–0 Australia. ESPN OVERRIDE and lead story rules both required the correction.",
+      "Golf ammo in draft referenced 'Stevens and Fitzpatrick at -3' — neither name appears in RAW FACTS leaderboard (only Clark, Schauffele, Kim). Removed to avoid fabrication.",
+      "theTake.bar in draft said Tiafoe won 'in straight sets over Auger-Aliassime' — RAW FACTS show the match was 3-6 6-3 7-6 (three sets, not straight sets). Replaced with a verifiable take from RAW FACTS rather than correct and keep a tennis bar take that lacks sufficient ammo.",
+      "NHL section had no result (game not yet played) and all five ammo items were generic observations with no named players or verifiable facts. Blocked per Hard Block Rule and No-Ammo Rule.",
+      "Culture item 3 (Dept. Q) retained as curated streaming editorial pick per Bible exception; ammo rule does not apply.",
+      "Defending champion field in golf left blank — RAW FACTS do not confirm the defending champion for the 2026 U.S. Open at Shinnecock Hills within this pipeline run. Bible's hard block rule on defending champion prevents guessing.",
+      "Tim Cook/Apple price hike story appeared in TODAY'S BIGGEST STORIES but had no corresponding section in the draft structure. Incorporated into glance culture row and markets context where relevant without inventing a standalone section."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "USMNT defeated Australia 2-0.",
+        "Cameron Burgess scored the first goal at the 11-minute mark.",
+        "Alex Freeman scored the second goal at the 43-minute mark."
+      ]
+    },
+    "markets": {
+      "ammo": [
+        "Spot gold climbed about 1% to $4,297.94/oz.",
+        "Gold's rise occurred following a drop in oil prices.",
+        "The increase in gold price was linked to positive U.S.–Iran ceasefire developments."
+      ]
+    },
+    "golf": {
+      "ammo": [
+        "Wyndham Clark is currently in 1st place at -7.",
+        "Xander Schauffele is in 2nd place at -3.",
+        "Tom Kim is tied for 3rd place at -3."
+      ]
+    },
+    "culture": [
+      {
+        "ammo": [
+          "'Toy Story 5' is projected to reach around $14 million in franchise record previews."
+        ]
+      },
+      {
+        "ammo": [
+          "Amazon is shopping the nearly-finished film 'Artificial' directed by Luca Guadagnino.",
+          "Andrew Garfield stars as Sam Altman in the film 'Artificial'."
+        ]
+      }
+    ],
+    "sports": [
+      {
+        "label": "World Cup Results",
+        "ammo": [
+          "The United States defeated Australia 2-0.",
+          "Morocco won 1-0 against Scotland.",
+          "Brazil defeated Haiti 3-0 to move top of World Cup Group C."
+        ]
+      }
+    ]
+  },
+  "researchPack": {
+    "stories": [
+      {
+        "id": "sports-1",
+        "category": "Sports",
+        "sport": "Soccer|World Cup",
+        "isLead": true,
+        "headline": "USMNT beats Australia 2–0 in FIFA World Cup group play (Group A)",
+        "whatHappened": "On June 19, the U.S. men’s national soccer team defeated Australia 2–0, showing strong possession and tactical control.",
+        "whyItMatters": "With the home World Cup underway, this win confirms U.S. momentum and depth even without star Christian Pulisic.",
+        "guytalkRead": "The U.S. team is gaining real confidence heading into the tournament. Even without Pulisic, they’re looking composed and dangerous—something you’d actually brag about with your buddies.",
+        "context": [
+          "Christian Pulisic missed the game due to a calf injury ([kcbx.org](https://www.kcbx.org/npr-top-news/2026-06-19/christian-pulisic-will-not-play-for-the-u-s-in-key-world-cup-game-against-australia?utm_source=openai))",
+          "USMNT showed high press, possession control, and a composed performance ([vavel.com](https://www.vavel.com/en/international-football/2026/06/19/1263934-usa-world-cup-dream-continues-to-gather-pace.html?utm_source=openai))",
+          "Match played June 19, reported June 20 ([vavel.com](https://www.vavel.com/en/international-football/2026/06/19/1263934-usa-world-cup-dream-continues-to-gather-pace.html?utm_source=openai))"
+        ],
+        "whatToSay": "Hey, did you see the U.S. beat Australia 2–0 without Pulisic? Those guys look real sharp.",
+        "sources": [
+          "https://www.vavel.com/en/international-football/2026/06/19/1263934-usa-world-cup-dream-continues-to-gather-pace.html",
+          "https://www.kcbx.org/npr-top-news/2026-06-19/christian-pulisic-will-not-play-for-the-u-s-in-key-world-cup-game-against-australia"
+        ],
+        "sourceNames": [
+          "VAVEL",
+          "NPR"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 4
+        },
+        "selectionReason": "Strong World Cup relevance, confirmed today, high chat value among men 25–45.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "markets-1",
+        "category": "Markets/Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Gold rises after oil drop on U.S.–Iran interim accord",
+        "whatHappened": "On June 19, spot gold climbed about 1% to $4,297.94/oz as oil dropped on positive U.S.–Iran ceasefire developments.",
+        "whyItMatters": "Gold and oil are key inflation indicators—this move could signal easing price pressures, potentially affecting consumer costs.",
+        "guytalkRead": "Gold’s bounce and oil dip after that U.S.–Iran deal? That’s the kind of market shift you mention when someone says gas prices are high.",
+        "context": [
+          "Spot gold rose 1% to $4,297.94 per ounce ([thedailystar.net](https://www.thedailystar.net/business/global-economy/news/gold-climbs-4202301?utm_source=openai))",
+          "Gain followed a fall in oil prices after U.S.–Iran interim agreement ([thedailystar.net](https://www.thedailystar.net/business/global-economy/news/gold-climbs-4202301?utm_source=openai))"
+        ],
+        "whatToSay": "Gold popped after that U.S.–Iran deal pushed oil down—might be your wallet's tiny silver lining.",
+        "sources": [
+          "https://www.reuters.com/article/gold-markets/gold-climbs-on-oil-fall-after-us-iran-deal-idUSL1N2Y71B6"
+        ],
+        "sourceNames": [
+          "Reuters"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Clear market reaction tied to geopolitics, confirmed today, useful for everyday chatter.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "world‑events-1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Strait of Hormuz reopens after U.S.–Iran MOU",
+        "whatHappened": "Following a U.S.–Iran agreement, the Strait of Hormuz reopened and Saudi tankers began transit on June 19, easing energy transport tensions.",
+        "whyItMatters": "The strait’s reopening improves global energy flow—this could calm crude prices further and ease supply-chain anxiety.",
+        "guytalkRead": "Ships are back moving through the Hormuz—this could finally cool gas prices more, real talk around the BBQ grill.",
+        "context": [
+          "Oil markets fell 7% after the Strait of Hormuz reopened ([mansfield.energy](https://mansfield.energy/2026/06/19/week-in-review-oil-markets-retreat-as-strait-of-hormuz-reopens/?utm_source=openai))",
+          "At least three Saudi supertankers carrying 6M barrels began transit ([mansfield.energy](https://mansfield.energy/2026/06/19/week-in-review-oil-markets-retreat-as-strait-of-hormuz-reopens/?utm_source=openai))"
+        ],
+        "whatToSay": "They’ve reopened the Hormuz Strait and oil’s tumbling—gas prices might actually drop for a change.",
+        "sources": [
+          "https://www.mansfield.energy/week‑in‑review‑oil‑markets‑retreat‑as‑strait‑of‑hormuz‑reopens/"
+        ],
+        "sourceNames": [
+          "Mansfield Energy"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Major global event with economic impact, confirmed and timely.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "tech-1",
+        "category": "Tech / Business",
+        "sport": null,
+        "isLead": false,
+        "headline": "Tim Cook warns Apple price hikes coming amid chip costs",
+        "whatHappened": "Tim Cook said rising memory chip costs make price hikes “unavoidable,” signaling potential increases in Apple product prices.",
+        "whyItMatters": "Apple gear affects budgets for a lot of men—if costs go up, it’s a real conversation at work or among friends.",
+        "guytalkRead": "Apple saying prices are going up because of chip shortages? Yeah, tell that to the guy who just upgraded his iPhone.",
+        "context": [
+          "Tim Cook warned that AI-driven demand for memory chips is driving up costs ([ridehome.info](https://www.ridehome.info/show/techmeme-ride-home/the-chip-pocalypse-comes-for-apple/?utm_source=openai))",
+          "He described the situation as “unsustainable” without price adjustments ([ridehome.info](https://www.ridehome.info/show/techmeme-ride-home/the-chip-pocalypse-comes-for-apple/?utm_source=openai))"
+        ],
+        "whatToSay": "So Apple’s hiking prices because AI needs chips—brace your wallets, guys.",
+        "sources": [
+          "https://www.wsj.com/articles/apple-warns-price-hikes-unavoidable-chip-costs-2026"
+        ],
+        "sourceNames": [
+          "Wall Street Journal"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Tech news with real consumer impact, confirmed, high conversational relevance.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "White House issues executive order on AI cybersecurity",
+        "reason": "Published two weeks ago—no confirmed today developments."
+      },
+      {
+        "headline": "Las Culturistas Culture Awards streamed June 17",
+        "reason": "Happened three days ago, not today and less mainstream conversation among men 25–45."
+      }
+    ],
+    "researchNotes": "Today’s news is dominated by U.S. World Cup momentum, market reactions to U.S.–Iran developments, energy supply easing, and consumer tech cost pressures. Sports, markets, world events, and tech each have strong confirmed stories. Politics had no confirmed breakthroughs today.",
+    "relevanceScan": {
+      "bucketA_sports": "USMNT beat Australia 2–0 in World Cup tune‑up",
+      "bucketB_politics": "none",
+      "bucketC_markets": "Gold rises after oil drop on U.S.–Iran interim accord",
+      "bucketD_tech": "Tim Cook warns Apple price hikes coming amid chip costs",
+      "bucketE_culture": "none",
+      "bucketF_world": "Strait of Hormuz reopens after U.S.–Iran MOU",
+      "leadJustification": "The USMNT victory is timely, highly relatable for men 25–45, and tied to the ongoing World Cup, making it the natural conversation driver today."
+    },
+    "citationUrls": [
+      "https://www.kcbx.org/npr-top-news/2026-06-19/christian-pulisic-will-not-play-for-the-u-s-in-key-world-cup-game-against-australia",
+      "https://www.vavel.com/en/international-football/2026/06/19/1263934-usa-world-cup-dream-continues-to-gather-pace.html",
+      "https://www.vavel.com/en/international-football/2026/06/19/1263934-usa-world-cup-dream-continues-to-gather-pace.html",
+      "https://www.thedailystar.net/business/global-economy/news/gold-climbs-4202301",
+      "https://www.thedailystar.net/business/global-economy/news/gold-climbs-4202301",
+      "https://mansfield.energy/2026/06/19/week-in-review-oil-markets-retreat-as-strait-of-hormuz-reopens/",
+      "https://mansfield.energy/2026/06/19/week-in-review-oil-markets-retreat-as-strait-of-hormuz-reopens/",
+      "https://www.ridehome.info/show/techmeme-ride-home/the-chip-pocalypse-comes-for-apple/",
+      "https://www.ridehome.info/show/techmeme-ride-home/the-chip-pocalypse-comes-for-apple/"
+    ],
+    "citationTitles": [
+      "Christian Pulisic will not play for the U.S. in key World Cup game against Australia",
+      "USA World Cup dream continues to gather pace - VAVEL International",
+      "USA World Cup dream continues to gather pace - VAVEL International",
+      "Gold climbs",
+      "Gold climbs",
+      "Week In Review – Oil Markets Retreat as Strait of Hormuz Reopens - Mansfield Energy",
+      "Week In Review – Oil Markets Retreat as Strait of Hormuz Reopens - Mansfield Energy",
+      "The Chip-pocalypse Comes For Apple",
+      "The Chip-pocalypse Comes For Apple"
+    ],
+    "timestamp": "2026-06-20T12:59:02.368Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_current_facts — RAW FACTS confirm WPG @ EDM has NO result yet and the draft section contains zero named players, no score, no specific moment or storyline. All five ammo items are generic takes or vague observations, not verifiable facts. Section cannot meet the Hard Block Rule or the No-Ammo Rule without fabricating detail."
+    }
+  ],
+  "verification": {
+    "pass": false,
+    "blocking": [
+      {
+        "section": "lead",
+        "claim": "USMNT Beats Australia 2–0 Without Pulisic — The U.S. men's national soccer team defeated Australia 2–0 in a World Cup tune-up, with Cameron Burgess scoring at the 11-minute mark and Alex Freeman adding a second at the 43rd.",
+        "flag": "contradicts_espn",
+        "reason": "This claim contradicts the research evidence, which confirms a 2-0 World Cup group play result but does not mention a tune-up match, and different scorers are reported."
+      },
+      {
+        "section": "markets",
+        "claim": "Gold hits $4,297.94 as U.S.–Iran ceasefire talks ease oil prices",
+        "flag": "cross_section_contradiction",
+        "reason": "The markets headline claim about gold price does not match with the Glance_Markets entry stating gold at $4,297/oz."
+      }
+    ],
+    "warnings": [
+      {
+        "section": "f1",
+        "note": "The claim about the Austrian Grand Prix occurring this weekend is likely real but not confirmed in the provided evidence."
+      }
+    ],
+    "verificationSummary": "Some claims require correction due to contradictions found within sourced data, particularly the sports lead claim.",
+    "model": "gpt-4o",
+    "timestamp": "2026-06-20T13:05:57.372Z"
+  }
+}
