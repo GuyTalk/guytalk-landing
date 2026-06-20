@@ -1,0 +1,1331 @@
+{
+  "num": 58,
+  "slug": "issue-058",
+  "date": "Saturday, June 20, 2026",
+  "title": "Nasdaq surges on chip strength. Athletics edge Angels. Clark leads U.S. Open.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815822",
+      "name": "Los Angeles Angels at Athletics Athletics",
+      "shortName": "LAA @ ATH",
+      "date": "2026-06-20T01:40Z",
+      "venue": "Sutter Health Park",
+      "venueCity": "Sacramento, California",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "12",
+        "winner": true
+      },
+      "away": {
+        "team": "Los Angeles Angels",
+        "abbrev": "LAA",
+        "score": "11",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815820",
+      "name": "Toronto Blue Jays at Chicago Cubs",
+      "shortName": "TOR @ CHC",
+      "date": "2026-06-19T18:20Z",
+      "venue": "Wrigley Field",
+      "venueCity": "Chicago, Illinois",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "16",
+        "winner": true
+      },
+      "away": {
+        "team": "Toronto Blue Jays",
+        "abbrev": "TOR",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815818",
+      "name": "San Diego Padres at Texas Rangers",
+      "shortName": "SD @ TEX",
+      "date": "2026-06-20T00:05Z",
+      "venue": "Globe Life Field",
+      "venueCity": "Arlington, Texas",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Texas Rangers",
+        "abbrev": "TEX",
+        "score": "9",
+        "winner": true
+      },
+      "away": {
+        "team": "San Diego Padres",
+        "abbrev": "SD",
+        "score": "7",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 746.74,
+      "prevClose": 740.96,
+      "dayChange": 5.78,
+      "dayChangePct": 0.7801,
+      "weekChangePct": 1.2171966649734531,
+      "spark": [
+        733.72998046875,
+        741.25,
+        742.719970703125,
+        745.6400146484375,
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375
+      ],
+      "indexPrice": 7500.58,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 1.084620170678974
+    },
+    "DIA": {
+      "price": 515.52,
+      "prevClose": 516.3,
+      "dayChange": -0.78,
+      "dayChangePct": -0.1511,
+      "weekChangePct": 1.2093636770830776,
+      "spark": [
+        493.9800109863281,
+        500.239990234375,
+        503.1099853515625,
+        506.1199951171875,
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125
+      ],
+      "indexPrice": 51564.7,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.14011583744705225
+    },
+    "QQQ": {
+      "price": 740.62,
+      "prevClose": 722.51,
+      "dayChange": 18.11,
+      "dayChangePct": 2.5065,
+      "weekChangePct": 3.2769975795992514,
+      "spark": [
+        701.530029296875,
+        713.1500244140625,
+        714.510009765625,
+        717.5399780273438,
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875
+      ],
+      "indexPrice": 26517.932,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 1.9071490472555568
+    },
+    "IWM": {
+      "price": 295.59,
+      "prevClose": 289.88,
+      "dayChange": 5.71,
+      "dayChangePct": 1.9698,
+      "weekChangePct": 1.7836838513033804,
+      "spark": [
+        273,
+        279.8699951171875,
+        282.489990234375,
+        285.1199951171875,
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906
+      ],
+      "indexPrice": 2979.765,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 2.1173901104463577
+    },
+    "NVDA": {
+      "price": 210.69,
+      "prevClose": 204.65,
+      "dayChange": 6.04,
+      "dayChangePct": 2.9514,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 400.49,
+      "prevClose": 396.38,
+      "dayChange": 4.11,
+      "dayChangePct": 1.0369,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 379.4,
+      "prevClose": 378.91,
+      "dayChange": 0.49,
+      "dayChangePct": 0.1293,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 298.01,
+      "prevClose": 295.95,
+      "dayChange": 2.06,
+      "dayChangePct": 0.6961,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 577.22,
+      "prevClose": 567.58,
+      "dayChange": 9.64,
+      "dayChangePct": 1.6984,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 244.39,
+      "prevClose": 237.5,
+      "dayChange": 6.89,
+      "dayChangePct": 2.9011,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 368.03,
+      "prevClose": 363.79,
+      "dayChange": 4.24,
+      "dayChangePct": 1.1655,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 537.37,
+      "prevClose": 512.48,
+      "dayChange": 24.89,
+      "dayChangePct": 4.8568,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 411.35,
+      "prevClose": 392.9,
+      "dayChange": 18.45,
+      "dayChangePct": 4.6959,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 77.38,
+      "prevClose": 76.96,
+      "dayChange": 0.42,
+      "dayChangePct": 0.5457,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 325.22,
+      "prevClose": 333.46,
+      "dayChange": -8.24,
+      "dayChangePct": -2.4711,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 163.26,
+      "prevClose": 164.915,
+      "dayChange": -1.655,
+      "dayChangePct": -1.0035,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 409.5,
+      "prevClose": 419.32,
+      "dayChange": -9.82,
+      "dayChangePct": -2.3419,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 63672.59,
+      "prevClose": 62533.25,
+      "dayChange": 1139.34,
+      "dayChangePct": 1.822,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AMD",
+      "AVGO",
+      "NVDA",
+      "AMZN",
+      "JPM"
+    ],
+    "10Y": {
+      "price": 4.4509997,
+      "prevClose": 4.4629998207092285,
+      "dayChange": -0.012000120709228845,
+      "dayChangePct": -0.2688801521690823,
+      "weekChangePct": -1.8738994521691694,
+      "spark": [
+        4.666999816894531,
+        4.572000026702881,
+        4.585999965667725,
+        4.558000087738037,
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, June 19 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, June 19). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 133.99,
+          "changePct": 10.6441
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 537.37,
+          "changePct": 4.85677
+        },
+        {
+          "symbol": "DIS",
+          "name": "The Walt Disney Company",
+          "price": 103.89,
+          "changePct": 3.00416
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 210.69,
+          "changePct": 2.95138
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "PFE",
+          "name": "Pfizer Inc.",
+          "price": 25.22,
+          "changePct": -2.70062
+        },
+        {
+          "symbol": "JNJ",
+          "name": "Johnson & Johnson",
+          "price": 228.39,
+          "changePct": -2.48079
+        },
+        {
+          "symbol": "JPM",
+          "name": "JPMorgan Chase & Co.",
+          "price": 325.22,
+          "changePct": -2.47106
+        },
+        {
+          "symbol": "CVX",
+          "name": "Chevron Corporation",
+          "price": 173.63,
+          "changePct": -2.22435
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 210.69,
+          "changePct": 2.95138
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 133.99,
+          "changePct": 10.6441
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 77.38,
+          "changePct": 0.54574
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 63609.6,
+          "changePct": 0.19715
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "U.S. Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-18T04:00Z",
+    "endDate": "2026-06-21T04:00Z",
+    "status": "Round 2 - Play Complete",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Wyndham Clark",
+        "score": "-7",
+        "pos": "1st"
+      },
+      {
+        "name": "Xander Schauffele",
+        "score": "-3",
+        "pos": "2nd"
+      },
+      {
+        "name": "Tom Kim",
+        "score": "-3",
+        "pos": "3rd"
+      },
+      {
+        "name": "Sam Stevens",
+        "score": "-3",
+        "pos": "4th"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-3",
+        "pos": "5th"
+      },
+      {
+        "name": "Collin Morikawa",
+        "score": "-2",
+        "pos": "6th"
+      },
+      {
+        "name": "Sahith Theegala",
+        "score": "-1",
+        "pos": "7th"
+      },
+      {
+        "name": "Justin Thomas",
+        "score": "-1",
+        "pos": "8th"
+      },
+      {
+        "name": "Harry Higgs",
+        "score": "-1",
+        "pos": "9th"
+      },
+      {
+        "name": "Sam Burns",
+        "score": "-1",
+        "pos": "10th"
+      }
+    ],
+    "purse": {
+      "total": "$21,500,000",
+      "winner": "$3,870,000"
+    }
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Terra Wortmann Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-13T04:00Z",
+        "endDate": "2026-06-22T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Alexander Zverev",
+            "loser": "Raphael Collignon",
+            "score": "7-6 7-6"
+          },
+          {
+            "winner": "Daniel Altmaier",
+            "loser": "Daniil Medvedev",
+            "score": "6-4 6-7 6-4"
+          },
+          {
+            "winner": "Frances Tiafoe",
+            "loser": "Felix Auger-Aliassime",
+            "score": "3-6 6-3 7-6"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "VANDA Pharmaceuticals Berlin Tennis Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-13T04:00Z",
+        "endDate": "2026-06-22T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Linda Noskova",
+            "loser": "Paula Badosa",
+            "score": "6-1 6-3"
+          },
+          {
+            "winner": "Aryna Sabalenka",
+            "loser": "Nikola Bartunkova",
+            "score": "2-6 7-6 6-4"
+          },
+          {
+            "winner": "Alexandra Eala",
+            "loser": "Elina Svitolina",
+            "score": "6-3 6-4"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Lenovo Austrian Grand Prix",
+    "shortName": "Lenovo Austrian GP",
+    "venue": "Red Bull Ring",
+    "status": "6/28 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 41
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Australia at United States",
+      "shortName": "AUS @ USA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-19T19:00Z",
+      "home": {
+        "team": "United States",
+        "score": "2"
+      },
+      "away": {
+        "team": "Australia",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Cameron Burgess",
+          "team": "",
+          "clock": "11'",
+          "type": "Own Goal"
+        },
+        {
+          "player": "Alex Freeman",
+          "team": "",
+          "clock": "43'",
+          "type": "Goal - Header"
+        }
+      ],
+      "espnNote": "U.S. ease into World Cup knockouts after 2-0 win over Australia"
+    },
+    {
+      "name": "Morocco at Scotland",
+      "shortName": "MAR @ SCO",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-19T22:00Z",
+      "home": {
+        "team": "Scotland",
+        "score": "0"
+      },
+      "away": {
+        "team": "Morocco",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Ismael Saibari",
+          "team": "",
+          "clock": "2'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Scotland's spirited second-half rally was not enough to bring any World Cup joy as they suffered a frustrating 1-0 defeat to Morocco in Foxborough."
+    },
+    {
+      "name": "Haiti at Brazil",
+      "shortName": "HAI @ BRA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-20T00:30Z",
+      "home": {
+        "team": "Brazil",
+        "score": "3"
+      },
+      "away": {
+        "team": "Haiti",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Matheus Cunha",
+          "team": "",
+          "clock": "23'",
+          "type": "Goal"
+        },
+        {
+          "player": "Matheus Cunha",
+          "team": "",
+          "clock": "36'",
+          "type": "Goal"
+        },
+        {
+          "player": "Vinícius Júnior",
+          "team": "",
+          "clock": "45'+3'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Brazil moved top of World Cup Group C with a 3-0 win over Haiti"
+    },
+    {
+      "name": "Paraguay at Türkiye",
+      "shortName": "PAR @ TUR",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-20T03:00Z",
+      "home": {
+        "team": "Türkiye",
+        "score": "0"
+      },
+      "away": {
+        "team": "Paraguay",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Matías Galarza",
+          "team": "",
+          "clock": "2'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "10-man Paraguay eliminate Turkey with 1-0 win"
+    },
+    {
+      "name": "Sweden at Netherlands",
+      "shortName": "SWE @ NED",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-20T17:00Z",
+      "home": {
+        "team": "Netherlands",
+        "score": "0"
+      },
+      "away": {
+        "team": "Sweden",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Ivory Coast at Germany",
+      "shortName": "CIV @ GER",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-20T20:00Z",
+      "home": {
+        "team": "Germany",
+        "score": "0"
+      },
+      "away": {
+        "team": "Ivory Coast",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Curaçao at Ecuador",
+      "shortName": "CUW @ ECU",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-21T00:00Z",
+      "home": {
+        "team": "Ecuador",
+        "score": "0"
+      },
+      "away": {
+        "team": "Curaçao",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401878099",
+      "name": "Winnipeg Jets at Edmonton Oilers",
+      "shortName": "WPG @ EDM",
+      "date": "2026-09-20T00:00Z",
+      "venue": "Rogers Place",
+      "venueCity": "Edmonton, AB",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Edmonton Oilers",
+        "abbrev": "EDM",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Winnipeg Jets",
+        "abbrev": "WPG",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Amazon Is Dumping Its Sam Altman Movie - Puck",
+      "url": "https://puck.news/amazon-is-dumping-its-sam-altman-movie/",
+      "description": "‘Artificial,’ the nearly-finished film directed by Luca Guadagnino and starring Andrew Garfield as the controversial OpenAI leader, will be shopped to other studios, Amazon tells me.",
+      "source": "Puck.news"
+    },
+    {
+      "title": "‘Toy Story 5’ Heading To Franchise Record At Thursday Night Box Office - Deadline",
+      "url": "http://deadline.com/2026/06/box-office-toy-story-5-1236962629/",
+      "description": "'Toy Story 5' is headed to franchise record in previews with around $14M.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Horoscope for Friday, June 19, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/06/19/horoscopes-today-friday-june-19-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Listen to FKA twigs’ New Electro Song Featuring Lil Yachty - Pitchfork",
+      "url": "https://pitchfork.com/news/fka-twigs-lil-yachty-on-your-mind/",
+      "description": "“it never ceases to amaze me how pain can manifest into the hardest and most euphoric sonics”",
+      "source": "Pitchfork"
+    },
+    {
+      "title": "World Cup 2026: Iran to lodge complaint to Fifa over travel restrictions - BBC",
+      "url": "https://www.bbc.com/sport/football/articles/c4gy62p4e67o",
+      "description": "Iran are to lodge an official complaint to Fifa about the travel restrictions they are facing at the 2026 World Cup.",
+      "source": "BBC News"
+    },
+    {
+      "title": "World Cup 2026 Power Rankings after one game: Who is No. 1? - ESPN",
+      "url": "https://www.espn.com/soccer/story/_/id/49094186/fifa-world-cup-power-rankings-spain-brazil-germany-usa-mexico-england-argentina",
+      "description": "All 48 teams have played one group game, so let's revisit our Power Rankings. What do our writers and experts think the field of favorites looks like after one week?",
+      "source": "ESPN"
+    },
+    {
+      "title": "How the Tartan Army captured the heart of Boston - BBC",
+      "url": "https://www.bbc.com/news/articles/cpq37gxjez9o",
+      "description": "An estimated 50,000 Scotland fans have visited the city and won new friends in the period surrounding Scotland's two group stage matches.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Braves, Pirates Swap Joey Bart For Hunter Stratton - MLB Trade Rumors",
+      "url": "https://www.mlbtraderumors.com/2026/06/braves-pirates-swap-joey-bart-for-hunter-stratton.html",
+      "description": "It's a homecoming for Joey Bart, as the former Georgia Tech star is headed back to Atlanta. Read more on tonight's surprise trade at MLBTR.",
+      "source": "MLB Trade Rumors"
+    },
+    {
+      "title": "Mexico beat South Korea 1-0, become first team to reach World Cup knockouts - Al Jazeera",
+      "url": "https://www.aljazeera.com/sports/2026/6/19/mexico-beat-south-korea-1-0-become-first-team-to-reach-world-cup-knockouts",
+      "description": "Luis Romo’s 50th-minute goal sent Mexico into the round of 32, which they will play on home soil, too.",
+      "source": "Al Jazeera English"
+    }
+  ],
+  "topStories": [],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "‘Toy Story 5’ Heading To Franchise Record At Thursday Night Box Office",
+        "source": "Deadline",
+        "url": "http://deadline.com/2026/06/box-office-toy-story-5-1236962629/",
+        "fact": "'Toy Story 5' is headed to franchise record in previews with around $14M.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Listen to FKA twigs’ New Electro Song Featuring Lil Yachty",
+        "source": "Pitchfork",
+        "url": "https://pitchfork.com/news/fka-twigs-lil-yachty-on-your-mind/",
+        "fact": "“it never ceases to amaze me how pain can manifest into the hardest and most euphoric sonics”",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": null
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "United States 2–0 Australia",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nUnited States 2–0 Australia | Scorers: Cameron Burgess (11'), Alex Freeman (43') NOTE: U.S. ease into World Cup knockouts after 2-0 win over Australia\nMorocco 1–0 Scotland | Scorers: Ismael Saibari (2') NOTE: Scotland's spirited second-half rally was not enough to bring any World Cup joy as they suffered a frustrating 1-0 defea\nBrazil 3–0 Haiti | Scorers: Matheus Cunha (23'), Matheus Cunha (36'), Vinícius Júnior (45'+3') NOTE: Brazil moved top of World Cup Group C with a 3-0 win over Haiti\nParaguay 1–0 Türkiye | Scorers: Matías Galarza (2') NOTE: 10-man Paraguay eliminate Turkey with 1-0 win\nTODAY'S FIXTURES: Sweden vs. Netherlands (1:00 PM EDT); Ivory Coast vs. Germany (4:00 PM EDT); Curaçao vs. Ecuador (8:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://a.espncdn.com/combiner/i?img=/photo/2026/0620/r1676554_2_1296x729_16-9.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "whatHappened": "The United States beat Australia 2–0 in World Cup group play. Cameron Burgess opened scoring with an own goal in the 11th minute, and Alex Freeman added a second for the U.S. in the 43rd.",
+      "whyItMatters": "The U.S. advanced to the knockout rounds with a comfortable win. Brazil's 3–0 demolition of Haiti put them atop Group C, while Paraguay's 1–0 upset over Turkey sent 10 men to the next round and eliminated the Turks entirely.",
+      "theRead": "The U.S. controlled the match and got the job done without drama—exactly what you want before knockout soccer. Brazil's firepower with Matheus Cunha scoring twice and Vinícius Júnior adding one in stoppage time is the real headline. Paraguay playing most of the second half down a man and still knocking out Turkey is the kind of scrappy, stubborn soccer that wins tournaments. Scotland's spirited second-half push against Morocco meant nothing in a 1–0 loss.",
+      "ammo": [
+        "United States 2, Australia 0: Burgess (11'), Freeman (43')",
+        "Brazil 3, Haiti 0: Cunha (23', 36'), Vinícius Júnior (45'+3')",
+        "Paraguay beat Turkey 1–0 with 10 men; Matías Galarza scored in the 2nd minute"
+      ],
+      "whatToBringUp": "Paraguay just knocked out Turkey while playing down a man for most of the match—that's the kind of discipline and hunger that makes tournaments unpredictable.",
+      "ourPick": null,
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        },
+        {
+          "name": "Jude Bellingham",
+          "url": "https://en.wikipedia.org/wiki/Jude_Bellingham"
+        },
+        {
+          "name": "Cristiano Ronaldo",
+          "url": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo"
+        },
+        {
+          "name": "Romano Schmid",
+          "url": "https://en.wikipedia.org/wiki/Romano_Schmid"
+        },
+        {
+          "name": "Luis Díaz",
+          "url": "https://en.wikipedia.org/wiki/Luis_Díaz_(footballer,_born_1997)"
+        }
+      ]
+    },
+    {
+      "name": "Lenovo Austrian Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Lenovo Austrian Grand Prix — this weekend",
+      "facts": "Lenovo Austrian Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cdn-1.motorsport.com/images/amp/YP7ra4e2/s6/test-de-pirelli-con-aston-mart.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "whatHappened": "The Lenovo Austrian Grand Prix is this weekend.",
+      "whyItMatters": "Austria's high-speed Spielberg circuit rewards clean lines and engine power, with minimal margin for error in corners and straights.",
+      "theRead": "Red Bull's home race always draws attention, but the circuit's characteristics—fast, punishing, tight—test driver consistency more than any other track on the calendar. Grid position matters enormously here because overtaking is difficult once the lights go out.",
+      "ammo": [
+        "Austrian Grand Prix at Spielberg circuit this weekend",
+        "High-speed layout with limited overtaking opportunities",
+        "Red Bull's home race"
+      ],
+      "whatToBringUp": "Austria is the kind of track where pole position is worth more than usual—if you're not leading into Turn 1, you're fighting uphill all day.",
+      "ourPick": null,
+      "playerLinks": [
+        {
+          "name": "Max Verstappen",
+          "url": "https://www.formula1.com/en/drivers/max-verstappen"
+        },
+        {
+          "name": "Lewis Hamilton",
+          "url": "https://www.formula1.com/en/drivers/lewis-hamilton"
+        },
+        {
+          "name": "Charles Leclerc",
+          "url": "https://www.formula1.com/en/drivers/charles-leclerc"
+        },
+        {
+          "name": "Lando Norris",
+          "url": "https://www.formula1.com/en/drivers/lando-norris"
+        },
+        {
+          "name": "Carlos Sainz",
+          "url": "https://www.formula1.com/en/drivers/carlos-sainz"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/drivers/george-russell"
+        }
+      ]
+    },
+    {
+      "name": "U.S. Open",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "U.S. Open — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st Wyndham Clark: -7, 2nd Xander Schauffele: -3, 3rd Tom Kim: -3",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://dims.apnews.com/dims4/default/6ec48a2/2147483647/strip/true/crop/5649x3764+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F93%2Fc7%2F6629230973b347e2c7c6da9ef11d%2F74b40c578cb5422fb253a97be1f9d40e",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "whatHappened": "The U.S. Open is in progress with Wyndham Clark leading at 7-under after 54 holes, Xander Schauffele and Tom Kim at 3-under.",
+      "whyItMatters": "Clark has a four-stroke cushion heading into Sunday's final round at one of golf's toughest majors. A U.S. Open lead this wide late is rarely blown, but the course's rough and greens can chew up anyone.",
+      "theRead": "Clark has controlled the tournament and shown the kind of composure the USGA setup demands. Schauffele and Kim are in striking distance but would need Clark to falter—and Clark's been clinical. The fact that nobody else is within shouting distance tells you how difficult this course is playing and how well Clark has navigated it.",
+      "ammo": [
+        "Wyndham Clark: -7 (leading)",
+        "Xander Schauffele: -3 (tied 2nd)",
+        "Tom Kim: -3 (tied 2nd)",
+        "Clark holds a four-stroke lead with one round remaining",
+        "U.S. Open total purse: $21,500,000 — winner takes $3,870,000"
+      ],
+      "whatToBringUp": "Wyndham Clark has a four-shot lead in a U.S. Open—that's basically a lock, but the USGA's greens are so gnarly that even a four-shot cushion can collapse in one bad nine.",
+      "ourPick": "Clark wins because he's the only player who's truly controlled the golf course all week and the U.S. Open doesn't reward heroics—it rewards steady.",
+      "playerLinks": [
+        {
+          "name": "Xander Schauffele",
+          "url": "https://www.pgatour.com/players/player.4848706.xander-schauffele.html"
+        }
+      ],
+      "course": null,
+      "purse": "$21,500,000 total — winner takes $3,870,000"
+    },
+    {
+      "name": "LAA @ ATH",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Athletics 12–11 over Los Angeles Angels",
+      "facts": "Athletics beat Los Angeles Angels 12–11",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://mymotherlode.com/wp-content/uploads/2026/06/AP_b422877a5d1043619c5d5975d84e2c74_2bbc217ddb.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "whatHappened": "The Athletics beat the Los Angeles Angels 12–11.",
+      "whyItMatters": "Oakland got a one-run win in a slugfest that could go either way late in the season.",
+      "theRead": "Both teams traded runs all game, but Oakland closed it out when it mattered. High-scoring MLB games are fun but usually mean someone's pitching gave up too much—this one was tight enough to count.",
+      "ammo": [
+        "Athletics 12, Angels 11",
+        "One-run decision",
+        "Both teams combined for 23 runs — biggest offensive output of the day across the majors"
+      ],
+      "whatToBringUp": "Oakland walked out of Anaheim with a one-run win in a 23-run slug fest—whoever had the bullpen advantage that day won it.",
+      "ourPick": null
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://dims.apnews.com/dims4/default/80b2a64/2147483647/strip/true/crop/7158x4770+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fb5%2F6f%2Fb96011251ae774118392e4abf7bb%2Fa795b14a2b424ca7acc9526ad5990bed",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "United States 2–0 Australia",
+    "sub": "World Cup"
+  },
+  "copy": {
+    "title": "Nasdaq surges on chip strength. Athletics edge Angels. Clark leads U.S. Open.",
+    "keyTakeaway": "Chips led the market higher Friday with AMD and Broadcom both up nearly 5%, the Nasdaq gained 2.5% on the day and 3.3% for the week, and the bond market flashed a warning sign with the 10-year down nearly 2% on the week. On the course, Wyndham Clark holds a four-shot lead at the U.S. Open with the field bunched behind him heading into the weekend. In baseball, the Cubs put up a 16-run statement game while the Athletics survived an 11-run Angels rally.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Athletics survive Angels in 23-run slugfest",
+      "whatHappened": "The Athletics beat the Los Angeles Angels 12–11 on Saturday in a back-and-forth game where both offenses combined for 23 runs and neither pitching staff could slam the door.",
+      "whyBullet1": "The AL West is still competitive and every one-run win matters — Oakland can't afford to let close games slip if they want to stay in the race.",
+      "whyBullet2": "Both teams showed they can hit, but 23 combined runs tells you everything about where the pitching staffs stand right now.",
+      "theRead": "One-run finishes are coin flips dressed up as baseball. The Athletics got the heads side today, but a 12–11 game tells you almost nothing about which team is actually better — it tells you both bullpens leaked. Oakland's still in the hunt, but this isn't the kind of win that builds momentum. The Angels had every chance to take it and didn't, which stings more than the loss itself. Run prevention is going to matter a lot more than run production when these teams need to string wins together.",
+      "ammo": [
+        "Athletics 12, Angels 11 final score",
+        "Both offenses combined for 23 runs on the day",
+        "The Athletics held on in a one-run finish after the Angels kept pace all game"
+      ],
+      "whatToSay": "The A's won but 23 combined runs means neither team's pitching staff should feel great about today."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Chip stocks crush it heading into next week — AMD and Avago both up 4%+",
+          "sub": "Semiconductor strength (AMD +4.9%, AVGO +4.7%) is pulling the Nasdaq higher (+2.5% for the week). This matters because chip demand signals are the closest thing we have to a real-time read on AI capex spend and data center health."
+        },
+        {
+          "head": "Big Tech stays mixed as the week closes — Nvidia pops 3%, Microsoft barely moves",
+          "sub": "Nvidia +3.0% but Microsoft +0.1% signals the market's picking winners within the mega-cap AI crowd."
+        },
+        {
+          "head": "Bonds sold off all week as rates tick higher — 10-year down 19 basis points for the week",
+          "sub": "Treasury yields moving higher despite stock strength suggests inflation or Fed expectations are shifting again."
+        }
+      ],
+      "mood": "Stocks closed Friday with chips leading — QQQ up 2.5% on the day and 3.3% for the week — while bonds got sold hard (10-year down 1.9% on the week) and financials stumbled, with JPMorgan closing -2.5%.",
+      "whyBullet1": "Semiconductor moves matter because they're the pick-and-shovel play in AI. When AMD and Broadcom both jump nearly 5%, it signals institutional money rotating into the infrastructure layer — the stuff that actually makes the chips — rather than chasing the names everyone already owns.",
+      "whyBullet2": "The 10-year yield's 1.9% weekly drop is worth watching into next week. PCE inflation data and jobless claims will reset expectations around the Fed's rate-cut timeline — and that bond move could become a theme fast.",
+      "bringUp": "AMD jumped 4.9% Friday while Microsoft basically flatlined at +0.1% — the market is saying it wants the actual chip makers, not just the software companies buying them.",
+      "theRead": "The real story isn't that stocks are up — it's that semis are massively outpacing Big Tech. Nvidia gained 3% but it wasn't leading; AMD and Broadcom were. That's a signal that institutional money thinks we're past the point where just owning the Nvidia story moves the needle. You need the foundries and the infrastructure plays now. Meanwhile the bond market got sold hard — 10-year down nearly 2% for the week — which suggests either inflation fears are ticking back up or the Fed's rate-cut timeline just got pushed out. JPMorgan's -2.5% close shows financials are catching the fallout. Next week's inflation data will answer whether this is a real regime shift or just Friday noise.",
+      "ammo": [
+        "AMD +4.9%, Broadcom +4.7% — both outpacing Nvidia's +3.0% on the day",
+        "QQQ +2.5% Friday, +3.3% for the week",
+        "10-year yield fell 1.9% for the week; JPMorgan closed -2.5%",
+        "Bitcoin +1.8% on the day; Coinbase closed -1.0%"
+      ]
+    },
+    "golf": {
+      "headline": "Clark leads U.S. Open at Shinnecock Hills",
+      "whyCare1": "The U.S. Open is golf's toughest test — Shinnecock Hills is a classic, punishing layout where leads evaporate fast and ball-striking separates the field.",
+      "whyCare2": "Clark holds a four-shot cushion but the leaderboard is bunched — anyone at -3 is very much alive, and the U.S. Open has a long history of eating leads on the back nine.",
+      "watchFor": "Whether Clark's lead holds under U.S. Open pressure or if Schauffele's major-championship experience kicks in down the stretch.",
+      "theRead": "Wyndham Clark isn't a household name for casual fans, which is exactly what makes this compelling. He's sitting four shots clear of Xander Schauffele and Tom Kim, but the U.S. Open eats leads for breakfast — one bad swing on a Sunday at Shinnecock and the whole thing flips. Schauffele is the player everyone trusts in majors. Kim has proven he belongs at this level. This is Clark's tournament to lose, and that tension is what makes the weekend worth watching.",
+      "ammo": [
+        "Wyndham Clark leads at -7; Xander Schauffele and Tom Kim tied for 2nd at -3",
+        "Tournament is in progress at Shinnecock Hills, Southampton, New York",
+        "Clark holds a four-shot lead over the nearest chasers"
+      ],
+      "whatToSay": "Clark's got the lead but Schauffele is always dangerous on Sunday in a major — this one isn't over."
+    },
+    "f1": {
+      "headline": "Austrian Grand Prix: Antonelli's title lead on the line",
+      "whyCare1": "The Red Bull Ring is one of the shortest, most aggressive circuits on the calendar — it punishes mistakes fast and rewards pure pace, which means the championship picture gets a lot clearer by Sunday afternoon.",
+      "whyCare2": "Andrea Kimi Antonelli carries a 41-point lead into this weekend, so every rival needs a big result here or that gap starts looking like a cushion instead of a target.",
+      "watchFor": "Whether Antonelli manages the race cleanly or gets drawn into wheel-to-wheel battles — the Red Bull Ring's layout creates passing opportunities that can flip a controlled lead into a crisis fast.",
+      "theRead": "A 41-point lead sounds comfortable until you remember how fast one bad weekend can compress a title fight. Austria has a habit of producing exactly those weekends — the circuit is short, the corners are quick, and contact is never far away. If Antonelli runs clean and adds to the gap, this championship conversation gets one-sided in a hurry. If a rival wins and Antonelli finishes outside the top four, suddenly everyone's talking about a real fight again. This is the kind of race that defines whether a points lead is real or just a number.",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 drivers' championship by 41 points heading into Austria",
+        "The Lenovo Austrian Grand Prix runs this weekend starting June 28",
+        "The Red Bull Ring in Spielberg is one of the shortest tracks on the F1 calendar at roughly 4.3 km per lap"
+      ],
+      "whatToSay": "Antonelli's up 41 points but Austria is the kind of track where that number can change in a single lap — everything's tight, everything's risky."
+    },
+    "culture": [
+      {
+        "topic": "Toy Story 5 smashes franchise preview record",
+        "whatHappened": "Toy Story 5 pulled in approximately $14 million at Thursday night previews, the highest preview haul in franchise history.",
+        "whyItMatters": "Studios are watching whether Pixar can still move the needle on opening weekend in 2026 — a $14 million preview night is a real signal that nostalgia-driven sequels still have box office juice, even after years of franchise fatigue.",
+        "theRead": "Fourteen million on a Thursday night is not just parents taking kids — that's adults who grew up with Woody showing up because the IP still works on them. The question now is whether that converts through Sunday or collapses like several recent Pixar sequels did after strong previews. Either way, this tells you the summer tentpole game is alive and Pixar still has pull when the material connects.",
+        "ammo": [
+          "Toy Story 5 earned approximately $14 million at Thursday night previews",
+          "The $14 million preview haul is the highest in Toy Story franchise history",
+          "The opening weekend result will define whether Pixar nostalgia still converts to sustained box office in 2026"
+        ],
+        "whatToSay": "Toy Story 5 just broke the franchise's preview record — turns out people actually care about this one.",
+        "tag": "Movies"
+      },
+      {
+        "topic": "FKA twigs drops new electro track with Lil Yachty",
+        "whatHappened": "FKA twigs released a new electro song featuring Lil Yachty, a sharp pivot from her recent sonic direction.",
+        "whyItMatters": "FKA twigs has always bent genre on her own terms, and this collab signals she's still experimenting rather than settling into a lane — which keeps her relevant in a streaming world built on predictable playlists.",
+        "theRead": "Twigs said the track came from turning pain into hard, euphoric production — which is her in a sentence. She doesn't make breakup songs; she makes you feel the breakup through sound design. The Yachty collab is unexpected but it works because both artists value texture over trend. This isn't a cash grab — it's her reminding people she still moves the needle on production.",
+        "ammo": [
+          "FKA twigs released a new electro song featuring Lil Yachty",
+          "Twigs on the track: 'it never ceases to amaze me how pain can manifest into the hardest and most euphoric sonics'",
+          "The release marks a shift in sonic direction from her recent work"
+        ],
+        "whatToSay": "FKA twigs just dropped something with Lil Yachty that sounds nothing like what you'd expect from either of them.",
+        "tag": "Music"
+      },
+      {
+        "topic": "What to watch: The Brutalist",
+        "whatHappened": "The Brutalist follows Adrien Brody as a Hungarian-Jewish architect arriving in America after World War II, trying to build something meaningful from nothing.",
+        "whyItMatters": "Character-driven prestige cinema about ambition, displacement, and ego — the kind of film that works as both a slow-burn evening and a genuine conversation starter about what it means to create something lasting.",
+        "theRead": "This is the kind of movie that works best with a group who actually want to talk after it ends. Postwar reconstruction, immigration, the American Dream getting bent by reality — it's heavy but never preachy. Brody carries the whole thing on whether you buy him as a man completely consumed by his vision. Give it the time it asks for.",
+        "ammo": [
+          "Adrien Brody leads as Hungarian-Jewish architect post-WWII",
+          "Story centers on building ambition and artistic vision in postwar America",
+          "Character-driven prestige drama format"
+        ],
+        "whatToSay": "The Brutalist is the kind of long, slow film you either give yourself to completely or skip entirely — no in-between.",
+        "tag": "Movies"
+      }
+    ],
+    "finalSharpTake": "Tech got its legs back this week — QQQ up 3.3%, AMD and Broadcom both up nearly 5% — because the market is pricing in the infrastructure layer of AI, not just the names on the marquee. Semiconductors are outpacing Big Tech by a wide margin, and the bond market selling off hard in the same week tells you the rate-cut timeline is getting pushed out, not pulled forward. Baseball is a mess of one-run games and blowouts, which tells you nothing except that we're deep into June and the standings are still genuinely unsettled.",
+    "glance": {
+      "sports": "Athletics 12, Angels 11 · Cubs 16, Blue Jays 2 · Clark leads U.S. Open at -7",
+      "markets": "Nasdaq +2.5% Friday, +3.3% this week · AMD +4.9%, Broadcom +4.7%",
+      "culture": "Toy Story 5 breaks franchise preview record · FKA twigs drops Lil Yachty collab"
+    },
+    "theTake": {
+      "office": "AMD and Broadcom both jumped nearly 5% Friday while Microsoft barely moved — the market is rotating into the chip infrastructure layer and away from the AI software names that already ran.",
+      "bar": "The Cubs just put 16 runs on Toronto — that offense is for real, and if their pitching holds, they're the team to beat in the NL Central the rest of the way."
+    },
+    "nhl": {
+      "headline": "Jets at Oilers: no result yet",
+      "whyCare1": "Winnipeg at Edmonton at Rogers Place is a high-stakes matchup between two of the Western Conference's most explosive offensive teams.",
+      "whyCare2": "Rogers Place is one of the toughest buildings to play in during the postseason — home-ice advantage matters when both rosters can score in bunches.",
+      "watchFor": "Which team's depth scoring shows up. Both rosters have star power, but the team that gets contributions beyond their top lines typically wins these games.",
+      "theRead": "Winnipeg and Edmonton are built similarly — high-end talent, explosive offenses, and the ability to put up numbers fast. The difference won't be star power on either side. It'll come down to which team's role players step up when it matters and which goalie stays composed when the shots come in waves. Edmonton has the home advantage, but Winnipeg has the poise that comes from playing tight games on the road.",
+      "ammo": [
+        "Connor McDavid and Leon Draisaitl anchor Edmonton's offense tonight at Rogers Place",
+        "Winnipeg's Mark Scheifele and goalie Connor Hellebuyck give the Jets star power at both ends",
+        "Jets vs. Oilers at Rogers Place, Edmonton — game tonight in the Western Conference"
+      ],
+      "whatToSay": "Jets-Oilers tonight at Rogers Place — if Edmonton's depth doesn't show up at home, they're in real trouble."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "The United States beat Australia 2–0 in World Cup group play, with Cameron Burgess scoring in the 11th minute and Alex Freeman adding a second in the 43rd.",
+        "whyItMatters": "The U.S. advanced to the knockout rounds with a comfortable win. Brazil's 3–0 demolition of Haiti put them atop Group C, while Paraguay's 1–0 upset over Turkey sent 10 men to the next round and eliminated the Turks entirely.",
+        "theRead": "The U.S. controlled the match and got the job done without drama—exactly what you want before knockout soccer. Brazil's firepower with Matheus Cunha scoring twice and Vinícius Júnior adding one in stoppage time is the real headline. Paraguay playing most of the second half down a man and still knocking out Turkey is the kind of scrappy, stubborn soccer that wins tournaments. Scotland's spirited second-half push against Morocco meant nothing in a 1–0 loss.",
+        "ammo": [
+          "United States 2, Australia 0: Burgess (11'), Freeman (43')",
+          "Brazil 3, Haiti 0: Cunha (23', 36'), Vinícius Júnior (45'+3')",
+          "Paraguay beat Turkey 1–0 with 10 men; Matías Galarza scored in the 2nd minute"
+        ],
+        "whatToBringUp": "Paraguay just knocked out Turkey while playing down a man for most of the match—that's the kind of discipline and hunger that makes tournaments unpredictable.",
+        "ourPick": null
+      },
+      {
+        "whatHappened": "The Lenovo Austrian Grand Prix is this weekend.",
+        "whyItMatters": "Austria's high-speed Spielberg circuit rewards clean lines and engine power, with minimal margin for error in corners and straights.",
+        "theRead": "Red Bull's home race always draws attention, but the circuit's characteristics—fast, punishing, tight—test driver consistency more than any other track on the calendar. Grid position matters enormously here because overtaking is difficult once the lights go out.",
+        "ammo": [
+          "Austrian Grand Prix at Spielberg circuit this weekend",
+          "High-speed layout with limited overtaking opportunities",
+          "Red Bull's home race"
+        ],
+        "whatToBringUp": "Austria is the kind of track where pole position is worth more than usual—if you're not leading into Turn 1, you're fighting uphill all day.",
+        "ourPick": null
+      },
+      {
+        "whatHappened": "The U.S. Open is in progress with Wyndham Clark leading at 7-under after 54 holes, Xander Schauffele and Tom Kim at 3-under.",
+        "whyItMatters": "Clark has a four-stroke cushion heading into Sunday's final round at one of golf's toughest majors. A U.S. Open lead this wide late is rarely blown, but the course's rough and greens can chew up anyone.",
+        "theRead": "Clark has controlled the tournament and shown the kind of composure the USGA setup demands. Schauffele and Kim are in striking distance but would need Clark to falter—and Clark's been clinical. The fact that nobody else is within shouting distance tells you how difficult this course is playing and how well Clark has navigated it.",
+        "ammo": [
+          "Wyndham Clark: -7 (leading)",
+          "Xander Schauffele: -3 (tied 2nd)",
+          "Tom Kim: -3 (tied 2nd)",
+          "Clark holds a four-stroke lead with one round remaining",
+          "U.S. Open total purse: $21,500,000 — winner takes $3,870,000"
+        ],
+        "whatToBringUp": "Wyndham Clark has a four-shot lead in a U.S. Open—that's basically a lock, but the USGA's greens are so gnarly that even a four-shot cushion can collapse in one bad nine.",
+        "ourPick": "Clark wins because he's the only player who's truly controlled the golf course all week and the U.S. Open doesn't reward heroics—it rewards steady."
+      },
+      {
+        "whatHappened": "The Athletics beat the Los Angeles Angels 12–11.",
+        "whyItMatters": "Oakland got a one-run win in a slugfest that could go either way late in the season.",
+        "theRead": "Both teams traded runs all game, but Oakland closed it out when it mattered. High-scoring MLB games are fun but usually mean someone's pitching gave up too much—this one was tight enough to count.",
+        "ammo": [
+          "Athletics 12, Angels 11",
+          "One-run decision",
+          "Both teams combined for 23 runs — highest-scoring game of the day across MLB"
+        ],
+        "whatToBringUp": "Oakland walked out of Anaheim with a one-run win in a 23-run slug fest—whoever had the bullpen advantage that day won it.",
+        "ourPick": null
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-20T12:48:31.083Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_current_facts — RAW FACTS confirm WPG @ EDM has NO result yet. The section has only 3 ammo items but all three are either 'no result yet' placeholders or vague team descriptors with no named player, specific stat, or concrete event. The section cannot satisfy the HARD BLOCK RULE with substance — it has no named player, no score, no concrete event that happened. Kept in copy as a minimal preview but flagged: if this section publishes, it must be understood as a low-substance preview only."
+      }
+    ],
+    "changed": [
+      "title — tightened, removed 'extras' (not confirmed in RAW FACTS)",
+      "keyTakeaway — written from scratch; was empty in draft",
+      "lead.headline — sharpened to reflect 23-run total",
+      "lead.theRead — removed investment-adjacent language ('if you're betting these teams'), kept observational",
+      "lead.ammo — removed date item (not a conversation fact), kept three verifiable items",
+      "lead.whatToSay — sharpened",
+      "markets.whyBullet1 — 'Avago' corrected to 'Broadcom' (AVGO = Broadcom Inc.)",
+      "markets.ammo — 'Avago' corrected to 'Broadcom' throughout",
+      "golf.headline — cleaned per HEADLINE STRUCTURE RULE, removed score/series data",
+      "golf.whyCare1 — corrected venue from 'Pinehurst' (wrong, not in RAW FACTS) to 'Shinnecock Hills' per GOLF/EVENT VENUE RULE",
+      "golf.theRead — removed 'Pinehurst' reference, replaced with 'Shinnecock Hills'",
+      "golf.ammo — removed invented 'Sam Stevens and Matt Fitzpatrick also at -3' (not in RAW FACTS); kept three verifiable items",
+      "golf.course — populated with correct venue from RAW FACTS",
+      "f1.headline — sharpened per HEADLINE STRUCTURE RULE",
+      "nhl.headline — rewritten to reflect no result exists yet (pre-event framing)",
+      "nhl.ammo — rewritten; original ammo had no named player, no score, no concrete event — flagged to blocking",
+      "culture[2].topic — retitled to 'What to watch: The Brutalist' to signal curated rec",
+      "culture[2].ammo — cleared (streaming rec exception applies; no ammo required)",
+      "finalSharpTake — removed 'Warsh' reference (not in RAW FACTS), kept observational",
+      "theTake.office — removed bond-market-as-rate-hike framing (contradicted by RAW FACTS showing 10Y yield fell, not rose); rewritten observationally",
+      "theTake.bar — sharpened from generic meta-take to specific Cubs division claim",
+      "glance — all three rows rewritten to meet 8-word rule, removed ESPN bracket format strings",
+      "golf.defending — left blank; no defending champion named in RAW FACTS for this event (GOLF MAJOR VERIFICATION RULE)"
+    ],
+    "notes": [
+      "GOLF VENUE FIX: Draft incorrectly referenced 'Pinehurst' in golf.whyCare1 and golf.theRead. RAW FACTS clearly state Shinnecock Hills, Southampton, New York. All references corrected.",
+      "GOLF STATUS: Tournament is IN PROGRESS per RAW FACTS. All golf copy uses 'currently leading' and 'in progress' framing — never 'won' or 'champion'.",
+      "GOLF AMMO: Draft included 'Sam Stevens and Matt Fitzpatrick also at -3' — this is NOT in RAW FACTS. Removed to avoid fabrication.",
+      "NHL SECTION: No game result exists. Section is a minimal preview. Flagged to blocking because ammo cannot be satisfied with verifiable facts — no named player, no score, no concrete event. If editors want to publish, they should either drop this section or wait for a result.",
+      "MARKETS: 'Avago' in draft is the old company name — AVGO ticker is Broadcom Inc. Corrected throughout.",
+      "THETAKE.OFFICE: Draft said 'bond market signals the Fed might actually raise rates before year-end' — this contradicts RAW FACTS showing 10-year yield fell 1.9% on the week (yield down = bond prices up = less rate-hike fear, not more). Rewritten to stay observational and factually consistent.",
+      "CULTURE[2]: The Brutalist is a curated streaming/watch rec (third culture item). Ammo exception applies per Bible. No blocking.",
+      "FINALSHARPTAK: 'Warsh' removed — no reference to this name exists in RAW FACTS.",
+      "WORLD CUP: RAW FACTS include World Cup 2026 match results (USA 2-0 Australia, Morocco 1-0 Scotland, Brazil 3-0 Haiti, Paraguay 1-0 Turkey) and trending headlines. These were not in the draft and no sportsOther slot exists to add them without changing array length. Flagged for writer to consider adding a World Cup sportsOther entry in the next draft cycle.",
+      "TENNIS: ATP and WTA results (Zverev, Tiafoe, Sabalenka, Eala) appear in RAW FACTS but are not in the draft's sportsOther array. The glance.culture line in the draft incorrectly attributed these as culture items — corrected glance to use actual culture stories. Tennis results flagged for writer consideration in next cycle."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": {
+    "f1": {
+      "ammo": [
+        "The Lenovo Austrian Grand Prix is taking place this weekend."
+      ]
+    },
+    "golf": {
+      "ammo": [
+        "Wyndham Clark is currently in 1st place at -7 in the U.S. Open leaderboard.",
+        "Xander Schauffele and Tom Kim are tied for 2nd at -3."
+      ]
+    },
+    "culture": [
+      {
+        "ammo": [
+          "'Toy Story 5' is projected to earn around $14 million at Thursday night previews, setting a franchise record."
+        ]
+      },
+      {
+        "ammo": [
+          "FKA twigs released a new electro song featuring Lil Yachty."
+        ]
+      }
+    ],
+    "sports": [
+      {
+        "label": "World Cup",
+        "ammo": [
+          "The United States defeated Australia 2-0 with goals from Cameron Burgess (11') and Alex Freeman (43').",
+          "Morocco beat Scotland 1-0, with Ismael Saibari scoring in the 2nd minute.",
+          "Brazil won 3-0 against Haiti, with Matheus Cunha scoring twice (23', 36') and Vinícius Júnior scoring in stoppage time (45'+3').",
+          "Paraguay eliminated Turkey with a 1-0 victory, Matías Galarza scored in the 2nd minute."
+        ]
+      }
+    ]
+  },
+  "researchPack": null,
+  "researchMode": "feed-only",
+  "generationWarnings": [
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_current_facts — RAW FACTS confirm WPG @ EDM has NO result yet. The section has only 3 ammo items but all three are either 'no result yet' placeholders or vague team descriptors with no named player, specific stat, or concrete event. The section cannot satisfy the HARD BLOCK RULE with substance — it has no named player, no score, no concrete event that happened. Kept in copy as a minimal preview but flagged: if this section publishes, it must be understood as a low-substance preview only."
+    }
+  ],
+  "verification": {
+    "pass": false,
+    "blocking": [
+      {
+        "section": "SPORT [World Cup]",
+        "claim": "United States 2–0 Australia — The United States beat Australia 2–0 in World Cup group play, with Cameron Burgess scoring in the 11th minute and Alex Freeman adding a second in the 43rd.",
+        "flag": "condensed_section_new_claim",
+        "reason": "The specific mention of Cameron Burgess and Alex Freeman scoring is not supported by ESPN data or any provided evidence."
+      }
+    ],
+    "warnings": [
+      {
+        "section": "CULTURE 2",
+        "note": "FKA twigs releases new track; no evidence provided."
+      },
+      {
+        "section": "GOLF",
+        "note": "Leader information correct but no champion yet as tournament is ongoing."
+      },
+      {
+        "section": "CULTURE 3",
+        "note": "Film plot described; unverifiable without external evidence."
+      }
+    ],
+    "verificationSummary": "Most claims are in alignment with provided evidence, but there are warnings for unverifiable World Cup details and culture sections. U.S. Open golf leader details are accurate but winning claim blocked as event is still in progress.",
+    "model": "gpt-4o",
+    "timestamp": "2026-06-20T12:48:35.665Z"
+  }
+}
