@@ -730,6 +730,9 @@
   }
   .champ-card:hover .champ-play { background: rgba(255,255,255,0.30); }
 
+  /* CHAMPIONS SECTION — grid of champ-cards */
+  .grid-champ { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+
   /* SPORTS CATEGORY NAV */
   .sports-nav {
     display: flex; gap: 8px; flex-wrap: wrap;
@@ -901,9 +904,9 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     </div>
     <p class="umbrella-sub">Whatever's live and whatever's relevant right now — ranked by what matters, across every sport.</p>
     <nav class="sports-nav" aria-label="Sports categories">
-      <a href="#live-now"  class="sports-nav-pill is-live">Live Now</a>
-      <a href="#must-watch" class="sports-nav-pill">Must Watch</a>
-      <a href="#track-it"  class="sports-nav-pill">Track It</a>
+      <a href="#live-now"   class="sports-nav-pill is-live">Live Now</a>
+      <a href="#recap"      class="sports-nav-pill">Recap</a>
+      <a href="#champions"  class="sports-nav-pill">Champions</a>
       <a href="#scoreboard" class="sports-nav-pill">Scoreboard</a>
     </nav>
   </div>
@@ -921,8 +924,31 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <div class="grid grid-live" id="liveNow"></div>
   </section>
 
-  <!-- Formula 1 (Track It anchor) -->
-  <div id="track-it" style="scroll-margin-top:80px"></div>
+  <!-- Recap — completed games from today across all team sports -->
+  <section class="live-section sub" id="recap">
+    <div class="section-head is-sub">
+      <div class="section-head-top">
+        <h3 class="section-h">Recap</h3>
+        <span id="badge-recap"></span>
+        <span class="section-meta" id="meta-recap"></span>
+      </div>
+      <p class="section-desc">Final scores and the key moments from today's completed games — everything that happened.</p>
+    </div>
+    <div class="grid grid-two" id="recapWrap"></div>
+  </section>
+
+  <!-- Champions — season and championship title winners -->
+  <section class="live-section sub" id="champions" hidden>
+    <div class="section-head is-sub">
+      <div class="section-head-top">
+        <h3 class="section-h">Champions</h3>
+      </div>
+      <p class="section-desc">This season's title winners — the teams and players that closed it out.</p>
+    </div>
+    <div id="championsWrap"></div>
+  </section>
+
+  <!-- Formula 1 -->
   <section class="live-section sub" id="f1">
     <div class="section-head is-sub">
       <div class="section-head-top">
@@ -974,8 +1000,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <div id="mmaWrap"></div>
   </section>
 
-  <!-- NBA (Must Watch anchor — biggest game on today) -->
-  <div id="must-watch" style="scroll-margin-top:80px"></div>
+  <!-- NBA -->
   <section class="live-section sub" id="nba">
     <div class="section-head is-sub">
       <div class="section-head-top">

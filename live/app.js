@@ -1543,6 +1543,88 @@ function FeaturedGolfCard(g) {
     el.innerHTML = `<div class="grid-golf"><div class="stack">${cards}</div><div class="stack">${ContextCard(tennisContext(tennis), false, 'Tennis')}</div></div>`;
   }
 
+  // ── Recap — all completed games today across team sports ────────────────────
+  function renderRecap(scoreboard) {
+    const el = $('recapWrap');
+    if (!el) return;
+
+    const SOCCER_KEYS = ['worldcup', 'mls', 'epl', 'ucl', 'concacaf'];
+    const taggedGames = [];
+
+    [
+      { key: 'nba',  tag: 'NBA',     contextFn: nbaContext,          wymFn: nbaWhatYouMissed },
+      { key: 'mlb',  tag: 'MLB',     contextFn: mlbContext,          wymFn: mlbWhatYouMissed },
+      { key: 'nhl',  tag: 'NHL',     contextFn: summaryReadContext,  wymFn: summaryWhatYouMissed },
+    ].forEach(({ key, tag, contextFn, wymFn }) => {
+      ((scoreboard || []).find(lg => lg.key === key)?.games || [])
+        .filter(g => g.state === 'post')
+        .forEach(g => taggedGames.push({ ...g, _tag: tag, _contextFn: contextFn, _wymFn: wymFn }));
+    });
+
+    (scoreboard || [])
+      .filter(lg => SOCCER_KEYS.includes(lg.key))
+      .flatMap(lg => lg.games.filter(g => g.state === 'post'))
+      .forEach(g => taggedGames.push({ ...g, _tag: 'Soccer', _contextFn: soccerContext, _wymFn: soccerWhatYouMissed }));
+
+    setBadge('badge-recap', taggedGames.length ? 'live' : null);
+    setMeta('meta-recap', taggedGames.length ? 'ESPN' : '', new Date().toISOString());
+
+    if (!taggedGames.length) {
+      el.innerHTML = emptyBox('No completed games yet today. Check back after the first final whistle.');
+      return;
+    }
+
+    taggedGames.sort((a, b) => (b.importance || 0) - (a.importance || 0));
+    const featured = taggedGames[0];
+    const others   = taggedGames.slice(1);
+
+    const rows  = (featured._contextFn(featured) || []).filter(Boolean);
+    const wym   = featured._wymFn ? featured._wymFn(featured) : '';
+    const hlUrl = featured.eventLink?.url || `https://www.youtube.com/results?search_query=${encodeURIComponent((featured.headline || featured._tag) + ' highlights')}`;
+
+    el.innerHTML =
+      `<div class="stack">${Marquee(featured)}${others.length ? `<div class="grid grid-scores">${others.map(ScoreboardCard).join('')}</div>` : ''}</div>` +
+      `<div class="stack">${ContextCard(rows, false, featured._tag)}${wym}${HighlightLink(hlUrl, 'Watch highlights →')}</div>`;
+  }
+
+  // ── Champions — teams/players that have clinched a title this season ─────────
+  function renderChampions(scoreboard) {
+    const el    = $('championsWrap');
+    const sec   = $('champions');
+    if (!el || !sec) return;
+
+    const CHAMP_LEAGUES = [
+      { key: 'nba',  tag: 'NBA' },
+      { key: 'nhl',  tag: 'NHL' },
+      { key: 'mlb',  tag: 'MLB' },
+    ];
+
+    const cards = [];
+    CHAMP_LEAGUES.forEach(({ key, tag }) => {
+      const lgGames  = (scoreboard || []).find(lg => lg.key === key)?.games || [];
+      const postGames = lgGames.filter(g => g.state === 'post');
+      const liveGames = lgGames.filter(g => g.state === 'in');
+
+      // Championship detected: no live games, a completed game exists with a winner,
+      // and the series record indicates one team has reached 4 wins (NBA/NHL) or
+      // no further games are scheduled (season is over).
+      if (!liveGames.length && postGames.length > 0) {
+        const featured = postGames.sort((a, b) => (b.importance || 0) - (a.importance || 0))[0];
+        const hasWinner  = featured.home?.winner || featured.away?.winner;
+        const seriesNums = (featured.facts?.series?.summary?.match(/\d+/g) || []).map(Number);
+        const isFinal    = seriesNums.some(n => n >= 4) || featured.facts?.seriesComplete;
+        if (hasWinner && isFinal) {
+          const card = ChampionHighlightCard(featured, tag);
+          if (card) cards.push(card);
+        }
+      }
+    });
+
+    if (!cards.length) { sec.hidden = true; return; }
+    sec.hidden = false;
+    el.innerHTML = `<div class="grid-champ">${cards.join('')}</div>`;
+  }
+
   function renderScoreboard(real) {
     setBadge('badge-scores', real ? 'live' : null);
     const el = $('scoreboardWrap');
@@ -1694,6 +1776,7 @@ function FeaturedGolfCard(g) {
   function paintSkeletons() {
     const sk = (n) => Array.from({ length: n }, () => '<div class="skeleton"></div>').join('');
     $('liveNow').innerHTML = sk(4);
+    if ($('recapWrap'))     $('recapWrap').innerHTML = sk(2);
     $('f1Wrap').innerHTML = sk(2);
     $('golfWrap').innerHTML = sk(1);
     if ($('tennisWrap')) $('tennisWrap').innerHTML = sk(2);
@@ -1724,6 +1807,8 @@ function FeaturedGolfCard(g) {
   function render(payload) {
     const p = payload || {};
     renderLiveNow(p.liveNow);
+    renderRecap(p.scoreboard);
+    renderChampions(p.scoreboard);
     renderF1(p.f1);
     renderGolf(p.golf);
     renderTennis(p.tennis);
