@@ -388,6 +388,9 @@ function buildSportsCard(s, isLead) {
 
   const rows = [];
 
+  // When — date/time for upcoming events (F1, etc.)
+  if (s.when) rows.push(`      <div class="ctx-row"><div class="ctx-label">When</div><div class="ctx-text">${esc(s.when)}</div></div>`);
+
   // Golf-specific context rows
   if (s.course) rows.push(`      <div class="ctx-row"><div class="ctx-label">Course</div><div class="ctx-text">${esc(s.course)}</div></div>`);
   if (s.purse)  rows.push(`      <div class="ctx-row"><div class="ctx-label">Purse</div><div class="ctx-text">${esc(s.purse)}</div></div>`);

@@ -409,6 +409,7 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
     candidates.push({
       name: f1.name, label: 'F1', category: 'individual',
       headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
+      when: !isPost && f1.status ? f1.status : null,
       _score: imp, _isFinal: isPost, _sport: 'f1', _f1Winner: winner,
     });
   }

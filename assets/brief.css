@@ -1505,7 +1505,7 @@ ul.ammo-list li::before {
 .ctx-head { display: flex; align-items: center; gap: 8px; padding: 12px 18px; background: var(--text); color: #fff; }
 .ctx-title { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
 .ctx-dot { color: var(--red); }
-.ctx-tag { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.04em; }
+.ctx-tag { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 0.06em; }
 .ctx-body { padding: 4px 18px 18px; }
 .ctx-headline { font-size: 19px; font-weight: 800; margin: 14px 0 4px; line-height: 1.28; color: var(--text); }
 .ctx-row { padding: 12px 0; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 5px; }
