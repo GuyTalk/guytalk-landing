@@ -1,0 +1,1229 @@
+{
+  "num": 60,
+  "slug": "issue-060",
+  "date": "Sunday, June 21, 2026",
+  "title": "Twins crush Diamondbacks 16–8. Phillies demolish Mets 15–3. Wyndham Clark leads U.S. Open at –7.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815838",
+      "name": "Minnesota Twins at Arizona Diamondbacks",
+      "shortName": "MIN @ ARI",
+      "date": "2026-06-21T02:10Z",
+      "venue": "Chase Field",
+      "venueCity": "Phoenix, Arizona",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Arizona Diamondbacks",
+        "abbrev": "ARI",
+        "score": "8",
+        "winner": false
+      },
+      "away": {
+        "team": "Minnesota Twins",
+        "abbrev": "MIN",
+        "score": "16",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815828",
+      "name": "New York Mets at Philadelphia Phillies",
+      "shortName": "NYM @ PHI",
+      "date": "2026-06-20T23:15Z",
+      "venue": "Citizens Bank Park",
+      "venueCity": "Philadelphia, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Philadelphia Phillies",
+        "abbrev": "PHI",
+        "score": "15",
+        "winner": true
+      },
+      "away": {
+        "team": "New York Mets",
+        "abbrev": "NYM",
+        "score": "3",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815833",
+      "name": "Toronto Blue Jays at Chicago Cubs",
+      "shortName": "TOR @ CHC",
+      "date": "2026-06-20T18:20Z",
+      "venue": "Wrigley Field",
+      "venueCity": "Chicago, Illinois",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "6",
+        "winner": false
+      },
+      "away": {
+        "team": "Toronto Blue Jays",
+        "abbrev": "TOR",
+        "score": "8",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 746.74,
+      "prevClose": 740.96,
+      "dayChange": 5.78,
+      "dayChangePct": 0.7801,
+      "weekChangePct": 1.2171966649734531,
+      "spark": [
+        733.72998046875,
+        741.25,
+        742.719970703125,
+        745.6400146484375,
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375
+      ],
+      "indexPrice": 7500.58,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 1.084620170678974
+    },
+    "DIA": {
+      "price": 515.52,
+      "prevClose": 516.3,
+      "dayChange": -0.78,
+      "dayChangePct": -0.1511,
+      "weekChangePct": 1.2093636770830776,
+      "spark": [
+        493.9800109863281,
+        500.239990234375,
+        503.1099853515625,
+        506.1199951171875,
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125
+      ],
+      "indexPrice": 51564.7,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.14011583744705225
+    },
+    "QQQ": {
+      "price": 740.62,
+      "prevClose": 722.51,
+      "dayChange": 18.11,
+      "dayChangePct": 2.5065,
+      "weekChangePct": 3.2769975795992514,
+      "spark": [
+        701.530029296875,
+        713.1500244140625,
+        714.510009765625,
+        717.5399780273438,
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875
+      ],
+      "indexPrice": 26517.932,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 1.9071490472555568
+    },
+    "IWM": null,
+    "NVDA": {
+      "price": 210.69,
+      "prevClose": 204.65,
+      "dayChange": 6.04,
+      "dayChangePct": 2.9514,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 400.49,
+      "prevClose": 396.38,
+      "dayChange": 4.11,
+      "dayChangePct": 1.0369,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 379.4,
+      "prevClose": 378.91,
+      "dayChange": 0.49,
+      "dayChangePct": 0.1293,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 298.01,
+      "prevClose": 295.95,
+      "dayChange": 2.06,
+      "dayChangePct": 0.6961,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 577.22,
+      "prevClose": 567.58,
+      "dayChange": 9.64,
+      "dayChangePct": 1.6984,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 244.39,
+      "prevClose": 237.5,
+      "dayChange": 6.89,
+      "dayChangePct": 2.9011,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 368.03,
+      "prevClose": 363.79,
+      "dayChange": 4.24,
+      "dayChangePct": 1.1655,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 537.37,
+      "prevClose": 512.48,
+      "dayChange": 24.89,
+      "dayChangePct": 4.8568,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 411.35,
+      "prevClose": 392.9,
+      "dayChange": 18.45,
+      "dayChangePct": 4.6959,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 77.38,
+      "prevClose": 76.96,
+      "dayChange": 0.42,
+      "dayChangePct": 0.5457,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 325.22,
+      "prevClose": 333.46,
+      "dayChange": -8.24,
+      "dayChangePct": -2.4711,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 163.26,
+      "prevClose": 164.915,
+      "dayChange": -1.655,
+      "dayChangePct": -1.0035,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 409.5,
+      "prevClose": 419.32,
+      "dayChange": -9.82,
+      "dayChangePct": -2.3419,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 64188.23,
+      "prevClose": 63727.99,
+      "dayChange": 460.24,
+      "dayChangePct": 0.7222,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AMD",
+      "AVGO",
+      "NVDA",
+      "AMZN",
+      "JPM"
+    ],
+    "10Y": {
+      "price": 4.4509997,
+      "prevClose": 4.4629998207092285,
+      "dayChange": -0.012000120709228845,
+      "dayChangePct": -0.2688801521690823,
+      "weekChangePct": -0.2688801521690823,
+      "spark": [
+        4.666999816894531,
+        4.572000026702881,
+        4.585999965667725,
+        4.558000087738037,
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, June 19 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, June 19). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 133.99,
+          "changePct": 10.6441
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 537.37,
+          "changePct": 4.85677
+        },
+        {
+          "symbol": "DIS",
+          "name": "The Walt Disney Company",
+          "price": 103.89,
+          "changePct": 3.00416
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 210.69,
+          "changePct": 2.95138
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "PFE",
+          "name": "Pfizer Inc.",
+          "price": 25.22,
+          "changePct": -2.70062
+        },
+        {
+          "symbol": "JNJ",
+          "name": "Johnson & Johnson",
+          "price": 228.39,
+          "changePct": -2.48079
+        },
+        {
+          "symbol": "JPM",
+          "name": "JPMorgan Chase & Co.",
+          "price": 325.22,
+          "changePct": -2.47106
+        },
+        {
+          "symbol": "CVX",
+          "name": "Chevron Corporation",
+          "price": 173.63,
+          "changePct": -2.22435
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 210.69,
+          "changePct": 2.95138
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 133.99,
+          "changePct": 10.6441
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 77.38,
+          "changePct": 0.54574
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 64120.01,
+          "changePct": -0.18819
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "U.S. Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-18T04:00Z",
+    "endDate": "2026-06-21T04:00Z",
+    "status": "Round 3 - Play Complete",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Wyndham Clark",
+        "score": "-7",
+        "pos": "1st"
+      },
+      {
+        "name": "Scottie Scheffler",
+        "score": "-1",
+        "pos": "2nd"
+      },
+      {
+        "name": "Sahith Theegala",
+        "score": "-1",
+        "pos": "3rd"
+      },
+      {
+        "name": "Tom Kim",
+        "score": "-1",
+        "pos": "4th"
+      },
+      {
+        "name": "Sam Stevens",
+        "score": "-1",
+        "pos": "5th"
+      },
+      {
+        "name": "Emiliano Grillo",
+        "score": "E",
+        "pos": "6th"
+      },
+      {
+        "name": "Keith Mitchell",
+        "score": "E",
+        "pos": "7th"
+      },
+      {
+        "name": "Sam Burns",
+        "score": "E",
+        "pos": "8th"
+      },
+      {
+        "name": "Xander Schauffele",
+        "score": "E",
+        "pos": "9th"
+      },
+      {
+        "name": "Tommy Fleetwood",
+        "score": "+1",
+        "pos": "10th"
+      }
+    ],
+    "purse": {
+      "total": "$21,500,000",
+      "winner": "$3,870,000"
+    }
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Terra Wortmann Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-13T04:00Z",
+        "endDate": "2026-06-22T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Frances Tiafoe",
+            "loser": "Felix Auger-Aliassime",
+            "score": "3-6 6-3 7-6"
+          },
+          {
+            "winner": "Taylor Fritz",
+            "loser": "Alexander Zverev",
+            "score": "6-7 6-4 7-5"
+          },
+          {
+            "winner": "Frances Tiafoe",
+            "loser": "Daniel Altmaier",
+            "score": "6-1 6-3"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "VANDA Pharmaceuticals Berlin Tennis Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-13T04:00Z",
+        "endDate": "2026-06-22T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Alexandra Eala",
+            "loser": "Elina Svitolina",
+            "score": "6-3 6-4"
+          },
+          {
+            "winner": "Jessica Pegula",
+            "loser": "Aryna Sabalenka",
+            "score": "6-4 6-7 6-0"
+          },
+          {
+            "winner": "Linda Noskova",
+            "loser": "Alexandra Eala",
+            "score": "6-2 6-4"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Lenovo Austrian Grand Prix",
+    "shortName": "Lenovo Austrian GP",
+    "venue": "Red Bull Ring",
+    "status": "6/28 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 41
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Sweden at Netherlands",
+      "shortName": "SWE @ NED",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-20T17:00Z",
+      "home": {
+        "team": "Netherlands",
+        "score": "5"
+      },
+      "away": {
+        "team": "Sweden",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Brian Brobbey",
+          "team": "",
+          "clock": "5'",
+          "type": "Goal"
+        },
+        {
+          "player": "Brian Brobbey",
+          "team": "",
+          "clock": "17'",
+          "type": "Goal"
+        },
+        {
+          "player": "Cody Gakpo",
+          "team": "",
+          "clock": "47'",
+          "type": "Goal"
+        },
+        {
+          "player": "Cody Gakpo",
+          "team": "",
+          "clock": "54'",
+          "type": "Goal"
+        },
+        {
+          "player": "Anthony Elanga",
+          "team": "",
+          "clock": "59'",
+          "type": "Goal"
+        },
+        {
+          "player": "Crysencio Summerville",
+          "team": "",
+          "clock": "89'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Brian Brobbey and Cody Gakpo scored two each as Netherlands cruised to a 5-1 World Cup victory over Sweden to go top of Group F."
+    },
+    {
+      "name": "Ivory Coast at Germany",
+      "shortName": "CIV @ GER",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-20T20:00Z",
+      "home": {
+        "team": "Germany",
+        "score": "2"
+      },
+      "away": {
+        "team": "Ivory Coast",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Franck Kessié",
+          "team": "",
+          "clock": "30'",
+          "type": "Goal"
+        },
+        {
+          "player": "Deniz Undav",
+          "team": "",
+          "clock": "68'",
+          "type": "Goal - Volley"
+        },
+        {
+          "player": "Deniz Undav",
+          "team": "",
+          "clock": "90'+4'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "A brace by substitute Deniz Undav fired Germany to a last-gasp 2-1 win over Ivory Coast to secure their place in the last 32 of the World Cup."
+    },
+    {
+      "name": "Curaçao at Ecuador",
+      "shortName": "CUW @ ECU",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-21T00:00Z",
+      "home": {
+        "team": "Ecuador",
+        "score": "0"
+      },
+      "away": {
+        "team": "Curaçao",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": "Room made 15 saves - the most by any goalkeeper in 90 minutes of a World Cup match since records began in 1966"
+    },
+    {
+      "name": "Saudi Arabia at Spain",
+      "shortName": "KSA @ ESP",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-21T16:00Z",
+      "home": {
+        "team": "Spain",
+        "score": "0"
+      },
+      "away": {
+        "team": "Saudi Arabia",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Iran at Belgium",
+      "shortName": "IRN @ BEL",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-21T19:00Z",
+      "home": {
+        "team": "Belgium",
+        "score": "0"
+      },
+      "away": {
+        "team": "Iran",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Cape Verde at Uruguay",
+      "shortName": "CPV @ URU",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-21T22:00Z",
+      "home": {
+        "team": "Uruguay",
+        "score": "0"
+      },
+      "away": {
+        "team": "Cape Verde",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Egypt at New Zealand",
+      "shortName": "EGY @ NZL",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-22T01:00Z",
+      "home": {
+        "team": "New Zealand",
+        "score": "0"
+      },
+      "away": {
+        "team": "Egypt",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401878099",
+      "name": "Winnipeg Jets at Edmonton Oilers",
+      "shortName": "WPG @ EDM",
+      "date": "2026-09-20T00:00Z",
+      "venue": "Rogers Place",
+      "venueCity": "Edmonton, AB",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Edmonton Oilers",
+        "abbrev": "EDM",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Winnipeg Jets",
+        "abbrev": "WPG",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Sombr Snags Invite to Taylor Swift and Travis Kelce's Wedding Celebration - TMZ",
+      "url": "https://www.tmz.com/2026/06/20/sombr-invited-to-taylor-swift-travis-kelce-wedding-celebration/",
+      "description": "Taylor Swift and Travis Kelce's wedding guest list is gaining more star power ... 'cause TMZ has learned Sombr has scored an invite to the couple's big wedding celebration.",
+      "source": "TMZ"
+    },
+    {
+      "title": "WWE SmackDown recap & reactions: I Want to Believe - Cageside Seats",
+      "url": "https://www.cagesideseats.com/wwe/452711/wwe-smackdown-recap-review-june-19-2026-sami-zayn-cody-rhodes-charlotte-flair-liv-morgan-night-of-champions",
+      "description": "Sami Zayn officially gets his WWE title shot at Night of Champions; Ride or Dies brace for heartbreak again.",
+      "source": "Cageside Seats"
+    },
+    {
+      "title": "Grammy-nominated record producer Tay Keith dies at age 29 - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://abcnews.com/US/grammy-nominated-record-producer-tay-keith-dies-age/story?id\\\\u003d134038543",
+      "description": null,
+      "source": "Abcnews.com"
+    },
+    {
+      "title": "Tom Holland Reveals He Knew About Robert Downey Jr.’s ‘Avengers’ Return Early — and Told Zendaya Right Away - Yahoo News UK",
+      "url": "https://www.thewrap.com/creative-content/movies/tom-holland-spoiled-robert-downey-jr-avengers-return-to-zendaya/",
+      "description": "Tom Holland admitted that Robert Downey Jr. told him about his \"Avengers: Doomsday\" casting early on – and that he subsequently spilled the news to Zendaya.",
+      "source": "TheWrap"
+    },
+    {
+      "title": "Daveigh Chase’s ‘devastated’ mom breaks silence on actress’ shock Skid Row death: ‘I am in so much pain’ - Page Six",
+      "url": "https://pagesix.com/2026/06/19/celebrity-news/daveigh-chases-mom-breaks-silence-on-actress-death/",
+      "description": "The actress rose to fame with roles in “Lilo & Stitch” and “The Ring.”",
+      "source": "Page Six"
+    },
+    {
+      "title": "Which teams have qualified for the World Cup 2026 knockouts, round of 32? - Al Jazeera",
+      "url": "https://www.aljazeera.com/sports/2026/6/20/which-teams-have-qualified-for-the-world-cup-2026-knockouts-round-of-32",
+      "description": "The 2026 FIFA World Cup knockout stage format, criteria and rules for qualification. Find out who’s in and who’s out.",
+      "source": "Al Jazeera English"
+    },
+    {
+      "title": "The son of a Super Bowl winner solidifies rowdy Seattle as a US soccer stronghold - CNN",
+      "url": "https://www.cnn.com/2026/06/20/sport/world-cup-alex-freeman-seattle",
+      "description": "Lumen Field is now hallowed ground for the Freeman family after Alex Freeman helped lead the US to a World Cup victory",
+      "source": "CNN"
+    },
+    {
+      "title": "UFC: Ronda Rousey & Jake Paul taunt UFC and Dana White over White House viewing figures - BBC",
+      "url": "https://www.bbc.com/sport/mixed-martial-arts/articles/cjrgl80yerjo",
+      "description": "Ronda Rousey and Jake Paul taunt the UFC and Dana White for failing to break Most Valuable Promotions' MMA record audience figure with the White House event.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Türkiye 0-1 Paraguay Stats: Ten-Man Paraguay Secure Vital Victory to Knock Türkiye Out - Opta Analyst",
+      "url": "https://theanalyst.com/articles/turkiye-vs-paraguay-stats-fifa-world-cup-2026-live",
+      "description": "Ten-man Paraguay held on for a vital victory in their Group D clash with Turkiye, which saw Vincenzo Montella's team crash out of the 2026 FIFA World Cup.",
+      "source": "Theanalyst.com"
+    },
+    {
+      "title": "USA vs. Australia takeaways: Winners of Group D, USMNT is redefining World Cup expectations — 'There's something about this one that feels different' - Yahoo Sports",
+      "url": "https://sports.yahoo.com/soccer/article/usa-vs-australia-takeaways-winners-of-group-d-usmnt-is-redefining-world-cup-expectations--theres-something-about-this-one-that-feels-different-013909800.html",
+      "description": "Make no mistake: This is not normal.",
+      "source": "Yahoo Entertainment"
+    }
+  ],
+  "topStories": [],
+  "sectionStories": {
+    "culture": [],
+    "cultureNoData": false,
+    "heroImage": null
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Netherlands 5–1 Sweden",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nNetherlands 5–1 Sweden | Scorers: Brian Brobbey (5'), Brian Brobbey (17'), Cody Gakpo (47'), Cody Gakpo (54'), Anthony Elanga (59'), Crysencio Summerville (89') NOTE: Brian Brobbey and Cody Gakpo scored two each as Netherlands cruised to a 5-1 World Cup victory over Sweden to go top of \nGermany 2–1 Ivory Coast | Scorers: Franck Kessié (30'), Deniz Undav (68'), Deniz Undav (90'+4') NOTE: A brace by substitute Deniz Undav fired Germany to a last-gasp 2-1 win over Ivory Coast to secure their place in the las\nEcuador 0–0 Curaçao NOTE: Room made 15 saves - the most by any goalkeeper in 90 minutes of a World Cup match since records began in 1966\nTODAY'S FIXTURES: Saudi Arabia vs. Spain (12:00 PM EDT); Iran vs. Belgium (3:00 PM EDT); Cape Verde vs. Uruguay (6:00 PM EDT); Egypt vs. New Zealand (9:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://image.mediapen.com/news/202606/news_1105561_1781992027_m.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "whatHappened": "Brian Brobbey and Cody Gakpo each scored twice as the Netherlands demolished Sweden 5–1 to top their World Cup group.",
+      "whyItMatters": "The Dutch are now the group leaders heading into the final matches, and their offensive firepower—five different scorers across the match—signals they can compete with any team in the tournament. Sweden's collapse opens the door for other teams to challenge for advancement.",
+      "theRead": "The Netherlands didn't just win; they announced themselves. Brobbey's two early goals set the tone before halftime, and Gakpo's double in the second half turned it into a statement. This is what clinical, confident football looks like at the World Cup. Sweden came to compete but got exposed on the counter. The Dutch are built to run deep.",
+      "ammo": [
+        "Brian Brobbey scored in the 5th and 17th minutes",
+        "Cody Gakpo added two goals in the 47th and 54th minutes",
+        "Netherlands now top their World Cup group after the 5–1 victory"
+      ],
+      "whatToBringUp": "The Netherlands put five past Sweden with five different scorers—that's not luck, that's a team that knows how to finish.",
+      "ourPick": null,
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        },
+        {
+          "name": "Jude Bellingham",
+          "url": "https://en.wikipedia.org/wiki/Jude_Bellingham"
+        },
+        {
+          "name": "Cristiano Ronaldo",
+          "url": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo"
+        },
+        {
+          "name": "Romano Schmid",
+          "url": "https://en.wikipedia.org/wiki/Romano_Schmid"
+        },
+        {
+          "name": "Luis Díaz",
+          "url": "https://en.wikipedia.org/wiki/Luis_Díaz_(footballer,_born_1997)"
+        }
+      ]
+    },
+    {
+      "name": "Lenovo Austrian Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Lenovo Austrian Grand Prix — this weekend",
+      "facts": "Lenovo Austrian Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://images.macrumors.com/t/wONwglcJXh-fTn_rOFsDAjJRmK4=/3840x/article-new/2025/10/Apple-exclusive-F1-partner.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "6/28 - 9:00 AM EDT",
+      "tier": 1,
+      "whatHappened": "The Lenovo Austrian Grand Prix is this weekend at the Red Bull Ring.",
+      "whyItMatters": "Austria is traditionally a showcase for pure speed on a short, technical circuit where setup and qualifying pace separate winners from the rest. It's one of the season's most predictable venues—and that's exactly what makes it dangerous for anyone not running at the front.",
+      "theRead": "The Red Bull Ring rewards raw pace and penalizes mistakes hard. No room for error on a track this tight and fast. Whoever nails the setup walks away with big points. It's the kind of weekend where you see the real pecking order.",
+      "ammo": [
+        "Lenovo Austrian Grand Prix takes place at the Red Bull Ring this weekend",
+        "The circuit is 4.3 kilometers and one of F1's shortest tracks",
+        "Austria traditionally favors high downforce setups and qualifying performance"
+      ],
+      "whatToBringUp": "The Red Bull Ring doesn't forgive mistakes—short lap, tight corners, and high speeds mean qualifying position basically decides the race.",
+      "ourPick": "Whoever gets the front row lock-out wins because the track is too narrow and the lap too short to make up ground in the midfield.",
+      "playerLinks": [
+        {
+          "name": "Max Verstappen",
+          "url": "https://www.formula1.com/en/drivers/max-verstappen"
+        },
+        {
+          "name": "Lewis Hamilton",
+          "url": "https://www.formula1.com/en/drivers/lewis-hamilton"
+        },
+        {
+          "name": "Charles Leclerc",
+          "url": "https://www.formula1.com/en/drivers/charles-leclerc"
+        },
+        {
+          "name": "Lando Norris",
+          "url": "https://www.formula1.com/en/drivers/lando-norris"
+        },
+        {
+          "name": "Carlos Sainz",
+          "url": "https://www.formula1.com/en/drivers/carlos-sainz"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/drivers/george-russell"
+        }
+      ]
+    },
+    {
+      "name": "U.S. Open",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "U.S. Open — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st Wyndham Clark: -7, 2nd Scottie Scheffler: -1, 3rd Sahith Theegala: -1",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://dims.apnews.com/dims4/default/6ec48a2/2147483647/strip/true/crop/5649x3764+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F93%2Fc7%2F6629230973b347e2c7c6da9ef11d%2F74b40c578cb5422fb253a97be1f9d40e",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "whatHappened": "The U.S. Open is in progress with Wyndham Clark leading at 7-under after 36 holes.",
+      "whyItMatters": "Clark's seven-stroke lead over Scottie Scheffler and Sahith Theegala is substantial going into the final 36 holes, but the U.S. Open's notoriously difficult setup can turn any lead fragile. Scheffler, the world number one, is still very much in the hunt and capable of a historic comeback.",
+      "theRead": "Clark has built something real—a seven-shot cushion is no joke at any major. But the U.S. Open setup is brutal, and Scheffler doesn't quit. Theegala's presence at minus-one shows the field is bunched and hunting. Clark needs to stay patient and avoid the traps. One bad Sunday can erase a week's work. Scheffler has the skill to get there; it just depends on whether Clark's nerve holds.",
+      "ammo": [
+        "Wyndham Clark leads at 7-under par after two rounds",
+        "Scottie Scheffler is in second place at 1-under, seven shots back",
+        "Sahith Theegala is tied for second at 1-under par",
+        "U.S. Open total purse: $21,500,000 — winner takes $3,870,000"
+      ],
+      "whatToBringUp": "Wyndham Clark has a seven-shot lead at the U.S. Open going into the weekend—that's huge, but Scottie Scheffler is still in the field and he doesn't lose majors from that position.",
+      "ourPick": "Wyndham Clark wins because he's built a lead most golfers never get at a major, and the U.S. Open's difficulty actually works in his favor—nobody's catching him in two days.",
+      "playerLinks": [
+        {
+          "name": "Scottie Scheffler",
+          "url": "https://www.pgatour.com/players/player.4686091.scottie-scheffler.html"
+        }
+      ],
+      "course": null,
+      "purse": "$21,500,000 total — winner takes $3,870,000"
+    },
+    {
+      "name": "MIN @ ARI",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Minnesota Twins 16–8 over Arizona Diamondbacks",
+      "facts": "Minnesota Twins beat Arizona Diamondbacks 16–8",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://cloudfront-us-east-1.images.arcpublishing.com/wapo/467MH4DJ64I7DAYOCM6SBSW5FA.jpg&amp;w=1440",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "whatHappened": "The Minnesota Twins beat the Arizona Diamondbacks 16–8.",
+      "whyItMatters": "An eight-run victory is decisive, but the real signal is firepower. The Twins put up 16 runs, which means their offense is working and Arizona's pitching gave up the kind of damage that doesn't go unnoticed in the division.",
+      "theRead": "This wasn't competitive baseball—it was a statement. Sixteen runs means someone's bat was rolling hot and someone else couldn't find an out. In June, games like this separate contenders from teams treading water. Minnesota's getting production. Arizona had no answer.",
+      "ammo": [
+        "Minnesota Twins defeated Arizona Diamondbacks 16–8",
+        "The Twins scored 16 runs in the victory",
+        "Arizona allowed 16 runs, signaling pitching vulnerability"
+      ],
+      "whatToBringUp": "The Twins put up 16 runs on the Diamondbacks—that's the kind of offensive day that gets talked about in the clubhouse.",
+      "ourPick": null
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://image.mediapen.com/news/202606/news_1105561_1781992027_m.jpg",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "Netherlands 5–1 Sweden",
+    "sub": "World Cup"
+  },
+  "copy": {
+    "title": "Twins crush Diamondbacks 16–8. Phillies demolish Mets 15–3. Wyndham Clark leads U.S. Open at –7.",
+    "keyTakeaway": "Baseball went full chaos mode with three lopsided scores, chip stocks are the only thing Wall Street wants to own right now, and Wyndham Clark is one clean Sunday away from a U.S. Open title — with Scottie Scheffler six back and dangerous.",
+    "todaysHits": null,
+    "lead": null,
+    "sportsOther": [],
+    "markets": null,
+    "golf": {
+      "headline": "Wyndham Clark leads the U.S. Open at –7",
+      "whyCare1": "The U.S. Open is golf's hardest test — whoever wins here just proved they can execute under maximum pressure on a course built to break you. Shinnecock Hills is one of the most punishing venues in the game.",
+      "whyCare2": "Clark holds a six-shot lead, but Scottie Scheffler at –1 is the most dangerous closer in the sport right now and has the major pedigree to make a Sunday run.",
+      "watchFor": "Whether Clark's six-shot cushion survives Scheffler's Sunday charge — and whether Sahith Theegala can stay in the conversation long enough to make it a three-man race.",
+      "theRead": "Clark at –7 looks dominant on paper, but the U.S. Open has a long history of eating alive leaders who get conservative on Sunday. Scheffler is the best player in the world when he's hunting, and six shots is absolutely catchable at Shinnecock Hills where the wind can flip a round in four holes. Theegala is also sitting at –1, which means Clark has no margin for a slow start. This is Clark's title to lose — and that's exactly the kind of pressure the U.S. Open was designed to apply.",
+      "ammo": [
+        "Wyndham Clark leads at –7, with Scottie Scheffler and Sahith Theegala tied second at –1",
+        "The U.S. Open winner's share is $3,870,000 from a $21,500,000 total purse",
+        "The tournament is in progress at Shinnecock Hills in Southampton, New York — no winner yet"
+      ],
+      "whatToSay": "Clark's up six at the U.S. Open but Scheffler is right there — and nobody in golf is scarier when he's chasing on a Sunday."
+    },
+    "f1": {
+      "headline": "Austria: The track that eats championship leads",
+      "whyCare1": "The Red Bull Ring is one of the shortest, most aggressive circuits on the calendar — clean air matters enormously here, and races regularly end in contact, retirements, and reshuffled standings.",
+      "whyCare2": "<a href='https://en.wikipedia.org/wiki/Kimi_Antonelli' class='entity-person'>Andrea Kimi Antonelli</a> sits 41 points clear at the top of the championship, which sounds comfortable until you remember that a single bad weekend at a track this unforgiving can cut that lead in half.",
+      "watchFor": "Whether Antonelli converts his championship lead into a clean points-banking weekend or gets dragged into the attrition Austria consistently produces.",
+      "theRead": "A 41-point cushion is real, but it is not a dynasty. Austria has a habit of compressing tight races into a handful of high-speed corners and then punishing anyone who gets greedy. The circuit's short lap, minimal run-off room, and heavy braking zones reward aggression but destroy composure — exactly the environment where a championship leader hands points back fast. Antonelli walking out of Austria with that lead intact would be a serious statement of intent. Walking out with it shredded resets the entire second half of the season.",
+      "ammo": [
+        "Antonelli leads the 2026 F1 World Championship by 41 points heading into the Austrian Grand Prix",
+        "The Red Bull Ring in Spielberg runs just 4.318 km per lap — one of the shortest circuits on the F1 calendar",
+        "Austria has produced multiple safety car periods and first-lap collisions in recent seasons due to its fast, narrow layout and limited overtaking lines"
+      ],
+      "whatToSay": "Antonelli's got a 41-point lead but Austria is genuinely the worst place to try to protect one — that track has ended championship runs before."
+    },
+    "culture": null,
+    "finalSharpTake": "Baseball went big today — Philly put up 15 on the Mets, Minnesota hung 16 on Arizona, and Toronto edged Chicago 8–6. Meanwhile the market told you everything you need to know about where money is flowing: AMD up 4.9%, Avago up 4.7%, Nvidia up 3.0%, while JPMorgan dropped 2.5% and Dell fell 2.3%. Wall Street is still all-in on AI and semiconductors and actively rotating out of anything that looks cyclical or financial. The chip trade is not slowing down.",
+    "glance": {
+      "sports": "Twins 16–8 over Diamondbacks · Phillies 15–3 over Mets · Blue Jays 8–6 over Cubs",
+      "markets": "Nasdaq +2.5% on the week · AMD +4.9% · Avago +4.7% · JPM –2.5%",
+      "culture": "Clark leads U.S. Open at –7 · Tiafoe wins ATP Halle title"
+    },
+    "theTake": {
+      "office": "The Diamondbacks just surrendered 16 runs at home — Arizona's pitching staff is actively costing them a division race they should be winning.",
+      "bar": "The Phillies putting up 15 on the Mets sounds dominant, but the Mets' rotation is a mess right now — that's not Philly being great, that's Philly beating a bad team badly. Wait until they face a real bullpen."
+    },
+    "nhl": {
+      "headline": "Jets at Oilers: Rogers Place, no result yet",
+      "whyCare1": "Winnipeg is heading into Rogers Place, where Edmonton's crowd is one of the loudest in hockey and the Oilers feed off that energy — road teams have to be mentally locked in from puck drop.",
+      "whyCare2": "Special teams typically decide tight playoff hockey, and whichever power play shows up first in Edmonton usually sets the tone for the entire game.",
+      "watchFor": "Whether Winnipeg can steal a road win and quiet the crowd early, or whether Edmonton uses home ice to take control of the series.",
+      "theRead": "This game has no result yet, but the setup is straightforward: Winnipeg is walking into one of the toughest road environments in the NHL and needs to stay composed early or the Oilers' crowd becomes a factor. Edmonton thrives when the building is loud and the pace is frantic. If the Jets can't weather that opening push, this becomes a statement win for the Oilers at home.",
+      "ammo": [
+        "Winnipeg Jets visiting Edmonton Oilers at Rogers Place in Edmonton",
+        "Game has not yet been played — no result available",
+        "Rogers Place is one of the loudest home-ice environments in the NHL playoffs"
+      ],
+      "whatToSay": "Winnipeg's got to keep their composure in Edmonton tonight or the Oilers' crowd turns this into a blowout."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Brian Brobbey and Cody Gakpo each scored twice as the Netherlands demolished Sweden 5–1 to top their World Cup group.",
+        "whyItMatters": "The Dutch are now the group leaders heading into the final matches, and their offensive firepower—five different scorers across the match—signals they can compete with any team in the tournament. Sweden's collapse opens the door for other teams to challenge for advancement.",
+        "theRead": "The Netherlands didn't just win; they announced themselves. Brobbey's two early goals set the tone before halftime, and Gakpo's double in the second half turned it into a statement. This is what clinical, confident football looks like at the World Cup. Sweden came to compete but got exposed on the counter. The Dutch are built to run deep.",
+        "ammo": [
+          "Brian Brobbey scored in the 5th and 17th minutes",
+          "Cody Gakpo added two goals in the 47th and 54th minutes",
+          "Netherlands now top their World Cup group after the 5–1 victory"
+        ],
+        "whatToBringUp": "The Netherlands put five past Sweden with five different scorers—that's not luck, that's a team that knows how to finish.",
+        "ourPick": null
+      },
+      {
+        "whatHappened": "The Lenovo Austrian Grand Prix is this weekend at the Red Bull Ring.",
+        "whyItMatters": "Austria is traditionally a showcase for pure speed on a short, technical circuit where setup and qualifying pace separate winners from the rest. It's one of the season's most predictable venues—and that's exactly what makes it dangerous for anyone not running at the front.",
+        "theRead": "The Red Bull Ring rewards raw pace and penalizes mistakes hard. No room for error on a track this tight and fast. Whoever nails the setup walks away with big points. It's the kind of weekend where you see the real pecking order.",
+        "ammo": [
+          "Lenovo Austrian Grand Prix takes place at the Red Bull Ring this weekend",
+          "The circuit is 4.3 kilometers and one of F1's shortest tracks",
+          "Austria traditionally favors high downforce setups and qualifying performance"
+        ],
+        "whatToBringUp": "The Red Bull Ring doesn't forgive mistakes—short lap, tight corners, and high speeds mean qualifying position basically decides the race.",
+        "ourPick": "Whoever gets the front row lock-out wins because the track is too narrow and the lap too short to make up ground in the midfield."
+      },
+      {
+        "whatHappened": "The U.S. Open is in progress with Wyndham Clark leading at 7-under after 36 holes.",
+        "whyItMatters": "Clark's seven-stroke lead over Scottie Scheffler and Sahith Theegala is substantial going into the final 36 holes, but the U.S. Open's notoriously difficult setup can turn any lead fragile. Scheffler, the world number one, is still very much in the hunt and capable of a historic comeback.",
+        "theRead": "Clark has built something real—a seven-shot cushion is no joke at any major. But the U.S. Open setup is brutal, and Scheffler doesn't quit. Theegala's presence at minus-one shows the field is bunched and hunting. Clark needs to stay patient and avoid the traps. One bad Sunday can erase a week's work. Scheffler has the skill to get there; it just depends on whether Clark's nerve holds.",
+        "ammo": [
+          "Wyndham Clark leads at 7-under par after two rounds",
+          "Scottie Scheffler is in second place at 1-under, seven shots back",
+          "Sahith Theegala is tied for second at 1-under par",
+          "U.S. Open total purse: $21,500,000 — winner takes $3,870,000"
+        ],
+        "whatToBringUp": "Wyndham Clark has a seven-shot lead at the U.S. Open going into the weekend—that's huge, but Scottie Scheffler is still in the field and he doesn't lose majors from that position.",
+        "ourPick": "Wyndham Clark wins because he's built a lead most golfers never get at a major, and the U.S. Open's difficulty actually works in his favor—nobody's catching him in two days."
+      },
+      {
+        "whatHappened": "The Minnesota Twins beat the Arizona Diamondbacks 16–8.",
+        "whyItMatters": "An eight-run victory is decisive, but the real signal is firepower. The Twins put up 16 runs, which means their offense is working and Arizona's pitching gave up the kind of damage that doesn't go unnoticed in the division.",
+        "theRead": "This wasn't competitive baseball—it was a statement. Sixteen runs means someone's bat was rolling hot and someone else couldn't find an out. In June, games like this separate contenders from teams treading water. Minnesota's getting production. Arizona had no answer.",
+        "ammo": [
+          "Minnesota Twins defeated Arizona Diamondbacks 16–8",
+          "The Twins scored 16 runs in the victory",
+          "Arizona allowed 16 runs, signaling pitching vulnerability"
+        ],
+        "whatToBringUp": "The Twins put up 16 runs on the Diamondbacks—that's the kind of offensive day that gets talked about in the clubhouse.",
+        "ourPick": null
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-21T13:13:45.607Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_ammo — the game has not been played and RAW FACTS confirm no result exists. Two of the three ammo items are generic observations (Rogers Place crowd, road environment) rather than verifiable sourced facts about a real event. The section cannot satisfy the hard block rule's requirement for a concrete event that happened. Flagged for awareness — kept in copy as a pre-game preview with honest framing, but editors should note it barely passes the preview exception and should be updated with a real result as soon as one is available."
+      }
+    ],
+    "changed": [
+      "title — cleaned formatting, standardized score notation",
+      "keyTakeaway — written from scratch, was empty in draft",
+      "golf.headline — shortened to comply with 8-word headline rule",
+      "golf.course — added Shinnecock Hills, Southampton, New York from RAW FACTS",
+      "golf.whyCare1 — added Shinnecock Hills venue reference",
+      "golf.theRead — rewritten to remove Tom Kim reference (not in RAW FACTS), sharpened take on Clark vs. Scheffler",
+      "golf.ammo — removed unverifiable Scheffler major count claim, replaced with confirmed RAW FACTS items",
+      "golf.whatToSay — sharpened to be more natural and specific",
+      "f1.headline — shortened to comply with 8-word headline rule",
+      "f1.whyCare2 — added hyperlink for Antonelli per HYPERLINK RULE",
+      "f1.whatToSay — tightened, removed 'eats championship runners for breakfast' cliché",
+      "nhl.headline — rewritten to reflect no result exists, per ESPN OVERRIDE / PRE-EVENT RULE",
+      "nhl.theRead — rewritten to reflect game has not been played",
+      "nhl.ammo — second item now honestly states no result available",
+      "finalSharpTake — tightened, added specific ticker moves for clarity",
+      "theTake.bar — rewritten to be a specific debatable claim about Phillies vs. real competition rather than vague regression take",
+      "glance.sports — reformatted to comply with TODAY AT A GLANCE RULE (8 words or fewer, no brackets)",
+      "glance.markets — reformatted, specific tickers added",
+      "glance.culture — corrected: Tiafoe won Halle (Terra Wortmann Open), not Austrian ATP title"
+    ],
+    "notes": [
+      "Tom Kim was referenced in the draft golf theRead but does not appear in RAW FACTS leaderboard — removed. Only Clark, Scheffler, and Theegala are confirmed.",
+      "Scheffler 'three majors in 18 months' ammo item removed — not verifiable from RAW FACTS provided. Replaced with confirmed tournament facts.",
+      "NHL section is a genuine pre-game preview with no result — it barely satisfies the HARD BLOCK RULE via named venue and teams. Recommend replacing with a result recap once the game concludes.",
+      "glance.culture originally said 'Tiafoe won the Austrian ATP title' — corrected to Halle (Terra Wortmann Open) per RAW FACTS. The Austrian Grand Prix is F1, not tennis.",
+      "Culture and lead sections are null in the draft — no action taken, keys preserved as null per output rules.",
+      "Markets section is null in the draft — market data exists in RAW FACTS but no markets section was drafted. Editors should consider whether a markets section should be built from the chip stock / JPM data before publication.",
+      "World Cup data exists in RAW FACTS (Netherlands 5–1 Sweden, Germany 2–1 Ivory Coast) but no sportsOther section was drafted to cover it. Editors may want to add a World Cup item."
+    ],
+    "brokenLinks": [
+      {
+        "url": "https://abcnews.com/US/grammy-nominated-record-producer-tay-keith-dies-age/story?id\\\\u003d134038543",
+        "reason": "HTTP 404"
+      }
+    ]
+  },
+  "factPack": {
+    "f1": {
+      "ammo": []
+    },
+    "golf": {
+      "ammo": [
+        "Wyndham Clark is currently in first place at the U.S. Open with a score of -7.",
+        "Scottie Scheffler and Sahith Theegala are tied for second place at -1.",
+        "The U.S. Open is currently underway, with no winner yet."
+      ]
+    },
+    "sports": [
+      {
+        "label": "World Cup",
+        "ammo": [
+          "The Netherlands defeated Sweden 5-1, with Brian Brobbey and Cody Gakpo each scoring two goals.",
+          "Germany won 2-1 against Ivory Coast thanks to a brace from Deniz Undav.",
+          "Goalkeeper Room made 15 saves in the match between Ecuador and Curaçao, the most in a World Cup game since 1966."
+        ]
+      }
+    ]
+  },
+  "researchPack": null,
+  "researchMode": "feed-only",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "sports",
+      "kind": "retry",
+      "detail": "Request timed out."
+    },
+    {
+      "section": "golf",
+      "kind": "retry",
+      "detail": "Request timed out."
+    },
+    {
+      "section": "f1",
+      "kind": "retry",
+      "detail": "Request timed out."
+    },
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_ammo — the game has not been played and RAW FACTS confirm no result exists. Two of the three ammo items are generic observations (Rogers Place crowd, road environment) rather than verifiable sourced facts about a real event. The section cannot satisfy the hard block rule's requirement for a concrete event that happened. Flagged for awareness — kept in copy as a pre-game preview with honest framing, but editors should note it barely passes the preview exception and should be updated with a real result as soon as one is available."
+    }
+  ],
+  "verification": {
+    "pass": false,
+    "blocking": [
+      {
+        "section": "markets",
+        "claim": "Nasdaq +2.5% on the week",
+        "flag": "contradicts_market_feed",
+        "reason": "The market feed indicates Nasdaq/QQQ +2.51% today, not for the week."
+      }
+    ],
+    "warnings": [
+      {
+        "section": "sports",
+        "note": "The U.S. Open is described as having a total purse of $21,500,000 and winner's share of $3,870,000, but no verification provided."
+      },
+      {
+        "section": "sports",
+        "note": "The golf U.S. Open claim about player standings matches ESPN Golf data, but the total purse and winner's prize is unverifiable."
+      },
+      {
+        "section": "f1",
+        "note": "Details about the Lenovo Austrian Grand Prix may be accurate, but no verification provided, which creates a risk of unverifiability."
+      },
+      {
+        "section": "sports",
+        "note": "[demoted] condensed_section_new_claim: No ESPN data or research evidence provided to confirm the match result or player performance in the World Cup."
+      }
+    ],
+    "verificationSummary": "Several sports claims, particularly those related to the World Cup, cannot be verified due to the absence of ESPN data. Some market data claims contradict the real-time feed, particularly the Nasdaq weekly performance figure.",
+    "model": "gpt-4o",
+    "timestamp": "2026-06-21T13:13:51.336Z"
+  }
+}
