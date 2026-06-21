@@ -937,7 +937,66 @@ async function fetchMMA() {
   };
 }
 
+/* ---------------------------------------------------------------- League News */
+
+// Fetch ESPN's news feed for a sport/league — used to populate NBA/NHL sections
+// on days with no games so the section always has value (trades, injuries, etc.)
+async function fetchLeagueNews(sport, league, limit = 4) {
+  try {
+    const d = await json(`${ESPN}/${sport}/${league}/news?limit=${limit}`);
+    if (!d?.articles) return null;
+    return d.articles.map(a => ({
+      headline: a.headline || a.title || '',
+      description: (() => {
+        const raw = a.description || '';
+        return raw.length > 180 ? raw.slice(0, 177).trimEnd() + '…' : raw;
+      })(),
+      link: a.links?.web?.href || a.links?.mobile?.href || null,
+      published: a.published || null,
+    })).filter(a => a.headline);
+  } catch (_) { return null; }
+}
+
 /* ----------------------------------------------------------------- Live Now */
+
+// Derive 2-3 conversation-ready talking points from a game's available facts.
+// All data comes directly from ESPN — no guessing.
+function gameTalkingPoints(game) {
+  const pts = [];
+  const facts = game.facts;
+
+  // Series context — most important for playoff games
+  if (facts?.series?.summary) pts.push(facts.series.summary);
+
+  // Live/final top performer
+  if (facts?.topPerformer) {
+    const tp = facts.topPerformer;
+    const line = [
+      tp.pts != null ? `${tp.pts} pts` : null,
+      tp.reb != null && tp.reb > 0 ? `${tp.reb} reb` : null,
+      tp.ast != null && tp.ast > 0 ? `${tp.ast} ast` : null,
+    ].filter(Boolean).join(', ');
+    if (tp.name && line) pts.push(`${tp.name}: ${line}`);
+  }
+
+  // Score drama: close game or blowout context
+  if (game.state === 'in' && game.home?.score && game.away?.score) {
+    const homeS = parseInt(game.home.score, 10);
+    const awayS = parseInt(game.away.score, 10);
+    if (!isNaN(homeS) && !isNaN(awayS)) {
+      const diff = Math.abs(homeS - awayS);
+      const leader = homeS > awayS ? game.home.name : awayS > homeS ? game.away.name : null;
+      if (diff === 0) pts.push('Tied game right now');
+      else if (diff <= 5 && leader) pts.push(`${leader} up by ${diff} — within striking distance`);
+      else if (diff >= 20 && leader) pts.push(`${leader} blowing it open — up ${diff}`);
+    }
+  }
+
+  // Headline as fallback (e.g. "NBA Finals - Game 5")
+  if (pts.length === 0 && game.headline) pts.push(game.headline);
+
+  return pts.slice(0, 3);
+}
 
 // Importance-ranked: F1 live > golf live (major boosted) > postseason/big games
 // > ordinary live games. Only genuinely in-progress events appear here.
@@ -955,27 +1014,44 @@ function deriveLiveNow({ scoreboard, f1, golf, mma }) {
         { left: fn2, right: mma.fighter2.record || '' },
       ] : [],
       leader: fn1 && fn2 ? `${fn1} vs. ${fn2}` : '',
+      talkingPoints: [
+        fn1 && fn2 ? `Main event: ${fn1} vs. ${fn2}` : '',
+        mma.weightClass ? mma.weightClass : '',
+      ].filter(Boolean),
     });
   }
 
   if (f1 && f1.phase === 'live') {
+    const f1Pts = [];
+    if (f1.positions[0]) f1Pts.push(`${f1.positions[0].driver} leads from ${f1.positions[1] ? f1.positions[1].driver : 'the field'}`);
+    if (f1.driverStandings?.[0]) {
+      const cLeader = f1.driverStandings[0];
+      f1Pts.push(`${cLeader.name} leads championship with ${cLeader.points} pts`);
+    }
     cards.push({
       kind: 'f1', importance: 100, title: f1.event, status: 'live',
       statusText: `Formula 1 · ${f1.sessionLabel}`,
       link: f1.eventLink ? f1.eventLink.url : '',
       lines: f1.positions.slice(0, 3).map((p) => ({ left: `P${p.pos} ${p.driver}`, right: p.team || '' })),
       leader: f1.positions[0] ? `${f1.positions[0].driver} leads` : '',
+      talkingPoints: f1Pts,
     });
   }
 
   if (golf && golf.state === 'in') {
     const top = golf.leaderboard[0];
+    const second = golf.leaderboard[1];
+    const golfPts = [];
+    if (top) golfPts.push(`${top.name} leads at ${top.score}`);
+    if (second && golf.isMajor) golfPts.push(`${second.name} in second at ${second.score} — in the hunt`);
+    if (golf.isMajor) golfPts.push(`Major championship — ${golf.event}`);
     cards.push({
       kind: 'golf', importance: 85 + (golf.isMajor ? 10 : 0), title: golf.event, status: 'live',
       statusText: `Golf · ${golf.statusText}`,
       link: golf.eventLink ? golf.eventLink.url : '',
       lines: golf.leaderboard.slice(0, 3).map((p) => ({ left: `${p.pos} ${p.name}`, right: p.score })),
       leader: top ? `${top.name} ${top.score}` : '',
+      talkingPoints: golfPts,
     });
   }
 
@@ -992,6 +1068,7 @@ function deriveLiveNow({ scoreboard, f1, golf, mma }) {
             { left: g.home.name, right: g.home.score, logo: g.home.logo },
           ],
           leader: '',
+          talkingPoints: gameTalkingPoints(g),
         });
       }
     }
@@ -1056,8 +1133,10 @@ module.exports = async function handler(req, res) {
   const finnhubKey = process.env.FINNHUB_API_KEY;
 
   try {
-    const [scoreboard, f1, golf, tennis, mma, markets] = await Promise.all([
+    const [scoreboard, f1, golf, tennis, mma, markets, nbaNews, nhlNews] = await Promise.all([
       fetchScoreboards(), fetchF1(), fetchGolf(), fetchTennis(), fetchMMA(), fetchMarkets(finnhubKey),
+      fetchLeagueNews('basketball', 'nba'),
+      fetchLeagueNews('hockey', 'nhl'),
     ]);
 
     const liveNow = deriveLiveNow({ scoreboard, f1, golf, mma });
@@ -1075,10 +1154,14 @@ module.exports = async function handler(req, res) {
         scoreboard: scoreboard ? 'espn'    : null,
         mma:        mma        ? 'espn'    : null,
         markets:    markets    ? 'finnhub' : null,
+        nbaNews:    nbaNews    ? 'espn'    : null,
+        nhlNews:    nhlNews    ? 'espn'    : null,
         culture:      culture.length ? 'NewsAPI' : null,
         talkingAbout: 'editorial',   // no live source yet
       },
       liveNow, f1, golf, tennis, mma, scoreboard, markets,
+      nbaNews: nbaNews && nbaNews.length ? nbaNews : null,
+      nhlNews: nhlNews && nhlNews.length ? nhlNews : null,
       culture: culture.length ? culture : null,
       talkingAbout: null,
     });

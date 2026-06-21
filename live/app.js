@@ -264,12 +264,16 @@ function LiveEventCard(ev) {
   const lines = ev.lines.map(
     (l) => `<div class="ev-line"><span class="l">${l.logo ? `<img class="ev-logo" src="${esc(l.logo)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}${esc(l.left)}</span><span class="r">${esc(l.right)}</span></div>`
   ).join('');
+  const tpHtml = (ev.talkingPoints && ev.talkingPoints.length)
+    ? `<div class="ev-talk"><div class="ev-talk-label">🗣️ People are talking about</div><ul class="ev-talk-list">${ev.talkingPoints.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>`
+    : '';
   const inner = `
     <div class="ev-head">
       <div><div class="ev-title">${esc(ev.title)}</div><div class="ev-status">${esc(ev.statusText)}</div></div>
       ${STATUS_PILL[ev.status] || ''}
     </div>
     ${lines}
+    ${tpHtml}
     ${ev.leader ? `<div class="ev-foot">${esc(ev.leader)}</div>` : `<div class="ev-foot ev-foot-cta">View on ESPN →</div>`}`;
   // Whole card links to the game on ESPN when we have a real link.
   return ev.link
@@ -1479,11 +1483,21 @@ function FeaturedGolfCard(g) {
       (wideOthers.length ? `<div class="grid grid-three" style="grid-column:1/-1">${wideOthers.map(ScoreboardCard).join('')}</div>` : '');
   }
 
-  function renderNBA(scoreboard) {
+  function renderNBA(scoreboard, news) {
     const games = ((scoreboard || []).find(lg => lg.key === 'nba')?.games || [])
       .filter(g => g.state === 'in' || g.state === 'post');
+    if (!games.length && news && news.length) {
+      const el = $('nbaWrap');
+      if (!el) return;
+      setBadge('badge-nba', null);
+      setMeta('meta-nba', 'ESPN News', new Date().toISOString());
+      el.innerHTML = `<div class="league-intel">${news.slice(0, 4).map(n =>
+        `<div class="intel-item">${n.link ? `<a class="intel-headline" href="${esc(n.link)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">${esc(n.headline)}</a>` : `<div class="intel-headline">${esc(n.headline)}</div>`}${n.description ? `<div class="intel-desc">${esc(n.description)}</div>` : ''}</div>`
+      ).join('')}</div>`;
+      return;
+    }
     _renderLeague({ elId: 'nbaWrap', badgeId: 'badge-nba', metaId: 'meta-nba', games,
-      contextFn: nbaContext, wymFn: nbaWhatYouMissed, tag: 'NBA', emptyMsg: 'No NBA games today.' });
+      contextFn: nbaContext, wymFn: nbaWhatYouMissed, tag: 'NBA', emptyMsg: 'No NBA games today — check back for trade news and injury updates.' });
   }
 
   function renderMLB(scoreboard) {
@@ -1493,11 +1507,21 @@ function FeaturedGolfCard(g) {
       contextFn: mlbContext, wymFn: mlbWhatYouMissed, tag: 'MLB', emptyMsg: 'No MLB games today.' });
   }
 
-  function renderNHL(scoreboard) {
+  function renderNHL(scoreboard, news) {
     const games = ((scoreboard || []).find(lg => lg.key === 'nhl')?.games || [])
       .filter(g => g.state === 'in' || g.state === 'post');
+    if (!games.length && news && news.length) {
+      const el = $('nhlWrap');
+      if (!el) return;
+      setBadge('badge-nhl', null);
+      setMeta('meta-nhl', 'ESPN News', new Date().toISOString());
+      el.innerHTML = `<div class="league-intel">${news.slice(0, 4).map(n =>
+        `<div class="intel-item">${n.link ? `<a class="intel-headline" href="${esc(n.link)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">${esc(n.headline)}</a>` : `<div class="intel-headline">${esc(n.headline)}</div>`}${n.description ? `<div class="intel-desc">${esc(n.description)}</div>` : ''}</div>`
+      ).join('')}</div>`;
+      return;
+    }
     _renderLeague({ elId: 'nhlWrap', badgeId: 'badge-nhl', metaId: 'meta-nhl', games,
-      contextFn: summaryReadContext, wymFn: summaryWhatYouMissed, tag: 'NHL', emptyMsg: 'No NHL games today.' });
+      contextFn: summaryReadContext, wymFn: summaryWhatYouMissed, tag: 'NHL', emptyMsg: 'No NHL games today — check back for trade news and injury updates.' });
   }
 
   function renderSoccer(scoreboard) {
@@ -1551,13 +1575,19 @@ function FeaturedGolfCard(g) {
     const SOCCER_KEYS = ['worldcup', 'mls', 'epl', 'ucl', 'concacaf'];
     const taggedGames = [];
 
+    const isChampionshipGame = (g) => {
+      if (!(g.home?.winner || g.away?.winner)) return false;
+      const seriesNums = (g.facts?.series?.summary?.match(/\d+/g) || []).map(Number);
+      return seriesNums.some(n => n >= 4) || !!g.facts?.seriesComplete;
+    };
+
     [
       { key: 'nba',  tag: 'NBA',     contextFn: nbaContext,          wymFn: nbaWhatYouMissed },
       { key: 'mlb',  tag: 'MLB',     contextFn: mlbContext,          wymFn: mlbWhatYouMissed },
       { key: 'nhl',  tag: 'NHL',     contextFn: summaryReadContext,  wymFn: summaryWhatYouMissed },
     ].forEach(({ key, tag, contextFn, wymFn }) => {
       ((scoreboard || []).find(lg => lg.key === key)?.games || [])
-        .filter(g => g.state === 'post')
+        .filter(g => g.state === 'post' && !isChampionshipGame(g))
         .forEach(g => taggedGames.push({ ...g, _tag: tag, _contextFn: contextFn, _wymFn: wymFn }));
     });
 
@@ -1785,7 +1815,6 @@ function FeaturedGolfCard(g) {
     if ($('mlbWrap'))    $('mlbWrap').innerHTML = sk(2);
     if ($('nhlWrap'))    $('nhlWrap').innerHTML = sk(2);
     if ($('soccerWrap')) $('soccerWrap').innerHTML = sk(2);
-    $('scoreboardWrap').innerHTML = sk(2);
     $('marketsWrap').innerHTML = sk(8);
     // Rundown band stays hidden until real AI synthesis arrives (no fake placeholder).
   }
@@ -1813,11 +1842,10 @@ function FeaturedGolfCard(g) {
     renderGolf(p.golf);
     renderTennis(p.tennis);
     renderMMA(p.mma);
-    renderNBA(p.scoreboard);
+    renderNBA(p.scoreboard, p.nbaNews);
     renderMLB(p.scoreboard);
-    renderNHL(p.scoreboard);
+    renderNHL(p.scoreboard, p.nhlNews);
     renderSoccer(p.scoreboard);
-    renderScoreboard(p.scoreboard);
     renderMarkets(p.markets);
     observeChampCards();
     // Sections 6 & 7 are handled by refreshTalk() / renderTalk() (separate feed).

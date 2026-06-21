@@ -266,6 +266,21 @@
   .ev-line .r { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--text-2); flex-shrink: 0; }
   .ev-foot { margin-top: 10px; font-size: 12px; color: var(--text-3); }
 
+  /* TALKING POINTS — conversation bullets on live game cards */
+  .ev-talk { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+  .ev-talk-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3); margin-bottom: 8px; }
+  .ev-talk-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 5px; }
+  .ev-talk-list li { font-size: 13px; color: var(--text-2); line-height: 1.4; padding-left: 16px; position: relative; }
+  .ev-talk-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 1px; }
+
+  /* LEAGUE INTEL — news/injury cards for NBA/NHL no-game states */
+  .league-intel { grid-column: 1/-1; display: flex; flex-direction: column; gap: 10px; }
+  .intel-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .intel-headline { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px; color: var(--text); line-height: 1.3; }
+  .intel-desc { font-size: 13px; color: var(--text-3); margin-top: 5px; line-height: 1.4; }
+  .intel-link { display: inline-block; font-size: 12px; color: var(--accent); margin-top: 8px; text-decoration: none; }
+  .intel-link:hover { text-decoration: underline; }
+
   /* LEADERBOARD (F1 / Golf) */
   .lb { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
   .lb-head {
@@ -907,7 +922,7 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
       <a href="#live-now"   class="sports-nav-pill is-live">Live Now</a>
       <a href="#recap"      class="sports-nav-pill">Recap</a>
       <a href="#champions"  class="sports-nav-pill">Champions</a>
-      <a href="#scoreboard" class="sports-nav-pill">Scoreboard</a>
+      <a href="#talking"     class="sports-nav-pill">Talking Points</a>
     </nav>
   </div>
 
@@ -946,6 +961,19 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
       <p class="section-desc">This season's title winners — the teams and players that closed it out.</p>
     </div>
     <div id="championsWrap"></div>
+  </section>
+
+  <!-- What Everyone's Talking About — moved here from Culture to sit near live sports -->
+  <section class="live-section sub" id="talking">
+    <div class="section-head is-sub">
+      <div class="section-head-top">
+        <h3 class="section-h">What Everyone's Talking About</h3>
+        <span id="badge-talking"></span>
+        <span class="section-meta" id="meta-talking"></span>
+      </div>
+      <p class="section-desc">Walk into any group chat, office, or bar ready to talk.</p>
+    </div>
+    <div class="grid grid-two" id="talkingWrap"></div>
   </section>
 
   <!-- Formula 1 -->
@@ -1052,8 +1080,8 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     <div class="grid grid-two" id="soccerWrap"></div>
   </section>
 
-  <!-- Scoreboard — overflow leagues (NFL, college, etc.) -->
-  <section class="live-section sub" id="scoreboard">
+  <!-- Scoreboard — overflow leagues (NFL, college, etc.) — hidden, Champions section handles postseason -->
+  <section class="live-section sub" id="scoreboard" hidden>
     <div class="section-head is-sub">
       <div class="section-head-top">
         <h3 class="section-h">Scoreboard</h3>
@@ -1112,19 +1140,6 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
       <p class="section-desc">The biggest stories driving conversation across sports, business, and culture.</p>
     </div>
     <div class="grid grid-stories" id="trendingWrap"></div>
-  </section>
-
-  <!-- What Everyone's Talking About -->
-  <section class="live-section sub" id="talking">
-    <div class="section-head is-sub">
-      <div class="section-head-top">
-        <h3 class="section-h">What Everyone's Talking About</h3>
-        <span id="badge-talking"></span>
-        <span class="section-meta" id="meta-talking"></span>
-      </div>
-      <p class="section-desc">Walk into any group chat, office, or bar ready to talk.</p>
-    </div>
-    <div class="grid grid-two" id="talkingWrap"></div>
   </section>
 
   <!-- BRIEF CROSS-LINK -->
