@@ -25,6 +25,27 @@ Every included item must answer at least two of these:
 * What is the simple takeaway?
 * What could I say in a group chat, at work, at a bar, or around friends?
 
+## Conversation Intelligence Standard (the product target)
+
+GuyTalk is not a summary product. It is a conversation intelligence product.
+
+The difference:
+
+* **Summary:** Explains what happened.
+* **Conversation intelligence:** Explains what a normal guy will ask next.
+
+For every story, the system must answer all five of these:
+
+1. What happened?
+2. Why does it matter?
+3. What does this mean going forward?
+4. What is the interesting angle?
+5. What is one repeatable line someone can use later today?
+
+If a story only answers 1 and 2, it is still a summary. It does not ship unless it answers all five.
+
+**The success test:** A reader finishes a story thinking *"That's interesting"* — not *"Okay, I know what happened."* The goal is not information delivery. The goal is giving readers something useful to say.
+
 ## Lead with the biggest story (organic, every day)
 
 GuyTalk must be organic — it leads with whatever is genuinely the biggest thing happening that day, across ALL domains (markets, business, tech, world, sports, culture), not a fixed template and not whatever sports game happened to be on.
@@ -122,6 +143,7 @@ Every sports item needs:
 1. Result or main event
 2. Key player, play, moment, or storyline
 3. Why it matters or why it is worth bringing up
+4. **A forward-looking implication** — what does this mean going forward? Is this team a contender? Who does this hurt? What changes next?
 
 Bad:
 
@@ -129,9 +151,25 @@ Bad:
 
 Good:
 
-* Reds beat the Cubs 5–3 behind a late rally, with Elly De La Cruz creating pressure on the bases again. The bigger point: Cincinnati is giving fans something to actually track beyond just the final score.
+* Reds beat the Cubs 5–3 behind a late rally, with Elly De La Cruz creating pressure on the bases again. The bigger point: Cincinnati is giving fans something to actually track beyond just the final score — and at this pace, they're a legitimate wild card threat.
 
-F1 rule:
+**World Cup / major tournament rule:**
+Every World Cup or major tournament story must move beyond the result into implications. Required questions to answer at least two of:
+- Is this team a legitimate title contender now?
+- Was this an upset or expected?
+- How does this affect the standings / path to the final?
+- Is a specific player becoming a star in this tournament?
+- What does this mean for teams still to play?
+
+A result without implications is a box score. GuyTalk is not a box score.
+
+**F1 rule:**
+F1 coverage must focus on narrative and championship implications — NOT track descriptions. Never write about how short the circuit is, how timing matters, or how mistakes are costly (these are obvious and templated). Instead answer:
+- Who is favored this weekend and why?
+- What are the championship standings and what's at stake?
+- Which driver is under pressure and why?
+- What is the one storyline fans will actually discuss after the race?
+
 If Monaco, Silverstone, Miami, Vegas, or any major race is mentioned, explain why that race matters culturally or competitively. Monaco should never be treated like a normal race.
 
 Golf rule:
@@ -214,7 +252,38 @@ Each story follows this FIVE-part format, in this exact order:
 **Why it matters:** First-order implication for a normal reader. 1–2 sentences.
 **The GuyTalk Read:** The strongest beat. What it really means — what it signals, who benefits, who looks bad, the broader angle, what smart people take away. 3–5 sentences, opinionated but grounded in fact. Markets stays observational, never advice.
 **Conversation Ammo:** 3–5 specific, sourced facts people actually ask about (age, college, contract, earnings, purse/payout, first win, streak, record, ranking impact, the key play, the quote, the drama; markets: valuation, deal size, market cap vs. a comp, the historical parallel). Facts only — never a take. REQUIRED: no story publishes without it.
-**What to say:** One natural sentence a reader could repeat in a group chat, office, bar, or client conversation. Has a point of view.
+**What to say:** One short, immediately repeatable sentence. It must be natural — something a guy would actually say to a friend, not an analyst summary. Has a point of view. Maximum one sentence. If you need two sentences to say it, it is not sharp enough yet.
+
+Golf-specific "What to say" rule: One sentence. It must name a player and give a take — not a fact. The reader should be able to repeat it word-for-word within the hour.
+Good: "Clark's up seven, but Scheffler is the only guy I'd trust to chase him down."
+Bad: "Wyndham Clark holds the lead with four players within five shots entering the final round."
+
+## Markets rules (updated)
+
+Readers remember stories and explanations — not numbers. Numbers are supporting evidence, not the headline.
+
+Every market item must answer:
+1. What moved?
+2. Why did it move?
+3. What are people saying about it?
+
+The `bringUp` field is the most important field in the markets section. It must be a sentence a reader could drop at work or a bar. It is NOT a market summary. It is a conversation starter. It must include a real number AND explain what that number means in plain English — what it signals, what changed, who it affects.
+
+Bad: "The S&P 500 was up 1.1% today."
+Good: "AMD jumped 4.9% today — biggest single-day move in three months — because the chip sector finally got the demand signal it's been waiting for from hyperscaler capex forecasts."
+
+## Sharp Take rules
+
+Sharp Takes must be grounded. A strong opinion without evidence is a hot take. A strong opinion with evidence is a Sharp Take.
+
+Every Sharp Take must follow this structure:
+
+1. **Observation** — what happened (specific, named)
+2. **Evidence** — one supporting statistic or verifiable detail
+3. **Take** — the opinion or implication that flows from 1 and 2
+
+Bad: "The Phillies are built different this year."
+Good: "The Phillies just put up 15 on the Mets — that's their third game with 10+ runs in June alone. At some point you stop calling it a hot streak and start calling it an identity."
 
 ## Final quality check
 
@@ -222,10 +291,12 @@ Before publishing, review every item and ask:
 
 1. Is this useful in conversation?
 2. Did we explain why it matters?
-3. Is there at least one specific detail?
-4. Is the wording clean and casual?
-5. Did we avoid investment advice?
-6. Does this feel like GuyTalk, not a generic newsletter?
+3. Did we answer what this means going forward?
+4. Is there at least one specific detail?
+5. Is the "What to say" line short enough to actually repeat?
+6. Is the wording clean and casual?
+7. Did we avoid investment advice?
+8. Does this feel like GuyTalk, not a generic newsletter?
 
 If any answer is no, rewrite or remove the item.
 

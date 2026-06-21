@@ -386,8 +386,14 @@ ${sports.map((g, i) => {
   return `${i + 1}. ${g.note || g.name} — ${w.team} ${w.score}, ${l.team} ${l.score}${series}`;
 }).join('\n')}
 
+CONVERSATION INTELLIGENCE STANDARD — go beyond the recap. For every game, answer what a casual guy would actually ask next:
+- Is this team a legitimate contender now? Do the standings matter here?
+- Is a specific player emerging or declining?
+- What does this result mean for the next series/week/rest of season?
+- What is the one thing worth bringing up specifically today?
+
 Return ONLY a valid JSON array — one object per game, in the SAME order, no markdown:
-[{"take":"≤18 words — what happened and the sharpest angle, NOT just the score","why":"One sentence — why it matters or the bigger context","theRead":"2-4 sentences. The GuyTalk Read — the real angle, what it signals.","ammo":["Specific fact 1","Specific fact 2","Specific fact 3"],"say":"One natural line a guy could drop in conversation"}]`,
+[{"take":"≤18 words — what happened and the sharpest angle, NOT just the score","why":"One sentence — why it matters, including a forward-looking implication (what changes next?)","theRead":"2-4 sentences. The GuyTalk Read — what this means going forward, who this hurts/helps, whether this team or player is a real contender. Opinionated, grounded.","ammo":["Specific fact 1","Specific fact 2","Specific fact 3"],"say":"One short repeatable line. Natural — something a guy would actually say to a friend. Max one sentence. NOT an analyst summary."}]`,
           600
         )
       : Promise.resolve(null),
@@ -430,7 +436,7 @@ Return ONLY valid JSON on one line — no markdown:
               return `GuyTalk golf: ${golf.name} — ${status}. Leaderboard: ${lb || 'no leaderboard yet'}.${golf.purse ? `\nPURSE: ${golf.purse.total} total, winner takes ${golf.purse.winner} — include this in an ammo bullet.` : ''}${coveredLine}${golfWeb ? `\nWEB-SOURCED FACT (real, current — use it): ${golfWeb}` : ''}
 ${golf.statusState === 'post' ? 'If this event is in the ALREADY COVERED list above, do not re-report the finish as fresh — give a one-line wrap and point ahead to the tour moving on (do NOT invent the next tournament\'s name or field).' : ''}
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words — what's happening at ${golf.name}.","whyCare1":"One sentence — why this tournament matters (stakes, prestige, course).","whyCare2":"One sentence — the leaderboard situation or a specific angle.","watchFor":"One thing to track — a player, a battle, a scoring target.","theRead":"2-4 sentences. The GuyTalk Read — stakes, storyline, what a real golf fan is watching for.","ammo":["Fact 1 from the data — purse total and winner's take if known","Fact 2 — score or leaderboard detail","Fact 3"],"whatToSay":"One casual conversational line."}`;
+{"headline":"Max 10 words — what's happening at ${golf.name}.","whyCare1":"One sentence — why this tournament matters (stakes, prestige, course).","whyCare2":"One sentence — the leaderboard situation or a specific angle.","watchFor":"One thing to track — a player, a battle, a scoring target.","theRead":"2-4 sentences. The GuyTalk Read — stakes, storyline, what a real golf fan is watching for.","ammo":["Fact 1 from the data — purse total and winner's take if known","Fact 2 — score or leaderboard detail","Fact 3"],"whatToSay":"One short immediately repeatable sentence. Must name a player and give a take — not a fact. Keep it tight enough to say word-for-word. Example: 'Clark's up seven, but Scheffler is the only guy I'd trust to chase him down.' NOT an analyst summary."}`;
             }
 
             // PREVIEW (not started): give it real voice for a casual fan. The course,
@@ -441,7 +447,7 @@ CRITICAL: there is NO leaderboard and NO results yet. NEVER say anyone is "leadi
 Players teeing off this week: ${fieldNames || '(field not listed)'}.
 Use your knowledge of THIS specific tournament to name the real course + city and last year's champion. Be specific and confident — this is exactly the context a casual fan needs. If you genuinely don't know a fact, give an honest general line rather than a vague non-answer (never fabricate a name you're unsure of).
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words — the storyline going in (a preview, not a result).","course":"Real course/venue + city (e.g. 'TPC Toronto at Osprey Valley, Ontario'). Name it if you know it.","whyCare1":"One sentence — why this event matters / what's at stake (FedEx Cup, prestige, field strength).","defending":"One sentence — who WON it last year and the storyline (name the champion if you know it).","watchFor":"Who to watch to win — name 2-3 recognizable favorites or marquee names expected in the field. Framed as 'worth watching', NOT as current leaders.","theRead":"2-4 sentences. The GuyTalk Read — what makes this tournament interesting for a casual fan right now.","ammo":["Fact 1 — purse total and winner's take","Fact 2 — course history or what makes the venue special","Fact 3 — field stat or defending champion detail"],"whatToSay":"One casual, confident line a casual fan could drop — about the matchup/storyline, not a fake leaderboard."}`;
+{"headline":"Max 10 words — the storyline going in (a preview, not a result).","course":"Real course/venue + city (e.g. 'TPC Toronto at Osprey Valley, Ontario'). Name it if you know it.","whyCare1":"One sentence — why this event matters / what's at stake (FedEx Cup, prestige, field strength).","defending":"One sentence — who WON it last year and the storyline (name the champion if you know it).","watchFor":"Who to watch to win — name 2-3 recognizable favorites or marquee names expected in the field. Framed as 'worth watching', NOT as current leaders.","theRead":"2-4 sentences. The GuyTalk Read — what makes this tournament interesting for a casual fan right now.","ammo":["Fact 1 — purse total and winner's take","Fact 2 — course history or what makes the venue special","Fact 3 — field stat or defending champion detail"],"whatToSay":"One short immediately repeatable sentence. Must name a player and give a take — not a fact. Keep it tight enough to say word-for-word. NOT an analyst summary."}`;
           })(),
           golfStarted ? 480 : 700,
           { model: golfStarted ? undefined : 'claude-sonnet-4-6', delayMs: 2000, section: 'golf' }
@@ -472,7 +478,8 @@ Return ONLY valid JSON on one line — no markdown:
 A driver's team/constructor is ONLY the name shown in parentheses next to them. NEVER guess or state a driver's team if it is not given.
 STATS RULE (hard): you may include ONE interesting stat in "whatToSay" or "whyCare2", but ONLY using the season stats provided above. NEVER invent records, streaks, "first/most/youngest/oldest", or any number not given. If no stat is provided, don't cite one.
 Return ONLY valid JSON on one line — no markdown:
-{"headline":"Max 10 words.","whyCare1":"One sentence — what makes this race or result significant.","whyCare2":"One sentence — championship battle or circuit-specific detail.","watchFor":"One thing to track. Specific.","theRead":"2-4 sentences. The GuyTalk Read — championship context, what this result means for the title fight.","ammo":["Specific F1 fact 1 — season stat, circuit detail, championship gap, or driver story","Specific F1 fact 2","Specific F1 fact 3"],"whatToSay":"One casual conversation line — weave in the real season stat if available."}`;
+F1 COVERAGE RULE — focus on narrative and championship implications, NOT track descriptions. Never write about how short/long the circuit is, how qualifying matters, or how mistakes are costly (these are obvious and templated). Instead answer: Who is favored and why? What are the championship standings and what's at stake? Which driver is under pressure? What is the one storyline fans will actually discuss?
+{"headline":"Max 10 words.","whyCare1":"One sentence — championship implications or the specific narrative at stake this race, NOT a track description.","whyCare2":"One sentence — who is favored and why, or who is under pressure and what changes if they win/lose.","watchFor":"One specific driver storyline or championship battle moment to track — not a generic 'mistakes will be costly' line.","theRead":"2-4 sentences. The GuyTalk Read — championship context, what this race means for the title fight, who benefits.","ammo":["Specific F1 fact 1 — season stat, championship gap, or driver story","Specific F1 fact 2","Specific F1 fact 3"],"whatToSay":"One short repeatable line — the championship story or driver narrative, not a track fact. Something a fan would actually say."}`;
           })(),
           (f1.results?.length && f1.statusState === 'post') ? 380 : 500,
           { model: (f1.results?.length && f1.statusState === 'post') ? undefined : 'claude-sonnet-4-6', delayMs: 2000, section: 'f1' }
@@ -504,8 +511,16 @@ BROADER TODAY'S STORIES (use any that pass the relevance gate): ${topStoriesText
     // 9. Final Sharp Take — 80-100 words, 3-4 sentences
     ask(
       `Write the Final Sharp Take for today's GuyTalk. Hard limit: 80-100 words. 3-4 sentences only.
-Connect today's main themes — one actual opinion. Do NOT recap every score or section. Sound confident and natural — the last thing you say before leaving the room.
-No forced lines like "something bigger shifts" unless backed by real data. No hype. No filler. Plain prose.
+
+SHARP TAKE FORMULA — follow this structure:
+1. Observation: What specifically happened today (one named, specific thing — not a recap of all sections)
+2. Evidence: One supporting stat or verifiable detail that grounds the opinion
+3. Take: The opinion or implication that flows from 1 and 2 — what it signals, who it hurts, what changes
+
+A strong opinion without evidence is a hot take. A strong opinion WITH evidence is a Sharp Take.
+BAD: "The Phillies are built different this year." GOOD: "The Phillies put up 15 on the Mets — third game with 10+ runs in June. At some point you stop calling it a hot streak and start calling it an identity."
+
+Sound confident and natural — the last thing you say before leaving the room. No hype. No filler. Plain prose.
 Context: ${ctx}${repGuard}`,
       150
     ),
