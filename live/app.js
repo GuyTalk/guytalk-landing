@@ -1502,8 +1502,13 @@ function FeaturedGolfCard(g) {
     const useWide = others.length > 4;
     const leftOthers = useWide ? [] : others;
     const wideOthers = useWide ? others : [];
+    // Game photo fills the empty left column when no other games / champ card would go there.
+    const gameThumb = featured.facts?.gameThumb;
+    const gamePhotoHtml = (gameThumb && !champCard && !leftOthers.length)
+      ? `<a class="game-photo-card" href="${esc(hlUrl)}" target="_blank" rel="noopener"><img src="${esc(gameThumb)}" alt="" loading="lazy" onerror="this.closest('.game-photo-card').style.display='none'"></a>`
+      : '';
     el.innerHTML =
-      `<div class="stack">${Marquee(featured)}${champCard}${leftOthers.length ? `<div class="grid grid-scores">${leftOthers.map(ScoreboardCard).join('')}</div>` : ''}</div>` +
+      `<div class="stack">${Marquee(featured)}${gamePhotoHtml}${champCard}${leftOthers.length ? `<div class="grid grid-scores">${leftOthers.map(ScoreboardCard).join('')}</div>` : ''}</div>` +
       `<div class="stack">${ContextCard(rows, isLive, tag)}${wym}${last}${HighlightLink(hlUrl, hlLabel)}</div>` +
       (wideOthers.length ? `<div class="grid grid-three" style="grid-column:1/-1">${wideOthers.map(ScoreboardCard).join('')}</div>` : '');
   }

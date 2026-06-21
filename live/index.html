@@ -280,7 +280,12 @@
   .intel-desc { font-size: 13px; color: var(--text-3); margin-top: 5px; line-height: 1.4; }
   .intel-link { display: inline-block; font-size: 12px; color: var(--accent); margin-top: 8px; text-decoration: none; }
   .intel-link:hover { text-decoration: underline; }
-  .intel-img { width: 100%; height: 140px; object-fit: cover; border-radius: 7px; margin-bottom: 10px; display: block; }
+  .intel-img { width: 100%; height: 220px; object-fit: cover; object-position: center top; border-radius: 8px; margin-bottom: 10px; display: block; }
+
+  /* GAME PHOTO CARD — ESPN video thumbnail filling left-column empty space */
+  .game-photo-card { display: block; border-radius: 12px; overflow: hidden; margin-top: 14px; }
+  .game-photo-card img { width: 100%; height: 200px; object-fit: cover; object-position: center top; display: block; transition: transform 0.2s ease; }
+  .game-photo-card:hover img { transform: scale(1.03); }
 
   /* LEADERBOARD (F1 / Golf) */
   .lb { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
@@ -724,18 +729,25 @@
     font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 12.5px;
     letter-spacing: 0.16em; text-transform: uppercase; color: #1a1200;
   }
-  .champ-card-inner { display: flex; align-items: center; gap: 18px; padding: 18px 20px; flex: 1; }
+  .champ-card-inner { display: flex; align-items: center; gap: 22px; padding: 22px 24px; flex: 1; position: relative; overflow: hidden; }
+  /* Watermark logo — large faded team logo behind the card content */
+  .champ-card-inner::after {
+    content: ''; position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+    width: 160px; height: 160px;
+    background: no-repeat center/contain; opacity: 0.12; pointer-events: none;
+  }
   .champ-logo-wrap {
-    width: 78px; height: 78px; border-radius: 14px; flex-shrink: 0;
-    background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; padding: 6px;
+    width: 100px; height: 100px; border-radius: 18px; flex-shrink: 0;
+    background: rgba(255,255,255,0.22); display: flex; align-items: center; justify-content: center;
+    padding: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);
   }
   .champ-card-logo { width: 100%; height: 100%; object-fit: contain; }
   .champ-card-body { flex: 1; min-width: 0; }
   .champ-name {
-    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 30px;
-    letter-spacing: -0.04em; color: #fff; line-height: 1; margin-bottom: 6px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 34px;
+    letter-spacing: -0.04em; color: #fff; line-height: 1; margin-bottom: 8px;
   }
-  .champ-sub { font-size: 13px; color: rgba(255,255,255,0.65); }
+  .champ-sub { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.4; }
   .champ-play {
     margin: 0 20px 20px; align-self: flex-start;
     display: inline-flex; align-items: center; gap: 7px;
@@ -746,8 +758,8 @@
   }
   .champ-card:hover .champ-play { background: rgba(255,255,255,0.30); }
 
-  /* CHAMPIONS SECTION — grid of champ-cards */
-  .grid-champ { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  /* CHAMPIONS SECTION — grid of champ-cards; wide min so cards are roomy */
+  .grid-champ { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
 
   /* SPORTS CATEGORY NAV */
   .sports-nav {

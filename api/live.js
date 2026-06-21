@@ -279,7 +279,8 @@ async function nbaGameFacts(eventId) {
       return L ? { abbr, name: L.athlete?.displayName || '', val: L.displayValue } : null;
     }).filter(Boolean);
     const topPerformer = (state === 'in' || state === 'post') ? nbaTopPerformer(d) : null;
-    const facts = { league: 'nba', state, series, teams, topScorers, topPerformer };
+    const gameThumb    = pickHighlight(d)?.thumb || null;
+    const facts = { league: 'nba', state, series, teams, topScorers, topPerformer, gameThumb };
     // Upcoming/live playoff game: enrich with the previous game (score, hero, video).
     if (series && state !== 'post') facts.lastGame = await lastSeriesGame(d, 'basketball', 'nba');
     return facts;
@@ -331,7 +332,8 @@ async function summaryGameFacts(league, sport, eventId, leaderPriority) {
         split: c.homeAway === 'home' ? g('home') : g('road'),
       };
     });
-    const facts = { league, state, series, teams, leaders: summaryLeaders(d, leaderPriority) };
+    const gameThumb = pickHighlight(d)?.thumb || null;
+    const facts = { league, state, series, teams, leaders: summaryLeaders(d, leaderPriority), gameThumb };
     if (series && state !== 'post') facts.lastGame = await lastSeriesGame(d, sport, league);
     return facts;
   } catch (_) { return null; }
@@ -410,6 +412,12 @@ async function fetchScoreboards() {
     if (r.key === 'nba') top.facts = await nbaGameFacts(top.id);
     else if (r.key === 'nhl') top.facts = await summaryGameFacts('nhl', 'hockey', top.id, ['points', 'goals', 'assists']);
     else if (r.key === 'nfl') top.facts = await summaryGameFacts('nfl', 'football', top.id, ['passingYards', 'rushingYards', 'receivingYards']);
+    else if (r.key === 'mlb') {
+      // MLB facts come from the scoreboard; we do one extra call just for the gameThumb.
+      const d = await json(`${ESPN}/baseball/mlb/summary?event=${top.id}`);
+      const thumb = pickHighlight(d)?.thumb || null;
+      if (thumb) top.facts = { ...(top.facts || {}), gameThumb: thumb };
+    }
   }));
   for (const r of withGames) {
     for (let i = 1; i < r.games.length; i++) {
