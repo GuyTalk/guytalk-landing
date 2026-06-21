@@ -62,17 +62,17 @@ const SCOREBOARD_LEAGUES = [
   { key: 'concacaf', label: 'CONCACAF',         base: 5, sport: 'soccer', league: 'concacaf.champions' },
 ];
 
+// All market symbols are fetched from Yahoo Finance using real index values,
+// not ETF proxies. Sub-labels show the actual underlying symbol.
 const MARKET_SYMBOLS = [
-  { key: 'spx',  label: 'S&P 500',        sub: 'SPY',     api: 'SPY' },
-  { key: 'dow',  label: 'Dow Jones',      sub: 'DIA',     api: 'DIA' },
-  { key: 'ndq',  label: 'Nasdaq',         sub: 'QQQ',     api: 'QQQ' },
-  { key: 'rut',  label: 'Russell 2000',   sub: 'IWM',     api: 'IWM' },
-  { key: 'btc',  label: 'Bitcoin',        sub: 'BTC/USD', api: 'BINANCE:BTCUSDT' },
-  { key: 'gold', label: 'Gold',           sub: 'GLD',     api: 'GLD' },
-  { key: 'oil',  label: 'Crude Oil',      sub: 'USO',     api: 'USO' },
-  // 10-Yr Treasury is sourced as a YIELD from Yahoo ^TNX (see fetchTnxYield),
-  // not a bond-price ETF. `api: null` tells fetchMarkets to skip Finnhub for it.
-  { key: 'tnx',  label: '10-Yr Treasury', sub: 'US10Y',   api: null, unit: '%' },
+  { key: 'spx',  label: 'S&P 500',        sub: '^GSPC',    yahoo: '%5EGSPC' },
+  { key: 'dow',  label: 'Dow Jones',       sub: '^DJI',     yahoo: '%5EDJI' },
+  { key: 'ndq',  label: 'Nasdaq',          sub: '^IXIC',    yahoo: '%5EIXIC' },
+  { key: 'rut',  label: 'Russell 2000',    sub: '^RUT',     yahoo: '%5ERUT' },
+  { key: 'btc',  label: 'Bitcoin',         sub: 'BTC/USD',  yahoo: 'BTC-USD' },
+  { key: 'gold', label: 'Gold',            sub: '$/oz',     yahoo: 'GC%3DF' },
+  { key: 'oil',  label: 'Crude Oil',       sub: 'WTI/bbl',  yahoo: 'CL%3DF' },
+  { key: 'tnx',  label: '10-Yr Treasury',  sub: 'US10Y',    yahoo: '%5ETNX',  unit: '%' },
 ];
 
 const BIG_GAME_RE = /final|finals|championship|cup|playoff|conference|series|bowl|classic/i;
@@ -834,40 +834,34 @@ async function fetchTennis() {
 // 10-Year Treasury YIELD via Yahoo Finance (^TNX) — keyless. Returns the actual
 // yield percentage (e.g. 4.43), not a bond-price ETF. We compute day change from
 // the price vs previousClose so the card shows the yield move, not a price move.
-async function fetchTnxYield() {
+// Fetch one security's price + daily change from Yahoo Finance chart API.
+// Same approach as the previous ^TNX fetch — works without auth for index symbols.
+async function fetchYahooQuote(yahooSymbol) {
   const yj = await json(
-    'https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?interval=1d&range=5d'
+    `https://query1.finance.yahoo.com/v8/finance/chart/${yahooSymbol}?interval=1d&range=2d`
   );
   const result = yj?.chart?.result?.[0];
   if (!result) return null;
   const meta = result.meta || {};
   const closes = (result.indicators?.quote?.[0]?.close || []).filter((v) => v != null);
   const value = meta.regularMarketPrice ?? closes[closes.length - 1] ?? null;
-  const prev = meta.previousClose ?? meta.chartPreviousClose ?? closes[closes.length - 2] ?? null;
+  const prev  = meta.previousClose ?? meta.chartPreviousClose ?? closes[closes.length - 2] ?? null;
   if (value == null || prev == null) return null;
-  const change = value - prev;
+  const change        = value - prev;
   const changePercent = prev ? (change / prev) * 100 : 0;
-  return {
-    key: 'tnx', label: '10-Yr Treasury', sub: 'US10Y', unit: '%',
-    value: Number(value), change: Number(change),
-    changePercent: Number(changePercent), direction: change >= 0 ? 'up' : 'down',
-  };
+  return { value: Number(value), change: Number(change), changePercent: Number(changePercent) };
 }
 
-async function fetchMarkets(key) {
-  if (!key) return null;
+async function fetchMarkets(_unusedFinnhubKey) {
+  // All symbols fetched from Yahoo Finance — real index values, not ETF proxies.
   const rows = await Promise.all(
     MARKET_SYMBOLS.map(async (m) => {
-      // 10-Yr Treasury yield comes from Yahoo ^TNX, not Finnhub.
-      if (m.api == null) return m.key === 'tnx' ? fetchTnxYield() : null;
-      const data = await json(
-        `https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(m.api)}&token=${key}`
-      );
-      if (!data || data.dp == null || data.c == null) return null;
+      const q = await fetchYahooQuote(m.yahoo);
+      if (!q) return null;
       return {
         key: m.key, label: m.label, sub: m.sub, unit: m.unit || null,
-        value: Number(data.c), change: Number(data.d),
-        changePercent: Number(data.dp), direction: data.dp >= 0 ? 'up' : 'down',
+        value: q.value, change: q.change,
+        changePercent: q.changePercent, direction: q.change >= 0 ? 'up' : 'down',
       };
     })
   );
@@ -951,7 +945,8 @@ async function fetchLeagueNews(sport, league, limit = 4) {
         const raw = a.description || '';
         return raw.length > 180 ? raw.slice(0, 177).trimEnd() + '…' : raw;
       })(),
-      link: a.links?.web?.href || a.links?.mobile?.href || null,
+      link:     a.links?.web?.href || a.links?.mobile?.href || null,
+      imageUrl: (a.images || [])[0]?.url || null,
       published: a.published || null,
     })).filter(a => a.headline);
   } catch (_) { return null; }
@@ -1127,16 +1122,85 @@ function deriveLiveNow({ scoreboard, f1, golf, mma }) {
   return sched.length ? sched.slice(0, 6) : null;
 }
 
+/* --------------------------------------------------------- Recent Champions */
+
+// Looks back up to 14 days for a championship-clinching postseason game in
+// NBA/NHL/MLB. Needed because once a series ends, today's scoreboard is empty
+// and the Champions section would incorrectly hide. Returns an array of
+// { key, label, winner:{name,abbr,logo,color,link}, headline, seriesText, eventLink }.
+async function fetchRecentChampions() {
+  const CHAMP_LEAGUES = [
+    { sport: 'basketball', league: 'nba', label: 'NBA', key: 'nba' },
+    { sport: 'hockey',     league: 'nhl', label: 'NHL', key: 'nhl' },
+    { sport: 'baseball',   league: 'mlb', label: 'MLB', key: 'mlb' },
+  ];
+
+  const end   = new Date();
+  const start = new Date();
+  start.setDate(start.getDate() - 14);
+  const fmtDate  = (d) => d.toISOString().slice(0, 10).replace(/-/g, '');
+  const dateRange = `${fmtDate(start)}-${fmtDate(end)}`;
+
+  const results = await Promise.all(CHAMP_LEAGUES.map(async ({ sport, league, label, key }) => {
+    try {
+      const data   = await json(`${ESPN}/${sport}/${league}/scoreboard?limit=30&dates=${dateRange}`);
+      const events = (data?.events || [])
+        .filter(e => {
+          const comp = e?.competitions?.[0];
+          if (!comp || comp.status?.type?.state !== 'post') return false;
+          const hl = comp.notes?.[0]?.headline || '';
+          return /final/i.test(hl) && e.season?.type === 3; // postseason finals only
+        })
+        .sort((a, b) => new Date(b.competitions?.[0]?.date || 0) - new Date(a.competitions?.[0]?.date || 0));
+
+      for (const event of events) {
+        const comp = event.competitions[0];
+        const competitors = comp.competitors || [];
+        const winner = competitors.find(c => c.winner);
+        if (!winner) continue;
+
+        // Confirm it's a series clincher by fetching the summary
+        const summary = await json(`${ESPN}/${sport}/${league}/summary?event=${event.id}`);
+        const hc = summary?.header?.competitions?.[0];
+        const series = pickPlayoffSeries(hc);
+        const seriesNums = (series?.summary?.match(/\d+/g) || []).map(Number);
+        const isClincher = seriesNums.some(n => n >= 4) || !!hc?.status?.type?.completed;
+        if (!isClincher) continue;
+
+        const teamObj = winner.team || {};
+        return {
+          key, label,
+          winner: {
+            name:  teamObj.displayName || teamObj.name || '',
+            abbr:  (teamObj.abbreviation || '').toUpperCase(),
+            logo:  teamObj.logo || '',
+            color: teamObj.color ? `#${teamObj.color}` : '#2B6FFF',
+            link:  (teamObj.links || []).find(l => /^https/.test(l.href || ''))?.href || '',
+          },
+          headline:   comp.notes?.[0]?.headline || `${label} Finals`,
+          seriesText: series?.summary || '',
+          eventLink:  espnLink(event.links),
+        };
+      }
+      return null;
+    } catch (_) { return null; }
+  }));
+
+  const found = results.filter(Boolean);
+  return found.length ? found : null;
+}
+
 /* ------------------------------------------------------------------- handler */
 
 module.exports = async function handler(req, res) {
   const finnhubKey = process.env.FINNHUB_API_KEY;
 
   try {
-    const [scoreboard, f1, golf, tennis, mma, markets, nbaNews, nhlNews] = await Promise.all([
+    const [scoreboard, f1, golf, tennis, mma, markets, nbaNews, nhlNews, recentChampions] = await Promise.all([
       fetchScoreboards(), fetchF1(), fetchGolf(), fetchTennis(), fetchMMA(), fetchMarkets(finnhubKey),
       fetchLeagueNews('basketball', 'nba'),
       fetchLeagueNews('hockey', 'nhl'),
+      fetchRecentChampions(),
     ]);
 
     const liveNow = deriveLiveNow({ scoreboard, f1, golf, mma });
@@ -1154,14 +1218,16 @@ module.exports = async function handler(req, res) {
         scoreboard: scoreboard ? 'espn'    : null,
         mma:        mma        ? 'espn'    : null,
         markets:    markets    ? 'finnhub' : null,
-        nbaNews:    nbaNews    ? 'espn'    : null,
-        nhlNews:    nhlNews    ? 'espn'    : null,
+        nbaNews:          nbaNews          ? 'espn' : null,
+        nhlNews:          nhlNews          ? 'espn' : null,
+        recentChampions:  recentChampions  ? 'espn' : null,
         culture:      culture.length ? 'NewsAPI' : null,
         talkingAbout: 'editorial',   // no live source yet
       },
       liveNow, f1, golf, tennis, mma, scoreboard, markets,
       nbaNews: nbaNews && nbaNews.length ? nbaNews : null,
       nhlNews: nhlNews && nhlNews.length ? nhlNews : null,
+      recentChampions: recentChampions && recentChampions.length ? recentChampions : null,
       culture: culture.length ? culture : null,
       talkingAbout: null,
     });

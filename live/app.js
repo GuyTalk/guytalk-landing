@@ -419,9 +419,8 @@ function ScoreboardCard(g) {
   </div>`;
 }
 
-// Map a market tile to the Yahoo symbol its value represents, so a click opens
-// the matching security (the proxy/yield actually shown, not a mismatched index).
-const MARKET_YAHOO = { spx: 'SPY', dow: 'DIA', ndq: 'QQQ', rut: 'IWM', btc: 'BTC-USD', gold: 'GLD', oil: 'USO', tnx: '^TNX' };
+// Map each market tile to its Yahoo Finance symbol for click-through to Yahoo quotes.
+const MARKET_YAHOO = { spx: '^GSPC', dow: '^DJI', ndq: '^IXIC', rut: '^RUT', btc: 'BTC-USD', gold: 'GC=F', oil: 'CL=F', tnx: '^TNX' };
 function marketYahooSymbol(m) { return MARKET_YAHOO[m.key] || (m.sub && /^[A-Z.\-^]+$/.test(m.sub) ? m.sub : null); }
 
 /** MarketCard — Section 5 */
@@ -1015,6 +1014,32 @@ function ChampionHighlightCard(featured, tag) {
   </a>`;
 }
 
+/* RecentChampCard — renders a champion from the recentChampions API field.
+ * Used when today's scoreboard has no games (series already over) but a team
+ * clinched in the last 14 days. Takes the server-structured winner object. */
+function RecentChampCard(champ) {
+  const { label, winner, headline, seriesText, eventLink } = champ;
+  const color = winner.color || '#2B6FFF';
+  const logo  = winner.logo  || '';
+  const hlUrl = eventLink?.url
+    || `https://www.youtube.com/results?search_query=${encodeURIComponent(winner.name + ' ' + label + ' champions highlights')}`;
+  const logoHtml = logo
+    ? `<div class="champ-logo-wrap"><img class="champ-card-logo" src="${esc(logo)}" alt="${esc(winner.name)}" onerror="this.parentElement.style.display='none'"></div>`
+    : '';
+  const sub = seriesText || headline || '';
+  return `<a class="champ-card" href="${esc(hlUrl)}" target="_blank" rel="noopener" style="--cc:${esc(color)}">
+    <div class="champ-banner">🏆 ${esc(label)} CHAMPIONS</div>
+    <div class="champ-card-inner">
+      ${logoHtml}
+      <div class="champ-card-body">
+        <div class="champ-name">${esc(winner.name)}</div>
+        ${sub ? `<div class="champ-sub">${esc(sub)}</div>` : ''}
+      </div>
+    </div>
+    <div class="champ-play">▶ Watch Highlights</div>
+  </a>`;
+}
+
 /* LastGameCard — for an upcoming/live playoff game, a visual recap of the
  * previous game: score, the standout line, and a highlight clip you can watch. */
 function LastGameCard(lg) {
@@ -1492,7 +1517,7 @@ function FeaturedGolfCard(g) {
       setBadge('badge-nba', null);
       setMeta('meta-nba', 'ESPN News', new Date().toISOString());
       el.innerHTML = `<div class="league-intel">${news.slice(0, 4).map(n =>
-        `<div class="intel-item">${n.link ? `<a class="intel-headline" href="${esc(n.link)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">${esc(n.headline)}</a>` : `<div class="intel-headline">${esc(n.headline)}</div>`}${n.description ? `<div class="intel-desc">${esc(n.description)}</div>` : ''}</div>`
+        `<div class="intel-item">${n.imageUrl ? `<img class="intel-img" src="${esc(n.imageUrl)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}${n.link ? `<a class="intel-headline" href="${esc(n.link)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">${esc(n.headline)}</a>` : `<div class="intel-headline">${esc(n.headline)}</div>`}${n.description ? `<div class="intel-desc">${esc(n.description)}</div>` : ''}${n.link ? `<a class="intel-link" href="${esc(n.link)}" target="_blank" rel="noopener">Read on ESPN →</a>` : ''}</div>`
       ).join('')}</div>`;
       return;
     }
@@ -1516,7 +1541,7 @@ function FeaturedGolfCard(g) {
       setBadge('badge-nhl', null);
       setMeta('meta-nhl', 'ESPN News', new Date().toISOString());
       el.innerHTML = `<div class="league-intel">${news.slice(0, 4).map(n =>
-        `<div class="intel-item">${n.link ? `<a class="intel-headline" href="${esc(n.link)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">${esc(n.headline)}</a>` : `<div class="intel-headline">${esc(n.headline)}</div>`}${n.description ? `<div class="intel-desc">${esc(n.description)}</div>` : ''}</div>`
+        `<div class="intel-item">${n.imageUrl ? `<img class="intel-img" src="${esc(n.imageUrl)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}${n.link ? `<a class="intel-headline" href="${esc(n.link)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">${esc(n.headline)}</a>` : `<div class="intel-headline">${esc(n.headline)}</div>`}${n.description ? `<div class="intel-desc">${esc(n.description)}</div>` : ''}${n.link ? `<a class="intel-link" href="${esc(n.link)}" target="_blank" rel="noopener">Read on ESPN →</a>` : ''}</div>`
       ).join('')}</div>`;
       return;
     }
@@ -1618,7 +1643,7 @@ function FeaturedGolfCard(g) {
   }
 
   // ── Champions — teams/players that have clinched a title this season ─────────
-  function renderChampions(scoreboard) {
+  function renderChampions(scoreboard, recentChampions) {
     const el    = $('championsWrap');
     const sec   = $('champions');
     if (!el || !sec) return;
@@ -1635,9 +1660,8 @@ function FeaturedGolfCard(g) {
       const postGames = lgGames.filter(g => g.state === 'post');
       const liveGames = lgGames.filter(g => g.state === 'in');
 
-      // Championship detected: no live games, a completed game exists with a winner,
-      // and the series record indicates one team has reached 4 wins (NBA/NHL) or
-      // no further games are scheduled (season is over).
+      // Championship detected from today's scoreboard: no live games, a completed
+      // game exists with a winner, and series record shows one team at 4 wins.
       if (!liveGames.length && postGames.length > 0) {
         const featured = postGames.sort((a, b) => (b.importance || 0) - (a.importance || 0))[0];
         const hasWinner  = featured.home?.winner || featured.away?.winner;
@@ -1649,6 +1673,23 @@ function FeaturedGolfCard(g) {
         }
       }
     });
+
+    // Fallback: if scoreboard is empty or didn't detect champions (series already over),
+    // use recentChampions which looks back 14 days. Dedup by league key.
+    if (recentChampions && recentChampions.length) {
+      const existingKeys = new Set(CHAMP_LEAGUES
+        .filter(({ key, tag }) => {
+          const lg = (scoreboard || []).find(l => l.key === key);
+          return lg && lg.games.some(g => g.state === 'post' && (g.home?.winner || g.away?.winner));
+        })
+        .map(l => l.key));
+      recentChampions.forEach(champ => {
+        if (!existingKeys.has(champ.key)) {
+          const card = RecentChampCard(champ);
+          if (card) cards.push(card);
+        }
+      });
+    }
 
     if (!cards.length) { sec.hidden = true; return; }
     sec.hidden = false;
@@ -1697,7 +1738,7 @@ function FeaturedGolfCard(g) {
     if (!real || !real.length) { el.innerHTML = `<div class="empty" style="grid-column:1/-1">Market data unavailable right now.</div>`; return; }
     const synopsis = marketsSynopsis(real);
     el.innerHTML = buildTapeCard(real, synopsis) + real.map(MarketCard).join('') +
-      `<p class="mk-disclaimer">Market data is informational only and is not investment advice. Values via index-tracking proxies; figures may be delayed.</p>`;
+      `<p class="mk-disclaimer">Market data is informational only and is not investment advice. Index values via Yahoo Finance; figures may be delayed 15–20 minutes.</p>`;
   }
 
   function buildTapeCard(rows, synopsis) {
@@ -1837,7 +1878,7 @@ function FeaturedGolfCard(g) {
     const p = payload || {};
     renderLiveNow(p.liveNow);
     renderRecap(p.scoreboard);
-    renderChampions(p.scoreboard);
+    renderChampions(p.scoreboard, p.recentChampions);
     renderF1(p.f1);
     renderGolf(p.golf);
     renderTennis(p.tennis);
