@@ -510,16 +510,12 @@ const RECS = [
     imageUrl: 'https://images.ctfassets.net/7vk8puwnesgc/2a4M7YoVbnUJmdHbaaP57z/68b46399c7860116075e48dfdc58860b/Metadata_small.jpg',
   },
   {
-    title: 'Birdies Whisky 12-year — the single malt that earns a question at dinner.',
-    body: `Scottish distillery founded in 2012, makes one expression, sells for $68 at Total Wine. The point isn't that it's exceptional — it's that it's the most credible answer to "what are you drinking?" at a price that doesn't feel performative. Pour it neat, let someone ask about it, say "Scottish distillery from 2012, they only do one." That's the whole conversation and it works. The honest flaw: it's good, not great. If you want great, buy Glenfarclas 15 at $75. If you want a bottle that prompts a conversation, buy Birdies.`,
-    // Total Wine search URL that lands on the product results, not the bare
-    // homepage. imageUrl stays null — no reliable, validated bottle shot to use,
-    // and per the brief's image rules we never fake one (the card renders with
-    // the brand placeholder instead of a dead link).
-    url: 'https://www.totalwine.com/search/all?text=Birdies%20whisky',
-    cta: 'Find It at Total Wine →',
-    brand: 'Birdies',
-    imageUrl: null,
+    title: 'ThermoWorks Thermapen ONE — if you grill, this is the only thermometer you should own.',
+    body: `One-second reads, accurate to ±0.5°F, folds into a pocket. ThermoWorks sells this hardware to professional kitchens and food labs — $109 puts the same probe in your hands for home use. The honest case against: if you've cooked the same proteins the same way for 20 years and you're satisfied, skip it. If you ever cook steak, fish, pork, or chicken and care whether it's right, this raises the ceiling on everything you pull off the grill. You stop guessing. One of the rare products that actually performs better than its reviews.`,
+    url: 'https://www.thermoworks.com/thermapen-one/',
+    cta: 'Get Thermapen ONE →',
+    brand: 'ThermoWorks',
+    imageUrl: 'https://www.thermoworks.com/cdn/shop/files/Thermapen_Instant_Read_Nav_2.webp?v=1773843804',
   },
   {
     title: '1Password — fix your password situation before something forces you to.',
@@ -535,6 +531,30 @@ const RECS = [
     url: 'https://apps.apple.com/us/app/napper-power-nap-timer/id1498961328',
     cta: 'Get Napper →',
     brand: 'Napper',
+    imageUrl: null,
+  },
+  {
+    title: 'Theragun Relief — the entry point into recovery that actually works.',
+    body: `Four attachments, quiet enough to use in a hotel room, three speed settings, 120-minute battery. Therabody makes the Theragun Pro for athletes and physical therapists — the Relief is the same percussion therapy at $149 instead of $399. The honest case: if you sit at a desk, fly regularly, or train more than twice a week, the upper back and hip flexor work alone justifies the price inside six months. The honest flaw: it won't fix an actual injury — it's recovery and maintenance, not treatment. For the price, it outperforms every foam roller and massage ball alternative by a significant margin.`,
+    url: 'https://www.therabody.com/us/en-us/theragun-relief.html',
+    cta: 'Get Theragun Relief →',
+    brand: 'Therabody',
+    imageUrl: 'https://www.therabody.com/cdn/shop/files/preview_images/dddb1c47bce8413c98c7314e9bdf7e10.thumbnail.0000000000_2048x.jpg?v=1738871778',
+  },
+  {
+    title: 'MasterClass — one weekend, one class, actually useful.',
+    body: `$120/year covers every class across every category. The honest pitch isn't the celebrity instructors — it's the specificity. Gordon Ramsay's knife-work module will change how you cook. Matthew Walker's sleep class distills his book into 90 minutes. Phil Ivey on poker reads. Steph Curry breaking down shooting mechanics from the feet up. The flaw: most guys buy it, watch two classes, and forget about it entirely. Fix that by picking one class to finish before you buy. If you can commit to three complete classes in a year, it's worth every dollar. If you can't, it isn't — honest answer.`,
+    url: 'https://www.masterclass.com',
+    cta: 'Try MasterClass →',
+    brand: 'MasterClass',
+    imageUrl: null,
+  },
+  {
+    title: 'Weber Kettle Premium 22" — the only grill most guys actually need.',
+    body: `Charcoal, 363 square inches of cooking space, built-in thermometer, one-touch cleaning system. Weber has been making this grill since 1952 and hasn't meaningfully changed it because it doesn't need changing. The honest comparison: a gas grill is faster and more convenient. A charcoal grill produces better results and teaches you to actually cook — timing, airflow, indirect vs. direct heat. The Premium is $229, which is less than one month of a gas grill's propane and maintenance costs over five years. If you can only own one grill, this is the one that makes you better at grilling.`,
+    url: 'https://www.weber.com/en-us/grills/charcoal-grills/kettle-series/original-kettle-premium-charcoal-grill-22-inch/OLP22.html',
+    cta: 'Shop Weber →',
+    brand: 'Weber',
     imageUrl: null,
   },
 ];
