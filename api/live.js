@@ -685,14 +685,18 @@ async function fetchGolf() {
     .slice()
     .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
     .slice(0, 10)
-    .map((c) => ({
-      pos: c.status?.position?.displayName || (c.order != null ? String(c.order) : ''),
-      name: c.athlete?.displayName || '',
-      flag: c.athlete?.flag?.href || '',
-      link: golfPlayerLink(c),
-      score: c.score != null ? String(c.score) : 'E',
-      thru: (c.status?.thru != null ? String(c.status.thru) : '') || golfThru(c),
-    }));
+    .map((c) => {
+      const aid = c.athlete?.id;
+      return {
+        pos: c.status?.position?.displayName || (c.order != null ? String(c.order) : ''),
+        name: c.athlete?.displayName || '',
+        flag: c.athlete?.flag?.href || '',
+        link: golfPlayerLink(c),
+        score: c.score != null ? String(c.score) : 'E',
+        thru: (c.status?.thru != null ? String(c.status.thru) : '') || golfThru(c),
+        headshot: aid ? `https://a.espncdn.com/i/headshots/golf/players/full/${aid}.png` : null,
+      };
+    });
 
   const leader = leaderboard[0] || null;
   const meta = golfEventMeta(event.name || event.shortName || '');
@@ -935,13 +939,17 @@ async function fetchMMA() {
   const status = mainEvent.status?.type || {};
   const state = status.state; // 'pre' | 'in' | 'post'
 
-  const fighter = (c) => ({
-    name: c.athlete?.displayName || c.athlete?.shortName || '',
-    flag: c.athlete?.flag?.href || '',
-    record: (c.records || [])[0]?.summary || '',
-    winner: !!c.winner,
-    link: athleteLink(c.athlete),
-  });
+  const fighter = (c) => {
+    const id = c.athlete?.id;
+    return {
+      name: c.athlete?.displayName || c.athlete?.shortName || '',
+      flag: c.athlete?.flag?.href || '',
+      record: (c.records || [])[0]?.summary || '',
+      winner: !!c.winner,
+      link: athleteLink(c.athlete),
+      headshot: id ? `https://a.espncdn.com/i/headshots/mma/players/full/${id}.png` : null,
+    };
+  };
 
   const fighters = (mainEvent.competitors || []).map(fighter);
 

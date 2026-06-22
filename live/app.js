@@ -339,9 +339,11 @@ function HighlightLink(href, label) {
  *  @param {{eyebrow,icon,flag,name,subText,subColor,accent,watermark,
  *           stats:{num,label,neg}[]}} c */
 function EventSpotlight(c) {
-  const mark = c.flag
-    ? `<img class="spot-flag" src="${esc(c.flag)}" alt="" loading="lazy">`
-    : `<span class="spot-avatar">${esc(initials(c.name))}</span>`;
+  const mark = c.photo
+    ? `<img class="spot-photo" src="${esc(c.photo)}" alt="${esc(c.name)}" loading="lazy" onerror="this.style.display='none'">`
+    : c.flag
+      ? `<img class="spot-flag" src="${esc(c.flag)}" alt="" loading="lazy">`
+      : `<span class="spot-avatar">${esc(initials(c.name))}</span>`;
   const wm = c.watermark ? `<img class="spot-wm" src="${esc(c.watermark)}" alt="" loading="lazy">` : '';
   const stats = (c.stats || []).filter((s) => s && s.num != null && s.num !== '').map(
     (s) => `<div class="spot-stat"><div class="spot-stat-num${s.neg ? ' neg' : ''}">${esc(s.num)}</div><div class="spot-stat-lbl">${esc(s.label)}</div></div>`
@@ -1177,7 +1179,9 @@ function FeaturedGolfCard(g) {
 
   const negScore = String(lead.score).trim().startsWith('-');
   return EventSpotlight({
-    eyebrow: meta.eyebrow, icon: meta.icon, flag: lead.flag, name: lead.name,
+    eyebrow: meta.eyebrow, icon: meta.icon,
+    photo: lead.headshot || null,
+    flag: lead.flag, name: lead.name,
     subText: g.state === 'post' ? `Won at ${lead.score}` : `Leads at ${lead.score}`,
     accent: '#15803D', watermark: g.leagueLogo, link: g.eventLink || null,
     stats: [
@@ -1416,6 +1420,7 @@ function FeaturedGolfCard(g) {
     const spotHtml = featFighter ? EventSpotlight({
       eyebrow: mma.state === 'post' ? 'Main Event Winner' : isLive ? 'Main Event — Live' : 'Main Event',
       icon: '🥊',
+      photo:   featFighter.headshot || null,
       flag:    featFighter.flag,
       name:    featFighter.name,
       subText: mma.weightClass || (f2 ? `vs. ${f2.name}` : ''),
