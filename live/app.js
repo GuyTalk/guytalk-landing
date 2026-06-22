@@ -1737,13 +1737,99 @@ function FeaturedGolfCard(g) {
     }).join('');
   }
 
-  function renderMarkets(real) {
+  // Plain-English "why it matters" for the markets section — built from live numbers,
+  // no AI. Mirrors the ContextCard format used across every sports section.
+  function marketsContext(rows) {
+    if (!rows || !rows.length) return null;
+    const by = {};
+    rows.forEach(r => { if (r && r.key) by[r.key] = r; });
+    const spx = by.spx, btc = by.btc, gold = by.gold, tnx = by.tnx;
+    const idx = ['spx', 'dow', 'ndq'].map(k => by[k]).filter(Boolean);
+    const pos = idx.filter(r => r.changePercent > 0.05).length;
+    const neg = idx.filter(r => r.changePercent < -0.05).length;
+
+    let why;
+    if (spx) {
+      const mv = Math.abs(spx.changePercent);
+      const dir = spx.changePercent >= 0 ? 'up' : 'down';
+      if (mv >= 1.5) {
+        why = `The S&P 500 is ${dir} ${mv.toFixed(1)}% — a significant move that shows up in 401(k)s and brokerage accounts. Something is moving the market today and it's worth knowing what.`;
+      } else if (mv >= 0.5) {
+        why = `Stocks are ${dir} ${mv.toFixed(1)}% on the S&P 500. A meaningful daily move, but not a market event — normal range for a directional session.`;
+      } else {
+        why = `Markets are essentially flat — the S&P 500 at ${spx.changePercent >= 0 ? '+' : ''}${spx.changePercent.toFixed(2)}%. A quiet tape day with no major catalyst.`;
+      }
+    } else {
+      why = pos > neg ? 'Stocks are broadly higher across major indices.' : neg > pos ? 'Stocks are broadly lower today.' : 'Markets are mixed — no clear directional trend.';
+    }
+
+    let stat = null;
+    if (tnx) {
+      const yv = Number(tnx.value).toFixed(2);
+      const ctx = Number(tnx.value) > 4.5 ? 'elevated — still a headwind for valuations' : Number(tnx.value) < 4.0 ? 'below 4% — relief for rate-sensitive assets' : 'in the mid-4s';
+      stat = `10-year Treasury yield at ${yv}% — ${ctx}. This is the benchmark rate that every other asset prices off.`;
+    } else if (btc && Math.abs(btc.changePercent) > 2) {
+      stat = `Bitcoin ${btc.changePercent >= 0 ? '+' : ''}${btc.changePercent.toFixed(1)}% today — crypto is the story this session and usually reflects broader risk appetite.`;
+    } else if (gold && Math.abs(gold.changePercent) > 0.8) {
+      stat = `Gold ${gold.changePercent >= 0 ? 'up' : 'down'} ${Math.abs(gold.changePercent).toFixed(1)}% — a signal about ${gold.changePercent > 0 ? 'risk-off sentiment or inflation concerns' : 'calmer macro conditions'}.`;
+    }
+
+    let say;
+    if (spx) {
+      const mv = Math.abs(spx.changePercent);
+      if (mv >= 1) {
+        say = spx.changePercent >= 0
+          ? `"Market ripped ${mv.toFixed(1)}% today — somebody big was buying."`
+          : `"Market sold off ${mv.toFixed(1)}% today — worth knowing what drove it."`;
+      } else if (btc && Math.abs(btc.changePercent) > 3) {
+        say = `"Crypto is having a day — Bitcoin's ${btc.changePercent >= 0 ? '+' : ''}${btc.changePercent.toFixed(1)}% while stocks are relatively quiet."`;
+      } else {
+        say = `"Markets are ${pos > neg ? 'green' : neg > pos ? 'red' : 'mixed'} but nothing dramatic — just a normal ${pos > neg ? 'up' : neg > pos ? 'down' : 'quiet'} day."`;
+      }
+    } else {
+      say = `"The tape is ${pos > neg ? 'moving up' : neg > pos ? 'moving down' : 'quiet'} today — nothing out of the ordinary."`;
+    }
+
+    return [
+      { label: 'Why it matters', text: why },
+      stat && { label: 'Key stat', key: true, text: stat },
+      { label: 'What to say', say: true, text: say },
+    ];
+  }
+
+  // Biggest gainers and losers among the 8 tracked instruments.
+  function MarketMovers(rows) {
+    if (!rows || rows.length < 3) return '';
+    const eligible = rows.filter(r => r && r.key && r.key !== 'tnx'); // yield ≠ price return
+    const sorted = eligible.slice().sort((a, b) => b.changePercent - a.changePercent);
+    const winners = sorted.filter(r => r.changePercent > 0.05).slice(0, 3);
+    const losers = sorted.filter(r => r.changePercent < -0.05).reverse().slice(0, 3);
+    if (!winners.length && !losers.length) return '';
+    const fmtPct = r => `${r.changePercent >= 0 ? '+' : ''}${r.changePercent.toFixed(2)}%`;
+    const moverRow = r => `<div class="mover-item">
+      <span class="mover-name">${esc(r.label)}</span>
+      <span class="mover-pct ${r.direction}">${fmtPct(r)}</span>
+    </div>`;
+    return `<div class="mk-movers" style="grid-column:1/-1">
+      ${winners.length ? `<div class="mover-col"><div class="mover-col-head up">▲ Today's Gainers</div>${winners.map(moverRow).join('')}</div>` : ''}
+      ${losers.length ? `<div class="mover-col"><div class="mover-col-head down">▼ Today's Laggards</div>${losers.map(moverRow).join('')}</div>` : ''}
+    </div>`;
+  }
+
+  function renderMarkets(real, marketNews) {
     setBadge('badge-markets', real ? 'live' : null);
     const el = $('marketsWrap');
     if (!real || !real.length) { el.innerHTML = `<div class="empty" style="grid-column:1/-1">Market data unavailable right now.</div>`; return; }
     const synopsis = marketsSynopsis(real);
-    el.innerHTML = buildTapeCard(real, synopsis) + real.map(MarketCard).join('') +
-      `<p class="mk-disclaimer">Market data is informational only and is not investment advice. Index values via Yahoo Finance; figures may be delayed 15–20 minutes.</p>`;
+    const ctxRows = (marketsContext(real) || []).filter(Boolean);
+    const ctxHtml = ctxRows.length ? `<div style="grid-column:1/-1">${ContextCard(ctxRows, false, 'Markets')}</div>` : '';
+    el.innerHTML =
+      buildTapeCard(real, synopsis) +
+      real.map(MarketCard).join('') +
+      MarketMovers(real) +
+      ctxHtml +
+      `<p class="mk-disclaimer">Index and crypto data via Yahoo Finance; index quotes are near real-time during market hours, futures/commodities may carry a short delay. Informational only — not investment advice.</p>`;
+    renderMarketNews(marketNews);
   }
 
   function buildTapeCard(rows, synopsis) {
@@ -1831,8 +1917,6 @@ function FeaturedGolfCard(g) {
     const stories = trendLive ? p.trending : (IS_DEV ? MOCK.trending : null);
     const talks = talkLive ? p.talkingAbout : (IS_DEV ? MOCK.talkingAbout : null);
 
-    renderMarketNews(stories);
-
     $('trendingWrap').innerHTML = (stories && stories.length)
       ? stories.map(TrendingStoryCard).join('')
       : `<div class="empty" style="grid-column:1/-1">Live stories are refreshing — check back in a few minutes.</div>`;
@@ -1892,7 +1976,7 @@ function FeaturedGolfCard(g) {
     renderMLB(p.scoreboard);
     renderNHL(p.scoreboard, p.nhlNews);
     renderSoccer(p.scoreboard);
-    renderMarkets(p.markets);
+    renderMarkets(p.markets, p.marketNews);
     observeChampCards();
     // Sections 6 & 7 are handled by refreshTalk() / renderTalk() (separate feed).
 
@@ -1908,7 +1992,7 @@ function FeaturedGolfCard(g) {
     setMeta('meta-tennis',   p.tennis     ? 'ESPN' : '');
     setMeta('meta-mma',      p.mma        ? 'ESPN' : '');
     setMeta('meta-scores',   p.scoreboard ? 'ESPN' : '');
-    setMeta('meta-markets',  p.markets    ? 'Finnhub' : '');
+    setMeta('meta-markets',  p.markets    ? 'Yahoo Finance' : '');
     // meta-nba / mlb / nhl / soccer set inside _renderLeague(); meta-trending/talking by renderTalk().
 
     // Section identity: surface the live event name under each header.
@@ -2159,14 +2243,11 @@ function FeaturedGolfCard(g) {
     document.querySelectorAll('.champ-card').forEach(el => obs.observe(el));
   }
 
-  // ── Market news stories — business/finance headlines below the tape ─────────
-  function renderMarketNews(stories) {
+  // ── Market news wire — financial headlines from the live payload ─────────────
+  function renderMarketNews(marketNews) {
     const el = $('marketNewsWrap');
     if (!el) return;
-    const BIZ = /business|finance|economy|market|stock|trade|fed|treasury|crypto|spacex|tesla|apple|nvidia|tech|ai|earnings|gdp|inflation/i;
-    const allStories = stories || [];
-    const bizPicks = allStories.filter(s => BIZ.test((s.category || '') + ' ' + (s.headline || '')));
-    const picks = (bizPicks.length ? bizPicks : allStories).slice(0, 2);
+    const picks = (marketNews || []).filter(s => s && s.headline).slice(0, 2);
     if (!picks.length) { el.hidden = true; return; }
     el.hidden = false;
     el.innerHTML = picks.map(s => {
@@ -2177,7 +2258,7 @@ function FeaturedGolfCard(g) {
         <div class="mk-wire-cat">${esc(s.category || 'Markets')}</div>
         <div class="mk-wire-head">${head}</div>
         ${s.summary ? `<p class="mk-wire-sum">${esc(s.summary)}</p>` : ''}
-        ${s.url ? `<div class="mk-wire-src">${esc(s.source || '')} →</div>` : ''}
+        ${s.source && s.url ? `<div class="mk-wire-src">${esc(s.source)} →</div>` : ''}
       </div>`;
     }).join('');
   }

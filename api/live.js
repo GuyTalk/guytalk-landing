@@ -839,11 +839,31 @@ async function fetchTennis() {
 
 /* -------------------------------------------------------------------- Markets */
 
-// 10-Year Treasury YIELD via Yahoo Finance (^TNX) — keyless. Returns the actual
-// yield percentage (e.g. 4.43), not a bond-price ETF. We compute day change from
-// the price vs previousClose so the card shows the yield move, not a price move.
+// Financial headlines — top market/business news from Yahoo Finance search.
+// Runs alongside the price fetch so market news is as fresh as the tape.
+async function fetchMarketNews() {
+  try {
+    const d = await json(
+      'https://query1.finance.yahoo.com/v1/finance/search?q=stock+market+today&newsCount=6&quotesCount=0&enableFuzzyQuery=false&enableCb=false'
+    );
+    const items = d?.news || [];
+    const results = items
+      .filter(n => n.title && n.link)
+      .map(n => ({
+        headline: n.title,
+        summary: '',
+        url: n.link,
+        source: n.publisher || 'Yahoo Finance',
+        category: 'Markets',
+        published: n.providerPublishTime ? new Date(n.providerPublishTime * 1000).toISOString() : null,
+      }))
+      .slice(0, 4);
+    return results.length ? results : null;
+  } catch (_) { return null; }
+}
+
 // Fetch one security's price + daily change from Yahoo Finance chart API.
-// Same approach as the previous ^TNX fetch — works without auth for index symbols.
+// Works without auth for index symbols (^GSPC, ^DJI, etc.) and crypto.
 async function fetchYahooQuote(yahooSymbol) {
   const yj = await json(
     `https://query1.finance.yahoo.com/v8/finance/chart/${yahooSymbol}?interval=1d&range=2d`
@@ -1204,17 +1224,18 @@ module.exports = async function handler(req, res) {
   const finnhubKey = process.env.FINNHUB_API_KEY;
 
   try {
-    const [scoreboard, f1, golf, tennis, mma, markets, nbaNews, nhlNews, recentChampions] = await Promise.all([
+    const [scoreboard, f1, golf, tennis, mma, markets, nbaNews, nhlNews, recentChampions, marketNews] = await Promise.all([
       fetchScoreboards(), fetchF1(), fetchGolf(), fetchTennis(), fetchMMA(), fetchMarkets(finnhubKey),
       fetchLeagueNews('basketball', 'nba'),
       fetchLeagueNews('hockey', 'nhl'),
       fetchRecentChampions(),
+      fetchMarketNews(),
     ]);
 
     const liveNow = deriveLiveNow({ scoreboard, f1, golf, mma });
     const culture = loadLiveCulture();   // NewsAPI entertainment headlines (refresh-culture cron)
 
-    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
+    res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
     return res.json({
       updatedAt: new Date().toISOString(),
       // Per-section provenance so the client/devs know what's real vs absent.
@@ -1225,7 +1246,8 @@ module.exports = async function handler(req, res) {
         tennis:     tennis     ? 'espn'    : null,
         scoreboard: scoreboard ? 'espn'    : null,
         mma:        mma        ? 'espn'    : null,
-        markets:    markets    ? 'finnhub' : null,
+        markets:    markets    ? 'yahoo'   : null,
+        marketNews: marketNews ? 'yahoo'   : null,
         nbaNews:          nbaNews          ? 'espn' : null,
         nhlNews:          nhlNews          ? 'espn' : null,
         recentChampions:  recentChampions  ? 'espn' : null,
@@ -1233,6 +1255,7 @@ module.exports = async function handler(req, res) {
         talkingAbout: 'editorial',   // no live source yet
       },
       liveNow, f1, golf, tennis, mma, scoreboard, markets,
+      marketNews: marketNews && marketNews.length ? marketNews : null,
       nbaNews: nbaNews && nbaNews.length ? nbaNews : null,
       nhlNews: nhlNews && nhlNews.length ? nhlNews : null,
       recentChampions: recentChampions && recentChampions.length ? recentChampions : null,
