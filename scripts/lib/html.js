@@ -1,5 +1,7 @@
 'use strict';
 
+const path = require('path');
+const fs   = require('fs');
 const { BRIEF_ROWS, TICKERS, CORE_TICKERS, PRODUCTS, RECS, esc, playerLink, tickerLink, fmtPrice, fmtPct, ENTITY_LINKS, entityLink, linkifyEntities } = require('./db');
 
 // Strip HTML tags from editor-injected text before HTML-escaping it.
@@ -473,7 +475,10 @@ function buildHtml(issue, relatedIssues) {
   const { num, slug, date, title, deck, sports, markets, golf, f1, worldCup, nhl, upcoming, gameMetas, trending, copy } = issue;
   const label = `#${String(num).padStart(3, '0')}`;
   const prevSlug = num > 1 ? `issue-${String(num - 1).padStart(3, '0')}` : null;
-  const nextSlug = `issue-${String(num + 1).padStart(3, '0')}`;
+  const _nextNum  = num + 1;
+  const nextSlug  = `issue-${String(_nextNum).padStart(3, '0')}`;
+  const _nextPath = path.join(__dirname, '../../brief', nextSlug, 'index.html');
+  const hasNext   = fs.existsSync(_nextPath);
   const prevLabel = prevSlug ? `#${String(num - 1).padStart(3, '0')}` : null;
 
   const hasF1  = f1?.name != null;
@@ -640,7 +645,7 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
 
   // Word-of-mouth share links (the growth wedge: "don't be the last guy to know")
   const shareUrl  = `https://www.guytalkmedia.com/brief/${slug}/`;
-  const shareText = `${title} — the daily GuyTalk brief`;
+  const shareText = `${stripHtmlTags(title)} — the daily GuyTalk brief`;
   const xShare    = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
   const smsShare  = `sms:?&body=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
   const mailShare = `mailto:?subject=${encodeURIComponent('You should read this')}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`;
@@ -661,20 +666,20 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
 <link rel="apple-touch-icon" href="/assets/logo/guytalk-icon-192.png">
 <meta property="og:type"        content="article">
 <meta property="og:url"         content="https://www.guytalkmedia.com/brief/${slug}/">
-<meta property="og:title"       content="${esc(title)}">
+<meta property="og:title"       content="${esc(stripHtmlTags(title))}">
 <meta property="og:description" content="${esc(seoDesc)}">
 <meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-cards/${slug}.png">
 <meta property="og:site_name"   content="GuyTalk">
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:site"        content="@guytalkmedia">
-<meta name="twitter:title"       content="${esc(title)}">
+<meta name="twitter:title"       content="${esc(stripHtmlTags(title))}">
 <meta name="twitter:description" content="${esc(seoDesc)}">
 <meta name="twitter:image"       content="https://www.guytalkmedia.com/assets/og-cards/${slug}.png">
 <link rel="canonical"            href="https://www.guytalkmedia.com/brief/${slug}/">
 ${prevSlug ? `<link rel="prev" href="https://www.guytalkmedia.com/brief/${prevSlug}/">` : ''}
-<link rel="next" href="https://www.guytalkmedia.com/brief/${nextSlug}/">
+${hasNext ? `<link rel="next" href="https://www.guytalkmedia.com/brief/${nextSlug}/">` : ''}
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":${JSON.stringify(title)},"description":${JSON.stringify(seoDesc)},"url":"https://www.guytalkmedia.com/brief/${slug}/","image":"https://www.guytalkmedia.com/assets/og-cards/${slug}.png","publisher":{"@type":"Organization","name":"GuyTalk","logo":{"@type":"ImageObject","url":"https://www.guytalkmedia.com/assets/logo/guytalk-icon.svg"}},"author":{"@type":"Person","name":"Jake Williams"},"datePublished":"${isoDate(date)}"}
+{"@context":"https://schema.org","@type":"Article","headline":${JSON.stringify(stripHtmlTags(title))},"description":${JSON.stringify(seoDesc)},"url":"https://www.guytalkmedia.com/brief/${slug}/","image":"https://www.guytalkmedia.com/assets/og-cards/${slug}.png","publisher":{"@type":"Organization","name":"GuyTalk","logo":{"@type":"ImageObject","url":"https://www.guytalkmedia.com/assets/logo/guytalk-icon.svg"}},"author":{"@type":"Person","name":"Jake Williams"},"datePublished":"${isoDate(date)}"}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
