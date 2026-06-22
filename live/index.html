@@ -109,17 +109,14 @@
   }
   .live-hero > * { position: relative; z-index: 1; }
 
-  /* Section scroll-dot nav (matches the other pages) */
-  .scroll-nav { position: fixed; right: 22px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-  .scroll-nav::before { content: ''; position: absolute; top: 5px; bottom: 5px; left: 50%; transform: translateX(-50%); width: 1px; background: var(--border); pointer-events: none; }
-  .scroll-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-light); border: 1px solid var(--border-light); cursor: pointer; position: relative; z-index: 1; transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
-  .scroll-dot[hidden] { display: none; }
-  .scroll-dot:hover { background: var(--text-2); border-color: var(--text-2); transform: scale(1.3); }
-  .scroll-dot:hover .dot-label { opacity: 0.85; }
-  .scroll-dot.active { background: var(--accent); border-color: var(--accent); transform: scale(1.5); box-shadow: 0 0 8px rgba(43,111,255,0.35); }
-  .scroll-dot.active .dot-label { opacity: 1; color: var(--text); }
-  .dot-label { position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 700; white-space: nowrap; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); opacity: 0.7; transition: opacity 0.25s ease; cursor: pointer; user-select: none; }
-  @media (max-width: 1180px) { .scroll-nav { display: none; } }
+  /* Section tab bar */
+  .live-tabs { position: sticky; top: 57px; z-index: 90; background: rgba(249,248,245,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .live-tabs-inner { max-width: 1080px; margin: 0 auto; padding: 0 24px; display: flex; gap: 0; }
+  .live-tab { padding: 12px 20px; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.01em; color: var(--text-2); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.15s ease, border-color 0.15s ease; }
+  .live-tab:hover { color: var(--text); }
+  .live-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  /* hide scroll-dot nav on live page (replaced by tab bar) */
+  .scroll-nav { display: none; }
   .live-eyebrow {
     display: inline-flex; align-items: center; gap: 7px;
     font-family: 'Inter Tight', sans-serif; font-weight: 700;
@@ -285,7 +282,7 @@
   .intel-desc { font-size: 13px; color: var(--text-3); margin-top: 5px; line-height: 1.4; }
   .intel-link { display: inline-block; font-size: 12px; color: var(--accent); margin-top: 8px; text-decoration: none; }
   .intel-link:hover { text-decoration: underline; }
-  .intel-img { width: 100%; height: 160px; object-fit: cover; object-position: center 20%; border-radius: 8px; margin-bottom: 10px; display: block; }
+  .intel-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: center center; border-radius: 8px; margin-bottom: 10px; display: block; }
 
   /* GAME PHOTO CARD — ESPN video thumbnail filling left-column empty space */
   .game-photo-card { display: block; border-radius: 12px; overflow: hidden; margin-top: 14px; }
@@ -934,11 +931,13 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
   </div>
 </nav>
 
-<nav class="scroll-nav" aria-hidden="true" id="liveScrollNav">
-  <div class="scroll-dot active" data-target="umb-sports" title="Sports"><span class="dot-label">Sports</span></div>
-  <div class="scroll-dot" data-target="umb-markets" title="Markets"><span class="dot-label">Markets</span></div>
-  <div class="scroll-dot" data-target="umb-culture" title="Culture"><span class="dot-label">Culture</span></div>
-</nav>
+<div class="live-tabs" id="liveTabs">
+  <div class="live-tabs-inner">
+    <button class="live-tab active" data-section="umb-sports">Sports</button>
+    <button class="live-tab" data-section="umb-markets">Markets</button>
+    <button class="live-tab" data-section="umb-culture">Culture</button>
+  </div>
+</div>
 
 <main class="page-wrap">
 
@@ -1231,34 +1230,30 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
 
 <script src="/live/app.js"></script>
 <script>
-  // Section scroll-dot nav — tracks scroll position, hides dots for sections
-  // that aren't currently rendered (e.g. F1 off-season).
+  // Section tab bar — click to show one section, hide the others.
   (function () {
-    var nav = document.getElementById('liveScrollNav');
-    if (!nav) return;
-    var dots = Array.prototype.slice.call(nav.querySelectorAll('.scroll-dot'));
-    function sync() {
-      var mid = window.scrollY + window.innerHeight * 0.42;
-      var current = -1;
-      dots.forEach(function (dot, i) {
-        var sec = document.getElementById(dot.getAttribute('data-target'));
-        var visible = sec && sec.offsetParent !== null;
-        dot.hidden = !visible;
-        if (visible && (sec.getBoundingClientRect().top + window.scrollY) <= mid) current = i;
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.live-tab'));
+    var SECTIONS = ['umb-sports', 'umb-markets', 'umb-culture'];
+
+    function showSection(id) {
+      SECTIONS.forEach(function (sid) {
+        var el = document.getElementById(sid);
+        if (el) el.style.display = (sid === id) ? '' : 'none';
       });
-      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+      tabs.forEach(function (t) {
+        t.classList.toggle('active', t.getAttribute('data-section') === id);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    dots.forEach(function (dot) {
-      dot.addEventListener('click', function () {
-        var sec = document.getElementById(dot.getAttribute('data-target'));
-        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        showSection(tab.getAttribute('data-section'));
       });
     });
-    window.addEventListener('scroll', sync, { passive: true });
-    window.addEventListener('resize', sync);
-    sync();
-    // Re-sync after async live data renders sections in/out.
-    [600, 1500, 3500].forEach(function (t) { setTimeout(sync, t); });
+
+    // Default: Sports visible.
+    showSection('umb-sports');
   })();
 </script>
 </body>
