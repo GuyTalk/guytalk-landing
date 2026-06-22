@@ -841,6 +841,25 @@ async function fetchTennis() {
 
 // Financial headlines — top market/business news from Yahoo Finance search.
 // Runs alongside the price fetch so market news is as fresh as the tape.
+async function fetchStockMovers() {
+  try {
+    const [gainRes, lossRes] = await Promise.all([
+      json('https://query1.finance.yahoo.com/v1/finance/screener/predefined/saved?formatted=false&scrIds=day_gainers&count=5&fields=symbol,shortName,regularMarketPrice,regularMarketChangePercent,regularMarketChange'),
+      json('https://query1.finance.yahoo.com/v1/finance/screener/predefined/saved?formatted=false&scrIds=day_losers&count=5&fields=symbol,shortName,regularMarketPrice,regularMarketChangePercent,regularMarketChange'),
+    ]);
+    const map = q => ({
+      symbol: q.symbol,
+      name: q.shortName || q.symbol,
+      price: q.regularMarketPrice,
+      change: q.regularMarketChange,
+      changePercent: q.regularMarketChangePercent,
+    });
+    const gainers = (gainRes?.finance?.result?.[0]?.quotes || []).slice(0, 3).map(map);
+    const losers  = (lossRes?.finance?.result?.[0]?.quotes || []).slice(0, 3).map(map);
+    return (gainers.length || losers.length) ? { gainers, losers } : null;
+  } catch (_) { return null; }
+}
+
 async function fetchMarketNews() {
   try {
     const d = await json(
@@ -1224,12 +1243,13 @@ module.exports = async function handler(req, res) {
   const finnhubKey = process.env.FINNHUB_API_KEY;
 
   try {
-    const [scoreboard, f1, golf, tennis, mma, markets, nbaNews, nhlNews, recentChampions, marketNews] = await Promise.all([
+    const [scoreboard, f1, golf, tennis, mma, markets, nbaNews, nhlNews, recentChampions, marketNews, stockMovers] = await Promise.all([
       fetchScoreboards(), fetchF1(), fetchGolf(), fetchTennis(), fetchMMA(), fetchMarkets(finnhubKey),
       fetchLeagueNews('basketball', 'nba'),
       fetchLeagueNews('hockey', 'nhl'),
       fetchRecentChampions(),
       fetchMarketNews(),
+      fetchStockMovers(),
     ]);
 
     const liveNow = deriveLiveNow({ scoreboard, f1, golf, mma });
@@ -1247,7 +1267,8 @@ module.exports = async function handler(req, res) {
         scoreboard: scoreboard ? 'espn'    : null,
         mma:        mma        ? 'espn'    : null,
         markets:    markets    ? 'yahoo'   : null,
-        marketNews: marketNews ? 'yahoo'   : null,
+        marketNews:  marketNews  ? 'yahoo'   : null,
+        stockMovers: stockMovers ? 'yahoo'   : null,
         nbaNews:          nbaNews          ? 'espn' : null,
         nhlNews:          nhlNews          ? 'espn' : null,
         recentChampions:  recentChampions  ? 'espn' : null,
@@ -1255,7 +1276,8 @@ module.exports = async function handler(req, res) {
         talkingAbout: 'editorial',   // no live source yet
       },
       liveNow, f1, golf, tennis, mma, scoreboard, markets,
-      marketNews: marketNews && marketNews.length ? marketNews : null,
+      marketNews:  marketNews  && marketNews.length  ? marketNews  : null,
+      stockMovers: stockMovers && (stockMovers.gainers.length || stockMovers.losers.length) ? stockMovers : null,
       nbaNews: nbaNews && nbaNews.length ? nbaNews : null,
       nhlNews: nhlNews && nhlNews.length ? nhlNews : null,
       recentChampions: recentChampions && recentChampions.length ? recentChampions : null,

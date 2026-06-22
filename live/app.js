@@ -1797,26 +1797,26 @@ function FeaturedGolfCard(g) {
     ];
   }
 
-  // Biggest gainers and losers among the 8 tracked instruments.
-  function MarketMovers(rows) {
-    if (!rows || rows.length < 3) return '';
-    const eligible = rows.filter(r => r && r.key && r.key !== 'tnx'); // yield ≠ price return
-    const sorted = eligible.slice().sort((a, b) => b.changePercent - a.changePercent);
-    const winners = sorted.filter(r => r.changePercent > 0.05).slice(0, 3);
-    const losers = sorted.filter(r => r.changePercent < -0.05).reverse().slice(0, 3);
-    if (!winners.length && !losers.length) return '';
-    const fmtPct = r => `${r.changePercent >= 0 ? '+' : ''}${r.changePercent.toFixed(2)}%`;
+  // Today's biggest individual stock movers from Yahoo Finance screener.
+  function MarketMovers(stockMovers) {
+    if (!stockMovers) return '';
+    const { gainers = [], losers = [] } = stockMovers;
+    if (!gainers.length && !losers.length) return '';
+    const fmtPct = pct => `${pct >= 0 ? '+' : ''}${pct.toFixed(2)}%`;
     const moverRow = r => `<div class="mover-item">
-      <span class="mover-name">${esc(r.label)}</span>
-      <span class="mover-pct ${r.direction}">${fmtPct(r)}</span>
+      <div>
+        <span class="mover-name">${esc(r.symbol)}</span>
+        <span class="mover-sub">${esc(r.name)}</span>
+      </div>
+      <span class="mover-pct ${r.changePercent >= 0 ? 'up' : 'down'}">${fmtPct(r.changePercent)}</span>
     </div>`;
     return `<div class="mk-movers" style="grid-column:1/-1">
-      ${winners.length ? `<div class="mover-col"><div class="mover-col-head up">▲ Today's Gainers</div>${winners.map(moverRow).join('')}</div>` : ''}
+      ${gainers.length ? `<div class="mover-col"><div class="mover-col-head up">▲ Today's Gainers</div>${gainers.map(moverRow).join('')}</div>` : ''}
       ${losers.length ? `<div class="mover-col"><div class="mover-col-head down">▼ Today's Laggards</div>${losers.map(moverRow).join('')}</div>` : ''}
     </div>`;
   }
 
-  function renderMarkets(real, marketNews) {
+  function renderMarkets(real, marketNews, stockMovers) {
     setBadge('badge-markets', real ? 'live' : null);
     const el = $('marketsWrap');
     if (!real || !real.length) { el.innerHTML = `<div class="empty" style="grid-column:1/-1">Market data unavailable right now.</div>`; return; }
@@ -1826,7 +1826,7 @@ function FeaturedGolfCard(g) {
     el.innerHTML =
       buildTapeCard(real, synopsis) +
       real.map(MarketCard).join('') +
-      MarketMovers(real) +
+      MarketMovers(stockMovers) +
       ctxHtml +
       `<p class="mk-disclaimer">Index and crypto data via Yahoo Finance; index quotes are near real-time during market hours, futures/commodities may carry a short delay. Informational only — not investment advice.</p>`;
     renderMarketNews(marketNews);
@@ -1976,7 +1976,7 @@ function FeaturedGolfCard(g) {
     renderMLB(p.scoreboard);
     renderNHL(p.scoreboard, p.nhlNews);
     renderSoccer(p.scoreboard);
-    renderMarkets(p.markets, p.marketNews);
+    renderMarkets(p.markets, p.marketNews, p.stockMovers);
     observeChampCards();
     // Sections 6 & 7 are handled by refreshTalk() / renderTalk() (separate feed).
 
