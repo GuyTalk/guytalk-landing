@@ -1507,11 +1507,18 @@ function FeaturedGolfCard(g) {
     const useWide = others.length > 4;
     const leftOthers = useWide ? [] : others;
     const wideOthers = useWide ? others : [];
-    // Game photo fills the empty left column when no other games / champ card would go there.
+    // Left column: game highlight photo, or team-logo matchup card as fallback.
     const gameThumb = featured.facts?.gameThumb;
-    const gamePhotoHtml = (gameThumb && !champCard && !leftOthers.length)
+    const needsLeftFill = !champCard && !leftOthers.length;
+    const gamePhotoHtml = (gameThumb && needsLeftFill)
       ? `<a class="game-photo-card" href="${esc(hlUrl)}" target="_blank" rel="noopener"><img src="${esc(gameThumb)}" alt="" loading="lazy" onerror="this.closest('.game-photo-card').style.display='none'"></a>`
-      : '';
+      : (needsLeftFill && featured.home?.logo && featured.away?.logo)
+        ? `<div class="matchup-card sc-card">
+            <img class="matchup-logo" src="${esc(featured.away.logo)}" alt="${esc(featured.away.name)}" loading="lazy" onerror="this.style.display='none'">
+            <span class="matchup-vs">vs</span>
+            <img class="matchup-logo" src="${esc(featured.home.logo)}" alt="${esc(featured.home.name)}" loading="lazy" onerror="this.style.display='none'">
+           </div>`
+        : '';
     el.innerHTML =
       `<div class="stack">${Marquee(featured)}${gamePhotoHtml}${champCard}${leftOthers.length ? `<div class="grid grid-scores">${leftOthers.map(ScoreboardCard).join('')}</div>` : ''}</div>` +
       `<div class="stack">${ContextCard(rows, isLive, tag)}${wym}${last}${HighlightLink(hlUrl, hlLabel)}</div>` +

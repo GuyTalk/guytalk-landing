@@ -413,8 +413,12 @@ async function fetchScoreboards() {
     else if (r.key === 'nhl') top.facts = await summaryGameFacts('nhl', 'hockey', top.id, ['points', 'goals', 'assists']);
     else if (r.key === 'nfl') top.facts = await summaryGameFacts('nfl', 'football', top.id, ['passingYards', 'rushingYards', 'receivingYards']);
     else if (r.key === 'mlb') {
-      // MLB facts come from the scoreboard; we do one extra call just for the gameThumb.
       const d = await json(`${ESPN}/baseball/mlb/summary?event=${top.id}`);
+      const thumb = pickHighlight(d)?.thumb || null;
+      if (thumb) top.facts = { ...(top.facts || {}), gameThumb: thumb };
+    } else if (['worldcup', 'mls', 'epl', 'ucl', 'concacaf'].includes(r.key)) {
+      const league = { worldcup: 'fifa.world', mls: 'usa.1', epl: 'eng.1', ucl: 'uefa.champions', concacaf: 'concacaf.champions' }[r.key];
+      const d = await json(`${ESPN}/soccer/${league}/summary?event=${top.id}`);
       const thumb = pickHighlight(d)?.thumb || null;
       if (thumb) top.facts = { ...(top.facts || {}), gameThumb: thumb };
     }
@@ -686,7 +690,7 @@ async function fetchGolf() {
     .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
     .slice(0, 10)
     .map((c) => {
-      const aid = c.athlete?.id;
+      const aid = c.id || c.athlete?.id;
       return {
         pos: c.status?.position?.displayName || (c.order != null ? String(c.order) : ''),
         name: c.athlete?.displayName || '',
@@ -940,7 +944,7 @@ async function fetchMMA() {
   const state = status.state; // 'pre' | 'in' | 'post'
 
   const fighter = (c) => {
-    const id = c.athlete?.id;
+    const id = c.id || c.athlete?.id;
     return {
       name: c.athlete?.displayName || c.athlete?.shortName || '',
       flag: c.athlete?.flag?.href || '',
