@@ -2078,6 +2078,56 @@ function FeaturedGolfCard(g) {
     start();
   }
 
+  // Patch market tiles in-place with fresh /api/quote data — bypasses CDN cache
+  // so tiles always show current price regardless of /api/live stale-while-revalidate.
+  const MK_REFRESH_MS = 30 * 1000;
+  let mkTimer = null;
+  function patchMarketTiles() {
+    const entries = Object.entries(MARKET_YAHOO); // [['spx','^GSPC'], ...]
+    entries.forEach(([, sym]) => {
+      fetch('/api/quote?symbol=' + encodeURIComponent(sym), { headers: { Accept: 'application/json' } })
+        .then(r => r.json())
+        .then(d => {
+          if (!d || !d.quote) return;
+          const q = d.quote;
+          const card = document.querySelector('.mk-card[data-symbol="' + sym + '"]');
+          if (!card) return;
+          const isYield = sym === '^TNX';
+          const fmtVal = (n) => {
+            if (isYield) return Number(n).toFixed(2);
+            const abs = Math.abs(n);
+            return abs >= 1000
+              ? Number(n).toLocaleString('en-US', { maximumFractionDigits: 0 })
+              : Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          };
+          const up = (q.change || 0) >= 0;
+          const dir = up ? 'up' : 'down';
+          const arrow = up ? '▲' : '▼';
+          const sign = up ? '+' : '';
+          const unit = isYield ? '%' : '';
+          const valEl = card.querySelector('.mk-value');
+          const moveEl = card.querySelector('.mk-move');
+          if (valEl) valEl.textContent = fmtVal(q.price) + unit;
+          if (moveEl) {
+            moveEl.className = 'mk-move ' + dir;
+            moveEl.innerHTML = '<span class="mk-arrow">' + arrow + '</span>'
+              + sign + fmtVal(q.change) + ' (' + sign + Number(q.changePercent).toFixed(2) + '%)';
+          }
+        })
+        .catch(() => {});
+    });
+  }
+
+  function startMarketRefresh() {
+    if (mkTimer) clearInterval(mkTimer);
+    patchMarketTiles();
+    mkTimer = setInterval(patchMarketTiles, MK_REFRESH_MS);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { if (mkTimer) { clearInterval(mkTimer); mkTimer = null; } }
+      else { patchMarketTiles(); mkTimer = setInterval(patchMarketTiles, MK_REFRESH_MS); }
+    });
+  }
+
   // ── Securities search + detail modal ───────────────────────────────────────
   function sdFmt(n, isYield) {
     if (n == null || isNaN(n)) return '—';
@@ -2295,5 +2345,6 @@ function FeaturedGolfCard(g) {
   refreshTalk();
   startClock();
   startAutoRefresh();
+  startMarketRefresh();
   trackClicks();
 })();
