@@ -248,9 +248,15 @@ function buildHeroOverride(dynamicSports) {
   if (!dyn.length) return null;            // no ranked lead → template's own fallback
   const lead = dyn[0];
 
-  // Prefer the lead's own (validated, relevant) image; else the next Tier-1/2
-  // story that has one. Never borrow an image from an unrelated low-tier card.
-  let image = lead.imageUrl || null;
+  // /media/motion/ URLs are video thumbnails (press-conference clips, studio
+  // shots) — they often show the back of someone's head and look bad as hero
+  // banners. Prefer real news/action photos (/photo/ URLs) over them.
+  const isVideoThumb = (url) => Boolean(url && /\/media\/motion\//i.test(url));
+  const isRealPhoto  = (url) => Boolean(url && !isVideoThumb(url));
+
+  const photoSource = dyn.find(s => isRealPhoto(s.imageUrl) && (s.tier == null || s.tier <= 2));
+  let image = isRealPhoto(lead.imageUrl) ? lead.imageUrl
+    : (photoSource ? photoSource.imageUrl : lead.imageUrl) || null;
   let imageReal = !!image;
   if (!image) {
     const alt = dyn.find((s) => s.imageUrl && (s.tier == null || s.tier <= 2));

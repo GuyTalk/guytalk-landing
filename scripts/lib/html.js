@@ -472,7 +472,9 @@ function buildSportsBody(issue) {
 }
 
 function buildHtml(issue, relatedIssues) {
-  const { num, slug, date, title, deck, sports, markets, golf, f1, worldCup, nhl, upcoming, gameMetas, trending, copy } = issue;
+  const { num, slug, date, deck, sports, markets, golf, f1, worldCup, nhl, upcoming, gameMetas, trending, copy } = issue;
+  // copy.title is the editable version; issue.title is the original generated value — prefer copy
+  const title = copy?.title || issue.title;
   const label = `#${String(num).padStart(3, '0')}`;
   const prevSlug = num > 1 ? `issue-${String(num - 1).padStart(3, '0')}` : null;
   const _nextNum  = num + 1;
