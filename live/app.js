@@ -1542,9 +1542,24 @@ function FeaturedGolfCard(g) {
       contextFn: nbaContext, wymFn: nbaWhatYouMissed, tag: 'NBA', emptyMsg: 'No NBA games today — check back for trade news and injury updates.' });
   }
 
-  function renderMLB(scoreboard) {
-    const games = ((scoreboard || []).find(lg => lg.key === 'mlb')?.games || [])
-      .filter(g => g.state === 'in' || g.state === 'post');
+  function renderMLB(scoreboard, news) {
+    const allGames = (scoreboard || []).find(lg => lg.key === 'mlb')?.games || [];
+    // Live/finished games take priority; if none, surface today's scheduled games
+    const liveOrPost = allGames.filter(g => g.state === 'in' || g.state === 'post');
+    const upcoming   = allGames.filter(g => g.state === 'pre').slice(0, 4);
+    const games = liveOrPost.length ? liveOrPost : upcoming;
+
+    // If no games at all today, show MLB news intel (same pattern as NHL)
+    if (!games.length && news && news.length) {
+      const el = $('mlbWrap');
+      if (!el) return;
+      setBadge('badge-mlb', null);
+      setMeta('meta-mlb', 'ESPN News', new Date().toISOString());
+      el.innerHTML = `<div class="league-intel">${news.slice(0, 4).map(n =>
+        `<div class="intel-item">${n.imageUrl ? `<img class="intel-img" src="${esc(n.imageUrl)}" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}${n.link ? `<a class="intel-headline" href="${esc(n.link)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit">${esc(n.headline)}</a>` : `<div class="intel-headline">${esc(n.headline)}</div>`}${n.description ? `<div class="intel-desc">${esc(n.description)}</div>` : ''}${n.link ? `<a class="intel-link" href="${esc(n.link)}" target="_blank" rel="noopener">Read on ESPN →</a>` : ''}</div>`
+      ).join('')}</div>`;
+      return;
+    }
     _renderLeague({ elId: 'mlbWrap', badgeId: 'badge-mlb', metaId: 'meta-mlb', games,
       contextFn: mlbContext, wymFn: mlbWhatYouMissed, tag: 'MLB', emptyMsg: 'No MLB games today.' });
   }
@@ -1985,7 +2000,7 @@ function FeaturedGolfCard(g) {
     renderTennis(p.tennis);
     renderMMA(p.mma);
     renderNBA(p.scoreboard, p.nbaNews);
-    renderMLB(p.scoreboard);
+    renderMLB(p.scoreboard, p.mlbNews);
     renderNHL(p.scoreboard, p.nhlNews);
     renderSoccer(p.scoreboard);
     renderMarkets(p.markets, p.marketNews, p.stockMovers);

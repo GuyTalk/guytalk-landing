@@ -1005,7 +1005,13 @@ async function fetchLeagueNews(sport, league, limit = 4) {
         return raw.length > 180 ? raw.slice(0, 177).trimEnd() + '…' : raw;
       })(),
       link:     a.links?.web?.href || a.links?.mobile?.href || null,
-      imageUrl: (a.images || [])[0]?.url || null,
+      // Prefer real /photo/ URLs — /media/motion/ are video thumbnails that
+      // show press-conference clips or the back of someone's head.
+      imageUrl: (() => {
+        const imgs = a.images || [];
+        const photo = imgs.find(img => img.url && !/\/media\/motion\//i.test(img.url));
+        return (photo || imgs[0])?.url || null;
+      })(),
       published: a.published || null,
     })).filter(a => a.headline);
   } catch (_) { return null; }
@@ -1255,10 +1261,11 @@ module.exports = async function handler(req, res) {
   const finnhubKey = process.env.FINNHUB_API_KEY;
 
   try {
-    const [scoreboard, f1, golf, tennis, mma, markets, nbaNews, nhlNews, recentChampions, marketNews, stockMovers] = await Promise.all([
+    const [scoreboard, f1, golf, tennis, mma, markets, nbaNews, nhlNews, mlbNews, recentChampions, marketNews, stockMovers] = await Promise.all([
       fetchScoreboards(), fetchF1(), fetchGolf(), fetchTennis(), fetchMMA(), fetchMarkets(finnhubKey),
       fetchLeagueNews('basketball', 'nba'),
       fetchLeagueNews('hockey', 'nhl'),
+      fetchLeagueNews('baseball', 'mlb'),
       fetchRecentChampions(),
       fetchMarketNews(),
       fetchStockMovers(),
@@ -1283,6 +1290,7 @@ module.exports = async function handler(req, res) {
         stockMovers: stockMovers ? 'yahoo'   : null,
         nbaNews:          nbaNews          ? 'espn' : null,
         nhlNews:          nhlNews          ? 'espn' : null,
+        mlbNews:          mlbNews          ? 'espn' : null,
         recentChampions:  recentChampions  ? 'espn' : null,
         culture:      culture.length ? 'NewsAPI' : null,
         talkingAbout: 'editorial',   // no live source yet
@@ -1292,6 +1300,7 @@ module.exports = async function handler(req, res) {
       stockMovers: stockMovers && (stockMovers.gainers.length || stockMovers.losers.length) ? stockMovers : null,
       nbaNews: nbaNews && nbaNews.length ? nbaNews : null,
       nhlNews: nhlNews && nhlNews.length ? nhlNews : null,
+      mlbNews: mlbNews && mlbNews.length ? mlbNews : null,
       recentChampions: recentChampions && recentChampions.length ? recentChampions : null,
       culture: culture.length ? culture : null,
       talkingAbout: null,
