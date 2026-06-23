@@ -2241,12 +2241,24 @@ ${side(g.home, homeLogo)}
       ${whenTxt ? `<li><span><span class="dl-label">When:</span> ${esc(whenTxt)}</span></li>` : ''}
     </ul>`;
 
+  const { PLAYERS } = require('./db');
+  const nhlPlayerLinks = Array.isArray(nd.playerLinks) ? nd.playerLinks : [];
+  const nhlPlayersHtml = nhlPlayerLinks.length
+    ? `    <div class="ctx-row"><div class="ctx-label">Players to know</div><ul class="pbio-list">
+${nhlPlayerLinks.map(p => {
+      const bio = p.bio || (PLAYERS[p.name] || {}).bio || '';
+      return `        <li class="pbio-item"><a href="${esc(p.url)}" target="_blank" rel="noopener" class="pbio-name">${esc(p.name)}</a>${bio ? `<span class="pbio-bio">${esc(bio)}</span>` : ''}</li>`;
+    }).join('\n')}
+      </ul></div>`
+    : '';
+
   return `  <section class="brief-section" id="nhl">
     <div class="section-label sl-sports">NHL</div>
     <h3>${h}</h3>
     ${whereTxt ? `<div class="where-line"><span class="where-pin">◍</span>${esc(whereTxt)}</div>` : ''}
 ${body}
 ${detail}
+${nhlPlayersHtml}
   </section>`;
 }
 
