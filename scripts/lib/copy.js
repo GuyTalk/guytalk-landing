@@ -493,43 +493,72 @@ F1 COVERAGE RULE — focus on narrative and championship implications, NOT track
         )
       : Promise.resolve(null),
 
-    // 8. Culture — 3 quick hits
+    // 8. Culture — 2-3 relevance-driven items with depth on the lead
     askJson('Culture',
-      `GuyTalk culture: 3 quick hits for men 25-45. Today: ${TODAY}.
-Return ONLY valid JSON array with exactly 3 objects — no markdown, no extra text:
-[{"topic":"Headline. Max 8 words.","whatHappened":"One sentence — what actually happened.","whyItMatters":"One sentence — why a guy should care.","theRead":"2-3 sentences. The GuyTalk Read — the real angle, who it affects, the broader signal.","ammo":["Specific fact 1","Specific fact 2","Specific fact 3"],"whatToSay":"One casual conversation line. Natural, not forced.","tag":"Music|Sports Biz|TV|Tech|Gaming|Movies|Streaming|UFC|Current Events"}]
+      `GuyTalk culture section for men 25-45. Today: ${TODAY}.
 
-RELEVANCE GATE — every culture story must pass this test: "Would a normal 30-year-old man actually bring this up at work or a bar today?" If the answer is "probably not", skip it.
-HARD EXCLUDES: celebrity relationship gossip, dating/breakup/split news, celibacy or abstinence reveals, personal relationship choices (e.g. "[Celebrity] says they've been celibate for X years"), custody battles, reality-TV drama, red carpet fashion, plastic surgery, "who's dating who", horoscopes. These are NEVER acceptable regardless of trending status.
-GOOD PICKS: major streaming/TV drops, big tech announcements, notable entertainment news, UFC fights/drama, significant viral moments men are actually discussing, major gaming releases, music/album moments, White House or major political story men would talk about, notable deaths that men would mention.
+WHAT IS CULTURE (these are the ONLY valid tags):
+Music | Streaming | Movies | TV | Tech | Gaming | Viral | Social | Grooming | Lifestyle | Sports Biz
 
-SOURCE PRIORITY — use in this order:
-1. WEB-RESEARCHED CULTURE FACTS below (verified stories, use these first)
-2. BROADER TODAY'S STORIES below (research pack — any Tech/Business/UFC/Current Events story a man would discuss as culture)
-3. Only if both above are empty: a genuinely well-known June 2026 story — but only name things you are confident are real and current; do not invent specifics.
+HARD EXCLUDES — these do NOT belong in culture, ever:
+- Geopolitics, foreign policy, wars, international relations, peace deals → skip; already in Markets/Current Events
+- Political news, White House actions, elections, legislation → skip
+- Celebrity relationship gossip, breakups, dating news, custody battles
+- Reality TV drama, red carpet fashion, plastic surgery, horoscopes
 
-${streamingPick ? `Item 3 — a watch recommendation for "${streamingPick.head.replace('Watch this: ', '')}": {"topic":"${streamingPick.head.replace('Watch this: ', '')}","whatHappened":"${streamingPick.body.split('.')[0]}.","whyItMatters":"One sentence on the vibe/genre and why it's worth a guy's night — general framing only, do NOT invent plot, cast, awards, or box-office.","whatToSay":"One natural recommendation line you'd actually say to a friend.","tag":"Streaming"}` : 'Item 3: One streaming/watch rec (action, thriller, crime, or prestige drama — no animated/kids/family). whyItMatters = vibe + why worth watching; whatToSay = a natural rec line. No invented facts.'}
+RELEVANCE GATE — every item must pass: "Would a normal 30-year-old man actually bring this up at work or a bar today?" If the answer is probably not, skip it.
+
+SELECTION: pick 2-3 items by genuine relevance. If only 2 are strong today, return 2 — never pad with filler to hit 3.
+
+THE LEAD ITEM (first object) gets full depth:
+- whatHappened: 1-2 sentences with specific names and details
+- whyItMatters: 1-2 sentences on why a guy in his 30s should care specifically
+- theRead: 3-4 sentences — the sharpest take you can write; who it affects, what it signals about where culture is going, one specific insight the reader can use in conversation
+- ammo: 4 specific verifiable facts
+
+ALL OTHER ITEMS get standard treatment:
+- whatHappened: one sentence
+- whyItMatters: one sentence
+- theRead: 2-3 sentences
+- ammo: 3 specific facts
+
+Return ONLY valid JSON array — no markdown, no extra text:
+[{"topic":"Max 8 words.","whatHappened":"...","whyItMatters":"...","theRead":"...","ammo":["fact1","fact2","fact3"],"whatToSay":"One casual conversation line.","tag":"<tag from list above>"}]
+
+SOURCE PRIORITY:
+1. WEB-RESEARCHED CULTURE FACTS below (verified, current — use first; skip any that are political/geopolitical)
+2. BROADER TODAY'S STORIES below (only culture-tagged items — skip any Politics/Markets/Current Events/World)
+3. Only if both are empty: a well-known June 2026 culture story you are confident is real; never invent specifics
+
+${streamingPick ? `One item SHOULD be a watch rec for "${streamingPick.head.replace('Watch this: ', '')}": {"topic":"${streamingPick.head.replace('Watch this: ', '')}","whatHappened":"${streamingPick.body.split('.')[0]}.","whyItMatters":"One sentence on vibe/genre — no invented details.","theRead":"2-3 sentences on why it's worth a guy's time — genre, tone, who it's for. No invented facts.","whatToSay":"One natural rec line.","tag":"Streaming"}` : 'One item can be a streaming/watch rec (action, thriller, crime, prestige drama only — no animated/kids/family). theRead = genre, tone, who it\'s for. No invented facts.'}
 
 WEB-RESEARCHED CULTURE FACTS: ${cultureWeb.length ? cultureWeb.map((c, i) => `${i + 1}. ${c}`).join(' | ') : '(none)'}
-BROADER TODAY'S STORIES (use any that pass the relevance gate): ${topStoriesText || '(none)'}`,
-      1200, { delayMs: 2000, section: 'culture' }
+BROADER TODAY'S STORIES (culture-only — skip any Politics/Markets/World/Current Events items): ${topStoriesText || '(none)'}`,
+      1400, { delayMs: 2000, section: 'culture' }
     ),
 
-    // 9. Final Sharp Take — 80-100 words, 3-4 sentences
-    ask(
-      `Write the Final Sharp Take for today's GuyTalk. Hard limit: 80-100 words. 3-4 sentences only.
+    // 9. Final Sharp Take — 3 distinct opinions across sports / markets / culture
+    askJson('Sharp Take',
+      `Write the Final Sharp Take for today's GuyTalk — exactly 3 opinions, one per domain.
 
-SHARP TAKE FORMULA — follow this structure:
-1. Observation: What specifically happened today (one named, specific thing — not a recap of all sections)
-2. Evidence: One supporting stat or verifiable detail that grounds the opinion
-3. Take: The opinion or implication that flows from 1 and 2 — what it signals, who it hurts, what changes
+RULES:
+- Each take is a DEFENSIBLE OPINION, not a recap. Take a real side.
+- Every take must cover a DIFFERENT story — no repeating the same game/company/topic.
+- Max 30 words per take. Plain prose. Confident. Named people and numbers.
+- BANNED: recaps ("Today X happened"), hedging ("you could argue"), meta-commentary ("nobody's talking about this"), vague adjectives.
 
-A strong opinion without evidence is a hot take. A strong opinion WITH evidence is a Sharp Take.
-BAD: "The Phillies are built different this year." GOOD: "The Phillies put up 15 on the Mets — third game with 10+ runs in June. At some point you stop calling it a hot streak and start calling it an identity."
+Sports take: a specific claim about a team, player, or result from today's data. Name names, stake a position.
+Markets take: what a specific market move or business story actually means — observational, no buy/sell advice, no investment language.
+Culture take: one thing in entertainment, tech, streaming, or social that's being missed or framed wrong. Pick a side.
 
-Sound confident and natural — the last thing you say before leaving the room. No hype. No filler. Plain prose.
+BAD: "The Phillies are built different." (no evidence)
+GOOD: "The Phillies put up 15 on the Mets — third game with 10+ runs in June. At some point you stop calling it a hot streak and start calling it an identity."
+
+Return ONLY valid JSON on one line — no markdown:
+{"sports":"[sports take — max 30 words, defensible, specific named people/teams]","markets":"[markets take — observational only, max 30 words, no investment advice]","culture":"[culture take — max 30 words, picks a side, avoids geopolitics/politics]"}
+
 Context: ${ctx}${repGuard}`,
-      150
+      300
     ),
 
     // 10. Today at a Glance — exactly THREE labeled one-sentence lines (Sports /
@@ -606,7 +635,7 @@ Stories (in this exact order):
 ${dynSportsList}
 
 Return ONLY a valid JSON array — one object per story, in the SAME order, no markdown:
-[{"whatHappened":"One sentence (a novel/rare event may lead with one short context clause per the rule above). Specific. Named person or team and the real result from the facts.","whyItMatters":"One to two sentences, using the BACKGROUND fact when one is given. Why anyone should care — stakes, what it changes.","theRead":"2-4 sentences. The GuyTalk Read — what it really means, the broader angle, who benefits.","ammo":["Specific sourced fact 1","Specific sourced fact 2","Specific sourced fact 3"],"whatToBringUp":"The exact sentence to drop — not a headline, a real talking point. Include a specific number, wild stat, or sharp fact. Give it a POV. Something like: 'Did you know [specific fact]? That means [implication].' Never generic. Never 'the game was great.' The listener should walk away with something they actually want to repeat.","ourPick":"REQUIRED for any sport with an upcoming race, ongoing tournament, or next game. One confident sentence — '[Team/player] wins because [specific reason].' Include a circuit trait, form stat, head-to-head edge, or course advantage. For golf and F1 always write a pick since the season is ongoing. Only null for a single completed game with no follow-on round (e.g. a one-off MLB/NBA game that is fully done and the series is over)."}]`,
+[{"whatHappened":"One sentence (a novel/rare event may lead with one short context clause per the rule above). Specific. Named person or team and the real result from the facts.","whyItMatters":"One to two sentences, using the BACKGROUND fact when one is given. Why anyone should care — stakes, what it changes.","theRead":"2-4 sentences. The GuyTalk Read — what it really means, the broader angle, who benefits.","ammo":["Specific sourced fact 1","Specific sourced fact 2","Specific sourced fact 3"],"whatToBringUp":"The exact sentence to drop — not a headline, a real talking point. Include a specific number, wild stat, or sharp fact. Give it a POV. Something like: 'Did you know [specific fact]? That means [implication].' Never generic. Never 'the game was great.' The listener should walk away with something they actually want to repeat.","ourPick":"REQUIRED for every sport — always fill this, never null. For ongoing tournaments (F1, golf, World Cup) or upcoming games: '[Team/player] wins/advances because [specific reason from the data].' For a completed result with more rounds to come: give the next-game edge or momentum call. For a fully finished standalone result: assess what it means going forward — '[Team/player] looks like [assessment] because [specific reason].' One confident sentence. No hedging. No null values."}]`,
           Math.min(3200, 360 * dynSports.length + 300),
           { minFields: 1, section: 'sports' }
         )
@@ -645,7 +674,16 @@ Return ONLY a valid JSON array — one object per story, in the SAME order, no m
     golf:           golfData,
     f1:             f1Data,
     culture:        Array.isArray(cultureArr) ? cultureArr : null,
-    finalSharpTake: clean(get(finalTakeR)),
+    finalSharpTake: (() => {
+      const raw = get(finalTakeR);
+      const parsed = parseJson(raw);
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+        const parts = [parsed.sports, parsed.markets, parsed.culture].filter(Boolean).map(t => clean(t));
+        if (parts.length >= 2) return parts.join('\n\n');
+        if (parts.length === 1) return parts[0];
+      }
+      return clean(raw);
+    })(),
     glance:         glanceData,
     theTake:        parseJson(get(theTakeR)),
     nhl:            parseJson(get(nhlR)),

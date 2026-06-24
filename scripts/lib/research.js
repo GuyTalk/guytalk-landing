@@ -21,7 +21,7 @@ const SYNTH_MODEL   = process.env.ANTHROPIC_RESEARCH_MODEL || 'claude-sonnet-4-6
 const EXTRACT_MODEL = process.env.ANTHROPIC_EXTRACT_MODEL  || 'claude-haiku-4-5-20251001';
 
 const MAX_CONTINUATIONS = parseInt(process.env.RESEARCH_MAX_CONTINUATIONS || '2', 10);
-const MAX_SPORTS        = parseInt(process.env.RESEARCH_MAX_SPORTS        || '4', 10);
+const MAX_SPORTS        = parseInt(process.env.RESEARCH_MAX_SPORTS        || '3', 10);
 
 const { isExcluded, scoreImportance } = require('./editorial-config');
 const { extractOgImage, isLiveImage, resolveAthleteImage, SECTION_FALLBACKS } = require('./images');
@@ -338,7 +338,7 @@ function lookupPlayer(name) {
   return hit ? hit[1] : null; // { sport, id, slug }
 }
 
-async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls = [], prevBriefs = [] } = {}) {
+async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls = [], prevBriefs = [], topStories = [] } = {}) {
   const empty = { lead: null, sports: [] };
   const candidates = [];
 
@@ -526,6 +526,34 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
         name: 'FIFA World Cup 2026', label: 'World Cup', category: 'team',
         headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
         _score: imp, _isFinal: isPost, _sport: 'worldcup',
+      });
+    }
+  }
+
+  // ── Research-sourced sports (UFC/boxing/NFL off-season/etc.) ─────────────────
+  // Picks up combat sports and other sports without ESPN structured feeds from
+  // the OpenAI research pack. Only adds a sport if it isn't already in candidates.
+  if (Array.isArray(topStories) && topStories.length) {
+    const FEED_COVERED = new Set(['nba', 'mlb', 'nhl', 'f1', 'golf', 'tennis', 'world cup', 'soccer', 'fifa', 'mls']);
+    const added = new Set(candidates.map(c => (c.label || '').toLowerCase()));
+    for (const s of topStories) {
+      const cat = (s._category || s.category || '').toLowerCase();
+      const spt = (s.sport || '').toLowerCase();
+      const isSports = cat === 'sports' || cat === 'ufc' || cat === 'boxing' || cat === 'nfl';
+      if (!isSports || !s.headline) continue;
+      if (FEED_COVERED.has(spt) || FEED_COVERED.has(cat)) continue;
+      const label = (spt || cat).toUpperCase();
+      if (added.has(label.toLowerCase())) continue;
+      added.add(label.toLowerCase());
+      const headline = s.headline || '';
+      const facts = [s.whatHappened, s.whyItMatters].filter(Boolean).join(' ');
+      const { score: imp } = scoreImportance({ name: label, headline, facts, isFinalResult: true });
+      candidates.push({
+        name: headline, label, category: 'team',
+        headline, facts, background: s.whyItMatters || '',
+        source: 'Research', url: Array.isArray(s.sources) ? s.sources[0] || '' : '',
+        imageUrl: null, videoUrl: null, isLead: false,
+        _score: imp, _isFinal: true, _sport: spt || cat,
       });
     }
   }

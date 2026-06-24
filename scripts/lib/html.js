@@ -2327,9 +2327,13 @@ ${itemsHtml}
 function buildFinalSharpTake({ copy }) {
   const text = copy?.finalSharpTake;
   if (!text) return '';
+  const parts = text.split('\n\n').filter(Boolean);
+  const partsHtml = parts.length > 1
+    ? parts.map(p => `<p>${esc(p)}</p>`).join('\n    ')
+    : `<p>${esc(text)}</p>`;
   return `  <div class="sharp-take">
     <div class="sharp-take-label">Final Sharp Take</div>
-    <p>${esc(text)}</p>
+    ${partsHtml}
   </div>`;
 }
 
