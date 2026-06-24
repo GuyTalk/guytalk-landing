@@ -531,7 +531,7 @@ const RECS = [
     url: 'https://apps.apple.com/us/app/napper-power-nap-timer/id1498961328',
     cta: 'Get Napper →',
     brand: 'Napper',
-    imageUrl: null,
+    imageUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1d/2a/cc/1d2acc3e-1d37-dff5-f948-cfe49a26aef9/AppIcon-1x_U007emarketing-0-7-0-85-220.png/1200x630wa.png',
   },
   {
     title: 'Theragun Relief — the entry point into recovery that actually works.',
