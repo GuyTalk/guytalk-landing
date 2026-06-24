@@ -338,7 +338,7 @@ function lookupPlayer(name) {
   return hit ? hit[1] : null; // { sport, id, slug }
 }
 
-async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls = [] } = {}) {
+async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls = [], prevBriefs = [] } = {}) {
   const empty = { lead: null, sports: [] };
   const candidates = [];
 
@@ -533,6 +533,30 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
   // All candidates built from ESPN structured feeds — Tier 1 by definition.
   candidates.forEach(c => { c.tier = 1; });
 
+  // ── Repetition penalty — keep the brief feeling fresh ────────────────────
+  // Sports that appeared in both of the last 2 issues AND don't have a brand-new
+  // result (just a preview/update of an ongoing tournament) get a -20 score hit.
+  // This prevents WC + Golf + F1 + Tennis from locking out MLB/NBA every day of
+  // a tournament week.
+  if (prevBriefs.length >= 2) {
+    const prev2Labels = prevBriefs.slice(-2).map(p => p.dynamicLabels || []);
+    candidates.forEach(c => {
+      const lbl = (c.label || '').toLowerCase();
+      const appearedBoth = prev2Labels.every(labels => labels.includes(lbl));
+      if (appearedBoth && !c._isFinal) {
+        c._score -= 20;
+        console.log(`   ↩  Repetition penalty (-20): ${c.label} appeared in last 2 issues without a new result`);
+      }
+    });
+  }
+
+  // ── US-sport floor — always surface at least one American team sport ──────
+  // When MLB or NBA has final results available, guarantee it gets a slot even
+  // if its raw importance score would otherwise be cut by tournament events.
+  // Labels covered: 'mlb', 'nba', 'nhl', 'nfl'
+  const US_SPORT_LABELS = new Set(['mlb', 'nba', 'nhl', 'nfl']);
+  const usCandidate = candidates.find(c => US_SPORT_LABELS.has((c.label || '').toLowerCase()) && c._isFinal);
+
   // ── Filter, rank, take top MAX_SPORTS ─────────────────────────────────────
   const filtered = candidates.filter(c => !isExcluded(c.name) && !isExcluded(c.label));
   if (!filtered.length) {
@@ -540,7 +564,19 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
     return empty;
   }
   filtered.sort((a, b) => b._score - a._score);
-  const top = filtered.slice(0, MAX_SPORTS);
+  let top = filtered.slice(0, MAX_SPORTS);
+
+  // If a US team sport with a final result exists but got cut, swap it in for
+  // the lowest-scoring non-final tournament preview.
+  if (usCandidate && !top.some(s => US_SPORT_LABELS.has((s.label || '').toLowerCase()))) {
+    const swapIdx = top.map((s, i) => ({ s, i }))
+      .reverse()
+      .find(({ s }) => !s._isFinal && !US_SPORT_LABELS.has((s.label || '').toLowerCase()));
+    if (swapIdx !== undefined) {
+      console.log(`   ↑  US-sport floor: inserting ${usCandidate.label} (had results), bumping preview ${top[swapIdx.i].label}`);
+      top[swapIdx.i] = usCandidate;
+    }
+  }
 
   // ── Resolve images via web search + static fallback ─────────────────────
   const prevSet = new Set((prevImageUrls || []).filter(Boolean));
@@ -566,6 +602,9 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
 
     // Skip if URL was used in the previous issue
     s.imageUrl = (img && !prevSet.has(img)) ? img : null;
+    // Preserve sport type as a non-private field so downstream code (hero image
+    // search, QA audit) can call buildSportImageQuery without re-deriving it.
+    if (s._sport) s.sportType = s._sport;
     // Clean internal bookkeeping fields
     delete s._score; delete s._isFinal; delete s._sport; delete s._golfLeader; delete s._f1Winner;
   }));

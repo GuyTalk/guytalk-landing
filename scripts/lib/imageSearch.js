@@ -108,9 +108,9 @@ Just search and summarize what you found — I'll use the source URLs.`;
  * Build a sport-specific image search query from a dynamicSports candidate object.
  */
 function buildSportImageQuery(s) {
-  // Normalize sport type from _sport field or label/name fallback
+  // Normalize sport type from _sport / sportType fields or label/name fallback
   const label = (s.label || s.name || '').toLowerCase();
-  const sport = s._sport ||
+  const sport = s._sport || s.sportType ||
     (/world.?cup|soccer|fifa/.test(label) ? 'worldcup' :
      /\bf1\b|formula/.test(label) ? 'f1' :
      /golf|pga/.test(label) ? 'golf' :
