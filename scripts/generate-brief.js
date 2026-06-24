@@ -303,7 +303,26 @@ async function buildSmartHeroOverride(dynamicSports, topStories) {
     };
   }
 
-  return buildHeroOverride(dynamicSports);
+  const heroResult = buildHeroOverride(dynamicSports);
+
+  // If the hero reuses dyn[0]'s imageUrl, the QA duplicate-image check will fail
+  // because the same URL appears in both heroOverride.image and the section card.
+  // Search for a fresh alternative image for the section card so they're distinct.
+  const lead = Array.isArray(dynamicSports) ? dynamicSports[0] : null;
+  if (heroResult && lead && heroResult.image && heroResult.image === lead.imageUrl) {
+    try {
+      const { searchWebImage, buildSportImageQuery } = require('./lib/imageSearch');
+      const query = buildSportImageQuery(lead);
+      if (query) {
+        const altImg = await searchWebImage(query, { fallback: null });
+        if (altImg && altImg !== heroResult.image) {
+          lead.imageUrl = altImg;  // mutates in-place; section card will use this distinct URL
+        }
+      }
+    } catch (_) {}
+  }
+
+  return heroResult;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

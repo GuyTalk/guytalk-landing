@@ -108,7 +108,16 @@ Just search and summarize what you found — I'll use the source URLs.`;
  * Build a sport-specific image search query from a dynamicSports candidate object.
  */
 function buildSportImageQuery(s) {
-  const sport   = s._sport || '';
+  // Normalize sport type from _sport field or label/name fallback
+  const label = (s.label || s.name || '').toLowerCase();
+  const sport = s._sport ||
+    (/world.?cup|soccer|fifa/.test(label) ? 'worldcup' :
+     /\bf1\b|formula/.test(label) ? 'f1' :
+     /golf|pga/.test(label) ? 'golf' :
+     /\bmlb\b|baseball/.test(label) ? 'mlb' :
+     /\bnba\b|basketball/.test(label) ? 'nba' :
+     /\bnhl\b|hockey/.test(label) ? 'nhl' :
+     /tennis/.test(label) ? 'tennis' : '');
   const name    = s.name    || '';
   const hl      = s.headline || '';
 

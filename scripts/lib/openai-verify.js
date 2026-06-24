@@ -68,8 +68,15 @@ async function verifyBrief({ issueData, researchPack }) {
     const LABELS = { SPY: 'S&P 500', DIA: 'Dow', QQQ: 'Nasdaq/QQQ', IWM: 'Russell 2000', '10Y': '10-Year Treasury' };
     const tickers = Object.entries(issueData.markets)
       .filter(([, v]) => typeof v?.dayChangePct === 'number')
-      .map(([sym, v]) => `${LABELS[sym] || sym} ${v.dayChangePct >= 0 ? '+' : ''}${v.dayChangePct.toFixed(2)}%`);
-    if (tickers.length) marketFacts.push(`MARKET FEED (real-time tickers): ${tickers.join(', ')}`);
+      .map(([sym, v]) => {
+        const label = LABELS[sym] || sym;
+        const daily = `${v.dayChangePct >= 0 ? '+' : ''}${v.dayChangePct.toFixed(2)}% today`;
+        const weekly = typeof v.weekChangePct === 'number'
+          ? ` / ${v.weekChangePct >= 0 ? '+' : ''}${v.weekChangePct.toFixed(2)}% on the week`
+          : '';
+        return `${label} ${daily}${weekly}`;
+      });
+    if (tickers.length) marketFacts.push(`MARKET FEED (real-time tickers — daily and weekly changes): ${tickers.join(', ')}`);
   }
 
   // ── Build ESPN structured data ───────────────────────────────────────────────
