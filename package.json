@@ -22,6 +22,7 @@
     "ads:ugc": "node scripts/generate-ad-content.js --ugc",
     "ads:images": "node scripts/generate-ad-content.js --images",
     "ads:video": "node scripts/generate-ad-content.js --video",
+    "guide": "node scripts/generate-guide.js",
     "install:brief": "npm install"
   },
   "dependencies": {

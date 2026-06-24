@@ -1477,6 +1477,7 @@ function buildRec({ num }) {
         <div class="rec-title">${esc(rec.title)}</div>
         <p class="rec-body">${esc(rec.body)}</p>
         <a href="${esc(rec.url)}" target="_blank" rel="noopener" class="rec-link">${esc(rec.cta)}</a>
+        ${rec.guideUrl ? `<a href="${esc(rec.guideUrl)}" class="rec-guide-link">Read the full guide →</a>` : ''}
       </div>
     </div>
   </section>`;

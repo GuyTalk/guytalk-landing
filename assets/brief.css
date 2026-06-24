@@ -753,6 +753,7 @@ em { font-style: italic; }
   color: var(--accent); border-bottom: 0; transition: gap 0.15s ease;
 }
 .rec-link:hover { gap: 9px; border-bottom: 0; }
+.rec-guide-link { display: inline-block; font-size: 13px; font-weight: 600; color: var(--text-2); margin-left: 14px; }
 /* Markets — quick headlines (3 stories at the top of The Close) */
 .mkt-headlines { list-style: none; margin: 4px 0 18px; padding: 0; border-top: 1px solid var(--border); }
 .mkt-headlines li { padding: 13px 0 13px 26px; border-bottom: 1px solid var(--border); position: relative; }
