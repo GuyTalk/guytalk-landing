@@ -1,0 +1,37 @@
+{
+  "_note": "Outfit pairings ('This Week's Fit') for the Style category of The GuyTalk Guide. Each item references a pick by slug where possible. Images and affiliate URLs are placeholders. Writeups are final, in GuyTalk voice. The 'featured' outfit shows on the hub page and at the top of the Style category. Rotate by changing the 'featured' flag.",
+  "category": "style",
+  "outfits": [
+    {
+      "slug": "friday-office-to-dinner",
+      "featured": true,
+      "title": "Friday: Office to Dinner",
+      "subtitle": "One outfit, two settings, zero thinking.",
+      "writeup": "The hardest look to get right is the one that has to survive a Friday at the office and a 7pm dinner without a costume change. The answer is layering neutrals and letting the materials do the work. A merino crew over an oxford reads sharp at your desk; lose nothing when you push the sleeves up at the bar. Dark denim keeps it from looking like you tried too hard, and a suede chukka is the detail that tells everyone you actually think about this stuff. Add the chore coat on the way out and you're dressed for anything the night turns into.",
+      "items": [
+        { "ref": "uniqlo-merino-crew", "role": "Navy merino crew, layered on top" },
+        { "ref": "ocbd-oxford-button-down", "role": "Light blue oxford underneath, collar out" },
+        { "ref": "apc-petit-standard-denim", "role": "Dark selvedge denim" },
+        { "ref": "beckett-simonon-chukka", "role": "Tobacco suede chukkas" },
+        { "ref": "taylor-stitch-chore-coat", "role": "Olive chore coat for the walk out" }
+      ],
+      "flashyCheck": "All neutrals, no logos, nothing shouting. This is the template for looking put-together without anyone being able to point to why.",
+      "image": ""
+    },
+    {
+      "slug": "weekend-uniform",
+      "featured": false,
+      "title": "The Weekend Uniform",
+      "subtitle": "The five-minute Saturday look that always works.",
+      "writeup": "Most guys overthink the weekend and end up in something worse than if they'd grabbed the first clean thing. The fix is a uniform you can assemble half-asleep: a heavyweight white tee, good denim, clean white leather sneakers. That's it. The whole thing works because every piece is quietly excellent — the tee actually fits, the denim is dark and honest, the sneakers have no logo. Throw the chore coat on if it's cool. You'll look like the most relaxed, most-together guy at brunch, and it took you five minutes.",
+      "items": [
+        { "ref": "buck-mason-curved-hem-tee", "role": "Heavyweight white tee" },
+        { "ref": "apc-petit-standard-denim", "role": "Dark selvedge denim" },
+        { "ref": "common-projects-achilles-low", "role": "Clean white leather sneakers" },
+        { "ref": "taylor-stitch-chore-coat", "role": "Optional chore coat layer" }
+      ],
+      "flashyCheck": "Dead simple. The opposite of flashy — and that restraint is the entire point.",
+      "image": ""
+    }
+  ]
+}

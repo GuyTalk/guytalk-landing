@@ -5,35 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How to Not Look Try-Hard — GuyTalk Guide</title>
 <meta name="description" content="The rule is simple. Most guys still get it wrong.">
-<meta property="og:type"        content="article">
+<meta property="og:type"        content="website">
 <meta property="og:title"       content="How to Not Look Try-Hard — GuyTalk Guide">
 <meta property="og:description" content="The rule is simple. Most guys still get it wrong.">
 <meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
 <meta property="og:url"         content="https://www.guytalkmedia.com/guide/style/how-to-not-look-try-hard/">
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:site"        content="@guytalkmedia">
-<meta name="twitter:title"       content="How to Not Look Try-Hard — GuyTalk Guide">
-<meta name="twitter:description" content="The rule is simple. Most guys still get it wrong.">
 <link rel="canonical"            href="https://www.guytalkmedia.com/guide/style/how-to-not-look-try-hard/">
 <link rel="icon"                 href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg:      #0A0E1A;
-    --surface: #111827;
-    --surface2: #1A2235;
-    --border:  rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --text:    #F4F6FB;
-    --text-2:  rgba(244,246,251,0.68);
-    --text-3:  rgba(244,246,251,0.40);
-    --accent:  #2B6FFF;
-    --accent-h: #4D8AFF;
-    --amber:   #F59E0B;
-    --green:   #4ADE80;
+    --bg:           #F9F8F5;
+    --surface:      #FFFFFF;
+    --surface-2:    #F2F0EB;
+    --border:       #E5E2DB;
+    --border-light: #D4D0C8;
+    --text:         #0F1724;
+    --text-2:       #6E6862;
+    --text-3:       #9E9891;
+    --accent:       #2B6FFF;
+    --accent-h:     #1A5CEF;
+    --accent-muted: #EBF1FF;
+    --amber:        #B87C35;
+    --amber-muted:  rgba(184,124,53,0.08);
+    --green:        #16A34A;
+    --navy:         #0F1724;
   }
   html { scroll-behavior: smooth; }
   body {
@@ -43,17 +43,18 @@
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
+  p { margin-bottom: 0; }
 
-  /* NAV */
+  /* ── NAV (matches main site light frosted glass) ── */
   .guide-nav {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(10,14,26,0.88);
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    background: rgba(249,248,245,0.92);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
   .guide-nav-inner {
     display: flex; align-items: center; justify-content: space-between;
-    max-width: 960px; margin: 0 auto; padding: 14px 24px;
+    max-width: 1120px; margin: 0 auto; padding: 14px 24px;
   }
   .guide-wordmark {
     font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px;
@@ -61,294 +62,472 @@
   }
   .guide-wordmark:hover { text-decoration: none; }
   .guide-dot { color: var(--accent); }
-  .guide-nav-links { display: flex; align-items: center; gap: 22px; }
-  .guide-nav-link { font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; }
-  .guide-nav-link:hover { color: var(--text); text-decoration: none; }
-  .guide-nav-link.is-active { color: var(--text); font-weight: 600; }
-  .guide-nav-cta {
+  .guide-nav-links { display: flex; align-items: center; gap: 24px; }
+  .gnl { font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; }
+  .gnl:hover { color: var(--text); text-decoration: none; }
+  .gnl.is-active { color: var(--text); font-weight: 600; }
+  .gnl-cta {
     font-size: 13px; font-weight: 600; padding: 7px 14px;
     background: var(--accent); color: #fff; border-radius: 7px; text-decoration: none;
   }
-  .guide-nav-cta:hover { background: var(--accent-h); text-decoration: none; }
+  .gnl-cta:hover { background: var(--accent-h); text-decoration: none; }
 
-  /* FOOTER */
-  .guide-footer { border-top: 1px solid var(--border); margin-top: 80px; padding: 40px 24px; }
-  .guide-footer-inner { max-width: 960px; margin: 0 auto; }
-  .guide-footer-brand { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.02em; margin-bottom: 14px; }
-  .guide-footer-links { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 16px; }
-  .guide-footer-links a { font-size: 14px; color: var(--text-2); text-decoration: none; }
-  .guide-footer-links a:hover { color: var(--text); }
-  .guide-footer-note { font-size: 12px; color: var(--text-3); line-height: 1.6; }
+  /* ── CONTAINERS ── */
+  .gc  { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .gc-narrow { max-width: 720px; margin: 0 auto; padding: 0 24px; }
 
-  /* CONTAINER */
-  .guide-container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  .guide-container-wide { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-
-  @media (max-width: 640px) {
-    .guide-nav-links { gap: 14px; }
-    .guide-nav-cta { display: none; }
-    body { font-size: 16px; }
+  /* ── CATEGORY HEADER BAND ── */
+  .cat-band {
+    background: var(--navy); border-top: 3px solid var(--accent);
+    padding: 44px 0 40px;
   }
+  .cat-band-crumb {
+    font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.40); margin-bottom: 14px;
+  }
+  .cat-band-crumb a { color: rgba(255,255,255,0.55); text-decoration: none; }
+  .cat-band-crumb a:hover { color: rgba(255,255,255,0.85); }
+  .cat-band-crumb-sep { margin: 0 8px; }
+  .cat-band-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: clamp(34px, 5vw, 54px); letter-spacing: -0.03em;
+    color: #fff; line-height: 1.04; margin-bottom: 8px;
+  }
+  .cat-band-desc { font-size: 16px; color: rgba(255,255,255,0.62); max-width: 480px; }
 
-/* HERO */
-.article-hero {
-  position: relative; min-height: 320px; display: flex; align-items: flex-end;
-  background: var(--surface2);
-}
-.article-hero-img { position: absolute; inset: 0; background-size: cover; background-position: center; }
-.article-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,14,26,0.95) 0%, rgba(10,14,26,0.5) 60%, rgba(10,14,26,0.1) 100%); }
-.article-hero-content { position: relative; z-index: 1; padding: 32px 24px 40px; max-width: 960px; margin: 0 auto; width: 100%; }
-.article-breadcrumb { font-family: 'Inter Tight', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 16px; }
-.article-breadcrumb a { color: var(--accent); text-decoration: none; }
-.article-breadcrumb a:hover { text-decoration: underline; }
-.article-breadcrumb-sep { margin: 0 8px; color: var(--text-3); }
-.article-title { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: clamp(28px, 5vw, 48px); line-height: 1.06; letter-spacing: -0.03em; color: var(--text); margin-bottom: 12px; }
-.article-subtitle { font-size: 17px; line-height: 1.55; color: var(--text-2); max-width: 560px; }
+  /* ── SECTION WRAPPERS ── */
+  .guide-section { padding: 56px 0; }
+  .guide-section + .guide-section { border-top: 1px solid var(--border); }
+  .gsec-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .gsec-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: 22px; letter-spacing: -0.02em; color: var(--text);
+    margin-bottom: 4px;
+  }
+  .gsec-sub { font-size: 15px; color: var(--text-2); margin-bottom: 28px; line-height: 1.55; }
 
-/* ARTICLE BODY */
-.article-body { padding: 56px 0 0; }
+  /* ── TAG PILLS ── */
+  .gtag {
+    display: inline-block; font-family: 'Inter Tight', sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: .10em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+  }
+  .gtag-blue  { background: var(--accent); color: #fff; }
+  .gtag-navy  { background: var(--navy);   color: #fff; }
+  .gtag-amber { background: var(--amber);  color: #fff; }
+  .gtag-green { background: var(--green);  color: #fff; }
+  .gtag-gray  { background: var(--surface-2); color: var(--text-3); }
 
-.section { margin-bottom: 48px; }
-.section-eyebrow {
-  font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase; color: var(--amber);
-  margin-bottom: 14px;
-}
-.section-text { color: var(--text-2); line-height: 1.72; font-size: 17px; }
-.section-text + .section-text { margin-top: 16px; }
+  /* ── OUTFIT BOARD ── */
+  .outfit-board {
+    display: grid; grid-template-columns: 320px 1fr; gap: 0;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .outfit-img {
+    background: var(--surface-2); min-height: 380px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .outfit-img img { width: 100%; height: 380px; object-fit: cover; display: block; }
+  .outfit-img-ph {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 380px; width: 100%;
+    font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: .10em; text-transform: uppercase; color: var(--text-3); gap: 8px;
+  }
+  .outfit-img-ph svg { opacity: .25; }
+  .outfit-content { padding: 32px 36px; display: flex; flex-direction: column; gap: 0; }
+  .outfit-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .outfit-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 22px;
+    letter-spacing: -0.02em; color: var(--text); margin-bottom: 4px;
+  }
+  .outfit-subtitle { font-size: 14px; color: var(--text-2); margin-bottom: 16px; }
+  .outfit-writeup { font-size: 15px; color: var(--text-2); line-height: 1.68; margin-bottom: 24px; }
+  .outfit-items { list-style: none; padding: 0; margin: 0 0 18px; border-top: 1px solid var(--border); }
+  .outfit-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .outfit-item-info { flex: 1; min-width: 0; }
+  .outfit-item-name { font-weight: 600; font-size: 14px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .outfit-item-role { font-size: 12px; color: var(--text-3); }
+  .outfit-item-shop {
+    flex-shrink: 0; margin-left: 14px; font-size: 12px; font-weight: 600;
+    color: var(--accent); white-space: nowrap; text-decoration: none;
+  }
+  .outfit-item-shop:hover { text-decoration: underline; }
+  .outfit-flashy { font-size: 12px; color: var(--text-3); font-style: italic; line-height: 1.5; }
 
-/* WHAT TO KNOW */
-.know-list { list-style: none; padding: 0; margin: 0; }
-.know-list li {
-  padding: 14px 0 14px 20px; border-bottom: 1px solid var(--border);
-  color: var(--text-2); line-height: 1.6; font-size: 16px;
-  position: relative;
-}
-.know-list li:first-child { border-top: 1px solid var(--border); }
-.know-list li::before { content: '—'; position: absolute; left: 0; color: var(--amber); font-weight: 700; }
+  /* ── PRODUCT GRID ── */
+  .picks-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .pick-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
+  }
+  .pick-card:hover { box-shadow: 0 6px 24px rgba(15,23,36,0.07); transform: translateY(-2px); }
+  .pick-card-img {
+    height: 210px; background: var(--surface-2);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .pick-card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .pick-card-img-ph {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; padding: 16px; text-align: center;
+  }
+  .pick-card-img-ph-initial {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 32px;
+    color: var(--border); line-height: 1;
+  }
+  .pick-card-img-ph-label {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--text-3);
+  }
+  .pick-card-body { padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+  .pick-card-tag { margin-bottom: 10px; }
+  .pick-card-brand {
+    font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--text-3); margin-bottom: 3px;
+  }
+  .pick-card-name {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: -0.01em; color: var(--text); margin-bottom: 6px; line-height: 1.3;
+  }
+  .pick-card-price {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px;
+    color: var(--accent); margin-bottom: 10px;
+  }
+  .pick-card-bio { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 16px; flex: 1; }
+  .pick-card-buy {
+    display: block; text-align: center; background: var(--text); color: #fff;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px;
+    padding: 10px 16px; border-radius: 8px; text-decoration: none;
+    transition: background 0.15s ease; margin-top: auto;
+  }
+  .pick-card-buy:hover { background: var(--accent); text-decoration: none; }
+  .pick-card-deal-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 600; color: var(--green); margin-top: 8px;
+  }
+  .pick-card-deal-badge::before { content: '◆'; font-size: 7px; }
 
-/* WHAT TO BUY */
-.tiers { display: flex; flex-direction: column; gap: 32px; }
-.tier-label {
-  font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 700;
-  letter-spacing: .10em; text-transform: uppercase; color: var(--text-3);
-  padding: 10px 0; border-bottom: 1px solid var(--border); margin-bottom: 16px;
-}
-.tier-picks { display: flex; flex-direction: column; gap: 12px; }
-.pick-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 18px 20px;
-}
-.pick-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; gap: 12px; }
-.pick-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 16px; color: var(--text); }
-.pick-brand { font-size: 13px; color: var(--text-3); white-space: nowrap; flex-shrink: 0; }
-.pick-reason { font-size: 15px; color: var(--text-2); line-height: 1.55; margin-bottom: 14px; }
-.pick-bottom { display: flex; justify-content: space-between; align-items: center; }
-.pick-price { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px; color: var(--amber); }
-.pick-price-note { font-weight: 400; font-size: 13px; color: var(--text-3); }
-.pick-shop {
-  font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none;
-  padding: 5px 12px; border: 1px solid rgba(43,111,255,0.35); border-radius: 6px;
-}
-.pick-shop:hover { background: rgba(43,111,255,0.12); text-decoration: none; }
+  /* ── COLOGNE SUBSECTION ── */
+  .cologne-sub { padding-top: 48px; border-top: 1px solid var(--border); margin-top: 48px; }
+  .cologne-intro { font-size: 15px; color: var(--text-2); max-width: 600px; margin-bottom: 28px; line-height: 1.65; }
 
-/* WHAT TO SAY */
-.say-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-.say-list li {
-  padding: 14px 16px 14px 44px; border-radius: 10px;
-  font-size: 16px; line-height: 1.6; position: relative;
-}
-.say-do { background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.18); color: var(--text-2); }
-.say-do::before { content: '✓'; position: absolute; left: 16px; color: var(--green); font-weight: 700; }
-.say-dont { background: rgba(244,246,251,0.04); border: 1px solid var(--border); color: var(--text-2); }
-.say-dont::before { content: '→'; position: absolute; left: 16px; color: var(--text-3); font-weight: 700; }
+  /* ── DEALS STRIP ── */
+  .deals-strip { background: var(--surface-2); padding: 40px 0; }
+  .deals-hdr { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; }
+  .deals-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 20px;
+    letter-spacing: -0.02em; color: var(--text);
+  }
+  .deals-updated { font-size: 12px; color: var(--text-3); }
+  .deals-scroll { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+  .deals-scroll::-webkit-scrollbar { height: 3px; }
+  .deals-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .deal-card {
+    flex-shrink: 0; width: 220px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px;
+  }
+  .deal-source {
+    font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 8px;
+  }
+  .deal-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 3px; line-height: 1.3; }
+  .deal-brand { font-size: 12px; color: var(--text-2); margin-bottom: 8px; }
+  .deal-price { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px; color: var(--accent); margin-bottom: 8px; }
+  .deal-note { font-size: 12px; color: var(--text-3); margin-bottom: 12px; line-height: 1.5; }
+  .deal-link { font-size: 12px; font-weight: 600; color: var(--accent); }
+  .deals-empty { font-size: 14px; color: var(--text-3); padding: 8px 0; }
 
-/* OUR PICK */
-.our-pick {
-  background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.22);
-  border-left: 3px solid var(--green); border-radius: 12px;
-  padding: 28px 28px 24px; margin: 48px 0;
-}
-.our-pick-badge {
-  font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--green);
-  margin-bottom: 10px;
-}
-.our-pick-name { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -0.02em; color: var(--text); margin-bottom: 4px; }
-.our-pick-brand { font-size: 14px; color: var(--text-3); margin-bottom: 14px; }
-.our-pick-price { color: var(--amber); font-weight: 600; }
-.our-pick-why { font-size: 16px; line-height: 1.65; color: var(--text-2); margin-bottom: 20px; }
-.our-pick-cta {
-  display: inline-block; background: var(--green); color: #0A0E1A;
-  font-weight: 700; font-size: 14px; padding: 10px 20px; border-radius: 8px; text-decoration: none;
-}
-.our-pick-cta:hover { opacity: 0.88; text-decoration: none; }
+  /* ── ESSAYS / DEPTH ── */
+  .essays-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+    border-left: 1px solid var(--border); border-top: 1px solid var(--border);
+    margin-top: 28px;
+  }
+  .essay-card {
+    display: block; padding: 24px 22px;
+    border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    text-decoration: none; color: var(--text);
+    transition: background 0.15s ease;
+  }
+  .essay-card:hover { background: var(--surface); text-decoration: none; }
+  .essay-card-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 16px;
+    letter-spacing: -0.01em; color: var(--text); margin-bottom: 5px; line-height: 1.3;
+  }
+  .essay-card-sub { font-size: 13px; color: var(--text-2); line-height: 1.5; margin-bottom: 10px; }
+  .essay-card-cta { font-size: 12px; font-weight: 600; color: var(--accent); }
 
-@media (max-width: 640px) {
-  .article-hero { min-height: 240px; }
-  .article-title { font-size: 26px; }
-  .pick-top { flex-direction: column; gap: 2px; }
-}
-</style>
+  /* ── ARTICLE PAGES ── */
+  .art-header { background: var(--navy); border-top: 3px solid var(--accent); padding: 56px 0 48px; }
+  .art-crumb {
+    font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.40); margin-bottom: 18px;
+  }
+  .art-crumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .art-crumb a:hover { color: rgba(255,255,255,0.9); }
+  .art-crumb-sep { margin: 0 8px; }
+  .art-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: clamp(26px, 5vw, 44px); letter-spacing: -0.03em;
+    color: #fff; margin-bottom: 12px; line-height: 1.06;
+  }
+  .art-subtitle { font-size: 17px; color: rgba(255,255,255,0.62); line-height: 1.55; }
+  .art-body { padding: 56px 0 0; }
+  .art-section { margin-bottom: 48px; }
+  .art-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .art-text { color: var(--text-2); line-height: 1.72; font-size: 17px; }
+  .art-know-list { list-style: none; padding: 0; margin: 0; }
+  .art-know-list li {
+    padding: 13px 0 13px 20px; border-bottom: 1px solid var(--border);
+    color: var(--text-2); line-height: 1.6; font-size: 16px; position: relative;
+  }
+  .art-know-list li:first-child { border-top: 1px solid var(--border); }
+  .art-know-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .art-say-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .art-say-list li { padding: 13px 16px 13px 44px; border-radius: 10px; font-size: 16px; line-height: 1.6; position: relative; }
+  .art-say-do { background: rgba(22,163,74,0.06); border: 1px solid rgba(22,163,74,0.18); color: var(--text-2); }
+  .art-say-do::before { content: '✓'; position: absolute; left: 16px; color: var(--green); font-weight: 700; }
+  .art-say-dont { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); }
+  .art-say-dont::before { content: '→'; position: absolute; left: 16px; color: var(--text-3); font-weight: 700; }
+  .art-tiers { display: flex; flex-direction: column; gap: 32px; }
+  .art-tier-label {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .10em; text-transform: uppercase; color: var(--text-3);
+    padding: 10px 0; border-bottom: 1px solid var(--border); margin-bottom: 16px;
+  }
+  .art-tier-picks { display: flex; flex-direction: column; gap: 10px; }
+  .art-pick-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+  .art-pick-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; gap: 12px; }
+  .art-pick-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px; color: var(--text); }
+  .art-pick-brand { font-size: 12px; color: var(--text-3); white-space: nowrap; flex-shrink: 0; }
+  .art-pick-reason { font-size: 14px; color: var(--text-2); line-height: 1.55; margin-bottom: 12px; }
+  .art-pick-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .art-pick-price { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px; color: var(--accent); }
+  .art-pick-note { font-weight: 400; font-size: 12px; color: var(--text-3); }
+  .art-pick-shop { font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; padding: 4px 10px; border: 1px solid rgba(43,111,255,0.30); border-radius: 6px; }
+  .art-pick-shop:hover { background: var(--accent-muted); text-decoration: none; }
+  .art-our-pick {
+    background: var(--accent-muted); border: 1px solid rgba(43,111,255,0.20);
+    border-left: 3px solid var(--accent); border-radius: 12px;
+    padding: 26px 26px 22px; margin: 48px 0;
+  }
+  .art-our-pick-badge {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+  }
+  .art-our-pick-name { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 20px; letter-spacing: -0.02em; color: var(--text); margin-bottom: 3px; }
+  .art-our-pick-brand { font-size: 13px; color: var(--text-3); margin-bottom: 12px; }
+  .art-our-pick-price { color: var(--accent); font-weight: 600; }
+  .art-our-pick-why { font-size: 16px; line-height: 1.65; color: var(--text-2); margin-bottom: 18px; }
+  .art-our-pick-cta {
+    display: inline-block; background: var(--accent); color: #fff;
+    font-weight: 700; font-size: 13px; padding: 9px 18px; border-radius: 8px; text-decoration: none;
+  }
+  .art-our-pick-cta:hover { background: var(--accent-h); text-decoration: none; }
+
+  /* ── HUB PAGE ── */
+  .hub-hero { padding: 72px 0 64px; border-bottom: 3px solid var(--accent); }
+  .hub-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+  }
+  .hub-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: clamp(36px, 6vw, 64px); letter-spacing: -0.04em;
+    line-height: 1.02; color: var(--text); margin-bottom: 16px;
+  }
+  .hub-sub { font-size: 18px; color: var(--text-2); max-width: 480px; line-height: 1.6; }
+  .hub-cats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
+  .hub-cat-tile {
+    display: block; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 18px; text-decoration: none;
+    transition: border-color 0.18s, transform 0.18s;
+  }
+  .hub-cat-tile.is-live:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+  .hub-cat-tile:not(.is-live) { opacity: 0.5; pointer-events: none; }
+  .hub-cat-name { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 16px; color: var(--text); margin-bottom: 5px; }
+  .hub-cat-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; margin-bottom: 10px; }
+  .hub-cat-cta { font-size: 12px; font-weight: 600; color: var(--accent); }
+  .hub-cat-soon { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
+
+  /* ── FOOTER ── */
+  .guide-footer { background: var(--navy); padding: 40px 0; }
+  .guide-footer-inner {
+    max-width: 1120px; margin: 0 auto; padding: 0 24px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .guide-footer-brand { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.02em; color: #fff; }
+  .guide-footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+  .guide-footer-links a { font-size: 13px; color: rgba(255,255,255,0.50); text-decoration: none; }
+  .guide-footer-links a:hover { color: rgba(255,255,255,0.9); }
+  .guide-footer-note { width: 100%; font-size: 11px; color: rgba(255,255,255,0.30); line-height: 1.6; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .picks-grid { grid-template-columns: repeat(2, 1fr); }
+    .hub-cats-grid { grid-template-columns: repeat(2, 1fr); }
+    .outfit-board { grid-template-columns: 1fr; }
+    .outfit-content { padding: 24px; }
+    .outfit-img-ph { height: 240px; min-height: 240px; }
+    .outfit-img img { height: 240px; }
+    .essays-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .picks-grid { grid-template-columns: 1fr; }
+    .hub-cats-grid { grid-template-columns: repeat(2, 1fr); }
+    .gnl-cta { display: none; }
+    body { font-size: 16px; }
+  }</style>
 </head>
 <body>
-
 <nav class="guide-nav">
   <div class="guide-nav-inner">
     <a href="/" class="guide-wordmark">GuyTalk<span class="guide-dot">.</span></a>
     <div class="guide-nav-links">
-      <a href="/brief/" class="guide-nav-link">Today's Brief</a>
-      <a href="/guide/" class="guide-nav-link is-active">Guide</a>
-      <a href="/#signup" class="guide-nav-cta">Subscribe Free →</a>
+      <a href="/brief/" class="gnl">Today's Brief</a>
+      <a href="/guide/" class="gnl is-active">Guide</a>
+      <a href="/#signup" class="gnl-cta">Subscribe Free →</a>
     </div>
   </div>
 </nav>
-
-<div class="article-hero">
-  <div class="article-hero-img" ></div>
-  <div class="article-hero-overlay"></div>
-  <div class="article-hero-content guide-container-wide">
-    <div class="article-breadcrumb">
-      <a href="/guide/">Guide</a>
-      <span class="article-breadcrumb-sep">/</span>
-      <a href="/guide/style/">Style</a>
-      <span class="article-breadcrumb-sep">/</span>
+<div class="art-header">
+  <div class="gc-narrow">
+    <div class="art-crumb">
+      <a href="/guide/">Guide</a><span class="art-crumb-sep">/</span>
+      <a href="/guide/style/">Style</a><span class="art-crumb-sep">/</span>
       How to Not Look Try-Hard
     </div>
-    <h1 class="article-title">How to Not Look Try-Hard</h1>
-    <p class="article-subtitle">The rule is simple. Most guys still get it wrong.</p>
+    <h1 class="art-title">How to Not Look Try-Hard</h1>
+    <p class="art-subtitle">The rule is simple. Most guys still get it wrong.</p>
   </div>
 </div>
-
-<div class="guide-container">
-  <div class="article-body">
-
-    <div class="section">
-      <div class="section-eyebrow">What It Is</div>
-      <p class="section-text">Looking try-hard means your effort is visible. The aesthetic goal isn't to look expensive or on-trend — it's to look like someone who made a call and it worked. The line is thin: one too many pieces tips from 'intentional' to 'I planned this outfit at 7am.' Most guys who consistently look good actually think about it less, not more.</p>
+<div class="gc-narrow">
+  <div class="art-body">
+    <div class="art-section">
+      <div class="art-eyebrow">What It Is</div>
+      <p class="art-text">Looking try-hard means your effort is visible. The aesthetic goal isn't to look expensive or on-trend — it's to look like someone who made a call and it worked. The line is thin: one too many pieces tips from 'intentional' to 'I planned this outfit at 7am.' Most guys who consistently look good actually think about it less, not more.</p>
     </div>
-
-    <div class="section">
-      <div class="section-eyebrow">Why It Matters</div>
-      <p class="section-text">First impressions are formed in three seconds. In that window, people aren't reading your brands — they're reading whether your clothes fit and whether you're comfortable in them. The try-hard failure mode signals insecurity, not status. The no-effort failure mode signals you don't value your own appearance. The goal is the middle: you made a call, it worked, you moved on.</p>
+    <div class="art-section">
+      <div class="art-eyebrow">Why It Matters</div>
+      <p class="art-text">First impressions are formed in three seconds. In that window, people aren't reading your brands — they're reading whether your clothes fit and whether you're comfortable in them. The try-hard failure mode signals insecurity, not status. The no-effort failure mode signals you don't value your own appearance. The goal is the middle: you made a call, it worked, you moved on.</p>
     </div>
-
-    <div class="section">
-      <div class="section-eyebrow">The GuyTalk Read</div>
-      <p class="section-text">The simplest version of the rule: one interesting thing per outfit. Interesting shoes OR an interesting shirt — not both. The rest should be well-fitting neutrals. Guys who consistently look good have figured this out: they own fewer pieces, buy better quality, and don't experiment much. Grooming also covers about 40% of how you look regardless of what you're wearing — a clean haircut and polished shoes do more work than most men realize, and they're both cheaper than a new wardrobe.</p>
+    <div class="art-section">
+      <div class="art-eyebrow">The GuyTalk Read</div>
+      <p class="art-text">The simplest version of the rule: one interesting thing per outfit. Interesting shoes OR an interesting shirt — not both. The rest should be well-fitting neutrals. Guys who consistently look good have figured this out: they own fewer pieces, buy better quality, and don't experiment much. Grooming also covers about 40% of how you look regardless of what you're wearing — a clean haircut and polished shoes do more work than most men realize, and they're both cheaper than a new wardrobe.</p>
     </div>
-
-    <div class="section">
-      <div class="section-eyebrow">What to Know</div>
-      <ul class="know-list">
-        <li>Fit is the multiplier. A $40 shirt that fits correctly beats a $200 one that doesn't, every single time.</li>
+    <div class="art-section">
+      <div class="art-eyebrow">What to Know</div>
+      <ul class="art-know-list"><li>Fit is the multiplier. A $40 shirt that fits correctly beats a $200 one that doesn't, every single time.</li>
 <li>Rule of one: one statement piece per outfit. Interesting shoes OR an interesting shirt — not both at once.</li>
 <li>Color baseline: navy, white, grey, olive. Master those four before adding anything else.</li>
 <li>Grooming is 40% of the impression. A fresh haircut and clean shoes register before your clothes do.</li>
-<li>Logos should scale inversely with age. The older you are, the smaller your logo should be.</li>
-      </ul>
+<li>Logos should scale inversely with age. The older you are, the smaller your logo should be.</li></ul>
     </div>
-
-    <div class="section">
-      <div class="section-eyebrow">What to Buy</div>
-      <div class="tiers">
-        <div class="tier">
-  <div class="tier-label">The Foundation (start here)</div>
-  <div class="tier-picks"><div class="pick-card">
-  <div class="pick-top">
-    <div class="pick-name">Slub Cotton T-Shirt 3-Pack</div>
-    <div class="pick-brand">Uniqlo</div>
+    <div class="art-section">
+      <div class="art-eyebrow">What to Buy</div>
+      <div class="art-tiers"><div class="art-tier"><div class="art-tier-label">The Foundation (start here)</div><div class="art-tier-picks"><div class="art-pick-card">
+  <div class="art-pick-top">
+    <div class="art-pick-name">Slub Cotton T-Shirt 3-Pack</div>
+    <div class="art-pick-brand">Uniqlo</div>
   </div>
-  <div class="pick-reason">The baseline layer under everything. White, grey, navy — buy all three.</div>
-  <div class="pick-bottom">
-    <span class="pick-price">$15 each</span>
-    <a href="https://www.uniqlo.com/us/en/" class="pick-shop" target="_blank" rel="noopener">Shop →</a>
+  <p class="art-pick-reason">The baseline layer under everything. White, grey, navy — buy all three.</p>
+  <div class="art-pick-bottom">
+    <span class="art-pick-price">$15 each</span>
+    <a href="https://www.uniqlo.com/us/en/" class="art-pick-shop" target="_blank" rel="noopener">Shop →</a>
   </div>
 </div>
-<div class="pick-card">
-  <div class="pick-top">
-    <div class="pick-name">Slim Straight Jeans</div>
-    <div class="pick-brand">Uniqlo</div>
+<div class="art-pick-card">
+  <div class="art-pick-top">
+    <div class="art-pick-name">Slim Straight Jeans</div>
+    <div class="art-pick-brand">Uniqlo</div>
   </div>
-  <div class="pick-reason">Best everyday denim at the price. Not fashion, just correct.</div>
-  <div class="pick-bottom">
-    <span class="pick-price">$50</span>
-    <a href="https://www.uniqlo.com/us/en/" class="pick-shop" target="_blank" rel="noopener">Shop →</a>
-  </div>
-</div>
-<div class="pick-card">
-  <div class="pick-top">
-    <div class="pick-name">Stan Smith Sneakers</div>
-    <div class="pick-brand">Adidas</div>
-  </div>
-  <div class="pick-reason">The clean white sneaker that works. These or Converse Chuck 70s — pick one, commit.</div>
-  <div class="pick-bottom">
-    <span class="pick-price">$90</span>
-    <a href="https://www.amazon.com" class="pick-shop" target="_blank" rel="noopener">Shop →</a>
-  </div>
-</div></div>
-</div>
-<div class="tier">
-  <div class="tier-label">Leveling Up ($80–$180)</div>
-  <div class="tier-picks"><div class="pick-card">
-  <div class="pick-top">
-    <div class="pick-name">Slim Chinos</div>
-    <div class="pick-brand">J.Crew</div>
-  </div>
-  <div class="pick-reason">Khaki or olive. These replace the casual pants you've been avoiding replacing.</div>
-  <div class="pick-bottom">
-    <span class="pick-price">$80</span>
-    <a href="https://www.jcrew.com" class="pick-shop" target="_blank" rel="noopener">Shop →</a>
+  <p class="art-pick-reason">Best everyday denim at the price. Not fashion, just correct.</p>
+  <div class="art-pick-bottom">
+    <span class="art-pick-price">$50</span>
+    <a href="https://www.uniqlo.com/us/en/" class="art-pick-shop" target="_blank" rel="noopener">Shop →</a>
   </div>
 </div>
-<div class="pick-card">
-  <div class="pick-top">
-    <div class="pick-name">Midweight Cotton Crewneck Sweater</div>
-    <div class="pick-brand">Todd Snyder</div>
+<div class="art-pick-card">
+  <div class="art-pick-top">
+    <div class="art-pick-name">Stan Smith Sneakers</div>
+    <div class="art-pick-brand">Adidas</div>
   </div>
-  <div class="pick-reason">The best sweater you can buy at this price point when it's 30% off, which it frequently is.</div>
-  <div class="pick-bottom">
-    <span class="pick-price">$128 <span class="pick-price-note">buy on sale</span></span>
-    <a href="https://www.toddsnyder.com" class="pick-shop" target="_blank" rel="noopener">Shop →</a>
+  <p class="art-pick-reason">The clean white sneaker that works. These or Converse Chuck 70s — pick one, commit.</p>
+  <div class="art-pick-bottom">
+    <span class="art-pick-price">$90</span>
+    <a href="https://www.adidas.com" class="art-pick-shop" target="_blank" rel="noopener">Shop →</a>
   </div>
-</div></div>
+</div></div></div>
+<div class="art-tier"><div class="art-tier-label">Leveling Up ($80–$180)</div><div class="art-tier-picks"><div class="art-pick-card">
+  <div class="art-pick-top">
+    <div class="art-pick-name">Slim Chinos</div>
+    <div class="art-pick-brand">J.Crew</div>
+  </div>
+  <p class="art-pick-reason">Khaki or olive. These replace the casual pants you've been avoiding replacing.</p>
+  <div class="art-pick-bottom">
+    <span class="art-pick-price">$80</span>
+    <a href="https://www.jcrew.com" class="art-pick-shop" target="_blank" rel="noopener">Shop →</a>
+  </div>
 </div>
-<div class="tier">
-  <div class="tier-label">The Right Investment ($150+)</div>
-  <div class="tier-picks"><div class="pick-card">
-  <div class="pick-top">
-    <div class="pick-name">Heavyweight Terry Hoodie</div>
-    <div class="pick-brand">Reigning Champ</div>
+<div class="art-pick-card">
+  <div class="art-pick-top">
+    <div class="art-pick-name">Midweight Cotton Crewneck Sweater</div>
+    <div class="art-pick-brand">Todd Snyder</div>
   </div>
-  <div class="pick-reason">Made in Canada, weighs twice what a normal hoodie weighs, lasts indefinitely. The opposite of try-hard.</div>
-  <div class="pick-bottom">
-    <span class="pick-price">$175</span>
-    <a href="https://www.reigningchamp.com" class="pick-shop" target="_blank" rel="noopener">Shop →</a>
+  <p class="art-pick-reason">The best sweater you can buy at this price point when it's 30% off, which it frequently is.</p>
+  <div class="art-pick-bottom">
+    <span class="art-pick-price">$128 <span class="art-pick-note">buy on sale</span></span>
+    <a href="https://www.toddsnyder.com" class="art-pick-shop" target="_blank" rel="noopener">Shop →</a>
   </div>
-</div></div>
-</div>
-      </div>
+</div></div></div>
+<div class="art-tier"><div class="art-tier-label">The Right Investment ($150+)</div><div class="art-tier-picks"><div class="art-pick-card">
+  <div class="art-pick-top">
+    <div class="art-pick-name">Heavyweight Terry Hoodie</div>
+    <div class="art-pick-brand">Reigning Champ</div>
+  </div>
+  <p class="art-pick-reason">Made in Canada, weighs twice what a normal hoodie weighs, lasts indefinitely. The opposite of try-hard.</p>
+  <div class="art-pick-bottom">
+    <span class="art-pick-price">$175</span>
+    <a href="https://www.reigningchamp.com" class="art-pick-shop" target="_blank" rel="noopener">Shop →</a>
+  </div>
+</div></div></div></div>
     </div>
-
-    <div class="section">
-      <div class="section-eyebrow">What to Say</div>
-      <ul class="say-list">
-        <li class="say-do">If someone asks why you're dressed up: 'These just fit.' Not 'oh this old thing.'</li>
-<li class="say-dont">You don't need to explain or apologize for looking good. Confidence in how you're dressed reads louder than the clothes.</li>
-      </ul>
+    <div class="art-section">
+      <div class="art-eyebrow">What to Say</div>
+      <ul class="art-say-list"><li class="art-say-do">If someone asks why you're dressed up: 'These just fit.' Not 'oh this old thing.'</li>
+<li class="art-say-dont">You don't need to explain or apologize for looking good. Confidence in how you're dressed reads louder than the clothes.</li></ul>
     </div>
-
-    <div class="our-pick">
-  <div class="our-pick-badge">OUR PICK</div>
-  <div class="our-pick-name">U Crew Neck Sweatshirt</div>
-  <div class="our-pick-brand">Uniqlo · <span class="our-pick-price">$40</span></div>
-  <p class="our-pick-why">Plain, heavy, perfectly cut through the shoulders. The piece that makes everything next to it look more intentional. Available in six colors that all work. This is the outfit foundation that costs less than a dinner out.</p>
-  <a href="https://www.uniqlo.com/us/en/" class="our-pick-cta" target="_blank" rel="noopener">Shop Uniqlo →</a>
+    <div class="art-our-pick">
+  <div class="art-our-pick-badge">Our Pick</div>
+  <div class="art-our-pick-name">U Crew Neck Sweatshirt</div>
+  <div class="art-our-pick-brand">Uniqlo · <span class="art-our-pick-price">$40</span></div>
+  <p class="art-our-pick-why">Plain, heavy, perfectly cut through the shoulders. The piece that makes everything next to it look more intentional. Available in six colors that all work. This is the outfit foundation that costs less than a dinner out.</p>
+  <a href="https://www.uniqlo.com/us/en/" class="art-our-pick-cta" target="_blank" rel="noopener">Shop Uniqlo →</a>
 </div>
-
   </div>
 </div>
-
 <footer class="guide-footer">
   <div class="guide-footer-inner">
     <div class="guide-footer-brand">GuyTalk<span class="guide-dot">.</span></div>
@@ -358,10 +537,9 @@
       <a href="/about/">About</a>
       <a href="/privacy/">Privacy</a>
     </div>
-    <div class="guide-footer-note">© 2026 GuyTalk Media. Some links may be affiliate links that earn a small commission at no cost to you.</div>
+    <p class="guide-footer-note">© 2026 GuyTalk Media. Some links may be affiliate links that earn a small commission at no cost to you. Prices shown are approximate and subject to change.</p>
   </div>
 </footer>
-
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Not Look Try-Hard","description":"The rule is simple. Most guys still get it wrong.","datePublished":"2026-06-24","dateModified":"2026-06-24","url":"https://www.guytalkmedia.com/guide/style/how-to-not-look-try-hard/","publisher":{"@type":"Organization","name":"GuyTalk","url":"https://www.guytalkmedia.com"}}</script>
 </body>
 </html>

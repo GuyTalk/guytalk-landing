@@ -17,21 +17,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg:      #0A0E1A;
-    --surface: #111827;
-    --surface2: #1A2235;
-    --border:  rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --text:    #F4F6FB;
-    --text-2:  rgba(244,246,251,0.68);
-    --text-3:  rgba(244,246,251,0.40);
-    --accent:  #2B6FFF;
-    --accent-h: #4D8AFF;
-    --amber:   #F59E0B;
-    --green:   #4ADE80;
+    --bg:           #F9F8F5;
+    --surface:      #FFFFFF;
+    --surface-2:    #F2F0EB;
+    --border:       #E5E2DB;
+    --border-light: #D4D0C8;
+    --text:         #0F1724;
+    --text-2:       #6E6862;
+    --text-3:       #9E9891;
+    --accent:       #2B6FFF;
+    --accent-h:     #1A5CEF;
+    --accent-muted: #EBF1FF;
+    --amber:        #B87C35;
+    --amber-muted:  rgba(184,124,53,0.08);
+    --green:        #16A34A;
+    --navy:         #0F1724;
   }
   html { scroll-behavior: smooth; }
   body {
@@ -41,17 +43,18 @@
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
+  p { margin-bottom: 0; }
 
-  /* NAV */
+  /* ── NAV (matches main site light frosted glass) ── */
   .guide-nav {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(10,14,26,0.88);
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    background: rgba(249,248,245,0.92);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
   .guide-nav-inner {
     display: flex; align-items: center; justify-content: space-between;
-    max-width: 960px; margin: 0 auto; padding: 14px 24px;
+    max-width: 1120px; margin: 0 auto; padding: 14px 24px;
   }
   .guide-wordmark {
     font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px;
@@ -59,107 +62,675 @@
   }
   .guide-wordmark:hover { text-decoration: none; }
   .guide-dot { color: var(--accent); }
-  .guide-nav-links { display: flex; align-items: center; gap: 22px; }
-  .guide-nav-link { font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; }
-  .guide-nav-link:hover { color: var(--text); text-decoration: none; }
-  .guide-nav-link.is-active { color: var(--text); font-weight: 600; }
-  .guide-nav-cta {
+  .guide-nav-links { display: flex; align-items: center; gap: 24px; }
+  .gnl { font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; }
+  .gnl:hover { color: var(--text); text-decoration: none; }
+  .gnl.is-active { color: var(--text); font-weight: 600; }
+  .gnl-cta {
     font-size: 13px; font-weight: 600; padding: 7px 14px;
     background: var(--accent); color: #fff; border-radius: 7px; text-decoration: none;
   }
-  .guide-nav-cta:hover { background: var(--accent-h); text-decoration: none; }
+  .gnl-cta:hover { background: var(--accent-h); text-decoration: none; }
 
-  /* FOOTER */
-  .guide-footer { border-top: 1px solid var(--border); margin-top: 80px; padding: 40px 24px; }
-  .guide-footer-inner { max-width: 960px; margin: 0 auto; }
-  .guide-footer-brand { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.02em; margin-bottom: 14px; }
-  .guide-footer-links { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 16px; }
-  .guide-footer-links a { font-size: 14px; color: var(--text-2); text-decoration: none; }
-  .guide-footer-links a:hover { color: var(--text); }
-  .guide-footer-note { font-size: 12px; color: var(--text-3); line-height: 1.6; }
+  /* ── CONTAINERS ── */
+  .gc  { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .gc-narrow { max-width: 720px; margin: 0 auto; padding: 0 24px; }
 
-  /* CONTAINER */
-  .guide-container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-  .guide-container-wide { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-
-  @media (max-width: 640px) {
-    .guide-nav-links { gap: 14px; }
-    .guide-nav-cta { display: none; }
-    body { font-size: 16px; }
+  /* ── CATEGORY HEADER BAND ── */
+  .cat-band {
+    background: var(--navy); border-top: 3px solid var(--accent);
+    padding: 44px 0 40px;
   }
+  .cat-band-crumb {
+    font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.40); margin-bottom: 14px;
+  }
+  .cat-band-crumb a { color: rgba(255,255,255,0.55); text-decoration: none; }
+  .cat-band-crumb a:hover { color: rgba(255,255,255,0.85); }
+  .cat-band-crumb-sep { margin: 0 8px; }
+  .cat-band-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: clamp(34px, 5vw, 54px); letter-spacing: -0.03em;
+    color: #fff; line-height: 1.04; margin-bottom: 8px;
+  }
+  .cat-band-desc { font-size: 16px; color: rgba(255,255,255,0.62); max-width: 480px; }
 
-.cat-hero { padding: 64px 24px 56px; border-bottom: 1px solid var(--border); }
-.cat-hero-inner { max-width: 960px; margin: 0 auto; }
-.cat-breadcrumb { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 20px; }
-.cat-breadcrumb a { color: var(--accent); text-decoration: none; }
-.cat-breadcrumb a:hover { text-decoration: underline; }
-.cat-breadcrumb-sep { margin: 0 8px; }
-.cat-label { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: clamp(36px, 6vw, 60px); letter-spacing: -0.03em; color: var(--text); margin-bottom: 12px; }
-.cat-desc { font-size: 18px; color: var(--text-2); max-width: 480px; line-height: 1.6; }
+  /* ── SECTION WRAPPERS ── */
+  .guide-section { padding: 56px 0; }
+  .guide-section + .guide-section { border-top: 1px solid var(--border); }
+  .gsec-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .gsec-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: 22px; letter-spacing: -0.02em; color: var(--text);
+    margin-bottom: 4px;
+  }
+  .gsec-sub { font-size: 15px; color: var(--text-2); margin-bottom: 28px; line-height: 1.55; }
 
-.cat-articles { padding: 48px 24px; }
-.cat-articles-inner { max-width: 960px; margin: 0 auto; }
-.cat-articles-grid { display: flex; flex-direction: column; gap: 2px; }
+  /* ── TAG PILLS ── */
+  .gtag {
+    display: inline-block; font-family: 'Inter Tight', sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: .10em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+  }
+  .gtag-blue  { background: var(--accent); color: #fff; }
+  .gtag-navy  { background: var(--navy);   color: #fff; }
+  .gtag-amber { background: var(--amber);  color: #fff; }
+  .gtag-green { background: var(--green);  color: #fff; }
+  .gtag-gray  { background: var(--surface-2); color: var(--text-3); }
 
-.cat-article-card {
-  display: block; padding: 24px 0; border-bottom: 1px solid var(--border);
-  text-decoration: none; color: var(--text);
-  transition: padding-left 0.18s ease;
-}
-.cat-article-card:hover { padding-left: 8px; text-decoration: none; }
-.cat-article-title { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: var(--text); margin-bottom: 6px; }
-.cat-article-sub { font-size: 15px; color: var(--text-2); line-height: 1.5; margin-bottom: 10px; }
-.cat-article-arrow { font-size: 13px; font-weight: 600; color: var(--accent); }
-</style>
+  /* ── OUTFIT BOARD ── */
+  .outfit-board {
+    display: grid; grid-template-columns: 320px 1fr; gap: 0;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .outfit-img {
+    background: var(--surface-2); min-height: 380px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .outfit-img img { width: 100%; height: 380px; object-fit: cover; display: block; }
+  .outfit-img-ph {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 380px; width: 100%;
+    font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: .10em; text-transform: uppercase; color: var(--text-3); gap: 8px;
+  }
+  .outfit-img-ph svg { opacity: .25; }
+  .outfit-content { padding: 32px 36px; display: flex; flex-direction: column; gap: 0; }
+  .outfit-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .outfit-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 22px;
+    letter-spacing: -0.02em; color: var(--text); margin-bottom: 4px;
+  }
+  .outfit-subtitle { font-size: 14px; color: var(--text-2); margin-bottom: 16px; }
+  .outfit-writeup { font-size: 15px; color: var(--text-2); line-height: 1.68; margin-bottom: 24px; }
+  .outfit-items { list-style: none; padding: 0; margin: 0 0 18px; border-top: 1px solid var(--border); }
+  .outfit-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .outfit-item-info { flex: 1; min-width: 0; }
+  .outfit-item-name { font-weight: 600; font-size: 14px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .outfit-item-role { font-size: 12px; color: var(--text-3); }
+  .outfit-item-shop {
+    flex-shrink: 0; margin-left: 14px; font-size: 12px; font-weight: 600;
+    color: var(--accent); white-space: nowrap; text-decoration: none;
+  }
+  .outfit-item-shop:hover { text-decoration: underline; }
+  .outfit-flashy { font-size: 12px; color: var(--text-3); font-style: italic; line-height: 1.5; }
+
+  /* ── PRODUCT GRID ── */
+  .picks-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .pick-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
+  }
+  .pick-card:hover { box-shadow: 0 6px 24px rgba(15,23,36,0.07); transform: translateY(-2px); }
+  .pick-card-img {
+    height: 210px; background: var(--surface-2);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .pick-card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .pick-card-img-ph {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; padding: 16px; text-align: center;
+  }
+  .pick-card-img-ph-initial {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 32px;
+    color: var(--border); line-height: 1;
+  }
+  .pick-card-img-ph-label {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--text-3);
+  }
+  .pick-card-body { padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+  .pick-card-tag { margin-bottom: 10px; }
+  .pick-card-brand {
+    font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--text-3); margin-bottom: 3px;
+  }
+  .pick-card-name {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: -0.01em; color: var(--text); margin-bottom: 6px; line-height: 1.3;
+  }
+  .pick-card-price {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px;
+    color: var(--accent); margin-bottom: 10px;
+  }
+  .pick-card-bio { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 16px; flex: 1; }
+  .pick-card-buy {
+    display: block; text-align: center; background: var(--text); color: #fff;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px;
+    padding: 10px 16px; border-radius: 8px; text-decoration: none;
+    transition: background 0.15s ease; margin-top: auto;
+  }
+  .pick-card-buy:hover { background: var(--accent); text-decoration: none; }
+  .pick-card-deal-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 600; color: var(--green); margin-top: 8px;
+  }
+  .pick-card-deal-badge::before { content: '◆'; font-size: 7px; }
+
+  /* ── COLOGNE SUBSECTION ── */
+  .cologne-sub { padding-top: 48px; border-top: 1px solid var(--border); margin-top: 48px; }
+  .cologne-intro { font-size: 15px; color: var(--text-2); max-width: 600px; margin-bottom: 28px; line-height: 1.65; }
+
+  /* ── DEALS STRIP ── */
+  .deals-strip { background: var(--surface-2); padding: 40px 0; }
+  .deals-hdr { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; }
+  .deals-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 20px;
+    letter-spacing: -0.02em; color: var(--text);
+  }
+  .deals-updated { font-size: 12px; color: var(--text-3); }
+  .deals-scroll { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+  .deals-scroll::-webkit-scrollbar { height: 3px; }
+  .deals-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .deal-card {
+    flex-shrink: 0; width: 220px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px;
+  }
+  .deal-source {
+    font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 8px;
+  }
+  .deal-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 3px; line-height: 1.3; }
+  .deal-brand { font-size: 12px; color: var(--text-2); margin-bottom: 8px; }
+  .deal-price { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px; color: var(--accent); margin-bottom: 8px; }
+  .deal-note { font-size: 12px; color: var(--text-3); margin-bottom: 12px; line-height: 1.5; }
+  .deal-link { font-size: 12px; font-weight: 600; color: var(--accent); }
+  .deals-empty { font-size: 14px; color: var(--text-3); padding: 8px 0; }
+
+  /* ── ESSAYS / DEPTH ── */
+  .essays-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+    border-left: 1px solid var(--border); border-top: 1px solid var(--border);
+    margin-top: 28px;
+  }
+  .essay-card {
+    display: block; padding: 24px 22px;
+    border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    text-decoration: none; color: var(--text);
+    transition: background 0.15s ease;
+  }
+  .essay-card:hover { background: var(--surface); text-decoration: none; }
+  .essay-card-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 16px;
+    letter-spacing: -0.01em; color: var(--text); margin-bottom: 5px; line-height: 1.3;
+  }
+  .essay-card-sub { font-size: 13px; color: var(--text-2); line-height: 1.5; margin-bottom: 10px; }
+  .essay-card-cta { font-size: 12px; font-weight: 600; color: var(--accent); }
+
+  /* ── ARTICLE PAGES ── */
+  .art-header { background: var(--navy); border-top: 3px solid var(--accent); padding: 56px 0 48px; }
+  .art-crumb {
+    font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.40); margin-bottom: 18px;
+  }
+  .art-crumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .art-crumb a:hover { color: rgba(255,255,255,0.9); }
+  .art-crumb-sep { margin: 0 8px; }
+  .art-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: clamp(26px, 5vw, 44px); letter-spacing: -0.03em;
+    color: #fff; margin-bottom: 12px; line-height: 1.06;
+  }
+  .art-subtitle { font-size: 17px; color: rgba(255,255,255,0.62); line-height: 1.55; }
+  .art-body { padding: 56px 0 0; }
+  .art-section { margin-bottom: 48px; }
+  .art-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .art-text { color: var(--text-2); line-height: 1.72; font-size: 17px; }
+  .art-know-list { list-style: none; padding: 0; margin: 0; }
+  .art-know-list li {
+    padding: 13px 0 13px 20px; border-bottom: 1px solid var(--border);
+    color: var(--text-2); line-height: 1.6; font-size: 16px; position: relative;
+  }
+  .art-know-list li:first-child { border-top: 1px solid var(--border); }
+  .art-know-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .art-say-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .art-say-list li { padding: 13px 16px 13px 44px; border-radius: 10px; font-size: 16px; line-height: 1.6; position: relative; }
+  .art-say-do { background: rgba(22,163,74,0.06); border: 1px solid rgba(22,163,74,0.18); color: var(--text-2); }
+  .art-say-do::before { content: '✓'; position: absolute; left: 16px; color: var(--green); font-weight: 700; }
+  .art-say-dont { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); }
+  .art-say-dont::before { content: '→'; position: absolute; left: 16px; color: var(--text-3); font-weight: 700; }
+  .art-tiers { display: flex; flex-direction: column; gap: 32px; }
+  .art-tier-label {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .10em; text-transform: uppercase; color: var(--text-3);
+    padding: 10px 0; border-bottom: 1px solid var(--border); margin-bottom: 16px;
+  }
+  .art-tier-picks { display: flex; flex-direction: column; gap: 10px; }
+  .art-pick-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+  .art-pick-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; gap: 12px; }
+  .art-pick-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px; color: var(--text); }
+  .art-pick-brand { font-size: 12px; color: var(--text-3); white-space: nowrap; flex-shrink: 0; }
+  .art-pick-reason { font-size: 14px; color: var(--text-2); line-height: 1.55; margin-bottom: 12px; }
+  .art-pick-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .art-pick-price { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px; color: var(--accent); }
+  .art-pick-note { font-weight: 400; font-size: 12px; color: var(--text-3); }
+  .art-pick-shop { font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; padding: 4px 10px; border: 1px solid rgba(43,111,255,0.30); border-radius: 6px; }
+  .art-pick-shop:hover { background: var(--accent-muted); text-decoration: none; }
+  .art-our-pick {
+    background: var(--accent-muted); border: 1px solid rgba(43,111,255,0.20);
+    border-left: 3px solid var(--accent); border-radius: 12px;
+    padding: 26px 26px 22px; margin: 48px 0;
+  }
+  .art-our-pick-badge {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+  }
+  .art-our-pick-name { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 20px; letter-spacing: -0.02em; color: var(--text); margin-bottom: 3px; }
+  .art-our-pick-brand { font-size: 13px; color: var(--text-3); margin-bottom: 12px; }
+  .art-our-pick-price { color: var(--accent); font-weight: 600; }
+  .art-our-pick-why { font-size: 16px; line-height: 1.65; color: var(--text-2); margin-bottom: 18px; }
+  .art-our-pick-cta {
+    display: inline-block; background: var(--accent); color: #fff;
+    font-weight: 700; font-size: 13px; padding: 9px 18px; border-radius: 8px; text-decoration: none;
+  }
+  .art-our-pick-cta:hover { background: var(--accent-h); text-decoration: none; }
+
+  /* ── HUB PAGE ── */
+  .hub-hero { padding: 72px 0 64px; border-bottom: 3px solid var(--accent); }
+  .hub-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+  }
+  .hub-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: clamp(36px, 6vw, 64px); letter-spacing: -0.04em;
+    line-height: 1.02; color: var(--text); margin-bottom: 16px;
+  }
+  .hub-sub { font-size: 18px; color: var(--text-2); max-width: 480px; line-height: 1.6; }
+  .hub-cats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
+  .hub-cat-tile {
+    display: block; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 18px; text-decoration: none;
+    transition: border-color 0.18s, transform 0.18s;
+  }
+  .hub-cat-tile.is-live:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+  .hub-cat-tile:not(.is-live) { opacity: 0.5; pointer-events: none; }
+  .hub-cat-name { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 16px; color: var(--text); margin-bottom: 5px; }
+  .hub-cat-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; margin-bottom: 10px; }
+  .hub-cat-cta { font-size: 12px; font-weight: 600; color: var(--accent); }
+  .hub-cat-soon { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
+
+  /* ── FOOTER ── */
+  .guide-footer { background: var(--navy); padding: 40px 0; }
+  .guide-footer-inner {
+    max-width: 1120px; margin: 0 auto; padding: 0 24px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .guide-footer-brand { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.02em; color: #fff; }
+  .guide-footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+  .guide-footer-links a { font-size: 13px; color: rgba(255,255,255,0.50); text-decoration: none; }
+  .guide-footer-links a:hover { color: rgba(255,255,255,0.9); }
+  .guide-footer-note { width: 100%; font-size: 11px; color: rgba(255,255,255,0.30); line-height: 1.6; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .picks-grid { grid-template-columns: repeat(2, 1fr); }
+    .hub-cats-grid { grid-template-columns: repeat(2, 1fr); }
+    .outfit-board { grid-template-columns: 1fr; }
+    .outfit-content { padding: 24px; }
+    .outfit-img-ph { height: 240px; min-height: 240px; }
+    .outfit-img img { height: 240px; }
+    .essays-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .picks-grid { grid-template-columns: 1fr; }
+    .hub-cats-grid { grid-template-columns: repeat(2, 1fr); }
+    .gnl-cta { display: none; }
+    body { font-size: 16px; }
+  }</style>
 </head>
 <body>
-
 <nav class="guide-nav">
   <div class="guide-nav-inner">
     <a href="/" class="guide-wordmark">GuyTalk<span class="guide-dot">.</span></a>
     <div class="guide-nav-links">
-      <a href="/brief/" class="guide-nav-link">Today's Brief</a>
-      <a href="/guide/" class="guide-nav-link is-active">Guide</a>
-      <a href="/#signup" class="guide-nav-cta">Subscribe Free →</a>
+      <a href="/brief/" class="gnl">Today's Brief</a>
+      <a href="/guide/" class="gnl is-active">Guide</a>
+      <a href="/#signup" class="gnl-cta">Subscribe Free →</a>
     </div>
   </div>
 </nav>
-
-<div class="cat-hero">
-  <div class="cat-hero-inner">
-    <div class="cat-breadcrumb"><a href="/guide/">Guide</a><span class="cat-breadcrumb-sep">/</span>Style</div>
-    <div class="cat-label">Style</div>
-    <p class="cat-desc">How to dress better, spend less, and stop overthinking it.</p>
+<div class="cat-band">
+  <div class="gc">
+    <div class="cat-band-crumb"><a href="/guide/">Guide</a><span class="cat-band-crumb-sep">/</span>Style</div>
+    <h1 class="cat-band-title">Style</h1>
+    <p class="cat-band-desc">How to dress better, spend less, and stop overthinking it.</p>
   </div>
 </div>
 
-<div class="cat-articles">
-  <div class="cat-articles-inner">
-    <div class="cat-articles-grid">
-      <a href="/guide/style/what-is-peter-millar/" class="cat-article-card">
-  <div class="cat-article-title">What Is Peter Millar?</div>
-  <div class="cat-article-sub">The brand guys who get it already know about — and why you should.</div>
-  <div class="cat-article-arrow">Read →</div>
+<div class="guide-section">
+  <div class="gc">
+    <div class="gsec-eyebrow">This Week's Fit</div>
+    <div class="gsec-title">Friday: Office to Dinner</div>
+    <div class="gsec-sub">One outfit, two settings, zero thinking.</div>
+    <div class="outfit-board">
+  <div class="outfit-img"><div class="outfit-img-ph">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        Photo coming soon
+      </div></div>
+  <div class="outfit-content">
+    <div class="outfit-eyebrow">This Week's Fit</div>
+    <div class="outfit-title">Friday: Office to Dinner</div>
+    <div class="outfit-subtitle">One outfit, two settings, zero thinking.</div>
+    <p class="outfit-writeup">The hardest look to get right is the one that has to survive a Friday at the office and a 7pm dinner without a costume change. The answer is layering neutrals and letting the materials do the work. A merino crew over an oxford reads sharp at your desk; lose nothing when you push the sleeves up at the bar. Dark denim keeps it from looking like you tried too hard, and a suede chukka is the detail that tells everyone you actually think about this stuff. Add the chore coat on the way out and you're dressed for anything the night turns into.</p>
+    <ul class="outfit-items"><li class="outfit-item">
+      <div class="outfit-item-info">
+        <div class="outfit-item-name">Uniqlo Extra Fine Merino Crewneck Sweater</div>
+        <div class="outfit-item-role">Navy merino crew, layered on top</div>
+      </div>
+      <a href="https://www.uniqlo.com/us/en/" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+    </li>
+<li class="outfit-item">
+      <div class="outfit-item-info">
+        <div class="outfit-item-name">Spier &amp; Mackay Oxford Cloth Button-Down</div>
+        <div class="outfit-item-role">Light blue oxford underneath, collar out</div>
+      </div>
+      <a href="https://www.spierandmackay.com" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+    </li>
+<li class="outfit-item">
+      <div class="outfit-item-info">
+        <div class="outfit-item-name">A.P.C. Petit Standard Selvedge Jean</div>
+        <div class="outfit-item-role">Dark selvedge denim</div>
+      </div>
+      <a href="https://www.apc.fr/en-us" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+    </li>
+<li class="outfit-item">
+      <div class="outfit-item-info">
+        <div class="outfit-item-name">Beckett Simonon Holt Suede Chukka Boot</div>
+        <div class="outfit-item-role">Tobacco suede chukkas</div>
+      </div>
+      <a href="https://www.beckettsimonon.com" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+    </li>
+<li class="outfit-item">
+      <div class="outfit-item-info">
+        <div class="outfit-item-name">Taylor Stitch The Ojai Chore Coat</div>
+        <div class="outfit-item-role">Olive chore coat for the walk out</div>
+      </div>
+      <a href="https://www.taylorstitch.com" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+    </li></ul>
+    <p class="outfit-flashy">All neutrals, no logos, nothing shouting. This is the template for looking put-together without anyone being able to point to why.</p>
+  </div>
+</div>
+  </div>
+</div>
+
+<div class="guide-section">
+  <div class="gc">
+    <div class="gsec-eyebrow">Curated Picks</div>
+    <div class="gsec-title">What We'd Actually Buy</div>
+    <div class="gsec-sub">Ranked by value, not price — with our honest take on each.</div>
+    <div class="picks-grid">
+      <div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">P</div>
+        <div class="pick-card-img-ph-label">Peter Millar</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+    <div class="pick-card-brand">Peter Millar</div>
+    <div class="pick-card-name">Crown Comfort Pima Cotton Polo</div>
+    <div class="pick-card-price">$110</div>
+    <p class="pick-card-bio">The brand that quietly signals you've figured it out — no loud logo, just fabric and fit that older guys with money already know. A navy or olive polo here outdresses anything with a horse or alligator on it. This is the one we'd start a wardrobe with.</p>
+    <a href="https://www.millarstore.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Peter Millar →</a>
+    
+  </div>
+</div>
+<div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">S</div>
+        <div class="pick-card-img-ph-label">Spier &amp; Mackay</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-navy">Foundation</span></div>
+    <div class="pick-card-brand">Spier &amp; Mackay</div>
+    <div class="pick-card-name">Oxford Cloth Button-Down</div>
+    <div class="pick-card-price">$60</div>
+    <p class="pick-card-bio">The single most useful shirt you can own. Works under a blazer, works untucked with denim, works rolled up at a summer dinner. Spier &amp; Mackay gives you near-luxury fabric and fit for a third of the designer price. Buy it in light blue and white and you're set for a year.</p>
+    <a href="https://www.spierandmackay.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Spier &amp; Mackay →</a>
+    
+  </div>
+</div>
+<div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">C</div>
+        <div class="pick-card-img-ph-label">Common Projects</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+    <div class="pick-card-brand">Common Projects</div>
+    <div class="pick-card-name">Achilles Low White Leather Sneaker</div>
+    <div class="pick-card-price">$435</div>
+    <p class="pick-card-bio">The minimalist white sneaker the design crowd settled on years ago. No logo, just clean Italian leather and a gold serial number stamped on the heel. They're expensive, and they're worth it because they go with literally everything and never look like you're trying. If the price stings, the Beckett Simonon Mason is the honest stand-in.</p>
+    <a href="https://www.commonprojects.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Common Projects →</a>
+    
+  </div>
+</div>
+<div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">A</div>
+        <div class="pick-card-img-ph-label">A.P.C.</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-navy">Foundation</span></div>
+    <div class="pick-card-brand">A.P.C.</div>
+    <div class="pick-card-name">Petit Standard Selvedge Jean</div>
+    <div class="pick-card-price">$200</div>
+    <p class="pick-card-bio">Dark, slim-straight raw denim that fades to your life if you wear it enough before washing. A.P.C.'s Petit Standard is the jean that taught a generation what good denim feels like. One pair replaces three cheap ones. Size down — they stretch.</p>
+    <a href="https://www.apc.fr/en-us" class="pick-card-buy" target="_blank" rel="noopener">Shop A.P.C. →</a>
+    
+  </div>
+</div>
+<div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">T</div>
+        <div class="pick-card-img-ph-label">Taylor Stitch</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+    <div class="pick-card-brand">Taylor Stitch</div>
+    <div class="pick-card-name">The Ojai Chore Coat</div>
+    <div class="pick-card-price">$165</div>
+    <p class="pick-card-bio">The throw-on layer that turns a t-shirt and jeans into an outfit. A chore coat is the most useful jacket most guys don't own yet — rugged enough for weekends, sharp enough for a casual office. Get it in olive or tobacco and watch it become the thing you reach for every cool morning.</p>
+    <a href="https://www.taylorstitch.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Taylor Stitch →</a>
+    
+  </div>
+</div>
+<div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">U</div>
+        <div class="pick-card-img-ph-label">Uniqlo</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-amber">Best Value</span></div>
+    <div class="pick-card-brand">Uniqlo</div>
+    <div class="pick-card-name">Extra Fine Merino Crewneck Sweater</div>
+    <div class="pick-card-price">$50</div>
+    <p class="pick-card-bio">The best $50 in menswear. Real merino wool, clean fit, a dozen colors. Layer the navy or charcoal over your OCBD and you look pulled together with zero effort. Nobody can tell it's cheap, which is exactly why we're telling you it is.</p>
+    <a href="https://www.uniqlo.com/us/en/" class="pick-card-buy" target="_blank" rel="noopener">Shop Uniqlo →</a>
+    
+  </div>
+</div>
+<div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">B</div>
+        <div class="pick-card-img-ph-label">Buck Mason</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-navy">Foundation</span></div>
+    <div class="pick-card-brand">Buck Mason</div>
+    <div class="pick-card-name">Curved Hem Slub Tee</div>
+    <div class="pick-card-price">$38</div>
+    <p class="pick-card-bio">A heavyweight tee that holds its shape and actually drapes instead of clinging. The gap between a $38 Buck Mason tee and a $12 three-pack is bigger than the price suggests — this is where a casual look quietly levels up. Stock the white, the navy, and the heather grey.</p>
+    <a href="https://www.buckmason.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Buck Mason →</a>
+    
+  </div>
+</div>
+<div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">T</div>
+        <div class="pick-card-img-ph-label">Todd Snyder</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-navy">Foundation</span></div>
+    <div class="pick-card-brand">Todd Snyder</div>
+    <div class="pick-card-name">Slim Fit Stretch Chino</div>
+    <div class="pick-card-price">$148</div>
+    <p class="pick-card-bio">The grown-up chino. Stone, olive, or navy in a slim-straight cut that works in a casual office and a Saturday alike. Skip the cargo pockets and the skinny taper — a clean chino in a sharp neutral is the most versatile pant you'll own after denim.</p>
+    <a href="https://www.toddsnyder.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Todd Snyder →</a>
+    
+  </div>
+</div>
+<div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">B</div>
+        <div class="pick-card-img-ph-label">Beckett Simonon</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+    <div class="pick-card-brand">Beckett Simonon</div>
+    <div class="pick-card-name">Holt Suede Chukka Boot</div>
+    <div class="pick-card-price">$199</div>
+    <p class="pick-card-bio">One pair of suede chukkas bridges sneakers and dress shoes — wear them with denim, chinos, or under a casual suit. Beckett Simonon makes them to order with full-grain materials at a fraction of designer pricing because they skip the middleman. Tobacco suede is the move.</p>
+    <a href="https://www.beckettsimonon.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Beckett Simonon →</a>
+    
+  </div>
+</div>
+<div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">T</div>
+        <div class="pick-card-img-ph-label">Via TheRealReal</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-green">Deal</span></div>
+    <div class="pick-card-brand">Via TheRealReal</div>
+    <div class="pick-card-name">Pre-Owned Leather Bomber (rotating find)</div>
+    <div class="pick-card-price">$300–$900</div>
+    <p class="pick-card-bio">The resale market is where a real leather jacket gets affordable. A pre-owned bomber from a quality house beats anything new at the same price — leather only gets better worn in. Check TheRealReal, Grailed, and Depop, and buy the one that's already broken in. We'll rotate the specific pick weekly.</p>
+    <a href="https://www.therealreal.com" class="pick-card-buy" target="_blank" rel="noopener">Shop TheRealReal →</a>
+    <div class="pick-card-deal-badge">Via TheRealReal</div>
+  </div>
+</div>
+    </div>
+    
+    <div class="cologne-sub">
+      <div class="gsec-eyebrow">Cologne</div>
+      <div class="gsec-title">Cologne</div>
+      <p class="cologne-intro">One signature scent beats a shelf of bottles. Here's where to start, what's worth it, and the one everybody's already wearing.</p>
+      <div class="picks-grid">
+        <div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">L</div>
+        <div class="pick-card-img-ph-label">Le Labo</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-gray">The One Everyone Wears</span></div>
+    <div class="pick-card-brand">Le Labo</div>
+    <div class="pick-card-name">Santal 33</div>
+    <div class="pick-card-price">$240</div>
+    <p class="pick-card-bio">It's genuinely great — warm, smoky sandalwood that smells expensive. It's also on every other guy in every major city right now, which is the catch. Wear it if you love it, but know you're not standing out, you're blending into a very specific crowd.</p>
+    <a href="https://www.lelabofragrances.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Le Labo →</a>
+    
+  </div>
+</div>
+<div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">B</div>
+        <div class="pick-card-img-ph-label">Byredo</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-blue">Wear This Instead</span></div>
+    <div class="pick-card-brand">Byredo</div>
+    <div class="pick-card-name">Mister Marvelous</div>
+    <div class="pick-card-price">$200</div>
+    <p class="pick-card-bio">If you want the niche-fragrance feel without the Santal 33 crowd, this is the move — clean, fresh, slightly soapy in the best way. Reads put-together and modern without announcing which TikTok told you to buy it.</p>
+    <a href="https://www.byredo.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Byredo →</a>
+    
+  </div>
+</div>
+<div class="pick-card">
+  <div class="pick-card-img"><div class="pick-card-img-ph">
+        <div class="pick-card-img-ph-initial">D</div>
+        <div class="pick-card-img-ph-label">Dior</div>
+      </div></div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-amber">Best Value</span></div>
+    <div class="pick-card-brand">Dior</div>
+    <div class="pick-card-name">Sauvage EDT</div>
+    <div class="pick-card-price">$110</div>
+    <p class="pick-card-bio">The most popular men's fragrance in the world for a reason — fresh, peppery, universally liked. It's not original, but it's never wrong, and it's the safest first bottle a guy can own. Apply two sprays, not six; that's how Sauvage gets a bad name.</p>
+    <a href="https://www.dior.com/en_us" class="pick-card-buy" target="_blank" rel="noopener">Shop Dior →</a>
+    
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="deals-strip">
+  <div class="gc">
+    <div class="deals-hdr">
+      <div class="deals-title">Deals This Week</div>
+      
+    </div>
+    <p class="deals-empty">Good finds rotate weekly — check back soon.</p>
+  </div>
+</div>
+
+<div class="guide-section">
+  <div class="gc">
+    <div class="gsec-eyebrow">The Depth</div>
+    <div class="gsec-title">Guides Worth Reading</div>
+    <div class="gsec-sub">Long reads on the things worth knowing about — with our actual opinion in each one.</div>
+    <div class="essays-grid">
+      
+<a href="/guide/style/what-is-peter-millar/" class="essay-card">
+  <div class="essay-card-title">What Is Peter Millar?</div>
+  <div class="essay-card-sub">The brand guys who get it already know about — and why you should.</div>
+  <div class="essay-card-cta">Read →</div>
 </a>
-<a href="/guide/style/how-to-not-look-try-hard/" class="cat-article-card">
-  <div class="cat-article-title">How to Not Look Try-Hard</div>
-  <div class="cat-article-sub">The rule is simple. Most guys still get it wrong.</div>
-  <div class="cat-article-arrow">Read →</div>
+
+<a href="/guide/style/how-to-not-look-try-hard/" class="essay-card">
+  <div class="essay-card-title">How to Not Look Try-Hard</div>
+  <div class="essay-card-sub">The rule is simple. Most guys still get it wrong.</div>
+  <div class="essay-card-cta">Read →</div>
 </a>
-<a href="/guide/style/best-everyday-brands-by-tier/" class="cat-article-card">
-  <div class="cat-article-title">Best Everyday Brands by Tier</div>
-  <div class="cat-article-sub">Where to shop based on what you actually need, not what you're told to want.</div>
-  <div class="cat-article-arrow">Read →</div>
+
+<a href="/guide/style/best-everyday-brands-by-tier/" class="essay-card">
+  <div class="essay-card-title">Best Everyday Brands by Tier</div>
+  <div class="essay-card-sub">Where to shop based on what you actually need, not what you're told to want.</div>
+  <div class="essay-card-cta">Read →</div>
 </a>
-<a href="/guide/style/cologne-101/" class="cat-article-card">
-  <div class="cat-article-title">Cologne 101</div>
-  <div class="cat-article-sub">The thing people notice first and remember longest. Get it right.</div>
-  <div class="cat-article-arrow">Read →</div>
+
+<a href="/guide/style/cologne-101/" class="essay-card">
+  <div class="essay-card-title">Cologne 101</div>
+  <div class="essay-card-sub">The thing people notice first and remember longest. Get it right.</div>
+  <div class="essay-card-cta">Read →</div>
 </a>
     </div>
   </div>
 </div>
-
 <footer class="guide-footer">
   <div class="guide-footer-inner">
     <div class="guide-footer-brand">GuyTalk<span class="guide-dot">.</span></div>
@@ -169,10 +740,9 @@
       <a href="/about/">About</a>
       <a href="/privacy/">Privacy</a>
     </div>
-    <div class="guide-footer-note">© 2026 GuyTalk Media. Some links may be affiliate links that earn a small commission at no cost to you.</div>
+    <p class="guide-footer-note">© 2026 GuyTalk Media. Some links may be affiliate links that earn a small commission at no cost to you. Prices shown are approximate and subject to change.</p>
   </div>
 </footer>
-
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Style — GuyTalk Guide","description":"How to dress better, spend less, and stop overthinking it.","url":"https://www.guytalkmedia.com/guide/style/","publisher":{"@type":"Organization","name":"GuyTalk","url":"https://www.guytalkmedia.com"}}</script>
 </body>
 </html>
