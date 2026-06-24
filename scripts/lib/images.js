@@ -26,9 +26,15 @@ const IMAGE_EXT_RE = /\.(jpe?g|png|webp|gif|avif)(?:[?#].*)?$/i;
 // against the URL path (e.g. Wikimedia "PNC_Arena_Raleigh.JPG").
 const IRRELEVANT_RE = /(arena|stadium|ballpark|ground|building|exterior|aerial|drone|panorama|skyline|map|logo|crest|emblem|wordmark|signage|entrance|facade|fa%C3%A7ade|trophy|cup_?\(|venue)/i;
 
+// Domains/paths that reliably serve images with editorial logo overlays or
+// site watermarks baked in — Golf Monthly / FutureCDN "Bazza's Best Bets" etc.
+const LOGO_OVERLAY_HOSTS = /futurecdn\.net|golfmonthly\.com/i;
+
 function looksIrrelevant(url) {
   try {
-    const path = decodeURIComponent(new URL(url).pathname);
+    const parsed = new URL(url);
+    if (LOGO_OVERLAY_HOSTS.test(parsed.hostname)) return true;
+    const path = decodeURIComponent(parsed.pathname);
     const file = path.split('/').pop() || path;
     return IRRELEVANT_RE.test(file);
   } catch { return IRRELEVANT_RE.test(String(url)); }
