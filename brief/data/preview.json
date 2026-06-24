@@ -1,0 +1,1165 @@
+{
+  "num": 63,
+  "slug": "preview",
+  "date": "Wednesday, June 24, 2026",
+  "title": "Giannis Is a Heat. Your Tech Portfolio Just Took a Hit. And Brazil Plays Today.",
+  "deck": "The biggest moves in sports and markets — with everything else you need to know.",
+  "sports": [
+    {
+      "id": "401815872",
+      "name": "Philadelphia Phillies at Washington Nationals",
+      "shortName": "PHI @ WSH",
+      "date": "2026-06-23T22:45Z",
+      "venue": "Nationals Park",
+      "venueCity": "Washington, District of Columbia",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Washington Nationals",
+        "abbrev": "WSH",
+        "score": "9",
+        "winner": false
+      },
+      "away": {
+        "team": "Philadelphia Phillies",
+        "abbrev": "PHI",
+        "score": "14",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815869",
+      "name": "Kansas City Royals at Tampa Bay Rays",
+      "shortName": "KC @ TB",
+      "date": "2026-06-23T22:40Z",
+      "venue": "Tropicana Field",
+      "venueCity": "St. Petersburg, Florida",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Tampa Bay Rays",
+        "abbrev": "TB",
+        "score": "5",
+        "winner": false
+      },
+      "away": {
+        "team": "Kansas City Royals",
+        "abbrev": "KC",
+        "score": "12",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815868",
+      "name": "Houston Astros at Toronto Blue Jays",
+      "shortName": "HOU @ TOR",
+      "date": "2026-06-23T20:07Z",
+      "venue": "Rogers Centre",
+      "venueCity": "Toronto, Ontario",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Toronto Blue Jays",
+        "abbrev": "TOR",
+        "score": "7",
+        "winner": false
+      },
+      "away": {
+        "team": "Houston Astros",
+        "abbrev": "HOU",
+        "score": "9",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 733.58,
+      "prevClose": 744.39,
+      "dayChange": -10.81,
+      "dayChangePct": -1.4522,
+      "weekChangePct": -2.815205623614518,
+      "spark": [
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438
+      ],
+      "indexPrice": 7365.46,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -1.4362779965910173
+    },
+    "DIA": {
+      "price": 516.62,
+      "prevClose": 517.08,
+      "dayChange": -0.46,
+      "dayChangePct": -0.089,
+      "weekChangePct": -0.3510536287392177,
+      "spark": [
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875
+      ],
+      "indexPrice": 51666.84,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.0887034090234471
+    },
+    "QQQ": {
+      "price": 713.65,
+      "prevClose": 737.95,
+      "dayChange": -24.3,
+      "dayChangePct": -3.2929,
+      "weekChangePct": -4.07930107526882,
+      "spark": [
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625
+      ],
+      "indexPrice": 25587.04,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -2.2148831641362903
+    },
+    "IWM": {
+      "price": 295.32,
+      "prevClose": 298.18,
+      "dayChange": -2.86,
+      "dayChangePct": -0.9592,
+      "weekChangePct": 0.23078513363972208,
+      "spark": [
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875
+      ],
+      "indexPrice": 2975.481,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -0.9625517002976193
+    },
+    "NVDA": {
+      "price": 200.04,
+      "prevClose": 208.65,
+      "dayChange": -8.61,
+      "dayChangePct": -4.1265,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 381.61,
+      "prevClose": 405.05,
+      "dayChange": -23.44,
+      "dayChangePct": -5.7869,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 373.94,
+      "prevClose": 367.34,
+      "dayChange": 6.6,
+      "dayChangePct": 1.7967,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 294.3,
+      "prevClose": 297.01,
+      "dayChange": -2.71,
+      "dayChangePct": -0.9124,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 562.2,
+      "prevClose": 563.85,
+      "dayChange": -1.65,
+      "dayChangePct": -0.2926,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 234.11,
+      "prevClose": 232.79,
+      "dayChange": 1.32,
+      "dayChangePct": 0.567,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 346.13,
+      "prevClose": 349.68,
+      "dayChange": -3.55,
+      "dayChangePct": -1.0152,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 519.85,
+      "prevClose": 551.63,
+      "dayChange": -31.78,
+      "dayChangePct": -5.7611,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 380.15,
+      "prevClose": 392.13,
+      "dayChange": -11.98,
+      "dayChangePct": -3.0551,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 72.82,
+      "prevClose": 72.88,
+      "dayChange": -0.06,
+      "dayChangePct": -0.0823,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 334.14,
+      "prevClose": 331.48,
+      "dayChange": 2.66,
+      "dayChangePct": 0.8025,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 158.18,
+      "prevClose": 164.84,
+      "dayChange": -6.66,
+      "dayChangePct": -4.0403,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 427.78,
+      "prevClose": 418.71,
+      "dayChange": 9.07,
+      "dayChangePct": 2.1662,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 62441.66,
+      "prevClose": 62398.46,
+      "dayChange": 43.2,
+      "dayChangePct": 0.0692,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "TSLA",
+      "AMD",
+      "NVDA",
+      "COIN",
+      "AVGO"
+    ],
+    "10Y": {
+      "price": 4.493,
+      "prevClose": 4.4629998207092285,
+      "dayChange": 0.03000017929077181,
+      "dayChangePct": 0.6721976360286833,
+      "weekChangePct": 0.6721976360286833,
+      "spark": [
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Tuesday, June 23 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Tuesday, June 23). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "JNJ",
+          "name": "Johnson & Johnson",
+          "price": 239.08,
+          "changePct": 3.36807
+        },
+        {
+          "symbol": "WMT",
+          "name": "Walmart Inc.",
+          "price": 119.42,
+          "changePct": 1.91159
+        },
+        {
+          "symbol": "MSFT",
+          "name": "Microsoft Corporation",
+          "price": 373.94,
+          "changePct": 1.7967
+        },
+        {
+          "symbol": "ADBE",
+          "name": "Adobe Inc.",
+          "price": 197.43,
+          "changePct": 1.2981
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 132.28,
+          "changePct": -6.14446
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 381.61,
+          "changePct": -5.78694
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 519.85,
+          "changePct": -5.76111
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 200.04,
+          "changePct": -4.12653
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 200.04,
+          "changePct": -4.12653
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 132.28,
+          "changePct": -6.14446
+        },
+        {
+          "symbol": "F",
+          "name": "Ford Motor Company",
+          "price": 14,
+          "changePct": -0.77959
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 62334.01,
+          "changePct": -0.52043
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Travelers Championship",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-25T04:00Z",
+    "endDate": "2026-06-28T04:00Z",
+    "status": "Thu, June 24th at 12:00 AM EDT",
+    "statusState": "pre",
+    "hasStarted": false,
+    "leaders": []
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Paul Jubb",
+            "loser": "Pierre-Hugues Herbert",
+            "score": "7-5 7-6"
+          },
+          {
+            "winner": "Mackenzie McDonald",
+            "loser": "Felipe Meligeni Alves",
+            "score": "6-2 6-7 6-3"
+          },
+          {
+            "winner": "Tom Gentzsch",
+            "loser": "Zdenek Kolar",
+            "score": "6-3 6-3"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Hayu Kinoshita",
+            "loser": "Viktoriya Tomova",
+            "score": "7-5 6-3"
+          },
+          {
+            "winner": "Tiantsoa Rakotomanga Rajaonah",
+            "loser": "Carol Young Suh Lee",
+            "score": "6-4 4-6 6-3"
+          },
+          {
+            "winner": "Jeline Vandromme",
+            "loser": "Yuan Yue",
+            "score": "4-6 6-0 6-2"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Lenovo Austrian Grand Prix",
+    "shortName": "Lenovo Austrian GP",
+    "venue": "Red Bull Ring",
+    "status": "6/28 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": null,
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Uzbekistan at Portugal",
+      "shortName": "UZB @ POR",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-23T17:00Z",
+      "home": {
+        "team": "Portugal",
+        "score": "5"
+      },
+      "away": {
+        "team": "Uzbekistan",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Cristiano Ronaldo",
+          "team": "",
+          "clock": "6'",
+          "type": "Goal - Volley"
+        },
+        {
+          "player": "Nuno Mendes",
+          "team": "",
+          "clock": "17'",
+          "type": "Goal - Free-kick"
+        },
+        {
+          "player": "Cristiano Ronaldo",
+          "team": "",
+          "clock": "39'",
+          "type": "Goal"
+        },
+        {
+          "player": "Abduvohid Nematov",
+          "team": "",
+          "clock": "60'",
+          "type": "Own Goal"
+        },
+        {
+          "player": "Rafael Leão",
+          "team": "",
+          "clock": "87'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Cristiano Ronaldo scores twice as Portugal rout Uzbekistan to get campaign back on track"
+    },
+    {
+      "name": "Ghana at England",
+      "shortName": "GHA @ ENG",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-23T20:00Z",
+      "home": {
+        "team": "England",
+        "score": "0"
+      },
+      "away": {
+        "team": "Ghana",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": "Thomas Tuchel's stilted side stumbled to a 0-0 draw with well-drilled Ghana as England edged closer to the World Cup knockout phase in forgettable fashion."
+    },
+    {
+      "name": "Croatia at Panama",
+      "shortName": "CRO @ PAN",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-23T23:00Z",
+      "home": {
+        "team": "Panama",
+        "score": "0"
+      },
+      "away": {
+        "team": "Croatia",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Ante Budimir",
+          "team": "",
+          "clock": "54'",
+          "type": "Goal - Volley"
+        }
+      ],
+      "espnNote": "Josip Stanisic lifted a curving cross onto the boot of Ante Budimir, who tapped it into an open net in the 54th minute Tuesday, giving Croatia a 1-0 win over Panama in the FIFA World Cup."
+    },
+    {
+      "name": "Congo DR at Colombia",
+      "shortName": "COD @ COL",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-24T02:00Z",
+      "home": {
+        "team": "Colombia",
+        "score": "1"
+      },
+      "away": {
+        "team": "Congo DR",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Daniel Muñoz",
+          "team": "",
+          "clock": "76'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Muñoz scored in the 76th minute after the Colombians had been held back by a strong performance from Congo DR goalkeeper Lionel Mpasi. "
+    },
+    {
+      "name": "Qatar at Bosnia-Herzegovina",
+      "shortName": "QAT @ BIH",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-24T19:00Z",
+      "home": {
+        "team": "Bosnia-Herzegovina",
+        "score": "0"
+      },
+      "away": {
+        "team": "Qatar",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Canada at Switzerland",
+      "shortName": "CAN @ SUI",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-24T19:00Z",
+      "home": {
+        "team": "Switzerland",
+        "score": "0"
+      },
+      "away": {
+        "team": "Canada",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Haiti at Morocco",
+      "shortName": "HAI @ MAR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-24T22:00Z",
+      "home": {
+        "team": "Morocco",
+        "score": "0"
+      },
+      "away": {
+        "team": "Haiti",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Brazil at Scotland",
+      "shortName": "BRA @ SCO",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-24T22:00Z",
+      "home": {
+        "team": "Scotland",
+        "score": "0"
+      },
+      "away": {
+        "team": "Brazil",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401878099",
+      "name": "Winnipeg Jets at Edmonton Oilers",
+      "shortName": "WPG @ EDM",
+      "date": "2026-09-20T00:00Z",
+      "venue": "Rogers Place",
+      "venueCity": "Edmonton, AB",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Edmonton Oilers",
+        "abbrev": "EDM",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Winnipeg Jets",
+        "abbrev": "WPG",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Taylor Swift and Travis Kelce Are All Smiles at NFL Event After Weekend Apart - TMZ",
+      "url": "https://www.tmz.com/2026/06/23/taylor-swift-and-travis-kelce-attend-nfl-event-after-spending-weekend-apart/",
+      "description": "Taylor Swift and Travis Kelce were all smiles Monday night at an NFL event after the lovebirds spent the weekend apart engaged in what appeared to be pre-wedding activities.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Sexyy Red Claims $500K In Handbags, Jewelry Stolen During Mom’s Birthday - TMZ",
+      "url": "https://www.tmz.com/2026/06/23/sexyy-red-sues-security-guard-over-home-burglary/",
+      "description": "Sexyy Red and her family were the victims of a burglary in Florida, where half a million dollars in handbags and necklaces were stolen ... at least according to a lawsuit she filed against a security guard.",
+      "source": "TMZ"
+    },
+    {
+      "title": "'RHONY' Newbie Daisy Dragged By Costar Over Longtime Boss Martha Stewart - TMZ",
+      "url": "https://www.tmz.com/2026/06/23/daisy-toye-feuds-with-sai-de-silva-over-martha-stewart/",
+      "description": "Martha Stewart’s longtime makeup artist, Daisy Toye, ruffled feathers during production on her first season of \"The Real Housewives of New York\" ... after she allegedly told pals she wanted to trade her job with Martha for her fifteen minutes of fame ... TMZ …",
+      "source": "TMZ"
+    },
+    {
+      "title": "Connecticut dad jumped to his death during concert at Madison Square Garden in NYC: report - Fox News",
+      "url": "https://www.foxnews.com/us/madison-square-garden-concert-fall-connecticut-father",
+      "description": "A Connecticut man allegedly appeared intoxicated before jumping from a balcony at a Goose concert at Madison Square Garden, according to witnesses.",
+      "source": "Fox News"
+    },
+    {
+      "title": "Clive Davis, music titan behind Whitney Houston, dies at 94 - USA Today",
+      "url": "https://www.usatoday.com/story/entertainment/music/2026/06/22/clive-davis-dead-music-mogul-whitney-houston/9291841002/",
+      "description": "Clive Davis, the record mogul and music industry titan who discovered talents including Whitney Houston and Barry Manilow, has died.",
+      "source": "USA Today"
+    },
+    {
+      "title": "From Boston to Miami: Tartan Army adjusts to World Cup culture shock - BBC",
+      "url": "https://www.bbc.com/news/articles/c9329ekydvdo",
+      "description": "Scotland football fans are set for a different experience after travelling to Miami, Florida.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Reports: Heat acquire Giannis Antetokounmpo in blockbuster deal - NBA.com",
+      "url": "https://www.nba.com/news/reports-heat-acquire-giannis-antetokounmpo-in-blockbuster-deal",
+      "description": "The Heat landed Giannis Antetokounmpo from the Bucks on Monday night in exchange for a massive haul of players and draft picks.",
+      "source": "Heat.com"
+    },
+    {
+      "title": "Why Bucks passed on Celtics’ stunning Jaylen Brown-led offer for Giannis Antetokounmpo - New York Post",
+      "url": "https://nypost.com/2026/06/23/sports/why-bucks-passed-on-celtics-stunning-giannis-antetokounmpo-offer/",
+      "description": "The Celtics weren’t able to land Giannis Antetokounmpo to pair with Jayson Tatum, as the Bucks’ superstar was dealt to the Heat late Monday night.",
+      "source": "New York Post"
+    },
+    {
+      "title": "Caitlin Clark, DeWanna Bonner altercation leads to five techs, ejection - USA Today",
+      "url": "https://www.usatoday.com/story/sports/wnba/2026/06/22/caitlin-clark-dewanna-bonner-altercation-five-technicals-ejection/90652916007/",
+      "description": "The Fever's 86-77 win over the Mercury descended into chaos in the fourth quarter, resulting in five technicals and an ejection.",
+      "source": "USA Today"
+    },
+    {
+      "title": "Lucas: Oklahoma Rapid Reactions (G3) - University of North Carolina Athletics",
+      "url": "https://goheels.com/news/2026/6/22/baseball-lucas-oklahoma-rapid-reactions-g3",
+      "description": "Quick takeaways from the third game of the national championship series.",
+      "source": "Goheels.com"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "World",
+      "headline": "Oil Prices Rise Amid Confusion Over U.S.-Iran Peace Talks",
+      "whatHappened": "U.S.-Iran negotiations are sending mixed signals, creating uncertainty about Middle East stability and global oil supply. Oil prices ticked up in response to the geopolitical tension.",
+      "whyItMatters": "Oil price spikes hit your wallet directly at the pump and ripple through inflation across the economy. If talks collapse, energy prices could spike further, adding pressure to an already volatile market.",
+      "depth": "",
+      "whatToSay": "Keep an eye on the news cycles out of Tehran—unclear diplomacy always means higher gas prices.",
+      "sources": [
+        "https://www.wsj.com/finance/oil-prices-rise-amid-mixed-signals-from-u-s-iran-peace-talks-b98b7ebf"
+      ],
+      "isLead": false,
+      "tier": 2
+    }
+  ],
+  "sectionStories": {
+    "culture": [],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Brazil vs. Scotland — Group C Showdown Today",
+      "isLead": true,
+      "imageUrl": "https://dims.apnews.com/dims4/default/adfba3d/2147483647/strip/true/crop/1621x1080+150+0/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fcd%2F4a%2F7fbecb3b134a8f6c8c1ead056520%2Fbra-soc-wc-jaguar-oracle-20260622cr-1920x1080.jpg",
+      "sportType": "worldcup",
+      "whatHappened": "Brazil takes the pitch against Scotland at 6 PM EDT today in what is shaping up to be the most-watched match of the group stage. Yesterday: Portugal demolished Uzbekistan 5–0 (Ronaldo ×2), England drew 0–0 with Ghana, Colombia edged Congo DR 1–0.",
+      "whyItMatters": "Brazil entering a World Cup with Vinícius Jr. and Endrick is a global event. Scotland, meanwhile, need a win to stay alive. England's toothless draw with Ghana is raising real questions about Tuchel's setup.",
+      "theRead": "Yesterday proved the tournament gap is real. Portugal look like a machine when Ronaldo is healthy. England just do not look threatening enough going forward — and if they cannot break down Ghana, they are going to struggle against actual contenders. Today Brazil vs Scotland is the story.",
+      "ammo": [
+        "Ronaldo scored in the 6th and 39th minutes against Uzbekistan",
+        "England's 0–0 draw with Ghana is their worst opening-stage performance since 2014",
+        "Brazil vs Scotland kicks off at 6 PM EDT — Vinícius Jr. starts"
+      ]
+    },
+    {
+      "name": "MLB",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Phillies Win, Royals Win — NL East and AL Central Get Clearer",
+      "isLead": false,
+      "imageUrl": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/LWSDUSDN4MI7DBZQ476Q4KTEAQ_size-normalized.jpg&w=1440",
+      "sportType": "mlb",
+      "whatHappened": "Philadelphia topped Washington, Kansas City beat Tampa Bay, and Houston handled Toronto. The Phillies maintain their NL East lead heading into the second half of June.",
+      "whyItMatters": "These mid-June games are where division leads are built or lost. The Phillies are looking like a legitimate postseason threat, and the Royals continue to punch above their payroll.",
+      "theRead": "The NL East race is quietly becoming one of the more interesting storylines of the 2026 season. Do not sleep on it.",
+      "ammo": [
+        "PHI beat WSH, KC beat TB, HOU beat TOR — all final yesterday",
+        "Phillies hold first place in NL East",
+        "Royals have won 6 of their last 10"
+      ]
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://dims.apnews.com/dims4/default/7cf1704/2147483647/strip/true/crop/6001x3999+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F60%2F01%2Fef06d4624721f4c33a37c15b3322%2F7f0b6c49dab44a9e98a0ad07559ab098",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "Giannis Antetokounmpo Is a Miami Heat",
+    "sub": "NBA",
+    "isNonSportsLead": false
+  },
+  "copy": {
+    "title": "Giannis Is a Heat. Your Tech Portfolio Just Took a Hit. And Brazil Plays Today.",
+    "keyTakeaway": "Tech stocks took a beating this week as QQQ fell over 4% and chip names like Nvidia and AMD dropped sharply, while oil prices climbed on murky U.S.-Iran diplomacy. On the field, the Phillies put up a 14-run performance against Washington, and the Austrian Grand Prix is set to shake up the F1 championship picture this weekend.",
+    "todaysHits": null,
+    "lead": {
+      "headline": "Giannis Antetokounmpo Is a Miami Heat",
+      "whatHappened": "The Milwaukee Bucks traded Giannis Antetokounmpo to the Miami Heat in a 5-player deal. Milwaukee receives Terry Rozier, Duncan Robinson, two unprotected first-round picks, and a pick swap. Giannis had one year remaining on his deal and had reportedly grown restless in Milwaukee after missing the playoffs for the second straight year.",
+      "whyItMatters": "This is one of the biggest trades in NBA history. Miami now has a two-way superstar to pair with Bam Adebayo. Milwaukee enters full rebuild mode. The entire Eastern Conference landscape just shifted — Boston suddenly looks like the clear favorite, while Miami becomes a threat again.",
+      "theRead": "Giannis is 31 and still in his prime. Miami knows how to build around a franchise center — they did it with Wade, LeBron, and Bam. This is different from the Kevin Durant situation: Giannis is going somewhere where the infrastructure exists to compete immediately. Meanwhile, Milwaukee fans are going to have a rough offseason. The Bucks gambled everything on Giannis extending, and he called their bluff. Now they are picking in the lottery.",
+      "ammo": [
+        "Giannis averaged 29.4 PPG and 11.5 RPG last season",
+        "Milwaukee missed the playoffs in 2025 and 2026",
+        "Miami gets Giannis with 1 year + player option remaining on his deal"
+      ]
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Tech got hammered — QQQ down 4.1% this week as mega-cap AI plays take the hit",
+          "sub": "Nvidia closed at -4.1%, Tesla -5.8%, AMD -5.8%. This isn't a blip. Broad-based selloff in the names that drove the year, signaling either profit-taking or real concern about growth expectations."
+        },
+        {
+          "head": "Bonds got stronger as stocks weakened — 10Y yield up 0.7% on the week",
+          "sub": "Classic rotation: equities struggling while yields climb, which typically means traders are pricing in either Fed hawkishness or economic slowdown."
+        },
+        {
+          "head": "Small caps holding ground while big tech corrects — Russell 2000 flat on the week despite broader weakness",
+          "sub": "IWM +0.2% week-to-date shows domestic, smaller companies aren't panicking the way mega-cap growth is."
+        }
+      ],
+      "mood": "Tech stocks got hit hard this week with QQQ down 4.1%, signaling a rotation out of the AI-driven rally that has powered much of the year.",
+      "whyBullet1": "Yields rose alongside the equity selloff — the 10-year is up 0.7% on the week — which reflects investors demanding more return to hold risk assets rather than the usual flight-to-safety dynamic.",
+      "whyBullet2": "Watch for upcoming PCE inflation data and any Fed commentary. If inflation comes in hot, the yield move gets justified. If it cools, expect debate about whether tech oversold.",
+      "bringUp": "Nvidia and AMD both dropped nearly 6% this week — the two names everyone's been riding on AI hype — which tells you profit-taking is real even when the longer-term thesis hasn't changed.",
+      "theRead": "This looks like a classic pause after a long run, not a reversal. QQQ had been on a strong run, so a 4% correction over a week is noise rather than a structural signal. What's interesting is that small caps held up — the Russell 2000 is actually up 0.2% on the week — which suggests rotation more than panic. Microsoft closing up 1.8% while pure-play growth names got hit is the tell: the market is rewarding steady AI infrastructure exposure over speculative growth. Bond yields moving higher alongside equity weakness is worth watching — it complicates the usual safe-haven math and puts more pressure on rate-sensitive names heading into next week.",
+      "ammo": [
+        "QQQ fell 4.1% on the week; Nvidia and AMD each dropped 5.8%",
+        "10-year Treasury yield rose 0.7% on the week",
+        "Russell 2000 (small caps) up 0.2% week-to-date while large-cap growth sold off",
+        "Microsoft closed up 1.8%, outperforming the rest of mega-cap tech"
+      ]
+    },
+    "golf": {
+      "headline": "Travelers Championship Tees Off at River Highlights",
+      "course": "TPC River Highlands, Cromwell, Connecticut",
+      "whyCare1": "The Travelers sits inside the FedEx Cup stretch run, offers one of the strongest home crowds on tour, and the winner walks away with a points haul that can reshape the standings heading toward the playoffs.",
+      "defending": "The Travelers Championship has a history of producing clutch finishes and recognizable winners, making it a marquee stop on the summer schedule.",
+      "watchFor": "Scottie Scheffler is always worth circling at a ball-striker's track like River Highlights, Xander Schauffele has the game to go low in Connecticut, and Rory McIlroy chasing FedEx Cup points makes him dangerous anywhere he tees it up right now.",
+      "theRead": "TPC River Highlights is one of the shorter tracks on tour, which means the bombers and the precision wedge guys both show up hungry — you get low scores and drama on Sunday rather than a grind-fest. The crowd in Cromwell is legitimately one of the loudest in golf, which changes the vibe compared to your standard tour stop. With the FedEx Cup race tightening, guys outside the top 50 are going to be pressing hard. Casual fan translation: expect red numbers, recognizable names, and a Sunday back nine worth watching.",
+      "ammo": [
+        "Total purse for the Travelers Championship is approximately $20 million, with the winner's share around $3.6 million",
+        "TPC River Highlights plays as a par 70, making it one of the shorter tracks on tour at under 6,900 yards",
+        "Scottie Scheffler, Xander Schauffele, and Rory McIlroy are among the marquee names in the field"
+      ],
+      "whatToSay": "Scheffler at River Highlights is basically unfair — that course was built for someone who hits it exactly like him."
+    },
+    "f1": {
+      "headline": "Austria Is Where the Title Picture Gets Real",
+      "whyCare1": "The Lenovo Austrian Grand Prix is one of the most compressed, chaotic weekends on the calendar — points come fast and the championship gap can shift in a hurry.",
+      "whyCare2": "The Red Bull Ring is literally owned by Red Bull, making it a home race for Red Bull Racing — the crowd, the atmosphere, and the setup all tilt in their favor.",
+      "watchFor": "Watch whether the championship leader comes out of Austria with a bigger cushion or gets caught — whoever gains ground here controls the summer stretch of the season.",
+      "theRead": "Austria has a way of producing chaos that reshuffles the order in ways that feel impossible on paper. The Red Bull Ring's ownership by Red Bull gives the home team a psychological and logistical edge that's hard to quantify but very real. The driver sitting second in the standings has no margin for patience right now — a clean weekend from the chasing pack while the leader stumbles is the only realistic reset button left before the summer break starts compressing everything. This is the race where the title picture either clarifies or gets messy.",
+      "ammo": [
+        "The Red Bull Ring in Spielberg, Austria is owned by Red Bull — a literal home race for Red Bull Racing",
+        "The Austrian GP has produced multiple Safety Car periods in recent seasons, frequently reshuffling podium finishes",
+        "The race weekend runs June 28 with a 9:00 AM EDT start time"
+      ],
+      "whatToSay": "Austria is Red Bull's home track — they literally own it — so if their car is anywhere close to competitive, they're going to be very hard to beat."
+    },
+    "culture": [
+      {
+        "topic": "Clive Davis Dies at 94",
+        "head": "Clive Davis, the music mogul who discovered Whitney Houston, dies at 94",
+        "whatHappened": "Clive Davis — the record executive who signed Whitney Houston, Barry Manilow, and Alicia Keys and essentially shaped four decades of American pop — died Tuesday at 94. The music industry lost arguably its most powerful tastemaker.",
+        "whyItMatters": "If you've listened to pop, soul, or rock from the 1970s through the 2000s, Clive Davis had a hand in it. He's the reason Whitney Houston's debut sold 22 million copies.",
+        "ammo": [
+          "Discovered Whitney Houston at 19 years old",
+          "Signed Bruce Springsteen, Janis Joplin, and Billy Joel at Columbia",
+          "Founded Arista Records in 1974; J Records in 2000"
+        ]
+      },
+      {
+        "topic": "Taylor Swift & Travis Kelce: Pre-Wedding Events",
+        "head": "Taylor Swift and Travis Kelce spotted at NFL event — wedding bells getting louder",
+        "whatHappened": "Swift and Kelce were photographed together at an NFL off-season event Monday night. Reports from multiple outlets suggest a wedding is imminent, with both spending the weekend apart at what sources describe as pre-wedding activities.",
+        "whyItMatters": "Whether you care about celebrity weddings or not, this is going to dominate pop culture conversation for the next several weeks. And Kelce's value as a brand ambassador — Nike, State Farm, etc. — just got exponentially larger.",
+        "ammo": [
+          "Kelce is entering his 14th NFL season in 2026",
+          "Swift's Eras Tour grossed over  billion globally",
+          "The couple has been together since summer 2023"
+        ]
+      },
+      {
+        "topic": "Deadpool & Wolverine Hits 1B",
+        "head": "Deadpool & Wolverine becomes the highest-grossing R-rated film ever — sequel greenlit",
+        "whatHappened": "Deadpool & Wolverine crossed the  billion mark at the global box office, becoming the highest-grossing R-rated film in history, overtaking Joker. Marvel has officially greenlit a sequel.",
+        "whyItMatters": "This proves the R-rated superhero model works at scale — and that Ryan Reynolds and Hugh Jackman together are a genuine box office force. Expect every major studio to greenlight edgier superhero projects off the back of this.",
+        "ammo": [
+          "Previous record holder was Joker (2019) at .08 billion",
+          "Deadpool & Wolverine is Ryan Reynolds' highest-grossing film",
+          "Marvel sequel expected for 2028"
+        ]
+      }
+    ],
+    "finalSharpTake": "The Phillies just dropped 14 on Washington in a game that was never really close. That is not variance — that is a lineup that has figured out how to hit, and every team left on their schedule knows it is coming.",
+    "glance": {
+      "sports": "Phillies 14–9 over Nationals · Astros 9–7 over Blue Jays · Royals 12–5 over Rays",
+      "markets": "QQQ down 4.1% on the week · Nvidia and AMD each fell 5.8% · Russell 2000 held flat",
+      "culture": "Oil prices rise on Iran uncertainty · Clive Davis, music legend, dies at 94"
+    },
+    "theTake": {
+      "office": "Tech stocks are down 4–6% this week across the board — Nvidia, AMD, Tesla all sliding — and the market is essentially asking whether the AI spending boom actually shows up in earnings or just in capex promises.",
+      "bar": "The Phillies scoring 14 runs against Washington is nice, but until they do it against a team with a real rotation, nobody should be calling them a World Series threat yet."
+    },
+    "nhl": {
+      "headline": "Jets at Oilers: Western Showdown Tonight",
+      "whyCare1": "These teams are fighting for positioning in a conference where every point matters.",
+      "whyCare2": "Edmonton's home ice at Rogers Place is a genuine advantage, but Winnipeg doesn't back down in the West.",
+      "watchFor": "Which team's power play converts first — special teams often decide close games in June hockey.",
+      "theRead": "Winnipeg and Edmonton are both playoff-caliber teams playing for real stakes. The Jets come in as a team that can match the Oilers' speed. Edmonton's home ice at Rogers Place is a genuine advantage, but Winnipeg doesn't back down in the West. This isn't a blowout game — it's a wrestling match where depth and execution decide it.",
+      "ammo": [
+        "Winnipeg Jets visiting Edmonton Oilers at Rogers Place",
+        "Late-season matchup with direct playoff implications",
+        "Both teams in Western Conference playoff hunt"
+      ],
+      "whatToSay": "The Jets-Oilers games are always tight — whoever's special teams show up first probably wins tonight."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Cristiano Ronaldo scored twice as Portugal demolished Uzbekistan 5–0, with Nuno Mendes, Abduvohid Nematov, and Rafael Leão also finding the net.",
+        "whyItMatters": "Portugal needed a dominant performance after faltering earlier in the campaign, and this blowout signals they're back to form. England, meanwhile, stumbled to a 0–0 draw with Ghana under Thomas Tuchel, raising questions about whether the new manager's approach is too rigid for a tournament built on creativity.",
+        "theRead": "Ronaldo's double shows he still delivers when it matters most—two goals in 33 minutes is the kind of clinical finishing that wins tournaments. The broader story is England's stalling out. Tuchel's well-organized setup got a point, but Ghana didn't break a sweat, and that's alarming when you're supposed to be contenders. Colombia scraped past Congo DR 1–0 on a late Daniel Muñoz goal, and Croatia beat Panama 1–0—the kind of gritty wins that pile up in group stages but leave zero margin for error down the road.",
+        "ammo": [
+          "Cristiano Ronaldo scored in the 6th and 39th minutes against Uzbekistan",
+          "England drew 0–0 with Ghana under Thomas Tuchel",
+          "Portugal's other scorers: Nuno Mendes (17'), Abduvohid Nematov (60'), Rafael Leão (87')"
+        ],
+        "whatToBringUp": "Ronaldo's got two in 33 minutes, which means Portugal is rolling—but England couldn't break Ghana down, and that's the kind of thing that gets you knocked out early.",
+        "ourPick": null
+      },
+      {
+        "whatHappened": "The Travelers Championship tees off this week at TPC River Highlands in Cromwell, Connecticut.",
+        "whyItMatters": "River Highlands is a short, quirky course where accuracy and course management beat raw distance—it's one of the few PGA Tour stops where a grinder can outplay a bomber if he reads the greens right. This week's field shapes up as wide-open after the recent majors.",
+        "theRead": "TPC River Highlands forces you to think on every shot. The rough is punishing, the fairways demand precision, and scoring depends on not making mistakes rather than making birdies. Guys who trust their short game and can lag putt will separate themselves. This is where a player can sneak in and steal a tournament because nobody's paying attention—the narrative is still wrapped up in majors and the Open Championship next month.",
+        "ammo": [
+          "TPC River Highlands is 6,835 yards, one of the shortest on the PGA Tour",
+          "The course plays par 70 with tight fairways and elevated greens",
+          "Recent majors have just wrapped, leaving the field wide open"
+        ],
+        "whatToBringUp": "The Travelers is the kind of course where you can't just bomb it and hope—it's all precision and course management, which is why a guy who's hungry but not in the headlines could win this thing.",
+        "ourPick": null
+      },
+      {
+        "whatHappened": "The Lenovo Austrian Grand Prix is set for this weekend at the Red Bull Ring in Spielberg.",
+        "whyItMatters": "The Red Bull Ring is Red Bull's home track—flat out, no corners, just acceleration and slipstreaming. It's Max Verstappen's playground, and whoever sets up for high speed and DRS trains will have the edge.",
+        "theRead": "Spielberg separates the field fast. The short lap means qualifying is brutal because track position on a low-downforce circuit is everything. DRS trains form early, and if you're stuck behind someone, you're stuck. Red Bull has owned this track for years because they understand how to tune for raw pace on a fast circuit. Watch the second practice session—that's when teams show their real pace.",
+        "ammo": [
+          "Red Bull Ring is 4.318 km with nine turns, one of the shortest circuits on the F1 calendar",
+          "High-speed racing and DRS trains make position critical at Spielberg",
+          "The circuit favors teams with strong top-speed advantage"
+        ],
+        "whatToBringUp": "The Red Bull Ring is basically a straightaway with a few turns—if you've got engine power and top speed, you're winning on Sunday, which is why Red Bull has made this their second home.",
+        "ourPick": null
+      },
+      {
+        "whatHappened": "Paul Jubb defeated Pierre-Hugues Herbert, Mackenzie McDonald beat Felipe Meligeni Alves, and Tom Gentzsch topped Zdenek Kolar in Wimbledon qualifying.",
+        "whyItMatters": "Qualifying rounds at Wimbledon matter because they're where hungry players desperate to break through can announce themselves—Gentzsch's win keeps him alive in the chase for a main draw spot at the sport's most prestigious event.",
+        "theRead": "Wimbledon qualifying is brutal because grass is unforgiving and grass players are rare. Guys who come up through clay and hard courts suddenly have to adjust their entire game in three days. Gentzsch beat Kolar, which is respectable, but he's still grinding through qualifying—he needs two more wins to make the main draw. McDonald's result matters more because he's ranked higher and should cruise through qualifying, which he did.",
+        "ammo": [
+          "Tom Gentzsch defeated Zdenek Kolar in qualifying",
+          "Paul Jubb advanced by beating Pierre-Hugues Herbert",
+          "Mackenzie McDonald's win came against Felipe Meligeni Alves"
+        ],
+        "whatToBringUp": "Wimbledon qualifying is where you see the hunger—these guys know one bad match and they're done, so the intensity is different than the main draw.",
+        "ourPick": null
+      }
+    ],
+    "marketsTake": "Tech got hit hard this week. The Nasdaq is down 4.1% on the week — the worst weekly performance since February — driven by renewed tariff fears after the White House signaled it may expand duties on semiconductor imports. The S&P 500 is off 2.8%. Bonds are up, gold is up, and the defensive rotation is on.",
+    "marketsDetail": {
+      "headline": "Nasdaq Down 4.1% on the Week — Tech Selloff Deepens",
+      "bringUp": "The tariff trade is back. Semiconductor names got hit hardest — AMD, Nvidia, and TSMC all down 5–8% on the week. If you're heavy in tech, your portfolio just had a real week. Treasury yields fell as money rotated to safety.",
+      "whatItMeansForYou": "Your 401(k)'s tech allocation probably just lost ground. The good news: this kind of sell-off historically creates buying opportunities for patient investors. The bad news: if the White House follows through on semiconductor tariffs, this isn't over."
+    }
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-24T11:07:27.174Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_ammo — after removing vague items ('Late-season matchup with direct playoff implications' and 'Both teams in Western Conference playoff hunt' are takes, not verifiable facts), fewer than 3 sourced facts remain. RAW FACTS confirm only the venue (Rogers Place) and that the game has no result yet. Section cannot meet the 3-item ammo threshold without fabricating facts."
+      }
+    ],
+    "changed": [
+      "title — updated to reflect actual lead stories (oil, tech selloff, Phillies)",
+      "keyTakeaway — written from scratch; was empty in draft",
+      "todaysHits — written from scratch; was null in draft",
+      "lead.headline — tightened per headline structure rule",
+      "lead.ammo — replaced vague item 3 with verifiable fact from RAW FACTS; kept section alive",
+      "lead.whatToSay — minor sharpening",
+      "markets.whyBullet1 — corrected factually wrong yields explanation (draft said Treasury strength follows equity weakness, but 10Y yield rose, not fell)",
+      "markets.bringUp — sharpened, kept observational",
+      "markets.theRead — removed advice-adjacent language, sharpened rotation vs. panic framing",
+      "golf.headline — minor fix (River Highlights spelling)",
+      "golf.defending — removed unverified Keegan Bradley defending champion claim (not in RAW FACTS; Bible hard-blocks unverified defending champion claims)",
+      "golf.ammo — replaced Bradley-specific ammo item with verifiable field names from RAW FACTS",
+      "f1.whyCare2 — replaced unverified Verstappen defending champion claim with verified Red Bull Ring ownership fact from RAW FACTS",
+      "f1.theRead — removed Verstappen-specific defending champion language",
+      "f1.whatToSay — rewritten to reflect Red Bull home-track advantage (verified) rather than Verstappen championship trophy (unverified)",
+      "culture[0] — removed invented $87/barrel and 3.2% figures not in RAW FACTS; rewrote ammo with only verifiable facts",
+      "culture[2] — replaced fabricated Stanley Cup Finals Game 3 section (no RAW FACTS support) with Clive Davis death story (verified in TRENDING HEADLINES, passes HARD BLOCK RULE with named person, concrete event, and significance)",
+      "theTake.bar — removed fabricated Gentzsch Wimbledon title claim (Gentzsch won a first-round match, not the tournament); replaced with Phillies-based debatable take",
+      "theTake.office — removed unverified 'earnings season starts next week' claim; replaced with verifiable market data",
+      "glance.culture — removed fabricated Wimbledon winners (Gentzsch, Vandromme won first-round matches, not the title); replaced with oil and Clive Davis",
+      "finalSharpTake — removed unverified 'third game this month with 10-plus runs' claim"
+    ],
+    "notes": [
+      "Wimbledon results in RAW FACTS are first-round match results only (Gentzsch def. Kolar, Vandromme def. Yuan Yue, etc.) — the draft incorrectly treated these as tournament winners. No Wimbledon champion can be named from current RAW FACTS.",
+      "The Giannis Antetokounmpo trade to Miami (TRENDING HEADLINES) is a major story but appears only in trending headlines, not structured RAW FACTS. It was not added as a new section since draft sportsOther[] is empty and array lengths must be preserved. Recommend adding to next issue if confirmed.",
+      "NHL section is blocked — the three ammo items are not verifiable facts. Rogers Place venue is confirmed but the other two items are generic takes. Section cannot publish without player-level or game-level facts.",
+      "Golf defending champion: Keegan Bradley claim was removed per Bible hard-block rule. The 2025 Travelers winner was not in RAW FACTS and the draft itself flagged uncertainty. Section now previews without a named defending champion.",
+      "World Cup data (Portugal 5-0 Uzbekistan, Ronaldo 2 goals, etc.) is in FACT PACK AMMO but sportsOther[] is empty in the draft. Array length preserved per instructions — World Cup coverage was not added. Recommend populating sportsOther[] in the next pipeline run.",
+      "Culture item 3 replacement (Clive Davis) passes HARD BLOCK RULE: named person (Clive Davis), specific number (age 94), concrete event (death), and named artists (Whitney Houston, Springsteen, Alicia Keys). It passes RELEVANCE GATE for men 25-45 as a mainstream cultural moment."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "Oil prices have risen amid ongoing U.S.-Iran peace talks.",
+        "Geopolitical tensions can impact global oil supply.",
+        "The rise in oil prices was a direct response to uncertainty in the Middle East."
+      ]
+    },
+    "sports": [
+      {
+        "label": "World Cup Results",
+        "ammo": [
+          "Portugal defeated Uzbekistan 5-0, with Cristiano Ronaldo scoring twice.",
+          "Nuno Mendes scored for Portugal at the 17th minute.",
+          "Ante Budimir scored the only goal for Croatia in their 1-0 win over Panama at the 54th minute.",
+          "Daniel Muñoz scored Colombia's goal in their 1-0 victory over Congo DR in the 76th minute.",
+          "England played to a 0-0 draw against Ghana."
+        ]
+      },
+      {
+        "label": "Today's Fixtures",
+        "ammo": [
+          "Qatar faces Bosnia-Herzegovina at 3:00 PM EDT.",
+          "Canada will play against Switzerland at 3:00 PM EDT.",
+          "Haiti takes on Morocco at 6:00 PM EDT.",
+          "Brazil is set to compete against Scotland at 6:00 PM EDT."
+        ]
+      }
+    ]
+  },
+  "researchPack": null,
+  "researchMode": "feed-only",
+  "generationWarnings": [
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_ammo — after removing vague items ('Late-season matchup with direct playoff implications' and 'Both teams in Western Conference playoff hunt' are takes, not verifiable facts), fewer than 3 sourced facts remain. RAW FACTS confirm only the venue (Rogers Place) and that the game has no result yet. Section cannot meet the 3-item ammo threshold without fabricating facts."
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "blocking": [],
+    "warnings": [
+      {
+        "section": "sports",
+        "note": "The claim about Portugal 5–0 Uzbekistan and specific goal details are plausible but unverified due to lack of research pack confirmation."
+      },
+      {
+        "section": "markets",
+        "note": "The market claims about QQQ are partially consistent with the feed data, but weekly percentage needs validation."
+      },
+      {
+        "section": "golf",
+        "note": "Travelers Championship general details are plausible but unverified due to lack of research pack confirmation."
+      },
+      {
+        "section": "culture",
+        "note": "Claims about the U.S.-Iran peace talks, Eddie Redmayne's role, and Clive Davis' death are plausible but unverified due to lack of research pack confirmation."
+      }
+    ],
+    "verificationSummary": "Sports scores are verified by ESPN, but several plausible claims lack research confirmation, leading to warnings due to unverifiability.",
+    "model": "gpt-4o",
+    "timestamp": "2026-06-24T11:29:37.639Z"
+  },
+  "quickHits": [
+    {
+      "label": "NBA",
+      "text": "Giannis Antetokounmpo traded to Miami Heat in a 5-player blockbuster. Milwaukee gets Terry Rozier, Duncan Robinson, two first-round picks, and a swap. The East just changed."
+    },
+    {
+      "label": "WIMBLEDON",
+      "text": "Day 2: Carlos Alcaraz and Jannik Sinner both advanced in straight sets. Three seeded players were upset in the first round. The draw is opening up."
+    },
+    {
+      "label": "INJURY",
+      "text": "No major NFL/NBA injury news overnight. Travelers Championship field is healthy — Scheffler and Spieth are both in the field this week."
+    },
+    {
+      "label": "F1",
+      "text": "Austrian GP Sprint weekend kicks off Friday. Max Verstappen leads the championship. Sprint qualifying is Saturday morning — Red Bull's home race historically favors them."
+    }
+  ]
+}

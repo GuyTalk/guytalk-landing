@@ -622,6 +622,7 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
   const _sportsSection  = `<div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>\n\n${buildSportsBody(issue)}`;
   const _marketsSection = `<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>\n\n${buildMarkets(issue)}`;
   const _cultureSection = `<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>\n\n${buildCulture(issue)}`;
+  const _quickHitsHtml  = buildQuickHits(issue);
   const _sectionMap = { sports: _sportsSection, markets: _marketsSection, culture: _cultureSection };
 
   const _liveCta = `<a href="/live/" class="brief-live-cta">
@@ -643,7 +644,7 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
 
   const _bodySections = bodyOrder.map((key, i) =>
     `${_sectionMap[key]}${i === 0 ? '\n\n' + _liveCta : ''}`
-  ).join('\n\n');
+  ).join('\n\n') + (_quickHitsHtml ? '\n\n' + _quickHitsHtml : '');
 
   // Word-of-mouth share links (the growth wedge: "don't be the last guy to know")
   const shareUrl  = `https://www.guytalkmedia.com/brief/${slug}/`;
@@ -1235,6 +1236,27 @@ function buildUpcomingGameCard(game, preview) {
     </div>
 ${previewDetail}
     ${arenaHtml}`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Quick Hits — compact scannable list of news/injuries/scores that don't
+// need a full section. Present when issue.quickHits is a non-empty array.
+// ─────────────────────────────────────────────────────────────────────────────
+function buildQuickHits(issue) {
+  const hits = Array.isArray(issue.quickHits) ? issue.quickHits.filter(h => h && h.text) : [];
+  if (!hits.length) return '';
+  return `<section class="brief-section" id="quick-hits" style="margin-top:52px">
+  <div class="umbrella-head" style="margin-bottom:16px">
+    <span class="umbrella-kicker" style="color:var(--red)">Also Today</span>
+    <h2 class="umbrella-title">Quick Hits</h2>
+  </div>
+  <ul class="detail-list" style="margin-top:0;border-top:2px solid var(--border);padding-top:4px">
+    ${hits.map(h => `<li style="padding:14px 0;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:10px">
+      ${h.label ? `<span class="dl-label" style="min-width:80px;color:var(--green);font-size:12px;letter-spacing:.08em;text-transform:uppercase;flex-shrink:0">${esc(h.label)}</span>` : ''}
+      <span style="font-size:15px;line-height:1.5;color:var(--text-2)">${esc(h.text)}</span>
+    </li>`).join('\n    ')}
+  </ul>
+</section>`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
