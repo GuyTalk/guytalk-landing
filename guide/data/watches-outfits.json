@@ -1,0 +1,21 @@
+{
+  "_note": "The featured 'pairing' module for Watches — category equivalent of Style's 'This Week's Fit.' Here it's 'The Starter Collection': the three-watch setup that covers a man's whole life. Items reference picks by slug. Writeups final, GuyTalk voice.",
+  "category": "watches",
+  "moduleLabel": "The Starter Collection",
+  "sets": [
+    {
+      "slug": "the-three-watch-rotation",
+      "featured": true,
+      "title": "The Three-Watch Rotation",
+      "subtitle": "Cover your whole life without spending Rolex money.",
+      "writeup": "You don't need a collection. You need three watches that cover everything: one nice automatic you'd be proud to wear to a wedding, one tough beater you never think about, and a strap swap that lets the nice one play dress-up or weekend. Start with the Hamilton Khaki Field as the one good watch — it goes with a suit or a t-shirt. Add a Casio as the gym-and-beach throwaway so you never risk the good one. Then a leather and a NATO strap turn the Hamilton into two more looks for twenty bucks. That's a complete watch life for well under seven hundred dollars, and it's a smarter setup than most guys with one flashy watch.",
+      "items": [
+        { "ref": "hamilton-khaki-field", "role": "The one good watch — works with everything" },
+        { "ref": "casio-world-time", "role": "The beater you never worry about" },
+        { "ref": "leather-nato-strap", "role": "Strap swaps that turn one watch into three looks" }
+      ],
+      "flashyCheck": "The flex here is restraint — a thoughtful three-watch setup beats one loud status piece every time, and the people who matter know it.",
+      "image": ""
+    }
+  ]
+}

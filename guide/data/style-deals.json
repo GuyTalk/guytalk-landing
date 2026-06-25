@@ -1,6 +1,37 @@
 {
-  "_note": "Rotating deals strip for Style. Hand-curated for now; structured for AI deal-finder in phase 2. updatedAt drives the 'updated' label in the UI. When empty, the strip shows a graceful 'check back soon' state.",
+  "_note": "Rotating deals strip for Style. Hand-curated for now; structured for AI deal-finder in phase 2. updatedAt drives the 'updated' label in the UI.",
   "category": "style",
-  "updatedAt": "",
-  "deals": []
+  "updatedAt": "2026-06-25",
+  "deals": [
+    {
+      "slug": "buck-mason-summer-clearance",
+      "source": "Buck Mason",
+      "name": "Curved Hem Slub Tee (Clearance)",
+      "brand": "Buck Mason",
+      "price": "$26",
+      "originalPrice": "$38",
+      "note": "End-of-season tee pricing — same great fit, 30% off. Stock up in white, navy, and grey.",
+      "link": "https://www.buckmason.com/collections/sale"
+    },
+    {
+      "slug": "apc-mrporter-sale",
+      "source": "MR PORTER",
+      "name": "A.P.C. Petit Standard Jean",
+      "brand": "A.P.C.",
+      "price": "$170",
+      "originalPrice": "$200",
+      "note": "MR PORTER end-of-season markdown — first drop on the Petit Standard at a meaningful discount.",
+      "link": "https://www.mrporter.com/en-us/mens/clothing/jeans"
+    },
+    {
+      "slug": "therealreal-brunello-pant",
+      "source": "TheRealReal",
+      "name": "Brunello Cucinelli Cotton Pant",
+      "brand": "Brunello Cucinelli",
+      "price": "$185",
+      "originalPrice": "$620",
+      "note": "Excellent condition pre-owned — Italian cashmere-blend cotton at a 70% markdown. This is why we check resale first.",
+      "link": "https://www.therealreal.com/search?query=brunello+cucinelli+pants"
+    }
+  ]
 }

@@ -1,0 +1,22 @@
+{
+  "_note": "The featured 'pairing' module for Cars — category equivalent of Style's 'This Week's Fit.' Here it's 'The Trunk Kit': the gear every guy should carry. Items reference gear picks by slug. Writeups final, GuyTalk voice.",
+  "category": "cars",
+  "moduleLabel": "The Trunk Kit",
+  "sets": [
+    {
+      "slug": "the-trunk-kit",
+      "featured": true,
+      "title": "The Trunk Kit",
+      "subtitle": "The four things that make you the guy who's never stranded.",
+      "writeup": "You don't need to be a car person to carry yourself like one. You need a trunk that means a dead battery, a fender-bender, or a filthy car never ruins your day. A NOCO jump pack means you start your own car — and rescue the next guy. A dash cam quietly settles any dispute about whose fault it was. And a basic wash kit keeps whatever you drive looking like you respect it. Under three hundred dollars total, and it's the difference between owning a car and actually handling one.",
+      "items": [
+        { "ref": "noco-boost-jump-starter", "role": "Never stranded by a dead battery" },
+        { "ref": "viofo-dash-cam", "role": "Settles any 'whose fault was it'" },
+        { "ref": "chemical-guys-wash-kit", "role": "Keeps it looking respected" },
+        { "ref": "leather-honey-conditioner", "role": "Keeps the interior from aging" }
+      ],
+      "flashyCheck": "Nothing here shows off. It's all quiet competence — the prepared guy beats the flashy one every time.",
+      "image": ""
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "_note": "The featured 'pairing' module for Bourbon & Cigars — the category equivalent of Style's 'This Week's Fit.' Here it's 'The Bar Cart': a curated starter setup. Items reference picks by slug. Writeups final, in GuyTalk voice. Rotate the featured set periodically.",
+  "category": "bourbon-cigars",
+  "moduleLabel": "The Bar Cart",
+  "sets": [
+    {
+      "slug": "the-starter-bar",
+      "featured": true,
+      "title": "The Starter Bar",
+      "subtitle": "Everything you need to pour like you know what you're doing.",
+      "writeup": "You don't need a wall of bottles to host well — you need one bourbon that's good neat and good in a cocktail, the right glass, ice that doesn't betray you, and a cigar for when the night earns one. This is that kit. A bottle of Buffalo Trace covers the everyday pour and the Old Fashioned. The Glencairn makes a casual taste feel intentional. The big cube keeps your drink honest. And an Oliva Serie V is there for the porch conversation that runs long. Total damage is under eighty dollars, and it makes you the guy whose place people want to end the night at.",
+      "items": [
+        { "ref": "buffalo-trace", "role": "The everyday bottle — neat or in an Old Fashioned" },
+        { "ref": "glencairn-glass-set", "role": "The tasting glass" },
+        { "ref": "king-ice-cube-mold", "role": "The big cube that won't water you down" },
+        { "ref": "oliva-serie-v", "role": "The cigar for when the night runs long" }
+      ],
+      "flashyCheck": "Nothing here is showing off. It's a setup that says you take the small things seriously — which is the whole point.",
+      "image": ""
+    }
+  ]
+}

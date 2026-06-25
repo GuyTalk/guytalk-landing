@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cars — GuyTalk Guide</title>
+<meta name="description" content="What's worth it, what signals taste, and what's just trying too hard.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cars — GuyTalk Guide">
+<meta property="og:description" content="What's worth it, what signals taste, and what's just trying too hard.">
+<meta property="og:image" content="https://www.guytalkmedia.com/assets/og-card.png">
+<meta property="og:url" content="https://www.guytalkmedia.com/guide/cars/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@guytalkmedia">
+<link rel="canonical" href="https://www.guytalkmedia.com/guide/cars/">
+<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:           #F9F8F5;
+    --surface:      #FFFFFF;
+    --surface-2:    #F2F0EB;
+    --border:       #E5E2DB;
+    --border-light: #D4D0C8;
+    --text:         #0F1724;
+    --text-2:       #6E6862;
+    --text-3:       #9E9891;
+    --accent:       #2B6FFF;
+    --accent-h:     #1A5CEF;
+    --accent-muted: #EBF1FF;
+    --amber:        #B87C35;
+    --amber-muted:  rgba(184,124,53,0.08);
+    --green:        #16A34A;
+    --navy:         #0F1724;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  p { margin-bottom: 0; }
+  .guide-nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(249,248,245,0.92);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .guide-nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1120px; margin: 0 auto; padding: 14px 24px;
+  }
+  .guide-wordmark {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px;
+    letter-spacing: -0.03em; color: var(--text); text-decoration: none;
+  }
+  .guide-wordmark:hover { text-decoration: none; }
+  .guide-dot { color: var(--accent); }
+  .guide-nav-links { display: flex; align-items: center; gap: 24px; }
+  .gnl { font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; }
+  .gnl:hover { color: var(--text); text-decoration: none; }
+  .gnl.is-active { color: var(--text); font-weight: 600; }
+  .gnl-cta {
+    font-size: 13px; font-weight: 600; padding: 7px 14px;
+    background: var(--accent); color: #fff; border-radius: 7px; text-decoration: none;
+  }
+  .gnl-cta:hover { background: var(--accent-h); text-decoration: none; }
+  .gc  { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .gc-narrow { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .cat-band {
+    background: var(--navy); border-top: 3px solid var(--accent);
+    padding: 44px 0 40px;
+  }
+  .cat-band-crumb {
+    font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.40); margin-bottom: 14px;
+  }
+  .cat-band-crumb a { color: rgba(255,255,255,0.55); text-decoration: none; }
+  .cat-band-crumb a:hover { color: rgba(255,255,255,0.85); }
+  .cat-band-crumb-sep { margin: 0 8px; }
+  .cat-band-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: clamp(34px, 5vw, 54px); letter-spacing: -0.03em;
+    color: #fff; line-height: 1.04; margin-bottom: 8px;
+  }
+  .cat-band-desc { font-size: 16px; color: rgba(255,255,255,0.62); max-width: 480px; }
+  .guide-section { padding: 56px 0; }
+  .guide-section + .guide-section { border-top: 1px solid var(--border); }
+  .gsec-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .gsec-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: 22px; letter-spacing: -0.02em; color: var(--text);
+    margin-bottom: 4px;
+  }
+  .gsec-sub { font-size: 15px; color: var(--text-2); margin-bottom: 28px; line-height: 1.55; }
+  .gtag {
+    display: inline-block; font-family: 'Inter Tight', sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: .10em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+  }
+  .gtag-blue  { background: var(--accent); color: #fff; }
+  .gtag-navy  { background: var(--navy);   color: #fff; }
+  .gtag-amber { background: var(--amber);  color: #fff; }
+  .gtag-green { background: var(--green);  color: #fff; }
+  .gtag-gray  { background: var(--surface-2); color: var(--text-3); }
+  .outfit-board {
+    display: grid; grid-template-columns: 320px 1fr; gap: 0;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .outfit-img {
+    background: var(--surface-2); min-height: 380px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .outfit-img img { width: 100%; height: 380px; object-fit: cover; display: block; }
+  .outfit-img-ph {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 380px; width: 100%;
+    font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: .10em; text-transform: uppercase; color: var(--text-3); gap: 8px;
+  }
+  .outfit-img-ph svg { opacity: .25; }
+  .outfit-content { padding: 32px 36px; display: flex; flex-direction: column; gap: 0; }
+  .outfit-eyebrow {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .outfit-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 22px;
+    letter-spacing: -0.02em; color: var(--text); margin-bottom: 4px;
+  }
+  .outfit-subtitle { font-size: 14px; color: var(--text-2); margin-bottom: 16px; }
+  .outfit-writeup { font-size: 15px; color: var(--text-2); line-height: 1.68; margin-bottom: 24px; }
+  .outfit-items { list-style: none; padding: 0; margin: 0 0 18px; border-top: 1px solid var(--border); }
+  .outfit-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .outfit-item-info { flex: 1; min-width: 0; }
+  .outfit-item-name { font-weight: 600; font-size: 14px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .outfit-item-role { font-size: 12px; color: var(--text-3); }
+  .outfit-item-shop {
+    flex-shrink: 0; margin-left: 14px; font-size: 12px; font-weight: 600;
+    color: var(--accent); white-space: nowrap; text-decoration: none;
+  }
+  .outfit-item-shop:hover { text-decoration: underline; }
+  .outfit-flashy { font-size: 12px; color: var(--text-3); font-style: italic; line-height: 1.5; }
+  .picks-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .pick-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
+  }
+  .pick-card:hover { box-shadow: 0 6px 24px rgba(15,23,36,0.07); transform: translateY(-2px); }
+  .pick-card-img {
+    height: 210px; background: var(--surface-2);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .pick-card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .pick-card-img-ph {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; padding: 16px; text-align: center;
+  }
+  .pick-card-img-ph-initial {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 32px;
+    color: var(--border); line-height: 1;
+  }
+  .pick-card-img-ph-label {
+    font-family: 'Inter Tight', sans-serif; font-size: 10px; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--text-3);
+  }
+  .pick-card-body { padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+  .pick-card-tag { margin-bottom: 10px; }
+  .pick-card-brand {
+    font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--text-3); margin-bottom: 3px;
+  }
+  .pick-card-name {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 15px;
+    letter-spacing: -0.01em; color: var(--text); margin-bottom: 6px; line-height: 1.3;
+  }
+  .pick-card-price {
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px;
+    color: var(--accent); margin-bottom: 10px;
+  }
+  .pick-card-bio { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 16px; flex: 1; }
+  .pick-card-buy {
+    display: block; text-align: center; background: var(--text); color: #fff;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 13px;
+    padding: 10px 16px; border-radius: 8px; text-decoration: none;
+    transition: background 0.15s ease; margin-top: auto;
+  }
+  .pick-card-buy:hover { background: var(--accent); text-decoration: none; }
+  .deals-strip { background: var(--surface-2); padding: 40px 0; }
+  .deals-hdr { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; }
+  .deals-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 20px;
+    letter-spacing: -0.02em; color: var(--text);
+  }
+  .deals-updated { font-size: 12px; color: var(--text-3); }
+  .deals-scroll { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+  .deals-scroll::-webkit-scrollbar { height: 3px; }
+  .deals-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .deal-card {
+    flex-shrink: 0; width: 220px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px;
+  }
+  .deal-source {
+    font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 8px;
+  }
+  .deal-name { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 3px; line-height: 1.3; }
+  .deal-brand { font-size: 12px; color: var(--text-2); margin-bottom: 8px; }
+  .deal-price { font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px; color: var(--accent); margin-bottom: 8px; }
+  .deal-note { font-size: 12px; color: var(--text-3); margin-bottom: 12px; line-height: 1.5; }
+  .deal-link { font-size: 12px; font-weight: 600; color: var(--accent); }
+  .essays-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+    border-left: 1px solid var(--border); border-top: 1px solid var(--border);
+    margin-top: 28px;
+  }
+  .essay-card {
+    display: block; padding: 24px 22px;
+    border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    text-decoration: none; color: var(--text);
+    transition: background 0.15s ease;
+  }
+  .essay-card:hover { background: var(--surface); text-decoration: none; }
+  .essay-card-title {
+    font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 16px;
+    letter-spacing: -0.01em; color: var(--text); margin-bottom: 5px; line-height: 1.3;
+  }
+  .essay-card-sub { font-size: 13px; color: var(--text-2); line-height: 1.5; margin-bottom: 10px; }
+  .essay-card-cta { font-size: 12px; font-weight: 600; color: var(--accent); }
+  .guide-footer { background: var(--navy); padding: 40px 0; }
+  .guide-footer-inner {
+    max-width: 1120px; margin: 0 auto; padding: 0 24px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .guide-footer-brand { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.02em; color: #fff; }
+  .guide-footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+  .guide-footer-links a { font-size: 13px; color: rgba(255,255,255,0.50); text-decoration: none; }
+  .guide-footer-links a:hover { color: rgba(255,255,255,0.9); }
+  .guide-footer-note { width: 100%; font-size: 11px; color: rgba(255,255,255,0.30); line-height: 1.6; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+  @media (max-width: 960px) {
+    .picks-grid { grid-template-columns: repeat(2, 1fr); }
+    .outfit-board { grid-template-columns: 1fr; }
+    .outfit-content { padding: 24px; }
+    .outfit-img img { height: 240px; }
+    .essays-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .picks-grid { grid-template-columns: 1fr; }
+    .gnl-cta { display: none; }
+    body { font-size: 16px; }
+  }</style>
+</head>
+<body>
+<nav class="guide-nav">
+  <div class="guide-nav-inner">
+    <a href="/" class="guide-wordmark">GuyTalk<span class="guide-dot">.</span></a>
+    <div class="guide-nav-links">
+      <a href="/brief/" class="gnl">Today's Brief</a>
+      <a href="/guide/" class="gnl is-active">Guide</a>
+      <a href="/#signup" class="gnl-cta">Subscribe Free →</a>
+    </div>
+  </div>
+</nav>
+<div class="cat-band">
+  <div class="gc">
+    <div class="cat-band-crumb"><a href="/guide/">Guide</a><span class="cat-band-crumb-sep">/</span>Cars</div>
+    <h1 class="cat-band-title">Cars</h1>
+    <p class="cat-band-desc">What's worth it, what signals taste, and what's just trying too hard.</p>
+  </div>
+</div>
+
+<div class="guide-section">
+  <div class="gc">
+    <div class="gsec-eyebrow">The Trunk Kit</div>
+    <div class="gsec-title">The Four Things That Make You the Guy Who's Never Stranded</div>
+    <div class="gsec-sub">Under $300 total. The difference between owning a car and actually handling one.</div>
+    <div class="outfit-board">
+      <div class="outfit-img">
+        <img src="/assets/guide/cars/trunk-kit.jpg" alt="The Trunk Kit" loading="lazy"
+             onerror="this.onerror=null;this.src='/assets/guide/cars/placeholder.svg'">
+      </div>
+      <div class="outfit-content">
+        <div class="outfit-eyebrow">The Trunk Kit</div>
+        <div class="outfit-title">The Trunk Kit</div>
+        <div class="outfit-subtitle">The four things that make you the guy who's never stranded.</div>
+        <p class="outfit-writeup">You don't need to be a car person to carry yourself like one. You need a trunk that means a dead battery, a fender-bender, or a filthy car never ruins your day. A NOCO jump pack means you start your own car — and rescue the next guy. A dash cam quietly settles any dispute about whose fault it was. And a basic wash kit keeps whatever you drive looking like you respect it. Under three hundred dollars total, and it's the difference between owning a car and actually handling one.</p>
+        <ul class="outfit-items">
+          <li class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">NOCO Boost Plus GB40</div>
+              <div class="outfit-item-role">Never stranded by a dead battery</div>
+            </div>
+            <a href="https://www.amazon.com/s?k=NOCO+Boost+Plus+GB40&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+          </li>
+          <li class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">VIOFO A139 Dash Cam</div>
+              <div class="outfit-item-role">Settles any "whose fault was it"</div>
+            </div>
+            <a href="https://www.amazon.com/s?k=VIOFO+A139+dash+cam&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+          </li>
+          <li class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">Chemical Guys Car Wash Kit</div>
+              <div class="outfit-item-role">Keeps it looking respected</div>
+            </div>
+            <a href="https://www.amazon.com/s?k=Chemical+Guys+car+wash+starter+kit&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+          </li>
+          <li class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">Leather Honey Conditioner</div>
+              <div class="outfit-item-role">Keeps the interior from aging</div>
+            </div>
+            <a href="https://www.amazon.com/s?k=Leather+Honey+leather+conditioner&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+          </li>
+        </ul>
+        <p class="outfit-flashy">Nothing here shows off. It's all quiet competence — the prepared guy beats the flashy one every time.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="guide-section">
+  <div class="gc">
+    <div class="gsec-eyebrow">Curated Picks</div>
+    <div class="gsec-title">Cars &amp; Gear Worth Knowing</div>
+    <div class="gsec-sub">Three cars with our honest editorial take. Five gear picks that earn their trunk space. Prices approximate.</div>
+    <div class="picks-grid">
+
+<div class="pick-card">
+  <div class="pick-card-img">
+    <img src="/assets/guide/cars/mazda-miata-mx5.jpg" alt="Mazda MX-5 Miata" loading="lazy"
+         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>M</div><div class=\'pick-card-img-ph-label\'>Mazda Miata</div></div>'">
+  </div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+    <div class="pick-card-brand">Mazda</div>
+    <div class="pick-card-name">MX-5 Miata</div>
+    <div class="pick-card-price">~$15k used / $30k new</div>
+    <p class="pick-card-bio">The most fun per dollar in the entire car world, and every enthusiast quietly knows it. It's not fast on paper, but it's light, balanced, and grins ear to ear on any back road. Buying a Miata instead of a slow, heavy luxury SUV is the kind of move that earns instant respect from people who actually love cars.</p>
+    <a href="https://www.carsandbids.com/search#?q=miata" class="pick-card-buy" target="_blank" rel="noopener">Browse Cars &amp; Bids →</a>
+  </div>
+</div>
+
+<div class="pick-card">
+  <div class="pick-card-img">
+    <img src="/assets/guide/cars/used-porsche-911.jpg" alt="Porsche 911 996/997" loading="lazy"
+         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>P</div><div class=\'pick-card-img-ph-label\'>Porsche 911</div></div>'">
+  </div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-blue">The Quiet-Money Car</span></div>
+    <div class="pick-card-brand">Porsche</div>
+    <div class="pick-card-name">911 (996 / 997 Generation)</div>
+    <div class="pick-card-price">~$35k–$60k used</div>
+    <p class="pick-card-bio">The aspirational car with actual taste behind it. An older 911 is understated, beautifully built, and signals 'knows cars' rather than 'just got money.' The 996 generation is the value entry point into the most iconic shape in motoring. It whispers where a new flashy German sedan shouts.</p>
+    <a href="https://bringatrailer.com/porsche/911/" class="pick-card-buy" target="_blank" rel="noopener">Browse Bring a Trailer →</a>
+  </div>
+</div>
+
+<div class="pick-card">
+  <div class="pick-card-img">
+    <img src="/assets/guide/cars/leased-amg-take.jpg" alt="The Leased Badge — Skip It" loading="lazy"
+         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>✕</div><div class=\'pick-card-img-ph-label\'>Leased Badge</div></div>'">
+  </div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-gray">Don't Be This Guy</span></div>
+    <div class="pick-card-brand">The Leased Badge</div>
+    <div class="pick-card-name">Loud Exhaust, Big Rims, Leased Badge — Skip the Energy</div>
+    <div class="pick-card-price">$0 down, $899/mo</div>
+    <p class="pick-card-bio">The honest read: the loud-exhaust, blacked-out, leased-luxury-badge look is the car-world equivalent of a giant logo on a cheap shirt. Real car people see straight through it. A well-kept ordinary car says more about you than a stretched lease on something you're one missed payment from losing.</p>
+    <a href="https://www.carsandbids.com/search#?q=miata" class="pick-card-buy" target="_blank" rel="noopener">See the Alternative →</a>
+  </div>
+</div>
+
+<div class="pick-card">
+  <div class="pick-card-img">
+    <img src="/assets/guide/cars/noco-boost-jump-starter.jpg" alt="NOCO Boost Plus GB40 Jump Starter" loading="lazy"
+         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>N</div><div class=\'pick-card-img-ph-label\'>NOCO</div></div>'">
+  </div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+    <div class="pick-card-brand">NOCO</div>
+    <div class="pick-card-name">Boost Plus GB40 Jump Starter</div>
+    <div class="pick-card-price">~$100</div>
+    <p class="pick-card-bio">The thing that turns a ruined morning into a non-event. A compact lithium jump pack means you never need another car or a stranger to start yours — and you become the guy in the parking lot who saves everyone else. Lives in the trunk, charges your phone too. Buy it before you need it.</p>
+    <a href="https://www.amazon.com/s?k=NOCO+Boost+Plus+GB40&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+  </div>
+</div>
+
+<div class="pick-card">
+  <div class="pick-card-img">
+    <img src="/assets/guide/cars/viofo-dash-cam.jpg" alt="VIOFO A139 Dash Cam" loading="lazy"
+         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>V</div><div class=\'pick-card-img-ph-label\'>VIOFO</div></div>'">
+  </div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-navy">Foundation</span></div>
+    <div class="pick-card-brand">VIOFO</div>
+    <div class="pick-card-name">A129 Pro / A139 Dash Cam</div>
+    <div class="pick-card-price">~$130</div>
+    <p class="pick-card-bio">Cheap insurance against the one accident that's not your fault and the other driver lies about it. A good dash cam pays for itself the first time it settles a dispute or your insurance claim. VIOFO is the enthusiast pick for clear footage without the subscription nonsense some brands push.</p>
+    <a href="https://www.amazon.com/s?k=VIOFO+A139+dash+cam&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+  </div>
+</div>
+
+<div class="pick-card">
+  <div class="pick-card-img">
+    <img src="/assets/guide/cars/chemical-guys-wash-kit.jpg" alt="Chemical Guys Car Wash Starter Kit" loading="lazy"
+         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>C</div><div class=\'pick-card-img-ph-label\'>Chemical Guys</div></div>'">
+  </div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-amber">Best Value</span></div>
+    <div class="pick-card-brand">Chemical Guys</div>
+    <div class="pick-card-name">Car Wash Starter Kit</div>
+    <div class="pick-card-price">~$60</div>
+    <p class="pick-card-bio">Washing your own car properly — two buckets, real soap, microfiber, not the gas-station brush that scratches everything — keeps a normal car looking sharp and an expensive car holding value. It's a cheap Sunday ritual that signals you respect what you own.</p>
+    <a href="https://www.amazon.com/s?k=Chemical+Guys+car+wash+starter+kit&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+  </div>
+</div>
+
+<div class="pick-card">
+  <div class="pick-card-img">
+    <img src="/assets/guide/cars/weathertech-floor-mats.jpg" alt="WeatherTech FloorLiner Mats" loading="lazy"
+         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>W</div><div class=\'pick-card-img-ph-label\'>WeatherTech</div></div>'">
+  </div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-navy">Foundation</span></div>
+    <div class="pick-card-brand">WeatherTech</div>
+    <div class="pick-card-name">FloorLiner Mats</div>
+    <div class="pick-card-price">~$180/set</div>
+    <p class="pick-card-bio">The upgrade that protects resale value while making your interior feel custom. Laser-fit rubber mats catch every bit of salt, mud, and spilled coffee that would otherwise wreck your carpet. Boring? Yes. But a clean interior years from now is what separates a car that ages well from one that doesn't.</p>
+    <a href="https://www.weathertech.com/floor-liners/" class="pick-card-buy" target="_blank" rel="noopener">Shop WeatherTech →</a>
+  </div>
+</div>
+
+<div class="pick-card">
+  <div class="pick-card-img">
+    <img src="/assets/guide/cars/leather-honey-conditioner.jpg" alt="Leather Honey Leather Conditioner" loading="lazy"
+         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>L</div><div class=\'pick-card-img-ph-label\'>Leather Honey</div></div>'">
+  </div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-amber">Best Value</span></div>
+    <div class="pick-card-brand">Leather Honey</div>
+    <div class="pick-card-name">Leather Conditioner</div>
+    <div class="pick-card-price">~$20</div>
+    <p class="pick-card-bio">Twenty dollars that keeps leather seats from cracking and keeps a used car feeling expensive inside. A quick conditioning a couple times a year is the single highest-return thing you can do for an interior. The same bottle works on your boots and bags too.</p>
+    <a href="https://www.amazon.com/s?k=Leather+Honey+leather+conditioner&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+<div class="deals-strip">
+  <div class="gc">
+    <div class="deals-hdr">
+      <div class="deals-title">Deals This Week</div>
+      <div class="deals-updated">Updated June 25, 2026</div>
+    </div>
+    <div class="deals-scroll">
+      <div class="deal-card">
+        <div class="deal-source">Amazon</div>
+        <div class="deal-name">NOCO Boost Plus GB40</div>
+        <div class="deal-brand">NOCO</div>
+        <div class="deal-price">$80 <span style="color:var(--text-3);font-weight:400;font-size:12px;text-decoration:line-through">$100</span></div>
+        <div class="deal-note">Frequently runs 20% off on Amazon. Best compact lithium jump starter for most cars — fits in a glovebox and holds charge for months.</div>
+        <a href="https://www.amazon.com/s?k=NOCO+Boost+Plus+GB40&tag=guytalk-20" class="deal-link" target="_blank" rel="noopener">Shop →</a>
+      </div>
+      <div class="deal-card">
+        <div class="deal-source">Amazon</div>
+        <div class="deal-name">Chemical Guys Wash Bundle</div>
+        <div class="deal-brand">Chemical Guys</div>
+        <div class="deal-price">$50 <span style="color:var(--text-3);font-weight:400;font-size:12px;text-decoration:line-through">$75</span></div>
+        <div class="deal-note">The complete starter kit — soap, two-bucket foam gun, microfiber towels. The full setup for a proper wash, not just a rinse.</div>
+        <a href="https://www.amazon.com/s?k=Chemical+Guys+car+wash+starter+kit&tag=guytalk-20" class="deal-link" target="_blank" rel="noopener">Shop →</a>
+      </div>
+      <div class="deal-card">
+        <div class="deal-source">WeatherTech</div>
+        <div class="deal-name">FloorLiner Set</div>
+        <div class="deal-brand">WeatherTech</div>
+        <div class="deal-price">$159 <span style="color:var(--text-3);font-weight:400;font-size:12px;text-decoration:line-through">$189</span></div>
+        <div class="deal-note">WeatherTech runs periodic direct-site sales. Worth checking before buying — fit to your exact vehicle. Best in wet/winter climates.</div>
+        <a href="https://www.weathertech.com/floor-liners/" class="deal-link" target="_blank" rel="noopener">Shop →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="guide-section">
+  <div class="gc">
+    <div class="gsec-eyebrow">The Depth</div>
+    <div class="gsec-title">Guides Worth Reading</div>
+    <div class="gsec-sub">Long reads on the things worth knowing — with our actual opinion in each one.</div>
+    <div class="essays-grid">
+      <a href="/guide/cars/miata-is-always-the-answer/" class="essay-card">
+        <div class="essay-card-title">Miata Is Always the Answer</div>
+        <div class="essay-card-sub">Why the most fun car in the world is also the smartest first sports car for almost everyone.</div>
+        <div class="essay-card-cta">Read →</div>
+      </a>
+      <a href="/guide/cars/trunk-kit-essentials/" class="essay-card">
+        <div class="essay-card-title">The Trunk Kit — What Every Guy Should Carry</div>
+        <div class="essay-card-sub">Five items under $300 total that turn a car owner into a car guy. No car knowledge required.</div>
+        <div class="essay-card-cta">Read →</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer class="guide-footer">
+  <div class="guide-footer-inner">
+    <div class="guide-footer-brand">GuyTalk<span class="guide-dot">.</span></div>
+    <div class="guide-footer-links">
+      <a href="/guide/">Guide</a>
+      <a href="/briefs/">Archive</a>
+      <a href="/about/">About</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+    <p class="guide-footer-note">© 2026 GuyTalk Media. Some links may be affiliate links that earn a small commission at no cost to you. Prices shown are approximate and subject to change. Editorial car picks link to auction search pages — GuyTalk earns no commission on car sales.</p>
+  </div>
+</footer>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Cars — GuyTalk Guide","description":"What's worth it, what signals taste, and what's just trying too hard.","url":"https://www.guytalkmedia.com/guide/cars/","publisher":{"@type":"Organization","name":"GuyTalk","url":"https://www.guytalkmedia.com"}}</script>
+</body>
+</html>
