@@ -371,6 +371,13 @@
     .hub-cats-grid { grid-template-columns: repeat(2, 1fr); }
     .gnl-cta { display: none; }
     body { font-size: 16px; }
+  }
+  /* ── GUIDE TABS ── */
+  .guide-tabs{position:sticky;top:57px;z-index:90;background:rgba(249,248,245,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
+  .guide-tab:hover{color:var(--text);text-decoration:none;}
+  .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
   }</style>
 </head>
 <body>
@@ -384,6 +391,17 @@
     </div>
   </div>
 </nav>
+<div class="guide-tabs" id="guideTabs">
+  <div class="guide-tabs-inner">
+    <a href="/guide/style/"          class="guide-tab" data-path="style">Style</a>
+    <a href="/guide/watches/"        class="guide-tab" data-path="watches">Watches</a>
+    <a href="/guide/bourbon-cigars/" class="guide-tab" data-path="bourbon-cigars">Bourbon &amp; Cigars</a>
+    <a href="/guide/cars/"           class="guide-tab" data-path="cars">Cars</a>
+    <a href="/guide/fitness/"        class="guide-tab" data-path="fitness">Fitness</a>
+    <a href="/guide/accessories/"    class="guide-tab" data-path="accessories">Accessories</a>
+  </div>
+</div>
+<script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
 <div class="cat-band">
   <div class="gc">
     <div class="cat-band-crumb"><a href="/guide/">Guide</a><span class="cat-band-crumb-sep">/</span>Watches</div>
@@ -454,7 +472,7 @@
     <div class="pick-card-name">5 Sports Automatic</div>
     <div class="pick-card-price">~$250</div>
     <p class="pick-card-bio">The best first mechanical watch on earth. A real automatic movement you can see through the back, a tough build, and a price that means you won't panic if it gets scratched. Every watch guy you respect started somewhere near here — this is where.</p>
-    <a href="https://www.amazon.com/s?k=Seiko+5+Sports+SRPD&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+    <a href="/guide/watches/seiko-5-sports/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -469,7 +487,7 @@
     <div class="pick-card-name">Khaki Field Mechanical</div>
     <div class="pick-card-price">~$575</div>
     <p class="pick-card-bio">The enthusiast's pick for your first 'real' watch. Military-clean design, a hand-wound movement, and Swiss credibility under six hundred bucks. It goes with everything, it never looks dated, and people who know watches nod when they see it. The default smart buy in this range.</p>
-    <a href="https://www.hamiltonwatch.com/en-us/h69439931?utm_source=openai" class="pick-card-buy" target="_blank" rel="noopener">Shop Hamilton →</a>
+    <a href="/guide/watches/hamilton-khaki-field/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -484,7 +502,7 @@
     <div class="pick-card-name">PRX Powermatic 80</div>
     <div class="pick-card-price">~$675</div>
     <p class="pick-card-bio">The integrated-bracelet look everyone's chasing — the one that nods at watches ten times the price — for well under a grand, with an 80-hour movement. It's the smartest 'looks expensive, isn't' watch on the market right now. The blue dial is the one to get.</p>
-    <a href="https://www.tissotwatches.com/en-us/t1374071135100.html?utm_source=openai" class="pick-card-buy" target="_blank" rel="noopener">Shop Tissot →</a>
+    <a href="/guide/watches/tissot-prx-powermatic/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -499,7 +517,7 @@
     <div class="pick-card-name">Black Bay 58</div>
     <div class="pick-card-price">~$3,950</div>
     <p class="pick-card-bio">The smart man's Rolex. Tudor is Rolex's sister brand, built in the same world to the same standards, and the Black Bay 58 gives you ninety percent of the Submariner feel at a quarter of the price — without the waitlist or the target on your wrist. If you buy one watch to keep forever, this is the grown-up answer.</p>
-    <a href="https://www.tudorwatch.com/en/watch-family/black-bay-58?utm_source=openai" class="pick-card-buy" target="_blank" rel="noopener">Browse Tudor →</a>
+    <a href="/guide/watches/tudor-black-bay/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -514,7 +532,7 @@
     <div class="pick-card-name">Submariner — The Status Default</div>
     <div class="pick-card-price">$10,000+ over retail</div>
     <p class="pick-card-bio">The honest read: the Submariner is a genuinely great watch and also the most predictable status purchase a man can make. You'll wait on a list or pay double retail for the privilege of wearing what everyone expects. The Tudor Black Bay is the same DNA for a quarter of the money.</p>
-    <a href="https://www.tudorwatch.com/en/watch-family/black-bay-58?utm_source=openai" class="pick-card-buy" target="_blank" rel="noopener">Shop Tudor Instead →</a>
+    <a href="/guide/watches/rolex-submariner-take/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -529,7 +547,7 @@
     <div class="pick-card-name">A158 / 'Royale' Steel Digital</div>
     <div class="pick-card-price">~$25</div>
     <p class="pick-card-bio">Twenty-five dollars, weighs nothing, and somehow reads as ironically cool on the right wrist. It's the beater watch you wear to the gym, the beach, or when you just don't want to think about it. The watch-guy secret is that knowing when NOT to wear the expensive one is its own kind of taste.</p>
-    <a href="https://www.amazon.com/s?k=Casio+A158WA&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+    <a href="/guide/watches/casio-world-time/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -544,7 +562,7 @@
     <div class="pick-card-name">Fashion-Brand Quartz — Skip It</div>
     <div class="pick-card-price">$150–$200</div>
     <p class="pick-card-bio">The watches Instagram sold you in 2018. They're thin, cheap quartz movements dressed up with marketing, and they cost more than a Seiko automatic that's a genuinely better watch in every way. If you've got $150–200 to spend, the Seiko 5 buries these. Don't pay brand tax for a movement that costs five dollars.</p>
-    <a href="https://www.amazon.com/s?k=Seiko+5+Sports+SRPD&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Seiko Instead →</a>
+    <a href="/guide/watches/fashion-brand-watch-take/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -559,7 +577,7 @@
     <div class="pick-card-name">Quick-Release Leather &amp; NATO Straps</div>
     <div class="pick-card-price">~$15–$25</div>
     <p class="pick-card-bio">The cheapest way to own three watches with one watch. A quick-release strap takes thirty seconds to swap and completely changes the character — leather for the office, NATO for the weekend. Buy a couple and your one good watch suddenly covers every occasion.</p>
-    <a href="https://www.amazon.com/s?k=Barton+quick+release+watch+strap&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+    <a href="/guide/watches/leather-nato-strap/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 

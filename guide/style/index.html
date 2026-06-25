@@ -399,6 +399,13 @@
     .hub-cats-grid { grid-template-columns: repeat(2, 1fr); }
     .gnl-cta { display: none; }
     body { font-size: 16px; }
+  }
+  /* ── GUIDE TABS ── */
+  .guide-tabs{position:sticky;top:57px;z-index:90;background:rgba(249,248,245,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
+  .guide-tab:hover{color:var(--text);text-decoration:none;}
+  .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
   }</style>
 </head>
 <body>
@@ -412,6 +419,17 @@
     </div>
   </div>
 </nav>
+<div class="guide-tabs" id="guideTabs">
+  <div class="guide-tabs-inner">
+    <a href="/guide/style/"          class="guide-tab" data-path="style">Style</a>
+    <a href="/guide/watches/"        class="guide-tab" data-path="watches">Watches</a>
+    <a href="/guide/bourbon-cigars/" class="guide-tab" data-path="bourbon-cigars">Bourbon &amp; Cigars</a>
+    <a href="/guide/cars/"           class="guide-tab" data-path="cars">Cars</a>
+    <a href="/guide/fitness/"        class="guide-tab" data-path="fitness">Fitness</a>
+    <a href="/guide/accessories/"    class="guide-tab" data-path="accessories">Accessories</a>
+  </div>
+</div>
+<script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
 <div class="cat-band">
   <div class="gc">
     <div class="cat-band-crumb"><a href="/guide/">Guide</a><span class="cat-band-crumb-sep">/</span>Style</div>
@@ -484,7 +502,7 @@
     <div class="picks-grid">
       <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/peter-millar-polo.jpg" alt="Peter Millar Crown Comfort Pima Cotton Polo" loading="lazy"
+    <img src="/assets/guide/style/peter-millar-crown-comfort-polo.jpg" alt="Peter Millar Crown Comfort Pima Cotton Polo" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>P</div><div class=\'pick-card-img-ph-label\'>Peter Millar</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -493,12 +511,12 @@
     <div class="pick-card-name">Crown Comfort Pima Cotton Polo</div>
     <div class="pick-card-price">$110</div>
     <p class="pick-card-bio">The brand that quietly signals you've figured it out — no loud logo, just fabric and fit that older guys with money already know. A navy or olive polo here outdresses anything with a horse or alligator on it. This is the one we'd start a wardrobe with.</p>
-    <a href="https://www.millarstore.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Peter Millar →</a>
+    <a href="/guide/style/peter-millar-crown-comfort-polo/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/spier-mackay-ocbd.jpg" alt="Spier &amp; Mackay Oxford Cloth Button-Down" loading="lazy"
+    <img src="/assets/guide/style/ocbd-oxford-button-down.jpg" alt="Spier &amp; Mackay Oxford Cloth Button-Down" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>S</div><div class=\'pick-card-img-ph-label\'>Spier &amp; Mackay</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -507,12 +525,12 @@
     <div class="pick-card-name">Oxford Cloth Button-Down</div>
     <div class="pick-card-price">$60</div>
     <p class="pick-card-bio">The single most useful shirt you can own. Works under a blazer, works untucked with denim, works rolled up at a summer dinner. Spier &amp; Mackay gives you near-luxury fabric and fit for a third of the designer price. Buy it in light blue and white and you're set for a year.</p>
-    <a href="https://www.spierandmackay.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Spier &amp; Mackay →</a>
+    <a href="/guide/style/ocbd-oxford-button-down/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/common-projects-achilles.jpg" alt="Common Projects Achilles Low White Leather Sneaker" loading="lazy"
+    <img src="/assets/guide/style/common-projects-achilles-low.jpg" alt="Common Projects Achilles Low White Leather Sneaker" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>C</div><div class=\'pick-card-img-ph-label\'>Common Projects</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -521,12 +539,12 @@
     <div class="pick-card-name">Achilles Low White Leather Sneaker</div>
     <div class="pick-card-price">$435</div>
     <p class="pick-card-bio">The minimalist white sneaker the design crowd settled on years ago. No logo, just clean Italian leather and a gold serial number stamped on the heel. They're expensive, and they're worth it because they go with literally everything and never look like you're trying. If the price stings, the Beckett Simonon Mason is the honest stand-in.</p>
-    <a href="https://www.commonprojects.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Common Projects →</a>
+    <a href="/guide/style/common-projects-achilles-low/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/apc-petit-standard.jpg" alt="A.P.C. Petit Standard Selvedge Jean" loading="lazy"
+    <img src="/assets/guide/style/apc-petit-standard-denim.jpg" alt="A.P.C. Petit Standard Selvedge Jean" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>A</div><div class=\'pick-card-img-ph-label\'>A.P.C.</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -535,12 +553,12 @@
     <div class="pick-card-name">Petit Standard Selvedge Jean</div>
     <div class="pick-card-price">$200</div>
     <p class="pick-card-bio">Dark, slim-straight raw denim that fades to your life if you wear it enough before washing. A.P.C.'s Petit Standard is the jean that taught a generation what good denim feels like. One pair replaces three cheap ones. Size down — they stretch.</p>
-    <a href="https://www.apc.fr/en-us" class="pick-card-buy" target="_blank" rel="noopener">Shop A.P.C. →</a>
+    <a href="/guide/style/apc-petit-standard-denim/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/taylor-stitch-ojai.jpg" alt="Taylor Stitch The Ojai Chore Coat" loading="lazy"
+    <img src="/assets/guide/style/taylor-stitch-chore-coat.jpg" alt="Taylor Stitch The Ojai Chore Coat" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>T</div><div class=\'pick-card-img-ph-label\'>Taylor Stitch</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -549,12 +567,12 @@
     <div class="pick-card-name">The Ojai Chore Coat</div>
     <div class="pick-card-price">$165</div>
     <p class="pick-card-bio">The throw-on layer that turns a t-shirt and jeans into an outfit. A chore coat is the most useful jacket most guys don't own yet — rugged enough for weekends, sharp enough for a casual office. Get it in olive or tobacco and watch it become the thing you reach for every cool morning.</p>
-    <a href="https://www.taylorstitch.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Taylor Stitch →</a>
+    <a href="/guide/style/taylor-stitch-chore-coat/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/uniqlo-merino-crewneck.jpg" alt="Uniqlo Extra Fine Merino Crewneck Sweater" loading="lazy"
+    <img src="/assets/guide/style/uniqlo-merino-crew.jpg" alt="Uniqlo Extra Fine Merino Crewneck Sweater" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>U</div><div class=\'pick-card-img-ph-label\'>Uniqlo</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -563,12 +581,12 @@
     <div class="pick-card-name">Extra Fine Merino Crewneck Sweater</div>
     <div class="pick-card-price">$50</div>
     <p class="pick-card-bio">The best $50 in menswear. Real merino wool, clean fit, a dozen colors. Layer the navy or charcoal over your OCBD and you look pulled together with zero effort. Nobody can tell it's cheap, which is exactly why we're telling you it is.</p>
-    <a href="https://www.uniqlo.com/us/en/" class="pick-card-buy" target="_blank" rel="noopener">Shop Uniqlo →</a>
+    <a href="/guide/style/uniqlo-merino-crew/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/buck-mason-slub-tee.jpg" alt="Buck Mason Curved Hem Slub Tee" loading="lazy"
+    <img src="/assets/guide/style/buck-mason-curved-hem-tee.jpg" alt="Buck Mason Curved Hem Slub Tee" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>B</div><div class=\'pick-card-img-ph-label\'>Buck Mason</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -577,12 +595,12 @@
     <div class="pick-card-name">Curved Hem Slub Tee</div>
     <div class="pick-card-price">$38</div>
     <p class="pick-card-bio">A heavyweight tee that holds its shape and actually drapes instead of clinging. The gap between a $38 Buck Mason tee and a $12 three-pack is bigger than the price suggests — this is where a casual look quietly levels up. Stock the white, the navy, and the heather grey.</p>
-    <a href="https://www.buckmason.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Buck Mason →</a>
+    <a href="/guide/style/buck-mason-curved-hem-tee/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/todd-snyder-chino.jpg" alt="Todd Snyder Slim Fit Stretch Chino" loading="lazy"
+    <img src="/assets/guide/style/todd-snyder-stretch-chino.jpg" alt="Todd Snyder Slim Fit Stretch Chino" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>T</div><div class=\'pick-card-img-ph-label\'>Todd Snyder</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -591,12 +609,12 @@
     <div class="pick-card-name">Slim Fit Stretch Chino</div>
     <div class="pick-card-price">$148</div>
     <p class="pick-card-bio">The grown-up chino. Stone, olive, or navy in a slim-straight cut that works in a casual office and a Saturday alike. Skip the cargo pockets and the skinny taper — a clean chino in a sharp neutral is the most versatile pant you'll own after denim.</p>
-    <a href="https://www.toddsnyder.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Todd Snyder →</a>
+    <a href="/guide/style/todd-snyder-stretch-chino/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/beckett-simonon-holt.jpg" alt="Beckett Simonon Holt Suede Chukka Boot" loading="lazy"
+    <img src="/assets/guide/style/beckett-simonon-chukka.jpg" alt="Beckett Simonon Holt Suede Chukka Boot" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>B</div><div class=\'pick-card-img-ph-label\'>Beckett Simonon</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -605,12 +623,12 @@
     <div class="pick-card-name">Holt Suede Chukka Boot</div>
     <div class="pick-card-price">$199</div>
     <p class="pick-card-bio">One pair of suede chukkas bridges sneakers and dress shoes — wear them with denim, chinos, or under a casual suit. Beckett Simonon makes them to order with full-grain materials at a fraction of designer pricing because they skip the middleman. Tobacco suede is the move.</p>
-    <a href="https://www.beckettsimonon.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Beckett Simonon →</a>
+    <a href="/guide/style/beckett-simonon-chukka/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/leather-bomber-resale.jpg" alt="Pre-Owned Leather Bomber via TheRealReal" loading="lazy"
+    <img src="/assets/guide/style/therealreal-vintage-leather-bomber.jpg" alt="Pre-Owned Leather Bomber via TheRealReal" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>T</div><div class=\'pick-card-img-ph-label\'>Via TheRealReal</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -619,7 +637,7 @@
     <div class="pick-card-name">Pre-Owned Leather Bomber (rotating find)</div>
     <div class="pick-card-price">$300–$900</div>
     <p class="pick-card-bio">The resale market is where a real leather jacket gets affordable. A pre-owned bomber from a quality house beats anything new at the same price — leather only gets better worn in. Check TheRealReal, Grailed, and Depop, and buy the one that's already broken in. We'll rotate the specific pick weekly.</p>
-    <a href="https://www.therealreal.com" class="pick-card-buy" target="_blank" rel="noopener">Shop TheRealReal →</a>
+    <a href="/guide/style/therealreal-vintage-leather-bomber/" class="pick-card-buy">Read Our Take →</a>
     <div class="pick-card-deal-badge">Via TheRealReal</div>
   </div>
 </div>
@@ -641,7 +659,7 @@
     <div class="pick-card-name">Santal 33</div>
     <div class="pick-card-price">$240</div>
     <p class="pick-card-bio">It's genuinely great — warm, smoky sandalwood that smells expensive. It's also on every other guy in every major city right now, which is the catch. Wear it if you love it, but know you're not standing out, you're blending into a very specific crowd.</p>
-    <a href="https://www.lelabofragrances.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Le Labo →</a>
+    <a href="/guide/style/le-labo-santal-33/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
@@ -655,12 +673,12 @@
     <div class="pick-card-name">Mister Marvelous</div>
     <div class="pick-card-price">$200</div>
     <p class="pick-card-bio">If you want the niche-fragrance feel without the Santal 33 crowd, this is the move — clean, fresh, slightly soapy in the best way. Reads put-together and modern without announcing which TikTok told you to buy it.</p>
-    <a href="https://www.byredo.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Byredo →</a>
+    <a href="/guide/style/byredo-mister-marvelous/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/dior-sauvage.jpg" alt="Dior Sauvage EDT" loading="lazy"
+    <img src="/assets/guide/style/dior-sauvage-edt.jpg" alt="Dior Sauvage EDT" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>D</div><div class=\'pick-card-img-ph-label\'>Dior</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -669,7 +687,7 @@
     <div class="pick-card-name">Sauvage EDT</div>
     <div class="pick-card-price">$110</div>
     <p class="pick-card-bio">The most popular men's fragrance in the world for a reason — fresh, peppery, universally liked. It's not original, but it's never wrong, and it's the safest first bottle a guy can own. Apply two sprays, not six; that's how Sauvage gets a bad name.</p>
-    <a href="https://www.dior.com/en_us" class="pick-card-buy" target="_blank" rel="noopener">Shop Dior →</a>
+    <a href="/guide/style/dior-sauvage-edt/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
       </div>

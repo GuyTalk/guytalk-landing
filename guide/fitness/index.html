@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitness — The GuyTalk Guide</title>
+<meta name="description" content="The equipment that earns its space. What to buy, what to skip, and how to build a real home gym without the noise.">
+<meta property="og:type"        content="website">
+<meta property="og:title"       content="Fitness — The GuyTalk Guide">
+<meta property="og:description" content="The equipment that earns its space. What to buy, what to skip, and how to build a real home gym without the noise.">
+<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
+<meta property="og:url"         content="https://www.guytalkmedia.com/guide/fitness/">
+<meta name="twitter:card"       content="summary_large_image">
+<link rel="canonical"           href="https://www.guytalkmedia.com/guide/fitness/">
+<link rel="icon"                href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F9F8F5; --surface: #FFFFFF; --surface-2: #F2F0EB;
+    --border: #E5E2DB; --border-light: #D4D0C8;
+    --text: #0F1724; --text-2: #6E6862; --text-3: #9E9891;
+    --accent: #2B6FFF; --accent-h: #1A5CEF; --accent-muted: #EBF1FF;
+    --amber: #B87C35; --amber-muted: rgba(184,124,53,0.08);
+    --green: #16A34A; --navy: #0F1724;
+  }
+  html { scroll-behavior: smooth; }
+  body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased; }
+  a { color:var(--accent);text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  p { margin-bottom:0; }
+  .guide-nav{position:sticky;top:0;z-index:50;background:rgba(249,248,245,0.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+  .guide-nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:14px 24px;}
+  .guide-wordmark{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em;color:var(--text);text-decoration:none;}
+  .guide-wordmark span{color:var(--accent);}
+  .guide-nav-links{display:flex;align-items:center;gap:24px;}
+  .guide-nav-link{font-size:14px;font-weight:600;color:var(--text-2);}
+  .guide-nav-cta{background:var(--accent);color:#fff;padding:8px 16px;border-radius:6px;font-size:13px;font-weight:700;}
+  .guide-nav-cta:hover{background:var(--accent-h);text-decoration:none;}
+  /* ── GUIDE TABS ── */
+  .guide-tabs{position:sticky;top:57px;z-index:90;background:rgba(249,248,245,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
+  .guide-tab:hover{color:var(--text);text-decoration:none;}
+  .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+  /* ── CAT BAND ── */
+  .cat-band{background:#1A1A1A;color:#fff;padding:48px 24px 40px;}
+  .cat-band-inner{max-width:1120px;margin:0 auto;}
+  .cat-band-crumb{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:12px;}
+  .cat-band-crumb a{color:rgba(255,255,255,.55);text-decoration:none;}
+  .cat-band-crumb a:hover{color:rgba(255,255,255,.85);}
+  .cat-band-crumb-sep{margin:0 8px;}
+  .cat-band-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(28px,5vw,44px);letter-spacing:-.025em;line-height:1.1;margin-bottom:10px;}
+  .cat-band-desc{font-size:16px;color:rgba(255,255,255,.62);max-width:480px;}
+  /* ── PICKS GRID ── */
+  .picks-section{padding:64px 24px;}
+  .picks-inner{max-width:1120px;margin:0 auto;}
+  .section-eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+  .section-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(22px,3.5vw,32px);letter-spacing:-.02em;margin-bottom:8px;}
+  .section-desc{font-size:15px;color:var(--text-2);margin-bottom:36px;max-width:560px;}
+  .picks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:900px){.picks-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:580px){.picks-grid{grid-template-columns:1fr;}}
+  .pick-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;}
+  .pick-card-img{height:210px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .pick-card-img img{width:100%;height:100%;object-fit:cover;}
+  .pick-card-img-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:6px;}
+  .pick-card-img-ph-initial{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:48px;color:var(--border-light);}
+  .pick-card-img-ph-label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);}
+  .pick-card-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1;}
+  .pick-card-tag{margin-bottom:10px;}
+  .gtag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
+  .gtag-blue{background:var(--accent-muted);color:var(--accent);}
+  .gtag-amber{background:var(--amber-muted);color:var(--amber);}
+  .gtag-navy{background:rgba(15,23,36,.07);color:var(--navy);}
+  .gtag-green{background:rgba(22,163,74,.08);color:var(--green);}
+  .pick-card-brand{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;}
+  .pick-card-name{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--text);margin-bottom:6px;}
+  .pick-card-price{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;}
+  .pick-card-bio{font-size:13px;color:var(--text-2);line-height:1.55;margin-bottom:16px;flex:1;}
+  .pick-card-buy{display:inline-block;padding:9px 16px;background:#1A1A1A;color:#fff;border-radius:7px;font-size:13px;font-weight:700;transition:background .15s ease;}
+  .pick-card-buy:hover{background:var(--accent);text-decoration:none;}
+  .pick-card-buy.gray-tag{background:var(--surface-2);color:var(--text-2);font-size:12px;}
+  /* ── DEALS STRIP ── */
+  .deals-section{background:var(--surface-2);padding:48px 24px;}
+  .deals-inner{max-width:1120px;margin:0 auto;}
+  .deals-scroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch;}
+  .deal-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;min-width:220px;max-width:260px;flex-shrink:0;}
+  .deal-card-source{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;}
+  .deal-card-name{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:14px;margin-bottom:4px;}
+  .deal-card-brand{font-size:12px;color:var(--text-2);margin-bottom:8px;}
+  .deal-card-price{font-size:16px;font-weight:700;color:var(--accent);}
+  .deal-card-orig{font-size:12px;color:var(--text-3);text-decoration:line-through;margin-left:6px;}
+  .deal-card-note{font-size:12px;color:var(--text-2);margin-top:6px;}
+  .deal-card-link{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;color:var(--accent);}
+  /* ── FOOTER ── */
+  .guide-footer{background:#0F1724;color:rgba(255,255,255,.5);padding:40px 24px;font-size:13px;}
+  .guide-footer-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .guide-footer a{color:rgba(255,255,255,.5);}
+  .guide-footer a:hover{color:#fff;text-decoration:none;}
+</style>
+  /* ── OUTFIT BOARD ── */
+  .outfit-section{padding:64px 24px 0;}
+  .outfit-inner{max-width:1120px;margin:0 auto;}
+  .outfit-board{display:grid;grid-template-columns:320px 1fr;gap:32px;background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  @media(max-width:720px){.outfit-board{grid-template-columns:1fr;}}
+  .outfit-img{height:380px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .outfit-img img{width:100%;height:100%;object-fit:cover;}
+  .outfit-img-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;color:var(--text-3);}
+  .outfit-img-ph-label{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
+  .outfit-content{padding:32px;}
+  .outfit-theme{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.015em;margin-bottom:6px;}
+  .outfit-subtitle{font-size:13px;color:var(--text-2);margin-bottom:24px;font-style:italic;}
+  .outfit-items{display:flex;flex-direction:column;gap:0;}
+  .outfit-item{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);}
+  .outfit-item:last-child{border-bottom:none;}
+  .outfit-item-name{font-weight:600;font-size:14px;margin-bottom:2px;}
+  .outfit-item-role{font-size:12px;color:var(--text-2);}
+  .outfit-item-shop{font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap;margin-left:16px;}
+  .outfit-item-shop:hover{text-decoration:underline;}
+  .outfit-caption{font-size:13px;color:var(--text-2);font-style:italic;margin-top:20px;padding-top:16px;border-top:1px solid var(--border);}
+</head>
+<body>
+<nav class="guide-nav">
+  <div class="guide-nav-inner">
+    <a href="/guide/" class="guide-wordmark">Guy<span>Talk</span> Guide</a>
+    <div class="guide-nav-links">
+      <a href="/" class="guide-nav-link">Today's Brief</a>
+      <a href="/guide/" class="guide-nav-link">Guide</a>
+      <a href="https://www.guytalk.beehiiv.com/subscribe" class="guide-nav-cta" target="_blank" rel="noopener">Subscribe</a>
+    </div>
+  </div>
+</nav>
+<div class="guide-tabs" id="guideTabs">
+  <div class="guide-tabs-inner">
+    <a href="/guide/style/"          class="guide-tab" data-path="style">Style</a>
+    <a href="/guide/watches/"        class="guide-tab" data-path="watches">Watches</a>
+    <a href="/guide/bourbon-cigars/" class="guide-tab" data-path="bourbon-cigars">Bourbon &amp; Cigars</a>
+    <a href="/guide/cars/"           class="guide-tab" data-path="cars">Cars</a>
+    <a href="/guide/fitness/"        class="guide-tab" data-path="fitness">Fitness</a>
+    <a href="/guide/accessories/"    class="guide-tab" data-path="accessories">Accessories</a>
+  </div>
+</div>
+<script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
+<div class="cat-band">
+  <div class="cat-band-inner">
+    <div class="cat-band-crumb"><a href="/guide/">Guide</a><span class="cat-band-crumb-sep">›</span>Fitness</div>
+    <h1 class="cat-band-title">Fitness</h1>
+    <p class="cat-band-desc">The equipment that earns its space. What to buy, what to skip, and how to build a real home gym without the noise.</p>
+  </div>
+</div>
+
+<section class="outfit-section">
+  <div class="outfit-inner">
+    <div class="section-eyebrow">THE COLLECTION</div>
+    <h2 class="section-title">The Home Gym Starting Five</h2>
+    <div class="outfit-board">
+      <div class="outfit-img">
+        <div class="outfit-img-ph"><div class="outfit-img-ph-label">Fitness</div></div>
+      </div>
+      <div class="outfit-content">
+        <div class="outfit-theme">The Home Gym Starting Five</div>
+        <div class="outfit-subtitle">Gear that steps up your space without stepping all over it</div>
+        <div class="outfit-items">
+          <div class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">BowFlex Results Series 552 SelectTech Dumbbells (pair)</div>
+              <div class="outfit-item-role">Replaces a rack with a sleek dial system—fast weight changes for every rep</div>
+            </div>
+            <a href="https://www.bowflex.com/selectech-dumbbells/552.html" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+          </div>
+          <div class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">REP Fitness Wall Mounted Multi‑Grip Pull‑Up Bar</div>
+              <div class="outfit-item-role">Sturdy multi‑grip station that anchors your bodyweight arsenal</div>
+            </div>
+            <a href="https://www.repfitness.com/accessories/pull-up-bars" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+          </div>
+          <div class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">Crossrope Bluetooth AMP Jump Rope Set</div>
+              <div class="outfit-item-role">Smart weighted ropes that blend cardio with performance tracking</div>
+            </div>
+            <a href="https://www.crossrope.com/products/amp-jump-rope-sets" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+          </div>
+          <div class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">TriggerPoint GRID Foam Roller</div>
+              <div class="outfit-item-role">Firm-texture recovery tool to roll out tension after every session</div>
+            </div>
+            <a href="https://www.amazon.com/TriggerPoint-GRID-Foam-Roller" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+          </div>
+          <div class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">R.A.D One V2 Training Shoes</div>
+              <div class="outfit-item-role">Flat-sole versatility for lifts, jumps, and home workouts</div>
+            </div>
+            <a href="https://www.radtraining.com/one-v2" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+          </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="picks-section">
+  <div class="picks-inner">
+    <div class="section-eyebrow">START HERE</div>
+    <h2 class="section-title">Picks We'd Buy First</h2>
+    <p class="section-desc">From the Fitness guide — the things worth owning.</p>
+    <div class="picks-grid">
+    <div class="pick-card">
+      <div class="pick-card-img">
+        <img src="/assets/guide/fitness/bowflex-selecttech-552.jpg" alt="Bowflex SelectTech 552 Adjustable Dumbbells" loading="lazy"
+             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>B</div><div class=\'pick-card-img-ph-label\'>Bowflex</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">Bowflex</div>
+        <div class="pick-card-name">SelectTech 552 Adjustable Dumbbells</div>
+        <div class="pick-card-price">$350</div>
+        <p class="pick-card-bio">These dials save you a rack full of metal and your floors. They feel slick, pack enough weight for most, and are perfect if you're tight on space — just don’t drop them like dead weight.</p>
+        <a href="/guide/fitness/bowflex-selecttech-552/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-img">
+        <img src="/assets/guide/fitness/nike-metcon-9.jpg" alt="Nike Metcon 9 Training Shoes" loading="lazy"
+             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>N</div><div class=\'pick-card-img-ph-label\'>Nike</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">Nike</div>
+        <div class="pick-card-name">Metcon 9 Training Shoes</div>
+        <div class="pick-card-price">$75</div>
+        <p class="pick-card-bio">Built for the box, built for pulling sleds off the back of a truck. These feel tough underfoot and are finally under $80 with the latest drop — a rare mix of performance without windshield‑peeler price.</p>
+        <a href="/guide/fitness/nike-metcon-9/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-img">
+        <img src="/assets/guide/fitness/new-balance-fresh-foam-1080.jpg" alt="New Balance Fresh Foam X 1080 v14" loading="lazy"
+             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>N</div><div class=\'pick-card-img-ph-label\'>New Balance</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">New Balance</div>
+        <div class="pick-card-name">Fresh Foam X 1080 v14</div>
+        <div class="pick-card-price">$130</div>
+        <p class="pick-card-bio">Cushion city for your runs and long haul days. They’re softer than most, still durable, and regularly on sale — so unless you're chasing fancy carbon plates, these are a quiet win.</p>
+        <a href="/guide/fitness/new-balance-fresh-foam-1080/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-img">
+        <img src="/assets/guide/fitness/rogue-doorframe-pull-up-bar.jpg" alt="Rogue Fitness Rogue Doorframe Pull‑Up Bar" loading="lazy"
+             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>R</div><div class=\'pick-card-img-ph-label\'>Rogue Fitness</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">Rogue Fitness</div>
+        <div class="pick-card-name">Rogue Doorframe Pull‑Up Bar</div>
+        <div class="pick-card-price">$45</div>
+        <p class="pick-card-bio">Solid steel, no screws in the frame, and it’s not coming down unless you mean it. Cheap, effective, and a hell of a bang for your buck — don’t overthink this.</p>
+        <a href="/guide/fitness/rogue-doorframe-pull-up-bar/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-img">
+        <img src="/assets/guide/fitness/onnit-kettlebell.jpg" alt="Onnit Onnit Kettlebell" loading="lazy"
+             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>O</div><div class=\'pick-card-img-ph-label\'>Onnit</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">Onnit</div>
+        <div class="pick-card-name">Onnit Kettlebell</div>
+        <div class="pick-card-price">$100</div>
+        <p class="pick-card-bio">Smooth cast iron, grip that doesn’t shred calluses, and a look that doesn’t scream “bro gym.” Not cheap, but a kettlebell that earns its place over time.</p>
+        <a href="/guide/fitness/onnit-kettlebell/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-img">
+        <img src="/assets/guide/fitness/theragun-prime.jpg" alt="Theragun Theragun Prime" loading="lazy"
+             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>T</div><div class=\'pick-card-img-ph-label\'>Theragun</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">Theragun</div>
+        <div class="pick-card-name">Theragun Prime</div>
+        <div class="pick-card-price">$250</div>
+        <p class="pick-card-bio">You don’t need a massage gun until your back tells you do. This one hits hard enough, doesn’t feel like a toy, and hushes the chatter under stress — save the big one unless you're pro‑level sore.</p>
+        <a href="/guide/fitness/theragun-prime/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-img">
+        <img src="/assets/guide/fitness/crossrope-speed-rope.jpg" alt="Crossrope Crossrope Speed Rope" loading="lazy"
+             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>C</div><div class=\'pick-card-img-ph-label\'>Crossrope</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">Crossrope</div>
+        <div class="pick-card-name">Crossrope Speed Rope</div>
+        <div class="pick-card-price">$40</div>
+        <p class="pick-card-bio">Gets your lungs in check without sucking your wallet dry. Fast cord, solid handles, and cheap enough you'll actually use it, not just admire it in your gym closet.</p>
+        <a href="/guide/fitness/crossrope-speed-rope/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-img">
+        <img src="/assets/guide/fitness/under-armour-duffel.jpg" alt="Under Armour Undeniable Duffel" loading="lazy"
+             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>U</div><div class=\'pick-card-img-ph-label\'>Under Armour</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">Under Armour</div>
+        <div class="pick-card-name">Undeniable Duffel</div>
+        <div class="pick-card-price">$60</div>
+        <p class="pick-card-bio">Sturdy canvas, zip keeps your gear in line, logo that doesn’t demand a flex shot. It holds everything, won't fall apart, and won’t dent your wallet.</p>
+        <a href="/guide/fitness/under-armour-duffel/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-img">
+        <img src="/assets/guide/fitness/whoop-4-0.jpg" alt="Whoop Whoop 4.0 Fitness Tracker" loading="lazy"
+             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>W</div><div class=\'pick-card-img-ph-label\'>Whoop</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">Whoop</div>
+        <div class="pick-card-name">Whoop 4.0 Fitness Tracker</div>
+        <div class="pick-card-price">$30/month</div>
+        <p class="pick-card-bio">Not just steps — actual recovery, strain and sleep data that isn’t dressed up bullshit. Subscription sucks, but the data is your best friend if you take recovery seriously.</p>
+        <a href="/guide/fitness/whoop-4-0/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+    <div class="pick-card">
+      <div class="pick-card-img">
+        <img src="/assets/guide/fitness/hydro-flask-32oz.jpg" alt="Hydro Flask 32 oz Wide‑Mouth Water Bottle" loading="lazy"
+             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>H</div><div class=\'pick-card-img-ph-label\'>Hydro Flask</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">Hydro Flask</div>
+        <div class="pick-card-name">32 oz Wide‑Mouth Water Bottle</div>
+        <div class="pick-card-price">$45</div>
+        <p class="pick-card-bio">Cold holds like a champ, won’t sweat through your bag, and is tough enough to survive road trips and drop tests without flinching.</p>
+        <a href="/guide/fitness/hydro-flask-32oz/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="deals-section">
+  <div class="deals-inner">
+    <div class="section-eyebrow">DEALS</div>
+    <h2 class="section-title">Good Finds Right Now</h2>
+    <div class="deals-scroll">
+
+        <div class="deal-card">
+          <div class="deal-card-source">Amazon</div>
+          <div class="deal-card-name">SelectTech 552 Dumbbells</div>
+          <div class="deal-card-brand">Bowflex</div>
+          <div class="deal-card-price">$299<span class="deal-card-orig">$429</span></div>
+          <div class="deal-card-note">Periodic discount — set a price alert</div>
+          <a href="https://www.amazon.com/dp/B001ARYS84?tag=guytalk-20" class="deal-card-link" target="_blank" rel="noopener">Get it →</a>
+        </div>
+        <div class="deal-card">
+          <div class="deal-card-source">Nike</div>
+          <div class="deal-card-name">Metcon 9 Training Shoe</div>
+          <div class="deal-card-brand">Nike</div>
+          <div class="deal-card-price">$130<span class="deal-card-orig">$150</span></div>
+          <div class="deal-card-note">Outlet colorways often on sale</div>
+          <a href="https://www.nike.com/t/metcon-9-training-shoes" class="deal-card-link" target="_blank" rel="noopener">Get it →</a>
+        </div>
+        <div class="deal-card">
+          <div class="deal-card-source">Amazon</div>
+          <div class="deal-card-name">32oz Wide Mouth</div>
+          <div class="deal-card-brand">Hydro Flask</div>
+          <div class="deal-card-price">$38<span class="deal-card-orig">$50</span></div>
+          <div class="deal-card-note">Refurb and seasonal promos available</div>
+          <a href="https://www.amazon.com/s?k=Hydro+Flask+32oz+Wide+Mouth&tag=guytalk-20" class="deal-card-link" target="_blank" rel="noopener">Get it →</a>
+        </div>
+    </div>
+  </div>
+</section>
+
+<footer class="guide-footer">
+  <div class="guide-footer-inner">
+    <span>© 2026 GuyTalk Media. All rights reserved.</span>
+    <span><a href="/guide/">Guide Home</a> &nbsp;·&nbsp; <a href="/">Today's Brief</a> &nbsp;·&nbsp; <a href="https://www.guytalk.beehiiv.com/subscribe">Subscribe</a></span>
+  </div>
+</footer>
+</body>
+</html>
