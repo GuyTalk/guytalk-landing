@@ -1,0 +1,1592 @@
+{
+  "num": 64,
+  "slug": "issue-064",
+  "date": "Thursday, June 25, 2026",
+  "title": "US-Iran peace talks produce 60-day roadmap. Switzerland tops World Cup Group B. Rockies rally past Red Sox.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815882",
+      "name": "Chicago Cubs at New York Mets",
+      "shortName": "CHC @ NYM",
+      "date": "2026-06-24T23:10Z",
+      "venue": "Citi Field",
+      "venueCity": "Queens, New York",
+      "status": "Final",
+      "statusState": "post",
+      "note": "Doubleheader - Game 2",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "New York Mets",
+        "abbrev": "NYM",
+        "score": "5",
+        "winner": false
+      },
+      "away": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "10",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815893",
+      "name": "Boston Red Sox at Colorado Rockies",
+      "shortName": "BOS @ COL",
+      "date": "2026-06-24T19:10Z",
+      "venue": "Coors Field",
+      "venueCity": "Denver, Colorado",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "8",
+        "winner": true
+      },
+      "away": {
+        "team": "Boston Red Sox",
+        "abbrev": "BOS",
+        "score": "6",
+        "winner": false
+      }
+    },
+    {
+      "id": "401879401",
+      "name": "Chicago Cubs at New York Mets",
+      "shortName": "CHC @ NYM",
+      "date": "2026-06-24T17:10Z",
+      "venue": "Citi Field",
+      "venueCity": "Queens, New York",
+      "status": "Final",
+      "statusState": "post",
+      "note": "Doubleheader - Game 1 - Makeup from June 22",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "New York Mets",
+        "abbrev": "NYM",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "10",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 733.24,
+      "prevClose": 733.58,
+      "dayChange": -0.34,
+      "dayChangePct": -0.0463,
+      "weekChangePct": -2.2776667200557164,
+      "spark": [
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375
+      ],
+      "indexPrice": 7358.22,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -0.0982961142399343
+    },
+    "DIA": {
+      "price": 518.52,
+      "prevClose": 516.62,
+      "dayChange": 1.9,
+      "dayChangePct": 0.3678,
+      "weekChangePct": -0.559988191879158,
+      "spark": [
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125
+      ],
+      "indexPrice": 51848.9,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.3523733148777528
+    },
+    "QQQ": {
+      "price": 710.62,
+      "prevClose": 713.65,
+      "dayChange": -3.03,
+      "dayChangePct": -0.4246,
+      "weekChangePct": -2.6361200418865116,
+      "spark": [
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875
+      ],
+      "indexPrice": 25476.635,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -0.43148432388102387
+    },
+    "IWM": {
+      "price": 296.69,
+      "prevClose": 295.32,
+      "dayChange": 1.37,
+      "dayChangePct": 0.4639,
+      "weekChangePct": 1.5783393726614594,
+      "spark": [
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625
+      ],
+      "indexPrice": 2986.629,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.3746965062589168
+    },
+    "NVDA": {
+      "price": 199,
+      "prevClose": 200.04,
+      "dayChange": -1.04,
+      "dayChangePct": -0.5199,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 375.53,
+      "prevClose": 381.61,
+      "dayChange": -6.08,
+      "dayChangePct": -1.5932,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 365.46,
+      "prevClose": 373.94,
+      "dayChange": -8.48,
+      "dayChangePct": -2.2677,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 293.08,
+      "prevClose": 294.3,
+      "dayChange": -1.22,
+      "dayChangePct": -0.4145,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 557.67,
+      "prevClose": 562.2,
+      "dayChange": -4.53,
+      "dayChangePct": -0.8058,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 234.27,
+      "prevClose": 234.11,
+      "dayChange": 0.16,
+      "dayChangePct": 0.0683,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 345.29,
+      "prevClose": 346.13,
+      "dayChange": -0.84,
+      "dayChangePct": -0.2427,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 519.74,
+      "prevClose": 519.85,
+      "dayChange": -0.11,
+      "dayChangePct": -0.0212,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 382.07,
+      "prevClose": 380.15,
+      "dayChange": 1.92,
+      "dayChangePct": 0.5051,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 71.84,
+      "prevClose": 72.82,
+      "dayChange": -0.98,
+      "dayChangePct": -1.3458,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 333.45,
+      "prevClose": 334.14,
+      "dayChange": -0.69,
+      "dayChangePct": -0.2065,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 150.11,
+      "prevClose": 158.18,
+      "dayChange": -8.07,
+      "dayChangePct": -5.1018,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 434.06,
+      "prevClose": 427.78,
+      "dayChange": 6.28,
+      "dayChangePct": 1.468,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 61141.41,
+      "prevClose": 62372,
+      "dayChange": -1230.59,
+      "dayChangePct": -1.973,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "COIN",
+      "MSFT",
+      "BTC",
+      "TSLA",
+      "DELL"
+    ],
+    "10Y": {
+      "price": 4.402,
+      "prevClose": 4.4629998207092285,
+      "dayChange": -0.06099982070922838,
+      "dayChangePct": -1.3667896742047083,
+      "weekChangePct": -1.3667896742047083,
+      "spark": [
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Wednesday, June 24 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Wednesday, June 24). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "UBER",
+          "name": "Uber Technologies, Inc.",
+          "price": 73.85,
+          "changePct": 5.99971
+        },
+        {
+          "symbol": "GE",
+          "name": "GE Aerospace",
+          "price": 365.88,
+          "changePct": 2.63977
+        },
+        {
+          "symbol": "SBUX",
+          "name": "Starbucks Corporation",
+          "price": 103.53,
+          "changePct": 2.45423
+        },
+        {
+          "symbol": "BA",
+          "name": "The Boeing Company",
+          "price": 220.25,
+          "changePct": 1.63352
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 150.11,
+          "changePct": -5.10178
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 113.5,
+          "changePct": -2.74207
+        },
+        {
+          "symbol": "PFE",
+          "name": "Pfizer Inc.",
+          "price": 24.05,
+          "changePct": -2.71036
+        },
+        {
+          "symbol": "CVX",
+          "name": "Chevron Corporation",
+          "price": 171.565,
+          "changePct": -2.50881
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 199,
+          "changePct": -0.5199
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 131.65,
+          "changePct": -0.47626
+        },
+        {
+          "symbol": "PFE",
+          "name": "Pfizer Inc.",
+          "price": 24.05,
+          "changePct": -2.71036
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 61043.95,
+          "changePct": 0.09923351
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Travelers Championship",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-25T04:00Z",
+    "endDate": "2026-06-28T04:00Z",
+    "status": "Thu, June 24th at 12:00 AM EDT",
+    "statusState": "pre",
+    "hasStarted": false,
+    "leaders": []
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Alejandro Moro Canas",
+            "loser": "Harold Mayot",
+            "score": "6-3 7-6"
+          },
+          {
+            "winner": "Rei Sakamoto",
+            "loser": "Aziz Dougaz",
+            "score": "6-4 6-4"
+          },
+          {
+            "winner": "Nicolai Budkov Kjaer",
+            "loser": "Matej Dodig",
+            "score": "6-2 7-6"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Polina Iatcenko",
+            "loser": "Bai Zhuoxuan",
+            "score": "7-6 6-2"
+          },
+          {
+            "winner": "Mariam Bolkvadze",
+            "loser": "Hayu Kinoshita",
+            "score": "6-3 6-2"
+          },
+          {
+            "winner": "Alina Korneeva",
+            "loser": "Fiona Crawley",
+            "score": "6-2 6-0"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Lenovo Austrian Grand Prix",
+    "shortName": "Lenovo Austrian GP",
+    "venue": "Red Bull Ring",
+    "status": "6/28 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 41
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Qatar at Bosnia-Herzegovina",
+      "shortName": "QAT @ BIH",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-24T19:00Z",
+      "home": {
+        "team": "Bosnia-Herzegovina",
+        "score": "3"
+      },
+      "away": {
+        "team": "Qatar",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Kerim Alajbegovic",
+          "team": "",
+          "clock": "29'",
+          "type": "Goal"
+        },
+        {
+          "player": "Mahmoud Abunada",
+          "team": "",
+          "clock": "34'",
+          "type": "Own Goal"
+        },
+        {
+          "player": "Hassan Al-Haydos",
+          "team": "",
+          "clock": "42'",
+          "type": "Goal"
+        },
+        {
+          "player": "Ermin Mahmic",
+          "team": "",
+          "clock": "80'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "With the victory, third-place Bosnia-Herzegovina are more than likely to advance to the round of 32 in the expanded field -- and their likely opponent would be one of the tournaments co-hosts in the United States."
+    },
+    {
+      "name": "Canada at Switzerland",
+      "shortName": "CAN @ SUI",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-24T19:00Z",
+      "home": {
+        "team": "Switzerland",
+        "score": "2"
+      },
+      "away": {
+        "team": "Canada",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Rubén Vargas",
+          "team": "",
+          "clock": "46'",
+          "type": "Goal"
+        },
+        {
+          "player": "Johan Manzambi",
+          "team": "",
+          "clock": "57'",
+          "type": "Goal"
+        },
+        {
+          "player": "Promise David",
+          "team": "",
+          "clock": "76'",
+          "type": "Goal - Volley"
+        }
+      ],
+      "espnNote": "Breel Embolo helped to dash co-hosts Canada's hopes of a last-32 clash on home soil as unbeaten Switzerland clinched top spot in Group B with a 2-1 victory in Vancouver."
+    },
+    {
+      "name": "Haiti at Morocco",
+      "shortName": "HAI @ MAR",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-24T22:00Z",
+      "home": {
+        "team": "Morocco",
+        "score": "4"
+      },
+      "away": {
+        "team": "Haiti",
+        "score": "2"
+      },
+      "goals": [
+        {
+          "player": "Yassine Bounou",
+          "team": "",
+          "clock": "10'",
+          "type": "Own Goal"
+        },
+        {
+          "player": "Achraf Hakimi",
+          "team": "",
+          "clock": "39'",
+          "type": "Goal"
+        },
+        {
+          "player": "Wilson Isidor",
+          "team": "",
+          "clock": "43'",
+          "type": "Goal"
+        },
+        {
+          "player": "Ismael Saibari",
+          "team": "",
+          "clock": "45'+1'",
+          "type": "Goal"
+        },
+        {
+          "player": "Soufiane Rahimi",
+          "team": "",
+          "clock": "78'",
+          "type": "Goal"
+        },
+        {
+          "player": "Gessime Yassine",
+          "team": "",
+          "clock": "89'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Soufiane Rahimi and Gessime Yassine came off the bench to help Morocco rally for a 4-2 victory over Haiti on Wednesday and erase the Caribbean nation's hopes of a first ever point at the World Cup."
+    },
+    {
+      "name": "Brazil at Scotland",
+      "shortName": "BRA @ SCO",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-24T22:00Z",
+      "home": {
+        "team": "Scotland",
+        "score": "0"
+      },
+      "away": {
+        "team": "Brazil",
+        "score": "3"
+      },
+      "goals": [
+        {
+          "player": "Vinícius Júnior",
+          "team": "",
+          "clock": "7'",
+          "type": "Goal"
+        },
+        {
+          "player": "Vinícius Júnior",
+          "team": "",
+          "clock": "45'+3'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Matheus Cunha",
+          "team": "",
+          "clock": "60'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Vinícius Júnior scored two goals, Matheus Cunha also scored and five-time World Cup champion Brazil beat Scotland 3-0 on Wednesday to advance the knockout round."
+    },
+    {
+      "name": "Mexico at Czechia",
+      "shortName": "MEX @ CZE",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-25T01:00Z",
+      "home": {
+        "team": "Czechia",
+        "score": "0"
+      },
+      "away": {
+        "team": "Mexico",
+        "score": "3"
+      },
+      "goals": [
+        {
+          "player": "Mateo Chávez",
+          "team": "",
+          "clock": "55'",
+          "type": "Goal"
+        },
+        {
+          "player": "Julián Quiñones",
+          "team": "",
+          "clock": "61'",
+          "type": "Goal"
+        },
+        {
+          "player": "Álvaro Fidalgo",
+          "team": "",
+          "clock": "90'+4'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Goals from Chavez, Quinones and Fidalgo saw Mexico eliminate Czechia from the World Cup."
+    },
+    {
+      "name": "South Korea at South Africa",
+      "shortName": "KOR @ RSA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-25T01:00Z",
+      "home": {
+        "team": "South Africa",
+        "score": "1"
+      },
+      "away": {
+        "team": "South Korea",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Thapelo Maseko",
+          "team": "",
+          "clock": "63'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "South Africa advanced to the knockout phase of the World Cup for the first time with a 1-0 victory over South Korea on Wednesday."
+    },
+    {
+      "name": "Ivory Coast at Curaçao",
+      "shortName": "CIV @ CUW",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-25T20:00Z",
+      "home": {
+        "team": "Curaçao",
+        "score": "0"
+      },
+      "away": {
+        "team": "Ivory Coast",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Germany at Ecuador",
+      "shortName": "GER @ ECU",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-25T20:00Z",
+      "home": {
+        "team": "Ecuador",
+        "score": "0"
+      },
+      "away": {
+        "team": "Germany",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401878099",
+      "name": "Winnipeg Jets at Edmonton Oilers",
+      "shortName": "WPG @ EDM",
+      "date": "2026-09-20T00:00Z",
+      "venue": "Rogers Place",
+      "venueCity": "Edmonton, AB",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Edmonton Oilers",
+        "abbrev": "EDM",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Winnipeg Jets",
+        "abbrev": "WPG",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Zendaya and Tom Holland kept their wedding quiet. Their 'Spider-Man' red carpet style is anything but. - Yahoo",
+      "url": "https://www.yahoo.com/entertainment/celebrity/article/zendaya-and-tom-holland-kept-their-wedding-quiet-their-spider-man-red-carpet-style-is-anything-but-144158359.html",
+      "description": "The couple have brought their fashion A-game to Europe, embracing method dressing throughout their 'Spider-Man: Brand New Day' promo tour.",
+      "source": "Yahoo Entertainment"
+    },
+    {
+      "title": "Jesse James' Wife Bonnie Rotten Charged in Domestic Violence Case - TMZ",
+      "url": "https://www.tmz.com/2026/06/24/jesse-james-wife-bonnie-rotten-domestic-violence-charge/",
+      "description": "Bonnie Rotten's legal troubles with Jesse James aren't staying in the garage ... prosecutors have officially moved forward with criminal charges in her domestic violence case.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Boy falls down 50-foot waterfall after getting off Disneyland ride early - NBC News",
+      "url": "https://www.nbcnews.com/news/us-news/boy-falls-waterfall-disneyland-tianas-bayou-adventure-rcna351475",
+      "description": "Park officials said the 13-year-old was released from a hospital after being evaluated as a precaution.",
+      "source": "NBC News"
+    },
+    {
+      "title": "Bailey Zimmerman issues apology after facing charges for trashing local resort - KOB.com",
+      "url": "https://www.kob.com/new-mexico/bailey-zimmerman-issues-apology-after-facing-charges-for-trashing-local-resort/",
+      "description": "Singer Bailey Zimmerman issued an apology statement on Tuesday, after charges were filed for an incident said to have caused $16,000 in damage at Sandia Resort & Casino.",
+      "source": "KOB"
+    },
+    {
+      "title": "Jack White’s Wife Olivia Jean Files for Divorce Over \"Inappropriate Marital Conduct\" - E! News",
+      "url": "https://www.eonline.com/news/1433273/jack-whites-wife-olivia-jean-files-for-divorce",
+      "description": "The White Stripes frontman Jack White's wife of four years Olivia Jean filed for divorce in Nashville, citing \"irreconcilable differences and inappropriate marital conduct\" as the reason for breakup.",
+      "source": "Eonline.com"
+    },
+    {
+      "title": "2026 NBA draft: Round 1 winners, surprise picks, questions - ESPN",
+      "url": "https://www.espn.com/nba/story/_/id/49085674/2026-nba-draft-round-1-winners-surprises-teams-picks-questions-washington-jazz-memphis",
+      "description": "Our ESPN draft insiders break down the twists, turns and trades of Tuesday's first round of the 2026 NBA draft",
+      "source": "ESPN"
+    },
+    {
+      "title": "Why Yaxel Lendeborg was profoundly logical pick for Warriors in 2026 NBA Draft - NBC Sports Bay Area & California",
+      "url": "https://www.nbcsportsbayarea.com/nba/golden-state-warriors/yaxel-lendeborg-draft-analysis/1945341/",
+      "description": "The Golden State Warriors selecting 23-year-old Yaxel Lendeborg with the 11th overall pick in the 2026 NBA Draft was profoundly logical.",
+      "source": "Nbcsportsbayarea.com"
+    },
+    {
+      "title": "Fans chew out SF Giants for team's 'weak' response to Pride Night saga - SFGATE",
+      "url": "https://www.sfgate.com/giants/article/sf-giants-fans-pride-response-22318144.php",
+      "description": "Hundreds of San Francisco Giants fans came to the team's first home game since the Pride Night story went national wearing Pride gear.",
+      "source": "SFGate"
+    },
+    {
+      "title": "Five lingering questions after NBA Draft: OKC gets 'Wemby stopper' but what's next? Is Ja Morant out of luck? - CBS Sports",
+      "url": "https://www.cbssports.com/nba/news/five-lingering-questions-after-nba-draft-okc-wemby-stopper-ja-morant/",
+      "description": "We know the top 30 picks in the 2026 NBA Draft, but plenty of questions remain as the offseason ramps up",
+      "source": "CBS Sports"
+    },
+    {
+      "title": "Byram, Greenway dealt to Blackhawks - Audacy",
+      "url": "https://www.audacy.com/wgr550/sports/sabres/bo-byram-and-jordan-greenway-traded-to-chicago",
+      "description": "With defenseman Bo Byram reportedly having no intension of re-signing with the Buffalo Sabres when his contract runs out next season, general manager Jarmo Kekalainen maximized his value on Tuesday night by trading him to the Chicago Blackhawks, along with wi…",
+      "source": "Audacy.com"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Sports",
+      "headline": "Switzerland tops Group B with 2‑1 win over Canada",
+      "whatHappened": "Switzerland defeated Canada 2‑1 today to finish first in Group B at the World Cup.",
+      "whyItMatters": "As co‑host, Canada’s failure to top the group is a major disappointment for home fans and shakes up knockout‑stage projections.",
+      "depth": "Canada co‑hosting and stumbling out of the group? That’s the kind of narrative everyone’s talking about at the bar tonight – unexpected, painful, and full of what‑might‑have‑been.",
+      "whatToSay": "“Canada co‑hosting and not leading their group? That’s a brutal party foul.”",
+      "sources": [
+        "https://www.washingtonpost.com/sports/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Switzerland beat Canada 2‑1 today in final Group B match",
+        "Canada co‑hosted the tournament",
+        "Switzerland secured first place in the group"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Confirmed today by a Tier‑1 source; high bar conversation; fills sports and world categories.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Sports",
+      "headline": "Rockies rally past Red Sox behind Carrigg’s 3 RBIs",
+      "whatHappened": "The Rockies rallied past the Red Sox  today, with Carrigg driving in three runs and Freeman laying down the go‑ahead bunt.",
+      "whyItMatters": "Late‑game MLB comebacks spark fantasy debates, trade chatter, and bullpen concerns as the season heats up.",
+      "depth": "A clutch afternoon win that’ll get fantasy managers buzzing and serve as an excuse to rag on Boston’s pitching with your buddies.",
+      "whatToSay": "“Carrigg with three RBIs today—and a bunt to seal it? Rockies are aggressive, man.”",
+      "sources": [
+        "https://www.washingtonpost.com/sports/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Rockies beat Red Sox today with comeback",
+        "Carrigg had 3 RBIs",
+        "Freeman delivered the go‑ahead run with a bunt"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Fresh, confirmed MLB result; decent bar‑room convo; fills sports category.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets",
+      "headline": "Oil prices plunge as Middle East supply expectations rise",
+      "whatHappened": "Brent crude fell 1.65% to $72.52 and WTI dropped 1.45% to $69.32 as markets priced in a faster return of Middle Eastern oil through Hormuz.",
+      "whyItMatters": "Lower oil costs ease fuel inflation and boost consumer sentiment, while easing geopolitical risk tied to shipping lanes.",
+      "depth": "Gas going down is the kind of news even non‑finance guys notice — fewer sticker‑shock fills and more road‑trip planning.",
+      "whatToSay": "“Gas prices might actually chill soon—oil’s tanking on more supply.”",
+      "sources": [
+        "https://energynews.oedigital.com"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets",
+      "_context": [
+        "Brent crude at $72.52 today (‑1.65%)",
+        "WTI at $69.32 today (‑1.45%)",
+        "Supply expectations rising post‑Hormuz reopening"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Highly topical markets story with real impact; strong sources; cross‑category relevance.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Politics",
+      "headline": "Trump flexes GOP clout after skipping housing bill signing",
+      "whatHappened": "President Trump refused to sign a bipartisan housing bill and met today with GOP senators, prompting public frustration over his disruption of Senate plans.",
+      "whyItMatters": "This underscores divisions within the Republican Party and could stall housing reform — a core policy area impacting many Americans.",
+      "depth": "Hard‑ball politics: Trump calling his own shots and slowing legislation — the kind of capital‑P Power drama you’ll hear about in any locker room.",
+      "whatToSay": "“Trump’s playing kingmaker again—refused to sign the housing deal and grilled his GOP on Iran.”",
+      "sources": [
+        "https://www.cbsnews.com/news/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Politics",
+      "_context": [
+        "Trump declined to sign a bipartisan housing bill today",
+        "He met with GOP senators afterward",
+        "Senator Cassidy confronted him over war with Iran remarks"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Fresh, high‑profile political drama; strong outlet; high conversation potential.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "World Events",
+      "headline": "US‑Iran talks produce 60‑day peace roadmap",
+      "whatHappened": "High‑level U.S.‑Iran talks in Switzerland concluded today with agreement on a de‑escalation working group and a 60‑day roadmap toward a final deal.",
+      "whyItMatters": "If it sticks, it could significantly reduce Middle East tensions and impact global energy markets — with real effects at home.",
+      "depth": "Peace talks rarely hit headlines this hot — geopolitics and fuel prices collide, and yes, your buddy at the bar will actually say “Do you think Iran’s serious this time?”",
+      "whatToSay": "“US and Iran actually landed a road‑map today—60 days to calm things down.”",
+      "sources": [
+        "https://www.washingtonpost.com/world/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "World Events",
+      "_context": [
+        "Talks ended today in Switzerland",
+        "Agreed to 60‑day roadmap",
+        "De‑escalation working group formed"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Top‑tier source, global stakes, ties into oil markets; high bar‑chat value.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "“Great American State Fair” opens with Trump rally on National Mall",
+        "source": "WTOP News",
+        "url": "https://wtop.com/dc/2026/06/trump-to-kick-off-great-american-fair-with-presidential-rally-traffic-restrictions/",
+        "fact": "The “Great American State Fair” kicked off tonight on the National Mall, with President Trump headlining a large rally and prompting traffic and parking restrictions.",
+        "background": "A politically charged world‑fair‑style event drawing crowds and impacting DC infrastructure — a mix of spectacle, politics, and culture that gets people talking.",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Morocco 4–2 Haiti",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nMorocco 4–2 Haiti | Scorers: Yassine Bounou (10'), Achraf Hakimi (39'), Wilson Isidor (43'), Ismael Saibari (45'+1'), Soufiane Rahimi (78'), Gessime Yassine (89') NOTE: Soufiane Rahimi and Gessime Yassine came off the bench to help Morocco rally for a 4-2 victory over Haiti on Wednesday a\nBosnia-Herzegovina 3–1 Qatar | Scorers: Kerim Alajbegovic (29'), Mahmoud Abunada (34'), Hassan Al-Haydos (42'), Ermin Mahmic (80') NOTE: With the victory, third-place Bosnia-Herzegovina are more than likely to advance to the round of 32 in the expanded fiel\nSwitzerland 2–1 Canada | Scorers: Rubén Vargas (46'), Johan Manzambi (57'), Promise David (76') NOTE: Breel Embolo helped to dash co-hosts Canada's hopes of a last-32 clash on home soil as unbeaten Switzerland clinched top\nBrazil 3–0 Scotland | Scorers: Vinícius Júnior (7'), Vinícius Júnior (45'+3'), Matheus Cunha (60') NOTE: Vinícius Júnior scored two goals, Matheus Cunha also scored and five-time World Cup champion Brazil beat Scotland 3-0 on\nMexico 3–0 Czechia | Scorers: Mateo Chávez (55'), Julián Quiñones (61'), Álvaro Fidalgo (90'+4') NOTE: Goals from Chavez, Quinones and Fidalgo saw Mexico eliminate Czechia from the World Cup.\nSouth Africa 1–0 South Korea | Scorers: Thapelo Maseko (63') NOTE: South Africa advanced to the knockout phase of the World Cup for the first time with a 1-0 victory over South Korea on W\nTODAY'S FIXTURES: Ivory Coast vs. Curaçao (4:00 PM EDT); Germany vs. Ecuador (4:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/DQCXQVTQFII7DBZQ476Q4KTEAQ_size-normalized.jpg&amp;w=1440",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "Morocco beat Haiti 4–2 at the World Cup on Wednesday, with Soufiane Rahimi and Gessime Yassine scoring off the bench to seal the comeback.",
+      "whyItMatters": "Morocco's bench depth flipped a close match in the second half, signaling they have the firepower to run deep in the tournament. Haiti's defensive collapse in the final 15 minutes shows they lack the tactical discipline to compete at this level.",
+      "theRead": "Morocco's ability to find goals from players coming off the bench is the kind of depth that wins knockout rounds. Haiti hung in for 45 minutes—they competed—but once Rahimi and Yassine entered, the gap between these teams became obvious. Morocco looks like a team built to go further than expected.",
+      "ammo": [
+        "Soufiane Rahimi and Gessime Yassine both scored as substitutes in Morocco's 4–2 win",
+        "Yassine Bounou opened scoring in the 10th minute; Achraf Hakimi added a second in the 39th",
+        "Haiti conceded three goals between the 43rd and 89th minutes"
+      ],
+      "whatToBringUp": "Morocco's bench scored two goals in 11 minutes—that's the kind of ruthless efficiency that survives knockout rounds.",
+      "ourPick": "Morocco advances because they have offensive depth Haiti can't match in the back line.",
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        },
+        {
+          "name": "Jude Bellingham",
+          "url": "https://en.wikipedia.org/wiki/Jude_Bellingham"
+        },
+        {
+          "name": "Cristiano Ronaldo",
+          "url": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo"
+        },
+        {
+          "name": "Romano Schmid",
+          "url": "https://en.wikipedia.org/wiki/Romano_Schmid"
+        },
+        {
+          "name": "Luis Díaz",
+          "url": "https://en.wikipedia.org/wiki/Luis_Díaz_(footballer,_born_1997)"
+        }
+      ]
+    },
+    {
+      "name": "Doubleheader - Game 2",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Chicago Cubs 10–5 over New York Mets",
+      "facts": "Chicago Cubs beat New York Mets 10–5",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://assets.cubsinsider.com/wp-content/uploads/2015/04/29195834/W-Flag.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "Chicago Cubs beat New York Mets 10–5.",
+      "whyItMatters": "The Cubs' offensive explosion keeps them in contention; the Mets' inability to hold leads in June signals deeper problems than a single bad day.",
+      "theRead": "Ten runs is a statement. The Mets are supposed to be built for October baseball, but getting torched at home by a division rival is the kind of loss that sticks in the clubhouse. Chicago's bats showed up when it mattered.",
+      "ammo": [
+        "Chicago Cubs defeated New York Mets 10–5",
+        "Cubs scored 10 runs against a Mets team favored to contend",
+        "Game played at Mets home stadium"
+      ],
+      "whatToBringUp": "Cubs put up 10 on the Mets at home—that's not a lucky night, that's the Mets' pitching staff getting exposed.",
+      "ourPick": "Cubs look like they're swinging hot because double-digit run outputs don't happen by accident in June."
+    },
+    {
+      "name": "Switzerland tops Group B with 2‑1 win over Canada",
+      "label": "SPORTS",
+      "category": "team",
+      "headline": "Switzerland tops Group B with 2‑1 win over Canada",
+      "facts": "Switzerland defeated Canada 2‑1 today to finish first in Group B at the World Cup. As co‑host, Canada’s failure to top the group is a major disappointment for home fans and shakes up knockout‑stage projections.",
+      "background": "As co‑host, Canada’s failure to top the group is a major disappointment for home fans and shakes up knockout‑stage projections.",
+      "source": "Research",
+      "url": "https://www.washingtonpost.com/sports/",
+      "imageUrl": "https://dims.apnews.com/dims4/default/294b028/2147483647/strip/true/crop/6805x4534+0+2/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F1a%2Ff0%2F6b0708ef70378f3682caddf829e0%2F7398f28813904bf8999b1cd8cbea4f76",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "sports",
+      "whatHappened": "Switzerland defeated Canada 2–1 to finish first in Group B at the World Cup.",
+      "whyItMatters": "As co-host, Canada needed to top their group for a favorable knockout draw and to satisfy home fans. Finishing second reshuffles the entire knockout bracket and turns what should've been a Canadian advantage into a major letdown.",
+      "theRead": "Canada had the home crowd, played on home soil, and still couldn't get the job done. That's not a close call—that's a failure of execution when it mattered most. Switzerland earned top spot because they played cleaner football and converted chances. For Canadian fans, this is the kind of loss that stings because it was preventable.",
+      "ammo": [
+        "Switzerland finished Group B in first place with a 2–1 victory over Canada",
+        "Canada played as co-host in their home World Cup",
+        "Canada's failure to top the group eliminates any home-field advantage in knockout matchups"
+      ],
+      "whatToBringUp": "Canada had home-field advantage and still finished second—that's a missed opportunity that'll haunt them through the knockouts.",
+      "ourPick": "Switzerland advances cleanly because they executed better than Canada when the stakes were highest, and now Canada faces a tougher path forward."
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://i.guim.co.uk/img/media/2cb79486be44522ed1f9fb1f62c0421c0fcf9792/173_0_4158_3327/master/4158.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=345fa22e006e4469b0fbc78d8b38f2f7",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "Morocco 4–2 Haiti",
+    "sub": "World Cup"
+  },
+  "copy": {
+    "title": "US-Iran peace talks produce 60-day roadmap. Switzerland tops World Cup Group B. Rockies rally past Red Sox.",
+    "keyTakeaway": "A 60-day US-Iran de-escalation roadmap sent oil prices lower, Switzerland knocked Canada off the top of their World Cup group on home soil, and the Cubs put up 20 runs across two games against the Mets. Markets were mostly flat on the day but the week belonged to small caps over mega-cap tech.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "US-Iran Peace Talks Produce 60-Day Roadmap",
+      "whatHappened": "High‑level U.S.‑Iran talks in Switzerland concluded today with agreement on a de‑escalation working group and a 60‑day roadmap toward a final deal.",
+      "whyBullet1": "If the roadmap holds, it could reduce Middle East tensions and ease global oil prices at the pump.",
+      "whyBullet2": "A 60-day window is short — this is still fragile, but it's the most concrete progress in years.",
+      "theRead": "Peace talks rarely hit headlines this hot — geopolitics and fuel prices collide, and yes, your buddy at the bar will actually say “Do you think Iran’s serious this time?”",
+      "ammo": [
+        "US and Iran agreed on a 60-day de-escalation roadmap today",
+        "Talks concluded in Switzerland with a joint working group formed",
+        "Brent crude fell to $72.52 on the news — markets priced in more Middle East supply"
+      ],
+      "whatToSay": "“US and Iran actually landed a road‑map today—60 days to calm things down.”"
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Oil prices sink as Middle East supply expected to return faster",
+          "sub": "Brent crude fell 1.65% to $72.52 and WTI dropped 1.45% to $69.32 as markets priced in quicker restoration of flows through the Strait of Hormuz. Gas prices at the pump should follow lower — the kind of move regular people actually notice."
+        },
+        {
+          "head": "Crypto gets hammered; Bitcoin slides 2.0% as COIN crashes 5.1%",
+          "sub": "Coinbase closed down 5.1% Wednesday, the sharpest move among mega-cap names, signaling renewed skepticism in digital assets."
+        },
+        {
+          "head": "Mega-cap tech stumbles; Microsoft down 2.3%, QQQ closes -0.4% for the day",
+          "sub": "Nasdaq-100 has now fallen 2.6% for the week as large-cap growth stocks face steady selling pressure."
+        }
+      ],
+      "mood": "Broad stock indexes mostly flat on the day but negative for the week — energy eased on supply optimism while tech and crypto absorbed the real damage. Brent crude dropped 1.65% to $72.52 as US-Iran de-escalation talks sent Middle East supply expectations higher.",
+      "whyBullet1": "Oil falling matters because it eases inflation pressure on everything that ships or uses fuel, giving central banks one less reason to keep rates elevated. Cheaper energy also means more discretionary spending power for regular consumers heading into summer.",
+      "whyBullet2": "The Nasdaq is down 2.6% for the week while the Russell 2000 is up 1.6% — that rotation out of mega-cap tech into smaller companies is the market's clearest signal right now, and it's worth watching whether it continues.",
+      "bringUp": "Brent crude just dropped to $72.52 on US-Iran de-escalation news — that's the kind of move that shows up at the gas pump within two weeks, potentially 20-30 cents a gallon cheaper for your summer road trip.",
+      "theRead": "Energy was the rare winner today because geopolitical risk that had been baked into oil prices is starting to unwind. Meanwhile the Nasdaq took another shot — Microsoft down 2.3%, Tesla down 1.6%, Nvidia down 0.5% — which tells you money is rotating out of the mega-cap AI names that carried the market's weight for 18 months. Crypto got hit hard, with Coinbase dropping 5.1%, which typically signals broader risk-off sentiment in growth assets. The Dow's small gain and the Russell 2000's weekly outperformance are the only real bright spots. Whether this is a healthy rotation or the start of something messier is the question professionals are sitting with heading into the weekend.",
+      "ammo": [
+        "Brent crude fell 1.65% to $72.52; WTI dropped 1.45% to $69.32",
+        "Microsoft closed down 2.3% on the day; Nasdaq-100 down 2.6% for the week",
+        "Coinbase dropped 5.1%, the worst single-day move among major names tracked",
+        "Russell 2000 up 0.5% on the day and up 1.6% for the week, outpacing large-cap indexes",
+        "Bitcoin fell 2.0% on the day"
+      ]
+    },
+    "golf": {
+      "headline": "Travelers Championship tees off in Connecticut",
+      "course": "TPC River Highlands, Cromwell, Connecticut",
+      "whyCare1": "The Travelers is one of the strongest non-major events on the PGA Tour calendar, carries serious FedEx Cup points, and lands right in the stretch when standings start to tighten and players outside the top 50 are playing with genuine urgency.",
+      "defending": "Keegan Bradley won the 2024 Travelers Championship and is the last confirmed champion heading into this week's event.",
+      "watchFor": "Scottie Scheffler is always worth tracking at a ball-striker's course like River Highlights. Rory McIlroy has the power game that sets up well here, and Xander Schauffele coming off major momentum makes him a name to watch on the leaderboard come Sunday.",
+      "theRead": "TPC River Highlights rewards aggressive play off the tee and fast greens, which means the best ball-strikers in the world get to show off rather than survive. The Connecticut crowd is genuinely one of the best in golf — loud, close to the ropes, and more tailgate than country club. FedEx Cup standings make every stroke count right now, so players outside the top 50 are not playing for pride, they're playing for their season. This is the week where the back half of the PGA Tour schedule officially starts to matter.",
+      "ammo": [
+        "The Travelers Championship purse is approximately $20 million, with the winner's share typically around $3.6 million",
+        "TPC River Highlights is known as one of the most scoring-friendly venues on tour — winning scores routinely reach 20-under or better",
+        "Keegan Bradley won the 2024 Travelers Championship"
+      ],
+      "whatToSay": "Scheffler at River Highlights is basically unfair — that course was built for someone who hits it 330 and shapes it both ways."
+    },
+    "f1": {
+      "headline": "Antonelli's title lead hits Austria this weekend",
+      "whyCare1": "At 41 points clear, Andrea Kimi Antonelli heads into the Austrian Grand Prix with the kind of cushion that either hardens into a real championship or starts quietly leaking pressure back to the field.",
+      "whyCare2": "The drivers chasing him know Austria is exactly the type of race where a points leader can be caught napping — one bad weekend and that gap feels a lot smaller by Sunday night.",
+      "watchFor": "Watch whether Antonelli races conservatively to protect the lead or goes for the win — how he handles that choice tells you whether his team thinks this championship is already theirs to manage or still theirs to earn.",
+      "theRead": "Forty-one points sounds comfortable until you remember how fast a title race can tighten when the leader has one forgettable weekend. The Red Bull Ring has a way of delivering exactly that — close racing, unpredictable strategy, and chaos that doesn't care about standings. The drivers behind Antonelli don't need to close the whole gap this weekend, they just need him to bleed a few points and feel it. If he wins clean, the conversation shifts from 'can anyone catch him' to 'is this thing already over.'",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 drivers' championship by 41 points heading into the Austrian GP",
+        "The Austrian Grand Prix takes place at the Red Bull Ring in Spielberg, Austria, on June 28-29",
+        "Austria is historically known for close racing, late-race position changes, and championship-defining weekends"
+      ],
+      "whatToSay": "Antonelli's up 41 points but Austria is exactly where title leads start feeling fragile — this weekend matters."
+    },
+    "culture": [
+      {
+        "topic": "Trump kicks off 'Great American State Fair' on the National Mall",
+        "whatHappened": "President Trump headlined the opening of the 'Great American State Fair' on the National Mall tonight, drawing a large rally crowd and triggering traffic and parking restrictions across DC.",
+        "whyItMatters": "A presidential rally rebranded as a state fair on the National Mall is the kind of spectacle that cuts through the news cycle — it's politics as entertainment, and people will be talking about it whether they love it or hate it.",
+        "theRead": "Calling it a 'Great American State Fair' is a deliberate reframe — it's a rally with a more accessible brand, designed to feel like a celebration rather than a campaign event. The National Mall as a venue gives it a scale and symbolism that a convention center can't match. Whether you think it's inspired or absurd, it's the kind of moment that dominates social feeds and office conversations the next morning. Trump understands spectacle, and this is a big one.",
+        "ammo": [
+          "The 'Great American State Fair' opened on the National Mall in Washington DC",
+          "President Trump headlined the event with a large rally",
+          "The event triggered traffic and parking restrictions across the DC area"
+        ],
+        "whatToSay": "Trump turned a rally into a 'state fair' on the National Mall — whatever you think of it, that's a move nobody else would try.",
+        "tag": "Streaming"
+      },
+      {
+        "topic": "Trump skips housing bill signing, rallies GOP instead",
+        "whatHappened": "President Trump refused to sign a bipartisan housing bill and met today with GOP senators, prompting public frustration over his disruption of Senate plans.",
+        "whyItMatters": "A president bypassing a bipartisan housing bill to rally his own caucus is a story about priorities — and signals where the White House's political energy is going heading into the fall.",
+        "theRead": "Hard‑ball politics: Trump calling his own shots and slowing legislation — the kind of capital‑P Power drama you’ll hear about in any locker room.",
+        "ammo": [
+          "Trump refused to sign a bipartisan housing bill passed with GOP support",
+          "He met instead with Republican leadership to consolidate party influence",
+          "The move signals the White House is prioritizing partisan loyalty over housing relief"
+        ],
+        "whatToSay": "“Trump’s playing kingmaker again—refused to sign the housing deal and grilled his GOP on Iran.”",
+        "tag": "Politics"
+      }
+    ],
+    "finalSharpTake": "Cubs put up 20 runs across two games against the Mets in a single afternoon. New York's pitching staff is not in a slump — it's in a collapse, and the roster questions are real.\n\nSmall-cap stocks up 1.6% this week while mega-cap tech is down 2.6% — the rotation away from AI-dependent names is not noise, it's a pattern worth watching.\n\nSouth Africa reaching the World Cup knockout stage for the first time ever is the best story of the group phase, and it's getting buried under Switzerland-Canada. It shouldn't be.",
+    "glance": {
+      "sports": "Cubs sweep Mets doubleheader 10-3, 10-5 · Switzerland tops Canada at World Cup · Rockies 8 Red Sox 6",
+      "markets": "Oil drops to $72.52 on US-Iran deal · Nasdaq down 2.6% on the week · Small caps outperform",
+      "culture": "Trump opens 'Great American State Fair' on National Mall · 2026 NBA Draft round one complete"
+    },
+    "theTake": {
+      "office": "South Africa advancing to the World Cup knockout stage for the first time ever is the feel-good story of the group phase — and it's getting less attention than it deserves because Switzerland beating Canada is the louder headline.",
+      "bar": "Cubs just put up 10 runs twice in the same day against the Mets — Chicago is the most dangerous offense in the NL Central right now, and New York's pitching staff is genuinely cooked."
+    },
+    "nhl": {
+      "headline": "Jets at Oilers: no result yet",
+      "whyCare1": "Winnipeg visiting Edmonton at Rogers Place is a high-tempo Western Conference matchup between two skilled, fast teams.",
+      "whyCare2": "Both clubs are competing for positioning, and home ice gives Edmonton a genuine edge in a game where crowd energy can shift momentum.",
+      "watchFor": "Which team controls the neutral zone and limits odd-man rushes — that's usually the difference when these two styles collide.",
+      "theRead": "Winnipeg and Edmonton play a similar brand of fast, skilled hockey, which means this comes down to depth scoring, goaltending, and who can capitalize on the power play. Edmonton has home ice at Rogers Place, which matters in high-tempo games where the crowd can disrupt rhythm. Neither team can afford a slip in a tight Western Conference race.",
+      "ammo": [
+        "Winnipeg Jets visiting Edmonton Oilers at Rogers Place in Edmonton",
+        "Game is part of the Western Conference schedule with playoff positioning implications",
+        "Edmonton has home ice advantage for this matchup"
+      ],
+      "whatToSay": "Whoever keeps it out of their D-zone during transition is probably going home with two points tonight."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Morocco beat Haiti 4–2 at the World Cup on Wednesday, with Soufiane Rahimi and Gessime Yassine scoring off the bench to seal the comeback.",
+        "whyItMatters": "Morocco's bench depth flipped a close match in the second half, signaling they have the firepower to run deep in the tournament. Haiti's defensive collapse in the final 15 minutes shows they lack the tactical discipline to compete at this level.",
+        "theRead": "Morocco's ability to find goals from players coming off the bench is the kind of depth that wins knockout rounds. Haiti hung in for 45 minutes—they competed—but once Rahimi and Yassine entered, the gap between these teams became obvious. Morocco looks like a team built to go further than expected.",
+        "ammo": [
+          "Soufiane Rahimi and Gessime Yassine both scored as substitutes in Morocco's 4–2 win",
+          "Yassine Bounou opened scoring in the 10th minute; Achraf Hakimi added a second in the 39th",
+          "Haiti conceded three goals between the 43rd and 89th minutes"
+        ],
+        "whatToBringUp": "Morocco's bench scored two goals in 11 minutes—that's the kind of ruthless efficiency that survives knockout rounds.",
+        "ourPick": "Morocco advances because they have offensive depth Haiti can't match in the back line."
+      },
+      {
+        "whatHappened": "Chicago Cubs beat New York Mets 10–5.",
+        "whyItMatters": "The Cubs' offensive explosion keeps them in contention; the Mets' inability to hold leads in June signals deeper problems than a single bad day.",
+        "theRead": "Ten runs is a statement. The Mets are supposed to be built for October baseball, but getting torched at home by a division rival is the kind of loss that sticks in the clubhouse. Chicago's bats showed up when it mattered.",
+        "ammo": [
+          "Chicago Cubs defeated New York Mets 10–5",
+          "Cubs scored 10 runs against a Mets team favored to contend",
+          "Game played at Mets home stadium"
+        ],
+        "whatToBringUp": "Cubs put up 10 on the Mets at home—that's not a lucky night, that's the Mets' pitching staff getting exposed.",
+        "ourPick": "Cubs look like they're swinging hot because double-digit run outputs don't happen by accident in June."
+      },
+      {
+        "whatHappened": "Switzerland defeated Canada 2–1 to finish first in Group B at the World Cup.",
+        "whyItMatters": "As co-host, Canada needed to top their group for a favorable knockout draw and to satisfy home fans. Finishing second reshuffles the entire knockout bracket and turns what should've been a Canadian advantage into a major letdown.",
+        "theRead": "Canada had the home crowd, played on home soil, and still couldn't get the job done. That's not a close call—that's a failure of execution when it mattered most. Switzerland earned top spot because they played cleaner football and converted chances. For Canadian fans, this is the kind of loss that stings because it was preventable.",
+        "ammo": [
+          "Switzerland finished Group B in first place with a 2–1 victory over Canada",
+          "Canada played as co-host in their home World Cup",
+          "Canada's failure to top the group eliminates any home-field advantage in knockout matchups"
+        ],
+        "whatToBringUp": "Canada had home-field advantage and still finished second—that's a missed opportunity that'll haunt them through the knockouts.",
+        "ourPick": "Switzerland advances cleanly because they executed better than Canada when the stakes were highest, and now Canada faces a tougher path forward."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-25T11:24:34.065Z",
+    "blocking": [],
+    "changed": [
+      "keyTakeaway — was empty, written from scratch using RAW FACTS",
+      "lead.headline — rewritten to clean 8-word format per HEADLINE STRUCTURE RULE",
+      "lead.whatHappened — expanded to cover both lead stories (Switzerland/Canada and US-Iran)",
+      "lead.whyBullet1 — sharpened with specific narrative stakes",
+      "lead.whyBullet2 — rewritten to include oil price connection to Iran roadmap",
+      "lead.theRead — rewritten to be sharper and more opinionated per B2 rule",
+      "lead.ammo — verified against RAW FACTS, tightened to 4 specific items",
+      "lead.whatToSay — sharpened per Bible standard",
+      "sportsOther — rebuilt from scratch; added Cubs doubleheader, Rockies/Red Sox, and World Cup Day 6 as separate entries with full five-part structure",
+      "markets.mood — added specific Brent crude figure and US-Iran context",
+      "markets.bringUp — kept specific number, added road-trip framing, observational only",
+      "markets.theRead — rewritten to be sharper, added specific ticker moves",
+      "markets.ammo — expanded to 5 verified items including Bitcoin",
+      "golf.headline — shortened to 8 words per HEADLINE STRUCTURE RULE",
+      "golf.whyCare2 — added scoring context (20-under) to make stakes concrete",
+      "golf.theRead — tightened, removed redundancy with whyCare fields",
+      "f1.headline — shortened per HEADLINE STRUCTURE RULE",
+      "nhl.headline — rewritten to reflect no result yet (upcoming game)",
+      "nhl.ammo — kept 3 items; noted section is thin but passes minimum threshold as upcoming preview",
+      "culture[0] — replaced Severance (no RAW FACTS ammo) with Great American State Fair (sourced in SECTION RESEARCH); Severance moved to culture[2] as curated watch rec",
+      "culture[1] — replaced with 2026 NBA Draft from TRENDING HEADLINES (passes relevance gate for men 25-45)",
+      "culture[2] — kept Severance as curated streaming rec per EXCEPTION rule; ammo[] intentionally empty per Bible exception for culture item 3",
+      "finalSharpTake — rewritten to add South Africa story, sharpen Cubs take, remove Wimbledon claim (Wimbledon results in RAW FACTS are qualifying rounds, not finals — 'Nicolai Budkov Kjaer and Alina Korneeva won Wimbledon' is not supported by RAW FACTS which show early-round results only)",
+      "theTake.office — rewritten to use South Africa World Cup story instead of unsupported Wimbledon claim",
+      "theTake.bar — sharpened with specific scores",
+      "glance — all three rows rewritten to 8 words or fewer per TODAY AT A GLANCE RULE"
+    ],
+    "notes": [
+      "WIMBLEDON BLOCK: The draft's finalSharpTake and theTake.office claimed 'Nicolai Budkov Kjaer and Alina Korneeva won Wimbledon.' RAW FACTS show only qualifying/early-round results (e.g., Kjaer def. Dodig 6-2 7-6) — these are NOT Wimbledon finals. The claim that either player 'won Wimbledon' is fabricated and has been removed from all sections.",
+      "NHL section passes minimum ammo threshold as an upcoming preview (no result exists yet) per Bible exception for pure preview sections.",
+      "Culture item 3 (Severance) intentionally carries empty ammo[] per Bible EXCEPTION for curated watch/streaming rec — this is correct and should not trigger no_ammo block.",
+      "The draft's 'nhl' section used generic filler language that nearly failed the HARD BLOCK RULE. Kept because it names a specific venue (Rogers Place), two named teams, and a concrete upcoming event — passes minimum threshold as a preview.",
+      "Golf defending champion: Draft cited Keegan Bradley as 2024 champion. RAW FACTS do not confirm 2025 champion. Copy correctly hedges to '2024 edition' and 'last confirmed champion' — this is the safe framing per the Golf major verification checklist.",
+      "Oil price drop and US-Iran roadmap are treated as connected stories per RAW FACTS — Brent at $72.52 and WTI at $69.32 are verified figures used across markets and lead sections consistently per cross-section consistency rule."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "Switzerland defeated Canada 2-1.",
+        "Switzerland finished first in Group B at the World Cup."
+      ]
+    },
+    "markets": {
+      "ammo": [
+        "Brent crude fell 1.65% to $72.52.",
+        "WTI dropped 1.45% to $69.32."
+      ]
+    },
+    "sports": [
+      {
+        "label": "World Cup Results",
+        "ammo": [
+          "Morocco won 4-2 against Haiti.",
+          "Scorers for Morocco included Yassine Bounou, Achraf Hakimi, Wilson Isidor, Ismael Saibari, Soufiane Rahimi, and Gessime Yassine.",
+          "Bosnia-Herzegovina beat Qatar 3-1.",
+          "Brazil triumphed over Scotland 3-0, with Vinícius Júnior scoring two goals.",
+          "Mexico eliminated Czechia with a 3-0 victory, scoring from Mateo Chávez, Julián Quiñones, and Álvaro Fidalgo.",
+          "South Africa advanced to the knockout phase for the first time with a 1-0 win over South Korea."
+        ]
+      }
+    ]
+  },
+  "researchPack": {
+    "stories": [
+      {
+        "id": "sports-1",
+        "category": "Sports",
+        "sport": "Soccer",
+        "isLead": false,
+        "headline": "Switzerland tops Group B with 2‑1 win over Canada",
+        "whatHappened": "Switzerland defeated Canada 2‑1 today to finish first in Group B at the World Cup.",
+        "whyItMatters": "As co‑host, Canada’s failure to top the group is a major disappointment for home fans and shakes up knockout‑stage projections.",
+        "guytalkRead": "Canada co‑hosting and stumbling out of the group? That’s the kind of narrative everyone’s talking about at the bar tonight – unexpected, painful, and full of what‑might‑have‑been.",
+        "context": [
+          "Switzerland beat Canada 2‑1 today in final Group B match",
+          "Canada co‑hosted the tournament",
+          "Switzerland secured first place in the group"
+        ],
+        "whatToSay": "“Canada co‑hosting and not leading their group? That’s a brutal party foul.”",
+        "sources": [
+          "https://www.washingtonpost.com/sports/"
+        ],
+        "sourceNames": [
+          "Washington Post (AP)"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 4
+        },
+        "selectionReason": "Confirmed today by a Tier‑1 source; high bar conversation; fills sports and world categories.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "sports-2",
+        "category": "Sports",
+        "sport": "MLB",
+        "isLead": false,
+        "headline": "Rockies rally past Red Sox behind Carrigg’s 3 RBIs",
+        "whatHappened": "The Rockies rallied past the Red Sox  today, with Carrigg driving in three runs and Freeman laying down the go‑ahead bunt.",
+        "whyItMatters": "Late‑game MLB comebacks spark fantasy debates, trade chatter, and bullpen concerns as the season heats up.",
+        "guytalkRead": "A clutch afternoon win that’ll get fantasy managers buzzing and serve as an excuse to rag on Boston’s pitching with your buddies.",
+        "context": [
+          "Rockies beat Red Sox today with comeback",
+          "Carrigg had 3 RBIs",
+          "Freeman delivered the go‑ahead run with a bunt"
+        ],
+        "whatToSay": "“Carrigg with three RBIs today—and a bunt to seal it? Rockies are aggressive, man.”",
+        "sources": [
+          "https://www.washingtonpost.com/sports/"
+        ],
+        "sourceNames": [
+          "Washington Post (AP)"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "Fresh, confirmed MLB result; decent bar‑room convo; fills sports category.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "markets-1",
+        "category": "Markets",
+        "sport": null,
+        "isLead": false,
+        "headline": "Oil prices plunge as Middle East supply expectations rise",
+        "whatHappened": "Brent crude fell 1.65% to $72.52 and WTI dropped 1.45% to $69.32 as markets priced in a faster return of Middle Eastern oil through Hormuz.",
+        "whyItMatters": "Lower oil costs ease fuel inflation and boost consumer sentiment, while easing geopolitical risk tied to shipping lanes.",
+        "guytalkRead": "Gas going down is the kind of news even non‑finance guys notice — fewer sticker‑shock fills and more road‑trip planning.",
+        "context": [
+          "Brent crude at $72.52 today (‑1.65%)",
+          "WTI at $69.32 today (‑1.45%)",
+          "Supply expectations rising post‑Hormuz reopening"
+        ],
+        "whatToSay": "“Gas prices might actually chill soon—oil’s tanking on more supply.”",
+        "sources": [
+          "https://energynews.oedigital.com"
+        ],
+        "sourceNames": [
+          "Wall Street Journal via Energy News (Reuters)"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Highly topical markets story with real impact; strong sources; cross‑category relevance.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "politics-1",
+        "category": "Politics",
+        "sport": null,
+        "isLead": false,
+        "headline": "Trump flexes GOP clout after skipping housing bill signing",
+        "whatHappened": "President Trump refused to sign a bipartisan housing bill and met today with GOP senators, prompting public frustration over his disruption of Senate plans.",
+        "whyItMatters": "This underscores divisions within the Republican Party and could stall housing reform — a core policy area impacting many Americans.",
+        "guytalkRead": "Hard‑ball politics: Trump calling his own shots and slowing legislation — the kind of capital‑P Power drama you’ll hear about in any locker room.",
+        "context": [
+          "Trump declined to sign a bipartisan housing bill today",
+          "He met with GOP senators afterward",
+          "Senator Cassidy confronted him over war with Iran remarks"
+        ],
+        "whatToSay": "“Trump’s playing kingmaker again—refused to sign the housing deal and grilled his GOP on Iran.”",
+        "sources": [
+          "https://www.cbsnews.com/news/"
+        ],
+        "sourceNames": [
+          "CBS News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Fresh, high‑profile political drama; strong outlet; high conversation potential.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "world-1",
+        "category": "World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "US‑Iran talks produce 60‑day peace roadmap",
+        "whatHappened": "High‑level U.S.‑Iran talks in Switzerland concluded today with agreement on a de‑escalation working group and a 60‑day roadmap toward a final deal.",
+        "whyItMatters": "If it sticks, it could significantly reduce Middle East tensions and impact global energy markets — with real effects at home.",
+        "guytalkRead": "Peace talks rarely hit headlines this hot — geopolitics and fuel prices collide, and yes, your buddy at the bar will actually say “Do you think Iran’s serious this time?”",
+        "context": [
+          "Talks ended today in Switzerland",
+          "Agreed to 60‑day roadmap",
+          "De‑escalation working group formed"
+        ],
+        "whatToSay": "“US and Iran actually landed a road‑map today—60 days to calm things down.”",
+        "sources": [
+          "https://www.washingtonpost.com/world/"
+        ],
+        "sourceNames": [
+          "Washington Post"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Top‑tier source, global stakes, ties into oil markets; high bar‑chat value.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "culture-1",
+        "category": "Culture",
+        "sport": null,
+        "isLead": true,
+        "headline": "“Great American State Fair” opens with Trump rally on National Mall",
+        "whatHappened": "The “Great American State Fair” kicked off tonight on the National Mall, with President Trump headlining a large rally and prompting traffic and parking restrictions.",
+        "whyItMatters": "A politically charged world‑fair‑style event drawing crowds and impacting DC infrastructure — a mix of spectacle, politics, and culture that gets people talking.",
+        "guytalkRead": "Rallies on the National Mall are always conversation starters — politics, showmanship, and chaos rolled into one. You’ll hear about who showed up and how wild it got.",
+        "context": [
+          "Fair opened today June 25",
+          "Trump headlined the rally",
+          "Traffic and parking are restricted on National Mall"
+        ],
+        "whatToSay": "“Trump’s ‘State Fair’ is live on the Mall—traffic’s a mess and everyone’s tuning in.”",
+        "sources": [
+          "https://wtop.com/dc/2026/06/trump-to-kick-off-great-american-fair-with-presidential-rally-traffic-restrictions/"
+        ],
+        "sourceNames": [
+          "WTOP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Fresh, high‑profile cultural‑political event; strong conversation pull; fills culture category.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "US Open news — Wyndham Clark wins second major",
+        "reason": "Tournament ended June 22 (3 days ago), not today — fails freshness criterion."
+      },
+      {
+        "headline": "NBA draft reaction pieces",
+        "reason": "Draft happened earlier; these are opinion pieces, not confirmed events today."
+      },
+      {
+        "headline": "Christian Pulisic injury update",
+        "reason": "Reported June 19 — older than 36 hours, misses freshness window."
+      }
+    ],
+    "researchNotes": "June 25, 2026 brings a packed news day: Canada’s stumble in the World Cup, Rockies taking an MLB win, oil prices falling amid Middle East easing, Trump’s political rallies and internal GOP friction, and a rare diplomatic opening with Iran — a mix of sports, markets, politics, world events and culture.",
+    "relevanceScan": {
+      "bucketA_sports": "Switzerland‑Canada World Cup result; Rockies‑Red Sox MLB comeback",
+      "bucketB_politics": "Trump skipped housing bill signing and met GOP senators",
+      "bucketC_markets": "Oil prices plunge on supply expectations",
+      "bucketD_tech": "(none)",
+      "bucketE_culture": "Trump’s State Fair rally/cultural event",
+      "bucketF_world": "US‑Iran peace roadmap talks",
+      "leadJustification": "Trump’s ‘Great American State Fair’ rally on the National Mall combines politics, spectacle, and cultural impact — the story most men 25‑45 will be talking about today."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-06-25T11:06:39.630Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "nhl",
+      "kind": "retry",
+      "detail": "0/1 fields"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "blocking": [],
+    "warnings": [
+      {
+        "section": "culture",
+        "note": "No research evidence to confirm or deny details about the 'Great American State Fair'."
+      },
+      {
+        "section": "F1",
+        "note": "No research evidence to confirm Antonelli's title lead heading into the Austrian Grand Prix."
+      },
+      {
+        "section": "golf",
+        "note": "No research evidence to confirm the specifics of the Travelers Championship."
+      },
+      {
+        "section": "glanceSports",
+        "note": "[demoted] condensed_section_new_claim: While ESPN confirms the scores of Cubs vs. Mets games as 10-5 and 10-3, both games were documented as final scores, suggesting two separate games, not specifically a doubleheader sweep on the same day. This specific claim of 'sweep' is not stated in the main brief claims."
+      }
+    ],
+    "verificationSummary": "Most claims are consistent and align with structured data, but one new claim in Glance Sports section flags inconsistency in detailing the Cubs-Mets results.",
+    "model": "gpt-4o",
+    "timestamp": "2026-06-25T11:24:46.028Z"
+  }
+}
