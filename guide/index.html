@@ -399,6 +399,13 @@
     .hub-cats-grid { grid-template-columns: repeat(2, 1fr); }
     .gnl-cta { display: none; }
     body { font-size: 16px; }
+  }
+  /* ── GUIDE TABS ── */
+  .guide-tabs{position:sticky;top:57px;z-index:90;background:rgba(249,248,245,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
+  .guide-tab:hover{color:var(--text);text-decoration:none;}
+  .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
   }</style>
 </head>
 <body>
@@ -412,6 +419,17 @@
     </div>
   </div>
 </nav>
+<div class="guide-tabs" id="guideTabs">
+  <div class="guide-tabs-inner">
+    <a href="/guide/style/"          class="guide-tab" data-path="style">Style</a>
+    <a href="/guide/watches/"        class="guide-tab" data-path="watches">Watches</a>
+    <a href="/guide/bourbon-cigars/" class="guide-tab" data-path="bourbon-cigars">Bourbon &amp; Cigars</a>
+    <a href="/guide/cars/"           class="guide-tab" data-path="cars">Cars</a>
+    <a href="/guide/fitness/"        class="guide-tab" data-path="fitness">Fitness</a>
+    <a href="/guide/accessories/"    class="guide-tab" data-path="accessories">Accessories</a>
+  </div>
+</div>
+<script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
 <div class="hub-hero">
   <div class="gc">
     <div class="hub-eyebrow">GuyTalk Guide</div>

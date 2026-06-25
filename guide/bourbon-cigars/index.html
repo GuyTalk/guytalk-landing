@@ -399,6 +399,13 @@
     .hub-cats-grid { grid-template-columns: repeat(2, 1fr); }
     .gnl-cta { display: none; }
     body { font-size: 16px; }
+  }
+  /* ── GUIDE TABS ── */
+  .guide-tabs{position:sticky;top:57px;z-index:90;background:rgba(249,248,245,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
+  .guide-tab:hover{color:var(--text);text-decoration:none;}
+  .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
   }</style>
 </head>
 <body>
@@ -412,6 +419,17 @@
     </div>
   </div>
 </nav>
+<div class="guide-tabs" id="guideTabs">
+  <div class="guide-tabs-inner">
+    <a href="/guide/style/"          class="guide-tab" data-path="style">Style</a>
+    <a href="/guide/watches/"        class="guide-tab" data-path="watches">Watches</a>
+    <a href="/guide/bourbon-cigars/" class="guide-tab" data-path="bourbon-cigars">Bourbon &amp; Cigars</a>
+    <a href="/guide/cars/"           class="guide-tab" data-path="cars">Cars</a>
+    <a href="/guide/fitness/"        class="guide-tab" data-path="fitness">Fitness</a>
+    <a href="/guide/accessories/"    class="guide-tab" data-path="accessories">Accessories</a>
+  </div>
+</div>
+<script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
 <div class="cat-band">
   <div class="gc">
     <div class="cat-band-crumb"><a href="/guide/">Guide</a><span class="cat-band-crumb-sep">/</span>Bourbon &amp; Cigars</div>
@@ -489,7 +507,7 @@
     <div class="pick-card-name">Kentucky Straight Bourbon</div>
     <div class="pick-card-price">~$30</div>
     <p class="pick-card-bio">The bottle that should always be in your house. It's smooth, balanced, mixes well, and sips fine neat — there is no bourbon that does more for $30. If a guy asks where to start, the answer is here, full stop.</p>
-    <a href="https://www.reservebar.com/products/buffalo-trace-kentucky-straight-bourbon-whiskey/00080244009236?utm_source=openai" class="pick-card-buy" target="_blank" rel="noopener">Shop ReserveBar →</a>
+    <a href="/guide/bourbon-cigars/buffalo-trace/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -504,7 +522,7 @@
     <div class="pick-card-name">101 Proof Bourbon</div>
     <div class="pick-card-price">~$28</div>
     <p class="pick-card-bio">Higher proof, bigger flavor, still under thirty bucks. This is the bottle that teaches you what bourbon is supposed to taste like with the volume turned up. Great in an Old Fashioned because the proof stands up to the ice and sugar instead of disappearing.</p>
-    <a href="https://www.totalwine.com/search/all?text=wild+turkey+101" class="pick-card-buy" target="_blank" rel="noopener">Shop Total Wine →</a>
+    <a href="/guide/bourbon-cigars/wild-turkey-101/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -519,7 +537,7 @@
     <div class="pick-card-name">Single Barrel</div>
     <div class="pick-card-price">~$50</div>
     <p class="pick-card-bio">The step-up bottle for when you want to taste the difference. Higher proof, more complexity, and a price that still makes sense for a Tuesday. This is the one to pour when someone says they don't really like bourbon — it changes minds.</p>
-    <a href="https://www.totalwine.com/spirits/american-whiskey/whiskey/four-roses-obsk-single-barrel-bourbon/p/2126273745?utm_source=openai" class="pick-card-buy" target="_blank" rel="noopener">Shop ReserveBar →</a>
+    <a href="/guide/bourbon-cigars/four-roses-single-barrel/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -534,7 +552,7 @@
     <div class="pick-card-name">10 Year Single Barrel</div>
     <div class="pick-card-price">~$45 MSRP</div>
     <p class="pick-card-bio">Ten years old for around forty-five dollars at sticker price — which is why it's almost never on the shelf. If you spot it at MSRP, grab it; it punches like a bottle twice the price. Don't pay the crazy secondary markup, though — that's where the value evaporates.</p>
-    <a href="https://www.totalwine.com/search/all?text=eagle+rare+10+year" class="pick-card-buy" target="_blank" rel="noopener">Browse Total Wine →</a>
+    <a href="/guide/bourbon-cigars/eagle-rare-10/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -549,7 +567,7 @@
     <div class="pick-card-name">Original Single Barrel</div>
     <div class="pick-card-price">~$65 MSRP (allocated)</div>
     <p class="pick-card-bio">The bottle that looks as good as it tastes — the round decanter and the little horse-and-jockey stoppers are why it lives on the top shelf at every bar trying to impress. It earns the spot. Just know it's allocated, so expect a hunt or a markup.</p>
-    <a href="https://www.reservebar.com/collections/blantons" class="pick-card-buy" target="_blank" rel="noopener">Browse ReserveBar →</a>
+    <a href="/guide/bourbon-cigars/blantons-single-barrel/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -564,7 +582,7 @@
     <div class="pick-card-name">23 Year — The Overhyped One</div>
     <div class="pick-card-price">$3,000+ secondary</div>
     <p class="pick-card-bio">Here's the honest take nobody at the liquor store will give you: Pappy is very good, but you're paying thousands for the name and the chase. Want the Van Winkle profile without the insanity? Weller 12 is from the same distillery and the same mashbill — find it near retail and you've basically cracked the code.</p>
-    <a href="https://www.totalwine.com/search/all?text=weller+12+year+bourbon" class="pick-card-buy" target="_blank" rel="noopener">Shop Weller 12 Instead →</a>
+    <a href="/guide/bourbon-cigars/pappy-van-winkle-take/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -579,7 +597,7 @@
     <div class="pick-card-name">Serie V Cigar</div>
     <div class="pick-card-price">~$10/stick</div>
     <p class="pick-card-bio">A full-bodied, rich cigar that drinks well above its price — the one to hand a friend when you want them to think you really know cigars. Pairs perfectly with a higher-proof bourbon. If you're buying one box to learn on, make it this.</p>
-    <a href="https://www.famous-smoke.com/oliva-serie-v-cigars?ref=guytalk" class="pick-card-buy" target="_blank" rel="noopener">Shop Famous Smoke →</a>
+    <a href="/guide/bourbon-cigars/oliva-serie-v/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -594,7 +612,7 @@
     <div class="pick-card-name">Hemingway Short Story</div>
     <div class="pick-card-price">~$9/stick</div>
     <p class="pick-card-bio">A smooth, approachable, perfectly-made cigar that almost nobody dislikes — the safe pick for a group where not everyone smokes regularly. The short size means you're not committing to two hours. This is the cigar to keep on hand for celebrations.</p>
-    <a href="https://www.famous-smoke.com/arturo-fuente-cigars?ref=guytalk" class="pick-card-buy" target="_blank" rel="noopener">Shop Famous Smoke →</a>
+    <a href="/guide/bourbon-cigars/arturo-fuente-hemingway/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -609,7 +627,7 @@
     <div class="pick-card-name">Whisky Tasting Glass (Set of 2)</div>
     <div class="pick-card-price">~$25</div>
     <p class="pick-card-bio">The glass that actually makes whiskey taste better by funneling the aroma to your nose. Twenty-five bucks for the set, and it instantly makes you look like you take this seriously. The cheapest upgrade to your home bar by a mile.</p>
-    <a href="https://www.amazon.com/s?k=Glencairn+whisky+glass+set&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+    <a href="/guide/bourbon-cigars/glencairn-glass-set/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -624,7 +642,7 @@
     <div class="pick-card-name">King Cube Silicone Ice Tray</div>
     <div class="pick-card-price">~$12</div>
     <p class="pick-card-bio">Big, slow-melting cubes that chill your pour without watering it down in five minutes — the single detail that makes a home Old Fashioned feel like a bar one. Twelve dollars, lasts forever. Skip the gimmicky sphere molds; the square cube is the move.</p>
-    <a href="https://www.amazon.com/s?k=Tovolo+King+Cube+ice+tray&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+    <a href="/guide/bourbon-cigars/king-ice-cube-mold/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 

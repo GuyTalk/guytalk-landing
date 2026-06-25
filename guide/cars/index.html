@@ -267,6 +267,13 @@
     .picks-grid { grid-template-columns: 1fr; }
     .gnl-cta { display: none; }
     body { font-size: 16px; }
+  }
+  /* ── GUIDE TABS ── */
+  .guide-tabs{position:sticky;top:57px;z-index:90;background:rgba(249,248,245,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
+  .guide-tab:hover{color:var(--text);text-decoration:none;}
+  .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
   }</style>
 </head>
 <body>
@@ -280,6 +287,17 @@
     </div>
   </div>
 </nav>
+<div class="guide-tabs" id="guideTabs">
+  <div class="guide-tabs-inner">
+    <a href="/guide/style/"          class="guide-tab" data-path="style">Style</a>
+    <a href="/guide/watches/"        class="guide-tab" data-path="watches">Watches</a>
+    <a href="/guide/bourbon-cigars/" class="guide-tab" data-path="bourbon-cigars">Bourbon &amp; Cigars</a>
+    <a href="/guide/cars/"           class="guide-tab" data-path="cars">Cars</a>
+    <a href="/guide/fitness/"        class="guide-tab" data-path="fitness">Fitness</a>
+    <a href="/guide/accessories/"    class="guide-tab" data-path="accessories">Accessories</a>
+  </div>
+</div>
+<script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
 <div class="cat-band">
   <div class="gc">
     <div class="cat-band-crumb"><a href="/guide/">Guide</a><span class="cat-band-crumb-sep">/</span>Cars</div>
@@ -357,7 +375,7 @@
     <div class="pick-card-name">MX-5 Miata</div>
     <div class="pick-card-price">~$15k used / $30k new</div>
     <p class="pick-card-bio">The most fun per dollar in the entire car world, and every enthusiast quietly knows it. It's not fast on paper, but it's light, balanced, and grins ear to ear on any back road. Buying a Miata instead of a slow, heavy luxury SUV is the kind of move that earns instant respect from people who actually love cars.</p>
-    <a href="https://www.carsandbids.com/search#?q=miata" class="pick-card-buy" target="_blank" rel="noopener">Browse Cars &amp; Bids →</a>
+    <a href="/guide/cars/mazda-miata-mx5/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -372,7 +390,7 @@
     <div class="pick-card-name">911 (996 / 997 Generation)</div>
     <div class="pick-card-price">~$35k–$60k used</div>
     <p class="pick-card-bio">The aspirational car with actual taste behind it. An older 911 is understated, beautifully built, and signals 'knows cars' rather than 'just got money.' The 996 generation is the value entry point into the most iconic shape in motoring. It whispers where a new flashy German sedan shouts.</p>
-    <a href="https://bringatrailer.com/porsche/911/" class="pick-card-buy" target="_blank" rel="noopener">Browse Bring a Trailer →</a>
+    <a href="/guide/cars/used-porsche-911/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -387,7 +405,7 @@
     <div class="pick-card-name">Loud Exhaust, Big Rims, Leased Badge — Skip the Energy</div>
     <div class="pick-card-price">$0 down, $899/mo</div>
     <p class="pick-card-bio">The honest read: the loud-exhaust, blacked-out, leased-luxury-badge look is the car-world equivalent of a giant logo on a cheap shirt. Real car people see straight through it. A well-kept ordinary car says more about you than a stretched lease on something you're one missed payment from losing.</p>
-    <a href="https://www.carsandbids.com/search#?q=miata" class="pick-card-buy" target="_blank" rel="noopener">See the Alternative →</a>
+    <a href="/guide/cars/leased-amg-take/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -402,7 +420,7 @@
     <div class="pick-card-name">Boost Plus GB40 Jump Starter</div>
     <div class="pick-card-price">~$100</div>
     <p class="pick-card-bio">The thing that turns a ruined morning into a non-event. A compact lithium jump pack means you never need another car or a stranger to start yours — and you become the guy in the parking lot who saves everyone else. Lives in the trunk, charges your phone too. Buy it before you need it.</p>
-    <a href="https://www.amazon.com/s?k=NOCO+Boost+Plus+GB40&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+    <a href="/guide/cars/noco-boost-jump-starter/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -417,7 +435,7 @@
     <div class="pick-card-name">A129 Pro / A139 Dash Cam</div>
     <div class="pick-card-price">~$130</div>
     <p class="pick-card-bio">Cheap insurance against the one accident that's not your fault and the other driver lies about it. A good dash cam pays for itself the first time it settles a dispute or your insurance claim. VIOFO is the enthusiast pick for clear footage without the subscription nonsense some brands push.</p>
-    <a href="https://www.amazon.com/s?k=VIOFO+A139+dash+cam&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+    <a href="/guide/cars/viofo-dash-cam/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -432,7 +450,7 @@
     <div class="pick-card-name">Car Wash Starter Kit</div>
     <div class="pick-card-price">~$60</div>
     <p class="pick-card-bio">Washing your own car properly — two buckets, real soap, microfiber, not the gas-station brush that scratches everything — keeps a normal car looking sharp and an expensive car holding value. It's a cheap Sunday ritual that signals you respect what you own.</p>
-    <a href="https://www.amazon.com/s?k=Chemical+Guys+car+wash+starter+kit&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+    <a href="/guide/cars/chemical-guys-wash-kit/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -447,7 +465,7 @@
     <div class="pick-card-name">FloorLiner Mats</div>
     <div class="pick-card-price">~$180/set</div>
     <p class="pick-card-bio">The upgrade that protects resale value while making your interior feel custom. Laser-fit rubber mats catch every bit of salt, mud, and spilled coffee that would otherwise wreck your carpet. Boring? Yes. But a clean interior years from now is what separates a car that ages well from one that doesn't.</p>
-    <a href="https://www.weathertech.com/floor-liners/" class="pick-card-buy" target="_blank" rel="noopener">Shop WeatherTech →</a>
+    <a href="/guide/cars/weathertech-floor-mats/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -462,7 +480,7 @@
     <div class="pick-card-name">Leather Conditioner</div>
     <div class="pick-card-price">~$20</div>
     <p class="pick-card-bio">Twenty dollars that keeps leather seats from cracking and keeps a used car feeling expensive inside. A quick conditioning a couple times a year is the single highest-return thing you can do for an interior. The same bottle works on your boots and bags too.</p>
-    <a href="https://www.amazon.com/s?k=Leather+Honey+leather+conditioner&tag=guytalk-20" class="pick-card-buy" target="_blank" rel="noopener">Shop Amazon →</a>
+    <a href="/guide/cars/leather-honey-conditioner/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
