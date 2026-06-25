@@ -20,6 +20,45 @@
 
 const IMAGE_EXT_RE = /\.(jpe?g|png|webp|gif|avif)(?:[?#].*)?$/i;
 
+/**
+ * Strip CDN proxy layers and return the highest-quality direct image URL.
+ *
+ * Two common culprits:
+ *  1. WaPo imrs proxy — `imrs.php?src=<url>&w=N` — return the `src` param directly.
+ *  2. Guardian CDN with a baked-in watermark overlay (`overlay-base64=...`) — strip
+ *     all processing params except the format, return clean w=1400 version.
+ *     Note: Guardian CDN requires the `s=` signature param — if the URL already has
+ *     one we leave it alone; if building fresh we omit the overlay group only.
+ *
+ * Returns the original url unchanged if neither pattern matches.
+ */
+function cleanImageUrl(url) {
+  if (!url || typeof url !== 'string') return url;
+  try {
+    const u = new URL(url);
+    // 1. WaPo imrs proxy → unwrap the real src
+    if (/washingtonpost\.com.*imrs\.php/i.test(url)) {
+      const src = u.searchParams.get('src');
+      if (src) return src;
+    }
+    // 2. Guardian CDN — remove overlay/watermark params, bump quality + width
+    if (/i\.guim\.co\.uk/i.test(u.hostname)) {
+      const overlayKeys = ['overlay-align', 'overlay-width', 'overlay-base64', 'overlay-opacity'];
+      const hasOverlay = overlayKeys.some(k => u.searchParams.has(k));
+      if (hasOverlay) {
+        overlayKeys.forEach(k => u.searchParams.delete(k));
+        u.searchParams.set('width', '1400');
+        u.searchParams.set('quality', '95');
+        // Guardian requires valid s= signature — removing overlay invalidates it,
+        // so drop it entirely. Without overlay the CDN serves the image unsigned.
+        u.searchParams.delete('s');
+        return u.toString();
+      }
+    }
+  } catch { /* malformed URL — return as-is */ }
+  return url;
+}
+
 // Filename/URL signals that the image is NOT the people/action in the story —
 // a stadium/arena building, an aerial/exterior, a logo, a map, or a trophy on a
 // stand. We'd rather show no image than a building (Fix 6). Decoded + matched
@@ -229,6 +268,6 @@ async function resolveArticleImage({ articleUrl, preset, section = 'lead' }) {
 }
 
 module.exports = {
-  resolveAndValidate, resolveWikimedia, extractOgImage, isLiveImage, looksIrrelevant, IMAGE_EXT_RE,
+  resolveAndValidate, resolveWikimedia, extractOgImage, isLiveImage, looksIrrelevant, cleanImageUrl, IMAGE_EXT_RE,
   SECTION_FALLBACKS, ESPN_HEADSHOT, espnHeadshot, firstLiveImage, resolveAthleteImage, resolveArticleImage,
 };

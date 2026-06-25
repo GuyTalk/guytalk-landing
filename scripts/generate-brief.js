@@ -18,6 +18,7 @@ const { verifyBrief }                                               = require('.
 const { isExcluded, classifyTopic, scoreImportance }        = require('./lib/editorial-config');
 const { STREAMING_PICKS, buildPlayerLinksFromFacts, PLAYERS, officialPlayerUrl } = require('./lib/db');
 const { GENERATION_WARNINGS, addWarning, resetWarnings, formatWarnings } = require('./lib/warnings');
+const { cleanImageUrl } = require('./lib/images');
 
 const ROOT      = path.join(__dirname, '..');
 const BRIEF_DIR = path.join(ROOT, 'brief');
@@ -191,11 +192,32 @@ async function regenAll() {
     const ROOT = path.join(__dirname, '..');
     const { buildArchive } = require('./lib/archive');
     buildArchive(ROOT);
-    console.log(`  ✓ briefs/index.html archive updated\n`);
+    console.log(`  ✓ briefs/index.html archive updated`);
+    console.log(`  ✓ brief/index.html redirect updated`);
+    console.log(`  ✓ index.html + about/index.html + sitemap.xml updated\n`);
   } catch (e) {
     console.log(`  ⚠  Archive update failed: ${e.message}\n`);
   }
-  console.log('  Done. Deploy: git add . && git commit -m "Regen all briefs" && git push\n');
+
+  // --deploy flag: stage all regen-touched files and commit+push in one shot
+  if (process.argv.includes('--deploy')) {
+    const { execSync } = require('child_process');
+    const ROOT = path.join(__dirname, '..');
+    try {
+      execSync('git add brief/ briefs/ index.html about/index.html sitemap.xml', { cwd: ROOT, stdio: 'inherit' });
+      const slug = process.argv.find(a => a.startsWith('--slug='))?.replace('--slug=', '') || 'all';
+      execSync(`git commit -m "regen: rebuild ${slug} brief HTML + redirect + archive"`, { cwd: ROOT, stdio: 'inherit' });
+      // Rebase onto remote first (Vercel auto-commits can cause non-fast-forward)
+      try { execSync('git pull origin main --rebase', { cwd: ROOT, stdio: 'inherit' }); } catch (_) {}
+      execSync('git push origin main', { cwd: ROOT, stdio: 'inherit' });
+      console.log('  ✅ Deployed.\n');
+    } catch (e) {
+      console.log(`  ⚠  Deploy failed: ${e.message}\n`);
+    }
+    return;
+  }
+
+  console.log('  Done. Deploy: node scripts/generate-brief.js --regen --deploy\n');
 }
 
 // Auto-generate a brief title from raw data when AI title generation fails
@@ -267,7 +289,7 @@ function buildHeroOverride(dynamicSports) {
   if (!image) { const key = heroKeyForLabel(lead.label || lead.name); image = key !== 'default' ? `/assets/hero/${key}.jpg` : null; imageReal = false; }
 
   return {
-    image,
+    image: cleanImageUrl(image),
     imageReal,                              // real photo vs. brand fallback graphic
     eyebrow: lead.isLead ? 'The Lead' : (lead.label || lead.name),
     title: lead.headline || lead.label || lead.name,
@@ -822,6 +844,9 @@ async function main() {
     dynamicSports = dynamicSports.filter((s) => !isExcluded(s.label || s.name));
     if (dynamicSports.length !== beforeExcl) console.log(`   ⤫  Dropped ${beforeExcl - dynamicSports.length} excluded sport(s) per editorial-config`);
 
+    // Strip CDN proxy layers (WaPo imrs, Guardian overlay) from all sport images.
+    dynamicSports.forEach(s => { if (s.imageUrl) s.imageUrl = cleanImageUrl(s.imageUrl); });
+
     // Final dedup safety net: drop any image that still matches the previous issue
     // (research already avoids them, but never publish a repeat — render text-only).
     const prevSet = new Set(prevImageUrls);
@@ -846,6 +871,36 @@ async function main() {
     }
 
     copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick, factPack });
+
+    // Validate copy.lead — sometimes the model returns a bare array (ammo only) instead
+    // of the expected object. Detect and retry once with a tighter prompt.
+    if (copy && (Array.isArray(copy.lead) || !copy.lead?.headline)) {
+      console.log('   ⚠  copy.lead came back malformed (array or missing headline) — retrying lead section...');
+      addWarning('lead', 'retry', 'malformed lead — retried');
+      const { generateLeadOnly } = require('./lib/copy');
+      const retried = await generateLeadOnly({ sports, topStories, factPack });
+      if (retried?.headline) {
+        copy.lead = retried;
+        console.log(`   ✓ Lead retry succeeded: "${retried.headline}"`);
+      } else {
+        console.log('   ⚠  Lead retry also failed — brief will have no lead (QA will block)');
+      }
+    }
+
+    // Validate culture — QA requires minimum 2 items.
+    if (copy && Array.isArray(copy.culture) && copy.culture.length < 2) {
+      console.log(`   ⚠  culture has ${copy.culture.length} item(s), need 2 — retrying culture section...`);
+      addWarning('culture', 'retry', `only ${copy.culture.length} item(s)`);
+      const { generateCultureOnly } = require('./lib/copy');
+      const retriedCulture = await generateCultureOnly({ topStories, sectionStories, streamingPick, factPack });
+      if (Array.isArray(retriedCulture) && retriedCulture.length >= 2) {
+        copy.culture = retriedCulture;
+        console.log(`   ✓ Culture retry succeeded: ${retriedCulture.length} item(s)`);
+      } else if (Array.isArray(retriedCulture) && retriedCulture.length > (copy.culture?.length || 0)) {
+        copy.culture = retriedCulture;
+        console.log(`   ⚠  Culture retry improved to ${retriedCulture.length} item(s) — still under 2`);
+      }
+    }
 
     // Merge the three-label beats (from copy) into each discovered sport so the
     // template renders What happened / Why it matters / What to bring up per card.

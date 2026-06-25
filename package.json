@@ -8,6 +8,7 @@
     "brief:review": "node scripts/generate-brief.js --open",
     "brief:regen": "node scripts/generate-brief.js --regen",
     "brief:regen:copy": "node scripts/generate-brief.js --regen --copy",
+    "brief:deploy": "node scripts/generate-brief.js --regen --deploy",
     "brief:qa": "node scripts/qa-brief.js",
     "brief:edit": "node scripts/edit-brief.js",
     "brief:ship": "node scripts/generate-brief.js && node scripts/qa-brief.js",

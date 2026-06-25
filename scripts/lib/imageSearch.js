@@ -12,7 +12,7 @@
  * invent direct image URLs — CDN links hallucinate badly.
  */
 
-const { extractOgImage, isLiveImage, looksIrrelevant, resolveWikimedia, IMAGE_EXT_RE } = require('./images');
+const { extractOgImage, isLiveImage, looksIrrelevant, resolveWikimedia, cleanImageUrl, IMAGE_EXT_RE } = require('./images');
 
 const SEARCH_MODEL = process.env.OPENAI_RESEARCH_MODEL || 'gpt-4.1';
 
@@ -75,7 +75,7 @@ Just search and summarize what you found — I'll use the source URLs.`;
 
     // Try direct image URLs first (fastest path — usually CDN links in og:image values)
     for (const url of directImgUrls) {
-      const resolved = resolveWikimedia(url) || url;
+      const resolved = cleanImageUrl(resolveWikimedia(url) || url);
       if (!looksIrrelevant(resolved) && await isLiveImage(resolved)) {
         console.log(`   🖼  imageSearch hit (direct): ${resolved.slice(0, 80)}`);
         return resolved;
@@ -87,7 +87,7 @@ Just search and summarize what you found — I'll use the source URLs.`;
       try {
         const og = await extractOgImage(url);
         if (og && !looksIrrelevant(og)) {
-          const ogResolved = resolveWikimedia(og) || og;
+          const ogResolved = cleanImageUrl(resolveWikimedia(og) || og);
           if (await isLiveImage(ogResolved)) {
             console.log(`   🖼  imageSearch hit (og): ${ogResolved.slice(0, 80)}`);
             return ogResolved;

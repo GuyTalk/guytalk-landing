@@ -698,4 +698,95 @@ Return ONLY a valid JSON array — one object per story, in the SAME order, no m
   };
 }
 
-module.exports = { generateCopy };
+/**
+ * Retry just the lead section when generateCopy() produced a malformed lead.
+ * Uses a stricter, shorter prompt to minimise the chance of another array output.
+ */
+async function generateLeadOnly({ sports, topStories, factPack }) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) return null;
+  let Anthropic;
+  try { Anthropic = require('@anthropic-ai/sdk'); } catch (_) { return null; }
+  const client = new (Anthropic.default || Anthropic)({ apiKey });
+
+  const stories = Array.isArray(topStories) ? topStories : [];
+  const leadStory = stories.find(s => s.isLead) || stories[0] || null;
+  const gamesText = (sports || []).map((g, i) => {
+    const w = g.home.winner ? g.home : g.away;
+    const l = g.home.winner ? g.away : g.home;
+    return `[${i}] ${g.note || g.name}: ${w.team} ${w.score}–${l.score} ${l.team}${g.venue ? ` @ ${g.venue}` : ''}`;
+  }).join('\n');
+
+  const fpAmmo = Array.isArray(factPack?.lead?.ammo) ? factPack.lead.ammo : [];
+
+  const prompt = `${BRAND_VOICE}
+
+THE LEAD for today's GuyTalk. Write the single biggest story as a JSON OBJECT (not array).
+${leadStory ? `TODAY'S BIGGEST STORY: ${leadStory.headline}\nWhat happened: ${leadStory.whatHappened}\nWhy it matters: ${leadStory.whyItMatters}\n` : ''}
+${gamesText ? `Games:\n${gamesText}` : ''}
+${fpAmmo.length ? `AMMO FACTS: ${fpAmmo.join(' | ')}` : ''}
+
+CRITICAL: Return ONLY a single JSON object on one line. NOT an array. NOT markdown. Just one {…} object:
+{"gameIndex":0,"headline":"Max 10 words. The angle, not the score.","whatHappened":"1-2 sentences. Specific names and result.","whyBullet1":"One sentence — main reason this matters.","whyBullet2":"One sentence — a different angle.","theRead":"3-5 sentences. The GuyTalk Read — real angle, who benefits, what it signals.","ammo":["Specific fact 1","Specific fact 2","Specific fact 3"],"whatToSay":"One natural conversational line."}`;
+
+  try {
+    const res = await client.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 450,
+      messages: [{ role: 'user', content: prompt }],
+    });
+    const text = (res.content?.find(b => b.type === 'text') || res.content?.[0])?.text || '';
+    const parsed = parseJson(text);
+    if (parsed && !Array.isArray(parsed) && parsed.headline) return parsed;
+  } catch (_) {}
+  return null;
+}
+
+/**
+ * Retry just the culture section when generateCopy() returned fewer than 2 items.
+ */
+async function generateCultureOnly({ topStories, sectionStories, streamingPick, factPack }) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) return null;
+  let Anthropic;
+  try { Anthropic = require('@anthropic-ai/sdk'); } catch (_) { return null; }
+  const client = new (Anthropic.default || Anthropic)({ apiKey });
+
+  const stories = Array.isArray(topStories) ? topStories : [];
+  const cultureStories = stories.filter(s => {
+    const cat = (s.category || '').toLowerCase();
+    return !['sports','nba','nhl','mlb','nfl','ufc','f1','golf','world cup','soccer'].includes(cat);
+  });
+  const storyLines = cultureStories.slice(0, 5).map(s =>
+    `- ${s.headline}: ${s.whatHappened} (${s.whyItMatters})`
+  ).join('\n');
+
+  const webFacts = (sectionStories?.culture || []).map(c => c.fact || c.headline).filter(Boolean).join(' | ');
+
+  const prompt = `${BRAND_VOICE}
+
+Write the Culture section for today's GuyTalk. Return a JSON ARRAY of exactly 2-3 objects.
+Each object covers one story men 25-45 are actually talking about — entertainment, streaming, tech, gaming, sports business. NOT politics. NOT sports scores.
+
+TODAY'S STORIES:
+${storyLines || '(use your knowledge of current June 2026 culture — only confirmed real events)'}
+${webFacts ? `WEB-VERIFIED FACTS: ${webFacts}` : ''}
+${streamingPick ? `INCLUDE a streaming rec for "${streamingPick.head.replace('Watch this: ', '')}": tag="Streaming"` : ''}
+
+CRITICAL: Return ONLY a JSON array — no markdown, no extra text:
+[{"topic":"Max 8 words.","whatHappened":"1-2 sentences.","whyItMatters":"1-2 sentences.","theRead":"2-3 sentences. GuyTalk voice — take a side.","ammo":["fact1","fact2","fact3"],"whatToSay":"One casual line.","tag":"One of: Streaming, Gaming, Tech, Music, Sports Business, Politics"}]`;
+
+  try {
+    const res = await client.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 1400,
+      messages: [{ role: 'user', content: prompt }],
+    });
+    const text = (res.content?.find(b => b.type === 'text') || res.content?.[0])?.text || '';
+    const parsed = parseJson(text);
+    if (Array.isArray(parsed) && parsed.length >= 1) return parsed;
+  } catch (_) {}
+  return null;
+}
+
+module.exports = { generateCopy, generateLeadOnly, generateCultureOnly };
