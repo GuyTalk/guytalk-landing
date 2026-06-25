@@ -407,7 +407,12 @@
   .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
   .guide-tab:hover{color:var(--text);text-decoration:none;}
   .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
-  }</style>
+  }
+  .outfit-collage { padding: 0 !important; overflow: hidden; }
+  .outfit-collage-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; height: 100%; min-height: 340px; }
+  .outfit-collage-grid img { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--surface-2); }
+
+</style>
 </head>
 <body>
 <nav class="guide-nav">
@@ -445,10 +450,12 @@
     <div class="gsec-title">The Starter Bar</div>
     <div class="gsec-sub">Everything you need to pour like you know what you're doing.</div>
     <div class="outfit-board">
-      <div class="outfit-img">
-        <img src="/assets/guide/bourbon-cigars/bar-cart-set.jpg" alt="The Starter Bar" loading="lazy"
-             onerror="this.onerror=null;this.src='/assets/guide/bourbon-cigars/placeholder.svg'">
-      </div>
+      <div class="outfit-img outfit-collage"><div class="outfit-collage-grid">
+    <img src="/assets/guide/bourbon-cigars/buffalo-trace.jpg" alt="Buffalo Trace" loading="lazy">
+    <img src="/assets/guide/bourbon-cigars/glencairn-glass-set.jpg" alt="Glencairn" loading="lazy">
+    <img src="/assets/guide/bourbon-cigars/oliva-serie-v.jpg" alt="Oliva Serie V" loading="lazy">
+    <img src="/assets/guide/bourbon-cigars/king-ice-cube-mold.jpg" alt="Ice cube" loading="lazy">
+  </div></div>
       <div class="outfit-content">
         <div class="outfit-eyebrow">The Bar Cart</div>
         <div class="outfit-title">The Starter Bar</div>
@@ -460,28 +467,28 @@
               <div class="outfit-item-name">Buffalo Trace Kentucky Straight Bourbon</div>
               <div class="outfit-item-role">The everyday bottle — neat or in an Old Fashioned</div>
             </div>
-            <a href="https://www.reservebar.com/products/buffalo-trace-kentucky-straight-bourbon-whiskey/00080244009236?utm_source=openai" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/bourbon-cigars/buffalo-trace/" class="outfit-item-shop">Shop →</a>
           </li>
           <li class="outfit-item">
             <div class="outfit-item-info">
               <div class="outfit-item-name">Glencairn Whisky Tasting Glass (Set of 2)</div>
               <div class="outfit-item-role">The tasting glass</div>
             </div>
-            <a href="https://www.amazon.com/s?k=Glencairn+whisky+glass+set&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/bourbon-cigars/glencairn-glass-set/" class="outfit-item-shop">Shop →</a>
           </li>
           <li class="outfit-item">
             <div class="outfit-item-info">
               <div class="outfit-item-name">Tovolo King Cube Silicone Ice Tray</div>
               <div class="outfit-item-role">The big cube that won't water you down</div>
             </div>
-            <a href="https://www.amazon.com/s?k=Tovolo+King+Cube+ice+tray&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/bourbon-cigars/king-ice-cube-mold/" class="outfit-item-shop">Shop →</a>
           </li>
           <li class="outfit-item">
             <div class="outfit-item-info">
               <div class="outfit-item-name">Oliva Serie V Cigar</div>
               <div class="outfit-item-role">The cigar for when the night runs long</div>
             </div>
-            <a href="https://www.famous-smoke.com/oliva-serie-v-cigars?ref=guytalk" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/bourbon-cigars/oliva-serie-v/" class="outfit-item-shop">Shop →</a>
           </li>
         </ul>
         <p class="outfit-flashy">Nothing here is showing off. It's a setup that says you take the small things seriously — which is the whole point.</p>

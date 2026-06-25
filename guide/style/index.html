@@ -407,7 +407,12 @@
   .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
   .guide-tab:hover{color:var(--text);text-decoration:none;}
   .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
-  }</style>
+  }
+  .outfit-collage { padding: 0 !important; overflow: hidden; }
+  .outfit-collage-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; height: 100%; min-height: 340px; }
+  .outfit-collage-grid img { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--surface-2); }
+
+</style>
 </head>
 <body>
 <nav class="guide-nav">
@@ -445,10 +450,12 @@
     <div class="gsec-title">Friday: Office to Dinner</div>
     <div class="gsec-sub">One outfit, two settings, zero thinking.</div>
     <div class="outfit-board">
-  <div class="outfit-img">
-    <img src="/assets/guide/style/office-dinner-fit.jpg" alt="Friday: Office to Dinner outfit" loading="lazy"
-         onerror="this.onerror=null;this.src='/assets/guide/style/placeholder.svg'">
-  </div>
+  <div class="outfit-img outfit-collage"><div class="outfit-collage-grid">
+    <img src="/assets/guide/style/uniqlo-merino-crew.jpg" alt="Merino crew" loading="lazy">
+    <img src="/assets/guide/style/apc-petit-standard-denim.jpg" alt="APC denim" loading="lazy">
+    <img src="/assets/guide/style/taylor-stitch-chore-coat.jpg" alt="Chore coat" loading="lazy">
+    <img src="/assets/guide/style/beckett-simonon-chukka.jpg" alt="Chukka" loading="lazy">
+  </div></div>
   <div class="outfit-content">
     <div class="outfit-eyebrow">This Week's Fit</div>
     <div class="outfit-title">Friday: Office to Dinner</div>
@@ -459,35 +466,35 @@
         <div class="outfit-item-name">Uniqlo Extra Fine Merino Crewneck Sweater</div>
         <div class="outfit-item-role">Navy merino crew, layered on top</div>
       </div>
-      <a href="https://www.uniqlo.com/us/en/" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+      <a href="/guide/style/uniqlo-merino-crew/" class="outfit-item-shop">Shop →</a>
     </li>
 <li class="outfit-item">
       <div class="outfit-item-info">
         <div class="outfit-item-name">Spier &amp; Mackay Oxford Cloth Button-Down</div>
         <div class="outfit-item-role">Light blue oxford underneath, collar out</div>
       </div>
-      <a href="https://www.spierandmackay.com" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+      <a href="/guide/style/ocbd-oxford-button-down/" class="outfit-item-shop">Shop →</a>
     </li>
 <li class="outfit-item">
       <div class="outfit-item-info">
         <div class="outfit-item-name">A.P.C. Petit Standard Selvedge Jean</div>
         <div class="outfit-item-role">Dark selvedge denim</div>
       </div>
-      <a href="https://www.apc.fr/en-us" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+      <a href="/guide/style/apc-petit-standard-denim/" class="outfit-item-shop">Shop →</a>
     </li>
 <li class="outfit-item">
       <div class="outfit-item-info">
         <div class="outfit-item-name">Beckett Simonon Holt Suede Chukka Boot</div>
         <div class="outfit-item-role">Tobacco suede chukkas</div>
       </div>
-      <a href="https://www.beckettsimonon.com" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+      <a href="/guide/style/beckett-simonon-chukka/" class="outfit-item-shop">Shop →</a>
     </li>
 <li class="outfit-item">
       <div class="outfit-item-info">
         <div class="outfit-item-name">Taylor Stitch The Ojai Chore Coat</div>
         <div class="outfit-item-role">Olive chore coat for the walk out</div>
       </div>
-      <a href="https://www.taylorstitch.com" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+      <a href="/guide/style/taylor-stitch-chore-coat/" class="outfit-item-shop">Shop →</a>
     </li></ul>
     <p class="outfit-flashy">All neutrals, no logos, nothing shouting. This is the template for looking put-together without anyone being able to point to why.</p>
   </div>

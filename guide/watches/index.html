@@ -379,7 +379,12 @@
   .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
   .guide-tab:hover{color:var(--text);text-decoration:none;}
   .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
-  }</style>
+  }
+  .outfit-collage { padding: 0 !important; overflow: hidden; }
+  .outfit-collage-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; height: 100%; min-height: 340px; }
+  .outfit-collage-grid img { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--surface-2); }
+
+</style>
 </head>
 <body>
 <nav class="guide-nav">
@@ -417,10 +422,12 @@
     <div class="gsec-title">The Three-Watch Rotation</div>
     <div class="gsec-sub">Cover your whole life without spending Rolex money.</div>
     <div class="outfit-board">
-      <div class="outfit-img">
-        <img src="/assets/guide/watches/starter-collection.jpg" alt="The Three-Watch Rotation" loading="lazy"
-             onerror="this.onerror=null;this.src='/assets/guide/watches/placeholder.svg'">
-      </div>
+      <div class="outfit-img outfit-collage"><div class="outfit-collage-grid">
+    <img src="/assets/guide/watches/hamilton-khaki-field.jpg" alt="Hamilton Khaki" loading="lazy">
+    <img src="/assets/guide/watches/casio-world-time.jpg" alt="Casio" loading="lazy">
+    <img src="/assets/guide/watches/seiko-5-sports.jpg" alt="Seiko 5" loading="lazy">
+    <img src="/assets/guide/watches/leather-nato-strap.jpg" alt="NATO strap" loading="lazy">
+  </div></div>
       <div class="outfit-content">
         <div class="outfit-eyebrow">The Starter Collection</div>
         <div class="outfit-title">The Three-Watch Rotation</div>
@@ -432,21 +439,21 @@
               <div class="outfit-item-name">Hamilton Khaki Field Mechanical</div>
               <div class="outfit-item-role">The one good watch — works with everything</div>
             </div>
-            <a href="https://www.hamiltonwatch.com/en-us/h69439931?utm_source=openai" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/watches/hamilton-khaki-field/" class="outfit-item-shop">Shop →</a>
           </li>
           <li class="outfit-item">
             <div class="outfit-item-info">
               <div class="outfit-item-name">Casio A158 Steel Digital</div>
               <div class="outfit-item-role">The beater you never worry about</div>
             </div>
-            <a href="https://www.amazon.com/s?k=Casio+A158WA&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/watches/casio-world-time/" class="outfit-item-shop">Shop →</a>
           </li>
           <li class="outfit-item">
             <div class="outfit-item-info">
               <div class="outfit-item-name">Barton Quick-Release Leather &amp; NATO Straps</div>
               <div class="outfit-item-role">Strap swaps that turn one watch into three looks</div>
             </div>
-            <a href="https://www.amazon.com/s?k=Barton+quick+release+watch+strap&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/watches/leather-nato-strap/" class="outfit-item-shop">Shop →</a>
           </li>
         </ul>
         <p class="outfit-flashy">The flex here is restraint — a thoughtful three-watch setup beats one loud status piece every time, and the people who matter know it.</p>

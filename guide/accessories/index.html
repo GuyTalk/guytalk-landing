@@ -121,6 +121,11 @@
   .outfit-item-shop:hover{text-decoration:underline;}
   .outfit-caption{font-size:13px;color:var(--text-2);font-style:italic;margin-top:20px;padding-top:16px;border-top:1px solid var(--border);}
 </head>
+
+  .outfit-collage { padding: 0 !important; overflow: hidden; }
+  .outfit-collage-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; height: 100%; min-height: 340px; }
+  .outfit-collage-grid img { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--surface-2); }
+
 </style>
 <body>
 <nav class="guide-nav">
@@ -157,13 +162,12 @@
     <div class="section-eyebrow">THE COLLECTION</div>
     <h2 class="section-title">The Weekend Carry</h2>
     <div class="outfit-board">
-      <div class="outfit-img">
-        <div class="hub-outfit-visual">
-          <div class="hub-outfit-visual-num">01</div>
-          <div class="hub-outfit-visual-label">ACCESSORIES</div>
-          <div class="hub-outfit-visual-title">The Bag & Wallet Checklist</div>
-        </div>
-      </div>
+      <div class="outfit-img outfit-collage"><div class="outfit-collage-grid">
+    <img src="/assets/guide/accessories/bellroy-slim-wallet.jpg" alt="Bellroy" loading="lazy">
+    <img src="/assets/guide/accessories/filson-small-duffel.jpg" alt="Filson duffel" loading="lazy">
+    <img src="/assets/guide/accessories/persol-714-folding-sunglasses.jpg" alt="Persol 714" loading="lazy">
+    <img src="/assets/guide/accessories/korchmar-leather-weekender.jpg" alt="Korchmar weekender" loading="lazy">
+  </div></div>
       <div class="outfit-content">
         <div class="outfit-theme">The Weekend Carry</div>
         <div class="outfit-subtitle">Refined pieces that carry everything you need—without weighing you down</div>
@@ -173,28 +177,28 @@
               <div class="outfit-item-name">Twain 22" Leather Weekender</div>
               <div class="outfit-item-role">The rugged-yet-polished travel bag that organizes your essentials in style</div>
             </div>
-            <a href="https://www.korchmar.com/collections/assembled-in-usa/products/twain" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/accessories/korchmar-leather-weekender/" class="outfit-item-shop">Shop →</a>
           </div>
           <div class="outfit-item">
             <div class="outfit-item-info">
               <div class="outfit-item-name">Slim Card Leather Wallet</div>
               <div class="outfit-item-role">A minimalist, front‑pocket wallet that keeps only what matters—cards and cash</div>
             </div>
-            <a href="https://www.fontenellesupplyco.com/products/slim-card-wallet" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/accessories/bellroy-slim-wallet/" class="outfit-item-shop">Shop →</a>
           </div>
           <div class="outfit-item">
             <div class="outfit-item-info">
               <div class="outfit-item-name">Unisex Polarized Aviator Classic Sunglasses, RB3025</div>
               <div class="outfit-item-role">Timeless aviators offering glare‑reducing polarization for effortless weekend style</div>
             </div>
-            <a href="https://www.macys.com/shop/product/ray-ban-unisex-polarized-aviator-classic-sunglasses-rb3025?ID=1495533" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/accessories/ray-ban-wayfarer-classic/" class="outfit-item-shop">Shop →</a>
           </div>
           <div class="outfit-item">
             <div class="outfit-item-info">
               <div class="outfit-item-name">Tissot PR100 40 mm Quartz</div>
               <div class="outfit-item-role">A reliable, everyday watch with clean lines to keep you on time without trying too hard</div>
             </div>
-            <a href="https://www.tissotwatches.com/en-us/men/categories/classic.html" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/accessories/warby-parker-sport-sunglasses/" class="outfit-item-shop">Shop →</a>
           </div></div>
       </div>
     </div>

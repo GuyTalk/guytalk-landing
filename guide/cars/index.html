@@ -275,7 +275,12 @@
   .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
   .guide-tab:hover{color:var(--text);text-decoration:none;}
   .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
-  }</style>
+  }
+  .outfit-collage { padding: 0 !important; overflow: hidden; }
+  .outfit-collage-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; height: 100%; min-height: 340px; }
+  .outfit-collage-grid img { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--surface-2); }
+
+</style>
 </head>
 <body>
 <nav class="guide-nav">
@@ -313,10 +318,12 @@
     <div class="gsec-title">The Four Things That Make You the Guy Who's Never Stranded</div>
     <div class="gsec-sub">Under $300 total. The difference between owning a car and actually handling one.</div>
     <div class="outfit-board">
-      <div class="outfit-img">
-        <img src="/assets/guide/cars/trunk-kit.jpg" alt="The Trunk Kit" loading="lazy"
-             onerror="this.onerror=null;this.src='/assets/guide/cars/placeholder.svg'">
-      </div>
+      <div class="outfit-img outfit-collage"><div class="outfit-collage-grid">
+    <img src="/assets/guide/cars/noco-boost-jump-starter.jpg" alt="NOCO Boost" loading="lazy">
+    <img src="/assets/guide/cars/viofo-dash-cam.jpg" alt="VIOFO" loading="lazy">
+    <img src="/assets/guide/cars/chemical-guys-wash-kit.jpg" alt="Chemical Guys" loading="lazy">
+    <img src="/assets/guide/cars/weathertech-floor-mats.jpg" alt="WeatherTech" loading="lazy">
+  </div></div>
       <div class="outfit-content">
         <div class="outfit-eyebrow">The Trunk Kit</div>
         <div class="outfit-title">The Trunk Kit</div>
@@ -328,28 +335,28 @@
               <div class="outfit-item-name">NOCO Boost Plus GB40</div>
               <div class="outfit-item-role">Never stranded by a dead battery</div>
             </div>
-            <a href="https://www.amazon.com/s?k=NOCO+Boost+Plus+GB40&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/cars/noco-boost-jump-starter/" class="outfit-item-shop">Shop →</a>
           </li>
           <li class="outfit-item">
             <div class="outfit-item-info">
               <div class="outfit-item-name">VIOFO A139 Dash Cam</div>
               <div class="outfit-item-role">Settles any "whose fault was it"</div>
             </div>
-            <a href="https://www.amazon.com/s?k=VIOFO+A139+dash+cam&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/cars/viofo-dash-cam/" class="outfit-item-shop">Shop →</a>
           </li>
           <li class="outfit-item">
             <div class="outfit-item-info">
               <div class="outfit-item-name">Chemical Guys Car Wash Kit</div>
               <div class="outfit-item-role">Keeps it looking respected</div>
             </div>
-            <a href="https://www.amazon.com/s?k=Chemical+Guys+car+wash+starter+kit&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/cars/chemical-guys-wash-kit/" class="outfit-item-shop">Shop →</a>
           </li>
           <li class="outfit-item">
             <div class="outfit-item-info">
               <div class="outfit-item-name">Leather Honey Conditioner</div>
               <div class="outfit-item-role">Keeps the interior from aging</div>
             </div>
-            <a href="https://www.amazon.com/s?k=Leather+Honey+leather+conditioner&tag=guytalk-20" class="outfit-item-shop" target="_blank" rel="noopener">Shop →</a>
+            <a href="/guide/cars/leather-honey-conditioner/" class="outfit-item-shop">Shop →</a>
           </li>
         </ul>
         <p class="outfit-flashy">Nothing here shows off. It's all quiet competence — the prepared guy beats the flashy one every time.</p>
@@ -521,7 +528,7 @@
         <div class="deal-brand">NOCO</div>
         <div class="deal-price">$80 <span style="color:var(--text-3);font-weight:400;font-size:12px;text-decoration:line-through">$100</span></div>
         <div class="deal-note">Frequently runs 20% off on Amazon. Best compact lithium jump starter for most cars — fits in a glovebox and holds charge for months.</div>
-        <a href="https://www.amazon.com/s?k=NOCO+Boost+Plus+GB40&tag=guytalk-20" class="deal-link" target="_blank" rel="noopener">Shop →</a>
+        <a href="/guide/cars/noco-boost-jump-starter/" class="deal-link" target="_blank" rel="noopener">Shop →</a>
       </div>
       <div class="deal-card">
         <div class="deal-source">Amazon</div>
@@ -529,7 +536,7 @@
         <div class="deal-brand">Chemical Guys</div>
         <div class="deal-price">$50 <span style="color:var(--text-3);font-weight:400;font-size:12px;text-decoration:line-through">$75</span></div>
         <div class="deal-note">The complete starter kit — soap, two-bucket foam gun, microfiber towels. The full setup for a proper wash, not just a rinse.</div>
-        <a href="https://www.amazon.com/s?k=Chemical+Guys+car+wash+starter+kit&tag=guytalk-20" class="deal-link" target="_blank" rel="noopener">Shop →</a>
+        <a href="/guide/cars/chemical-guys-wash-kit/" class="deal-link" target="_blank" rel="noopener">Shop →</a>
       </div>
       <div class="deal-card">
         <div class="deal-source">WeatherTech</div>
