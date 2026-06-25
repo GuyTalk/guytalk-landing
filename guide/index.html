@@ -406,7 +406,43 @@
   .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
   .guide-tab:hover{color:var(--text);text-decoration:none;}
   .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
-  }</style>
+  }
+  /* Hub new categories grid */
+  .hub-new-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;}
+  @media(max-width:720px){.hub-new-grid{grid-template-columns:1fr;}}
+  .hub-new-card{display:block;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:28px;text-decoration:none;transition:border-color .2s,box-shadow .2s;position:relative;overflow:hidden;}
+  .hub-new-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);}
+  .hub-new-card--alt::before{background:var(--amber);}
+  .hub-new-card:hover{border-color:var(--accent);box-shadow:0 4px 24px rgba(43,111,255,.08);text-decoration:none;}
+  .hub-new-card--alt:hover{border-color:var(--amber);}
+  .hub-new-card-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  .hub-new-card--alt .hub-new-card-eyebrow{color:var(--amber);}
+  .hub-new-card-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em;line-height:1.2;color:var(--text);margin-bottom:10px;}
+  .hub-new-card-sub{font-size:14px;line-height:1.6;color:var(--text-2);margin-bottom:16px;}
+  .hub-new-card-picks{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;}
+  .hub-new-card-picks span{font-size:11px;font-weight:600;background:var(--surface-2);color:var(--text-2);padding:4px 10px;border-radius:20px;letter-spacing:.01em;}
+  .hub-new-card-cta{font-size:13px;font-weight:700;color:var(--accent);}
+  .hub-new-card--alt .hub-new-card-cta{color:var(--amber);}
+  /* Dark section */
+  .guide-section--dark{background:#0F1724;color:#fff;}
+  /* Quick takes */
+  .quick-takes-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px;}
+  @media(max-width:720px){.quick-takes-grid{grid-template-columns:1fr;}}
+  .qt-card{padding:20px 0;border-top:1px solid rgba(255,255,255,.1);}
+  .qt-num{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.3);margin-bottom:8px;}
+  .qt-title{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:16px;color:#fff;margin-bottom:8px;line-height:1.3;}
+  .qt-body{font-size:14px;line-height:1.6;color:rgba(255,255,255,.65);}
+  .qt-link{color:var(--accent);text-decoration:none;font-weight:600;}
+  .qt-link:hover{text-decoration:underline;}
+
+
+  /* Hub outfit visual fallback */
+  .hub-outfit-visual{display:flex;flex-direction:column;justify-content:center;padding:40px 36px;height:100%;background:linear-gradient(145deg,#0F1724 0%,#1a2840 50%,#2B6FFF 200%);box-sizing:border-box;}
+  .hub-outfit-visual-num{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:96px;line-height:1;color:rgba(255,255,255,.08);margin-bottom:-20px;}
+  .hub-outfit-visual-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:12px;}
+  .hub-outfit-visual-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:24px;color:#fff;line-height:1.2;}
+
+</style>
 </head>
 <body>
 <nav class="guide-nav">
@@ -462,6 +498,16 @@
   <div class="hub-cat-desc">What actually matters when you're buying, maintaining, or just talking about cars.</div>
   <div class="hub-cat-cta">Explore →</div>
 </a>
+<a href="/guide/fitness/" class="hub-cat-tile is-live">
+  <div class="hub-cat-name">Fitness</div>
+  <div class="hub-cat-desc">The equipment that earns its space. What to buy, what to skip, how to build a real home gym.</div>
+  <div class="hub-cat-cta">Explore →</div>
+</a>
+<a href="/guide/accessories/" class="hub-cat-tile is-live">
+  <div class="hub-cat-name">Accessories</div>
+  <div class="hub-cat-desc">The details that finish the look. Bags, wallets, and sunglasses that actually matter.</div>
+  <div class="hub-cat-cta">Explore →</div>
+</a>
     </div>
   </div>
 </div>
@@ -472,10 +518,10 @@
     <div class="gsec-title">Friday: Office to Dinner</div>
     <div class="gsec-sub">One outfit, two settings, zero thinking.</div>
     <div class="outfit-board">
-  <div class="outfit-img"><div class="outfit-img-ph">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        Photo coming soon
-      </div></div>
+  <div class="outfit-img">
+    <img src="/assets/guide/style/office-dinner-fit.jpg" alt="Friday: Office to Dinner outfit" loading="lazy"
+         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'hub-outfit-visual\'><div class=\'hub-outfit-visual-num\'>01</div><div class=\'hub-outfit-visual-label\'>THIS WEEK\'S FIT</div><div class=\'hub-outfit-visual-title\'>Friday: Office to Dinner</div></div>'">
+  </div>
   <div class="outfit-content">
     <div class="outfit-eyebrow">This Week's Fit</div>
     <div class="outfit-title">Friday: Office to Dinner</div>
@@ -530,7 +576,7 @@
     <div class="picks-grid">
       <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/peter-millar-polo.jpg" alt="Peter Millar Crown Comfort Pima Cotton Polo" loading="lazy"
+    <img src="/assets/guide/style/peter-millar-crown-comfort-polo.jpg" alt="Peter Millar Crown Comfort Pima Cotton Polo" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>P</div><div class=\'pick-card-img-ph-label\'>Peter Millar</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -539,12 +585,12 @@
     <div class="pick-card-name">Crown Comfort Pima Cotton Polo</div>
     <div class="pick-card-price">$110</div>
     <p class="pick-card-bio">The brand that quietly signals you've figured it out — no loud logo, just fabric and fit that older guys with money already know. A navy or olive polo here outdresses anything with a horse or alligator on it. This is the one we'd start a wardrobe with.</p>
-    <a href="https://www.millarstore.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Peter Millar →</a>
+    <a href="/guide/style/peter-millar-crown-comfort-polo/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/common-projects-achilles.jpg" alt="Common Projects Achilles Low White Leather Sneaker" loading="lazy"
+    <img src="/assets/guide/style/common-projects-achilles-low.jpg" alt="Common Projects Achilles Low White Leather Sneaker" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>C</div><div class=\'pick-card-img-ph-label\'>Common Projects</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -553,12 +599,12 @@
     <div class="pick-card-name">Achilles Low White Leather Sneaker</div>
     <div class="pick-card-price">$435</div>
     <p class="pick-card-bio">The minimalist white sneaker the design crowd settled on years ago. No logo, just clean Italian leather and a gold serial number stamped on the heel. They're expensive, and they're worth it because they go with literally everything and never look like you're trying. If the price stings, the Beckett Simonon Mason is the honest stand-in.</p>
-    <a href="https://www.commonprojects.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Common Projects →</a>
+    <a href="/guide/style/common-projects-achilles-low/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/style/taylor-stitch-ojai.jpg" alt="Taylor Stitch The Ojai Chore Coat" loading="lazy"
+    <img src="/assets/guide/style/taylor-stitch-chore-coat.jpg" alt="Taylor Stitch The Ojai Chore Coat" loading="lazy"
          onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>T</div><div class=\'pick-card-img-ph-label\'>Taylor Stitch</div></div>'">
   </div>
   <div class="pick-card-body">
@@ -567,9 +613,70 @@
     <div class="pick-card-name">The Ojai Chore Coat</div>
     <div class="pick-card-price">$165</div>
     <p class="pick-card-bio">The throw-on layer that turns a t-shirt and jeans into an outfit. A chore coat is the most useful jacket most guys don't own yet — rugged enough for weekends, sharp enough for a casual office. Get it in olive or tobacco and watch it become the thing you reach for every cool morning.</p>
-    <a href="https://www.taylorstitch.com" class="pick-card-buy" target="_blank" rel="noopener">Shop Taylor Stitch →</a>
+    <a href="/guide/style/taylor-stitch-chore-coat/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
+    </div>
+  </div>
+</div>
+
+<div class="guide-section">
+  <div class="gc">
+    <div class="gsec-eyebrow">New Categories</div>
+    <div class="gsec-title">Fitness &amp; Accessories Are Live.</div>
+    <div class="gsec-sub">Two new sections just dropped — gear for your home gym and the stuff that finishes an outfit.</div>
+    <div class="hub-new-grid">
+      <a href="/guide/fitness/" class="hub-new-card">
+        <div class="hub-new-card-eyebrow">FITNESS</div>
+        <div class="hub-new-card-title">Build the Home Gym That Doesn't Embarrass You</div>
+        <div class="hub-new-card-sub">Adjustable dumbbells, a pull-up bar, one recovery tool. That's 90% of what you need.</div>
+        <div class="hub-new-card-picks">
+          <span>Bowflex SelectTech 552</span>
+          <span>Theragun Prime</span>
+          <span>Nike Metcon 9</span>
+        </div>
+        <div class="hub-new-card-cta">Explore Fitness →</div>
+      </a>
+      <a href="/guide/accessories/" class="hub-new-card hub-new-card--alt">
+        <div class="hub-new-card-eyebrow">ACCESSORIES</div>
+        <div class="hub-new-card-title">The Details That Actually Matter</div>
+        <div class="hub-new-card-sub">A great wallet, one bag, the right sunglasses. The stuff people notice before they notice the clothes.</div>
+        <div class="hub-new-card-picks">
+          <span>Bellroy Note Sleeve</span>
+          <span>Filson Small Duffel</span>
+          <span>Persol 714</span>
+        </div>
+        <div class="hub-new-card-cta">Explore Accessories →</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="guide-section guide-section--dark">
+  <div class="gc">
+    <div class="gsec-eyebrow" style="color:rgba(255,255,255,.55)">Quick Takes</div>
+    <div class="gsec-title" style="color:#fff">Things Worth Knowing Right Now</div>
+    <div class="quick-takes-grid">
+      <div class="qt-card">
+        <div class="qt-num">01</div>
+        <div class="qt-title">The Cologne Everyone Wore in 2015 is Making a Comeback</div>
+        <div class="qt-body">Woody amber is back. Creed Aventus clones are everywhere and the originals are selling out. <a href="/guide/style/cologne-101/" class="qt-link">Read the Cologne 101 →</a></div>
+      </div>
+      <div class="qt-card">
+        <div class="qt-num">02</div>
+        <div class="qt-title">The One Watch Move That Changes Everything</div>
+        <div class="qt-body">A $20 NATO strap transforms any watch. The leather-backed version looks expensive. Nobody knows the difference. <a href="/guide/watches/leather-nato-strap/" class="qt-link">Read the full take →</a></div>
+      </div>
+      <div class="qt-card">
+        <div class="qt-num">03</div>
+        <div class="qt-title">Buffalo Trace is the Best $30 You Can Spend on Bourbon</div>
+        <div class="qt-body">It's at every bar, it never lets you down, and ordering it signals you actually know what you're doing. <a href="/guide/bourbon-cigars/buffalo-trace/" class="qt-link">Read why →</a></div>
+      </div>
+      <div class="qt-card">
+        <div class="qt-num">04</div>
+        <div class="qt-title">The Miata is Still the Best First Sports Car</div>
+        <div class="qt-body">Under $20K used, endlessly reliable, and more fun than anything that costs twice as much. We stand by it. <a href="/guide/cars/mazda-miata-mx5/" class="qt-link">Full breakdown →</a></div>
+      </div>
     </div>
   </div>
 </div>
