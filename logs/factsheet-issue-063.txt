@@ -1,0 +1,17 @@
+VERIFIED FACT SHEET — issue-063 — 2026-06-24T11:07:27.184Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Philadelphia Phillies 14–9 Washington Nationals (Final)
+  [SPORT] Kansas City Royals 12–5 Tampa Bay Rays (Final)
+  [SPORT] Houston Astros 9–7 Toronto Blue Jays (Final)
+  [GOLF] Travelers Championship | venue: see established facts | status: pre
+  [F1] Lenovo Austrian Grand Prix | P1: ? (?)
+  [MARKETS] SPY -1.45% | DIA -0.09% | QQQ -3.29%
+
+SOURCE: OpenAI web research
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

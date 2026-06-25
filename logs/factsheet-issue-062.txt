@@ -1,0 +1,23 @@
+VERIFIED FACT SHEET — issue-062 — 2026-06-23T11:05:43.076Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Chicago White Sox 6–5 Cleveland Guardians (Final)
+  [SPORT] Detroit Tigers 5–3 New York Yankees (Final)
+  [SPORT] Texas Rangers 4–3 Miami Marlins (Final)
+  [GOLF] U.S. Open | venue: see established facts | status: post
+  [F1] Lenovo Austrian Grand Prix | P1: ? (?)
+  [MARKETS] SPY -0.31% | DIA 0.30% | QQQ -0.36%
+
+SOURCE: OpenAI web research
+  [conf:5/5] S&P 500 and Nasdaq dip as big‑tech drags markets — Reuters
+  [conf:5/5] Court dismisses Trump‑era lawsuit over L.A. sanctuary policy — Reuters
+  [conf:4/5] China unveils world’s fastest supercomputer, overtaking U.S. — Reuters, BBC Science Focus
+  [conf:4/5] Oil prices fall as Strait of Hormuz reopens — Reuters
+  [conf:4/5] UK Prime Minister Keir Starmer resigns — Reuters
+  [conf:5/5] Hurricanes win Stanley Cup, end decades‑long drought — Hockey‑Reference, Reuters
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

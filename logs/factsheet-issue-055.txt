@@ -1,0 +1,21 @@
+VERIFIED FACT SHEET — issue-055 — 2026-06-18T14:21:38.542Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Miami Marlins 12–4 Philadelphia Phillies (Final)
+  [SPORT] Pittsburgh Pirates 12–4 Athletics (Final)
+  [SPORT] New York Yankees 10–5 Chicago White Sox (Final)
+  [GOLF] U.S. Open | venue: see established facts | status: in
+  [F1] Lenovo Austrian Grand Prix | P1: ? (?)
+  [MARKETS] SPY +0.67% | DIA 0.08% | QQQ 2.06%
+
+SOURCE: OpenAI web research
+  [conf:5/5] Fed holds rates steady but signals possible hikes later — Axios, Reuters
+  [conf:5/5] Stocks rebound after Iran peace deal eases oil fears — AP News
+  [conf:4/5] Intel shares drop after VLSI risk‑production milestone — ChartDojo
+  [conf:5/5] Apple’s Siri AI and iOS 27 debut at WWDC — TechRadar
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

@@ -1,0 +1,22 @@
+VERIFIED FACT SHEET — issue-054 — 2026-06-18T12:46:30.253Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Miami Marlins 12–4 Philadelphia Phillies (Final)
+  [SPORT] Pittsburgh Pirates 12–4 Athletics (Final)
+  [SPORT] New York Yankees 10–5 Chicago White Sox (Final)
+  [GOLF] U.S. Open | venue: see established facts | status: in
+  [F1] Lenovo Austrian Grand Prix | P1: ? (?)
+  [MARKETS] SPY -1.25% | DIA -0.99% | QQQ -1.01%
+
+SOURCE: OpenAI web research
+  [conf:5/5] Fed holds rates steady, Warsh signals future hikes — Reuters via Business Recorder
+  [conf:5/5] Stocks slide, dollar and yields rise after Fed tone — Reuters via Investing.com
+  [conf:5/5] U.S. Open begins at Shinnecock Hills — NBC Sports Philadelphia
+  [conf:4/5] World Cup qualifiers kick off today — Wikipedia (FIFA schedule)
+  [conf:5/5] Fed’s dot plot shows split but tilt to 2026 hike — Reuters via Business Recorder
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

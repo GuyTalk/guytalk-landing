@@ -1,0 +1,22 @@
+VERIFIED FACT SHEET — issue-061 — 2026-06-22T11:17:43.110Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] St. Louis Cardinals 12–10 Kansas City Royals (Final)
+  [SPORT] Los Angeles Angels 9–7 Athletics (Final)
+  [SPORT] Pittsburgh Pirates 8–6 Colorado Rockies (Final)
+  [GOLF] U.S. Open | venue: see established facts | status: post
+  [F1] Lenovo Austrian Grand Prix | P1: ? (?)
+  [MARKETS] SPY +0.78% | DIA -0.15% | QQQ 2.51%
+
+SOURCE: OpenAI web research
+  [conf:5/5] Fed keeps rates steady, signals possible hike in 2026 — Reuters
+  [conf:5/5] UK Prime Minister Keir Starmer resigns — Axios, AP
+  [conf:3/5] Fed inflation admission sends crypto reeling — Reddit (crypto finance)
+  [conf:3/5] MLB action underway across the country — wincalendar.com
+  [conf:4/5] SpaceX set to acquire AI startup Cursor for $60B — Reuters via Techmeme
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

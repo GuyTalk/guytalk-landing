@@ -1,0 +1,17 @@
+VERIFIED FACT SHEET — issue-060 — 2026-06-21T13:13:45.612Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Minnesota Twins 16–8 Arizona Diamondbacks (Final)
+  [SPORT] Philadelphia Phillies 15–3 New York Mets (Final)
+  [SPORT] Toronto Blue Jays 8–6 Chicago Cubs (Final)
+  [GOLF] U.S. Open | venue: see established facts | status: in
+  [F1] Lenovo Austrian Grand Prix | P1: ? (?)
+  [MARKETS] SPY +0.78% | DIA -0.15% | QQQ 2.51%
+
+SOURCE: OpenAI web research
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

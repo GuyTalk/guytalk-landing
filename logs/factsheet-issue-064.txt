@@ -1,0 +1,23 @@
+VERIFIED FACT SHEET — issue-064 — 2026-06-25T11:24:42.033Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Chicago Cubs 10–5 New York Mets (Final)
+  [SPORT] Colorado Rockies 8–6 Boston Red Sox (Final)
+  [SPORT] Chicago Cubs 10–3 New York Mets (Final)
+  [GOLF] Travelers Championship | venue: see established facts | status: pre
+  [F1] Lenovo Austrian Grand Prix | P1: ? (?)
+  [MARKETS] SPY -0.05% | DIA 0.37% | QQQ -0.42%
+
+SOURCE: OpenAI web research
+  [conf:5/5] Switzerland tops Group B with 2‑1 win over Canada — Washington Post (AP)
+  [conf:5/5] Rockies rally past Red Sox behind Carrigg’s 3 RBIs — Washington Post (AP)
+  [conf:5/5] Oil prices plunge as Middle East supply expectations rise — Wall Street Journal via Energy News (Reuters)
+  [conf:5/5] Trump flexes GOP clout after skipping housing bill signing — CBS News
+  [conf:5/5] US‑Iran talks produce 60‑day peace roadmap — Washington Post
+  [conf:5/5] “Great American State Fair” opens with Trump rally on National Mall — WTOP News
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

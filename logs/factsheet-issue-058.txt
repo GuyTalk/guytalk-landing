@@ -1,0 +1,17 @@
+VERIFIED FACT SHEET — issue-058 — 2026-06-20T12:48:31.093Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Athletics 12–11 Los Angeles Angels (Final)
+  [SPORT] Chicago Cubs 16–2 Toronto Blue Jays (Final)
+  [SPORT] Texas Rangers 9–7 San Diego Padres (Final)
+  [GOLF] U.S. Open | venue: see established facts | status: in
+  [F1] Lenovo Austrian Grand Prix | P1: ? (?)
+  [MARKETS] SPY +0.78% | DIA -0.15% | QQQ 2.51%
+
+SOURCE: OpenAI web research
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================
