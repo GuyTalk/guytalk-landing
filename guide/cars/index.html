@@ -280,6 +280,13 @@
   .outfit-collage-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; height: 100%; min-height: 340px; }
   .outfit-collage-grid img { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--surface-2); }
 
+
+  /* ── BRANDED FALLBACK TILE ── */
+  .pick-card-img-gt{background:linear-gradient(145deg,#0F1724,#1a2840);display:flex;align-items:center;justify-content:center;height:100%;}
+  .pci-gt-inner{text-align:center;padding:24px;}
+  .pci-gt-eyebrow{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#2B6FFF;margin-bottom:14px;}
+  .pci-gt-brand{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:20px;color:#fff;letter-spacing:-.02em;margin-bottom:6px;}
+  .pci-gt-name{font-size:11px;font-weight:600;color:rgba(255,255,255,.35);letter-spacing:.03em;}
 </style>
 </head>
 <body>
@@ -312,58 +319,7 @@
   </div>
 </div>
 
-<div class="guide-section">
-  <div class="gc">
-    <div class="gsec-eyebrow">The Trunk Kit</div>
-    <div class="gsec-title">The Four Things That Make You the Guy Who's Never Stranded</div>
-    <div class="gsec-sub">Under $300 total. The difference between owning a car and actually handling one.</div>
-    <div class="outfit-board">
-      <div class="outfit-img outfit-collage"><div class="outfit-collage-grid">
-    <img src="/assets/guide/cars/noco-boost-jump-starter.jpg" alt="NOCO Boost" loading="lazy">
-    <img src="/assets/guide/cars/viofo-dash-cam.jpg" alt="VIOFO" loading="lazy">
-    <img src="/assets/guide/cars/chemical-guys-wash-kit.jpg" alt="Chemical Guys" loading="lazy">
-    <img src="/assets/guide/cars/weathertech-floor-mats.jpg" alt="WeatherTech" loading="lazy">
-  </div></div>
-      <div class="outfit-content">
-        <div class="outfit-eyebrow">The Trunk Kit</div>
-        <div class="outfit-title">The Trunk Kit</div>
-        <div class="outfit-subtitle">The four things that make you the guy who's never stranded.</div>
-        <p class="outfit-writeup">You don't need to be a car person to carry yourself like one. You need a trunk that means a dead battery, a fender-bender, or a filthy car never ruins your day. A NOCO jump pack means you start your own car — and rescue the next guy. A dash cam quietly settles any dispute about whose fault it was. And a basic wash kit keeps whatever you drive looking like you respect it. Under three hundred dollars total, and it's the difference between owning a car and actually handling one.</p>
-        <ul class="outfit-items">
-          <li class="outfit-item">
-            <div class="outfit-item-info">
-              <div class="outfit-item-name">NOCO Boost Plus GB40</div>
-              <div class="outfit-item-role">Never stranded by a dead battery</div>
-            </div>
-            <a href="/guide/cars/noco-boost-jump-starter/" class="outfit-item-shop">Shop →</a>
-          </li>
-          <li class="outfit-item">
-            <div class="outfit-item-info">
-              <div class="outfit-item-name">VIOFO A139 Dash Cam</div>
-              <div class="outfit-item-role">Settles any "whose fault was it"</div>
-            </div>
-            <a href="/guide/cars/viofo-dash-cam/" class="outfit-item-shop">Shop →</a>
-          </li>
-          <li class="outfit-item">
-            <div class="outfit-item-info">
-              <div class="outfit-item-name">Chemical Guys Car Wash Kit</div>
-              <div class="outfit-item-role">Keeps it looking respected</div>
-            </div>
-            <a href="/guide/cars/chemical-guys-wash-kit/" class="outfit-item-shop">Shop →</a>
-          </li>
-          <li class="outfit-item">
-            <div class="outfit-item-info">
-              <div class="outfit-item-name">Leather Honey Conditioner</div>
-              <div class="outfit-item-role">Keeps the interior from aging</div>
-            </div>
-            <a href="/guide/cars/leather-honey-conditioner/" class="outfit-item-shop">Shop →</a>
-          </li>
-        </ul>
-        <p class="outfit-flashy">Nothing here shows off. It's all quiet competence — the prepared guy beats the flashy one every time.</p>
-      </div>
-    </div>
-  </div>
-</div>
+
 <div class="guide-section">
   <div class="gc">
     <div class="gsec-eyebrow">The Depth</div>
@@ -393,29 +349,42 @@
 
 <div class="pick-card">
   <div class="pick-card-img">
-    <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">T</div><div class="pick-card-img-ph-label">The Read</div></div>
+    <div class="pick-card-img-gt"><div class="pci-gt-inner"><div class="pci-gt-eyebrow">GuyTalk Guide</div><div class="pci-gt-brand">The Read</div><div class="pci-gt-name">Car Perception Guide</div></div></div>
   </div>
   <div class="pick-card-body">
     <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Read</span></div>
     <div class="pick-card-brand">The Read</div>
     <div class="pick-card-name">What Your Car Actually Signals</div>
-    <p class="pick-card-bio">Before the picks, the framework: a car is the most public thing you own, and people read it whether you like it or not. The hierarchy isn't about price — it's about whether the car looks like a choice or a reach. Restraint and condition read as taste; loud and leveraged read as trying. Everything be</p>
+    <p class="pick-card-bio">Before the picks, the framework: a car is the most public thing you own, and people read it whether you like it or not. The hierarchy isn't about price — it's about whether the car looks like a choice or a reach. Restraint and condition read as taste; loud and leveraged read as trying. Everything below is sorted by the signal each car sends — not by what we think you should spend.</p>
     <a href="/guide/cars/what-your-car-signals/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/cars/mazda-miata-mx5.jpg" alt="MX-5 Miata" loading="lazy"
-         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>M</div><div class=\'pick-card-img-ph-label\'>Mazda</div></div>'">
+    <div class="pick-card-img-gt"><div class="pci-gt-inner"><div class="pci-gt-eyebrow">GuyTalk Guide</div><div class="pci-gt-brand">BMW</div><div class="pci-gt-name">X5 (used, in-warranty)</div></div></div>
   </div>
   <div class="pick-card-body">
     <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-    <div class="pick-card-brand">Mazda</div>
-    <div class="pick-card-name">MX-5 Miata</div>
-    <div class="pick-card-price">~$15k used / $30k new</div>
-    <p class="pick-card-bio">The most fun per dollar in the car world, and the one car that earns instant respect from people who actually know. Driving a Miata signals you care about the thing itself, not the badge — which is the highest-status move there is in enthusiast circles. Nobody buys one to impress strangers, and that</p>
-    <a href="/guide/cars/mazda-miata-mx5/" class="pick-card-buy">Read Our Take →</a>
+    <div class="pick-card-brand">BMW</div>
+    <div class="pick-card-name">X5 (used, in-warranty)</div>
+    <div class="pick-card-price">~$45k–$65k used</div>
+    <p class="pick-card-bio">The default premium SUV for a reason — it drives better than almost anything its size, and the badge reads as 'arrived' without screaming. Used, in-warranty X5 is the smart money move: you get the full-size luxury SUV experience at half the new price, with BMW reliability that's much better than its reputation once you buy it outright instead of leasing it.</p>
+    <a href="/guide/cars/bmw-x5/" class="pick-card-buy">Read Our Take →</a>
+  </div>
+</div>
+
+<div class="pick-card">
+  <div class="pick-card-img">
+    <div class="pick-card-img-gt"><div class="pci-gt-inner"><div class="pci-gt-eyebrow">GuyTalk Guide</div><div class="pci-gt-brand">Mercedes-AMG</div><div class="pci-gt-name">C43 (used)</div></div></div>
+  </div>
+  <div class="pick-card-body">
+    <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+    <div class="pick-card-brand">Mercedes-AMG</div>
+    <div class="pick-card-name">C43 / C-Class AMG (used)</div>
+    <div class="pick-card-price">~$40k–$55k used</div>
+    <p class="pick-card-bio">This is how you do AMG without becoming the guy in the anti-pick below: a clean used C43 gives you real performance (48v mild hybrid, twin-scroll turbo), tasteful sport without the blacked-out lease-flex, and a badge that still reads as earned when you've clearly bought it. The C-Class platform is also genuinely one of the better-built Mercedes products.</p>
+    <a href="/guide/cars/mercedes-amg-c43/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
@@ -443,7 +412,7 @@
     <div class="pick-card-brand">Lexus</div>
     <div class="pick-card-name">LS / LC — The Smart-Money Luxury</div>
     <div class="pick-card-price">~$30k–$70k</div>
-    <p class="pick-card-bio">Here's the brand-perception secret nobody tells you: a clean Lexus reads as 'comfortable, unbothered, doesn't need to prove it' — and it'll outlast every German rival without the repair bills that quietly bankrupt badge-chasers. It's the move for guys who want real luxury without the lease-flex ener</p>
+    <p class="pick-card-bio">Here's the brand-perception secret nobody tells you: a clean Lexus reads as 'comfortable, unbothered, doesn't need to prove it' — and it'll outlast every German rival without the repair bills that quietly bankrupt badge-chasers. It's the move for guys who want real luxury without the lease-flex energy. Old money drives Lexus. New money leases a badge that costs 30% more to maintain.</p>
     <a href="/guide/cars/lexus-stealth-luxury/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
@@ -457,36 +426,35 @@
     <div class="pick-card-brand">Land Rover</div>
     <div class="pick-card-name">Range Rover — Status With an Asterisk</div>
     <div class="pick-card-price">~$80k+ new</div>
-    <p class="pick-card-bio">The honest read on the most aspirational SUV: new, it genuinely signals arrival — but leased or out of warranty, it flips fast to 'overextended,' because everyone knows the reliability reputation and the payment math. A Range Rover works when you can clearly afford it and falls apart as a signal the</p>
+    <p class="pick-card-bio">The honest read on the most aspirational SUV: new, it genuinely signals arrival — but leased or out of warranty, it flips fast to 'overextended,' because everyone knows the reliability reputation and the payment math. A Range Rover works when you can clearly afford it and falls apart as a signal the moment it reads as a stretch.</p>
     <a href="/guide/cars/range-rover-status-tell/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
 <div class="pick-card">
   <div class="pick-card-img">
-    <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">L</div><div class="pick-card-img-ph-label">Lamborghini</div></div>
+    <div class="pick-card-img-gt"><div class="pci-gt-inner"><div class="pci-gt-eyebrow">GuyTalk Guide</div><div class="pci-gt-brand">Lamborghini</div><div class="pci-gt-name">The Loud Exotic</div></div></div>
   </div>
   <div class="pick-card-body">
     <div class="pick-card-tag"><span class="gtag gtag-amber">Know What It Says</span></div>
     <div class="pick-card-brand">Lamborghini</div>
     <div class="pick-card-name">The Loud Exotic — Pure Flex, Read Accordingly</div>
     <div class="pick-card-price">~$250k+</div>
-    <p class="pick-card-bio">A loud exotic in a loud color is the most legible flex in the car world — it's designed to be seen, and it works exactly as intended. Nothing wrong with that if it's genuinely yours. But understand the read: a Lamborghini says 'look at me,' where an Aston Martin or a clean 911 Turbo says 'I have not</p>
+    <p class="pick-card-bio">A loud exotic in a loud color is the most legible flex in the car world — it's designed to be seen, and it works exactly as intended. Nothing wrong with that if it's genuinely yours. But understand the read: a Lamborghini says 'look at me,' where an Aston Martin or a clean 911 Turbo says 'I have nothing to prove.'</p>
     <a href="/guide/cars/lamborghini-flex-take/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
 
 <div class="pick-card">
   <div class="pick-card-img">
-    <img src="/assets/guide/cars/leased-amg-take.jpg" alt="Loud Exhaust, Big Rims, Leased Badge — Skip the Energy" loading="lazy"
-         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>T</div><div class=\'pick-card-img-ph-label\'>The Leased Badge</div></div>'">
+    <div class="pick-card-img-gt"><div class="pci-gt-inner"><div class="pci-gt-eyebrow">GuyTalk Guide</div><div class="pci-gt-brand">The Anti-Pick</div><div class="pci-gt-name">Skip the Lease Energy</div></div></div>
   </div>
   <div class="pick-card-body">
     <div class="pick-card-tag"><span class="gtag gtag-gray">The Anti-Pick</span></div>
     <div class="pick-card-brand">The Leased Badge</div>
     <div class="pick-card-name">Loud Exhaust, Big Rims, Leased Badge — Skip the Energy</div>
     <div class="pick-card-price">~$0 down, $899/mo</div>
-    <p class="pick-card-bio">The loud-exhaust, blacked-out, leased-luxury-badge look is the car-world equivalent of a giant logo on a cheap shirt. Real car people see straight through it instantly. A well-kept ordinary car says more about you than a stretched lease on something you're one missed payment from losing. Spend on ta</p>
+    <p class="pick-card-bio">The loud-exhaust, blacked-out, leased-luxury-badge look is the car-world equivalent of a giant logo on a cheap shirt. Real car people see straight through it instantly. A well-kept ordinary car says more about you than a stretched lease on something you're one missed payment from losing. Spend on taste, not performance theater.</p>
     <a href="/guide/cars/leased-amg-take/" class="pick-card-buy">Read Our Take →</a>
   </div>
 </div>
@@ -514,7 +482,7 @@
     <div class="pick-card-price">~$100</div>
     <p class="pick-card-bio">The thing that turns a ruined morning into a non-event. A compact lithium jump pack means you never need another car or a stranger to start yours — and you become the guy in the parking lot who saves everyone else. Lives in the trunk, charges your phone too. Buy it before you need it.</p>
     <a href="/guide/cars/noco-boost-jump-starter/" class="pick-card-buy">Read Our Take →</a>
-    <a href="https://www.amazon.com/s?k=NOCO+Boost+Plus+GB40&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+    <a href="https://www.amazon.com/dp/B075X2BXTJ?tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
   </div>
 </div>
 
@@ -530,7 +498,7 @@
     <div class="pick-card-price">~$130</div>
     <p class="pick-card-bio">Cheap insurance against the one accident that's not your fault and the other driver lies about it. A good dash cam pays for itself the first time it settles a dispute or a claim. VIOFO is the enthusiast pick for clear footage without the subscription nonsense some brands push.</p>
     <a href="/guide/cars/viofo-dash-cam/" class="pick-card-buy">Read Our Take →</a>
-    <a href="https://www.amazon.com/s?k=VIOFO+A139+dash+cam&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+    <a href="https://www.amazon.com/dp/B08QCM7FL1?tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
   </div>
 </div>
 
@@ -546,7 +514,7 @@
     <div class="pick-card-price">~$60</div>
     <p class="pick-card-bio">Washing your own car properly — two buckets, real soap, microfiber, not the gas-station brush that scratches everything — keeps a normal car looking sharp and an expensive car holding value. A cheap Sunday ritual that signals you respect what you own. Care reads as class.</p>
     <a href="/guide/cars/chemical-guys-wash-kit/" class="pick-card-buy">Read Our Take →</a>
-    <a href="https://www.amazon.com/s?k=Chemical+Guys+car+wash+kit&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+    <a href="https://www.chemicalguys.com/collections/car-wash-kits" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
   </div>
 </div>
 
@@ -562,7 +530,7 @@
     <div class="pick-card-price">~$20</div>
     <p class="pick-card-bio">Twenty dollars that keeps leather seats from cracking and keeps a used car feeling expensive inside. A quick conditioning a couple times a year is the highest-return thing you can do for an interior. The same bottle works on your boots and bags too.</p>
     <a href="/guide/cars/leather-honey-conditioner/" class="pick-card-buy">Read Our Take →</a>
-    <a href="https://www.amazon.com/s?k=Leather+Honey+conditioner&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+    <a href="https://www.amazon.com/dp/B00DPZ7QBQ?tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
   </div>
 </div>
 
