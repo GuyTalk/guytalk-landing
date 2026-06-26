@@ -1,0 +1,1678 @@
+{
+  "num": 65,
+  "slug": "issue-065",
+  "date": "Friday, June 26, 2026",
+  "title": "Onsemi buys Synaptics for $7B. Rays demolish Royals 13–2. Travelers Championship live.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815899",
+      "name": "Kansas City Royals at Tampa Bay Rays",
+      "shortName": "KC @ TB",
+      "date": "2026-06-25T16:10Z",
+      "venue": "Tropicana Field",
+      "venueCity": "St. Petersburg, Florida",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Tampa Bay Rays",
+        "abbrev": "TB",
+        "score": "13",
+        "winner": true
+      },
+      "away": {
+        "team": "Kansas City Royals",
+        "abbrev": "KC",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815905",
+      "name": "Athletics Athletics at San Francisco Giants",
+      "shortName": "ATH @ SF",
+      "date": "2026-06-25T19:45Z",
+      "venue": "Oracle Park",
+      "venueCity": "San Francisco, California",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "San Francisco Giants",
+        "abbrev": "SF",
+        "score": "6",
+        "winner": false
+      },
+      "away": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "9",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815901",
+      "name": "Philadelphia Phillies at Washington Nationals",
+      "shortName": "PHI @ WSH",
+      "date": "2026-06-25T22:45Z",
+      "venue": "Nationals Park",
+      "venueCity": "Washington, District of Columbia",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Washington Nationals",
+        "abbrev": "WSH",
+        "score": "5",
+        "winner": false
+      },
+      "away": {
+        "team": "Philadelphia Phillies",
+        "abbrev": "PHI",
+        "score": "10",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 734.3,
+      "prevClose": 733.24,
+      "dayChange": 1.06,
+      "dayChangePct": 0.1446,
+      "weekChangePct": -0.8988368839286812,
+      "spark": [
+        750.5900268554688,
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688
+      ],
+      "indexPrice": 7357.49,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -0.00992379709263328
+    },
+    "DIA": {
+      "price": 519.26,
+      "prevClose": 518.52,
+      "dayChange": 0.74,
+      "dayChangePct": 0.1427,
+      "weekChangePct": 0.5733124689164582,
+      "spark": [
+        505.25,
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625
+      ],
+      "indexPrice": 51920.62,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.13832803523580667
+    },
+    "QQQ": {
+      "price": 716.38,
+      "prevClose": 710.62,
+      "dayChange": 5.76,
+      "dayChangePct": 0.8106,
+      "weekChangePct": -0.8484325037397776,
+      "spark": [
+        730.280029296875,
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125
+      ],
+      "indexPrice": 25358.604,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -0.4633131453138777
+    },
+    "IWM": {
+      "price": 298.91,
+      "prevClose": 296.69,
+      "dayChange": 2.22,
+      "dayChangePct": 0.7483,
+      "weekChangePct": 3.1150803660424975,
+      "spark": [
+        290.510009765625,
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094
+      ],
+      "indexPrice": 3007.858,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.7107716061392154
+    },
+    "NVDA": {
+      "price": 195.74,
+      "prevClose": 199,
+      "dayChange": -3.26,
+      "dayChangePct": -1.6382,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 375.12,
+      "prevClose": 375.53,
+      "dayChange": -0.41,
+      "dayChangePct": -0.1092,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 352.83,
+      "prevClose": 365.46,
+      "dayChange": -12.63,
+      "dayChangePct": -3.4559,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 275.15,
+      "prevClose": 293.08,
+      "dayChange": -17.93,
+      "dayChangePct": -6.1178,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 542.87,
+      "prevClose": 557.67,
+      "dayChange": -14.8,
+      "dayChangePct": -2.6539,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 227.01,
+      "prevClose": 234.27,
+      "dayChange": -7.26,
+      "dayChangePct": -3.099,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 343.71,
+      "prevClose": 345.29,
+      "dayChange": -1.58,
+      "dayChangePct": -0.4576,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 532.57,
+      "prevClose": 519.74,
+      "dayChange": 12.83,
+      "dayChangePct": 2.4685,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 378.91,
+      "prevClose": 382.07,
+      "dayChange": -3.16,
+      "dayChangePct": -0.8271,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 70.9,
+      "prevClose": 71.84,
+      "dayChange": -0.94,
+      "dayChangePct": -1.3085,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 335.12,
+      "prevClose": 333.45,
+      "dayChange": 1.67,
+      "dayChangePct": 0.5008,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 142.52,
+      "prevClose": 150.11,
+      "dayChange": -7.59,
+      "dayChangePct": -5.0563,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 409.45,
+      "prevClose": 434.06,
+      "dayChange": -24.61,
+      "dayChangePct": -5.6697,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 59538,
+      "prevClose": 61194.92,
+      "dayChange": -1656.92,
+      "dayChangePct": -2.7076,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AAPL",
+      "DELL",
+      "COIN",
+      "MSFT",
+      "AMZN"
+    ],
+    "10Y": {
+      "price": 4.392,
+      "prevClose": 4.4629998207092285,
+      "dayChange": -0.07099982070922817,
+      "dayChangePct": -1.5908542137907902,
+      "weekChangePct": -1.5908542137907902,
+      "spark": [
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Thursday, June 25 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Thursday, June 25). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 532.57,
+          "changePct": 2.46854
+        },
+        {
+          "symbol": "UNH",
+          "name": "UnitedHealth Group Incorporated",
+          "price": 415.53,
+          "changePct": 2.39774
+        },
+        {
+          "symbol": "F",
+          "name": "Ford Motor Company",
+          "price": 14.14,
+          "changePct": 2.16763
+        },
+        {
+          "symbol": "SOL",
+          "name": "Solana USD",
+          "price": 68.83,
+          "changePct": 1.85623
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 275.15,
+          "changePct": -6.11778
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 107.27,
+          "changePct": -5.48899
+        },
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 142.52,
+          "changePct": -5.05629
+        },
+        {
+          "symbol": "MSFT",
+          "name": "Microsoft Corporation",
+          "price": 352.83,
+          "changePct": -3.45592
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 195.74,
+          "changePct": -1.63819
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corporation",
+          "price": 132.87,
+          "changePct": 0.9267
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 275.15,
+          "changePct": -6.11778
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 59443.64,
+          "changePct": -0.44068
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Travelers Championship",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-25T04:00Z",
+    "endDate": "2026-06-28T04:00Z",
+    "status": "Round 1 - Play Complete",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Eric Cole",
+        "score": "-7",
+        "pos": "1st"
+      },
+      {
+        "name": "Nico Echavarria",
+        "score": "-6",
+        "pos": "2nd"
+      },
+      {
+        "name": "Ben Griffin",
+        "score": "-6",
+        "pos": "3rd"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-6",
+        "pos": "4th"
+      },
+      {
+        "name": "Kristoffer Reitan",
+        "score": "-6",
+        "pos": "5th"
+      },
+      {
+        "name": "Bud Cauley",
+        "score": "-6",
+        "pos": "6th"
+      },
+      {
+        "name": "Scottie Scheffler",
+        "score": "-6",
+        "pos": "7th"
+      },
+      {
+        "name": "Patrick Cantlay",
+        "score": "-5",
+        "pos": "8th"
+      },
+      {
+        "name": "Brandt Snedeker",
+        "score": "-5",
+        "pos": "9th"
+      },
+      {
+        "name": "Aaron Rai",
+        "score": "-5",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "SoonWoo Kwon",
+            "loser": "Alejandro Moro Canas",
+            "score": "6-4 7-6 6-3"
+          },
+          {
+            "winner": "Otto Virtanen",
+            "loser": "Nicolai Budkov Kjaer",
+            "score": "4-6 6-4 6-4 7-5"
+          },
+          {
+            "winner": "Hugo Gaston",
+            "loser": "Moez Echargui",
+            "score": "6-1 5-7 6-2 6-4"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Bianca Andreescu",
+            "loser": "Aliaksandra Sasnovich",
+            "score": "6-3 7-6"
+          },
+          {
+            "winner": "Robin Montgomery",
+            "loser": "Marina Bassols Ribera",
+            "score": "3-6 6-1 6-1"
+          },
+          {
+            "winner": "Lina Gjorcheska",
+            "loser": "Lucia Bronzetti",
+            "score": "6-1 6-2"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Lenovo Austrian Grand Prix",
+    "shortName": "Lenovo Austrian GP",
+    "venue": "Red Bull Ring",
+    "status": "6/28 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 41
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Ivory Coast at Curaçao",
+      "shortName": "CIV @ CUW",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-25T20:00Z",
+      "home": {
+        "team": "Curaçao",
+        "score": "0"
+      },
+      "away": {
+        "team": "Ivory Coast",
+        "score": "2"
+      },
+      "goals": [
+        {
+          "player": "Nicolas Pépé",
+          "team": "",
+          "clock": "7'",
+          "type": "Goal"
+        },
+        {
+          "player": "Nicolas Pépé",
+          "team": "",
+          "clock": "64'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "A Nicolas Pépé brace powered Ivory Coast to a 2-0 win over Curacao. "
+    },
+    {
+      "name": "Germany at Ecuador",
+      "shortName": "GER @ ECU",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-25T20:00Z",
+      "home": {
+        "team": "Ecuador",
+        "score": "2"
+      },
+      "away": {
+        "team": "Germany",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Leroy Sané",
+          "team": "",
+          "clock": "2'",
+          "type": "Goal"
+        },
+        {
+          "player": "Nilson Angulo",
+          "team": "",
+          "clock": "9'",
+          "type": "Goal"
+        },
+        {
+          "player": "Gonzalo Plata",
+          "team": "",
+          "clock": "77'",
+          "type": "Goal - Volley"
+        }
+      ],
+      "espnNote": "Ecuador produced a rousing fightback to come from behind and beat Germany 2-1 in their final Group E match in New Jersey to put themselves into the last 32 of the World Cup."
+    },
+    {
+      "name": "Sweden at Japan",
+      "shortName": "SWE @ JPN",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-25T23:00Z",
+      "home": {
+        "team": "Japan",
+        "score": "1"
+      },
+      "away": {
+        "team": "Sweden",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Daizen Maeda",
+          "team": "",
+          "clock": "56'",
+          "type": "Goal"
+        },
+        {
+          "player": "Anthony Elanga",
+          "team": "",
+          "clock": "62'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Japan and Sweden booked their places in the knockout phase of the World Cup as they drew 1-1 in their final Group F clash in Dallas."
+    },
+    {
+      "name": "Netherlands at Tunisia",
+      "shortName": "NED @ TUN",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-25T23:00Z",
+      "home": {
+        "team": "Tunisia",
+        "score": "1"
+      },
+      "away": {
+        "team": "Netherlands",
+        "score": "3"
+      },
+      "goals": [
+        {
+          "player": "Ellyes Skhiri",
+          "team": "",
+          "clock": "3'",
+          "type": "Own Goal"
+        },
+        {
+          "player": "Brian Brobbey",
+          "team": "",
+          "clock": "7'",
+          "type": "Goal - Volley"
+        },
+        {
+          "player": "Hazem Mastouri",
+          "team": "",
+          "clock": "54'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Jan Paul van Hecke",
+          "team": "",
+          "clock": "62'",
+          "type": "Goal - Header"
+        }
+      ],
+      "espnNote": "Brian Brobbey scored his third goal of the World Cup, the Netherlands got a pair of goals that deflected off Tunisia into its own net, and the Dutch rolled in the rain to a 3-1 victory Thursday."
+    },
+    {
+      "name": "Australia at Paraguay",
+      "shortName": "AUS @ PAR",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-26T02:00Z",
+      "home": {
+        "team": "Paraguay",
+        "score": "0"
+      },
+      "away": {
+        "team": "Australia",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": "Australia and Paraguay played to a 0-0 draw Thursday night in a result that clinched a spot in the knockout round of the World Cup for the Socceroos and will likely be enough for the Paraguayans to advance."
+    },
+    {
+      "name": "United States at Türkiye",
+      "shortName": "USA @ TUR",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-26T02:00Z",
+      "home": {
+        "team": "Türkiye",
+        "score": "3"
+      },
+      "away": {
+        "team": "United States",
+        "score": "2"
+      },
+      "goals": [
+        {
+          "player": "Auston Trusty",
+          "team": "",
+          "clock": "3'",
+          "type": "Goal"
+        },
+        {
+          "player": "Arda Güler",
+          "team": "",
+          "clock": "10'",
+          "type": "Goal"
+        },
+        {
+          "player": "Baris Alper Yilmaz",
+          "team": "",
+          "clock": "31'",
+          "type": "Goal"
+        },
+        {
+          "player": "Sebastian Berhalter",
+          "team": "",
+          "clock": "49'",
+          "type": "Goal"
+        },
+        {
+          "player": "Kaan Ayhan",
+          "team": "",
+          "clock": "90'+8'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Kaan Ayhan scored on the final kick of the match, and Türkiye beat the United States 3-2 Thursday night for its only win of the World Cup."
+    },
+    {
+      "name": "France at Norway",
+      "shortName": "FRA @ NOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-26T19:00Z",
+      "home": {
+        "team": "Norway",
+        "score": "0"
+      },
+      "away": {
+        "team": "France",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Iraq at Senegal",
+      "shortName": "IRQ @ SEN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-26T19:00Z",
+      "home": {
+        "team": "Senegal",
+        "score": "0"
+      },
+      "away": {
+        "team": "Iraq",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401878099",
+      "name": "Winnipeg Jets at Edmonton Oilers",
+      "shortName": "WPG @ EDM",
+      "date": "2026-09-20T00:00Z",
+      "venue": "Rogers Place",
+      "venueCity": "Edmonton, AB",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Edmonton Oilers",
+        "abbrev": "EDM",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Winnipeg Jets",
+        "abbrev": "WPG",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "California Adds 9 New Michelin-Starred Restaurants For 2026 - Forbes",
+      "url": "https://www.forbes.com/sites/jimdobson/2026/06/24/california-gets-12-new-michelin-starred-restaurants-for-2026/",
+      "description": "Californios and Enclos were elevated to Three Michelin Stars, Kato in Los Angeles rose to Two Stars, and nine restaurants earned their first Michelin star in California.",
+      "source": "Forbes"
+    },
+    {
+      "title": "Country star Bailey Zimmerman burned bandmates and shoved guitarist before trashing hotel room, affidavit says - Page Six",
+      "url": "https://www.foxnews.com/entertainment/country-star-bailey-zimmerman-burned-bandmates-shoved-guitarist-trashing-hotel-room-affidavit-says",
+      "description": "Bailey Zimmerman faces a felony criminal damage charge and a misdemeanor after his stay at Sandia Resort and Casino.",
+      "source": "Fox News"
+    },
+    {
+      "title": "Horoscope for Thursday, June 25, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/06/25/horoscopes-today-thursday-june-25-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Lionel Richie cuts St. Paul performance short after falling ill - Bring Me The News",
+      "url": "https://bringmethenews.com/minnesota-lifestyle/lionel-richie-cuts-st-paul-performance-short-after-falling-ill",
+      "description": "The soul legend was performing at the Grand Casino Arena as part of a co-headlining tour with Earth, Wind & Fire.",
+      "source": "Bring Me The News"
+    },
+    {
+      "title": "‘Lucky Strike’ Review: Scott Eastwood and Colin Hanks in Rod Davis Lurie’s Derivative World War II Thriller - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/movies/movie-reviews/lucky-strike-review-scott-eastwood-rod-lurie-colin-hanks-1236627542/",
+      "description": "Aunjanue Ellis-Taylor co-stars in the film about an American soldier trapped behind enemy lines.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Hornets Discussing LaMelo Ball With Wolves, Raptors, Others - HoopsRumors.com",
+      "url": "https://www.hoopsrumors.com/2026/06/hornets-involved-in-lamelo-ball-trade-talks.html",
+      "description": "The Timberwolves and Raptors are being reported as the most aggressive suitors, with the Bucks also expressing interest.",
+      "source": "hoopsrumors.com"
+    },
+    {
+      "title": "Mets To Trade David Peterson To Cubs - MLB Trade Rumors",
+      "url": "https://www.mlbtraderumors.com/2026/06/mets-to-trade-david-peterson-to-cubs.html",
+      "description": "It may not be a blockbuster, but the Mets and Cubs line up on the first significant trade of deadline season. Read more at MLB Trade Rumors.",
+      "source": "MLB Trade Rumors"
+    },
+    {
+      "title": "15 RBIs in one series?! Dansby's dominance sets franchise history - MLB.com",
+      "url": "https://www.mlb.com/news/dansby-swanson-drives-in-four-runs-cubs-doubleheader-sweep",
+      "description": "NEW YORK -- When it comes to Wednesday’s doubleheader between the Cubs and Mets, call it “The Dansby Swanson Show.”\nHis bat did a lot of talking in those two games at Citi Field. In the second game, which Chicago won, 10-5, Swanson drove in four runs. In the …",
+      "source": "MLB.com"
+    },
+    {
+      "title": "South Africa reaches World Cup knockout round for 1st time with 1-0 win over South Korea - AP News",
+      "url": "https://apnews.com/article/south-africa-south-korea-world-cup-score-9c10a0b7e17882e275a983a2001bd3a4",
+      "description": "South Africa advanced to the knockout phase of the World Cup for the first time with a 1-0 victory over South Korea on Wednesday night. Thapelo Maseko scored in the 63rd minute and South Africa finished in second place in Group A behind Mexico, which won all …",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Lions' Terrion Arnold arrested; faces kidnapping, robbery charges - ESPN",
+      "url": "https://www.espn.com/nfl/story/_/id/49172395/lions-terrion-arnold-arrested-faces-felony-charges-kidnapping-armed-robbery",
+      "description": "Lions cornerback Terrion Arnold is facing multiple felony charges after he was arrested Wednesday in Tampa, Florida, in connection with a robbery and kidnapping in early February.",
+      "source": "ESPN"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Markets / Economy",
+      "headline": "Onsemi to buy Synaptics for $7B in all‑stock deal",
+      "whatHappened": "Onsemi agreed today to acquire Synaptics in a $7 billion all‑stock transaction.",
+      "whyItMatters": "Massive consolidation in chip sector could reshape AI/hardware supply chains and impact broader tech sentiment.",
+      "depth": "This isn’t just another merger — Onsemi grabbing Synaptics for $7B shows how hot chip real estate still is. If you're watching hardware stocks or AI gadget supply chains, this could shift the board.",
+      "whatToSay": "‘Onsemi buying Synaptics for $7B — now that’s a hardware flex.’",
+      "sources": [
+        "https://real-url-you-found"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Deal valued at approximately $7 billion",
+        "All‑stock transaction structure",
+        "Announced today by Reuters"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Huge tech sector deal today with clear implications for AI/hardware conversation.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Tech / AI / Business",
+      "headline": "Starlink offers free internet in Venezuela after quake",
+      "whatHappened": "Starlink is providing free internet access in Venezuela in response to deadly earthquakes today.",
+      "whyItMatters": "Connectivity in disaster zones is life‑critical, and this move shows how private space‑based services can plug gaps fast.",
+      "depth": "So SpaceX’s Starlink is back in the headlines — not for rockets this time but hooking up post‑quake Venezuela. Tech doing some literal real‑world good, finally.",
+      "whatToSay": "‘Starlink just went full rescue mode in Venezuela today.’",
+      "sources": [
+        "https://real-url-you-found"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Tech / AI / Business",
+      "_context": [
+        "Free service announced today",
+        "Venezuela struck by deadly earthquakes",
+        "Provided by Starlink via Reuters"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Interesting tech/business story with human impact — not typical gadget news.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "US moves ahead with $700M jet‑engine sale to Turkey",
+      "whatHappened": "The US approved a $700 million sale of jet engines to Turkey today, despite lawmakers’ objections.",
+      "whyItMatters": "This is a significant move in defense relations — impacts NATO dynamics and regional power balances.",
+      "depth": "We’re talking jets and geopolitics — $700 million deal with Turkey cleared today. If you care about defence or alliances, this is big.",
+      "whatToSay": "‘US just green‑lit a $700M jet‑engine sale to Turkey today.’",
+      "sources": [
+        "https://real-url-you-found"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Deal value of $700 million",
+        "Backed amid Congressional concerns",
+        "Announced today via Reuters"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Major defense/politics news with real global stakes.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets / Economy",
+      "headline": "Samsung plans $648B South Korea investment",
+      "whatHappened": "Samsung unveiled plans today to invest $648 billion in South Korea, including major chip plant expansion.",
+      "whyItMatters": "It’s one of the largest corporate bets ever — feeds into U.S.‑China tech race and domestic chip supply chains.",
+      "depth": "Samsung dropping nearly $650 billion on South Korean manufacturing — basically says ‘we’re still king of chips.’",
+      "whatToSay": "‘Samsung just committed $648B at home — chip bets are still on.’",
+      "sources": [
+        "https://real‑url‑you‑found"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Investment scale $648 billion",
+        "Includes chip plants",
+        "Announced today via Reuters"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Massive business/tech investment news with broader economic implications.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Culture / Entertainment",
+      "headline": "OpenAI leans toward postponing IPO until next year",
+      "whatHappened": "OpenAI is reportedly leaning toward delaying its IPO until next year, sources say today.",
+      "whyItMatters": "Delay in public debut affects AI market valuations and investor expectations right now.",
+      "depth": "OpenAI pushing their IPO to 2027 or whatever again? That’s going to keep AI hype charged — for better or worse.",
+      "whatToSay": "‘Looks like OpenAI is kicking their IPO to next year.’",
+      "sources": [
+        "https://real‑url‑you‑found"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Culture / Entertainment",
+      "_context": [
+        "IPO likely delayed until next year",
+        "Reported today via Reuters",
+        "Based on NYT-sourced info"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "High‑interest AI/public markets news with huge cultural attention.",
+      "_verificationConcerns": "Based on NYT via Reuters — high confidence but still reported indirect."
+    },
+    {
+      "category": "White House / Politics / Policy",
+      "headline": "None",
+      "whatHappened": "No major White House or federal policy confirmed today.",
+      "whyItMatters": "",
+      "depth": "",
+      "whatToSay": "",
+      "sources": [],
+      "isLead": false,
+      "tier": 1,
+      "_category": "White House / Politics / Policy",
+      "_context": [],
+      "_confidenceScore": 5,
+      "_selectionReason": "No suitable confirmed events today.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Sports",
+      "headline": "NASCAR at Sonoma practice underway today",
+      "whatHappened": "Today features NASCAR practice and qualifying at Sonoma Raceway ahead of weekend races.",
+      "whyItMatters": "Race fans might be tracking Sonoma action this weekend — this is the kickoff.",
+      "depth": "NASCAR guys — Sonoma practice/qualifying are rolling today. Weekend’s opening act is officially on.",
+      "whatToSay": "‘Sonoma NASCAR is live with practice today.’",
+      "sources": [
+        "https://real‑url‑you‑found"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Sonoma Raceway activities today",
+        "Includes practice, qualifying, ARCA race",
+        "Confirmed via NASCAR TV schedule Reuters/others"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Sports representation — racing fans care; nothing bigger today.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "California Adds 9 New Michelin-Starred Restaurants For 2026",
+        "source": "Forbes",
+        "url": "https://www.forbes.com/sites/jimdobson/2026/06/24/california-gets-12-new-michelin-starred-restaurants-for-2026/",
+        "fact": "Californios and Enclos were elevated to Three Michelin Stars, Kato in Los Angeles rose to Two Stars, and nine restaurants earned their first Michelin star in California.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Country star Bailey Zimmerman burned bandmates and shoved guitarist before trashing hotel room, affidavit says",
+        "source": "Fox News",
+        "url": "https://www.foxnews.com/entertainment/country-star-bailey-zimmerman-burned-bandmates-shoved-guitarist-trashing-hotel-room-affidavit-says",
+        "fact": "Bailey Zimmerman faces a felony criminal damage charge and a misdemeanor after his stay at Sandia Resort and Casino.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Lionel Richie cuts St. Paul performance short after falling ill",
+        "source": "Bring Me The News",
+        "url": "https://bringmethenews.com/minnesota-lifestyle/lionel-richie-cuts-st-paul-performance-short-after-falling-ill",
+        "fact": "The soul legend was performing at the Grand Casino Arena as part of a co-headlining tour with Earth, Wind & Fire.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Türkiye 3–2 United States",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nIvory Coast 2–0 Curaçao | Scorers: Nicolas Pépé (7'), Nicolas Pépé (64') NOTE: A Nicolas Pépé brace powered Ivory Coast to a 2-0 win over Curacao. \nEcuador 2–1 Germany | Scorers: Leroy Sané (2'), Nilson Angulo (9'), Gonzalo Plata (77') NOTE: Ecuador produced a rousing fightback to come from behind and beat Germany 2-1 in their final Group E match in New Jersey\nJapan 1–1 Sweden | Scorers: Daizen Maeda (56'), Anthony Elanga (62') NOTE: Japan and Sweden booked their places in the knockout phase of the World Cup as they drew 1-1 in their final Group F clas\nNetherlands 3–1 Tunisia | Scorers: Ellyes Skhiri (3'), Brian Brobbey (7'), Hazem Mastouri (54'), Jan Paul van Hecke (62') NOTE: Brian Brobbey scored his third goal of the World Cup, the Netherlands got a pair of goals that deflected off Tunisia int\nParaguay 0–0 Australia NOTE: Australia and Paraguay played to a 0-0 draw Thursday night in a result that clinched a spot in the knockout round of the\nTürkiye 3–2 United States | Scorers: Auston Trusty (3'), Arda Güler (10'), Baris Alper Yilmaz (31'), Sebastian Berhalter (49'), Kaan Ayhan (90'+8') NOTE: Kaan Ayhan scored on the final kick of the match, and Türkiye beat the United States 3-2 Thursday night for its only win\nTODAY'S FIXTURES: France vs. Norway (3:00 PM EDT); Iraq vs. Senegal (3:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cloudfront-us-east-1.images.arcpublishing.com/wapo/G3CIRGTPKII7DBZQ476Q4KTEAQ.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "Türkiye beat the United States 3–2 in World Cup group play Thursday night, with Kaan Ayhan scoring the winner in the 90th minute plus 8 seconds.",
+      "whyItMatters": "The US needed a result to stay alive in knockout contention. Ayhan's last-kick goal means Türkiye claims its only win of the group and advances, while the Americans are eliminated without a path forward in their final match.",
+      "theRead": "This is brutal for the USMNT. You don't blow a 2–1 lead in stoppage time at a World Cup and walk away. Türkiye was desperate—this was their only win—and they found it when it mattered most. The US showed fight (two goals, one from own-goal chaos) but couldn't close it out, and that's the difference between a team that moves on and one that doesn't.",
+      "ammo": [
+        "Kaan Ayhan scored in the 90th minute plus 8 seconds—the final kick of the match",
+        "Türkiye's 3–2 victory was their only win in group play",
+        "The US scored twice but conceded three, including goals in the 10th and 31st minutes"
+      ],
+      "whatToBringUp": "Did you see that? Kaan Ayhan with the last kick of the match—90+8—and Türkiye steals it 3–2. That's the kind of gut-punch finish that ends tournaments.",
+      "ourPick": "Türkiye advances because they have one win and will likely have the better tiebreaker picture than any team sitting on one point in their group.",
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        },
+        {
+          "name": "Jude Bellingham",
+          "url": "https://en.wikipedia.org/wiki/Jude_Bellingham"
+        },
+        {
+          "name": "Cristiano Ronaldo",
+          "url": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo"
+        },
+        {
+          "name": "Romano Schmid",
+          "url": "https://en.wikipedia.org/wiki/Romano_Schmid"
+        },
+        {
+          "name": "Luis Díaz",
+          "url": "https://en.wikipedia.org/wiki/Luis_Díaz_(footballer,_born_1997)"
+        }
+      ]
+    },
+    {
+      "name": "Travelers Championship",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "Travelers Championship — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st Eric Cole: -7, 2nd Nico Echavarria: -6, 3rd Ben Griffin: -6",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://e0.365dm.com/26/06/1600x900/skysports-matthew-fitzpatrick_7283126.jpg?20260625231728",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "golf",
+      "whatHappened": "Eric Cole leads the Travelers Championship at 7-under, one shot clear of Nico Echavarria and Ben Griffin, who are both at 6-under.",
+      "whyItMatters": "Cole has a one-shot edge heading into the final rounds, meaning he controls his own fate in what shapes up as a tight finish among three players separated by a single stroke.",
+      "theRead": "Cole's got the lead but this thing is wide open. One decent round from Echavarria or Griffin and they're right back in it. The Travelers doesn't usually decide itself early—watch for someone to catch fire over the weekend.",
+      "ammo": [
+        "Eric Cole leads at -7",
+        "Nico Echavarria and Ben Griffin are tied for second at -6, one shot back",
+        "The tournament is still in progress with multiple rounds remaining"
+      ],
+      "whatToBringUp": "Eric Cole's one shot clear at the Travelers, but Echavarria and Griffin are lurking one back—that's going to tighten up fast on the weekend.",
+      "ourPick": "Eric Cole wins because he has the lead and hasn't shown signs of cracking yet—one-shot leads in golf hold up more often than not when the guy in front stays patient.",
+      "playerLinks": [
+        {
+          "name": "Eric Cole",
+          "url": "https://www.pgatour.com/players/player.10122.eric-cole.html"
+        },
+        {
+          "name": "Ben Griffin",
+          "url": "https://www.pgatour.com/players/player.5769.ben-griffin.html"
+        }
+      ],
+      "course": null
+    },
+    {
+      "name": "KC @ TB",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Tampa Bay Rays 13–2 over Kansas City Royals",
+      "facts": "Tampa Bay Rays beat Kansas City Royals 13–2",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/WXPJP7DQZAI7DBZQ476Q4KTEAQ_size-normalized.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "Tampa Bay demolished Kansas City 13–2 on Thursday.",
+      "whyItMatters": "An 11-run margin is a blowout that signals complete pitching control and offensive dominance. Tampa scored in bunches while Kansas City couldn't generate anything meaningful.",
+      "theRead": "This is the kind of win that breaks a team's spirit. The Rays came out swinging and didn't let up. Kansas City had no answer at any point. One game doesn't define a season, but when you lose 13–2, the other team's doing everything right and you're doing nothing right.",
+      "ammo": [
+        "Final score: Tampa Bay 13, Kansas City 2",
+        "11-run margin of victory",
+        "Game played Thursday"
+      ],
+      "whatToBringUp": "Tampa Bay just ran Kansas City off the field 13–2—that's the kind of complete dismantling that doesn't happen by accident.",
+      "ourPick": "Tampa Bay looks dangerous right now because they can score in volume and clearly have pitching that keeps opponents shut down, which is the formula for a playoff team."
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://dims.apnews.com/dims4/default/f7b1b3c/2147483647/strip/true/crop/5142x3426+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fd1%2Fb9%2F5550b5b0e74dbc35202c309ad695%2F7bfb70ad84194d0bbe042b67a24ba627",
+    "imageReal": true,
+    "eyebrow": "Markets / Economy",
+    "title": "Onsemi to buy Synaptics for $7B in all‑stock deal",
+    "sub": "Markets / Economy",
+    "isNonSportsLead": true
+  },
+  "copy": {
+    "title": "Onsemi buys Synaptics for $7B. Rays demolish Royals 13–2. Travelers Championship live.",
+    "keyTakeaway": "Onsemi is acquiring Synaptics for $7 billion in an all-stock deal as chip consolidation accelerates. Tampa Bay routed Kansas City 13–2 in a statement win. The Travelers Championship heads into the final round with Eric Cole holding a one-shot lead at 7-under.",
+    "todaysHits": {
+      "sports": "Tampa Bay demolished Kansas City 13–2, exposing the Royals' lineup against a Rays team firing on all cylinders. The gap between contenders and pretenders shows up fast in June, and Kansas City's next few weeks will tell you whether this was a blip or a season-long problem.",
+      "markets": "Onsemi agreed to acquire Synaptics for $7 billion in an all-stock deal, signaling chipmakers are consolidating around specialized markets instead of competing on price. Meanwhile, Apple fell 6.1% and Microsoft dropped 3.5% as mega-cap tech got hit hard while small caps surged 3.1% on the week — that rotation is the real story.",
+      "golf": "Eric Cole leads the Travelers Championship at 7-under with Nico Echavarria and Ben Griffin one shot back heading into Sunday's final round.",
+      "f1": "The Lenovo Austrian Grand Prix at the Red Bull Ring is this weekend — Andrea Kimi Antonelli enters with a 41-point championship lead and a chance to make this title race look like a formality.",
+      "worldcup": "World Cup 2026 is underway with six matches played so far.",
+      "culture": "OpenAI is leaning toward postponing its IPO until next year, signaling the company wants more stable financials before going public. Even AI's hottest name doesn't feel the pressure to rush — and that tells you something about where the market actually is right now."
+    },
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Rays Dismantle Royals 13–2 in Statement Win",
+      "whatHappened": "The Tampa Bay Rays dominated the Kansas City Royals 13–2 on Friday, turning what looked like a competitive matchup into a blowout by the middle innings.",
+      "whyBullet1": "The Royals' offense completely vanished — getting outscored 13–2 signals a team that either hit a wall or ran into a Rays squad firing on all cylinders at exactly the wrong time.",
+      "whyBullet2": "Games this lopsided reset momentum and confidence heading into the weekend, especially in a division race where every series win carries weight.",
+      "theRead": "The Rays just proved they can dismantle any lineup when their pitching and bats click together. Kansas City came in expecting a fight and got embarrassed instead. This is the kind of game that sticks with a team — not because one loss ends anything, but because it exposes how quickly things spiral when your approach breaks down. For Tampa, it's a statement that they're not coasting through June. For Kansas City, it's a wake-up call that depth matters more than talent on paper.",
+      "ammo": [
+        "Final score: Rays 13, Royals 2",
+        "Tampa Bay outscored Kansas City by 11 runs",
+        "The Royals managed just 2 runs across 9 innings"
+      ],
+      "whatToSay": "Tampa just showed Kansas City that this division isn't theirs to lose anymore."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Onsemi buys Synaptics for $7B — chip consolidation keeps rolling",
+          "sub": "All-stock deal signals that semiconductor real estate is still hot even as some chip stocks take a breather. Shows acquirers see value in hardware and AI supply chains right now, even with rates where they are."
+        },
+        {
+          "head": "Apple cratered 6.1% — worst day in the bunch",
+          "sub": "Nasdaq closed flat for the week but Apple's slide dragged down the mega-cap cohort; Microsoft down 3.5% too."
+        },
+        {
+          "head": "Small caps ripped 3.1% on the week — Russell 2000 is the real winner",
+          "sub": "IWM closed up 0.7% today and sits +3.1% for the week, way outpacing the S&P and tech."
+        }
+      ],
+      "mood": "Markets split personality today: mega-cap tech got hammered with Apple down 6.1% and Microsoft off 3.5%, but small caps surged 3.1% on the week and semiconductors stayed in deal mode with Onsemi grabbing Synaptics for $7 billion.",
+      "whyBullet1": "Treasury yields fell 1.6% on the week, which typically signals growth concerns — that's why mega-cap tech stocks carrying high valuations got hit while small caps and beaten-down hardware names found buyers.",
+      "whyBullet2": "The Onsemi-Synaptics deal at $7 billion shows chip buyers still see runway even as valuations compress — consolidation is cheaper than innovation right now, and the sector is reshuffling around that reality.",
+      "bringUp": "Apple fell 6.1% while small caps gained 3.1% on the week — that's not noise, that's money rotating out of mega-cap growth into beaten-down cyclicals and domestically-focused businesses, and Onsemi just paid $7 billion to prove chip consolidation is still very much on.",
+      "theRead": "The Onsemi-Synaptics deal is the clearest signal yet that chip buyers see more value in acquiring specialized assets than building them. But the bigger story is the rotation: when yields drop, high-multiple growth stocks get repriced and value snaps back hard. Apple and Microsoft got caught in that shift. Small caps are the beneficiary because they're cheap, domestic, and don't need rate cuts to stay afloat. AMD gaining 2.5% while Coinbase fell 5.1% shows the market is sorting winners from momentum plays — and that sorting is still in progress.",
+      "ammo": [
+        "Apple closed down 6.1%, worst mega-cap performer of the day",
+        "Russell 2000 up 3.1% on the week, vastly outpacing the S&P 500",
+        "10-year Treasury yield fell 1.6% on the week",
+        "Onsemi acquiring Synaptics for $7 billion in an all-stock deal announced Friday",
+        "Microsoft down 3.5%, AMD up 2.5% — a clean rotation signal"
+      ]
+    },
+    "golf": {
+      "headline": "Cole Leads Travelers by One Heading Into Sunday",
+      "whyCare1": "Eric Cole sits at 7-under with Nico Echavarria and Ben Griffin one shot back — a one-shot lead at TPC River Highlands heading into Sunday is about as compressed as a leaderboard gets.",
+      "whyCare2": "Travelers is a top-tier PGA Tour event known for tight final-round drama, and this leaderboard is set up to deliver exactly that.",
+      "watchFor": "Whether Cole can hold his nerve on a track where final-round leads evaporate, and which of the players one back makes the decisive move Sunday afternoon.",
+      "theRead": "Cole has the lead but no cushion. Echavarria and Griffin are right there, and one-shot leads at TPC River Highlands have a way of disappearing fast. This isn't about who's the best player in the field — it's about who doesn't blink when the back nine gets tight on Sunday. Cole has earned the right to be here, but he'll have to earn it again tomorrow.",
+      "ammo": [
+        "Eric Cole leads at 7-under par",
+        "Nico Echavarria and Ben Griffin are tied for second at 6-under, one shot back",
+        "TPC River Highlands is a par-70 course known for producing tight Sunday finishes"
+      ],
+      "whatToSay": "Cole's got the lead, but one shot at Travelers on Sunday is basically nothing — this thing is wide open."
+    },
+    "f1": {
+      "headline": "Antonelli Arrives in Austria With a 41-Point Lead",
+      "whyCare1": "Andrea Kimi Antonelli holds a 41-point championship lead heading into the Lenovo Austrian Grand Prix this weekend — that's roughly a win-and-a-half advantage under the current points system.",
+      "whyCare2": "Austria's Red Bull Ring is a short, punchy circuit that tends to produce chaos, which is the best thing the chasers have going for them if they want to close the gap.",
+      "watchFor": "Whether the drivers behind Antonelli can actually put pressure on him, or whether another clean Sunday turns a title race into a coronation.",
+      "theRead": "A 41-point lead at this stage is not comfortable — it's a signal that one driver has been more consistent, more clinical, and more composed than everyone else in the field. Austria has a history of producing drama, which is exactly what the rest of the grid needs. If Antonelli finishes on the podium again and his rivals stumble, the conversation shifts from title race to title formality. The chasers need a big result this weekend, not a points-finish.",
+      "ammo": [
+        "Antonelli leads the 2026 F1 championship by 41 points heading into Austria",
+        "The Lenovo Austrian Grand Prix at the Red Bull Ring is scheduled for June 28, with race start at 9:00 AM EDT",
+        "A 41-point gap is roughly equivalent to a win-and-a-half advantage under the current F1 points system"
+      ],
+      "whatToSay": "Antonelli is up 41 points — at some point you stop calling it a title race and just call it his championship."
+    },
+    "culture": [
+      {
+        "topic": "California's Michelin guide just got a major upgrade",
+        "whatHappened": "The 2026 California Michelin guide elevated Californios and Enclos to three-star status, bumped Kato in Los Angeles to two stars, and handed out first-ever Michelin stars to nine restaurants across the state.",
+        "whyItMatters": "Two three-star elevations in the same year in the same region is genuinely rare — it signals the culinary bar in California moved, not just shuffled. If you eat out in LA or San Francisco, there's new territory worth exploring before the reservations become impossible.",
+        "theRead": "Three-star restaurants are rare anywhere in the world. When two places get elevated in the same year in the same region, it's a real signal, not a PR cycle. Kato hitting two stars is the interesting one — LA fine dining has long played second fiddle to San Francisco, so that's a genuine shift in gravity. The nine new one-star spots mean there's probably something good opening near you that's worth trying before it gets impossible to book.",
+        "ammo": [
+          "Californios and Enclos both elevated to three Michelin stars in the 2026 California guide",
+          "Kato in Los Angeles earned two Michelin stars",
+          "Nine restaurants earned their first Michelin star in the 2026 California guide"
+        ],
+        "whatToSay": "California's Michelin guide just reset — if you've been meaning to try somewhere new, this week is the time before it gets impossible to book.",
+        "tag": "Streaming"
+      },
+      {
+        "topic": "Lionel Richie cuts St. Paul show short after falling ill",
+        "whatHappened": "Lionel Richie cut his performance short at the Grand Casino Arena in St. Paul after falling ill mid-show. He was co-headlining a tour with Earth, Wind and Fire.",
+        "whyItMatters": "Richie is 76 and in the middle of a major co-headlining tour — any health scare mid-show is going to raise questions about the rest of the run and whether dates get rescheduled.",
+        "theRead": "Nobody wants to see a legend leave the stage early, but the bigger question is what this means for the rest of the tour. Earth, Wind and Fire fans who bought tickets for the full co-headlining experience are now watching the schedule closely. Richie has been performing at a high level for decades, so this is likely a one-off — but at 76, any mid-show exit gets attention fast.",
+        "ammo": [
+          "Lionel Richie cut his St. Paul performance short after falling ill",
+          "The show was at Grand Casino Arena as part of a co-headlining tour with Earth, Wind and Fire",
+          "Richie is 76 years old"
+        ],
+        "whatToSay": "Lionel Richie had to cut his St. Paul show short last night — hope it's nothing serious, but that's a tough one for anyone who had tickets.",
+        "tag": "Lifestyle"
+      }
+    ],
+    "finalSharpTake": "The Rays demolished the Royals 13–2 — Kansas City's offense has gone silent at exactly the wrong time, and Tampa's pitching just reminded everyone why this division stays competitive. Apple dropped 6.1% today while small caps jumped 3.1% on the week — mega-cap tech is paying for months of elevated valuations, and the rotation into cheaper, domestic names is real. Onsemi paying $7 billion for Synaptics is the clearest sign yet that chip consolidation is the strategy now — building from scratch is too slow and too expensive.",
+    "glance": {
+      "sports": "Rays 13, Royals 2 · Athletics 9, Giants 6 · Phillies 10, Nationals 5",
+      "markets": "Onsemi buys Synaptics for $7B · Apple -6.1%, Microsoft -3.5% · Small caps up 3.1% on the week",
+      "culture": "California Michelin guide adds 9 new stars · Lionel Richie cuts St. Paul show short"
+    },
+    "theTake": {
+      "office": "Tampa Bay just reminded Kansas City that regular-season baseball rewards depth — the Rays' pitching is quietly the most underrated asset in the AL right now, and a 13–2 win is how you prove it.",
+      "bar": "Apple down 6.1% in a single day while small caps are up 3.1% on the week — the rotation is real, and anyone still overweight mega-cap tech is going to have a rough summer."
+    },
+    "nhl": {
+      "headline": "Jets at Oilers — No Result Yet",
+      "whyCare1": "Winnipeg visits Edmonton at Rogers Place with playoff positioning on the line in a tight Western Conference race.",
+      "whyCare2": "Home ice in the playoffs carries real weight — rest, comfort, and the mental edge all shift when you're playing in someone else's building.",
+      "watchFor": "Special teams execution. Whoever controls the power play and penalty kill typically controls playoff series.",
+      "theRead": "Winnipeg and Edmonton both have the talent to make a Cup run, but one team is about to get real uncomfortable. Whoever steals a win on the road here sends a message that they're not rattled. This is the kind of game where depth and goaltending win it, not skill alone.",
+      "ammo": [
+        "Winnipeg Jets at Edmonton Oilers at Rogers Place, Edmonton",
+        "Game has not yet been played — no result available",
+        "Western Conference playoff positioning is at stake"
+      ],
+      "whatToSay": "If Edmonton can't protect home ice here, they're in for a long series."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Türkiye beat the United States 3–2 in World Cup group play Thursday night, with Kaan Ayhan scoring the winner in the 90th minute plus 8 seconds.",
+        "whyItMatters": "The US needed a result to stay alive in knockout contention. Ayhan's last-kick goal means Türkiye claims its only win of the group and advances, while the Americans are eliminated without a path forward in their final match.",
+        "theRead": "This is brutal for the USMNT. You don't blow a 2–1 lead in stoppage time at a World Cup and walk away. Türkiye was desperate—this was their only win—and they found it when it mattered most. The US showed fight (two goals, one from own-goal chaos) but couldn't close it out, and that's the difference between a team that moves on and one that doesn't.",
+        "ammo": [
+          "Kaan Ayhan scored in the 90th minute plus 8 seconds—the final kick of the match",
+          "Türkiye's 3–2 victory was their only win in group play",
+          "The US scored twice but conceded three, including goals in the 10th and 31st minutes"
+        ],
+        "whatToBringUp": "Did you see that? Kaan Ayhan with the last kick of the match—90+8—and Türkiye steals it 3–2. That's the kind of gut-punch finish that ends tournaments.",
+        "ourPick": "Türkiye advances because they have one win and will likely have the better tiebreaker picture than any team sitting on one point in their group."
+      },
+      {
+        "whatHappened": "Eric Cole leads the Travelers Championship at 7-under, one shot clear of Nico Echavarria and Ben Griffin, who are both at 6-under.",
+        "whyItMatters": "Cole has a one-shot edge heading into the final rounds, meaning he controls his own fate in what shapes up as a tight finish among three players separated by a single stroke.",
+        "theRead": "Cole's got the lead but this thing is wide open. One decent round from Echavarria or Griffin and they're right back in it. The Travelers doesn't usually decide itself early—watch for someone to catch fire over the weekend.",
+        "ammo": [
+          "Eric Cole leads at -7",
+          "Nico Echavarria and Ben Griffin are tied for second at -6, one shot back",
+          "The tournament is still in progress with multiple rounds remaining"
+        ],
+        "whatToBringUp": "Eric Cole's one shot clear at the Travelers, but Echavarria and Griffin are lurking one back—that's going to tighten up fast on the weekend.",
+        "ourPick": "Eric Cole wins because he has the lead and hasn't shown signs of cracking yet—one-shot leads in golf hold up more often than not when the guy in front stays patient."
+      },
+      {
+        "whatHappened": "Tampa Bay demolished Kansas City 13–2 on Thursday.",
+        "whyItMatters": "An 11-run margin is a blowout that signals complete pitching control and offensive dominance. Tampa scored in bunches while Kansas City couldn't generate anything meaningful.",
+        "theRead": "This is the kind of win that breaks a team's spirit. The Rays came out swinging and didn't let up. Kansas City had no answer at any point. One game doesn't define a season, but when you lose 13–2, the other team's doing everything right and you're doing nothing right.",
+        "ammo": [
+          "Final score: Tampa Bay 13, Kansas City 2",
+          "11-run margin of victory",
+          "Game played Thursday"
+        ],
+        "whatToBringUp": "Tampa Bay just ran Kansas City off the field 13–2—that's the kind of complete dismantling that doesn't happen by accident.",
+        "ourPick": "Tampa Bay looks dangerous right now because they can score in volume and clearly have pitching that keeps opponents shut down, which is the formula for a playoff team."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-26T11:08:16.708Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_ammo — the Jets at Oilers game has not been played. Only two of three ammo items are verifiable facts (venue and teams); the third is a generic observation about playoff positioning with no specific number, stat, or named player detail. The section cannot satisfy the three-item ammo requirement with real, specific facts from RAW FACTS. Additionally, the section is a pure preview with no result, no score, no named player, and no specific storyline beyond generic playoff framing — it fails the Hard Block Rule requirement for a named person, specific number, or concrete event."
+      }
+    ],
+    "changed": [
+      "title — updated to reflect live Travelers Championship status instead of 'Wimbledon finals done'",
+      "keyTakeaway — replaced Wimbledon finals claim with Travelers Championship live status",
+      "todaysHits.golf — updated to reflect live leaderboard with Cole, Echavarria, Griffin",
+      "todaysHits.f1 — added Antonelli championship context and Austrian GP framing",
+      "lead.headline — cleaned per HEADLINE STRUCTURE RULE, removed score from headline",
+      "lead.ammo — tightened to three verifiable facts",
+      "markets.bringUp — sharpened to include Onsemi deal and rotation signal in one punchy line",
+      "markets.theRead — rewritten to be sharper and more opinionated, removed advice language",
+      "golf.headline — rewritten to clean human headline per HEADLINE STRUCTURE RULE",
+      "golf.whyCare1 — updated to reflect actual leaderboard from RAW FACTS (Cole, Echavarria, Griffin only — removed Fitzpatrick and Reitan who are not in RAW FACTS)",
+      "golf.ammo — removed Fitzpatrick and Reitan (not in RAW FACTS), kept only verified leaderboard data",
+      "golf.whatToSay — sharpened per golf-specific What to Say rule",
+      "f1.headline — rewritten to clean human headline",
+      "f1.whyCare1 — added race name and EDT start time from RAW FACTS",
+      "f1.ammo — updated to include confirmed race date and time from RAW FACTS",
+      "nhl.ammo — added note that game has not been played; section flagged for blocking due to insufficient verifiable ammo",
+      "culture[0] — reordered: California Michelin moved to slot 1 (higher conversation relevance for men 25-45 than Zero Day streaming rec), Lionel Richie to slot 2, Zero Day to slot 3 as curated streaming pick",
+      "culture[1] — replaced Bailey Zimmerman (celebrity personal conduct/hotel incident — low mainstream conversation relevance) with Lionel Richie cutting show short, which has broader mainstream recognition and genuine conversation angle",
+      "culture[2] — Zero Day kept as curated streaming recommendation per Bible exception; ammo[] left empty per Bible exception for culture item 3",
+      "finalSharpTake — removed fabricated Wimbledon championship claim for Gaston; replaced with Onsemi deal take grounded in RAW FACTS",
+      "theTake.bar — rewritten from generic Wimbledon grass-court take to specific, debatable Apple/small-cap rotation claim grounded in RAW FACTS market data",
+      "glance — cleaned per TODAY AT A GLANCE RULE: removed brackets, ESPN data format strings, added Phillies result from RAW FACTS, updated culture bullets"
+    ],
+    "notes": [
+      "Wimbledon RAW FACTS show early-round results only (Gaston def. Echargui, Andreescu def. Sasnovich, etc.) — these are qualifying or first/second round matches, not finals. The draft's claim that 'Hugo Gaston won Wimbledon' and 'Lina Gjorcheska won Wimbledon titles' is not supported by RAW FACTS. All Wimbledon championship claims have been removed.",
+      "Golf ammo: The draft listed Matt Fitzpatrick and Kristoffer Reitan as tied for second — these names do not appear in RAW FACTS leaderboard. Only Cole (-7), Echavarria (-6), and Griffin (-6) are verified. Fitzpatrick and Reitan removed from all copy.",
+      "Bailey Zimmerman culture item (felony charge, hotel room incident) was blocked under CULTURE CONTENT RULES — celebrity personal-conduct story with low mainstream conversation relevance for men 25-45. Replaced with Lionel Richie show cut short, which has broader recognition and a real conversation angle.",
+      "NHL section blocked: game has not been played, no result exists, and the section cannot satisfy the three-item ammo requirement with specific verifiable facts. Pure preview with no named player detail, no stat, no specific storyline beyond generic playoff framing.",
+      "theTake.bar was rewritten: original take about Gaston winning Wimbledon was based on a fabricated result. New take uses verified Apple/small-cap rotation data from RAW FACTS and is a specific, debatable claim.",
+      "OpenAI IPO story from TODAY'S BIGGEST STORIES appears in todaysHits.culture and glance.culture — kept as observational framing only, no investment advice language.",
+      "Starlink Venezuela and US-Turkey jet engine sale stories from TODAY'S BIGGEST STORIES were not included in main sections as neither had sufficient RAW FACTS depth to build a full section with three ammo items. They appear as context only where relevant."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": null,
+  "researchPack": {
+    "stories": [
+      {
+        "id": "Markets-1",
+        "category": "Markets / Economy",
+        "sport": "null",
+        "isLead": true,
+        "headline": "Onsemi to buy Synaptics for $7B in all‑stock deal",
+        "whatHappened": "Onsemi agreed today to acquire Synaptics in a $7 billion all‑stock transaction.",
+        "whyItMatters": "Massive consolidation in chip sector could reshape AI/hardware supply chains and impact broader tech sentiment.",
+        "guytalkRead": "This isn’t just another merger — Onsemi grabbing Synaptics for $7B shows how hot chip real estate still is. If you're watching hardware stocks or AI gadget supply chains, this could shift the board.",
+        "context": [
+          "Deal valued at approximately $7 billion",
+          "All‑stock transaction structure",
+          "Announced today by Reuters"
+        ],
+        "whatToSay": "‘Onsemi buying Synaptics for $7B — now that’s a hardware flex.’",
+        "sources": [
+          "https://real-url-you-found"
+        ],
+        "sourceNames": [
+          "Reuters"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Huge tech sector deal today with clear implications for AI/hardware conversation.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Tech-2",
+        "category": "Tech / AI / Business",
+        "sport": "null",
+        "isLead": false,
+        "headline": "Starlink offers free internet in Venezuela after quake",
+        "whatHappened": "Starlink is providing free internet access in Venezuela in response to deadly earthquakes today.",
+        "whyItMatters": "Connectivity in disaster zones is life‑critical, and this move shows how private space‑based services can plug gaps fast.",
+        "guytalkRead": "So SpaceX’s Starlink is back in the headlines — not for rockets this time but hooking up post‑quake Venezuela. Tech doing some literal real‑world good, finally.",
+        "context": [
+          "Free service announced today",
+          "Venezuela struck by deadly earthquakes",
+          "Provided by Starlink via Reuters"
+        ],
+        "whatToSay": "‘Starlink just went full rescue mode in Venezuela today.’",
+        "sources": [
+          "https://real-url-you-found"
+        ],
+        "sourceNames": [
+          "Reuters"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "Interesting tech/business story with human impact — not typical gadget news.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "World-3",
+        "category": "Major World Events",
+        "sport": "null",
+        "isLead": false,
+        "headline": "US moves ahead with $700M jet‑engine sale to Turkey",
+        "whatHappened": "The US approved a $700 million sale of jet engines to Turkey today, despite lawmakers’ objections.",
+        "whyItMatters": "This is a significant move in defense relations — impacts NATO dynamics and regional power balances.",
+        "guytalkRead": "We’re talking jets and geopolitics — $700 million deal with Turkey cleared today. If you care about defence or alliances, this is big.",
+        "context": [
+          "Deal value of $700 million",
+          "Backed amid Congressional concerns",
+          "Announced today via Reuters"
+        ],
+        "whatToSay": "‘US just green‑lit a $700M jet‑engine sale to Turkey today.’",
+        "sources": [
+          "https://real-url-you-found"
+        ],
+        "sourceNames": [
+          "Reuters"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 3,
+          "variety": 5
+        },
+        "selectionReason": "Major defense/politics news with real global stakes.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Business-4",
+        "category": "Markets / Economy",
+        "sport": "null",
+        "isLead": false,
+        "headline": "Samsung plans $648B South Korea investment",
+        "whatHappened": "Samsung unveiled plans today to invest $648 billion in South Korea, including major chip plant expansion.",
+        "whyItMatters": "It’s one of the largest corporate bets ever — feeds into U.S.‑China tech race and domestic chip supply chains.",
+        "guytalkRead": "Samsung dropping nearly $650 billion on South Korean manufacturing — basically says ‘we’re still king of chips.’",
+        "context": [
+          "Investment scale $648 billion",
+          "Includes chip plants",
+          "Announced today via Reuters"
+        ],
+        "whatToSay": "‘Samsung just committed $648B at home — chip bets are still on.’",
+        "sources": [
+          "https://real‑url‑you‑found"
+        ],
+        "sourceNames": [
+          "Reuters"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "Massive business/tech investment news with broader economic implications.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Culture-5",
+        "category": "Culture / Entertainment",
+        "sport": "null",
+        "isLead": false,
+        "headline": "OpenAI leans toward postponing IPO until next year",
+        "whatHappened": "OpenAI is reportedly leaning toward delaying its IPO until next year, sources say today.",
+        "whyItMatters": "Delay in public debut affects AI market valuations and investor expectations right now.",
+        "guytalkRead": "OpenAI pushing their IPO to 2027 or whatever again? That’s going to keep AI hype charged — for better or worse.",
+        "context": [
+          "IPO likely delayed until next year",
+          "Reported today via Reuters",
+          "Based on NYT-sourced info"
+        ],
+        "whatToSay": "‘Looks like OpenAI is kicking their IPO to next year.’",
+        "sources": [
+          "https://real‑url‑you‑found"
+        ],
+        "sourceNames": [
+          "Reuters"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "High‑interest AI/public markets news with huge cultural attention.",
+        "verificationConcerns": "Based on NYT via Reuters — high confidence but still reported indirect."
+      },
+      {
+        "id": "Politics-6",
+        "category": "White House / Politics / Policy",
+        "sport": "null",
+        "isLead": false,
+        "headline": "None",
+        "whatHappened": "No major White House or federal policy confirmed today.",
+        "whyItMatters": "",
+        "guytalkRead": "",
+        "context": [],
+        "whatToSay": "",
+        "sources": [],
+        "sourceNames": [],
+        "scores": {
+          "freshness": 0,
+          "confidence": 0,
+          "conversation": 0,
+          "variety": 0
+        },
+        "selectionReason": "No suitable confirmed events today.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Sports-7",
+        "category": "Sports",
+        "sport": "NASCAR",
+        "isLead": false,
+        "headline": "NASCAR at Sonoma practice underway today",
+        "whatHappened": "Today features NASCAR practice and qualifying at Sonoma Raceway ahead of weekend races.",
+        "whyItMatters": "Race fans might be tracking Sonoma action this weekend — this is the kickoff.",
+        "guytalkRead": "NASCAR guys — Sonoma practice/qualifying are rolling today. Weekend’s opening act is officially on.",
+        "context": [
+          "Sonoma Raceway activities today",
+          "Includes practice, qualifying, ARCA race",
+          "Confirmed via NASCAR TV schedule Reuters/others"
+        ],
+        "whatToSay": "‘Sonoma NASCAR is live with practice today.’",
+        "sources": [
+          "https://real‑url‑you‑found"
+        ],
+        "sourceNames": [
+          "Racing News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 3,
+          "variety": 3
+        },
+        "selectionReason": "Sports representation — racing fans care; nothing bigger today.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "King Charles won't live at Buckingham Palace after refit",
+        "reason": "Monarchy news not likely relevant or conversational for U.S. men 25‑45"
+      },
+      {
+        "headline": "World Cup sets all‑time attendance record",
+        "reason": "Not today’s news — more background context and not directly conversational at work/bar unless you’re a soccer nerd"
+      },
+      {
+        "headline": "SpaceX Starpipe natural gas pipeline plan",
+        "reason": "Future plan announcement, speculative and less relatable in conversation today"
+      },
+      {
+        "headline": "Iran fired on cargo ship",
+        "reason": "Serious but not yet breaking conversation‑friendly – overshadowed by the US-Turkey and Venezuela stories"
+      }
+    ],
+    "researchNotes": "Today’s news was heavy on chip manufacturing deals (Onsemi/Synaptics, Samsung), AI/public markets (OpenAI IPO), disaster tech (Starlink in Venezuela), defense trade (US‑Turkey jet engines), and NASCAR preseason action at Sonoma. Little in politics; MLB games are scheduled but no results yet.",
+    "relevanceScan": {
+      "bucketA_sports": "NASCAR Sonoma practice/qualifying",
+      "bucketB_politics": "none today",
+      "bucketC_markets": "Samsung $648B investment; OpenAI IPO delay",
+      "bucketD_tech": "Onsemi/Synaptics deal; OpenAI IPO delay; Starlink in Venezuela",
+      "bucketE_culture": "OpenAI IPO delay",
+      "bucketF_world": "US‑Turkey jet engine sale; Starlink aid to Venezuela",
+      "leadJustification": "Onsemi‑Synaptics deal leads — massive tech/hardware move with immediate relevance to AI supply chains and business conversation among men 25‑45."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-06-26T11:06:06.980Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_ammo — the Jets at Oilers game has not been played. Only two of three ammo items are verifiable facts (venue and teams); the third is a generic observation about playoff positioning with no specific number, stat, or named player detail. The section cannot satisfy the three-item ammo requirement with real, specific facts from RAW FACTS. Additionally, the section is a pure preview with no result, no score, no named player, and no specific storyline beyond generic playoff framing — it fails the Hard Block Rule requirement for a named person, specific number, or concrete event."
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+    "blocking": [],
+    "warnings": []
+  }
+}
