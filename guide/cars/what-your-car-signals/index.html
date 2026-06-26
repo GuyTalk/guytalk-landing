@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What Your Car Actually Signals — GuyTalk Guide</title>
+<meta name="description" content="Before the picks, the framework: a car is the most public thing you own, and people read it whether you like it or not. The hierarchy isn't about price — i">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{--text:#1A1A2E;--text-2:#4A4A6A;--text-3:#8888A8;--bg:#F9F8F5;--surface:#FFFFFF;--surface-2:#F2F0EB;--border:#E5E3DC;--accent:#2B6FFF;--accent-h:#1855D4;--amber:#D97706;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:17px;}
+  a{color:var(--accent);}
+  .gc{max-width:780px;margin:0 auto;padding:0 24px;}
+  /* NAV */
+  .guide-nav{position:sticky;top:0;z-index:100;background:rgba(249,248,245,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .guide-nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:14px 24px;}
+  .guide-wordmark{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.03em;color:var(--text);text-decoration:none;}
+  .guide-word-guide{color:var(--accent);}
+  .guide-nav-links{display:flex;align-items:center;gap:24px;}
+  .gnl{font-size:14px;font-weight:500;color:var(--text-2);text-decoration:none;}
+  .gnl:hover{color:var(--text);}
+  .gnl-cta{font-size:13px;font-weight:600;padding:7px 14px;background:var(--accent);color:#fff;border-radius:7px;text-decoration:none;}
+  /* TABS */
+  .guide-tabs{position:sticky;top:57px;z-index:90;background:rgba(249,248,245,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;overflow-x:auto;}
+  .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;}
+  .guide-tab:hover{color:var(--text);text-decoration:none;}
+  .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+  /* BREADCRUMB */
+  .detail-breadcrumb{padding:16px 0 12px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);}
+  .detail-breadcrumb a{color:var(--text-3);text-decoration:none;}
+  .detail-breadcrumb a:hover{color:var(--accent);}
+  .detail-breadcrumb-sep{margin:0 6px;}
+  /* HERO */
+  .detail-hero{margin-bottom:40px;}
+  .detail-hero-img{border-radius:12px;overflow:hidden;margin-bottom:28px;}
+  .detail-hero-tag{margin-bottom:12px;}
+  .gtag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;padding:4px 10px;border-radius:4px;text-transform:uppercase;}
+  .gtag-blue{background:rgba(43,111,255,.1);color:var(--accent);}
+  .gtag-green{background:rgba(22,163,74,.1);color:#16a34a;}
+  .gtag-amber{background:rgba(217,119,6,.1);color:var(--amber);}
+  .gtag-red{background:rgba(220,38,38,.1);color:#dc2626;}
+  .detail-hero-brand{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;}
+  .detail-hero-name{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(26px,4vw,38px);letter-spacing:-.025em;line-height:1.15;margin-bottom:12px;}
+  .detail-hero-price{font-size:18px;font-weight:700;color:var(--text);margin-bottom:20px;}
+  .detail-hero-verdict{font-size:17px;color:var(--text-2);line-height:1.65;border-left:3px solid var(--accent);padding-left:18px;margin-bottom:24px;}
+  .detail-buy-btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;font-size:15px;padding:13px 28px;border-radius:9px;text-decoration:none;}
+  .detail-buy-btn:hover{background:var(--accent-h);text-decoration:none;}
+  /* BODY */
+  .detail-body{padding-bottom:64px;}
+  .detail-section{margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid var(--border);}
+  .detail-section:last-child{border-bottom:none;}
+  .detail-section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+  .detail-section-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em;margin-bottom:14px;}
+  .detail-section-body{font-size:16px;line-height:1.7;color:var(--text);}
+  .detail-section-body p+p{margin-top:14px;}
+  .detail-bullets{list-style:none;padding:0;}
+  .detail-bullets li{padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;color:var(--text-2);padding-left:18px;position:relative;}
+  .detail-bullets li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:700;}
+  .flashy-block{background:var(--surface-2);border-radius:10px;padding:20px 24px;margin-bottom:40px;}
+  .flashy-block-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;}
+  .flashy-block-text{font-size:15px;color:var(--text-2);line-height:1.6;}
+  /* FOOTER */
+  .guide-footer{background:#1A1A2E;color:rgba(255,255,255,.5);padding:32px 0;margin-top:64px;}
+  .guide-footer-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .guide-footer-brand{font-family:'Inter Tight',sans-serif;font-weight:800;color:#fff;}
+  .guide-footer-links{display:flex;gap:20px;}
+  .guide-footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px;}
+  .guide-footer-note{font-size:11px;width:100%;}
+</style>
+</head>
+<body>
+<nav class="guide-nav">
+  <div class="guide-nav-inner">
+    <a href="/guide/" class="guide-wordmark">GuyTalk<span class="guide-word-guide"> Guide</span></a>
+    <div class="guide-nav-links">
+      <a href="/brief/" class="gnl">Today's Brief</a>
+      <a href="/guide/" class="gnl is-active">Guide</a>
+      <a href="/#signup" class="gnl-cta">Subscribe Free →</a>
+    </div>
+  </div>
+</nav>
+<div class="guide-tabs" id="guideTabs">
+  <div class="guide-tabs-inner">
+    <a href="/guide/style/" class="guide-tab" data-path="style">Style</a>
+    <a href="/guide/watches/" class="guide-tab" data-path="watches">Watches</a>
+    <a href="/guide/bourbon-cigars/" class="guide-tab" data-path="bourbon-cigars">Bourbon &amp; Cigars</a>
+    <a href="/guide/cars/" class="guide-tab" data-path="cars">Cars</a>
+    <a href="/guide/fitness/" class="guide-tab" data-path="fitness">Fitness</a>
+    <a href="/guide/accessories/" class="guide-tab" data-path="accessories">Accessories</a>
+  </div>
+</div>
+<script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
+
+<div class="gc">
+  <div class="detail-breadcrumb">
+    <a href="/guide/">Guide</a>
+    <span class="detail-breadcrumb-sep">/</span>
+    <a href="/guide/cars/">Cars</a>
+    <span class="detail-breadcrumb-sep">/</span>
+    What Your Car Actually Signals
+  </div>
+
+  <div class="detail-hero">
+    <div class="detail-hero-img"><div style="width:100%;height:300px;background:#1a2840;display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,.3);font-size:13px;letter-spacing:.08em;text-transform:uppercase;">Cars</span></div></div>
+    <div class="detail-hero-tag"><span class="gtag gtag-blue">GuyTalk Read</span></div>
+    <div class="detail-hero-brand">The Read</div>
+    <h1 class="detail-hero-name">What Your Car Actually Signals</h1>
+    
+    <div class="detail-hero-verdict">Before the picks, the framework: a car is the most public thing you own, and people read it whether you like it or not. The hierarchy isn't about price — it's about whether the car looks like a choice or a reach. Restraint and condition read as taste; loud and leveraged read as trying. Everything below is sorted by that, not by sticker.</div>
+    <a href="/guide/cars/" class="detail-buy-btn">Back to Cars →</a>
+  </div>
+
+  <div class="detail-body">
+    <div class="flashy-block">
+      <div class="flashy-block-label">Is It Too Flashy?</div>
+      <div class="flashy-block-text">The whole point. Learn to read the signal and you'll never overpay to look like you're reaching.</div>
+    </div>
+
+    <div class="detail-section">
+      <div class="detail-section-eyebrow">THE GUYTALK TAKE</div>
+      <h2 class="detail-section-title">Our Honest Read</h2>
+      <div class="detail-section-body"><p>Before the picks, the framework: a car is the most public thing you own, and people read it whether you like it or not. The hierarchy isn't about price — it's about whether the car looks like a choice or a reach. Restraint and condition read as taste; loud and leveraged read as trying. Everything below is sorted by that, not by sticker.</p></div>
+    </div>
+  </div>
+</div>
+
+<footer class="guide-footer">
+  <div class="guide-footer-inner">
+    <div class="guide-footer-brand">GuyTalk<span style="color:var(--accent)"> Guide</span></div>
+    <div class="guide-footer-links">
+      <a href="/guide/">Guide</a>
+      <a href="/briefs/">Archive</a>
+      <a href="/about/">About</a>
+    </div>
+    <p class="guide-footer-note">© 2026 GuyTalk Media. Some links may be affiliate links.</p>
+  </div>
+</footer>
+</body>
+</html>

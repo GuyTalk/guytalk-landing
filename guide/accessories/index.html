@@ -75,6 +75,7 @@
   .gtag-amber{background:var(--amber-muted);color:var(--amber);}
   .gtag-navy{background:rgba(15,23,36,.07);color:var(--navy);}
   .gtag-green{background:rgba(22,163,74,.08);color:var(--green);}
+  .gtag-gray{background:var(--surface-2);color:var(--text-3);}
   .pick-card-brand{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;}
   .pick-card-name{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--text);margin-bottom:6px;}
   .pick-card-price{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;}
@@ -82,6 +83,16 @@
   .pick-card-buy{display:inline-block;padding:9px 16px;background:#1A1A1A;color:#fff;border-radius:7px;font-size:13px;font-weight:700;transition:background .15s ease;}
   .pick-card-buy:hover{background:var(--accent);text-decoration:none;}
   .pick-card-buy.gray-tag{background:var(--surface-2);color:var(--text-2);font-size:12px;}
+  /* ── ESSAYS ── */
+  .essays-section{padding:64px 24px 0;}
+  .essays-inner{max-width:1120px;margin:0 auto;}
+  .essays-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  @media(max-width:680px){.essays-grid{grid-template-columns:1fr;}}
+  .essay-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px 22px 20px;text-decoration:none;transition:border-color .15s,box-shadow .15s;}
+  .essay-card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(43,111,255,.08);text-decoration:none;}
+  .essay-card-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:16px;color:var(--text);margin-bottom:8px;}
+  .essay-card-sub{font-size:13px;color:var(--text-2);line-height:1.55;margin-bottom:14px;}
+  .essay-card-cta{font-size:13px;font-weight:700;color:var(--accent);}
   /* ── DEALS STRIP ── */
   .deals-section{background:var(--surface-2);padding:48px 24px;}
   .deals-inner{max-width:1120px;margin:0 auto;}
@@ -205,141 +216,170 @@
   </div>
 </section>
 
-<section class="picks-section">
-  <div class="picks-inner">
-    <div class="section-eyebrow">START HERE</div>
-    <h2 class="section-title">Picks We'd Buy First</h2>
-    <p class="section-desc">From the Accessories guide — the things worth owning.</p>
-    <div class="picks-grid">
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/accessories/korchmar-leather-weekender.jpg" alt="Korchmar Korchmar Centennial Taft 22" Leather Weekender" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>K</div><div class=\'pick-card-img-ph-label\'>Korchmar</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Korchmar</div>
-        <div class="pick-card-name">Korchmar Centennial Taft 22" Leather Weekender</div>
-        <div class="pick-card-price">$620</div>
-        <p class="pick-card-bio">This isn’t your fast‑fashion carry‑on—it’s American‑made, full‑grain leather that ages into character. Trust me, after one weekend it’ll outlast any particle board suitcase you ever bought.</p>
-        <a href="/guide/accessories/korchmar-leather-weekender/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/accessories/filson-small-duffel.jpg" alt="Filson Filson Small Duffel Bag" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>F</div><div class=\'pick-card-img-ph-label\'>Filson</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Filson</div>
-        <div class="pick-card-name">Filson Small Duffel Bag</div>
-        <div class="pick-card-price">$499</div>
-        <p class="pick-card-bio">Classic Filson toughness without turning heads. Tin‑cloth and bridle leather mean you’ll still be kicking gear around this time next decade.</p>
-        <a href="/guide/accessories/filson-small-duffel/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/accessories/bellroy-slim-wallet.jpg" alt="Bellroy Bellroy Slim Wallet" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>B</div><div class=\'pick-card-img-ph-label\'>Bellroy</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Bellroy</div>
-        <div class="pick-card-name">Bellroy Slim Wallet</div>
-        <div class="pick-card-price">$79</div>
-        <p class="pick-card-bio">Ultra‑clean, deceptively spacious—carries your cards and barely a footprint. You’ll forget it's in your pocket, until it works better than anything else you’ve owned.</p>
-        <a href="/guide/accessories/bellroy-slim-wallet/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/accessories/ridge-wallet-card-case.jpg" alt="Ridge Wallet Ridge Wallet Card Case" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>R</div><div class=\'pick-card-img-ph-label\'>Ridge Wallet</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-amber">Upgrade</span></div>
-        <div class="pick-card-brand">Ridge Wallet</div>
-        <div class="pick-card-name">Ridge Wallet Card Case</div>
-        <div class="pick-card-price">$95</div>
-        <p class="pick-card-bio">Metal build, slim as hell, flips your cards out with that satisfying spring. It’s clunky if you’re not into mechanics, but if you love gadgets this is the wallet you pet.</p>
-        <a href="/guide/accessories/ridge-wallet-card-case/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/accessories/ray-ban-wayfarer-classic.jpg" alt="Ray‑Ban Ray‑Ban New Wayfarer Classic" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>R</div><div class=\'pick-card-img-ph-label\'>Ray‑Ban</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Ray‑Ban</div>
-        <div class="pick-card-name">Ray‑Ban New Wayfarer Classic</div>
-        <div class="pick-card-price">$178</div>
-        <p class="pick-card-bio">Timeless, fits every face, and whatever you wear it makes you look like you planned it—because somebody did.</p>
-        <a href="/guide/accessories/ray-ban-wayfarer-classic/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/accessories/persol-714-folding-sunglasses.jpg" alt="Persol Persol 714 Folding Sunglasses" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>P</div><div class=\'pick-card-img-ph-label\'>Persol</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-amber">Upgrade</span></div>
-        <div class="pick-card-brand">Persol</div>
-        <div class="pick-card-name">Persol 714 Folding Sunglasses</div>
-        <div class="pick-card-price">From $308</div>
-        <p class="pick-card-bio">Steve McQueen wore these for a reason—folding frames, timeless Italian charm. Expensive? Yeah. Worth it? Also yeah.</p>
-        <a href="/guide/accessories/persol-714-folding-sunglasses/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/accessories/warby-parker-sport-sunglasses.jpg" alt="Warby Parker Warby Parker Sport Sunglasses" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>W</div><div class=\'pick-card-img-ph-label\'>Warby Parker</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-green">Best Value</span></div>
-        <div class="pick-card-brand">Warby Parker</div>
-        <div class="pick-card-name">Warby Parker Sport Sunglasses</div>
-        <div class="pick-card-price">$195</div>
-        <p class="pick-card-bio">Lightweight, durable, looks sharp crossing the street or hitting the trail—and doesn’t flee your wallet.</p>
-        <a href="/guide/accessories/warby-parker-sport-sunglasses/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/accessories/no-logo-full-grain-leather-belt.jpg" alt="Unknown Full‑Grain Leather Dress Belt (No Logo)" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>U</div><div class=\'pick-card-img-ph-label\'>Unknown</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Unknown</div>
-        <div class="pick-card-name">Full‑Grain Leather Dress Belt (No Logo)</div>
-        <div class="pick-card-price">$85</div>
-        <p class="pick-card-bio">Clean, full‑grain Italian leather, no logo to date. You want the belt not the billboard. It ages, corners polish, looks just right.</p>
-        <a href="/guide/accessories/no-logo-full-grain-leather-belt/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/accessories/tommy-bahama-canvas-web-belt.jpg" alt="Tommy Bahama Tommy Bahama Casual Textured Canvas Web Belt" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>T</div><div class=\'pick-card-img-ph-label\'>Tommy Bahama</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-green">Best Value</span></div>
-        <div class="pick-card-brand">Tommy Bahama</div>
-        <div class="pick-card-name">Tommy Bahama Casual Textured Canvas Web Belt</div>
-        <div class="pick-card-price">$49.50</div>
-        <p class="pick-card-bio">Casual, sturdy and the only spring‑belt you need between trips to the bar and the beach. Navy keeps it sharp without over‑trying.</p>
-        <a href="/guide/accessories/tommy-bahama-canvas-web-belt/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
+<section class="essays-section">
+  <div class="essays-inner">
+    <div class="section-eyebrow">THE DEPTH</div>
+    <h2 class="section-title">Guides Worth Reading</h2>
+    <p class="section-desc">Long reads on the things worth knowing — with our actual opinion in each one.</p>
+    <div class="essays-grid">
+        <a href="/guide/accessories/sunglasses-that-make-sense/" class="essay-card">
+          <div class="essay-card-title">The Only Three Pairs of Sunglasses You Need</div>
+          <div class="essay-card-sub">The default, the upgrade, and the value pick — and why the logo shades are a tell, not a flex.</div>
+          <div class="essay-card-cta">Read →</div>
+        </a>
+        <a href="/guide/accessories/small-things-that-signal/" class="essay-card">
+          <div class="essay-card-title">The Small Things People Actually Notice</div>
+          <div class="essay-card-sub">Wallet, belt, bag, frames. Why the details finish the look — and the rules nobody taught you (match the belt to the shoes).</div>
+          <div class="essay-card-cta">Read →</div>
+        </a>
     </div>
   </div>
 </section>
+
+<section class="picks-section">
+  <div class="picks-inner">
+    <div class="section-eyebrow">START HERE</div>
+    <h2 class="section-title">The Picks That Actually Matter</h2>
+    <p class="section-desc">Small, quiet, and the ones people notice first. Ranked by value and how they read.</p>
+    <div class="picks-grid">
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <img src="/assets/guide/accessories/bellroy-slim-wallet.jpg" alt="Slim Sleeve Wallet" loading="lazy"
+           onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>B</div><div class=\'pick-card-img-ph-label\'>Bellroy</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">Buy This First</span></div>
+        <div class="pick-card-brand">Bellroy</div>
+        <div class="pick-card-name">Slim Sleeve Wallet</div>
+        <div class="pick-card-price">$99</div>
+        <p class="pick-card-bio">The wallet that fixes the thing you didn't know was aging you — the fat, overstuffed brick in your back pocket. Slim leather, holds the cards and cash you actually use, and breaks in beautifully. The single easiest upgrade to how you carry yourself, and nobody will ever know it cost under a hundred </p>
+        <a href="/guide/accessories/bellroy-slim-sleeve/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <img src="/assets/guide/accessories/ridge-wallet-card-case.jpg" alt="Aluminum Card Wallet" loading="lazy"
+           onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>R</div><div class=\'pick-card-img-ph-label\'>Ridge</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">The Metal Alternative</span></div>
+        <div class="pick-card-brand">Ridge</div>
+        <div class="pick-card-name">Aluminum Card Wallet</div>
+        <div class="pick-card-price">$95</div>
+        <p class="pick-card-bio">If you want bulletproof over leather, the Ridge is the one — machined metal, RFID-blocking, fans your cards out with a satisfying click. The honest caveat: it carries fewer cards than it looks like it should, and the cash strap is fiddly. But for a minimalist who wants the wallet to outlive the deca</p>
+        <a href="/guide/accessories/ridge-wallet/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">R</div><div class="pick-card-img-ph-label">Ray-Ban</div></div>
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">The Default</span></div>
+        <div class="pick-card-brand">Ray-Ban</div>
+        <div class="pick-card-name">Wayfarer Classic</div>
+        <div class="pick-card-price">$163</div>
+        <p class="pick-card-bio">Still the answer after seventy years. The Wayfarer suits nearly every face, goes with everything, and reads as effortless precisely because it's never trying. If you own one pair of sunglasses, own these in black. The shape is so right that the entire sunglasses industry is just variations on it.</p>
+        <a href="/guide/accessories/ray-ban-wayfarer/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <img src="/assets/guide/accessories/persol-714-folding-sunglasses.jpg" alt="714 Folding Sunglasses" loading="lazy"
+           onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>P</div><div class=\'pick-card-img-ph-label\'>Persol</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-amber">The Step Up</span></div>
+        <div class="pick-card-brand">Persol</div>
+        <div class="pick-card-name">714 Folding Sunglasses</div>
+        <div class="pick-card-price">$320</div>
+        <p class="pick-card-bio">Steve McQueen wore them for a reason — Italian-made, folding frames, and a quiet kind of cool that the cheaper shades can't fake. Expensive, yes, but they fold into a jacket pocket and last for years, and the people who recognize them are exactly the people whose opinion you'd care about. The grown-</p>
+        <a href="/guide/accessories/persol-714/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <img src="/assets/guide/accessories/warby-parker-sport-sunglasses.jpg" alt="Sunglasses (Prescription-Ready)" loading="lazy"
+           onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>W</div><div class=\'pick-card-img-ph-label\'>Warby Parker</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-amber">Smart Spend</span></div>
+        <div class="pick-card-brand">Warby Parker</div>
+        <div class="pick-card-name">Sunglasses (Prescription-Ready)</div>
+        <div class="pick-card-price">$145</div>
+        <p class="pick-card-bio">The value play, especially if you need prescription lenses — sharp classic shapes, polarized options, and a price that doesn't hurt when you inevitably sit on a pair. Try-on-at-home makes getting the right fit easy. Not heritage, but genuinely good-looking and hard to fault for the money.</p>
+        <a href="/guide/accessories/warby-parker-sunglasses/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">G</div><div class="pick-card-img-ph-label">Gucci / Versace</div></div>
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-gray">The Anti-Pick</span></div>
+        <div class="pick-card-brand">Gucci / Versace</div>
+        <div class="pick-card-name">Big-Logo Designer Shades — Skip Them</div>
+        <div class="pick-card-price">$350+</div>
+        <p class="pick-card-bio">The honest read: big-logo designer sunglasses cost double a Ray-Ban to advertise the brand on the side of your head, and that's the whole product. The lenses and frames are often made in the same factories. If you've got $350 burning a hole, a pair of Wayfarers and a Persol 714 covers two looks that</p>
+        <a href="/guide/accessories/logo-shades-take/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <img src="/assets/guide/accessories/no-logo-full-grain-leather-belt.jpg" alt="Full-Grain Leather Dress Belt" loading="lazy"
+           onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>A</div><div class=\'pick-card-img-ph-label\'>Allen Edmonds</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">Allen Edmonds</div>
+        <div class="pick-card-name">Full-Grain Leather Dress Belt</div>
+        <div class="pick-card-price">$98</div>
+        <p class="pick-card-bio">One good leather belt beats five cheap ones, and this is the one — full-grain leather, a clean unbranded buckle, made to match real dress shoes. The rule nobody taught you: match the belt to the shoes, brown with brown, black with black. Buy this in both and you're covered for a decade.</p>
+        <a href="/guide/accessories/allen-edmonds-belt/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <img src="/assets/guide/accessories/filson-small-duffel.jpg" alt="Small Rugged Twill Duffel" loading="lazy"
+           onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>F</div><div class=\'pick-card-img-ph-label\'>Filson</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-amber">Buy It For Life</span></div>
+        <div class="pick-card-brand">Filson</div>
+        <div class="pick-card-name">Small Rugged Twill Duffel</div>
+        <div class="pick-card-price">$350</div>
+        <p class="pick-card-bio">The weekend bag you hand down. Filson's tin-cloth and bridle leather are built to look better beaten up, and the small duffel is the right size for two or three nights without checking a bag. It's a real investment, but you'll be carrying this same bag in fifteen years while everyone else is on thei</p>
+        <a href="/guide/accessories/filson-small-duffel/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">B</div><div class="pick-card-img-ph-label">Bellroy</div></div>
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-amber">Best Value</span></div>
+        <div class="pick-card-brand">Bellroy</div>
+        <div class="pick-card-name">Dopp Kit</div>
+        <div class="pick-card-price">$65</div>
+        <p class="pick-card-bio">The detail that makes a hotel bathroom look like an adult uses it. A proper dopp kit keeps your travel grooming organized and off the counter, and a clean leather-trimmed one quietly upgrades every trip. Cheap insurance against being the guy with toiletries rattling around a plastic bag.</p>
+        <a href="/guide/accessories/bellroy-dopp-kit/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</section>
+
+
 
 <section class="deals-section">
   <div class="deals-inner">

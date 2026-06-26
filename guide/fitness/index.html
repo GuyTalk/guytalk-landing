@@ -75,6 +75,7 @@
   .gtag-amber{background:var(--amber-muted);color:var(--amber);}
   .gtag-navy{background:rgba(15,23,36,.07);color:var(--navy);}
   .gtag-green{background:rgba(22,163,74,.08);color:var(--green);}
+  .gtag-gray{background:var(--surface-2);color:var(--text-3);}
   .pick-card-brand{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;}
   .pick-card-name{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--text);margin-bottom:6px;}
   .pick-card-price{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;}
@@ -82,6 +83,16 @@
   .pick-card-buy{display:inline-block;padding:9px 16px;background:#1A1A1A;color:#fff;border-radius:7px;font-size:13px;font-weight:700;transition:background .15s ease;}
   .pick-card-buy:hover{background:var(--accent);text-decoration:none;}
   .pick-card-buy.gray-tag{background:var(--surface-2);color:var(--text-2);font-size:12px;}
+  /* ── ESSAYS ── */
+  .essays-section{padding:64px 24px 0;}
+  .essays-inner{max-width:1120px;margin:0 auto;}
+  .essays-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:0;}
+  @media(max-width:680px){.essays-grid{grid-template-columns:1fr;}}
+  .essay-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px 22px 20px;text-decoration:none;transition:border-color .15s,box-shadow .15s;}
+  .essay-card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(43,111,255,.08);text-decoration:none;}
+  .essay-card-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:16px;color:var(--text);margin-bottom:8px;}
+  .essay-card-sub{font-size:13px;color:var(--text-2);line-height:1.55;margin-bottom:14px;}
+  .essay-card-cta{font-size:13px;font-weight:700;color:var(--accent);}
   /* ── DEALS STRIP ── */
   .deals-section{background:var(--surface-2);padding:48px 24px;}
   .deals-inner{max-width:1120px;margin:0 auto;}
@@ -212,155 +223,182 @@
   </div>
 </section>
 
-<section class="picks-section">
-  <div class="picks-inner">
-    <div class="section-eyebrow">START HERE</div>
-    <h2 class="section-title">Picks We'd Buy First</h2>
-    <p class="section-desc">From the Fitness guide — the things worth owning.</p>
-    <div class="picks-grid">
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/fitness/bowflex-selecttech-552.jpg" alt="Bowflex SelectTech 552 Adjustable Dumbbells" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>B</div><div class=\'pick-card-img-ph-label\'>Bowflex</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Bowflex</div>
-        <div class="pick-card-name">SelectTech 552 Adjustable Dumbbells</div>
-        <div class="pick-card-price">$350</div>
-        <p class="pick-card-bio">These dials save you a rack full of metal and your floors. They feel slick, pack enough weight for most, and are perfect if you're tight on space — just don’t drop them like dead weight.</p>
-        <a href="/guide/fitness/bowflex-selecttech-552/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/fitness/nike-metcon-9.jpg" alt="Nike Metcon 9 Training Shoes" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>N</div><div class=\'pick-card-img-ph-label\'>Nike</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Nike</div>
-        <div class="pick-card-name">Metcon 9 Training Shoes</div>
-        <div class="pick-card-price">$75</div>
-        <p class="pick-card-bio">Built for the box, built for pulling sleds off the back of a truck. These feel tough underfoot and are finally under $80 with the latest drop — a rare mix of performance without windshield‑peeler price.</p>
-        <a href="/guide/fitness/nike-metcon-9/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/fitness/new-balance-fresh-foam-1080.jpg" alt="New Balance Fresh Foam X 1080 v14" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>N</div><div class=\'pick-card-img-ph-label\'>New Balance</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">New Balance</div>
-        <div class="pick-card-name">Fresh Foam X 1080 v14</div>
-        <div class="pick-card-price">$130</div>
-        <p class="pick-card-bio">Cushion city for your runs and long haul days. They’re softer than most, still durable, and regularly on sale — so unless you're chasing fancy carbon plates, these are a quiet win.</p>
-        <a href="/guide/fitness/new-balance-fresh-foam-1080/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/fitness/rogue-doorframe-pull-up-bar.jpg" alt="Rogue Fitness Rogue Doorframe Pull‑Up Bar" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>R</div><div class=\'pick-card-img-ph-label\'>Rogue Fitness</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Rogue Fitness</div>
-        <div class="pick-card-name">Rogue Doorframe Pull‑Up Bar</div>
-        <div class="pick-card-price">$45</div>
-        <p class="pick-card-bio">Solid steel, no screws in the frame, and it’s not coming down unless you mean it. Cheap, effective, and a hell of a bang for your buck — don’t overthink this.</p>
-        <a href="/guide/fitness/rogue-doorframe-pull-up-bar/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/fitness/onnit-kettlebell.jpg" alt="Onnit Onnit Kettlebell" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>O</div><div class=\'pick-card-img-ph-label\'>Onnit</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Onnit</div>
-        <div class="pick-card-name">Onnit Kettlebell</div>
-        <div class="pick-card-price">$100</div>
-        <p class="pick-card-bio">Smooth cast iron, grip that doesn’t shred calluses, and a look that doesn’t scream “bro gym.” Not cheap, but a kettlebell that earns its place over time.</p>
-        <a href="/guide/fitness/onnit-kettlebell/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/fitness/theragun-prime.jpg" alt="Theragun Theragun Prime" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>T</div><div class=\'pick-card-img-ph-label\'>Theragun</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Theragun</div>
-        <div class="pick-card-name">Theragun Prime</div>
-        <div class="pick-card-price">$250</div>
-        <p class="pick-card-bio">You don’t need a massage gun until your back tells you do. This one hits hard enough, doesn’t feel like a toy, and hushes the chatter under stress — save the big one unless you're pro‑level sore.</p>
-        <a href="/guide/fitness/theragun-prime/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/fitness/crossrope-speed-rope.jpg" alt="Crossrope Crossrope Speed Rope" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>C</div><div class=\'pick-card-img-ph-label\'>Crossrope</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Crossrope</div>
-        <div class="pick-card-name">Crossrope Speed Rope</div>
-        <div class="pick-card-price">$40</div>
-        <p class="pick-card-bio">Gets your lungs in check without sucking your wallet dry. Fast cord, solid handles, and cheap enough you'll actually use it, not just admire it in your gym closet.</p>
-        <a href="/guide/fitness/crossrope-speed-rope/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/fitness/under-armour-duffel.jpg" alt="Under Armour Undeniable Duffel" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>U</div><div class=\'pick-card-img-ph-label\'>Under Armour</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Under Armour</div>
-        <div class="pick-card-name">Undeniable Duffel</div>
-        <div class="pick-card-price">$60</div>
-        <p class="pick-card-bio">Sturdy canvas, zip keeps your gear in line, logo that doesn’t demand a flex shot. It holds everything, won't fall apart, and won’t dent your wallet.</p>
-        <a href="/guide/fitness/under-armour-duffel/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/fitness/whoop-4-0.jpg" alt="Whoop Whoop 4.0 Fitness Tracker" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>W</div><div class=\'pick-card-img-ph-label\'>Whoop</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Whoop</div>
-        <div class="pick-card-name">Whoop 4.0 Fitness Tracker</div>
-        <div class="pick-card-price">$30/month</div>
-        <p class="pick-card-bio">Not just steps — actual recovery, strain and sleep data that isn’t dressed up bullshit. Subscription sucks, but the data is your best friend if you take recovery seriously.</p>
-        <a href="/guide/fitness/whoop-4-0/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
-    <div class="pick-card">
-      <div class="pick-card-img">
-        <img src="/assets/guide/fitness/hydro-flask-32oz.jpg" alt="Hydro Flask 32 oz Wide‑Mouth Water Bottle" loading="lazy"
-             onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>H</div><div class=\'pick-card-img-ph-label\'>Hydro Flask</div></div>'">
-      </div>
-      <div class="pick-card-body">
-        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
-        <div class="pick-card-brand">Hydro Flask</div>
-        <div class="pick-card-name">32 oz Wide‑Mouth Water Bottle</div>
-        <div class="pick-card-price">$45</div>
-        <p class="pick-card-bio">Cold holds like a champ, won’t sweat through your bag, and is tough enough to survive road trips and drop tests without flinching.</p>
-        <a href="/guide/fitness/hydro-flask-32oz/" class="pick-card-buy">Read Our Take →</a>
-      </div>
-    </div>
+<section class="essays-section">
+  <div class="essays-inner">
+    <div class="section-eyebrow">THE DEPTH</div>
+    <h2 class="section-title">Guides Worth Reading</h2>
+    <p class="section-desc">Long reads on the things worth knowing — with our actual opinion in each one.</p>
+    <div class="essays-grid">
+        <a href="/guide/fitness/supplements-that-actually-work/" class="essay-card">
+          <div class="essay-card-title">Supplements That Actually Work (It's a Short List)</div>
+          <div class="essay-card-sub">Creatine and protein, and almost nothing else. What the science backs, and what the $80 tub is selling you.</div>
+          <div class="essay-card-cta">Read →</div>
+        </a>
+        <a href="/guide/fitness/home-gym-under-500/" class="essay-card">
+          <div class="essay-card-title">The Home Gym That Fits in a Corner</div>
+          <div class="essay-card-sub">Adjustable dumbbells, a pull-up bar, a kettlebell, a rope. That's ninety percent of what you need, for under $600.</div>
+          <div class="essay-card-cta">Read →</div>
+        </a>
     </div>
   </div>
 </section>
+
+<section class="picks-section">
+  <div class="picks-inner">
+    <div class="section-eyebrow">START HERE</div>
+    <h2 class="section-title">Gear & Supplements Worth Having</h2>
+    <p class="section-desc">What actually works, ranked by value. No fads, no bloated supplement stacks.</p>
+    <div class="picks-grid">
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <img src="/assets/guide/fitness/bowflex-selecttech-552.jpg" alt="SelectTech 552 Adjustable Dumbbells" loading="lazy"
+           onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>B</div><div class=\'pick-card-img-ph-label\'>Bowflex</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">Buy This First</span></div>
+        <div class="pick-card-brand">Bowflex</div>
+        <div class="pick-card-name">SelectTech 552 Adjustable Dumbbells</div>
+        <div class="pick-card-price">$429</div>
+        <p class="pick-card-bio">One pair replaces fifteen. A dial turns these from 5 to 52.5 pounds, so a corner of your apartment becomes a full dumbbell rack. For most guys building strength at home, this is the single highest-leverage purchase you can make. Get these before anything else.</p>
+        <a href="/guide/fitness/bowflex-selecttech-552/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">O</div><div class="pick-card-img-ph-label">Optimum Nutrition</div></div>
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">The One Supplement That Works</span></div>
+        <div class="pick-card-brand">Optimum Nutrition</div>
+        <div class="pick-card-name">Creatine Monohydrate</div>
+        <div class="pick-card-price">$25</div>
+        <p class="pick-card-bio">The single most-studied, most-proven supplement in existence, and it costs about a quarter a day. Five grams daily, any time, makes you measurably stronger. Skip the $80 pre-workouts and the fat-burners — this and protein are the only two supplements with the science to back them. Plain monohydrate;</p>
+        <a href="/guide/fitness/creatine-monohydrate/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">O</div><div class="pick-card-img-ph-label">Optimum Nutrition</div></div>
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-amber">Best Value</span></div>
+        <div class="pick-card-brand">Optimum Nutrition</div>
+        <div class="pick-card-name">Gold Standard Whey Protein</div>
+        <div class="pick-card-price">$40</div>
+        <p class="pick-card-bio">The benchmark protein powder for twenty years — mixes clean, tastes fine, and hits the one number that actually drives results: total daily protein. You don't need exotic blends or grass-fed premiums to grow. This does the job for less per serving than almost anything on the shelf.</p>
+        <a href="/guide/fitness/whey-protein/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">R</div><div class="pick-card-img-ph-label">REP Fitness</div></div>
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+        <div class="pick-card-brand">REP Fitness</div>
+        <div class="pick-card-name">Cast Iron Kettlebell (35 lb)</div>
+        <div class="pick-card-price">$60</div>
+        <p class="pick-card-bio">One good kettlebell is the most versatile twenty inches of iron you can own — swings, squats, carries, presses, the whole conditioning toolkit in a single piece. A 35-pounder is the right starting weight for most guys. Buy the plain cast iron; the coated competition ones are for people who compete.</p>
+        <a href="/guide/fitness/rep-kettlebell/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">I</div><div class="pick-card-img-ph-label">Iron Gym</div></div>
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-amber">Best Value</span></div>
+        <div class="pick-card-brand">Iron Gym</div>
+        <div class="pick-card-name">Doorframe Pull-Up Bar</div>
+        <div class="pick-card-price">$30</div>
+        <p class="pick-card-bio">Thirty dollars, no drilling, leverages over your doorframe and holds your weight for the best upper-body movement there is. Pull-ups are the exercise most home setups skip and the one that builds the most visible result. No reason not to own this.</p>
+        <a href="/guide/fitness/iron-gym-pullup-bar/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <img src="/assets/guide/fitness/crossrope-speed-rope.jpg" alt="Get Lean Weighted Jump Rope Set" loading="lazy"
+           onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>C</div><div class=\'pick-card-img-ph-label\'>Crossrope</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-navy">Foundation</span></div>
+        <div class="pick-card-brand">Crossrope</div>
+        <div class="pick-card-name">Get Lean Weighted Jump Rope Set</div>
+        <div class="pick-card-price">$60</div>
+        <p class="pick-card-bio">The most efficient cardio you can do in a driveway. Weighted ropes you can feel turning means you actually keep rhythm instead of tripping every ten seconds, and ten minutes leaves you winded. Cheaper than a single month of most gym memberships, and it lives in a drawer.</p>
+        <a href="/guide/fitness/crossrope-jump-rope/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">T</div><div class="pick-card-img-ph-label">TriggerPoint</div></div>
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-amber">Best Value</span></div>
+        <div class="pick-card-brand">TriggerPoint</div>
+        <div class="pick-card-name">GRID Foam Roller</div>
+        <div class="pick-card-price">$35</div>
+        <p class="pick-card-bio">The recovery tool that actually earns its space. Ten minutes on the GRID after a session loosens the tightness that turns into tomorrow's stiffness. It's firmer and more durable than the cheap foam ones that go soft in a month. The unglamorous habit that keeps you training consistently.</p>
+        <a href="/guide/fitness/triggerpoint-foam-roller/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <img src="/assets/guide/fitness/theragun-prime.jpg" alt="Theragun Prime Massage Gun" loading="lazy"
+           onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>T</div><div class=\'pick-card-img-ph-label\'>Therabody</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-amber">Nice to Have</span></div>
+        <div class="pick-card-brand">Therabody</div>
+        <div class="pick-card-name">Theragun Prime Massage Gun</div>
+        <div class="pick-card-price">$250</div>
+        <p class="pick-card-bio">The honest take: you don't need a massage gun until your body starts asking for one — and when it does, this one hits hard enough to matter without the top-model price. If you're not training seriously yet, the foam roller above does most of the job for a fraction of the cost. Buy this when you've e</p>
+        <a href="/guide/fitness/theragun-prime/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">C</div><div class="pick-card-img-ph-label">Converse</div></div>
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-amber">Skip the $150 Pair</span></div>
+        <div class="pick-card-brand">Converse</div>
+        <div class="pick-card-name">Chuck Taylor All-Star — The $55 Lifting Shoe</div>
+        <div class="pick-card-price">$55</div>
+        <p class="pick-card-bio">Here's what the supplement-stack crowd won't tell you: for lifting, a flat, firm sole is the whole point — and a pair of Chuck Taylors delivers exactly that for a third of what 'training shoes' cost. Unless you're doing serious CrossFit, you do not need $150 Metcons. Lift in Chucks, save the differe</p>
+        <a href="/guide/fitness/lifting-shoes-take/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    <div class="pick-card">
+      <div class="pick-card-img">
+      <img src="/assets/guide/fitness/whoop-4-0.jpg" alt="Subscription Trackers — Think Twice" loading="lazy"
+           onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'pick-card-img-ph\'><div class=\'pick-card-img-ph-initial\'>W</div><div class=\'pick-card-img-ph-label\'>WHOOP</div></div>'">
+      </div>
+      <div class="pick-card-body">
+        <div class="pick-card-tag"><span class="gtag gtag-gray">Probably Skip</span></div>
+        <div class="pick-card-brand">WHOOP</div>
+        <div class="pick-card-name">Subscription Trackers — Think Twice</div>
+        <div class="pick-card-price">$30/month</div>
+        <p class="pick-card-bio">The honest read on recovery trackers: the data is genuinely useful if you train hard and actually act on it — but most guys don't, and the monthly subscription quietly outpaces what the band is worth. If you already own an Apple Watch, you have most of this for free. Buy a WHOOP when you're optimizi</p>
+        <a href="/guide/fitness/fitness-tracker-take/" class="pick-card-buy">Read Our Take →</a>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</section>
+
+
 
 <section class="deals-section">
   <div class="deals-inner">
