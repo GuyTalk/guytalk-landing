@@ -124,16 +124,17 @@ function loadPrevImageUrls() {
   const dataDir = path.join(BRIEF_DIR, 'data');
   if (!fs.existsSync(dataDir)) return [];
   const files = fs.readdirSync(dataDir).filter(f => /^issue-\d{3}\.json$/.test(f)).sort();
-  const last = files[files.length - 1];
-  if (!last) return [];
-  try {
-    const d = JSON.parse(fs.readFileSync(path.join(dataDir, last), 'utf8'));
-    const urls = [];
-    if (d.heroImage) urls.push(d.heroImage);
-    (d.dynamicSports || []).forEach(s => { if (s.imageUrl) urls.push(s.imageUrl); });
-    if (d.sectionStories?.heroImage?.url) urls.push(d.sectionStories.heroImage.url);
-    return [...new Set(urls.filter(Boolean))];
-  } catch (_) { return []; }
+  const recent = files.slice(-10); // check last 10 issues to avoid repeated images
+  const urls = [];
+  for (const file of recent) {
+    try {
+      const d = JSON.parse(fs.readFileSync(path.join(dataDir, file), 'utf8'));
+      if (d.heroImage) urls.push(d.heroImage);
+      (d.dynamicSports || []).forEach(s => { if (s.imageUrl) urls.push(s.imageUrl); });
+      if (d.sectionStories?.heroImage?.url) urls.push(d.sectionStories.heroImage.url);
+    } catch (_) {}
+  }
+  return [...new Set(urls.filter(Boolean))];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
