@@ -63,15 +63,16 @@
   .guide-wordmark:hover { text-decoration: none; }
   .guide-dot { color: var(--accent); }
   .guide-word-guide { color: var(--accent); font-weight: 800; }
-  .guide-nav-links { display: flex; align-items: center; gap: 24px; }
-  .gnl { font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; }
-  .gnl:hover { color: var(--text); text-decoration: none; }
-  .gnl.is-active { color: var(--text); font-weight: 600; }
+  .guide-nav-links { display: flex; align-items: center; gap: 4px; }
+  .gnl { font-size: 15px; font-weight: 600; color: var(--text-2); text-decoration: none; padding: 7px 12px; border-radius: 8px; transition: color 0.15s, background 0.15s; }
+  .gnl:hover { color: var(--text); background: rgba(0,0,0,0.04); text-decoration: none; }
+  .gnl.is-active { color: var(--text); }
   .gnl-cta {
-    font-size: 13px; font-weight: 600; padding: 7px 14px;
-    background: var(--accent); color: #fff; border-radius: 7px; text-decoration: none;
+    font-size: 14px; font-weight: 700; padding: 8px 18px;
+    background: var(--accent); color: #fff; border-radius: 9px; text-decoration: none;
+    transition: background 0.15s, transform 0.15s; margin-left: 8px;
   }
-  .gnl-cta:hover { background: var(--accent-h); text-decoration: none; }
+  .gnl-cta:hover { background: var(--accent-h); text-decoration: none; transform: translateY(-1px); }
 
   /* ── CONTAINERS ── */
   .gc  { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
@@ -413,9 +414,10 @@
     body { font-size: 16px; }
   }
   /* ── GUIDE TABS ── */
-  .guide-tabs{position:sticky;top:57px;z-index:90;background:rgba(249,248,245,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
-  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
+  .guide-tabs{position:sticky;top:62px;z-index:90;background:rgba(249,248,245,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .guide-tabs-inner::-webkit-scrollbar{display:none;}
+  .guide-tab{padding:13px 20px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:14px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
   .guide-tab:hover{color:var(--text);text-decoration:none;}
   .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
   }
@@ -482,6 +484,7 @@
   <div class="guide-nav-inner">
     <a href="/guide/" class="guide-wordmark">GuyTalk<span class="guide-word-guide"> Guide</span></a>
     <div class="guide-nav-links">
+      <a href="/" class="gnl">Home</a>
       <a href="/brief/" class="gnl">Today's Brief</a>
       <a href="/guide/" class="gnl is-active">Guide</a>
       <a href="/#signup" class="gnl-cta">Subscribe Free →</a>
@@ -496,6 +499,7 @@
     <a href="/guide/cars/"           class="guide-tab" data-path="cars">Cars</a>
     <a href="/guide/fitness/"        class="guide-tab" data-path="fitness">Fitness</a>
     <a href="/guide/accessories/"    class="guide-tab" data-path="accessories">Accessories</a>
+    <a href="/guide/golf/"           class="guide-tab" data-path="golf">Golf</a>
   </div>
 </div>
 <script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
@@ -509,7 +513,7 @@
 <div class="hub-cat-section">
   <div class="gc">
     <div class="hub-cat-section-header">
-      <div class="hub-cat-section-eyebrow">Six Subjects</div>
+      <div class="hub-cat-section-eyebrow">Seven Subjects</div>
       <h2 class="hub-cat-section-title">Pick where to start.</h2>
     </div>
     <div class="hub-cats-grid">
@@ -560,6 +564,14 @@
         <div class="hub-cat-desc">The details that finish the look. Bags, wallets, and sunglasses that matter.</div>
         <div class="hub-cat-pick">Top pick: Bellroy Note Sleeve Wallet</div>
         <div class="hub-cat-cta">9 picks →</div>
+      </a>
+
+      <a href="/guide/golf/" class="hub-cat-tile">
+        <div class="hub-cat-num">07</div>
+        <div class="hub-cat-name">Golf</div>
+        <div class="hub-cat-desc">Clubs, bags, rangefinders, apps, and gear. Everything to show up on the course ready.</div>
+        <div class="hub-cat-pick">Top pick: Titleist Pro V1 Golf Balls</div>
+        <div class="hub-cat-cta">10 picks →</div>
       </a>
 
     </div>

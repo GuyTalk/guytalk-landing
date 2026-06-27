@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golf — The GuyTalk Guide</title>
+<meta name="description" content="Clubs, bags, rangefinders, and apps. Everything to show up on the course looking like you know what you're doing.">
+<meta property="og:type"        content="website">
+<meta property="og:title"       content="Golf — The GuyTalk Guide">
+<meta property="og:description" content="Clubs, bags, rangefinders, and apps. Everything to show up on the course looking like you know what you're doing.">
+<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
+<meta property="og:url"         content="https://www.guytalkmedia.com/guide/golf/">
+<meta name="twitter:card"       content="summary_large_image">
+<link rel="canonical"           href="https://www.guytalkmedia.com/guide/golf/">
+<link rel="icon"                href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F9F8F5; --surface: #FFFFFF; --surface-2: #F2F0EB;
+    --border: #E5E2DB; --border-light: #D4D0C8;
+    --text: #0F1724; --text-2: #6E6862; --text-3: #9E9891;
+    --accent: #2B6FFF; --accent-h: #1A5CEF; --accent-muted: #EBF1FF;
+    --amber: #B87C35; --amber-muted: rgba(184,124,53,0.08);
+    --green: #16A34A; --navy: #0F1724;
+  }
+  html { scroll-behavior: smooth; }
+  body { background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased; }
+  a { color:var(--accent);text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  p { margin-bottom:0; }
+  .guide-nav{position:sticky;top:0;z-index:50;background:rgba(249,248,245,0.95);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+  .guide-nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:0 24px;height:62px;}
+  .guide-wordmark{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em;color:var(--text);text-decoration:none;}
+  .guide-word-guide{color:var(--accent);font-weight:800;}
+  .guide-nav-links{display:flex;align-items:center;gap:4px;}
+  .gnl{font-size:15px;font-weight:600;color:var(--text-2);text-decoration:none;padding:7px 12px;border-radius:8px;transition:color .15s,background .15s;}
+  .gnl:hover{color:var(--text);background:rgba(0,0,0,.04);text-decoration:none;}
+  .gnl-cta{background:var(--accent);color:#fff;padding:8px 18px;border-radius:9px;font-size:14px;font-weight:700;transition:background .15s,transform .15s;margin-left:8px;}
+  .gnl-cta:hover{background:var(--accent-h);text-decoration:none;transform:translateY(-1px);}
+  .guide-tabs{position:sticky;top:62px;z-index:90;background:rgba(249,248,245,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .guide-tabs-inner::-webkit-scrollbar{display:none;}
+  .guide-tab{padding:13px 20px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:14px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
+  .guide-tab:hover{color:var(--text);text-decoration:none;}
+  .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+  .cat-band{background:#0F1724;color:#fff;padding:48px 24px 44px;border-top:3px solid var(--accent);}
+  .cat-band-inner{max-width:1120px;margin:0 auto;}
+  .cat-band-crumb{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;}
+  .cat-band-crumb a{color:rgba(255,255,255,.55);text-decoration:none;}
+  .cat-band-crumb a:hover{color:rgba(255,255,255,.85);}
+  .cat-band-crumb-sep{margin:0 8px;}
+  .cat-band-title{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(32px,5vw,52px);letter-spacing:-.03em;line-height:1.0;margin-bottom:12px;}
+  .cat-band-desc{font-size:16px;color:rgba(255,255,255,.62);max-width:520px;line-height:1.6;}
+  .gc{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+  .section-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(22px,3.5vw,32px);letter-spacing:-.02em;margin-bottom:8px;color:var(--text);}
+  .section-desc{font-size:15px;color:var(--text-2);margin-bottom:36px;max-width:560px;line-height:1.6;}
+  .picks-section{padding:64px 0;}
+  .picks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:900px){.picks-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:540px){.picks-grid{grid-template-columns:1fr;}}
+  .pick-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .18s,transform .18s;}
+  .pick-card:hover{box-shadow:0 6px 24px rgba(15,23,36,.07);transform:translateY(-2px);}
+  .pick-card-img{height:210px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .pick-card-img img{width:100%;height:100%;object-fit:cover;}
+  .pick-card-img-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;background:linear-gradient(145deg,#0f1724,#1c2a40);width:100%;}
+  .pick-card-img-ph-initial{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:52px;color:rgba(255,255,255,.1);line-height:1;}
+  .pick-card-img-ph-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+  .pick-card-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1;}
+  .pick-card-tag{margin-bottom:10px;}
+  .gtag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
+  .gtag-blue{background:var(--accent-muted);color:var(--accent);}
+  .gtag-amber{background:var(--amber-muted);color:var(--amber);}
+  .gtag-green{background:rgba(22,163,74,.08);color:var(--green);}
+  .gtag-navy{background:rgba(15,23,36,.07);color:var(--navy);}
+  .gtag-gray{background:var(--surface-2);color:var(--text-3);}
+  .pick-card-brand{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;}
+  .pick-card-name{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--text);margin-bottom:6px;line-height:1.3;}
+  .pick-card-price{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;}
+  .pick-card-bio{font-size:13px;color:var(--text-2);line-height:1.55;margin-bottom:16px;flex:1;}
+  .pick-card-buy{display:inline-block;padding:9px 16px;background:#0F1724;color:#fff;border-radius:7px;font-size:13px;font-weight:700;transition:background .15s;text-decoration:none;}
+  .pick-card-buy:hover{background:var(--accent);text-decoration:none;}
+  .pick-card-shop{display:inline-block;margin-top:8px;padding:8px 16px;background:transparent;color:var(--accent);border:1.5px solid var(--accent);border-radius:7px;font-size:12px;font-weight:700;text-decoration:none;transition:background .15s;}
+  .pick-card-shop:hover{background:var(--accent-muted);text-decoration:none;}
+  .essays-section{padding:64px 0 0;}
+  .essays-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  @media(max-width:680px){.essays-grid{grid-template-columns:1fr;}}
+  .essay-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px 22px 20px;text-decoration:none;transition:border-color .15s,box-shadow .15s;}
+  .essay-card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(43,111,255,.08);text-decoration:none;}
+  .essay-card-eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+  .essay-card-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:16px;color:var(--text);margin-bottom:8px;line-height:1.3;}
+  .essay-card-sub{font-size:13px;color:var(--text-2);line-height:1.55;margin-bottom:14px;}
+  .essay-card-cta{font-size:13px;font-weight:700;color:var(--accent);}
+  .apps-section{padding:48px 0;}
+  .apps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+  @media(max-width:680px){.apps-grid{grid-template-columns:1fr;}}
+  .app-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;display:flex;gap:18px;align-items:flex-start;transition:border-color .15s,box-shadow .15s;}
+  .app-card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(43,111,255,.08);}
+  .app-icon{width:56px;height:56px;border-radius:14px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-family:'Inter Tight',sans-serif;font-weight:900;font-size:22px;color:var(--accent);flex-shrink:0;}
+  .app-body{flex:1;}
+  .app-name{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:16px;color:var(--text);margin-bottom:4px;}
+  .app-tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:8px;display:block;}
+  .app-desc{font-size:13px;color:var(--text-2);line-height:1.55;margin-bottom:12px;}
+  .app-price{font-size:12px;font-weight:700;color:var(--text-2);}
+  .app-link{font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;}
+  .app-link:hover{text-decoration:underline;}
+  .guide-footer{background:#0F1724;color:rgba(255,255,255,.5);padding:40px 24px;font-size:13px;margin-top:80px;}
+  .guide-footer-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .guide-footer-brand{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:17px;color:#fff;}
+  .guide-footer-links{display:flex;flex-wrap:wrap;gap:20px;}
+  .guide-footer-links a{color:rgba(255,255,255,.5);}
+  .guide-footer-links a:hover{color:#fff;text-decoration:none;}
+  .guide-footer-note{width:100%;font-size:11px;color:rgba(255,255,255,.28);line-height:1.6;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);margin-top:16px;}
+</style>
+</head>
+<body>
+<nav class="guide-nav">
+  <div class="guide-nav-inner">
+    <a href="/guide/" class="guide-wordmark">GuyTalk<span class="guide-word-guide"> Guide</span></a>
+    <div class="guide-nav-links">
+      <a href="/" class="gnl">Home</a>
+      <a href="/brief/" class="gnl">Today's Brief</a>
+      <a href="/guide/" class="gnl">Guide</a>
+      <a href="/#signup" class="gnl-cta">Subscribe Free →</a>
+    </div>
+  </div>
+</nav>
+<div class="guide-tabs" id="guideTabs">
+  <div class="guide-tabs-inner">
+    <a href="/guide/style/"          class="guide-tab" data-path="style">Style</a>
+    <a href="/guide/watches/"        class="guide-tab" data-path="watches">Watches</a>
+    <a href="/guide/bourbon-cigars/" class="guide-tab" data-path="bourbon-cigars">Bourbon &amp; Cigars</a>
+    <a href="/guide/cars/"           class="guide-tab" data-path="cars">Cars</a>
+    <a href="/guide/fitness/"        class="guide-tab" data-path="fitness">Fitness</a>
+    <a href="/guide/accessories/"    class="guide-tab" data-path="accessories">Accessories</a>
+    <a href="/guide/golf/"           class="guide-tab" data-path="golf">Golf</a>
+  </div>
+</div>
+<script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
+
+<div class="cat-band">
+  <div class="cat-band-inner">
+    <div class="cat-band-crumb"><a href="/guide/">Guide</a><span class="cat-band-crumb-sep">›</span>Golf</div>
+    <h1 class="cat-band-title">Golf</h1>
+    <p class="cat-band-desc">The equipment that makes you look like you've been doing this your whole life — and the apps that back up the bluster.</p>
+  </div>
+</div>
+
+<!-- PICKS: BALLS & BASICS -->
+<section class="picks-section">
+  <div class="gc">
+    <div class="section-eyebrow">Start Here</div>
+    <h2 class="section-title">Balls, Bags & Gear Worth Owning</h2>
+    <p class="section-desc">What actually makes a difference on the course — and what's just expensive noise.</p>
+    <div class="picks-grid">
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">T</div><div class="pick-card-img-ph-label">Titleist</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-blue">Buy This First</span></div>
+          <div class="pick-card-brand">Titleist</div>
+          <div class="pick-card-name">Pro V1 Golf Balls</div>
+          <div class="pick-card-price">~$55/dozen</div>
+          <p class="pick-card-bio">The ball that every serious golfer reaches for — not because of the price, but because of the performance. Consistent spin, soft feel off the putter, and distance that doesn't drop off when you miss slightly. If you're breaking 90, play these. If you're not yet, play these anyway and learn what consistency feels like.</p>
+          <a href="https://www.amazon.com/s?k=Titleist+Pro+V1+golf+balls&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">B</div><div class="pick-card-img-ph-label">Bushnell</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+          <div class="pick-card-brand">Bushnell</div>
+          <div class="pick-card-name">Pro X3 Laser Rangefinder</div>
+          <div class="pick-card-price">~$400</div>
+          <p class="pick-card-bio">Knowing the exact yardage changes everything. The Pro X3 locks onto the flag instantly, adjusts for slope, and fits cleanly in your pocket. Golfers who start using a rangefinder knock strokes off immediately because they stop guessing. This is the one the tour caddies use when they're allowed to.</p>
+          <a href="https://www.amazon.com/s?k=Bushnell+Pro+X3+rangefinder&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">V</div><div class="pick-card-img-ph-label">Vessel</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-amber">Best Stand Bag</span></div>
+          <div class="pick-card-brand">Vessel</div>
+          <div class="pick-card-name">Player IV Pro Stand Bag</div>
+          <div class="pick-card-price">~$350</div>
+          <p class="pick-card-bio">The bag that tour players carry when they want to look good and stay organized. Magnetic pockets, lightweight dual-strap, and construction that holds its shape after two seasons. Every club slot is clean, every pocket closes flush. It signals that you take the game seriously without screaming it.</p>
+          <a href="https://www.amazon.com/s?k=Vessel+Player+IV+golf+bag&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">C</div><div class="pick-card-img-ph-label">Callaway</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+          <div class="pick-card-brand">Callaway</div>
+          <div class="pick-card-name">Paradym Ai Smoke Max Driver</div>
+          <div class="pick-card-price">~$500</div>
+          <p class="pick-card-bio">The driver designed specifically for golfers who want more distance with fewer consequences on mishits. The AI-designed face straightens out the heel and toe strikes that cost you 30 yards and your dignity in front of clients. More forgiving than any previous Callaway driver at this level, and it looks sharp at address.</p>
+          <a href="https://www.amazon.com/s?k=Callaway+Paradym+driver&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">O</div><div class="pick-card-img-ph-label">Odyssey</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-navy">Best Putter Value</span></div>
+          <div class="pick-card-brand">Odyssey</div>
+          <div class="pick-card-name">White Hot OG #7 Putter</div>
+          <div class="pick-card-price">~$200</div>
+          <p class="pick-card-bio">The soft face insert that became a benchmark — tour players have won majors with Odyssey White Hot. The #7 blade shape suits players who want a clean look and a reliable roll. Putting accounts for 40% of your strokes. Most guys upgrade their driver and forget the flat stick. Don't be that guy.</p>
+          <a href="https://www.amazon.com/s?k=Odyssey+White+Hot+OG+7+putter&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">F</div><div class="pick-card-img-ph-label">FootJoy</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-green">Best Everyday Shoe</span></div>
+          <div class="pick-card-brand">FootJoy</div>
+          <div class="pick-card-name">Traditions Golf Shoe</div>
+          <div class="pick-card-price">~$130</div>
+          <p class="pick-card-bio">The #1 shoe on tour for a reason. Waterproof, comfortable after 18 holes, and with enough grip that you're not sliding on soft fairways. Classic saddle-strap design reads as understated and confident. Don't walk onto the first tee in running shoes and expect to be taken seriously — these shoes say you've done this before.</p>
+          <a href="https://www.amazon.com/s?k=FootJoy+Traditions+golf+shoe&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">T</div><div class="pick-card-img-ph-label">Travis Mathew</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-blue">GuyTalk Pick</span></div>
+          <div class="pick-card-brand">Travis Mathew</div>
+          <div class="pick-card-name">Oxford Polo Shirt</div>
+          <div class="pick-card-price">~$75</div>
+          <p class="pick-card-bio">The brand that figured out golf clothes don't have to look like golf clothes. Travis Mathew polos move like athletic gear but look sharp enough for a post-round drink. Four-way stretch, moisture-wicking, and a silhouette that flatters without being tight. The brand most guys on the course are wearing once they discover it.</p>
+          <a href="https://www.amazon.com/s?k=Travis+Mathew+polo+shirt&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">V</div><div class="pick-card-img-ph-label">Vice</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-green">Best Budget Ball</span></div>
+          <div class="pick-card-brand">Vice Golf</div>
+          <div class="pick-card-name">Vice Pro Golf Balls</div>
+          <div class="pick-card-price">~$35/dozen</div>
+          <p class="pick-card-bio">The direct-to-consumer alternative to the Pro V1 — comparable performance for 40% less. Sold direct so there's no retailer markup. Softer cover, good greenside spin, and consistent compression. If you're losing a sleeve a round, don't put $55 balls in the water. Vice Pro lets you play without grief every time you miss the fairway.</p>
+          <a href="https://www.amazon.com/s?k=Vice+Pro+golf+balls&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">G</div><div class="pick-card-img-ph-label">Garmin</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-amber">Tech Pick</span></div>
+          <div class="pick-card-brand">Garmin</div>
+          <div class="pick-card-name">Approach S62 GPS Watch</div>
+          <div class="pick-card-price">~$350</div>
+          <p class="pick-card-bio">A golf-specific GPS watch that maps every course, gives front/back/center yardages at a glance, and tracks your shot patterns over time. The data tells you where you're actually losing strokes — spoiler: it's not your driver. Useful on the course and sharp enough to wear off it. Solar charge extends battery life through a 36-hole weekend.</p>
+          <a href="https://www.amazon.com/s?k=Garmin+Approach+S62+golf+watch&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- APPS SECTION -->
+<section class="apps-section" style="background:var(--surface-2);padding:64px 0;">
+  <div class="gc">
+    <div class="section-eyebrow">Digital Caddies</div>
+    <h2 class="section-title">Apps Worth Downloading</h2>
+    <p class="section-desc">Three apps that will actually help you play better, track your game, and talk about it smarter.</p>
+    <div class="apps-grid">
+      <div class="app-card">
+        <div class="app-icon">18</div>
+        <div class="app-body">
+          <div class="app-name">18Birdies</div>
+          <span class="app-tag">Best All-Around</span>
+          <p class="app-desc">GPS yardages, digital scorecards, handicap tracking, and swing tips in one polished app. The free tier handles most of what you need. The social features let you see how your network is playing. Accurate on 40,000+ courses worldwide.</p>
+          <div class="app-price">Free (Pro: $10/mo)</div>
+        </div>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">GS</div>
+        <div class="app-body">
+          <div class="app-name">Golfshot</div>
+          <span class="app-tag">Best GPS Accuracy</span>
+          <p class="app-desc">The most accurate shot tracking available — uses GPS + Apple Watch integration to auto-detect each swing and map where your ball went. After a few rounds, you'll know exactly which clubs you're losing strokes with. The data doesn't lie.</p>
+          <div class="app-price">Free (Premium: $30/yr)</div>
+        </div>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">GE</div>
+        <div class="app-body">
+          <div class="app-name">Golf GameBook</div>
+          <span class="app-tag">Best for Groups</span>
+          <p class="app-desc">Live scoring for your group, shareable leaderboards, and competition formats built in. When you're playing with four guys who all want to track the round, this is the one that keeps everyone on the same scorecard in real time.</p>
+          <div class="app-price">Free</div>
+        </div>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">GW</div>
+        <div class="app-body">
+          <div class="app-name">Golfweek / PGA Tour Live</div>
+          <span class="app-tag">Know What's Happening</span>
+          <p class="app-desc">Keep up with the tour. Knowing who won the Travelers Championship, who's in the FedEx Cup hunt, and what Rory's doing at Augusta gives you ten minutes of credible conversation anywhere golf comes up. The brief covers the highlights — go deeper here.</p>
+          <div class="app-price">Free</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESSAYS -->
+<section class="essays-section">
+  <div class="gc" style="padding-bottom:80px;">
+    <div class="section-eyebrow">The Depth</div>
+    <h2 class="section-title">Guides Worth Reading</h2>
+    <p class="section-desc">What to know before you show up on the first tee.</p>
+    <div class="essays-grid">
+      <a href="/guide/" class="essay-card">
+        <div class="essay-card-eyebrow">The Read</div>
+        <div class="essay-card-title">What Your Handicap Actually Says About You</div>
+        <div class="essay-card-sub">A 15 doesn't mean what most guys think it means. The real signal is consistency, not upside — and here's how to read the number when someone tells you theirs.</div>
+        <div class="essay-card-cta">Read →</div>
+      </a>
+      <a href="/guide/" class="essay-card">
+        <div class="essay-card-eyebrow">The Read</div>
+        <div class="essay-card-title">The Client Round Playbook</div>
+        <div class="essay-card-sub">How to play a business round without making it awkward — pace of play, betting formats, when to let the client win, and what not to talk about on the back nine.</div>
+        <div class="essay-card-cta">Read →</div>
+      </a>
+      <a href="/guide/" class="essay-card">
+        <div class="essay-card-eyebrow">The Gear Read</div>
+        <div class="essay-card-title">Rangefinder vs. GPS Watch — Which Actually Helps More</div>
+        <div class="essay-card-sub">Both give you yardages. One is faster at the green. One is better for pre-shot planning. The case for carrying both, and the case for picking one.</div>
+        <div class="essay-card-cta">Read →</div>
+      </a>
+      <a href="/guide/" class="essay-card">
+        <div class="essay-card-eyebrow">The Gear Read</div>
+        <div class="essay-card-title">When to Upgrade Your Driver (and When to Take a Lesson Instead)</div>
+        <div class="essay-card-sub">New technology adds yards, but only if your swing can use them. The honest framework for figuring out which investment returns more strokes.</div>
+        <div class="essay-card-cta">Read →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="guide-footer">
+  <div class="guide-footer-inner">
+    <div class="guide-footer-brand">GuyTalk Guide</div>
+    <div class="guide-footer-links">
+      <a href="/">Home</a>
+      <a href="/guide/">All Categories</a>
+      <a href="/brief/">Today's Brief</a>
+      <a href="/terms/">Terms</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+    <div class="guide-footer-note">GuyTalk participates in Amazon Associates and other affiliate programs. We may earn a commission on qualifying purchases. Picks are chosen editorially — not based on affiliate rates.</div>
+  </div>
+</footer>
+</body>
+</html>

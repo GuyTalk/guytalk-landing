@@ -60,7 +60,6 @@
 <style>
   :root {
     --bg: #F9F8F5;
-    --bg-gradient: radial-gradient(ellipse 90% 45% at 50% -5%, rgba(43,111,255,0.05), transparent 60%);
     --surface: #FFFFFF;
     --surface-2: #F2F0EB;
     --border: #E5E2DB;
@@ -83,8 +82,6 @@
   html { scroll-behavior: smooth; }
   body {
     background: var(--bg);
-    background-image: var(--bg-gradient);
-    background-repeat: no-repeat;
     color: var(--text);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.55;
@@ -117,106 +114,83 @@
   /* NAV */
   nav {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(249,248,245,0.9);
-    backdrop-filter: saturate(180%) blur(18px);
-    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    background: rgba(249,248,245,0.95);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid var(--border);
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
   }
   nav.scrolled {
-    box-shadow: 0 1px 0 rgba(43,111,255,0.06), 0 4px 20px rgba(0,0,0,0.06);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 4px 20px rgba(0,0,0,0.06);
     border-bottom-color: var(--border-light);
   }
   .nav-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 24px; max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: center; padding: 0 28px; max-width: 1200px; margin: 0 auto; height: 62px;
   }
   .wordmark {
     font-family: 'Inter Tight', sans-serif;
-    font-weight: 800; font-size: 22px; letter-spacing: -0.03em; color: var(--text);
+    font-weight: 800; font-size: 21px; letter-spacing: -0.03em; color: var(--text);
+    text-decoration: none;
   }
   .wordmark .dot { color: var(--accent); }
-  .wordmark .tm { font-size: 0.42em; vertical-align: super; font-weight: 700; letter-spacing: 0; margin-left: 1px; color: var(--text-secondary); }
+  .nav-links {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .nav-right { display: flex; justify-content: flex-end; }
   @keyframes gtLivePulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.35; transform:scale(0.82); } }
-  /* Nav links — grow + brighten on hover so they feel alive */
-  .nav-link { font-size: 14px; font-weight: 600; color: var(--text-secondary); display: inline-flex; align-items: center; gap: 5px; transform-origin: center; transition: color 0.18s ease, transform 0.18s ease; }
-  .nav-link:hover { color: var(--accent); transform: scale(1.16); }
+  .nav-link {
+    font-size: 15px; font-weight: 600; color: var(--text-secondary);
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 7px 12px; border-radius: 8px;
+    transition: color 0.15s ease, background 0.15s ease;
+    white-space: nowrap;
+  }
+  .nav-link:hover { color: var(--text); background: rgba(0,0,0,0.04); }
   .nav-link-live { color: var(--text); }
-  .nav-live-pip { width: 7px; height: 7px; border-radius: 50%; background: #DC2626; animation: gtLivePulse 2s ease-in-out infinite; }
+  .nav-live-pip { width: 7px; height: 7px; border-radius: 50%; background: #DC2626; animation: gtLivePulse 2s ease-in-out infinite; flex-shrink: 0; }
+  /* Dropdown */
+  .nav-item-dd { position: relative; }
+  .nav-chev { font-size: 10px; opacity: 0.5; transition: transform 0.2s ease; display: inline-block; }
+  .nav-item-dd:hover .nav-chev { transform: rotate(180deg); }
+  .nav-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; box-shadow: 0 8px 32px rgba(15,23,36,0.1);
+    padding: 6px; min-width: 200px;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transform: translateX(-50%) translateY(-6px);
+    transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease;
+  }
+  .nav-item-dd:hover .nav-dropdown {
+    opacity: 1; visibility: visible; pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+  }
+  .nav-dd-item {
+    display: block; padding: 8px 12px; font-size: 14px; font-weight: 500;
+    color: var(--text-secondary); border-radius: 7px; text-decoration: none;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .nav-dd-item:hover { background: var(--accent-muted); color: var(--accent); text-decoration: none; }
+  .nav-dd-sep { height: 1px; background: var(--border); margin: 4px 0; }
+  .nav-dd-all { font-weight: 600; color: var(--accent); }
+  .nav-dd-all:hover { background: var(--accent-muted); }
   .nav-cta {
-    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px;
-    padding: 9px 18px; background: var(--accent); color: white; border-radius: 8px;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px;
+    padding: 9px 20px; background: var(--accent); color: white; border-radius: 9px;
     transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
   }
   .nav-cta:hover {
     background: var(--accent-hover); transform: translateY(-1px);
-    box-shadow: 0 0 20px rgba(43,111,255,0.25), 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 16px rgba(43,111,255,0.3);
   }
 
-  /* HERO — light with floating gradient blobs */
+  /* HERO */
   .hero {
     padding: 96px 0 72px;
     text-align: center;
-    background: #F9F8F5;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero > .container { position: relative; z-index: 1; }
-
-  /* Floating gradient blobs — CSS only, GPU-accelerated */
-  .hero-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(65px);
-    pointer-events: none;
-    will-change: transform;
-    z-index: 0;
-  }
-  /* Left blob — large blue, drifts right and down */
-  .hero-blob-1 {
-    width: 560px; height: 520px;
-    background: rgba(43,111,255,0.14);
-    top: -60px; left: -120px;
-    animation: blob-float-1 7s ease-in-out infinite;
-  }
-  /* Right blob — medium blue, drifts left and up */
-  .hero-blob-2 {
-    width: 480px; height: 460px;
-    background: rgba(43,111,255,0.17);
-    top: -40px; right: -100px;
-    animation: blob-float-2 9s ease-in-out infinite;
-  }
-  /* Bottom blob — indigo, drifts upward */
-  .hero-blob-3 {
-    width: 420px; height: 400px;
-    background: rgba(99,102,241,0.14);
-    bottom: 40px; left: 42%;
-    animation: blob-float-3 11s ease-in-out infinite;
-  }
-  /* Small accent blob — moves diagonally */
-  .hero-blob-4 {
-    width: 300px; height: 280px;
-    background: rgba(43,111,255,0.12);
-    top: 30%; left: 35%;
-    animation: blob-float-4 6s ease-in-out infinite;
-  }
-  @keyframes blob-float-1 {
-    0%, 100% { transform: translate(0, 0)       scale(1);    }
-    40%       { transform: translate(130px, 90px)  scale(1.08); }
-    70%       { transform: translate(50px, 140px)  scale(0.94); }
-  }
-  @keyframes blob-float-2 {
-    0%, 100% { transform: translate(0, 0)        scale(1);    }
-    35%       { transform: translate(-110px, 70px)  scale(1.1);  }
-    65%       { transform: translate(-50px, -80px) scale(0.93); }
-  }
-  @keyframes blob-float-3 {
-    0%, 100% { transform: translate(-50%, 0)     scale(1);    }
-    50%       { transform: translate(-50%, -90px)  scale(1.12); }
-  }
-  @keyframes blob-float-4 {
-    0%, 100% { transform: translate(0, 0)        scale(1);    }
-    50%       { transform: translate(80px, -60px)  scale(1.15); }
+    background: var(--bg);
   }
 
   .pill {
@@ -934,12 +908,27 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="wordmark">GuyTalk<span class="dot">.</span></div>
-    <div class="nav-menu" style="display:flex;align-items:center;gap:24px;">
+    <a href="/" class="wordmark">GuyTalk<span class="dot">.</span></a>
+    <div class="nav-links">
       <a href="/live/" class="nav-link nav-link-live"><span class="nav-live-pip"></span>Live</a>
-      <a href="/brief/issue-067/" class="nav-link">Today's Brief</a>
+      <a href="/brief/" class="nav-link">Today's Brief</a>
       <a href="/briefs/" class="nav-link">Archive</a>
-      <a href="/guide/" class="nav-link">Guide</a>
+      <div class="nav-item-dd">
+        <a href="/guide/" class="nav-link">Guide <span class="nav-chev" aria-hidden="true">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="/guide/style/" class="nav-dd-item">Style</a>
+          <a href="/guide/watches/" class="nav-dd-item">Watches</a>
+          <a href="/guide/bourbon-cigars/" class="nav-dd-item">Bourbon &amp; Cigars</a>
+          <a href="/guide/cars/" class="nav-dd-item">Cars</a>
+          <a href="/guide/fitness/" class="nav-dd-item">Fitness</a>
+          <a href="/guide/accessories/" class="nav-dd-item">Accessories</a>
+          <a href="/guide/golf/" class="nav-dd-item">Golf</a>
+          <div class="nav-dd-sep"></div>
+          <a href="/guide/" class="nav-dd-item nav-dd-all">All categories →</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
       <a href="#signup" class="nav-cta">Get the brief →</a>
     </div>
   </div>
@@ -947,10 +936,6 @@
 
 <!-- HERO -->
 <section class="hero" data-nav="0">
-  <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
-  <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
-  <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
-  <div class="hero-blob hero-blob-4" aria-hidden="true"></div>
   <div class="container">
     <div class="pill">
       <span class="pill-dot"></span>
@@ -1118,21 +1103,21 @@
         <div class="brief-greeting">Onsemi buys Synaptics for $7B. Rays demolish Royals 13–2. Travelers Championship live.</div>
         <div class="brief-intro">Onsemi is acquiring Synaptics for $7 billion in an all-stock deal as chip consolidation accelerates. Tampa Bay routed Kansas City 13–2 in a statement win. The Travelers Championship heads into the final round with Eric Cole holding a one-shot lead at 7-under.</div>
 
-        <a class="brief-story" href="/brief/issue-067/#sports" target="_blank" rel="noopener">
+        <a class="brief-story" href="/brief/#sports" target="_blank" rel="noopener">
           <div class="brief-cat bc-sports">Sports</div>
           <div class="brief-headline">Rays Dismantle Royals 13–2 in Statement Win</div>
           <div class="brief-snippet">The Tampa Bay Rays dominated the Kansas City Royals 13–2 on Friday, turning what looked like a competitive matchup into a blowout by the middle innings.</div>
           <div class="brief-bring bb-sports"><span class="brief-bring-label">Bring up →</span> "Tampa just showed Kansas City that this division isn't theirs to lose anymore."</div>
         </a>
 
-        <a class="brief-story" href="/brief/issue-067/#markets" target="_blank" rel="noopener">
+        <a class="brief-story" href="/brief/#markets" target="_blank" rel="noopener">
           <div class="brief-cat bc-markets">Markets</div>
           <div class="brief-headline">Onsemi buys Synaptics for $7B — chip consolidation keeps rolling</div>
           <div class="brief-snippet">All-stock deal signals that semiconductor real estate is still hot even as some chip stocks take a breather. Shows acquirers see value in hardware and AI supply chains right now, even with rates where they are.</div>
           <div class="brief-bring bb-markets"><span class="brief-bring-label">Office take →</span> "Apple fell 6.1% while small caps gained 3.1% on the week — that's not noise, that's money rotating out of mega-cap growth into beaten-down cyclicals and domestically-focused businesses, and Onsemi just paid $7 billion to prove chip consolidation is still very much on."</div>
         </a>
 
-        <a class="brief-story" href="/brief/issue-067/#culture" target="_blank" rel="noopener">
+        <a class="brief-story" href="/brief/#culture" target="_blank" rel="noopener">
           <div class="brief-cat bc-culture">Culture</div>
           <div class="brief-headline">California's Michelin guide just got a major upgrade</div>
           <div class="brief-snippet">Two three-star elevations in the same year in the same region is genuinely rare — it signals the culinary bar in California moved, not just shuffled. If you eat out in LA or San Francisco, there's new territory worth exploring before the reservations become impossible.</div>
@@ -1233,91 +1218,91 @@
 </section>
 
 <!-- THE GUIDE -->
-<section class="guide-lp-section" data-nav="4">
+<section data-nav="4" style="background:var(--surface-2);border-top:1px solid var(--border);padding:80px 0;">
   <style>
-    .guide-lp-section { background: #0F1724; padding: 80px 0; border-top: 3px solid var(--accent); }
-    .guide-lp-section .section-eyebrow { color: rgba(255,255,255,0.45); }
-    .guide-lp-section .section-eyebrow::before,
-    .guide-lp-section .section-eyebrow::after { background: rgba(255,255,255,0.2); }
-    .guide-lp-section .section-title { color: #fff; }
-    .guide-lp-section .section-sub { color: rgba(255,255,255,0.6); }
-    .guide-lp-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-      border-radius: 16px; overflow: hidden; margin-top: 48px;
+    .glp-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px;
     }
-    .guide-lp-tile {
-      display: block; background: rgba(255,255,255,0.04); padding: 30px 26px 26px;
-      border: 1px solid rgba(255,255,255,0.07); text-decoration: none;
-      transition: background 0.18s ease, border-color 0.18s ease;
+    .glp-tile {
+      display: block; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 20px 20px; text-decoration: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
     }
-    .guide-lp-tile:hover { background: rgba(43,111,255,0.14); border-color: rgba(43,111,255,0.38); text-decoration: none; }
-    .guide-lp-num { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 11px; letter-spacing: 0.1em; color: rgba(255,255,255,0.22); margin-bottom: 14px; }
-    .guide-lp-name { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: #fff; margin-bottom: 10px; }
-    .guide-lp-desc { font-size: 13px; color: rgba(255,255,255,0.52); line-height: 1.55; margin-bottom: 18px; }
-    .guide-lp-pick { font-size: 11px; color: rgba(255,255,255,0.28); font-style: italic; margin-bottom: 16px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); }
-    .guide-lp-cta { font-size: 13px; font-weight: 700; color: var(--accent); }
-    .guide-lp-btn {
-      display: inline-block; margin-top: 40px; padding: 14px 32px;
-      background: var(--accent); color: #fff; border-radius: 10px;
+    .glp-tile:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(43,111,255,0.08); transform: translateY(-2px); text-decoration: none; }
+    .glp-num { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 10px; letter-spacing: 0.14em; color: var(--text-secondary); margin-bottom: 12px; text-transform: uppercase; }
+    .glp-name { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px; }
+    .glp-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 16px; }
+    .glp-pick { font-size: 11px; color: var(--text-secondary); font-style: italic; margin-bottom: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .glp-cta { font-size: 13px; font-weight: 700; color: var(--accent); }
+    .glp-btn {
+      display: inline-block; margin-top: 40px; padding: 13px 30px;
+      background: var(--text); color: #fff; border-radius: 10px;
       font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 15px;
       text-decoration: none; transition: background 0.15s ease, transform 0.15s ease;
     }
-    .guide-lp-btn:hover { background: var(--accent-hover); transform: translateY(-1px); text-decoration: none; }
-    @media (max-width: 900px) { .guide-lp-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 580px) { .guide-lp-grid { grid-template-columns: 1fr; } }
+    .glp-btn:hover { background: var(--accent); transform: translateY(-1px); text-decoration: none; }
+    @media (max-width: 960px) { .glp-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .glp-grid { grid-template-columns: 1fr; } }
   </style>
   <div class="container">
     <div class="section-eyebrow">The GuyTalk Guide</div>
     <h2 class="section-title">The brief tells you what happened.<br>The Guide tells you what to own.</h2>
     <p class="section-sub">An evergreen reference library — picks we'd actually buy, the context behind them, and exactly what to say.</p>
 
-    <div class="guide-lp-grid">
-      <a href="/guide/style/" class="guide-lp-tile">
-        <div class="guide-lp-num">01</div>
-        <div class="guide-lp-name">Style</div>
-        <div class="guide-lp-desc">How to dress better, spend less, and stop overthinking it.</div>
-        <div class="guide-lp-pick">Top pick: Peter Millar Crown Comfort Polo</div>
-        <div class="guide-lp-cta">13 picks →</div>
+    <div class="glp-grid">
+      <a href="/guide/style/" class="glp-tile">
+        <div class="glp-num">01</div>
+        <div class="glp-name">Style</div>
+        <div class="glp-desc">How to dress better, spend less, and stop overthinking it.</div>
+        <div class="glp-pick">Top pick: Peter Millar Crown Comfort Polo</div>
+        <div class="glp-cta">13 picks →</div>
       </a>
-      <a href="/guide/watches/" class="guide-lp-tile">
-        <div class="guide-lp-num">02</div>
-        <div class="guide-lp-name">Watches</div>
-        <div class="guide-lp-desc">What to buy, what it means, and how not to look clueless at the AD.</div>
-        <div class="guide-lp-pick">Top pick: Hamilton Khaki Field Mechanical</div>
-        <div class="guide-lp-cta">8 picks →</div>
+      <a href="/guide/watches/" class="glp-tile">
+        <div class="glp-num">02</div>
+        <div class="glp-name">Watches</div>
+        <div class="glp-desc">What to buy, what it means, and how not to look clueless at the AD.</div>
+        <div class="glp-pick">Top pick: Hamilton Khaki Field Mechanical</div>
+        <div class="glp-cta">8 picks →</div>
       </a>
-      <a href="/guide/bourbon-cigars/" class="guide-lp-tile">
-        <div class="guide-lp-num">03</div>
-        <div class="guide-lp-name">Bourbon &amp; Cigars</div>
-        <div class="guide-lp-desc">The fundamentals. What to order, what to know, what to say.</div>
-        <div class="guide-lp-pick">Top pick: Buffalo Trace Kentucky Straight</div>
-        <div class="guide-lp-cta">10 picks →</div>
+      <a href="/guide/bourbon-cigars/" class="glp-tile">
+        <div class="glp-num">03</div>
+        <div class="glp-name">Bourbon &amp; Cigars</div>
+        <div class="glp-desc">The fundamentals. What to order, what to know, what to say.</div>
+        <div class="glp-pick">Top pick: Buffalo Trace Kentucky Straight</div>
+        <div class="glp-cta">10 picks →</div>
       </a>
-      <a href="/guide/cars/" class="guide-lp-tile">
-        <div class="guide-lp-num">04</div>
-        <div class="guide-lp-name">Cars</div>
-        <div class="guide-lp-desc">What actually matters when you're buying, maintaining, or just talking about cars.</div>
-        <div class="guide-lp-pick">Top pick: NOCO Boost Plus Jump Starter</div>
-        <div class="guide-lp-cta">9 picks →</div>
+      <a href="/guide/cars/" class="glp-tile">
+        <div class="glp-num">04</div>
+        <div class="glp-name">Cars</div>
+        <div class="glp-desc">What actually matters when you're buying, maintaining, or just talking about cars.</div>
+        <div class="glp-pick">Top pick: NOCO Boost Plus Jump Starter</div>
+        <div class="glp-cta">9 picks →</div>
       </a>
-      <a href="/guide/fitness/" class="guide-lp-tile">
-        <div class="guide-lp-num">05</div>
-        <div class="guide-lp-name">Fitness</div>
-        <div class="guide-lp-desc">The equipment that earns its space. Build a real home gym without the noise.</div>
-        <div class="guide-lp-pick">Top pick: Bowflex SelectTech 552 Dumbbells</div>
-        <div class="guide-lp-cta">10 picks →</div>
+      <a href="/guide/fitness/" class="glp-tile">
+        <div class="glp-num">05</div>
+        <div class="glp-name">Fitness</div>
+        <div class="glp-desc">The equipment that earns its space. Build a real home gym without the noise.</div>
+        <div class="glp-pick">Top pick: Bowflex SelectTech 552 Dumbbells</div>
+        <div class="glp-cta">10 picks →</div>
       </a>
-      <a href="/guide/accessories/" class="guide-lp-tile">
-        <div class="guide-lp-num">06</div>
-        <div class="guide-lp-name">Accessories</div>
-        <div class="guide-lp-desc">The details that finish the look. Bags, wallets, and sunglasses that matter.</div>
-        <div class="guide-lp-pick">Top pick: Bellroy Note Sleeve Wallet</div>
-        <div class="guide-lp-cta">9 picks →</div>
+      <a href="/guide/accessories/" class="glp-tile">
+        <div class="glp-num">06</div>
+        <div class="glp-name">Accessories</div>
+        <div class="glp-desc">The details that finish the look. Bags, wallets, and sunglasses that matter.</div>
+        <div class="glp-pick">Top pick: Bellroy Slim Sleeve Wallet</div>
+        <div class="glp-cta">9 picks →</div>
+      </a>
+      <a href="/guide/golf/" class="glp-tile">
+        <div class="glp-num">07</div>
+        <div class="glp-name">Golf</div>
+        <div class="glp-desc">Clubs, bags, rangefinders, and apps. Everything you need to show up ready.</div>
+        <div class="glp-pick">Top pick: Titleist Pro V1 Golf Balls</div>
+        <div class="glp-cta">10 picks →</div>
       </a>
     </div>
 
     <div style="text-align:center">
-      <a href="/guide/" class="guide-lp-btn">Explore The Guide →</a>
+      <a href="/guide/" class="glp-btn">Explore The Guide →</a>
     </div>
   </div>
 </section>

@@ -406,7 +406,7 @@
   /* ── GUIDE TABS ── */
   .guide-tabs{position:sticky;top:57px;z-index:90;background:rgba(249,248,245,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
   .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .guide-tab{padding:12px 18px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
+  .guide-tab{padding:13px 20px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:14px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
   .guide-tab:hover{color:var(--text);text-decoration:none;}
   .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
   }
@@ -421,6 +421,7 @@
   <div class="guide-nav-inner">
     <a href="/guide/" class="guide-wordmark">GuyTalk<span class="guide-word-guide"> Guide</span></a>
     <div class="guide-nav-links">
+      <a href="/" class="gnl">Home</a>
       <a href="/brief/" class="gnl">Today's Brief</a>
       <a href="/guide/" class="gnl is-active">Guide</a>
       <a href="/#signup" class="gnl-cta">Subscribe Free →</a>
@@ -435,6 +436,7 @@
     <a href="/guide/cars/"           class="guide-tab" data-path="cars">Cars</a>
     <a href="/guide/fitness/"        class="guide-tab" data-path="fitness">Fitness</a>
     <a href="/guide/accessories/"    class="guide-tab" data-path="accessories">Accessories</a>
+    <a href="/guide/golf/"           class="guide-tab" data-path="golf">Golf</a>
   </div>
 </div>
 <script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
