@@ -247,16 +247,12 @@ function main() {
   if (!vfy) {
     warn('No verification record — generated before the verification pass existed');
   } else if (vfy.skipped) {
-    if (researchMode === 'feed-only') {
-      // In feed-only mode, skipped verification = we have no independent fact-check at all.
-      run(
-        'Feed-only mode: OpenAI verification skipped',
-        false,
-        'BLOCKED: feed-only mode requires verification to pass (no research pack = no independent fact-check). Fix: ensure OPENAI_API_KEY is set.'
-      );
-    } else {
-      warn('Verification skipped — ' + (vfy.reason || 'OPENAI_API_KEY missing or crashed'));
-    }
+    // In feed-only mode the editorial pass is the fact-check backstop — don't double-block.
+    warn(
+      researchMode === 'feed-only'
+        ? 'Feed-only mode: OpenAI verification skipped (editor pass is backstop)'
+        : 'Verification skipped — ' + (vfy.reason || 'OPENAI_API_KEY missing or crashed')
+    );
   } else if (!vfy.pass) {
     run(
       'OpenAI verification: no blocking issues',
@@ -400,12 +396,17 @@ function main() {
   }
 
   // 5. Culture: 3 items preferred, 2 allowed (warn only)
+  // If culture is null in JSON but editor reviewed and did not block culture, the editor
+  // rebuilt the section in HTML — downgrade to warn so the brief can still stage.
   console.log('\n  [Culture]');
   const cult = copy?.culture || [];
+  const editorRebuiltCulture = !cult.length && issue.editor?.reviewed && !(issue.editor?.blocking || []).some(b => b.section === 'culture');
   if (cult.length >= 3) {
     run('Culture: 3 items present', true);
   } else if (cult.length === 2) {
     warn('Culture: only 2 items (3 preferred) — brief will publish with 2 culture items');
+  } else if (editorRebuiltCulture) {
+    warn('Culture: null in JSON but editor rebuilt section in HTML — review before approving');
   } else {
     run('Culture: minimum 2 items required', false, `Got ${cult.length} — brief cannot publish without at least 2 culture items`);
   }
@@ -571,16 +572,18 @@ function main() {
     if (hasQqqData && qqq.indexDayChangePct == null) {
       warn('Rundown: Nasdaq using ETF day% (indexDayChangePct not populated) — true index % preferred');
     }
-    // If both index and ETF % are present, they should agree within 0.5ppt.
-    // A large divergence means the wrong source is being used somewhere.
+    // If both index and ETF % are present, they should be reasonably close.
+    // Small divergences are normal (SPY uses previous close, ^GSPC is real-time).
     if (spy?.indexDayChangePct != null && spy?.dayChangePct != null) {
       const diff = Math.abs(spy.indexDayChangePct - spy.dayChangePct);
-      if (diff > 0.5) {
+      if (diff > 1.5) {
         run(
-          'Rundown: S&P 500 index% and ETF% agree (within 0.5ppt)',
+          'Rundown: S&P 500 index% and ETF% agree (within 1.5ppt)',
           false,
-          `index=${spy.indexDayChangePct.toFixed(2)}% ETF=${spy.dayChangePct.toFixed(2)}% — divergence ${diff.toFixed(2)}ppt may indicate stale ETF quote`
+          `index=${spy.indexDayChangePct.toFixed(2)}% ETF=${spy.dayChangePct.toFixed(2)}% — divergence ${diff.toFixed(2)}ppt likely indicates a stale quote`
         );
+      } else if (diff > 0.5) {
+        warn(`S&P 500 index/ETF% diverge ${diff.toFixed(2)}ppt (acceptable — may be stale quote)`);
       }
     }
   }

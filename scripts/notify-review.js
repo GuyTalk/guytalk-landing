@@ -17,6 +17,24 @@ function getRunMeta() {
   return { ts, commit };
 }
 
+// Ensure the latest brief is staged to `pending` before the email goes out.
+// /api/preview reads from `pending` on GitHub — if we notify before pushing,
+// the link serves the previous issue.
+function stageToPending() {
+  try {
+    execSync('git add brief/ assets/og-cards assets/social-cards assets/tiktok-cards briefs/ index.html', { cwd: ROOT, stdio: 'pipe' });
+    try {
+      execSync('git commit -m "Brief: stage for review"', { cwd: ROOT, stdio: 'pipe' });
+    } catch (_) {
+      // nothing to commit — already staged
+    }
+    execSync('git push origin HEAD:pending --force-with-lease', { cwd: ROOT, stdio: 'pipe' });
+    console.log('   ✓ Staged to pending branch');
+  } catch (err) {
+    console.log(`   ⚠  Could not stage to pending: ${err.message}`);
+  }
+}
+
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const APPROVAL_TOKEN = process.env.APPROVAL_TOKEN;
 const SITE_URL       = 'https://www.guytalkmedia.com';
@@ -38,6 +56,8 @@ function getLatestBrief() {
 async function main() {
   if (!RESEND_API_KEY) { console.log('   ⚠  RESEND_API_KEY not set — skipping review notification'); return; }
   if (!APPROVAL_TOKEN) { console.log('   ⚠  APPROVAL_TOKEN not set — skipping review notification'); return; }
+
+  stageToPending();
 
   const brief = getLatestBrief();
   if (!brief) { console.log('   ⚠  No brief found — skipping review notification'); return; }
