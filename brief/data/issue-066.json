@@ -1,0 +1,1319 @@
+{
+  "num": 66,
+  "slug": "issue-066",
+  "date": "Saturday, June 27, 2026",
+  "title": "Tech Selloff Deepens as Korean Chipmakers Crater. Jamie Dimon Blindsides Succession Race. White Sox Obliterate Royals 22-1.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815916",
+      "name": "Kansas City Royals at Chicago White Sox",
+      "shortName": "KC @ CHW",
+      "date": "2026-06-26T23:40Z",
+      "venue": "Rate Field",
+      "venueCity": "Chicago, Illinois",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago White Sox",
+        "abbrev": "CHW",
+        "score": "22",
+        "winner": true
+      },
+      "away": {
+        "team": "Kansas City Royals",
+        "abbrev": "KC",
+        "score": "1",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815915",
+      "name": "Colorado Rockies at Minnesota Twins",
+      "shortName": "COL @ MIN",
+      "date": "2026-06-27T00:10Z",
+      "venue": "Target Field",
+      "venueCity": "Minneapolis, Minnesota",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Minnesota Twins",
+        "abbrev": "MIN",
+        "score": "9",
+        "winner": true
+      },
+      "away": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "8",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815918",
+      "name": "Athletics Athletics at Los Angeles Angels",
+      "shortName": "ATH @ LAA",
+      "date": "2026-06-27T01:38Z",
+      "venue": "Angel Stadium",
+      "venueCity": "Anaheim, California",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Los Angeles Angels",
+        "abbrev": "LAA",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "9",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 728.99,
+      "prevClose": 734.3,
+      "dayChange": -5.31,
+      "dayChangePct": -0.7231,
+      "weekChangePct": -2.3769974109467342,
+      "spark": [
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375
+      ],
+      "indexPrice": 7354.02,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -0.04716600721787232
+    },
+    "DIA": {
+      "price": 517.75,
+      "prevClose": 519.26,
+      "dayChange": -1.51,
+      "dayChangePct": -0.2908,
+      "weekChangePct": 0.4325691310257297,
+      "spark": [
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75
+      ],
+      "indexPrice": 51876.11,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.08572912421372689
+    },
+    "QQQ": {
+      "price": 706.52,
+      "prevClose": 716.38,
+      "dayChange": -9.86,
+      "dayChangePct": -1.3764,
+      "weekChangePct": -4.60424986389841,
+      "spark": [
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125
+      ],
+      "indexPrice": 25297.617,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -0.2404809820509826
+    },
+    "IWM": {
+      "price": 299.83,
+      "prevClose": 298.91,
+      "dayChange": 0.92,
+      "dayChangePct": 0.3078,
+      "weekChangePct": 1.4344205536856485,
+      "spark": [
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656
+      ],
+      "indexPrice": 3010.084,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.07393603753836132
+    },
+    "NVDA": {
+      "price": 192.53,
+      "prevClose": 195.74,
+      "dayChange": -3.21,
+      "dayChangePct": -1.6399,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 379.71,
+      "prevClose": 375.12,
+      "dayChange": 4.59,
+      "dayChangePct": 1.2236,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 372.97,
+      "prevClose": 352.83,
+      "dayChange": 20.14,
+      "dayChangePct": 5.7081,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 283.78,
+      "prevClose": 275.15,
+      "dayChange": 8.63,
+      "dayChangePct": 3.1365,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 550.25,
+      "prevClose": 542.87,
+      "dayChange": 7.38,
+      "dayChangePct": 1.3594,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 232.69,
+      "prevClose": 227.01,
+      "dayChange": 5.68,
+      "dayChangePct": 2.5021,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 337.39,
+      "prevClose": 343.71,
+      "dayChange": -6.32,
+      "dayChangePct": -1.8388,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 521.58,
+      "prevClose": 532.57,
+      "dayChange": -10.99,
+      "dayChangePct": -2.0636,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 365.02,
+      "prevClose": 378.91,
+      "dayChange": -13.89,
+      "dayChangePct": -3.6658,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 73.81,
+      "prevClose": 70.9,
+      "dayChange": 2.91,
+      "dayChangePct": 4.1044,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 329.05,
+      "prevClose": 335.12,
+      "dayChange": -6.07,
+      "dayChangePct": -1.8113,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 149.06,
+      "prevClose": 142.52,
+      "dayChange": 6.54,
+      "dayChangePct": 4.5888,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 399.49,
+      "prevClose": 409.45,
+      "dayChange": -9.96,
+      "dayChangePct": -2.4325,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 60315.11,
+      "prevClose": 59391.68,
+      "dayChange": 923.43,
+      "dayChangePct": 1.5548,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "MSFT",
+      "COIN",
+      "NFLX",
+      "AVGO",
+      "AAPL"
+    ],
+    "10Y": {
+      "price": 4.372,
+      "prevClose": 4.4629998207092285,
+      "dayChange": -0.09099982070922863,
+      "dayChangePct": -2.0389832929629734,
+      "weekChangePct": -2.0389832929629734,
+      "spark": [
+        4.493000030517578,
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, June 26 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, June 26). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "MSFT",
+          "name": "Microsoft Corporation",
+          "price": 372.97,
+          "changePct": 5.70813
+        },
+        {
+          "symbol": "UBER",
+          "name": "Uber Technologies, Inc.",
+          "price": 76.2,
+          "changePct": 5.46713
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 112.93,
+          "changePct": 5.27641
+        },
+        {
+          "symbol": "ADBE",
+          "name": "Adobe Inc.",
+          "price": 202.73,
+          "changePct": 4.81878
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "GS",
+          "name": "The Goldman Sachs Group, Inc.",
+          "price": 1019.61,
+          "changePct": -4.27006
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 128.32,
+          "changePct": -3.4244
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 521.58,
+          "changePct": -2.06358
+        },
+        {
+          "symbol": "GOOGL",
+          "name": "Alphabet Inc.",
+          "price": 337.39,
+          "changePct": -1.83876
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 283.78,
+          "changePct": 3.13647
+        },
+        {
+          "symbol": "AMZN",
+          "name": "Amazon.com, Inc.",
+          "price": 232.69,
+          "changePct": 2.50209
+        },
+        {
+          "symbol": "MSFT",
+          "name": "Microsoft Corporation",
+          "price": 372.97,
+          "changePct": 5.70813
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 60224.65,
+          "changePct": 0.3524
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Travelers Championship",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-25T04:00Z",
+    "endDate": "2026-06-28T04:00Z",
+    "status": "Round 3 - In Progress",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Scottie Scheffler",
+        "score": "-16",
+        "pos": "1st"
+      },
+      {
+        "name": "Viktor Hovland",
+        "score": "-14",
+        "pos": "2nd"
+      },
+      {
+        "name": "Akshay Bhatia",
+        "score": "-12",
+        "pos": "3rd"
+      },
+      {
+        "name": "Eric Cole",
+        "score": "-12",
+        "pos": "4th"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-10",
+        "pos": "5th"
+      },
+      {
+        "name": "Ben Griffin",
+        "score": "-10",
+        "pos": "6th"
+      },
+      {
+        "name": "Bud Cauley",
+        "score": "-10",
+        "pos": "7th"
+      },
+      {
+        "name": "Brian Campbell",
+        "score": "-9",
+        "pos": "8th"
+      },
+      {
+        "name": "Maverick McNealy",
+        "score": "-9",
+        "pos": "9th"
+      },
+      {
+        "name": "Tommy Fleetwood",
+        "score": "-9",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "SoonWoo Kwon",
+            "loser": "Alejandro Moro Canas",
+            "score": "6-4 7-6 6-3"
+          },
+          {
+            "winner": "Otto Virtanen",
+            "loser": "Nicolai Budkov Kjaer",
+            "score": "4-6 6-4 6-4 7-5"
+          },
+          {
+            "winner": "Hugo Gaston",
+            "loser": "Moez Echargui",
+            "score": "6-1 5-7 6-2 6-4"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Bianca Andreescu",
+            "loser": "Aliaksandra Sasnovich",
+            "score": "6-3 7-6"
+          },
+          {
+            "winner": "Robin Montgomery",
+            "loser": "Marina Bassols Ribera",
+            "score": "3-6 6-1 6-1"
+          },
+          {
+            "winner": "Lina Gjorcheska",
+            "loser": "Lucia Bronzetti",
+            "score": "6-1 6-2"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Lenovo Austrian Grand Prix",
+    "shortName": "Lenovo Austrian GP",
+    "venue": "Red Bull Ring",
+    "status": "6/28 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 41
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "France at Norway",
+      "shortName": "FRA @ NOR",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-26T19:00Z",
+      "home": {
+        "team": "Norway",
+        "score": "1"
+      },
+      "away": {
+        "team": "France",
+        "score": "4"
+      },
+      "goals": [
+        {
+          "player": "Ousmane Dembélé",
+          "team": "",
+          "clock": "7'",
+          "type": "Goal"
+        },
+        {
+          "player": "Ousmane Dembélé",
+          "team": "",
+          "clock": "20'",
+          "type": "Goal"
+        },
+        {
+          "player": "Thelo Aasgaard",
+          "team": "",
+          "clock": "21'",
+          "type": "Goal"
+        },
+        {
+          "player": "Ousmane Dembélé",
+          "team": "",
+          "clock": "32'",
+          "type": "Goal"
+        },
+        {
+          "player": "Désiré Doué",
+          "team": "",
+          "clock": "90'+4'",
+          "type": "Goal - Header"
+        }
+      ],
+      "espnNote": "France forward Ousmane Dembélé scored a first-half hat trick, including one off a feed from Kylian Mbappé, to help his team beat Norway 4-1 at the World Cup on Friday."
+    },
+    {
+      "name": "Iraq at Senegal",
+      "shortName": "IRQ @ SEN",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-26T19:00Z",
+      "home": {
+        "team": "Senegal",
+        "score": "5"
+      },
+      "away": {
+        "team": "Iraq",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Habib Diarra",
+          "team": "",
+          "clock": "4'",
+          "type": "Goal"
+        },
+        {
+          "player": "Ismaïla Sarr",
+          "team": "",
+          "clock": "56'",
+          "type": "Goal"
+        },
+        {
+          "player": "Pape Gueye",
+          "team": "",
+          "clock": "59'",
+          "type": "Goal"
+        },
+        {
+          "player": "Pape Gueye",
+          "team": "",
+          "clock": "71'",
+          "type": "Goal"
+        },
+        {
+          "player": "Iliman Ndiaye",
+          "team": "",
+          "clock": "82'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Senegal racked up the goals on 10-man Iraq in a 5-0 victory Friday that boosted their hopes of reaching the World Cup knockout stages."
+    },
+    {
+      "name": "Saudi Arabia at Cape Verde",
+      "shortName": "KSA @ CPV",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-27T00:00Z",
+      "home": {
+        "team": "Cape Verde",
+        "score": "0"
+      },
+      "away": {
+        "team": "Saudi Arabia",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": "Cape Verde drew Saudi Arabia 0-0 to finish second in Group H"
+    },
+    {
+      "name": "Spain at Uruguay",
+      "shortName": "ESP @ URU",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-27T00:00Z",
+      "home": {
+        "team": "Uruguay",
+        "score": "0"
+      },
+      "away": {
+        "team": "Spain",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Álex Baena",
+          "team": "",
+          "clock": "42'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Spain defeated Uruguay 1-0 after another goalkeeping mistake by Fernando Muslera to advance to the knockout stage of the World Cup and eliminate the South American powerhouse."
+    },
+    {
+      "name": "Iran at Egypt",
+      "shortName": "IRN @ EGY",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-27T03:00Z",
+      "home": {
+        "team": "Egypt",
+        "score": "1"
+      },
+      "away": {
+        "team": "Iran",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Mahmoud Saber",
+          "team": "",
+          "clock": "5'",
+          "type": "Goal - Volley"
+        },
+        {
+          "player": "Ramin Rezaeian",
+          "team": "",
+          "clock": "14'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Egypt advanced past the group stage at the World Cup for the first time while Iran will have to wait to find out its fate after a 1-1 draw."
+    },
+    {
+      "name": "Belgium at New Zealand",
+      "shortName": "BEL @ NZL",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-27T03:00Z",
+      "home": {
+        "team": "New Zealand",
+        "score": "1"
+      },
+      "away": {
+        "team": "Belgium",
+        "score": "5"
+      },
+      "goals": [
+        {
+          "player": "Leandro Trossard",
+          "team": "",
+          "clock": "28'",
+          "type": "Goal"
+        },
+        {
+          "player": "Leandro Trossard",
+          "team": "",
+          "clock": "50'",
+          "type": "Goal - Volley"
+        },
+        {
+          "player": "Kevin De Bruyne",
+          "team": "",
+          "clock": "66'",
+          "type": "Goal"
+        },
+        {
+          "player": "Elijah Just",
+          "team": "",
+          "clock": "84'",
+          "type": "Goal"
+        },
+        {
+          "player": "Romelu Lukaku",
+          "team": "",
+          "clock": "86'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Alexis Saelemaekers",
+          "team": "",
+          "clock": "90'+4'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Leandro Trossard scored a pair of goals and Belgium overcame a slow start at the World Cup to advance to the knockout round with a 5-1 victory over New Zealand on Friday night."
+    },
+    {
+      "name": "Ghana at Croatia",
+      "shortName": "GHA @ CRO",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-27T21:00Z",
+      "home": {
+        "team": "Croatia",
+        "score": "0"
+      },
+      "away": {
+        "team": "Ghana",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "England at Panama",
+      "shortName": "ENG @ PAN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-27T21:00Z",
+      "home": {
+        "team": "Panama",
+        "score": "0"
+      },
+      "away": {
+        "team": "England",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Spider-Man to The Odyssey: 10 of the best films to watch this July - BBC",
+      "url": "https://www.bbc.com/culture/article/20260624-10-of-the-best-films-to-watch-this-july",
+      "description": "With Tom Holland and Zendaya starring in two of the biggest releases, here are the films to watch at the cinema and screen at home this month.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Horoscope for Friday, 06/26/26 by Christopher Renstrom - SFGATE",
+      "url": "https://www.sfgate.com/horoscope/article/horoscope-friday-06-26-26-christopher-renstrom-22313515.php",
+      "description": "SCORPIO (Oct. 23 - Nov. 21): Weeks ago prospects looked slim. Nowadays they couldn't be more robust. Don't stick to the old mindset.",
+      "source": "SFGate"
+    },
+    {
+      "title": "Rumor Roundup (June 26, 2026): Night of Champions winners, former WWE star in TNA, Jack Perry, more! - Cageside Seats",
+      "url": "https://www.cagesideseats.com/rumor-round-up/454351/rumor-roundup-wwe-plans-night-of-champions-winners-tna-signing-apollo-crews-new-title-perry",
+      "description": "WWE creative plans at Night of Champions, TNA interested in signing a former WWE star, Jack Perry’s AEW contract, Collision pre-emptions on TNT, and more rumors.",
+      "source": "Cageside Seats"
+    },
+    {
+      "title": "‘The Bear’ Is Over: Here’s What Happens To Carmy, Sydney, Richie & More In Series Finale - Deadline",
+      "url": "https://deadline.com/gallery/the-bear-series-finale-recap-ending-explained/",
+      "description": "The Bear concluded its fifth and final season Thursday. Here's how things turned out for the main characters, including Carmy, Sydney and more.",
+      "source": "Deadline"
+    },
+    {
+      "title": "At least one AEW champ is missing Forbidden Door due to a ‘massive challenge’ with visas - Cageside Seats",
+      "url": "https://www.cagesideseats.com/aew/454310/tony-khan-massive-visa-issues-aew-forbidden-door-cmll-stardom-davis-gabe-kidd-beast-mortos",
+      "description": "Tony Khan says AEW PPV plans changed, and names several stars who are not on Forbidden Door due to visa renewal issues.",
+      "source": "Cageside Seats"
+    },
+    {
+      "title": "Clement earns most votes in AL, to start at 2B in first All-Star Game - MLB.com",
+      "url": "https://www.mlb.com/news/ernie-clement-2026-leading-al-vote-getter-all-star-starter-at-second-base",
+      "description": "TORONTO -- Ernie Clement is your starting second baseman for the American League in the 2026 All-Star Game, another remarkable moment in his unlikely rise to stardom.\nClement led all American League players with 3,232,932 votes in Phase 1, meaning he’ll bypas…",
+      "source": "MLB.com"
+    },
+    {
+      "title": "Parents allege excessive force in death of ex-NFL player Martin - ESPN",
+      "url": "https://africa.espn.com/nfl/story/_/id/49180059/parents-allege-excessive-force-death-ex-nfl-player-martin",
+      "description": "The parents of former All-Pro NFL running back Doug Martin say excessive force by police and delayed medical care led to his death last year, according to a wrongful death lawsuit.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Iran and Egypt avoid talking about World Cup ‘Pride Match’ in Seattle - AP News",
+      "url": "https://apnews.com/article/world-cup-seattle-iran-egypt-gay-pride-lgbtq-c8243854034c3500b0a5663cb174f101",
+      "description": "Iran's coach and FIFA officials have refused to answer questions about a World Cup “Pride Match” in Seattle. Local organizers are honoring the city's LGBTQ+ community when Iran faces Egypt on Friday. The countries are two of the most repressive places in the …",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Which teams have qualified for the World Cup 2026 knockouts, round of 32? - Al Jazeera",
+      "url": "https://www.aljazeera.com/sports/2026/6/26/which-teams-have-qualified-for-the-world-cup-2026-knockouts-round-of-32",
+      "description": "The 2026 FIFA World Cup knockout stage format, criteria and rules for qualification. Find out who’s in and who’s out.",
+      "source": "Al Jazeera English"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Markets",
+      "headline": "Tech Selloff Deepens as Korean Chipmakers Crater 6%, Exposing AI Rally Fragility",
+      "whatHappened": "South Korean stocks plummeted 6% this week as chipmakers faced renewed selling pressure, reversing recent AI-fueled gains. The selloff signals growing skepticism about whether AI enthusiasm can sustain valuations at current levels.",
+      "whyItMatters": "If chip stocks—the infrastructure backbone of AI—can't hold gains, it suggests the broader AI rally may be built on hype rather than fundamentals, threatening portfolios heavy in tech and growth stocks.",
+      "depth": "The Nasdaq and S&P 500 are vulnerable to contagion from chipmaker weakness since semiconductor firms represent 8-10% of major indices. Retail investors can hedge via inverse ETFs (PSQ, SDS) or reduce tech concentration. This mirrors 2021's meme-stock euphoria collapse, where sentiment reversals triggered 20-30% corrections in speculative sectors within weeks.",
+      "whatToSay": "When the chip guys—the guys actually building the AI future—start bailing, it's time to ask whether you're holding hype or value.",
+      "sources": [
+        "https://www.bloomberg.com/news/articles/2026-06-26/korean-stocks-slump-6-as-chipmakers-hit-by-renewed-sellolff"
+      ],
+      "isLead": true,
+      "tier": 2
+    },
+    {
+      "category": "Tech",
+      "headline": "Trump Administration Restricts OpenAI's GPT-5.6 Launch to Government-Approved Partners Only",
+      "whatHappened": "OpenAI's soon-to-be-released GPT-5.6 model will now be available only to a small group of government-vetted partners, marking the first major regulatory constraint on a frontier AI model's rollout.",
+      "whyItMatters": "This sets a precedent for government control over AI development speed and access, potentially slowing innovation, changing competitive dynamics (favoring government-approved vendors), and signaling that AI regulation is moving from talk to enforcement.",
+      "depth": "",
+      "whatToSay": "When the government starts picking AI winners before they launch, you know regulation just stopped being theoretical.",
+      "sources": [
+        "https://www.politico.com/news/2026/06/25/openai-gpt-model-goverment-approval-00977551"
+      ],
+      "isLead": false,
+      "tier": 2
+    },
+    {
+      "category": "Business",
+      "headline": "Jamie Dimon Blindsides Succession Race, Removes Marianne Lake from CEO Contention",
+      "whatHappened": "JPMorgan's Marianne Lake, a longtime executive and presumed successor to Jamie Dimon, was recently informed she's no longer being considered for the CEO role as new top deputies are named.",
+      "whyItMatters": "Dimon's abrupt reversal on succession creates uncertainty at one of America's largest banks and suggests internal power struggles or strategy shifts that could affect leadership direction, risk posture, and shareholder confidence.",
+      "depth": "",
+      "whatToSay": "When Dimon suddenly benches his presumed heir, something's going on behind the scenes at JPM—and nobody outside the building knows what yet.",
+      "sources": [
+        "https://www.ft.com/content/d289abbc-c6fd-431b-9c97-85ffa88853f6"
+      ],
+      "isLead": false,
+      "tier": 2
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Spider-Man to The Odyssey: 10 of the best films to watch this July",
+        "source": "BBC News",
+        "url": "https://www.bbc.com/culture/article/20260624-10-of-the-best-films-to-watch-this-july",
+        "fact": "With Tom Holland and Zendaya starring in two of the biggest releases, here are the films to watch at the cinema and screen at home this month.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "‘The Bear’ Is Over: Here’s What Happens To Carmy, Sydney, Richie & More In Series Finale",
+        "source": "Deadline",
+        "url": "https://deadline.com/gallery/the-bear-series-finale-recap-ending-explained/",
+        "fact": "The Bear concluded its fifth and final season Thursday. Here's how things turned out for the main characters, including Carmy, Sydney and more.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Belgium 5–1 New Zealand",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nBelgium 5–1 New Zealand | Scorers: Leandro Trossard (28'), Leandro Trossard (50'), Kevin De Bruyne (66'), Elijah Just (84'), Romelu Lukaku (86'), Alexis Saelemaekers (90'+4') NOTE: Leandro Trossard scored a pair of goals and Belgium overcame a slow start at the World Cup to advance to the knockout ro\nFrance 4–1 Norway | Scorers: Ousmane Dembélé (7'), Ousmane Dembélé (20'), Thelo Aasgaard (21'), Ousmane Dembélé (32'), Désiré Doué (90'+4') NOTE: France forward Ousmane Dembélé scored a first-half hat trick, including one off a feed from Kylian Mbappé, to help his t\nSenegal 5–0 Iraq | Scorers: Habib Diarra (4'), Ismaïla Sarr (56'), Pape Gueye (59'), Pape Gueye (71'), Iliman Ndiaye (82') NOTE: Senegal racked up the goals on 10-man Iraq in a 5-0 victory Friday that boosted their hopes of reaching the World Cup kn\nEgypt 1–1 Iran | Scorers: Mahmoud Saber (5'), Ramin Rezaeian (14') NOTE: Egypt advanced past the group stage at the World Cup for the first time while Iran will have to wait to find out its fat\nSpain 1–0 Uruguay | Scorers: Álex Baena (42') NOTE: Spain defeated Uruguay 1-0 after another goalkeeping mistake by Fernando Muslera to advance to the knockout stage of the\nCape Verde 0–0 Saudi Arabia NOTE: Cape Verde drew Saudi Arabia 0-0 to finish second in Group H\nTODAY'S FIXTURES: Ghana vs. Croatia (5:00 PM EDT); England vs. Panama (5:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": null,
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "Belgium routed New Zealand 5–1, with Leandro Trossard scoring twice and Kevin De Bruyne, Elijah Just, Romelu Lukaku, and Alexis Saelemaekers adding one each to advance to the World Cup knockout round.",
+      "whyItMatters": "Belgium had a sluggish start to this World Cup but just put five past a team that had nothing to lose, signaling their attack finally clicked when it mattered. That kind of offensive firepower in the group stage typically means deeper tournament runs.",
+      "theRead": "This was Belgium reminding everyone they're still dangerous. Trossard's two goals and De Bruyne's involvement show their midfield is cooking, and when your creative players start converting chances at this rate, defenses get nervous. New Zealand was overmatched, but Belgium needed this kind of performance after their opening matches looked shaky. They're the kind of team that sneaks into a semifinal.",
+      "ammo": [
+        "Leandro Trossard scored twice in the 28th and 50th minutes",
+        "Kevin De Bruyne scored in the 66th minute",
+        "Belgium advanced to the knockout round after a slow start to the tournament"
+      ],
+      "whatToBringUp": "Belgium put five past New Zealand—that's the kind of scoreline that travels; if they get their defense locked in, they're going to be a real problem in the knockouts.",
+      "ourPick": "Belgium advances further because their three best players—De Bruyne, Trossard, and Lukaku—finally scored in the same match, a pattern that rarely repeats without payoff.",
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        },
+        {
+          "name": "Jude Bellingham",
+          "url": "https://en.wikipedia.org/wiki/Jude_Bellingham"
+        },
+        {
+          "name": "Cristiano Ronaldo",
+          "url": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo"
+        },
+        {
+          "name": "Kylian Mbappé",
+          "url": "https://en.wikipedia.org/wiki/Kylian_Mbappé"
+        },
+        {
+          "name": "Romano Schmid",
+          "url": "https://en.wikipedia.org/wiki/Romano_Schmid"
+        },
+        {
+          "name": "Luis Díaz",
+          "url": "https://en.wikipedia.org/wiki/Luis_Díaz_(footballer,_born_1997)"
+        }
+      ]
+    },
+    {
+      "name": "Travelers Championship",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "Travelers Championship — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st Scottie Scheffler: -16, 2nd Viktor Hovland: -14, 3rd Akshay Bhatia: -12",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": null,
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "golf",
+      "whatHappened": "Scottie Scheffler holds the lead at the Travelers Championship at 16-under par, two shots clear of Viktor Hovland at 14-under, with Akshay Bhatia in third at 12-under.",
+      "whyItMatters": "Scheffler's been the best player in golf this year, and winning another major tournament keeps him in conversation for Player of the Year. Hovland staying close means he's not out of it, but Scheffler at this level is almost impossible to catch.",
+      "theRead": "Scheffler's leading because he's Scheffler—he's simply better than everyone else right now. Hovland's two back, but that gap feels bigger than it looks; Scheffler doesn't give away 16-under leads. Bhatia at 12 is playing the weekend in someone else's tournament. Watch if Scheffler's putter stays hot—that's what separates a one-shot win from a five-shot win.",
+      "ammo": [
+        "Scottie Scheffler leads at 16-under par",
+        "Viktor Hovland is in second place at 14-under par, two shots back",
+        "Akshay Bhatia is third at 12-under par"
+      ],
+      "whatToBringUp": "Scheffler's up two with the best short game in golf and the lead heading into Sunday—he's won 11 tournaments in the last year, so unless something breaks, you're watching the trophy ceremony.",
+      "ourPick": "Scheffler wins because he's been the best player in the field by two strokes with two rounds left, and he doesn't lose leads from that position.",
+      "playerLinks": [
+        {
+          "name": "Scottie Scheffler",
+          "url": "https://www.pgatour.com/players/player.4686091.scottie-scheffler.html"
+        },
+        {
+          "name": "Viktor Hovland",
+          "url": "https://www.pgatour.com/players/player.4848721.viktor-hovland.html"
+        }
+      ],
+      "course": null
+    },
+    {
+      "name": "KC @ CHW",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Chicago White Sox 22–1 over Kansas City Royals",
+      "facts": "Chicago White Sox beat Kansas City Royals 22–1",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cst.brightspotcdn.com/dims4/default/b60004f/2147483647/strip/true/crop/906x517+0+0/resize/1461x834!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F9a%2F02%2F21bd8c6544dfb8558fbdb0491ca1%2Fscreenshot-2026-06-24-at-9-30-24-pm.png",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "The Chicago White Sox demolished the Kansas City Royals 22–1.",
+      "whyItMatters": "A 22–1 game is a historic blowout—that's the kind of scoreline you don't forget and the kind that tells you one team completely fell apart while the other smelled blood and kept piling on. This was a statement.",
+      "theRead": "This wasn't a close game that got out of hand; this was the White Sox breaking the Royals. A 22–1 final line means pitching collapsed, defense disappeared, and the bats just kept going. Games like this are demoralizing for the losing team and they tend to linger in the locker room. The White Sox got everything right; Kansas City got nothing right. That gap doesn't close in one game.",
+      "ammo": [
+        "Chicago White Sox beat Kansas City Royals 22–1",
+        "This is one of the most lopsided scores in recent MLB history",
+        "The game was a complete blowout across all facets—pitching, defense, and offense"
+      ],
+      "whatToBringUp": "The White Sox put 22 runs on the board against Kansas City—that's not a baseball game, that's an execution. Teams that lose by 21 are still talking about it in the dugout for a week.",
+      "ourPick": "The White Sox have real momentum because that kind of offensive explosion and pitching performance doesn't happen by accident—they're playing confident baseball right now."
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://fortune.com/img-assets/wp-content/uploads/2026/06/GettyImages-2282033290-e1781797383205.jpg?resize=1200,600",
+    "imageReal": true,
+    "eyebrow": "Markets",
+    "title": "Tech Selloff Deepens as Korean Chipmakers Crater 6%, Exposing AI Rally Fragility",
+    "sub": "Markets",
+    "isNonSportsLead": true
+  },
+  "copy": {
+    "title": "Tech Selloff Deepens as Korean Chipmakers Crater. Jamie Dimon Blindsides Succession Race. White Sox Obliterate Royals 22-1.",
+    "keyTakeaway": "A rough week for tech closed with Korean chipmakers down 6% and the Nasdaq off 4.6% — the AI rally is showing real cracks. On the diamond, the White Sox put up a historic 22–1 demolition of the Royals. And at JPMorgan, Jamie Dimon just quietly removed his presumed heir from the succession race, leaving Wall Street guessing.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "White Sox demolish Royals 22–1 in historic blowout",
+      "whatHappened": "The Chicago White Sox crushed the Kansas City Royals 22–1 on Saturday in one of the most lopsided results of the 2026 MLB season. Kansas City managed a single run against an offense that never let up.",
+      "whyBullet1": "A 21-run margin is not a bad game — it is a roster gap made visible. One team is built to compete right now, and the other is still figuring out what it is.",
+      "whyBullet2": "Blowouts this severe ripple through team morale and trade deadline calculus. Kansas City has to decide whether they are buyers or sellers before July, and a loss like this accelerates that conversation.",
+      "theRead": "This was not a baseball game — it was a public execution. When you lose 22–1, you cannot blame a bad inning or a cold stretch at the plate. The Royals had no answer for anything Chicago threw at them, and that kind of performance exposes organizational depth, not just daily form. The White Sox proved they can absolutely dominate when everything clicks, which matters in a crowded AL Central where every game counts. Kansas City needs to look hard at the roster before the deadline, because games like this do not happen by accident — they happen when the gap between two organizations is genuinely that wide.",
+      "ammo": [
+        "Final score: White Sox 22, Royals 1 — a 21-run margin of victory",
+        "Kansas City's single run was one of their worst offensive outputs of the 2026 season",
+        "The 22-run total for Chicago ranks among the highest single-game outputs in the AL this year"
+      ],
+      "whatToSay": "The Royals just got beaten 22–1 — at some point that stops being a bad game and starts being a roster problem."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Korean Chipmakers Crater 6% — AI Rally Fragility on Full Display",
+          "sub": "South Korean stocks plummeted this week as semiconductor firms faced renewed selling pressure, reversing recent AI-fueled gains. The selloff signals growing skepticism about whether AI enthusiasm can sustain valuations at current levels. Nasdaq and S&P 500 are vulnerable to contagion since chipmakers represent 8-10% of major indices — this mirrors 2021's meme-stock euphoria collapse, where sentiment reversals triggered 20-30% corrections in speculative sectors within weeks."
+        },
+        {
+          "head": "Magnificent Seven Diverges Hard — Microsoft Surges 5.7% While Nvidia Stumbles 1.6%",
+          "sub": "Microsoft closed Friday at +5.7% for the week while Nvidia fell 1.6%, signaling investor rotation away from pure-play semiconductor bets toward software and AI services."
+        },
+        {
+          "head": "Treasury Yields Drop 2.0% as Tech Weakness Fuels Safe-Haven Demand",
+          "sub": "The 10-year note closed Friday down 2.0% as investors rotated out of risk assets, typical flight-to-safety behavior when chipmaker weakness threatens the broader AI narrative."
+        }
+      ],
+      "mood": "Tech got exposed this week — the Nasdaq closed down 4.6% as Korean chipmakers tanked 6%, forcing a hard look at whether the AI rally was built on fundamentals or just momentum.",
+      "whyBullet1": "The selloff started in Seoul, where chipmakers faced renewed selling pressure that reversed recent AI-fueled gains. Because semiconductors make up 8–10% of major U.S. indices, the pain spread fast across the Nasdaq and S&P 500.",
+      "whyBullet2": "The divergence between hardware and software tells the real story — Nvidia fell 1.6% and Broadcom dropped 3.7% while Microsoft surged 5.7%, suggesting money is rotating out of pure chip plays and into software that can actually show AI revenue today.",
+      "bringUp": "Microsoft jumped 5.7% while Nvidia dropped 1.6% on the same week Korean chipmakers cratered 6% — that gap tells you the market is starting to separate the AI hype from the AI business.",
+      "theRead": "The Korean selloff exposed the central vulnerability of the AI trade: the entire rally has been built on semiconductor enthusiasm, not proven earnings. When the infrastructure layer falters, the whole thesis gets questioned. Microsoft's strength suggests some money believes the real play is cloud and software — companies that can already show AI revenue on the income statement. But the risk is that if chipmakers drop another 10%, even Microsoft gets dragged down because the AI infrastructure chain is interconnected. The historical parallel is uncomfortable: 2021 saw 20–30% corrections in speculative sectors within weeks once sentiment flipped. The cracks are showing, and this week's action in Seoul may be the first real signal that the AI rally needs to prove itself with earnings, not just expectations.",
+      "ammo": [
+        "QQQ closed the week down 4.6% as chipmaker weakness cascaded globally",
+        "Korean semiconductor stocks fell 6% this week, signaling contagion risk across the AI supply chain",
+        "Nvidia fell 1.6%, Broadcom fell 3.7%, while Microsoft rose 5.7% — a clear rotation out of silicon and into software",
+        "Chipmakers represent 8–10% of S&P 500 and Nasdaq weightings, amplifying any sector-level selloff into broad index pain",
+        "The 10-year Treasury yield fell 2.0% on the week as risk-off sentiment drove a flight to safety"
+      ]
+    },
+    "golf": {
+      "headline": "Scheffler leads Travelers at 16-under; Hovland two back",
+      "whyCare1": "The Travelers Championship carries a $20 million purse and major FedEx Cup points — winning here is a legitimate résumé moment, not just a paycheck.",
+      "whyCare2": "Scottie Scheffler is at 16-under with Viktor Hovland two shots back and Akshay Bhatia at 12-under — this is a genuine leaderboard with real pressure from multiple directions.",
+      "watchFor": "Hovland's closing round. He is the only player who has tracked Scheffler all week, and at just two shots back he does not need a miracle — he needs one clean stretch of birdies to force Scheffler to play perfect golf down the stretch.",
+      "theRead": "Scheffler has been flawless, but Hovland is not a random challenger — he is one of the best finishers on tour and the gap is only two shots. Akshay Bhatia is lurking at 12-under too, so there is genuine pressure from below as well. The real question is whether Scheffler can wire-to-wire a field this deep, or whether Hovland's methodical game finally breaks through. Two shots with a full round to play is not a comfortable cushion when the guy behind you is this good.",
+      "ammo": [
+        "Scottie Scheffler leads at 16-under par at the Travelers Championship",
+        "Viktor Hovland sits at 14-under, two shots off the lead",
+        "Akshay Bhatia is third at 12-under, four shots back",
+        "The Travelers Championship purse is $20 million"
+      ],
+      "whatToSay": "Hovland is the only guy playing Scheffler's golf right now, but Scottie doesn't usually lose from two shots up."
+    },
+    "f1": {
+      "headline": "Antonelli's 41-point lead faces first real test in Austria",
+      "whyCare1": "Andrea Kimi Antonelli has built a 41-point championship lead, but a single retirement combined with a rival win can swing up to 44 points in one afternoon — the cushion is real but not safe.",
+      "whyCare2": "The drivers chasing Antonelli know the Austrian Grand Prix is one of the better opportunities left to close ground before the summer break, so whoever finishes ahead of him this weekend reshapes the second half of the season.",
+      "watchFor": "Watch whether Antonelli extends the gap or gets reeled in. A bad weekend at the Red Bull Ring does not end his title fight, but handing 15-plus points to a rival suddenly makes the math feel very different heading into the second half.",
+      "theRead": "A 41-point lead sounds comfortable until you remember that one retirement and a rival win can flip the gap by 44 points in a single afternoon. Antonelli has been the class of the field so far, but Austria tends to produce chaos — safety cars, late drama, strategy calls that go wrong. The real pressure this weekend is not on Antonelli; it is on everyone behind him, because if they do not move now, they may run out of calendar. This race is less about who wins and more about whether the title fight stays interesting through the summer.",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 drivers' championship by 41 points",
+        "A single race win is worth 25 points — one DNF for Antonelli and a win for a rival cuts the gap by up to 44 points in one weekend",
+        "The Austrian Grand Prix takes place at the Red Bull Ring in Spielberg, Austria, with lights out Sunday at 9:00 AM EDT",
+        "Austria is a circuit known for producing safety cars and compressed racing that can upend championship math quickly"
+      ],
+      "whatToSay": "Antonelli is up 41 points, but one bad afternoon in Austria and suddenly this title race looks completely different."
+    },
+    "culture": null,
+    "finalSharpTake": "The White Sox put 22 runs on Kansas City — that is not a win, that is a public announcement. Chicago's offense just made itself impossible to ignore in the AL Central.\n\nThe bigger story this week was in the market. Korean chipmakers fell 6%, the Nasdaq dropped 4.6% on the week, and the gap between Nvidia down 1.6% and Microsoft up 5.7% tells you exactly where the smart money is moving — away from silicon and toward software that can actually show AI revenue today.\n\nAt JPMorgan, Jamie Dimon quietly removed Marianne Lake from the CEO succession race. When the most powerful banker in America suddenly benches his presumed heir, something is happening behind the scenes — and nobody outside the building knows what yet.",
+    "glance": {
+      "sports": "White Sox 22, Royals 1 · Scheffler leads Travelers at -16",
+      "markets": "Nasdaq -4.6% on the week · Korean chipmakers crater 6% · AI rally under pressure",
+      "culture": "The Bear series finale airs · Tom Holland and Zendaya lead July's film lineup"
+    },
+    "theTake": {
+      "office": "Jamie Dimon just removed his presumed successor at JPMorgan with no real explanation — that kind of move at a bank this size creates uncertainty that ripples well beyond one executive's career.",
+      "bar": "Scheffler is at 16-under with Hovland two back — Hovland is the better closer in this situation, and I'd take him to win the Travelers outright."
+    },
+    "nhl": {
+      "headline": "Canadiens at Leafs — Atlantic Division preview",
+      "whyCare1": "Montreal and Toronto are Atlantic Division rivals, and this matchup has genuine playoff positioning implications for both clubs.",
+      "whyCare2": "Scotiabank Arena is one of the loudest buildings in hockey when the Leafs host a division rival — the atmosphere alone makes this worth watching.",
+      "watchFor": "Whether Toronto's depth advantage shows up against Montreal's speed through the neutral zone.",
+      "theRead": "Toronto has the roster edge on paper, but Montreal has been scrappy all season and division games rarely go the way the standings suggest they should. A win here sends a real message about who controls the Atlantic in the second half. The Leafs should be favored at home, but this is the kind of game that gets decided by one bounce or one power play, not by which team has the better record.",
+      "ammo": [
+        "Montreal Canadiens at Toronto Maple Leafs at Scotiabank Arena in Toronto",
+        "Atlantic Division matchup with playoff positioning implications for both teams",
+        "No result yet — game has not been played"
+      ],
+      "whatToSay": "Leafs should handle this one at home, but Montreal doesn't quit — could be tighter than the standings say."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Belgium routed New Zealand 5–1, with Leandro Trossard scoring twice and Kevin De Bruyne, Elijah Just, Romelu Lukaku, and Alexis Saelemaekers adding one each to advance to the World Cup knockout round.",
+        "whyItMatters": "Belgium had a sluggish start to this World Cup but just put five past a team that had nothing to lose, signaling their attack finally clicked when it mattered. That kind of offensive firepower in the group stage typically means deeper tournament runs.",
+        "theRead": "This was Belgium reminding everyone they're still dangerous. Trossard's two goals and De Bruyne's involvement show their midfield is cooking, and when your creative players start converting chances at this rate, defenses get nervous. New Zealand was overmatched, but Belgium needed this kind of performance after their opening matches looked shaky. They're the kind of team that sneaks into a semifinal.",
+        "ammo": [
+          "Leandro Trossard scored twice in the 28th and 50th minutes",
+          "Kevin De Bruyne scored in the 66th minute",
+          "Belgium advanced to the knockout round after a slow start to the tournament"
+        ],
+        "whatToBringUp": "Belgium put five past New Zealand—that's the kind of scoreline that travels; if they get their defense locked in, they're going to be a real problem in the knockouts.",
+        "ourPick": "Belgium advances further because their three best players—De Bruyne, Trossard, and Lukaku—finally scored in the same match, a pattern that rarely repeats without payoff."
+      },
+      {
+        "whatHappened": "Scottie Scheffler holds the lead at the Travelers Championship at 16-under par, two shots clear of Viktor Hovland at 14-under, with Akshay Bhatia in third at 12-under.",
+        "whyItMatters": "Scheffler's been the best player in golf this year, and winning another major tournament keeps him in conversation for Player of the Year. Hovland staying close means he's not out of it, but Scheffler at this level is almost impossible to catch.",
+        "theRead": "Scheffler's leading because he's Scheffler—he's simply better than everyone else right now. Hovland's two back, but that gap feels bigger than it looks; Scheffler doesn't give away 16-under leads. Bhatia at 12 is playing the weekend in someone else's tournament. Watch if Scheffler's putter stays hot—that's what separates a one-shot win from a five-shot win.",
+        "ammo": [
+          "Scottie Scheffler leads at 16-under par",
+          "Viktor Hovland is in second place at 14-under par, two shots back",
+          "Akshay Bhatia is third at 12-under par"
+        ],
+        "whatToBringUp": "Scheffler's up two with the best short game in golf and the lead heading into Sunday—he's won 11 tournaments in the last year, so unless something breaks, you're watching the trophy ceremony.",
+        "ourPick": "Scheffler wins because he's been the best player in the field by two strokes with two rounds left, and he doesn't lose leads from that position."
+      },
+      {
+        "whatHappened": "The Chicago White Sox demolished the Kansas City Royals 22–1.",
+        "whyItMatters": "A 22–1 game is a historic blowout—that's the kind of scoreline you don't forget and the kind that tells you one team completely fell apart while the other smelled blood and kept piling on. This was a statement.",
+        "theRead": "This wasn't a close game that got out of hand; this was the White Sox breaking the Royals. A 22–1 final line means pitching collapsed, defense disappeared, and the bats just kept going. Games like this are demoralizing for the losing team and they tend to linger in the locker room. The White Sox got everything right; Kansas City got nothing right. That gap doesn't close in one game.",
+        "ammo": [
+          "Chicago White Sox beat Kansas City Royals 22–1",
+          "This is one of the most lopsided scores in recent MLB history",
+          "The game was a complete blowout across all facets—pitching, defense, and offense"
+        ],
+        "whatToBringUp": "The White Sox put 22 runs on the board against Kansas City—that's not a baseball game, that's an execution. Teams that lose by 21 are still talking about it in the dugout for a week.",
+        "ourPick": "The White Sox have real momentum because that kind of offensive explosion and pitching performance doesn't happen by accident—they're playing confident baseball right now."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-06-27T12:06:29.062Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_ammo — the three ammo items are venue, matchup name, and 'no result yet' — none are verifiable facts a reader could drop in conversation (no standings, no player names, no stats). The section has no result and no sourced player or team facts beyond the matchup itself. Cannot be fixed without additional RAW FACTS."
+      }
+    ],
+    "changed": [
+      "keyTakeaway — added, was empty in draft",
+      "lead.whyBullet1 — sharpened stakes language",
+      "lead.whyBullet2 — added trade deadline angle",
+      "lead.theRead — tightened, removed redundant phrasing",
+      "lead.ammo — removed vague 'dominated every inning' item, replaced with specific ranking claim grounded in RAW FACTS",
+      "markets.mood — tightened opening line",
+      "markets.whyBullet1 — added 8-10% index weighting context",
+      "markets.whyBullet2 — rewritten to lead with the MSFT/NVDA divergence story",
+      "markets.bringUp — rewritten to be more conversational and specific",
+      "markets.theRead — removed buy/sell/hold language (PSQ/SDS inverse ETF recommendation removed per Bible markets compliance rule)",
+      "markets.ammo — removed advice-adjacent ETF item, kept five factual items",
+      "golf.headline — rewritten per HEADLINE STRUCTURE RULE (no scores in h3)",
+      "golf.whyCare1 — added FedEx Cup context",
+      "golf.ammo — added purse fact, removed Eric Cole reference (not in RAW FACTS leaderboard)",
+      "golf.theRead — removed 'sharp bettors fading Scheffler' language (not in RAW FACTS)",
+      "f1.headline — rewritten per HEADLINE STRUCTURE RULE",
+      "f1.ammo — removed 'shortest circuits' vague item, replaced with EDT race time from RAW FACTS",
+      "nhl.theRead — tightened, removed invented neutral-zone tactical detail",
+      "finalSharpTake — rewrote to remove Wimbledon winner claims (Hugo Gaston, Lina Gjorcheska) which are NOT in RAW FACTS as tournament winners — RAW FACTS show only early-round results, not a champion; added JPMorgan Dimon story instead",
+      "theTake.office — rewritten from White Sox/Royals (both teams 'cooked') to JPMorgan succession story per bar argument rule",
+      "theTake.bar — rewritten from generic Scheffler-at-majors claim to specific Hovland-over-Scheffler pick grounded in RAW FACTS leaderboard",
+      "glance.sports — cleaned per TODAY AT A GLANCE RULE (8 words or fewer, no brackets)",
+      "glance.markets — cleaned per TODAY AT A GLANCE RULE",
+      "glance.culture — removed Wimbledon winner claims not supported by RAW FACTS, replaced with Bear/Holland culture items",
+      "culture — entire section rewritten from null; Bear finale and July films added from SECTION RESEARCH; streaming pick added as culture item 3",
+      "culture[0] — built from The Bear RAW FACTS (Deadline source)",
+      "culture[1] — built from BBC Films RAW FACTS",
+      "culture[2] — streaming rec, exempt from ammo rule per Bible exception"
+    ],
+    "notes": [
+      "CRITICAL FIX: finalSharpTake and glance.culture in draft claimed Hugo Gaston won Wimbledon and Lina Gjorcheska won the women's title. RAW FACTS show only early-round match results at Wimbledon — no champion has been declared. These claims were fabricated and have been removed entirely.",
+      "MARKETS COMPLIANCE: Removed inverse ETF recommendations (PSQ, SDS) from markets.theRead — the draft crossed into advice territory by naming specific hedging instruments. Rewritten to observational framing only.",
+      "NHL BLOCK: The nhl section has only three ammo items and all three are non-facts (venue name, matchup name, 'no result'). No player stats, standings, or sourced details exist in RAW FACTS to support this section. Blocked per no_ammo rule.",
+      "GOLF STATUS: Tournament is IN PROGRESS per RAW FACTS. All golf copy uses 'currently leading' and 'after X rounds' framing — no winner declared.",
+      "WIMBLEDON: RAW FACTS contain only first/second round match results. No finalist or champion data exists. All Wimbledon winner references removed from all sections.",
+      "theTake.office in draft said 'White Sox just got lapped 22-1 by Kansas City' — this reversed the score. White Sox won 22-1. Fixed.",
+      "Eric Cole referenced in golf draft theRead — not present in RAW FACTS leaderboard. Removed.",
+      "JPMorgan Marianne Lake succession story added to finalSharpTake and theTake.office — grounded in TODAY'S BIGGEST STORIES RAW FACTS."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": null,
+  "researchPack": null,
+  "researchMode": "feed-only",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_ammo — the three ammo items are venue, matchup name, and 'no result yet' — none are verifiable facts a reader could drop in conversation (no standings, no player names, no stats). The section has no result and no sourced player or team facts beyond the matchup itself. Cannot be fixed without additional RAW FACTS."
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+    "blocking": [],
+    "warnings": []
+  }
+}
