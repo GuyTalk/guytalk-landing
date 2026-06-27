@@ -555,7 +555,8 @@ const RECS = [
     url: 'https://www.weber.com/en-us/grills/charcoal-grills/kettle-series/original-kettle-premium-charcoal-grill-22-inch/OLP22.html',
     cta: 'Shop Weber →',
     brand: 'Weber',
-    imageUrl: null,
+    imageUrl: 'https://dw-images.weber.com/navigation/default/charcoal-grills/FY26_NPD_Kettle_MegaMenu_Image_207x165.png?w=800&auto=compress,format',
+    guideUrl: 'https://www.guytalkmedia.com/guide/',
   },
 ];
 

@@ -559,10 +559,11 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
 </style>
 <nav class="brief-sidenav" aria-label="On this page">
   ${navLink('top', 'Top')}
-  ${bodyOrder.includes('sports')  ? navLink('sports',  'Sports',  'bsn-parent') : ''}
-  ${bodyOrder.includes('markets') ? navLink('markets', 'Markets', 'bsn-parent') : ''}
+  ${bodyOrder.map(k => {
+    const label = k.charAt(0).toUpperCase() + k.slice(1);
+    return navLink(k, label, 'bsn-parent');
+  }).join('\n  ')}
   ${navLink('sharp-take', 'Sharp Take')}
-  ${bodyOrder.includes('culture') ? navLink('culture', 'Culture', 'bsn-parent') : ''}
 </nav>`;
 
   // Hero-area sub-jump chips — the discovered sports (skipping The Lead, which is
@@ -722,7 +723,7 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span class="sep">·</span>
       <span>ISSUE ${label}</span>
       <span class="sep">·</span>
-      <span>SPORTS · MARKETS · CULTURE</span>
+      <span>${bodyOrder.map(k => k.toUpperCase()).join(' · ')}</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
       ${bodyOrder.map(k => `<a href="#${k}" class="sj-link${k === bodyOrder[0] ? ' sj-lead' : ''}">${k.charAt(0).toUpperCase() + k.slice(1)}</a>`).join('\n      ')}
