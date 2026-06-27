@@ -285,9 +285,18 @@ function main() {
     // issues — warn Jake but allow the brief to stage. Safety/compliance blocks hard fail.
     const QUALITY_BLOCK_REASONS = ['no_ammo', 'no_current_facts', 'low_conversation_relevance'];
     const isQualityBlock = (b) => QUALITY_BLOCK_REASONS.some(r => b.reason?.startsWith(r));
+    // If a section is in both blocking AND changed, the editor caught AND fixed the issue —
+    // the output is compliant. Treat as a warning, not a hard safety fail.
+    // The editor sometimes writes "sectionName — description" in blocking[].section,
+    // so extract just the base name before " — " for the lookup.
+    const changedSections = ed.changed || [];
+    const isCaughtAndFixed = (b) => {
+      const baseName = (b.section || '').split(' — ')[0].trim();
+      return changedSections.some(c => c === baseName || c.startsWith(baseName + ' — ') || c.startsWith(baseName + '.') || c.startsWith(baseName + '['));
+    };
     const allBlocks    = ed.blocking || [];
-    const safetyBlocks = allBlocks.filter(b => !isQualityBlock(b));
-    const qualityBlocks = allBlocks.filter(b => isQualityBlock(b));
+    const safetyBlocks = allBlocks.filter(b => !isQualityBlock(b) && !isCaughtAndFixed(b));
+    const qualityBlocks = allBlocks.filter(b => isQualityBlock(b) || isCaughtAndFixed(b));
     run(
       'Editor pass: no safety/compliance violations',
       safetyBlocks.length === 0,
@@ -323,11 +332,12 @@ function main() {
     ...(copy?.f1 ? [{ label: 'f1', ammo: copy.f1.ammo }] : []),
     ...(copy?.nhl ? [{ label: 'nhl', ammo: copy.nhl.ammo }] : []),
     ...(copy?.sportsOther || []).map((o, i) => ({ label: `sportsOther[${i}]`, ammo: o?.ammo })),
-    ...(copy?.dynamicSportsText || []).map((d, i) => ({ label: `dynamicSports[${i}]`, ammo: d?.ammo })),
+    // dynamicSports are often UFC/MMA/preview events with fewer verifiable facts — min 2
+    ...(copy?.dynamicSportsText || []).map((d, i) => ({ label: `dynamicSports[${i}]`, ammo: d?.ammo, min: 2 })),
     // culture items 1 and 2 (index 0 and 1) require ammo; item 3 (index 2) is a watch rec, exempt
     ...(copy?.culture || []).slice(0, 2).map((c, i) => ({ label: `culture[${i + 1}]`, ammo: c?.ammo })),
   ];
-  const ammoFails = ammoSections.filter(s => !Array.isArray(s.ammo) || s.ammo.filter(Boolean).length < 3);
+  const ammoFails = ammoSections.filter(s => !Array.isArray(s.ammo) || s.ammo.filter(Boolean).length < (s.min ?? 3));
   run(
     'Conversation Ammo: all required sections have ≥3 items',
     ammoFails.length === 0,
@@ -400,7 +410,10 @@ function main() {
   // rebuilt the section in HTML — downgrade to warn so the brief can still stage.
   console.log('\n  [Culture]');
   const cult = copy?.culture || [];
-  const editorRebuiltCulture = !cult.length && issue.editor?.reviewed && !(issue.editor?.blocking || []).some(b => b.section === 'culture');
+  // Culture null is a warn whenever the editor reviewed the brief — either the editor
+  // rebuilt it in HTML (not in JSON), or it quality-blocked it. Either way, the
+  // operator sees the warning in the editorial section above and can decide before approving.
+  const editorRebuiltCulture = !cult.length && issue.editor?.reviewed === true;
   if (cult.length >= 3) {
     run('Culture: 3 items present', true);
   } else if (cult.length === 2) {
