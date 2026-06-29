@@ -1,0 +1,134 @@
+name: Daily Brief
+
+# Runs every morning at 7am ET (11am UTC during EDT / 12pm UTC during EST).
+# Also triggerable manually from the Actions tab — useful for reruns + testing.
+on:
+  schedule:
+    - cron: '0 11 * * *'   # 7am EDT (summer). Change to 0 12 * * * after Nov clock change.
+  workflow_dispatch:
+    inputs:
+      regen_copy:
+        description: 'Regenerate AI copy only (skip data fetch)'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write   # needed to commit + push the brief
+
+jobs:
+  generate:
+    name: Generate & ship
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      # ── Checkout ─────────────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── Node.js ──────────────────────────────────────────────────────────────
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # ── Generate brief ────────────────────────────────────────────────────────
+      - name: Generate brief
+        id: generate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FINNHUB_API_KEY:   ${{ secrets.FINNHUB_API_KEY }}
+          NEWS_API_KEY:      ${{ secrets.NEWS_API_KEY }}
+          RESEND_API_KEY:    ${{ secrets.RESEND_API_KEY }}
+          FROM_EMAIL:        ${{ secrets.FROM_EMAIL }}
+          APPROVAL_TOKEN:    ${{ secrets.APPROVAL_TOKEN }}
+        run: |
+          # Regen-copy mode skips the data fetch and just rewrites AI prose
+          if [ "${{ inputs.regen_copy }}" = "true" ]; then
+            node scripts/generate-brief.js --regen --copy
+          else
+            node scripts/generate-brief.js
+          fi
+
+          # Capture the issue slug for later steps
+          ISSUE=$(ls -d brief/issue-??? 2>/dev/null | sort | tail -1 | xargs basename 2>/dev/null || echo "unknown")
+          echo "issue=${ISSUE}" >> "$GITHUB_OUTPUT"
+          echo "Generated: ${ISSUE}"
+
+      # ── QA ───────────────────────────────────────────────────────────────────
+      - name: Run QA
+        id: qa
+        run: |
+          # Capture full output so we can include it in the failure email
+          node scripts/qa-brief.js 2>&1 | tee /tmp/qa-output.txt
+          # Preserve the real exit code through tee
+          exit ${PIPESTATUS[0]}
+        continue-on-error: true   # don't kill the job — handle failure in next steps
+
+      # ── SUCCESS PATH — commit, push, review email ─────────────────────────────
+      - name: Commit and push brief
+        if: steps.qa.outcome == 'success'
+        run: |
+          git config user.name  "GuyTalk Bot"
+          git config user.email "brief@guytalkmedia.com"
+
+          ISSUE="${{ steps.generate.outputs.issue }}"
+          DATE=$(date '+%B %d, %Y')
+
+          git add brief/ briefs/ index.html assets/ 2>/dev/null || true
+          # Only commit if there's actually something staged
+          if git diff --staged --quiet; then
+            echo "Nothing to commit — brief already up to date."
+          else
+            git commit -m "Brief: ${ISSUE} — ${DATE}"
+            git push origin main
+            echo "Pushed ${ISSUE} to main."
+          fi
+
+      - name: Send review email
+        if: steps.qa.outcome == 'success'
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          FROM_EMAIL:     ${{ secrets.FROM_EMAIL }}
+          APPROVAL_TOKEN: ${{ secrets.APPROVAL_TOKEN }}
+        run: node scripts/notify-review.js
+
+      # ── FAILURE PATH — QA failure alert email ─────────────────────────────────
+      - name: Send QA failure alert
+        if: steps.qa.outcome == 'failure'
+        env:
+          RESEND_API_KEY:  ${{ secrets.RESEND_API_KEY }}
+          FROM_EMAIL:      ${{ secrets.FROM_EMAIL }}
+          ISSUE_SLUG:      ${{ steps.generate.outputs.issue }}
+          GITHUB_RUN_URL:  ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: node scripts/notify-qa-failure.js /tmp/qa-output.txt
+
+      # ── Always surface the issue slug so it's visible in the Actions UI ───────
+      - name: Summary
+        if: always()
+        run: |
+          ISSUE="${{ steps.generate.outputs.issue }}"
+          QA="${{ steps.qa.outcome }}"
+          echo "### GuyTalk Brief — $(date '+%A, %B %d')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| | |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| Issue | \`${ISSUE}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| QA | ${QA} |" >> $GITHUB_STEP_SUMMARY
+          if [ "$QA" = "success" ]; then
+            echo "| Status | ✅ Live on guytalkmedia.com — review email sent |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Status | ❌ QA failed — review email NOT sent, no subscribers affected |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            cat /tmp/qa-output.txt 2>/dev/null >> $GITHUB_STEP_SUMMARY || true
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          fi
