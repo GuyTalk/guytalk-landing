@@ -475,7 +475,7 @@ const RECS = [
     url: 'https://www.bose.com/c/headphones',
     cta: 'Shop Bose →',
     brand: 'Bose',
-    imageUrl: 'https://assets.bose.com/content/dam/cloudassets/Bose_DAM/Web/consumer_electronics/global/products/headphones/quietcomfort_45/product_silo_images/qc45_PDP_hero_black-S1.png',
+    imageUrl: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5765/5765427cv11d.jpg',
   },
   {
     title: 'Eight Sleep Pod 4 — the most direct solution to waking up hot at 3am.',
