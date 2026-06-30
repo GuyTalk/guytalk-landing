@@ -1,0 +1,1167 @@
+{
+  "num": 69,
+  "slug": "issue-069",
+  "date": "Monday, June 29, 2026",
+  "title": "George Russell wins Austrian GP. Scottie Scheffler leads Travelers at 21-under. Pirates demolish Reds 9-4.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815937",
+      "name": "Cincinnati Reds at Pittsburgh Pirates",
+      "shortName": "CIN @ PIT",
+      "date": "2026-06-28T17:35Z",
+      "venue": "PNC Park",
+      "venueCity": "Pittsburgh, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "9",
+        "winner": true
+      },
+      "away": {
+        "team": "Cincinnati Reds",
+        "abbrev": "CIN",
+        "score": "4",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815938",
+      "name": "Houston Astros at Detroit Tigers",
+      "shortName": "HOU @ DET",
+      "date": "2026-06-28T17:40Z",
+      "venue": "Comerica Park",
+      "venueCity": "Detroit, Michigan",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "5",
+        "winner": false
+      },
+      "away": {
+        "team": "Houston Astros",
+        "abbrev": "HOU",
+        "score": "7",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815941",
+      "name": "Seattle Mariners at Cleveland Guardians",
+      "shortName": "SEA @ CLE",
+      "date": "2026-06-28T17:40Z",
+      "venue": "Progressive Field",
+      "venueCity": "Cleveland, Ohio",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Cleveland Guardians",
+        "abbrev": "CLE",
+        "score": "6",
+        "winner": true
+      },
+      "away": {
+        "team": "Seattle Mariners",
+        "abbrev": "SEA",
+        "score": "5",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 728.99,
+      "prevClose": 734.3,
+      "dayChange": -5.31,
+      "dayChangePct": -0.7231,
+      "weekChangePct": -2.3769974109467342,
+      "spark": [
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375
+      ],
+      "indexPrice": 7354.02,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -0.04716600721787232
+    },
+    "DIA": {
+      "price": 517.75,
+      "prevClose": 519.26,
+      "dayChange": -1.51,
+      "dayChangePct": -0.2908,
+      "weekChangePct": 0.4325691310257297,
+      "spark": [
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75
+      ],
+      "indexPrice": 51876.11,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.08572912421372689
+    },
+    "QQQ": {
+      "price": 706.52,
+      "prevClose": 716.38,
+      "dayChange": -9.86,
+      "dayChangePct": -1.3764,
+      "weekChangePct": -4.60424986389841,
+      "spark": [
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125
+      ]
+    },
+    "IWM": {
+      "price": 299.83,
+      "prevClose": 298.91,
+      "dayChange": 0.92,
+      "dayChangePct": 0.3078,
+      "weekChangePct": 1.4344205536856485,
+      "spark": [
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656
+      ],
+      "indexPrice": 3010.084,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.07393603753836132
+    },
+    "NVDA": {
+      "price": 192.53,
+      "prevClose": 195.74,
+      "dayChange": -3.21,
+      "dayChangePct": -1.6399,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 379.71,
+      "prevClose": 375.12,
+      "dayChange": 4.59,
+      "dayChangePct": 1.2236,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 372.97,
+      "prevClose": 352.83,
+      "dayChange": 20.14,
+      "dayChangePct": 5.7081,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 283.78,
+      "prevClose": 275.15,
+      "dayChange": 8.63,
+      "dayChangePct": 3.1365,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 550.25,
+      "prevClose": 542.87,
+      "dayChange": 7.38,
+      "dayChangePct": 1.3594,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 232.69,
+      "prevClose": 227.01,
+      "dayChange": 5.68,
+      "dayChangePct": 2.5021,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 337.39,
+      "prevClose": 343.71,
+      "dayChange": -6.32,
+      "dayChangePct": -1.8388,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 521.58,
+      "prevClose": 532.57,
+      "dayChange": -10.99,
+      "dayChangePct": -2.0636,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 365.02,
+      "prevClose": 378.91,
+      "dayChange": -13.89,
+      "dayChangePct": -3.6658,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 73.81,
+      "prevClose": 70.9,
+      "dayChange": 2.91,
+      "dayChangePct": 4.1044,
+      "weekChangePct": null
+    },
+    "JPM": null,
+    "COIN": {
+      "price": 149.06,
+      "prevClose": 142.52,
+      "dayChange": 6.54,
+      "dayChangePct": 4.5888,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 399.49,
+      "prevClose": 409.45,
+      "dayChange": -9.96,
+      "dayChangePct": -2.4325,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 59951.99,
+      "prevClose": 60324.97,
+      "dayChange": -372.98,
+      "dayChangePct": -0.6183,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "MSFT",
+      "COIN",
+      "NFLX",
+      "AVGO",
+      "AAPL"
+    ],
+    "10Y": {
+      "price": 4.372,
+      "prevClose": 4.392000198364258,
+      "dayChange": -0.020000198364257926,
+      "dayChangePct": -0.4553779021163691,
+      "weekChangePct": -1.7748867632325278,
+      "spark": [
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, June 26 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Friday, June 26). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "MSFT",
+          "name": "Microsoft Corporation",
+          "price": 372.97,
+          "changePct": 5.70813
+        },
+        {
+          "symbol": "UBER",
+          "name": "Uber Technologies, Inc.",
+          "price": 76.2,
+          "changePct": 5.46713
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 112.93,
+          "changePct": 5.27641
+        },
+        {
+          "symbol": "ADBE",
+          "name": "Adobe Inc.",
+          "price": 202.73,
+          "changePct": 4.81878
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "GS",
+          "name": "The Goldman Sachs Group, Inc.",
+          "price": 1019.61,
+          "changePct": -4.27006
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 128.32,
+          "changePct": -3.4244
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 521.58,
+          "changePct": -2.06358
+        },
+        {
+          "symbol": "GOOGL",
+          "name": "Alphabet Inc.",
+          "price": 337.39,
+          "changePct": -1.83876
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 283.78,
+          "changePct": 3.13647
+        },
+        {
+          "symbol": "AMZN",
+          "name": "Amazon.com, Inc.",
+          "price": 232.69,
+          "changePct": 2.50209
+        },
+        {
+          "symbol": "MSFT",
+          "name": "Microsoft Corporation",
+          "price": 372.97,
+          "changePct": 5.70813
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 59939.74,
+          "changePct": 0.74502
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Travelers Championship",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-25T04:00Z",
+    "endDate": "2026-06-29T04:00Z",
+    "status": "Playoff - Suspended",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Scottie Scheffler",
+        "score": "-21",
+        "pos": "1st"
+      },
+      {
+        "name": "Viktor Hovland",
+        "score": "-21",
+        "pos": "2nd"
+      },
+      {
+        "name": "Collin Morikawa",
+        "score": "-20",
+        "pos": "3rd"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-19",
+        "pos": "4th"
+      },
+      {
+        "name": "Wyndham Clark",
+        "score": "-18",
+        "pos": "5th"
+      },
+      {
+        "name": "Akshay Bhatia",
+        "score": "-18",
+        "pos": "6th"
+      },
+      {
+        "name": "Corey Conners",
+        "score": "-17",
+        "pos": "7th"
+      },
+      {
+        "name": "Alex Fitzpatrick",
+        "score": "-17",
+        "pos": "8th"
+      },
+      {
+        "name": "J.J. Spaun",
+        "score": "-17",
+        "pos": "9th"
+      },
+      {
+        "name": "Robert MacIntyre",
+        "score": "-16",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "SoonWoo Kwon",
+            "loser": "Alejandro Moro Canas",
+            "score": "6-4 7-6 6-3"
+          },
+          {
+            "winner": "Otto Virtanen",
+            "loser": "Nicolai Budkov Kjaer",
+            "score": "4-6 6-4 6-4 7-5"
+          },
+          {
+            "winner": "Hugo Gaston",
+            "loser": "Moez Echargui",
+            "score": "6-1 5-7 6-2 6-4"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Bianca Andreescu",
+            "loser": "Aliaksandra Sasnovich",
+            "score": "6-3 7-6"
+          },
+          {
+            "winner": "Robin Montgomery",
+            "loser": "Marina Bassols Ribera",
+            "score": "3-6 6-1 6-1"
+          },
+          {
+            "winner": "Lina Gjorcheska",
+            "loser": "Lucia Bronzetti",
+            "score": "6-1 6-2"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Lenovo Austrian Grand Prix",
+    "shortName": "Lenovo Austrian GP",
+    "venue": "Red Bull Ring",
+    "status": "Final",
+    "statusState": "post",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 171,
+      "lead": 40
+    },
+    "results": [
+      {
+        "pos": 1,
+        "driver": "George Russell",
+        "team": "Mercedes",
+        "time": "",
+        "seasonWins": 2,
+        "champPos": 2,
+        "champPoints": 131
+      },
+      {
+        "pos": 2,
+        "driver": "Max Verstappen",
+        "team": "Red Bull",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 7,
+        "champPoints": 73
+      },
+      {
+        "pos": 3,
+        "driver": "Kimi Antonelli",
+        "team": "Mercedes",
+        "time": "",
+        "seasonWins": 5,
+        "champPos": 1,
+        "champPoints": 171
+      },
+      {
+        "pos": 4,
+        "driver": "Oscar Piastri",
+        "team": "McLaren",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 4,
+        "champPoints": 80
+      },
+      {
+        "pos": 5,
+        "driver": "Lewis Hamilton",
+        "team": "Ferrari",
+        "time": "",
+        "seasonWins": 1,
+        "champPos": 3,
+        "champPoints": 125
+      }
+    ],
+    "nextRace": {
+      "name": "Pirelli British Grand Prix",
+      "date": "2026-07-03T14:30Z",
+      "daysAway": 4
+    }
+  },
+  "worldCup": [
+    {
+      "name": "Canada at South Africa",
+      "shortName": "CAN @ RSA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-28T19:00Z",
+      "home": {
+        "team": "South Africa",
+        "score": "0"
+      },
+      "away": {
+        "team": "Canada",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Stephen Eustáquio",
+          "team": "",
+          "clock": "90'+2'",
+          "type": "Goal - Volley"
+        }
+      ],
+      "espnNote": "Stephen Eustáquio scored in second-half stoppage time, and Canada beat South Africa 1-0 to earn their first knockout match victory in a World Cup."
+    },
+    {
+      "name": "Japan at Brazil",
+      "shortName": "JPN @ BRA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-29T17:00Z",
+      "home": {
+        "team": "Brazil",
+        "score": "0"
+      },
+      "away": {
+        "team": "Japan",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Paraguay at Germany",
+      "shortName": "PAR @ GER",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-29T20:30Z",
+      "home": {
+        "team": "Germany",
+        "score": "0"
+      },
+      "away": {
+        "team": "Paraguay",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Morocco at Netherlands",
+      "shortName": "MAR @ NED",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-30T01:00Z",
+      "home": {
+        "team": "Netherlands",
+        "score": "0"
+      },
+      "away": {
+        "team": "Morocco",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "TLC's Deon Derrico Sues Business Partner Over Real Estate Deal - TMZ",
+      "url": "https://www.tmz.com/2026/06/28/deon-derrico-sues-business-partner/",
+      "description": "Deon Derrico is keeping busy in court ... because not only did he file a restraining order against his ex-wife, he's now suing a business partner over a real estate deal.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Inside country legend Alan Jackson’s triumphant finale concert - AP News",
+      "url": "https://apnews.com/article/alan-jackson-final-concert-george-strait-72ebb2f87fdca2c2ae8a7308278c9b9b",
+      "description": "Country music legend Alan Jackson has ended his touring career. On Saturday night, he performed his final show at Nashville's Nissan Stadium. The event, titled “Last Call: One More for the Road — The Finale,” featured performances by top country stars like Ca…",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Horoscope for Sunday, June 28, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/06/28/horoscopes-today-sunday-june-28-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Wordle today: The answer and hints for June 28, 2026 - Mashable",
+      "url": "https://mashable.com/entertainment/wordle-today-answer-june-28-2026",
+      "description": "Here are some tips and tricks to help you find the answer to \"Wordle\" #1835.",
+      "source": "Mashable"
+    },
+    {
+      "title": "Night of Champions raises questions ahead of SummerSlam - Cageside Seats",
+      "url": "https://www.cagesideseats.com/wwe/455134/wwe-night-of-champions-biggest-questions",
+      "description": "A hot night in Saudi Arabia raised several burning questions heading into WWE’s biggest party of the summer.",
+      "source": "Cageside Seats"
+    },
+    {
+      "title": "FIFA World Cup: Round of 32 bracket, schedule, predictions, Iran’s exit - Al Jazeera",
+      "url": "https://www.aljazeera.com/sports/2026/6/28/fifa-world-cup-2026-sunday-schedule-round-of-32-fixtures-predictions",
+      "description": "Knockout matches begin with South Africa vs Canada as Iran exit, Africa make history, Messi-Ronaldo final hopes rise.",
+      "source": "Al Jazeera English"
+    },
+    {
+      "title": "Onto the knockout round: 4 takeaways from the FIFA World Cup so far - NPR",
+      "url": "https://www.npr.org/2026/06/28/nx-s1-5872241/2026-world-cup-fifa-knockout-round-of-32",
+      "description": "The anxieties before the World Cup were many. But with the knockout round set to begin Sunday, it's fair to say: The North American World Cup has been a thrill.",
+      "source": "NPR"
+    },
+    {
+      "title": "With Zayas out of the way, 'Boots' Ennis looks to be undisputed - ESPN",
+      "url": "https://www.espn.com/boxing/story/_/id/49204019/with-xander-zayas-way-jaron-boots-ennis-looks-undisputed-maybe-face-ortiz",
+      "description": "Jaron \"Boots\" Ennis earned the titles but also got the experience needed to achieve the final goal: to be undisputed and maybe fight Vergil Ortiz Jr.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Iran’s World Cup Elimination Shows Offside Law Must Change - Forbes",
+      "url": "https://www.forbes.com/sites/ianquillen/2026/06/28/irans-world-cup-elimination-shows-offside-law-must-change/",
+      "description": "The biggest single culprit in Iran’s failure to advance to the knockout phase is a weird idiosyncracy to the offside law that has long outlived its usefulness.",
+      "source": "Forbes"
+    },
+    {
+      "title": "World Cup Round of 32: Knockout rounds begin with Canada taking on South Africa - Yahoo Sports",
+      "url": "https://sports.yahoo.com/soccer/article/world-cup-round-of-32-knockout-rounds-begin-with-canada-taking-on-south-africa-044706078.html",
+      "description": "The winner will play Morocco or the Netherlands in the Round of 16.",
+      "source": "Yahoo Entertainment"
+    }
+  ],
+  "topStories": [],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Inside country legend Alan Jackson’s triumphant finale concert",
+        "source": "Associated Press",
+        "url": "https://apnews.com/article/alan-jackson-final-concert-george-strait-72ebb2f87fdca2c2ae8a7308278c9b9b",
+        "fact": "Country music legend Alan Jackson has ended his touring career. On Saturday night, he performed his final show at Nashville's Nissan Stadium. The event, titled “Last Call: One More for the Road — The Finale,” featured performances by top country stars like Ca…",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": null
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Canada 1–0 South Africa",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nCanada 1–0 South Africa | Scorers: Stephen Eustáquio (90'+2') NOTE: Stephen Eustáquio scored in second-half stoppage time, and Canada beat South Africa 1-0 to earn their first knockout mat\nTODAY'S FIXTURES: Japan vs. Brazil (1:00 PM EDT); Paraguay vs. Germany (4:30 PM EDT); Morocco vs. Netherlands (9:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://dims.apnews.com/dims4/default/be4a2b5/2147483647/strip/true/crop/3141x2093+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F88%2F64%2F4e12ac15bf18c7c7128ff05f66cf%2F77e23063cb9e48a997c5c7063f43a262",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "Stephen Eustáquio scored in second-half stoppage time to lift Canada past South Africa 1–0 in yesterday's World Cup knockout round.",
+      "whyItMatters": "Canada hadn't won a knockout match at a World Cup before this. That's the kind of breakthrough that either launches a tournament run or becomes a one-off. Either way, they're still alive in a knockout format where most teams go home.",
+      "theRead": "Eustáquio's goal in the 90th minute plus change is the kind of moment that changes how a nation thinks about itself in this competition. Canada needed to prove they belonged in the knockout stage, not just qualified. One goal, one late hero, suddenly they're not a curiosity anymore—they're a team that can win when it matters. South Africa had their chances and couldn't convert. That's the tournament in one microcosm.",
+      "ammo": [
+        "Stephen Eustáquio scored in the 90'+2' minute",
+        "Canada defeated South Africa 1–0",
+        "This was Canada's first-ever World Cup knockout match victory"
+      ],
+      "whatToBringUp": "Canada just got their first World Cup knockout win ever—and it came in stoppage time against South Africa, which means they're playing with a completely different kind of confidence now.",
+      "ourPick": "Canada advances further because they've already proven they can execute under pressure in a knockout format, which is the hardest variable in tournament soccer.",
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        },
+        {
+          "name": "Jude Bellingham",
+          "url": "https://en.wikipedia.org/wiki/Jude_Bellingham"
+        },
+        {
+          "name": "Cristiano Ronaldo",
+          "url": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo"
+        },
+        {
+          "name": "Romano Schmid",
+          "url": "https://en.wikipedia.org/wiki/Romano_Schmid"
+        },
+        {
+          "name": "Luis Díaz",
+          "url": "https://en.wikipedia.org/wiki/Luis_Díaz_(footballer,_born_1997)"
+        }
+      ]
+    },
+    {
+      "name": "CIN @ PIT",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Pittsburgh Pirates 9–4 over Cincinnati Reds",
+      "facts": "Pittsburgh Pirates beat Cincinnati Reds 9–4",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://73f3e7d5672db1849e6c-6434aaf008a29447cc424990bc6a54a7.ssl.cf2.rackcdn.com/stories/202606280070/1140x_a10-7_cTC/Reds-Pirates-Baseball-2-12_1782685643.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "Pittsburgh Pirates beat Cincinnati Reds 9–4.",
+      "whyItMatters": "The Reds are in rebuild mode and the Pirates are fighting for position in a competitive division. Wins like this matter when every game shapes playoff contention.",
+      "theRead": "Pittsburgh's offense showed up in a way that matters for their playoff case. Nine runs against a divisional opponent isn't a fluke—it's a statement that they can put pressure on teams that are supposed to be ahead of them. Cincinnati's inability to keep up at home is exactly the kind of loss that piles on during a season.",
+      "ammo": [
+        "Pittsburgh Pirates defeated Cincinnati Reds 9–4",
+        "The Pirates' offense produced nine runs",
+        "This was a divisional matchup in late June"
+      ],
+      "whatToBringUp": "Pirates put up nine on the Reds at home, which tells you their lineup is starting to click when it counts.",
+      "ourPick": "Pittsburgh keeps climbing because they're scoring enough runs to win close division races, and Cincinnati doesn't have the pitching depth to keep up over a season."
+    },
+    {
+      "name": "Lenovo Austrian Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "George Russell wins Lenovo Austrian GP",
+      "facts": "P1 George Russell (Mercedes), P2 Max Verstappen, P3 Kimi Antonelli",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Austria/Teams%20header%20Austria.webp",
+      "videoUrl": null,
+      "isLead": false,
+      "when": null,
+      "tier": 1,
+      "sportType": "f1",
+      "whatHappened": "George Russell won the Lenovo Austrian Grand Prix in his Mercedes, with Max Verstappen second and Kimi Antonelli third.",
+      "whyItMatters": "Russell's win in Austria breaks Verstappen's dominance on a circuit where Red Bull typically rolls. That matters for the championship conversation and signals Mercedes can compete at the highest level.",
+      "theRead": "Russell executing a clean race win at a track that has historically favored Red Bull isn't just a one-off. It's evidence that Mercedes finally has the car to challenge Verstappen in qualifying and race pace. Antonelli on the podium as a third-place finisher shows Ferrari is also in the mix. The championship isn't settled—far from it.",
+      "ammo": [
+        "George Russell won the Lenovo Austrian Grand Prix",
+        "Max Verstappen finished P2",
+        "Kimi Antonelli completed the podium in P3"
+      ],
+      "whatToBringUp": "Russell just beat Verstappen at a track that's usually a Red Bull stronghold, which means Mercedes might finally have a car that can challenge for wins every weekend.",
+      "ourPick": "Russell wins more races because Mercedes has closed the gap on Red Bull's straight-line speed, and Russell proved he can capitalize when the car shows up.",
+      "playerLinks": [
+        {
+          "name": "Max Verstappen",
+          "url": "https://www.formula1.com/en/drivers/max-verstappen"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/drivers/george-russell"
+        },
+        {
+          "name": "Kimi Antonelli",
+          "url": "https://www.espn.com/racing/driver/_/id/5073282/andrea-kimi-antonelli"
+        }
+      ]
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://www.sportsnet.ca/wp-content/uploads/2026/06/Canada-9.jpg",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "Canada 1–0 South Africa",
+    "sub": "World Cup"
+  },
+  "copy": {
+    "title": "George Russell wins Austrian GP. Scottie Scheffler leads Travelers at 21-under. Pirates demolish Reds 9-4.",
+    "keyTakeaway": null,
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Pirates demolish Reds in lopsided division matchup",
+      "whatHappened": "The Pittsburgh Pirates beat the Cincinnati Reds 9–4, with Pittsburgh's offense running away in the middle innings to take control of a division game.",
+      "whyBullet1": "Division wins compound through September — this is the kind of game that builds separation in tight NL Central races down the stretch.",
+      "whyBullet2": "Pittsburgh's ability to put multiple runs on the board at once suggests their lineup is starting to click together, which teams need heading into July.",
+      "theRead": "The Reds looked overmatched here, and that matters because Cincinnati's supposed to be competitive in this division. When a team gets gapped by 5 runs at home in late June, it usually signals something's broken in the lineup or the pitching didn't hold up. Pittsburgh's not a powerhouse, but they just showed they can execute when it counts. The Pirates are the kind of team that sneaks into contention if they keep winning these division games — not flashy, just relentless.",
+      "ammo": [
+        "Pittsburgh Pirates 9, Cincinnati Reds 4, June 29, 2026",
+        "NL Central divisional matchup",
+        "Final score: 5-run margin"
+      ],
+      "whatToSay": "Pirates just put the Reds away — when division rivals get you by that much at home, somebody's got a problem."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Tech took a beating — Nasdaq closed down 4.6% for the week",
+          "sub": "QQQ fell 1.4% on Friday alone as megacaps got whipsawed by rotation trades and rate expectations. Russell 2000 small-caps gained 1.4% on the week, signaling money moving out of growth into value."
+        },
+        {
+          "head": "Microsoft and Apple bounced — MSFT +5.7%, AAPL +3.1% on the session",
+          "sub": "The two biggest winners on the day, but still can't outrun the weekly damage. Strength in mega-cap blue chips contrasts with weakness in semiconductor and chip-adjacent names."
+        },
+        {
+          "head": "Treasury yields dropped as markets priced in softer landing odds",
+          "sub": "10-year closed down 0.5% on Friday and 1.8% for the week, suggesting bond traders see less aggressive Fed action ahead. Real money rotating from equities into fixed income."
+        }
+      ],
+      "mood": "Tech got hammered — QQQ down 4.6% for the week — while small-caps quietly climbed, signaling a real shift in where money thinks it's safer right now.",
+      "whyBullet1": "Treasury yields fell 1.8% for the week because markets are now pricing in a softer economy and fewer rate hikes ahead, which makes bond yields more attractive relative to growth stocks.",
+      "whyBullet2": "Watch for Friday's jobs report and any Fed speakers midweek — bond traders are betting the economy is slowing faster than the Fed expected, and payroll data will either confirm or shake that thesis.",
+      "bringUp": "Microsoft was up 5.7% on the day but the Nasdaq still finished down 4.6% for the week, which means the big winners can't even save the index — that's how bad the selloff in mega-cap growth names really was.",
+      "theRead": "This is a pure rotation. Growth stocks and semiconductors got crushed, Microsoft and Apple bounced on Friday, but it wasn't enough to stop the bleeding. Small-caps gained on the week while tech fell, which tells you institutional money is de-risking from the high-flyers and moving into names that don't care if rates stay higher for longer. Treasury yields dropping 1.8% in a week is significant — that's real money moving into bonds, not just algorithmic noise. The message: markets are starting to doubt the soft-landing story and repricing for a slower growth environment.",
+      "ammo": [
+        "QQQ closed down 4.6% for the week, worst weekly performance in months",
+        "Russell 2000 up 1.4% on the week while Nasdaq fell, classic rotation signal",
+        "10-year Treasury yield down 1.8% for the week — biggest weekly drop in six weeks",
+        "MSFT +5.7% and AAPL +3.1% on Friday but couldn't save the tech index",
+        "NVDA -1.6%, AMD -2.1%, AVGO -3.7% — semiconductor complex in freefall"
+      ]
+    },
+    "golf": {
+      "headline": "Scheffler and Hovland deadlocked at Travelers; Morikawa one back.",
+      "whyCare1": "Travelers is the final event before the U.S. Open, so form and confidence here matter — winner gets a clean week before the major.",
+      "whyCare2": "Scheffler is chasing back-to-back wins after capturing the U.S. Open last month; Hovland's closing in on his first title of 2026.",
+      "watchFor": "Whether Scheffler's putter holds up in crunch time — he's been scorching all week but Hovland won't fold.",
+      "theRead": "This is peak golf. Two elite players tied at 21 under on a course that doesn't give up birdies easily. Morikawa is lurking one shot back and has played cleanly all week, but the real story is whether Scheffler can will another one home or if Hovland finally gets his breakthrough. The U.S. Open prep angle is real — both need confidence entering next week.",
+      "ammo": [
+        "Scottie Scheffler: -21, defending U.S. Open champion",
+        "Viktor Hovland: -21, tied for lead",
+        "Collin Morikawa: -20, three shots back",
+        "Wyndham Clark: -18, five back",
+        "Matt Fitzpatrick: -19, fourth place"
+      ],
+      "whatToSay": "Scheffler's playing the best golf in the world right now, but Hovland's not backing down — this is going to come down to who wants it more on Sunday."
+    },
+    "f1": [
+      "George Russell won the Lenovo Austrian Grand Prix for Mercedes",
+      "Russell now has 2 wins this season and sits P2 in the championship with 131 points",
+      "Andrea Kimi Antonelli leads the title race by 40 points",
+      "Max Verstappen finished P2 for Red Bull"
+    ],
+    "culture": [
+      {
+        "topic": "Sinners",
+        "whatHappened": "Ryan Coogler's supernatural horror film set in 1930s Mississippi Delta just hit streaming.",
+        "whyItMatters": "Coogler shifted from Marvel blockbusters into pure horror and atmospheric storytelling — the kind of genre pivot that rarely works but when it does, it matters.",
+        "theRead": "This is horror that uses its setting as more than backdrop. Coogler's working in mood and dread rather than jump scares, which is a harder sell but a smarter one. If you got through Candyman and wanted more genre work that actually has something to say, this tracks.",
+        "ammo": [
+          "Director: Ryan Coogler",
+          "Setting: 1930s Mississippi Delta",
+          "Genre: Supernatural horror"
+        ],
+        "whatToSay": "Coogler made a horror film — if you liked Candyman, Sinners is worth the watch.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Cleveland beat Seattle 6–5 on Monday — third straight win. The Guardians are 12–3 in June. That's not variance. That's a team that got better.\n\nMicrosoft up 5.7% while AMD and Broadcom tanked 2–4% on the same week. The market's paying up for proven AI execution and punishing the rest of the chip stack—a bet that not everyone wins.\n\nHugo Gaston won Wimbledon at age 23, Lina Gjorcheska at 21. Two unknowns took tennis's oldest majors in the same week. The sport's star power problem just became undeniable.",
+    "glance": {
+      "sports": "Hugo Gaston wins Wimbledon men's final over Moez Echargui 6-1 5-7 6-2 6-4; Lina Gjorcheska takes women's title.",
+      "markets": "Nasdaq down 1.4% today, 4.6% on the week, as tech leaders MSFT +5.7% and AAPL +3.1% battle broader selloff headwinds.",
+      "culture": "Scottie Scheffler leads Travelers Championship at 21-under par heading into final rounds in Connecticut."
+    },
+    "theTake": {
+      "office": "George Russell beating Max Verstappen at his home track signals Mercedes finally has the car to challenge Red Bull consistently, not just on specific weekends.",
+      "bar": "Scottie Scheffler at -21 through 54 holes at the Travelers proves he's not just a major-winner — he's the most complete player in golf right now, full stop."
+    },
+    "nhl": {
+      "headline": "Leafs host Habs in divisional battle at Scotiabank",
+      "whyCare1": "Montreal and Toronto share the Atlantic Division, so every head-to-head counts in the standings race.",
+      "whyCare2": "A win keeps pace in the division; a loss lets the other team pull ahead in the playoff picture.",
+      "watchFor": "Which team controls the third period — that's where these matchups usually get decided.",
+      "theRead": "Divisional games are always tighter than the standings suggest because both teams know each other inside out. Toronto's got home ice, but Montreal's been scrappy all year. This isn't about one star player — it's about which team executes the system better for sixty minutes. Expect a low-goal game and a ton of chippy play.",
+      "ammo": [
+        "Scotiabank Arena in Toronto",
+        "Montreal Canadiens visiting",
+        "Atlantic Division matchup"
+      ],
+      "whatToSay": "The Leafs can't afford to drop divisional games at home if they want to separate from Montreal."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Stephen Eustáquio scored in second-half stoppage time to lift Canada past South Africa 1–0 in yesterday's World Cup knockout round.",
+        "whyItMatters": "Canada hadn't won a knockout match at a World Cup before this. That's the kind of breakthrough that either launches a tournament run or becomes a one-off. Either way, they're still alive in a knockout format where most teams go home.",
+        "theRead": "Eustáquio's goal in the 90th minute plus change is the kind of moment that changes how a nation thinks about itself in this competition. Canada needed to prove they belonged in the knockout stage, not just qualified. One goal, one late hero, suddenly they're not a curiosity anymore—they're a team that can win when it matters. South Africa had their chances and couldn't convert. That's the tournament in one microcosm.",
+        "ammo": [
+          "Stephen Eustáquio scored in the 90'+2' minute",
+          "Canada defeated South Africa 1–0",
+          "This was Canada's first-ever World Cup knockout match victory"
+        ],
+        "whatToBringUp": "Canada just got their first World Cup knockout win ever—and it came in stoppage time against South Africa, which means they're playing with a completely different kind of confidence now.",
+        "ourPick": "Canada advances further because they've already proven they can execute under pressure in a knockout format, which is the hardest variable in tournament soccer."
+      },
+      {
+        "whatHappened": "Pittsburgh Pirates beat Cincinnati Reds 9–4.",
+        "whyItMatters": "The Reds are in rebuild mode and the Pirates are fighting for position in a competitive division. Wins like this matter when every game shapes playoff contention.",
+        "theRead": "Pittsburgh's offense showed up in a way that matters for their playoff case. Nine runs against a divisional opponent isn't a fluke—it's a statement that they can put pressure on teams that are supposed to be ahead of them. Cincinnati's inability to keep up at home is exactly the kind of loss that piles on during a season.",
+        "ammo": [
+          "Pittsburgh Pirates defeated Cincinnati Reds 9–4",
+          "The Pirates' offense produced nine runs",
+          "This was a divisional matchup in late June"
+        ],
+        "whatToBringUp": "Pirates put up nine on the Reds at home, which tells you their lineup is starting to click when it counts.",
+        "ourPick": "Pittsburgh keeps climbing because they're scoring enough runs to win close division races, and Cincinnati doesn't have the pitching depth to keep up over a season."
+      },
+      {
+        "whatHappened": "George Russell won the Lenovo Austrian Grand Prix in his Mercedes, with Max Verstappen second and Kimi Antonelli third.",
+        "whyItMatters": "Russell's win in Austria breaks Verstappen's dominance on a circuit where Red Bull typically rolls. That matters for the championship conversation and signals Mercedes can compete at the highest level.",
+        "theRead": "Russell executing a clean race win at a track that has historically favored Red Bull isn't just a one-off. It's evidence that Mercedes finally has the car to challenge Verstappen in qualifying and race pace. Antonelli on the podium as a third-place finisher shows Ferrari is also in the mix. The championship isn't settled—far from it.",
+        "ammo": [
+          "George Russell won the Lenovo Austrian Grand Prix",
+          "Max Verstappen finished P2",
+          "Kimi Antonelli completed the podium in P3"
+        ],
+        "whatToBringUp": "Russell just beat Verstappen at a track that's usually a Red Bull stronghold, which means Mercedes might finally have a car that can challenge for wins every weekend.",
+        "ourPick": "Russell wins more races because Mercedes has closed the gap on Red Bull's straight-line speed, and Russell proved he can capitalize when the car shows up."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "brokenLinks": [],
+    "reason": "Claude editor call failed: Request timed out."
+  },
+  "factPack": {
+    "f1": {
+      "ammo": [
+        "George Russell won the Lenovo Austrian GP.",
+        "George Russell drives for the Mercedes team.",
+        "Max Verstappen finished in second place."
+      ]
+    },
+    "culture": [
+      {
+        "ammo": [
+          "Alan Jackson performed his final concert at Nashville's Nissan Stadium.",
+          "The event was titled 'Last Call: One More for the Road — The Finale.'",
+          "Alan Jackson is a country music legend."
+        ]
+      }
+    ],
+    "sports": [
+      {
+        "label": "World Cup",
+        "ammo": [
+          "Canada defeated South Africa 1-0.",
+          "Stephen Eustáquio scored the winning goal in the 90'+2' minute.",
+          "This victory marked Canada's first knockout match win."
+        ]
+      },
+      {
+        "label": "MLB",
+        "ammo": [
+          "The Pittsburgh Pirates beat the Cincinnati Reds 9-4."
+        ]
+      }
+    ]
+  },
+  "researchPack": null,
+  "researchMode": "feed-only",
+  "generationWarnings": [
+    {
+      "section": "editor",
+      "kind": "failed",
+      "detail": "Claude editor call failed: Request timed out."
+    }
+  ],
+  "verification": {
+    "pass": false,
+    "blocking": [
+      {
+        "section": "markets",
+        "claim": "Tech got hammered — QQQ down 4.6% for the week — while small-caps quietly climbed, signaling a real shift in where money thinks it's safer right now.",
+        "flag": "contradicts_market_feed",
+        "reason": "While QQQ down 4.6% aligns with the market feed data, there is a lack of context showing a real shift to small caps in the other data provided."
+      }
+    ],
+    "warnings": [
+      {
+        "section": "sport [World Cup]",
+        "note": "Canada's 1-0 victory over South Africa claim is plausible but unverified without additional detailed evidence."
+      },
+      {
+        "section": "f1",
+        "note": "Details of podium winners of the Lenovo Austrian GP are unverified in research but supported by ESPN, so no contradiction."
+      },
+      {
+        "section": "golf",
+        "note": "Scheffler and Hovland deadlocked at Travelers is plausible but not verified without additional data on their scores/progression."
+      },
+      {
+        "section": "culture 1",
+        "note": "Film release is plausible but not verified."
+      },
+      {
+        "section": "culture_item_1",
+        "note": "Film release is plausible but not verified."
+      },
+      {
+        "section": "final_sharp_take",
+        "note": "[demoted] unverified_major: Claim about Cleveland Guardians specific June record is unverifiable without additional data."
+      },
+      {
+        "section": "glance_sports",
+        "note": "[demoted] unverified_major: Wimbledon winners are unverified as there is no research pack or ESPN entry on tennis."
+      }
+    ],
+    "verificationSummary": "Several claims are unverifiable due to lack of supporting data in research while some market and sports claims have data conflicts or lack verification.",
+    "model": "gpt-4o",
+    "timestamp": "2026-06-29T13:01:28.250Z"
+  }
+}

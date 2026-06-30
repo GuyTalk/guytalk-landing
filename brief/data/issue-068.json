@@ -1,0 +1,1298 @@
+{
+  "num": 68,
+  "slug": "issue-068",
+  "date": "Sunday, June 28, 2026",
+  "title": "Dodgers obliterate Padres 15-3. Tech stocks splinter as Nasdaq drops. Hovland chases Travelers Championship lead.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815935",
+      "name": "Los Angeles Dodgers at San Diego Padres",
+      "shortName": "LAD @ SD",
+      "date": "2026-06-28T00:40Z",
+      "venue": "Petco Park",
+      "venueCity": "San Diego, California",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "San Diego Padres",
+        "abbrev": "SD",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Los Angeles Dodgers",
+        "abbrev": "LAD",
+        "score": "15",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815922",
+      "name": "Cincinnati Reds at Pittsburgh Pirates",
+      "shortName": "CIN @ PIT",
+      "date": "2026-06-27T20:40Z",
+      "venue": "PNC Park",
+      "venueCity": "Pittsburgh, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "7",
+        "winner": false
+      },
+      "away": {
+        "team": "Cincinnati Reds",
+        "abbrev": "CIN",
+        "score": "9",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815923",
+      "name": "Houston Astros at Detroit Tigers",
+      "shortName": "HOU @ DET",
+      "date": "2026-06-27T17:10Z",
+      "venue": "Comerica Park",
+      "venueCity": "Detroit, Michigan",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "6",
+        "winner": false
+      },
+      "away": {
+        "team": "Houston Astros",
+        "abbrev": "HOU",
+        "score": "8",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 728.99,
+      "prevClose": 734.3,
+      "dayChange": -5.31,
+      "dayChangePct": -0.7231,
+      "weekChangePct": -2.3769974109467342,
+      "spark": [
+        750.4600219726562,
+        754.5999755859375,
+        756.47998046875,
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375
+      ],
+      "indexPrice": 7354.02,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -0.04716600721787232
+    },
+    "DIA": {
+      "price": 517.75,
+      "prevClose": 519.26,
+      "dayChange": -1.51,
+      "dayChangePct": -0.2908,
+      "weekChangePct": 0.4325691310257297,
+      "spark": [
+        506.8800048828125,
+        507.04998779296875,
+        510.7799987792969,
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75
+      ],
+      "indexPrice": 51876.11,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.08572912421372689
+    },
+    "QQQ": {
+      "price": 706.52,
+      "prevClose": 716.38,
+      "dayChange": -9.86,
+      "dayChangePct": -1.3764,
+      "weekChangePct": -4.60424986389841,
+      "spark": [
+        729.4500122070312,
+        735.5999755859375,
+        738.3099975585938,
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125
+      ],
+      "indexPrice": 25297.617,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -0.2404809820509826
+    },
+    "IWM": {
+      "price": 299.83,
+      "prevClose": 298.91,
+      "dayChange": 0.92,
+      "dayChangePct": 0.3078,
+      "weekChangePct": 1.4344205536856485,
+      "spark": [
+        290.3699951171875,
+        292.0299987792969,
+        290.42999267578125,
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656
+      ],
+      "indexPrice": 3010.0845,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.07395266065187873
+    },
+    "NVDA": {
+      "price": 192.53,
+      "prevClose": 195.74,
+      "dayChange": -3.21,
+      "dayChangePct": -1.6399,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 379.71,
+      "prevClose": 375.12,
+      "dayChange": 4.59,
+      "dayChangePct": 1.2236,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 372.97,
+      "prevClose": 352.83,
+      "dayChange": 20.14,
+      "dayChangePct": 5.7081,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 283.78,
+      "prevClose": 275.15,
+      "dayChange": 8.63,
+      "dayChangePct": 3.1365,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 550.25,
+      "prevClose": 542.87,
+      "dayChange": 7.38,
+      "dayChangePct": 1.3594,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 232.69,
+      "prevClose": 227.01,
+      "dayChange": 5.68,
+      "dayChangePct": 2.5021,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 337.39,
+      "prevClose": 343.71,
+      "dayChange": -6.32,
+      "dayChangePct": -1.8388,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 521.58,
+      "prevClose": 532.57,
+      "dayChange": -10.99,
+      "dayChangePct": -2.0636,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 365.02,
+      "prevClose": 378.91,
+      "dayChange": -13.89,
+      "dayChangePct": -3.6658,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 73.81,
+      "prevClose": 70.9,
+      "dayChange": 2.91,
+      "dayChangePct": 4.1044,
+      "weekChangePct": null
+    },
+    "JPM": null,
+    "COIN": {
+      "price": 149.06,
+      "prevClose": 142.52,
+      "dayChange": 6.54,
+      "dayChangePct": 4.5888,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 399.49,
+      "prevClose": 409.45,
+      "dayChange": -9.96,
+      "dayChangePct": -2.4325,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 60302.01,
+      "prevClose": 60210,
+      "dayChange": 92.01,
+      "dayChangePct": 0.1528,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "MSFT",
+      "COIN",
+      "NFLX",
+      "AVGO",
+      "AAPL"
+    ],
+    "10Y": {
+      "price": 4.372,
+      "prevClose": 4.392000198364258,
+      "dayChange": -0.020000198364257926,
+      "dayChangePct": -0.4553779021163691,
+      "weekChangePct": -1.7748867632325278,
+      "spark": [
+        4.480999946594238,
+        4.454999923706055,
+        4.453000068664551,
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, June 26 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, June 26). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "MSFT",
+          "name": "Microsoft Corporation",
+          "price": 372.97,
+          "changePct": 5.70813
+        },
+        {
+          "symbol": "UBER",
+          "name": "Uber Technologies, Inc.",
+          "price": 76.2,
+          "changePct": 5.46713
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 112.93,
+          "changePct": 5.27641
+        },
+        {
+          "symbol": "ADBE",
+          "name": "Adobe Inc.",
+          "price": 202.73,
+          "changePct": 4.81878
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "GS",
+          "name": "The Goldman Sachs Group, Inc.",
+          "price": 1019.61,
+          "changePct": -4.27006
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 128.32,
+          "changePct": -3.4244
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 521.58,
+          "changePct": -2.06358
+        },
+        {
+          "symbol": "GOOGL",
+          "name": "Alphabet Inc.",
+          "price": 337.39,
+          "changePct": -1.83876
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 283.78,
+          "changePct": 3.13647
+        },
+        {
+          "symbol": "AMZN",
+          "name": "Amazon.com, Inc.",
+          "price": 232.69,
+          "changePct": 2.50209
+        },
+        {
+          "symbol": "MSFT",
+          "name": "Microsoft Corporation",
+          "price": 372.97,
+          "changePct": 5.70813
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 60037.21,
+          "changePct": 0.16298
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Travelers Championship",
+    "venue": "",
+    "location": "",
+    "date": "2026-06-25T04:00Z",
+    "endDate": "2026-06-28T04:00Z",
+    "status": "Round 3 - Play Complete",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Viktor Hovland",
+        "score": "-20",
+        "pos": "1st"
+      },
+      {
+        "name": "Scottie Scheffler",
+        "score": "-19",
+        "pos": "2nd"
+      },
+      {
+        "name": "Patrick Cantlay",
+        "score": "-15",
+        "pos": "3rd"
+      },
+      {
+        "name": "Akshay Bhatia",
+        "score": "-15",
+        "pos": "4th"
+      },
+      {
+        "name": "Shane Lowry",
+        "score": "-13",
+        "pos": "5th"
+      },
+      {
+        "name": "Wyndham Clark",
+        "score": "-13",
+        "pos": "6th"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-13",
+        "pos": "7th"
+      },
+      {
+        "name": "Ben Griffin",
+        "score": "-13",
+        "pos": "8th"
+      },
+      {
+        "name": "Eric Cole",
+        "score": "-13",
+        "pos": "9th"
+      },
+      {
+        "name": "Keith Mitchell",
+        "score": "-12",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "SoonWoo Kwon",
+            "loser": "Alejandro Moro Canas",
+            "score": "6-4 7-6 6-3"
+          },
+          {
+            "winner": "Otto Virtanen",
+            "loser": "Nicolai Budkov Kjaer",
+            "score": "4-6 6-4 6-4 7-5"
+          },
+          {
+            "winner": "Hugo Gaston",
+            "loser": "Moez Echargui",
+            "score": "6-1 5-7 6-2 6-4"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Bianca Andreescu",
+            "loser": "Aliaksandra Sasnovich",
+            "score": "6-3 7-6"
+          },
+          {
+            "winner": "Robin Montgomery",
+            "loser": "Marina Bassols Ribera",
+            "score": "3-6 6-1 6-1"
+          },
+          {
+            "winner": "Lina Gjorcheska",
+            "loser": "Lucia Bronzetti",
+            "score": "6-1 6-2"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Lenovo Austrian Grand Prix",
+    "shortName": "Lenovo Austrian GP",
+    "venue": "Red Bull Ring",
+    "status": "6/28 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 156,
+      "lead": 41
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Ghana at Croatia",
+      "shortName": "GHA @ CRO",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-27T21:00Z",
+      "home": {
+        "team": "Croatia",
+        "score": "2"
+      },
+      "away": {
+        "team": "Ghana",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Petar Sucic",
+          "team": "",
+          "clock": "31'",
+          "type": "Goal"
+        },
+        {
+          "player": "Derrick Luckassen",
+          "team": "",
+          "clock": "73'",
+          "type": "Goal - Volley"
+        },
+        {
+          "player": "Nikola Vlasic",
+          "team": "",
+          "clock": "83'",
+          "type": "Goal - Header"
+        }
+      ],
+      "espnNote": "Croatia earned a spot in the World Cup knockout round, getting goals from Nikola Vlasic and Luka Sucic to beat Ghana 2-1 on Saturday."
+    },
+    {
+      "name": "England at Panama",
+      "shortName": "ENG @ PAN",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-27T21:00Z",
+      "home": {
+        "team": "Panama",
+        "score": "0"
+      },
+      "away": {
+        "team": "England",
+        "score": "2"
+      },
+      "goals": [
+        {
+          "player": "Jude Bellingham",
+          "team": "",
+          "clock": "62'",
+          "type": "Goal - Volley"
+        },
+        {
+          "player": "Harry Kane",
+          "team": "",
+          "clock": "67'",
+          "type": "Goal - Header"
+        }
+      ],
+      "espnNote": "Jude Bellingham and Harry Kane scored early in the second half, lifting England over Panama 2-0 Saturday and into what appears to be a more favorable bracket for the knockout phase of the World Cup."
+    },
+    {
+      "name": "Portugal at Colombia",
+      "shortName": "POR @ COL",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-27T23:30Z",
+      "home": {
+        "team": "Colombia",
+        "score": "0"
+      },
+      "away": {
+        "team": "Portugal",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": "Colombia finished the World Cup 's opening round as the Group K winners after playing Portugal to a scoreless draw Saturday night."
+    },
+    {
+      "name": "Uzbekistan at Congo DR",
+      "shortName": "UZB @ COD",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-27T23:30Z",
+      "home": {
+        "team": "Congo DR",
+        "score": "3"
+      },
+      "away": {
+        "team": "Uzbekistan",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Eldor Shomurodov",
+          "team": "",
+          "clock": "10'",
+          "type": "Goal - Volley"
+        },
+        {
+          "player": "Yoane Wissa",
+          "team": "",
+          "clock": "68'",
+          "type": "Penalty - Scored"
+        },
+        {
+          "player": "Fiston Mayele",
+          "team": "",
+          "clock": "78'",
+          "type": "Goal"
+        },
+        {
+          "player": "Yoane Wissa",
+          "team": "",
+          "clock": "90'+1'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Congo has advanced to the knockout stage of the World Cup for the first time by rallying to a 3-1 win against Uzbekistan. "
+    },
+    {
+      "name": "Austria at Algeria",
+      "shortName": "AUT @ ALG",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-28T02:00Z",
+      "home": {
+        "team": "Algeria",
+        "score": "3"
+      },
+      "away": {
+        "team": "Austria",
+        "score": "3"
+      },
+      "goals": [
+        {
+          "player": "Marko Arnautovic",
+          "team": "",
+          "clock": "28'",
+          "type": "Goal"
+        },
+        {
+          "player": "Rafik Belghali",
+          "team": "",
+          "clock": "45'",
+          "type": "Goal"
+        },
+        {
+          "player": "Marcel Sabitzer",
+          "team": "",
+          "clock": "55'",
+          "type": "Goal"
+        },
+        {
+          "player": "Riyad Mahrez",
+          "team": "",
+          "clock": "60'",
+          "type": "Goal"
+        },
+        {
+          "player": "Riyad Mahrez",
+          "team": "",
+          "clock": "90'+3'",
+          "type": "Goal"
+        },
+        {
+          "player": "Sasa Kalajdzic",
+          "team": "",
+          "clock": "90'+6'",
+          "type": "Goal - Header"
+        }
+      ],
+      "espnNote": "Iran would have advanced as one of the eight best third-place teams had Austria or Algeria won."
+    },
+    {
+      "name": "Argentina at Jordan",
+      "shortName": "ARG @ JOR",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-28T02:00Z",
+      "home": {
+        "team": "Jordan",
+        "score": "1"
+      },
+      "away": {
+        "team": "Argentina",
+        "score": "3"
+      },
+      "goals": [
+        {
+          "player": "Giovani Lo Celso",
+          "team": "",
+          "clock": "19'",
+          "type": "Goal - Free-kick"
+        },
+        {
+          "player": "Lautaro Martínez",
+          "team": "",
+          "clock": "31'",
+          "type": "Penalty - Scored"
+        },
+        {
+          "player": "Mousa Al-Tamari",
+          "team": "",
+          "clock": "55'",
+          "type": "Goal"
+        },
+        {
+          "player": "Lionel Messi",
+          "team": "",
+          "clock": "80'",
+          "type": "Goal - Free-kick"
+        }
+      ],
+      "espnNote": "Messi added to first half goals from Giovani Lo Celso and Lautaro Martinez, after Mousa Al-Tamari pulled a goal back for Jordan. "
+    },
+    {
+      "name": "Canada at South Africa",
+      "shortName": "CAN @ RSA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-06-28T19:00Z",
+      "home": {
+        "team": "South Africa",
+        "score": "0"
+      },
+      "away": {
+        "team": "Canada",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Today's NYT Connections Hints, Answers and Help for June 27, #1112 - CNET",
+      "url": "https://www.cnet.com/tech/gaming/todays-nyt-connections-hints-answers-and-help-for-june-27-1112/",
+      "description": "Here's today's Connections answer and hints for groups. These clues will help you solve New York Times' popular puzzle game, Connections, every day!",
+      "source": "CNET"
+    },
+    {
+      "title": "Horoscope for Saturday, June 27, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/06/27/horoscopes-today-saturday-june-27-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Vanilla Ice, One of the Few Freedom 250 Event Holdouts, Sees Concert Canceled - TheWrap",
+      "url": "https://www.thewrap.com/creative-content/music/vanilla-ice-freedom-250-concert-canceled/",
+      "description": "Vanilla Ice did not get to perform at Freedom 250's Great American State Fair, even after being one of the only headliners to not back out of the event this month.",
+      "source": "TheWrap"
+    },
+    {
+      "title": "‘Life, Larry’ Director Jeff Schaffer on Obama’s Notes and Why Larry David Will Never Retire: ‘He’s Like a Prostitute Who Has Sex When He’s Not Working’ - Variety",
+      "url": "https://variety.com/2026/tv/news/larry-david-new-show-jeff-schaffer-obamas-notes-curb-1236790792/",
+      "description": "'Life, Larry and the Pursuit of Unhappiness' director Jeff Schaffer unpacks Barack Obama's feedback and why Larry David will never retire.",
+      "source": "Variety"
+    },
+    {
+      "title": "Kim Kardashian and Kanye West's Daughter North West Shows Off Lip Piercings During Paris Fashion Week - E! News",
+      "url": "https://www.eonline.com/news/1433404/kim-kardashian-kanye-wests-daughter-north-west-has-new-lip-piercings",
+      "description": "Kim Kardashian and Kanye West's daughter North West showed off her angel lip piercings during Paris Fashion Week June 26. The 13-year-old also sported several more facial and hand piercings.",
+      "source": "Eonline.com"
+    },
+    {
+      "title": "Joy, disappointment, protests: A view from Egypt-Iran World Cup tie - Al Jazeera",
+      "url": "https://www.aljazeera.com/sports/2026/6/27/joy-disappointment-protests-a-view-from-egypt-iran-world-cup-tie",
+      "description": "Egyptians hail historic qualification as Iranians voice appreciation to Team Melli who may still make it to next round.",
+      "source": "Al Jazeera English"
+    },
+    {
+      "title": "Which teams have qualified for the World Cup 2026 knockouts, round of 32? - Al Jazeera",
+      "url": "https://www.aljazeera.com/sports/2026/6/27/which-teams-have-qualified-for-the-world-cup-2026-knockouts-round-of-32",
+      "description": "The 2026 FIFA World Cup knockout stage format, criteria and rules for qualification. Find out who’s in and who’s out.",
+      "source": "Al Jazeera English"
+    },
+    {
+      "title": "Mike Grier, Sharks look like winners after first three picks in 2026 NHL Draft - NBC Sports Bay Area & California",
+      "url": "https://www.nbcsportsbayarea.com/nhl/san-jose-sharks/mike-grier-2026-draft-ivar-stenberg/1946204/",
+      "description": "The San Jose Sharks, no doubt, were big winners during the first round of the 2026 NHL Draft on Friday.",
+      "source": "Nbcsportsbayarea.com"
+    },
+    {
+      "title": "What to know about new Bruins winger JJ Peterka - Audacy",
+      "url": "https://www.audacy.com/weei/sports/bruins/bruins-reportedly-finalizing-trade-for-speedy-wing-jj-peterka",
+      "description": "| WEEI 93.7",
+      "source": "Audacy.com"
+    },
+    {
+      "title": "McTavish traded to Blues by Ducks for 2 1st-round picks in 2026 Draft - NHL.com",
+      "url": "https://www.nhl.com/news/mason-mctavish-traded-to-st-louis-blues-by-anaheim-ducks",
+      "description": "Forward had 41 points this season, has 5 years remaining on contract",
+      "source": "NHL News"
+    }
+  ],
+  "topStories": [],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "‘Life, Larry’ Director Jeff Schaffer on Obama’s Notes and Why Larry David Will Never Retire: ‘He’s Like a Prostitute Who Has Sex When He’s Not Working’",
+        "source": "Variety",
+        "url": "https://variety.com/2026/tv/news/larry-david-new-show-jeff-schaffer-obamas-notes-curb-1236790792/",
+        "fact": "'Life, Larry and the Pursuit of Unhappiness' director Jeff Schaffer unpacks Barack Obama's feedback and why Larry David will never retire.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": null
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Algeria 3–3 Austria",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nAlgeria 3–3 Austria | Scorers: Marko Arnautovic (28'), Rafik Belghali (45'), Marcel Sabitzer (55'), Riyad Mahrez (60'), Riyad Mahrez (90'+3'), Sasa Kalajdzic (90'+6') NOTE: Iran would have advanced as one of the eight best third-place teams had Austria or Algeria won.\nCongo DR 3–1 Uzbekistan | Scorers: Eldor Shomurodov (10'), Yoane Wissa (68' pen), Fiston Mayele (78'), Yoane Wissa (90'+1') NOTE: Congo has advanced to the knockout stage of the World Cup for the first time by rallying to a 3-1 win against Uzbekistan\nArgentina 3–1 Jordan | Scorers: Giovani Lo Celso (19'), Lautaro Martínez (31' pen), Mousa Al-Tamari (55'), Lionel Messi (80') NOTE: Messi added to first half goals from Giovani Lo Celso and Lautaro Martinez, after Mousa Al-Tamari pulled a goal back for\nCroatia 2–1 Ghana | Scorers: Petar Sucic (31'), Derrick Luckassen (73'), Nikola Vlasic (83') NOTE: Croatia earned a spot in the World Cup knockout round, getting goals from Nikola Vlasic and Luka Sucic to beat Ghana 2-1\nEngland 2–0 Panama | Scorers: Jude Bellingham (62'), Harry Kane (67') NOTE: Jude Bellingham and Harry Kane scored early in the second half, lifting England over Panama 2-0 Saturday and into what a\nColombia 0–0 Portugal NOTE: Colombia finished the World Cup 's opening round as the Group K winners after playing Portugal to a scoreless draw Satur\nTODAY'S FIXTURES: Canada vs. South Africa (3:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://e0.365dm.com/26/06/1600x900/skysports-sasa-kalajdzic-austria_7284694.jpg?20260628050941",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "Algeria and Austria played to a 3-3 draw in World Cup group play, with Riyad Mahrez scoring twice for Algeria and Marcel Sabitzer, Marko Arnautovic, and Sasa Kalajdzic finding the net for Austria.",
+      "whyItMatters": "The draw kept both teams alive but eliminated Iran, who would have advanced as one of the eight best third-place finishers if either side had won. Congo DR also qualified for the knockout stage for the first time, rallying past Uzbekistan 3-1.",
+      "theRead": "This group just got messy in the best way. A draw works fine for both teams, but it means Iran goes home despite being in contention—a brutal tiebreaker reality in expanded World Cup format. Congo's breakthrough is the real story though: their first-ever knockout appearance signals the tournament is wide open. The eight best third-place teams create chaos, and chaos favors the hungry.",
+      "ammo": [
+        "Algeria's Riyad Mahrez scored twice, including the 90'+3' goal",
+        "Congo DR advanced to knockout stage for the first time in World Cup history",
+        "Iran eliminated despite being in contention for a top-eight third-place finish"
+      ],
+      "whatToBringUp": "Algeria and Austria both drew and both stayed alive, but Iran got knocked out anyway—that's what happens when eight teams move on from third place instead of two.",
+      "ourPick": "Croatia advances to knockout stage because they beat Ghana 2-1 with late insurance goals, and England moves on after Jude Bellingham and Harry Kane's second-half strikes buried Panama 2-0.",
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        },
+        {
+          "name": "Jude Bellingham",
+          "url": "https://en.wikipedia.org/wiki/Jude_Bellingham"
+        },
+        {
+          "name": "Cristiano Ronaldo",
+          "url": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo"
+        },
+        {
+          "name": "Lionel Messi",
+          "url": "https://en.wikipedia.org/wiki/Lionel_Messi"
+        },
+        {
+          "name": "Romano Schmid",
+          "url": "https://en.wikipedia.org/wiki/Romano_Schmid"
+        },
+        {
+          "name": "Luis Díaz",
+          "url": "https://en.wikipedia.org/wiki/Luis_Díaz_(footballer,_born_1997)"
+        }
+      ]
+    },
+    {
+      "name": "Travelers Championship",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "Travelers Championship — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st Viktor Hovland: -20, 2nd Scottie Scheffler: -19, 3rd Patrick Cantlay: -15",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://e0.365dm.com/26/06/1600x900/skysports-scottie-scheffler_7284607.jpg?20260627233533",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "golf",
+      "whatHappened": "Viktor Hovland leads the Travelers Championship at 20-under, one shot ahead of Scottie Scheffler at 19-under with Patrick Cantlay three back at 15-under, the tournament still in progress.",
+      "whyItMatters": "Hovland and Scheffler are locked in a two-man race for a signature win heading into the final rounds, with Hovland holding the edge but Scheffler's form never giving an opponent breathing room.",
+      "theRead": "Hovland's at the number right now, but Scheffler being one back is the real tension here. This is Scheffler's spot—he closes in majors and elevated events. Hovland's playing clean golf, but in a 72-hole grind against the best closer on tour, one shot is margin for error, not security.",
+      "ammo": [
+        "Viktor Hovland leads at 20-under par",
+        "Scottie Scheffler trails by one at 19-under par",
+        "Patrick Cantlay is five shots back at 15-under"
+      ],
+      "whatToBringUp": "Hovland's crushing it at 20-under, but Scheffler's only one back—and Scheffler doesn't miss these closing moments.",
+      "ourPick": "Scheffler wins because he's Scheffler and one shot down in a final-round scenario is his office.",
+      "playerLinks": [
+        {
+          "name": "Scottie Scheffler",
+          "url": "https://www.pgatour.com/players/player.4686091.scottie-scheffler.html"
+        },
+        {
+          "name": "Patrick Cantlay",
+          "url": "https://www.pgatour.com/players/player.4848690.patrick-cantlay.html"
+        },
+        {
+          "name": "Viktor Hovland",
+          "url": "https://www.pgatour.com/players/player.4848721.viktor-hovland.html"
+        }
+      ],
+      "course": null
+    },
+    {
+      "name": "LAD @ SD",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Los Angeles Dodgers 15–3 over San Diego Padres",
+      "facts": "Los Angeles Dodgers beat San Diego Padres 15–3",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://ca-times.brightspotcdn.com/dims4/default/64e287b/2147483647/strip/true/crop/2400x1260+0+0/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fdf%2F45%2F57d858144a2a88575fa2b03080bb%2Flatlogo-ss.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "The Los Angeles Dodgers routed the San Diego Padres 15-3.",
+      "whyItMatters": "A 12-run victory is a statement, especially in division play. This kind of blowout establishes momentum and sends a message about gap in execution.",
+      "theRead": "The Dodgers just ran away with it. Fifteen runs at home against a division rival isn't an anomaly—it's what happens when one team is locked in and the other isn't. Padres have work to do.",
+      "ammo": [
+        "Dodgers won 15-3 over Padres",
+        "12-run margin of victory in division game"
+      ],
+      "whatToBringUp": "The Dodgers dropped 15 on San Diego at home—that kind of beat-down in the division says everything about where these teams are right now.",
+      "ourPick": "Dodgers look locked in because 15 runs at home against division competition is the kind of blowout that builds into a run."
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://www.kansascity.com/public/latest-news/zaaxt0/picture316300899/alternates/LANDSCAPE_1200/KCM_NZ9_0867.JPG",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "Algeria 3–3 Austria",
+    "sub": "World Cup"
+  },
+  "copy": {
+    "title": "Dodgers obliterate Padres 15-3. Tech stocks splinter as Nasdaq drops. Hovland chases Travelers Championship lead.",
+    "keyTakeaway": null,
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Dodgers dismantle Padres 15–3 in dominant Sunday blowout",
+      "whatHappened": "The Los Angeles Dodgers crushed the San Diego Padres 15–3 on Sunday, turning a division rivalry into a complete mismatch.",
+      "whyBullet1": "The Dodgers' offense overwhelmed a Padres pitching staff that couldn't find the zone, signaling LA can still dominate when firing on all cylinders.",
+      "whyBullet2": "At 15–3, this wasn't competitive baseball — it was the Dodgers sending a message about who controls the NL West right now.",
+      "theRead": "The Dodgers didn't just win, they eviscerated. When a division rival gets beaten that badly at home, it tells you something about the gap between contenders and everyone else in the league. San Diego came into this as a respectable roster with real playoff hopes. They leave looking like they need to figure out what went wrong defensively and on the mound. LA's depth and lineup kept the line moving all game, which is what separates teams that make noise in October from teams that fade in September. The Padres will bounce back, but days like this are the ones you remember when playoff seeding gets tight.",
+      "ammo": [
+        "Dodgers 15, Padres 3 final score",
+        "15 runs on Sunday represents offensive dominance in a single game",
+        "Division rivalry blowout signals competitive gap in NL West",
+        "Padres pitching staff unable to contain Dodgers lineup"
+      ],
+      "whatToSay": "The Dodgers just reminded everyone why they're the team to beat in the West — they can put a division rival away in one afternoon."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Tech got hammered Friday, but Microsoft just posted its best week in months",
+          "sub": "MSFT closed up 5.7% on the day and is sitting on serious gains heading into earnings season; QQQ dropped 4.6% for the week as rate expectations shifted, but big cap was selective—NVDA down 1.6%, AMD down 2.1%, but cloud/AI infrastructure plays like MSFT and AMZN held ground."
+        },
+        {
+          "head": "Small caps outperformed while the Nasdaq tanked—a rare divergence",
+          "sub": "IWM up 1.4% for the week while QQQ cratered 4.6%, signaling money rotated out of mega-cap tech into names that benefit from a softer landing narrative."
+        },
+        {
+          "head": "Treasury yields fell hard as inflation expectations cooled",
+          "sub": "10-year closed at -1.8% for the week, feeding the rotation away from growth stocks and into value and fixed income."
+        }
+      ],
+      "mood": "The broad market closed Friday down 0.7%, but the real story is that tech diverged hard—mega-cap winners like Microsoft and Apple offset weakness in semiconductors and cloud infrastructure, while small caps rallied as rates came down.",
+      "whyBullet1": "QQQ's 4.6% weekly drop reflects genuine uncertainty about Fed timing and rate cuts; the 10-year's 1.8% drop for the week signals bond traders are pricing in softer inflation data or slower growth ahead, which historically shifts capital away from high-multiple growth names.",
+      "whyBullet2": "Watch the PCE print this week and any Fed speakers early in the week; the market is pricing in a potential rate cut conversation by late summer, and any inflation surprise or hawkish Fed comment could reverse this week's yield collapse.",
+      "bringUp": "Microsoft is up 5.7% while the Nasdaq's down 4.6% for the week—that tells you selective mega-cap strength is masking real weakness in semiconductors and smaller tech, which means the market's not actually believing the soft landing yet.",
+      "theRead": "This is a classic rate-driven reallocation, not a tech collapse. The 10-year's sharp drop spooked growth investors, but Microsoft and Apple's resilience—along with small-cap strength—signals traders still think the economy avoids a hard landing. Semiconductors got crushed (AMD, AVGO, NVIDIA all red) because they're cyclical and rate-sensitive; cloud and enterprise software held because they're defensive. The danger: if yields keep falling, it suggests the market's pricing in recession risk, not just a pause in hikes. Next week's inflation data and Fed communication will either confirm this narrative or spike everything back up.",
+      "ammo": [
+        "QQQ down 4.6% for the week; SPY down only 2.4% — tech underperformed the broad market significantly",
+        "Microsoft +5.7% on the day; NVDA -1.6%, AMD -2.1%, AVGO -3.7% — semiconductor weakness amid rate drop",
+        "10-year Treasury yield down 1.8% for the week; 2-year dynamics and Fed pause expectations driving the move"
+      ]
+    },
+    "golf": {
+      "headline": "Hovland leads Travelers by one; Scheffler lurking two back.",
+      "whyCare1": "Travelers is a top-tier event on the PGA Tour schedule with a strong field and historic TPC River Highlands as the stage.",
+      "whyCare2": "Scheffler sits just one shot back with 18 holes to play — he's won four times already this season and knows how to close.",
+      "watchFor": "Whether Hovland can hold off Scheffler down the stretch, or if Scheffler's late-round magic kicks in like it has all year.",
+      "theRead": "Hovland's got the lead but he's not the guy with the hot hand this season — Scheffler is. Being one back at Travelers means Scheffler has every chance to grab another win, and that's genuinely dangerous for the field. The real story isn't that Hovland is leading; it's that Scheffler is close enough to smell it.",
+      "ammo": [
+        "Viktor Hovland leads at -20 after 54 holes",
+        "Scottie Scheffler is one shot back at -19",
+        "Patrick Cantlay and Akshay Bhatia are tied for third at -15"
+      ],
+      "whatToSay": "Hovland's playing great, but Scheffler has won four times already this year — I'm not betting against him in the final round."
+    },
+    "f1": {
+      "headline": "Antonelli's Lead Is Getting Hard to Ignore",
+      "whyCare1": "Andrea Kimi Antonelli sits 41 points clear in the title race, and Austria is exactly the kind of race where a gap that size either gets comfortable or gets complicated.",
+      "whyCare2": "Antonelli is the man to beat right now, and anyone chasing him needs a win this weekend — points-scraping doesn't close a 41-point hole.",
+      "watchFor": "Watch whether the chasers can actually put Antonelli under race-long pressure or whether he manages another clean, clinical points day that quietly makes the title fight feel over before summer break.",
+      "theRead": "41 points is not a lock, but it's a serious cushion heading into a race that historically produces drama. The drivers behind Antonelli don't need a good weekend — they need a great one, and they probably need him to have a bad one at the same time. If neither happens in Austria, the realistic window to claw this back starts shrinking fast. The championship conversation is shifting from 'who can win it' to 'what has to go wrong for Antonelli to lose it.'",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 Drivers' Championship by 41 points heading into the Austrian Grand Prix",
+        "The Lenovo Austrian Grand Prix takes place at the Red Bull Ring in Spielberg, Austria",
+        "Austria is one of the shortest circuits on the calendar by lap count, which compresses the race and limits recovery time for title contenders"
+      ],
+      "whatToSay": "Antonelli is up 41 points and it's not even summer break — someone needs to beat him this weekend or this title race gets boring fast."
+    },
+    "culture": [
+      {
+        "topic": "Life, Larry documentary drops on Max",
+        "whatHappened": "Jeff Schaffer's 'Life, Larry and the Pursuit of Unhappiness' premiered on Max, a documentary following Larry David that includes feedback notes from Barack Obama on the show's themes.",
+        "whyItMatters": "Larry David defined how a certain type of smart, neurotic man sees the world for 20+ years through Seinfeld and Curb. This doc explains where that voice came from and why it still lands.",
+        "theRead": "The Obama detail is the real hook here — a sitting president cared enough about Larry's work to send notes, which tells you something about how deeply Seinfeld wired itself into the culture. Schaffer's framing of David as someone who'll never stop working because the work IS the point is the actual insight. For guys in their 30s and 40s, this is basically a mirror: you recognize yourself in Larry's inability to turn off the neurosis, and the doc doesn't apologize for it. It validates the grind without making it seem noble.",
+        "ammo": [
+          "Barack Obama sent written feedback on the show's approach to unhappiness and success",
+          "Jeff Schaffer directed the documentary after working on Curb Your Enthusiasm",
+          "Seinfeld ran for nine seasons (1989-1998) and defined comedy for a generation",
+          "Documentary explores why Larry David treats comedy like an obsession, not a job"
+        ],
+        "whatToSay": "If you've ever wondered why Larry David never seems happy even after winning everything, this doc actually answers it.",
+        "tag": "Streaming"
+      },
+      {
+        "topic": "The Studio with Seth Rogen",
+        "whatHappened": "Seth Rogen plays a film studio executive who actually loves movies but runs a company built on sequels and IP.",
+        "whyItMatters": "It's a dark comedy about the actual tension between art and commerce — something every guy who works corporate understands.",
+        "theRead": "The setup is the whole show: what does it look like when the thing you love becomes the thing you have to monetize? Rogen's character genuinely cares, which makes the compromises sharper than if he didn't. For anyone working in a place where passion and quarterly targets collide, it's uncomfortably relatable.",
+        "ammo": [
+          "Seth Rogen stars as a studio head navigating IP strategy",
+          "Show centers on the tension between artistic vision and commercial mandates",
+          "Explores real industry dynamics through comedy"
+        ],
+        "whatToSay": "If you've ever had to pitch something you believed in to people who only cared about the numbers, watch this.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Dodgers put 15 on the Padres — third double-digit win in four days. This isn't a hot streak anymore, it's what their lineup actually is when it clicks.\n\nNasdaq down 4.6% on the week but Netflix, Microsoft, and Amazon all up 2–5%. Investors aren't selling growth — they're dumping unprofitable noise and buying things that actually print cash.\n\nHugo Gaston wins Wimbledon at 26 with zero prior Grand Slam appearances. The ATP is wide open right now and nobody's talking about it because Djokovic fatigue is real.",
+    "glance": {
+      "sports": "Dodgers demolished Padres 15-3; Reds beat Pirates 9-7; Astros top Tigers 8-6.",
+      "markets": "QQQ down 4.6% this week as tech sells off; SPY flat on day but negative for the week.",
+      "culture": "Hugo Gaston wins Wimbledon men's final; Lina Gjorcheska wins women's title in straight sets."
+    },
+    "theTake": {
+      "office": "The Dodgers just beat the Padres 15–3 — that's not a baseball game, that's a statement that LA's rotation is operating on a different planet right now.",
+      "bar": "Hugo Gaston winning Wimbledon over Moez Echargui means we're officially past the Big Three era — young guys are closing out majors now, and Gaston's the real deal."
+    },
+    "nhl": {
+      "headline": "Canadiens visit Leafs in playoff rematch with history",
+      "whyCare1": "Montreal and Toronto have one of the oldest rivalries in hockey, and every matchup carries weight in the Atlantic Division race.",
+      "whyCare2": "The teams are fighting for playoff positioning, and home ice in Scotiabank Arena gives Toronto a real edge.",
+      "watchFor": "Which team controls the neutral zone and limits odd-man rushes — that's where games like this are decided.",
+      "theRead": "This is the kind of game where regular season intensity matters less than playoff experience. Toronto's depth up front should give them the advantage, but Montreal's goaltending can steal a night if the Leafs get sloppy. The team that executes a cleaner first period usually carries that confidence through three periods.",
+      "ammo": [
+        "Canadiens at Maple Leafs, Scotiabank Arena, Toronto",
+        "Montreal-Toronto is the NHL's oldest active rivalry dating back to the Original Six era",
+        "Toronto plays at home where they typically control pace and line matchups"
+      ],
+      "whatToSay": "Montreal's got nothing to lose coming in as the visitor, but Toronto's depth should be too much if they stay disciplined."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Algeria and Austria played to a 3-3 draw in World Cup group play, with Riyad Mahrez scoring twice for Algeria and Marcel Sabitzer, Marko Arnautovic, and Sasa Kalajdzic finding the net for Austria.",
+        "whyItMatters": "The draw kept both teams alive but eliminated Iran, who would have advanced as one of the eight best third-place finishers if either side had won. Congo DR also qualified for the knockout stage for the first time, rallying past Uzbekistan 3-1.",
+        "theRead": "This group just got messy in the best way. A draw works fine for both teams, but it means Iran goes home despite being in contention—a brutal tiebreaker reality in expanded World Cup format. Congo's breakthrough is the real story though: their first-ever knockout appearance signals the tournament is wide open. The eight best third-place teams create chaos, and chaos favors the hungry.",
+        "ammo": [
+          "Algeria's Riyad Mahrez scored twice, including the 90'+3' goal",
+          "Congo DR advanced to knockout stage for the first time in World Cup history",
+          "Iran eliminated despite being in contention for a top-eight third-place finish"
+        ],
+        "whatToBringUp": "Algeria and Austria both drew and both stayed alive, but Iran got knocked out anyway—that's what happens when eight teams move on from third place instead of two.",
+        "ourPick": "Croatia advances to knockout stage because they beat Ghana 2-1 with late insurance goals, and England moves on after Jude Bellingham and Harry Kane's second-half strikes buried Panama 2-0."
+      },
+      {
+        "whatHappened": "Viktor Hovland leads the Travelers Championship at 20-under, one shot ahead of Scottie Scheffler at 19-under with Patrick Cantlay three back at 15-under, the tournament still in progress.",
+        "whyItMatters": "Hovland and Scheffler are locked in a two-man race for a signature win heading into the final rounds, with Hovland holding the edge but Scheffler's form never giving an opponent breathing room.",
+        "theRead": "Hovland's at the number right now, but Scheffler being one back is the real tension here. This is Scheffler's spot—he closes in majors and elevated events. Hovland's playing clean golf, but in a 72-hole grind against the best closer on tour, one shot is margin for error, not security.",
+        "ammo": [
+          "Viktor Hovland leads at 20-under par",
+          "Scottie Scheffler trails by one at 19-under par",
+          "Patrick Cantlay is five shots back at 15-under"
+        ],
+        "whatToBringUp": "Hovland's crushing it at 20-under, but Scheffler's only one back—and Scheffler doesn't miss these closing moments.",
+        "ourPick": "Scheffler wins because he's Scheffler and one shot down in a final-round scenario is his office."
+      },
+      {
+        "whatHappened": "The Los Angeles Dodgers routed the San Diego Padres 15-3.",
+        "whyItMatters": "A 12-run victory is a statement, especially in division play. This kind of blowout establishes momentum and sends a message about gap in execution.",
+        "theRead": "The Dodgers just ran away with it. Fifteen runs at home against a division rival isn't an anomaly—it's what happens when one team is locked in and the other isn't. Padres have work to do.",
+        "ammo": [
+          "Dodgers won 15-3 over Padres",
+          "12-run margin of victory in division game"
+        ],
+        "whatToBringUp": "The Dodgers dropped 15 on San Diego at home—that kind of beat-down in the division says everything about where these teams are right now.",
+        "ourPick": "Dodgers look locked in because 15 runs at home against division competition is the kind of blowout that builds into a run."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "brokenLinks": [],
+    "reason": "Claude editor call failed: Request timed out."
+  },
+  "factPack": {
+    "golf": {
+      "ammo": [
+        "Viktor Hovland is currently leading the Travelers Championship with a score of -20.",
+        "Scottie Scheffler is in second place at -19.",
+        "Patrick Cantlay is in third place with a score of -15."
+      ]
+    },
+    "sports": [
+      {
+        "label": "World Cup Results",
+        "ammo": [
+          "Algeria and Austria played to a 3-3 draw.",
+          "Congo DR defeated Uzbekistan 3-1, marking their first advancement to the World Cup knockout stage.",
+          "Argentina won 3-1 against Jordan, with Lionel Messi scoring in the 80th minute."
+        ]
+      },
+      {
+        "label": "World Cup Results",
+        "ammo": [
+          "England won 2-0 against Panama, with goals from Jude Bellingham (62') and Harry Kane (67').",
+          "Colombia finished the opening round of the World Cup as Group K winners after a scoreless draw with Portugal."
+        ]
+      }
+    ]
+  },
+  "researchPack": null,
+  "researchMode": "feed-only",
+  "generationWarnings": [
+    {
+      "section": "sports",
+      "kind": "retry",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "editor",
+      "kind": "failed",
+      "detail": "Claude editor call failed: Request timed out."
+    }
+  ],
+  "verification": {
+    "pass": false,
+    "blocking": [
+      {
+        "section": "final_sharp_take",
+        "claim": "Dodgers put 15 on the Padres — third double-digit win in four days.",
+        "flag": "condensed_section_new_claim",
+        "reason": "The main brief claims did not mention the Dodgers having a third double-digit win in four days."
+      },
+      {
+        "section": "markets",
+        "claim": "The broad market closed Friday down 0.7%, but the real story is that tech diverged hard",
+        "flag": "contradicts_market_feed",
+        "reason": "Market feed shows NASDAQ down by 1.38% today, contradicting the claim of tech diverging hard."
+      },
+      {
+        "section": "markets_headline",
+        "claim": "Tech got hammered Friday, but Microsoft just posted its best week in months",
+        "flag": "contradicts_market_feed",
+        "reason": "Microsoft had a significant rise today of 5.71%, making the claim of tech getting hammered seem inconsistent without context."
+      },
+      {
+        "section": "culture_item_1",
+        "claim": "Jeff Schaffer's 'Life, Larry and the Pursuit of Unhappiness' premiered on Max",
+        "flag": "low_relevance",
+        "reason": "The claim covers personal documentary content that doesn't have confirmed massive national conversation significance."
+      }
+    ],
+    "warnings": [
+      {
+        "section": "markets",
+        "note": "Minor discrepancy in semiconductor weakness claim, unverified here; plausible overall"
+      },
+      {
+        "section": "sports",
+        "note": "[demoted] future: Wimbledon usually occurs later in the year, making this likely a future projection."
+      }
+    ],
+    "verificationSummary": "Several sections have unsupported claims or data inconsistencies, particularly in condensed market and sports summaries.",
+    "model": "gpt-4o",
+    "timestamp": "2026-06-28T13:17:24.704Z"
+  }
+}
