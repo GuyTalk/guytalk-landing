@@ -28,6 +28,7 @@ function stageToPending() {
     } catch (_) {
       // nothing to commit — already staged
     }
+    try { execSync('git fetch origin pending', { cwd: ROOT, stdio: 'pipe' }); } catch (_) {}
     execSync('git push origin HEAD:pending --force-with-lease', { cwd: ROOT, stdio: 'pipe' });
     console.log('   ✓ Staged to pending branch');
   } catch (err) {

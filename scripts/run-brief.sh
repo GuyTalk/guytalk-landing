@@ -116,8 +116,9 @@ if [ "$GEN_EXIT" -eq 0 ]; then
       GIT_EXIT=${PIPESTATUS[0]}
 
       if [ "$GIT_EXIT" -eq 0 ]; then
-        # Push the new commit to `pending` (disposable staging branch; force-with-lease
-        # is safe because pending only ever mirrors the latest brief on top of main).
+        # Fetch pending so our lease is fresh — approve.js adds commits after each
+        # approval, which makes --force-with-lease fail on the next brief if we skip this.
+        git fetch origin pending 2>/dev/null || true
         git push origin HEAD:pending --force-with-lease 2>&1 | tee -a "$LOG_FILE"
         PUSH_EXIT=${PIPESTATUS[0]}
 

@@ -999,7 +999,15 @@ async function main() {
             .join('\n')
         : facts;
       const links = (trending || []).map(t => t.url).filter(Boolean);
-      const result = await editBrief({ copy, context: factsWithPack, links });
+      // Hard 6-minute wall clock: the SDK timeout sometimes fails to fire on
+      // hung connections. This outer race guarantees the cron job never blocks.
+      const EDITOR_HARD_LIMIT_MS = 6 * 60 * 1000;
+      const result = await Promise.race([
+        editBrief({ copy, context: factsWithPack, links }),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('editorial pass hard-timeout (6 min)')), EDITOR_HARD_LIMIT_MS)
+        ),
+      ]);
       copy = result.copy;
       editorMeta = result.editor;
       if (editorMeta.reviewed) {
