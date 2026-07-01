@@ -152,17 +152,17 @@
   /* Dropdown */
   .nav-item-dd { position: relative; }
   .nav-chev { font-size: 10px; opacity: 0.5; transition: transform 0.2s ease; display: inline-block; }
-  .nav-item-dd:hover .nav-chev { transform: rotate(180deg); }
+  .nav-item-dd:hover .nav-chev, .nav-item-dd.dd-open .nav-chev { transform: rotate(180deg); }
   .nav-dropdown {
-    position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+    position: absolute; top: 100%; left: 50%;
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 12px; box-shadow: 0 8px 32px rgba(15,23,36,0.1);
-    padding: 6px; min-width: 200px;
+    padding: 6px 6px 10px; min-width: 210px;
     opacity: 0; visibility: hidden; pointer-events: none;
     transform: translateX(-50%) translateY(-6px);
     transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease;
   }
-  .nav-item-dd:hover .nav-dropdown {
+  .nav-dropdown.dd-open {
     opacity: 1; visibility: visible; pointer-events: all;
     transform: translateX(-50%) translateY(0);
   }
@@ -923,6 +923,7 @@
           <a href="/guide/fitness/" class="nav-dd-item">Fitness</a>
           <a href="/guide/accessories/" class="nav-dd-item">Accessories</a>
           <a href="/guide/golf/" class="nav-dd-item">Golf</a>
+          <a href="/guide/other/" class="nav-dd-item">Other</a>
           <div class="nav-dd-sep"></div>
           <a href="/guide/" class="nav-dd-item nav-dd-all">All categories →</a>
         </div>
@@ -1595,6 +1596,19 @@ window.handleSignup = function(e, form) {
 };
 
 (function () {
+
+  // Guide dropdown: JS hover with 300ms close delay so moving to the dropdown doesn't hide it
+  var ddWrap = document.querySelector('.nav-item-dd');
+  var ddMenu = ddWrap && ddWrap.querySelector('.nav-dropdown');
+  if (ddWrap && ddMenu) {
+    var ddTimer = null;
+    function openDd() { clearTimeout(ddTimer); ddMenu.classList.add('dd-open'); }
+    function closeDd() { ddTimer = setTimeout(function () { ddMenu.classList.remove('dd-open'); }, 300); }
+    ddWrap.addEventListener('mouseenter', openDd);
+    ddWrap.addEventListener('mouseleave', closeDd);
+    ddMenu.addEventListener('mouseenter', openDd);
+    ddMenu.addEventListener('mouseleave', closeDd);
+  }
 
   // Scroll progress bar
   var progressBar = document.getElementById('scrollProgress');

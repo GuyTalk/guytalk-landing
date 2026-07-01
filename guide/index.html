@@ -361,6 +361,16 @@
     line-height: 1.02; color: var(--text); margin-bottom: 16px;
   }
   .hub-sub { font-size: 18px; color: var(--text-2); max-width: 480px; line-height: 1.6; }
+  .guide-search-wrap { margin-top: 28px; }
+  .guide-search-inner { display: flex; align-items: center; gap: 10px; max-width: 480px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 14px; transition: border-color 0.15s; }
+  .guide-search-inner:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(43,111,255,0.1); }
+  .guide-search-icon { color: var(--text-3); flex-shrink: 0; }
+  .guide-search-input { flex: 1; border: none; outline: none; background: transparent; font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text); }
+  .guide-search-input::placeholder { color: var(--text-3); }
+  .guide-search-kbd { font-family: 'Inter Tight', sans-serif; font-size: 11px; font-weight: 600; color: var(--text-3); background: var(--surface-2); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; flex-shrink: 0; }
+  .guide-search-no-results { display: none; padding: 16px 0; font-size: 15px; color: var(--text-2); }
+  .hub-cat-tile { transition: opacity 0.15s; }
+  .hub-cat-tile.search-hidden { display: none; }
   /* ── CATEGORY SECTION ── */
   .hub-cat-section { background: #0F1724; padding: 56px 0 64px; }
   .hub-cat-section-header { margin-bottom: 36px; }
@@ -500,6 +510,7 @@
     <a href="/guide/fitness/"        class="guide-tab" data-path="fitness">Fitness</a>
     <a href="/guide/accessories/"    class="guide-tab" data-path="accessories">Accessories</a>
     <a href="/guide/golf/"           class="guide-tab" data-path="golf">Golf</a>
+    <a href="/guide/other/"          class="guide-tab" data-path="other">Other</a>
   </div>
 </div>
 <script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
@@ -508,14 +519,22 @@
     <div class="hub-eyebrow">GuyTalk Guide</div>
     <h1 class="hub-title">Know more.<br>Say the right thing.</h1>
     <p class="hub-sub">An evergreen reference library — what to buy, why it matters, what to know, and exactly what to say on the things worth knowing about.</p>
+    <div class="guide-search-wrap">
+      <div class="guide-search-inner">
+        <svg class="guide-search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="guideSearch" class="guide-search-input" type="search" placeholder="Search categories, products, topics…" autocomplete="off" />
+        <kbd class="guide-search-kbd">⌘K</kbd>
+      </div>
+    </div>
   </div>
 </div>
 <div class="hub-cat-section">
   <div class="gc">
     <div class="hub-cat-section-header">
-      <div class="hub-cat-section-eyebrow">Seven Subjects</div>
+      <div class="hub-cat-section-eyebrow">Eight Subjects</div>
       <h2 class="hub-cat-section-title">Pick where to start.</h2>
     </div>
+    <p class="guide-search-no-results">No categories match "<span id="guideSearchTerm"></span>". Try a product name or topic.</p>
     <div class="hub-cats-grid">
 
       <a href="/guide/style/" class="hub-cat-tile">
@@ -572,6 +591,14 @@
         <div class="hub-cat-desc">Clubs, bags, rangefinders, apps, and gear. Everything to show up on the course ready.</div>
         <div class="hub-cat-pick">Top pick: Titleist Pro V1 Golf Balls</div>
         <div class="hub-cat-cta">10 picks →</div>
+      </a>
+
+      <a href="/guide/other/" class="hub-cat-tile">
+        <div class="hub-cat-num">08</div>
+        <div class="hub-cat-name">Other</div>
+        <div class="hub-cat-desc">Tech, grooming, travel, home. Everything that doesn't fit a category but belongs in the arsenal.</div>
+        <div class="hub-cat-pick">Top pick: Solo Stove Bonfire 2.0</div>
+        <div class="hub-cat-cta">6 picks →</div>
       </a>
 
     </div>
@@ -763,5 +790,29 @@
   </div>
 </footer>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"The GuyTalk Guide","description":"An evergreen reference library. What to buy, why it matters, and exactly what to say.","url":"https://www.guytalkmedia.com/guide/","publisher":{"@type":"Organization","name":"GuyTalk","url":"https://www.guytalkmedia.com"}}</script>
+<script>
+(function () {
+  var input = document.getElementById('guideSearch');
+  if (!input) return;
+  var tiles = document.querySelectorAll('.hub-cat-tile');
+  var noRes = document.querySelector('.guide-search-no-results');
+  function doSearch() {
+    var q = input.value.trim().toLowerCase();
+    var visible = 0;
+    tiles.forEach(function (t) {
+      var text = t.textContent.toLowerCase();
+      var match = !q || text.indexOf(q) !== -1;
+      t.classList.toggle('search-hidden', !match);
+      if (match) visible++;
+    });
+    if (noRes) noRes.style.display = (q && !visible) ? 'block' : 'none';
+  }
+  input.addEventListener('input', doSearch);
+  // ⌘K shortcut
+  document.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); input.focus(); input.select(); }
+  });
+})();
+</script>
 </body>
 </html>

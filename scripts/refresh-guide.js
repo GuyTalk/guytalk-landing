@@ -13,6 +13,13 @@ const { OpenAI } = require('openai');
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
+// Rotation tiers:
+//   fast  — refresh every week (lots of product variety, trend-sensitive)
+//   bi    — refresh every 2 weeks
+//   slow  — refresh every 4 weeks (staples/classics, low churn)
+// Week-of-year modulo determines whether slow/bi categories run this pass.
+const ROTATION = { style: 'fast', watches: 'slow', 'bourbon-cigars': 'slow', cars: 'slow', fitness: 'fast', accessories: 'fast', golf: 'fast', other: 'bi' };
+
 const CATEGORIES = [
   {
     id: 'style',
@@ -118,6 +125,18 @@ const CATEGORIES = [
       'Garmin Approach S62 GPS Watch ~$350',
     ],
   },
+  {
+    id: 'other',
+    name: 'Other',
+    currentPicks: [
+      'Anker MagSafe 3-in-1 Travel Charger ~$40',
+      'Nomatic 40L Travel Pack ~$300',
+      'Beardbrand Tree Ranger Utility Bar ~$15',
+      'YETI Rambler 20oz Tumbler ~$38',
+      'Apple AirTag 4-Pack ~$100',
+      'Solo Stove Bonfire 2.0 ~$350',
+    ],
+  },
 ];
 
 const SYSTEM_PROMPT = `You are a product editor at a men's lifestyle publication.
@@ -177,8 +196,26 @@ async function main() {
   const patchDir = path.join(__dirname, '..', 'guide', 'data');
   if (!fs.existsSync(patchDir)) fs.mkdirSync(patchDir, { recursive: true });
 
+  // Determine which categories run this week based on rotation tier.
+  // week-of-year (1-indexed) used as the modulo key.
+  const now = new Date();
+  const startOfYear = new Date(now.getFullYear(), 0, 1);
+  const weekOfYear = Math.ceil(((now - startOfYear) / 86400000 + startOfYear.getDay() + 1) / 7);
+  const forcedId = process.env.GUIDE_CATEGORY; // allow --env GUIDE_CATEGORY=golf to force a single category
+
+  const activeCategories = CATEGORIES.filter(cat => {
+    if (forcedId) return cat.id === forcedId;
+    const tier = ROTATION[cat.id] || 'fast';
+    if (tier === 'fast') return true;
+    if (tier === 'bi') return weekOfYear % 2 === 0;
+    if (tier === 'slow') return weekOfYear % 4 === 0;
+    return true;
+  });
+
+  console.log(`Week ${weekOfYear} — refreshing ${activeCategories.length}/${CATEGORIES.length} categories: ${activeCategories.map(c => c.name).join(', ')}`);
+
   const results = [];
-  for (const cat of CATEGORIES) {
+  for (const cat of activeCategories) {
     const patch = await refreshCategory(cat);
     if (patch) {
       results.push(patch);
