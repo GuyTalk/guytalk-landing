@@ -372,26 +372,24 @@
   .hub-cat-tile { transition: opacity 0.15s; }
   .hub-cat-tile.search-hidden { display: none; }
   /* ── CATEGORY SECTION ── */
-  .hub-cat-section { background: #0F1724; padding: 56px 0 64px; }
+  .hub-cat-section { background: var(--bg); padding: 56px 0 72px; border-top: 1px solid var(--border); }
   .hub-cat-section-header { margin-bottom: 36px; }
-  .hub-cat-section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 10px; }
-  .hub-cat-section-title { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: clamp(28px,4vw,40px); letter-spacing: -.03em; color: #fff; }
-  .hub-cats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .hub-cat-section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .hub-cat-section-title { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: clamp(28px,4vw,40px); letter-spacing: -.03em; color: var(--text); }
+  .hub-cats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 4px; }
   .hub-cat-tile {
-    display: block; background: rgba(255,255,255,.04); padding: 32px 28px 28px;
-    text-decoration: none; border: 1px solid rgba(255,255,255,.07);
-    transition: background 0.18s, border-color 0.18s;
-    position: relative;
+    display: block; background: var(--surface); padding: 28px 24px 24px;
+    text-decoration: none; border: 1.5px solid var(--border); border-radius: 12px;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    position: relative; overflow: hidden;
   }
-  .hub-cat-tile:first-child { border-radius: 12px 0 0 0; }
-  .hub-cat-tile:nth-child(3) { border-radius: 0 12px 0 0; }
-  .hub-cat-tile:nth-child(4) { border-radius: 0 0 0 12px; }
-  .hub-cat-tile:last-child { border-radius: 0 0 12px 0; }
-  .hub-cat-tile:hover { background: rgba(43,111,255,.12); border-color: rgba(43,111,255,.35); text-decoration: none; }
-  .hub-cat-num { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 11px; letter-spacing: .1em; color: rgba(255,255,255,.25); margin-bottom: 14px; }
-  .hub-cat-name { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -.02em; color: #fff; margin-bottom: 10px; }
-  .hub-cat-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; margin-bottom: 10px; }
-  .hub-cat-cta { font-size: 12px; font-weight: 600; color: var(--accent); }
+  .hub-cat-tile::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+  .hub-cat-tile:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(43,111,255,.08); text-decoration: none; }
+  .hub-cat-num { font-family: 'Inter Tight', sans-serif; font-weight: 900; font-size: 11px; letter-spacing: .1em; color: var(--text-3); margin-bottom: 12px; }
+  .hub-cat-name { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -.02em; color: var(--text); margin-bottom: 8px; }
+  .hub-cat-desc { font-size: 13px; color: var(--text-2); line-height: 1.55; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .hub-cat-pick { font-size: 12px; color: var(--text-3); font-style: italic; margin-bottom: 14px; }
+  .hub-cat-cta { font-size: 13px; font-weight: 700; color: var(--accent); }
   .hub-cat-soon { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
 
   /* ── FOOTER ── */
@@ -537,7 +535,7 @@
     <p class="guide-search-no-results">No categories match "<span id="guideSearchTerm"></span>". Try a product name or topic.</p>
     <div class="hub-cats-grid">
 
-      <a href="/guide/style/" class="hub-cat-tile">
+      <a href="/guide/style/" class="hub-cat-tile" data-keywords="style clothing outfit fashion polo shirt jeans denim sneakers shoes cologne scent fragrance dress clothes wardrobe peter millar buck mason apc uniqlo common projects todd snyder taylor stitch le labo sauvage">
         <div class="hub-cat-num">01</div>
         <div class="hub-cat-name">Style</div>
         <div class="hub-cat-desc">How to dress better, spend less, and stop overthinking it.</div>
@@ -545,7 +543,7 @@
         <div class="hub-cat-cta">13 picks →</div>
       </a>
 
-      <a href="/guide/watches/" class="hub-cat-tile">
+      <a href="/guide/watches/" class="hub-cat-tile" data-keywords="watches timepiece wristwatch hamilton seiko tissot tudor rolex casio automatic mechanical nato strap leather band horology ad authorized dealer">
         <div class="hub-cat-num">02</div>
         <div class="hub-cat-name">Watches</div>
         <div class="hub-cat-desc">What to buy, what it means, and how not to look clueless at the AD.</div>
@@ -553,7 +551,7 @@
         <div class="hub-cat-cta">8 picks →</div>
       </a>
 
-      <a href="/guide/bourbon-cigars/" class="hub-cat-tile">
+      <a href="/guide/bourbon-cigars/" class="hub-cat-tile" data-keywords="bourbon whiskey cigar scotch spirits drinks bar whisky buffalo trace eagle rare blantons wild turkey four roses oliva arturo fuente alcohol cocktail">
         <div class="hub-cat-num">03</div>
         <div class="hub-cat-name">Bourbon &amp; Cigars</div>
         <div class="hub-cat-desc">The fundamentals. What to order, what to know, what to say.</div>
@@ -561,7 +559,7 @@
         <div class="hub-cat-cta">10 picks →</div>
       </a>
 
-      <a href="/guide/cars/" class="hub-cat-tile">
+      <a href="/guide/cars/" class="hub-cat-tile" data-keywords="cars car vehicles auto automobile driving bmw mercedes amg porsche 911 lexus mazda miata range rover noco jump starter dash cam floor mats leather detailing maintenance used vehicle">
         <div class="hub-cat-num">04</div>
         <div class="hub-cat-name">Cars</div>
         <div class="hub-cat-desc">What actually matters when you're buying, maintaining, or just talking about cars.</div>
@@ -569,7 +567,7 @@
         <div class="hub-cat-cta">9 picks →</div>
       </a>
 
-      <a href="/guide/fitness/" class="hub-cat-tile">
+      <a href="/guide/fitness/" class="hub-cat-tile" data-keywords="fitness gym workout exercise weights dumbbells kettlebell pullup running shoes protein creatine supplement bowflex theragun foam roller whoop recovery health training">
         <div class="hub-cat-num">05</div>
         <div class="hub-cat-name">Fitness</div>
         <div class="hub-cat-desc">The equipment that earns its space. Build a real home gym without the noise.</div>
@@ -577,7 +575,7 @@
         <div class="hub-cat-cta">10 picks →</div>
       </a>
 
-      <a href="/guide/accessories/" class="hub-cat-tile">
+      <a href="/guide/accessories/" class="hub-cat-tile" data-keywords="accessories wallet bag sunglasses belt weekender duffel dopp kit grooming bellroy ridge filson persol ray-ban warby parker allen edmonds leather everyday carry edc">
         <div class="hub-cat-num">06</div>
         <div class="hub-cat-name">Accessories</div>
         <div class="hub-cat-desc">The details that finish the look. Bags, wallets, and sunglasses that matter.</div>
@@ -585,7 +583,7 @@
         <div class="hub-cat-cta">9 picks →</div>
       </a>
 
-      <a href="/guide/golf/" class="hub-cat-tile">
+      <a href="/guide/golf/" class="hub-cat-tile" data-keywords="golf titleist pro v1 balls bushnell rangefinder vessel bag callaway paradym driver odyssey putter footjoy shoes travis mathew polo vice garmin gps watch course clubs irons wedge driver putter swing handicap">
         <div class="hub-cat-num">07</div>
         <div class="hub-cat-name">Golf</div>
         <div class="hub-cat-desc">Clubs, bags, rangefinders, apps, and gear. Everything to show up on the course ready.</div>
@@ -593,7 +591,7 @@
         <div class="hub-cat-cta">10 picks →</div>
       </a>
 
-      <a href="/guide/other/" class="hub-cat-tile">
+      <a href="/guide/other/" class="hub-cat-tile" data-keywords="other tech gadget grooming travel home outdoor anker charger nomatic backpack pack beardbrand soap bar yeti tumbler apple airtag tracker solo stove fire pit bonfire charging cable phone">
         <div class="hub-cat-num">08</div>
         <div class="hub-cat-name">Other</div>
         <div class="hub-cat-desc">Tech, grooming, travel, home. Everything that doesn't fit a category but belongs in the arsenal.</div>
@@ -798,10 +796,13 @@
   var noRes = document.querySelector('.guide-search-no-results');
   function doSearch() {
     var q = input.value.trim().toLowerCase();
+    if (noRes && document.getElementById('guideSearchTerm')) document.getElementById('guideSearchTerm').textContent = input.value.trim();
     var visible = 0;
     tiles.forEach(function (t) {
       var text = t.textContent.toLowerCase();
-      var match = !q || text.indexOf(q) !== -1;
+      var keywords = (t.dataset.keywords || '').toLowerCase();
+      var haystack = text + ' ' + keywords;
+      var match = !q || haystack.indexOf(q) !== -1;
       t.classList.toggle('search-hidden', !match);
       if (match) visible++;
     });
