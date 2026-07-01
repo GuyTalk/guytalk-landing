@@ -306,7 +306,9 @@ async function editBrief({ copy, context, links }) {
   // Cap the editorial call so a slow/hung Anthropic request can't stall the whole
   // 7am pipeline (and the review email). On 2026-06-15 this call hung ~18 min with
   // no timeout. 90s/attempt × 1 retry ≈ 3 min worst case, then fail-open to the draft.
-  const client = new (Anthropic.default || Anthropic)({ apiKey, timeout: 180000, maxRetries: 1 });
+  // 90s per attempt matches the intent in the comment above. maxRetries:0 so the
+  // SDK doesn't auto-retry — we handle retries manually with a backoff pause below.
+  const client = new (Anthropic.default || Anthropic)({ apiKey, timeout: 90000, maxRetries: 0 });
   const editable = extractEditable(copy);
 
   const system = `You are the GuyTalk Editor — the final editorial gate before a daily brief publishes.
@@ -488,7 +490,11 @@ ${JSON.stringify(editable)}`;
       }
       break;
     } catch (err) {
-      if (attempt < 2) { console.log(`   ⚠  Editor call failed (attempt ${attempt}/2): ${err.message} — retrying`); continue; }
+      if (attempt < 2) {
+        console.log(`   ⚠  Editor call failed (attempt ${attempt}/2): ${err.message} — waiting 15s then retrying`);
+        await new Promise(r => setTimeout(r, 15000));
+        continue;
+      }
       return skip(`Claude editor call failed: ${err.message}`);
     }
   }

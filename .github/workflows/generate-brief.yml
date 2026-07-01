@@ -65,6 +65,7 @@ jobs:
           fi
           ISSUE=$(ls brief/ | grep -E '^issue-[0-9]{3}$' | sort | tail -1)
           git commit -m "Brief: ${ISSUE} — $(date '+%B %d, %Y')"
+          git fetch origin pending 2>/dev/null || true
           git push origin HEAD:pending --force-with-lease
 
       - name: Send review notification
