@@ -2,7 +2,7 @@ name: Generate Daily Brief
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # 7am ET (12pm UTC)
+    - cron: '0 11 * * *'  # 7am ET (11am UTC = 7am EDT / 6am EST)
   workflow_dispatch: {}
 
 permissions:
