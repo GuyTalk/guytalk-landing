@@ -509,7 +509,44 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
             }).join('; ')}`
           : '';
 
-        facts = `YESTERDAY'S WORLD CUP RESULTS:\n${recapLines}${upcomingLines}\n\nPLAYERS TO KNOW (link these in copy using class="entity-person" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as "Players to Know" in the section. Write a proper recap, not a fixture list.`;
+        // Build players list dynamically: scorers from yesterday first, then
+        // key players from today's scheduled matches, capped at 5 total.
+        const featuredPlayers = [];
+        const seenNames = new Set();
+        // 1. Goal scorers from completed matches (most relevant — they actually scored)
+        for (const m of completed) {
+          for (const g of (m.goals || [])) {
+            if (!g.player || seenNames.has(g.player)) continue;
+            seenNames.add(g.player);
+            const dbEntry = PLAYERS[g.player];
+            const teamLabel = g.player && (m.goals || []).find(x => x.player === g.player)
+              ? (m.home.team && m.away.team ? '' : '') : '';
+            const bio = dbEntry?.bio || '';
+            const wiki = dbEntry?.wikiSlug ? `en.wikipedia.org/wiki/${dbEntry.wikiSlug}` : '';
+            featuredPlayers.push(`- ${g.player}${bio ? ` (${bio})` : ''}${wiki ? `: ${wiki}` : ''}`);
+            if (featuredPlayers.length >= 5) break;
+          }
+          if (featuredPlayers.length >= 5) break;
+        }
+        // 2. Pad with key players from today's scheduled matches
+        if (featuredPlayers.length < 5 && scheduled.length) {
+          const scheduledTeams = new Set(scheduled.flatMap(m => [m.home.team, m.away.team]));
+          for (const [name, p] of Object.entries(PLAYERS)) {
+            if (seenNames.has(name) || p.sport !== 'soccer') continue;
+            // Include if their team is playing today (bio mentions team name) or name recognition
+            const teamMatch = [...scheduledTeams].some(t => p.bio?.toLowerCase().includes(t.toLowerCase()) || name.toLowerCase().includes(t.toLowerCase().split(' ')[0]));
+            if (!teamMatch) continue;
+            seenNames.add(name);
+            const wiki = p.wikiSlug ? `en.wikipedia.org/wiki/${p.wikiSlug}` : '';
+            featuredPlayers.push(`- ${name}${p.bio ? ` (${p.bio})` : ''}${wiki ? `: ${wiki}` : ''}`);
+            if (featuredPlayers.length >= 5) break;
+          }
+        }
+        const playersBlock = featuredPlayers.length
+          ? `\n\nPLAYERS TO KNOW (link these in copy using class="entity-person" on first mention):\n${featuredPlayers.join('\n')}\nInclude 2-3 of these as "Players to Know" in the section. Write a proper recap, not a fixture list.`
+          : '\nWrite a proper recap, not a fixture list.';
+
+        facts = `YESTERDAY'S WORLD CUP RESULTS:\n${recapLines}${upcomingLines}${playersBlock}`;
       } else {
         // No completed results — preview today's slate with group context
         const allMatches = scheduled;

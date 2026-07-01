@@ -999,10 +999,11 @@ async function main() {
             .join('\n')
         : facts;
       const links = (trending || []).map(t => t.url).filter(Boolean);
-      // Hard 4-minute wall clock: 90s × 2 attempts + 15s backoff + headroom.
-      // The SDK timeout sometimes fails to fire on hung connections; this race
-      // guarantees the cron job never blocks beyond this ceiling.
-      const EDITOR_HARD_LIMIT_MS = 4 * 60 * 1000;
+      // Hard 10-minute wall clock: with streaming the SDK timeout only guards
+      // the initial connection — token generation can legitimately take several
+      // minutes for an 8192-token output. This ceiling prevents infinite hangs
+      // if the stream itself stalls mid-response.
+      const EDITOR_HARD_LIMIT_MS = 10 * 60 * 1000;
       const result = await Promise.race([
         editBrief({ copy, context: factsWithPack, links }),
         new Promise((_, reject) =>

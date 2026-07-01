@@ -306,9 +306,9 @@ async function editBrief({ copy, context, links }) {
   // Cap the editorial call so a slow/hung Anthropic request can't stall the whole
   // 7am pipeline (and the review email). On 2026-06-15 this call hung ~18 min with
   // no timeout. 90s/attempt × 1 retry ≈ 3 min worst case, then fail-open to the draft.
-  // 90s per attempt matches the intent in the comment above. maxRetries:0 so the
-  // SDK doesn't auto-retry — we handle retries manually with a backoff pause below.
-  const client = new (Anthropic.default || Anthropic)({ apiKey, timeout: 90000, maxRetries: 0 });
+  // 120s connection timeout; streaming means this only guards the initial handshake,
+  // not the full response. maxRetries:0 — we handle retries manually with backoff.
+  const client = new (Anthropic.default || Anthropic)({ apiKey, timeout: 120000, maxRetries: 0 });
   const editable = extractEditable(copy);
 
   const system = `You are the GuyTalk Editor — the final editorial gate before a daily brief publishes.
@@ -473,16 +473,20 @@ ${JSON.stringify(editable)}`;
   const MAX_TOKENS = 8192;
   const userMsg = `${user}\n\nReturn ONLY the JSON object described above, starting with {.`;
 
+  // Use streaming so the 90s SDK timeout only guards the initial connection,
+  // not the entire response. Once streaming starts it runs to completion regardless
+  // of how long token generation takes — no more false timeouts on large outputs.
   let raw;
   for (let attempt = 1; attempt <= 2; attempt++) {
     try {
-      const res = await client.messages.create({
+      const stream = client.messages.stream({
         model,
         max_tokens: MAX_TOKENS,
         temperature: 0.4,
         system,
         messages: [{ role: 'user', content: userMsg }],
       });
+      const res = await stream.finalMessage();
       raw = (res.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
       if (res.stop_reason === 'max_tokens') {
         console.log(`   ⚠  Editor hit max_tokens (${MAX_TOKENS}) on attempt ${attempt}/2 — output truncated`);
