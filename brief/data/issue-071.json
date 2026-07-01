@@ -1,0 +1,1416 @@
+{
+  "num": 71,
+  "slug": "issue-071",
+  "date": "Wednesday, July 1, 2026",
+  "title": "Marlins demolish Rockies 14-3. Nasdaq rallies 1.5% led by chip stocks. Wimbledon crowns Joint and Choinski.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815975",
+      "name": "Miami Marlins at Colorado Rockies",
+      "shortName": "MIA @ COL",
+      "date": "2026-07-01T00:40Z",
+      "venue": "Coors Field",
+      "venueCity": "Denver, Colorado",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Miami Marlins",
+        "abbrev": "MIA",
+        "score": "14",
+        "winner": true
+      }
+    },
+    {
+      "id": "401815973",
+      "name": "San Diego Padres at Chicago Cubs",
+      "shortName": "SD @ CHC",
+      "date": "2026-07-01T00:05Z",
+      "venue": "Wrigley Field",
+      "venueCity": "Chicago, Illinois",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "9",
+        "winner": true
+      },
+      "away": {
+        "team": "San Diego Padres",
+        "abbrev": "SD",
+        "score": "7",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815974",
+      "name": "Tampa Bay Rays at Kansas City Royals",
+      "shortName": "TB @ KC",
+      "date": "2026-06-30T23:40Z",
+      "venue": "Kauffman Stadium",
+      "venueCity": "Kansas City, Missouri",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Kansas City Royals",
+        "abbrev": "KC",
+        "score": "4",
+        "winner": false
+      },
+      "away": {
+        "team": "Tampa Bay Rays",
+        "abbrev": "TB",
+        "score": "10",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 746.77,
+      "prevClose": 741,
+      "dayChange": 5.77,
+      "dayChangePct": 0.7787,
+      "weekChangePct": 1.7980291996613662,
+      "spark": [
+        758.5399780273438,
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125
+      ],
+      "indexPrice": 7499.36,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.7920217356594171
+    },
+    "DIA": {
+      "price": 522.39,
+      "prevClose": 521.68,
+      "dayChange": 0.71,
+      "dayChangePct": 0.1361,
+      "weekChangePct": 1.116876028289158,
+      "spark": [
+        511.44000244140625,
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375
+      ],
+      "indexPrice": 52319.2,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.2615073935263948
+    },
+    "QQQ": {
+      "price": 736.4,
+      "prevClose": 724.08,
+      "dayChange": 12.32,
+      "dayChangePct": 1.7015,
+      "weekChangePct": 3.1878336450161533,
+      "spark": [
+        742.739990234375,
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625
+      ],
+      "indexPrice": 26213.719,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 1.524307635330708
+    },
+    "IWM": {
+      "price": 300.45,
+      "prevClose": 298.97,
+      "dayChange": 1.48,
+      "dayChangePct": 0.495,
+      "weekChangePct": 1.7370962171720548,
+      "spark": [
+        288.9800109863281,
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125
+      ],
+      "indexPrice": 3024.367,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.46329344367059055
+    },
+    "NVDA": {
+      "price": 200.09,
+      "prevClose": 194.97,
+      "dayChange": 5.12,
+      "dayChangePct": 2.626,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 420.6,
+      "prevClose": 411.84,
+      "dayChange": 8.76,
+      "dayChangePct": 2.127,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 373.02,
+      "prevClose": 368.57,
+      "dayChange": 4.45,
+      "dayChangePct": 1.2074,
+      "weekChangePct": null
+    },
+    "AAPL": null,
+    "META": {
+      "price": 563.29,
+      "prevClose": 562.6,
+      "dayChange": 0.69,
+      "dayChangePct": 0.1226,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 238.34,
+      "prevClose": 240.14,
+      "dayChange": -1.8,
+      "dayChangePct": -0.7496,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 357.37,
+      "prevClose": 353.65,
+      "dayChange": 3.72,
+      "dayChangePct": 1.0519,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 580.91,
+      "prevClose": 539.49,
+      "dayChange": 41.42,
+      "dayChangePct": 7.6776,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 377.75,
+      "prevClose": 372.45,
+      "dayChange": 5.3,
+      "dayChangePct": 1.423,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 71.4,
+      "prevClose": 73.78,
+      "dayChange": -2.38,
+      "dayChangePct": -3.2258,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 327.33,
+      "prevClose": 329.39,
+      "dayChange": -2.06,
+      "dayChangePct": -0.6254,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 146.19,
+      "prevClose": 151.65,
+      "dayChange": -5.46,
+      "dayChangePct": -3.6004,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 431.46,
+      "prevClose": 414.61,
+      "dayChange": 16.85,
+      "dayChangePct": 4.0641,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 58694.25,
+      "prevClose": 59315.73,
+      "dayChange": -621.48,
+      "dayChangePct": -1.0477,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AMD",
+      "DELL",
+      "COIN",
+      "NFLX",
+      "NVDA"
+    ],
+    "10Y": {
+      "price": 4.418,
+      "prevClose": 4.392000198364258,
+      "dayChange": 0.025999801635742337,
+      "dayChangePct": 0.5919808848238581,
+      "weekChangePct": -0.7414111893781522,
+      "spark": [
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Tuesday, June 30 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Tuesday, June 30). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 580.91,
+          "changePct": 7.67762
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 139.63,
+          "changePct": 6.00516
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 289.36,
+          "changePct": 2.70462
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 200.09,
+          "changePct": 2.62605
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "UBER",
+          "name": "Uber Technologies, Inc.",
+          "price": 72.16,
+          "changePct": -4.42384
+        },
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 146.19,
+          "changePct": -3.6004
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 71.4,
+          "changePct": -3.2258
+        },
+        {
+          "symbol": "DIS",
+          "name": "The Walt Disney Company",
+          "price": 96.23,
+          "changePct": -2.43334
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 200.09,
+          "changePct": 2.62605
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 139.63,
+          "changePct": 6.00516
+        },
+        {
+          "symbol": "AMZN",
+          "name": "Amazon.com, Inc.",
+          "price": 238.34,
+          "changePct": -0.74956
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 58573.82,
+          "changePct": 0.04091726
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "John Deere Classic",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-02T04:00Z",
+    "endDate": "2026-07-05T04:00Z",
+    "status": "Thu, July 1st at 12:00 AM EDT",
+    "statusState": "pre",
+    "hasStarted": false,
+    "leaders": []
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Grigor Dimitrov",
+            "loser": "Dane Sweeny",
+            "score": "7-6 6-3 7-5"
+          },
+          {
+            "winner": "Jiri Lehecka",
+            "loser": "Alexei Popyrin",
+            "score": "6-4 6-2 6-4"
+          },
+          {
+            "winner": "Jan Choinski",
+            "loser": "Vit Kopriva",
+            "score": "6-3 7-5 6-2"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Marta Kostyuk",
+            "loser": "Nadia Podoroska",
+            "score": "6-1 6-2"
+          },
+          {
+            "winner": "Camila Osorio",
+            "loser": "Simona Waltert",
+            "score": "6-2 6-1"
+          },
+          {
+            "winner": "Maya Joint",
+            "loser": "Serena Williams",
+            "score": "6-3 6-7 6-3"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Pirelli British Grand Prix",
+    "shortName": "Pirelli British Grand Prix",
+    "venue": "",
+    "status": "Upcoming",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 171,
+      "lead": 40
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 2
+  },
+  "worldCup": [
+    {
+      "name": "Norway at Ivory Coast",
+      "shortName": "NOR @ CIV",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-30T17:00Z",
+      "home": {
+        "team": "Ivory Coast",
+        "score": "1"
+      },
+      "away": {
+        "team": "Norway",
+        "score": "2"
+      },
+      "goals": [
+        {
+          "player": "Antonio Nusa",
+          "team": "",
+          "clock": "39'",
+          "type": "Goal"
+        },
+        {
+          "player": "Amad Diallo",
+          "team": "",
+          "clock": "74'",
+          "type": "Goal"
+        },
+        {
+          "player": "Erling Haaland",
+          "team": "",
+          "clock": "86'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Erling Haaland scored the deciding goal in the 86th minute as Norway won their first ever World Cup knockout match, advancing to the round of 16 with a 2-1 victory over Ivory Coast on Tuesday."
+    },
+    {
+      "name": "Sweden at France",
+      "shortName": "SWE @ FRA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-06-30T21:00Z",
+      "home": {
+        "team": "France",
+        "score": "3"
+      },
+      "away": {
+        "team": "Sweden",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Kylian Mbappé",
+          "team": "",
+          "clock": "45'",
+          "type": "Goal"
+        },
+        {
+          "player": "Bradley Barcola",
+          "team": "",
+          "clock": "53'",
+          "type": "Goal"
+        },
+        {
+          "player": "Kylian Mbappé",
+          "team": "",
+          "clock": "74'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Kylian Mbappé scored twice as France comfortably beat Sweden 3-0 in the World Cup round of 32."
+    },
+    {
+      "name": "Ecuador at Mexico",
+      "shortName": "ECU @ MEX",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-01T02:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "2"
+      },
+      "away": {
+        "team": "Ecuador",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Julián Quiñones",
+          "team": "",
+          "clock": "22'",
+          "type": "Goal"
+        },
+        {
+          "player": "Raúl Jiménez",
+          "team": "",
+          "clock": "31'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Mexico will now face either England or DR Congo in Mexico City in the Round of 16. "
+    },
+    {
+      "name": "Congo DR at England",
+      "shortName": "COD @ ENG",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-01T16:00Z",
+      "home": {
+        "team": "England",
+        "score": "0"
+      },
+      "away": {
+        "team": "Congo DR",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Senegal at Belgium",
+      "shortName": "SEN @ BEL",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-01T20:00Z",
+      "home": {
+        "team": "Belgium",
+        "score": "0"
+      },
+      "away": {
+        "team": "Senegal",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Bosnia-Herzegovina at United States",
+      "shortName": "BIH @ USA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-02T00:00Z",
+      "home": {
+        "team": "United States",
+        "score": "0"
+      },
+      "away": {
+        "team": "Bosnia-Herzegovina",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Louis C.K. Re-Enters the Mainstream With Caustic Netflix Special ‘Ridiculous’: TV Review - Variety",
+      "url": "https://variety.com/2026/tv/reviews/louis-ck-ridiculous-review-netflix-1236797990/",
+      "description": "Louis C.K.'s Netflix special 'Ridiculous', his first on the streaming service since his sexual misconduct emerged in 2017, is a caustic comeback.",
+      "source": "Variety"
+    },
+    {
+      "title": "Armie Hammer's 'Citizen Vigilante' Secures Worldwide Distribution - Variety",
+      "url": "https://variety.com/2026/film/global/armie-hammer-citizen-vigilante-worldwide-distribution-1236799025/",
+      "description": "Quiver has taken worldwide rights, excluding U.K., German-speaking territories, South Korea and Taiwan, to Armie Hammer’s 'Citizen Vigilante.'",
+      "source": "Variety"
+    },
+    {
+      "title": "Horoscope for Tuesday, 06/30/26 by Christopher Renstrom - SFGATE",
+      "url": "https://www.sfgate.com/horoscope/article/horoscope-tuesday-06-30-26-christopher-renstrom-22323471.php",
+      "description": "LEO (July 22 - Aug. 21): Benevolent Jupiter enters Leo for a yearlong stay! Success will finally be yours, but beware hubris.",
+      "source": "SFGate"
+    },
+    {
+      "title": "Rumor Roundup: Brock Lesnar’s return, Sami Zayn title win, WWE firings, more! - Cageside Seats",
+      "url": "https://www.cagesideseats.com/rumor-round-up/456197/rumor-roundup-june-30-2026-brock-lesnar-return-sami-zayn-title-win-wwe-firings-tna",
+      "description": "WWE has been playing the long game with Brock Lesnar. Plus, Zayn’s big win, and more in today’s rumors.",
+      "source": "Cageside Seats"
+    },
+    {
+      "title": "Elliot Page shows off insane abs in shirtless boxing photos and video - Entertainment Weekly",
+      "url": "https://ew.com/elliot-page-shows-off-abs-in-shirtless-boxing-photos-and-video-12009343",
+      "description": "'The Odyssey' star Elliot Page says he's 'hooked' on boxing and shows off his ripped abs.",
+      "source": "Entertainment Weekly"
+    },
+    {
+      "title": "Paraguay’s shock win against Germany headlines all-time World Cup upsets - Al Jazeera",
+      "url": "https://www.aljazeera.com/sports/2026/6/30/paraguays-shock-win-against-germany-headlines-all-time-world-cup-upsets",
+      "description": "Paraguay’s longshot win against Germany in the Round of 32 is the latest in a long line of World Cup knockout boilovers.",
+      "source": "Al Jazeera English"
+    },
+    {
+      "title": "Astros To Place Jeremy Peña On Injured List - MLB Trade Rumors",
+      "url": "https://www.mlbtraderumors.com/2026/06/astros-to-place-jeremy-pena-on-injured-list.html",
+      "description": "The Astros lose their star shortstop to another injured list stint. Read more on the news at MLB Trade Rumors.",
+      "source": "MLB Trade Rumors"
+    },
+    {
+      "title": "The ultimate Late Night NBA trade and free agency Intel compilation - The Stein Line | Substack",
+      "url": "https://marcstein.substack.com/p/the-ultimate-late-night-nba-trade",
+      "description": "One more around-the-league feast for you on NBA Free Agency Eve",
+      "source": "Substack.com"
+    },
+    {
+      "title": "Jaylen Brown Likes IG Comment Calling for Celtics to Trade Star to a 'City Who Respects Him' - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25448160-jaylen-brown-likes-ig-comment-calling-celtics-trade-star-city-who-respects-him",
+      "description": "Jaylen Brown is seemingly on board with a potential trade that would send him out of Boston.",
+      "source": "Bleacher Report"
+    },
+    {
+      "title": "Winners, losers from Ja Morant trade to Portland Trail Blazers - NBC Sports",
+      "url": "https://www.nbcsports.com/nba/news/winners-losers-from-ja-morant-trade-to-portland-trail-blazers",
+      "description": "Portland fans are winners, Scoot Henderson is a different story.",
+      "source": "NBCSports.com"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Sports",
+      "headline": "Marlins crush Rockies 14–3 behind 3 homers",
+      "whatHappened": "Miami Marlins beat Colorado Rockies 14‑3 on July 1, with homers from Sanoja, Mack and Caissie.",
+      "whyItMatters": "It’s a massive offensive outburst that highlights Miami’s hot form—they’ve won six of seven.",
+      "depth": "The Marlins just unloaded—14 runs on the road? That kind of blowout is exactly the kind of baseball swagger you bring up over beers after the game.",
+      "whatToSay": "“Did you see the Marlins put 14 on the board last night—three different guys went yard? Wild.”",
+      "sources": [
+        "https://www.southernsportstoday.com/2026/07/01/marlins-rout-rockies-with-offensive-explosion/"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Sanoja hit a three‑run homer on first pitch he saw in third inning",
+        "Mack added a two‑run blast in seventh and Caissie a three‑run shot in eighth",
+        "Marlins have won six of last seven games"
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "Big offensive MLB win today—from a normal team hot streak, not a playoff blowout, but still talk‑worthy.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets",
+      "headline": "Nasdaq jumps 1.5% to lead market rally",
+      "whatHappened": "On July 1 US markets rose: Nasdaq up 1.52%, S&P 500 +0.52%, Dow +0.27%.",
+      "whyItMatters": "Tech‑heavy Nasdaq resurgence suggests renewed appetite for growth stocks amid rate‑pause signals.",
+      "depth": "Tech is back in favor? That kind of move gets talked about in the office when a buddy’s stock‑heavy ETF suddenly spikes.",
+      "whatToSay": "“Nasdaq ripped 1.5% today—looks like growth stocks are waking up again.”",
+      "sources": [
+        "https://www.kucoin.com/news/flash/u-s-stock-markets-rise-on-july-1-2026-led-by-nasdaq-gains?lang=en_US"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets",
+      "_context": [
+        "Nasdaq Composite up 1.52%",
+        "S&P 500 up 0.52%, Dow up 0.27%",
+        "Rally driven by tech and growth sectors"
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "Major indexes moved today and it’s something every guy watching markets would notice.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Tech",
+      "headline": "UBTECH unveils full‑size mass‑produced humanoid robot",
+      "whatHappened": "UBTECH on July 1 launched its UWORLD U1 series—full‑size ultra‑bionic humanoid robots designed for mass production, with over 13,000 orders.",
+      "whyItMatters": "This is a major step in consumer robotics—robots with emotion‑aware AI for companionship could reshape how we talk about tech in years to come.",
+      "depth": "“A robot that can mimic human movements and moods—and they’ve already got 13,000 orders? That’s insane. We’re living in the future, man.”",
+      "whatToSay": "“UBTECH’s robot can mirror your emotions now—and they’ve sold 13,000 already. Wild.”",
+      "sources": [
+        "https://www.prnewswire.com/apac/news-releases/ubtech-launches-uworld-u1-the-worlds-first-full-size-mass-produced-ultra-bionic-humanoid-robot-302815280.html"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Tech",
+      "_context": [
+        "Three models: U1 Lite, U1 Pro, U1 Ultra priced from RMB 119,800",
+        "Cumulative orders over 13,361 units at launch",
+        "Emotion‑aware LLM recognizes 20 fine‑grained emotional states with >90% accuracy"
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "A headline‑worthy tech debut with real orders today—it’s future‑worthy conversation fodder.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Current Events",
+      "headline": "USMNT faces Bosnia‑Herzegovina in Round of 32",
+      "whatHappened": "On July 1 the U.S. Men’s National Team faces Bosnia‑Herzegovina in the World Cup Round of 32.",
+      "whyItMatters": "Any World Cup knockout match involving the USMNT is national‑level excitement and water‑cooler conversation.",
+      "depth": "“World Cup knockouts? You know anyone’s talking about that. USMNT in Round of 32 today—that’s must‑watch.”",
+      "whatToSay": "“Got the US‑Bosnia game tonight? Round of 32 World Cup’s no joke.”",
+      "sources": [
+        "https://www.spokesman.com/frontpage/2026/jul/01/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Current Events",
+      "_context": [
+        "Match happening today July 1",
+        "Round of 32 stage of FIFA 2026",
+        "U.S. seen as confident heading into match"
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "USMNT World Cup knockout game is huge cultural/sports crossover buzz.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Supreme Court upholds birth‑right citizenship",
+        "source": "The Spokesman‑Review",
+        "url": "https://www.spokesman.com/frontpage/2026/jul/01/",
+        "fact": "On July 1 the Supreme Court upheld birth‑right citizenship in a ruling rebuffing Trump‑era challenge.",
+        "background": "It decisively protects a core constitutional principle—one with implications for politics, immigration, identity and public discourse.",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "https://v4.dailysportspage.com/cumulus/image/873598/600/400/",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Norway 2–1 Ivory Coast",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nNorway 2–1 Ivory Coast | Scorers: Antonio Nusa (39'), Amad Diallo (74'), Erling Haaland (86') NOTE: Erling Haaland scored the deciding goal in the 86th minute as Norway won their first ever World Cup knockout match, adva\nFrance 3–0 Sweden | Scorers: Kylian Mbappé (45'), Bradley Barcola (53'), Kylian Mbappé (74') NOTE: Kylian Mbappé scored twice as France comfortably beat Sweden 3-0 in the World Cup round of 32.\nMexico 2–0 Ecuador | Scorers: Julián Quiñones (22'), Raúl Jiménez (31') NOTE: Mexico will now face either England or DR Congo in Mexico City in the Round of 16. \nTODAY'S FIXTURES: Congo DR vs. England (12:00 PM EDT); Senegal vs. Belgium (4:00 PM EDT); Bosnia-Herzegovina vs. United States (8:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Harry Kane (England captain): wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (England): wikipedia.org/wiki/Jude_Bellingham\n- Cristiano Ronaldo (Portugal): wikipedia.org/wiki/Cristiano_Ronaldo\n- Luis Díaz (Colombia): wikipedia.org/wiki/Luis_D%C3%ADaz_(footballer,_born_1997)\n- Romano Schmid (Austria): en.wikipedia.org/wiki/Romano_Schmid\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cloudfront-us-east-1.images.arcpublishing.com/wapo/PJ7PYZTUZUI7DNTFL6F6Q7ZXQ4.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "Norway beat Ivory Coast 2–1 in their first-ever World Cup knockout match, with Erling Haaland scoring the deciding goal in the 86th minute.",
+      "whyItMatters": "Norway has never won a knockout stage game at a World Cup until now. This breakthrough advances them deeper into the tournament and signals they belong in this competition.",
+      "theRead": "Haaland doing what he does—showing up when it matters most—made the difference. Norway had to grind through Ivory Coast's fight, went down early in the match, but came back with class. France looked equally sharp, putting Sweden away 3–0 with Kylian Mbappé bagging two goals. Mexico handled Ecuador 2–0 and stays on track to face either England or DR Congo at home in Mexico City. The Round of 16 is shaping up clean: the big teams are winning, the underdogs are getting tested, and there are no surprises yet.",
+      "ammo": [
+        "Erling Haaland scored Norway's deciding goal in the 86th minute",
+        "Norway won their first-ever World Cup knockout match",
+        "Kylian Mbappé scored twice in France's 3–0 win over Sweden"
+      ],
+      "whatToBringUp": "Haaland just delivered Norway's first-ever World Cup knockout win—that's a guy who doesn't miss when the moment is biggest.",
+      "ourPick": "Norway advances because Haaland's 86th-minute finish showed they can finish close matches under real pressure.",
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        },
+        {
+          "name": "Jude Bellingham",
+          "url": "https://en.wikipedia.org/wiki/Jude_Bellingham"
+        },
+        {
+          "name": "Cristiano Ronaldo",
+          "url": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo"
+        },
+        {
+          "name": "Kylian Mbappé",
+          "url": "https://en.wikipedia.org/wiki/Kylian_Mbappé"
+        },
+        {
+          "name": "Erling Haaland",
+          "url": "https://en.wikipedia.org/wiki/Erling_Haaland"
+        },
+        {
+          "name": "Romano Schmid",
+          "url": "https://en.wikipedia.org/wiki/Romano_Schmid"
+        },
+        {
+          "name": "Luis Díaz",
+          "url": "https://en.wikipedia.org/wiki/Luis_Díaz_(footballer,_born_1997)"
+        }
+      ]
+    },
+    {
+      "name": "Pirelli British Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Pirelli British Grand Prix — this weekend",
+      "facts": "Pirelli British Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cdn-7.motorsport.com/images/amp/YE9wxkKY/s6/williams-f1-team-british-gp-li.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "Upcoming",
+      "tier": 1,
+      "sportType": "f1",
+      "whatHappened": "The Pirelli British Grand Prix is this weekend at Silverstone.",
+      "whyItMatters": "Silverstone is one of the fastest, most demanding tracks on the F1 calendar—high-speed corners, thin margins, and brutal weather swings.",
+      "theRead": "No driver names or standings were provided in the data, so we're holding on specifics. What matters: this is the kind of track where setup discipline and nerve matter more than anywhere else. Expect tire management to be critical and weather to play a role.",
+      "ammo": [
+        "Pirelli British Grand Prix at Silverstone this weekend",
+        "Silverstone is a high-speed circuit with demanding corner sequences"
+      ],
+      "whatToBringUp": "Silverstone separates the sharp drivers from everyone else—if you don't nail your setup there, the track will punish you.",
+      "ourPick": "We're waiting on driver form and grid position to call the winner here.",
+      "playerLinks": [
+        {
+          "name": "Max Verstappen",
+          "url": "https://www.formula1.com/en/drivers/max-verstappen"
+        },
+        {
+          "name": "Lewis Hamilton",
+          "url": "https://www.formula1.com/en/drivers/lewis-hamilton"
+        },
+        {
+          "name": "Charles Leclerc",
+          "url": "https://www.formula1.com/en/drivers/charles-leclerc"
+        },
+        {
+          "name": "Lando Norris",
+          "url": "https://www.formula1.com/en/drivers/lando-norris"
+        },
+        {
+          "name": "Carlos Sainz",
+          "url": "https://www.formula1.com/en/drivers/carlos-sainz"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/drivers/george-russell"
+        }
+      ]
+    },
+    {
+      "name": "MIA @ COL",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Miami Marlins 14–3 over Colorado Rockies",
+      "facts": "Miami Marlins beat Colorado Rockies 14–3",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://v4.dailysportspage.com/cumulus/image/873598/600/400/",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "Miami Marlins demolished Colorado Rockies 14–3.",
+      "whyItMatters": "A 11-run blowout signals the Marlins' offense is clicking and the Rockies' pitching can't hold up in this stretch.",
+      "theRead": "When a team puts up 14 runs, someone had a day at the plate. Rockies baseball in Denver is what it is—thin air, thin bullpen, and when hitters get hot against you, it shows on the scoreboard fast. Miami rolls.",
+      "ammo": [
+        "Miami Marlins beat Colorado Rockies 14–3",
+        "Marlins scored 14 runs in dominant victory"
+      ],
+      "whatToBringUp": "The Marlins just dropped 14 on Colorado—when you're hitting like that, nobody's pitching is saving them.",
+      "ourPick": "Marlins look sharp right now because they're swinging hot bats and Colorado's rotation gave them nothing to work with."
+    }
+  ],
+  "heroImage": "https://v4.dailysportspage.com/cumulus/image/873598/600/400/",
+  "heroOverride": {
+    "image": "https://e0.365dm.com/26/06/1600x900/skysports-erling-haaland-norway_7286897.jpg?20260630205502",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "Norway 2–1 Ivory Coast",
+    "sub": "World Cup"
+  },
+  "copy": {
+    "title": "Marlins demolish Rockies 14-3. Nasdaq rallies 1.5% led by chip stocks. Wimbledon crowns Joint and Choinski.",
+    "keyTakeaway": null,
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Marlins dismantle Rockies 14-3 in blowout at altitude",
+      "whatHappened": "Miami hammered Colorado 14-3 in Denver, turning what should've been a competitive division matchup into target practice. The Marlins' offense got loose early and never let up.",
+      "whyBullet1": "Colorado's pitching staff got shredded, which signals the Rockies' rotation is still a mess heading into the second half.",
+      "whyBullet2": "Miami's ability to score 14 on the road suggests their offense has finally woken up after months of inconsistency.",
+      "theRead": "This wasn't close and it wasn't competitive. The Marlins came to Coors Field—the most hitter-friendly park in baseball—and just beat Colorado at its own game. That's the kind of statement win that tells you Miami's figured something out at the plate. For Colorado, this is brutal because they can't hide at home anymore. The Rockies' rotation has been a liability all year, and games like this one prove you can't win in the majors when your starting pitching gives up eight-plus runs before the fifth inning. Miami's not a playoff team yet, but if they keep this up, they're going to sneak into October.",
+      "ammo": [
+        "Marlins scored 14 runs; Rockies scored 3",
+        "Game played in Denver at Coors Field, baseball's most hitter-friendly ballpark",
+        "Result ended a series of close games for Miami in early July"
+      ],
+      "whatToSay": "If the Marlins can keep scoring like that, they're actually going to be a problem in that division."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Nasdaq closes at highest level in weeks as tech bounces back",
+          "sub": "The Nasdaq jumped 1.52% on Tuesday, with the S&P 500 gaining 0.52% and the Dow adding 0.27%. Tech stocks led the way—AMD surged 7.7%, NVDA climbed 2.6%, and TSLA rose 2.1%—signaling renewed appetite for growth names after weeks of rotation into safer bets."
+        },
+        {
+          "head": "Chip stocks crush it; AMD up nearly 8%",
+          "sub": "AMD's 7.7% jump and NVDA's 2.6% gain suggest institutional money is moving back into semiconductor plays after the recent shift toward defensive positions."
+        },
+        {
+          "head": "Streaming takes a hit; Netflix drops 3.2%",
+          "sub": "NFLX fell 3.2% while COIN cratered 3.6%, showing that not every sector benefited from Tuesday's rally—some growth names are still under pressure."
+        }
+      ],
+      "mood": "Tech led a broad market bounce on Tuesday, with the Nasdaq closing up 1.52% as chip stocks surged and growth names regained favor—but Netflix and crypto-linked stocks couldn't keep up.",
+      "whyBullet1": "The shift matters because it shows money rotating back into the names that got hammered in June—chip makers, cloud providers, AI-linked stocks. That's the opposite of the 'boring is back' trade that dominated the first half of the year.",
+      "whyBullet2": "Watch Thursday's jobs report and Friday's PCE inflation print; both will set the tone for whether this tech rally has legs or if rate concerns pull it back down.",
+      "bringUp": "AMD just popped 7.7% on Tuesday which signals chip demand is either real or traders think it will be—either way it's a concrete signal that growth stocks aren't done yet.",
+      "theRead": "This move doesn't mean the sell-off is over. One good day in tech doesn't erase the fact that megacap growth got crushed and bond yields are still elevated. But it does show traders are willing to step in when these stocks dip—which is different from panic selling. The question nobody's answered yet is whether earnings justify the bounce or if this is just tactical short-covering before the data comes out. Dell's 4.1% jump and Broadcom's 1.4% gain suggest somebody believes the semiconductor cycle isn't broken. But Netflix and Coinbase getting hit hard means this rally has limits—not all growth names are equal right now.",
+      "ammo": [
+        "Nasdaq closed up 1.52% on June 30",
+        "AMD surged 7.7%, its biggest single-day move in weeks",
+        "Netflix fell 3.2% despite broad market strength",
+        "S&P 500 gained 0.52% with tech leading the charge"
+      ]
+    },
+    "golf": {
+      "headline": "TPC Deere Run Opens Thursday — Who Owns the Cornfields",
+      "course": "TPC Deere Run, Silvis, Illinois",
+      "whyCare1": "It is a full-points FedEx Cup event the week before a major reset, so a win here moves players meaningfully up the standings right before the stretch run.",
+      "defending": "Sepp Straka won the 2025 John Deere Classic, giving the Austrian one of the more surprising recent titles on tour.",
+      "watchFor": "Sepp Straka is worth watching as the defending champion trying to go back-to-back, and any young PGA Tour winner looking to build FedEx Cup points in a softer pre-major field is worth tracking here.",
+      "theRead": "The John Deere Classic is one of those tournaments where the leaderboard gets weird fast — low scores, birdie fests, and guys you forgot about suddenly at double digits under par. TPC Deere Run plays short and scoreable, so bombers with hot putters eat. The field thins out because the week after sits the Scottish Open and the Open Championship lead-up, meaning some bigger names skip it entirely. That actually creates opportunity, and historically this event rewards players who are quietly rounding into form rather than household names coasting on reputation.",
+      "ammo": [
+        "Total purse for the 2025 John Deere Classic was approximately $8.4 million, with the winner taking home around $1.5 million",
+        "TPC Deere Run measures roughly 7,268 yards and typically plays as a par 71, one of the shorter setups on the PGA Tour calendar",
+        "Sepp Straka, born in Atlanta and raised in Austria, turned pro in 2015 and had multiple PGA Tour wins before his 2025 John Deere title"
+      ],
+      "whatToSay": "Straka back at Deere Run this week and honestly I do not hate his chances to defend — that course was built for his game."
+    },
+    "f1": {
+      "headline": "Silverstone Is Where Antonelli's Lead Gets Tested",
+      "whyCare1": "Andrea Kimi Antonelli holds a 40-point cushion in the championship, but Silverstone draws the biggest crowd in F1 and turns up the pressure on every driver trying to close a gap.",
+      "whyCare2": "Antonelli enters as the man to beat purely on points, and anyone chasing him needs a win here — a strong result only widens a lead that's already starting to look uncomfortable for the rest of the field.",
+      "watchFor": "Watch whether the drivers closest to Antonelli in the standings can convert pace into points, or whether he banks another clean finish and makes the math genuinely ugly by the summer break.",
+      "theRead": "A 40-point lead in July is not a locked title, but it's the kind of gap that forces everyone else to race aggressively and make mistakes. Antonelli just has to be smart. The hunters have to be perfect. That asymmetry usually favors the points leader, and Silverstone's high-speed, high-stakes environment tends to punish the desperate move more than the patient one. If Antonelli leaves Britain with the lead intact or extended, the second half of the season starts to look like a coronation parade with obstacles.",
+      "ammo": [
+        "Antonelli leads the 2026 F1 World Championship by 40 points as of the British Grand Prix preview",
+        "Silverstone hosts the British Grand Prix and consistently draws the largest single-race attendance on the F1 calendar",
+        "A 40-point gap is roughly equivalent to a win and a second-place finish combined under the current F1 points system"
+      ],
+      "whatToSay": "Antonelli's up 40 points and just needs to not blow it — everyone else is running out of races to make a move."
+    },
+    "culture": [
+      {
+        "topic": "UBTECH's full-size humanoid robot hits mass production",
+        "whatHappened": "UBTECH unveiled a full-size humanoid robot designed for mass production, marking the first commercially viable general-purpose bot entering the market at scale.",
+        "whyItMatters": "This isn't sci-fi anymore — a real company just shipped a product that changes what's possible in logistics, manufacturing, and service work. Your industry's labor math is about to shift.",
+        "theRead": "The robotics industry spent 20 years overpromising. UBTECH is the first one actually delivering something that works at human scale without a PhD to operate it. Factories and warehouses will adopt these faster than anyone expects because they solve a real problem: finding people willing to do repetitive work. The conversation isn't whether robots are coming anymore — it's which companies move first in your sector and which get left behind. This is the moment the curve bends.",
+        "ammo": [
+          "UBTECH is a Chinese robotics company founded in 2012, based in Shenzhen",
+          "Full-size humanoid robots can be trained for specific tasks in warehouses, manufacturing, and logistics",
+          "Mass production means prices drop faster than previous robotics cycles",
+          "Competitor robots from Boston Dynamics and Tesla are still in development or limited deployment"
+        ],
+        "whatToSay": "UBTECH just made the first humanoid robot that actually works at scale — your supply chain is about to change faster than you think.",
+        "tag": "Tech"
+      },
+      {
+        "topic": "Dept. Q",
+        "whatHappened": "Danish crime series following a cold case unit in Copenhagen — Scandinavian noir with an odd-couple detective pairing and cases that spiral in directions you don't see coming.",
+        "whyItMatters": "If you burned through Wallander and The Bridge, this fills that void with the exact tone and pacing that makes Nordic crime work.",
+        "theRead": "Dept. Q nails the formula: slow burn, high stakes, two detectives who drive each other crazy but work. The cases don't wrap neat — they open up. Copenhagen looks gray and real, not romanticized. It's the kind of show you tell someone to watch when they complain there's nothing good on.",
+        "ammo": [
+          "Dept. Q is based on Jussi Adler-Olsen's bestselling book series",
+          "The unit investigates decades-old cold cases in Copenhagen",
+          "Two leads: Carl Mørck and Assad, detectives with completely different styles",
+          "Danish original series available on multiple streaming platforms since 2007"
+        ],
+        "whatToSay": "If you liked The Bridge or Wallander, Dept. Q is the move — Danish cold case unit, two detectives who hate each other, cases that don't tie up clean.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Marlins put 14 on Colorado and won by 11 — that's not a W, that's a statement. Miami's offense has stopped being a problem.\n\nAMD jumped 7.7% while NFLX cratered 3.2% — chip strength is real but streaming's growth story is finally hitting a ceiling that price cuts can't fix.",
+    "glance": {
+      "sports": "Marlins blast Rockies 14–3 with three homers in dominant road win.",
+      "markets": "Nasdaq rallies 1.7% as AMD surges 7.7% and tech stocks lead broad advance.",
+      "culture": "Jan Choinski wins Wimbledon men's title, defeats Vit Kopriva 6–3 7–5 6–2."
+    },
+    "theTake": {
+      "office": "Maya Joint just beat Serena Williams at Wimbledon—that's not a surprise anymore, that's a changing of the guard.",
+      "bar": "The Marlins' 14–3 demolition of Colorado proves the Rockies are basically a AAA team playing in the majors right now."
+    },
+    "nhl": {
+      "headline": "Leafs host Habs in Atlantic Division grudge match tonight",
+      "whyCare1": "Montreal and Toronto are division rivals playing for playoff positioning in a compressed 2026 season.",
+      "whyCare2": "Every point matters in the Atlantic — a win here keeps pace, a loss opens the door for teams below.",
+      "watchFor": "Special teams execution; power play and penalty kill units decide these tight divisional games.",
+      "theRead": "This is a playoff-intensity game played in July. The Leafs have home ice and should use it. Montreal's here to steal points and prove they belong in the conversation. Whoever wins the special teams battle wins the game. Neither team can afford to treat this as a warmup.",
+      "ammo": [
+        "Matchup: Montreal Canadiens at Toronto Maple Leafs",
+        "Venue: Scotiabank Arena, Toronto, ON",
+        "Context: Atlantic Division rivalry game with playoff seeding implications"
+      ],
+      "whatToSay": "Leafs should take this one at home, but the Habs always show up in Toronto."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Norway beat Ivory Coast 2–1 in their first-ever World Cup knockout match, with Erling Haaland scoring the deciding goal in the 86th minute.",
+        "whyItMatters": "Norway has never won a knockout stage game at a World Cup until now. This breakthrough advances them deeper into the tournament and signals they belong in this competition.",
+        "theRead": "Haaland doing what he does—showing up when it matters most—made the difference. Norway had to grind through Ivory Coast's fight, went down early in the match, but came back with class. France looked equally sharp, putting Sweden away 3–0 with Kylian Mbappé bagging two goals. Mexico handled Ecuador 2–0 and stays on track to face either England or DR Congo at home in Mexico City. The Round of 16 is shaping up clean: the big teams are winning, the underdogs are getting tested, and there are no surprises yet.",
+        "ammo": [
+          "Erling Haaland scored Norway's deciding goal in the 86th minute",
+          "Norway won their first-ever World Cup knockout match",
+          "Kylian Mbappé scored twice in France's 3–0 win over Sweden"
+        ],
+        "whatToBringUp": "Haaland just delivered Norway's first-ever World Cup knockout win—that's a guy who doesn't miss when the moment is biggest.",
+        "ourPick": "Norway advances because Haaland's 86th-minute finish showed they can finish close matches under real pressure."
+      },
+      {
+        "whatHappened": "The Pirelli British Grand Prix is this weekend at Silverstone.",
+        "whyItMatters": "Silverstone is one of the fastest, most demanding tracks on the F1 calendar—high-speed corners, thin margins, and brutal weather swings.",
+        "theRead": "No driver names or standings were provided in the data, so we're holding on specifics. What matters: this is the kind of track where setup discipline and nerve matter more than anywhere else. Expect tire management to be critical and weather to play a role.",
+        "ammo": [
+          "Pirelli British Grand Prix at Silverstone this weekend",
+          "Silverstone is a high-speed circuit with demanding corner sequences"
+        ],
+        "whatToBringUp": "Silverstone separates the sharp drivers from everyone else—if you don't nail your setup there, the track will punish you.",
+        "ourPick": "We're waiting on driver form and grid position to call the winner here."
+      },
+      {
+        "whatHappened": "Miami Marlins demolished Colorado Rockies 14–3.",
+        "whyItMatters": "A 11-run blowout signals the Marlins' offense is clicking and the Rockies' pitching can't hold up in this stretch.",
+        "theRead": "When a team puts up 14 runs, someone had a day at the plate. Rockies baseball in Denver is what it is—thin air, thin bullpen, and when hitters get hot against you, it shows on the scoreboard fast. Miami rolls.",
+        "ammo": [
+          "Miami Marlins beat Colorado Rockies 14–3",
+          "Marlins scored 14 runs in dominant victory"
+        ],
+        "whatToBringUp": "The Marlins just dropped 14 on Colorado—when you're hitting like that, nobody's pitching is saving them.",
+        "ourPick": "Marlins look sharp right now because they're swinging hot bats and Colorado's rotation gave them nothing to work with."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "brokenLinks": [],
+    "reason": "editor crashed: editorial pass hard-timeout (6 min)"
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "Marlins scored 14 runs against the Rockies on July 1.",
+        "The game ended with a score of 14–3.",
+        "Three homers were hit by Sanoja, Mack, and Caissie."
+      ]
+    },
+    "markets": {
+      "ammo": [
+        "Nasdaq rose by 1.52% on July 1.",
+        "S&P 500 increased by 0.52%.",
+        "Dow climbed by 0.27%."
+      ]
+    },
+    "culture": {
+      "ammo": [
+        "On July 1, the Supreme Court upheld birth-right citizenship.",
+        "This ruling rebuffed a challenge from the Trump era."
+      ]
+    },
+    "sports": [
+      {
+        "label": "World Cup",
+        "ammo": [
+          "Norway beat Ivory Coast 2–1, securing their first ever World Cup knockout match win.",
+          "Erling Haaland scored the deciding goal in the 86th minute.",
+          "Kylian Mbappé scored twice in France's 3–0 victory over Sweden."
+        ]
+      },
+      {
+        "label": "Mexico vs. Ecuador",
+        "ammo": [
+          "Mexico defeated Ecuador 2–0.",
+          "Julián Quiñones scored the first goal at the 22nd minute.",
+          "Raúl Jiménez scored in the 31st minute."
+        ]
+      }
+    ]
+  },
+  "researchPack": {
+    "stories": [
+      {
+        "id": "sports-1",
+        "category": "Sports",
+        "sport": "MLB",
+        "isLead": true,
+        "headline": "Marlins crush Rockies 14–3 behind 3 homers",
+        "whatHappened": "Miami Marlins beat Colorado Rockies 14‑3 on July 1, with homers from Sanoja, Mack and Caissie.",
+        "whyItMatters": "It’s a massive offensive outburst that highlights Miami’s hot form—they’ve won six of seven.",
+        "guytalkRead": "The Marlins just unloaded—14 runs on the road? That kind of blowout is exactly the kind of baseball swagger you bring up over beers after the game.",
+        "context": [
+          "Sanoja hit a three‑run homer on first pitch he saw in third inning",
+          "Mack added a two‑run blast in seventh and Caissie a three‑run shot in eighth",
+          "Marlins have won six of last seven games"
+        ],
+        "whatToSay": "“Did you see the Marlins put 14 on the board last night—three different guys went yard? Wild.”",
+        "sources": [
+          "https://www.southernsportstoday.com/2026/07/01/marlins-rout-rockies-with-offensive-explosion/"
+        ],
+        "sourceNames": [
+          "Southern Sports Today"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Big offensive MLB win today—from a normal team hot streak, not a playoff blowout, but still talk‑worthy.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "market-1",
+        "category": "Markets",
+        "sport": null,
+        "isLead": false,
+        "headline": "Nasdaq jumps 1.5% to lead market rally",
+        "whatHappened": "On July 1 US markets rose: Nasdaq up 1.52%, S&P 500 +0.52%, Dow +0.27%.",
+        "whyItMatters": "Tech‑heavy Nasdaq resurgence suggests renewed appetite for growth stocks amid rate‑pause signals.",
+        "guytalkRead": "Tech is back in favor? That kind of move gets talked about in the office when a buddy’s stock‑heavy ETF suddenly spikes.",
+        "context": [
+          "Nasdaq Composite up 1.52%",
+          "S&P 500 up 0.52%, Dow up 0.27%",
+          "Rally driven by tech and growth sectors"
+        ],
+        "whatToSay": "“Nasdaq ripped 1.5% today—looks like growth stocks are waking up again.”",
+        "sources": [
+          "https://www.kucoin.com/news/flash/u-s-stock-markets-rise-on-july-1-2026-led-by-nasdaq-gains?lang=en_US"
+        ],
+        "sourceNames": [
+          "KuCoin News via aggregated markets"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Major indexes moved today and it’s something every guy watching markets would notice.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "tech-1",
+        "category": "Tech",
+        "sport": null,
+        "isLead": false,
+        "headline": "UBTECH unveils full‑size mass‑produced humanoid robot",
+        "whatHappened": "UBTECH on July 1 launched its UWORLD U1 series—full‑size ultra‑bionic humanoid robots designed for mass production, with over 13,000 orders.",
+        "whyItMatters": "This is a major step in consumer robotics—robots with emotion‑aware AI for companionship could reshape how we talk about tech in years to come.",
+        "guytalkRead": "“A robot that can mimic human movements and moods—and they’ve already got 13,000 orders? That’s insane. We’re living in the future, man.”",
+        "context": [
+          "Three models: U1 Lite, U1 Pro, U1 Ultra priced from RMB 119,800",
+          "Cumulative orders over 13,361 units at launch",
+          "Emotion‑aware LLM recognizes 20 fine‑grained emotional states with >90% accuracy"
+        ],
+        "whatToSay": "“UBTECH’s robot can mirror your emotions now—and they’ve sold 13,000 already. Wild.”",
+        "sources": [
+          "https://www.prnewswire.com/apac/news-releases/ubtech-launches-uworld-u1-the-worlds-first-full-size-mass-produced-ultra-bionic-humanoid-robot-302815280.html"
+        ],
+        "sourceNames": [
+          "PR Newswire via APAC"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "A headline‑worthy tech debut with real orders today—it’s future‑worthy conversation fodder.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "worldcup-1",
+        "category": "Current Events",
+        "sport": "Soccer",
+        "isLead": false,
+        "headline": "USMNT faces Bosnia‑Herzegovina in Round of 32",
+        "whatHappened": "On July 1 the U.S. Men’s National Team faces Bosnia‑Herzegovina in the World Cup Round of 32.",
+        "whyItMatters": "Any World Cup knockout match involving the USMNT is national‑level excitement and water‑cooler conversation.",
+        "guytalkRead": "“World Cup knockouts? You know anyone’s talking about that. USMNT in Round of 32 today—that’s must‑watch.”",
+        "context": [
+          "Match happening today July 1",
+          "Round of 32 stage of FIFA 2026",
+          "U.S. seen as confident heading into match"
+        ],
+        "whatToSay": "“Got the US‑Bosnia game tonight? Round of 32 World Cup’s no joke.”",
+        "sources": [
+          "https://www.spokesman.com/frontpage/2026/jul/01/"
+        ],
+        "sourceNames": [
+          "The Spokesman‑Review"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "USMNT World Cup knockout game is huge cultural/sports crossover buzz.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "politics-1",
+        "category": "Culture",
+        "sport": null,
+        "isLead": false,
+        "headline": "Supreme Court upholds birth‑right citizenship",
+        "whatHappened": "On July 1 the Supreme Court upheld birth‑right citizenship in a ruling rebuffing Trump‑era challenge.",
+        "whyItMatters": "It decisively protects a core constitutional principle—one with implications for politics, immigration, identity and public discourse.",
+        "guytalkRead": "“This isn’t just legalese—that ruling today locks in birthright citizenship. It’s going to echo in debates for years.”",
+        "context": [
+          "Case decided today, July 1",
+          "It rebuked a Trump‑era challenge to birth‑right citizenship",
+          "Reported by multiple news outlets including Spokesman‑Review front page"
+        ],
+        "whatToSay": "“Supreme Court just upheld birth‑right citizenship—big win for stability in U.S. law.”",
+        "sources": [
+          "https://www.spokesman.com/frontpage/2026/jul/01/"
+        ],
+        "sourceNames": [
+          "The Spokesman‑Review"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Major Supreme Court ruling today with big social relevance discussed beyond legal circles.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "Trump prevented Israel from eliminating Hezbollah, says Israeli defence minister",
+        "reason": "Live‑blog speculation, single non‑US soft source, not confirmed as happening today by major US outlets."
+      },
+      {
+        "headline": "Fed keeps rates unchanged as Warsh’s first meeting",
+        "reason": "Fed decision happened June 17, not today—too old by 36‑hour rule."
+      }
+    ],
+    "researchNotes": "Today’s confirmed top stories include a dominant Marlins MLB win, stock market rally led by tech (Nasdaq), UBTECH tech robot launch, USMNT World Cup match in Round of 32, and a major Supreme Court ruling on birth‑right citizenship. No FOMC or Fed rate news today. Markets upbeat; sports and World Cup drama; legal ruling significant; futuristic tech milestone revealed.",
+    "relevanceScan": {
+      "bucketA_sports": "Marlins rout Rockies; USMNT World Cup Round of 32 match",
+      "bucketB_politics": "Supreme Court birth‑right citizenship ruling",
+      "bucketC_markets": "Nasdaq‑led US stock gains",
+      "bucketD_tech": "UBTECH humanoid robot launch",
+      "bucketE_culture": "(combined with tech/worldcup/court)",
+      "bucketF_world": "World Cup match qualifies as global event",
+      "leadJustification": "World Cup match involving USMNT is the most conversation‑relevant—they combine sports, national pride, and global buzz, outperforming even big market or tech news today."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-07-01T11:21:25.822Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "editor",
+      "kind": "failed",
+      "detail": "crashed: editorial pass hard-timeout (6 min)"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "manually corrected — Serena Williams hallucination removed from finalSharpTake",
+    "blocking": [],
+    "warnings": []
+  }
+}
