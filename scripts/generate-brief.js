@@ -889,9 +889,10 @@ async function main() {
     }
 
     // Validate culture — QA requires minimum 2 items.
-    if (copy && Array.isArray(copy.culture) && copy.culture.length < 2) {
-      console.log(`   ⚠  culture has ${copy.culture.length} item(s), need 2 — retrying culture section...`);
-      addWarning('culture', 'retry', `only ${copy.culture.length} item(s)`);
+    if (copy && (!Array.isArray(copy.culture) || copy.culture.length < 2)) {
+      const cultureCount = Array.isArray(copy.culture) ? copy.culture.length : 0;
+      console.log(`   ⚠  culture has ${cultureCount} item(s), need 2 — retrying culture section...`);
+      addWarning('culture', 'retry', `only ${cultureCount} item(s)`);
       const { generateCultureOnly } = require('./lib/copy');
       const retriedCulture = await generateCultureOnly({ topStories, sectionStories, streamingPick, factPack });
       if (Array.isArray(retriedCulture) && retriedCulture.length >= 2) {
@@ -999,15 +1000,14 @@ async function main() {
             .join('\n')
         : facts;
       const links = (trending || []).map(t => t.url).filter(Boolean);
-      // Hard 10-minute wall clock: with streaming the SDK timeout only guards
-      // the initial connection — token generation can legitimately take several
-      // minutes for an 8192-token output. This ceiling prevents infinite hangs
-      // if the stream itself stalls mid-response.
-      const EDITOR_HARD_LIMIT_MS = 10 * 60 * 1000;
+      // Hard 15-minute wall clock: Sonnet 4.6 at 8192 max_tokens can take
+      // 10-13 minutes to stream. This ceiling prevents infinite hangs if the
+      // stream stalls mid-response while still giving the editor enough room.
+      const EDITOR_HARD_LIMIT_MS = 15 * 60 * 1000;
       const result = await Promise.race([
         editBrief({ copy, context: factsWithPack, links }),
         new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('editorial pass hard-timeout (6 min)')), EDITOR_HARD_LIMIT_MS)
+          setTimeout(() => reject(new Error('editorial pass hard-timeout (10 min)')), EDITOR_HARD_LIMIT_MS)
         ),
       ]);
       copy = result.copy;

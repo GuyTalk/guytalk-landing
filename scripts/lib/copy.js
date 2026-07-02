@@ -508,7 +508,7 @@ HARD EXCLUDES — these do NOT belong in culture, ever:
 
 RELEVANCE GATE — every item must pass: "Would a normal 30-year-old man actually bring this up at work or a bar today?" If the answer is probably not, skip it.
 
-SELECTION: pick 2-3 items by genuine relevance. If only 2 are strong today, return 2 — never pad with filler to hit 3.
+SELECTION: Return EXACTLY 2-3 items. You MUST return at least 2. If the web-researched stories below are sparse, supplement with verified cultural events you know happened recently (a major streaming release, gaming launch, tech announcement, music news, sports business story). Never pad with celebrity gossip — but always hit at least 2 items. Never return null or an empty array.
 
 THE LEAD ITEM (first object) gets full depth:
 - whatHappened: 1-2 sentences with specific names and details
@@ -570,6 +570,9 @@ Context: ${ctx}${repGuard}`,
 ${topStoriesText ? `${topStoriesText}\nThe "sports" line should reflect the top sports story; "markets" the biggest market/business story; "culture" the biggest culture story.` : ''}
 
 Each value is ONE sentence, max 20 words, specific and NAMED (a team/player/number for sports, a real number for markets, a named thing for culture). No labels inside the value, no markdown.
+
+CRITICAL — sports hallucination rule: For multi-round tournaments (Wimbledon, US Open, Roland Garros, Australian Open, golf majors), NEVER say a player "wins" the tournament unless the data explicitly shows this is the championship final and they won it today. If the match shown is an early round, say "[Player] advances at [Tournament]" — never claim a tournament title from a round result.
+
 Return compact JSON on one line:
 {"sports":"[top sports story — named, with a score or key fact]","markets":"[top market story — include one real number; observe, never advise]","culture":"[top culture story — a named movie/show/album/game/etc.]"}`,
       400, { minFields: 2 }
@@ -765,12 +768,13 @@ async function generateCultureOnly({ topStories, sectionStories, streamingPick, 
 
   const prompt = `${BRAND_VOICE}
 
-Write the Culture section for today's GuyTalk. Return a JSON ARRAY of exactly 2-3 objects.
+Write the Culture section for today's GuyTalk. Return a JSON ARRAY of EXACTLY 2-3 objects. You MUST return at least 2 — never null, never empty.
 Each object covers one story men 25-45 are actually talking about — entertainment, streaming, tech, gaming, sports business. NOT politics. NOT sports scores.
 
 TODAY'S STORIES:
-${storyLines || '(use your knowledge of current June 2026 culture — only confirmed real events)'}
+${storyLines || '(no feed stories today — see instruction below)'}
 ${webFacts ? `WEB-VERIFIED FACTS: ${webFacts}` : ''}
+${!storyLines ? `FALLBACK: Since feed data is unavailable, use your knowledge of recent real events (past 2 weeks) — a major streaming show premiere, gaming news, tech launch, music release, sports business story, viral moment men 25-45 would discuss. Use only events you are confident actually happened; be specific (name the show/game/artist/company). You must produce 2 items.` : ''}
 ${streamingPick ? `INCLUDE a streaming rec for "${streamingPick.head.replace('Watch this: ', '')}": tag="Streaming"` : ''}
 
 CRITICAL: Return ONLY a JSON array — no markdown, no extra text:
