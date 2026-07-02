@@ -226,6 +226,20 @@ function buildTalkingDerived(trending) {
 
 /* ------------------------------------------------------------------- handler */
 
+// Load pre-fetched social moments from brief/data/live-social.json.
+// Committed by api/refresh-social.js (GitHub Actions, every 2h).
+function loadLiveSocial() {
+  try {
+    const fs   = require('fs');
+    const path = require('path');
+    const p = path.join(process.cwd(), 'brief', 'data', 'live-social.json');
+    if (!fs.existsSync(p)) return null;
+    const d = JSON.parse(fs.readFileSync(p, 'utf8'));
+    const moments = Array.isArray(d) ? d : (Array.isArray(d.moments) ? d.moments : null);
+    return moments && moments.length ? { moments, fetchedAt: d.fetchedAt || null } : null;
+  } catch (_) { return null; }
+}
+
 module.exports = async function handler(req, res) {
   try {
     const [espn, newsapi, marketLine] = await Promise.all([
@@ -253,6 +267,8 @@ module.exports = async function handler(req, res) {
       talkSource = 'derived';
     }
 
+    const social = loadLiveSocial();
+
     res.setHeader('Cache-Control', 's-maxage=900, stale-while-revalidate=1800');
     return res.json({
       updatedAt: new Date().toISOString(),
@@ -260,10 +276,12 @@ module.exports = async function handler(req, res) {
         rundown: rundown ? 'ai' : null,
         trending: newsapi.length ? 'ESPN · NewsAPI' : 'ESPN',
         talkingAbout: talkSource, // 'ai' | 'derived'
+        social: social ? 'OpenAI Search' : null,
       },
       rundown: rundown || null,
       trending: trending.length ? trending : null,
       talkingAbout: talkingAbout.length ? talkingAbout : null,
+      social: social || null,
     });
   } catch (err) {
     return res.status(500).json({ error: 'Failed to build talk feed' });

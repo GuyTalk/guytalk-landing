@@ -1,0 +1,20 @@
+# Refreshes the Live page's Social Pulse section every 2 hours.
+# Uses OpenAI web search to find notable social media moments (CEO tweets,
+# athlete posts, viral moments men 25-45 are talking about).
+name: Refresh Social Pulse
+
+on:
+  schedule:
+    - cron: '30 */2 * * *'   # every 2 hours at :30, UTC
+  workflow_dispatch: {}        # allow manual runs from the Actions tab
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call /api/refresh-social
+        run: |
+          curl -fsS --max-time 90 \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "https://www.guytalkmedia.com/api/refresh-social" \
+            && echo "refresh-social triggered OK"

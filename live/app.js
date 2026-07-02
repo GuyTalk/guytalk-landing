@@ -1927,6 +1927,39 @@ function FeaturedGolfCard(g) {
   // COMPLIANCE: live data is rendered as-is. When it's missing we show an honest
   // empty state in PRODUCTION (never fabricated content); MOCK is dev-only and
   // always carries a visible badge.
+  function renderSocial(data) {
+    const el = $('socialWrap');
+    if (!el) return;
+    const moments = data && Array.isArray(data.moments) ? data.moments : null;
+    if (!moments || !moments.length) {
+      el.innerHTML = '<p class="social-empty">Social Pulse refreshes every 2 hours — check back shortly.</p>';
+      const sec = el.closest('section');
+      if (sec) sec.hidden = false;
+      setBadge('badge-social', null);
+      setMeta('meta-social', '', '');
+      return;
+    }
+    el.innerHTML = moments.map((m) => {
+      const platClass = m.platform === 'X' ? 'sp-x'
+        : m.platform === 'Instagram' ? 'sp-instagram'
+        : m.platform === 'LinkedIn' ? 'sp-linkedin' : 'sp-x';
+      return `<div class="social-card">
+  <div class="social-top">
+    <span class="social-platform ${platClass}">${m.platform || 'X'}</span>
+    <span class="social-author">${esc(m.author)}</span>
+    <span class="social-handle">${esc(m.handle || '')}</span>
+  </div>
+  <p class="social-quote">${esc(m.quote)}</p>
+  <p class="social-why"><b>Why it matters:</b> ${esc(m.why)}</p>
+  ${m.url ? `<a class="social-link" href="${esc(m.url)}" target="_blank" rel="noopener">See post →</a>` : ''}
+</div>`;
+    }).join('');
+    const sec = el.closest('section');
+    if (sec) sec.hidden = false;
+    setBadge('badge-social', 'ai');
+    setMeta('meta-social', 'OpenAI Search', data.fetchedAt || new Date().toISOString());
+  }
+
   function renderTalk(p) {
     // The Rundown (AI hero) — only shows when real AI synthesis is present.
     const band = $('rundownBand');
@@ -1950,6 +1983,7 @@ function FeaturedGolfCard(g) {
     $('talkingWrap').innerHTML = (talks && talks.length)
       ? talks.map(TalkingPointCard).join('')
       : `<div class="empty" style="grid-column:1/-1">Talking points update through the day — check back shortly.</div>`;
+    renderSocial(p && p.social);
 
     const iso = (p && p.updatedAt) || new Date().toISOString();
     setBadge('badge-trending', trendLive ? 'live' : (IS_DEV ? 'editorial' : null));

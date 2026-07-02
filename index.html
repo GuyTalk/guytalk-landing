@@ -114,15 +114,14 @@
   /* NAV */
   nav {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(249,248,245,0.95);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--border);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    background: var(--accent);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
+    transition: box-shadow 0.3s ease;
   }
   nav.scrolled {
-    box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 4px 20px rgba(0,0,0,0.06);
-    border-bottom-color: var(--border-light);
+    box-shadow: 0 2px 12px rgba(43,111,255,0.25);
   }
   .nav-inner {
     display: grid; grid-template-columns: 1fr auto 1fr;
@@ -130,24 +129,24 @@
   }
   .wordmark {
     font-family: 'Inter Tight', sans-serif;
-    font-weight: 800; font-size: 21px; letter-spacing: -0.03em; color: var(--text);
+    font-weight: 800; font-size: 21px; letter-spacing: -0.03em; color: #fff;
     text-decoration: none;
   }
-  .wordmark .dot { color: var(--accent); }
+  .wordmark .dot { color: rgba(255,255,255,0.7); }
   .nav-links {
     display: flex; align-items: center; gap: 6px;
   }
   .nav-right { display: flex; justify-content: flex-end; }
   @keyframes gtLivePulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.35; transform:scale(0.82); } }
   .nav-link {
-    font-size: 15px; font-weight: 600; color: var(--text-secondary);
+    font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.85);
     display: inline-flex; align-items: center; gap: 4px;
     padding: 7px 12px; border-radius: 8px;
     transition: color 0.15s ease, background 0.15s ease;
     white-space: nowrap;
   }
-  .nav-link:hover { color: var(--text); background: rgba(0,0,0,0.04); }
-  .nav-link-live { color: var(--text); }
+  .nav-link:hover { color: #fff; background: rgba(255,255,255,0.12); }
+  .nav-link-live { color: #fff; }
   .nav-live-pip { width: 7px; height: 7px; border-radius: 50%; background: #DC2626; animation: gtLivePulse 2s ease-in-out infinite; flex-shrink: 0; }
   /* Dropdown */
   .nav-item-dd { position: relative; }
@@ -177,13 +176,13 @@
   .nav-dd-all:hover { background: var(--accent-muted); }
   .nav-cta {
     font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px;
-    padding: 9px 20px; background: var(--accent); color: white; border-radius: 9px;
+    padding: 9px 20px; background: #fff; color: var(--accent); border-radius: 9px;
     transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.2s ease;
     white-space: nowrap;
   }
   .nav-cta:hover {
-    background: var(--accent-hover); transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(43,111,255,0.3);
+    background: rgba(255,255,255,0.9); transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   }
 
   /* HERO */
@@ -1399,28 +1398,28 @@
 <section class="scenario-photos" data-nav="6">
   <div class="container">
     <div class="section-eyebrow">Where it works</div>
-    <h2 class="section-title fade-up">The conversations you'll actually have.</h2>
+    <h2 class="section-title fade-up">Built for every room you walk into.</h2>
     <div class="sp-grid">
       <div class="sp-card fade-up">
         <div class="sp-img-wrap">
           <img src="/assets/website-images/scenario-golf.jpg" alt="Guys talking on the golf course" loading="lazy">
         </div>
         <div class="sp-label">The Golf Round</div>
-        <div class="sp-desc">Client outing, 18 holes. The Ryder Cup captain thing comes up on hole 5. You've got two holes of real conversation.</div>
+        <div class="sp-desc">Client outing, 18 holes. Someone brings up the major. You already read the leaderboard and the read behind it.</div>
       </div>
       <div class="sp-card fade-up">
         <div class="sp-img-wrap">
           <img src="/assets/website-images/scenario-office.jpg" alt="Guy confidently presenting in a meeting" loading="lazy">
         </div>
         <div class="sp-label">The Monday Meeting</div>
-        <div class="sp-desc">Markets open down 1.2%. Someone asks the room what happened. You already read the reason at 7am.</div>
+        <div class="sp-desc">Markets are moving. Someone asks why. You already know — and you know what it actually means for the next quarter.</div>
       </div>
       <div class="sp-card fade-up">
         <div class="sp-img-wrap">
           <img src="/assets/website-images/scenario-tailgate.jpg" alt="Guys watching the game together" loading="lazy">
         </div>
         <div class="sp-label">The Tailgate</div>
-        <div class="sp-desc">Game day. Everyone's got takes. Yours are grounded — you know the injury report, the series context, and what actually matters.</div>
+        <div class="sp-desc">Game day. Everyone's loud. You're the one with the actual context — the injury report, the series read, what to watch for.</div>
       </div>
     </div>
   </div>
