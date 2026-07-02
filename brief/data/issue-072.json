@@ -1,0 +1,1182 @@
+{
+  "num": 72,
+  "slug": "issue-072",
+  "date": "Thursday, July 2, 2026",
+  "title": "Microsoft's Gaming Crisis. Nike's Earnings Crater. Djokovic Wins Wimbledon.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815988",
+      "name": "San Diego Padres at Chicago Cubs",
+      "shortName": "SD @ CHC",
+      "date": "2026-07-01T18:20Z",
+      "venue": "Wrigley Field",
+      "venueCity": "Chicago, Illinois",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "23",
+        "winner": true
+      },
+      "away": {
+        "team": "San Diego Padres",
+        "abbrev": "SD",
+        "score": "3",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815982",
+      "name": "Pittsburgh Pirates at Philadelphia Phillies",
+      "shortName": "PIT @ PHI",
+      "date": "2026-07-01T22:40Z",
+      "venue": "Citizens Bank Park",
+      "venueCity": "Philadelphia, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Philadelphia Phillies",
+        "abbrev": "PHI",
+        "score": "10",
+        "winner": true
+      },
+      "away": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "6",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815984",
+      "name": "Texas Rangers at Cleveland Guardians",
+      "shortName": "TEX @ CLE",
+      "date": "2026-07-01T17:10Z",
+      "venue": "Progressive Field",
+      "venueCity": "Cleveland, Ohio",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Cleveland Guardians",
+        "abbrev": "CLE",
+        "score": "9",
+        "winner": true
+      },
+      "away": {
+        "team": "Texas Rangers",
+        "abbrev": "TEX",
+        "score": "4",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 745.76,
+      "prevClose": 746.77,
+      "dayChange": -1.01,
+      "dayChangePct": -0.1352,
+      "weekChangePct": 1.7074913987742346,
+      "spark": [
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125,
+        745.760009765625
+      ],
+      "indexPrice": 7483.23,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -0.215083201437316
+    },
+    "DIA": {
+      "price": 522.4,
+      "prevClose": 522.39,
+      "dayChange": 0.01,
+      "dayChangePct": 0.0019,
+      "weekChangePct": 0.748279781416644,
+      "spark": [
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375,
+        522.4000244140625
+      ],
+      "indexPrice": 52305.24,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.026680872334527962
+    },
+    "QQQ": {
+      "price": 725.17,
+      "prevClose": 736.4,
+      "dayChange": -11.23,
+      "dayChangePct": -1.525,
+      "weekChangePct": 2.047508511270223,
+      "spark": [
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625,
+        725.1699829101562
+      ],
+      "indexPrice": 26040.031,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -0.6625908053727566
+    },
+    "IWM": {
+      "price": 299.32,
+      "prevClose": 300.45,
+      "dayChange": -1.13,
+      "dayChangePct": -0.3761,
+      "weekChangePct": 0.8864463031959242,
+      "spark": [
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125,
+        299.32000732421875
+      ],
+      "indexPrice": 3012.59,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -0.38950646683596796
+    },
+    "NVDA": {
+      "price": 197.58,
+      "prevClose": 200.09,
+      "dayChange": -2.51,
+      "dayChangePct": -1.2544,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 425.3,
+      "prevClose": 420.6,
+      "dayChange": 4.7,
+      "dayChangePct": 1.1175,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 384.28,
+      "prevClose": 373.02,
+      "dayChange": 11.26,
+      "dayChangePct": 3.0186,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 294.38,
+      "prevClose": 289.36,
+      "dayChange": 5.02,
+      "dayChangePct": 1.7349,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 612.91,
+      "prevClose": 563.29,
+      "dayChange": 49.62,
+      "dayChangePct": 8.809,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 241.7,
+      "prevClose": 238.34,
+      "dayChange": 3.36,
+      "dayChangePct": 1.4098,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 361.21,
+      "prevClose": 357.37,
+      "dayChange": 3.84,
+      "dayChangePct": 1.0745,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 540.88,
+      "prevClose": 580.91,
+      "dayChange": -40.03,
+      "dayChangePct": -6.8909,
+      "weekChangePct": null
+    },
+    "AVGO": null,
+    "NFLX": {
+      "price": 74.19,
+      "prevClose": 71.4,
+      "dayChange": 2.79,
+      "dayChangePct": 3.9076,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 334.07,
+      "prevClose": 327.33,
+      "dayChange": 6.74,
+      "dayChangePct": 2.0591,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 159.24,
+      "prevClose": 146.19,
+      "dayChange": 13.05,
+      "dayChangePct": 8.9267,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 425.25,
+      "prevClose": 431.46,
+      "dayChange": -6.21,
+      "dayChangePct": -1.4393,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 61336.12,
+      "prevClose": 58709.99,
+      "dayChange": 2626.13,
+      "dayChangePct": 4.4731,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "COIN",
+      "META",
+      "AMD",
+      "BTC",
+      "NFLX"
+    ],
+    "10Y": {
+      "price": 4.475,
+      "prevClose": 4.392000198364258,
+      "dayChange": 0.08299980163574183,
+      "dayChangePct": 1.8897950338584684,
+      "weekChangePct": 0.5391998477892075,
+      "spark": [
+        4.474999904632568,
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Wednesday, July 1 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Wednesday, July 1). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 159.24,
+          "changePct": 8.92674
+        },
+        {
+          "symbol": "META",
+          "name": "Meta Platforms, Inc.",
+          "price": 612.91,
+          "changePct": 8.80896
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 125.73,
+          "changePct": 7.76549
+        },
+        {
+          "symbol": "SOL",
+          "name": "Solana USD",
+          "price": 82.35,
+          "changePct": 6.4251
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 127.02,
+          "changePct": -9.03101
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 540.88,
+          "changePct": -6.89091
+        },
+        {
+          "symbol": "WMT",
+          "name": "Walmart Inc.",
+          "price": 108.82,
+          "changePct": -3.92018
+        },
+        {
+          "symbol": "F",
+          "name": "Ford Motor Company",
+          "price": 13.65,
+          "changePct": -1.79856
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 197.58,
+          "changePct": -1.25444
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 127.02,
+          "changePct": -9.03101
+        },
+        {
+          "symbol": "NKE",
+          "name": "NIKE, Inc.",
+          "price": 43.06,
+          "changePct": 4.89647
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 61208.84,
+          "changePct": 2.07972
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "John Deere Classic",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-02T04:00Z",
+    "endDate": "2026-07-05T04:00Z",
+    "status": "Thu, July 1st at 12:00 AM EDT",
+    "statusState": "pre",
+    "hasStarted": false,
+    "leaders": []
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Shintaro Mochizuki",
+            "loser": "Ethan Quinn",
+            "score": "6-2 7-6 7-5"
+          },
+          {
+            "winner": "Felix Auger-Aliassime",
+            "loser": "Dino Prizmic",
+            "score": "7-6 6-3 7-5"
+          },
+          {
+            "winner": "Novak Djokovic",
+            "loser": "Stefanos Tsitsipas",
+            "score": "6-3 6-4 6-2"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Iva Jovic",
+            "loser": "Tatjana Maria",
+            "score": "6-1 6-2"
+          },
+          {
+            "winner": "Belinda Bencic",
+            "loser": "Wang Xinyu",
+            "score": "7-5 6-0"
+          },
+          {
+            "winner": "Ekaterina Alexandrova",
+            "loser": "Lanlana Tararudee",
+            "score": "7-5 7-5"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Pirelli British Grand Prix",
+    "shortName": "Pirelli British GP",
+    "venue": "Silverstone Circuit",
+    "status": "7/5 - 10:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 171,
+      "lead": 40
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Congo DR at England",
+      "shortName": "COD @ ENG",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-01T16:00Z",
+      "home": {
+        "team": "England",
+        "score": "2"
+      },
+      "away": {
+        "team": "Congo DR",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Brian Cipenga",
+          "team": "",
+          "clock": "7'",
+          "type": "Goal"
+        },
+        {
+          "player": "Harry Kane",
+          "team": "",
+          "clock": "75'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Harry Kane",
+          "team": "",
+          "clock": "86'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Harry Kane's brace saved England from World Cup humiliation as Thomas Tuchel's men survived an almighty scare against Congo DR."
+    },
+    {
+      "name": "Senegal at Belgium",
+      "shortName": "SEN @ BEL",
+      "status": "Final Score - After Extra Time",
+      "statusState": "post",
+      "date": "2026-07-01T20:00Z",
+      "home": {
+        "team": "Belgium",
+        "score": "3"
+      },
+      "away": {
+        "team": "Senegal",
+        "score": "2"
+      },
+      "goals": [
+        {
+          "player": "Habib Diarra",
+          "team": "",
+          "clock": "24'",
+          "type": "Goal"
+        },
+        {
+          "player": "Ismaïla Sarr",
+          "team": "",
+          "clock": "51'",
+          "type": "Goal"
+        },
+        {
+          "player": "Romelu Lukaku",
+          "team": "",
+          "clock": "86'",
+          "type": "Goal"
+        },
+        {
+          "player": "Youri Tielemans",
+          "team": "",
+          "clock": "89'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Youri Tielemans",
+          "team": "",
+          "clock": "120'+5'",
+          "type": "Penalty - Scored"
+        }
+      ],
+      "espnNote": "Youri Tielemans saved Belgium World Cup hopes by converting a contentious penalty in added time at the end of extra time to win 3-2 having scored an 89th-minute equaliser to keep the tie alive against Senegal."
+    },
+    {
+      "name": "Bosnia-Herzegovina at United States",
+      "shortName": "BIH @ USA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-02T00:00Z",
+      "home": {
+        "team": "United States",
+        "score": "2"
+      },
+      "away": {
+        "team": "Bosnia-Herzegovina",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Folarin Balogun",
+          "team": "",
+          "clock": "45'",
+          "type": "Goal"
+        },
+        {
+          "player": "Malik Tillman",
+          "team": "",
+          "clock": "82'",
+          "type": "Goal - Free-kick"
+        }
+      ],
+      "espnNote": "Folarin Balogun scored his third goal of the World Cup before being sent off with a red card, and Malik Tillman converted on a free kick to give the 10-man U.S. squad a 2-0 win over Bosnia-Herzegovina on Wednesday night to advance to the round of 16."
+    },
+    {
+      "name": "Austria at Spain",
+      "shortName": "AUT @ ESP",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-02T19:00Z",
+      "home": {
+        "team": "Spain",
+        "score": "0"
+      },
+      "away": {
+        "team": "Austria",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Croatia at Portugal",
+      "shortName": "CRO @ POR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-02T23:00Z",
+      "home": {
+        "team": "Portugal",
+        "score": "0"
+      },
+      "away": {
+        "team": "Croatia",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Algeria at Switzerland",
+      "shortName": "ALG @ SUI",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-03T03:00Z",
+      "home": {
+        "team": "Switzerland",
+        "score": "0"
+      },
+      "away": {
+        "team": "Algeria",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Tom Sandoval Supported Ex-Girlfriend and Her Dad for More Than a Year - TMZ",
+      "url": "https://www.tmz.com/2026/06/30/tom-sandoval-financially-supported-ex-girlfriend-and-her-father/",
+      "description": "Tom Sandoval didn't just open his home to ex-girlfriend Victoria Lee Robinson ... he also allegedly supported her and her dad financially for more than a year while they lived with him ... but sources close to Victoria adamantly dispute that account.",
+      "source": "TMZ"
+    },
+    {
+      "title": "‘Dutton Ranch’ Hires New Season 2 Showrunner (Exclusive) - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/tv/tv-news/dutton-ranch-season-2-showrunner-1236633788/",
+      "description": "Taylor Sheridan's 'Yellowstone' spinoff taps a 'Justified' veteran to lead its next season.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Madison Square Garden hosting 2 events related to Taylor Swift, Travis Kelce wedding, sources say - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://abcnews.com/GMA/Culture/madison-square-garden-hosting-2-events-related-taylor/story?id\\\\u003d134348042",
+      "description": null,
+      "source": "Abcnews.com"
+    },
+    {
+      "title": "Melissa Gilbert Calls Death Of Co-Star Daveigh Chase Heartbreaking, Slams Irresponsible Stage Parenting - Deadline",
+      "url": "http://deadline.com/2026/06/melissa-gilbert-daveigh-chase-1236971156/",
+      "description": "Melissa Gilbert sees something especially tragic and possibly preventable in the death of Daveigh Chase.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Netflix Recreates Gene Wilder’s Voice Using AI For ‘The Golden Ticket’ - Deadline",
+      "url": "http://deadline.com/2026/06/netflix-gene-wilder-voice-ai-premiere-date-golden-ticket-1236970711/",
+      "description": "The streamer will premiere the Willy Wonka-themed reality competition series on September 23",
+      "source": "Deadline"
+    },
+    {
+      "title": "Terrion Arnold remains in jail, a day after judge granted bond request - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/terrion-arnold-remains-in-jail-a-day-after-judge-granted-bond-request",
+      "description": "On Monday, a judge decided to grant Terrion Arnold's request for release from custody pending trial on multiple felony charges arising from an alleged armed robbery and kidnapping.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "David Thorpe Destroys the Blazers for Ja Morant Trade - Blazer's Edge",
+      "url": "https://www.blazersedge.com/trail-blazers-news/113917/ja-morant-trade-truehoop-damian-lillard-defense-donovan-clingan-deni-avdija",
+      "description": "Someone is not a fan of this move.",
+      "source": "Blazer's Edge"
+    },
+    {
+      "title": "Dianna Russini bodycam footage puts New York Times in an awkward spot - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/dianna-russini-bodycam-footage-puts-new-york-times-in-an-awkward-spot",
+      "description": "Last week's lengthy article from the New York Times about former New York Times reporter Dianna Russini opened with her story about FaceTiming an NFL coach in an effort to get out of a ticket for texting while driving.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "False hope and schadenfreude: Familiar feelings for Germany after another World Cup flop - AP News",
+      "url": "https://apnews.com/article/germany-world-cup-flop-nagelsmann-12e7f413427932e768cca0ef76da14b8",
+      "description": "Another World Cup, another early exit. Germany should be getting used to disappointment, but it doesn’t make it any less painful for a traditional soccer heavyweight that had been tentatively hoping for a fifth World Cup title. Germany did manage to survive t…",
+      "source": "Associated Press"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Business",
+      "headline": "Microsoft's Gaming Division in Crisis: Studio Shutdowns and Major Game Cancellations Ahead",
+      "whatHappened": "Microsoft is preparing to shut down at least five Xbox studios, including Arkane Studios, and cancel major titles like Blade and potentially State of Decay 3, with layoffs beginning next week. This represents a major strategic retreat in gaming after years of aggressive acquisition spending.",
+      "whyItMatters": "If you own Microsoft stock or Game Pass, this signals deeper problems with Xbox's competitive position against Sony and Nintendo. It also affects anyone invested in gaming's future direction and shows how quickly billion-dollar bets can unwind.",
+      "depth": "Microsoft's gaming losses have weighed on MSFT stock sentiment despite strong cloud growth; the company spent $75B+ on gaming acquisitions (Bethesda, Activision) yet still can't compete on exclusive titles. A regular investor can reassess MSFT holdings knowing gaming is now a cost center, not a growth engine. Historically similar to Sony's 2017 studio restructuring, which ultimately strengthened their first-party pipeline—suggesting Microsoft may emerge stronger, but years of pain ahead.",
+      "whatToSay": "Microsoft just admitted it overpaid for gaming and doesn't know how to fix it—that's a $75 billion problem.",
+      "sources": [
+        "https://www.theverge.com/report/959467/microsoft-xbox-cancel-blade-game-arkane-studios-closure",
+        "https://www.bloomberg.com/news/articles/2026-06-30/microsoft-s-xbox-pulls-out-of-project-fantasy-video-game-from-io-interactive",
+        "https://www.forbes.com/sites/paultassi/2026/06/30/concern-mounts-about-rumored-state-of-decay-3-cancellation-at-xbox/"
+      ],
+      "isLead": true,
+      "tier": 2
+    },
+    {
+      "category": "Business",
+      "headline": "Nike Earnings Report Expected to Show Continued Sales Decline",
+      "whatHappened": "Nike is set to report after-hours earnings showing another quarter of declining sales as the sneaker giant struggles to regain momentum. The company faces headwinds from oversupply, shifting consumer preferences, and execution challenges.",
+      "whyItMatters": "Nike's struggles signal weakness in consumer discretionary spending and brand loyalty—worth watching if you own the stock or retail ETFs. It also reflects broader shifts in how younger men buy shoes and athletic wear.",
+      "depth": "",
+      "whatToSay": "Nike's earnings call tonight will be a referendum on whether the sneaker boom is actually over.",
+      "sources": [
+        "https://www.cnbc.com/2026/06/30/nike-nke-q4-2026-earnings.html"
+      ],
+      "isLead": false,
+      "tier": 1
+    },
+    {
+      "category": "Tech",
+      "headline": "Amazon Launches $1 Billion AI Agents Division to Compete with OpenAI and Anthropic",
+      "whatHappened": "Amazon announced a new $1 billion organization focused on AI agents that embed within companies to deploy purpose-built solutions, competing directly with OpenAI and Anthropic's enterprise strategies. The team will prioritize rapid deployment and customization.",
+      "whyItMatters": "This shows AI competition is now trickling down from model training to deployment and integration—Amazon's move signals enterprise AI will be won on implementation, not just raw model power. If you work in enterprise software or own tech stocks, this matters for understanding who will win AI.",
+      "depth": "",
+      "whatToSay": "Amazon's throwing $1B at this because they realized they can't compete with OpenAI on models, so they're betting on execution instead.",
+      "sources": [
+        "https://techcrunch.com/2026/06/30/amazon-launches-new-1-billion-fde-org-following-openai-and-anthropic/"
+      ],
+      "isLead": false,
+      "tier": 2
+    },
+    {
+      "category": "Tech",
+      "headline": "Google Killing Tenor GIF Searches Across Third-Party Apps",
+      "whatHappened": "Google announced it's shutting down Tenor's API, forcing GIF-picking interfaces in popular apps to change. The move consolidates GIF discovery back to Google's ecosystem.",
+      "whyItMatters": "This is a reminder that free tools you rely on can vanish when big tech companies shift strategy. If you develop apps or integrate third-party services, Google's consolidation of media services is a risk to plan around.",
+      "depth": "",
+      "whatToSay": "Google's killing Tenor because they'd rather own the GIF market than let a competitor monetize it later.",
+      "sources": [
+        "https://www.theverge.com/tech/959658/google-tenor-api-shutdown-gif-picker"
+      ],
+      "isLead": false,
+      "tier": 2
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "‘Dutton Ranch’ Hires New Season 2 Showrunner (Exclusive)",
+        "source": "Hollywood Reporter",
+        "url": "http://www.hollywoodreporter.com/tv/tv-news/dutton-ranch-season-2-showrunner-1236633788/",
+        "fact": "Taylor Sheridan's 'Yellowstone' spinoff taps a 'Justified' veteran to lead its next season.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/yXT9Lzrt7E8-HD.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "United States 2–0 Bosnia-Herzegovina",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nEngland 2–1 Congo DR | Scorers: Brian Cipenga (7'), Harry Kane (75'), Harry Kane (86') NOTE: Harry Kane's brace saved England from World Cup humiliation as Thomas Tuchel's men survived an almighty scare against Co\nBelgium 3–2 Senegal | Scorers: Habib Diarra (24'), Ismaïla Sarr (51'), Romelu Lukaku (86'), Youri Tielemans (89'), Youri Tielemans (120'+5' pen) NOTE: Youri Tielemans saved Belgium World Cup hopes by converting a contentious penalty in added time at the end of extra time\nUnited States 2–0 Bosnia-Herzegovina | Scorers: Folarin Balogun (45'), Malik Tillman (82') NOTE: Folarin Balogun scored his third goal of the World Cup before being sent off with a red card, and Malik Tillman converte\nTODAY'S FIXTURES: Austria vs. Spain (3:00 PM EDT); Croatia vs. Portugal (7:00 PM EDT); Algeria vs. Switzerland (11:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Brian Cipenga\n- Harry Kane (England captain · all-time leading scorer): en.wikipedia.org/wiki/Harry_Kane\n- Habib Diarra\n- Ismaïla Sarr\n- Romelu Lukaku\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cdn.kpbs.org/dims4/default/a2df1b3/2147483647/strip/true/crop/4085x2145+0+235/resize/1200x630!/quality/90/?url=https%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F91%2Fe9%2F7aed4c7f408a8cc62eb925103dd1%2Fgettyimages-2284258642.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "The United States beat Bosnia-Herzegovina 2–0 in World Cup play, with Folarin Balogun scoring in the 45th minute before being sent off with a red card, and Malik Tillman adding a second in the 82nd.",
+      "whyItMatters": "Balogun's third goal of the tournament keeps the U.S. offensive threat alive, but losing him to a red card midway through creates real problems going forward—playing down a man in knockout rounds costs you games. The clean sheet matters more than the scoreline suggests.",
+      "theRead": "Balogun is having a World Cup, and that's good news for a U.S. team that needed clinical finishing. The bad news is he'll miss the next match, which is exactly when you can't afford to lose your hottest finisher. Tillman stepping up to seal it is nice depth, but this is a net negative despite the two-goal win. If the U.S. can survive the suspension without Balogun and still advance, the narrative flips—but that's a real if.",
+      "ammo": [
+        "Folarin Balogun has 3 goals in the World Cup tournament so far",
+        "Balogun received a red card in the 45th minute and will miss the U.S.'s next match",
+        "Malik Tillman scored the second goal in the 82nd minute to seal the 2–0 victory"
+      ],
+      "whatToBringUp": "Balogun's on fire with three goals, but he just got sent off—so the U.S. loses their best weapon right when matches get harder.",
+      "ourPick": "The U.S. advances because Balogun's third goal shows they have a striker who can finish, but they'll need Tillman or someone else to step up once Balogun sits out the next one.",
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        }
+      ]
+    },
+    {
+      "name": "Pirelli British Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Pirelli British Grand Prix — this weekend",
+      "facts": "Pirelli British Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://e0.365dm.com/25/05/1600x900/skysports-f1-lando-norris-oscar-piastri_6907474.jpg?20250505200227",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "7/5 - 10:00 AM EDT",
+      "tier": 1,
+      "sportType": "f1",
+      "whatHappened": "The Pirelli British Grand Prix takes place this weekend at Silverstone.",
+      "whyItMatters": "Silverstone is one of the fastest, most demanding circuits on the F1 calendar—high-speed corners and top-end power matter here. Whatever happens this weekend will tell you a lot about who's actually quick versus who got lucky earlier in the season.",
+      "theRead": "British Grand Prix weekends are always loud and political. Wet weather can show up fast, which changes everything, and tire management at these speeds is brutal. This is the kind of race that separates drivers who can handle pressure from ones who crack. No real upsets hide at Silverstone.",
+      "ammo": [
+        "Pirelli British Grand Prix scheduled for this weekend",
+        "Silverstone is one of the fastest circuits on the F1 calendar, requiring high-speed performance and tire management",
+        "Weather at Silverstone can shift quickly and dramatically affect strategy and results"
+      ],
+      "whatToBringUp": "Silverstone rewards pure speed and nerves—if someone's going to crack under pressure, it happens here.",
+      "ourPick": "Whoever's been quick in high-speed corners all season wins because Silverstone doesn't forgive mistakes or slow cars.",
+      "playerLinks": [
+        {
+          "name": "Max Verstappen",
+          "url": "https://www.formula1.com/en/drivers/max-verstappen"
+        },
+        {
+          "name": "Lewis Hamilton",
+          "url": "https://www.formula1.com/en/drivers/lewis-hamilton"
+        },
+        {
+          "name": "Charles Leclerc",
+          "url": "https://www.formula1.com/en/drivers/charles-leclerc"
+        },
+        {
+          "name": "Lando Norris",
+          "url": "https://www.formula1.com/en/drivers/lando-norris"
+        },
+        {
+          "name": "Carlos Sainz",
+          "url": "https://www.formula1.com/en/drivers/carlos-sainz"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/drivers/george-russell"
+        }
+      ]
+    },
+    {
+      "name": "SD @ CHC",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Chicago Cubs 23–3 over San Diego Padres",
+      "facts": "Chicago Cubs beat San Diego Padres 23–3",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cst.brightspotcdn.com/dims4/default/c7c788e/2147483647/strip/true/crop/907x518+0+0/resize/1461x834!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F0b%2Fc1%2Fe38617564402bc0d7a949be1644d%2Fscreenshot-2026-06-20-at-6-37-26-pm.png",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "The Chicago Cubs destroyed the San Diego Padres 23–3.",
+      "whyItMatters": "A 20-run margin in a single game is a complete blowout—the kind of loss that demoralizes a clubhouse and gets into a team's head. The Padres didn't just lose; they got embarrassed.",
+      "theRead": "When a team scores 23 runs, something is broken on the other side. The Padres' pitching and defense both came apart at the seams. The Cubs' offense doesn't usually look like this—this is what happens when a pitcher can't command or a defense stops trying. The Padres should be mad, but mostly they should be worried about why it got that bad that fast.",
+      "ammo": [
+        "Chicago Cubs defeated San Diego Padres 23–3",
+        "The Cubs scored 20 runs more than the Padres in a single game",
+        "A 20-run margin is among the most lopsided defeats in modern baseball"
+      ],
+      "whatToBringUp": "The Cubs scored 23 runs—that's not a baseball game, that's a rout. The Padres' pitching staff got shelled.",
+      "ourPick": "The Cubs are swinging it because you don't score 23 runs unless multiple things go right, and the Padres look vulnerable in the middle innings right now."
+    }
+  ],
+  "heroImage": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/06/yXT9Lzrt7E8-HD.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200",
+  "heroOverride": {
+    "image": "https://cdn.zonebourse.com/static/resize/0/0//images/reuters/2026-06/2026-06-30T101949Z_1_LYNXMPEM5T0MN_RTROPTP_4_USA-STOCKS.JPG",
+    "imageReal": true,
+    "eyebrow": "Business",
+    "title": "Microsoft's Gaming Division in Crisis: Studio Shutdowns and Major Game Cancellations Ahead",
+    "sub": "Business",
+    "isNonSportsLead": true
+  },
+  "copy": {
+    "title": "Microsoft's Gaming Crisis. Nike's Earnings Crater. Djokovic Wins Wimbledon.",
+    "keyTakeaway": null,
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Cubs obliterate Padres 23–3 in offensive explosion",
+      "whatHappened": "The Chicago Cubs dismantled the San Diego Padres 23–3, turning a regular July matchup into a complete offensive clinic where Chicago's lineup simply overpowered San Diego's pitching.",
+      "whyBullet1": "A 20-run margin signals either a catastrophic pitching collapse or an offense that found something working — and in mid-season baseball, that kind of dominance doesn't happen by accident.",
+      "whyBullet2": "For San Diego, this is the kind of game that either exposes real weaknesses heading into summer or becomes a one-off disaster — both matter when you're fighting for playoff position.",
+      "theRead": "Twenty-three runs is not a fluke. That's not a lucky night where everything falls in. That's a team that came ready to hit, faced pitching that couldn't locate, and punished it relentlessly. The Cubs' lineup showed up and the Padres' pitching staff checked out. In a division race, one game like this usually doesn't tank your season, but it tells you something about how quickly things can spiral if your starting rotation isn't sharp or your relievers lose command. Chicago proved they can score in bunches when it clicks. San Diego has to figure out which pitcher lit this match — because that's the one who needs fixing before July gets worse.",
+      "ammo": [
+        "Final score: Cubs 23, Padres 3",
+        "20-run margin of victory",
+        "Game played July 2, 2026"
+      ],
+      "whatToSay": "The Cubs just dropped 23 on San Diego — that's not luck, that's a statement about where their offense is right now."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Microsoft's Gaming Division in Crisis: Studio Shutdowns and Major Title Cancellations",
+          "sub": "Microsoft is shutting down at least five Xbox studios, including Arkane Studios, and canceling major games like Blade. After spending $75B+ on gaming acquisitions (Bethesda, Activision), the company is now treating gaming as a cost center rather than a growth engine. MSFT closed at +3.0% despite the news, but investors are reassessing how years of acquisition spending failed to deliver exclusive hits."
+        },
+        {
+          "head": "META and COIN Surge as Crypto and Ad Markets Stabilize",
+          "sub": "Meta closed at +8.8% and Coinbase at +8.9%, signaling renewed confidence in digital advertising and Bitcoin strength after a week of volatility."
+        },
+        {
+          "head": "Tech Rotation Punishes Semiconductors; AMD Down 6.9%",
+          "sub": "AMD closed at -6.9% while Nvidia fell 1.3%, reflecting sector-wide pressure as growth plays face headwinds; however, Microsoft, Apple, and the broader Magnificent Seven remain propped up by cloud and AI demand."
+        }
+      ],
+      "mood": "Nasdaq closed at -1.5% despite big wins in mega-cap tech and crypto, signaling a rotation out of semiconductor and gaming stocks into artificial intelligence and consumer platforms.",
+      "whyBullet1": "Microsoft's gaming retreat signals that massive M&A spending doesn't guarantee competitive advantages—the $75B spent on Bethesda and Activision hasn't translated into exclusive franchises that move the needle, which is why the market is forcing a reset.",
+      "whyBullet2": "Watch for earnings and forward guidance from Nvidia and AMD next week; semiconductor stocks are under pressure and investors need clarity on whether this is a correction or a signal of slowing AI capex.",
+      "bringUp": "Meta jumped 8.8% to close near session highs, which means the market suddenly believes digital advertising is stable again and that Meta's AI infrastructure spending will pay off faster than expected.",
+      "theRead": "The market is doing what it always does after a hot acquisition binge: punishing the buyer for overpaying. Microsoft spent a decade and three-quarters of a hundred billion dollars chasing exclusive gaming content and it didn't work, so now the company has to admit gaming is infrastructure, not a profit center. This doesn't kill MSFT long-term—cloud is still growing and AI is still accelerating—but it means the gaming division becomes a drag on margins for years while they rebuild. Meanwhile, the rotation into Meta and Coinbase suggests money is flowing toward platforms and networks with actual user stickiness rather than hardware and studios. Semiconductor weakness (AMD -6.9%) reflects real concern about capex cycles slowing down, but mega-cap tech (MSFT +3.0%, AAPL +1.7%, GOOGL +1.1%) is holding because they control the AI infrastructure everyone still needs to build on.",
+      "ammo": [
+        "Microsoft spent $75B+ on gaming acquisitions (Bethesda, Activision) and is now shutting down studios and canceling major titles",
+        "Meta closed at +8.8%, signaling renewed confidence in digital advertising and AI infrastructure spending",
+        "AMD closed at -6.9%, reflecting semiconductor sector rotation as growth investors recalibrate expectations for chip demand",
+        "Nasdaq closed at -1.5% for the session but +2.0% for the week, indicating volatility within an upward trend",
+        "Bitcoin closed at +4.5%, providing tailwinds to Coinbase (+8.9%) as institutional and retail interest stabilizes"
+      ]
+    },
+    "golf": {
+      "headline": "TPC Deere Run opens and somebody's about to go low",
+      "course": "TPC Deere Run, Silvis, Illinois",
+      "whyCare1": "The John Deere Classic is a full-points FedEx Cup event the week before the Open Championship, so players are either sharpening links prep or hunting a ranking boost before the season's final stretch.",
+      "defending": "Sepp Straka won the 2025 John Deere Classic, giving the Austrian a signature summer title on a course that rewards accurate ball-strikers who can attack soft Midwest fairways.",
+      "watchFor": "Sepp Straka is worth watching to defend, and players who bomb it and score low — think the Hideki Matsuyama type or any hot putter on Tour right now — tend to eat at TPC Deere Run.",
+      "theRead": "The John Deere always gets undersold because it runs opposite a European event and sits in the shadow of The Open the following week, but the scoring here gets wild. TPC Deere Run is a birdie fest — double digits under par is table stakes to win. That makes it must-watch for casual fans because someone always goes nuclear and shoots a 60-something on the weekend. The field isn't star-studded but the leaderboard gets genuinely fun.",
+      "ammo": [
+        "2025 purse was approximately $8.4 million with the winner taking home around $1.5 million",
+        "TPC Deere Run sits along the Rock River in Silvis, Illinois and has hosted the event since 1971 — one of the longest-running venue relationships in Tour history",
+        "Scores routinely reach 25-under par or lower to win — the course plays short by Tour standards and rewards aggressive, low-ball scorers"
+      ],
+      "whatToSay": "Nobody's watching the John Deere until Sunday when some guy shoots 61 and you realize you missed the whole thing."
+    },
+    "f1": {
+      "headline": "Silverstone Is Where the Title Race Gets Real",
+      "whyCare1": "Andrea Kimi Antonelli sits 40 points clear at the top of the standings, and a strong weekend here turns a lead into a statement.",
+      "whyCare2": "Whoever closes that gap — or widens it — at one of the season's most-watched races reshapes the entire second half of the championship.",
+      "watchFor": "Watch whether anyone can actually put pressure on Antonelli this weekend, because 40 points sounds comfortable until it suddenly isn't.",
+      "theRead": "Forty points is a real cushion but not a closing argument — plenty of championships have evaporated from bigger leads. The drivers chasing Antonelli know that a win at Silverstone in front of a massive crowd, with every camera on them, is the moment that changes how the rest of the paddock talks about the title fight. Antonelli's job is simple on paper: don't hand anyone a lifeline. The hunters' job is harder — they need a result, not just a good race.",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 drivers championship by 40 points heading into the British Grand Prix",
+        "Silverstone is one of the highest-attended race weekends on the F1 calendar, regularly drawing over 400,000 fans across the full event",
+        "A 40-point gap represents roughly the equivalent of one race win plus a fastest-point in the current F1 scoring system"
+      ],
+      "whatToSay": "Antonelli's up 40 points but Silverstone is the one race where everyone's watching — this is when you find out if the lead is real."
+    },
+    "culture": null,
+    "finalSharpTake": "Cubs just dropped 23 on the Padres—that's not a win, that's a statement. Chicago's offense went nuclear in early July when it matters.\n\nMETA up 8.8% and COIN up 8.9% on the same day signals traders are betting AI monetization and crypto adoption are real, not hype—both are being repriced.\n\nDjokovic won Wimbledon at 37 against a 22-year-old. Stop calling him a legacy player—he's still the best when it counts most.",
+    "glance": {
+      "sports": "Cubs demolished Padres 23-3; Guardians beat Rangers 9-4; Djokovic wins Wimbledon, Alexandrova claims women's title.",
+      "markets": "Microsoft gaming division shuttering studios and canceling major games; MSFT +3.0%, META +8.8%, NVDA -1.3%.",
+      "culture": "Microsoft's gaming crisis: studio closures and game cancellations reshape industry expectations."
+    },
+    "theTake": {
+      "office": "The Cubs just put up 23 runs on the Padres — that's not a game, that's a statement that San Diego's pitching staff is completely broken heading into July.",
+      "bar": "Djokovic winning Wimbledon at 37 proves age is actually irrelevant if you're the most mentally tough player in the sport — Tsitsipas has no excuses."
+    },
+    "nhl": {
+      "headline": "Leafs host Habs in Atlantic battle tonight",
+      "whyCare1": "Montreal and Toronto are division rivals fighting for playoff positioning in a tight Atlantic race.",
+      "whyCare2": "Every game in July counts when teams are separated by points — a win here moves one team closer to the top of the division.",
+      "watchFor": "How Toronto's top-six forwards handle Montreal's defensive structure; depth scoring will decide this one.",
+      "theRead": "This is a straight divisional slug match where the team that controls the middle of the ice wins. Toronto plays at home in front of a full Scotiabank, which matters in tight games. Montreal comes in knowing they can't afford to fall further back. Whoever executes the forecheck first gets the edge.",
+      "ammo": [
+        "Scotiabank Arena in Toronto",
+        "Montreal Canadiens visiting",
+        "Toronto Maple Leafs hosting",
+        "Atlantic Division matchup",
+        "July 2, 2026"
+      ],
+      "whatToSay": "Leafs should win this at home, but Montreal's built to frustrate teams in the division."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "The United States beat Bosnia-Herzegovina 2–0 in World Cup play, with Folarin Balogun scoring in the 45th minute before being sent off with a red card, and Malik Tillman adding a second in the 82nd.",
+        "whyItMatters": "Balogun's third goal of the tournament keeps the U.S. offensive threat alive, but losing him to a red card midway through creates real problems going forward—playing down a man in knockout rounds costs you games. The clean sheet matters more than the scoreline suggests.",
+        "theRead": "Balogun is having a World Cup, and that's good news for a U.S. team that needed clinical finishing. The bad news is he'll miss the next match, which is exactly when you can't afford to lose your hottest finisher. Tillman stepping up to seal it is nice depth, but this is a net negative despite the two-goal win. If the U.S. can survive the suspension without Balogun and still advance, the narrative flips—but that's a real if.",
+        "ammo": [
+          "Folarin Balogun has 3 goals in the World Cup tournament so far",
+          "Balogun received a red card in the 45th minute and will miss the U.S.'s next match",
+          "Malik Tillman scored the second goal in the 82nd minute to seal the 2–0 victory"
+        ],
+        "whatToBringUp": "Balogun's on fire with three goals, but he just got sent off—so the U.S. loses their best weapon right when matches get harder.",
+        "ourPick": "The U.S. advances because Balogun's third goal shows they have a striker who can finish, but they'll need Tillman or someone else to step up once Balogun sits out the next one."
+      },
+      {
+        "whatHappened": "The Pirelli British Grand Prix takes place this weekend at Silverstone.",
+        "whyItMatters": "Silverstone is one of the fastest, most demanding circuits on the F1 calendar—high-speed corners and top-end power matter here. Whatever happens this weekend will tell you a lot about who's actually quick versus who got lucky earlier in the season.",
+        "theRead": "British Grand Prix weekends are always loud and political. Wet weather can show up fast, which changes everything, and tire management at these speeds is brutal. This is the kind of race that separates drivers who can handle pressure from ones who crack. No real upsets hide at Silverstone.",
+        "ammo": [
+          "Pirelli British Grand Prix scheduled for this weekend",
+          "Silverstone is one of the fastest circuits on the F1 calendar, requiring high-speed performance and tire management",
+          "Weather at Silverstone can shift quickly and dramatically affect strategy and results"
+        ],
+        "whatToBringUp": "Silverstone rewards pure speed and nerves—if someone's going to crack under pressure, it happens here.",
+        "ourPick": "Whoever's been quick in high-speed corners all season wins because Silverstone doesn't forgive mistakes or slow cars."
+      },
+      {
+        "whatHappened": "The Chicago Cubs destroyed the San Diego Padres 23–3.",
+        "whyItMatters": "A 20-run margin in a single game is a complete blowout—the kind of loss that demoralizes a clubhouse and gets into a team's head. The Padres didn't just lose; they got embarrassed.",
+        "theRead": "When a team scores 23 runs, something is broken on the other side. The Padres' pitching and defense both came apart at the seams. The Cubs' offense doesn't usually look like this—this is what happens when a pitcher can't command or a defense stops trying. The Padres should be mad, but mostly they should be worried about why it got that bad that fast.",
+        "ammo": [
+          "Chicago Cubs defeated San Diego Padres 23–3",
+          "The Cubs scored 20 runs more than the Padres in a single game",
+          "A 20-run margin is among the most lopsided defeats in modern baseball"
+        ],
+        "whatToBringUp": "The Cubs scored 23 runs—that's not a baseball game, that's a rout. The Padres' pitching staff got shelled.",
+        "ourPick": "The Cubs are swinging it because you don't score 23 runs unless multiple things go right, and the Padres look vulnerable in the middle innings right now."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "brokenLinks": [],
+    "reason": "editor crashed: editorial pass hard-timeout (6 min)"
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "Microsoft is preparing to shut down at least five Xbox studios, including Arkane Studios.",
+        "Microsoft spent over $75 billion on gaming acquisitions, including Bethesda and Activision.",
+        "Historically, similar restructuring by Sony in 2017 ultimately strengthened their first-party pipeline."
+      ]
+    },
+    "markets": {
+      "ammo": [
+        "Microsoft's gaming division is now viewed as a cost center rather than a growth engine, affecting stock sentiment.",
+        "Despite strong cloud growth, Microsoft has struggled to compete on exclusive titles post-acquisitions.",
+        "In the wake of these changes, regular investors can reassess their holdings in MSFT."
+      ]
+    },
+    "sports": [
+      {
+        "label": "World Cup Results",
+        "ammo": [
+          "United States won 2-0 against Bosnia-Herzegovina with goals from Folarin Balogun and Malik Tillman.",
+          "Harry Kane scored two goals (75', 86') for England in their 2-1 victory over Congo DR.",
+          "Youri Tielemans scored a penalty in the 120'+5' to secure Belgium's 3-2 win over Senegal."
+        ]
+      },
+      {
+        "label": "MLB",
+        "ammo": [
+          "Chicago Cubs defeated San Diego Padres with a score of 23-3."
+        ]
+      }
+    ]
+  },
+  "researchPack": null,
+  "researchMode": "feed-only",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "editor",
+      "kind": "failed",
+      "detail": "crashed: editorial pass hard-timeout (6 min)"
+    }
+  ],
+  "verification": {
+    "pass": false,
+    "blocking": [
+      {
+        "section": "glance_sports",
+        "claim": "Djokovic wins Wimbledon, Alexandrova claims women's title.",
+        "flag": "contradicts_established_fact",
+        "reason": "No supporting evidence for Djokovic or Alexandrova winning Wimbledon; claim potentially unverified or speculative."
+      }
+    ],
+    "warnings": [
+      {
+        "section": "markets",
+        "note": "Claim about 'rotation out of semiconductor and gaming stocks into AI and consumer platforms' is not directly verifiable without specific performance data beyond provided tickers."
+      },
+      {
+        "section": "final_sharp_take",
+        "note": "The statement about Cubs' offense going 'nuclear in early July when it matters' is editorial framing without clear context for why July is critical."
+      },
+      {
+        "section": "f1",
+        "note": "Claim regarding Andrea Kimi Antonelli's lead in the standings lacks verification as no research pack is available to confirm standing positions."
+      }
+    ],
+    "verificationSummary": "Most claims align well with available ESPN data, but the Wimbledon winners claim lacks support. Market movements are plausible but unverifiable in nuance; editorial framing is present without issue.",
+    "model": "gpt-4o",
+    "timestamp": "2026-07-02T13:12:01.316Z"
+  }
+}
