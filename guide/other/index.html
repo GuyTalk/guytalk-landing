@@ -36,14 +36,14 @@
   .guide-word-guide{color:var(--accent);font-weight:800;}
   .guide-nav-links{display:flex;align-items:center;gap:4px;}
   .gnl{font-size:15px;font-weight:600;color:var(--text-2);text-decoration:none;padding:7px 12px;border-radius:8px;transition:color .15s,background .15s;}
-  .gnl:hover{color:var(--text);background:rgba(0,0,0,.04);text-decoration:none;}
+  .gnl:hover{color:#fff;background:rgba(255,255,255,.1);text-decoration:none;}
   .gnl-cta{background:var(--accent);color:#fff;padding:8px 18px;border-radius:9px;font-size:14px;font-weight:700;transition:background .15s,transform .15s;margin-left:8px;}
   .gnl-cta:hover{background:var(--accent-h);text-decoration:none;transform:translateY(-1px);}
   .guide-tabs{position:sticky;top:62px;z-index:90;background:#111;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);}
   .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
   .guide-tabs-inner::-webkit-scrollbar{display:none;}
   .guide-tab{padding:13px 20px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:14px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
-  .guide-tab:hover{color:var(--text);text-decoration:none;}
+  .guide-tab:hover{color:#fff;text-decoration:none;}
   .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
   .cat-band{background:#0F1724;color:#fff;padding:48px 24px 44px;border-top:3px solid var(--accent);}
   .cat-band-inner{max-width:1120px;margin:0 auto;}
@@ -88,6 +88,32 @@
   .guide-footer-links a{color:rgba(255,255,255,.5);}
   .guide-footer-links a:hover{color:#fff;text-decoration:none;}
   .guide-footer-note{width:100%;font-size:11px;color:rgba(255,255,255,.28);line-height:1.6;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);margin-top:16px;}
+  /* ── SECTION HEADERS ── */
+  .guide-section{padding:56px 0;}
+  .gsec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+  .gsec-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(22px,3.5vw,32px);letter-spacing:-.02em;margin-bottom:8px;color:var(--text);}
+  .gsec-sub{font-size:15px;color:var(--text-2);margin-bottom:36px;max-width:560px;line-height:1.6;}
+  /* ── OUTFIT BOARD ── */
+  .outfit-board{display:grid;grid-template-columns:320px 1fr;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+  .outfit-img{background:var(--surface-2);min-height:380px;display:flex;align-items:center;justify-content:center;}
+  .outfit-img img{width:100%;height:380px;object-fit:cover;display:block;}
+  .outfit-collage{padding:0!important;overflow:hidden;}
+  .outfit-collage-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:100%;min-height:340px;}
+  .outfit-collage-grid img{width:100%;height:100%;object-fit:cover;display:block;background:var(--surface-2);}
+  .outfit-content{padding:32px 36px;display:flex;flex-direction:column;gap:0;}
+  .outfit-eyebrow{font-family:'Inter Tight',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  .outfit-title{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:22px;letter-spacing:-0.02em;color:var(--text);margin-bottom:4px;}
+  .outfit-subtitle{font-size:14px;color:var(--text-2);margin-bottom:16px;}
+  .outfit-writeup{font-size:15px;color:var(--text-2);line-height:1.68;margin-bottom:24px;}
+  .outfit-items{list-style:none;padding:0;margin:0 0 18px;border-top:1px solid var(--border);}
+  .outfit-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06);}
+  .outfit-item-info{flex:1;min-width:0;}
+  .outfit-item-name{font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .outfit-item-role{font-size:12px;color:var(--text-3);}
+  .outfit-item-shop{flex-shrink:0;margin-left:14px;font-size:12px;font-weight:600;color:var(--accent);white-space:nowrap;text-decoration:none;}
+  .outfit-item-shop:hover{text-decoration:underline;}
+  .outfit-flashy{font-family:'Inter Tight',sans-serif;font-size:14px;font-weight:700;color:var(--text);border-left:3px solid var(--accent);padding-left:12px;line-height:1.5;}
+  @media(max-width:700px){.outfit-board{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -121,6 +147,52 @@
     <div class="cat-band-crumb"><a href="/guide/">Guide</a><span class="cat-band-crumb-sep">›</span>Other</div>
     <h1 class="cat-band-title">Other</h1>
     <p class="cat-band-desc">Tech, grooming, travel, home. Everything that doesn't fit a category but still belongs in the arsenal of a guy who pays attention.</p>
+  </div>
+</div>
+
+<div class="guide-section" style="padding:48px 0 40px;">
+  <div class="gc">
+    <div class="gsec-eyebrow">The Essentials</div>
+    <div class="gsec-title">The Four Upgrades Every Guy Should Have</div>
+    <div class="gsec-sub">The stuff that quietly separates a guy who has his act together from one who doesn't.</div>
+    <div class="outfit-board">
+      <div class="outfit-img outfit-collage"><div class="outfit-collage-grid">
+        <img src="/assets/guide/other/anker-3in1-charger.jpg" alt="Anker 3-in-1 charger" loading="lazy">
+        <img src="/assets/guide/other/beardbrand-utility-bar.jpg" alt="Beardbrand grooming" loading="lazy">
+        <img src="/assets/guide/other/nomatic-40l-pack.jpg" alt="Nomatic backpack" loading="lazy">
+        <img src="/assets/guide/other/yeti-rambler-20oz.jpg" alt="YETI Rambler" loading="lazy">
+      </div></div>
+      <div class="outfit-content">
+        <div class="outfit-eyebrow">The Essentials</div>
+        <div class="outfit-title">The Four Upgrades Every Guy Should Have</div>
+        <div class="outfit-subtitle">The stuff that works so well you stop thinking about it.</div>
+        <p class="outfit-writeup">Some gear is invisible when done right and embarrassing when skipped. A three-in-one charging dock ends the cable pile on your nightstand and signals that you've thought about your space. A quality grooming bar — bar soap is back, and the cheap stuff is obvious. One great backpack you'd take to the airport and a client meeting without changing your bag. A YETI tumbler you'll still be using in ten years. None of this is flashy. All of it is the kind of detail that people who notice things will notice — and people who don't notice things won't subtract from you for.</p>
+        <ul class="outfit-items">
+          <li class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">Anker 3-in-1 MagSafe Charging Dock</div>
+              <div class="outfit-item-role">Clean desk, all devices powered — done</div>
+            </div>
+            <a href="/guide/other/anker-3in1-charger/" class="outfit-item-shop">Our Take →</a>
+          </li>
+          <li class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">Beardbrand Utility Bar</div>
+              <div class="outfit-item-role">The grooming upgrade that changes nothing and everything</div>
+            </div>
+            <a href="/guide/other/beardbrand-utility-bar/" class="outfit-item-shop">Our Take →</a>
+          </li>
+          <li class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">Nomatic 40L Travel Pack</div>
+              <div class="outfit-item-role">One bag that goes everywhere without apology</div>
+            </div>
+            <a href="/guide/other/nomatic-40l-pack/" class="outfit-item-shop">Our Take →</a>
+          </li>
+        </ul>
+        <p class="outfit-flashy">The guys who have their act together don't have more stuff — they have fewer, better things they've stopped thinking about.</p>
+      </div>
+    </div>
   </div>
 </div>
 
