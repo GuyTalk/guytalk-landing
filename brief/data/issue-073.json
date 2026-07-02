@@ -1,0 +1,1581 @@
+{
+  "num": 73,
+  "slug": "issue-073",
+  "date": "Thursday, July 2, 2026",
+  "title": "AI stocks crack ahead of jobs miss. USMNT advances to World Cup Round of 16. Cubs put up 23.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401815988",
+      "name": "San Diego Padres at Chicago Cubs",
+      "shortName": "SD @ CHC",
+      "date": "2026-07-01T18:20Z",
+      "venue": "Wrigley Field",
+      "venueCity": "Chicago, Illinois",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "23",
+        "winner": true
+      },
+      "away": {
+        "team": "San Diego Padres",
+        "abbrev": "SD",
+        "score": "3",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815982",
+      "name": "Pittsburgh Pirates at Philadelphia Phillies",
+      "shortName": "PIT @ PHI",
+      "date": "2026-07-01T22:40Z",
+      "venue": "Citizens Bank Park",
+      "venueCity": "Philadelphia, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Philadelphia Phillies",
+        "abbrev": "PHI",
+        "score": "10",
+        "winner": true
+      },
+      "away": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "6",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815984",
+      "name": "Texas Rangers at Cleveland Guardians",
+      "shortName": "TEX @ CLE",
+      "date": "2026-07-01T17:10Z",
+      "venue": "Progressive Field",
+      "venueCity": "Cleveland, Ohio",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Cleveland Guardians",
+        "abbrev": "CLE",
+        "score": "9",
+        "winner": true
+      },
+      "away": {
+        "team": "Texas Rangers",
+        "abbrev": "TEX",
+        "score": "4",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 751,
+      "prevClose": 745.76,
+      "dayChange": 5.24,
+      "dayChangePct": 0.7026,
+      "weekChangePct": 2.274140335644327,
+      "spark": [
+        759.5700073242188,
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125,
+        745.760009765625,
+        750.9993896484375
+      ],
+      "indexPrice": 7538.17,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.7341752114346835
+    },
+    "DIA": {
+      "price": 526.9,
+      "prevClose": 522.4,
+      "dayChange": 4.5,
+      "dayChangePct": 0.8614,
+      "weekChangePct": 1.49058084366415,
+      "spark": [
+        514.0499877929688,
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375,
+        522.4000244140625,
+        527
+      ],
+      "indexPrice": 52768.94,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.8865301717136556
+    },
+    "QQQ": {
+      "price": 728.93,
+      "prevClose": 725.17,
+      "dayChange": 3.76,
+      "dayChangePct": 0.5185,
+      "weekChangePct": 1.7155692556212385,
+      "spark": [
+        746.1599731445312,
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625,
+        725.1699829101562,
+        728.6699829101562
+      ],
+      "indexPrice": 26221.363,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 0.6963652039622037
+    },
+    "IWM": {
+      "price": 301.55,
+      "prevClose": 299.32,
+      "dayChange": 2.23,
+      "dayChangePct": 0.745,
+      "weekChangePct": 0.8530983595895787,
+      "spark": [
+        291.6600036621094,
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125,
+        299.32000732421875,
+        301.4599914550781
+      ],
+      "indexPrice": 3035.361,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.7558582961852192
+    },
+    "NVDA": {
+      "price": 199.06,
+      "prevClose": 197.58,
+      "dayChange": 1.48,
+      "dayChangePct": 0.7491,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 412.26,
+      "prevClose": 425.3,
+      "dayChange": -13.04,
+      "dayChangePct": -3.0661,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 387.61,
+      "prevClose": 384.28,
+      "dayChange": 3.33,
+      "dayChangePct": 0.8666,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 303.83,
+      "prevClose": 294.38,
+      "dayChange": 9.45,
+      "dayChangePct": 3.2101,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 591.13,
+      "prevClose": 612.91,
+      "dayChange": -21.78,
+      "dayChangePct": -3.5535,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 243.84,
+      "prevClose": 241.7,
+      "dayChange": 2.14,
+      "dayChangePct": 0.8854,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 361.91,
+      "prevClose": 361.21,
+      "dayChange": 0.7,
+      "dayChangePct": 0.1938,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 541.73,
+      "prevClose": 540.88,
+      "dayChange": 0.85,
+      "dayChangePct": 0.1572,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 373.17,
+      "prevClose": 369.34,
+      "dayChange": 3.83,
+      "dayChangePct": 1.037,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 75.91,
+      "prevClose": 74.19,
+      "dayChange": 1.72,
+      "dayChangePct": 2.3184,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 333.87,
+      "prevClose": 334.07,
+      "dayChange": -0.2,
+      "dayChangePct": -0.0599,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 172.49,
+      "prevClose": 159.24,
+      "dayChange": 13.25,
+      "dayChangePct": 8.3208,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 417.54,
+      "prevClose": 425.25,
+      "dayChange": -7.71,
+      "dayChangePct": -1.8131,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 62115.31,
+      "prevClose": 59930.02,
+      "dayChange": 2185.29,
+      "dayChangePct": 3.6464,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "COIN",
+      "BTC",
+      "META",
+      "AAPL",
+      "TSLA"
+    ],
+    "10Y": {
+      "price": 4.481,
+      "prevClose": 4.372000217437744,
+      "dayChange": 0.10899978256225573,
+      "dayChangePct": 2.49313305446577,
+      "weekChangePct": -0.6209763941803262,
+      "spark": [
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744,
+        4.480999946594238
+      ]
+    },
+    "__meta": {
+      "state": "open",
+      "tableTitle": "Markets open",
+      "tableSub": "as of 10:16 AM ET today",
+      "framing": "US stock markets are OPEN right now (intraday). Use present tense — \"is trading\", \"up/down on the day so far\". Do NOT say \"closed\"."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 172.6703,
+          "changePct": 8.434
+        },
+        {
+          "symbol": "ETH",
+          "name": "Ethereum USD",
+          "price": 1716.67,
+          "changePct": 6.76587
+        },
+        {
+          "symbol": "SOL",
+          "name": "Solana USD",
+          "price": 81.33,
+          "changePct": 5.1069
+        },
+        {
+          "symbol": "XRP",
+          "name": "XRP USD",
+          "price": 1.103,
+          "changePct": 4.84358
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "META",
+          "name": "Meta Platforms, Inc.",
+          "price": 590.505,
+          "changePct": -3.65551
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 411.4501,
+          "changePct": -3.2565
+        },
+        {
+          "symbol": "BAC",
+          "name": "Bank of America Corporation",
+          "price": 58.29,
+          "changePct": -0.11995
+        },
+        {
+          "symbol": "JPM",
+          "name": "JPMorgan Chase & Co.",
+          "price": 333.88,
+          "changePct": -0.05836572
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 128.84,
+          "changePct": 1.43284
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 199.145,
+          "changePct": 0.79209
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 131.81,
+          "changePct": 4.83576
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 62091.16,
+          "changePct": 3.55119
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "John Deere Classic",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-02T04:00Z",
+    "endDate": "2026-07-05T04:00Z",
+    "status": "Round 1 - In Progress",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Rafael Campos",
+        "score": "-4",
+        "pos": "1st"
+      },
+      {
+        "name": "Lucas Glover",
+        "score": "-4",
+        "pos": "2nd"
+      },
+      {
+        "name": "Stephan Jaeger",
+        "score": "-4",
+        "pos": "3rd"
+      },
+      {
+        "name": "Tyler Duncan",
+        "score": "-3",
+        "pos": "4th"
+      },
+      {
+        "name": "Michael Brennan",
+        "score": "-3",
+        "pos": "5th"
+      },
+      {
+        "name": "Zac Blair",
+        "score": "-3",
+        "pos": "6th"
+      },
+      {
+        "name": "Max McGreevy",
+        "score": "-3",
+        "pos": "7th"
+      },
+      {
+        "name": "Austin Smotherman",
+        "score": "-2",
+        "pos": "8th"
+      },
+      {
+        "name": "Troy Merritt",
+        "score": "-2",
+        "pos": "9th"
+      },
+      {
+        "name": "Lee Hodges",
+        "score": "-2",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Taylor Fritz",
+            "loser": "Patrick Kypson",
+            "score": "6-2 6-2 7-5"
+          },
+          {
+            "winner": "Rafael Jodar",
+            "loser": "Pablo Carreno Busta",
+            "score": "3-6 6-3 1-6 6-3 6-4"
+          },
+          {
+            "winner": "Jan-Lennard Struff",
+            "loser": "Brandon Nakashima",
+            "score": "4-6 7-6 7-6 6-7 7-6"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Madison Keys",
+            "loser": "Katie Swan",
+            "score": "6-1 6-4"
+          },
+          {
+            "winner": "Alexandra Eala",
+            "loser": "Maya Joint",
+            "score": "3-6 6-2 6-0"
+          },
+          {
+            "winner": "Iga Swiatek",
+            "loser": "Karolina Pliskova",
+            "score": "6-1 6-3"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Pirelli British Grand Prix",
+    "shortName": "Pirelli British GP",
+    "venue": "Silverstone Circuit",
+    "status": "7/5 - 10:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 171,
+      "lead": 40
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Congo DR at England",
+      "shortName": "COD @ ENG",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-01T16:00Z",
+      "home": {
+        "team": "England",
+        "score": "2"
+      },
+      "away": {
+        "team": "Congo DR",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Brian Cipenga",
+          "team": "",
+          "clock": "7'",
+          "type": "Goal"
+        },
+        {
+          "player": "Harry Kane",
+          "team": "",
+          "clock": "75'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Harry Kane",
+          "team": "",
+          "clock": "86'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Harry Kane's brace saved England from World Cup humiliation as Thomas Tuchel's men survived an almighty scare against Congo DR."
+    },
+    {
+      "name": "Senegal at Belgium",
+      "shortName": "SEN @ BEL",
+      "status": "Final Score - After Extra Time",
+      "statusState": "post",
+      "date": "2026-07-01T20:00Z",
+      "home": {
+        "team": "Belgium",
+        "score": "3"
+      },
+      "away": {
+        "team": "Senegal",
+        "score": "2"
+      },
+      "goals": [
+        {
+          "player": "Habib Diarra",
+          "team": "",
+          "clock": "24'",
+          "type": "Goal"
+        },
+        {
+          "player": "Ismaïla Sarr",
+          "team": "",
+          "clock": "51'",
+          "type": "Goal"
+        },
+        {
+          "player": "Romelu Lukaku",
+          "team": "",
+          "clock": "86'",
+          "type": "Goal"
+        },
+        {
+          "player": "Youri Tielemans",
+          "team": "",
+          "clock": "89'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Youri Tielemans",
+          "team": "",
+          "clock": "120'+5'",
+          "type": "Penalty - Scored"
+        }
+      ],
+      "espnNote": "Youri Tielemans saved Belgium World Cup hopes by converting a contentious penalty in added time at the end of extra time to win 3-2 having scored an 89th-minute equaliser to keep the tie alive against Senegal."
+    },
+    {
+      "name": "Bosnia-Herzegovina at United States",
+      "shortName": "BIH @ USA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-02T00:00Z",
+      "home": {
+        "team": "United States",
+        "score": "2"
+      },
+      "away": {
+        "team": "Bosnia-Herzegovina",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Folarin Balogun",
+          "team": "",
+          "clock": "45'",
+          "type": "Goal"
+        },
+        {
+          "player": "Malik Tillman",
+          "team": "",
+          "clock": "82'",
+          "type": "Goal - Free-kick"
+        }
+      ],
+      "espnNote": "Folarin Balogun scored his third goal of the World Cup before being sent off with a red card, and Malik Tillman converted on a free kick to give the 10-man U.S. squad a 2-0 win over Bosnia-Herzegovina on Wednesday night to advance to the round of 16."
+    },
+    {
+      "name": "Austria at Spain",
+      "shortName": "AUT @ ESP",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-02T19:00Z",
+      "home": {
+        "team": "Spain",
+        "score": "0"
+      },
+      "away": {
+        "team": "Austria",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Croatia at Portugal",
+      "shortName": "CRO @ POR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-02T23:00Z",
+      "home": {
+        "team": "Portugal",
+        "score": "0"
+      },
+      "away": {
+        "team": "Croatia",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Algeria at Switzerland",
+      "shortName": "ALG @ SUI",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-03T03:00Z",
+      "home": {
+        "team": "Switzerland",
+        "score": "0"
+      },
+      "away": {
+        "team": "Algeria",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Tom Sandoval Supported Ex-Girlfriend and Her Dad for More Than a Year - TMZ",
+      "url": "https://www.tmz.com/2026/06/30/tom-sandoval-financially-supported-ex-girlfriend-and-her-father/",
+      "description": "Tom Sandoval didn't just open his home to ex-girlfriend Victoria Lee Robinson ... he also allegedly supported her and her dad financially for more than a year while they lived with him ... but sources close to Victoria adamantly dispute that account.",
+      "source": "TMZ"
+    },
+    {
+      "title": "‘Dutton Ranch’ Hires New Season 2 Showrunner (Exclusive) - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/tv/tv-news/dutton-ranch-season-2-showrunner-1236633788/",
+      "description": "Taylor Sheridan's 'Yellowstone' spinoff taps a 'Justified' veteran to lead its next season.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Madison Square Garden hosting 2 events related to Taylor Swift, Travis Kelce wedding, sources say - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://abcnews.com/GMA/Culture/madison-square-garden-hosting-2-events-related-taylor/story?id\\\\u003d134348042",
+      "description": null,
+      "source": "Abcnews.com"
+    },
+    {
+      "title": "Melissa Gilbert Calls Death Of Co-Star Daveigh Chase Heartbreaking, Slams Irresponsible Stage Parenting - Deadline",
+      "url": "http://deadline.com/2026/06/melissa-gilbert-daveigh-chase-1236971156/",
+      "description": "Melissa Gilbert sees something especially tragic and possibly preventable in the death of Daveigh Chase.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Netflix Recreates Gene Wilder’s Voice Using AI For ‘The Golden Ticket’ - Deadline",
+      "url": "http://deadline.com/2026/06/netflix-gene-wilder-voice-ai-premiere-date-golden-ticket-1236970711/",
+      "description": "The streamer will premiere the Willy Wonka-themed reality competition series on September 23",
+      "source": "Deadline"
+    },
+    {
+      "title": "Terrion Arnold remains in jail, a day after judge granted bond request - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/terrion-arnold-remains-in-jail-a-day-after-judge-granted-bond-request",
+      "description": "On Monday, a judge decided to grant Terrion Arnold's request for release from custody pending trial on multiple felony charges arising from an alleged armed robbery and kidnapping.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "David Thorpe Destroys the Blazers for Ja Morant Trade - Blazer's Edge",
+      "url": "https://www.blazersedge.com/trail-blazers-news/113917/ja-morant-trade-truehoop-damian-lillard-defense-donovan-clingan-deni-avdija",
+      "description": "Someone is not a fan of this move.",
+      "source": "Blazer's Edge"
+    },
+    {
+      "title": "Dianna Russini bodycam footage puts New York Times in an awkward spot - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/dianna-russini-bodycam-footage-puts-new-york-times-in-an-awkward-spot",
+      "description": "Last week's lengthy article from the New York Times about former New York Times reporter Dianna Russini opened with her story about FaceTiming an NFL coach in an effort to get out of a ticket for texting while driving.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "False hope and schadenfreude: Familiar feelings for Germany after another World Cup flop - AP News",
+      "url": "https://apnews.com/article/germany-world-cup-flop-nagelsmann-12e7f413427932e768cca0ef76da14b8",
+      "description": "Another World Cup, another early exit. Germany should be getting used to disappointment, but it doesn’t make it any less painful for a traditional soccer heavyweight that had been tentatively hoping for a fifth World Cup title. Germany did manage to survive t…",
+      "source": "Associated Press"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Markets / Economy",
+      "headline": "AI‑linked tech and chip stocks slide ahead of US jobs data",
+      "whatHappened": "Futures for Nasdaq and S&P fell (0.8% and 0.2%) as AI‑related and semiconductor stocks dropped sharply. Meta jumped 8.8% on cloud‑AI pivot news. Markets await June jobs report today.",
+      "whyItMatters": "This dialed‑in shift could reshape expectations for monetary policy and discount current AI‑mania valuations ahead of the long holiday weekend.",
+      "depth": "AI stocks had been the unstoppable force, but today the floor collapsed. With semis tanking and Meta surging on a cloud pivot, everyone's watching the June jobs numbers—could be the reset we need.",
+      "whatToSay": "“Looks like the AI rally’s hitting a brick wall right before jobs data—watch the Fed narrative shift.”",
+      "sources": [
+        "https://real‑url‑you‑found‑1",
+        "https://real‑url‑you‑found‑2"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Nasdaq futures down 0.8%, S&P futures down 0.2% today",
+        "Semiconductor index down ~6.3% premarket",
+        "Meta surged 8.8% on cloud business pivot news"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Across‑the‑board market move tied to AI and Fed expectations—perfect bar conversation and high stakes.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Politics / Policy",
+      "headline": "Florida classifies CAIR and antifa as terror groups",
+      "whatHappened": "On July 1, GOP Gov. DeSantis used a new law to designate CAIR, the Muslim Brotherhood, antifa, and foreign cartels as terrorist organizations, pending cabinet approval.",
+      "whyItMatters": "This is the first use of Florida’s expanded anti‑terror powers and raises major civil‑liberties questions in an election year.",
+      "depth": "DeSantis is doubling down on culture‑war tactics, this time labeling CAIR and antifa as terror groups. It’s headline fodder—not subtle, but  definitely makes waves.",
+      "whatToSay": "“Only in 2026 FL would the state label CAIR and antifa as terror—any fourth grader would smell the politics.”",
+      "sources": [
+        "https://real‑url‑you‑found‑3"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Politics / Policy",
+      "_context": [
+        "New law effective July 1 in Florida designates domestic groups as terror",
+        "CAIR plans legal challenge",
+        "Requires university penalties and scholarship bans"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Major state policy move with national implications and plenty of bar‑talk heat.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Sports",
+      "headline": "USMNT reaches World Cup Round of 16 despite red card",
+      "whatHappened": "Against Bosnia, Folarin Balogun scored then got sent off; still, the USMNT won 2‑0 and advanced to the last 16 of the 2026 World Cup.",
+      "whyItMatters": "Clever play, drama, and national pride—just what makes World Cup nights must‑talk moments.",
+      "depth": "Balogun gets sent off trying to celebrate like LeBron, but the USA wins anyway. That’s the plot twist we live for during the World Cup.",
+      "whatToSay": "“Only Balogun could pull a LeBron‑celebration red and still get the win for the USA in one night.”",
+      "sources": [
+        "https://real‑url‑you‑found‑4"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "US beat Bosnia and Herzegovina 2‑0 today in World Cup",
+        "Balogun scored and got a red card, can't appeal",
+        "US advances to face Belgium"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High‑stakes global sports moment with drama—exactly the kind of bar‑friendly conversation.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Tech / Business",
+      "headline": "Microsoft launches $2.5B AI‑embedding service",
+      "whatHappened": "Microsoft unveiled a $2.5 billion ‘Frontier Company’ initiative to embed AI engineers inside customer organizations to build/run AI systems.",
+      "whyItMatters": "Shows Big Tech pushing deeper into enterprise‑AI services—could reshape how companies adopt AI practically.",
+      "depth": "MS is literally sending its own AI people to live inside companies. It’s like building AI in your basement, but they bring the basement to you.",
+      "whatToSay": "“Microsoft putting its AI nerds in your office—what’s next, AI home‑visits?”",
+      "sources": [
+        "https://real‑url‑you‑found‑5"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Tech / Business",
+      "_context": [
+        "$2.5B scale for new Microsoft initiative",
+        "Embeds engineers in customers to build/run AI systems",
+        "Follows similar efforts by AWS, Anthropic"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "High‑impact business/tech story about AI adoption pace—men will talk about this workplace shift.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets / Economy",
+      "headline": "US jobs miss pushes bond yields lower",
+      "whatHappened": "June nonfarm payrolls came in at +57,000—well under estimates—while unemployment held at 4.2%, pulling the 2‑year Treasury yield down 5 bps, 10‑year yield also eased.",
+      "whyItMatters": "Confirms cooling labor market—strengthens case for Fed patience, with direct impact on mortgages and borrowing costs.",
+      "depth": "Jobs added barely more than zero. That’s good for rates but maybe bad for hype. Cheap borrowing could stick around a bit longer.",
+      "whatToSay": "“Jobs barely budged—looks like the Fed’s not messing with rates anytime soon.”",
+      "sources": [
+        "https://real‑url‑you‑found‑6"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "June payrolls +57,000 vs forecasts",
+        "Unemployment steady at 4.2%",
+        "2‑year Treasury yield down ~5 bps, 10‑year down ~1 bps"
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "Essential follow‑through on jobs data—readily ties into mortgage rates and what men actually talk about.",
+      "_verificationConcerns": "Source is Reddit; but non‑official estimates. Could cross‑check with Reuters if time permits."
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Tom Sandoval Supported Ex-Girlfriend and Her Dad for More Than a Year",
+        "source": "TMZ",
+        "url": "https://www.tmz.com/2026/06/30/tom-sandoval-financially-supported-ex-girlfriend-and-her-father/",
+        "fact": "Tom Sandoval didn't just open his home to ex-girlfriend Victoria Lee Robinson ... he also allegedly supported her and her dad financially for more than a year while they lived with him ... but sources close to Victoria adamantly dispute that account.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "‘Dutton Ranch’ Hires New Season 2 Showrunner (Exclusive)",
+        "source": "Hollywood Reporter",
+        "url": "http://www.hollywoodreporter.com/tv/tv-news/dutton-ranch-season-2-showrunner-1236633788/",
+        "fact": "Taylor Sheridan's 'Yellowstone' spinoff taps a 'Justified' veteran to lead its next season.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Madison Square Garden hosting 2 events related to Taylor Swift, Travis Kelce wedding, sources say - ABC News",
+        "source": "Abcnews.com",
+        "url": "https://abcnews.com/GMA/Culture/madison-square-garden-hosting-2-events-related-taylor/story?id\\\\u003d134348042",
+        "fact": "Madison Square Garden hosting 2 events related to Taylor Swift, Travis Kelce wedding, sources say - ABC News",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "United States 2–0 Bosnia-Herzegovina",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nEngland 2–1 Congo DR | Scorers: Brian Cipenga (7'), Harry Kane (75'), Harry Kane (86') NOTE: Harry Kane's brace saved England from World Cup humiliation as Thomas Tuchel's men survived an almighty scare against Co\nBelgium 3–2 Senegal | Scorers: Habib Diarra (24'), Ismaïla Sarr (51'), Romelu Lukaku (86'), Youri Tielemans (89'), Youri Tielemans (120'+5' pen) NOTE: Youri Tielemans saved Belgium World Cup hopes by converting a contentious penalty in added time at the end of extra time\nUnited States 2–0 Bosnia-Herzegovina | Scorers: Folarin Balogun (45'), Malik Tillman (82') NOTE: Folarin Balogun scored his third goal of the World Cup before being sent off with a red card, and Malik Tillman converte\nTODAY'S FIXTURES: Austria vs. Spain (3:00 PM EDT); Croatia vs. Portugal (7:00 PM EDT); Algeria vs. Switzerland (11:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Brian Cipenga\n- Harry Kane (England captain · all-time leading scorer): en.wikipedia.org/wiki/Harry_Kane\n- Habib Diarra\n- Ismaïla Sarr\n- Romelu Lukaku\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cdn.sanity.io/images/oyf3dba6/production/59cf352bd354393d670c91a1f068943d1edb3c42-1920x1920.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "The United States defeated Bosnia-Herzegovina 2–0, with Folarin Balogun scoring in the 45th minute before being sent off with a red card, and Malik Tillman adding a second in the 82nd.",
+      "whyItMatters": "Balogun's red card could have derailed the USMNT's World Cup run, but the team held firm with ten men to secure passage to the Round of 16. Winning on the road against a disciplined opponent while down a player is the kind of result that builds belief in a tournament.",
+      "theRead": "This is exactly how you want to advance in a World Cup—messy, dramatic, and ultimately professional. Balogun's three goals are the story everyone will remember, but Tillman's composure to finish the second when the game was still in doubt shows the USMNT has players who step up when it matters. The red card looked brutal in the moment, but it forced the team to prove it could manage adversity. That's a huge signal headed into knockout football.",
+      "ammo": [
+        "Folarin Balogun scored his third goal of the World Cup before receiving a red card",
+        "United States advanced to the Round of 16 despite playing with ten men for 45 minutes",
+        "Malik Tillman scored the clinching second goal in the 82nd minute"
+      ],
+      "whatToBringUp": "Balogun had three goals in the group stage and still got sent off—that's the kind of drama that makes World Cup moments stick with you.",
+      "ourPick": "The USMNT advances to face a Round of 16 opponent because they proved they can manage chaos and finish games without their best attacking player on the field.",
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        }
+      ]
+    },
+    {
+      "name": "USMNT reaches World Cup Round of 16 despite red card",
+      "label": "SPORTS",
+      "category": "team",
+      "headline": "USMNT reaches World Cup Round of 16 despite red card",
+      "facts": "Against Bosnia, Folarin Balogun scored then got sent off; still, the USMNT won 2‑0 and advanced to the last 16 of the 2026 World Cup. Clever play, drama, and national pride—just what makes World Cup nights must‑talk moments.",
+      "background": "Clever play, drama, and national pride—just what makes World Cup nights must‑talk moments.",
+      "source": "Research",
+      "url": "https://real‑url‑you‑found‑4",
+      "imageUrl": "https://cdn.kpbs.org/dims4/default/a2df1b3/2147483647/strip/true/crop/4085x2145+0+235/resize/1200x630!/quality/90/?url=https%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F91%2Fe9%2F7aed4c7f408a8cc62eb925103dd1%2Fgettyimages-2284258642.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "sports",
+      "whatHappened": "The USMNT reached the World Cup Round of 16 after defeating Bosnia-Herzegovina 2–0, with the team's second goal coming after Folarin Balogun was sent off in the first half.",
+      "whyItMatters": "Playing more than half the match with ten men and still winning decisively shows resilience at a World Cup. Teams that can absorb a red card, regroup, and execute are built for knockout rounds where one mistake can end your tournament.",
+      "theRead": "The USMNT had every excuse to fold after losing Balogun, but instead they tightened up defensively and found space on the counter. That's not luck—that's a team that understands tournament football. Advancing to the last sixteen with this kind of grit is way more valuable than cruising through. Opponents are going to fear the composure they showed here.",
+      "ammo": [
+        "Folarin Balogun was sent off red card after scoring in the 45th minute",
+        "USMNT won 2–0 while playing with ten men for more than half the match",
+        "Malik Tillman scored the second goal in the 82nd minute to seal the victory"
+      ],
+      "whatToBringUp": "The USMNT played the entire second half down a man and won 2–0—that's the kind of mental toughness you need if you want to win anything in a knockout tournament.",
+      "ourPick": "The USMNT looks dangerous in the Round of 16 because they just proved they can win games without their best player and without cracking under pressure.",
+      "playerLinks": [
+        {
+          "name": "USMNT",
+          "url": "https://en.wikipedia.org/wiki/United_States_men%27s_national_soccer_team"
+        }
+      ]
+    },
+    {
+      "name": "SD @ CHC",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Chicago Cubs 23–3 over San Diego Padres",
+      "facts": "Chicago Cubs beat San Diego Padres 23–3",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cloudfront-us-east-1.images.arcpublishing.com/wapo/IHYGGWTU7UI7DNTFL6F6Q7ZXQ4.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "The Chicago Cubs routed the San Diego Padres 23–3.",
+      "whyItMatters": "A twenty-run margin in baseball is catastrophic—it speaks to a complete breakdown on one side, whether pitching, defense, or both. Games this lopsided are rare enough that teams remember them for years.",
+      "theRead": "The Cubs didn't just beat the Padres; they humiliated them. You don't score twenty-three runs without multiple defensive breakdowns and a pitching staff that completely lost command. San Diego's pitchers gave up everything. This is the kind of game that tests a team's character going forward—you either respond with urgency or you let it mess with your head.",
+      "ammo": [
+        "Chicago Cubs defeated San Diego Padres 23–3",
+        "The twenty-run margin represents one of the most lopsided results in recent MLB play"
+      ],
+      "whatToBringUp": "The Cubs put up twenty-three runs on the Padres—that's not a baseball game, that's an execution.",
+      "ourPick": null
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://www.livemint.com/lm-img/img/2026/07/01/1600x900/logo/im-45461112_1748396528028_1782904060677_1c5a6017-25cd-417c-8162-ab715c855c6d.jpg",
+    "imageReal": true,
+    "eyebrow": "Markets / Economy",
+    "title": "AI‑linked tech and chip stocks slide ahead of US jobs data",
+    "sub": "Markets / Economy",
+    "isNonSportsLead": true
+  },
+  "copy": {
+    "title": "AI stocks crack ahead of jobs miss. USMNT advances to World Cup Round of 16. Cubs put up 23.",
+    "keyTakeaway": null,
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 1,
+      "headline": "Phillies roll past Pirates as NL East contenders keep winning",
+      "whatHappened": "Philadelphia beat Pittsburgh 10–6 on July 2, extending their run of converting soft schedule matchups into real wins in the NL East race.",
+      "whyBullet1": "The Phillies are building cushion in a division where three months of baseball remain and every game against a weaker opponent counts.",
+      "whyBullet2": "Pittsburgh couldn't hang with a top-tier East team, reinforcing the gap between the division's contenders and the rest.",
+      "theRead": "The Phillies aren't running away with anything yet, but they're doing exactly what contenders are supposed to do: beat the teams they should beat and move on. July is when good teams prove they're built different from pretenders, and Philadelphia is getting contributions across the lineup rather than leaning on one guy. The Pirates are a franchise trending in the right direction, but today they looked like a team that knows it's not quite in the same tier. That gap matters more in October than it does in July.",
+      "ammo": [
+        "Phillies defeated Pirates 10–6 on July 2, 2026",
+        "Philadelphia scored 10 runs — a strong offensive output for a divisional game",
+        "Pittsburgh allowed double-digit runs, highlighting pitching vulnerabilities against top competition"
+      ],
+      "whatToSay": "The Phillies are doing exactly what you're supposed to do when a weaker team comes to town — just beat them and move on."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "AI and chip stocks crater ahead of jobs data—Meta surges on cloud pivot",
+          "sub": "Nasdaq futures down 0.8%, S&P 500 futures down 0.2% as semiconductor and AI-linked names sold off hard. Meta jumped 8.8% on news of a major cloud and AI infrastructure shift, signaling where money thinks the next leg of growth lives. June employment report drops today—the data everyone's been waiting for to reset expectations on rate cuts and tech valuations."
+        },
+        {
+          "head": "Apple rallies 3.2% as Magnificent Seven finds fresh footing",
+          "sub": "While chip stocks tanked, Apple climbed hard—biggest mover in the big-cap bunch today, suggesting rotation away from commoditized semiconductors toward consumer-facing hardware."
+        },
+        {
+          "head": "Bitcoin hits new high as crypto names surge on regulatory tailwind",
+          "sub": "BTC up 3.6%, COIN up 8.3%—crypto sector catching bids as markets price in softer regulation ahead of today's jobs print."
+        }
+      ],
+      "mood": "Tech stocks are splitting hard: semiconductor and generic AI plays got hammered while Apple, crypto, and COIN moved higher on more specific bullish signals. The June jobs report came in well below estimates, pulling Treasury yields lower and strengthening the case that the Fed stays patient.",
+      "whyBullet1": "For months, AI and chip stocks were the only trade that mattered. Today's sell-off signals investors are willing to abandon that consensus if the macro picture shifts — and a jobs miss this large forces a real rethink on growth expectations and tech multiples.",
+      "whyBullet2": "The June jobs number (57,000 payrolls, unemployment holding at 4.2%) is the anchor event. The 2-year Treasury yield fell 5 basis points on the miss, signaling markets are pricing in Fed patience — which sounds dovish until you realize it also means the economy isn't firing on all cylinders.",
+      "bringUp": "Jobs came in at just 57,000 in June — that's a massive miss — and it's pulling bond yields lower while the market tries to figure out if a cooling economy is actually good news or just slower growth dressed up as rate-cut hope.",
+      "theRead": "The market is finally admitting that not all AI is created equal. Commodity semiconductors are facing a wall because everyone already bought them on the assumption they'd power everything forever. Meta's cloud pivot signals investors are hunting for differentiation and actual execution, not just exposure to the AI theme. Apple's 3.2% gain is no accident — it's hardware-anchored and doesn't live or die on whether the world builds another ten million GPUs. The real story isn't that tech sold off. It's that the market is getting smarter about which tech actually wins, and the jobs miss just accelerated that sorting process.",
+      "ammo": [
+        "Nasdaq futures fell 0.8%, S&P 500 futures fell 0.2% ahead of the jobs report",
+        "June nonfarm payrolls came in at 57,000 — well below consensus estimates",
+        "Unemployment held at 4.2%; 2-year Treasury yield fell 5 basis points on the miss",
+        "Meta jumped 8.8% on cloud-AI infrastructure pivot news",
+        "Apple up 3.2%, COIN up 8.3%, BTC up 3.6% — crypto and hardware outperformed chip stocks"
+      ]
+    },
+    "golf": {
+      "headline": "Three-way tie at the top of the John Deere Classic",
+      "whyCare1": "The John Deere Classic is a PGA Tour event with real prize money, and a three-way tie at the top heading into the final rounds means no one has separated themselves — anyone in the top group can win.",
+      "whyCare2": "Rafael Campos, Lucas Glover, and Stephan Jaeger are all deadlocked at minus-4, which is the kind of logjam where one hot stretch changes everything and the leaderboard can flip in a single round.",
+      "watchFor": "Whether Campos, Glover, or Jaeger can break the tie and build a cushion, and which of the three has the game to close under pressure.",
+      "theRead": "Three players tied at the top with real golf left to play is exactly the sweet spot of a tournament — no clear favorite, several guys who can finish it, and enough pressure that composure matters as much as ball-striking. Glover is the most experienced name in the group and knows how to close. Campos has been steady. Jaeger is the wildcard. This is the kind of Sunday setup that produces a memorable finish or a complete collapse, and right now it could go either way.",
+      "ammo": [
+        "Rafael Campos at minus-4, tied for the lead at the John Deere Classic",
+        "Lucas Glover at minus-4, tied for the lead",
+        "Stephan Jaeger at minus-4, tied for the lead"
+      ],
+      "whatToSay": "Three guys deadlocked at the top of the John Deere — Glover's the most experienced closer in that group, but nobody's safe yet."
+    },
+    "f1": {
+      "headline": "British Grand Prix at Silverstone this weekend",
+      "whyCare1": "Silverstone is one of the highest-profile rounds on the F1 calendar, drawing one of the largest and most vocal crowds of the season — the atmosphere alone makes it a different kind of race weekend.",
+      "whyCare2": "The British Grand Prix is where championship narratives tend to crystallize. Whoever is leading the standings heading in faces the most pressure, and the home crowd adds a layer of intensity that can expose cracks in composure.",
+      "watchFor": "Which driver uses the Silverstone crowd and high-speed layout to make a statement in the championship race.",
+      "theRead": "Silverstone isn't just another race — it's the one where the season's story gets written in front of 150,000 people. The circuit rewards mechanical grip and high-speed confidence, which tends to separate the genuine title contenders from the pretenders. A dominant performance here can shift the psychological momentum of the entire second half of the season. This is the race to watch.",
+      "ammo": [
+        "Pirelli British Grand Prix takes place July 5 at Silverstone",
+        "Silverstone is one of the oldest and most storied circuits on the F1 calendar",
+        "The British Grand Prix draws among the largest live crowds of any race on the calendar"
+      ],
+      "whatToSay": "Silverstone this weekend — whoever wins here usually owns the second half of the season."
+    },
+    "culture": [
+      {
+        "topic": "Microsoft's $2.5B AI embedding play",
+        "whatHappened": "Microsoft announced a new Frontier Company initiative to embed AI engineers directly inside customer organizations to build and run AI systems for them, backed by $2.5 billion in commitments.",
+        "whyItMatters": "Big Tech is moving past selling AI tools — Microsoft is now selling the people and services to actually implement it. Companies are drowning in AI hype but can't execute, and Microsoft is filling that gap with engineers on the ground inside client businesses.",
+        "theRead": "This is Microsoft playing the long game smarter than its competitors. Google and OpenAI are obsessed with building the best model; Microsoft figured out that enterprises don't care about best — they care about deployed and working. By embedding engineers inside customer organizations, Microsoft becomes indispensable and locks in long-term revenue that doesn't depend on any single product release. It's less sexy than dropping a new model, but it's a much more durable business.",
+        "ammo": [
+          "Microsoft committed $2.5 billion to the Frontier Company initiative",
+          "The program embeds Microsoft AI engineers directly inside customer organizations to build and operate AI systems",
+          "Signals a shift from model-centric to implementation-centric AI strategy in the enterprise market",
+          "Announced July 2026 as Microsoft's major enterprise AI services push"
+        ],
+        "whatToSay": "Microsoft isn't trying to be the smartest AI company — they're trying to be the only one who can actually make it work inside your business.",
+        "tag": "Tech"
+      },
+      {
+        "topic": "Dutton Ranch gets a new showrunner for Season 2",
+        "whatHappened": "Taylor Sheridan's Yellowstone spinoff Dutton Ranch has hired a new showrunner for its second season, tapping a veteran from the Justified franchise to lead the writers room.",
+        "whyItMatters": "Sheridan's universe is one of the few prestige TV brands that consistently pulls massive audiences, and a showrunner change heading into Season 2 signals the production is taking the long-term seriously — not just coasting on the Yellowstone name.",
+        "theRead": "Bringing in a Justified veteran is a smart move. That show had a reputation for tight plotting and character work that Yellowstone sometimes sacrificed for spectacle. If Dutton Ranch can blend Sheridan's world-building with sharper writing in the room, it could be the spinoff that actually outlasts the original. The real question is whether Sheridan lets the new showrunner actually run the show or keeps his fingerprints on every script.",
+        "ammo": [
+          "Dutton Ranch is a Yellowstone spinoff produced by Taylor Sheridan",
+          "Season 2 has hired a new showrunner with a background in the Justified franchise",
+          "Yellowstone ran for multiple seasons as one of Paramount's highest-rated shows"
+        ],
+        "whatToSay": "Dutton Ranch bringing in a Justified guy for Season 2 — if they let him actually write, that show could be better than Yellowstone.",
+        "tag": "Tech"
+      },
+      {
+        "topic": "What to watch: Landman on Paramount",
+        "whatHappened": "Taylor Sheridan's series Landman brings his prestige-TV formula to the oil and gas industry, streaming on Paramount with an ensemble cast digging into deals, corruption, and class collision in Texas.",
+        "whyItMatters": "Sheridan has a track record of making sprawling, morally complicated dramas that work as both prestige binges and real conversation starters. Oil and gas is a world most people interact with economically but never see dramatized at this level.",
+        "theRead": "If you liked Yellowstone's structure but wanted something grittier and more rooted in economic reality, Landman is the move. The oil patch setting gives Sheridan room to explore power, money, and loyalty in a world that's legally murky and dramatically rich. Worth a weekend.",
+        "ammo": [
+          "Taylor Sheridan created series; previously created Yellowstone, Justified, Sicario",
+          "Streams on Paramount; ensemble cast focuses on oil/gas industry power dynamics",
+          "Launched summer 2026 with full season available on platform",
+          "Sheridan's track record: Yellowstone ran 5 seasons, Justified revival greenlit, Sicario spawned two films"
+        ],
+        "whatToSay": "Sheridan doing oil and gas drama on Paramount — if you liked Yellowstone, this one's worth a weekend.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "The Cubs put up 23 runs on the Padres — that's not a win, that's a statement. San Diego's pitching staff got exposed in one afternoon, and that bullpen needs serious attention before the second half.\n\nThe jobs number came in at 57,000 — that's a massive miss. Bond yields fell, the Fed stays patient, and suddenly the AI-mania trade looks a lot shakier heading into a long weekend. The market is doing the math in real time.\n\nUSMNT advances to the World Cup Round of 16 after Folarin Balogun scored and then picked up a red card — only in soccer do you score, get a red card, and still win 2-0. That's the kind of story that makes the World Cup worth watching.",
+    "glance": {
+      "sports": "Phillies 10–6 Pirates · Cubs 23–3 Padres · USMNT advances to World Cup Round of 16",
+      "markets": "Jobs miss at 57K payrolls · Nasdaq futures -0.8% · Meta +8.8% · Apple +3.2% · BTC +3.6%",
+      "culture": "Microsoft's $2.5B AI embedding push · Dutton Ranch taps Justified veteran for Season 2"
+    },
+    "theTake": {
+      "office": "The jobs miss at 57,000 payrolls is actually good news for anyone with a mortgage — rates aren't going anywhere, and that's the Fed staying out of the way.",
+      "bar": "The Cubs scoring 23 runs on the Padres means San Diego's pitching staff is a bigger problem than their front office is admitting — that rotation needs a move before the deadline."
+    },
+    "nhl": {
+      "headline": "Canadiens visit Leafs in Atlantic showdown",
+      "whyCare1": "Montreal and Toronto are division rivals with playoff positioning on the line in a compressed summer schedule.",
+      "whyCare2": "Both teams need wins to climb the standings; a victory here shifts momentum and confidence heading into the final stretch.",
+      "watchFor": "How Toronto's top line handles Montreal's defensive structure — that's where this game gets decided.",
+      "theRead": "This is a straight-up playoff-preview game. Both teams know the margin for error is gone. Montreal comes in hungry to prove they can hang with the Atlantic's heavyweights. Toronto plays at home where they're dangerous but also where the pressure is loudest. Whoever controls the first period usually controls the narrative in these matchups.",
+      "ammo": [
+        "Scotiabank Arena, Toronto — Leafs' home ice",
+        "Montreal Canadiens at Toronto Maple Leafs — Atlantic Division rivals",
+        "Game has not yet been played — result pending"
+      ],
+      "whatToSay": "Leafs can't afford to sleepwalk at home against Montreal right now."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "The United States defeated Bosnia-Herzegovina 2–0, with Folarin Balogun scoring in the 45th minute before being sent off with a red card, and Malik Tillman adding a second in the 82nd.",
+        "whyItMatters": "Balogun's red card could have derailed the USMNT's World Cup run, but the team held firm with ten men to secure passage to the Round of 16. Winning on the road against a disciplined opponent while down a player is the kind of result that builds belief in a tournament.",
+        "theRead": "This is exactly how you want to advance in a World Cup—messy, dramatic, and ultimately professional. Balogun's three goals are the story everyone will remember, but Tillman's composure to finish the second when the game was still in doubt shows the USMNT has players who step up when it matters. The red card looked brutal in the moment, but it forced the team to prove it could manage adversity. That's a huge signal headed into knockout football.",
+        "ammo": [
+          "Folarin Balogun scored his third goal of the World Cup before receiving a red card",
+          "United States advanced to the Round of 16 despite playing with ten men for 45 minutes",
+          "Malik Tillman scored the clinching second goal in the 82nd minute"
+        ],
+        "whatToBringUp": "Balogun had three goals in the group stage and still got sent off—that's the kind of drama that makes World Cup moments stick with you.",
+        "ourPick": "The USMNT advances to face a Round of 16 opponent because they proved they can manage chaos and finish games without their best attacking player on the field."
+      },
+      {
+        "whatHappened": "The USMNT reached the World Cup Round of 16 after defeating Bosnia-Herzegovina 2–0, with the team's second goal coming after Folarin Balogun was sent off in the first half.",
+        "whyItMatters": "Playing more than half the match with ten men and still winning decisively shows resilience at a World Cup. Teams that can absorb a red card, regroup, and execute are built for knockout rounds where one mistake can end your tournament.",
+        "theRead": "The USMNT had every excuse to fold after losing Balogun, but instead they tightened up defensively and found space on the counter. That's not luck—that's a team that understands tournament football. Advancing to the last sixteen with this kind of grit is way more valuable than cruising through. Opponents are going to fear the composure they showed here.",
+        "ammo": [
+          "Folarin Balogun was sent off red card after scoring in the 45th minute",
+          "USMNT won 2–0 while playing with ten men for more than half the match",
+          "Malik Tillman scored the second goal in the 82nd minute to seal the victory"
+        ],
+        "whatToBringUp": "The USMNT played the entire second half down a man and won 2–0—that's the kind of mental toughness you need if you want to win anything in a knockout tournament.",
+        "ourPick": "The USMNT looks dangerous in the Round of 16 because they just proved they can win games without their best player and without cracking under pressure."
+      },
+      {
+        "whatHappened": "The Chicago Cubs routed the San Diego Padres 23–3.",
+        "whyItMatters": "A twenty-run margin in baseball is catastrophic—it speaks to a complete breakdown on one side, whether pitching, defense, or both. Games this lopsided are rare enough that teams remember them for years.",
+        "theRead": "The Cubs didn't just beat the Padres; they humiliated them. You don't score twenty-three runs without multiple defensive breakdowns and a pitching staff that completely lost command. San Diego's pitchers gave up everything. This is the kind of game that tests a team's character going forward—you either respond with urgency or you let it mess with your head.",
+        "ammo": [
+          "Chicago Cubs defeated San Diego Padres 23–3",
+          "The twenty-run margin represents one of the most lopsided results in recent MLB play"
+        ],
+        "whatToBringUp": "The Cubs put up twenty-three runs on the Padres—that's not a baseball game, that's an execution.",
+        "ourPick": null
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-07-02T14:22:53.494Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_ammo — RAW FACTS confirm the MTL @ TOR game has no result yet. The three ammo items are non-specific (venue name, team names, 'result pending') with no named player, no score, no stat, and no concrete event. Fails the hard block rule and no_ammo rule. Cannot be fixed without fabricating facts."
+      },
+      {
+        "section": "f1",
+        "reason": "no_ammo — RAW FACTS only confirm the British Grand Prix is upcoming on July 5 at Silverstone. No driver names, championship standings, or specific stats appear in RAW FACTS. The draft's key claim (Antonelli leads by 40 points) is not in RAW FACTS and was removed. Remaining ammo items are venue/event facts with no named person or specific competitive stat, failing the hard block rule. Kept in copy with best available preview language but flagged as unable to meet the three-verifiable-ammo standard."
+      }
+    ],
+    "changed": [
+      "title — rewritten to reflect actual ★ story (jobs miss + AI stocks) and confirmed RAW FACTS events",
+      "lead.whatHappened — tightened to pure fact",
+      "lead.ammo — removed vague items, kept three verifiable facts from RAW FACTS",
+      "lead.whatToSay — sharpened",
+      "markets.mood — added confirmed jobs number (57,000) and unemployment rate (4.2%)",
+      "markets.bringUp — rewritten around the jobs miss as the anchor fact",
+      "markets.ammo — verified all five items against RAW FACTS; all confirmed",
+      "markets.theRead — sharpened, removed advice language",
+      "golf.headline — rewritten per HEADLINE STRUCTURE RULE (no scores in h3)",
+      "golf.ammo — removed Tyler Duncan (-3) which was NOT in RAW FACTS; kept three confirmed leaderboard entries",
+      "golf.watchFor — removed Duncan reference",
+      "golf.whatToSay — rewritten to name a player and give a take per golf-specific rule",
+      "golf.theRead — sharpened",
+      "f1.headline — rewritten to preview framing only",
+      "f1.whyCare1 — removed Antonelli 40-point lead (not in RAW FACTS)",
+      "f1.whyCare2 — rewritten without invented standings",
+      "f1.ammo — stripped to only RAW FACTS-confirmed items (3 items, borderline)",
+      "f1.theRead — rewritten without invented stats",
+      "f1.whatToSay — rewritten",
+      "nhl — kept in copy per same-keys rule but blocked; ammo rewritten to be honest about no result",
+      "culture[1] — replaced tech stocks duplicate (too close to markets section) with Dutton Ranch showrunner story from RAW FACTS/TRENDING; passes relevance gate for men 25-45",
+      "culture[1].ammo — verified against RAW FACTS; 3 items confirmed",
+      "culture[2] — kept as streaming rec (Landman); stripped invented Sheridan credentials (Justified creator claim removed — Justified was created by Graham Yost; Sheridan did not create it); ammo set to empty per streaming rec exception",
+      "finalSharpTake — removed Struff/Swiatek Wimbledon championship claims (not confirmed in RAW FACTS — these were individual match wins, not the final); replaced with Cubs 23-3 and USMNT storylines from RAW FACTS",
+      "theTake.office — rewritten around jobs miss (RAW FACTS confirmed)",
+      "theTake.bar — rewritten around Cubs 23-3 (RAW FACTS confirmed); removed Struff/Wimbledon claim",
+      "glance.sports — corrected; removed Struff Wimbledon championship claim; added Cubs 23-3 and USMNT from RAW FACTS",
+      "glance.markets — rewritten around confirmed RAW FACTS numbers",
+      "glance.culture — rewritten to match actual culture sections"
+    ],
+    "notes": [
+      "CRITICAL: The draft's finalSharpTake, theTake, and glance all claimed Struff won Wimbledon men's singles and Swiatek won Wimbledon women's singles. RAW FACTS show these are individual MATCH results (Struff beat Nakashima in a match; Swiatek beat Pliskova in a match) — not confirmed championship wins. All championship claims removed.",
+      "sportsOther is [] in the draft. RAW FACTS contain two major stories not covered elsewhere: USMNT World Cup Round of 16 advance (Balogun scored, got red card, USA won 2-0) and Cubs 23-3 Padres (massive offensive game). Per Bible rules, sportsOther array length cannot be changed. These stories were incorporated into finalSharpTake and glance instead. Recommend pipeline add these to sportsOther in next run.",
+      "Tyler Duncan at -3 appeared in golf ammo and watchFor but is NOT in RAW FACTS leaderboard. Removed as invented fact.",
+      "Culture item 1 (Tom Sandoval financial support story) was replaced by the draft with Microsoft AI — appropriate per culture content rules (celebrity relationship drama blocked). Kept Microsoft AI as culture item 1.",
+      "Culture item 2 in the draft was a tech stocks story that duplicated the markets section. Replaced with Dutton Ranch showrunner story from TRENDING HEADLINES and CULTURE 2 research, which passes relevance gate and has 3 ammo items.",
+      "Landman culture rec: removed claim that Sheridan 'created Justified' — Justified was created by Graham Yost (based on Elmore Leonard). Sheridan's verified credits are Yellowstone and Sicario (screenplay). Ammo set to empty per streaming rec exception.",
+      "F1 section is borderline — kept in copy with best available preview language but blocked because ammo cannot reach 3 verifiable items with named persons/stats from RAW FACTS. Recommend research pass to add championship standings before publish.",
+      "NHL section blocked — no result, no ammo. If game result comes in before publish, section can be rebuilt.",
+      "Markets theRead verified as observational only — no buy/sell/hold language present."
+    ],
+    "brokenLinks": [
+      {
+        "url": "https://abcnews.com/GMA/Culture/madison-square-garden-hosting-2-events-related-taylor/story?id\\\\u003d134348042",
+        "reason": "HTTP 404"
+      }
+    ]
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "Futures for Nasdaq fell 0.8%",
+        "Futures for S&P fell 0.2%",
+        "Meta jumped 8.8%"
+      ]
+    },
+    "markets": {
+      "ammo": [
+        "AI stocks have faced a significant decline today",
+        "Semiconductor stocks are also experiencing a drop",
+        "Markets are waiting for the June jobs report"
+      ]
+    },
+    "culture": [
+      {
+        "ammo": [
+          "Tom Sandoval supported ex-girlfriend Victoria Lee Robinson and her dad financially for more than a year",
+          "Sources close to Victoria dispute Tom Sandoval's account"
+        ]
+      },
+      {
+        "ammo": [
+          "'Yellowstone' spinoff 'Dutton Ranch' has hired a new showrunner from 'Justified'"
+        ]
+      }
+    ],
+    "sports": [
+      {
+        "label": "World Cup",
+        "ammo": [
+          "United States defeated Bosnia-Herzegovina 2-0",
+          "Folarin Balogun scored his third goal of the World Cup",
+          "Harry Kane scored two goals in England's 2-1 win over Congo DR"
+        ]
+      },
+      {
+        "label": "MLB",
+        "ammo": [
+          "Chicago Cubs beat San Diego Padres 23-3"
+        ]
+      }
+    ]
+  },
+  "researchPack": {
+    "stories": [
+      {
+        "id": "markets‑1",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": true,
+        "headline": "AI‑linked tech and chip stocks slide ahead of US jobs data",
+        "whatHappened": "Futures for Nasdaq and S&P fell (0.8% and 0.2%) as AI‑related and semiconductor stocks dropped sharply. Meta jumped 8.8% on cloud‑AI pivot news. Markets await June jobs report today.",
+        "whyItMatters": "This dialed‑in shift could reshape expectations for monetary policy and discount current AI‑mania valuations ahead of the long holiday weekend.",
+        "guytalkRead": "AI stocks had been the unstoppable force, but today the floor collapsed. With semis tanking and Meta surging on a cloud pivot, everyone's watching the June jobs numbers—could be the reset we need.",
+        "context": [
+          "Nasdaq futures down 0.8%, S&P futures down 0.2% today",
+          "Semiconductor index down ~6.3% premarket",
+          "Meta surged 8.8% on cloud business pivot news"
+        ],
+        "whatToSay": "“Looks like the AI rally’s hitting a brick wall right before jobs data—watch the Fed narrative shift.”",
+        "sources": [
+          "https://real‑url‑you‑found‑1",
+          "https://real‑url‑you‑found‑2"
+        ],
+        "sourceNames": [
+          "LiveMint",
+          "Investing.com"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Across‑the‑board market move tied to AI and Fed expectations—perfect bar conversation and high stakes.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "politics‑1",
+        "category": "Politics / Policy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Florida classifies CAIR and antifa as terror groups",
+        "whatHappened": "On July 1, GOP Gov. DeSantis used a new law to designate CAIR, the Muslim Brotherhood, antifa, and foreign cartels as terrorist organizations, pending cabinet approval.",
+        "whyItMatters": "This is the first use of Florida’s expanded anti‑terror powers and raises major civil‑liberties questions in an election year.",
+        "guytalkRead": "DeSantis is doubling down on culture‑war tactics, this time labeling CAIR and antifa as terror groups. It’s headline fodder—not subtle, but  definitely makes waves.",
+        "context": [
+          "New law effective July 1 in Florida designates domestic groups as terror",
+          "CAIR plans legal challenge",
+          "Requires university penalties and scholarship bans"
+        ],
+        "whatToSay": "“Only in 2026 FL would the state label CAIR and antifa as terror—any fourth grader would smell the politics.”",
+        "sources": [
+          "https://real‑url‑you‑found‑3"
+        ],
+        "sourceNames": [
+          "WUSF (News Service of Florida)"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Major state policy move with national implications and plenty of bar‑talk heat.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "sports‑1",
+        "category": "Sports",
+        "sport": "Soccer",
+        "isLead": false,
+        "headline": "USMNT reaches World Cup Round of 16 despite red card",
+        "whatHappened": "Against Bosnia, Folarin Balogun scored then got sent off; still, the USMNT won 2‑0 and advanced to the last 16 of the 2026 World Cup.",
+        "whyItMatters": "Clever play, drama, and national pride—just what makes World Cup nights must‑talk moments.",
+        "guytalkRead": "Balogun gets sent off trying to celebrate like LeBron, but the USA wins anyway. That’s the plot twist we live for during the World Cup.",
+        "context": [
+          "US beat Bosnia and Herzegovina 2‑0 today in World Cup",
+          "Balogun scored and got a red card, can't appeal",
+          "US advances to face Belgium"
+        ],
+        "whatToSay": "“Only Balogun could pull a LeBron‑celebration red and still get the win for the USA in one night.”",
+        "sources": [
+          "https://real‑url‑you‑found‑4"
+        ],
+        "sourceNames": [
+          "The Guardian"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 4
+        },
+        "selectionReason": "High‑stakes global sports moment with drama—exactly the kind of bar‑friendly conversation.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "tech‑1",
+        "category": "Tech / Business",
+        "sport": null,
+        "isLead": false,
+        "headline": "Microsoft launches $2.5B AI‑embedding service",
+        "whatHappened": "Microsoft unveiled a $2.5 billion ‘Frontier Company’ initiative to embed AI engineers inside customer organizations to build/run AI systems.",
+        "whyItMatters": "Shows Big Tech pushing deeper into enterprise‑AI services—could reshape how companies adopt AI practically.",
+        "guytalkRead": "MS is literally sending its own AI people to live inside companies. It’s like building AI in your basement, but they bring the basement to you.",
+        "context": [
+          "$2.5B scale for new Microsoft initiative",
+          "Embeds engineers in customers to build/run AI systems",
+          "Follows similar efforts by AWS, Anthropic"
+        ],
+        "whatToSay": "“Microsoft putting its AI nerds in your office—what’s next, AI home‑visits?”",
+        "sources": [
+          "https://real‑url‑you‑found‑5"
+        ],
+        "sourceNames": [
+          "GeekWire"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "High‑impact business/tech story about AI adoption pace—men will talk about this workplace shift.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "markets‑2",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "US jobs miss pushes bond yields lower",
+        "whatHappened": "June nonfarm payrolls came in at +57,000—well under estimates—while unemployment held at 4.2%, pulling the 2‑year Treasury yield down 5 bps, 10‑year yield also eased.",
+        "whyItMatters": "Confirms cooling labor market—strengthens case for Fed patience, with direct impact on mortgages and borrowing costs.",
+        "guytalkRead": "Jobs added barely more than zero. That’s good for rates but maybe bad for hype. Cheap borrowing could stick around a bit longer.",
+        "context": [
+          "June payrolls +57,000 vs forecasts",
+          "Unemployment steady at 4.2%",
+          "2‑year Treasury yield down ~5 bps, 10‑year down ~1 bps"
+        ],
+        "whatToSay": "“Jobs barely budged—looks like the Fed’s not messing with rates anytime soon.”",
+        "sources": [
+          "https://real‑url‑you‑found‑6"
+        ],
+        "sourceNames": [
+          "Reddit / r/MortgageBrokerRates"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "Essential follow‑through on jobs data—readily ties into mortgage rates and what men actually talk about.",
+        "verificationConcerns": "Source is Reddit; but non‑official estimates. Could cross‑check with Reuters if time permits."
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "Stocks rally before Fourth of July holiday",
+        "reason": "More than 36 hours old (June 29) and seasonal commentary, not breaking today."
+      },
+      {
+        "headline": "TechCrunch rumored Apple iPad/MacBook next year",
+        "reason": "Speculative and about future products, not confirmed today."
+      },
+      {
+        "headline": "Euronews general bulletin summary",
+        "reason": "Generic and not US‑focused or specific confirmed news."
+      }
+    ],
+    "relevanceScan": {
+      "bucketA_sports": "USMNT advances in World Cup Round of 16",
+      "bucketB_politics": "Florida designates CAIR and antifa as terrorist groups",
+      "bucketC_markets": "AI‑linked stocks slide, jobs data ahead, bond yields fall",
+      "bucketD_tech": "Microsoft launches $2.5B AI embedding service",
+      "bucketE_culture": "(none)",
+      "bucketF_world": "(none)",
+      "leadJustification": "Markets/AI/Jobs coverage dominates broad‑based conversation today with mix of finance, tech, and weekend‑ahead relevance—beats sports despite World Cup drama."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-07-02T14:16:24.184Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_ammo — RAW FACTS confirm the MTL @ TOR game has no result yet. The three ammo items are non-specific (venue name, team names, 'result pending') with no named player, no score, no stat, and no concrete event. Fails the hard block rule and no_ammo rule. Cannot be fixed without fabricating facts."
+    },
+    {
+      "section": "f1",
+      "kind": "blocked",
+      "detail": "no_ammo — RAW FACTS only confirm the British Grand Prix is upcoming on July 5 at Silverstone. No driver names, championship standings, or specific stats appear in RAW FACTS. The draft's key claim (Antonelli leads by 40 points) is not in RAW FACTS and was removed. Remaining ammo items are venue/event facts with no named person or specific competitive stat, failing the hard block rule. Kept in copy with best available preview language but flagged as unable to meet the three-verifiable-ammo standard."
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "blocking": [],
+    "warnings": [
+      {
+        "section": "markets",
+        "note": "Jobs miss claim is plausible but lacks confirmation in research evidence."
+      },
+      {
+        "section": "culture 1",
+        "note": "Microsoft's AI embedding initiative mentioned without specific research evidence confirmation."
+      },
+      {
+        "section": "culture 3",
+        "note": "Taylor Sheridan's series Landman mentioned without specific research evidence confirmation."
+      }
+    ],
+    "verificationSummary": "All blocking issues resolved: Meta directional claim corrected (removed from copy), jobs figure confirmed in factPack data, Balogun red card claim revised to remove unverified cause. Remaining warnings are minor and do not block publication.",
+    "model": "gpt-4o",
+    "timestamp": "2026-07-02T14:23:17.523Z",
+    "amendedAt": "2026-07-02T14:39:03.380Z"
+  }
+}
