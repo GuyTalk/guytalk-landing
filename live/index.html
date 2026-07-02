@@ -43,17 +43,17 @@
   /* NAV — identical system to other pages */
   nav {
     position: sticky; top: 0; z-index: 50;
-    background: var(--accent);
+    background: #111;
     backdrop-filter: none; -webkit-backdrop-filter: none;
     border-bottom: none;
-    box-shadow: 0 2px 12px rgba(43,111,255,0.25);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.35);
   }
   .nav-inner {
     display: flex; align-items: center; justify-content: space-between;
     padding: 14px 24px; max-width: 1040px; margin: 0 auto;
   }
   .wordmark { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.03em; color: #fff; }
-  .wordmark .dot { color: rgba(255,255,255,0.7); }
+  .wordmark .dot { color: var(--accent); }
   .tm { font-size: 0.42em; vertical-align: super; font-weight: 700; letter-spacing: 0; margin-left: 1px; color: rgba(255,255,255,0.6); }
   .nav-links { display: flex; align-items: center; gap: 24px; }
   .nav-link { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); }
@@ -790,6 +790,7 @@
   .sports-nav {
     display: flex; gap: 8px; flex-wrap: wrap;
     margin: 18px 0 0; padding: 0;
+    background: none;
   }
   .sports-nav-pill {
     font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 12px;

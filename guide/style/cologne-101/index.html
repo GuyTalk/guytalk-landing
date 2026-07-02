@@ -48,9 +48,9 @@
   /* ── NAV (matches main site light frosted glass) ── */
   .guide-nav {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(249,248,245,0.92);
+    background: #111;
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
   .guide-nav-inner {
     display: flex; align-items: center; justify-content: space-between;
@@ -58,14 +58,14 @@
   }
   .guide-wordmark {
     font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 19px;
-    letter-spacing: -0.03em; color: var(--text); text-decoration: none;
+    letter-spacing: -0.03em; color: #fff; text-decoration: none;
   }
   .guide-wordmark:hover { text-decoration: none; }
   .guide-dot { color: var(--accent); }
   .guide-nav-links { display: flex; align-items: center; gap: 24px; }
   .gnl { font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; }
   .gnl:hover { color: var(--text); text-decoration: none; }
-  .gnl.is-active { color: var(--text); font-weight: 600; }
+  .gnl.is-active { color: #fff; font-weight: 600; }
   .gnl-cta {
     font-size: 13px; font-weight: 600; padding: 7px 14px;
     background: var(--accent); color: #fff; border-radius: 7px; text-decoration: none;
@@ -156,7 +156,7 @@
   .outfit-items { list-style: none; padding: 0; margin: 0 0 18px; border-top: 1px solid var(--border); }
   .outfit-item {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 10px 0; border-bottom: 1px solid var(--border);
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
   }
   .outfit-item-info { flex: 1; min-width: 0; }
   .outfit-item-name { font-weight: 600; font-size: 14px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
