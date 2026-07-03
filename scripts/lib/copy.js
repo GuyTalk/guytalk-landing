@@ -568,8 +568,11 @@ Context: ${ctx}${repGuard}`,
     askJson('Today at a Glance',
       `Write "Today at a Glance" for GuyTalk — exactly three lines, the single biggest story in each lane. Context: ${ctx}
 ${topStoriesText ? `${topStoriesText}\nThe "sports" line should reflect the top sports story; "markets" the biggest market/business story; "culture" the biggest culture story.` : ''}
+${dynSportsList ? `\nESPN-VERIFIED SPORTS (use ONLY these for the glance sports line — these are the only sports with confirmed results in this brief):\n${dynSportsList}` : ''}
 
 Each value is ONE sentence, max 20 words, specific and NAMED (a team/player/number for sports, a real number for markets, a named thing for culture). No labels inside the value, no markdown.
+
+CRITICAL — glance.sports must ONLY reference a sport and player/team/score that appears in the ESPN-VERIFIED SPORTS list above. Do NOT write about any sport from the research pack or trending headlines that is not in that verified list. If a sport (e.g. Tennis, Wimbledon) is not in the ESPN-VERIFIED SPORTS list, do not mention it in the sports line — pick the sport that IS verified.
 
 CRITICAL — sports hallucination rule: For multi-round tournaments (Wimbledon, US Open, Roland Garros, Australian Open, golf majors), NEVER say a player "wins" the tournament unless the data explicitly shows this is the championship final and they won it today. If the match shown is an early round, say "[Player] advances at [Tournament]" — never claim a tournament title from a round result.
 

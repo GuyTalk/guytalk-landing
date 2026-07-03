@@ -505,6 +505,9 @@ ${JSON.stringify(editable)}`;
 
   const parsed = parseJson(raw);
   if (!parsed || !parsed.copy) {
+    const rawLen = raw ? raw.length : 0;
+    const tail = raw ? raw.slice(-200).replace(/\n/g, ' ') : '(empty)';
+    console.log(`   ⚠  Editor parse failed: raw=${rawLen} chars, tail: "${tail}"`);
     return skip('editor returned unparseable output — kept Claude draft');
   }
 
