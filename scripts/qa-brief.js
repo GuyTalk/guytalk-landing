@@ -479,6 +479,11 @@ function main() {
     { sport: 'f1',         banned: ['nba', 'nhl', 'mlb', 'basketball', 'hockey', 'baseball', 'soccer'] },
     { sport: 'golf',       banned: ['nba', 'nhl', 'mlb', 'basketball', 'hockey', 'baseball', 'soccer'] },
   ];
+  // Match sport strings only at word/path boundaries — prevents false positives where
+  // sport abbreviations appear as substrings (e.g. "nba" in "thumnbail").
+  function sportInUrl(url, sport) {
+    return new RegExp(`(?<=[/._-]|^)${sport}(?=[/._-]|\\d|$)`, 'i').test(url);
+  }
   let imageMismatch = false;
   for (const s of dynSports) {
     const label = (s.label || '').toLowerCase();
@@ -486,7 +491,7 @@ function main() {
     if (!img) continue;
     const rule = IMAGE_SPORT_RULES.find(r => label.includes(r.sport) || r.sport.includes(label));
     if (rule) {
-      const banned = rule.banned.find(b => img.includes(b));
+      const banned = rule.banned.find(b => sportInUrl(img, b));
       if (banned) {
         imageMismatch = true;
         run(

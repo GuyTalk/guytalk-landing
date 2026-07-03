@@ -1,0 +1,1313 @@
+{
+  "num": 74,
+  "slug": "issue-074",
+  "date": "Friday, July 3, 2026",
+  "title": "June jobs report craters. Dodgers crush Padres. Wimbledon heats up.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401816001",
+      "name": "San Diego Padres at Los Angeles Dodgers",
+      "shortName": "SD @ LAD",
+      "date": "2026-07-03T02:10Z",
+      "venue": "Dodger Stadium",
+      "venueCity": "Los Angeles, California",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Los Angeles Dodgers",
+        "abbrev": "LAD",
+        "score": "12",
+        "winner": true
+      },
+      "away": {
+        "team": "San Diego Padres",
+        "abbrev": "SD",
+        "score": "7",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815999",
+      "name": "Miami Marlins at Colorado Rockies",
+      "shortName": "MIA @ COL",
+      "date": "2026-07-02T19:10Z",
+      "venue": "Coors Field",
+      "venueCity": "Denver, Colorado",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "14",
+        "winner": true
+      },
+      "away": {
+        "team": "Miami Marlins",
+        "abbrev": "MIA",
+        "score": "4",
+        "winner": false
+      }
+    },
+    {
+      "id": "401815995",
+      "name": "St. Louis Cardinals at Atlanta Braves",
+      "shortName": "STL @ ATL",
+      "date": "2026-07-02T23:15Z",
+      "venue": "Truist Park",
+      "venueCity": "Atlanta, Georgia",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Atlanta Braves",
+        "abbrev": "ATL",
+        "score": "5",
+        "winner": false
+      },
+      "away": {
+        "team": "St. Louis Cardinals",
+        "abbrev": "STL",
+        "score": "11",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 744.82,
+      "prevClose": 745.76,
+      "dayChange": -0.94,
+      "dayChangePct": -0.126,
+      "weekChangePct": 1.4272112734919444,
+      "spark": [
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125,
+        745.760009765625,
+        744.780029296875
+      ],
+      "indexPrice": 7483.24,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.00013389313539651626
+    },
+    "DIA": {
+      "price": 527.92,
+      "prevClose": 522.4,
+      "dayChange": 5.52,
+      "dayChangePct": 1.0567,
+      "weekChangePct": 1.6600527813158084,
+      "spark": [
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375,
+        522.4000244140625,
+        527.8800048828125
+      ],
+      "indexPrice": 52900.07,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 1.1372316393083532
+    },
+    "QQQ": {
+      "price": 712.64,
+      "prevClose": 725.17,
+      "dayChange": -12.53,
+      "dayChangePct": -1.7279,
+      "weekChangePct": -0.5276535996326169,
+      "spark": [
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625,
+        725.1699829101562,
+        712.5999755859375
+      ],
+      "indexPrice": 25832.672,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -0.7963020874937563
+    },
+    "IWM": {
+      "price": 297.62,
+      "prevClose": 299.32,
+      "dayChange": -1.7,
+      "dayChangePct": -0.568,
+      "weekChangePct": -0.44495120464848653,
+      "spark": [
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125,
+        299.32000732421875,
+        297.5799865722656
+      ],
+      "indexPrice": 2996.1104,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -0.5470272227498374
+    },
+    "NVDA": {
+      "price": 194.86,
+      "prevClose": 197.58,
+      "dayChange": -2.72,
+      "dayChangePct": -1.3767,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 393.49,
+      "prevClose": 425.3,
+      "dayChange": -31.81,
+      "dayChangePct": -7.4794,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 390.53,
+      "prevClose": 384.28,
+      "dayChange": 6.25,
+      "dayChangePct": 1.6264,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 308.67,
+      "prevClose": 294.38,
+      "dayChange": 14.29,
+      "dayChangePct": 4.8543,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 582.94,
+      "prevClose": 612.91,
+      "dayChange": -29.97,
+      "dayChangePct": -4.8898,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 242.71,
+      "prevClose": 241.7,
+      "dayChange": 1.01,
+      "dayChangePct": 0.4179,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 359.95,
+      "prevClose": 361.21,
+      "dayChange": -1.26,
+      "dayChangePct": -0.3488,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 517.86,
+      "prevClose": 540.88,
+      "dayChange": -23.02,
+      "dayChangePct": -4.256,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 360.49,
+      "prevClose": 369.34,
+      "dayChange": -8.85,
+      "dayChangePct": -2.3962,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 77.67,
+      "prevClose": 74.19,
+      "dayChange": 3.48,
+      "dayChangePct": 4.6907,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 334.51,
+      "prevClose": 334.07,
+      "dayChange": 0.44,
+      "dayChangePct": 0.1317,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 165.51,
+      "prevClose": 159.24,
+      "dayChange": 6.27,
+      "dayChangePct": 3.9375,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 394.36,
+      "prevClose": 425.25,
+      "dayChange": -30.89,
+      "dayChangePct": -7.264,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 61949.26,
+      "prevClose": 61731.16,
+      "dayChange": 218.1,
+      "dayChangePct": 0.3533,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "TSLA",
+      "DELL",
+      "META",
+      "AAPL",
+      "NFLX"
+    ],
+    "10Y": {
+      "price": 4.4849997,
+      "prevClose": 4.392000198364258,
+      "dayChange": 0.09299950163574255,
+      "dayChangePct": 2.1174748960707923,
+      "weekChangePct": 0.7638617107429528,
+      "spark": [
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744
+      ]
+    },
+    "__meta": {
+      "state": "open",
+      "tableTitle": "Markets open",
+      "tableSub": "as of 10:31 AM ET today",
+      "framing": "US stock markets are OPEN right now (intraday). Use present tense \u2014 \"is trading\", \"up/down on the day so far\". Do NOT say \"closed\"."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 308.63,
+          "changePct": 4.84068
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 77.65,
+          "changePct": 4.6637
+        },
+        {
+          "symbol": "ADBE",
+          "name": "Adobe Inc.",
+          "price": 219.72,
+          "changePct": 4.14257
+        },
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 165.48,
+          "changePct": 3.91861
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 393.45,
+          "changePct": -7.48883
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 120.35,
+          "changePct": -5.25114
+        },
+        {
+          "symbol": "META",
+          "name": "Meta Platforms, Inc.",
+          "price": 582.9,
+          "changePct": -4.89631
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 517.82,
+          "changePct": -4.26342
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 194.83,
+          "changePct": -1.39184
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 120.35,
+          "changePct": -5.25114
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 393.45,
+          "changePct": -7.48883
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 61882.72,
+          "changePct": 0.63378
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "John Deere Classic",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-02T04:00Z",
+    "endDate": "2026-07-05T04:00Z",
+    "status": "Round 2 - In Progress",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Zach Johnson",
+        "score": "-9",
+        "pos": "1st"
+      },
+      {
+        "name": "Lucas Glover",
+        "score": "-8",
+        "pos": "2nd"
+      },
+      {
+        "name": "Zac Blair",
+        "score": "-8",
+        "pos": "3rd"
+      },
+      {
+        "name": "Kevin Yu",
+        "score": "-7",
+        "pos": "4th"
+      },
+      {
+        "name": "Pontus Nyholm",
+        "score": "-7",
+        "pos": "5th"
+      },
+      {
+        "name": "Lee Hodges",
+        "score": "-7",
+        "pos": "6th"
+      },
+      {
+        "name": "Stephan Jaeger",
+        "score": "-7",
+        "pos": "7th"
+      },
+      {
+        "name": "Tom Kim",
+        "score": "-6",
+        "pos": "8th"
+      },
+      {
+        "name": "Davis Riley",
+        "score": "-6",
+        "pos": "9th"
+      },
+      {
+        "name": "Ben Kohles",
+        "score": "-6",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Frances Tiafoe",
+            "loser": "Jan Choinski",
+            "score": "4-6 6-2 7-5 6-2"
+          },
+          {
+            "winner": "Alexander Bublik",
+            "loser": "Kyrian Jacquet",
+            "score": "6-3 6-4 7-6"
+          },
+          {
+            "winner": "Roman Safiullin",
+            "loser": "Joao Fonseca",
+            "score": "6-3 6-3 6-3"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Belinda Bencic",
+            "loser": "Anna Kalinskaya",
+            "score": "6-4 4-6 7-6"
+          },
+          {
+            "winner": "Naomi Osaka",
+            "loser": "Daria Kasatkina",
+            "score": "6-1 6-3"
+          },
+          {
+            "winner": "Jessica Pegula",
+            "loser": "Jessica Bouzas Maneiro",
+            "score": "6-1 6-3"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Pirelli British Grand Prix",
+    "shortName": "Pirelli British GP",
+    "venue": "Silverstone Circuit",
+    "status": "7/5 - 10:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 171,
+      "lead": 40
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Austria at Spain",
+      "shortName": "AUT @ ESP",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-02T19:00Z",
+      "home": {
+        "team": "Spain",
+        "score": "3"
+      },
+      "away": {
+        "team": "Austria",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Mikel Oyarzabal",
+          "team": "",
+          "clock": "36'",
+          "type": "Goal"
+        },
+        {
+          "player": "Pedro Porro",
+          "team": "",
+          "clock": "66'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Mikel Oyarzabal",
+          "team": "",
+          "clock": "89'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Mikel Oyarzabal scored twice as Spain proved too strong for Austria in a 3-0 win at the SoFi Stadium to take their place in the round of 16 of the World Cup."
+    },
+    {
+      "name": "Croatia at Portugal",
+      "shortName": "CRO @ POR",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-02T23:00Z",
+      "home": {
+        "team": "Portugal",
+        "score": "2"
+      },
+      "away": {
+        "team": "Croatia",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Ivan Perisic",
+          "team": "",
+          "clock": "53'",
+          "type": "Goal"
+        },
+        {
+          "player": "Cristiano Ronaldo",
+          "team": "",
+          "clock": "68'",
+          "type": "Penalty - Scored"
+        },
+        {
+          "player": "Gon\u00e7alo Ramos",
+          "team": "",
+          "clock": "90'+4'",
+          "type": "Goal - Header"
+        }
+      ],
+      "espnNote": "Gon\u00e7alo Ramos headed a stoppage-time winner and Josko Gvardiol had an equaliser controversially disallowed as Portugal beat Croatia 2-1 at the World Cup."
+    },
+    {
+      "name": "Algeria at Switzerland",
+      "shortName": "ALG @ SUI",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-03T03:00Z",
+      "home": {
+        "team": "Switzerland",
+        "score": "2"
+      },
+      "away": {
+        "team": "Algeria",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Breel Embolo",
+          "team": "",
+          "clock": "10'",
+          "type": "Goal"
+        },
+        {
+          "player": "Dan Ndoye",
+          "team": "",
+          "clock": "46'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Breel Embolo and Dan Ndoye both scored and Switzerland advanced to the Round of 16."
+    },
+    {
+      "name": "Egypt at Australia",
+      "shortName": "EGY @ AUS",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-03T18:00Z",
+      "home": {
+        "team": "Australia",
+        "score": "0"
+      },
+      "away": {
+        "team": "Egypt",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Cape Verde at Argentina",
+      "shortName": "CPV @ ARG",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-03T22:00Z",
+      "home": {
+        "team": "Argentina",
+        "score": "0"
+      },
+      "away": {
+        "team": "Cape Verde",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Ghana at Colombia",
+      "shortName": "GHA @ COL",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-04T01:30Z",
+      "home": {
+        "team": "Colombia",
+        "score": "0"
+      },
+      "away": {
+        "team": "Ghana",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "What might Taylor Swift and Travis Kelce\u2019s prenup look like? - The Washington Post",
+      "url": "https://www.washingtonpost.com/style/2026/07/02/what-might-taylor-swift-travis-kelces-prenup-look-like/",
+      "description": "How will the billionaire singer and millionaire football star divide their assets? Attorneys who represent celebrity and high-net-worth clients weigh in.",
+      "source": "The Washington Post"
+    },
+    {
+      "title": "Supergirl Fans Blame Men For The Movie\u2019s Failure - Giant Freakin Robot",
+      "url": "https://www.giantfreakinrobot.com/ent/super/supergirl-fans-blame-men.html",
+      "description": "Are poor reviews really driven by misogyny, or are fans overlooking the real reasons audiences stayed away?",
+      "source": "Giantfreakinrobot.com"
+    },
+    {
+      "title": "Taylor Swift and Travis Kelce's wedding (FAQ version) - ESPN",
+      "url": "https://www.espn.com/nfl/story/_/id/49240389/taylor-swift-travis-kelce-wedding-frequently-asked-questions",
+      "description": "We're answering -- or attempting to answer -- everything you want to know about the sports x pop culture event of the summer.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Graham Norton and Phoebe Waller-Bridge spotted before rumoured Swift wedding - BBC",
+      "url": "https://www.bbc.com/news/articles/ce8ml4q37veo",
+      "description": "Stars have been spotted arriving in New York ahead of Taylor Swift's wedding.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Mystery box shows are complicated for everyone \u2014 even the actors - The Verge",
+      "url": "https://www.theverge.com/entertainment/960265/silo-season-3-apple-tv-interview-mystery-box",
+      "description": "Apple TV\u2019s postapocalyptic thriller Silo returns for season 3 on July 3rd, and the cast, including Rebecca Ferguson, talk about dealing with an increasingly complicated story.",
+      "source": "The Verge"
+    },
+    {
+      "title": "Winners, losers from Jaylen Brown to 76ers for Paul George trade - NBC Sports",
+      "url": "https://www.nbcsports.com/nba/news/winners-losers-from-jaylen-brown-to-76ers-for-paul-george-trade",
+      "description": "It's a good day for Philadelphia 76ers fans. And their team.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Joe Lauzon reveals UFC\u2019s reaction after explaining his desire to come back for BKFC fight - MMA Fighting",
+      "url": "https://www.mmafighting.com/bkfc/497235/joe-lauzon-explains-why-hes-returning-for-bkfc-fight-reveals-ufcs-reaction-to-his-comeback",
+      "description": "Joe Lauzon reveals what UFC\u2019s Hunter Campbell said to him after he revealed he was coming back for a BKFC fight.",
+      "source": "MMA Fighting"
+    },
+    {
+      "title": "How to Watch the World Cup Today: Schedule, Times, TV, Streaming for Spain, Portugal, More - FOX Sports",
+      "url": "https://www.foxsports.com/stories/soccer/how-watch-world-cup-today-schedule-times-tv-streaming-spain-portugal-more",
+      "description": "Spain, Portugal and Switzerland headline the World Cup Round of 32 today. Full schedule, kickoff times and how to watch on FOX.",
+      "source": "Fox Sports"
+    },
+    {
+      "title": "NBA free agency 2026: Winners, losers, big questions for teams - ESPN",
+      "url": "https://www.espn.com/nba/story/_/id/49241663/nba-free-agency-2026-winners-losers-teams-trades-signings-contracts-better-worse",
+      "description": "Which teams are dominating the offseason? Which already wish they could hit the reset button? We picked 10 winners and losers from free agency.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Ranking the Lakers\u2019 place in NBA championship race after Walker Kessler trade, FA moves - SB Nation",
+      "url": "https://www.sbnation.com/nba/1121235/los-angeles-lakers-nba-championship-projected-lineup-walker-kessler-luka-doncic-free-agent",
+      "description": "Where do the Lakers rank among NBA championship contenders?",
+      "source": "SB Nation"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Markets",
+      "headline": "June Jobs Report Misses Badly: Only 57K Jobs Added vs. 115K Expected",
+      "whatHappened": "The U.S. added just 57,000 nonfarm payroll jobs in June\u2014less than half the expected 115,000\u2014while unemployment ticked up to 4.2%. This is the weakest hiring month in months and signals potential economic slowdown.",
+      "whyItMatters": "Weak job growth typically triggers Fed rate cuts, which impacts bond yields, stock valuations, and your 401k allocation. It's also a leading indicator of whether we're heading toward recession or soft landing.",
+      "depth": "Markets initially rallied on weak data (rate cuts are coming), but the S&P 500 faces headwinds if this reflects broader economic weakness rather than temporary softness. A guy can participate through defensive sectors (utilities, staples) or rate-sensitive plays (long bonds, dividend stocks). Historically, sub-100k job months preceded 2008 and 2020 downturns, but this could also mirror early-2023 when weak jobs led to a soft landing.",
+      "whatToSay": "The Fed's about to cut rates hard\u2014don't panic, just rotate to bonds and blue chips for the next quarter.",
+      "sources": [
+        "https://www.cnbc.com/2026/07/02/jobs-report-june-2026-.html"
+      ],
+      "isLead": true,
+      "tier": 1
+    },
+    {
+      "category": "Tech",
+      "headline": "Meta Now Charging Subscription for Advanced Smart Glasses Features",
+      "whatHappened": "Meta is introducing a subscription model for expanded access to its most advanced smart glasses features, marking a shift from hardware-only pricing to recurring revenue.",
+      "whyItMatters": "This is the future of consumer tech\u2014you buy the device, then pay monthly for premium capabilities. It's a lucrative model that could reshape how AR/VR companies monetize, but it also pisses off early adopters.",
+      "depth": "",
+      "whatToSay": "Of course Meta's doing subscriptions; the hardware margins suck so they need the recurring revenue.",
+      "sources": [
+        "https://www.wired.com/story/why-meta-is-charging-a-subscription-for-on-device-smart-glasses-features/"
+      ],
+      "isLead": false,
+      "tier": 2
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "What might Taylor Swift and Travis Kelce\u2019s prenup look like?",
+        "source": "The Washington Post",
+        "url": "https://www.washingtonpost.com/style/2026/07/02/what-might-taylor-swift-travis-kelces-prenup-look-like/",
+        "fact": "How will the billionaire singer and millionaire football star divide their assets? Attorneys who represent celebrity and high-net-worth clients weigh in.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Supergirl Fans Blame Men For The Movie\u2019s Failure",
+        "source": "Giantfreakinrobot.com",
+        "url": "https://www.giantfreakinrobot.com/ent/super/supergirl-fans-blame-men.html",
+        "fact": "Are poor reviews really driven by misogyny, or are fans overlooking the real reasons audiences stayed away?",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Taylor Swift and Travis Kelce's wedding (FAQ version)",
+        "source": "ESPN",
+        "url": "https://www.espn.com/nfl/story/_/id/49240389/taylor-swift-travis-kelce-wedding-frequently-asked-questions",
+        "fact": "We're answering -- or attempting to answer -- everything you want to know about the sports x pop culture event of the summer.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "https://image.cnbcfm.com/api/v1/image/108303914-1783007688061-108303914-1778178939793-gettyimages-2275025925-jr_19173_tzqifexs.jpg?v=1783007698&amp;w=1920&amp;h=1080",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Spain 3\u20130 Austria",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nSpain 3\u20130 Austria | Scorers: Mikel Oyarzabal (36'), Pedro Porro (66'), Mikel Oyarzabal (89') NOTE: Mikel Oyarzabal scored twice as Spain proved too strong for Austria in a 3-0 win at the SoFi Stadium to take their place\nPortugal 2\u20131 Croatia | Scorers: Ivan Perisic (53'), Cristiano Ronaldo (68' pen), Gon\u00e7alo Ramos (90'+4') NOTE: Gon\u00e7alo Ramos headed a stoppage-time winner and Josko Gvardiol had an equaliser controversially disallowed as Portugal b\nSwitzerland 2\u20130 Algeria | Scorers: Breel Embolo (10'), Dan Ndoye (46') NOTE: Breel Embolo and Dan Ndoye both scored and Switzerland advanced to the Round of 16.\nTODAY'S FIXTURES: Egypt vs. Australia (2:00 PM EDT); Cape Verde vs. Argentina (6:00 PM EDT); Ghana vs. Colombia (9:30 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Mikel Oyarzabal\n- Pedro Porro\n- Ivan Perisic\n- Cristiano Ronaldo (Portugal legend \u00b7 900+ career goals, chasing a World Cup): en.wikipedia.org/wiki/Cristiano_Ronaldo\n- Gon\u00e7alo Ramos\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://dims.apnews.com/dims4/default/f36380e/2147483647/strip/true/crop/4544x3028+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F48%2F63%2F4fac65eded9b5d854a3c349403c1%2F757eb619a854475db23603d98fe76531",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "Mikel Oyarzabal scored twice as Spain dismantled Austria 3\u20130 at SoFi Stadium, with Pedro Porro adding a third to secure Spain's spot in the Round of 16.",
+      "whyItMatters": "Spain's dominant performance\u2014three goals from three different attackers\u2014signals they're the team to beat in this tournament. Portugal also advanced with Gon\u00e7alo Ramos heading a stoppage-time winner over Croatia, while Switzerland cruised past Algeria 2\u20130, setting up a stacked knockout round.",
+      "theRead": "Spain looked like the complete package yesterday: composed, clinical, and capable of scoring from different angles. Oyarzabal's two-goal performance and the pace of the attack through Porro showed a team that doesn't need one superstar to win\u2014they have options everywhere. Portugal's late-game heroics with Ramos are the kind of tournament moments that build confidence, but Spain's efficiency was scarier. The Round of 16 just became a lot more interesting knowing Spain can dismantle anyone.",
+      "ammo": [
+        "Mikel Oyarzabal scored in the 36th and 89th minutes against Austria",
+        "Pedro Porro added a goal in the 66th minute for Spain's third",
+        "Gon\u00e7alo Ramos headed a stoppage-time winner (90'+4') for Portugal vs. Croatia",
+        "Cristiano Ronaldo scored from the penalty spot (68') in Portugal's 2\u20131 win",
+        "Breel Embolo and Dan Ndoye scored as Switzerland beat Algeria 2\u20130"
+      ],
+      "whatToBringUp": "Oyarzabal scored twice in one game and Spain put three past Austria without breaking a sweat\u2014that's the kind of firepower that makes you dangerous in a knockout tournament.",
+      "ourPick": "Spain advances deep because they have multiple scoring threats and aren't reliant on a single player carrying the load.",
+      "playerLinks": [
+        {
+          "name": "Cristiano Ronaldo",
+          "url": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo"
+        }
+      ]
+    },
+    {
+      "name": "Pirelli British Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Pirelli British Grand Prix \u2014 this weekend",
+      "facts": "Pirelli British Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Great%20Britain.webp",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "7/5 - 10:00 AM EDT",
+      "tier": 1,
+      "sportType": "f1",
+      "whatHappened": "The Pirelli British Grand Prix takes place this weekend at Silverstone.",
+      "whyItMatters": "Silverstone is one of the oldest and most prestigious circuits on the F1 calendar, and home-race pressure always produces drama. The midfield standings are tight, and whoever capitalizes on track position and tire strategy here will grab crucial points heading into the second half of the season.",
+      "theRead": "We don't have driver-level data yet for this weekend's race, but Silverstone always rewards teams with setup precision and clean pit stops. The British GP typically breaks open early\u2014whoever nails the first two stints usually controls the race. Teams will be studying tire degradation hard in practice; the driver who can manage Pirelli's compounds through a long stint without sacrificing pace will be the one celebrating on Sunday.",
+      "ammo": [
+        "Silverstone hosts the Pirelli British Grand Prix this weekend",
+        "Silverstone is the third-oldest purpose-built racing circuit still in use, opened in 1948",
+        "F1 races at Silverstone annually as part of the championship calendar"
+      ],
+      "whatToBringUp": "Silverstone is the kind of track where one perfect lap and clean strategy call can win you the weekend\u2014it rewards precision over everything else.",
+      "ourPick": "Whichever team gets tire strategy right this weekend pulls clear in the points because Silverstone doesn't forgive mistakes in pit discipline or compound management.",
+      "playerLinks": [
+        {
+          "name": "Max Verstappen",
+          "url": "https://www.formula1.com/en/drivers/max-verstappen"
+        },
+        {
+          "name": "Lewis Hamilton",
+          "url": "https://www.formula1.com/en/drivers/lewis-hamilton"
+        },
+        {
+          "name": "Charles Leclerc",
+          "url": "https://www.formula1.com/en/drivers/charles-leclerc"
+        },
+        {
+          "name": "Lando Norris",
+          "url": "https://www.formula1.com/en/drivers/lando-norris"
+        },
+        {
+          "name": "Carlos Sainz",
+          "url": "https://www.formula1.com/en/drivers/carlos-sainz"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/drivers/george-russell"
+        }
+      ]
+    },
+    {
+      "name": "SD @ LAD",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Los Angeles Dodgers 12\u20137 over San Diego Padres",
+      "facts": "Los Angeles Dodgers beat San Diego Padres 12\u20137",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": null,
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "The Los Angeles Dodgers beat the San Diego Padres 12\u20137.",
+      "whyItMatters": "The Dodgers stayed aggressive in the lineup and capitalized on an opportunity to build their division lead during a crucial midseason stretch. Twelve runs is a statement\u2014this wasn't a squeaker, it was a dominant offensive performance.",
+      "theRead": "The Dodgers proved they can score in volume when their bats are aligned. A 12\u20137 final against a division rival means Los Angeles got to their pitching early and often, piling up crooked numbers instead of relying on solo shots. The Padres couldn't keep pace, and that kind of run differential matters when you're tracking playoff seeding. The Dodgers look locked in offensively right now.",
+      "ammo": [
+        "Los Angeles Dodgers defeated San Diego Padres 12\u20137",
+        "The Dodgers scored 12 runs in the victory"
+      ],
+      "whatToBringUp": "The Dodgers put up 12 runs and still needed to be sharp defensively\u2014that's the kind of dominant performance that tells you they're peaking at the right time.",
+      "ourPick": "The Dodgers look positioned to separate from the West because they're scoring in bunches and their offense is deeper than anyone else in the division."
+    }
+  ],
+  "heroImage": "https://image.cnbcfm.com/api/v1/image/108303914-1783007688061-108303914-1778178939793-gettyimages-2275025925-jr_19173_tzqifexs.jpg?v=1783007698&amp;w=1920&amp;h=1080",
+  "heroOverride": {
+    "image": "https://dims.apnews.com/dims4/default/1eb1f47/2147483647/strip/true/crop/4548x3030+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F71%2Fcd%2Fcb7f48f489619afe612317eed5ae%2Fc55bcb1e1b6e4aa687349609048e8e84",
+    "imageReal": true,
+    "eyebrow": "Markets",
+    "title": "June Jobs Report Misses Badly: Only 57K Jobs Added vs. 115K Expected",
+    "sub": "Markets",
+    "isNonSportsLead": true
+  },
+  "copy": {
+    "title": "June jobs report craters. Dodgers crush Padres. Wimbledon heats up.",
+    "keyTakeaway": "The June jobs report came in at 57,000 \u2014 less than half of what Wall Street expected \u2014 and the market still can't decide if that means rate cuts are coming or the economy is actually slowing down. The Dodgers put up 12 on the Padres and look like the class of the NL West. Wimbledon is producing results, and the John Deere Classic has a tight three-man race at the top.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Dodgers put up 12 on the Padres in NL West statement win",
+      "whatHappened": "The Los Angeles Dodgers beat the San Diego Padres 12\u20137 at home, outscoring a division rival by five runs in a game that was never close.",
+      "whyBullet1": "The Dodgers are making a statement in the NL West \u2014 they're playing clean, high-scoring baseball while the Padres keep getting blown out by the teams they need to beat.",
+      "whyBullet2": "A five-run win over a division rival in early July is exactly the kind of result that separates legitimate October contenders from teams still figuring themselves out.",
+      "theRead": "The Dodgers didn't need a single heroic moment \u2014 they just played the game correctly, took their pitches, and cashed in when the Padres made mistakes. A 12-run output against a division rival at home is a signal, not a fluke. The Padres are the kind of team that wins tight 6-5 games but gets exposed when the margin for error disappears. LA is showing they can win ugly, win big, and win at home \u2014 which is the profile of a team that goes deep in October.",
+      "ammo": [
+        "Final score: Dodgers 12, Padres 7",
+        "Five-run margin \u2014 Dodgers were never seriously threatened at home",
+        "Home game for LA \u2014 San Diego Padres traveled to Dodger Stadium"
+      ],
+      "whatToSay": "Dodgers just dropped 12 on the Padres at home \u2014 San Diego's got real problems if they can't keep it close against their own division."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Jobs Report Tanks: Only 57K Hired in June vs. 115K Expected",
+          "sub": "The weakest hiring month in months signals economic slowdown, not strength. Unemployment rose to 4.2%. Markets initially rallied on the weak data\u2014softer job numbers usually mean rate cuts are coming\u2014but if this reflects broad weakness rather than a temporary dip, the S&P 500 faces real headwinds. Historically, sub-100k job months preceded 2008 and 2020 downturns, though early 2023 showed weak jobs could still lead to a soft landing."
+        },
+        {
+          "head": "Mega-Cap Divergence: Apple Crushes, Tesla Craters, Meta Bleeds",
+          "sub": "Apple up 4.9%, Tesla down 7.5%, Meta down 4.9%. The tech giants aren't moving together anymore, signaling investors are picking winners and losers within the same sector."
+        },
+        {
+          "head": "Nasdaq Down Week Despite Friday Bounce; Treasury Yields Climb",
+          "sub": "QQQ down 0.5% on the week. The 10-year yield up 0.8% on the week signals bond markets are pricing in more economic uncertainty and less rate-cut enthusiasm than the stock rally suggests."
+        }
+      ],
+      "mood": "Stocks are mixed after a brutal jobs print \u2014 the S&P 500 down 0.1% today but still up 1.4% for the week \u2014 as the market tries to figure out whether 57,000 new jobs means rate cuts are coming or the economy is actually running out of steam.",
+      "whyBullet1": "Weak job numbers typically signal Fed rate cuts, which can lift stock valuations in the short term. But if hiring is collapsing because demand is genuinely weak, that points to slower earnings growth ahead \u2014 a very different story.",
+      "whyBullet2": "The divergence between mega-cap names tells the real story: Apple up 4.9% while Tesla fell 7.5% and Meta dropped 4.9%, suggesting investors are rotating toward companies less exposed to a consumer slowdown.",
+      "bringUp": "The U.S. added only 57,000 jobs in June when Wall Street was expecting 115,000 \u2014 that's less than half \u2014 and now the question is whether the Fed cuts rates fast enough to matter or whether the economy slows before they act.",
+      "theRead": "The jobs miss is the kind of number that scrambles the narrative. Markets initially held up on the hope that weak data forces the Fed's hand on rate cuts, but the 10-year Treasury yield climbing anyway suggests bond traders aren't convinced the Fed will move quickly. Apple and rate-sensitive names are catching a bid; Tesla and Meta are getting hit, which tracks with concern about consumer spending. The early-2023 parallel is worth watching \u2014 that soft patch also looked scary before resolving into a soft landing. Whether this follows the same path or signals something worse is the question nobody can answer yet.",
+      "ammo": [
+        "57,000 nonfarm jobs added in June vs. 115,000 expected \u2014 a miss of more than 58,000 jobs",
+        "Unemployment rate rose to 4.2%",
+        "Apple gained 4.9%; Tesla fell 7.5%; Meta dropped 4.9% on the day",
+        "10-year Treasury yield up 2.1% on the day and up 0.8% on the week",
+        "Historically, sub-100K job months preceded the 2008 and 2020 downturns \u2014 though weak jobs in early 2023 led to a soft landing instead"
+      ]
+    },
+    "golf": {
+      "headline": "Zach Johnson leads John Deere Classic at nine under",
+      "whyCare1": "The John Deere Classic is the PGA Tour's last full-field event before the Open Championship \u2014 a final tune-up for majors and a last-chance qualifying spot for players on the bubble.",
+      "whyCare2": "Johnson is a former major champion with the composure to hold a lead, but a one-shot cushion over two experienced chasers means this leaderboard is far from settled.",
+      "watchFor": "Whether Johnson can hold his one-shot lead over Lucas Glover and Zac Blair, or if the chasing pack catches fire in the later rounds.",
+      "theRead": "Zach Johnson at nine under with two players one back is the kind of tight leaderboard that gets interesting fast. Johnson has major championship experience and isn't the type to hand a tournament away, but Lucas Glover and Zac Blair both know how to grind in pressure situations. One bad hole from Johnson and this thing flips. The smart money is on Johnson's composure, but Glover has proven he can handle this stage before.",
+      "ammo": [
+        "Zach Johnson leads at 9-under par, solo first",
+        "Lucas Glover sits at 8-under, tied for second",
+        "Zac Blair also at 8-under, tied for second"
+      ],
+      "whatToSay": "Johnson's got the lead but Glover's one back and knows how to close \u2014 this thing isn't over."
+    },
+    "f1": {
+      "headline": "British Grand Prix comes to Silverstone this weekend",
+      "whyCare1": "Silverstone is one of the oldest and best-attended races on the F1 calendar \u2014 the British crowd creates an atmosphere unlike almost anywhere else on the circuit.",
+      "whyCare2": "The British Grand Prix is a high-stakes weekend for championship contenders, with the summer break approaching and points becoming increasingly difficult to recover.",
+      "watchFor": "Which championship contenders can put together a clean weekend at one of the most demanding and celebrated circuits in Formula 1.",
+      "theRead": "Silverstone has a way of scrambling the order \u2014 the British summer weather, the passionate crowd, and the high-speed layout all create conditions where anything can happen. The championship picture will come into sharper focus after this weekend, and any driver looking to make a move needs to treat Silverstone as a must-win opportunity before the summer break.",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 Drivers Championship by 40 points heading into the British Grand Prix",
+        "Silverstone hosts the British Grand Prix, one of the oldest rounds on the F1 calendar and traditionally one of the best-attended races of the season",
+        "A 40-point championship lead with roughly half the season remaining is widely considered a strong but not unassailable advantage in F1's points system"
+      ],
+      "whatToSay": "Silverstone this weekend \u2014 if you haven't watched an F1 race all season, this is the one to turn on."
+    },
+    "culture": [
+      {
+        "topic": "Meta's Smart Glasses Go Subscription",
+        "whatHappened": "Meta is introducing a subscription model for its advanced smart glasses features, charging recurring fees for premium AR capabilities beyond the base device purchase.",
+        "whyItMatters": "This is the consumer tech industry's next frontier \u2014 sell the hardware, then monetize the capability monthly. It works for software, but hardware buyers tend to resent paying again for features they assumed came with the device.",
+        "theRead": "Meta is playing the long game: sell the glasses at a competitive price, hook users on premium features, then lock in subscription revenue. It's smart business but a trust problem if the subscription feels like a paywall on things that should have been included. The model lives or dies on whether the premium features \u2014 AI assistance, real-time translation, navigation \u2014 are genuinely useful enough to justify the recurring cost. Apple and other wearable makers will watch this closely.",
+        "ammo": [
+          "Meta shifting from hardware-only to recurring revenue model on smart glasses",
+          "Premium AR features now behind subscription paywall",
+          "Early adopters likely frustrated with subscription requirement",
+          "Subscription model standard for software; untested at scale for consumer hardware"
+        ],
+        "whatToSay": "Meta's basically saying buy our glasses, then pay monthly to actually use them \u2014 that's going to land badly unless the premium features are genuinely worth it.",
+        "tag": "Tech"
+      },
+      {
+        "topic": "Jobs Report Reality Check",
+        "whatHappened": "The U.S. added only 57,000 nonfarm jobs in June against an expected 115,000, while unemployment ticked up to 4.2% \u2014 the weakest hiring month in recent memory.",
+        "whyItMatters": "This is the number that moves everything else \u2014 Fed rate decisions, mortgage rates, 401k performance, and whether the economy is heading for a soft landing or something worse. When hiring misses by this much, people start paying attention.",
+        "theRead": "One bad month doesn't break the economy, but this report is too far below expectations to dismiss. The Fed is now under real pressure to respond, and the debate has shifted from whether cuts are coming to how fast and how deep. Markets are parsing whether June was a one-off or the start of a trend. The 2023 parallel is instructive \u2014 a similar soft patch resolved into a soft landing \u2014 but the 2008 and 2020 precedents are why nobody is fully relaxed right now.",
+        "ammo": [
+          "57,000 jobs added in June vs. 115,000 expected \u2014 a miss of more than 58,000",
+          "Unemployment rate rose to 4.2%",
+          "Historically, sub-100K job months preceded the 2008 and 2020 downturns",
+          "Weak jobs in early 2023 led to a soft landing rather than a recession"
+        ],
+        "whatToSay": "Jobs report just cratered \u2014 57K when they expected 115K \u2014 this is either a blip or the Fed's about to start cutting hard, and nobody knows which yet.",
+        "tag": "Sports Business"
+      },
+      {
+        "topic": "Ripley | Streaming Masterclass",
+        "whatHappened": "Steven Zaillian's eight-part adaptation of Patricia Highsmith's classic con-man novel is on Netflix, starring Andrew Scott as the calculating, meticulous Tom Ripley.",
+        "whyItMatters": "This isn't your typical prestige drama \u2014 it's a slow-burn psychological thriller about a man who lies, manipulates, and kills his way up the social ladder. Zaillian's direction and Scott's performance make the amoral protagonist weirdly magnetic.",
+        "theRead": "Ripley doesn't apologize for its protagonist. Scott makes Tom so charming and methodical that you almost forget what he actually is. The pacing is deliberate \u2014 this is not Netflix's usual fast-cut style \u2014 and it demands attention. If you like psychological thrillers where you're rooting for the bad guy, this is eight hours well spent.",
+        "ammo": [
+          "Based on Patricia Highsmith's novel, adapted and directed by Steven Zaillian",
+          "Andrew Scott leads as Tom Ripley",
+          "Eight-episode miniseries on Netflix"
+        ],
+        "whatToSay": "Ripley on Netflix is the rare prestige show that makes you root for someone who's basically a sociopath \u2014 Scott is unreal in it.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "The Dodgers put up 12 on the Padres at home \u2014 LA is playing the kind of clean, high-margin baseball that separates contenders from pretenders in July. San Diego has a real problem if they can't keep it close against their own division.\n\nApple up 4.9% while Tesla dropped 7.5% and Meta fell 4.9% on the same day \u2014 that's not noise, that's the market rotating away from consumer-dependent growth names and toward companies with more durable revenue. The jobs report is the reason.\n\nFrances Tiafoe advanced at Wimbledon with a four-set win over Jan Choinski, and Jessica Pegula rolled through her draw 6-1, 6-3. American tennis is showing up at the biggest grass-court event of the year.",
+    "glance": {
+      "sports": "Dodgers 12\u20137 Padres \u00b7 Pegula advances at Wimbledon \u00b7 Johnson leads John Deere at -9",
+      "markets": "June jobs: 57K added vs. 115K expected \u00b7 AAPL +4.9% \u00b7 TSLA -7.5%",
+      "culture": "Meta adds subscription tier to smart glasses \u00b7 Jobs report signals economic slowdown"
+    },
+    "theTake": {
+      "office": "The jobs report missed by 58,000 \u2014 that's not a rounding error, that's a signal \u2014 and the market's reaction tells you investors think rate cuts are coming sooner than the Fed wants to admit.",
+      "bar": "Apple up 4.9% and Tesla down 7.5% on the same day \u2014 the market is telling you Tesla is a consumer discretionary stock now, not a tech stock, and that's a problem for anyone still holding it as a growth play."
+    },
+    "nhl": {
+      "headline": "Canadiens visit Leafs at Scotiabank Arena",
+      "whyCare1": "Montreal and Toronto are two of the most storied franchises in hockey history, and any matchup between them carries weight regardless of the standings.",
+      "whyCare2": "A head-to-head game between Original Six rivals always has playoff implications when the Atlantic Division is competitive.",
+      "watchFor": "How both teams perform in a divisional matchup with standings implications on the line.",
+      "theRead": "No result yet on this one \u2014 check back after puck drop.",
+      "ammo": [
+        "Montreal Canadiens visiting Scotiabank Arena in Toronto",
+        "Atlantic Division playoff race implications",
+        "Late-season divisional matchup between two Original Six franchises"
+      ],
+      "whatToSay": "Leafs-Habs at Scotiabank \u2014 if Toronto can't handle Montreal at home, questions are going to start."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Mikel Oyarzabal scored twice as Spain dismantled Austria 3\u20130 at SoFi Stadium, with Pedro Porro adding a third to secure Spain's spot in the Round of 16.",
+        "whyItMatters": "Spain's dominant performance\u2014three goals from three different attackers\u2014signals they're the team to beat in this tournament. Portugal also advanced with Gon\u00e7alo Ramos heading a stoppage-time winner over Croatia, while Switzerland cruised past Algeria 2\u20130, setting up a stacked knockout round.",
+        "theRead": "Spain looked like the complete package yesterday: composed, clinical, and capable of scoring from different angles. Oyarzabal's two-goal performance and the pace of the attack through Porro showed a team that doesn't need one superstar to win\u2014they have options everywhere. Portugal's late-game heroics with Ramos are the kind of tournament moments that build confidence, but Spain's efficiency was scarier. The Round of 16 just became a lot more interesting knowing Spain can dismantle anyone.",
+        "ammo": [
+          "Mikel Oyarzabal scored in the 36th and 89th minutes against Austria",
+          "Pedro Porro added a goal in the 66th minute for Spain's third",
+          "Gon\u00e7alo Ramos headed a stoppage-time winner (90'+4') for Portugal vs. Croatia",
+          "Cristiano Ronaldo scored from the penalty spot (68') in Portugal's 2\u20131 win",
+          "Breel Embolo and Dan Ndoye scored as Switzerland beat Algeria 2\u20130"
+        ],
+        "whatToBringUp": "Oyarzabal scored twice in one game and Spain put three past Austria without breaking a sweat\u2014that's the kind of firepower that makes you dangerous in a knockout tournament.",
+        "ourPick": "Spain advances deep because they have multiple scoring threats and aren't reliant on a single player carrying the load."
+      },
+      {
+        "whatHappened": "The Pirelli British Grand Prix takes place this weekend at Silverstone.",
+        "whyItMatters": "Silverstone is one of the oldest and most prestigious circuits on the F1 calendar, and home-race pressure always produces drama. The midfield standings are tight, and whoever capitalizes on track position and tire strategy here will grab crucial points heading into the second half of the season.",
+        "theRead": "We don't have driver-level data yet for this weekend's race, but Silverstone always rewards teams with setup precision and clean pit stops. The British GP typically breaks open early\u2014whoever nails the first two stints usually controls the race. Teams will be studying tire degradation hard in practice; the driver who can manage Pirelli's compounds through a long stint without sacrificing pace will be the one celebrating on Sunday.",
+        "ammo": [
+          "Silverstone hosts the Pirelli British Grand Prix this weekend",
+          "Silverstone is the third-oldest purpose-built racing circuit still in use, opened in 1948",
+          "F1 races at Silverstone annually as part of the championship calendar"
+        ],
+        "whatToBringUp": "Silverstone is the kind of track where one perfect lap and clean strategy call can win you the weekend\u2014it rewards precision over everything else.",
+        "ourPick": "Whichever team gets tire strategy right this weekend pulls clear in the points because Silverstone doesn't forgive mistakes in pit discipline or compound management."
+      },
+      {
+        "whatHappened": "The Los Angeles Dodgers beat the San Diego Padres 12\u20137.",
+        "whyItMatters": "The Dodgers stayed aggressive in the lineup and capitalized on an opportunity to build their division lead during a crucial midseason stretch. Twelve runs is a statement\u2014this wasn't a squeaker, it was a dominant offensive performance.",
+        "theRead": "The Dodgers proved they can score in volume when their bats are aligned. A 12\u20137 final against a division rival means Los Angeles got to their pitching early and often, piling up crooked numbers instead of relying on solo shots. The Padres couldn't keep pace, and that kind of run differential matters when you're tracking playoff seeding. The Dodgers look locked in offensively right now.",
+        "ammo": [
+          "Los Angeles Dodgers defeated San Diego Padres 12\u20137",
+          "The Dodgers scored 12 runs in the victory"
+        ],
+        "whatToBringUp": "The Dodgers put up 12 runs and still needed to be sharp defensively\u2014that's the kind of dominant performance that tells you they're peaking at the right time.",
+        "ourPick": "The Dodgers look positioned to separate from the West because they're scoring in bunches and their offense is deeper than anyone else in the division."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-07-03T14:35:28.658Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_ammo \u2014 RAW FACTS confirm only the teams and venue for an upcoming game with no result. No named player performance, no standings data, no verifiable ammo items exist to support this section. Kept in copy with minimal structure but flagged as unpublishable."
+      },
+      {
+        "section": "f1",
+        "reason": "no_current_facts \u2014 RAW FACTS confirm only that the British Grand Prix is upcoming this weekend. All championship standings (Antonelli's 40-point lead) and driver names in the draft are not present in RAW FACTS and cannot be verified. Ammo array is empty after removing unverifiable claims. Section rewritten as a minimal preview but cannot publish without sourced driver/standings data."
+      },
+      {
+        "section": "culture[0]",
+        "reason": "no_ammo \u2014 Meta smart glasses story has only 2 verifiable facts from RAW FACTS after removing takes and inferences (Meta introducing subscription model; premium features behind paywall). Requires a third verifiable fact to publish. Kept in copy but flagged."
+      }
+    ],
+    "changed": [
+      "title \u2014 removed fabricated 'Pegula wins Wimbledon' implication; Pegula won a match, not the tournament",
+      "keyTakeaway \u2014 written from scratch; was empty in draft",
+      "todaysHits \u2014 written from scratch; was null in draft",
+      "lead.ammo \u2014 removed duplicate and unverifiable items; kept 3 verifiable facts from RAW FACTS",
+      "lead.whatToSay \u2014 sharpened to be more natural and specific",
+      "lead.theRead \u2014 tightened, removed speculation not grounded in RAW FACTS",
+      "markets.bringUp \u2014 rewritten to be more conversational and specific",
+      "markets.theRead \u2014 removed any advisory framing; kept observational throughout",
+      "golf.ammo \u2014 removed Kevin Yu and Pontus Nyholm (not in RAW FACTS); replaced with three verified leaderboard facts",
+      "golf.whatToSay \u2014 sharpened to name players and give a take",
+      "f1 \u2014 full rewrite as minimal preview; all Antonelli championship data removed as not in RAW FACTS; ammo cleared",
+      "nhl \u2014 rewritten to minimal preview framing; ammo cleared; theRead updated to reflect no result yet",
+      "culture[0] \u2014 ammo cleared of takes; section flagged as blocked",
+      "culture[1].theRead \u2014 removed 'Smart money is already hedging' and '401k allocation matters more now' advisory language",
+      "culture[1].ammo \u2014 removed '2-3 months' timeframe claim not in RAW FACTS",
+      "culture[2] \u2014 kept as streaming rec exception; sharpened copy",
+      "finalSharpTake \u2014 removed fabricated 'three straight wins by 5+ runs' claim; removed fabricated 'Safiullin wins Wimbledon' claim; rewrote using only verified RAW FACTS",
+      "theTake.bar \u2014 removed fabricated Wimbledon result; rewrote using Apple/Tesla divergence from RAW FACTS",
+      "theTake.office \u2014 removed pitching speculation not in RAW FACTS; rewrote using jobs report data",
+      "glance.sports \u2014 removed fabricated 'Roman Safiullin wins Wimbledon men's final'; replaced with verified results"
+    ],
+    "notes": [
+      "Culture item 2 (Jobs Report) duplicates the Markets lead story. The Bible does not prohibit this but it creates redundancy. Consider replacing with a different culture story in a future pass if better sourced material is available.",
+      "The draft's 'Pegula wins Wimbledon' in the title was a significant fabrication \u2014 RAW FACTS show only a round result (Pegula def. Bouzas Maneiro 6-1 6-3), not a tournament win.",
+      "Safiullin 'winning Wimbledon' in finalSharpTake and theTake.bar was fabricated \u2014 RAW FACTS show only a match result, not a final.",
+      "F1 section cannot publish without sourced championship standings and driver names. The pipeline should fetch current F1 standings before this section is written.",
+      "NHL section cannot publish without at least a game result or meaningful standings context. No result exists yet per RAW FACTS.",
+      "The DEPTH note in RAW FACTS for the jobs report included advisory language ('rotate to bonds and blue chips') \u2014 this was correctly excluded from all copy per Bible market rules.",
+      "Golf defending champion field left blank \u2014 per Bible hard block rule, defending champion was not verified from a current source within this pipeline run and was not stated in RAW FACTS."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "57,000 nonfarm payroll jobs added in June",
+        "4.2% unemployment rate",
+        "Expected jobs added was 115,000, indicating a miss of 58,000 jobs"
+      ]
+    },
+    "markets": {
+      "ammo": [
+        "S&P 500 faced headwinds from weak job data",
+        "Historically, sub-100k job months preceded 2008 and 2020 downturns",
+        "Weak jobs in early 2023 led to a soft landing"
+      ]
+    },
+    "sports": [
+      {
+        "label": "World Cup Results",
+        "ammo": [
+          "Spain won 3-0 against Austria",
+          "Mikel Oyarzabal scored twice for Spain",
+          "Portugal defeated Croatia 2-1 with Cristiano Ronaldo scoring a penalty"
+        ]
+      },
+      {
+        "label": "Match Details",
+        "ammo": [
+          "Switzerland won 2-0 against Algeria",
+          "Breel Embolo scored the first goal at 10 minutes",
+          "Dan Ndoye scored in the 46th minute"
+        ]
+      }
+    ]
+  },
+  "researchPack": null,
+  "researchMode": "feed-only",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_ammo \u2014 RAW FACTS confirm only the teams and venue for an upcoming game with no result. No named player performance, no standings data, no verifiable ammo items exist to support this section. Kept in copy with minimal structure but flagged as unpublishable."
+    },
+    {
+      "section": "f1",
+      "kind": "blocked",
+      "detail": "no_current_facts \u2014 RAW FACTS confirm only that the British Grand Prix is upcoming this weekend. All championship standings (Antonelli's 40-point lead) and driver names in the draft are not present in RAW FACTS and cannot be verified. Ammo array is empty after removing unverifiable claims. Section rewritten as a minimal preview but cannot publish without sourced driver/standings data."
+    },
+    {
+      "section": "culture[0]",
+      "kind": "blocked",
+      "detail": "no_ammo \u2014 Meta smart glasses story has only 2 verifiable facts from RAW FACTS after removing takes and inferences (Meta introducing subscription model; premium features behind paywall). Requires a third verifiable fact to publish. Kept in copy but flagged."
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "blocking": [],
+    "warnings": [
+      {
+        "section": "markets",
+        "note": "Jobs Report Reality Check claim about unemployment ticking up to 4.2% is plausible but not verified without research pack evidence."
+      },
+      {
+        "section": "final_sharp_take",
+        "note": "Frances Tiafoe and Jessica Pegula's results are reasonable but not confirmed in the provided evidence."
+      },
+      {
+        "section": "culture1",
+        "note": "Meta's subscription model for smart glasses is plausible but unverified without a research pack."
+      },
+      {
+        "section": "culture3",
+        "note": "Steven Zaillian's adaptation on Netflix is plausible but unverified without a research pack."
+      }
+    ],
+    "verificationSummary": "Most claims align with available structured data, but several plausible claims are unverified due to the absence of a research pack.",
+    "model": "gpt-4o",
+    "timestamp": "2026-07-03T14:35:38.890Z"
+  }
+}

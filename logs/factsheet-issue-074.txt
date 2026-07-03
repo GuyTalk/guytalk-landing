@@ -1,0 +1,17 @@
+VERIFIED FACT SHEET — issue-074 — 2026-07-03T14:35:36.321Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Los Angeles Dodgers 12–7 San Diego Padres (Final)
+  [SPORT] Colorado Rockies 14–4 Miami Marlins (Final)
+  [SPORT] St. Louis Cardinals 11–5 Atlanta Braves (Final)
+  [GOLF] John Deere Classic | venue: see established facts | status: in
+  [F1] Pirelli British Grand Prix | P1: ? (?)
+  [MARKETS] SPY -0.13% | DIA 1.06% | QQQ -1.73%
+
+SOURCE: OpenAI web research
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================
