@@ -2,7 +2,7 @@ name: Generate Daily Brief
 
 on:
   schedule:
-    - cron: '0 11 * * *'  # 7am ET (11am UTC = 7am EDT / 6am EST)
+    - cron: '0 9 * * *'  # target 7am ET — runs at 9am UTC (5am ET) so GH delay lands ~7am
   workflow_dispatch: {}
 
 permissions:

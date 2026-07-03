@@ -806,18 +806,22 @@ async function main() {
       if (rpCulture.length) {
         sectionStories.culture = rpCulture;
         console.log(`   ✓ Culture: ${rpCulture.length} item(s) from OpenAI research pack`);
+      } else {
+        // Research pack returned 0 Culture-tagged items — keep NewsAPI feed as-is
+        console.log(`   ⚠  Culture: research pack had 0 Culture items — using feed stories`);
       }
     } else {
-      // Feed-only: filter culture to trusted entertainment sources only
+      // Feed-only: block known tabloid domains; accept any other entertainment source.
+      // Using a blacklist (not whitelist) so legitimate entertainment journalism passes through.
       const rawCulture = sectionStories.culture || [];
       const filtered = rawCulture.filter(c => {
         const url = c.url || '';
         if (!url) return false;
         const dom = domainOf(url);
-        return TIER1_DOMAINS.some(t => dom.includes(t));
+        return !BLOCKED_DOMAINS.some(b => dom.includes(b) || url.includes(b));
       });
       if (filtered.length !== rawCulture.length) {
-        console.log(`   📋 Culture: filtered ${rawCulture.length - filtered.length} low-confidence item(s) in feed-only mode (${filtered.length} kept)`);
+        console.log(`   📋 Culture: filtered ${rawCulture.length - filtered.length} blocked-domain item(s) in feed-only mode (${filtered.length} kept)`);
       }
       sectionStories.culture = filtered;
     }

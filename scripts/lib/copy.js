@@ -789,7 +789,27 @@ CRITICAL: Return ONLY a JSON array — no markdown, no extra text:
     const text = (res.content?.find(b => b.type === 'text') || res.content?.[0])?.text || '';
     const parsed = parseJson(text);
     if (Array.isArray(parsed) && parsed.length >= 1) return parsed;
-  } catch (_) {}
+    console.log(`   ⚠  Culture retry: parsed response was not a valid array (got: ${typeof parsed})`);
+  } catch (err) {
+    console.log(`   ⚠  Culture retry API error: ${err.message}`);
+  }
+
+  // Second attempt — minimal prompt, no story context, just demand 2 items
+  try {
+    const res2 = await client.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 800,
+      messages: [{ role: 'user', content: `Return a JSON array of exactly 2 culture items for men 25-45 based on current real events (past 2 weeks). Each: {"topic":"string","whatHappened":"string","whyItMatters":"string","theRead":"string","ammo":["f1","f2","f3"],"whatToSay":"string","tag":"Streaming|Gaming|Tech|Music|Sports Business"}. Return ONLY the JSON array, no markdown.` }],
+    });
+    const text2 = (res2.content?.find(b => b.type === 'text') || res2.content?.[0])?.text || '';
+    const parsed2 = parseJson(text2);
+    if (Array.isArray(parsed2) && parsed2.length >= 1) {
+      console.log(`   ✓ Culture second attempt succeeded: ${parsed2.length} item(s)`);
+      return parsed2;
+    }
+  } catch (err2) {
+    console.log(`   ⚠  Culture second attempt also failed: ${err2.message}`);
+  }
   return null;
 }
 
