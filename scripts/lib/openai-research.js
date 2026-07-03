@@ -213,7 +213,21 @@ Return ONLY valid JSON (no markdown fences):
       console.log('   ✗ no JSON in response (first 300 chars):', responseText.slice(0, 300));
       throw new Error('no JSON object in response');
     }
-    const jsonEnd = cleaned.lastIndexOf('}');
+    // Brace-match to find the closing } for the root object — lastIndexOf('}') is
+    // unreliable when OpenAI appends trailing text or notes after the JSON block.
+    const jsonEnd = (() => {
+      let depth = 0, inStr = false, esc = false;
+      for (let i = jsonStart; i < cleaned.length; i++) {
+        const c = cleaned[i];
+        if (esc) { esc = false; continue; }
+        if (c === '\\' && inStr) { esc = true; continue; }
+        if (c === '"') { inStr = !inStr; continue; }
+        if (inStr) continue;
+        if (c === '{') depth++;
+        else if (c === '}' && --depth === 0) return i;
+      }
+      return -1;
+    })();
     if (jsonEnd <= jsonStart) throw new Error('no closing brace in response');
 
     let pack;
