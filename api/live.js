@@ -845,6 +845,30 @@ async function fetchTennis() {
   return { anyMajor: out.some((t) => t.isMajor), nextMajor: nextGrandSlam(), tours: out };
 }
 
+/* --------------------------------------------------------- Market holiday check */
+
+// US stock market holidays — NYSE/Nasdaq are closed on these dates.
+// Format: 'YYYY-MM-DD' in ET. Update annually.
+const MARKET_HOLIDAYS = new Set([
+  // 2026
+  '2026-01-01', // New Year's Day
+  '2026-01-19', // MLK Day
+  '2026-02-16', // Presidents Day
+  '2026-04-03', // Good Friday
+  '2026-05-25', // Memorial Day
+  '2026-07-03', // Independence Day (observed, Fri before Sat Jul 4)
+  '2026-09-07', // Labor Day
+  '2026-11-26', // Thanksgiving
+  '2026-11-27', // Black Friday (early close — treated as closed here)
+  '2026-12-25', // Christmas
+]);
+
+function isMarketHoliday() {
+  // Use ET date string
+  const etDate = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+  return MARKET_HOLIDAYS.has(etDate);
+}
+
 /* -------------------------------------------------------------------- Markets */
 
 // Financial headlines — top market/business news from Yahoo Finance search.
@@ -1261,6 +1285,7 @@ module.exports = async function handler(req, res) {
   const finnhubKey = process.env.FINNHUB_API_KEY;
 
   try {
+    const marketClosed = isMarketHoliday();
     const [scoreboard, f1, golf, tennis, mma, markets, nbaNews, nhlNews, mlbNews, recentChampions, marketNews, stockMovers] = await Promise.all([
       fetchScoreboards(), fetchF1(), fetchGolf(), fetchTennis(), fetchMMA(), fetchMarkets(finnhubKey),
       fetchLeagueNews('basketball', 'nba'),
@@ -1295,6 +1320,7 @@ module.exports = async function handler(req, res) {
         culture:      culture.length ? 'NewsAPI' : null,
         talkingAbout: 'editorial',   // no live source yet
       },
+      marketClosed,
       liveNow, f1, golf, tennis, mma, scoreboard, markets,
       marketNews:  marketNews  && marketNews.length  ? marketNews  : null,
       stockMovers: stockMovers && (stockMovers.gainers.length || stockMovers.losers.length) ? stockMovers : null,

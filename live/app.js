@@ -1843,9 +1843,21 @@ function FeaturedGolfCard(g) {
     </div>`;
   }
 
-  function renderMarkets(real, marketNews, stockMovers) {
+  function renderMarkets(real, marketNews, stockMovers, marketClosed) {
     setBadge('badge-markets', real ? 'live' : null);
     const el = $('marketsWrap');
+    if (marketClosed) {
+      el.innerHTML = `<div class="empty" style="grid-column:1/-1;text-align:center;padding:32px 16px">
+        <div style="font-size:1.5rem;margin-bottom:8px">🔒</div>
+        <strong style="display:block;font-size:1.1rem;margin-bottom:6px">Markets Closed</strong>
+        <span style="opacity:.7;font-size:.9rem">US markets are closed today. Data shown reflects the last trading session.</span>
+      </div>`;
+      if (real && real.length) {
+        el.innerHTML += real.map(MarketCard).join('');
+        el.innerHTML += `<p class="mk-disclaimer">Index and crypto data via Yahoo Finance. Markets closed — figures reflect last session close.</p>`;
+      }
+      return;
+    }
     if (!real || !real.length) { el.innerHTML = `<div class="empty" style="grid-column:1/-1">Market data unavailable right now.</div>`; return; }
     const synopsis = marketsSynopsis(real);
     const ctxRows = (marketsContext(real) || []).filter(Boolean);
@@ -2037,7 +2049,7 @@ function FeaturedGolfCard(g) {
     renderMLB(p.scoreboard, p.mlbNews);
     renderNHL(p.scoreboard, p.nhlNews);
     renderSoccer(p.scoreboard);
-    renderMarkets(p.markets, p.marketNews, p.stockMovers);
+    renderMarkets(p.markets, p.marketNews, p.stockMovers, p.marketClosed);
     observeChampCards();
     // Sections 6 & 7 are handled by refreshTalk() / renderTalk() (separate feed).
 
