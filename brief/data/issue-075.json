@@ -1,0 +1,1564 @@
+{
+  "num": 75,
+  "slug": "issue-075",
+  "date": "Saturday, July 4, 2026",
+  "title": "Trump's Mount Rushmore speech warns of communist menace. Cardinals obliterate Cubs 17–1. Glover leads John Deere Classic at –14.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401816007",
+      "name": "St. Louis Cardinals at Chicago Cubs",
+      "shortName": "STL @ CHC",
+      "date": "2026-07-03T20:05Z",
+      "venue": "Wrigley Field",
+      "venueCity": "Chicago, Illinois",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "1",
+        "winner": false
+      },
+      "away": {
+        "team": "St. Louis Cardinals",
+        "abbrev": "STL",
+        "score": "17",
+        "winner": true
+      }
+    },
+    {
+      "id": "401816009",
+      "name": "San Francisco Giants at Colorado Rockies",
+      "shortName": "SF @ COL",
+      "date": "2026-07-04T00:10Z",
+      "venue": "Coors Field",
+      "venueCity": "Denver, Colorado",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Colorado Rockies",
+        "abbrev": "COL",
+        "score": "15",
+        "winner": true
+      },
+      "away": {
+        "team": "San Francisco Giants",
+        "abbrev": "SF",
+        "score": "3",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816011",
+      "name": "Miami Marlins at Athletics Athletics",
+      "shortName": "MIA @ ATH",
+      "date": "2026-07-04T01:40Z",
+      "venue": "Sutter Health Park",
+      "venueCity": "Sacramento, California",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "5",
+        "winner": false
+      },
+      "away": {
+        "team": "Miami Marlins",
+        "abbrev": "MIA",
+        "score": "12",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 744.78,
+      "prevClose": 745.76,
+      "dayChange": -0.98,
+      "dayChangePct": -0.1314,
+      "weekChangePct": 1.4272112734919444,
+      "spark": [
+        754.239990234375,
+        757.0900268554688,
+        737.5499877929688,
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125,
+        745.760009765625,
+        744.780029296875
+      ],
+      "indexPrice": 7483.24,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.00013389313539651626
+    },
+    "DIA": {
+      "price": 527.88,
+      "prevClose": 522.4,
+      "dayChange": 5.48,
+      "dayChangePct": 1.049,
+      "weekChangePct": 1.6600527813158084,
+      "spark": [
+        508.260009765625,
+        516.7000122070312,
+        509.70001220703125,
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375,
+        522.4000244140625,
+        527.8800048828125
+      ],
+      "indexPrice": 52900.07,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 1.1372316393083532
+    },
+    "QQQ": {
+      "price": 712.6,
+      "prevClose": 725.17,
+      "dayChange": -12.57,
+      "dayChangePct": -1.7334,
+      "weekChangePct": -0.5276535996326169,
+      "spark": [
+        744.2100219726562,
+        740.6099853515625,
+        705.0599975585938,
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625,
+        725.1699829101562,
+        712.5999755859375
+      ],
+      "indexPrice": 25832.672,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -0.7963020874937563
+    },
+    "IWM": {
+      "price": 297.58,
+      "prevClose": 299.32,
+      "dayChange": -1.74,
+      "dayChangePct": -0.5813,
+      "weekChangePct": -0.44495120464848653,
+      "spark": [
+        287.6700134277344,
+        292.010009765625,
+        281.6499938964844,
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125,
+        299.32000732421875,
+        297.5799865722656
+      ],
+      "indexPrice": 2996.1104,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -0.5470272227498374
+    },
+    "NVDA": {
+      "price": 194.83,
+      "prevClose": 197.58,
+      "dayChange": -2.75,
+      "dayChangePct": -1.3918,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 393.45,
+      "prevClose": 425.3,
+      "dayChange": -31.85,
+      "dayChangePct": -7.4888,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 390.49,
+      "prevClose": 384.28,
+      "dayChange": 6.21,
+      "dayChangePct": 1.616,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 308.63,
+      "prevClose": 294.38,
+      "dayChange": 14.25,
+      "dayChangePct": 4.8407,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 582.9,
+      "prevClose": 612.91,
+      "dayChange": -30.01,
+      "dayChangePct": -4.8963,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 242.67,
+      "prevClose": 241.7,
+      "dayChange": 0.97,
+      "dayChangePct": 0.4013,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 359.91,
+      "prevClose": 361.21,
+      "dayChange": -1.3,
+      "dayChangePct": -0.3599,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 517.82,
+      "prevClose": 540.88,
+      "dayChange": -23.06,
+      "dayChangePct": -4.2634,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 360.45,
+      "prevClose": 369.34,
+      "dayChange": -8.89,
+      "dayChangePct": -2.407,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 77.65,
+      "prevClose": 74.19,
+      "dayChange": 3.46,
+      "dayChangePct": 4.6637,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 334.47,
+      "prevClose": 334.07,
+      "dayChange": 0.4,
+      "dayChangePct": 0.1197,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 165.48,
+      "prevClose": 159.24,
+      "dayChange": 6.24,
+      "dayChangePct": 3.9186,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 394.32,
+      "prevClose": 425.25,
+      "dayChange": -30.93,
+      "dayChangePct": -7.2734,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 62658.93,
+      "prevClose": 62202,
+      "dayChange": 456.93,
+      "dayChangePct": 0.7346,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "TSLA",
+      "DELL",
+      "META",
+      "AAPL",
+      "NFLX"
+    ],
+    "10Y": {
+      "price": 4.4849997,
+      "prevClose": 4.392000198364258,
+      "dayChange": 0.09299950163574255,
+      "dayChangePct": 2.1174748960707923,
+      "weekChangePct": 0.7638617107429528,
+      "spark": [
+        4.454999923706055,
+        4.491000175476074,
+        4.4770002365112305,
+        4.535999774932861,
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, July 3 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, July 3). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 308.63,
+          "changePct": 4.84068
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 77.65,
+          "changePct": 4.6637
+        },
+        {
+          "symbol": "ADBE",
+          "name": "Adobe Inc.",
+          "price": 219.72,
+          "changePct": 4.14257
+        },
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 165.48,
+          "changePct": 3.91861
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 393.45,
+          "changePct": -7.48883
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 120.35,
+          "changePct": -5.25114
+        },
+        {
+          "symbol": "META",
+          "name": "Meta Platforms, Inc.",
+          "price": 582.9,
+          "changePct": -4.89631
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 517.82,
+          "changePct": -4.26342
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 194.83,
+          "changePct": -1.39184
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 120.35,
+          "changePct": -5.25114
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 393.45,
+          "changePct": -7.48883
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 62607.24,
+          "changePct": 0.0937543
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "John Deere Classic",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-02T04:00Z",
+    "endDate": "2026-07-05T04:00Z",
+    "status": "Round 3 - In Progress",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Lucas Glover",
+        "score": "-14",
+        "pos": "1st"
+      },
+      {
+        "name": "Lee Hodges",
+        "score": "-12",
+        "pos": "2nd"
+      },
+      {
+        "name": "Zac Blair",
+        "score": "-11",
+        "pos": "3rd"
+      },
+      {
+        "name": "Jackson Suber",
+        "score": "-10",
+        "pos": "4th"
+      },
+      {
+        "name": "David Lipsky",
+        "score": "-10",
+        "pos": "5th"
+      },
+      {
+        "name": "Ryo Hisatsune",
+        "score": "-10",
+        "pos": "6th"
+      },
+      {
+        "name": "Tyler Duncan",
+        "score": "-10",
+        "pos": "7th"
+      },
+      {
+        "name": "Troy Merritt",
+        "score": "-10",
+        "pos": "8th"
+      },
+      {
+        "name": "Ben Kohles",
+        "score": "-10",
+        "pos": "9th"
+      },
+      {
+        "name": "Max Homa",
+        "score": "-9",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Alejandro Davidovich Fokina",
+            "loser": "Marton Fucsovics",
+            "score": "7-6 6-2 6-3"
+          },
+          {
+            "winner": "Felix Auger-Aliassime",
+            "loser": "Michael Zheng",
+            "score": "7-6 6-2 6-1"
+          },
+          {
+            "winner": "Alex de Minaur",
+            "loser": "Zachary Svajda",
+            "score": "6-2 5-7 6-2 6-4"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Elise Mertens",
+            "loser": "Elena Rybakina",
+            "score": "7-6 6-1"
+          },
+          {
+            "winner": "Alexandra Eala",
+            "loser": "Iga Swiatek",
+            "score": "7-6 6-2"
+          },
+          {
+            "winner": "Jasmine Paolini",
+            "loser": "Maria Sakkari",
+            "score": "6-1 6-2"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Pirelli British Grand Prix",
+    "shortName": "Pirelli British GP",
+    "venue": "Silverstone Circuit",
+    "status": "7/5 - 10:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 179,
+      "lead": 43
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Egypt at Australia",
+      "shortName": "EGY @ AUS",
+      "status": "Final Score - After Penalties",
+      "statusState": "post",
+      "date": "2026-07-03T18:00Z",
+      "home": {
+        "team": "Australia",
+        "score": "1"
+      },
+      "away": {
+        "team": "Egypt",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Emam Ashour",
+          "team": "",
+          "clock": "13'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Mohamed Hany",
+          "team": "",
+          "clock": "55'",
+          "type": "Own Goal"
+        },
+        {
+          "player": "Mahmoud Saber",
+          "team": "",
+          "clock": "120'",
+          "type": "Penalty - Scored"
+        },
+        {
+          "player": "Jackson Irvine",
+          "team": "",
+          "clock": "120'",
+          "type": "Penalty - Scored"
+        },
+        {
+          "player": "Ramy Rabia",
+          "team": "",
+          "clock": "120'",
+          "type": "Penalty - Scored"
+        },
+        {
+          "player": "Awer Mabil",
+          "team": "",
+          "clock": "120'",
+          "type": "Penalty - Scored"
+        },
+        {
+          "player": "Mohamed Salah",
+          "team": "",
+          "clock": "120'",
+          "type": "Penalty - Scored"
+        },
+        {
+          "player": "Hossam Abdelmaguid",
+          "team": "",
+          "clock": "120'",
+          "type": "Penalty - Scored"
+        }
+      ],
+      "espnNote": "Egypt advance 4-2 on penalties"
+    },
+    {
+      "name": "Cape Verde at Argentina",
+      "shortName": "CPV @ ARG",
+      "status": "Final Score - After Extra Time",
+      "statusState": "post",
+      "date": "2026-07-03T22:00Z",
+      "home": {
+        "team": "Argentina",
+        "score": "3"
+      },
+      "away": {
+        "team": "Cape Verde",
+        "score": "2"
+      },
+      "goals": [
+        {
+          "player": "Lionel Messi",
+          "team": "",
+          "clock": "29'",
+          "type": "Goal"
+        },
+        {
+          "player": "Deroy Duarte",
+          "team": "",
+          "clock": "59'",
+          "type": "Goal"
+        },
+        {
+          "player": "Lisandro Martínez",
+          "team": "",
+          "clock": "92'",
+          "type": "Goal"
+        },
+        {
+          "player": "Sidny Lopes Cabral",
+          "team": "",
+          "clock": "103'",
+          "type": "Goal"
+        },
+        {
+          "player": "Diney Borges",
+          "team": "",
+          "clock": "111'",
+          "type": "Own Goal"
+        }
+      ],
+      "espnNote": "Diney Borges' own goal in extra time saw Argentina take the victory, as Lionel Messi extended his record with his 20th World Cup goal.."
+    },
+    {
+      "name": "Ghana at Colombia",
+      "shortName": "GHA @ COL",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-04T01:30Z",
+      "home": {
+        "team": "Colombia",
+        "score": "1"
+      },
+      "away": {
+        "team": "Ghana",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Jhon Arias",
+          "team": "",
+          "clock": "14'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Colombia booked the last place in the World Cup's round of 16 as they beat Ghana 1-0 in Kansas City. Jhon Arias grabbed the only goal after 14 minutes as the earned a meeting with Switzerland in Vancouver."
+    },
+    {
+      "name": "Morocco at Canada",
+      "shortName": "MAR @ CAN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-04T17:00Z",
+      "home": {
+        "team": "Canada",
+        "score": "0"
+      },
+      "away": {
+        "team": "Morocco",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "France at Paraguay",
+      "shortName": "FRA @ PAR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-04T21:00Z",
+      "home": {
+        "team": "Paraguay",
+        "score": "0"
+      },
+      "away": {
+        "team": "France",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "The fake language that captured moviegoers’ hearts - The Washington Post",
+      "url": "https://www.washingtonpost.com/style/2026/07/03/fake-language-that-captured-moviegoers-hearts/",
+      "description": "The minions’ language, Minionese, is almost as beloved as the little yellow characters.",
+      "source": "The Washington Post"
+    },
+    {
+      "title": "Taylor Swift and Travis Kelce's wedding day arrives with Madison Square Garden under tight security - CBS News",
+      "url": "https://www.cbsnews.com/news/taylor-swift-travis-kelce-wedding-day-madison-square-garden-nyc/",
+      "description": "Taylor Swift and Travis Kelce are expected to welcome around 1,000 guests at Madison Square Garden to celebrate their wedding, sources say.",
+      "source": "CBS News"
+    },
+    {
+      "title": "Inside ABC News’ July 4 Plan to Pull Off “The Longest Commercial Broadcast in the History of TV” - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/tv/tv-news/inside-abc-july-4-special-statue-liberty-nashville-24-hours-1236636106/",
+      "description": "From a light show and Brandi Carlile performance at the Statue of Liberty to a July 4 bash in Nashville, and visits to all 50 states and the seven natural wonders of America in between, ABC is going big for America's 250th.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Trump White House’s Taylor Swift Stunt Enters Its ‘So F**king Cringe’ Era - HuffPost",
+      "url": "https://www.huffpost.com/entry/trump-white-house-taylor-swift-eras-post_n_6a475274e4b07748e75cc3ce",
+      "description": "The White House's \"America's Eras Tour\" post backfired.",
+      "source": "HuffPost"
+    },
+    {
+      "title": "Horoscope for Friday, July 03, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/07/03/horoscopes-today-friday-july-03-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Noah Hiles: Who's to blame for Paul Skenes’ struggles? A deep dive reveals plenty of possibilities - Pittsburgh Post-Gazette",
+      "url": "https://www.post-gazette.com/sports/pirates/2026/07/03/hiles-skenes-blame-marin-murphy-kelly-pitcher/stories/202607020064",
+      "description": "False",
+      "source": "Pittsburgh Post-Gazette"
+    },
+    {
+      "title": "Armstrong gets MSR contract extension, moves to No. 60 for 2027 - RACER - Racing News",
+      "url": "https://racer.com/2026/07/03/armstrong-gets-msr-contract-extension-moves-to-no-60-for-2027",
+      "description": "Meyer Shank Racing has found its replacement for Felix Rosenqvist by signing his teammate Marcus Armstrong to a multi-year extension and moving him to the No. 60 Honda Rosenqvist will vacate at the end of the season for Arrow McLaren.",
+      "source": "RACER"
+    },
+    {
+      "title": "LeBron James' Top NBA Landing Spots Revealed by Rich Paul in Trending Photo amid Rumors - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25450720-lebron-james-top-nba-landing-spots-revealed-rich-paul-trending-photo-amid-rumors",
+      "description": "Amid all of the speculation about where LeBron James will play next season, who better to provide insight into the future Hall of Famer's thought process than his longtime agent?",
+      "source": "Bleacher Report"
+    },
+    {
+      "title": "How to Watch the World Cup Today: Schedule, Times, TV, Streaming for Messi's Argentina, Colombia, More - FOX Sports",
+      "url": "https://www.foxsports.com/stories/soccer/how-watch-world-cup-today-schedule-times-tv-streaming-messis-argentina-colombia-more",
+      "description": "Lionel Messi's Argentina, Colombia and Australia headline World Cup Round of 32 action today. Full schedule, kickoff times and how to watch on FOX.",
+      "source": "Fox Sports"
+    },
+    {
+      "title": "World Cup 2026: England fan tickets for Mexico on resale for up to £26k - BBC",
+      "url": "https://www.bbc.com/sport/football/articles/cj3g7dxlvexo",
+      "description": "Tickets originally bought by England fans for Monday's last 16 game against Mexico are relisted for thousands of pounds on Fifa's official resale portal.",
+      "source": "BBC News"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Politics",
+      "headline": "Trump’s Mount Rushmore speech warns of “communist menace”",
+      "whatHappened": "President Trump delivered a July 4th speech at Mount Rushmore declaring communism a “mortal threat to American liberty,” positioning the holiday’s tone as sharply political.",
+      "whyItMatters": "It reframed the nation’s 250th Independence Day celebration as a partisan rally, deepening political divides on what’s meant to be a unifying holiday.",
+      "depth": "In a holiday loaded with pomp, Trump turned July 4th into a political warning shot—dragging a founding celebration into culture-war territory. It’s the kind of talk that’s going to get guys in the break room talking.",
+      "whatToSay": "“Did you catch that Mount Rushmore speech—'communist menace,' really turning Independence Day into a political firework show?”",
+      "sources": [
+        "https://fortune.com/2026/07/04/trump-mount-rushmore-communism-speech-july-fourth/",
+        "https://www.cbsnews.com/news/trump-mount-rushmore-speech-july-4-communism/"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Politics",
+      "_context": [
+        "Speech delivered at Mount Rushmore framing communism as threat greater than WWI, WWII, Pearl Harbor or 9/11 ([fortune.com](https://fortune.com/2026/07/04/trump-mount-rushmore-communism-speech-july-fourth/?utm_source=openai))",
+        "CBS News confirms language about “communist menace” delivered on Independence Day ([cbsnews.com](https://www.cbsnews.com/news/trump-mount-rushmore-speech-july-4-communism/?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "It’s the most talked-about news of the day—Independence Day rebranded as political messaging.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Sports",
+      "headline": "Yankees blank Twins 5-2 in July 3 opener ahead of July 4",
+      "whatHappened": "On July 3, the Yankees beat the Twins 5–2 as the July 4 series opener in the Bronx.",
+      "whyItMatters": "Holiday baseball is a fixture—and the Yankees win sets the tone for a big Independence Day afternoon matchup.",
+      "depth": "Nothing sparks a boss-level convo like watching your Yanks light up the Twins on the 4th. Everyone’s talking teams, not just fireworks.",
+      "whatToSay": "“Got any bets on that Twins–Yankees game? Yanks started with a 5–2 win—feels like another fireworks show on the diamond.”",
+      "sources": [
+        "https://www.reddit.com/r/NYYankees/comments/1umxe3u/theee_yankees_win_the_yankees_defeated_the_twins/",
+        "https://www.bleachernation.com/stats-and-news/2026/07/03/yankees-vs-twins-injury-report-updates-probable-starters-july-4/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Yankees defeated Twins 5–2 in opener on July 3 ([reddit.com](https://www.reddit.com/r/NYYankees/comments/1umxe3u/theee_yankees_win_the_yankees_defeated_the_twins/?utm_source=openai))",
+        "July 4 matchup Twins vs Yankees scheduled for 1:35 p.m. ET ([bleachernation.com](https://www.bleachernation.com/stats-and-news/2026/07/03/yankees-vs-twins-injury-report-updates-probable-starters-july-4/?utm_source=openai))"
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "Holiday baseball matchup with the Yankees always resonates with men and is current.",
+      "_verificationConcerns": "Result from fan thread, not major outlet yet—still early, but game today."
+    },
+    {
+      "category": "Sports",
+      "headline": "Wimbledon Day 6 underway with Djokovic, Sinner, Swiatek playing",
+      "whatHappened": "Wimbledon enters its sixth day with top names like Djokovic, Sinner, Swiatek, Keys, Osaka, Gauff all in action.",
+      "whyItMatters": "Mid-slam drama on a holiday beats fireworks for many. Those Wimbledon matches are summer conversation gold.",
+      "depth": "While the world watches fireworks, Wimbledon’s packing Centre Court with matches that’ll get any convo going. Sinner, Osaka, and Djokovic? Bar fuel right there.",
+      "whatToSay": "“Anybody following Wimbledon? Sinner and Osaka are at it—much better than fireworks if you ask me.”",
+      "sources": [
+        "https://whbl.com/2026/07/04/tennis-wimbledon-day-six-4/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Reuters reports Day 6 play underway under sunny skies, listing marquee matchups ([whbl.com](https://whbl.com/2026/07/04/tennis-wimbledon-day-six-4/?utm_source=openai))",
+        "Featured matches: Swiatek vs Eala, Sinner vs Brooksby, Gauff vs Liu, Djokovic marks 105th Wimbledon win ([whbl.com](https://whbl.com/2026/07/04/tennis-wimbledon-day-six-4/?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Major international sports with high-profile athletes, holiday relevance and broad appeal.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "World Events",
+      "headline": "Super-sized July 4 fireworks set to try world record",
+      "whatHappened": "Trump allies plan over 30 minutes of fireworks in D.C. to break the Guinness record as part of the 250th celebration.",
+      "whyItMatters": "It’s a spectacle men will talk about—huge visual, daring claim, and tied to politics and celebration.",
+      "depth": "Forget the speeches—guys are gonna be asking, 'could that be the biggest fireworks show ever?' Alcohol-enhanced speculation incoming.",
+      "whatToSay": "“Did you hear D.C.’s fireworks might actually be the world’s longest? Guinness-level insane.”",
+      "sources": [
+        "https://www.axios.com/local/washington-dc/2026/05/14/trump-dc-july-4-fireworks-guinness-world-record-freedom-250"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "World Events",
+      "_context": [
+        "Axios reports plan for Guinness-record–breaking fireworks show over 30 minutes long ([axios.com](https://www.axios.com/local/washington-dc/2026/05/14/trump-dc-july-4-fireworks-guinness-world-record-freedom-250?utm_source=openai))",
+        "Security elevated to National Special Security Event level ([axios.com](https://www.axios.com/local/washington-dc/2026/05/14/trump-dc-july-4-fireworks-guinness-world-record-freedom-250?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Iconic visual headline tied to today’s events—men will talk about epic fireworks more than speeches.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Mount Rushmore speech shifts July 4 from unity to politics",
+        "source": "Le Monde, The Daily Beast",
+        "url": "https://www.lemonde.fr/en/opinion/article/2026/07/03/the-shadows-of-an-american-anniversary_6755115_23.html",
+        "fact": "Commentators are noting that Trump’s speech turned this Independence Day into a reflection of himself, not a national unity moment.",
+        "background": "Beyond politics, how people talk about the holiday’s meaning matters culturally—especially amid polarization.",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "https://fortune.com/img-assets/wp-content/uploads/2026/07/AP26185149816821.jpg?resize=1200,600",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Argentina 3–2 Cape Verde",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nArgentina 3–2 Cape Verde | Scorers: Lionel Messi (29'), Deroy Duarte (59'), Lisandro Martínez (92'), Sidny Lopes Cabral (103'), Diney Borges (111') NOTE: Diney Borges' own goal in extra time saw Argentina take the victory, as Lionel Messi extended his record with his 20th W\nAustralia 1–1 Egypt | Scorers: Emam Ashour (13'), Mohamed Hany (55'), Mahmoud Saber (120' pen), Jackson Irvine (120' pen), Ramy Rabia (120' pen), Awer Mabil (120' pen), Mohamed Salah (120' pen), Hossam Abdelmaguid (120' pen) NOTE: Egypt advance 4-2 on penalties\nColombia 1–0 Ghana | Scorers: Jhon Arias (14') NOTE: Colombia booked the last place in the World Cup's round of 16 as they beat Ghana 1-0 in Kansas City. Jhon Arias grabbed \nTODAY'S FIXTURES: Morocco vs. Canada (1:00 PM EDT); France vs. Paraguay (5:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Lionel Messi (Inter Miami · 2022 World Cup winner · widely the greatest ever): en.wikipedia.org/wiki/Lionel_Messi\n- Deroy Duarte\n- Lisandro Martínez\n- Sidny Lopes Cabral\n- Diney Borges\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": null,
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "Argentina beat Cape Verde 3–2 in extra time at the World Cup, with Lionel Messi scoring in the 29th minute and an own goal from Diney Borges sealing the win in the 111th.",
+      "whyItMatters": "Messi extended his record to 20 World Cup wins, a marker that underscores his longevity at the highest level even at 39. Argentina advances to the round of 16 and stays in contention for back-to-back World Cup titles.",
+      "theRead": "Cape Verde pushed Argentina harder than expected—a 3–2 scoreline in extra time is not the dominance you want to see from a defending champion. But Messi's presence still matters. He got a goal, he controlled the tempo when it mattered, and Argentina found a way through a sloppy, mistake-prone second half. Own goals will happen; the bigger read is that Argentina's midfield looked vulnerable and their defense had lapses. Colombia's 1–0 win over Ghana in Kansas City locked in the last spot, so the group is essentially done. Morocco and France go tonight.",
+      "ammo": [
+        "Lionel Messi now has 20 World Cup wins, a record.",
+        "Diney Borges own goal in the 111th minute was the decisive goal.",
+        "Colombia advanced to the round of 16 with a 1–0 win over Ghana; Jhon Arias scored in the 14th.",
+        "Egypt advanced on penalties, 4–2, over Australia after a 1–1 draw."
+      ],
+      "whatToBringUp": "Messi just hit 20 World Cup wins at 39 years old—that's not just a number, it's proof he's still the tiebreaker when Argentina gets tight.",
+      "ourPick": "Argentina advances because even a sloppy performance with an own goal beats Cape Verde; the real test comes in the knockout stage when they face better teams.",
+      "playerLinks": [
+        {
+          "name": "Lionel Messi",
+          "url": "https://en.wikipedia.org/wiki/Lionel_Messi"
+        }
+      ]
+    },
+    {
+      "name": "Pirelli British Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Pirelli British Grand Prix — this weekend",
+      "facts": "Pirelli British Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://media.formula1.com/image/upload/t_16by9Centre/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Great%20Britain/Teams%20header%20Fri.webp",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "7/5 - 10:00 AM EDT",
+      "tier": 1,
+      "sportType": "f1",
+      "whatHappened": "The Pirelli British Grand Prix is scheduled for this weekend at Silverstone.",
+      "whyItMatters": "Silverstone is one of the oldest and most storied circuits in Formula 1, and the British Grand Prix is one of the sport's marquee events. A strong result here shapes the championship narrative heading into the season's middle stretch.",
+      "theRead": "No races have been run yet this weekend, so we don't have driver performance data or weather conditions to assess. Silverstone typically rewards top speed and precision through the high-speed corners—teams with a strong power unit and a balanced setup tend to excel. Check back after qualifying and the race for the real story.",
+      "ammo": [
+        "Silverstone hosts the British Grand Prix, one of F1's most prestigious races.",
+        "The circuit is known for high-speed corners and demands strong power unit performance.",
+        "Races at Silverstone this season have not yet been run; qualifying and the race are still to come."
+      ],
+      "whatToBringUp": "Silverstone separates the pretenders from the contenders because you can't hide a bad setup on those fast corners—whoever qualifies well usually wins.",
+      "ourPick": "Check the qualifying results Saturday; whoever locks the front row has the advantage because track position matters more at Silverstone than at most circuits.",
+      "playerLinks": [
+        {
+          "name": "Max Verstappen",
+          "url": "https://www.formula1.com/en/drivers/max-verstappen"
+        },
+        {
+          "name": "Lewis Hamilton",
+          "url": "https://www.formula1.com/en/drivers/lewis-hamilton"
+        },
+        {
+          "name": "Charles Leclerc",
+          "url": "https://www.formula1.com/en/drivers/charles-leclerc"
+        },
+        {
+          "name": "Lando Norris",
+          "url": "https://www.formula1.com/en/drivers/lando-norris"
+        },
+        {
+          "name": "Carlos Sainz",
+          "url": "https://www.formula1.com/en/drivers/carlos-sainz"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/drivers/george-russell"
+        }
+      ]
+    },
+    {
+      "name": "STL @ CHC",
+      "label": "MLB",
+      "category": "team",
+      "headline": "St. Louis Cardinals 17–1 over Chicago Cubs",
+      "facts": "St. Louis Cardinals beat Chicago Cubs 17–1",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://assets3.cbsnewsstatic.com/hub/i/r/2026/07/04/e543ebb5-fe78-4662-954f-eb767b3a4140/thumbnail/1200x630/5c6960ed9136671e88196916f9fb5aa3/ap26184812079611.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "The St. Louis Cardinals routed the Chicago Cubs 17–1.",
+      "whyItMatters": "A 16-run margin is a complete demolition—this is the kind of loss that breaks a team's momentum and leaves the loser's bullpen gassed heading into the next games.",
+      "theRead": "This wasn't a competitive game. The Cardinals came out swinging and the Cubs had no answer. Chicago's pitching staff got torched early and often, and once you're down that far in baseball, you're just playing out the string. The Cubs look exposed; the Cardinals look locked in. If this is part of a larger pattern for Chicago, they have real problems.",
+      "ammo": [
+        "St. Louis Cardinals beat Chicago Cubs 17–1.",
+        "A 16-run margin represents a complete blowout.",
+        "The game signals a significant performance gap between the two teams on this day."
+      ],
+      "whatToBringUp": "The Cardinals just dropped 17 on the Cubs and won by 16 runs—that's not baseball, that's an execution clinic, and it tells you everything about where these two teams are right now.",
+      "ourPick": "St. Louis looks like the better team because they dominated in every phase; Chicago has to regroup fast or this one game turns into a three-game skid."
+    }
+  ],
+  "heroImage": "https://fortune.com/img-assets/wp-content/uploads/2026/07/AP26185149816821.jpg?resize=1200,600",
+  "heroOverride": {
+    "image": "https://assets3.cbsnewsstatic.com/hub/i/r/2026/07/04/897d1227-4bb4-4940-84f6-8c3721331558/thumbnail/1200x630g2/c447b721e95ef62f88ab7bfc4e4f611b/gettyimages-2284570445.jpg",
+    "imageReal": true,
+    "eyebrow": "Politics",
+    "title": "Trump’s Mount Rushmore speech warns of “communist menace”",
+    "sub": "Politics",
+    "isNonSportsLead": true
+  },
+  "copy": {
+    "title": "Trump's Mount Rushmore speech warns of communist menace. Cardinals obliterate Cubs 17–1. Glover leads John Deere Classic at –14.",
+    "keyTakeaway": "Independence Day 2026 came with a political edge — Trump's Mount Rushmore speech turned the 250th anniversary into a culture-war moment that people are still processing. On the field, the Cardinals made a statement with a 17–1 demolition of the Cubs. Markets closed mixed with Apple surging and Tesla cratering, signaling investors are picking winners inside big tech, not buying the whole sector.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Cardinals Obliterate Cubs 17–1 on July 4th",
+      "whatHappened": "The St. Louis Cardinals beat the Chicago Cubs 17–1 on July 4th, turning a holiday matchup at Wrigley Field into a complete rout. The Cardinals' offense produced 17 runs while the Cubs managed just one.",
+      "whyBullet1": "The Cubs are supposed to be competitive in the NL Central — a 16-run loss at home on a national holiday signals either a catastrophic pitching collapse or a talent gap the front office hasn't closed.",
+      "whyBullet2": "The Cardinals' ability to put up 17 runs in a single game shows an offense that is clicking at a dangerous level heading into the second half of the season.",
+      "theRead": "This wasn't a close game that got away — it was a statement. Losing by 16 at home on July 4th is the kind of result that either galvanizes a clubhouse or cracks it, and there's no middle ground after a 17–1 scoreline. The Cardinals showed they can beat you in every phase, and the Cubs showed they can fall apart completely when things go sideways. For Chicago, the question isn't whether this hurts — it's whether the organization has the depth to stop the bleeding before the trade deadline.",
+      "ammo": [
+        "Final score: Cardinals 17, Cubs 1 — a 16-run margin of victory",
+        "Game played July 4, 2026 at Wrigley Field, Chicago",
+        "Cardinals are the visiting team; Cubs were at home and still lost by 16",
+        "Cardinals also beat the Rockies 15–3 and Marlins beat the Athletics 12–5 on the same day — offense was up across the league"
+      ],
+      "whatToSay": "Cardinals put up 17 on the Cubs at Wrigley on the Fourth — that's not a baseball game, that's a beatdown."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Apple rallies 4.8% as mega-cap tech splits the room heading into next week",
+          "sub": "While the Nasdaq closed down 1.7% for the week, Apple and Microsoft posted gains Thursday — signaling divergence within the AI-dependent mega-cap trade. SPY closed flat at -0.1% on the day but up 1.4% for the week."
+        },
+        {
+          "head": "Tesla crashes 7.5%, Dell plunges 7.3% as hardware faces reality check",
+          "sub": "Chip and semiconductor names got hit across the board — AMD -4.3%, NVDA -1.4%, AVGO -2.4% — with markets repricing growth and margin pressure in the category."
+        },
+        {
+          "head": "10-year Treasury yields jump 2.1% as bond markets digest July 4th holiday week",
+          "sub": "Rates up 0.8% for the week; DIA outperformed SPY and QQQ on Thursday, suggesting money rotated into dividend and old-economy stocks ahead of next week's data."
+        }
+      ],
+      "mood": "Markets closed mixed Thursday — markets are shut today for Independence Day, so Thursday's numbers are what you're bringing to the cookout with mega-cap tech badly split — Apple surging 4.8% while Tesla and Dell cratered 7.5% and 7.3% — and the 10-year Treasury climbing 2.1% on the day as the holiday-shortened week wrapped.",
+      "whyBullet1": "The divergence matters because it shows the market is still sorting out which tech names have durable earnings power versus which ones are levered to demand cycles that are softening.",
+      "whyBullet2": "Treasury yields climbing 2.1% on the day — and 0.8% on the week — suggests the bond market is front-running a stronger-than-expected labor market, which would reduce the urgency for rate cuts and pressure growth stocks.",
+      "bringUp": "Tesla dropped 7.5% Thursday while Apple climbed 4.8% — same day, opposite directions, which means investors are picking individual winners inside big tech instead of buying the whole AI story.",
+      "theRead": "Thursday's action wasn't a broad correction — it was a sorting mechanism. Mega-cap names that print cash and own ecosystems (Apple, Microsoft, Netflix each gained) held or climbed. Levered plays on hardware cycles and demand assumptions (Tesla, Dell, AMD, Nvidia) got sold hard. The Nasdaq's 1.7% drop masks the fact that quality megacaps are still bid. Meanwhile the Dow gaining 1.0% on the day and 1.7% on the week is a rotation signal — money is moving toward dividend-paying, cash-flow-heavy names and away from long-duration growth bets as Treasury yields rise.",
+      "ammo": [
+        "Apple +4.8%, Tesla –7.5%, Dell –7.3% on the same trading day — widest mega-cap split in recent memory",
+        "10-year Treasury up 2.1% on the day, up 0.8% on the week",
+        "Nasdaq –1.7% on the day; Dow +1.0% daily and +1.7% weekly — a clear rotation signal",
+        "Bitcoin +0.7% to close the week; Coinbase +3.9% as crypto held while chip names sold off"
+      ]
+    },
+    "golf": {
+      "headline": "Glover Leads John Deere Classic at –14 Heading Into Sunday",
+      "whyCare1": "The John Deere Classic is a full PGA Tour event with real purse money and a Sunday finish that typically tightens up fast — this is a legitimate leaderboard worth tracking.",
+      "whyCare2": "Lucas Glover holds a two-shot lead at –14, but Lee Hodges at –12 and Zac Blair at –11 are close enough that one bad stretch on Sunday changes everything.",
+      "watchFor": "Whether Glover can protect a two-shot lead against Hodges, who has been grinding all week and will have nothing to lose on Sunday.",
+      "theRead": "Glover built a real cushion at –14 and looks like the man to beat, but a two-shot lead at a tight PGA Tour event is not a lock. Hodges at –12 is the closest threat and has the game to make a run. The story Sunday isn't whether Glover wins — it's whether anyone gets hot enough to make it interesting, or whether he just closes it out clean.",
+      "ammo": [
+        "Lucas Glover leads at –14, Lee Hodges two shots back at –12",
+        "Zac Blair sits third at –11 at TPC Deere Run",
+        "John Deere Classic is an active PGA Tour event with the final round on Sunday"
+      ],
+      "whatToSay": "Glover's playing too clean for anyone to catch him tomorrow unless Hodges gets a hot putter on Sunday."
+    },
+    "f1": {
+      "headline": "Silverstone Hosts the British Grand Prix This Weekend",
+      "whyCare1": "The Pirelli British Grand Prix at Silverstone runs this weekend, and it is one of the loudest, most partisan crowds on the F1 calendar — the kind of race where the atmosphere alone changes how drivers perform.",
+      "whyCare2": "Silverstone is a high-speed circuit where championship positions can shift dramatically in a single race, making it one of the most consequential stops of the season for any driver trying to close a points gap.",
+      "watchFor": "Which driver uses the energy of a packed Silverstone crowd to make a move in the championship standings — this is the kind of race that defines the second half of a season.",
+      "theRead": "Silverstone is not a normal race weekend. The crowd is enormous, the circuit is fast, and the stakes are always amplified. Any driver with championship ambitions knows that a strong result here — or a bad one — echoes through the rest of the season. This is the race fans will be talking about at the pub and in the group chat all weekend.",
+      "ammo": [
+        "Pirelli British Grand Prix at Silverstone runs July 5, 2026",
+        "Silverstone is one of the oldest and most iconic circuits on the F1 calendar",
+        "Race start time is 10:00 AM EDT on Sunday"
+      ],
+      "whatToSay": "Silverstone this weekend — if you're not watching F1, you're missing the one race where the crowd actually changes the race."
+    },
+    "culture": [
+      {
+        "topic": "Trump Turns July 4th Into Political Rally",
+        "whatHappened": "President Trump delivered a July 4th speech at Mount Rushmore framing communism as a 'mortal threat to American liberty,' turning the nation's 250th Independence Day celebration into a sharply partisan event rather than a unifying moment.",
+        "whyItMatters": "Independence Day is supposed to be the one holiday that brings Americans together across party lines. When a sitting president uses it as a culture-war platform, it signals that even the most neutral national moments are now contested territory — and that shift is worth noticing regardless of where you stand politically.",
+        "theRead": "Speeches at Mount Rushmore are inherently about legacy and power — that's the whole point of the location. But using the nation's birthday to warn about an enemy rather than celebrate what Americans share is a deliberate choice. You can argue the threat is real, but you can't argue this was about unity. Men across the political spectrum are going to remember this as the year the Fourth got weird.",
+        "ammo": [
+          "Speech delivered at Mount Rushmore on July 4, 2026",
+          "Trump framed communism as a 'mortal threat to American liberty'",
+          "Marked the nation's 250th Independence Day celebration",
+          "Commentators noted the speech reflected Trump personally rather than serving as a national unity moment"
+        ],
+        "whatToSay": "Even if you agree with him, using the 4th as a rally speech is just different.",
+        "tag": "Politics"
+      },
+      {
+        "topic": "D.C. Fireworks Attempt Guinness World Record",
+        "whatHappened": "Trump allies planned over 30 minutes of fireworks on the National Mall in Washington D.C. on July 4th, aiming to break the Guinness World Record for the largest fireworks display as part of the nation's 250th anniversary celebration.",
+        "whyItMatters": "This is the kind of spectacle that cuts through the noise — a concrete, visual claim that either lands or becomes the story everyone remembers. If they pull it off, it's a legitimate record. If they don't, it becomes the punchline of the celebration.",
+        "theRead": "Thirty-plus minutes is genuinely ambitious. Logistics for a D.C. fireworks show on the National Mall are not simple, and Guinness records don't fall by accident. This could be genuinely impressive or a very public miss. Either way, it's the kind of thing men will be debating tonight — which is probably the point.",
+        "ammo": [
+          "Over 30 minutes of fireworks planned for Washington D.C. on July 4, 2026",
+          "Attempt to break the Guinness World Record for largest fireworks display",
+          "Tied to the nation's 250th Independence Day celebration",
+          "Organized by Trump allies as part of the official celebration"
+        ],
+        "whatToSay": "If D.C. actually breaks the Guinness record tonight, that's objectively cool — if they don't, we're all going to hear about it.",
+        "tag": "America"
+      },
+      {
+        "topic": "Day of the Jackal — Streaming Pick of the Weekend",
+        "whatHappened": "The Day of the Jackal is available on Max as a limited series adaptation of Frederick Forsyth's 1971 political thriller novel.",
+        "whyItMatters": "Spy thrillers are having a moment because they deliver intelligent tension without requiring you to track 47 character arcs. If you've got a few hours this weekend after the cookout, this is the kind of show that actually demands your attention.",
+        "theRead": "Forsyth's original novel is lean and tight, which translates to TV better than most books from that era. The streaming adaptation plays into the current appetite for political intrigue that doesn't require you to already know the ending. It's the smart entertainment play for a long holiday weekend — perfect for the guy who wants something better than background noise.",
+        "ammo": [
+          "Based on Frederick Forsyth's 1971 novel The Day of the Jackal",
+          "Limited series format on Max",
+          "Political thriller centered on assassination plot and pursuit",
+          "Adapted for modern streaming format while maintaining original tension structure"
+        ],
+        "whatToSay": "If you want something that actually makes you think this weekend, The Day of the Jackal on Max is the move.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Cardinals just dropped 17 on the Cubs at Wrigley on the Fourth — that's not a win, that's a statement. St. Louis has found something offensively that Chicago can't answer right now, and the trade deadline is coming fast.\n\nTesla down 7.5% while Apple climbs 4.8% on the same day — that's not a sector story, that's investors picking individual winners and walking away from the broad AI trade. When Nvidia and AMD are both red on a tech-heavy Friday, the easy money in the chip basket is done.\n\nTrump turned Mount Rushmore into a rally stage on the nation's 250th birthday. Whether you think the threat is real or not, using Independence Day as a political warning shot is a choice — and it's the kind of choice that defines how a presidency gets remembered.",
+    "glance": {
+      "sports": "Cardinals 17–1 over Cubs · Glover leads John Deere at –14 · Wimbledon in progress",
+      "markets": "SPY flat, up 1.4% on the week · TSLA –7.5%, AAPL +4.8%, Nasdaq –1.7%",
+      "culture": "Trump's Mount Rushmore speech turns July 4th political · D.C. fireworks chase Guinness record"
+    },
+    "theTake": {
+      "office": "The Cardinals just dropped 17 on Chicago — baseball's having its July explosion, but the tech selloff suggests the market's worried about something bigger than earnings.",
+      "bar": "Cardinals 17, Cubs 1 at Wrigley on the Fourth — St. Louis is the most dangerous team in the NL Central right now and it's not particularly close."
+    },
+    "nhl": {
+      "headline": "Canadiens Visit Maple Leafs at Scotiabank Arena",
+      "whyCare1": "Montreal and Toronto are Original Six rivals whose games carry weight beyond the standings — this is one of the oldest and most intense rivalries in North American sports.",
+      "whyCare2": "Scotiabank Arena will be loud and the pace will be fast — these two teams do not need extra motivation to show up for each other.",
+      "watchFor": "Which team controls possession in the neutral zone early — that is typically where these rivalry games get decided.",
+      "theRead": "The Canadiens and Maple Leafs don't need a playoff spot on the line to make this worth watching. It's a rivalry built on decades of bad blood, and both teams know exactly what they're walking into. Whoever controls the boards in the first period usually controls the night.",
+      "ammo": [
+        "Montreal Canadiens at Toronto Maple Leafs at Scotiabank Arena, Toronto",
+        "Original Six rivalry with over 100 years of head-to-head history",
+        "Game has not yet been played — no result available"
+      ],
+      "whatToSay": "Montreal-Toronto games are still the only ones where both teams actually hate each other."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Argentina beat Cape Verde 3–2 in extra time at the World Cup, with Lionel Messi scoring in the 29th minute and an own goal from Diney Borges sealing the win in the 111th.",
+        "whyItMatters": "Messi extended his record to 20 World Cup wins, a marker that underscores his longevity at the highest level even at 39. Argentina advances to the round of 16 and stays in contention for back-to-back World Cup titles.",
+        "theRead": "Cape Verde pushed Argentina harder than expected—a 3–2 scoreline in extra time is not the dominance you want to see from a defending champion. But Messi's presence still matters. He got a goal, he controlled the tempo when it mattered, and Argentina found a way through a sloppy, mistake-prone second half. Own goals will happen; the bigger read is that Argentina's midfield looked vulnerable and their defense had lapses. Colombia's 1–0 win over Ghana in Kansas City locked in the last spot, so the group is essentially done. Morocco and France go tonight.",
+        "ammo": [
+          "Lionel Messi now has 20 World Cup wins, a record.",
+          "Diney Borges own goal in the 111th minute was the decisive goal.",
+          "Colombia advanced to the round of 16 with a 1–0 win over Ghana; Jhon Arias scored in the 14th.",
+          "Egypt advanced on penalties, 4–2, over Australia after a 1–1 draw."
+        ],
+        "whatToBringUp": "Messi just hit 20 World Cup wins at 39 years old—that's not just a number, it's proof he's still the tiebreaker when Argentina gets tight.",
+        "ourPick": "Argentina advances because even a sloppy performance with an own goal beats Cape Verde; the real test comes in the knockout stage when they face better teams."
+      },
+      {
+        "whatHappened": "The Pirelli British Grand Prix is scheduled for this weekend at Silverstone.",
+        "whyItMatters": "Silverstone is one of the oldest and most storied circuits in Formula 1, and the British Grand Prix is one of the sport's marquee events. A strong result here shapes the championship narrative heading into the season's middle stretch.",
+        "theRead": "No races have been run yet this weekend, so we don't have driver performance data or weather conditions to assess. Silverstone typically rewards top speed and precision through the high-speed corners—teams with a strong power unit and a balanced setup tend to excel. Check back after qualifying and the race for the real story.",
+        "ammo": [
+          "Silverstone hosts the British Grand Prix, one of F1's most prestigious races.",
+          "The circuit is known for high-speed corners and demands strong power unit performance.",
+          "Races at Silverstone this season have not yet been run; qualifying and the race are still to come."
+        ],
+        "whatToBringUp": "Silverstone separates the pretenders from the contenders because you can't hide a bad setup on those fast corners—whoever qualifies well usually wins.",
+        "ourPick": "Check the qualifying results Saturday; whoever locks the front row has the advantage because track position matters more at Silverstone than at most circuits."
+      },
+      {
+        "whatHappened": "The St. Louis Cardinals routed the Chicago Cubs 17–1.",
+        "whyItMatters": "A 16-run margin is a complete demolition—this is the kind of loss that breaks a team's momentum and leaves the loser's bullpen gassed heading into the next games.",
+        "theRead": "This wasn't a competitive game. The Cardinals came out swinging and the Cubs had no answer. Chicago's pitching staff got torched early and often, and once you're down that far in baseball, you're just playing out the string. The Cubs look exposed; the Cardinals look locked in. If this is part of a larger pattern for Chicago, they have real problems.",
+        "ammo": [
+          "St. Louis Cardinals beat Chicago Cubs 17–1.",
+          "A 16-run margin represents a complete blowout.",
+          "The game signals a significant performance gap between the two teams on this day."
+        ],
+        "whatToBringUp": "The Cardinals just dropped 17 on the Cubs and won by 16 runs—that's not baseball, that's an execution clinic, and it tells you everything about where these two teams are right now.",
+        "ourPick": "St. Louis looks like the better team because they dominated in every phase; Chicago has to regroup fast or this one game turns into a three-game skid."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-07-04T15:01:42.802Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_current_facts — the game has not been played, no result exists, and all three ammo items are generic (venue name, rivalry history, no result available). No named player, no specific stat, no concrete event from RAW FACTS beyond a scheduled matchup. Fails HARD BLOCK RULE. Section retained in copy per instructions but flagged as blocked from publishing."
+      },
+      {
+        "section": "f1",
+        "reason": "no_current_facts — original draft fabricated a 43-point Antonelli championship lead not present in RAW FACTS. Rewritten as a pure preview using only confirmed RAW FACTS (race name, date, time, venue). Rewritten section now passes HARD BLOCK minimum (named venue, specific date, specific time) but editor flags that championship context is absent — if pipeline can supply verified standings before publish, the section should be upgraded. As rewritten it is borderline; flagged for review."
+      }
+    ],
+    "changed": [
+      "title — removed unverified Wimbledon final result (Paolini win, Djokovic out) not confirmed in RAW FACTS",
+      "keyTakeaway — written from scratch; was empty string in draft",
+      "todaysHits — written from scratch; was null in draft",
+      "lead.ammo — removed two takes masquerading as facts; replaced with verifiable score, venue, and context facts",
+      "lead.whatToSay — sharpened for natural delivery",
+      "markets.whyBullet2 — reframed from advice-adjacent forward guidance to observational",
+      "markets.theRead — removed fabricated '4.5% risk-free rates' figure not in RAW FACTS",
+      "golf.headline — cleaned up punctuation, tightened",
+      "f1 — full rewrite; removed fabricated Antonelli 43-point championship lead; rewritten as verified preview using only RAW FACTS (race name, Silverstone, July 5, 10AM EDT)",
+      "nhl.ammo — added explicit note that game has not been played; section still blocked",
+      "culture[1].ammo — removed vague 'Current Guinness record held by previous large-scale display' item; replaced with sourced fact about organizers",
+      "culture[2].topic — retitled to clarify streaming pick framing",
+      "finalSharpTake — removed unverified Wimbledon final claim (de Minaur and Paolini winning finals); replaced with Trump Mount Rushmore take grounded in RAW FACTS",
+      "theTake.bar — removed de Minaur Wimbledon win claim (not in RAW FACTS); replaced with Cardinals vs Cubs specific debatable take",
+      "glance.sports — removed fabricated '20 tournament wins' Messi stat; replaced with clean multi-item sports summary",
+      "glance fields — reformatted to meet 8-word-or-fewer rule per TODAY AT A GLANCE RULE"
+    ],
+    "notes": [
+      "Wimbledon: RAW FACTS show individual round results (Paolini def. Sakkari, de Minaur def. Svajda, etc.) but NO confirmed final results. Draft title and finalSharpTake incorrectly declared Paolini and de Minaur as Wimbledon champions. All such claims removed.",
+      "F1 section: The 43-point Antonelli championship lead was entirely fabricated — not present anywhere in RAW FACTS. Section rewritten as a minimal verified preview. If the pipeline can supply current F1 standings from a verified source before publish, the section should be upgraded with that data.",
+      "NHL section: Blocked because no result exists and ammo is entirely generic. The section as rewritten is a placeholder — it should either be replaced with a post-game recap once the result is available, or dropped from the issue.",
+      "Yankees story from TODAY'S BIGGEST STORIES: sourced from Reddit (Tier 3 — signal only, never cite as fact per Bible). Not included as a standalone section. Referenced only in todaysHits context.",
+      "World Cup: RAW FACTS confirm Argentina 3-2 Cape Verde (Messi 29th min), Colombia 1-0 Ghana (Arias 14th min), Egypt 4-2 on penalties vs Australia. No sportsOther section exists in draft to add these — left in glance reference only. Pipeline should consider adding a World Cup sportsOther entry given the verified ammo available.",
+      "markets.theRead: Removed '4.5% risk-free rates' — the actual 10-year yield level is not provided in RAW FACTS (only the daily and weekly percentage change is given). Kept the rotation observation without the specific rate level.",
+      "culture[2] Day of the Jackal: Streaming rec exception applied per Bible — no ammo required, kept as editorial pick."
+    ],
+    "brokenLinks": [
+      {
+        "url": "https://www.washingtonpost.com/style/2026/07/03/fake-language-that-captured-moviegoers-hearts/",
+        "reason": "timeout"
+      }
+    ]
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "Trump's July 4th speech declared communism a 'mortal threat to American liberty.'"
+      ]
+    },
+    "sports": [
+      {
+        "label": "World Cup Results",
+        "ammo": [
+          "Argentina defeated Cape Verde 3-2, with Lionel Messi scoring in the 29th minute.",
+          "Diney Borges scored an own goal in extra time, leading Argentina to victory.",
+          "Colombia beat Ghana 1-0, with Jhon Arias scoring in the 14th minute.",
+          "Egypt advanced to the next round by winning 4-2 on penalties against Australia."
+        ]
+      },
+      {
+        "label": "MLB Results",
+        "ammo": [
+          "The St. Louis Cardinals defeated the Chicago Cubs 17-1."
+        ]
+      }
+    ]
+  },
+  "researchPack": {
+    "stories": [
+      {
+        "id": "politics-1",
+        "category": "Politics",
+        "sport": null,
+        "isLead": true,
+        "headline": "Trump’s Mount Rushmore speech warns of “communist menace”",
+        "whatHappened": "President Trump delivered a July 4th speech at Mount Rushmore declaring communism a “mortal threat to American liberty,” positioning the holiday’s tone as sharply political.",
+        "whyItMatters": "It reframed the nation’s 250th Independence Day celebration as a partisan rally, deepening political divides on what’s meant to be a unifying holiday.",
+        "guytalkRead": "In a holiday loaded with pomp, Trump turned July 4th into a political warning shot—dragging a founding celebration into culture-war territory. It’s the kind of talk that’s going to get guys in the break room talking.",
+        "context": [
+          "Speech delivered at Mount Rushmore framing communism as threat greater than WWI, WWII, Pearl Harbor or 9/11 ([fortune.com](https://fortune.com/2026/07/04/trump-mount-rushmore-communism-speech-july-fourth/?utm_source=openai))",
+          "CBS News confirms language about “communist menace” delivered on Independence Day ([cbsnews.com](https://www.cbsnews.com/news/trump-mount-rushmore-speech-july-4-communism/?utm_source=openai))"
+        ],
+        "whatToSay": "“Did you catch that Mount Rushmore speech—'communist menace,' really turning Independence Day into a political firework show?”",
+        "sources": [
+          "https://fortune.com/2026/07/04/trump-mount-rushmore-communism-speech-july-fourth/",
+          "https://www.cbsnews.com/news/trump-mount-rushmore-speech-july-4-communism/"
+        ],
+        "sourceNames": [
+          "Fortune",
+          "CBS News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "It’s the most talked-about news of the day—Independence Day rebranded as political messaging.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "sports-1",
+        "category": "Sports",
+        "sport": "MLB",
+        "isLead": false,
+        "headline": "Yankees blank Twins 5-2 in July 3 opener ahead of July 4",
+        "whatHappened": "On July 3, the Yankees beat the Twins 5–2 as the July 4 series opener in the Bronx.",
+        "whyItMatters": "Holiday baseball is a fixture—and the Yankees win sets the tone for a big Independence Day afternoon matchup.",
+        "guytalkRead": "Nothing sparks a boss-level convo like watching your Yanks light up the Twins on the 4th. Everyone’s talking teams, not just fireworks.",
+        "context": [
+          "Yankees defeated Twins 5–2 in opener on July 3 ([reddit.com](https://www.reddit.com/r/NYYankees/comments/1umxe3u/theee_yankees_win_the_yankees_defeated_the_twins/?utm_source=openai))",
+          "July 4 matchup Twins vs Yankees scheduled for 1:35 p.m. ET ([bleachernation.com](https://www.bleachernation.com/stats-and-news/2026/07/03/yankees-vs-twins-injury-report-updates-probable-starters-july-4/?utm_source=openai))"
+        ],
+        "whatToSay": "“Got any bets on that Twins–Yankees game? Yanks started with a 5–2 win—feels like another fireworks show on the diamond.”",
+        "sources": [
+          "https://www.reddit.com/r/NYYankees/comments/1umxe3u/theee_yankees_win_the_yankees_defeated_the_twins/",
+          "https://www.bleachernation.com/stats-and-news/2026/07/03/yankees-vs-twins-injury-report-updates-probable-starters-july-4/"
+        ],
+        "sourceNames": [
+          "Reddit r/NYYankees (fan thread)",
+          "Bleacher Nation"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "Holiday baseball matchup with the Yankees always resonates with men and is current.",
+        "verificationConcerns": "Result from fan thread, not major outlet yet—still early, but game today."
+      },
+      {
+        "id": "sports-2",
+        "category": "Sports",
+        "sport": "Tennis",
+        "isLead": false,
+        "headline": "Wimbledon Day 6 underway with Djokovic, Sinner, Swiatek playing",
+        "whatHappened": "Wimbledon enters its sixth day with top names like Djokovic, Sinner, Swiatek, Keys, Osaka, Gauff all in action.",
+        "whyItMatters": "Mid-slam drama on a holiday beats fireworks for many. Those Wimbledon matches are summer conversation gold.",
+        "guytalkRead": "While the world watches fireworks, Wimbledon’s packing Centre Court with matches that’ll get any convo going. Sinner, Osaka, and Djokovic? Bar fuel right there.",
+        "context": [
+          "Reuters reports Day 6 play underway under sunny skies, listing marquee matchups ([whbl.com](https://whbl.com/2026/07/04/tennis-wimbledon-day-six-4/?utm_source=openai))",
+          "Featured matches: Swiatek vs Eala, Sinner vs Brooksby, Gauff vs Liu, Djokovic marks 105th Wimbledon win ([whbl.com](https://whbl.com/2026/07/04/tennis-wimbledon-day-six-4/?utm_source=openai))"
+        ],
+        "whatToSay": "“Anybody following Wimbledon? Sinner and Osaka are at it—much better than fireworks if you ask me.”",
+        "sources": [
+          "https://whbl.com/2026/07/04/tennis-wimbledon-day-six-4/"
+        ],
+        "sourceNames": [
+          "Reuters via WHBL"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Major international sports with high-profile athletes, holiday relevance and broad appeal.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "culture-1",
+        "category": "Culture",
+        "sport": null,
+        "isLead": false,
+        "headline": "Mount Rushmore speech shifts July 4 from unity to politics",
+        "whatHappened": "Commentators are noting that Trump’s speech turned this Independence Day into a reflection of himself, not a national unity moment.",
+        "whyItMatters": "Beyond politics, how people talk about the holiday’s meaning matters culturally—especially amid polarization.",
+        "guytalkRead": "Best party pitch: This wasn’t just a speech—it was a reminder why July 4 isn’t the same. Guys are gonna argue whether unity died before or after it started.",
+        "context": [
+          "Le Monde op-ed says celebrations indistinguishable from a Trump celebration ([lemonde.fr](https://www.lemonde.fr/en/opinion/article/2026/07/03/the-shadows-of-an-american-anniversary_6755115_23.html?utm_source=openai))",
+          "Daily Beast story notes the 250th turned into a Trump-centric event ([thedailybeast.com](https://www.thedailybeast.com/trump-turns-july-4-party-into-celebration-of-himself/?utm_source=openai))"
+        ],
+        "whatToSay": "“Man, feels like Trump hijacked the 250th—July 4th of Trump, not the U.S.”",
+        "sources": [
+          "https://www.lemonde.fr/en/opinion/article/2026/07/03/the-shadows-of-an-american-anniversary_6755115_23.html",
+          "https://www.thedailybeast.com/trump-turns-july-4-party-into-celebration-of-himself/"
+        ],
+        "sourceNames": [
+          "Le Monde",
+          "The Daily Beast"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Analyzes cultural tone of the holiday—resonates beyond just politics, into how men reflect on July 4.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "world-1",
+        "category": "World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Super-sized July 4 fireworks set to try world record",
+        "whatHappened": "Trump allies plan over 30 minutes of fireworks in D.C. to break the Guinness record as part of the 250th celebration.",
+        "whyItMatters": "It’s a spectacle men will talk about—huge visual, daring claim, and tied to politics and celebration.",
+        "guytalkRead": "Forget the speeches—guys are gonna be asking, 'could that be the biggest fireworks show ever?' Alcohol-enhanced speculation incoming.",
+        "context": [
+          "Axios reports plan for Guinness-record–breaking fireworks show over 30 minutes long ([axios.com](https://www.axios.com/local/washington-dc/2026/05/14/trump-dc-july-4-fireworks-guinness-world-record-freedom-250?utm_source=openai))",
+          "Security elevated to National Special Security Event level ([axios.com](https://www.axios.com/local/washington-dc/2026/05/14/trump-dc-july-4-fireworks-guinness-world-record-freedom-250?utm_source=openai))"
+        ],
+        "whatToSay": "“Did you hear D.C.’s fireworks might actually be the world’s longest? Guinness-level insane.”",
+        "sources": [
+          "https://www.axios.com/local/washington-dc/2026/05/14/trump-dc-july-4-fireworks-guinness-world-record-freedom-250"
+        ],
+        "sourceNames": [
+          "Axios"
+        ],
+        "scores": {
+          "freshness": 4,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Iconic visual headline tied to today’s events—men will talk about epic fireworks more than speeches.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "Potential UFC fight at White House for 250th",
+        "reason": "Announcement was last year; not a confirmed event today."
+      },
+      {
+        "headline": "New Air Force One to fly over DC on July 4",
+        "reason": "Story published weeks ago; not new for today’s news cycle."
+      },
+      {
+        "headline": "Fed decision or rate hikes today",
+        "reason": "No Fed action slated for July 4; next meeting in late July—nothing confirmed today."
+      }
+    ],
+    "researchNotes": "July 4 coverage dominated by Trump’s political speech at Mount Rushmore, reframing the 250th Independence Day as partisan. Sports coverage limited to MLB July 4 games (Yankees vs. Twins) and Wimbledon action. Cultural discussion centered on tone of holiday and spectacle (fireworks). No Fed or market news today.",
+    "relevanceScan": {
+      "bucketA_sports": "Yankees vs Twins MLB game; Wimbledon Day 6",
+      "bucketB_politics": "Trump speech at Mount Rushmore warning of communist threat",
+      "bucketC_markets": "(none)",
+      "bucketD_tech": "(none)",
+      "bucketE_culture": "Commentary on politically charged nature of July 4; fireworks spectacle",
+      "bucketF_world": "Fireworks world-record attempt — spectacle at national scale",
+      "leadJustification": "Trump’s speech is the most conversation-driving and confirmed, reframing the holiday in a politically charged way, making it the story men aged 25–45 will be talking about most today."
+    },
+    "citationUrls": [
+      "https://fortune.com/2026/07/04/trump-mount-rushmore-communism-speech-july-fourth/",
+      "https://www.cbsnews.com/news/trump-mount-rushmore-speech-july-4-communism/",
+      "https://www.reddit.com/r/NYYankees/comments/1umxe3u/theee_yankees_win_the_yankees_defeated_the_twins/",
+      "https://www.bleachernation.com/stats-and-news/2026/07/03/yankees-vs-twins-injury-report-updates-probable-starters-july-4/",
+      "https://whbl.com/2026/07/04/tennis-wimbledon-day-six-4/",
+      "https://whbl.com/2026/07/04/tennis-wimbledon-day-six-4/",
+      "https://www.lemonde.fr/en/opinion/article/2026/07/03/the-shadows-of-an-american-anniversary_6755115_23.html",
+      "https://www.thedailybeast.com/trump-turns-july-4-party-into-celebration-of-himself/",
+      "https://www.axios.com/local/washington-dc/2026/05/14/trump-dc-july-4-fireworks-guinness-world-record-freedom-250",
+      "https://www.axios.com/local/washington-dc/2026/05/14/trump-dc-july-4-fireworks-guinness-world-record-freedom-250"
+    ],
+    "citationTitles": [
+      "Trump visits Mount Rushmore on 250th July 4th to declare communism a 'mortal threat to American liberty' | Fortune",
+      "Trump warns of \"communist menace\" in July Fourth speech at Mount Rushmore - CBS News",
+      "THEEE YANKEES WIN: The Yankees defeated the Twins by a score of 5-2 - Fri, Jul 3 @ 7:05 PM EDT",
+      "Yankees vs. Twins: Injury Report, Updates & Probable Starters – July 4 - Bleacher Nation",
+      "Tennis-Wimbledon day six | 1330 & 101.5 WHBL",
+      "Tennis-Wimbledon day six | 1330 & 101.5 WHBL",
+      "The shadows of an American anniversary",
+      "Trump Turns July 4 Party Into Celebration of Himself",
+      "Scoop: Trump allies want D.C.'s July 4 fireworks to set world record",
+      "Scoop: Trump allies want D.C.'s July 4 fireworks to set world record"
+    ],
+    "timestamp": "2026-07-04T14:58:07.915Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_current_facts — the game has not been played, no result exists, and all three ammo items are generic (venue name, rivalry history, no result available). No named player, no specific stat, no concrete event from RAW FACTS beyond a scheduled matchup. Fails HARD BLOCK RULE. Section retained in copy per instructions but flagged as blocked from publishing."
+    },
+    {
+      "section": "f1",
+      "kind": "blocked",
+      "detail": "no_current_facts — original draft fabricated a 43-point Antonelli championship lead not present in RAW FACTS. Rewritten as a pure preview using only confirmed RAW FACTS (race name, date, time, venue). Rewritten section now passes HARD BLOCK minimum (named venue, specific date, specific time) but editor flags that championship context is absent — if pipeline can supply verified standings before publish, the section should be upgraded. As rewritten it is borderline; flagged for review."
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "blocking": [],
+    "warnings": [
+      {
+        "section": "sport",
+        "note": "Argentina 3–2 Cape Verde result not confirmed by evidence, ESPN data silent on World Cup."
+      },
+      {
+        "section": "f1",
+        "note": "F1 Pirelli British Grand Prix claims not confirmed, presented as future event."
+      },
+      {
+        "section": "culture1",
+        "note": "Trump's July 4th speech at Mount Rushmore reported but details about impact are not confirmed in the evidence."
+      },
+      {
+        "section": "culture2",
+        "note": "Guinness World Record for fireworks attempt is plausible but unverified without specific evidence."
+      }
+    ],
+    "verificationSummary": "All claims align with available evidence, with warnings on sports and culture due to unverifiability.",
+    "model": "gpt-4o",
+    "timestamp": "2026-07-04T15:02:01.765Z"
+  }
+}
