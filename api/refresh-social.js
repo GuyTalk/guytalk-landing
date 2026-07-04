@@ -43,32 +43,35 @@ async function fetchSocialMoments() {
     model: 'gpt-4.1',
     tools: [{ type: 'web_search' }],
     tool_choice: 'required',
-    input: `Today is ${today}. Search for the 4-5 most notable social media posts, tweets, or public statements from the LAST 24 HOURS that men 25-45 would be talking about. Focus on:
-- CEO/executive tweets or public statements that moved markets or sparked debate
-- Athletes, coaches, or team accounts posting something notable
-- Viral moments in sports, business, finance, or culture
-- Major company announcements made via social media
-- Controversial or surprising things public figures said publicly
+    input: `Today is ${today}. Search X (Twitter) and news sites for the 4-5 most viral posts, tweets, or public statements from the LAST 6 HOURS that men 25-45 are talking about. Prioritize by virality — what is actually trending or blowing up right now.
 
-For each, return a JSON object. Respond ONLY with a valid JSON array (no markdown, no code fences):
+Search specifically for:
+- Viral tweets from CEOs, executives, athletes, coaches, public figures (high retweet/like counts)
+- Trending topics on X right now and the post that sparked them
+- Athletes posting breaking news (trades, signings, injuries) directly on X
+- Outrageous or surprising things a public figure just said publicly
+- Viral moments in sports, business, finance, tech, or culture from today
+- Any X post that has gone viral in the last few hours (100k+ likes, major media pickup)
+
+Respond ONLY with a valid JSON array (no markdown, no code fences):
 [
   {
     "platform": "X",
     "author": "Full Name",
     "handle": "@handle",
-    "quote": "The actual quote or close paraphrase of what they said (max 180 chars)",
-    "why": "One sentence: why this is worth knowing / what it signals.",
-    "url": "Best URL to the post or coverage of it",
-    "timestamp": "ISO 8601 approximate time if known, else today's date"
+    "quote": "The actual quote or as close a paraphrase as possible (max 200 chars, keep it punchy)",
+    "why": "One sharp sentence: why this is blowing up / what it actually means.",
+    "url": "Direct link to tweet or best news coverage of it",
+    "timestamp": "ISO 8601 time if known, else today's date"
   }
 ]
 
 Rules:
-- ONLY include moments from the last 24 hours — nothing older
-- Each item must have a real person/account and real quote or verifiable statement
-- No speculation — only things that actually happened and are publicly documented
-- Return 3-5 items maximum
-- If you cannot find enough real recent social moments, return fewer items rather than inventing
+- PRIORITIZE posts from the last 6 hours; fall back to last 24h if needed
+- Never invent a quote — only verifiable real statements
+- Each must have a real named person/account
+- Return 4-5 items; 3 minimum if you cannot find enough
+- Rank by cultural impact — what are guys actually talking about right now?
 `,
   });
 
