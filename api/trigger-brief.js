@@ -21,8 +21,8 @@ module.exports = async function handler(req, res) {
   // Allow manual testing via ?dry=1
   const dry = req.query.dry === '1';
 
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) return res.status(500).json({ error: 'GITHUB_TOKEN not set' });
+  const token = process.env.GITHUB_PAT || process.env.GITHUB_TOKEN;
+  if (!token) return res.status(500).json({ error: 'GITHUB_PAT not set' });
 
   if (dry) return res.json({ ok: true, dry: true, message: 'Would trigger generate-brief workflow' });
 
