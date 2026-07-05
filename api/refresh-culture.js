@@ -87,28 +87,52 @@ async function commitFile(contentStr) {
   }
 }
 
+// Trigger GitHub Actions workflow_dispatch (used when running as the 7am brief cron).
+async function triggerBrief() {
+  if (!GITHUB_PAT) return { ok: false, error: 'GITHUB_PAT not set' };
+  const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/workflows/generate-brief.yml/dispatches`;
+  const resp = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${GITHUB_PAT}`,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ ref: 'main' }),
+  });
+  return resp.status === 204 ? { ok: true } : { ok: false, status: resp.status };
+}
+
 module.exports = async (req, res) => {
   // Optional guard: if CRON_SECRET is configured, require Vercel's bearer token.
   if (CRON_SECRET) {
     const auth = req.headers.authorization || '';
     if (auth !== `Bearer ${CRON_SECRET}`) { res.status(401).json({ error: 'unauthorized' }); return; }
   }
-  if (!NEWS_API_KEY) { res.status(500).json({ error: 'NEWS_API_KEY not set in Vercel env' }); return; }
-  if (!GITHUB_PAT)   { res.status(500).json({ error: 'GITHUB_PAT not set in Vercel env' }); return; }
+  if (!GITHUB_PAT) { res.status(500).json({ error: 'GITHUB_PAT not set in Vercel env' }); return; }
+
+  // At 11 UTC (7am ET) also fire the brief generation workflow.
+  const shouldTriggerBrief = new Date().getUTCHours() === 11;
+  const briefResult = shouldTriggerBrief ? await triggerBrief() : null;
+
+  if (!NEWS_API_KEY) {
+    return res.status(200).json({ ok: true, brief: briefResult, skipped: 'NEWS_API_KEY not set' });
+  }
 
   let stories;
   try { stories = await fetchHeadlines(); }
-  catch (err) { res.status(502).json({ error: `NewsAPI fetch failed: ${err.message}` }); return; }
+  catch (err) { return res.status(502).json({ error: `NewsAPI fetch failed: ${err.message}`, brief: briefResult }); }
 
   // Never overwrite the live file with nothing — keep the last good copy.
-  if (!stories.length) { res.status(200).json({ ok: true, skipped: 'no usable headlines' }); return; }
+  if (!stories.length) { return res.status(200).json({ ok: true, brief: briefResult, skipped: 'no usable headlines' }); }
 
   const payload = JSON.stringify(
     { updatedAt: new Date().toISOString(), source: 'newsapi', stories },
     null, 2
   );
   try { await commitFile(payload); }
-  catch (err) { res.status(502).json({ error: `commit failed: ${err.message}` }); return; }
+  catch (err) { return res.status(502).json({ error: `commit failed: ${err.message}`, brief: briefResult }); }
 
-  res.status(200).json({ ok: true, count: stories.length });
+  res.status(200).json({ ok: true, count: stories.length, brief: briefResult });
 };
