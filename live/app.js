@@ -1624,13 +1624,19 @@ function FeaturedGolfCard(g) {
     el.innerHTML = `<div class="grid-golf"><div class="stack">${cards}</div><div class="stack">${ContextCard(tennisContext(tennis), false, 'Tennis')}</div></div>`;
   }
 
-  // ── Recap — all completed games today across team sports ────────────────────
+  // ── Recap — all completed games TODAY across team sports ────────────────────
   function renderRecap(scoreboard) {
     const el = $('recapWrap');
     if (!el) return;
 
     const SOCCER_KEYS = ['worldcup', 'mls', 'epl', 'ucl', 'concacaf'];
     const taggedGames = [];
+
+    const todayET = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+    const isToday = (g) => {
+      if (!g.startDate) return true;
+      return new Date(g.startDate).toLocaleDateString('en-CA', { timeZone: 'America/New_York' }) === todayET;
+    };
 
     const isChampionshipGame = (g) => {
       if (!(g.home?.winner || g.away?.winner)) return false;
@@ -1642,15 +1648,16 @@ function FeaturedGolfCard(g) {
       { key: 'nba',  tag: 'NBA',     contextFn: nbaContext,          wymFn: nbaWhatYouMissed },
       { key: 'mlb',  tag: 'MLB',     contextFn: mlbContext,          wymFn: mlbWhatYouMissed },
       { key: 'nhl',  tag: 'NHL',     contextFn: summaryReadContext,  wymFn: summaryWhatYouMissed },
+      { key: 'nfl',  tag: 'NFL',     contextFn: summaryReadContext,  wymFn: summaryWhatYouMissed },
     ].forEach(({ key, tag, contextFn, wymFn }) => {
       ((scoreboard || []).find(lg => lg.key === key)?.games || [])
-        .filter(g => g.state === 'post' && !isChampionshipGame(g))
+        .filter(g => g.state === 'post' && isToday(g) && !isChampionshipGame(g))
         .forEach(g => taggedGames.push({ ...g, _tag: tag, _contextFn: contextFn, _wymFn: wymFn }));
     });
 
     (scoreboard || [])
       .filter(lg => SOCCER_KEYS.includes(lg.key))
-      .flatMap(lg => lg.games.filter(g => g.state === 'post'))
+      .flatMap(lg => lg.games.filter(g => g.state === 'post' && isToday(g)))
       .forEach(g => taggedGames.push({ ...g, _tag: 'Soccer', _contextFn: soccerContext, _wymFn: soccerWhatYouMissed }));
 
     setBadge('badge-recap', taggedGames.length ? 'live' : null);

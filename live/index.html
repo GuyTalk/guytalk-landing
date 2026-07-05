@@ -788,21 +788,22 @@
 
   /* SPORTS CATEGORY NAV */
   .sports-nav {
-    display: flex; gap: 8px; flex-wrap: wrap;
+    display: flex; gap: 0; flex-wrap: wrap;
     margin: 18px 0 0; padding: 0;
-    background: none;
+    background: none; border-bottom: 1.5px solid var(--border);
   }
   .sports-nav-pill {
     font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 12px;
     letter-spacing: 0.07em; text-transform: uppercase;
-    padding: 7px 16px; border-radius: 100px;
-    background: var(--surface); border: 1.5px solid var(--border);
+    padding: 9px 18px 8px; border-radius: 0;
+    background: none; border: none;
+    border-bottom: 2px solid transparent; margin-bottom: -1.5px;
     color: var(--text-2); text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    transition: color 0.15s ease, border-color 0.15s ease;
   }
-  .sports-nav-pill:hover { background: var(--text); color: #fff; border-color: var(--text); text-decoration: none; }
-  .sports-nav-pill.is-live { border-color: var(--live); color: var(--live); background: var(--red-muted); }
-  .sports-nav-pill.is-live:hover { background: var(--live); color: #fff; border-color: var(--live); }
+  .sports-nav-pill:hover { color: var(--text); border-bottom-color: var(--text); text-decoration: none; }
+  .sports-nav-pill.is-live { color: var(--live); border-bottom-color: var(--live); }
+  .sports-nav-pill.is-live:hover { color: var(--live); border-bottom-color: var(--live); }
 
   /* MARKET MOVERS — winners / laggards row below the tile grid */
   .mk-movers {
