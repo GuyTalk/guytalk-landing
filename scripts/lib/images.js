@@ -65,15 +65,21 @@ function cleanImageUrl(url) {
 // against the URL path (e.g. Wikimedia "PNC_Arena_Raleigh.JPG").
 const IRRELEVANT_RE = /(arena|stadium|ballpark|ground|building|exterior|aerial|drone|panorama|skyline|map|logo|crest|emblem|wordmark|signage|entrance|facade|fa%C3%A7ade|trophy|cup_?\(|venue)/i;
 
-// Domains/paths that reliably serve images with editorial logo overlays or
-// site watermarks baked in — Golf Monthly / FutureCDN "Bazza's Best Bets" etc.
-const LOGO_OVERLAY_HOSTS = /futurecdn\.net|golfmonthly\.com/i;
+// Domains that reliably serve watermarked agency thumbnails, news site mastheads,
+// or generic logo overlays instead of actual event photos.
+const LOGO_OVERLAY_HOSTS = /futurecdn\.net|golfmonthly\.com|nurphoto\.com/i;
+
+// CDN paths used by news organisations for their site masthead / OG default images
+// (not event photos). These appear when a WaPo/NYT/Guardian article's og:image
+// resolves to the publication's own branded asset rather than a story photo.
+const MASTHEAD_PATH_RE = /\b(democracy[_-]dies|democracy-in|washington-post-logo|nyt-logo|guardian-logo|bbc-logo|espn-bug|masthead|default.og|default[_-]share|placeholder|no.?photo|generic)/i;
 
 function looksIrrelevant(url) {
   try {
     const parsed = new URL(url);
     if (LOGO_OVERLAY_HOSTS.test(parsed.hostname)) return true;
     const path = decodeURIComponent(parsed.pathname);
+    if (MASTHEAD_PATH_RE.test(path)) return true;
     const file = path.split('/').pop() || path;
     return IRRELEVANT_RE.test(file);
   } catch { return IRRELEVANT_RE.test(String(url)); }

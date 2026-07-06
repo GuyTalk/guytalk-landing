@@ -130,10 +130,19 @@ function buildSportImageQuery(s) {
       : 'FIFA World Cup 2026 soccer match action photo players';
   }
   if (sport === 'f1') {
-    return `Formula 1 ${name} 2026 race action photo`;
+    // Extract winner name from headline like "Charles Leclerc wins British Grand Prix"
+    const winnerM = hl.match(/^([A-Za-z ]+?)\s+wins/i);
+    const winner = winnerM ? winnerM[1].trim() : '';
+    return winner
+      ? `${winner} ${name} 2026 F1 race winner podium action photo site:formula1.com OR site:autosport.com OR site:crash.net OR site:motorsport.com`
+      : `Formula 1 ${name} 2026 race winner podium action photo site:formula1.com OR site:autosport.com OR site:crash.net`;
   }
   if (sport === 'golf') {
-    return `${name} golf 2026 action photo player swing`;
+    const leaderM = hl.match(/^([A-Za-z ]+?)\s+(wins|leads)/i);
+    const leader = leaderM ? leaderM[1].trim() : '';
+    return leader
+      ? `${leader} ${name} 2026 golf action photo site:pgatour.com OR site:cbssports.com OR site:golfchannel.com OR site:golf.com`
+      : `${name} 2026 PGA Tour golf leaderboard action photo player`;
   }
   if (sport === 'mlb') {
     const m = hl.match(/^(.+?)\s+\d+[–\-]/);
