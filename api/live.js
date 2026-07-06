@@ -75,6 +75,16 @@ const MARKET_SYMBOLS = [
   { key: 'tnx',  label: '10-Yr Treasury',  sub: 'US10Y',    yahoo: '%5ETNX',  unit: '%' },
 ];
 
+// Sector ETFs — fetched separately, rendered as a compact "Sectors" row in Markets
+const SECTOR_SYMBOLS = [
+  { key: 'XLK',  label: 'Tech' },
+  { key: 'XLF',  label: 'Finance' },
+  { key: 'XLE',  label: 'Energy' },
+  { key: 'XLV',  label: 'Health' },
+  { key: 'XLY',  label: 'Consumer' },
+  { key: 'XLC',  label: 'Comms' },
+];
+
 const BIG_GAME_RE = /final|finals|championship|cup|playoff|conference|series|bowl|classic/i;
 const MAJOR_GOLF_RE = /masters|u\.?s\.? open|open championship|pga championship|players|fedex|tour championship|memorial|genesis|arnold palmer|signature/i;
 
@@ -87,10 +97,13 @@ const json = (url) =>
 // Key: sport|homeAbbr|awayAbbr|homeScore|awayScore
 const _cmtCache = new Map();
 
+// Switch commentary generation to OpenAI web_search so facts are grounded in
+// live search results — prevents hallucinations like "Brazil can't afford slip-ups"
+// when they're already eliminated.
 async function generateGameCommentary(games, sport) {
   if (!games || !games.length) return;
-  const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-  if (!ANTHROPIC_API_KEY) return;
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  if (!OPENAI_API_KEY) return;
 
   const completed = games.filter(g => g.state === 'post').slice(0, 2);
   if (!completed.length) return;
@@ -102,44 +115,50 @@ async function generateGameCommentary(games, sport) {
   });
   if (!toGen.length) return;
 
-  const gameLines = toGen.map(g => {
-    const w = g.home?.winner ? g.home : g.away;
-    const l = g.home?.winner ? g.away : g.home;
-    const hl = (g.headline || '').replace(/^[^:]+:\s*/, '').replace(/\s*-\s*ESPN.*$/, '');
-    return `${g.home?.name} ${g.home?.score} – ${g.away?.name} ${g.away?.score}. Winner: ${w?.name}. ESPN note: "${hl}". Context: ${sport === 'worldcup' ? 'FIFA World Cup 2026 group stage' : sport.toUpperCase() + ' regular season'}.`;
-  });
+  let OpenAI;
+  try { OpenAI = require('openai'); } catch (_) { return; }
+  const client = new (OpenAI.default || OpenAI)({ apiKey: OPENAI_API_KEY });
 
-  const prompt = `You are GuyTalk's sports editor writing for men 25-45. Generate commentary for these ${sport} game results.
+  // Run per-game searches in parallel, each with its own web_search call
+  await Promise.allSettled(toGen.map(async (g) => {
+    const key = `${sport}|${g.home?.abbr}|${g.away?.abbr}|${g.home?.score}|${g.away?.score}`;
+    const hl = (g.headline || '').replace(/^[^:]+:\s*/, '').trim();
+    const sportLabel = sport === 'worldcup' ? 'FIFA World Cup 2026' :
+      sport === 'mlb' ? 'MLB' : sport === 'nba' ? 'NBA' : sport.toUpperCase();
+    const loser = Number(g.home?.score) < Number(g.away?.score) ? g.home?.name : g.away?.name;
 
-${gameLines.map((l, i) => `Game ${i + 1}: ${l}`).join('\n')}
+    const prompt = `GuyTalk sports editor. Breakdown for: ${g.home?.name} ${g.home?.score}–${g.away?.score} ${g.away?.name} (${sportLabel}).${hl ? ` ESPN: "${hl}".` : ''} Search: who scored and when, current standings after this result, is ${loser} still alive or eliminated? Return ONLY JSON: {"whyItMatters":"2-3 sentences, cite standings/elimination status directly","hotTake":"specific player/moment take — no generic 'most dangerous' phrases","whatToSay":"one-liner with a specific fact","biggestMoment":"scorer+minute if found","keyTakeaway":"current standings reality — eliminate/advance status"}`;
 
-For EACH game return a JSON object. Be SPECIFIC to what actually happened — name players, cite the score. NEVER say "X is the most dangerous team right now" or "X is the best on the grid right now" — those are banned phrases.
+    try {
+      const controller = new AbortController();
+      const tid = setTimeout(() => controller.abort(), 18000);
+      let response;
+      try {
+        response = await client.responses.create({
+          model: 'gpt-4.1',
+          tools: [{ type: 'web_search', search_context_size: 'low' }],
+          tool_choice: 'required',
+          max_output_tokens: 500,
+          input: prompt,
+        }, { signal: controller.signal });
+      } finally { clearTimeout(tid); }
 
-Return a JSON array (one object per game, in order):
-[{"whyItMatters":"2-3 sentences. Specific context and what it means for standings — NOT just restating the score.","hotTake":"One opinionated sentence. Name a specific player or moment. Something fans would argue about.","whatToSay":"One natural line for work or a bar. Include a specific number.","biggestMoment":"The single most memorable play or turning point.","keyTakeaway":"What this means going forward — qualification, momentum, rematch implications."}]`;
-
-  try {
-    let AnthropicSDK;
-    try { AnthropicSDK = require('@anthropic-ai/sdk'); } catch (_) { return; }
-    const client = new (AnthropicSDK.default || AnthropicSDK)({ apiKey: ANTHROPIC_API_KEY });
-    const msg = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 1500,
-      messages: [{ role: 'user', content: prompt }],
-    });
-    const text = (msg.content?.[0]?.text || '').replace(/```json\s*/gi, '').replace(/```/g, '');
-    const s = text.indexOf('['), e = text.lastIndexOf(']');
-    if (s < 0 || e < 0) return;
-    const arr = JSON.parse(text.slice(s, e + 1));
-    toGen.forEach((g, i) => {
-      if (!arr[i]) return;
-      g.commentary = arr[i];
-      const key = `${sport}|${g.home?.abbr}|${g.away?.abbr}|${g.home?.score}|${g.away?.score}`;
-      _cmtCache.set(key, arr[i]);
-    });
-  } catch (_) {
-    // silent — template fallback in app.js
-  }
+      let text = response.output_text || '';
+      if (!text && Array.isArray(response.output)) {
+        text = response.output.filter(b => b.type === 'message')
+          .flatMap(b => b.content || [])
+          .filter(c => c.type === 'output_text' || c.type === 'text')
+          .map(c => c.text || '').join('');
+      }
+      text = text.replace(/```json\s*/gi, '').replace(/```/g, '');
+      const s = text.indexOf('{'), e = text.lastIndexOf('}');
+      if (s >= 0 && e > s) {
+        const commentary = JSON.parse(text.slice(s, e + 1));
+        g.commentary = commentary;
+        _cmtCache.set(key, commentary);
+      }
+    } catch (_) { /* silent fallback to template */ }
+  }));
 }
 
 // Pick a usable (https, non-dark) logo href from an ESPN logos[] array.
@@ -1003,21 +1022,45 @@ async function fetchYahooQuote(yahooSymbol) {
   return { value: Number(value), change: Number(change), changePercent: Number(changePercent) };
 }
 
-async function fetchMarkets(_unusedFinnhubKey) {
-  // All symbols fetched from Yahoo Finance — real index values, not ETF proxies.
-  const rows = await Promise.all(
-    MARKET_SYMBOLS.map(async (m) => {
+async function fetchMarkets(finnhubKey) {
+  // Main index + crypto + commodities tiles
+  const [rows, sectorRows] = await Promise.all([
+    Promise.all(MARKET_SYMBOLS.map(async (m) => {
       const q = await fetchYahooQuote(m.yahoo);
       if (!q) return null;
-      return {
-        key: m.key, label: m.label, sub: m.sub, unit: m.unit || null,
+      return { key: m.key, label: m.label, sub: m.sub, unit: m.unit || null,
         value: q.value, change: q.change,
-        changePercent: q.changePercent, direction: q.change >= 0 ? 'up' : 'down',
-      };
-    })
-  );
+        changePercent: q.changePercent, direction: q.change >= 0 ? 'up' : 'down' };
+    })),
+    Promise.all(SECTOR_SYMBOLS.map(async (s) => {
+      const q = await fetchYahooQuote(encodeURIComponent(s.key));
+      if (!q) return null;
+      return { key: s.key, label: s.label,
+        changePercent: q.changePercent, direction: q.change >= 0 ? 'up' : 'down' };
+    })),
+  ]);
+
   const filled = rows.filter(Boolean);
-  return filled.length ? filled : null;
+  const sectors = sectorRows.filter(Boolean);
+
+  // Earnings calendar — upcoming notable earnings from Finnhub
+  let earningsCalendar = null;
+  if (finnhubKey) {
+    try {
+      const now = new Date();
+      const from = now.toISOString().slice(0, 10);
+      const to   = new Date(now.getTime() + 7 * 86400000).toISOString().slice(0, 10);
+      const ec = await json(`https://finnhub.io/api/v1/calendar/earnings?from=${from}&to=${to}&token=${finnhubKey}`);
+      earningsCalendar = (ec?.earningsCalendar || [])
+        .filter(e => e.symbol && e.date)
+        .sort((a, b) => new Date(a.date) - new Date(b.date))
+        .slice(0, 8)
+        .map(e => ({ symbol: e.symbol, date: e.date, epsEst: e.epsEstimate ?? null }));
+    } catch (_) {}
+  }
+
+  if (!filled.length) return { quotes: null, sectors: null, earningsCalendar };
+  return { quotes: filled, sectors: sectors.length ? sectors : null, earningsCalendar };
 }
 
 /* --------------------------------------------------------------------- MMA/UFC */
@@ -1425,7 +1468,7 @@ module.exports = async function handler(req, res) {
         scoreboard: scoreboard ? 'espn'    : null,
         yesterdayScores: yesterdayScores?.length ? 'espn' : null,
         mma:        mma        ? 'espn'    : null,
-        markets:    markets    ? 'yahoo'   : null,
+        markets:    markets?.quotes ? 'yahoo' : null,
         marketNews:  marketNews  ? 'yahoo'   : null,
         stockMovers: stockMovers ? 'yahoo'   : null,
         nbaNews:          nbaNews          ? 'espn' : null,
@@ -1436,7 +1479,10 @@ module.exports = async function handler(req, res) {
         talkingAbout: 'editorial',   // no live source yet
       },
       marketClosed,
-      liveNow, f1, golf, tennis, mma, scoreboard, yesterdayScores: yesterdayScores && yesterdayScores.length ? yesterdayScores : null, markets,
+      liveNow, f1, golf, tennis, mma, scoreboard, yesterdayScores: yesterdayScores && yesterdayScores.length ? yesterdayScores : null,
+      markets: markets?.quotes || null,
+      marketSectors: markets?.sectors || null,
+      earningsCalendar: markets?.earningsCalendar?.length ? markets.earningsCalendar : null,
       marketNews:  marketNews  && marketNews.length  ? marketNews  : null,
       stockMovers: stockMovers && (stockMovers.gainers.length || stockMovers.losers.length) ? stockMovers : null,
       nbaNews: nbaNews && nbaNews.length ? nbaNews : null,

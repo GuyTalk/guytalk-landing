@@ -938,6 +938,63 @@
   }
   .mk-section-title { font-size: 13px; font-weight: 700; color: var(--text); }
   .mk-section-sub { font-size: 11px; color: var(--text-muted, #888); }
+
+  /* Sector performance tiles */
+  .sector-grid { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0 8px; }
+  .sector-tile { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; min-width: 78px; text-align: center; }
+  .sector-tile-name { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
+  .sector-tile-pct { font-size: 16px; font-weight: 800; font-family: 'Inter Tight', sans-serif; }
+  .sector-up .sector-tile-pct { color: #16a34a; }
+  .sector-dn .sector-tile-pct { color: #dc2626; }
+
+  /* Earnings calendar */
+  .earnings-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .earnings-row { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--surface); border-bottom: 1px solid var(--border); font-size: 14px; }
+  .earnings-row:last-child { border-bottom: none; }
+  .earnings-symbol { font-weight: 800; font-family: 'Inter Tight', sans-serif; font-size: 14px; min-width: 60px; }
+  .earnings-date { color: var(--text-3); font-size: 12px; flex: 1; }
+  .earnings-eps { font-size: 12px; color: var(--text-3); font-family: 'JetBrains Mono', monospace; }
+
+  /* ScoreboardCard — clickable with breakdown hint */
+  .sc-card { cursor: pointer; transition: box-shadow 0.15s, transform 0.1s; }
+  .sc-card:hover { box-shadow: 0 2px 14px rgba(0,0,0,0.1); transform: translateY(-1px); }
+  .sc-breakdown-hint { font-size: 11px; color: var(--accent, #2563eb); font-weight: 600; margin-left: auto; }
+
+  /* Game breakdown slide-over panel */
+  .game-panel { position: fixed; inset: 0; z-index: 900; display: flex; justify-content: flex-end; }
+  .game-panel[hidden] { display: none; }
+  .game-panel-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); cursor: pointer; }
+  .game-panel-drawer { position: relative; z-index: 1; width: 420px; max-width: 100vw; height: 100vh; background: var(--bg, #fff); border-left: 1px solid var(--border); overflow-y: auto; display: flex; flex-direction: column; box-shadow: -4px 0 24px rgba(0,0,0,0.12); }
+  .game-panel-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px 14px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg, #fff); z-index: 2; }
+  .game-panel-title { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 16px; }
+  .game-panel-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text-3); line-height: 1; padding: 4px 8px; border-radius: 6px; }
+  .game-panel-close:hover { background: var(--surface); }
+  .game-panel-body { padding: 20px 24px 40px; flex: 1; }
+  .game-panel-loading { color: var(--text-3); font-size: 14px; padding: 20px 0; }
+  .game-panel-score { font-family: 'Inter Tight', sans-serif; font-size: 26px; font-weight: 900; text-align: center; padding: 16px 0 4px; letter-spacing: -0.02em; }
+  .game-panel-teams { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13px; color: var(--text-3); margin-bottom: 24px; flex-wrap: wrap; }
+  .game-panel-league { font-size: 11px; background: var(--surface); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border); }
+  .game-panel-section { margin-bottom: 20px; }
+  .game-panel-label { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent, #2563eb); margin-bottom: 6px; }
+  .game-panel-text { font-size: 15px; line-height: 1.6; color: var(--text); }
+  .game-panel-hot { background: #eff6ff; border-left: 3px solid #2563eb; padding: 12px 14px; border-radius: 0 8px 8px 0; font-style: italic; font-size: 14px; line-height: 1.55; color: var(--text); }
+  .game-panel-facts { list-style: none; padding: 0; margin: 0; }
+  .game-panel-facts li { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); }
+  .game-panel-facts li:last-child { border-bottom: none; }
+  .game-panel-say { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 14px; line-height: 1.55; }
+  .game-panel-meta { margin-top: 24px; font-size: 11px; color: var(--text-3); text-align: center; }
+
+  /* Sports section right-side scroll nav */
+  .ssn-nav { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); z-index: 200; }
+  .ssn-nav[hidden] { display: none; }
+  .ssn-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+  .ssn-item { position: relative; display: flex; align-items: center; }
+  .ssn-dot { display: block; width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.15); border: none; cursor: pointer; transition: all 0.2s; padding: 0; flex-shrink: 0; }
+  .ssn-dot:hover { background: rgba(0,0,0,0.4); transform: scale(1.4); }
+  .ssn-dot.is-active { background: var(--accent, #2563eb); transform: scale(1.35); }
+  .ssn-label { position: absolute; right: 16px; white-space: nowrap; background: var(--text, #111); color: #fff; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; opacity: 0; pointer-events: none; transition: opacity 0.15s; }
+  .ssn-item:hover .ssn-label { opacity: 1; }
+  @media (max-width: 960px) { .ssn-nav { display: none !important; } }
 </style>
 <script>
 !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
@@ -1327,5 +1384,25 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     showSection('tab-sports');
   })();
 </script>
+
+<!-- Game breakdown slide-over panel -->
+<div id="gamePanel" class="game-panel" hidden aria-modal="true" role="dialog" aria-labelledby="gamePanelTitle">
+  <div class="game-panel-overlay" id="gamePanelOverlay"></div>
+  <div class="game-panel-drawer">
+    <div class="game-panel-header">
+      <span class="game-panel-title" id="gamePanelTitle">Game Breakdown</span>
+      <button class="game-panel-close" id="gamePanelClose" aria-label="Close panel">×</button>
+    </div>
+    <div class="game-panel-body" id="gamePanelBody">
+      <div class="game-panel-loading">Loading GuyTalk breakdown…</div>
+    </div>
+  </div>
+</div>
+
+<!-- Sports section right-side scroll nav (desktop) -->
+<nav class="ssn-nav" id="ssnNav" hidden aria-label="Jump to sports section">
+  <ul class="ssn-list" id="ssnList"></ul>
+</nav>
+
 </body>
 </html>

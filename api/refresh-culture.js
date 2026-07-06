@@ -87,7 +87,7 @@ async function fetchSocialMoments(stories) {
       tools: [{ type: 'web_search', search_context_size: 'low' }],
       tool_choice: 'required',
       max_output_tokens: 800,
-      input: `Find 2-3 recent viral X (Twitter) posts from notable public figures about these current entertainment stories: ${topStories}. For each: platform (X), author name, @handle, verbatim tweet quote, why it sparked conversation (1 sentence), and tweet URL if available. Return ONLY JSON array: [{"platform":"X","author":"...","handle":"@...","quote":"...","why":"...","url":""}]. Use empty string for url if not available.`,
+      input: `Find 2-3 recent viral X (Twitter) posts from verified public figures or journalists about these entertainment stories: ${topStories}. For each return: platform="X", author name, @handle, verbatim quote from the post, why it sparked conversation (1 sentence). IMPORTANT: Do NOT generate or guess tweet URLs — they will 404. For url: if you found the actual tweet URL from search results use it, otherwise leave url as empty string "". Never invent a /status/ URL. Return ONLY JSON array: [{"platform":"X","author":"...","handle":"@...","quote":"verbatim text of tweet","why":"one sentence why it went viral","url":""}]`,
     });
     let text = response.output_text || '';
     if (!text && Array.isArray(response.output)) {

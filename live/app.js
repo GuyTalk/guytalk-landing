@@ -410,10 +410,27 @@ function ScoreboardCard(g) {
   const statusBit = g.state === 'in'
     ? `<span class="pill pill-live"><span class="nav-live-dot"></span>Live</span> ${esc(g.statusText)}`
     : esc(g.statusText);
-  const foot = gameUrl
-    ? `${statusBit} · <a href="${esc(gameUrl)}" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">Gamecast →</a>`
-    : statusBit;
-  return `<div class="sc-card">
+  const showBreakdown = g.state === 'post';
+  const foot = showBreakdown
+    ? `${statusBit} · <span class="sc-breakdown-hint">GuyTalk breakdown →</span>`
+    : (gameUrl
+      ? `${statusBit} · <a href="${esc(gameUrl)}" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600" onclick="event.stopPropagation()">Gamecast →</a>`
+      : statusBit);
+
+  const sport = g.sportType || g.sport || g.league?.toLowerCase().replace(/\s+/g,'') || '';
+  const league = g.league || '';
+  const headline = g.headline || '';
+  const dataAttrs = [
+    `data-sport="${esc(sport)}"`,
+    `data-home="${esc(g.home?.name || '')}"`,
+    `data-away="${esc(g.away?.name || '')}"`,
+    `data-home-score="${esc(String(g.home?.score ?? ''))}"`,
+    `data-away-score="${esc(String(g.away?.score ?? ''))}"`,
+    `data-league="${esc(league)}"`,
+    `data-headline="${esc(headline.replace(/"/g,'&quot;'))}"`,
+  ].join(' ');
+
+  return `<div class="sc-card" ${showBreakdown ? dataAttrs + ' role="button" tabindex="0"' : ''}>
     ${g.isBig && g.headline ? `<div class="sc-tag">${esc(g.headline)}</div>` : ''}
     ${side(g.away, g.home.score)}
     ${side(g.home, g.away.score)}
@@ -1950,7 +1967,7 @@ function FeaturedGolfCard(g) {
     </div>`;
   }
 
-  function renderMarkets(real, marketNews, stockMovers, marketClosed) {
+  function renderMarkets(real, marketNews, stockMovers, marketClosed, marketSectors, earningsCalendar) {
     setBadge('badge-markets', real ? 'live' : null);
     const el = $('marketsWrap');
     if (marketClosed) {
@@ -1970,13 +1987,49 @@ function FeaturedGolfCard(g) {
     const ctxRows = (marketsContext(real) || []).filter(Boolean);
     const ctxHtml = ctxRows.length ? `<div style="grid-column:1/-1">${ContextCard(ctxRows, false, 'Markets')}</div>` : '';
     const movHtml = MarketMovers(stockMovers);
+
+    // Sector performance tiles
+    let sectorsHtml = '';
+    if (marketSectors && marketSectors.length) {
+      const tiles = marketSectors.map(s => {
+        const up = s.direction === 'up';
+        const pctStr = s.changePercent != null
+          ? `${up ? '+' : ''}${Number(s.changePercent).toFixed(2)}%`
+          : '—';
+        return `<div class="sector-tile ${up ? 'sector-up' : 'sector-dn'}">
+          <div class="sector-tile-name">${esc(s.label || s.key)}</div>
+          <div class="sector-tile-pct">${esc(pctStr)}</div>
+        </div>`;
+      }).join('');
+      sectorsHtml = `<div class="mk-section-head" style="grid-column:1/-1"><span class="mk-section-title">Sectors</span><span class="mk-section-sub">ETF performance today</span></div>
+        <div class="sector-grid" style="grid-column:1/-1">${tiles}</div>`;
+    }
+
+    // Earnings calendar
+    let earningsHtml = '';
+    if (earningsCalendar && earningsCalendar.length) {
+      const rows = earningsCalendar.map(e => {
+        const d = new Date(e.date + 'T12:00:00Z');
+        const dateStr = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        return `<div class="earnings-row">
+          <span class="earnings-symbol">${esc(e.symbol)}</span>
+          <span class="earnings-date">${esc(dateStr)}</span>
+          ${e.epsEst != null ? `<span class="earnings-eps">EPS est. ${e.epsEst >= 0 ? '' : ''}${Number(e.epsEst).toFixed(2)}</span>` : ''}
+        </div>`;
+      }).join('');
+      earningsHtml = `<div class="mk-section-head" style="grid-column:1/-1"><span class="mk-section-title">Earnings This Week</span><span class="mk-section-sub">Notable reports coming up</span></div>
+        <div class="earnings-list" style="grid-column:1/-1">${rows}</div>`;
+    }
+
     el.innerHTML =
       `<div class="mk-section-head" style="grid-column:1/-1"><span class="mk-section-title">Market Snapshot</span><span class="mk-section-sub">Indices, crypto &amp; commodities</span></div>` +
       buildTapeCard(real, synopsis) +
       real.map(MarketCard).join('') +
       ctxHtml +
+      sectorsHtml +
       (movHtml ? `<div class="mk-section-head" style="grid-column:1/-1"><span class="mk-section-title">Movers</span><span class="mk-section-sub">Biggest gainers &amp; losers today</span></div>${movHtml}` : '') +
-      `<p class="mk-disclaimer">Index and crypto data via Yahoo Finance; index quotes are near real-time during market hours, futures/commodities may carry a short delay. Informational only — not investment advice.</p>`;
+      earningsHtml +
+      `<p class="mk-disclaimer">Index and crypto data via Yahoo Finance; sector data via ETF proxies; index quotes near real-time during market hours. Informational only — not investment advice.</p>`;
     renderMarketNews(marketNews);
   }
 
@@ -2072,7 +2125,7 @@ function FeaturedGolfCard(g) {
   </div>
   <p class="social-quote">${esc(m.quote)}</p>
   <p class="social-why"><b>Why it matters:</b> ${esc(m.why)}</p>
-  ${m.url ? `<a class="social-link" href="${esc(m.url)}" target="_blank" rel="noopener">See post →</a>` : ''}
+  ${m.url && m.url.includes('/status/') ? `<a class="social-link" href="${esc(m.url)}" target="_blank" rel="noopener">See post →</a>` : (m.handle ? `<a class="social-link" href="https://x.com/search?q=${encodeURIComponent((m.quote||'').slice(0,50))}" target="_blank" rel="noopener">Search on X →</a>` : '')}
 </div>`;
     }).join('');
     const sec = el.closest('section');
@@ -2160,7 +2213,7 @@ function FeaturedGolfCard(g) {
     renderNHL(p.scoreboard, p.nhlNews);
     renderWorldCup(p.scoreboard, p.yesterdayScores);
     renderSoccer(p.scoreboard);
-    renderMarkets(p.markets, p.marketNews, p.stockMovers, p.marketClosed);
+    renderMarkets(p.markets, p.marketNews, p.stockMovers, p.marketClosed, p.marketSectors, p.earningsCalendar);
     observeChampCards();
     // Sections 6 & 7 are handled by refreshTalk() / renderTalk() (separate feed).
 
@@ -2531,6 +2584,120 @@ function FeaturedGolfCard(g) {
     MAP.forEach(m => { const el = document.getElementById(m.id); if (el) obs.observe(el); });
   })();
 
+  // ── Game breakdown slide-over panel ──────────────────────────────────────────
+  function initGamePanel() {
+    const panel   = document.getElementById('gamePanel');
+    const body    = document.getElementById('gamePanelBody');
+    const titleEl = document.getElementById('gamePanelTitle');
+    if (!panel) return;
+
+    function closePanel() {
+      panel.hidden = true;
+      document.body.style.overflow = '';
+    }
+    document.getElementById('gamePanelClose')?.addEventListener('click', closePanel);
+    document.getElementById('gamePanelOverlay')?.addEventListener('click', closePanel);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden) closePanel(); });
+
+    async function openBreakdown(card) {
+      const sport    = card.dataset.sport    || '';
+      const home     = card.dataset.home     || '';
+      const away     = card.dataset.away     || '';
+      const hs       = card.dataset.homeScore || '';
+      const as_      = card.dataset.awayScore || '';
+      const league   = card.dataset.league   || '';
+      const headline = card.dataset.headline || '';
+      if (!home || !away) return;
+
+      titleEl.textContent = `${away} vs ${home}`;
+      body.innerHTML = `<div class="game-panel-loading">Looking up the game breakdown…</div>`;
+      panel.hidden = false;
+      document.body.style.overflow = 'hidden';
+
+      try {
+        const params = new URLSearchParams({ sport, home, away, homeScore: hs, awayScore: as_, league, headline });
+        const resp = await fetch(`/api/game-context?${params}`);
+        if (!resp.ok) throw new Error('api error');
+        const d = await resp.json();
+
+        const homeWon = Number(hs) > Number(as_);
+        const awayWon = Number(as_) > Number(hs);
+        body.innerHTML = `
+          <div class="game-panel-score">${esc(away)} <span style="opacity:.4;font-size:18px">vs</span> ${esc(home)}</div>
+          <div class="game-panel-teams">
+            <span style="font-weight:${awayWon?'800':'400'};opacity:${awayWon?'1':'.6'}">${esc(away)} ${esc(as_)}</span>
+            <span style="opacity:.35">–</span>
+            <span style="font-weight:${homeWon?'800':'400'};opacity:${homeWon?'1':'.6'}">${esc(home)} ${esc(hs)}</span>
+            ${league ? `<span class="game-panel-league">${esc(league || sport.toUpperCase())}</span>` : ''}
+          </div>
+          ${d.whyItMatters ? `<div class="game-panel-section"><div class="game-panel-label">Why It Matters</div><div class="game-panel-text">${esc(d.whyItMatters)}</div></div>` : ''}
+          ${d.biggestMoment ? `<div class="game-panel-section"><div class="game-panel-label">Biggest Moment</div><div class="game-panel-text">${esc(d.biggestMoment)}</div></div>` : ''}
+          ${d.hotTake ? `<div class="game-panel-section"><div class="game-panel-label">Hot Take</div><div class="game-panel-hot">${esc(d.hotTake)}</div></div>` : ''}
+          ${d.whatToSay ? `<div class="game-panel-section"><div class="game-panel-label">What To Say</div><div class="game-panel-say">"${esc(d.whatToSay)}"</div></div>` : ''}
+          ${d.keyTakeaway ? `<div class="game-panel-section"><div class="game-panel-label">What It Means</div><div class="game-panel-text">${esc(d.keyTakeaway)}</div></div>` : ''}
+          ${d.contextFacts?.length ? `<div class="game-panel-section"><div class="game-panel-label">Fast Facts</div><ul class="game-panel-facts">${d.contextFacts.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>` : ''}
+          <div class="game-panel-meta">Powered by ${d.source === 'openai-search' ? 'OpenAI Search' : 'GuyTalk AI'} · Live data</div>
+        `;
+      } catch (_) {
+        body.innerHTML = `<div class="game-panel-loading">Couldn't load breakdown — try searching ${esc(home)} vs ${esc(away)} on ESPN.</div>`;
+      }
+    }
+
+    // Event delegation — capture clicks and Enter/Space on score cards
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.sc-card[data-home]');
+      if (card) openBreakdown(card);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const card = e.target.closest('.sc-card[data-home]');
+        if (card) { e.preventDefault(); openBreakdown(card); }
+      }
+    });
+  }
+
+  // ── Sports section right-side scroll indicator ────────────────────────────────
+  function initScrollNav() {
+    const nav     = document.getElementById('ssnNav');
+    const ssnList = document.getElementById('ssnList');
+    if (!nav || !ssnList) return;
+
+    const SECTION_IDS = ['live-now','recap','worldcup','champions','f1','golf','tennis','mma','nba','mlb','nhl','soccer'];
+    const LABELS      = { 'live-now':'Live Now', recap:'Recap', worldcup:'World Cup', champions:'Champions',
+      f1:'F1', golf:'Golf', tennis:'Tennis', mma:'UFC/MMA', nba:'NBA', mlb:'MLB', nhl:'NHL', soccer:'Soccer Leagues' };
+
+    const present = SECTION_IDS.filter(id => !!document.getElementById(id));
+    if (present.length < 3) return;
+
+    ssnList.innerHTML = present.map(id =>
+      `<li class="ssn-item">
+        <button class="ssn-dot" data-target="${id}" title="${LABELS[id] || id}"></button>
+        <span class="ssn-label">${LABELS[id] || id}</span>
+      </li>`
+    ).join('');
+
+    present.forEach(id => {
+      ssnList.querySelector(`[data-target="${id}"]`)?.addEventListener('click', () => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    const dotMap = new Map(present.map(id => [id, ssnList.querySelector(`[data-target="${id}"]`)]));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => dotMap.get(e.target.id)?.classList.toggle('is-active', e.isIntersecting));
+    }, { rootMargin: '-25% 0px -65% 0px' });
+    present.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+
+    function syncNav() {
+      const sportsActive = !!document.querySelector('#tab-sports:not([hidden])');
+      nav.hidden = !sportsActive;
+    }
+    syncNav();
+    document.querySelectorAll('[data-section]').forEach(btn => {
+      btn.addEventListener('click', () => setTimeout(syncNav, 60));
+    });
+  }
+
   paintSkeletons();
   renderTalk(null);   // instant editorial paint for sections 6 & 7 before the feed lands
   refresh(false);
@@ -2539,4 +2706,6 @@ function FeaturedGolfCard(g) {
   startAutoRefresh();
   startMarketRefresh();
   trackClicks();
+  initGamePanel();
+  initScrollNav();
 })();
