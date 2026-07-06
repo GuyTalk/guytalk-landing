@@ -1423,9 +1423,87 @@ async function fetchYesterdayScores() {
   return results.filter((r) => r.games.length > 0);
 }
 
+/* --------------------------------------------------------- game-context route */
+// Merged here to stay under Vercel Hobby's 12-function limit.
+// Called as /api/live?action=game-context&sport=...&home=...&away=...
+// Uses OpenAI web_search to return a real-time GuyTalk breakdown for any game.
+
+const _gcCache = new Map();
+
+async function handleGameContext(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+  const { sport = '', home = '', away = '', homeScore = '', awayScore = '',
+          league = '', headline = '' } = req.query || {};
+  if (!home || !away) return res.status(400).json({ error: 'home and away required' });
+  const cacheKey = `${sport}|${home}|${away}|${homeScore}|${awayScore}`;
+  if (_gcCache.has(cacheKey)) return res.status(200).json(_gcCache.get(cacheKey));
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  if (!OPENAI_API_KEY) return res.status(200).json(gcFallback(home, away, homeScore, awayScore, league));
+  let OpenAI;
+  try { OpenAI = require('openai'); } catch (_) {
+    return res.status(200).json(gcFallback(home, away, homeScore, awayScore, league));
+  }
+  const client = new (OpenAI.default || OpenAI)({ apiKey: OPENAI_API_KEY });
+  const sportLabel = sport === 'worldcup' ? 'FIFA World Cup 2026' :
+    sport === 'mlb' ? 'MLB' : sport === 'nba' ? 'NBA' :
+    sport === 'nhl' ? 'NHL' : sport === 'mls' ? 'MLS' :
+    sport === 'epl' ? 'Premier League' : (league || sport.toUpperCase());
+  const loser = Number(homeScore) < Number(awayScore) ? home : away;
+  const prompt = `You are GuyTalk's sports editor. A reader tapped for a breakdown of this game.\n\nGAME: ${home} ${homeScore}–${awayScore} ${away} (${sportLabel})${headline ? `\nESPN: "${headline}"` : ''}\n\nSTEP 1 — Search the web RIGHT NOW for the actual match details. Search:\n- "${home} ${away} ${sportLabel} 2026 goals scorers"\n- "${loser} eliminated ${sportLabel.includes('World Cup') ? 'World Cup 2026' : 'standings'}"\n\nSTEP 2 — Generate using ONLY what you found. BANNED: "most dangerous team", "can't afford slip-ups". If a team is eliminated say so explicitly.\n\nReturn ONLY valid JSON:\n{"whyItMatters":"2-3 sentences. Real standings impact. State elimination if relevant.","hotTake":"Specific player/moment. Opinionated.","whatToSay":"One-liner with a number or minute.","biggestMoment":"Scorer, minute, context.","keyTakeaway":"Current standings reality.","contextFacts":["fact1","fact2","fact3"],"source":"openai-search"}`;
+  try {
+    const controller = new AbortController();
+    const tid = setTimeout(() => controller.abort(), 25000);
+    let response;
+    try {
+      response = await client.responses.create({
+        model: 'gpt-4.1',
+        tools: [{ type: 'web_search', search_context_size: 'medium' }],
+        tool_choice: 'required',
+        max_output_tokens: 900,
+        input: prompt,
+      }, { signal: controller.signal });
+    } finally { clearTimeout(tid); }
+    let text = response.output_text || '';
+    if (!text && Array.isArray(response.output)) {
+      text = response.output.filter(b => b.type === 'message')
+        .flatMap(b => b.content || [])
+        .filter(c => c.type === 'output_text' || c.type === 'text')
+        .map(c => c.text || '').join('');
+    }
+    text = text.replace(/```json\s*/gi, '').replace(/```/g, '');
+    const s = text.indexOf('{'), e = text.lastIndexOf('}');
+    if (s < 0 || e < 0) throw new Error('no JSON');
+    const data = JSON.parse(text.slice(s, e + 1));
+    _gcCache.set(cacheKey, data);
+    return res.status(200).json(data);
+  } catch (_) {
+    return res.status(200).json(gcFallback(home, away, homeScore, awayScore, league));
+  }
+}
+
+function gcFallback(home, away, homeScore, awayScore, league) {
+  const homeN = Number(homeScore), awayN = Number(awayScore);
+  const winner = homeN > awayN ? home : (awayN > homeN ? away : null);
+  const loser  = homeN > awayN ? away : (awayN > homeN ? home : null);
+  const score  = `${homeScore}–${awayScore}`;
+  return {
+    whyItMatters: winner ? `${winner} beat ${loser} ${score}${league ? ' (' + league + ')' : ''}.` : `${home} and ${away} drew ${score}.`,
+    hotTake: winner ? `${winner} earned this result.` : `A draw that suits neither side.`,
+    whatToSay: `"${winner || home} ${score} — check the highlights."`,
+    biggestMoment: winner ? `${winner} took the lead and held on.` : `Neither side could find a winner.`,
+    keyTakeaway: `Check the live standings for the full picture.`,
+    contextFacts: [`Final: ${home} ${score} ${away}`],
+    source: 'fallback',
+  };
+}
+
 /* ------------------------------------------------------------------- handler */
 
 module.exports = async function handler(req, res) {
+  // Sub-route: game-context breakdown (merged to stay under Vercel's 12-function limit)
+  if (req.query?.action === 'game-context') return handleGameContext(req, res);
+
   const finnhubKey = process.env.FINNHUB_API_KEY;
 
   try {

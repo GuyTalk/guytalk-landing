@@ -2615,8 +2615,8 @@ function FeaturedGolfCard(g) {
       document.body.style.overflow = 'hidden';
 
       try {
-        const params = new URLSearchParams({ sport, home, away, homeScore: hs, awayScore: as_, league, headline });
-        const resp = await fetch(`/api/game-context?${params}`);
+        const params = new URLSearchParams({ action: 'game-context', sport, home, away, homeScore: hs, awayScore: as_, league, headline });
+        const resp = await fetch(`/api/live?${params}`);
         if (!resp.ok) throw new Error('api error');
         const d = await resp.json();
 
