@@ -617,20 +617,41 @@ function f1Context(f1) {
   // result
   const winner = p[0];
   const wStand = winner ? f1Standing(f1, winner.driver) : null;
-  const leads = !!(champ && winner &&
-    champ.leader.name.toLowerCase().endsWith(winner.driver.split(' ').pop().toLowerCase()));
   const oneTwo = f1OneTwo(f1);
+  const champLeaderRacePos = f1.champLeaderRacePos;
+  const winnerIsChampLeader = !!(champ && winner &&
+    champ.leader.name.split(' ').pop().toLowerCase() === winner.driver.split(' ').pop().toLowerCase());
+
   let why;
   if (winner && champ && champ.gap != null) {
-    why = leads
-      ? `${winner.driver}'s win stretches his championship lead to ${plural(champ.gap, 'point')}${champ.second ? ` over ${champ.second.name}` : ''}.`
-      : `${winner.driver} takes the win, but ${champ.leader.name} still leads the title by ${plural(champ.gap, 'point')}.`;
+    if (winnerIsChampLeader) {
+      why = `${winner.driver} wins ${ev} AND leads the championship by ${plural(champ.gap, 'point')}${champ.second ? ` over ${champ.second.name}` : ''} — a dominant weekend.`;
+    } else if (champLeaderRacePos && champLeaderRacePos > 8) {
+      why = `${winner.driver} wins ${ev}, but the bigger story is ${champ.leader.name} finishing P${champLeaderRacePos}. With ${champ.second?.name || 'the runner-up'} scoring P2 points today, the gap is down to ${plural(champ.gap, 'point')}.`;
+    } else if (champLeaderRacePos && champLeaderRacePos > 5) {
+      why = `${winner.driver} wins ${ev}, but ${champ.leader.name} struggled to P${champLeaderRacePos} while ${champ.second?.name || 'the runner-up'} closed the gap. The title lead is ${plural(champ.gap, 'point')} now.`;
+    } else {
+      why = `${winner.driver} takes ${ev}, but ${champ.leader.name} still leads the title by ${plural(champ.gap, 'point')}.`;
+    }
   } else { why = winner ? `${winner.driver} wins ${ev}.` : `${ev} is in the books.`; }
 
   const fun = f1FunFact(f1, winner);
-  const take = winner && champ && champ.gap != null && champ.gap >= 40
-    ? `${winner.driver} has this title wrapped up — the rest of the grid is racing for second.`
-    : (winner ? `${winner.driver} is the best driver on the grid right now, and it isn't particularly close.` : '');
+  const take = (() => {
+    if (!winner) return '';
+    if (winnerIsChampLeader && champ?.gap != null && champ.gap >= 30) {
+      return `${winner.driver} wins the race AND leads the championship — at this pace, the title is his to lose.`;
+    }
+    if (champLeaderRacePos && champLeaderRacePos > 8 && champ?.second) {
+      return `${champ.leader.name} finishing P${champLeaderRacePos} is the real headline — ${champ.second.name} grabbed points today and this title race just tightened significantly.`;
+    }
+    if (champLeaderRacePos && champLeaderRacePos > 5 && champ) {
+      return `${champ.leader.name} had a tough one at P${champLeaderRacePos} — when the championship leader underperforms, you take notice.`;
+    }
+    if (oneTwo) return `${oneTwo} locking out a 1-2 is a constructor's dream — their rivals lost ground on both fronts today.`;
+    if (fun?.say) return fun.say.replace(/^"(.+)"$/, '$1');
+    return `${winner.driver} drove a clean race from front to back — that's not luck, that's execution.`;
+  })();
+
   return [
     { label: 'Why it matters', text: why },
     { label: 'Key stat', key: true, text: fun ? fun.stat
@@ -639,9 +660,11 @@ function f1Context(f1) {
             : (gapTxt ? `${gapTxt}.` : (wStand ? `${winner.driver} sits P${wStand.pos} on ${wStand.points} points.` : null))) },
     { label: 'What to say', say: true, text: fun ? fun.say
         : (winner && champ && champ.gap != null
-            ? (leads
+            ? (winnerIsChampLeader
                 ? `"${winner.driver} is up ${champ.gap} now — this title's starting to look like a runaway."`
-                : `"Strong win for ${winner.driver}, but ${champ.leader.name} is still ${champ.gap} clear in the standings."`)
+                : (champLeaderRacePos && champLeaderRacePos > 8
+                    ? `"${champ.leader.name} finished P${champLeaderRacePos} while ${winner.driver} won — that's a championship shift."`
+                    : `"Strong win for ${winner.driver}, but ${champ.leader.name} is still ${champ.gap} clear in the standings."`))
             : (winner ? `"${winner.driver} taking ${ev} is a statement."` : `"Results are in for ${ev}."`)) },
     take && { label: 'Hot take', take: true, text: take },
   ];
@@ -714,14 +737,24 @@ function f1WhatYouMissed(f1) {
   if (!winner) return '';
   const champ = f1Champ(f1);
   const podium = p.slice(1, 3).map((x) => `P${x.pos} ${x.driver}`).join(', ');
-  const oneTwo = f1OneTwo(f1);
+  const champLeaderRacePos = f1.champLeaderRacePos;
+  const winnerIsChampLeader = !!(champ && champ.leader.name.split(' ').pop().toLowerCase() === winner.driver.split(' ').pop().toLowerCase());
   const fun = f1FunFact(f1, winner);
+
+  let storyline;
+  if (champLeaderRacePos && champLeaderRacePos > 6 && !winnerIsChampLeader) {
+    storyline = `${champ?.leader?.name || 'Championship leader'} finished P${champLeaderRacePos} — title gap shrunk`;
+  } else if (fun?.missed) {
+    storyline = fun.missed;
+  } else {
+    storyline = champ ? `${champ.leader.name} leads the title by ${champ.gap} pts` : '';
+  }
+
   return WhatYouMissed([
     { k: 'Winner', v: `${winner.driver}${winner.team ? ` · ${winner.team}` : ''}` },
-    { k: 'Biggest storyline', v: fun ? fun.missed
-        : (champ && champ.gap != null ? `${champ.leader.name} leads the title by ${champ.gap} pts` : '') },
-    { k: 'Best performance', v: oneTwo ? `${oneTwo} lock out a 1-2` : podium },
-    { k: 'Key takeaway', v: champ && champ.gap != null ? `${champ.gap}-point gap at the top with the season rolling on` : `${winner.driver} adds another win` },
+    { k: 'Biggest storyline', v: storyline },
+    { k: 'Podium', v: podium || '—' },
+    { k: 'Next race', v: f1.nextRace ? `${f1.nextRace.name} · ${f1.nextRace.date}` : (champ && champ.gap != null ? `${champ.gap}-point gap with the season rolling on` : '') },
   ]);
 }
 
@@ -746,7 +779,9 @@ function nbaContext(g) {
       { label: 'What to say', say: true, text: tp
         ? `"${tp.name} was the difference — ${w.name} look like the team to beat."`
         : `"${w.name} took care of business and look the part."` },
-      { label: 'Hot take', take: true, text: `${w.name} are the better team here${f.series ? ' — this series is theirs to lose' : ''}.` },
+      { label: 'Hot take', take: true, text: tp
+        ? `${tp.name} with ${tp.pts} is the whole story — when he's locked in like that, ${w.name} are a different team.`
+        : `${w.name} looked like the better team at both ends — ${l.name} didn't have an answer.` },
     ];
   }
 
@@ -872,7 +907,9 @@ function mlbContext(g) {
       { label: 'What to say', say: true, text: perf
         ? `"${perf.name} was the difference — ${w.name} are rolling."`
         : `"${w.name} took care of business against ${l.name}."` },
-      { label: 'Hot take', take: true, text: `${w.name} are quietly the team nobody wants to face right now.` },
+      { label: 'Hot take', take: true, text: perf
+        ? `${perf.name} was the difference today — when your best player shows up in a must-contribute spot, the lineup looks different.`
+        : `${w.name} took care of ${l.name} when they needed it — that's what good teams do.` },
     ];
   }
 
@@ -1451,16 +1488,27 @@ function FeaturedGolfCard(g) {
     const isWC = /world.?cup|fifa/i.test(g.league || g.headline || '');
     const w = g.home?.winner ? g.home : g.away;
     const l = g.home?.winner ? g.away : g.home;
+    const c = g.commentary; // AI-generated commentary from live.js, may be undefined
+
     if (g.state === 'post') {
+      // Strip "National Soccer: " prefix and ESPN suffix from headline
+      const rawHl = (g.headline || '').replace(/^[^:]+:\s*/, '').replace(/\s*[-–]\s*ESPN.*$/i, '').trim();
+      // Only show if it adds info beyond a bare "X beat Y" restate
+      const hlAddsInfo = rawHl && !new RegExp(`^${(w?.name||'').replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\s+(beat|defeat|win)`, 'i').test(rawHl);
       return [
-        { label: 'Why it matters', text: `${w.name} beat ${l.name} ${w.score}–${l.score}${isWC ? ' — World Cup 2026 group stage' : ''}.` },
-        { label: 'What to say', say: true, text: `"${w.name} took it ${w.score}–${l.score}${isWC ? ' — that changes the group table' : ''}."` },
-        { label: 'Hot take', take: true, text: `${w.name} are the most dangerous team in this ${isWC ? 'group' : 'run of form'} right now.` },
+        { label: 'Why it matters', text: c?.whyItMatters || (isWC
+          ? `${w?.name} take three crucial points in World Cup 2026 group play — ${l?.name} now faces pressure to respond in their next match.`
+          : `${w?.name} beat ${l?.name} ${w?.score}–${l?.score}.`) },
+        hlAddsInfo && { label: 'Key moment', key: true, text: rawHl.endsWith('.') ? rawHl : rawHl + '.' },
+        { label: 'What to say', say: true, text: c?.whatToSay || `"${w?.name} ${w?.score}–${l?.score}${isWC ? ' at the World Cup' : ''} — that's a statement result."` },
+        { label: 'Hot take', take: true, text: c?.hotTake || (isWC
+          ? `${l?.name} needed a point here and got nothing — their path to the knockout rounds just got harder.`
+          : `${w?.name} deserved it — ${l?.name} had no answer when it mattered.`) },
       ];
     }
     return [
-      { label: 'What to watch', text: `${g.away.name} vs. ${g.home.name}${isWC ? ' — FIFA World Cup 2026' : ''}.` },
-      { label: 'What to say', say: true, text: `"${g.away.name}–${g.home.name} is the must-watch match today${isWC ? ' at the World Cup' : ''}."` },
+      { label: 'What to watch', text: `${g.away?.name} vs. ${g.home?.name}${isWC ? ' — FIFA World Cup 2026' : ''}.` },
+      { label: 'What to say', say: true, text: `"${g.away?.name}–${g.home?.name} is on${isWC ? ' at the World Cup' : ''} — worth watching."` },
     ];
   }
 
@@ -1468,10 +1516,13 @@ function FeaturedGolfCard(g) {
     if (g.state !== 'post') return '';
     const w = g.home?.winner ? g.home : g.away;
     const l = g.home?.winner ? g.away : g.home;
+    const c = g.commentary;
+    const isWC = /world.?cup|fifa/i.test(g.league || g.headline || '');
+    const cleanHl = (g.headline || '').replace(/^[^:]+:\s*/, '').replace(/\s*[-–]\s*ESPN.*$/i, '').trim();
     return WhatYouMissed([
-      { k: 'Winner', v: `${w.name} ${w.score}–${l.score}` },
-      { k: 'Biggest storyline', v: g.headline || `${w.name} beat ${l.name}` },
-      { k: 'Key takeaway', v: `${w.name} take the points and move up the table.` },
+      { k: 'Final', v: `${w?.name} ${w?.score}–${l?.score}` },
+      { k: 'Key moment', v: c?.biggestMoment || cleanHl || `${w?.name} controlled the match` },
+      { k: 'What it means', v: c?.keyTakeaway || (isWC ? `${w?.name} move into the top half of their group — ${l?.name} must respond` : `${w?.name} take all three points`) },
     ]);
   }
 

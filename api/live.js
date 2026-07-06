@@ -83,6 +83,65 @@ const json = (url) =>
     .then((r) => (r.ok ? r.json() : null))
     .catch(() => null);
 
+// Module-level commentary cache — survives for the Vercel lambda's warm lifetime.
+// Key: sport|homeAbbr|awayAbbr|homeScore|awayScore
+const _cmtCache = new Map();
+
+async function generateGameCommentary(games, sport) {
+  if (!games || !games.length) return;
+  const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+  if (!ANTHROPIC_API_KEY) return;
+
+  const completed = games.filter(g => g.state === 'post').slice(0, 2);
+  if (!completed.length) return;
+
+  const toGen = completed.filter(g => {
+    const key = `${sport}|${g.home?.abbr}|${g.away?.abbr}|${g.home?.score}|${g.away?.score}`;
+    if (_cmtCache.has(key)) { g.commentary = _cmtCache.get(key); return false; }
+    return true;
+  });
+  if (!toGen.length) return;
+
+  const gameLines = toGen.map(g => {
+    const w = g.home?.winner ? g.home : g.away;
+    const l = g.home?.winner ? g.away : g.home;
+    const hl = (g.headline || '').replace(/^[^:]+:\s*/, '').replace(/\s*-\s*ESPN.*$/, '');
+    return `${g.home?.name} ${g.home?.score} – ${g.away?.name} ${g.away?.score}. Winner: ${w?.name}. ESPN note: "${hl}". Context: ${sport === 'worldcup' ? 'FIFA World Cup 2026 group stage' : sport.toUpperCase() + ' regular season'}.`;
+  });
+
+  const prompt = `You are GuyTalk's sports editor writing for men 25-45. Generate commentary for these ${sport} game results.
+
+${gameLines.map((l, i) => `Game ${i + 1}: ${l}`).join('\n')}
+
+For EACH game return a JSON object. Be SPECIFIC to what actually happened — name players, cite the score. NEVER say "X is the most dangerous team right now" or "X is the best on the grid right now" — those are banned phrases.
+
+Return a JSON array (one object per game, in order):
+[{"whyItMatters":"2-3 sentences. Specific context and what it means for standings — NOT just restating the score.","hotTake":"One opinionated sentence. Name a specific player or moment. Something fans would argue about.","whatToSay":"One natural line for work or a bar. Include a specific number.","biggestMoment":"The single most memorable play or turning point.","keyTakeaway":"What this means going forward — qualification, momentum, rematch implications."}]`;
+
+  try {
+    let AnthropicSDK;
+    try { AnthropicSDK = require('@anthropic-ai/sdk'); } catch (_) { return; }
+    const client = new (AnthropicSDK.default || AnthropicSDK)({ apiKey: ANTHROPIC_API_KEY });
+    const msg = await client.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 1500,
+      messages: [{ role: 'user', content: prompt }],
+    });
+    const text = (msg.content?.[0]?.text || '').replace(/```json\s*/gi, '').replace(/```/g, '');
+    const s = text.indexOf('['), e = text.lastIndexOf(']');
+    if (s < 0 || e < 0) return;
+    const arr = JSON.parse(text.slice(s, e + 1));
+    toGen.forEach((g, i) => {
+      if (!arr[i]) return;
+      g.commentary = arr[i];
+      const key = `${sport}|${g.home?.abbr}|${g.away?.abbr}|${g.home?.score}|${g.away?.score}`;
+      _cmtCache.set(key, arr[i]);
+    });
+  } catch (_) {
+    // silent — template fallback in app.js
+  }
+}
+
 // Pick a usable (https, non-dark) logo href from an ESPN logos[] array.
 const pickLogo = (logos) => {
   const l = (logos || []).find((x) => /^https/.test(x.href || '') && !/dark/i.test(x.href));
@@ -621,6 +680,13 @@ async function fetchF1() {
 
   const positions = board ? f1Positions(board, teamByDriver, profileByDriver) : [];
 
+  // Find where the championship leader finished in this race (by last name match).
+  // Used in app.js f1Context to tell the real story when the leader had a bad race.
+  const champDriverEntry = driverList[0];
+  const champLast = champDriverEntry ? (champDriverEntry.Driver?.familyName || '').toLowerCase() : '';
+  const champRaceEntry = champLast ? positions.find(p => p.driver.split(' ').pop().toLowerCase() === champLast) : null;
+  const champLeaderRacePos = champRaceEntry ? champRaceEntry.pos : null;
+
   // Normalize standings names to ESPN's broadcast short form (by surname) so
   // the championship/standings names match the race board everywhere
   // (e.g. Jolpica "Andrea Kimi Antonelli" → ESPN "Kimi Antonelli").
@@ -650,6 +716,7 @@ async function fetchF1() {
     circuitCountry: event.circuit?.address?.country || '',
     eventLink: espnLink(event.links),
     positions,
+    champLeaderRacePos,     // race finishing position of championship leader (null if not in top-N)
     driverStandings: driverStandings.length ? driverStandings : null,
     constructorStandings: constructorStandings.length ? constructorStandings : null,
     winnerFacts,           // {winnerLast, streak, seasonWins, youngest} | null
@@ -1328,6 +1395,19 @@ module.exports = async function handler(req, res) {
       fetchRecentChampions(),
       fetchMarketNews(),
       fetchStockMovers(),
+    ]);
+
+    // AI commentary for top completed games — best-effort, non-blocking.
+    // Attaches g.commentary = {whyItMatters, hotTake, whatToSay, biggestMoment, keyTakeaway}
+    const wcGames  = (scoreboard?.find(lg => lg.key === 'worldcup')?.games || []);
+    const mlbGames = (scoreboard?.find(lg => lg.key === 'mlb')?.games || []);
+    const nbaGames = (scoreboard?.find(lg => lg.key === 'nba')?.games || []);
+    const ysWcGames = (yesterdayScores?.find(lg => lg.key === 'worldcup')?.games || []);
+    await Promise.allSettled([
+      generateGameCommentary(wcGames, 'worldcup'),
+      generateGameCommentary(ysWcGames, 'worldcup'),
+      generateGameCommentary(mlbGames, 'mlb'),
+      generateGameCommentary(nbaGames, 'nba'),
     ]);
 
     const liveNow = deriveLiveNow({ scoreboard, f1, golf, mma });

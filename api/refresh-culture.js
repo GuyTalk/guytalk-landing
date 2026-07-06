@@ -43,6 +43,68 @@ function toSummary(desc) {
   return t.length > MAX_SUMMARY ? `${t.slice(0, MAX_SUMMARY - 1).trimEnd()}…` : t;
 }
 
+// Use Claude to add a "why it matters" field to each story — 1-2 sentences
+// written for men 25-45, specific and contextual, not generic hype.
+async function enrichStories(stories) {
+  const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+  if (!ANTHROPIC_API_KEY || !stories.length) return stories;
+  let AnthropicSDK;
+  try { AnthropicSDK = require('@anthropic-ai/sdk'); } catch (_) { return stories; }
+  try {
+    const client = new (AnthropicSDK.default || AnthropicSDK)({ apiKey: ANTHROPIC_API_KEY });
+    const storyList = stories.map((s, i) =>
+      `${i + 1}. ${s.headline}\n   Summary: ${s.summary}`
+    ).join('\n\n');
+    const msg = await client.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 800,
+      messages: [{
+        role: 'user',
+        content: `For each of these entertainment/culture headlines, write a "why it matters" for men ages 25-45. Be specific — who this person is, why this moment is culturally significant, what it signals. NOT generic hype. 1-2 punchy sentences each. Return ONLY a JSON array in the same order: [{"why":"..."}, ...]\n\n${storyList}`,
+      }],
+    });
+    const text = (msg.content?.[0]?.text || '').replace(/```json\s*/gi, '').replace(/```/g, '');
+    const s = text.indexOf('['), e = text.lastIndexOf(']');
+    if (s < 0 || e < 0) return stories;
+    const whys = JSON.parse(text.slice(s, e + 1));
+    return stories.map((st, i) => ({ ...st, why: whys[i]?.why || '' }));
+  } catch (_) {
+    return stories;
+  }
+}
+
+// Use OpenAI web search to find real recent X (Twitter) posts about the top stories.
+async function fetchSocialMoments(stories) {
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  if (!OPENAI_API_KEY || !stories.length) return null;
+  let OpenAI;
+  try { OpenAI = require('openai'); } catch (_) { return null; }
+  try {
+    const client = new (OpenAI.default || OpenAI)({ apiKey: OPENAI_API_KEY });
+    const topStories = stories.slice(0, 3).map(s => s.headline).join('; ');
+    const response = await client.responses.create({
+      model: 'gpt-4.1',
+      tools: [{ type: 'web_search', search_context_size: 'low' }],
+      tool_choice: 'required',
+      max_output_tokens: 800,
+      input: `Find 2-3 recent viral X (Twitter) posts from notable public figures about these current entertainment stories: ${topStories}. For each: platform (X), author name, @handle, verbatim tweet quote, why it sparked conversation (1 sentence), and tweet URL if available. Return ONLY JSON array: [{"platform":"X","author":"...","handle":"@...","quote":"...","why":"...","url":""}]. Use empty string for url if not available.`,
+    });
+    let text = response.output_text || '';
+    if (!text && Array.isArray(response.output)) {
+      text = response.output.filter(b => b.type === 'message').flatMap(b => b.content || [])
+        .filter(c => c.type === 'output_text' || c.type === 'text').map(c => c.text || '').join('');
+    }
+    if (!text) return null;
+    text = text.replace(/```json\s*/gi, '').replace(/```/g, '');
+    const s = text.indexOf('['), e = text.lastIndexOf(']');
+    if (s < 0 || e < 0) return null;
+    const moments = JSON.parse(text.slice(s, e + 1));
+    return Array.isArray(moments) && moments.length ? { moments, fetchedAt: new Date().toISOString() } : null;
+  } catch (_) {
+    return null;
+  }
+}
+
 // Top entertainment headlines for the Live "culture" section. Maps each article
 // to { category, headline, source, url, summary }. category is fixed to
 // "Entertainment" so the story card keeps its label; the other four are the
@@ -127,8 +189,14 @@ module.exports = async (req, res) => {
   // Never overwrite the live file with nothing — keep the last good copy.
   if (!stories.length) { return res.status(200).json({ ok: true, brief: briefResult, skipped: 'no usable headlines' }); }
 
+  // Enrich stories with AI "why it matters" + fetch social moments in parallel
+  const [enriched, social] = await Promise.all([
+    enrichStories(stories),
+    fetchSocialMoments(stories),
+  ]);
+
   const payload = JSON.stringify(
-    { updatedAt: new Date().toISOString(), source: 'newsapi', stories },
+    { updatedAt: new Date().toISOString(), source: 'newsapi', stories: enriched, ...(social ? { social } : {}) },
     null, 2
   );
   try { await commitFile(payload); }
