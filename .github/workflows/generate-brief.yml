@@ -1,8 +1,8 @@
 name: Generate Daily Brief
 
 on:
-  # Schedule removed — Vercel cron fires /api/trigger-brief at exactly 11am UTC
-  # (7am ET) which calls workflow_dispatch below. This avoids GitHub's 1-3hr delay.
+  schedule:
+    - cron: '0 11 * * *'   # 7am ET daily
   workflow_dispatch: {}
 
 permissions:
