@@ -92,7 +92,8 @@ async function verifyBrief({ issueData, researchPack }) {
     espnFacts.push(`ESPN NHL: ${w.team} ${w.score}–${l.score} ${l.team}${context ? ' [' + context + ']' : ''}`);
   }
   if (issueData.f1?.results?.length && issueData.f1.statusState === 'post') {
-    espnFacts.push(`ESPN F1: ${issueData.f1.name} — P1: ${issueData.f1.results[0].driver} (${issueData.f1.results[0].team})`);
+    const f1Podium = issueData.f1.results.slice(0, 3).map((r, i) => `P${i + 1}: ${r.driver} (${r.team})`).join(', ');
+    espnFacts.push(`ESPN F1: ${issueData.f1.name} — ${f1Podium} — venue: ${issueData.f1.venue || issueData.f1.name}`);
   }
   if (issueData.golf?.leaders?.[0]) {
     const top3 = issueData.golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score}`).join(', ');
@@ -166,7 +167,7 @@ IF NO research evidence (the RESEARCHED section says "(no research pack — high
   DO NOT use unverified_major, invented, stale, or future flags on business/culture/political news stories when there is no research pack — you have no evidence to contradict them, so they must be warnings only.
 
 FLAG as BLOCKING in all cases:
-- A market claim (index level, ticker %, direction) that directly contradicts MARKET FEED DATA above: use flag "contradicts_market_feed". If the feed says AMD +2.83%, copy claiming AMD fell is wrong.
+- A market claim (index level, ticker %, direction) that directly contradicts MARKET FEED DATA above: use flag "contradicts_market_feed". If the feed says AMD +2.83%, copy claiming AMD fell is wrong. IMPORTANT ROUNDING RULE: The brief rounds percentages to one decimal place. "+0.7%" when the feed shows "+0.66%" is CORRECT ROUNDING — do NOT flag it. "-1.8%" when the feed shows "-1.75%" is CORRECT ROUNDING — do NOT flag it. Only flag if the direction is wrong (positive vs negative), or if the rounded value would be ≥0.1 off from correct one-decimal rounding (e.g. feed says +0.66% and brief says +0.9% — that would be wrong).
 - A sports result where ESPN data for THAT SPORT explicitly says something DIFFERENT: e.g. ESPN says "CAR wins series 4-2" but the copy says "VGK won". SILENT ≠ CONTRADICTION — if ESPN data doesn't mention the sport at all (e.g. no NBA entry), or doesn't mention a specific stat (e.g., consecutive shutouts), that is a WARNING, not a block. NEVER use flag "contradicts_espn" when ESPN data is simply absent for the sport/event being claimed.
 - A claim that directly contradicts an ESTABLISHED FACT listed above (e.g. "Hurricanes' first title" when they won in 2006; "Oakmont" or "Pinehurst" when the U.S. Open is at Shinnecock Hills). These are blocking, not warnings, even without an ESPN entry.
 - A clearly FORWARD-LOOKING event presented as already completed — e.g. "Election results in" when the election hasn't happened, or language like "will happen" treated as past tense. NOT just "unverified" news.
