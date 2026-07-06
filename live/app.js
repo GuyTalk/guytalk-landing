@@ -180,6 +180,17 @@ const esc = (s) =>
   String(s == null ? '' : s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+// Strip OpenAI markdown citations from AI-generated text before rendering.
+// Server also strips these (cleanCommentary in live.js) but keep as client safety net.
+const cleanAI = (s) => {
+  if (!s) return '';
+  return String(s)
+    .replace(/\[([^\]]+)\]\(https?:\/\/[^)]+\)/g, '$1')
+    .replace(/\s*\(https?:\/\/[^\s)]+\)/g, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+};
+
 const shortEvent = (s) => String(s || '').replace(/\s+(pres\.?|presented).*/i, '').replace(/^the\s+/i, 'the ').trim();
 
 // Deterministic colour for an initials avatar (used when no logo/flag exists).
@@ -1513,12 +1524,12 @@ function FeaturedGolfCard(g) {
       // Only show if it adds info beyond a bare "X beat Y" restate
       const hlAddsInfo = rawHl && !new RegExp(`^${(w?.name||'').replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\s+(beat|defeat|win)`, 'i').test(rawHl);
       return [
-        { label: 'Why it matters', text: c?.whyItMatters || (isWC
+        { label: 'Why it matters', text: cleanAI(c?.whyItMatters) || (isWC
           ? `${w?.name} take three crucial points in World Cup 2026 group play — ${l?.name} now faces pressure to respond in their next match.`
           : `${w?.name} beat ${l?.name} ${w?.score}–${l?.score}.`) },
         hlAddsInfo && { label: 'Key moment', key: true, text: rawHl.endsWith('.') ? rawHl : rawHl + '.' },
-        { label: 'What to say', say: true, text: c?.whatToSay || `"${w?.name} ${w?.score}–${l?.score}${isWC ? ' at the World Cup' : ''} — that's a statement result."` },
-        { label: 'Hot take', take: true, text: c?.hotTake || (isWC
+        { label: 'What to say', say: true, text: cleanAI(c?.whatToSay) || `"${w?.name} ${w?.score}–${l?.score}${isWC ? ' at the World Cup' : ''} — that's a statement result."` },
+        { label: 'Hot take', take: true, text: cleanAI(c?.hotTake) || (isWC
           ? `${l?.name} needed a point here and got nothing — their path to the knockout rounds just got harder.`
           : `${w?.name} deserved it — ${l?.name} had no answer when it mattered.`) },
       ];
@@ -1538,8 +1549,8 @@ function FeaturedGolfCard(g) {
     const cleanHl = (g.headline || '').replace(/^[^:]+:\s*/, '').replace(/\s*[-–]\s*ESPN.*$/i, '').trim();
     return WhatYouMissed([
       { k: 'Final', v: `${w?.name} ${w?.score}–${l?.score}` },
-      { k: 'Key moment', v: c?.biggestMoment || cleanHl || `${w?.name} controlled the match` },
-      { k: 'What it means', v: c?.keyTakeaway || (isWC ? `${w?.name} move into the top half of their group — ${l?.name} must respond` : `${w?.name} take all three points`) },
+      { k: 'Key moment', v: cleanAI(c?.biggestMoment) || cleanHl || `${w?.name} controlled the match` },
+      { k: 'What it means', v: cleanAI(c?.keyTakeaway) || (isWC ? `${w?.name} move into the top half of their group — ${l?.name} must respond` : `${w?.name} take all three points`) },
     ]);
   }
 
@@ -2630,12 +2641,12 @@ function FeaturedGolfCard(g) {
             <span style="font-weight:${homeWon?'800':'400'};opacity:${homeWon?'1':'.6'}">${esc(home)} ${esc(hs)}</span>
             ${league ? `<span class="game-panel-league">${esc(league || sport.toUpperCase())}</span>` : ''}
           </div>
-          ${d.whyItMatters ? `<div class="game-panel-section"><div class="game-panel-label">Why It Matters</div><div class="game-panel-text">${esc(d.whyItMatters)}</div></div>` : ''}
-          ${d.biggestMoment ? `<div class="game-panel-section"><div class="game-panel-label">Biggest Moment</div><div class="game-panel-text">${esc(d.biggestMoment)}</div></div>` : ''}
-          ${d.hotTake ? `<div class="game-panel-section"><div class="game-panel-label">Hot Take</div><div class="game-panel-hot">${esc(d.hotTake)}</div></div>` : ''}
-          ${d.whatToSay ? `<div class="game-panel-section"><div class="game-panel-label">What To Say</div><div class="game-panel-say">"${esc(d.whatToSay)}"</div></div>` : ''}
-          ${d.keyTakeaway ? `<div class="game-panel-section"><div class="game-panel-label">What It Means</div><div class="game-panel-text">${esc(d.keyTakeaway)}</div></div>` : ''}
-          ${d.contextFacts?.length ? `<div class="game-panel-section"><div class="game-panel-label">Fast Facts</div><ul class="game-panel-facts">${d.contextFacts.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>` : ''}
+          ${d.whyItMatters ? `<div class="game-panel-section"><div class="game-panel-label">Why It Matters</div><div class="game-panel-text">${esc(cleanAI(d.whyItMatters))}</div></div>` : ''}
+          ${d.biggestMoment ? `<div class="game-panel-section"><div class="game-panel-label">Biggest Moment</div><div class="game-panel-text">${esc(cleanAI(d.biggestMoment))}</div></div>` : ''}
+          ${d.hotTake ? `<div class="game-panel-section"><div class="game-panel-label">Hot Take</div><div class="game-panel-hot">${esc(cleanAI(d.hotTake))}</div></div>` : ''}
+          ${d.whatToSay ? `<div class="game-panel-section"><div class="game-panel-label">What To Say</div><div class="game-panel-say">"${esc(cleanAI(d.whatToSay))}"</div></div>` : ''}
+          ${d.keyTakeaway ? `<div class="game-panel-section"><div class="game-panel-label">What It Means</div><div class="game-panel-text">${esc(cleanAI(d.keyTakeaway))}</div></div>` : ''}
+          ${d.contextFacts?.length ? `<div class="game-panel-section"><div class="game-panel-label">Fast Facts</div><ul class="game-panel-facts">${d.contextFacts.map(f => `<li>${esc(cleanAI(f))}</li>`).join('')}</ul></div>` : ''}
           <div class="game-panel-meta">Powered by ${d.source === 'openai-search' ? 'OpenAI Search' : 'GuyTalk AI'} · Live data</div>
         `;
       } catch (_) {
@@ -2689,12 +2700,16 @@ function FeaturedGolfCard(g) {
     present.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
 
     function syncNav() {
-      const sportsActive = !!document.querySelector('#tab-sports:not([hidden])');
+      const sportsEl = document.getElementById('tab-sports');
+      // Tab system uses style.display='none' (not the hidden attr), so check that
+      const sportsActive = sportsEl && sportsEl.style.display !== 'none';
       nav.hidden = !sportsActive;
     }
-    syncNav();
-    document.querySelectorAll('[data-section]').forEach(btn => {
-      btn.addEventListener('click', () => setTimeout(syncNav, 60));
+    // Defer slightly so the inline tab script has run and set style.display
+    setTimeout(syncNav, 80);
+    // Re-sync when the tab switcher fires its custom event
+    document.addEventListener('guytalk:tabchange', (e) => {
+      nav.hidden = (e.detail?.tab !== 'tab-sports');
     });
   }
 

@@ -1356,6 +1356,25 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
   </div>
 </div>
 
+<!-- Game breakdown slide-over panel — MUST be before app.js so getElementById works on init -->
+<div id="gamePanel" class="game-panel" hidden aria-modal="true" role="dialog" aria-labelledby="gamePanelTitle">
+  <div class="game-panel-overlay" id="gamePanelOverlay"></div>
+  <div class="game-panel-drawer">
+    <div class="game-panel-header">
+      <span class="game-panel-title" id="gamePanelTitle">Game Breakdown</span>
+      <button class="game-panel-close" id="gamePanelClose" aria-label="Close panel">×</button>
+    </div>
+    <div class="game-panel-body" id="gamePanelBody">
+      <div class="game-panel-loading">Loading GuyTalk breakdown…</div>
+    </div>
+  </div>
+</div>
+
+<!-- Sports section right-side scroll nav (desktop) — also before app.js -->
+<nav class="ssn-nav" id="ssnNav" hidden aria-label="Jump to sports section">
+  <ul class="ssn-list" id="ssnList"></ul>
+</nav>
+
 <script src="/live/app.js"></script>
 <script>
   // Section tab bar — click to show one section, hide the others.
@@ -1372,6 +1391,8 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
         t.classList.toggle('active', t.getAttribute('data-section') === id);
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Notify app.js scroll nav of tab change
+      document.dispatchEvent(new CustomEvent('guytalk:tabchange', { detail: { tab: id } }));
     }
 
     tabs.forEach(function (tab) {
@@ -1384,25 +1405,6 @@ posthog.init("phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8",{api_host:"https
     showSection('tab-sports');
   })();
 </script>
-
-<!-- Game breakdown slide-over panel -->
-<div id="gamePanel" class="game-panel" hidden aria-modal="true" role="dialog" aria-labelledby="gamePanelTitle">
-  <div class="game-panel-overlay" id="gamePanelOverlay"></div>
-  <div class="game-panel-drawer">
-    <div class="game-panel-header">
-      <span class="game-panel-title" id="gamePanelTitle">Game Breakdown</span>
-      <button class="game-panel-close" id="gamePanelClose" aria-label="Close panel">×</button>
-    </div>
-    <div class="game-panel-body" id="gamePanelBody">
-      <div class="game-panel-loading">Loading GuyTalk breakdown…</div>
-    </div>
-  </div>
-</div>
-
-<!-- Sports section right-side scroll nav (desktop) -->
-<nav class="ssn-nav" id="ssnNav" hidden aria-label="Jump to sports section">
-  <ul class="ssn-list" id="ssnList"></ul>
-</nav>
 
 </body>
 </html>

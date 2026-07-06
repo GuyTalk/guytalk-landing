@@ -93,6 +93,28 @@ const json = (url) =>
     .then((r) => (r.ok ? r.json() : null))
     .catch(() => null);
 
+// OpenAI web_search responses embed markdown citation links like [title](url) and
+// bare (url) references. Strip them so commentary renders as clean prose.
+function stripAIMarkdown(text) {
+  if (!text || typeof text !== 'string') return text;
+  return text
+    .replace(/\[([^\]]+)\]\(https?:\/\/[^)]+\)/g, '$1') // [label](url) → label
+    .replace(/\s*\(https?:\/\/[^\s)]+\)/g, '')           // trailing (url) → ''
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
+
+function cleanCommentary(c) {
+  if (!c || typeof c !== 'object') return c;
+  const fields = ['whyItMatters','hotTake','whatToSay','biggestMoment','keyTakeaway'];
+  const out = { ...c };
+  fields.forEach(f => { if (out[f]) out[f] = stripAIMarkdown(out[f]); });
+  if (Array.isArray(out.contextFacts)) {
+    out.contextFacts = out.contextFacts.map(f => stripAIMarkdown(f)).filter(Boolean);
+  }
+  return out;
+}
+
 // Module-level commentary cache — survives for the Vercel lambda's warm lifetime.
 // Key: sport|homeAbbr|awayAbbr|homeScore|awayScore
 const _cmtCache = new Map();
@@ -153,7 +175,7 @@ async function generateGameCommentary(games, sport) {
       text = text.replace(/```json\s*/gi, '').replace(/```/g, '');
       const s = text.indexOf('{'), e = text.lastIndexOf('}');
       if (s >= 0 && e > s) {
-        const commentary = JSON.parse(text.slice(s, e + 1));
+        const commentary = cleanCommentary(JSON.parse(text.slice(s, e + 1)));
         g.commentary = commentary;
         _cmtCache.set(key, commentary);
       }
@@ -1474,7 +1496,7 @@ async function handleGameContext(req, res) {
     text = text.replace(/```json\s*/gi, '').replace(/```/g, '');
     const s = text.indexOf('{'), e = text.lastIndexOf('}');
     if (s < 0 || e < 0) throw new Error('no JSON');
-    const data = JSON.parse(text.slice(s, e + 1));
+    const data = cleanCommentary(JSON.parse(text.slice(s, e + 1)));
     _gcCache.set(cacheKey, data);
     return res.status(200).json(data);
   } catch (_) {
