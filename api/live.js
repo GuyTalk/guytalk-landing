@@ -381,7 +381,12 @@ async function fetchScoreboards() {
   const results = await Promise.all(
     SCOREBOARD_LEAGUES.map(async (lg) => {
       const data = await json(`${ESPN}/${lg.sport}/${lg.league}/scoreboard`);
-      const games = (data?.events || []).map((e) => parseGame(e, lg)).filter(Boolean);
+      const allGames = (data?.events || []).map((e) => parseGame(e, lg)).filter(Boolean);
+      // Drop games older than 3 days — prevents stale off-season fixtures (e.g. UCL
+      // from months ago) from appearing when ESPN returns them in the feed.
+      const THREE_DAYS_MS = 3 * 24 * 60 * 60 * 1000;
+      const now = Date.now();
+      const games = allGames.filter(g => !g.startDate || (now - new Date(g.startDate).getTime()) < THREE_DAYS_MS);
       const order = { in: 0, post: 1, pre: 2 };
       games.sort((a, b) => {
         const byState = (order[a.state] ?? 3) - (order[b.state] ?? 3);
@@ -1279,6 +1284,35 @@ async function fetchRecentChampions() {
   return found.length ? found : null;
 }
 
+/* -------------------------------------------------------- yesterday's results */
+
+// Fetches completed games from yesterday via ESPN ?dates= param.
+// Returns the same league-array shape as fetchScoreboards(), but only completed
+// (state='post') games — so the Recap section can show "Last Night" results.
+async function fetchYesterdayScores() {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  const yyyymmdd = d.toISOString().slice(0, 10).replace(/-/g, '');
+
+  // Only the leagues that play frequently enough to have last-night results
+  const YESTERDAY_LEAGUES = SCOREBOARD_LEAGUES.filter(lg =>
+    ['worldcup', 'nba', 'nhl', 'mlb', 'nfl', 'mls', 'epl', 'ucl', 'concacaf'].includes(lg.key)
+  );
+
+  const results = await Promise.all(
+    YESTERDAY_LEAGUES.map(async (lg) => {
+      const data = await json(`${ESPN}/${lg.sport}/${lg.league}/scoreboard?dates=${yyyymmdd}`);
+      const games = (data?.events || [])
+        .map((e) => parseGame(e, lg))
+        .filter((g) => g && g.state === 'post');
+      games.sort((a, b) => b.importance - a.importance);
+      return { key: lg.key, label: lg.label, games: games.slice(0, 6) };
+    })
+  );
+
+  return results.filter((r) => r.games.length > 0);
+}
+
 /* ------------------------------------------------------------------- handler */
 
 module.exports = async function handler(req, res) {
@@ -1286,8 +1320,8 @@ module.exports = async function handler(req, res) {
 
   try {
     const marketClosed = isMarketHoliday();
-    const [scoreboard, f1, golf, tennis, mma, markets, nbaNews, nhlNews, mlbNews, recentChampions, marketNews, stockMovers] = await Promise.all([
-      fetchScoreboards(), fetchF1(), fetchGolf(), fetchTennis(), fetchMMA(), fetchMarkets(finnhubKey),
+    const [scoreboard, yesterdayScores, f1, golf, tennis, mma, markets, nbaNews, nhlNews, mlbNews, recentChampions, marketNews, stockMovers] = await Promise.all([
+      fetchScoreboards(), fetchYesterdayScores(), fetchF1(), fetchGolf(), fetchTennis(), fetchMMA(), fetchMarkets(finnhubKey),
       fetchLeagueNews('basketball', 'nba'),
       fetchLeagueNews('hockey', 'nhl'),
       fetchLeagueNews('baseball', 'mlb'),
@@ -1309,6 +1343,7 @@ module.exports = async function handler(req, res) {
         golf:       golf       ? 'espn'    : null,
         tennis:     tennis     ? 'espn'    : null,
         scoreboard: scoreboard ? 'espn'    : null,
+        yesterdayScores: yesterdayScores?.length ? 'espn' : null,
         mma:        mma        ? 'espn'    : null,
         markets:    markets    ? 'yahoo'   : null,
         marketNews:  marketNews  ? 'yahoo'   : null,
@@ -1321,7 +1356,7 @@ module.exports = async function handler(req, res) {
         talkingAbout: 'editorial',   // no live source yet
       },
       marketClosed,
-      liveNow, f1, golf, tennis, mma, scoreboard, markets,
+      liveNow, f1, golf, tennis, mma, scoreboard, yesterdayScores: yesterdayScores && yesterdayScores.length ? yesterdayScores : null, markets,
       marketNews:  marketNews  && marketNews.length  ? marketNews  : null,
       stockMovers: stockMovers && (stockMovers.gainers.length || stockMovers.losers.length) ? stockMovers : null,
       nbaNews: nbaNews && nbaNews.length ? nbaNews : null,

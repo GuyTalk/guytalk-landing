@@ -1581,13 +1581,42 @@ function FeaturedGolfCard(g) {
       contextFn: summaryReadContext, wymFn: summaryWhatYouMissed, tag: 'NHL', emptyMsg: 'No NHL games today — check back for trade news and injury updates.' });
   }
 
+  // World Cup gets its own dedicated section at the top of Soccer
+  function renderWorldCup(scoreboard, yesterdayScores) {
+    const el = $('worldcupWrap');
+    if (!el) return;
+    const todayET = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+    const isRecent = (g) => {
+      if (!g.startDate) return true;
+      const gDate = new Date(g.startDate).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+      // show today's games + yesterday's finals
+      return gDate >= new Date(Date.now() - 86400000).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+    };
+    const wcLeague = (board) => (board || []).find(lg => lg.key === 'worldcup');
+    const todayGames = (wcLeague(scoreboard)?.games || []).filter(g => (g.state === 'in' || g.state === 'post') && isRecent(g));
+    const lastNightGames = (wcLeague(yesterdayScores)?.games || []).filter(g => g.state === 'post');
+    const games = [...todayGames];
+    // Merge in yesterday's games that aren't already in today's data
+    lastNightGames.forEach(g => { if (!games.some(x => x.id === g.id)) games.push(g); });
+    games.sort((a, b) => {
+      const ord = { in: 0, post: 1, pre: 2 };
+      return ((ord[a.state] ?? 3) - (ord[b.state] ?? 3)) || ((b.importance || 0) - (a.importance || 0));
+    });
+    setBadge('badge-worldcup', games.length ? (games.some(g => g.state === 'in') ? 'live' : 'live') : null);
+    setMeta('meta-worldcup', games.length ? 'ESPN' : '', new Date().toISOString());
+    if (!games.length) { el.innerHTML = emptyBox('No World Cup matches right now.'); return; }
+    _renderLeague({ elId: 'worldcupWrap', badgeId: 'badge-worldcup', metaId: 'meta-worldcup', games,
+      contextFn: soccerContext, wymFn: soccerWhatYouMissed, tag: 'World Cup', emptyMsg: 'No World Cup matches right now.' });
+  }
+
   function renderSoccer(scoreboard) {
-    const SOCCER_KEYS = ['worldcup', 'mls', 'epl', 'ucl', 'concacaf'];
+    // Excludes worldcup — that has its own dedicated section above
+    const SOCCER_KEYS = ['mls', 'epl', 'ucl', 'concacaf'];
     const games = (scoreboard || [])
       .filter(lg => SOCCER_KEYS.includes(lg.key))
       .flatMap(lg => lg.games.filter(g => g.state === 'in' || g.state === 'post'));
     _renderLeague({ elId: 'soccerWrap', badgeId: 'badge-soccer', metaId: 'meta-soccer', games,
-      contextFn: soccerContext, wymFn: soccerWhatYouMissed, tag: 'World Cup', emptyMsg: 'No soccer matches right now.' });
+      contextFn: soccerContext, wymFn: soccerWhatYouMissed, tag: 'Soccer', emptyMsg: 'No soccer league matches right now.' });
   }
 
   function renderTennis(real) {
@@ -1624,61 +1653,81 @@ function FeaturedGolfCard(g) {
     el.innerHTML = `<div class="grid-golf"><div class="stack">${cards}</div><div class="stack">${ContextCard(tennisContext(tennis), false, 'Tennis')}</div></div>`;
   }
 
-  // ── Recap — all completed games TODAY across team sports ────────────────────
-  function renderRecap(scoreboard) {
+  // ── Recap — completed games from yesterday AND today ────────────────────────
+  function renderRecap(scoreboard, yesterdayScores) {
     const el = $('recapWrap');
     if (!el) return;
 
-    const SOCCER_KEYS = ['worldcup', 'mls', 'epl', 'ucl', 'concacaf'];
-    const taggedGames = [];
+    const RECAP_SOCCER_KEYS = ['worldcup', 'mls', 'epl', 'ucl', 'concacaf'];
+    const LEAGUE_META = {
+      nba: { tag: 'NBA', contextFn: nbaContext, wymFn: nbaWhatYouMissed },
+      mlb: { tag: 'MLB', contextFn: mlbContext, wymFn: mlbWhatYouMissed },
+      nhl: { tag: 'NHL', contextFn: summaryReadContext, wymFn: summaryWhatYouMissed },
+      nfl: { tag: 'NFL', contextFn: summaryReadContext, wymFn: summaryWhatYouMissed },
+    };
+    const SOCCER_META = { tag: 'Soccer', contextFn: soccerContext, wymFn: soccerWhatYouMissed };
 
     const todayET = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
     const isToday = (g) => {
       if (!g.startDate) return true;
       return new Date(g.startDate).toLocaleDateString('en-CA', { timeZone: 'America/New_York' }) === todayET;
     };
-
     const isChampionshipGame = (g) => {
       if (!(g.home?.winner || g.away?.winner)) return false;
       const seriesNums = (g.facts?.series?.summary?.match(/\d+/g) || []).map(Number);
       return seriesNums.some(n => n >= 4) || !!g.facts?.seriesComplete;
     };
 
-    [
-      { key: 'nba',  tag: 'NBA',     contextFn: nbaContext,          wymFn: nbaWhatYouMissed },
-      { key: 'mlb',  tag: 'MLB',     contextFn: mlbContext,          wymFn: mlbWhatYouMissed },
-      { key: 'nhl',  tag: 'NHL',     contextFn: summaryReadContext,  wymFn: summaryWhatYouMissed },
-      { key: 'nfl',  tag: 'NFL',     contextFn: summaryReadContext,  wymFn: summaryWhatYouMissed },
-    ].forEach(({ key, tag, contextFn, wymFn }) => {
-      ((scoreboard || []).find(lg => lg.key === key)?.games || [])
-        .filter(g => g.state === 'post' && isToday(g) && !isChampionshipGame(g))
-        .forEach(g => taggedGames.push({ ...g, _tag: tag, _contextFn: contextFn, _wymFn: wymFn }));
-    });
+    function collectGames(board) {
+      const out = [];
+      Object.entries(LEAGUE_META).forEach(([key, meta]) => {
+        ((board || []).find(lg => lg.key === key)?.games || [])
+          .filter(g => g.state === 'post' && !isChampionshipGame(g))
+          .forEach(g => out.push({ ...g, ...meta }));
+      });
+      (board || [])
+        .filter(lg => RECAP_SOCCER_KEYS.includes(lg.key))
+        .flatMap(lg => lg.games.filter(g => g.state === 'post'))
+        .forEach(g => out.push({ ...g, ...SOCCER_META }));
+      out.sort((a, b) => (b.importance || 0) - (a.importance || 0));
+      return out;
+    }
 
-    (scoreboard || [])
-      .filter(lg => SOCCER_KEYS.includes(lg.key))
-      .flatMap(lg => lg.games.filter(g => g.state === 'post' && isToday(g)))
-      .forEach(g => taggedGames.push({ ...g, _tag: 'Soccer', _contextFn: soccerContext, _wymFn: soccerWhatYouMissed }));
+    // Games from yesterday (from /api's ?dates= fetch) vs today (today's scoreboard)
+    const lastNight = collectGames(yesterdayScores || []);
+    const todayGames = collectGames(scoreboard || []).filter(g => isToday(g));
 
-    setBadge('badge-recap', taggedGames.length ? 'live' : null);
-    setMeta('meta-recap', taggedGames.length ? 'ESPN' : '', new Date().toISOString());
+    const hasLastNight = lastNight.length > 0;
+    const hasToday = todayGames.length > 0;
 
-    if (!taggedGames.length) {
-      el.innerHTML = emptyBox('No completed games yet today. Check back after the first final whistle.');
+    setBadge('badge-recap', (hasLastNight || hasToday) ? 'live' : null);
+    setMeta('meta-recap', (hasLastNight || hasToday) ? 'ESPN' : '', new Date().toISOString());
+
+    if (!hasLastNight && !hasToday) {
+      el.innerHTML = emptyBox('No completed games yet. Check back after the first final whistle.');
       return;
     }
 
-    taggedGames.sort((a, b) => (b.importance || 0) - (a.importance || 0));
-    const featured = taggedGames[0];
-    const others   = taggedGames.slice(1);
+    function renderGameGroup(games, groupLabel) {
+      if (!games.length) return '';
+      const featured = games[0];
+      const others = games.slice(1, 5);
+      const rows = (featured.contextFn(featured) || []).filter(Boolean);
+      const wym = featured.wymFn ? featured.wymFn(featured) : '';
+      const hlUrl = featured.eventLink?.url || `https://www.youtube.com/results?search_query=${encodeURIComponent((featured.headline || featured.tag) + ' highlights')}`;
 
-    const rows  = (featured._contextFn(featured) || []).filter(Boolean);
-    const wym   = featured._wymFn ? featured._wymFn(featured) : '';
-    const hlUrl = featured.eventLink?.url || `https://www.youtube.com/results?search_query=${encodeURIComponent((featured.headline || featured._tag) + ' highlights')}`;
+      return `<div class="recap-group">
+        <div class="recap-group-label">${esc(groupLabel)}</div>
+        <div class="grid grid-two">
+          <div class="stack">${Marquee(featured)}${others.length ? `<div class="grid grid-scores">${others.map(ScoreboardCard).join('')}</div>` : ''}</div>
+          <div class="stack">${ContextCard(rows, false, featured.tag)}${wym}${HighlightLink(hlUrl, 'Watch highlights →')}</div>
+        </div>
+      </div>`;
+    }
 
     el.innerHTML =
-      `<div class="stack">${Marquee(featured)}${others.length ? `<div class="grid grid-scores">${others.map(ScoreboardCard).join('')}</div>` : ''}</div>` +
-      `<div class="stack">${ContextCard(rows, false, featured._tag)}${wym}${HighlightLink(hlUrl, 'Watch highlights →')}</div>`;
+      renderGameGroup(lastNight, 'Last Night') +
+      renderGameGroup(todayGames, "Today's Results");
   }
 
   // ── Champions — teams/players that have clinched a title this season ─────────
@@ -1869,11 +1918,13 @@ function FeaturedGolfCard(g) {
     const synopsis = marketsSynopsis(real);
     const ctxRows = (marketsContext(real) || []).filter(Boolean);
     const ctxHtml = ctxRows.length ? `<div style="grid-column:1/-1">${ContextCard(ctxRows, false, 'Markets')}</div>` : '';
+    const movHtml = MarketMovers(stockMovers);
     el.innerHTML =
+      `<div class="mk-section-head" style="grid-column:1/-1"><span class="mk-section-title">Market Snapshot</span><span class="mk-section-sub">Indices, crypto &amp; commodities</span></div>` +
       buildTapeCard(real, synopsis) +
       real.map(MarketCard).join('') +
-      MarketMovers(stockMovers) +
       ctxHtml +
+      (movHtml ? `<div class="mk-section-head" style="grid-column:1/-1"><span class="mk-section-title">Movers</span><span class="mk-section-sub">Biggest gainers &amp; losers today</span></div>${movHtml}` : '') +
       `<p class="mk-disclaimer">Index and crypto data via Yahoo Finance; index quotes are near real-time during market hours, futures/commodities may carry a short delay. Informational only — not investment advice.</p>`;
     renderMarketNews(marketNews);
   }
@@ -2024,6 +2075,7 @@ function FeaturedGolfCard(g) {
     if ($('nbaWrap'))    $('nbaWrap').innerHTML = sk(2);
     if ($('mlbWrap'))    $('mlbWrap').innerHTML = sk(2);
     if ($('nhlWrap'))    $('nhlWrap').innerHTML = sk(2);
+    if ($('worldcupWrap')) $('worldcupWrap').innerHTML = sk(2);
     if ($('soccerWrap')) $('soccerWrap').innerHTML = sk(2);
     $('marketsWrap').innerHTML = sk(8);
     // Rundown band stays hidden until real AI synthesis arrives (no fake placeholder).
@@ -2046,7 +2098,7 @@ function FeaturedGolfCard(g) {
   function render(payload) {
     const p = payload || {};
     renderLiveNow(p.liveNow);
-    renderRecap(p.scoreboard);
+    renderRecap(p.scoreboard, p.yesterdayScores);
     renderChampions(p.scoreboard, p.recentChampions);
     renderF1(p.f1);
     renderGolf(p.golf);
@@ -2055,6 +2107,7 @@ function FeaturedGolfCard(g) {
     renderNBA(p.scoreboard, p.nbaNews);
     renderMLB(p.scoreboard, p.mlbNews);
     renderNHL(p.scoreboard, p.nhlNews);
+    renderWorldCup(p.scoreboard, p.yesterdayScores);
     renderSoccer(p.scoreboard);
     renderMarkets(p.markets, p.marketNews, p.stockMovers, p.marketClosed);
     observeChampCards();
@@ -2093,9 +2146,17 @@ function FeaturedGolfCard(g) {
       if (lg('nba')) setText('desc-nba', liveCount('nba') ? `${liveCount('nba')} game${liveCount('nba') > 1 ? 's' : ''} live now` : `${gameCount('nba')} game${gameCount('nba') !== 1 ? 's' : ''} today`);
       if (lg('mlb')) setText('desc-mlb', liveCount('mlb') ? `${liveCount('mlb')} game${liveCount('mlb') > 1 ? 's' : ''} live now` : `${gameCount('mlb')} game${gameCount('mlb') !== 1 ? 's' : ''} today`);
       if (lg('nhl')) setText('desc-nhl', liveCount('nhl') ? `${liveCount('nhl')} game${liveCount('nhl') > 1 ? 's' : ''} live now` : `Stanley Cup Playoffs`);
-      const wcGames = ['worldcup','mls','epl','ucl','concacaf'].flatMap(k => lg(k)?.games || []).filter(g => g.state === 'in' || g.state === 'post');
-      const wcLive  = wcGames.filter(g => g.state === 'in').length;
-      if (wcGames.length) setText('desc-soccer', wcLive ? `${wcLive} match${wcLive > 1 ? 'es' : ''} live now · World Cup 2026` : `${wcGames.length} match${wcGames.length !== 1 ? 'es' : ''} today`);
+      // World Cup section desc
+      const wc = lg('worldcup');
+      if (wc) {
+        const wcLive = (wc.games || []).filter(g => g.state === 'in').length;
+        const wcTotal = (wc.games || []).filter(g => g.state === 'in' || g.state === 'post').length;
+        setText('desc-worldcup', wcLive ? `${wcLive} match${wcLive > 1 ? 'es' : ''} live now` : wcTotal ? `${wcTotal} match${wcTotal !== 1 ? 'es' : ''} today` : 'World Cup 2026');
+      }
+      // Soccer Leagues section desc (excludes worldcup)
+      const soccerGames = ['mls','epl','ucl','concacaf'].flatMap(k => (lg(k)?.games || []).filter(g => g.state === 'in' || g.state === 'post'));
+      const soccerLive = soccerGames.filter(g => g.state === 'in').length;
+      if (soccerGames.length) setText('desc-soccer', soccerLive ? `${soccerLive} match${soccerLive > 1 ? 'es' : ''} live now` : `${soccerGames.length} match${soccerGames.length !== 1 ? 'es' : ''} today`);
       // Overflow scoreboard
       const DEDICATED = new Set(['nba','mlb','nhl','worldcup','mls','epl','ucl','concacaf']);
       const overflowLeagues = p.scoreboard.filter(l => !DEDICATED.has(l.key));
