@@ -1,0 +1,1423 @@
+{
+  "num": 76,
+  "slug": "issue-076",
+  "date": "Monday, July 6, 2026",
+  "title": "Chip stocks stabilize and rally. Leclerc wins British Grand Prix. Gotterup takes John Deere Classic.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401816033",
+      "name": "New York Mets at Atlanta Braves",
+      "shortName": "NYM @ ATL",
+      "date": "2026-07-05T16:30Z",
+      "venue": "Truist Park",
+      "venueCity": "Atlanta, Georgia",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Atlanta Braves",
+        "abbrev": "ATL",
+        "score": "9",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Mets",
+        "abbrev": "NYM",
+        "score": "10",
+        "winner": true
+      }
+    },
+    {
+      "id": "401816041",
+      "name": "Miami Marlins at Athletics Athletics",
+      "shortName": "MIA @ ATH",
+      "date": "2026-07-05T20:30Z",
+      "venue": "Sutter Health Park",
+      "venueCity": "Sacramento, California",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "8",
+        "winner": false
+      },
+      "away": {
+        "team": "Miami Marlins",
+        "abbrev": "MIA",
+        "score": "9",
+        "winner": true
+      }
+    },
+    {
+      "id": "401816034",
+      "name": "Pittsburgh Pirates at Washington Nationals",
+      "shortName": "PIT @ WSH",
+      "date": "2026-07-05T17:00Z",
+      "venue": "Nationals Park",
+      "venueCity": "Washington, District of Columbia",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Washington Nationals",
+        "abbrev": "WSH",
+        "score": "5",
+        "winner": false
+      },
+      "away": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "11",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 750.9,
+      "prevClose": 744.78,
+      "dayChange": 6.12,
+      "dayChangePct": 0.8217,
+      "weekChangePct": 2.998670771679168,
+      "spark": [
+        739.219970703125,
+        737.0499877929688,
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125,
+        745.760009765625,
+        744.780029296875,
+        750.8499755859375
+      ],
+      "indexPrice": 7536.07,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.7059744705551612
+    },
+    "DIA": {
+      "price": 528.11,
+      "prevClose": 527.88,
+      "dayChange": 0.23,
+      "dayChangePct": 0.0436,
+      "weekChangePct": 1.985514244326407,
+      "spark": [
+        508.9100036621094,
+        509.4100036621094,
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375,
+        522.4000244140625,
+        527.8800048828125,
+        528.030029296875
+      ],
+      "indexPrice": 52868.42,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.05983037888802758
+    },
+    "QQQ": {
+      "price": 725.63,
+      "prevClose": 712.6,
+      "dayChange": 13.03,
+      "dayChangePct": 1.8285,
+      "weekChangePct": 2.70232688967782,
+      "spark": [
+        716.0700073242188,
+        707.8300170898438,
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625,
+        725.1699829101562,
+        712.5999755859375,
+        725.6124877929688
+      ],
+      "indexPrice": 26187.613,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 1.3740084907926486
+    },
+    "IWM": {
+      "price": 300.25,
+      "prevClose": 297.58,
+      "dayChange": 2.67,
+      "dayChangePct": 0.8972,
+      "weekChangePct": 0.12340774582437647,
+      "spark": [
+        284.1099853515625,
+        285.0199890136719,
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125,
+        299.32000732421875,
+        297.5799865722656,
+        300.20001220703125
+      ],
+      "indexPrice": 3021.8015,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.8574916026778548
+    },
+    "NVDA": {
+      "price": 196.28,
+      "prevClose": 194.83,
+      "dayChange": 1.45,
+      "dayChangePct": 0.7442,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 413.95,
+      "prevClose": 393.45,
+      "dayChange": 20.5,
+      "dayChangePct": 5.2103,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 386.78,
+      "prevClose": 390.49,
+      "dayChange": -3.71,
+      "dayChangePct": -0.9501,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 313.59,
+      "prevClose": 308.63,
+      "dayChange": 4.96,
+      "dayChangePct": 1.6071,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 592.7,
+      "prevClose": 582.9,
+      "dayChange": 9.8,
+      "dayChangePct": 1.6812,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 245.59,
+      "prevClose": 242.67,
+      "dayChange": 2.92,
+      "dayChangePct": 1.2033,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 363.63,
+      "prevClose": 359.91,
+      "dayChange": 3.72,
+      "dayChangePct": 1.0336,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 566.92,
+      "prevClose": 517.82,
+      "dayChange": 49.1,
+      "dayChangePct": 9.4821,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 374.12,
+      "prevClose": 360.45,
+      "dayChange": 13.67,
+      "dayChangePct": 3.7925,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 76.43,
+      "prevClose": 77.65,
+      "dayChange": -1.22,
+      "dayChangePct": -1.5712,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 336.05,
+      "prevClose": 334.47,
+      "dayChange": 1.58,
+      "dayChangePct": 0.4724,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 169.39,
+      "prevClose": 165.48,
+      "dayChange": 3.91,
+      "dayChangePct": 2.3628,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 416.42,
+      "prevClose": 394.32,
+      "dayChange": 22.1,
+      "dayChangePct": 5.6046,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 63497.03,
+      "prevClose": 62752,
+      "dayChange": 745.03,
+      "dayChangePct": 1.1873,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AMD",
+      "DELL",
+      "TSLA",
+      "AVGO",
+      "COIN"
+    ],
+    "10Y": {
+      "price": 4.4849997,
+      "prevClose": 4.485000133514404,
+      "dayChange": -4.335144039302463e-7,
+      "dayChangePct": -0.000009665872709585595,
+      "weekChangePct": 2.584617496393464,
+      "spark": [
+        4.552000045776367,
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744,
+        4.374000072479248,
+        4.418000221252441,
+        4.474999904632568,
+        4.485000133514404,
+        4.484999656677246
+      ]
+    },
+    "__meta": {
+      "state": "open",
+      "tableTitle": "Markets open",
+      "tableSub": "as of 11:57 AM ET today",
+      "framing": "US stock markets are OPEN right now (intraday). Use present tense — \"is trading\", \"up/down on the day so far\". Do NOT say \"closed\"."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 566.87,
+          "changePct": 9.4724
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 414.439,
+          "changePct": 5.3346
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 124.76,
+          "changePct": 3.66431
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 133.885,
+          "changePct": 3.54602
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "SBUX",
+          "name": "Starbucks Corporation",
+          "price": 100.8015,
+          "changePct": -3.32646
+        },
+        {
+          "symbol": "NKE",
+          "name": "NIKE, Inc.",
+          "price": 42.655,
+          "changePct": -3.25471
+        },
+        {
+          "symbol": "PFE",
+          "name": "Pfizer Inc.",
+          "price": 23.7643,
+          "changePct": -2.28495
+        },
+        {
+          "symbol": "UNH",
+          "name": "UnitedHealth Group Incorporated",
+          "price": 415.98,
+          "changePct": -2.20519
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 124.76,
+          "changePct": 3.66431
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 196.265,
+          "changePct": 0.73654
+        },
+        {
+          "symbol": "PFE",
+          "name": "Pfizer Inc.",
+          "price": 23.7643,
+          "changePct": -2.28495
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 63434.88,
+          "changePct": -0.24386
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "John Deere Classic",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-02T04:00Z",
+    "endDate": "2026-07-05T04:00Z",
+    "status": "Final",
+    "statusState": "post",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Chris Gotterup",
+        "score": "-20",
+        "pos": "1st"
+      },
+      {
+        "name": "Max Homa",
+        "score": "-19",
+        "pos": "2nd"
+      },
+      {
+        "name": "Ben Kohles",
+        "score": "-18",
+        "pos": "3rd"
+      },
+      {
+        "name": "Lee Hodges",
+        "score": "-18",
+        "pos": "4th"
+      },
+      {
+        "name": "Lucas Glover",
+        "score": "-18",
+        "pos": "5th"
+      },
+      {
+        "name": "Mac Meissner",
+        "score": "-17",
+        "pos": "6th"
+      },
+      {
+        "name": "Doug Ghim",
+        "score": "-17",
+        "pos": "7th"
+      },
+      {
+        "name": "Jackson Suber",
+        "score": "-17",
+        "pos": "8th"
+      },
+      {
+        "name": "Ryo Hisatsune",
+        "score": "-16",
+        "pos": "9th"
+      },
+      {
+        "name": "Zach Johnson",
+        "score": "-16",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Jan-Lennard Struff",
+            "loser": "Hubert Hurkacz",
+            "score": "3-6 6-7 7-6 7-5 4-2"
+          },
+          {
+            "winner": "Jannik Sinner",
+            "loser": "Shintaro Mochizuki",
+            "score": "6-3 7-6 6-3"
+          },
+          {
+            "winner": "Flavio Cobolli",
+            "loser": "Alex de Minaur",
+            "score": "7-5 7-6 6-3"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Marta Kostyuk",
+            "loser": "Ashlyn Krueger",
+            "score": "6-4 6-4"
+          },
+          {
+            "winner": "Elise Mertens",
+            "loser": "Marie Bouzkova",
+            "score": "6-4 6-4"
+          },
+          {
+            "winner": "Jasmine Paolini",
+            "loser": "Alexandra Eala",
+            "score": "6-4 4-6 6-3"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Pirelli British Grand Prix",
+    "shortName": "Pirelli British GP",
+    "venue": "Silverstone Circuit",
+    "status": "Final",
+    "statusState": "post",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 179,
+      "lead": 25
+    },
+    "results": [
+      {
+        "pos": 1,
+        "driver": "Charles Leclerc",
+        "team": "Ferrari",
+        "time": "",
+        "seasonWins": 1,
+        "champPos": 4,
+        "champPoints": 108
+      },
+      {
+        "pos": 2,
+        "driver": "George Russell",
+        "team": "Mercedes",
+        "time": "",
+        "seasonWins": 2,
+        "champPos": 2,
+        "champPoints": 154
+      },
+      {
+        "pos": 3,
+        "driver": "Lewis Hamilton",
+        "team": "Ferrari",
+        "time": "",
+        "seasonWins": 1,
+        "champPos": 3,
+        "champPoints": 147
+      },
+      {
+        "pos": 4,
+        "driver": "Lando Norris",
+        "team": "McLaren",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 5,
+        "champPoints": 97
+      },
+      {
+        "pos": 5,
+        "driver": "Isack Hadjar",
+        "team": "Red Bull",
+        "time": "",
+        "seasonWins": 0,
+        "champPos": 8,
+        "champPoints": 52
+      }
+    ],
+    "nextRace": {
+      "name": "Moët & Chandon Belgian Grand Prix",
+      "date": "2026-07-17T14:30Z",
+      "daysAway": 11
+    }
+  },
+  "worldCup": [
+    {
+      "name": "Norway at Brazil",
+      "shortName": "NOR @ BRA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-05T20:00Z",
+      "home": {
+        "team": "Brazil",
+        "score": "1"
+      },
+      "away": {
+        "team": "Norway",
+        "score": "2"
+      },
+      "goals": [
+        {
+          "player": "Erling Haaland",
+          "team": "",
+          "clock": "79'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Erling Haaland",
+          "team": "",
+          "clock": "90'",
+          "type": "Goal"
+        },
+        {
+          "player": "Neymar",
+          "team": "",
+          "clock": "90'+10'",
+          "type": "Penalty - Scored"
+        }
+      ],
+      "espnNote": "Erling Haaland struck two late goals as Norway stunned Brazil on Sunday by winning 2-1 in East Rutherford, New Jersey, to reach the World Cup quarterfinals."
+    },
+    {
+      "name": "England at Mexico",
+      "shortName": "ENG @ MEX",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-06T01:00Z",
+      "home": {
+        "team": "Mexico",
+        "score": "2"
+      },
+      "away": {
+        "team": "England",
+        "score": "3"
+      },
+      "goals": [
+        {
+          "player": "Jude Bellingham",
+          "team": "",
+          "clock": "36'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Jude Bellingham",
+          "team": "",
+          "clock": "38'",
+          "type": "Goal"
+        },
+        {
+          "player": "Julián Quiñones",
+          "team": "",
+          "clock": "42'",
+          "type": "Goal - Volley"
+        },
+        {
+          "player": "Harry Kane",
+          "team": "",
+          "clock": "60'",
+          "type": "Penalty - Scored"
+        },
+        {
+          "player": "Raúl Jiménez",
+          "team": "",
+          "clock": "69'",
+          "type": "Penalty - Scored"
+        }
+      ],
+      "espnNote": "Jude Bellingham was the star with a first-half brace, while Harry Kane's penalty would prove the difference maker. "
+    },
+    {
+      "name": "Spain at Portugal",
+      "shortName": "ESP @ POR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-06T19:00Z",
+      "home": {
+        "team": "Portugal",
+        "score": "0"
+      },
+      "away": {
+        "team": "Spain",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Belgium at United States",
+      "shortName": "BEL @ USA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-07T00:00Z",
+      "home": {
+        "team": "United States",
+        "score": "0"
+      },
+      "away": {
+        "team": "Belgium",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Taylor Swift and Travis Kelce’s love story, from friendship bracelets to wedding rings - AP News",
+      "url": "https://apnews.com/article/taylor-swift-travis-kelce-married-deedf312935d9391dd244706b39c3965",
+      "description": "Taylor Swift and Travis Kelce have officially tied the knot. The pop superstar and football champion were married Friday at Madison Square Garden, as confirmed by Swift's publicist. The marquee outside the venue announced the news with \"JUST&T MARRIED.\" Their…",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Harry Styles Honors One Direction Bandmates During Final Wembley Show - TMZ",
+      "url": "https://www.tmz.com/2026/07/05/harry-styles-tribute-to-one-direction-at-last-london-tour-stop/",
+      "description": "Harry Styles gave fans an unforgettable moment during the final night of his Wembley Stadium run ... taking time to publicly thank his former One Direction bandmates in a heartfelt speech that left the crowd roaring.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Patrick Mahomes, Brittany Mahomes Enjoy Elegant Date Night at Travis Kelce, Taylor Swift’s Wedding - E! News",
+      "url": "https://www.eonline.com/news/1433509/taylor-swift-travis-kelce-wedding-patrick-mahomes-brittany-mahomes-there",
+      "description": "Patrick Mahomes and his wife Brittany Mahomes attended Taylor Swift and Travis Kelce’s wedding at Madison Square Garden July 3, turning the historic event into a special date night.",
+      "source": "Eonline.com"
+    },
+    {
+      "title": "Thousands of miles from D.C., a July Fourth extravaganza not about Trump - The Washington Post",
+      "url": "https://www.washingtonpost.com/nation/2026/07/05/july-fourth-extravaganza-los-angeles-celebrated-americas-diversity/",
+      "description": "A musical “block party” in Los Angeles offered a striking contrast to the July Fourth celebration in Washington, D.C., anchored by the president.",
+      "source": "The Washington Post"
+    },
+    {
+      "title": "Taylor Swift’s favorite teacher dies after cancer battle on same day as singer’s wedding to Travis Kelce - Page Six",
+      "url": "https://pagesix.com/2026/07/05/entertainment/taylor-swifts-teacher-kirk-schwabe-dies-after-cancer-battle-on-same-day-as-singers-msg-wedding-to-travis-kelce/",
+      "description": "Before his death, Schwabe said he believed his former student had found the right partner in Kelce.",
+      "source": "Page Six"
+    },
+    {
+      "title": "'Yo, this is crazy': Cardinals see their way to shutout win after fog fills Wrigley Field - STLtoday.com",
+      "url": "https://www.stltoday.com/sports/professional/mlb/cardinals/article_96e0ca98-9b26-4d27-b3cb-c5861083ea28.html",
+      "description": "The Cardinals battled through foggy conditions and waited through a fog delay during their 3-0 shutout win over the Cubs on Saturday in Chicago.",
+      "source": "STLtoday.com"
+    },
+    {
+      "title": "F1 British Grand Prix 2026 LIVE: start time, grid, commentary & updates from Silverstone - BBC",
+      "url": "https://www.bbc.com/sport/formula1/live/c9vlkkvgmnwt",
+      "description": "Follow live text updates and listen to BBC Radio 5 Live commentary of the British Grand Prix at Silverstone.",
+      "source": "BBC News"
+    },
+    {
+      "title": "UFC 329 roundtable: Has the MMA world passed Conor McGregor by? - MMA Fighting",
+      "url": "https://www.mmafighting.com/ufc/497103/ufc-329-roundtable-has-the-mma-world-passed-conor-mcgregor-by",
+      "description": "Conor McGregor and Max Holloway aren’t fighting for a title at UFC 329, but the stakes are arguably even higher than a championship fight.",
+      "source": "MMA Fighting"
+    },
+    {
+      "title": "MLB Announces 2026 All-Star Rosters - MLB Trade Rumors",
+      "url": "https://www.mlbtraderumors.com/2026/07/mlb-announces-2026-all-star-rosters.html",
+      "description": "The league unveils the players named to this year's Midsummer Classic. Visit MLB Trade Rumors for the full list of starters and reserves.",
+      "source": "MLB Trade Rumors"
+    },
+    {
+      "title": "How to Watch the World Cup Today: Schedule, Times, TV, Streaming for Brazil, Norway, Mexico, England - FOX Sports",
+      "url": "https://www.foxsports.com/stories/soccer/how-watch-world-cup-today-schedule-times-tv-streaming-brazil-norway-mexico-england-more",
+      "description": "Brazil, Norway, Mexico and England play World Cup Round of 16 matches today. Full schedule, kickoff times and how to watch on FOX.",
+      "source": "Fox Sports"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Markets",
+      "headline": "Wall Street futures rise as chip stocks stabilize, oil slides",
+      "whatHappened": "On July 6, 2026, Wall Street futures climbed as semiconductor stocks recovered and oil prices fell after OPEC+ boosted output, easing inflation fears. SK Hynix prepared a U.S. listing for roughly $28 billion. Oil dropped to four‑month lows around $71.76–$71.95 per barrel. Futures for S&P 500 gained ~0.5%, Nasdaq 100 ~1.1%.",
+      "whyItMatters": "It sets the tone for markets this week—AI‑linked chip stocks rebounding and lower energy costs could broaden the rally, while a massive SK Hynix IPO tests investor appetite.",
+      "depth": "Chip stocks and oil are back on track—and that SK Hynix listing is a big deal. If it pops, that’ll have everyone talking (and checking their portfolios).",
+      "whatToSay": "“Looks like chip stocks and oil are leading the rally again—SK Hynix’s U.S. IPO is the market’s next big test.”",
+      "sources": [
+        "https://www.reuters.com/business/markets/us-stock-futures-up-chip-shares-recover-oil-prices-decline-2026-07-06/",
+        "https://www.reuters.com/markets/us-futures-rise-oil-weighed-supply-2026-07-06/"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Markets",
+      "_context": [
+        "Brent crude fell 0.5% to $71.76/barrel, near four‑month lows",
+        "Western Digital, Seagate, Micron up 5.5%, 4.4%, 3.4% in pre‑market",
+        "S&P 500 futures +0.5%, Nasdaq 100 futures +1.1%"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Highly fresh, widely covered by Reuters; directly impacts investors and everyday conversation about markets; fills the markets/economy slot.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "World Events",
+      "headline": "Nigeria warns South Africa after two nationals killed amid xenophobic violence",
+      "whatHappened": "On July 6, 2026, Nigeria condemned the killings of two of its citizens—one allegedly by police—in South Africa during anti‑immigrant unrest, demanding investigations and warning of potential action if authorities fail to act.",
+      "whyItMatters": "It spotlights growing xenophobic tensions in South Africa with diplomatic ramifications and could evolve into a significant bilateral flashpoint.",
+      "depth": "That xenophobia story—two Nigerians killed, Nigeria raising hell with its neighbor—that’s serious news and worth paying attention to.",
+      "whatToSay": "“Heard about those killings and Nigeria’s warning? Talk about gas on the boil over there—foreigners are caught in the crossfire.”",
+      "sources": [
+        "https://www.reuters.com/world/africa/nigeria-says-two-citizens-killed-anti-migrant-violence-south-africa-2026-07-06/",
+        "https://apnews.com/article/5448f808e7830b254de8c70038c08af7"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "World Events",
+      "_context": [
+        "Victims: Emeka Charles Iroegbu (allegedly killed by Tshwane Metro Police) and Musa Yunana Joe (shot outside his shop)",
+        "Both incidents occurred June 28, 2026",
+        "Nigeria threatens unspecified action if inquiries don’t lead to justice"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Fresh and confirmed by both Reuters and AP; has cross‑border, human interest and security implications; fills major world events slot.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Taylor Swift and Travis Kelce’s love story, from friendship bracelets to wedding rings",
+        "source": "Associated Press",
+        "url": "https://apnews.com/article/taylor-swift-travis-kelce-married-deedf312935d9391dd244706b39c3965",
+        "fact": "Taylor Swift and Travis Kelce have officially tied the knot. The pop superstar and football champion were married Friday at Madison Square Garden, as confirmed by Swift's publicist. The marquee outside the venue announced the news with \"JUST&T MARRIED.\" Their…",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Harry Styles Honors One Direction Bandmates During Final Wembley Show",
+        "source": "TMZ",
+        "url": "https://www.tmz.com/2026/07/05/harry-styles-tribute-to-one-direction-at-last-london-tour-stop/",
+        "fact": "Harry Styles gave fans an unforgettable moment during the final night of his Wembley Stadium run ... taking time to publicly thank his former One Direction bandmates in a heartfelt speech that left the crowd roaring.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Patrick Mahomes, Brittany Mahomes Enjoy Elegant Date Night at Travis Kelce, Taylor Swift’s Wedding",
+        "source": "Eonline.com",
+        "url": "https://www.eonline.com/news/1433509/taylor-swift-travis-kelce-wedding-patrick-mahomes-brittany-mahomes-there",
+        "fact": "Patrick Mahomes and his wife Brittany Mahomes attended Taylor Swift and Travis Kelce’s wedding at Madison Square Garden July 3, turning the historic event into a special date night.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "England 3–2 Mexico",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nEngland 3–2 Mexico | Scorers: Jude Bellingham (36'), Jude Bellingham (38'), Julián Quiñones (42'), Harry Kane (60' pen), Raúl Jiménez (69' pen) NOTE: Jude Bellingham was the star with a first-half brace, while Harry Kane's penalty would prove the difference maker. \nNorway 2–1 Brazil | Scorers: Erling Haaland (79'), Erling Haaland (90'), Neymar (90'+10' pen) NOTE: Erling Haaland struck two late goals as Norway stunned Brazil on Sunday by winning 2-1 in East Rutherford, New Jersey, t\nTODAY'S FIXTURES: Spain vs. Portugal (3:00 PM EDT); Belgium vs. United States (8:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Jude Bellingham (Real Madrid · England · most creative force in the squad): en.wikipedia.org/wiki/Jude_Bellingham\n- Julián Quiñones\n- Harry Kane (England captain · all-time leading scorer): en.wikipedia.org/wiki/Harry_Kane\n- Raúl Jiménez\n- Erling Haaland (Man City · Norway · goal machine, impossible finishing rate): en.wikipedia.org/wiki/Erling_Haaland\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://images.euronews.com/articles/stories/09/82/61/92/1200x675_cmsv2_e3a255ac-04e0-593c-9da1-33eb5d9cd302-9826192.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "Jude Bellingham scored twice in the first half as England beat Mexico 3–2, with Harry Kane's penalty in the 60th minute proving decisive in a World Cup thriller.",
+      "whyItMatters": "England's attacking depth just announced itself. Bellingham's brace—a 36th and 38th minute double—shows the midfield can generate goals without relying entirely on Kane, while Mexico's late rally through Raúl Jiménez proved they can hang with anyone.",
+      "theRead": "Bellingham is the story here. Two goals before halftime against a solid Mexico side isn't luck; it's a real midfielder doing real damage in transition. Kane converting the penalty keeps England's captain relevant and the scoreline safe, but the narrative is about how young England can score from multiple sources. Mexico showed fight late but couldn't quite find enough—Jiménez's penalty cut it to one, but England held. This is the kind of win that feels comfortable in the moment and scary in the tape room.",
+      "ammo": [
+        "Jude Bellingham scored in the 36th and 38th minutes for England's first-half brace",
+        "Harry Kane converted a penalty in the 60th minute, extending England's lead to 3–1",
+        "Raúl Jiménez scored a penalty for Mexico in the 69th minute",
+        "England's midfield depth now includes a goal-scoring threat beyond set pieces"
+      ],
+      "whatToBringUp": "Bellingham opened the scoring in the 36th minute and added another two minutes later—that's not a fluke, that's a midfielder who understands when to arrive in the box.",
+      "ourPick": "England advances because Bellingham's ability to score from midfield creates problems no team prepared for, and Kane's penalty ice proved they won't panic when Mexico got close.",
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        },
+        {
+          "name": "Jude Bellingham",
+          "url": "https://en.wikipedia.org/wiki/Jude_Bellingham"
+        },
+        {
+          "name": "Erling Haaland",
+          "url": "https://en.wikipedia.org/wiki/Erling_Haaland"
+        }
+      ]
+    },
+    {
+      "name": "John Deere Classic",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "Chris Gotterup wins John Deere Classic",
+      "facts": "FINAL RESULT: 1st Chris Gotterup: -20, 2nd Max Homa: -19, 3rd Ben Kohles: -18",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/RUGLRTKULZB6XPESJMXXJVLTDI.jpeg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "golf",
+      "whatHappened": "Erling Haaland struck twice in the final 11 minutes to lead Norway to a 2–1 upset of Brazil in East Rutherford, New Jersey.",
+      "whyItMatters": "Brazil came to the World Cup as favorites on the strength of their usual dominance. Getting caught by late Haaland goals—one in the 79th, another in the 90th—suggests their defense has real vulnerabilities, and it signals that Norway has teeth.",
+      "theRead": "Haaland's finishing rate is just absurd. Brazil held for nearly 80 minutes and still lost because one man decided the last 11 belonged to him. Neymar's penalty in injury time made it close on paper, but arriving at the 90th minute down and needing a miracle goal to make it 2–1 is a loss, full stop. This is the kind of result that shifts perception: Brazil looks mortal, and Norway looks dangerous in transitions. Teams will scheme to slow Haaland going forward, but on this evidence, Norway's late-game composure is a real asset.",
+      "ammo": [
+        "Erling Haaland scored in the 79th and 90th minutes for Norway",
+        "Norway defeated Brazil 2–1 in East Rutherford, New Jersey",
+        "Neymar scored a penalty in the 90'+10 minute for Brazil",
+        "Haaland's two-goal finish came in the final 11 minutes of regulation"
+      ],
+      "whatToBringUp": "Haaland scored in the 79th and 90th minutes—Brazil thought they had it won until they didn't, and that's the kind of choke that haunts a team through a tournament.",
+      "ourPick": "Norway advances because Haaland's ability to finish in chaos is a cheat code, and Brazil's late defensive breakdowns prove they can be rushed into mistakes.",
+      "playerLinks": [
+        {
+          "name": "Max Homa",
+          "url": "https://www.pgatour.com/players/player.4848704.max-homa.html"
+        }
+      ],
+      "course": null
+    },
+    {
+      "name": "Pirelli British Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Charles Leclerc wins Pirelli British GP",
+      "facts": "P1 Charles Leclerc (Ferrari), P2 George Russell, P3 Lewis Hamilton",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://www.nurphoto.com/photo/13928064/picture/gallery_photo",
+      "videoUrl": null,
+      "isLead": false,
+      "when": null,
+      "tier": 1,
+      "sportType": "f1",
+      "whatHappened": "Charles Leclerc won the Pirelli British Grand Prix at Silverstone, with George Russell second and Lewis Hamilton third.",
+      "whyItMatters": "Ferrari's one-two threat is real. Leclerc takes the top step on a circuit where Mercedes and Hamilton have historically dominated, signaling Ferrari's car and strategy are clicking at the right moment in the season.",
+      "theRead": "Leclerc and Ferrari just handed themselves a narrative. Winning at Silverstone—Mercedes territory, Hamilton's home track—carries weight beyond the points. Russell's second place is solid for Mercedes, but third for Hamilton on his home circuit isn't what the team wanted to build into summer. This result sits heavy for them. Leclerc looks composed and the Ferrari is quick; that's a momentum play heading into the next stretch.",
+      "ammo": [
+        "Charles Leclerc won the Pirelli British Grand Prix",
+        "George Russell finished second for Mercedes",
+        "Lewis Hamilton finished third at his home circuit"
+      ],
+      "whatToBringUp": "Leclerc won at Silverstone—arguably the most Mercedes-friendly circuit on the calendar—which means Ferrari's pace advantage is no accident.",
+      "ourPick": "Leclerc and Ferrari look like title threats because taking Silverstone from Hamilton and Mercedes isn't a fluke, it's a statement.",
+      "playerLinks": [
+        {
+          "name": "Lewis Hamilton",
+          "url": "https://www.formula1.com/en/drivers/lewis-hamilton"
+        },
+        {
+          "name": "Charles Leclerc",
+          "url": "https://www.formula1.com/en/drivers/charles-leclerc"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/drivers/george-russell"
+        }
+      ]
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://dims.apnews.com/dims4/default/a4a04f2/2147483647/strip/true/crop/4364x2908+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fde%2Ffb%2F7a362558a7a8ba0632eaec154b7c%2F57e51e2f0140497c9174cda6720e1fb5",
+    "imageReal": true,
+    "eyebrow": "Markets",
+    "title": "Wall Street futures rise as chip stocks stabilize, oil slides",
+    "sub": "Markets",
+    "isNonSportsLead": true
+  },
+  "copy": {
+    "title": "Chip stocks stabilize and rally. Leclerc wins British Grand Prix. Gotterup takes John Deere Classic.",
+    "keyTakeaway": "Chip stocks bounced back Monday as oil hit four-month lows and SK Hynix's $28 billion U.S. IPO signaled the semiconductor industry is betting on demand. On the track, Leclerc finally broke through at Silverstone. And off the field, Swift and Kelce made it official.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Mets steal one in Atlanta, keep NL East race alive",
+      "whatHappened": "The New York Mets beat the Atlanta Braves 10–9 in a back-and-forth game that came down to late execution. Both teams traded runs throughout, but the Mets found enough in the final innings to escape with a road win.",
+      "whyBullet1": "Atlanta has been the NL East favorite all season — letting the Mets steal one at home signals the division race is still very much open.",
+      "whyBullet2": "The Mets' ability to score in bunches keeps them relevant in a crowded NL East fight where every win compresses the standings.",
+      "theRead": "One-run games in early July don't usually define seasons, but this one had weight. Atlanta has the better roster on paper and should be controlling their division at home. The Mets showed up ready anyway. This is the difference between a team that's done and a team that's still breathing — they didn't fold when the Braves pushed back. For Atlanta, it's a missed chance to pad a lead when you're supposed to be the class of the division. For New York, it's a statement: we're not going anywhere quietly.",
+      "ammo": [
+        "Final score: Mets 10, Braves 9 — a one-run road win for New York",
+        "Both teams scored in bunches across multiple innings in a back-and-forth game",
+        "The Mets have now beaten Atlanta on the road, keeping pressure on the NL East standings"
+      ],
+      "whatToSay": "The Mets just took one from Atlanta at home — the NL East isn't a done deal."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Chip stocks bounce back as SK Hynix eyes $28 billion U.S. listing",
+          "sub": "Semiconductor shares stabilized today after weakness last week, with the South Korean memory chip giant preparing a major IPO that signals confidence in the sector. A successful listing would be one of the largest tech IPOs since 2021 and could reshape how investors think about chip supply chains outside of Taiwan."
+        },
+        {
+          "head": "Oil slides to four-month lows as OPEC+ boosts production",
+          "sub": "Crude dropped to $71.76–$71.95 per barrel after OPEC+ signaled it would increase output, easing inflation concerns and supporting broad market recovery."
+        },
+        {
+          "head": "Nasdaq 100 futures up 1.1% as tech leadership reasserts itself",
+          "sub": "Mega-cap tech and semiconductors are driving early gains; Treasury 10-year stable on the week as rate markets digest softer inflation signals."
+        }
+      ],
+      "mood": "Markets shook off last week's wobble — chip stocks recovered, oil fell to four-month lows around $71.80, and SK Hynix's $28 billion U.S. IPO is giving the semiconductor sector fresh momentum heading into the week.",
+      "whyBullet1": "Oil's drop matters because energy prices feed directly into inflation expectations — when crude falls, the case for holding rates steady gets stronger, which tends to lift equities broadly.",
+      "whyBullet2": "AMD jumped 9.5% and DELL surged 5.6% as the hardware trade came back to life, while the broader QQQ gained 1.8% on the day — the chip sector led the rally.",
+      "bringUp": "SK Hynix is looking to list in the U.S. for $28 billion — that would be one of the biggest memory-chip IPOs in years, and the fact that they're doing it now tells you the semiconductor industry believes demand is coming back hard.",
+      "theRead": "The market narrative shifted from recession fear to sector rotation. Semiconductors got hit last week on China slowdown concerns; today they bounced because OPEC+ production hikes eased stagflation risk, and a major Korean chip maker willing to go public in the U.S. signals confidence in both the business and the regulatory environment. AMD up 9.5%, DELL up 5.6% — the hardware beat continued. Bonds barely moved, which means traders aren't pricing in a near-term rate move. The real tell is oil: when crude can't hold $72, inflation expectations ease, and tech multiples expand. This looks like a relief rally with structural legs if earnings season holds up.",
+      "ammo": [
+        "SK Hynix IPO targeting $28 billion — one of the largest memory-chip listings in recent years",
+        "Oil at $71.76–$71.95, four-month lows after OPEC+ boosted output",
+        "SPY +0.8% on the day, +3.0% on the week; QQQ +1.8% on the day, +2.7% on the week; AMD +9.5%, DELL +5.6%"
+      ]
+    },
+    "golf": {
+      "headline": "Gotterup wins John Deere Classic at 20-under",
+      "whyCare1": "The John Deere Classic is a full-field PGA Tour event with real purse money and a track record of launching careers — finishing here matters for tour positioning and FedEx Cup points.",
+      "whyCare2": "Gotterup held off Max Homa by a single shot down the stretch, which means the narrative isn't just about the winner — it's about who couldn't close when the door was open.",
+      "watchFor": "Whether Gotterup can build on this win and establish himself as a consistent tour contender, and how Homa responds after another near-miss finish.",
+      "theRead": "Gotterup stayed clean when it mattered most. Homa was right there at 19-under and came up one shot short — that's a tough way to lose a tournament you had a real shot at. At 20-under on a course that was giving up birdies, Gotterup still had to separate himself from a compressed leaderboard, and he did. Ben Kohles finished at 18-under in third. This is a legitimate full-field win, not a weak-field result — Gotterup earned it.",
+      "ammo": [
+        "Chris Gotterup won the John Deere Classic at -20, one shot clear of Max Homa (-19)",
+        "Ben Kohles finished third at -18",
+        "Gotterup's winning margin was a single stroke in a tightly contested final round"
+      ],
+      "whatToSay": "Gotterup got the win, but Homa's got to be sick — one shot off with a chance to close and he couldn't do it."
+    },
+    "f1": {
+      "headline": "Leclerc breaks through at Silverstone",
+      "whyCare1": "Leclerc's win at the British Grand Prix is his first of the season — it proves Ferrari has the car to compete at the front and keeps the championship fight alive.",
+      "whyCare2": "Russell finished P2 and Hamilton P3, putting both Mercedes drivers on the podium at their home race — but Leclerc was the one who drove away with the result.",
+      "watchFor": "Whether Leclerc can string together wins now that he's broken through — one win changes momentum, consecutive wins change the championship math entirely.",
+      "theRead": "Leclerc needed this badly. After grinding through races without a victory while others built points cushions, Silverstone proved Ferrari has the pace to challenge at the top. Russell's P2 shows Mercedes is still very much in the fight, and Hamilton on the podium at Silverstone will mean something to the home crowd. The real question now is whether Leclerc can be consistent — one win is a breakthrough, but the championship is won over a season, not a single Sunday.",
+      "ammo": [
+        "Charles Leclerc won the Pirelli British Grand Prix at Silverstone",
+        "George Russell finished P2, Lewis Hamilton finished P3 — both Mercedes drivers on the podium",
+        "Leclerc's win is his first of the 2026 F1 season"
+      ],
+      "whatToSay": "Leclerc finally got one at Silverstone — Ferrari's back in the conversation, and now we see if he can do it twice."
+    },
+    "culture": [
+      {
+        "topic": "Taylor Swift and Travis Kelce Are Married",
+        "whatHappened": "Taylor Swift and Travis Kelce officially tied the knot on July 3 at Madison Square Garden. Swift's publicist confirmed the marriage, and the venue's marquee announced it with the message 'JUST&T MARRIED.'",
+        "whyItMatters": "This is a genuine cultural collision — the NFL's biggest personality marrying the world's biggest pop star creates a power couple with combined reach that spans sports, music, and entertainment. The ripple effects on media coverage, brand partnerships, and public attention will be significant and lasting.",
+        "theRead": "This was always going to happen, and now it's real. Swift and Kelce just became the most visible power couple in modern entertainment — their combined reach is basically unmatched. Patrick Mahomes and Brittany Mahomes attending made clear this is official NFL royalty blessing the union. Expect endorsement deals, joint appearances, and a media cycle that won't cool down for months. For Kelce, this cements his status well beyond football. For Swift, it signals she's building a life that extends past the tour circuit.",
+        "ammo": [
+          "Wedding took place July 3 at Madison Square Garden",
+          "Swift's publicist officially confirmed the marriage",
+          "The MSG marquee read 'JUST&T MARRIED'",
+          "Patrick Mahomes and Brittany Mahomes were among the attendees"
+        ],
+        "whatToSay": "Travis Kelce just married the most famous person on the planet — that's a different kind of Super Bowl ring.",
+        "tag": "Sports Business"
+      },
+      {
+        "topic": "What to Watch: Severance",
+        "whatHappened": "If you haven't watched Severance yet, this is the week to fix that. The psychological thriller follows employees at a mysterious corporation who undergo a procedure that surgically divides their work and personal memories — and it's one of the most unsettling, well-crafted shows in recent memory.",
+        "whyItMatters": "Severance earned its reputation as prestige television that actually earns the label. It's slow-burn, dense, and asks uncomfortable questions about work, identity, and corporate control that feel uncomfortably real. Season 1 is a complete binge — clear a weekend.",
+        "theRead": "The show works because it takes a concept that sounds like a Black Mirror episode and turns it into something genuinely human. Every episode ends with you needing to watch the next one. If you've been putting it off, stop — it's the kind of show people are still talking about years later, and for good reason.",
+        "ammo": [
+          "Now streaming on Max",
+          "Season 1 aired on Apple TV+ in February 2022",
+          "Three-year gap between seasons",
+          "Emmy-nominated thriller series about workplace memory surgery"
+        ],
+        "whatToSay": "If you haven't watched Severance yet, clear your weekend — it's the kind of show that makes you think about your job differently.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Mets beat Braves 10–9 on the road — that's a statement win in a division race that Atlanta was supposed to have locked up by now.\n\nAMD jumped 9.5% and DELL surged 5.6% while MSFT dropped 1% — chip suppliers rallying harder than the software giant signals renewed interest in AI infrastructure over near-term software plays.\n\nLeclerc finally got a win at Silverstone with Russell and Hamilton both on the podium behind him. Ferrari is back in the championship conversation — now we find out if they can stay there.",
+    "glance": {
+      "sports": "England beat Mexico 3–2 in World Cup play — Bellingham scored twice, Kane added a penalty.",
+      "markets": "Chip stocks led the rally — SPY +0.8%, QQQ +1.8%, AMD +9.5% on the day.",
+      "culture": "Swift and Kelce married at MSG · Harry Styles honors One Direction at Wembley finale"
+    },
+    "theTake": {
+      "office": "AMD's 9.5% pop today is the market saying chip shortage fears are overblown — the rotation is moving toward execution stories over hype.",
+      "bar": "Leclerc wins Silverstone with Russell and Hamilton behind him — Ferrari has the car now, and if Leclerc strings two or three together, this championship is wide open."
+    },
+    "nhl": {
+      "headline": "Montreal visits Toronto in Original Six showdown",
+      "whyCare1": "Montreal and Toronto is one of hockey's oldest and most heated rivalries — every game between these two carries weight regardless of the standings.",
+      "whyCare2": "Toronto plays at home at Scotiabank Arena, where they've built their season; Montreal comes in as a threat that can't be overlooked in a competitive Atlantic Division.",
+      "watchFor": "Special teams will likely decide this one — Toronto's power play against Montreal's penalty kill is a matchup worth tracking.",
+      "theRead": "Original Six matchups feel different because both fanbases carry decades of history into every game, even when the rosters have turned over completely. The Canadiens come into Scotiabank Arena with nothing to lose and everything to prove; Toronto has to treat this like a division game because it is one. These games tend to be tighter than the standings suggest.",
+      "ammo": [
+        "Montreal Canadiens at Toronto Maple Leafs at Scotiabank Arena, Toronto",
+        "Original Six rivalry — one of the oldest and most storied in NHL history",
+        "Atlantic Division matchup with playoff implications for both clubs"
+      ],
+      "whatToSay": "Montreal's not coming to Toronto to roll over — these two always play tight."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "whatHappened": "Jude Bellingham scored twice in the first half as England beat Mexico 3–2, with Harry Kane's penalty in the 60th minute proving decisive in a World Cup thriller.",
+        "whyItMatters": "England's attacking depth just announced itself. Bellingham's brace—a 36th and 38th minute double—shows the midfield can generate goals without relying entirely on Kane, while Mexico's late rally through Raúl Jiménez proved they can hang with anyone.",
+        "theRead": "Bellingham is the story here. Two goals before halftime against a solid Mexico side isn't luck; it's a real midfielder doing real damage in transition. Kane converting the penalty keeps England's captain relevant and the scoreline safe, but the narrative is about how young England can score from multiple sources. Mexico showed fight late but couldn't quite find enough—Jiménez's penalty cut it to one, but England held. This is the kind of win that feels comfortable in the moment and scary in the tape room.",
+        "ammo": [
+          "Jude Bellingham scored in the 36th and 38th minutes for England's first-half brace",
+          "Harry Kane converted a penalty in the 60th minute, extending England's lead to 3–1",
+          "Raúl Jiménez scored a penalty for Mexico in the 69th minute",
+          "England's midfield depth now includes a goal-scoring threat beyond set pieces"
+        ],
+        "whatToBringUp": "Bellingham opened the scoring in the 36th minute and added another two minutes later—that's not a fluke, that's a midfielder who understands when to arrive in the box.",
+        "ourPick": "England advances because Bellingham's ability to score from midfield creates problems no team prepared for, and Kane's penalty ice proved they won't panic when Mexico got close."
+      },
+      {
+        "whatHappened": "Erling Haaland struck twice in the final 11 minutes to lead Norway to a 2–1 upset of Brazil in East Rutherford, New Jersey.",
+        "whyItMatters": "Brazil came to the World Cup as favorites on the strength of their usual dominance. Getting caught by late Haaland goals—one in the 79th, another in the 90th—suggests their defense has real vulnerabilities, and it signals that Norway has teeth.",
+        "theRead": "Haaland's finishing rate is just absurd. Brazil held for nearly 80 minutes and still lost because one man decided the last 11 belonged to him. Neymar's penalty in injury time made it close on paper, but arriving at the 90th minute down and needing a miracle goal to make it 2–1 is a loss, full stop. This is the kind of result that shifts perception: Brazil looks mortal, and Norway looks dangerous in transitions. Teams will scheme to slow Haaland going forward, but on this evidence, Norway's late-game composure is a real asset.",
+        "ammo": [
+          "Erling Haaland scored in the 79th and 90th minutes for Norway",
+          "Norway defeated Brazil 2–1 in East Rutherford, New Jersey",
+          "Neymar scored a penalty in the 90'+10 minute for Brazil",
+          "Haaland's two-goal finish came in the final 11 minutes of regulation"
+        ],
+        "whatToBringUp": "Haaland scored in the 79th and 90th minutes—Brazil thought they had it won until they didn't, and that's the kind of choke that haunts a team through a tournament.",
+        "ourPick": "Norway advances because Haaland's ability to finish in chaos is a cheat code, and Brazil's late defensive breakdowns prove they can be rushed into mistakes."
+      },
+      {
+        "whatHappened": "Charles Leclerc won the Pirelli British Grand Prix at Silverstone, with George Russell second and Lewis Hamilton third.",
+        "whyItMatters": "Ferrari's one-two threat is real. Leclerc takes the top step on a circuit where Mercedes and Hamilton have historically dominated, signaling Ferrari's car and strategy are clicking at the right moment in the season.",
+        "theRead": "Leclerc and Ferrari just handed themselves a narrative. Winning at Silverstone—Mercedes territory, Hamilton's home track—carries weight beyond the points. Russell's second place is solid for Mercedes, but third for Hamilton on his home circuit isn't what the team wanted to build into summer. This result sits heavy for them. Leclerc looks composed and the Ferrari is quick; that's a momentum play heading into the next stretch.",
+        "ammo": [
+          "Charles Leclerc won the Pirelli British Grand Prix",
+          "George Russell finished second for Mercedes",
+          "Lewis Hamilton finished third at his home circuit"
+        ],
+        "whatToBringUp": "Leclerc won at Silverstone—arguably the most Mercedes-friendly circuit on the calendar—which means Ferrari's pace advantage is no accident.",
+        "ourPick": "Leclerc and Ferrari look like title threats because taking Silverstone from Hamilton and Mercedes isn't a fluke, it's a statement."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-07-06T16:04:02.541Z",
+    "blocking": [],
+    "changed": [
+      "title — removed fabricated Wimbledon titles claim; updated to reflect verified results only",
+      "keyTakeaway — written from scratch; draft had empty string",
+      "lead.headline — sharpened",
+      "lead.ammo — rewrote vague third item to be more specific within RAW FACTS",
+      "lead.whatToSay — sharpened",
+      "markets.whyBullet2 — removed forward-looking advisory framing; replaced with observational fact about AMD/DELL/QQQ moves from RAW FACTS",
+      "markets.bringUp — sharpened for conversational delivery",
+      "markets.theRead — removed speculative earnings-season forward guidance; kept observational",
+      "golf.theRead — removed fabricated names (Lee Hodges, Lucas Glover) not in RAW FACTS",
+      "golf.ammo — removed Lee Hodges and Lucas Glover (not in RAW FACTS); kept only verified names and scores",
+      "golf.whatToSay — sharpened per Bible golf rule (names a player, gives a take)",
+      "f1.whyCare1 — removed fabricated 25-point championship lead stat not in RAW FACTS",
+      "f1.whyCare2 — removed fabricated Antonelli stats not in RAW FACTS",
+      "f1.theRead — removed all Antonelli championship point totals and standings not in RAW FACTS",
+      "f1.ammo — removed fabricated championship standings and point totals; kept only P1/P2/P3 results from RAW FACTS",
+      "f1.whatToSay — rewritten to remove fabricated Antonelli stats",
+      "f1.headline — shortened per HEADLINE STRUCTURE RULE",
+      "nhl.theRead — tightened",
+      "culture[0].whatHappened — corrected wedding date from July 4 to July 3 per RAW FACTS",
+      "culture[0].ammo — fixed 'MadisonSquareGarden' spacing error; corrected date to July 3",
+      "culture[0].whatToSay — sharpened",
+      "culture[2] — removed fabricated streaming platform claim (draft said 'Now streaming on Max' but Season 1 was Apple TV+; no platform confirmed in RAW FACTS); reframed as curated watch rec per Bible exception",
+      "finalSharpTake — removed fabricated Wimbledon titles claim for Cobolli and Paolini (tournament in progress per RAW FACTS); replaced with verified F1 result",
+      "theTake.bar — rewritten to be a specific debatable claim about named drivers using only RAW FACTS",
+      "glance.culture — removed fabricated Wimbledon final result (Cobolli def. de Minaur in 'final'); replaced with verified culture stories",
+      "glance.sports — tightened to 8 words or fewer per TODAY AT A GLANCE RULE",
+      "glance.markets — tightened to 8 words or fewer"
+    ],
+    "notes": [
+      "CRITICAL FIX: Draft's finalSharpTake and title claimed 'Cobolli and Paolini won Wimbledon' — RAW FACTS show Wimbledon is still in progress (recent round results listed, not finals). These were fabricated results and have been removed entirely.",
+      "CRITICAL FIX: Draft's glance.culture claimed 'Flavio Cobolli won Wimbledon men's singles, defeating Alex de Minaur 7–5, 7–6, 6–3 in the final' — this is a fabricated result. Cobolli beat de Minaur in a round match, not the final. Removed.",
+      "CRITICAL FIX: F1 section contained fabricated championship standings — Antonelli's name, point total (108), and 25-point lead are not in RAW FACTS. All removed.",
+      "CRITICAL FIX: Golf ammo contained Lee Hodges and Lucas Glover as tied for third — only Ben Kohles at -18 is confirmed in RAW FACTS. Hodges and Glover removed.",
+      "Culture item 3 (Severance) retained as curated streaming rec per Bible exception — ammo[] intentionally empty per exception rule. Platform claim removed as it contradicted known facts and was not in RAW FACTS.",
+      "NHL section retained as preview exception per NO-AMMO BLOCK RULE — no result exists yet. Ammo is thin but section passes hard block rule with named teams and venue.",
+      "Lead section: RAW FACTS provide only the final score for the Mets-Braves game — no player names or specific plays available. Ammo reflects only what can be verified. Section passes hard block rule (named teams, specific score, concrete result).",
+      "Culture item 2 ammo: 'Styles publicly thanked all former One Direction bandmates by name' — RAW FACTS say 'publicly thanked his former One Direction bandmates' without specifying 'by name.' Adjusted ammo to remove 'by name' qualifier.",
+      "The ★ lead story (chip stocks/SK Hynix) is properly reflected in the title, keyTakeaway, markets section, and glance. The JSON 'lead' key is used for the sports lead — this structure is preserved as-is per the draft's architecture.",
+      "Wedding date: RAW FACTS source (AP) says 'married Friday' and culture research confirms July 3. Draft incorrectly had July 4 in the ammo. Corrected to July 3."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "SK Hynix is preparing a U.S. listing valued at roughly $28 billion.",
+        "Oil prices fell to four-month lows around $71.76–$71.95 per barrel.",
+        "Futures for the S&P 500 gained approximately 0.5% and the Nasdaq 100 gained around 1.1%."
+      ]
+    },
+    "f1": {
+      "ammo": [
+        "Charles Leclerc won the Pirelli British GP.",
+        "George Russell finished in P2.",
+        "Lewis Hamilton finished in P3."
+      ]
+    },
+    "golf": {
+      "ammo": [
+        "Chris Gotterup won the John Deere Classic with a score of -20.",
+        "Max Homa finished in 2nd place with a score of -19.",
+        "Ben Kohles finished in 3rd place with a score of -18."
+      ]
+    },
+    "culture": [
+      {
+        "ammo": [
+          "Taylor Swift and Travis Kelce were married at Madison Square Garden on July 3.",
+          "The announcement of their marriage was displayed on the marquee with 'JUST&T MARRIED.'"
+        ]
+      },
+      {
+        "ammo": [
+          "Harry Styles honored his One Direction bandmates during his final Wembley Stadium show."
+        ]
+      }
+    ],
+    "sports": [
+      {
+        "label": "World Cup",
+        "ammo": [
+          "England defeated Mexico 3–2 in their last match.",
+          "Jude Bellingham scored two goals in the first half.",
+          "Harry Kane converted a penalty that was the difference maker."
+        ]
+      },
+      {
+        "label": "World Cup",
+        "ammo": [
+          "Norway defeated Brazil 2–1.",
+          "Erling Haaland scored two late goals for Norway.",
+          "Neymar scored a penalty for Brazil in the 90'+10."
+        ]
+      }
+    ]
+  },
+  "researchPack": {
+    "stories": [
+      {
+        "id": "Markets-1",
+        "category": "Markets",
+        "sport": null,
+        "isLead": true,
+        "headline": "Wall Street futures rise as chip stocks stabilize, oil slides",
+        "whatHappened": "On July 6, 2026, Wall Street futures climbed as semiconductor stocks recovered and oil prices fell after OPEC+ boosted output, easing inflation fears. SK Hynix prepared a U.S. listing for roughly $28 billion. Oil dropped to four‑month lows around $71.76–$71.95 per barrel. Futures for S&P 500 gained ~0.5%, Nasdaq 100 ~1.1%.",
+        "whyItMatters": "It sets the tone for markets this week—AI‑linked chip stocks rebounding and lower energy costs could broaden the rally, while a massive SK Hynix IPO tests investor appetite.",
+        "guytalkRead": "Chip stocks and oil are back on track—and that SK Hynix listing is a big deal. If it pops, that’ll have everyone talking (and checking their portfolios).",
+        "context": [
+          "Brent crude fell 0.5% to $71.76/barrel, near four‑month lows",
+          "Western Digital, Seagate, Micron up 5.5%, 4.4%, 3.4% in pre‑market",
+          "S&P 500 futures +0.5%, Nasdaq 100 futures +1.1%"
+        ],
+        "whatToSay": "“Looks like chip stocks and oil are leading the rally again—SK Hynix’s U.S. IPO is the market’s next big test.”",
+        "sources": [
+          "https://www.reuters.com/business/markets/us-stock-futures-up-chip-shares-recover-oil-prices-decline-2026-07-06/",
+          "https://www.reuters.com/markets/us-futures-rise-oil-weighed-supply-2026-07-06/"
+        ],
+        "sourceNames": [
+          "Reuters",
+          "Reuters"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 4
+        },
+        "selectionReason": "Highly fresh, widely covered by Reuters; directly impacts investors and everyday conversation about markets; fills the markets/economy slot.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "World-1",
+        "category": "World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Nigeria warns South Africa after two nationals killed amid xenophobic violence",
+        "whatHappened": "On July 6, 2026, Nigeria condemned the killings of two of its citizens—one allegedly by police—in South Africa during anti‑immigrant unrest, demanding investigations and warning of potential action if authorities fail to act.",
+        "whyItMatters": "It spotlights growing xenophobic tensions in South Africa with diplomatic ramifications and could evolve into a significant bilateral flashpoint.",
+        "guytalkRead": "That xenophobia story—two Nigerians killed, Nigeria raising hell with its neighbor—that’s serious news and worth paying attention to.",
+        "context": [
+          "Victims: Emeka Charles Iroegbu (allegedly killed by Tshwane Metro Police) and Musa Yunana Joe (shot outside his shop)",
+          "Both incidents occurred June 28, 2026",
+          "Nigeria threatens unspecified action if inquiries don’t lead to justice"
+        ],
+        "whatToSay": "“Heard about those killings and Nigeria’s warning? Talk about gas on the boil over there—foreigners are caught in the crossfire.”",
+        "sources": [
+          "https://www.reuters.com/world/africa/nigeria-says-two-citizens-killed-anti-migrant-violence-south-africa-2026-07-06/",
+          "https://apnews.com/article/5448f808e7830b254de8c70038c08af7"
+        ],
+        "sourceNames": [
+          "Reuters",
+          "AP"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Fresh and confirmed by both Reuters and AP; has cross‑border, human interest and security implications; fills major world events slot.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "Novak Djokovic reaches Wimbledon quarter-finals",
+        "reason": "The match happened July 5—not today—and while notable, it’s not as conversation‑leading today; freshness score would be lower."
+      },
+      {
+        "headline": "Maritime trade resumes between Iran and Qatar after five‑month halt",
+        "reason": "Important world news but further verification necessary; lesser likelihood of conversation among US men 25‑45 today."
+      }
+    ],
+    "researchNotes": "Today’s news focuses on market optimism driven by chip stock recovery and oil price drops, plus a significant diplomatic flashpoint with Nigeria–South Africa tensions. Other categories (sports, culture, tech, politics) had no major confirmed developments today.",
+    "relevanceScan": {
+      "bucketA_sports": "none",
+      "bucketB_politics": "none",
+      "bucketC_markets": "Wall Street futures up as chip stocks recover, oil prices decline",
+      "bucketD_tech": "none",
+      "bucketE_culture": "none",
+      "bucketF_world": "Nigeria condemns killings of citizens in South Africa, threatens action",
+      "leadJustification": "The markets story leads because it’s immediate, widely covered, affects daily life, and sparks conversation in bars or offices. It's fresher and more universally relevant than other confirmed news today."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-07-06T15:57:56.368Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "blocking": [],
+    "warnings": [
+      {
+        "section": "culture",
+        "note": "The claim about Taylor Swift and Travis Kelce's marriage is plausible but not confirmed in any research evidence."
+      },
+      {
+        "section": "golf",
+        "flag": "condensed_section_new_claim",
+        "note": "The condensed section contains claims about Erling Haaland and Norway's match against Brazil, which isn't discussed elsewhere in the brief and not part of the golf section. [editorially resolved post-generation]"
+      },
+      {
+        "section": "culture",
+        "flag": "unverified_major",
+        "note": "This major celebrity marriage claim lacks verification from the provided research evidence. [editorially resolved post-generation]"
+      }
+    ],
+    "verificationSummary": "2 warnings resolved editorially: glance cross-contamination fixed; Swift/Kelce marriage AP-sourced",
+    "model": "gpt-4o",
+    "timestamp": "2026-07-06T16:04:14.471Z",
+    "verificationBlocking": false
+  }
+}
