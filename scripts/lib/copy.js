@@ -816,4 +816,48 @@ CRITICAL: Return ONLY a JSON array — no markdown, no extra text:
   return null;
 }
 
-module.exports = { generateCopy, generateLeadOnly, generateCultureOnly };
+/**
+ * Retry just the F1 section when generateCopy() returned no/thin ammo.
+ */
+async function generateF1Only({ f1, f1Web, factPack }) {
+  if (!f1?.name) return null;
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) return null;
+  let Anthropic;
+  try { Anthropic = require('@anthropic-ai/sdk'); } catch (_) { return null; }
+  const client = new (Anthropic.default || Anthropic)({ apiKey });
+
+  const isPost = f1.results?.length && f1.statusState === 'post';
+  const raceLine = isPost
+    ? `Results: ${f1.results.slice(0, 3).map(r => `P${r.pos} ${r.driver} (${r.team})`).join(', ')}`
+    : `UPCOMING: ${f1.name} — write a preview, do NOT invent results`;
+  const bits = [];
+  const w = f1.results?.[0];
+  if (isPost && w?.seasonWins != null) bits.push(`${w.driver} now has ${w.seasonWins} win(s) this season`);
+  if (isPost && w?.champPos != null) bits.push(`sits P${w.champPos} in the championship${w.champPoints != null ? ` with ${w.champPoints} pts` : ''}`);
+  if (f1.champLeader?.lead != null) bits.push(`${f1.champLeader.name} leads the title race by ${f1.champLeader.lead} pts`);
+  const statLine = bits.length ? `\nSeason stats (ONLY use these — never invent): ${bits.join('; ')}` : '';
+  const fpAmmo = Array.isArray(factPack?.f1?.ammo) ? factPack.f1.ammo : [];
+  const ammoLine = fpAmmo.length ? `\nAMMO FACTS (use these): ${fpAmmo.join(' | ')}` : '';
+
+  const prompt = `${BRAND_VOICE}
+
+GuyTalk F1 section. ${f1.name}. ${raceLine}.${statLine}${ammoLine}${f1Web ? `\nWEB FACT: ${f1Web}` : ''}
+A driver's team is ONLY the name shown in parentheses — never guess. NEVER invent stats.
+Return ONLY a single JSON object on one line — no markdown:
+{"headline":"Max 10 words.","whyCare1":"One sentence — championship angle or narrative.","whyCare2":"One sentence — who is favored or under pressure.","watchFor":"One specific storyline to track.","theRead":"2-4 sentences. Championship context, what this race means.","ammo":["Specific F1 stat or fact 1","Specific F1 stat or fact 2","Specific F1 stat or fact 3"],"whatToSay":"One repeatable line — championship or driver narrative."}`;
+
+  try {
+    const res = await client.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 450,
+      messages: [{ role: 'user', content: prompt }],
+    });
+    const text = (res.content?.find(b => b.type === 'text') || res.content?.[0])?.text || '';
+    const parsed = parseJson(text);
+    if (parsed && !Array.isArray(parsed) && Array.isArray(parsed.ammo) && parsed.ammo.length >= 3) return parsed;
+  } catch (_) {}
+  return null;
+}
+
+module.exports = { generateCopy, generateLeadOnly, generateCultureOnly, generateF1Only };

@@ -679,4 +679,116 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
   return { lead: top[0], sports: top };
 }
 
-module.exports = { fetchTopStories, fetchSectionStories, fetchDynamicSports };
+// ─────────────────────────────────────────────────────────────────────────────
+// Anthropic research pack — full 6-bucket web-search fallback.
+//
+// Runs when OpenAI research is unavailable. Uses the same 6-bucket prompt and
+// returns the same {stories, searchActive} shape so generate-brief.js can drop
+// it in without changing any downstream logic.
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchAnthropicResearchPack({ date, recentIssues = [] } = {}) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) return null;
+
+  let Anthropic;
+  try { Anthropic = require('@anthropic-ai/sdk'); } catch { return null; }
+  const client = new (Anthropic.default || Anthropic)({ apiKey });
+
+  const todayStr = date || new Date().toLocaleDateString('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+  });
+
+  const recentLeads = recentIssues.map(b => b.sportsThesis || b.lead || '').filter(Boolean).slice(0, 3);
+  const avoidLine = recentLeads.length
+    ? `\n\nAVOID REPEATING these angles from the last 3 issues:\n${recentLeads.map((t, i) => `${i + 1}. ${t}`).join('\n')}`
+    : '';
+
+  const prompt = `Today is ${todayStr}. You are the lead researcher for GuyTalk, a daily brief for men ages 25-45.
+
+Use web search to find the most important CONFIRMED stories happening TODAY. Only include real, verified events.
+
+STEP 1 — BROAD DAILY SCAN across ALL SIX buckets:
+BUCKET A — Sports: NBA, NHL, MLB, NFL, UFC/MMA, F1, golf, World Cup, boxing, college sports
+BUCKET B — Politics/Policy: White House, major legislation, presidential news, federal agency decisions
+BUCKET C — Markets/Economy: Fed decisions, earnings, IPOs, major market moves, oil/commodities
+BUCKET D — Tech/AI/Business: product launches, acquisitions, AI breakthroughs, significant earnings
+BUCKET E — Culture/Entertainment: major streaming drops, viral moments, big music/film news for men 25-45
+BUCKET F — Major World Events: wars, peace deals, disasters, elections, national news
+
+STEP 2 — Select 6-9 stories. Sports, markets, and culture should each have at least one story unless genuinely nothing happened. Sports should NOT fill more than 4 of 6-9 slots unless it's a Finals/Cup/Super Bowl level day.
+
+TRUSTED SOURCES only: ESPN, The Athletic, CNBC, Bloomberg, WSJ, Reuters, AP, Variety, Hollywood Reporter, BBC
+
+EXCLUDE: speculation, future-event pages, celebrity gossip/dating/breakups/custody, horoscopes, stories >36h old${avoidLine}
+
+Return ONLY valid JSON (no markdown fences):
+{
+  "stories": [
+    {
+      "id": "category-n",
+      "category": "Sports|Markets|Business|Tech|Culture|Current Events|UFC|F1|Golf|World Cup",
+      "sport": "NBA|NHL|MLB|UFC|Boxing|F1|Golf|Soccer|World Cup|null",
+      "isLead": false,
+      "headline": "tight specific headline under 12 words",
+      "whatHappened": "1-2 factual sentences with names and real numbers",
+      "whyItMatters": "1-2 sentences of non-obvious stakes",
+      "guytalkRead": "3-4 sentences opinionated take grounded in confirmed facts",
+      "context": ["specific verifiable fact 1", "specific verifiable fact 2", "specific verifiable fact 3"],
+      "whatToSay": "one natural line a 30-year-old would say at work or a bar",
+      "sources": ["https://real-url-you-found"],
+      "sourceNames": ["ESPN"],
+      "scores": { "freshness": 5, "confidence": 5, "conversation": 4, "variety": 4 },
+      "selectionReason": "why selected",
+      "verificationConcerns": ""
+    }
+  ],
+  "rejectedStories": [{ "headline": "headline", "reason": "why rejected" }],
+  "researchNotes": "brief summary of today's news landscape",
+  "relevanceScan": {
+    "bucketA_sports": "top story found or (none)",
+    "bucketB_politics": "top story found or (none)",
+    "bucketC_markets": "top story found or (none)",
+    "bucketD_tech": "top story found or (none)",
+    "bucketE_culture": "top story found or (none)",
+    "bucketF_world": "top story found or (none)",
+    "leadJustification": "why isLead story was chosen"
+  }
+}`;
+
+  try {
+    const messages = [{ role: 'user', content: prompt }];
+    const res = await runSearch(client, {
+      model: SYNTH_MODEL,
+      messages,
+      maxTokens: 8000,
+      maxUses: 5,
+    });
+
+    const text = getText(res);
+    const pack = extractJsonObject(text);
+    if (!pack?.stories?.length) throw new Error('no stories in response');
+
+    if (!pack.stories.some(s => s.isLead)) pack.stories[0].isLead = true;
+    const lead = pack.stories.find(s => s.isLead) || pack.stories[0];
+
+    console.log(`   ✓ Anthropic research fallback active (${SYNTH_MODEL}, web_search, ${pack.stories.length} stories)`);
+    console.log(`     Lead: "${(lead.headline || '').slice(0, 60)}"`);
+    if (pack.relevanceScan?.leadJustification) {
+      console.log(`     Why: ${pack.relevanceScan.leadJustification.slice(0, 100)}`);
+    }
+
+    return {
+      ...pack,
+      citationUrls: [],
+      citationTitles: [],
+      timestamp: new Date().toISOString(),
+      searchModel: SYNTH_MODEL + '-anthropic',
+      searchActive: true,
+    };
+  } catch (err) {
+    console.log(`   ✗ Anthropic research fallback failed: ${err.message}`);
+    return null;
+  }
+}
+
+module.exports = { fetchTopStories, fetchSectionStories, fetchDynamicSports, fetchAnthropicResearchPack };

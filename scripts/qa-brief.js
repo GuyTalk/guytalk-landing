@@ -329,8 +329,11 @@ function main() {
     ...(copy?.lead ? [{ label: 'lead', ammo: copy.lead.ammo }] : []),
     ...(copy?.markets ? [{ label: 'markets', ammo: copy.markets.ammo }] : []),
     ...(copy?.golf ? [{ label: 'golf', ammo: copy.golf.ammo }] : []),
-    ...(copy?.f1 ? [{ label: 'f1', ammo: copy.f1.ammo }] : []),
-    ...(copy?.nhl ? [{ label: 'nhl', ammo: copy.nhl.ammo }] : []),
+    // Only check f1/nhl ammo when the section has real content (headline present).
+    // An empty object {} is left behind when the editor moves content to sportsOther,
+    // and that should not count as a section requiring ammo.
+    ...(copy?.f1?.headline ? [{ label: 'f1', ammo: copy.f1.ammo }] : []),
+    ...(copy?.nhl?.headline ? [{ label: 'nhl', ammo: copy.nhl.ammo }] : []),
     ...(copy?.sportsOther || []).map((o, i) => ({ label: `sportsOther[${i}]`, ammo: o?.ammo })),
     // dynamicSports are often UFC/MMA/preview events with fewer verifiable facts — min 2
     ...(copy?.dynamicSportsText || []).map((d, i) => ({ label: `dynamicSports[${i}]`, ammo: d?.ammo, min: 2 })),

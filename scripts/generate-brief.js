@@ -7,11 +7,11 @@ const fs   = require('fs');
 const path = require('path');
 
 const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending } = require('./lib/fetchers');
-const { generateCopy }                                      = require('./lib/copy');
+const { generateCopy, generateF1Only }                      = require('./lib/copy');
 const { editBrief }                                         = require('./lib/editor');
 const { buildHtml }                                         = require('./lib/html');
 const { buildArchive }                                      = require('./lib/archive');
-const { fetchTopStories, fetchSectionStories, fetchDynamicSports } = require('./lib/research');
+const { fetchTopStories, fetchSectionStories, fetchDynamicSports, fetchAnthropicResearchPack } = require('./lib/research');
 const { fetchFactPack }                                             = require('./lib/factpack');
 const { fetchOpenAIResearch }                                       = require('./lib/openai-research');
 const { verifyBrief }                                               = require('./lib/openai-verify');
@@ -648,15 +648,36 @@ async function main() {
   let   f1         = f1Result.status        === 'fulfilled' ? f1Result.value        : null;
 
   // ── OpenAI research pack (PRIMARY story source) ───────────────────────────
-  const researchPack = openAIResearchResult.status === 'fulfilled' ? (openAIResearchResult.value || null) : null;
+  let researchPack = openAIResearchResult.status === 'fulfilled' ? (openAIResearchResult.value || null) : null;
   if (openAIResearchResult.status === 'rejected') {
     console.log(`   ✗ OpenAI research threw: ${openAIResearchResult.reason?.message || openAIResearchResult.reason}`);
   }
 
+  // ── Anthropic web search fallback ────────────────────────────────────────
+  // When OpenAI research fails/times out, use Anthropic Sonnet + web_search
+  // with the same 6-bucket prompt. This gives real, fresh stories across sports,
+  // markets, culture and tech instead of falling back to ESPN feeds + NewsAPI only.
+  if (!researchPack?.searchActive) {
+    try {
+      console.log('   📋 OpenAI research unavailable — trying Anthropic web search fallback...');
+      const anthPack = await fetchAnthropicResearchPack({ date, recentIssues: prev3ForResearch });
+      if (anthPack?.searchActive) {
+        researchPack = anthPack;
+      } else {
+        console.log('   ⚠  Anthropic fallback also unavailable — using feed-only mode');
+      }
+    } catch (anthErr) {
+      console.log(`   ⚠  Anthropic fallback threw: ${anthErr.message}`);
+    }
+  }
+
   // researchMode is the source of truth for the whole pipeline's quality level.
-  // 'openai-search' = gpt-4.1 actually searched the web and returned verified stories.
-  // 'feed-only'     = web search unavailable; using ESPN + Tier-1-filtered NewsAPI only.
-  const researchMode = researchPack?.searchActive ? 'openai-search' : 'feed-only';
+  // 'openai-search'    = gpt-4.1 searched the web and returned verified stories.
+  // 'anthropic-search' = Anthropic Sonnet web_search used as fallback.
+  // 'feed-only'        = both web searches unavailable; ESPN + Tier-1 NewsAPI only.
+  const researchMode = researchPack?.searchActive
+    ? (researchPack.searchModel?.includes('anthropic') ? 'anthropic-search' : 'openai-search')
+    : 'feed-only';
 
   // topStories: prefer research pack; in feed-only mode filter NewsAPI to Tier-1 sources only.
   const topStoriesRaw = topStoriesResult.status === 'fulfilled' ? (topStoriesResult.value || []) : [];
@@ -664,8 +685,9 @@ async function main() {
     ? researchPackToTopStories(researchPack)
     : filterToTrustedSources(topStoriesRaw);
 
-  if (researchMode === 'openai-search') {
-    console.log(`   ✓ OpenAI research active — ${researchPack.stories?.length || 0} web-verified stories`);
+  if (researchMode === 'openai-search' || researchMode === 'anthropic-search') {
+    const source = researchMode === 'anthropic-search' ? 'Anthropic fallback' : 'OpenAI';
+    console.log(`   ✓ ${source} research active — ${researchPack.stories?.length || 0} web-verified stories`);
     const leadStoryForLog = topStories.find(s => s.isLead) || topStories[0];
     if (leadStoryForLog) {
       const isSportsCategory = ['Sports','NBA','NHL','MLB','NFL','UFC','F1','Golf','World Cup'].includes(leadStoryForLog.category || '');
@@ -677,7 +699,7 @@ async function main() {
     }
   } else {
     console.log('');
-    console.log('   📋 FEED-ONLY MODE — OpenAI web research unavailable');
+    console.log('   📋 FEED-ONLY MODE — both OpenAI and Anthropic web research unavailable');
     console.log(`      Sports: ESPN structured feeds only`);
     console.log(`      Stories: Tier-1 sources only (${topStories.length} passed, ${topStoriesRaw.length - topStories.length} dropped)`);
     console.log(`      Culture: trusted entertainment sources only — no filler`);
@@ -905,6 +927,27 @@ async function main() {
       } else if (Array.isArray(retriedCulture) && retriedCulture.length > (copy.culture?.length || 0)) {
         copy.culture = retriedCulture;
         console.log(`   ⚠  Culture retry improved to ${retriedCulture.length} item(s) — still under 2`);
+      }
+    }
+
+    // Validate F1 — QA requires ≥3 ammo items when F1 section is included.
+    if (copy && f1?.name && (!Array.isArray(copy.f1?.ammo) || copy.f1.ammo.length < 3)) {
+      const f1Count = Array.isArray(copy.f1?.ammo) ? copy.f1.ammo.length : 0;
+      console.log(`   ⚠  f1 has ${f1Count} ammo item(s), need 3 — retrying f1 section...`);
+      addWarning('f1', 'retry', `only ${f1Count} ammo item(s)`);
+      const f1Web = (() => {
+        const r = sectionStories?.f1;
+        const base = (!r || r.no_data) ? '' : `${r.headline ? r.headline + ' — ' : ''}${r.fact || ''}`.trim();
+        const fp = factPack?.f1;
+        const ammoStr = Array.isArray(fp?.ammo) && fp.ammo.length ? `AMMO FACTS: ${fp.ammo.join(' | ')}` : '';
+        return [base, ammoStr].filter(Boolean).join(' | ') || null;
+      })();
+      const retriedF1 = await generateF1Only({ f1, f1Web, factPack });
+      if (retriedF1?.ammo?.length >= 3) {
+        copy.f1 = retriedF1;
+        console.log(`   ✓ F1 retry succeeded: "${retriedF1.headline}"`);
+      } else {
+        console.log('   ⚠  F1 retry failed — brief will have thin F1 ammo');
       }
     }
 

@@ -146,13 +146,25 @@ Return ONLY valid JSON (no markdown fences):
 }`;
 
   try {
-    const response = await client.responses.create({
-      model: SEARCH_MODEL,
-      tools: [{ type: 'web_search', search_context_size: 'high' }],
-      tool_choice: 'required',
-      max_output_tokens: 6000,
-      input: prompt,
-    });
+    // 60-second timeout — without this, a slow/hung OpenAI call blocks the entire
+    // Promise.allSettled() for the full brief duration before returning null.
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 60_000);
+
+    let response;
+    try {
+      response = await client.responses.create({
+        model: SEARCH_MODEL,
+        tools: [{ type: 'web_search', search_context_size: 'medium' }],
+        tool_choice: 'required',
+        max_output_tokens: 6000,
+        input: prompt,
+      }, { signal: controller.signal });
+    } finally {
+      clearTimeout(timeoutId);
+    }
+
+    if (!response) throw new Error('no response from API');
 
     // ── Extract response text ─────────────────────────────────────────────────
     let responseText = response.output_text || '';
@@ -281,13 +293,16 @@ Return ONLY valid JSON (no markdown fences):
     };
 
   } catch (err) {
-    const is404 = err.status === 404 || err.code === 'model_not_found';
-    if (is404) {
+    const is404    = err.status === 404 || err.code === 'model_not_found';
+    const isAbort  = err.name === 'AbortError' || err.code === 'ERR_ABORTED' || err.message?.includes('aborted');
+    if (isAbort) {
+      console.log('   ✗ OpenAI research timed out (60s) — brief will use Anthropic fallback');
+    } else if (is404) {
       console.log(`   ✗ ${SEARCH_MODEL} returned 404 (not on this account tier)`);
     } else {
       console.log(`   ✗ OpenAI research failed: ${err.message}`);
     }
-    console.log('   📋 Feed-only mode will run');
+    console.log('   📋 Anthropic web search fallback will run');
     return null;
   }
 }
