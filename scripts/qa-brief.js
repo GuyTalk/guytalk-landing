@@ -558,6 +558,35 @@ function main() {
     }
   }
 
+  // 10e. SPORT CONTENT CROSS-CONTAMINATION — headline names must appear in whatHappened
+  // Catches cases where AI writes soccer copy for a golf slot (or vice versa). Extracts
+  // capitalized proper-noun tokens from the headline and verifies ≥1 appears in whatHappened.
+  console.log('\n  [Sport Content Cross-Contamination]');
+  {
+    let contaminated = false;
+    for (const sport of dynSports) {
+      const hl = sport.headline || '';
+      const wh = sport.whatHappened || '';
+      if (!hl || !wh) continue;
+      // Extract capitalised words ≥4 chars that look like names (not common stop-words)
+      const STOP = new Set(['This', 'That', 'With', 'From', 'After', 'Into', 'When', 'Where', 'What', 'Their', 'Over', 'Under', 'Some', 'About', 'World', 'Grand', 'Classic', 'Open', 'Final', 'Game']);
+      const hlNames = (hl.match(/\b[A-Z][a-z]{3,}\b/g) || []).filter(w => !STOP.has(w));
+      if (!hlNames.length) continue;
+      const hasMatch = hlNames.some(w => wh.includes(w));
+      if (!hasMatch) {
+        contaminated = true;
+        run(
+          `Sport content: ${sport.label} whatHappened matches its headline`,
+          false,
+          `No headline name found in whatHappened — possible cross-contamination. ` +
+          `Headline names: [${hlNames.slice(0,4).join(', ')}]. ` +
+          `whatHappened starts: "${wh.slice(0, 80)}"`
+        );
+      }
+    }
+    if (!contaminated) run('Sport content: all sections match their headlines', true);
+  }
+
   // 11. THE RUNDOWN module — verify narrative sources exist (warn only, fallbacks in html.js)
   const hasRundownNarrative = !!(copy?.rundownNarrative);
   const hasRundownFallbacks = !!(
