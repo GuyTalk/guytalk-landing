@@ -1,0 +1,19 @@
+VERIFIED FACT SHEET — issue-070 — 2026-06-30T11:33:21.012Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Pittsburgh Pirates 11–7 Philadelphia Phillies (Final)
+  [SPORT] Miami Marlins 10–7 Colorado Rockies (Final)
+  [SPORT] Los Angeles Dodgers 9–4 Athletics (Final)
+  [GOLF] Travelers Championship | venue: see established facts | status: post
+  [F1] Pirelli British Grand Prix | P1: ? (?)
+  [MARKETS] SPY +1.65% | DIA 0.76% | QQQ 2.49%
+
+SOURCE: OpenAI web research
+  [conf:5/5] Deadly Heatwave Roasts Europe, U.S. Braces for Dangerous Dome — Reuters, Axios
+  [conf:5/5] Dow Hits Record Close as U.S.–Iran Tensions Ease — Reuters, Investing.com
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

@@ -1,0 +1,17 @@
+VERIFIED FACT SHEET — issue-068 — 2026-06-28T13:00:21.567Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Los Angeles Dodgers 15–3 San Diego Padres (Final)
+  [SPORT] Cincinnati Reds 9–7 Pittsburgh Pirates (Final)
+  [SPORT] Houston Astros 8–6 Detroit Tigers (Final)
+  [GOLF] Travelers Championship | venue: see established facts | status: in
+  [F1] Lenovo Austrian Grand Prix | P1: ? (?)
+  [MARKETS] SPY -0.72% | DIA -0.29% | QQQ -1.38%
+
+SOURCE: OpenAI web research
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

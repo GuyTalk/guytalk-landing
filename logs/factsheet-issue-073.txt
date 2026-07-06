@@ -1,0 +1,22 @@
+VERIFIED FACT SHEET — issue-073 — 2026-07-02T14:23:03.587Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Chicago Cubs 23–3 San Diego Padres (Final)
+  [SPORT] Philadelphia Phillies 10–6 Pittsburgh Pirates (Final)
+  [SPORT] Cleveland Guardians 9–4 Texas Rangers (Final)
+  [GOLF] John Deere Classic | venue: see established facts | status: in
+  [F1] Pirelli British Grand Prix | P1: ? (?)
+  [MARKETS] SPY +0.70% | DIA 0.86% | QQQ 0.52%
+
+SOURCE: OpenAI web research
+  [conf:5/5] AI‑linked tech and chip stocks slide ahead of US jobs data — LiveMint, Investing.com
+  [conf:4/5] Florida classifies CAIR and antifa as terror groups — WUSF (News Service of Florida)
+  [conf:5/5] USMNT reaches World Cup Round of 16 despite red card — The Guardian
+  [conf:4/5] Microsoft launches $2.5B AI‑embedding service — GeekWire
+  [conf:3/5] US jobs miss pushes bond yields lower — Reddit / r/MortgageBrokerRates
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

@@ -1,0 +1,19 @@
+VERIFIED FACT SHEET — issue-076 — 2026-07-06T16:04:10.044Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] New York Mets 10–9 Atlanta Braves (Final)
+  [SPORT] Miami Marlins 9–8 Athletics (Final)
+  [SPORT] Pittsburgh Pirates 11–5 Washington Nationals (Final)
+  [GOLF] John Deere Classic | venue: see established facts | status: post
+  [F1] Pirelli British Grand Prix | P1: Charles Leclerc (Ferrari)
+  [MARKETS] SPY +0.82% | DIA 0.04% | QQQ 1.83%
+
+SOURCE: OpenAI web research
+  [conf:5/5] Wall Street futures rise as chip stocks stabilize, oil slides — Reuters, Reuters
+  [conf:5/5] Nigeria warns South Africa after two nationals killed amid xenophobic violence — Reuters, AP
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

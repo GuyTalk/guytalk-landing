@@ -1,0 +1,22 @@
+VERIFIED FACT SHEET — issue-071 — 2026-07-01T12:06:37.383Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Miami Marlins 14–3 Colorado Rockies (Final)
+  [SPORT] Chicago Cubs 9–7 San Diego Padres (Final)
+  [SPORT] Tampa Bay Rays 10–4 Kansas City Royals (Final)
+  [GOLF] John Deere Classic | venue: see established facts | status: pre
+  [F1] Pirelli British Grand Prix | P1: ? (?)
+  [MARKETS] SPY +0.78% | DIA 0.14% | QQQ 1.70%
+
+SOURCE: OpenAI web research
+  [conf:3/5] Marlins crush Rockies 14–3 behind 3 homers — Southern Sports Today
+  [conf:3/5] Nasdaq jumps 1.5% to lead market rally — KuCoin News via aggregated markets
+  [conf:3/5] UBTECH unveils full‑size mass‑produced humanoid robot — PR Newswire via APAC
+  [conf:3/5] USMNT faces Bosnia‑Herzegovina in Round of 32 — The Spokesman‑Review
+  [conf:3/5] Supreme Court upholds birth‑right citizenship — The Spokesman‑Review
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

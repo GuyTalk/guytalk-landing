@@ -1,0 +1,24 @@
+VERIFIED FACT SHEET — issue-065 — 2026-06-26T11:08:22.502Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Tampa Bay Rays 13–2 Kansas City Royals (Final)
+  [SPORT] Athletics 9–6 San Francisco Giants (Final)
+  [SPORT] Philadelphia Phillies 10–5 Washington Nationals (Final)
+  [GOLF] Travelers Championship | venue: see established facts | status: in
+  [F1] Lenovo Austrian Grand Prix | P1: ? (?)
+  [MARKETS] SPY +0.14% | DIA 0.14% | QQQ 0.81%
+
+SOURCE: OpenAI web research
+  [conf:5/5] Onsemi to buy Synaptics for $7B in all‑stock deal — Reuters
+  [conf:5/5] Starlink offers free internet in Venezuela after quake — Reuters
+  [conf:5/5] US moves ahead with $700M jet‑engine sale to Turkey — Reuters
+  [conf:5/5] Samsung plans $648B South Korea investment — Reuters
+  [conf:4/5] OpenAI leans toward postponing IPO until next year — Reuters
+  [conf:?/5] None — 
+  [conf:5/5] NASCAR at Sonoma practice underway today — Racing News
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

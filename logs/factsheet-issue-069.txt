@@ -1,0 +1,17 @@
+VERIFIED FACT SHEET — issue-069 — 2026-06-29T13:01:21.549Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Pittsburgh Pirates 9–4 Cincinnati Reds (Final)
+  [SPORT] Houston Astros 7–5 Detroit Tigers (Final)
+  [SPORT] Cleveland Guardians 6–5 Seattle Mariners (Final)
+  [GOLF] Travelers Championship | venue: see established facts | status: in
+  [F1] Lenovo Austrian Grand Prix | P1: George Russell (Mercedes)
+  [MARKETS] SPY -0.72% | DIA -0.29% | QQQ -1.38%
+
+SOURCE: OpenAI web research
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

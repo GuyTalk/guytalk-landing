@@ -1,0 +1,17 @@
+VERIFIED FACT SHEET — issue-072 — 2026-07-02T13:11:55.329Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Chicago Cubs 23–3 San Diego Padres (Final)
+  [SPORT] Philadelphia Phillies 10–6 Pittsburgh Pirates (Final)
+  [SPORT] Cleveland Guardians 9–4 Texas Rangers (Final)
+  [GOLF] John Deere Classic | venue: see established facts | status: pre
+  [F1] Pirelli British Grand Prix | P1: ? (?)
+  [MARKETS] SPY -0.14% | DIA 0.00% | QQQ -1.52%
+
+SOURCE: OpenAI web research
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================
