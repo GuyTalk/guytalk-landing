@@ -955,8 +955,38 @@ async function main() {
     // template renders What happened / Why it matters / What to bring up per card.
     if (dynamicSports.length) {
       const beats = Array.isArray(copy?.dynamicSportsText) ? copy.dynamicSportsText : [];
+      // Bind beats to sports by LABEL, not by array position. The LLM occasionally
+      // returns beats in a different order or drops one, which used to shift every
+      // section by one slot (golf gets soccer content, MLB gets golf content, etc).
+      // Match on the echoed label first; fall back to positional only when the
+      // positional beat carries no label (older format) or its label matches.
+      const norm = (x) => String(x || '').toLowerCase().trim();
+      const beatsByLabel = new Map();
+      beats.forEach(b => { if (b && norm(b.label)) beatsByLabel.set(norm(b.label), b); });
+
+      const stripLabel = (b) => { if (!b) return b; const { label, ...rest } = b; return rest; };
+
       dynamicSports = dynamicSports.map((s, i) => {
-        const merged = { ...s, ...(beats[i] || {}) };
+        const sportLabel = norm(s.label || s.name);
+        let beat = null;
+        // 1) Prefer an exact label match
+        if (sportLabel && beatsByLabel.has(sportLabel)) {
+          beat = beatsByLabel.get(sportLabel);
+        } else {
+          // 2) Fall back to positional — but ONLY if it's safe: either the beat has
+          //    no label (can't verify) or its label matches this sport. If the
+          //    positional beat's label points at a DIFFERENT sport, refuse to merge
+          //    (a thin section beats a cross-contaminated one).
+          const pos = beats[i];
+          const posLabel = norm(pos?.label);
+          if (pos && (!posLabel || posLabel === sportLabel)) {
+            beat = pos;
+          } else if (pos && posLabel && posLabel !== sportLabel) {
+            console.log(`   ⚠  dynamicSports: beat[${i}] labeled "${pos.label}" ≠ section "${s.label || s.name}" — skipped to avoid cross-contamination`);
+            beat = null;
+          }
+        }
+        const merged = { ...s, ...stripLabel(beat || {}) };
         // Auto-generate player links from known players mentioned in facts/headline
         if (!merged.playerLinks?.length) {
           const links = buildPlayerLinksFromFacts(merged.facts, merged.headline);
