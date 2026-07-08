@@ -1,61 +1,64 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
   <rect width="1200" height="630" fill="#F9F8F5"/>
-  <!-- Subtle gradient -->
-  <radialGradient id="bg-grad" cx="50%" cy="0%" r="70%">
-    <stop offset="0%" stop-color="#2B6FFF" stop-opacity="0.06"/>
+  <radialGradient id="bg-grad" cx="30%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="#2B6FFF" stop-opacity="0.07"/>
     <stop offset="100%" stop-color="#F9F8F5" stop-opacity="0"/>
   </radialGradient>
   <rect width="1200" height="630" fill="url(#bg-grad)"/>
 
   <!-- Top accent bar -->
-  <rect width="1200" height="4" fill="#2B6FFF"/>
+  <rect width="1200" height="5" fill="#2B6FFF"/>
 
-  <!-- Left column — logo mark -->
-  <rect x="72" y="72" width="96" height="96" rx="20" fill="#0F1724"/>
-  <text x="112" y="146" fill="#F9F8F5" font-family="Georgia, serif" font-size="72" font-weight="bold" text-anchor="middle" letter-spacing="-3">g</text>
-  <circle cx="154" cy="132" r="8" fill="#2B6FFF"/>
+  <!-- Logo mark -->
+  <rect x="72" y="72" width="80" height="80" rx="18" fill="#0F1724"/>
+  <text x="108" y="140" fill="#F9F8F5" font-family="Georgia, serif" font-size="60" font-weight="bold" text-anchor="middle" letter-spacing="-2">g</text>
+  <circle cx="142" cy="124" r="7" fill="#2B6FFF"/>
 
   <!-- Wordmark -->
-  <text x="184" y="122" fill="#0F1724" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="800" letter-spacing="-1">GuyTalk</text>
-  <circle cx="356" cy="116" r="4" fill="#2B6FFF"/>
+  <text x="168" y="106" fill="#0F1724" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" letter-spacing="-1">GuyTalk</text>
+  <circle cx="328" cy="100" r="4" fill="#2B6FFF"/>
 
-  <!-- Tagline -->
-  <text x="184" y="148" fill="#9E9891" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600" letter-spacing="2" text-transform="uppercase">THE DAILY BRIEF</text>
+  <!-- Subtitle -->
+  <text x="168" y="132" fill="#9E9891" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="2.5">THE RELEVANCE BRIEF</text>
 
   <!-- Divider -->
-  <line x1="72" y1="196" x2="1128" y2="196" stroke="#E5E2DB" stroke-width="1"/>
+  <line x1="72" y1="182" x2="1128" y2="182" stroke="#E5E2DB" stroke-width="1"/>
 
-  <!-- Main headline area -->
-  <text x="72" y="280" fill="#0F1724" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" letter-spacing="-2">Walk in knowing.</text>
+  <!-- Main headline — two lines -->
+  <text x="72" y="268" fill="#0F1724" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="900" letter-spacing="-2.5">Don't be the last</text>
+  <text x="72" y="348" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="900" letter-spacing="-2.5">guy to know.</text>
 
   <!-- Sub headline -->
-  <text x="72" y="336" fill="#6E6862" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400">Sports · Markets · Golf · Culture · Five minutes a day.</text>
+  <text x="72" y="400" fill="#6E6862" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400">Sports, markets, and culture — five minutes every morning. Free.</text>
 
-  <!-- Pill badges -->
-  <rect x="72" y="388" width="140" height="40" rx="8" fill="#EBF1FF"/>
-  <text x="142" y="413" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" text-anchor="middle" letter-spacing="1">SPORTS</text>
+  <!-- Category pills -->
+  <rect x="72" y="440" width="128" height="36" rx="8" fill="#EBF1FF"/>
+  <text x="136" y="463" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.8">SPORTS</text>
 
-  <rect x="224" y="388" width="152" height="40" rx="8" fill="#EBF1FF"/>
-  <text x="300" y="413" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" text-anchor="middle" letter-spacing="1">MARKETS</text>
+  <rect x="212" y="440" width="140" height="36" rx="8" fill="#EBF1FF"/>
+  <text x="282" y="463" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.8">MARKETS</text>
 
-  <rect x="388" y="388" width="110" height="40" rx="8" fill="#EBF1FF"/>
-  <text x="443" y="413" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" text-anchor="middle" letter-spacing="1">GOLF</text>
+  <rect x="364" y="440" width="130" height="36" rx="8" fill="#EBF1FF"/>
+  <text x="429" y="463" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.8">CULTURE</text>
 
-  <rect x="510" y="388" width="138" height="40" rx="8" fill="#EBF1FF"/>
-  <text x="579" y="413" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" text-anchor="middle" letter-spacing="1">CULTURE</text>
+  <rect x="506" y="440" width="100" height="36" rx="8" fill="#F9F8F5" stroke="#E5E2DB" stroke-width="1.5"/>
+  <text x="556" y="463" fill="#6E6862" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.8">F1</text>
 
-  <!-- Right column — CTA card -->
-  <rect x="820" y="220" width="308" height="176" rx="16" fill="#FFFFFF" stroke="#E5E2DB" stroke-width="1.5"/>
-  <rect x="820" y="220" width="308" height="52" rx="16" fill="#2B6FFF"/>
-  <rect x="820" y="252" width="308" height="20" fill="#2B6FFF"/>
-  <text x="974" y="252" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="1.5">FREE · DAILY · 5 MINUTES</text>
-  <text x="974" y="308" fill="#0F1724" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" text-anchor="middle">Subscribe Free</text>
-  <text x="974" y="334" fill="#6E6862" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">guytalkmedia.com</text>
-  <rect x="870" y="356" width="208" height="24" rx="6" fill="#2B6FFF"/>
-  <text x="974" y="372" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="0.5">Get the brief →</text>
+  <rect x="618" y="440" width="100" height="36" rx="8" fill="#F9F8F5" stroke="#E5E2DB" stroke-width="1.5"/>
+  <text x="668" y="463" fill="#6E6862" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.8">GOLF</text>
+
+  <!-- Right side CTA card -->
+  <rect x="820" y="200" width="308" height="196" rx="16" fill="#FFFFFF" stroke="#E5E2DB" stroke-width="1.5"/>
+  <rect x="820" y="200" width="308" height="56" rx="16" fill="#2B6FFF"/>
+  <rect x="820" y="232" width="308" height="24" fill="#2B6FFF"/>
+  <text x="974" y="235" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5">FREE · DAILY · 5 MIN</text>
+  <text x="974" y="296" fill="#0F1724" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800" text-anchor="middle">Subscribe Free →</text>
+  <text x="974" y="322" fill="#6E6862" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">No spam · Unsubscribe anytime</text>
+  <rect x="860" y="346" width="228" height="28" rx="7" fill="#2B6FFF"/>
+  <text x="974" y="365" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.5">guytalkmedia.com</text>
 
   <!-- Bottom bar -->
-  <text x="72" y="572" fill="#9E9891" font-family="Arial, Helvetica, sans-serif" font-size="16">guytalkmedia.com</text>
-  <text x="1128" y="572" fill="#9E9891" font-family="Arial, Helvetica, sans-serif" font-size="16" text-anchor="end">Free forever · No algorithm</text>
+  <text x="72" y="580" fill="#9E9891" font-family="Arial, Helvetica, sans-serif" font-size="15">guytalkmedia.com</text>
+  <text x="1128" y="580" fill="#9E9891" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="end">Free forever · No algorithm · No BS</text>
 </svg>
