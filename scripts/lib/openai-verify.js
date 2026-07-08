@@ -99,6 +99,19 @@ async function verifyBrief({ issueData, researchPack }) {
     const top3 = issueData.golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score}`).join(', ');
     espnFacts.push(`ESPN Golf: ${issueData.golf.name} — Top: ${top3} (${issueData.golf.statusState})`);
   }
+  // World Cup structured data — completed matches with goal-by-goal scorers. Without
+  // this, condensed-section claims (e.g. "Messi scored in the 83rd") get falsely
+  // flagged as unverified new claims because the verifier had no evidence for them.
+  (issueData.worldCup || []).forEach(m => {
+    if (m.statusState !== 'post') return;
+    const scorers = (m.goals || [])
+      .map(g => `${g.player}${g.clock ? ' ' + g.clock : ''}${/penalt/i.test(g.type || '') ? ' (pen)' : ''}`)
+      .filter(Boolean).join(', ');
+    const line = `ESPN World Cup: ${m.home?.team} ${m.home?.score}–${m.away?.score} ${m.away?.team} (${m.status})`
+      + (scorers ? ` — scorers: ${scorers}` : '')
+      + (m.espnNote ? ` — ${m.espnNote}` : '');
+    espnFacts.push(line);
+  });
 
   // ── Build research pack evidence ─────────────────────────────────────────────
   const researchEvidence = (researchPack?.stories || []).map(s =>
@@ -184,11 +197,17 @@ FLAG as WARNING (never blocking):
 
 NEVER block a story just because it's "not in provided evidence" — that's a warning. Block only when the story is demonstrably wrong or clearly forward-looking speculation presented as news.
 
+CRITICAL — NO SPECULATIVE BLOCKS:
+- NEVER block using hedged or speculative reasoning. If your reason contains "might", "could", "possibly", "may contradict", "intended to reference", "unclear", or "appears to" — it is a WARNING at most, NEVER a block. A block requires a DIRECT, DEMONSTRABLE contradiction you can state as a fact ("copy says X, ESPN says Y").
+- DISTINCT EVENTS ARE DISTINCT: Different tournaments/games/events are separate and do not contradict each other. The Genesis Scottish Open, The Open Championship, the U.S. Open, the PGA Championship, and the Masters are FIVE DIFFERENT golf tournaments — a claim about one NEVER contradicts an established fact about another. The same applies across leagues, races, and matches. Only compare a claim against evidence for the SAME event.
+- An accurate, benign PREVIEW of an upcoming event (e.g. "The Genesis Scottish Open takes place this week...") is not a factual error and must never be blocked.
+
 DO NOT flag:
 - Claims matching ESPN structured data
 - Reasonable editorial framing of confirmed facts
 - Subjective takes, opinions, or voice choices
 - Stories that are likely real but just not in the provided evidence
+- A claim about one event that merely resembles a different event in the established facts (see DISTINCT EVENTS above)
 - Current political events or major national news (Iran deal, executive actions, major policy news) — these are real current news; only block if directly contradicted by verified evidence
 
 Return ONLY valid JSON:
