@@ -489,8 +489,17 @@ function buildHtml(issue, relatedIssues) {
   const hasNHL = !!(nhl && (nhl.final || nhl.next));
 
   // Editorial section order — computed early so sidebar nav + jump links + body all agree.
+  // Order follows the day's actual biggest story: a genuine culture/tech story leads
+  // with Culture; other non-sports leads (markets/business/politics/world) lead with
+  // Markets; otherwise Sports leads. This gives three possible orderings, not two,
+  // and matches the "biggest story leads — not always sports" editorial principle.
   const isMarketsLead = !!issue.heroOverride?.isNonSportsLead;
-  const bodyOrder = isMarketsLead ? ['markets', 'sports', 'culture'] : ['sports', 'markets', 'culture'];
+  const leadCat = String(issue.heroOverride?.leadCategory || '').toLowerCase();
+  const isCultureLead = isMarketsLead &&
+    ['culture', 'tech', 'gaming', 'music', 'streaming', 'entertainment'].includes(leadCat);
+  const bodyOrder = isCultureLead ? ['culture', 'sports', 'markets']
+    : isMarketsLead ? ['markets', 'sports', 'culture']
+    : ['sports', 'markets', 'culture'];
 
   // Right-rail scroll-spy nav — three top-level anchors (Sports / Markets /
   // Culture) plus Sharp Take, with the sports subsections nested + indented under

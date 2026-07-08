@@ -85,6 +85,22 @@ function pad(n, w = 3) { return String(n).padStart(w, '0'); }
 
 function line(char = '─', len = 44) { return char.repeat(len); }
 
+// Deck (sub-headline) rotates by issue number so the brief doesn't open with the
+// identical tagline every single day. Deterministic cycle — no repeat until the
+// pool is exhausted. Keep each ≤ ~7 words, on-brand, no punctuation gimmicks.
+const DECK_LINES = [
+  'Five minutes. Everything you need.',
+  "Today's world, handled.",
+  'The stories worth your morning.',
+  'What everyone will be talking about.',
+  'Sports, markets, culture — sorted.',
+  'Your daily edge, in five minutes.',
+  'Everything that matters today, fast.',
+  'The reading, done for you.',
+  "Caught up before the coffee's cold.",
+  'What happened — and what to say about it.',
+];
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Load last N real issue JSON files for the repetition guard
 // ─────────────────────────────────────────────────────────────────────────────
@@ -324,6 +340,7 @@ async function buildSmartHeroOverride(dynamicSports, topStories) {
       title: researchLead.headline || '',
       sub: researchLead.category || '',
       isNonSportsLead: true,
+      leadCategory: researchLead.category || '',
     };
   }
 
@@ -897,7 +914,7 @@ async function main() {
       if (purseKey) golf.purse = GOLF_PURSE[purseKey];
     }
 
-    copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick, factPack });
+    copy = await generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, gameMetas, prev3, streamingPick, factPack, issueNum });
 
     // Validate copy.lead — sometimes the model returns a bare array (ammo only) instead
     // of the expected object. Detect and retry once with a tighter prompt.
@@ -1126,7 +1143,7 @@ async function main() {
     slug,
     date,
     title:   copy?.title || autoTitle({ sports, golf, f1, worldCup, upcoming, topStories }),
-    deck:    'Five minutes. Everything you need.',
+    deck:    DECK_LINES[issueNum % DECK_LINES.length],
     sports,
     markets,
     golf,

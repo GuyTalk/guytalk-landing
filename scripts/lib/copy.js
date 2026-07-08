@@ -14,7 +14,7 @@ WRITING RULES:
 - Short sentences. Vary rhythm: short punch, longer follow-through, short punch.
 - Name specific people, teams, numbers. Vague = useless.
 - Lead with the most interesting angle. Scores are the least interesting thing.
-STRUCTURE — every body item is built from these five beats, in this order:
+STRUCTURE — each body item is built from these five beats, but VARY the emphasis and length to fit the story. Don't make every item the same shape: a blowout or routine result reads short and punchy (tight whatHappened, a lean Read); a dramatic finish, an upset, or a big story earns a longer, harder-hitting Read. Some stories lead with the stakes, some with the number, some with the take. Never mechanical, never identical day to day. All five fields must still be filled:
 WHAT HAPPENED: One sentence. Specific. Named person or team. Score, stat, or number if applicable. Never vague.
 WHY IT MATTERS: One to two sentences. Non-obvious stakes — what changes, what it signals, why a normal person should care. Never "this matters because it's significant."
 THE GUYTALK READ: 3–5 sentences. The strongest, sharpest take — what it really means, who benefits, who looks bad, the broader signal, what smart people are saying. Opinionated but grounded in fact. Markets = observational only (never advice).
@@ -85,9 +85,22 @@ function parseJson(raw) {
   return null;
 }
 
-async function generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick, factPack }) {
+async function generateCopy({ sports, markets, golf, tennis, trending, topStories, sectionStories, dynamicSports, f1, worldCup, nhl, upcoming, boxScores, prev3, streamingPick, factPack, issueNum = 0 }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey || apiKey.includes('your_') || apiKey.includes('_here')) return null;
+
+  // Rotate the LEAD's opening treatment by issue number so the brief doesn't open
+  // in the identical shape every day. The five beats still fill the same JSON
+  // fields (rendering is unchanged) — only the WRITING approach of whatHappened/
+  // theRead varies. Deterministic cycle.
+  const LEAD_ANGLES = [
+    'OPENING TREATMENT: Lead whatHappened with the single most surprising number or stat, stated flat, then explain what it means.',
+    'OPENING TREATMENT: Open theRead with a short, confident hot take — a claim someone could argue with at a bar — then back it with the facts.',
+    'OPENING TREATMENT: Drop the reader straight into the decisive moment (the shot, the trade, the print), present-tense energy, then widen out to why it matters.',
+    'OPENING TREATMENT: Lead with the stakes — what was actually on the line — before you give the result.',
+    'OPENING TREATMENT: Open with the sharp question this story answers, then answer it in the next breath. No throat-clearing.',
+  ];
+  const leadAngle = LEAD_ANGLES[Math.abs(issueNum) % LEAD_ANGLES.length];
 
   let Anthropic;
   try {
@@ -371,6 +384,8 @@ Games are listed 0-indexed: ${(sports || []).map((g, i) => {
   const w = g.home.winner ? g.home : g.away;
   return `[${i}] ${g.note || g.name}: ${w.team} wins`;
 }).join(' | ')}
+
+${leadAngle}
 
 Return ONLY valid JSON on one line — no markdown:
 {"gameIndex":0,"headline":"Max 10 words. The angle, not the score.","whatHappened":"1-2 sentences. Plain language. Most interesting angle first.","whyBullet1":"One sentence. The main reason this matters today.","whyBullet2":"One sentence. A different angle.","theRead":"3-5 sentences. The GuyTalk Read — the real angle, who benefits, what it signals. Opinionated, grounded.","ammo":["Specific sourced fact 1","Specific sourced fact 2","Specific sourced fact 3"],"whatToSay":"One natural conversational line."}
