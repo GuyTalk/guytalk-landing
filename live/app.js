@@ -2007,12 +2007,16 @@ function FeaturedGolfCard(g) {
         const pctStr = s.changePercent != null
           ? `${up ? '+' : ''}${Number(s.changePercent).toFixed(2)}%`
           : '—';
-        return `<div class="sector-tile ${up ? 'sector-up' : 'sector-dn'}">
-          <div class="sector-tile-name">${esc(s.label || s.key)}</div>
-          <div class="sector-tile-pct">${esc(pctStr)}</div>
-        </div>`;
+        const ticker = s.key ? s.key.toUpperCase() : '';
+        const yhUrl = ticker ? `https://finance.yahoo.com/quote/${ticker}/` : null;
+        const inner = `<div class="sector-tile-name">${esc(s.label || s.key)}</div>
+          ${ticker ? `<div class="sector-tile-ticker">${esc(ticker)}</div>` : ''}
+          <div class="sector-tile-pct">${esc(pctStr)}</div>`;
+        return yhUrl
+          ? `<a class="sector-tile ${up ? 'sector-up' : 'sector-dn'}" href="${yhUrl}" target="_blank" rel="noopener" title="${esc(ticker)} on Yahoo Finance">${inner}</a>`
+          : `<div class="sector-tile ${up ? 'sector-up' : 'sector-dn'}">${inner}</div>`;
       }).join('');
-      sectorsHtml = `<div class="mk-section-head" style="grid-column:1/-1"><span class="mk-section-title">Sectors</span><span class="mk-section-sub">ETF performance today</span></div>
+      sectorsHtml = `<div class="mk-section-head" style="grid-column:1/-1"><span class="mk-section-title">Sectors</span><span class="mk-section-sub">SPDR ETF performance today — click any tile to view on Yahoo Finance</span></div>
         <div class="sector-grid" style="grid-column:1/-1">${tiles}</div>`;
     }
 

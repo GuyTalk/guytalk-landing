@@ -273,6 +273,39 @@ ${aStories.map(storyHtml).join('\n\n')}
 
   fs.writeFileSync(INDEX_PATH, html);
   ok(`index.html refreshed for ${slug} → ${applied.join(', ')}`);
+
+  // ── Also update brief/index.html — the "Today's Brief" redirect page ──────
+  // This file is a static meta-refresh redirect; it must point at the current
+  // issue or visitors hitting /brief/ will land on yesterday's brief.
+  try {
+    const BRIEF_INDEX = path.join(ROOT, 'brief', 'index.html');
+    const title = esc(data.copy.title || slug);
+    const briefRedirect = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Today's Brief — GuyTalk</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://www.guytalkmedia.com/brief/${slug}/">
+<meta http-equiv="refresh" content="0; url=/brief/${slug}/">
+<script>window.location.replace("/brief/${slug}/");</script>
+<style>
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#F9F8F5;color:#0F1724;
+       display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;text-align:center;padding:24px;}
+  a{color:#2B6FFF;font-weight:600;text-decoration:none;}
+</style>
+</head>
+<body>
+  <p>Taking you to today's brief…<br><a href="/brief/${slug}/">${title} →</a></p>
+</body>
+</html>
+`;
+    fs.writeFileSync(BRIEF_INDEX, briefRedirect);
+    ok(`brief/index.html redirect updated → ${slug}`);
+  } catch (e) {
+    warn(`brief/index.html update failed (${e.message})`);
+  }
 }
 
 try { main(); }
