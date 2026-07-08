@@ -2068,7 +2068,7 @@ function FeaturedGolfCard(g) {
         val = `${r.changePercent >= 0 ? '+' : ''}${pct}%`;
         dir = r.changePercent > 0.05 ? 'up' : r.changePercent < -0.05 ? 'down' : 'neutral';
       }
-      return `<div class="tape-row"><span class="tape-row-label">${esc(label)}</span><span class="tape-row-val ${dir}">${esc(val)}</span></div>`;
+      return `<div class="tape-row" data-tape-key="${key}"><span class="tape-row-label">${esc(label)}</span><span class="tape-row-val ${dir}">${esc(val)}</span></div>`;
     }).join('');
     if (!tapeRows.replace(/<[^>]+>/g, '').trim()) return '';
     return `<div class="tape-card" style="grid-column:1/-1">
@@ -2342,17 +2342,19 @@ function FeaturedGolfCard(g) {
   // so tiles always show current price regardless of /api/live stale-while-revalidate.
   const MK_REFRESH_MS = 30 * 1000;
   let mkTimer = null;
+  // Maps MARKET_YAHOO key → tape row key (only the 4 keys shown in the tape)
+  const TAPE_KEYS = { spx: 'spx', ndq: 'ndq', tnx: 'tnx', btc: 'btc' };
+
   function patchMarketTiles() {
     const entries = Object.entries(MARKET_YAHOO); // [['spx','^GSPC'], ...]
-    entries.forEach(([, sym]) => {
+    entries.forEach(([key, sym]) => {
       fetch('/api/quote?symbol=' + encodeURIComponent(sym), { headers: { Accept: 'application/json' } })
         .then(r => r.json())
         .then(d => {
           if (!d || !d.quote) return;
           const q = d.quote;
-          const card = document.querySelector('.mk-card[data-symbol="' + sym + '"]');
-          if (!card) return;
           const isYield = sym === '^TNX';
+          const isBtc = key === 'btc';
           const fmtVal = (n) => {
             if (isYield) return Number(n).toFixed(2);
             const abs = Math.abs(n);
@@ -2365,13 +2367,42 @@ function FeaturedGolfCard(g) {
           const arrow = up ? '▲' : '▼';
           const sign = up ? '+' : '';
           const unit = isYield ? '%' : '';
-          const valEl = card.querySelector('.mk-value');
-          const moveEl = card.querySelector('.mk-move');
-          if (valEl) valEl.textContent = fmtVal(q.price) + unit;
-          if (moveEl) {
-            moveEl.className = 'mk-move ' + dir;
-            moveEl.innerHTML = '<span class="mk-arrow">' + arrow + '</span>'
-              + sign + fmtVal(q.change) + ' (' + sign + Number(q.changePercent).toFixed(2) + '%)';
+
+          // Patch the market card tile
+          const card = document.querySelector('.mk-card[data-symbol="' + sym + '"]');
+          if (card) {
+            const valEl = card.querySelector('.mk-value');
+            const moveEl = card.querySelector('.mk-move');
+            if (valEl) valEl.textContent = fmtVal(q.price) + unit;
+            if (moveEl) {
+              moveEl.className = 'mk-move ' + dir;
+              moveEl.innerHTML = '<span class="mk-arrow">' + arrow + '</span>'
+                + sign + fmtVal(q.change) + ' (' + sign + Number(q.changePercent).toFixed(2) + '%)';
+            }
+          }
+
+          // Also patch the corresponding tape row so it never lags the cards
+          const tapeKey = TAPE_KEYS[key];
+          if (tapeKey) {
+            const tapeRow = document.querySelector('.tape-row[data-tape-key="' + tapeKey + '"]');
+            if (tapeRow) {
+              const valSpan = tapeRow.querySelector('.tape-row-val');
+              if (valSpan) {
+                let tapeVal, tapeDir;
+                if (isYield) {
+                  tapeVal = Number(q.price).toFixed(2) + '%';
+                  tapeDir = 'neutral';
+                } else if (isBtc) {
+                  tapeVal = '$' + Number(q.price).toLocaleString('en-US', { maximumFractionDigits: 0 });
+                  tapeDir = q.changePercent > 0.1 ? 'up' : q.changePercent < -0.1 ? 'down' : 'neutral';
+                } else {
+                  tapeVal = (q.changePercent >= 0 ? '+' : '') + Number(q.changePercent).toFixed(2) + '%';
+                  tapeDir = q.changePercent > 0.05 ? 'up' : q.changePercent < -0.05 ? 'down' : 'neutral';
+                }
+                valSpan.className = 'tape-row-val ' + tapeDir;
+                valSpan.textContent = tapeVal;
+              }
+            }
           }
         })
         .catch(() => {});
