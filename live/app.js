@@ -2745,65 +2745,51 @@ function FeaturedGolfCard(g) {
     });
   }
 
-  // ── Section scroll nav — shown on all three tabs, styled like the homepage ───
+  // ── Sports section scroll nav ─────────────────────────────────────────────────
   function initScrollNav() {
     const nav     = document.getElementById('ssnNav');
     const ssnList = document.getElementById('ssnList');
     if (!nav || !ssnList) return;
 
-    const TAB_CFG = {
-      'tab-sports': {
-        ids: ['live-now','recap','worldcup','champions','f1','golf','tennis','mma','nba','mlb','nhl','soccer'],
-        labels: { 'live-now':'Live Now', recap:'Recap', worldcup:'World Cup', champions:'Champions',
-          f1:'F1', golf:'Golf', tennis:'Tennis', mma:'UFC/MMA', nba:'NBA', mlb:'MLB', nhl:'NHL', soccer:'Soccer' }
-      },
-      'tab-markets': {
-        ids: ['markets'],
-        labels: { markets:'Markets' }
-      },
-      'tab-culture': {
-        ids: ['social-pulse','trending'],
-        labels: { 'social-pulse':'Social Pulse', trending:'Trending' }
-      }
-    };
+    const SECTION_IDS = ['live-now','recap','worldcup','champions','f1','golf','tennis','mma','nba','mlb','nhl','soccer'];
+    const LABELS = { 'live-now':'Live Now', recap:'Recap', worldcup:'World Cup', champions:'Champions',
+      f1:'F1', golf:'Golf', tennis:'Tennis', mma:'UFC/MMA', nba:'NBA', mlb:'MLB', nhl:'NHL', soccer:'Soccer' };
 
-    let activeObserver = null;
+    // Only include sections that exist in the DOM (hidden or not — observer handles reveal)
+    const ids = SECTION_IDS.filter(id => !!document.getElementById(id));
+    if (ids.length < 2) return;
 
-    function buildNav(tabId) {
-      if (activeObserver) { activeObserver.disconnect(); activeObserver = null; }
-      const cfg = TAB_CFG[tabId];
-      if (!cfg) { nav.hidden = true; return; }
-      const present = cfg.ids.filter(id => !!document.getElementById(id));
-      if (!present.length) { nav.hidden = true; return; }
+    ssnList.innerHTML = ids.map(id =>
+      `<li class="ssn-item" data-target="${id}">
+        <button class="ssn-dot" aria-label="${LABELS[id] || id}"></button>
+        <span class="ssn-label">${LABELS[id] || id}</span>
+      </li>`
+    ).join('');
 
-      ssnList.innerHTML = present.map(id =>
-        `<li class="ssn-item">
-          <button class="ssn-dot" data-target="${id}" title="${cfg.labels[id] || id}"></button>
-          <span class="ssn-label">${cfg.labels[id] || id}</span>
-        </li>`
-      ).join('');
-
-      ssnList.querySelectorAll('[data-target]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.getElementById(btn.dataset.target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+    // Whole ssn-item is the click target (much easier to hit than an 8px dot)
+    ssnList.querySelectorAll('.ssn-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const el = document.getElementById(item.dataset.target);
+        if (el) { if (el.hidden) el.hidden = false; el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
+    });
 
-      const dotMap = new Map(present.map(id => [id, ssnList.querySelector(`[data-target="${id}"]`)]));
-      activeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(e => dotMap.get(e.target.id)?.classList.toggle('is-active', e.isIntersecting));
-      }, { rootMargin: '-25% 0px -65% 0px' });
-      present.forEach(id => { const el = document.getElementById(id); if (el) activeObserver.observe(el); });
+    // Use a broader rootMargin so WorldCup/Champions (which start hidden and get
+    // revealed later) highlight as soon as they enter the top third of the viewport
+    const dotMap = new Map(ids.map(id => [id, ssnList.querySelector(`[data-target="${id}"] .ssn-dot`)]));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => dotMap.get(e.target.id)?.classList.toggle('is-active', e.isIntersecting));
+    }, { rootMargin: '-5% 0px -70% 0px' });
+    ids.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
 
-      nav.hidden = false;
+    // Show/hide with Sports tab
+    function syncNav() {
+      const sportsEl = document.getElementById('tab-sports');
+      nav.hidden = !(sportsEl && sportsEl.style.display !== 'none');
     }
-
-    // Build nav for initial tab (Sports is default)
-    setTimeout(() => buildNav('tab-sports'), 80);
-
-    // Rebuild when tab switches
+    setTimeout(syncNav, 80);
     document.addEventListener('guytalk:tabchange', (e) => {
-      buildNav(e.detail?.tab || 'tab-sports');
+      nav.hidden = (e.detail?.tab !== 'tab-sports');
     });
   }
 
