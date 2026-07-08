@@ -281,12 +281,17 @@
     margin-right: 2px; position: relative; top: -1px;
   }
   .ticker {
-    display: flex; gap: 36px; padding: 14px 20px;
+    overflow: hidden;
     font-family: 'JetBrains Mono', monospace; font-size: 13.5px; font-weight: 500;
-    white-space: nowrap; overflow-x: scroll; scrollbar-width: none;
-    cursor: grab; user-select: none; -webkit-user-select: none;
+    user-select: none; -webkit-user-select: none;
   }
-  .ticker::-webkit-scrollbar { display: none; }
+  .ticker-inner {
+    display: flex; gap: 36px; padding: 14px 20px;
+    white-space: nowrap; width: max-content;
+    animation: ticker-scroll 50s linear infinite;
+  }
+  .ticker.is-paused .ticker-inner { animation-play-state: paused; }
+  @keyframes ticker-scroll { to { transform: translateX(-50%); } }
   .ticker-item   { display: flex; gap: 7px; align-items: center; }
   .ticker-sym    { color: var(--text); font-weight: 700; }
   .ticker-up     { color: var(--sports); font-weight: 600; }
@@ -817,7 +822,8 @@
     .brief-body { padding: 22px 18px; }
     .founder { padding: 28px 22px; }
     .beehiiv-form-wrap { max-width: 100%; }
-    .ticker { gap: 24px; font-size: 12px; }
+    .ticker { font-size: 12px; }
+    .ticker-inner { gap: 24px; }
     .closing { padding: 80px 0; }
     .section-eyebrow::before, .section-eyebrow::after { display: none; }
     .reviews-strip { grid-template-columns: 1fr; }
@@ -963,7 +969,7 @@
           <span class="tkc-arrow" aria-hidden="true">→</span>
         </a>
       </div>
-      <div class="ticker-body"><div class="ticker" id="ticker-track">
+      <div class="ticker-body"><div class="ticker" id="ticker-track"><div class="ticker-inner" id="ticker-inner">
         <div class="ticker-item"><span class="ticker-sym">SPY</span><span class="ticker-up">+0.82%</span></div>
         <div class="ticker-item"><span class="ticker-sym">QQQ</span><span class="ticker-up">+1.83%</span></div>
         <div class="ticker-item"><span class="ticker-sym">NVDA</span><span class="ticker-up">+0.74%</span></div>
@@ -986,7 +992,7 @@
         <div class="ticker-item"><span class="ticker-sport">PITTSBURGH PIRATES 11  WASHINGTON NATIONALS 5  · PIT @ WSH</span></div>
         <div class="ticker-item"><span class="ticker-sport">F1 PIRELLI BRITISH GRAND PRIX  · Charles Leclerc FINAL</span></div>
         <div class="ticker-item"><span class="ticker-sport">CHRIS GOTTERUP WINS  JOHN DEERE CLASSIC  AT -20</span></div>
-      </div></div>
+      </div></div></div>
     </div>
 
     <div id="signup" class="beehiiv-form-wrap">
@@ -1672,38 +1678,15 @@ window.handleSignup = function(e, form) {
 
   // Ticker
   var ticker = document.getElementById('ticker-track');
-  if (!ticker) return;
+  var tickerInner = document.getElementById('ticker-inner');
+  if (!ticker || !tickerInner) return;
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var SPEED = reducedMotion ? 0 : 0.6;
-  var halfWidth = 0, paused = false, isDragging = false, startX = 0, startScroll = 0;
+  if (reducedMotion) ticker.classList.add('is-paused');
 
-  function step() {
-    if (!paused && halfWidth > 0) {
-      ticker.scrollLeft += SPEED;
-      if (ticker.scrollLeft >= halfWidth) ticker.scrollLeft -= halfWidth;
-    }
-    requestAnimationFrame(step);
-  }
-  function initScroll() { halfWidth = ticker.scrollWidth / 2; step(); }
-
-  ticker.addEventListener('mouseenter', function () { paused = true; });
-  ticker.addEventListener('mouseleave', function () { if (!isDragging) paused = false; });
-  ticker.addEventListener('mousedown', function (e) {
-    isDragging = true; paused = true; startX = e.clientX; startScroll = ticker.scrollLeft;
-    ticker.style.cursor = 'grabbing'; e.preventDefault();
-  });
-  document.addEventListener('mousemove', function (e) {
-    if (!isDragging) return;
-    var next = startScroll + (startX - e.clientX);
-    if (halfWidth > 0) next = ((next % halfWidth) + halfWidth) % halfWidth;
-    ticker.scrollLeft = next;
-  });
-  document.addEventListener('mouseup', function () {
-    if (!isDragging) return;
-    isDragging = false; paused = false; ticker.style.cursor = '';
-  });
-  ticker.addEventListener('touchstart', function () { paused = true; }, { passive: true });
-  ticker.addEventListener('touchend', function () { setTimeout(function () { paused = false; }, 800); }, { passive: true });
+  ticker.addEventListener('mouseenter', function () { ticker.classList.add('is-paused'); });
+  ticker.addEventListener('mouseleave', function () { ticker.classList.remove('is-paused'); });
+  ticker.addEventListener('touchstart', function () { ticker.classList.add('is-paused'); }, { passive: true });
+  ticker.addEventListener('touchend', function () { setTimeout(function () { ticker.classList.remove('is-paused'); }, 800); }, { passive: true });
 
   async function loadTicker() {
     try {
@@ -1738,9 +1721,8 @@ window.handleSignup = function(e, form) {
       }).join('');
       var sep = '<div class="ticker-item"><span class="ticker-divider">—</span></div>';
       var full = mktHtml + sep + sptHtml;
-      ticker.innerHTML = full + full;
+      tickerInner.innerHTML = full + full;
     } catch (e) { /* fallback HTML already in DOM */ }
-    initScroll();
   }
   loadTicker();
 
