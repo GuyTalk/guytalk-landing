@@ -2751,11 +2751,13 @@ function FeaturedGolfCard(g) {
     const ssnList = document.getElementById('ssnList');
     if (!nav || !ssnList) return;
 
-    const SECTION_IDS = ['live-now','recap','worldcup','champions','f1','golf','tennis','mma','nba','mlb','nhl','soccer'];
-    const LABELS = { 'live-now':'Live Now', recap:'Recap', worldcup:'World Cup', champions:'Champions',
-      f1:'F1', golf:'Golf', tennis:'Tennis', mma:'UFC/MMA', nba:'NBA', mlb:'MLB', nhl:'NHL', soccer:'Soccer' };
+    // Order must match the actual HTML order of sections on the page.
+    // Champions is excluded — it's often empty/hidden with no content.
+    const SECTION_IDS = ['live-now','recap','f1','golf','tennis','mma','nba','mlb','worldcup','soccer','nhl'];
+    const LABELS = { 'live-now':'Live Now', recap:'Recap', f1:'F1', golf:'Golf',
+      tennis:'Tennis', mma:'UFC/MMA', nba:'NBA', mlb:'MLB',
+      worldcup:'World Cup', soccer:'Soccer', nhl:'NHL' };
 
-    // Only include sections that exist in the DOM (hidden or not — observer handles reveal)
     const ids = SECTION_IDS.filter(id => !!document.getElementById(id));
     if (ids.length < 2) return;
 
@@ -2766,7 +2768,7 @@ function FeaturedGolfCard(g) {
       </li>`
     ).join('');
 
-    // Whole ssn-item is the click target (much easier to hit than an 8px dot)
+    // Whole row is the click target so labels are clickable
     ssnList.querySelectorAll('.ssn-item').forEach(item => {
       item.addEventListener('click', () => {
         const el = document.getElementById(item.dataset.target);
@@ -2774,23 +2776,32 @@ function FeaturedGolfCard(g) {
       });
     });
 
-    // Use a broader rootMargin so WorldCup/Champions (which start hidden and get
-    // revealed later) highlight as soon as they enter the top third of the viewport
+    // Scroll-based active detection — only ONE dot active at a time.
+    // Highlights the last section whose top edge has passed 25% of the viewport.
     const dotMap = new Map(ids.map(id => [id, ssnList.querySelector(`[data-target="${id}"] .ssn-dot`)]));
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => dotMap.get(e.target.id)?.classList.toggle('is-active', e.isIntersecting));
-    }, { rootMargin: '-5% 0px -70% 0px' });
-    ids.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
-
-    // Show/hide with Sports tab
-    function syncNav() {
-      const sportsEl = document.getElementById('tab-sports');
-      nav.hidden = !(sportsEl && sportsEl.style.display !== 'none');
+    function updateActive() {
+      const threshold = window.innerHeight * 0.25;
+      let current = null;
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el || el.hidden) return;
+        if (el.getBoundingClientRect().top <= threshold) current = id;
+      });
+      dotMap.forEach((dot, id) => dot && dot.classList.toggle('is-active', id === current));
     }
-    setTimeout(syncNav, 80);
-    document.addEventListener('guytalk:tabchange', (e) => {
-      nav.hidden = (e.detail?.tab !== 'tab-sports');
-    });
+    window.addEventListener('scroll', updateActive, { passive: true });
+    setTimeout(updateActive, 300); // after data loads
+
+    // Show only on Sports tab; clean up listener when switching away
+    function syncNav(tab) {
+      const show = (tab === 'tab-sports');
+      nav.hidden = !show;
+    }
+    setTimeout(() => {
+      const sportsEl = document.getElementById('tab-sports');
+      syncNav(sportsEl && sportsEl.style.display !== 'none' ? 'tab-sports' : '');
+    }, 80);
+    document.addEventListener('guytalk:tabchange', (e) => syncNav(e.detail?.tab || ''));
   }
 
   paintSkeletons();
