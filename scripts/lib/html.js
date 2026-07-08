@@ -2297,6 +2297,28 @@ ${nhlPlayersHtml}
   </section>`;
 }
 
+// Derive an accurate culture category chip from the item's CONTENT, not the raw
+// AI tag — the model frequently mislabels (a TV show tagged "Sports Business",
+// a lawsuit tagged "Tech"). We read topic + whatHappened + theRead and pick the
+// right label; the AI tag is only a last-resort hint. Deterministic.
+function resolveCultureTag(item) {
+  const t = `${item.topic || item.head || ''} ${item.whatHappened || ''} ${item.whyItMatters || ''} ${item.theRead || ''}`.toLowerCase();
+  const has = (re) => re.test(t);
+
+  if (has(/\bai\b|a\.i\.|ai actor|ai-generated|ai generated|artificial intelligence|generative|deepfake|chatbot|openai|large language model|llm\b/)) return 'AI';
+  if (has(/apple tv|netflix|hbo|max\b|hulu|peacock|paramount\+|disney\+|prime video|amazon prime|streaming|watch this|watch:|limited series|\bseries\b|\bseason\b|\bepisode\b|showrunner/)) return 'Streaming';
+  if (has(/\bfilm\b|\bmovie\b|feature film|box office|theaters|in theaters|cinema|sequel|franchise reboot|casting/) ) return 'Film';
+  if (has(/video game|\bxbox\b|playstation|\bps5\b|nintendo|\bsteam\b|esports|\bgaming\b|game studio|game pass/)) return 'Gaming';
+  if (has(/\balbum\b|\btour\b|\bsong\b|billboard|grammy|spotify|concert|\bsingle\b|\brapper\b|hip.hop|pop star|setlist/)) return 'Music';
+  if (has(/lawsuit|court|judge|verdict|tabloid|phone.hacking|defamation|publisher|prince harry|\broyal\b|sussex|press|paparazzi|settlement|legal battle/)) return 'Media';
+  if (has(/iphone|android|gadget|\bapp\b|startup|software|hardware|smartphone|wearable|\bchip\b|\btech\b|silicon valley/)) return 'Tech';
+  if (has(/(trade|contract|signing|franchise|broadcast rights|sponsorship|media rights|salary cap)/) && has(/\bnba\b|\bnfl\b|\bmlb\b|\bnhl\b|espn|league|athlete|\bteam\b|stadium/)) return 'Sports Biz';
+  // Last resort: trust a sane AI tag if it isn't the notorious mislabel
+  const ai = (item.tag || '').trim();
+  if (ai && !/sports business|sports biz/i.test(ai)) return ai;
+  return 'Culture';
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // CULTURE — 3 quick hits
 // ─────────────────────────────────────────────────────────────────────────────
@@ -2304,10 +2326,10 @@ function buildCulture({ copy }) {
   const items = copy?.culture;
   if (!items?.length) return '';
 
-  const tagCls = { Celebrity: 'ctag-celebrity', Music: 'ctag-music', 'Sports Biz': 'ctag-sports', TV: 'ctag-sports', Tech: 'ctag-sports', Culture: 'ctag-sports', Streaming: 'ctag-streaming' };
+  const tagCls = { Celebrity: 'ctag-celebrity', Music: 'ctag-music', 'Sports Biz': 'ctag-sports', TV: 'ctag-streaming', Tech: 'ctag-streaming', AI: 'ctag-streaming', Film: 'ctag-celebrity', Media: 'ctag-celebrity', Gaming: 'ctag-music', Culture: 'ctag-sports', Streaming: 'ctag-streaming' };
 
   const itemsHtml = items.map(item => {
-    const tag  = item.tag || 'Culture';
+    const tag  = resolveCultureTag(item);
     const head = item.topic || item.head || '';
     return `      <li class="culture-item">
         <div class="culture-content">

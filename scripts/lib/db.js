@@ -526,12 +526,12 @@ const RECS = [
     imageUrl: 'https://images.ctfassets.net/2h488pz7kgfv/4JAm44Htcrinu0sTomaEGi/1f7be85af3138e1d38bb31fe5ad6425b/open-graph-1password-business.jpg',
   },
   {
-    title: 'Napper Pro (iOS) — the 20-minute nap timer that actually wakes you up.',
-    body: `Napper tracks sleep onset using your phone's microphone and vibration — it detects when you fall asleep and times your nap from that moment, not from when you hit start. The result: a 20-minute nap that actually lands at 20 minutes post-sleep, which is the window that leaves you refreshed instead of groggy. Costs $4.99 once. Most people who try it use it multiple times per week. The honest flaw: you have to be somewhere quiet, which limits the use case. But for the home office, couch, or a hotel room on a travel day, this is the most useful $5 you'll spend on your phone.`,
-    url: 'https://apps.apple.com/us/app/napper-power-nap-timer/id1498961328',
-    cta: 'Get Napper →',
-    brand: 'Napper',
-    imageUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1d/2a/cc/1d2acc3e-1d37-dff5-f948-cfe49a26aef9/AppIcon-1x_U007emarketing-0-7-0-85-220.png/1200x630wa.png',
+    title: 'AirPods Pro 2 — still the default for a reason.',
+    body: `Two years in, the AirPods Pro 2 are still the pair most guys should buy. The noise cancellation is a genuine step up from the originals, the H2 chip makes switching between your phone, laptop, and iPad seamless, and the adaptive transparency mode is the one feature you'll actually use daily — it ducks loud sounds without cutting you off from the world. Conversation Awareness lowers volume when you start talking. The honest flaw: if you're on Android, skip them entirely — half the value is the Apple ecosystem glue. And battery longevity drops after a couple years of daily use. But for an iPhone owner, nothing at the price does more.`,
+    url: 'https://www.apple.com/airpods-pro/',
+    cta: 'Shop AirPods Pro →',
+    brand: 'AirPods Pro',
+    imageUrl: 'https://www.apple.com/v/airpods-pro/s/images/meta/og__c0ceegchesom_overview.png',
   },
   {
     title: 'Theragun Relief — the entry point into recovery that actually works.',

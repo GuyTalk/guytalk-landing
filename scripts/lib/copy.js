@@ -512,8 +512,9 @@ F1 COVERAGE RULE — focus on narrative and championship implications, NOT track
     askJson('Culture',
       `GuyTalk culture section for men 25-45. Today: ${TODAY}.
 
-WHAT IS CULTURE (these are the ONLY valid tags):
-Music | Streaming | Movies | TV | Tech | Gaming | Viral | Social | Grooming | Lifestyle | Sports Biz
+WHAT IS CULTURE (these are the ONLY valid tags — pick the ONE that best fits the story's actual subject):
+AI | Streaming | Film | TV | Music | Gaming | Tech | Media | Viral | Social | Sports Biz
+TAG RULES: A movie/show → Streaming or Film or TV (never "Sports Biz"). An AI story → AI. A lawsuit/tabloid/press/royals story → Media. A gadget/app/software story → Tech. Use "Sports Biz" ONLY for actual sports-business stories (a trade, a media-rights deal, a franchise sale). Never tag a non-sports story "Sports Biz".
 
 HARD EXCLUDES — these do NOT belong in culture, ever:
 - Geopolitics, foreign policy, wars, international relations, peace deals → skip; already in Markets/Current Events
@@ -798,7 +799,7 @@ ${!storyLines ? `FALLBACK: Since feed data is unavailable, use your knowledge of
 ${streamingPick ? `INCLUDE a streaming rec for "${streamingPick.head.replace('Watch this: ', '')}": tag="Streaming"` : ''}
 
 CRITICAL: Return ONLY a JSON array — no markdown, no extra text:
-[{"topic":"Max 8 words.","whatHappened":"1-2 sentences.","whyItMatters":"1-2 sentences.","theRead":"2-3 sentences. GuyTalk voice — take a side.","ammo":["fact1","fact2","fact3"],"whatToSay":"One casual line.","tag":"One of: Streaming, Gaming, Tech, Music, Sports Business, Politics"}]`;
+[{"topic":"Max 8 words.","whatHappened":"1-2 sentences.","whyItMatters":"1-2 sentences.","theRead":"2-3 sentences. GuyTalk voice — take a side.","ammo":["fact1","fact2","fact3"],"whatToSay":"One casual line.","tag":"One of: AI, Streaming, Film, TV, Music, Gaming, Tech, Media, Sports Biz — pick the ONE that fits the story's real subject. A show/movie is Streaming/Film/TV, an AI story is AI, a lawsuit/press/royals story is Media. NEVER use Sports Biz for a non-sports story."}]`;
 
   try {
     const res = await client.messages.create({
@@ -819,7 +820,7 @@ CRITICAL: Return ONLY a JSON array — no markdown, no extra text:
     const res2 = await client.messages.create({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 800,
-      messages: [{ role: 'user', content: `Return a JSON array of exactly 2 culture items for men 25-45 based on current real events (past 2 weeks). Each: {"topic":"string","whatHappened":"string","whyItMatters":"string","theRead":"string","ammo":["f1","f2","f3"],"whatToSay":"string","tag":"Streaming|Gaming|Tech|Music|Sports Business"}. Return ONLY the JSON array, no markdown.` }],
+      messages: [{ role: 'user', content: `Return a JSON array of exactly 2 culture items for men 25-45 based on current real events (past 2 weeks). Each: {"topic":"string","whatHappened":"string","whyItMatters":"string","theRead":"string","ammo":["f1","f2","f3"],"whatToSay":"string","tag":"AI|Streaming|Film|TV|Music|Gaming|Tech|Media|Sports Biz — the ONE fitting the story's real subject; never Sports Biz for a non-sports story"}. Return ONLY the JSON array, no markdown.` }],
     });
     const text2 = (res2.content?.find(b => b.type === 'text') || res2.content?.[0])?.text || '';
     const parsed2 = parseJson(text2);

@@ -63,7 +63,7 @@ function cleanImageUrl(url) {
 // a stadium/arena building, an aerial/exterior, a logo, a map, or a trophy on a
 // stand. We'd rather show no image than a building (Fix 6). Decoded + matched
 // against the URL path (e.g. Wikimedia "PNC_Arena_Raleigh.JPG").
-const IRRELEVANT_RE = /(arena|stadium|ballpark|ground|building|exterior|aerial|drone|panorama|skyline|map|logo|crest|emblem|wordmark|signage|entrance|facade|fa%C3%A7ade|trophy|cup_?\(|venue)/i;
+const IRRELEVANT_RE = /(arena|stadium|ballpark|ground|building|exterior|aerial|drone|panorama|skyline|map|logo|crest|emblem|wordmark|signage|entrance|facade|fa%C3%A7ade|trophy|cup_?\(|venue|microphone|broadcast|announcer|anchor|studio|press[_-]?conf|presser|podium[_-]?mic|headshot|mugshot)/i;
 
 // Domains that reliably serve watermarked agency thumbnails, news site mastheads,
 // or generic logo overlays instead of actual event photos.
@@ -72,7 +72,7 @@ const LOGO_OVERLAY_HOSTS = /futurecdn\.net|golfmonthly\.com|nurphoto\.com/i;
 // CDN paths used by news organisations for their site masthead / OG default images
 // (not event photos). These appear when a WaPo/NYT/Guardian article's og:image
 // resolves to the publication's own branded asset rather than a story photo.
-const MASTHEAD_PATH_RE = /\b(democracy[_-]dies|democracy-in|washington-post-logo|nyt-logo|guardian-logo|bbc-logo|espn-bug|masthead|default.og|default[_-]share|placeholder|no.?photo|generic)/i;
+const MASTHEAD_PATH_RE = /\b(democracy[_-]dies|democracy-in|washington-post-logo|nyt-logo|guardian-logo|bbc-logo|espn-bug|masthead|default.og|default[_-]share|placeholder|no.?photo|generic)|\/images\/defaults\/|\/defaults\/\d|story-card\.jpg/i;
 
 function looksIrrelevant(url) {
   try {

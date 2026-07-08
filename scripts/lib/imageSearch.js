@@ -37,7 +37,8 @@ async function searchWebImage(query, { fallback = null } = {}) {
   const prompt = `Search for recent news coverage of: "${query}"
 
 Find the most recent articles (today or yesterday) from major sports/news outlets.
-I need articles that include good action or news photos.
+I need articles whose lead photo is an ON-FIELD / IN-GAME ACTION shot of the athletes competing (batting, pitching, shooting, tackling, driving, playing).
+STRONGLY AVOID articles whose main image is a broadcaster/anchor, a microphone, a studio set, a stadium exterior, a team logo, a headshot, or a press conference. Prefer game-action wire photos (AP, Getty, Reuters) from the actual event.
 Just search and summarize what you found — I'll use the source URLs.`;
 
   try {
@@ -147,7 +148,7 @@ function buildSportImageQuery(s) {
   if (sport === 'mlb') {
     const m = hl.match(/^(.+?)\s+\d+[–\-]/);
     const team = m ? m[1].trim() : name;
-    return `${team} MLB baseball game action photo 2026`;
+    return `${team} MLB player batting or pitching on-field game action photo 2026 site:mlb.com OR site:apnews.com OR site:espn.com`;
   }
   if (sport === 'nba') return 'NBA basketball playoff action photo 2026';
   if (sport === 'nhl') return 'NHL Stanley Cup hockey action photo 2026';
