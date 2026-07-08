@@ -2489,6 +2489,49 @@ function FeaturedGolfCard(g) {
             + stat('52-wk low', q.yearLow)
           + '</div>'
           + '<div class="sd-foot">Data via Yahoo Finance; may be delayed. Informational only — not investment advice.</div>';
+
+        // Propagate fresh quote data back to the market card + tape so they
+        // immediately reflect the same value the modal just fetched.
+        if (q.changePercent != null) {
+          const card = document.querySelector('.mk-card[data-symbol="' + esc(symbol) + '"]');
+          if (card) {
+            const isYield = symbol === '^TNX';
+            const fmtVal = (n) => {
+              const abs = Math.abs(n);
+              return abs >= 1000
+                ? Number(n).toLocaleString('en-US', { maximumFractionDigits: 0 })
+                : Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            };
+            const valEl = card.querySelector('.mk-value');
+            const moveEl = card.querySelector('.mk-move');
+            const cardSign = (q.change || 0) >= 0 ? '+' : '';
+            const cardDir = (q.change || 0) >= 0 ? 'up' : 'down';
+            const cardArrow = (q.change || 0) >= 0 ? '▲' : '▼';
+            if (valEl) valEl.textContent = (isYield ? Number(q.price).toFixed(2) + '%' : fmtVal(q.price));
+            if (moveEl) {
+              moveEl.className = 'mk-move ' + cardDir;
+              moveEl.innerHTML = '<span class="mk-arrow">' + cardArrow + '</span>'
+                + cardSign + fmtVal(q.change || 0) + ' (' + cardSign + Number(q.changePercent).toFixed(2) + '%)';
+            }
+            // Sync tape row for this ticker
+            const tapeKeyMap = { '^GSPC': 'spx', '^IXIC': 'ndq', '^TNX': 'tnx', 'BTC-USD': 'btc' };
+            const tk = tapeKeyMap[symbol];
+            if (tk) {
+              const tapeRow = document.querySelector('.tape-row[data-tape-key="' + tk + '"]');
+              if (tapeRow) {
+                const valSpan = tapeRow.querySelector('.tape-row-val');
+                if (valSpan) {
+                  let tapeVal, tapeDir;
+                  if (isYield) { tapeVal = Number(q.price).toFixed(2) + '%'; tapeDir = 'neutral'; }
+                  else if (tk === 'btc') { tapeVal = '$' + Number(q.price).toLocaleString('en-US', { maximumFractionDigits: 0 }); tapeDir = q.changePercent > 0.1 ? 'up' : q.changePercent < -0.1 ? 'down' : 'neutral'; }
+                  else { tapeVal = (q.changePercent >= 0 ? '+' : '') + Number(q.changePercent).toFixed(2) + '%'; tapeDir = q.changePercent > 0.05 ? 'up' : q.changePercent < -0.05 ? 'down' : 'neutral'; }
+                  valSpan.className = 'tape-row-val ' + tapeDir;
+                  valSpan.textContent = tapeVal;
+                }
+              }
+            }
+          }
+        }
       })
       .catch(() => { modalBody.innerHTML = '<div class="sd-loading">Couldn’t load that security. Please try again.</div>'; });
   }

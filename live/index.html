@@ -31,8 +31,8 @@
     --live: #DC2626;
   }
   html { scroll-behavior: smooth; }
-  html, body { scrollbar-width: none; -ms-overflow-style: none; }
-  ::-webkit-scrollbar { width: 0 !important; display: none !important; }
+  html, body { scrollbar-width: none; -ms-overflow-style: none; overflow-x: hidden; }
+  html::-webkit-scrollbar, body::-webkit-scrollbar, ::-webkit-scrollbar { width: 0 !important; height: 0 !important; display: none !important; background: transparent !important; }
   body {
     background: var(--bg); color: var(--text);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -989,7 +989,7 @@
   .game-panel-meta { margin-top: 24px; font-size: 11px; color: var(--text-3); text-align: center; }
 
   /* Sports section right-side scroll nav */
-  .ssn-nav { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); z-index: 200; }
+  .ssn-nav { position: fixed; right: 28px; top: 50%; transform: translateY(-50%); z-index: 200; background: transparent; }
   .ssn-nav[hidden] { display: none; }
   .ssn-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; align-items: center; }
   .ssn-item { position: relative; display: flex; align-items: center; }
