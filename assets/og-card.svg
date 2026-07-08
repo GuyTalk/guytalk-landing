@@ -1,64 +1,36 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
-  <rect width="1200" height="630" fill="#F9F8F5"/>
-  <radialGradient id="bg-grad" cx="30%" cy="50%" r="70%">
-    <stop offset="0%" stop-color="#2B6FFF" stop-opacity="0.07"/>
-    <stop offset="100%" stop-color="#F9F8F5" stop-opacity="0"/>
+  <rect width="1200" height="630" fill="#0F1724"/>
+
+  <!-- Subtle blue radial glow -->
+  <radialGradient id="glow" cx="50%" cy="40%" r="60%">
+    <stop offset="0%" stop-color="#2B6FFF" stop-opacity="0.12"/>
+    <stop offset="100%" stop-color="#0F1724" stop-opacity="0"/>
   </radialGradient>
-  <rect width="1200" height="630" fill="url(#bg-grad)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
 
-  <!-- Top accent bar -->
-  <rect width="1200" height="5" fill="#2B6FFF"/>
+  <!-- Logo wordmark -->
+  <text x="72" y="96" fill="#FFFFFF" font-family="Arial Black, Arial, sans-serif" font-size="38" font-weight="900" letter-spacing="-1">GuyTalk</text>
+  <circle cx="280" cy="82" r="6" fill="#2B6FFF"/>
 
-  <!-- Logo mark -->
-  <rect x="72" y="72" width="80" height="80" rx="18" fill="#0F1724"/>
-  <text x="108" y="140" fill="#F9F8F5" font-family="Georgia, serif" font-size="60" font-weight="bold" text-anchor="middle" letter-spacing="-2">g</text>
-  <circle cx="142" cy="124" r="7" fill="#2B6FFF"/>
+  <!-- Pill badge -->
+  <rect x="72" y="128" width="460" height="38" rx="19" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <circle cx="99" cy="147" r="5" fill="#2B6FFF"/>
+  <text x="113" y="153" fill="rgba(255,255,255,0.7)" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">DON'T BE THE LAST GUY TO KNOW · FREE · 5 MIN</text>
 
-  <!-- Wordmark -->
-  <text x="168" y="106" fill="#0F1724" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" letter-spacing="-1">GuyTalk</text>
-  <circle cx="328" cy="100" r="4" fill="#2B6FFF"/>
+  <!-- Main headline line 1 -->
+  <text x="72" y="310" fill="#FFFFFF" font-family="Arial Black, Arial, sans-serif" font-size="128" font-weight="900" letter-spacing="-5">The Relevance</text>
+
+  <!-- Main headline line 2 -->
+  <text x="72" y="448" fill="#2B6FFF" font-family="Arial Black, Arial, sans-serif" font-size="128" font-weight="900" letter-spacing="-5">Brief.</text>
 
   <!-- Subtitle -->
-  <text x="168" y="132" fill="#9E9891" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="2.5">THE RELEVANCE BRIEF</text>
+  <text x="72" y="506" fill="rgba(255,255,255,0.55)" font-family="Arial, sans-serif" font-size="22" font-weight="400">Sports, markets, and culture — every morning in 5 minutes. Free.</text>
 
-  <!-- Divider -->
-  <line x1="72" y1="182" x2="1128" y2="182" stroke="#E5E2DB" stroke-width="1"/>
+  <!-- Subscribe CTA button -->
+  <rect x="72" y="544" width="240" height="52" rx="10" fill="#2B6FFF"/>
+  <text x="192" y="576" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="17" font-weight="800" text-anchor="middle" letter-spacing="0.3">Get the brief →</text>
 
-  <!-- Main headline — two lines -->
-  <text x="72" y="268" fill="#0F1724" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="900" letter-spacing="-2.5">Don't be the last</text>
-  <text x="72" y="348" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="900" letter-spacing="-2.5">guy to know.</text>
-
-  <!-- Sub headline -->
-  <text x="72" y="400" fill="#6E6862" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="400">Sports, markets, and culture — five minutes every morning. Free.</text>
-
-  <!-- Category pills -->
-  <rect x="72" y="440" width="128" height="36" rx="8" fill="#EBF1FF"/>
-  <text x="136" y="463" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.8">SPORTS</text>
-
-  <rect x="212" y="440" width="140" height="36" rx="8" fill="#EBF1FF"/>
-  <text x="282" y="463" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.8">MARKETS</text>
-
-  <rect x="364" y="440" width="130" height="36" rx="8" fill="#EBF1FF"/>
-  <text x="429" y="463" fill="#2B6FFF" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.8">CULTURE</text>
-
-  <rect x="506" y="440" width="100" height="36" rx="8" fill="#F9F8F5" stroke="#E5E2DB" stroke-width="1.5"/>
-  <text x="556" y="463" fill="#6E6862" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.8">F1</text>
-
-  <rect x="618" y="440" width="100" height="36" rx="8" fill="#F9F8F5" stroke="#E5E2DB" stroke-width="1.5"/>
-  <text x="668" y="463" fill="#6E6862" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.8">GOLF</text>
-
-  <!-- Right side CTA card -->
-  <rect x="820" y="200" width="308" height="196" rx="16" fill="#FFFFFF" stroke="#E5E2DB" stroke-width="1.5"/>
-  <rect x="820" y="200" width="308" height="56" rx="16" fill="#2B6FFF"/>
-  <rect x="820" y="232" width="308" height="24" fill="#2B6FFF"/>
-  <text x="974" y="235" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5">FREE · DAILY · 5 MIN</text>
-  <text x="974" y="296" fill="#0F1724" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800" text-anchor="middle">Subscribe Free →</text>
-  <text x="974" y="322" fill="#6E6862" font-family="Arial, Helvetica, sans-serif" font-size="13" text-anchor="middle">No spam · Unsubscribe anytime</text>
-  <rect x="860" y="346" width="228" height="28" rx="7" fill="#2B6FFF"/>
-  <text x="974" y="365" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="0.5">guytalkmedia.com</text>
-
-  <!-- Bottom bar -->
-  <text x="72" y="580" fill="#9E9891" font-family="Arial, Helvetica, sans-serif" font-size="15">guytalkmedia.com</text>
-  <text x="1128" y="580" fill="#9E9891" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="end">Free forever · No algorithm · No BS</text>
+  <!-- Domain -->
+  <text x="1128" y="576" fill="rgba(255,255,255,0.3)" font-family="Arial, sans-serif" font-size="15" text-anchor="end">guytalkmedia.com</text>
 </svg>
