@@ -2745,49 +2745,65 @@ function FeaturedGolfCard(g) {
     });
   }
 
-  // ── Sports section right-side scroll indicator ────────────────────────────────
+  // ── Section scroll nav — shown on all three tabs, styled like the homepage ───
   function initScrollNav() {
     const nav     = document.getElementById('ssnNav');
     const ssnList = document.getElementById('ssnList');
     if (!nav || !ssnList) return;
 
-    const SECTION_IDS = ['live-now','recap','worldcup','champions','f1','golf','tennis','mma','nba','mlb','nhl','soccer'];
-    const LABELS      = { 'live-now':'Live Now', recap:'Recap', worldcup:'World Cup', champions:'Champions',
-      f1:'F1', golf:'Golf', tennis:'Tennis', mma:'UFC/MMA', nba:'NBA', mlb:'MLB', nhl:'NHL', soccer:'Soccer Leagues' };
+    const TAB_CFG = {
+      'tab-sports': {
+        ids: ['live-now','recap','worldcup','champions','f1','golf','tennis','mma','nba','mlb','nhl','soccer'],
+        labels: { 'live-now':'Live Now', recap:'Recap', worldcup:'World Cup', champions:'Champions',
+          f1:'F1', golf:'Golf', tennis:'Tennis', mma:'UFC/MMA', nba:'NBA', mlb:'MLB', nhl:'NHL', soccer:'Soccer' }
+      },
+      'tab-markets': {
+        ids: ['markets'],
+        labels: { markets:'Markets' }
+      },
+      'tab-culture': {
+        ids: ['social-pulse','trending'],
+        labels: { 'social-pulse':'Social Pulse', trending:'Trending' }
+      }
+    };
 
-    const present = SECTION_IDS.filter(id => !!document.getElementById(id));
-    if (present.length < 3) return;
+    let activeObserver = null;
 
-    ssnList.innerHTML = present.map(id =>
-      `<li class="ssn-item">
-        <button class="ssn-dot" data-target="${id}" title="${LABELS[id] || id}"></button>
-        <span class="ssn-label">${LABELS[id] || id}</span>
-      </li>`
-    ).join('');
+    function buildNav(tabId) {
+      if (activeObserver) { activeObserver.disconnect(); activeObserver = null; }
+      const cfg = TAB_CFG[tabId];
+      if (!cfg) { nav.hidden = true; return; }
+      const present = cfg.ids.filter(id => !!document.getElementById(id));
+      if (!present.length) { nav.hidden = true; return; }
 
-    present.forEach(id => {
-      ssnList.querySelector(`[data-target="${id}"]`)?.addEventListener('click', () => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      ssnList.innerHTML = present.map(id =>
+        `<li class="ssn-item">
+          <button class="ssn-dot" data-target="${id}" title="${cfg.labels[id] || id}"></button>
+          <span class="ssn-label">${cfg.labels[id] || id}</span>
+        </li>`
+      ).join('');
+
+      ssnList.querySelectorAll('[data-target]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.getElementById(btn.dataset.target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
       });
-    });
 
-    const dotMap = new Map(present.map(id => [id, ssnList.querySelector(`[data-target="${id}"]`)]));
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => dotMap.get(e.target.id)?.classList.toggle('is-active', e.isIntersecting));
-    }, { rootMargin: '-25% 0px -65% 0px' });
-    present.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+      const dotMap = new Map(present.map(id => [id, ssnList.querySelector(`[data-target="${id}"]`)]));
+      activeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => dotMap.get(e.target.id)?.classList.toggle('is-active', e.isIntersecting));
+      }, { rootMargin: '-25% 0px -65% 0px' });
+      present.forEach(id => { const el = document.getElementById(id); if (el) activeObserver.observe(el); });
 
-    function syncNav() {
-      const sportsEl = document.getElementById('tab-sports');
-      // Tab system uses style.display='none' (not the hidden attr), so check that
-      const sportsActive = sportsEl && sportsEl.style.display !== 'none';
-      nav.hidden = !sportsActive;
+      nav.hidden = false;
     }
-    // Defer slightly so the inline tab script has run and set style.display
-    setTimeout(syncNav, 80);
-    // Re-sync when the tab switcher fires its custom event
+
+    // Build nav for initial tab (Sports is default)
+    setTimeout(() => buildNav('tab-sports'), 80);
+
+    // Rebuild when tab switches
     document.addEventListener('guytalk:tabchange', (e) => {
-      nav.hidden = (e.detail?.tab !== 'tab-sports');
+      buildNav(e.detail?.tab || 'tab-sports');
     });
   }
 
