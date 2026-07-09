@@ -769,7 +769,10 @@
   .scroll-dot.active { background: var(--accent); border-color: var(--accent); transform: scale(1.5); box-shadow: 0 0 8px rgba(43,111,255,0.35); }
   .scroll-dot.active .dot-label { opacity: 1; color: var(--accent); }
   @media (max-width: 1100px) { .scroll-nav { display: none; } }
-  @media (max-width: 768px) { .scroll-nav { display: flex !important; right: 12px; } }
+  @media (max-width: 768px) {
+    .scroll-nav { display: flex !important; right: 8px; top: 60%; gap: 6px; }
+    .dot-label { display: none; }
+  }
 
   /* FOUNDER */
   .founder { max-width: 640px; margin: 0 auto; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }

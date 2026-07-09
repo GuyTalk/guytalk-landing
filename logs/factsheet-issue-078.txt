@@ -1,0 +1,25 @@
+VERIFIED FACT SHEET — issue-078 — 2026-07-09T12:20:42.262Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Chicago Cubs 9–7 Baltimore Orioles (Final)
+  [SPORT] Cincinnati Reds 11–5 Philadelphia Phillies (Final)
+  [SPORT] Los Angeles Angels 13–1 Texas Rangers (Final)
+  [GOLF] Genesis Scottish Open | venue: see established facts | status: in
+  [F1] Moët & Chandon Belgian Grand Prix | P1: ? (?)
+  [MARKETS] SPY -0.31% | DIA -1.07% | QQQ 0.28%
+
+SOURCE: OpenAI web research
+  [conf:5/5] U.S. Launches New Iran Airstrikes; Tehran Hits Gulf States — NPR/AP, TheStreet, Yahoo Finance
+  [conf:5/5] Dow Sinks 577 Points; Nasdaq Stays Green on AI Strength — Yahoo Finance, Benzinga, TheStreet
+  [conf:5/5] World Cup Quarterfinals Kick Off Today: France vs. Morocco at 4 PM ET — Yahoo Sports, ESPN, Fox Sports
+  [conf:5/5] Dylan Cease Takes No-Hitter Into 9th, Toronto Wins 10-0 — ESPN, Yahoo Sports, MLB.com
+  [conf:4/5] OpenAI Drops GPT-5.6 Family; Grok 4.5 Launches Same Day — Build Fast With AI
+  [conf:5/5] Trump Wraps NATO Summit, Gives Ukraine Patriot Missile License — NPR/AP
+  [conf:5/5] LeBron Leaves Lakers; NBA Summer League Opens in Vegas Today — ESPN, Yahoo Sports, ESPN
+  [conf:5/5] Oil Shock: Brent Crude Surges 5%+ on Strait of Hormuz Fears — Yahoo Finance, Bloomberg, TS2 Tech/Reuters
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================
