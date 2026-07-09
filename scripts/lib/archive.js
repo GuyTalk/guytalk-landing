@@ -133,11 +133,15 @@ function buildArchive(rootDir) {
         `href="/brief/${latestSlug}/$1"`
       );
       // Update ticker with latest sports + market data
+      // Items must sit inside a `.ticker-inner`/`#ticker-inner` wrapper — that's
+      // what carries the flex/nowrap/marquee-animation CSS and what the client-side
+      // live-data script looks up via getElementById('ticker-inner'). Without it the
+      // items render as stacked block divs instead of a scrolling row.
       const tickerItems = buildTickerItems(latest);
       if (tickerItems) {
         indexHtml = indexHtml.replace(
           /(<div class="ticker" id="ticker-track">)[\s\S]*?(<\/div><\/div>\s*<\/div>)/,
-          `$1\n        ${tickerItems}\n        ${tickerItems}\n      </div></div>\n    </div>`
+          `$1\n      <div class="ticker-inner" id="ticker-inner">\n        ${tickerItems}\n        ${tickerItems}\n      </div>\n      </div></div>\n    </div>`
         );
       }
       // Update GuyTalk chat card date
