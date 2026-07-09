@@ -112,6 +112,21 @@ async function main() {
     </td></tr>`
   ).join('');
 
+  // Flagged issues from the OpenAI verifier / editor pass — never block the pipeline
+  // (see qa-brief.js, 2026-07-09), but Jake needs to see them before he taps send.
+  const flags = [];
+  if (data.verification && data.verification.pass === false) {
+    (data.verification.blocking || []).forEach(b =>
+      flags.push(`[${b.section}] ${b.flag ? `${b.flag}: ` : ''}${b.reason}`));
+  }
+  (data.editor?.blocking || []).forEach(b =>
+    flags.push(`[${b.section}] ${b.reason}`));
+
+  const flagsHtml = flags.length ? `<div style="background:#FEF3E2;border:1px solid #F5C563;border-radius:8px;padding:12px 14px;margin-bottom:16px;">
+    <p style="margin:0 0 6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#92400E;">⚠ Flagged — check before sending</p>
+    ${flags.map(f => `<p style="margin:4px 0;font-size:13px;line-height:1.4;color:#78350F;">${f}</p>`).join('')}
+  </div>` : '';
+
   const html = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#F9F8F5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">
@@ -139,6 +154,8 @@ async function main() {
         ${data.date} · Issue #${num}<br>
         Review below, then tap to send.
       </p>
+
+      ${flagsHtml}
 
       ${bulletsHtml ? `<div style="background:#F8F7F4;border-radius:8px;padding:4px 12px;margin-bottom:20px;">
         <table width="100%" cellpadding="0" cellspacing="0">${bulletsHtml}</table>

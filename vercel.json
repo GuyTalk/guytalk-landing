@@ -18,9 +18,11 @@
     "api/subscribe.js":       { "maxDuration": 15 },
     "api/quote.js":           { "maxDuration": 15 },
     "api/social-queue.js":    { "maxDuration": 60, "includeFiles": "brief/data/**" },
-    "api/founder.js":         { "maxDuration": 15 }
+    "api/founder.js":         { "maxDuration": 15 },
+    "api/trigger-brief.js":   { "maxDuration": 15 }
   },
   "crons": [
+    { "path": "/api/trigger-brief",   "schedule": "0 11 * * *" },
     { "path": "/api/refresh-culture", "schedule": "0 11 * * *" },
     { "path": "/api/beehiiv-sync",    "schedule": "33 11 * * *" },
     { "path": "/api/social-queue",    "schedule": "0 13 * * *" },
