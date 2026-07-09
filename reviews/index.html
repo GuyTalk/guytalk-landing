@@ -328,21 +328,16 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       </div>
 
       <div>
-        <label style="display:block;font-weight:600;color:var(--text);margin-bottom:8px;font-size:14px;">Rating</label>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-            <input type="radio" name="rating" value="★★★★★ (Excellent)" required style="cursor:pointer;">
-            <span>★★★★★ Excellent</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-            <input type="radio" name="rating" value="★★★★☆ (Good)" style="cursor:pointer;">
-            <span>★★★★☆ Good</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-            <input type="radio" name="rating" value="★★★☆☆ (OK)" style="cursor:pointer;">
-            <span>★★★☆☆ OK</span>
-          </label>
+        <label style="display:block;font-weight:600;color:var(--text);margin-bottom:16px;font-size:14px;">Rating</label>
+        <div id="starRating" style="display:flex;gap:12px;align-items:center;font-size:48px;">
+          <span class="star" data-value="1" style="cursor:pointer;color:#ddd;transition:color 0.1s;">★</span>
+          <span class="star" data-value="2" style="cursor:pointer;color:#ddd;transition:color 0.1s;">★</span>
+          <span class="star" data-value="3" style="cursor:pointer;color:#ddd;transition:color 0.1s;">★</span>
+          <span class="star" data-value="4" style="cursor:pointer;color:#ddd;transition:color 0.1s;">★</span>
+          <span class="star" data-value="5" style="cursor:pointer;color:#ddd;transition:color 0.1s;">★</span>
         </div>
+        <input type="hidden" name="rating" id="ratingValue" required value="">
+        <p id="ratingLabel" style="font-size:14px;color:var(--text-2);margin-top:8px;">Click to rate</p>
       </div>
 
       <div>
@@ -397,6 +392,39 @@ window.trackReviewSubmit = function(e) {
     });
   }
 };
+
+// Star rating interaction
+document.addEventListener('DOMContentLoaded', function() {
+  var stars = document.querySelectorAll('.star');
+  var ratingValue = document.getElementById('ratingValue');
+  var ratingLabel = document.getElementById('ratingLabel');
+  var labels = ['', 'Poor', 'Okay', 'Good', 'Very Good', 'Excellent'];
+
+  stars.forEach(function(star) {
+    star.addEventListener('mouseenter', function() {
+      var value = parseInt(this.dataset.value);
+      stars.forEach(function(s, idx) {
+        s.style.color = (idx < value) ? '#F59E0B' : '#ddd';
+      });
+    });
+
+    star.addEventListener('click', function() {
+      var value = parseInt(this.dataset.value);
+      ratingValue.value = value;
+      ratingLabel.textContent = labels[value] + ' (' + value + '/5)';
+      stars.forEach(function(s, idx) {
+        s.style.color = (idx < value) ? '#F59E0B' : '#ddd';
+      });
+    });
+  });
+
+  document.getElementById('starRating').addEventListener('mouseleave', function() {
+    var selectedValue = parseInt(ratingValue.value) || 0;
+    stars.forEach(function(s, idx) {
+      s.style.color = (idx < selectedValue) ? '#F59E0B' : '#ddd';
+    });
+  });
+});
 
 window.handleSignup = function(e, form) {
   e.preventDefault();
