@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Self-Care — The GuyTalk Guide</title>
-<meta name="description" content="The stuff guys pretend doesn't matter until they realize it does. Skincare, grooming, and products that actually work.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Self-Care — The GuyTalk Guide">
-<meta property="og:description" content="The stuff guys pretend doesn't matter until they realize it does. Skincare, grooming, and products that actually work.">
-<meta property="og:image" content="https://www.guytalkmedia.com/assets/og-card.png">
-<meta property="og:url" content="https://www.guytalkmedia.com/guide/self-care/">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://www.guytalkmedia.com/guide/self-care/">
-<link rel="icon" href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
+<meta name="description" content="Skincare, grooming, and the products that actually work. Not vanity. Maintenance.">
+<meta property="og:type"        content="website">
+<meta property="og:title"       content="Self-Care — The GuyTalk Guide">
+<meta property="og:description" content="Skincare, grooming, and the products that actually work. Not vanity. Maintenance.">
+<meta property="og:image"       content="https://www.guytalkmedia.com/assets/og-card.png">
+<meta property="og:url"         content="https://www.guytalkmedia.com/guide/self-care/">
+<meta name="twitter:card"       content="summary_large_image">
+<link rel="canonical"           href="https://www.guytalkmedia.com/guide/self-care/">
+<link rel="icon"                href="/assets/logo/guytalk-icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -31,52 +31,111 @@
   a:hover { text-decoration:underline; }
   p { margin-bottom:0; }
   .guide-nav{position:sticky;top:0;z-index:50;background:#111;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.08);}
-  .guide-nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:14px 24px;}
+  .guide-nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:0 24px;height:62px;}
   .guide-wordmark{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em;color:#fff;text-decoration:none;}
   .guide-word-guide{color:var(--accent);font-weight:800;}
-  .guide-nav-links{display:flex;align-items:center;gap:24px;}
-  .guide-nav-link{font-size:14px;font-weight:600;color:rgba(255,255,255,0.8);}
-  .guide-nav-cta{background:var(--accent);color:#fff;padding:8px 16px;border-radius:6px;font-size:13px;font-weight:700;}
-  .guide-nav-cta:hover{background:var(--accent-h);text-decoration:none;}
-  .guide-tabs{position:sticky;top:57px;z-index:90;background:#111;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);}
-  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .guide-nav-links{display:flex;align-items:center;gap:4px;}
+  .gnl{font-size:15px;font-weight:600;color:var(--text-2);text-decoration:none;padding:7px 12px;border-radius:8px;transition:color .15s,background .15s;}
+  .gnl:hover{color:#fff;background:rgba(255,255,255,.1);text-decoration:none;}
+  .gnl-cta{background:var(--accent);color:#fff;padding:8px 18px;border-radius:9px;font-size:14px;font-weight:700;transition:background .15s,transform .15s;margin-left:8px;}
+  .gnl-cta:hover{background:var(--accent-h);text-decoration:none;transform:translateY(-1px);}
+  .guide-tabs{position:sticky;top:62px;z-index:90;background:#111;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);}
+  .guide-tabs-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .guide-tabs-inner::-webkit-scrollbar{display:none;}
   .guide-tab{padding:13px 20px;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:14px;letter-spacing:.01em;color:var(--text-2);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s ease,border-color .15s ease;white-space:nowrap;}
   .guide-tab:hover{color:#fff;text-decoration:none;}
   .guide-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
-  .cat-band{background:#1A1A1A;color:#fff;padding:48px 24px 40px;}
+  .cat-band{background:#0F1724;color:#fff;padding:48px 24px 44px;border-top:3px solid var(--accent);}
   .cat-band-inner{max-width:1120px;margin:0 auto;}
-  .cat-band-crumb{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:12px;}
+  .cat-band-crumb{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;}
   .cat-band-crumb a{color:rgba(255,255,255,.55);text-decoration:none;}
   .cat-band-crumb a:hover{color:rgba(255,255,255,.85);}
   .cat-band-crumb-sep{margin:0 8px;}
-  .cat-band-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(28px,5vw,44px);letter-spacing:-.025em;line-height:1.1;margin-bottom:10px;}
-  .cat-band-desc{font-size:16px;color:rgba(255,255,255,.62);max-width:480px;}
-  .picks-section{padding:64px 24px;}
-  .picks-inner{max-width:1120px;margin:0 auto;}
-  .section-eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
-  .section-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(22px,3.5vw,32px);letter-spacing:-.02em;margin-bottom:8px;}
-  .section-desc{font-size:15px;color:var(--text-2);margin-bottom:36px;max-width:560px;}
-  .essays-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-left:1px solid var(--border);border-top:1px solid var(--border);margin-top:28px;}
-  .essay-card{display:block;padding:24px 22px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);transition:background .15s ease;}
-  .essay-card:hover{background:var(--surface);text-decoration:none;}
-  .essay-card-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--text);margin-bottom:5px;line-height:1.3;}
-  .essay-card-sub{font-size:13px;color:var(--text-2);line-height:1.5;margin-bottom:10px;}
-  .essay-card-cta{font-size:12px;font-weight:600;color:var(--accent);}
-  .guide-footer{background:#0F1724;color:rgba(255,255,255,.5);padding:40px 24px;font-size:13px;}
+  .cat-band-title{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:clamp(32px,5vw,52px);letter-spacing:-.03em;line-height:1.0;margin-bottom:12px;}
+  .cat-band-desc{font-size:16px;color:rgba(255,255,255,.62);max-width:520px;line-height:1.6;}
+  .gc{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .guide-section{padding:56px 0;}
+  .gsec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+  .gsec-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(22px,3.5vw,32px);letter-spacing:-.02em;margin-bottom:8px;color:var(--text);}
+  .gsec-sub{font-size:15px;color:var(--text-2);margin-bottom:36px;max-width:560px;line-height:1.6;}
+  .section-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+  .section-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(22px,3.5vw,32px);letter-spacing:-.02em;margin-bottom:8px;color:var(--text);}
+  .section-desc{font-size:15px;color:var(--text-2);margin-bottom:36px;max-width:560px;line-height:1.6;}
+  .picks-section{padding:64px 0;}
+  .picks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:900px){.picks-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:540px){.picks-grid{grid-template-columns:1fr;}}
+  .pick-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .18s,transform .18s;}
+  .pick-card:hover{box-shadow:0 6px 24px rgba(15,23,36,.07);transform:translateY(-2px);}
+  .pick-card-img{height:210px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .pick-card-img img{width:100%;height:100%;object-fit:cover;}
+  .pick-card-img-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;background:var(--surface-2);width:100%;}
+  .pick-card-img-ph-initial{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:52px;color:var(--border-light);line-height:1;}
+  .pick-card-img-ph-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);}
+  .pick-card-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1;}
+  .pick-card-tag{margin-bottom:10px;}
+  .gtag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
+  .gtag-blue{background:var(--accent-muted);color:var(--accent);}
+  .gtag-amber{background:var(--amber-muted);color:var(--amber);}
+  .gtag-green{background:rgba(22,163,74,.08);color:var(--green);}
+  .gtag-navy{background:rgba(15,23,36,.07);color:var(--navy);}
+  .gtag-gray{background:var(--surface-2);color:var(--text-3);}
+  .pick-card-brand{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;}
+  .pick-card-name{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--text);margin-bottom:6px;line-height:1.3;}
+  .pick-card-price{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;}
+  .pick-card-bio{font-size:13px;color:var(--text-2);line-height:1.55;margin-bottom:16px;flex:1;}
+  .pick-card-buy{display:inline-block;padding:9px 16px;background:#0F1724;color:#fff;border-radius:7px;font-size:13px;font-weight:700;transition:background .15s;text-decoration:none;}
+  .pick-card-buy:hover{background:var(--accent);text-decoration:none;}
+  .pick-card-shop{display:inline-block;margin-top:8px;padding:8px 16px;background:transparent;color:var(--accent);border:1.5px solid var(--accent);border-radius:7px;font-size:12px;font-weight:700;text-decoration:none;transition:background .15s;}
+  .pick-card-shop:hover{background:var(--accent-muted);text-decoration:none;}
+  .essays-section{padding:64px 0 0;}
+  .essays-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  @media(max-width:680px){.essays-grid{grid-template-columns:1fr;}}
+  .essay-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px 22px 20px;text-decoration:none;transition:border-color .15s,box-shadow .15s;}
+  .essay-card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(43,111,255,.08);text-decoration:none;}
+  .essay-card-eyebrow{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+  .essay-card-title{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:16px;color:var(--text);margin-bottom:8px;line-height:1.3;}
+  .essay-card-sub{font-size:13px;color:var(--text-2);line-height:1.55;margin-bottom:14px;}
+  .essay-card-cta{font-size:13px;font-weight:700;color:var(--accent);}
+  .guide-footer{background:#0F1724;color:rgba(255,255,255,.5);padding:40px 24px;font-size:13px;margin-top:80px;}
   .guide-footer-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-  .guide-footer a{color:rgba(255,255,255,.5);}
-  .guide-footer a:hover{color:#fff;text-decoration:none;}
-  @media(max-width:768px){.cat-band{padding:24px 24px 28px;}}
+  .guide-footer-brand{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:17px;color:#fff;}
+  .guide-footer-links{display:flex;flex-wrap:wrap;gap:20px;}
+  .guide-footer-links a{color:rgba(255,255,255,.5);}
+  .guide-footer-links a:hover{color:#fff;text-decoration:none;}
+  .guide-footer-note{width:100%;font-size:11px;color:rgba(255,255,255,.28);line-height:1.6;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);margin-top:16px;}
+  /* ── OUTFIT BOARD ── */
+  .outfit-board{display:grid;grid-template-columns:320px 1fr;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+  .outfit-img{background:var(--surface-2);min-height:380px;display:flex;align-items:center;justify-content:center;}
+  .outfit-img img{width:100%;height:380px;object-fit:cover;display:block;}
+  .outfit-collage{padding:0!important;overflow:hidden;}
+  .outfit-collage-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:100%;min-height:340px;}
+  .outfit-collage-grid div{width:100%;height:100%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:14px;color:var(--text-3);}
+  .outfit-content{padding:32px 36px;display:flex;flex-direction:column;gap:0;}
+  .outfit-eyebrow{font-family:'Inter Tight',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  .outfit-title{font-family:'Inter Tight',sans-serif;font-weight:900;font-size:22px;letter-spacing:-0.02em;color:var(--text);margin-bottom:4px;}
+  .outfit-subtitle{font-size:14px;color:var(--text-2);margin-bottom:16px;}
+  .outfit-writeup{font-size:15px;color:var(--text-2);line-height:1.68;margin-bottom:24px;}
+  .outfit-items{list-style:none;padding:0;margin:0 0 18px;border-top:1px solid var(--border);}
+  .outfit-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06);}
+  .outfit-item-info{flex:1;min-width:0;}
+  .outfit-item-name{font-weight:600;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .outfit-item-role{font-size:12px;color:var(--text-3);}
+  .outfit-item-shop{flex-shrink:0;margin-left:14px;font-size:12px;font-weight:600;color:var(--accent);white-space:nowrap;text-decoration:none;}
+  .outfit-item-shop:hover{text-decoration:underline;}
+  .outfit-flashy{font-family:'Inter Tight',sans-serif;font-size:14px;font-weight:700;color:var(--text);border-left:3px solid var(--accent);padding-left:12px;line-height:1.5;}
+  @media(max-width:700px){.outfit-board{grid-template-columns:1fr;}}
 </style>
+</head>
 <body>
 <nav class="guide-nav">
   <div class="guide-nav-inner">
     <a href="/guide/" class="guide-wordmark">GuyTalk<span class="guide-word-guide"> Guide</span></a>
     <div class="guide-nav-links">
-      <a href="/" class="guide-nav-link">Home</a>
-      <a href="/brief/" class="guide-nav-link">Today's Brief</a>
-      <a href="/guide/" class="guide-nav-link">Guide</a>
-      <a href="/#signup" class="guide-nav-cta">Subscribe Free →</a>
+      <a href="/" class="gnl">Home</a>
+      <a href="/brief/" class="gnl">Today's Brief</a>
+      <a href="/guide/" class="gnl">Guide</a>
+      <a href="/#signup" class="gnl-cta">Subscribe Free →</a>
     </div>
   </div>
 </nav>
@@ -93,44 +152,265 @@
   </div>
 </div>
 <script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>
+
 <div class="cat-band">
   <div class="cat-band-inner">
     <div class="cat-band-crumb"><a href="/guide/">Guide</a><span class="cat-band-crumb-sep">›</span>Self-Care</div>
     <h1 class="cat-band-title">Self-Care</h1>
-    <p class="cat-band-desc">The stuff guys pretend doesn't matter until they realize it does. Skincare, grooming, and the products that actually work.</p>
+    <p class="cat-band-desc">Skincare, grooming, and the products that actually work. Not vanity. Maintenance.</p>
   </div>
 </div>
 
-<section class="picks-section">
-  <div class="picks-inner">
-    <div class="section-eyebrow">EDUCATION</div>
-    <h2 class="section-title">Guides That Actually Matter</h2>
-    <p class="section-desc">Five core areas of men's skincare and grooming. Not vanity. Maintenance.</p>
+<div class="guide-section" style="padding:48px 0 40px;">
+  <div class="gc">
+    <div class="gsec-eyebrow">The Starter Kit</div>
+    <div class="gsec-title">The Four Things You Actually Need</div>
+    <div class="gsec-sub">Start here. These are the non-negotiables that make everything else better.</div>
+    <div class="outfit-board">
+      <div class="outfit-img outfit-collage"><div class="outfit-collage-grid">
+        <div>Eye Cream</div>
+        <div>Facial Moisturizer</div>
+        <div>Body Wash</div>
+        <div>Cologne</div>
+      </div></div>
+      <div class="outfit-content">
+        <div class="outfit-eyebrow">The Starter Kit</div>
+        <div class="outfit-title">The Four Things You Actually Need</div>
+        <div class="outfit-subtitle">Eye cream. Moisturizer. Body wash. Fragrance. Everything else is optional.</div>
+        <p class="outfit-writeup">Most guys skip skincare because they think it's complicated. It's not. Your face gets the same sun exposure as any woman's, your skin dries out just as much, and nobody wants to see puffy eyes or dry patches. A solid eye cream tightens the skin around your eyes and keeps you looking awake — literally the thing people notice first. A good facial moisturizer doesn't make your skin greasy; it makes it even. A quality body wash beats dollar-store soap every time because your skin is your biggest organ. And fragrance is just the punctuation on the whole routine. Start with these four. Everything beyond this is fine-tuning.</p>
+        <ul class="outfit-items">
+          <li class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">CeraVe Eye Repair Cream</div>
+              <div class="outfit-item-role">Reduces puffiness and dark circles</div>
+            </div>
+            <a href="#" class="outfit-item-shop">Shop →</a>
+          </li>
+          <li class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">CeraVe Facial Moisturizing Lotion</div>
+              <div class="outfit-item-role">Lightweight hydration without the shine</div>
+            </div>
+            <a href="#" class="outfit-item-shop">Shop →</a>
+          </li>
+          <li class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">Dove Men+Care Body Wash</div>
+              <div class="outfit-item-role">Clean, simple, no stripping</div>
+            </div>
+            <a href="#" class="outfit-item-shop">Shop →</a>
+          </li>
+          <li class="outfit-item">
+            <div class="outfit-item-info">
+              <div class="outfit-item-name">Creed Aventus Cologne</div>
+              <div class="outfit-item-role">The reference standard for fragrance</div>
+            </div>
+            <a href="#" class="outfit-item-shop">Shop →</a>
+          </li>
+        </ul>
+        <p class="outfit-flashy">Skincare isn't vanity. It's the difference between looking tired and looking sharp. Get these four locked in first.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- PICKS: PRODUCTS & ESSENTIALS -->
+<section class="picks-section">
+  <div class="gc">
+    <div class="section-eyebrow">Start Here</div>
+    <h2 class="section-title">Products That Actually Make a Difference</h2>
+    <p class="section-desc">Skincare and grooming products that work. No gimmicks, no $200 jars of nothing.</p>
+    <div class="picks-grid">
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">C</div><div class="pick-card-img-ph-label">CeraVe</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-blue">Best for Eyes</span></div>
+          <div class="pick-card-brand">CeraVe</div>
+          <div class="pick-card-name">Eye Repair Cream</div>
+          <div class="pick-card-price">~$15</div>
+          <p class="pick-card-bio">The one product that noticeably changes how tired your face looks. Caffeine reduces puffiness, peptides firm the delicate skin around your eyes, and hyaluronic acid keeps it hydrated. Use it every morning and people will ask what you did differently.</p>
+          <a href="#" class="pick-card-buy">Learn More →</a>
+          <a href="https://www.amazon.com/s?k=CeraVe+Eye+Repair+Cream&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">C</div><div class="pick-card-img-ph-label">CeraVe</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-blue">Daily Moisturizer</span></div>
+          <div class="pick-card-brand">CeraVe</div>
+          <div class="pick-card-name">Facial Moisturizing Lotion AM/PM</div>
+          <div class="pick-card-price">~$12</div>
+          <p class="pick-card-bio">Hydrating without being heavy. Three essential ceramides and hyaluronic acid replace what water strips from your skin. The AM version has SPF 30. Use this twice a day and your skin stops looking like it needs attention. It just looks balanced.</p>
+          <a href="#" class="pick-card-buy">Learn More →</a>
+          <a href="https://www.amazon.com/s?k=CeraVe+Moisturizing+Lotion&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">K</div><div class="pick-card-img-ph-label">Kiehl's</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-amber">Premium Pick</span></div>
+          <div class="pick-card-brand">Kiehl's</div>
+          <div class="pick-card-name">Facial Fuel Moisturizer</div>
+          <div class="pick-card-price">~$38</div>
+          <p class="pick-card-bio">If CeraVe isn't cutting it and you want something richer. This is designed for men — it absorbs fast, doesn't clog pores, and the fuel complex actually energizes your face. A little goes a long way. Use after shaving to prevent irritation.</p>
+          <a href="#" class="pick-card-buy">Learn More →</a>
+          <a href="https://www.amazon.com/s?k=Kiehl's+Facial+Fuel+Moisturizer&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">D</div><div class="pick-card-img-ph-label">Dove</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-green">Best Body Care</span></div>
+          <div class="pick-card-brand">Dove</div>
+          <div class="pick-card-name">Men+Care Body Wash</div>
+          <div class="pick-card-price">~$6</div>
+          <p class="pick-card-bio">Stop using whatever's in the shower. This doesn't strip your skin or leave it tight. It's formulated for men's skin, it actually smells clean rather than artificial, and it's cheap enough to use without guilt. The bar version is equally good.</p>
+          <a href="#" class="pick-card-buy">Learn More →</a>
+          <a href="https://www.amazon.com/s?k=Dove+Men+Care+Body+Wash&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">O</div><div class="pick-card-img-ph-label">Olay</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-blue">Best Value</span></div>
+          <div class="pick-card-brand">Olay</div>
+          <div class="pick-card-name">Men Face Wash</div>
+          <div class="pick-card-price">~$5</div>
+          <p class="pick-card-bio">A solid daily face wash that doesn't over-dry. Removes dirt and oil without stripping your skin. Use it morning and night before moisturizer. Not fancy. Just effective. This is the baseline — everything else is an upgrade from here.</p>
+          <a href="#" class="pick-card-buy">Learn More →</a>
+          <a href="https://www.amazon.com/s?k=Olay+Men+Face+Wash&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">T</div><div class="pick-card-img-ph-label">Theragun</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-amber">Massage Device</span></div>
+          <div class="pick-card-brand">Theragun</div>
+          <div class="pick-card-name">Mini Massage Gun</div>
+          <div class="pick-card-price">~$200</div>
+          <p class="pick-card-bio">Not technically skincare, but it accelerates recovery. Use it on your face for 30 seconds in the morning to increase blood flow and reduce puffiness. Use it on your neck and shoulders to release tension that shows in your face. The mini version is portable and doesn't require a gym membership to justify.</p>
+          <a href="#" class="pick-card-buy">Learn More →</a>
+          <a href="https://www.amazon.com/s?k=Theragun+Mini&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">B</div><div class="pick-card-img-ph-label">Baxter</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-green">Hair Care</span></div>
+          <div class="pick-card-brand">Baxter of California</div>
+          <div class="pick-card-name">Clay Pomade</div>
+          <div class="pick-card-price">~$22</div>
+          <p class="pick-card-bio">Holds without shine or flake. The clay formula gives you control without the wet look that screams product. Works on all hair types and actually conditions while it styles. Rinses clean in one wash. This is the move if you're tired of pomade feeling sticky all day.</p>
+          <a href="#" class="pick-card-buy">Learn More →</a>
+          <a href="https://www.amazon.com/s?k=Baxter+of+California+Clay+Pomade&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">C</div><div class="pick-card-img-ph-label">Creed</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-amber">Premium Fragrance</span></div>
+          <div class="pick-card-brand">Creed</div>
+          <div class="pick-card-name">Aventus Cologne</div>
+          <div class="pick-card-price">~$380</div>
+          <p class="pick-card-bio">The reference fragrance. If you're only going to buy one expensive cologne, buy this. Pineapple and birch top notes give it brightness, ambroxan base keeps it grounded. It smells intentional. It gets compliments. A bottle lasts two years of daily wear.</p>
+          <a href="#" class="pick-card-buy">Learn More →</a>
+          <a href="https://www.amazon.com/s?k=Creed+Aventus&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">BDC</div><div class="pick-card-img-ph-label">Bleu de Chanel</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-blue">Best Daily Scent</span></div>
+          <div class="pick-card-brand">Chanel</div>
+          <div class="pick-card-name">Bleu de Chanel Cologne</div>
+          <div class="pick-card-price">~$120</div>
+          <p class="pick-card-bio">The easiest fragrance to wear every day. Clean, fresh, slightly woody, and it doesn't announce itself. Works for the office, the gym, casual. If you want something that doesn't require explanation or that garners opinions, this is it. Versatile enough that you can wear it year-round.</p>
+          <a href="#" class="pick-card-buy">Learn More →</a>
+          <a href="https://www.amazon.com/s?k=Bleu+de+Chanel+Cologne&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="pick-card-img">
+          <div class="pick-card-img-ph"><div class="pick-card-img-ph-initial">C</div><div class="pick-card-img-ph-label">Cetaphil</div></div>
+        </div>
+        <div class="pick-card-body">
+          <div class="pick-card-tag"><span class="gtag gtag-navy">Sensitive Skin</span></div>
+          <div class="pick-card-brand">Cetaphil</div>
+          <div class="pick-card-name">Daily Facial Cleanser</div>
+          <div class="pick-card-price">~$8</div>
+          <p class="pick-card-bio">If your skin is reactive or easily irritated, this is your baseline. No fragrance, no sulfates, no stripping. Dermatologist-tested and used in hospitals. It cleans without aggravating. Pair it with a good moisturizer and you're covered.</p>
+          <a href="#" class="pick-card-buy">Learn More →</a>
+          <a href="https://www.amazon.com/s?k=Cetaphil+Daily+Facial+Cleanser&tag=guytalk-20" class="pick-card-shop" target="_blank" rel="noopener nofollow">Shop on Amazon →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ESSAYS -->
+<section class="essays-section">
+  <div class="gc" style="padding-bottom:80px;">
+    <div class="section-eyebrow">The Depth</div>
+    <h2 class="section-title">Guides Worth Reading</h2>
+    <p class="section-desc">The frameworks you need before you start buying products.</p>
     <div class="essays-grid">
       <a href="/guide/self-care/eye-care-101/" class="essay-card">
+        <div class="essay-card-eyebrow">The Read</div>
         <div class="essay-card-title">Eye Care 101</div>
-        <div class="essay-card-sub">Dark circles, puffiness, and why your eyes look tired. The two-product fix.</div>
+        <div class="essay-card-sub">Dark circles, puffiness, and why your eyes look tired. The two-product fix that actually works.</div>
         <div class="essay-card-cta">Read →</div>
       </a>
       <a href="/guide/self-care/face-care-basics/" class="essay-card">
+        <div class="essay-card-eyebrow">The Read</div>
         <div class="essay-card-title">Face Care Fundamentals</div>
-        <div class="essay-card-sub">The four-step routine you'll actually stick with. Clear skin. No complexity.</div>
+        <div class="essay-card-sub">The four-step routine you'll actually stick with. Clear skin without the complexity.</div>
         <div class="essay-card-cta">Read →</div>
       </a>
       <a href="/guide/self-care/body-and-hair-products/" class="essay-card">
+        <div class="essay-card-eyebrow">The Gear Read</div>
         <div class="essay-card-title">Body & Hair Products</div>
-        <div class="essay-card-sub">Stop using dollar-store soap. What to buy and why quality matters more than you think.</div>
+        <div class="essay-card-sub">Why quality matters and what to buy. Stop using dollar-store soap and cheap shampoo.</div>
         <div class="essay-card-cta">Read →</div>
       </a>
       <a href="/guide/self-care/salon-vs-barber/" class="essay-card">
+        <div class="essay-card-eyebrow">The Gear Read</div>
         <div class="essay-card-title">Salon vs. Barber</div>
-        <div class="essay-card-sub">Where to go. The difference between clippers and scissors. Which one you actually need.</div>
+        <div class="essay-card-sub">Where to go for your hair. The difference between clippers and scissors and which one you actually need.</div>
         <div class="essay-card-cta">Read →</div>
       </a>
       <a href="/guide/self-care/cologne-and-fragrance/" class="essay-card">
+        <div class="essay-card-eyebrow">The Deep Dive</div>
         <div class="essay-card-title">Cologne & Fragrance</div>
-        <div class="essay-card-sub">Application, timing, and not drowning in scent. How to wear fragrance like you know what you're doing.</div>
+        <div class="essay-card-sub">How to wear fragrance like you know what you're doing. Application, timing, and not overdoing it.</div>
         <div class="essay-card-cta">Read →</div>
       </a>
     </div>
@@ -139,14 +419,15 @@
 
 <footer class="guide-footer">
   <div class="guide-footer-inner">
-    <div><a href="/guide/">← Back to Guide</a></div>
-    <div>
-      <a href="/guide/">Guide</a>
-      <span style="margin: 0 8px;">·</span>
-      <a href="/about/">About</a>
-      <span style="margin: 0 8px;">·</span>
+    <div class="guide-footer-brand">GuyTalk Guide</div>
+    <div class="guide-footer-links">
+      <a href="/">Home</a>
+      <a href="/guide/">All Categories</a>
+      <a href="/brief/">Today's Brief</a>
+      <a href="/terms/">Terms</a>
       <a href="/privacy/">Privacy</a>
     </div>
+    <div class="guide-footer-note">GuyTalk participates in Amazon Associates and other affiliate programs. We may earn a commission on qualifying purchases. Picks are chosen editorially — not based on affiliate rates.</div>
   </div>
 </footer>
 </body>
