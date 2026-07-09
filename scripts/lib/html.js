@@ -236,7 +236,7 @@ function imageCreditFromUrl(url) {
     if (/marca\.com/.test(host))                          return 'Marca';
     if (/bleacherreport\.com/.test(host))                 return 'Bleacher Report';
     if (/nytimes\.com/.test(host))                        return 'New York Times';
-    if (/washingtonpost\.com/.test(host))                 return 'Washington Post';
+    if (/washingtonpost\.com|washpost/.test(host))        return 'Washington Post';
     if (/nbcnews\.com|msnbc\.com/.test(host))             return 'NBC News';
     if (/hdnux\.com|hearst\.com/.test(host))              return 'Hearst';
     // Generic fallback: use the registrable domain name
