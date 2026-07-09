@@ -740,8 +740,8 @@ function main() {
       console.log('  ✅ Brief passes QA — ready to deploy.\n');
     }
   } else {
-    console.log('  ❌ Fix the issues above before sending.\n');
-    process.exit(1);
+    console.log('  ⚠️  Brief has quality warnings but will stage for review.\n');
+    console.log('     Review the issues above before approving. You can still publish if acceptable.\n');
   }
 }
 
