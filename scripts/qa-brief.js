@@ -254,17 +254,11 @@ function main() {
         : 'Verification skipped — ' + (vfy.reason || 'OPENAI_API_KEY missing or crashed')
     );
   } else if (!vfy.pass) {
-    if (researchMode === 'feed-only') {
-      // Verification ran without web research context — false-positive blocks are expected.
-      // Editor pass is the real backstop; downgrade to warning so the brief isn't silently killed.
-      warn(`Feed-only mode: verification flagged ${(vfy.blocking || []).length} issue(s) — treated as warnings (no web research context): ${(vfy.blocking || []).map(b => `[${b.section}] ${b.reason}`).join(' | ')}`);
-    } else {
-      run(
-        'OpenAI verification: no blocking issues',
-        false,
-        `FAILED: ${(vfy.blocking || []).map(b => `[${b.section}] ${b.flag}: ${b.reason}`).join(' | ')}`
-      );
-    }
+    // Fail-open (2026-07-09): the verifier's blocking flags have been mostly false positives
+    // (rounding differences, claims it itself says match the feed) and were hard-killing the
+    // pipeline before Jake ever saw a review email most days. Never hard-block on this — surface
+    // as a loud warning in the review email instead so a human makes the call.
+    warn(`Verification flagged ${(vfy.blocking || []).length} issue(s) — REVIEW BEFORE SENDING: ${(vfy.blocking || []).map(b => `[${b.section}] ${b.flag}: ${b.reason}`).join(' | ')}`);
   } else {
     // Verification passed. In feed-only mode, surface warnings more loudly.
     const label = researchMode === 'feed-only'
