@@ -305,18 +305,55 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="rv-hero">
   <div class="rv-pretitle">Reader Reviews</div>
-  <h1 class="rv-title">Real stories, coming soon.</h1>
-  <p class="rv-sub">GuyTalk is early — and we are not going to fake testimonials to look bigger than we are. When readers tell us how the brief helped, their words (with permission) will live here.</p>
+  <h1 class="rv-title">What readers are saying.</h1>
+  <p class="rv-sub">Real guys, real feedback. If the brief made you sharper — at the office, on the course, or in the group chat — tell us. We'll feature your review here.</p>
 </div>
 
 <div class="section-wrap">
 
-  <!-- EARLY-STAGE PLACEHOLDER — no fabricated reviews -->
-  <div style="max-width:640px;margin:0 auto;text-align:center;padding:48px 0 8px;">
-    <div class="section-label" style="justify-content:center;display:flex;">Be one of the first</div>
-    <h2 style="font-size:30px;font-weight:800;letter-spacing:-0.02em;margin:0 0 14px;">Read it for a week. Then tell us.</h2>
-    <p style="font-size:17px;color:var(--text-2);line-height:1.6;margin:0 0 26px;">The brief is free and takes five minutes a morning. If it makes you sharper in the group chat, the client call, or the Monday meeting, we would love to hear about it — and feature it right here, with your permission.</p>
-    <a href="/#signup" style="display:inline-block;padding:13px 26px;background:var(--accent);color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:15px;">Get the brief &rarr;</a>
+  <!-- REVIEW SUBMISSION FORM -->
+  <div style="max-width:640px;margin:0 auto;padding:48px 24px;">
+    <div class="section-label" style="justify-content:center;display:flex;">Share your experience</div>
+    <h2 style="font-size:30px;font-weight:800;letter-spacing:-0.02em;margin:0 0 28px;">Send us your review.</h2>
+
+    <form action="https://formspree.io/f/xyzwnvkq" method="POST" style="display:flex;flex-direction:column;gap:16px;" onsubmit="trackReviewSubmit(event)">
+      <div>
+        <label style="display:block;font-weight:600;color:var(--text);margin-bottom:6px;font-size:14px;">Your name</label>
+        <input type="text" name="name" placeholder="First and last name" required style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;">
+      </div>
+
+      <div>
+        <label style="display:block;font-weight:600;color:var(--text);margin-bottom:6px;font-size:14px;">Email</label>
+        <input type="email" name="email" placeholder="your@email.com" required style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;">
+      </div>
+
+      <div>
+        <label style="display:block;font-weight:600;color:var(--text);margin-bottom:8px;font-size:14px;">Rating</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input type="radio" name="rating" value="★★★★★ (Excellent)" required style="cursor:pointer;">
+            <span>★★★★★ Excellent</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input type="radio" name="rating" value="★★★★☆ (Good)" style="cursor:pointer;">
+            <span>★★★★☆ Good</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input type="radio" name="rating" value="★★★☆☆ (OK)" style="cursor:pointer;">
+            <span>★★★☆☆ OK</span>
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label style="display:block;font-weight:600;color:var(--text);margin-bottom:6px;font-size:14px;">Your review (min 10 chars)</label>
+        <textarea name="message" placeholder="How has GuyTalk helped you?" required rows="4" minlength="10" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;resize:vertical;"></textarea>
+      </div>
+
+      <button type="submit" style="padding:14px 24px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:15px;cursor:pointer;transition:background 0.15s;">Submit Review</button>
+
+      <p style="font-size:14px;color:var(--text-3);margin-top:8px;text-align:center;">We read every review and will feature the best ones here. No spam, ever.</p>
+    </form>
   </div>
 
   <!-- CTA -->
@@ -350,6 +387,17 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </footer>
 
 <script>
+window.trackReviewSubmit = function(e) {
+  if (window.posthog) {
+    var formData = new FormData(e.target);
+    posthog.capture('review_submitted', {
+      email: formData.get('email'),
+      rating: formData.get('rating'),
+      source: 'reviews_page'
+    });
+  }
+};
+
 window.handleSignup = function(e, form) {
   e.preventDefault();
   var email = form.querySelector('input[type="email"]').value.trim();
