@@ -435,6 +435,7 @@ function buildSportsCard(s, isLead) {
 
   return `  <section class="brief-section sport-card${isLead ? ' sport-lead' : ''}" id="${esc(id)}">
     <div class="section-label sl-sports">${esc(label)}</div>
+    <div style="font-size:12px;color:#9E9891;margin:-6px 0 12px;font-weight:500;">Data: ESPN</div>
 ${imgHtml}
     <div class="ctx-card ${esc(colorCls)}">
       <div class="ctx-head">
@@ -1314,6 +1315,7 @@ function buildMarkets({ markets, copy, date }) {
 
   return `  <section class="brief-section" id="markets">
     <div class="section-label sl-markets">Markets</div>
+    <div style="font-size:12px;color:#9E9891;margin:-6px 0 16px;font-weight:500;">Data: Finnhub</div>
 
     <h3>${esc(headline)}</h3>
 
@@ -1439,6 +1441,7 @@ function buildCulture({ copy }) {
   if (!items?.length || !Array.isArray(items)) {
     return `  <section class="brief-section" id="culture">
     <div class="section-label sl-culture">Culture</div>
+    <div style="font-size:12px;color:#9E9891;margin:-6px 0 16px;font-weight:500;">Data: NewsAPI, Claude AI research</div>
     <p>Culture picks are being updated — check back shortly.</p>
   </section>`;
   }

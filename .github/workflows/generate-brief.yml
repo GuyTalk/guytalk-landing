@@ -1,9 +1,8 @@
 name: Generate Daily Brief
 
 on:
-  # No native `schedule:` trigger — GitHub's cron queue proved unreliable
-  # (delayed 1-2+ hrs some mornings, skipped entirely on 2026-07-09). A Vercel
-  # daily cron (api/trigger-brief.js) fires this via workflow_dispatch instead.
+  schedule:
+    - cron: '0 11 * * *'   # 7am ET daily
   workflow_dispatch: {}
 
 permissions:

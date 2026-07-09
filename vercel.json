@@ -18,7 +18,8 @@
     "api/subscribe.js":       { "maxDuration": 15 },
     "api/quote.js":           { "maxDuration": 15 },
     "api/social-queue.js":    { "maxDuration": 60, "includeFiles": "brief/data/**" },
-    "api/founder.js":         { "maxDuration": 15 }
+    "api/founder.js":         { "maxDuration": 15 },
+    "api/reviews.js":         { "maxDuration": 15 }
   },
   "crons": [
     { "path": "/api/refresh-culture", "schedule": "0 11 * * *" },
