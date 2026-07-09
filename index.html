@@ -80,16 +80,9 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  * { scrollbar-width: none; -ms-overflow-style: none; }
   html, body { overflow-x: hidden; }
-  html::-webkit-scrollbar, body::-webkit-scrollbar, ::-webkit-scrollbar { width: 0 !important; height: 0 !important; display: none !important; background: transparent !important; }
   @media (max-width: 768px) {
-    * { scrollbar-width: auto; -ms-overflow-style: auto; }
-    html::-webkit-scrollbar, body::-webkit-scrollbar, ::-webkit-scrollbar { width: auto !important; height: auto !important; display: block !important; background: transparent !important; }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+    body { zoom: 0.75; }
   }
   body {
     background: var(--bg);
