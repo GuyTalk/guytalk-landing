@@ -305,61 +305,18 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 
 <div class="rv-hero">
   <div class="rv-pretitle">Reader Reviews</div>
-  <h1 class="rv-title">What readers are saying.</h1>
-  <p class="rv-sub">Real guys, real feedback. If the brief made you sharper — at the office, on the course, or in the group chat — tell us. We'll feature your review here.</p>
+  <h1 class="rv-title">Real stories, coming soon.</h1>
+  <p class="rv-sub">GuyTalk is early — and we are not going to fake testimonials to look bigger than we are. When readers tell us how the brief helped, their words (with permission) will live here.</p>
 </div>
 
 <div class="section-wrap">
 
-  <!-- REVIEW SUBMISSION FORM -->
-  <div style="max-width:640px;margin:0 auto;padding:48px 24px;">
-    <div class="section-label" style="justify-content:center;display:flex;">Share your experience</div>
-    <h2 style="font-size:30px;font-weight:800;letter-spacing:-0.02em;margin:0 0 28px;">Send us your review.</h2>
-
-    <form id="reviewForm" style="display:flex;flex-direction:column;gap:16px;">
-      <div>
-        <label style="display:block;font-weight:600;color:var(--text);margin-bottom:6px;font-size:14px;">Your name</label>
-        <input type="text" name="name" placeholder="First and last name" required style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;">
-      </div>
-
-      <div>
-        <label style="display:block;font-weight:600;color:var(--text);margin-bottom:6px;font-size:14px;">Email</label>
-        <input type="email" name="email" placeholder="your@email.com" required style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;">
-      </div>
-
-      <div>
-        <label style="display:block;font-weight:600;color:var(--text);margin-bottom:8px;font-size:14px;">Rating</label>
-        <div style="display:flex;gap:8px;">
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-            <input type="radio" name="rating" value="5" required style="cursor:pointer;">
-            <span>★★★★★ (Excellent)</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-            <input type="radio" name="rating" value="4" style="cursor:pointer;">
-            <span>★★★★☆ (Good)</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-            <input type="radio" name="rating" value="3" style="cursor:pointer;">
-            <span>★★★☆☆ (OK)</span>
-          </label>
-        </div>
-      </div>
-
-      <div>
-        <label style="display:block;font-weight:600;color:var(--text);margin-bottom:6px;font-size:14px;">Your review (min 10 chars)</label>
-        <textarea name="review" placeholder="How has GuyTalk helped you?" required rows="4" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;resize:vertical;"></textarea>
-      </div>
-
-      <button type="submit" style="padding:14px 24px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:15px;cursor:pointer;transition:background 0.15s;">Submit Review</button>
-
-      <div id="reviewSuccess" style="display:none;padding:16px;background:rgba(22,163,74,0.1);border:1px solid var(--green);border-radius:8px;color:var(--text);">
-        <strong style="color:var(--green);">✓ Thanks for the review!</strong><br/>We'll feature it on this page soon.
-      </div>
-
-      <div id="reviewError" style="display:none;padding:16px;background:rgba(220,38,38,0.1);border:1px solid #DC2626;border-radius:8px;color:#DC2626;"></div>
-    </form>
-
-    <p style="font-size:14px;color:var(--text-3);margin-top:24px;text-align:center;">We read every review and will feature the best ones here. No spam, ever.</p>
+  <!-- EARLY-STAGE PLACEHOLDER — no fabricated reviews -->
+  <div style="max-width:640px;margin:0 auto;text-align:center;padding:48px 0 8px;">
+    <div class="section-label" style="justify-content:center;display:flex;">Be one of the first</div>
+    <h2 style="font-size:30px;font-weight:800;letter-spacing:-0.02em;margin:0 0 14px;">Read it for a week. Then tell us.</h2>
+    <p style="font-size:17px;color:var(--text-2);line-height:1.6;margin:0 0 26px;">The brief is free and takes five minutes a morning. If it makes you sharper in the group chat, the client call, or the Monday meeting, we would love to hear about it — and feature it right here, with your permission.</p>
+    <a href="/#signup" style="display:inline-block;padding:13px 26px;background:var(--accent);color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:15px;">Get the brief &rarr;</a>
   </div>
 
   <!-- CTA -->
@@ -393,56 +350,6 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
 </footer>
 
 <script>
-window.handleReviewSubmit = function(e) {
-  e.preventDefault();
-  var form = e.target;
-  var formData = new FormData(form);
-  var data = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    rating: formData.get('rating'),
-    review: formData.get('review')
-  };
-
-  var submitBtn = form.querySelector('button[type="submit"]');
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Submitting...';
-
-  fetch('/api/reviews', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(r => r.json())
-  .then(json => {
-    if (json.ok) {
-      form.style.display = 'none';
-      document.getElementById('reviewSuccess').style.display = 'block';
-      document.getElementById('reviewError').style.display = 'none';
-      if (window.posthog) {
-        posthog.identify(data.email, { email: data.email });
-        posthog.capture('review_submitted', { email: data.email, rating: data.rating, source: 'reviews' });
-      }
-    } else {
-      document.getElementById('reviewError').textContent = '✗ ' + (json.error || 'Something went wrong');
-      document.getElementById('reviewError').style.display = 'block';
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit Review';
-    }
-  })
-  .catch(err => {
-    document.getElementById('reviewError').textContent = '✗ Network error. Please try again.';
-    document.getElementById('reviewError').style.display = 'block';
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit Review';
-  });
-};
-
-document.addEventListener('DOMContentLoaded', function() {
-  var form = document.getElementById('reviewForm');
-  if (form) form.addEventListener('submit', window.handleReviewSubmit);
-});
-
 window.handleSignup = function(e, form) {
   e.preventDefault();
   var email = form.querySelector('input[type="email"]').value.trim();
