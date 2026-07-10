@@ -68,7 +68,8 @@ async function enrichStories(stories) {
     if (s < 0 || e < 0) return stories;
     const whys = JSON.parse(text.slice(s, e + 1));
     return stories.map((st, i) => ({ ...st, why: whys[i]?.why || '' }));
-  } catch (_) {
+  } catch (e) {
+    console.error('[refresh-culture] enrichStories failed:', e?.message || e);
     return stories;
   }
 }

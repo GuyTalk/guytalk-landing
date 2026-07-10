@@ -264,7 +264,7 @@ module.exports = async function handler(req, res) {
         talkingAbout = ai.talking || [];
         rundown = ai.rundown || '';
         talkSource = talkingAbout.length ? 'ai' : 'derived';
-      } catch (_) { /* fall through to derived */ }
+      } catch (e) { console.error('[api/talk] buildAI failed:', e?.message || e); }
     }
     if (!talkingAbout.length) {
       talkingAbout = buildTalkingDerived(trending);
