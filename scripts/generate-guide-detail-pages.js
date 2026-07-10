@@ -34,6 +34,7 @@ const CATEGORIES = [
   { key: 'cars',           label: 'Cars',           file: 'cars-picks.json',         verb: 'Drive/Use' },
   { key: 'fitness',        label: 'Fitness',        file: 'fitness-picks.json',      verb: 'Use' },
   { key: 'accessories',    label: 'Accessories',    file: 'accessories-picks.json',  verb: 'Carry/Wear' },
+  { key: 'self-care',      label: 'Self-Care',      file: 'self-care-picks.json',    verb: 'Use' },
 ];
 
 // ─── Shared CSS + nav ─────────────────────────────────────────────────────────
@@ -159,6 +160,10 @@ const GUIDE_NAV = `<nav class="guide-nav">
     <a href="/guide/cars/"           class="guide-tab" data-path="cars">Cars</a>
     <a href="/guide/fitness/"        class="guide-tab" data-path="fitness">Fitness</a>
     <a href="/guide/accessories/"    class="guide-tab" data-path="accessories">Accessories</a>
+    <a href="/guide/golf/"           class="guide-tab" data-path="golf">Golf</a>
+    <a href="/guide/self-care/"      class="guide-tab" data-path="self-care">Self-Care</a>
+    <a href="/guide/other/"          class="guide-tab" data-path="other">Other</a>
+    <a href="/guide/archive/"        class="guide-tab" data-path="archive">Archive</a>
   </div>
 </div>
 <script>(function(){var p=window.location.pathname;document.querySelectorAll('.guide-tab').forEach(function(t){if(p.indexOf('/'+t.dataset.path+'/')!==-1)t.classList.add('active');});})();</script>`;

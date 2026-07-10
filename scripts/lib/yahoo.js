@@ -19,7 +19,11 @@ async function fetchYahooQuote(json, yahooSymbol) {
   const meta = result.meta || {};
   const closes = (result.indicators?.quote?.[0]?.close || []).filter((v) => v != null);
   const value = meta.regularMarketPrice ?? closes[closes.length - 1] ?? null;
-  const prev  = meta.previousClose ?? meta.chartPreviousClose ?? closes[closes.length - 2] ?? null;
+  // meta.chartPreviousClose is unreliable for indices (confirmed stale vs. the
+  // actual previous session's close — e.g. reported ^GSPC previous close ~$61
+  // off from reality). The real previous-close bar from the 2-day chart data
+  // itself is accurate, so prefer that over the meta field.
+  const prev  = meta.previousClose ?? closes[closes.length - 2] ?? meta.chartPreviousClose ?? null;
   if (value == null || prev == null) return null;
   const change        = value - prev;
   const changePercent = prev ? (change / prev) * 100 : 0;
