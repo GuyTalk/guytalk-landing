@@ -231,6 +231,72 @@ const ALL_PICKS = [
     productSearch: 'Dior Sauvage Eau de Toilette fragrance bottle official product photo',
     preferredDomains: ['dior.com', 'sephora.com'],
     currentUrl: 'https://www.sephora.com/search#q=dior%20sauvage%20edt' },
+
+  // ── SELF-CARE ────────────────────────────────────────────────────────────
+  { slug: 'cerave-eye-repair-cream', category: 'self-care',
+    productSearch: 'CeraVe Eye Repair Cream jar official product photo',
+    preferredDomains: ['cerave.com', 'amazon.com'],
+    currentUrl: 'https://www.amazon.com/s?k=CeraVe+Eye+Repair+Cream&tag=guytalk-20' },
+
+  { slug: 'cerave-facial-moisturizing-lotion', category: 'self-care',
+    productSearch: 'CeraVe Facial Moisturizing Lotion AM PM SPF 30 official product photo',
+    preferredDomains: ['cerave.com', 'amazon.com'],
+    currentUrl: 'https://www.amazon.com/s?k=CeraVe+Moisturizing+Lotion&tag=guytalk-20' },
+
+  { slug: 'kiehls-facial-fuel-moisturizer', category: 'self-care',
+    productSearch: "Kiehl's Facial Fuel Daily Energizing Moisture Treatment for Men official product photo",
+    preferredDomains: ['kiehls.com', 'sephora.com'],
+    currentUrl: "https://www.amazon.com/s?k=Kiehl's+Facial+Fuel+Moisturizer&tag=guytalk-20" },
+
+  { slug: 'dove-mencare-body-wash', category: 'self-care',
+    productSearch: 'Dove Men+Care Body Wash bottle official product photo',
+    preferredDomains: ['dove.com', 'amazon.com'],
+    currentUrl: 'https://www.amazon.com/s?k=Dove+Men+Care+Body+Wash&tag=guytalk-20' },
+
+  { slug: 'olay-men-face-wash', category: 'self-care',
+    productSearch: 'Olay Men Face Wash official product photo',
+    preferredDomains: ['olay.com', 'amazon.com'],
+    currentUrl: 'https://www.amazon.com/s?k=Olay+Men+Face+Wash&tag=guytalk-20' },
+
+  { slug: 'baxter-clay-pomade', category: 'self-care',
+    productSearch: 'Baxter of California Clay Pomade jar official product photo',
+    preferredDomains: ['baxterofcalifornia.com', 'amazon.com'],
+    currentUrl: 'https://www.amazon.com/s?k=Baxter+of+California+Clay+Pomade&tag=guytalk-20' },
+
+  { slug: 'bevel-shaving-cream', category: 'self-care',
+    productSearch: 'Bevel Shave Cream tube official product photo',
+    preferredDomains: ['getbevel.com', 'amazon.com'],
+    currentUrl: 'https://www.amazon.com/s?k=Bevel+Shaving+Cream&tag=guytalk-20' },
+
+  { slug: 'kerastase-bain-energisant', category: 'self-care',
+    productSearch: 'Kerastase Bain Energisant Shampoo bottle official product photo',
+    preferredDomains: ['kerastase-usa.com', 'amazon.com'],
+    currentUrl: 'https://www.amazon.com/s?k=Kerastase+Bain+Energisant+Shampoo&tag=guytalk-20' },
+
+  { slug: 'bevel-beard-oil', category: 'self-care',
+    productSearch: 'Bevel Beard Oil bottle official product photo',
+    preferredDomains: ['getbevel.com', 'amazon.com'],
+    currentUrl: 'https://www.amazon.com/s?k=Bevel+Beard+Oil&tag=guytalk-20' },
+
+  { slug: 'le-labo-santal-33', category: 'self-care',
+    productSearch: 'Le Labo Santal 33 perfume bottle official product photo',
+    preferredDomains: ['lelabofragrances.com', 'sephora.com'],
+    currentUrl: 'https://www.amazon.com/s?k=Le+Labo+Santal+33&tag=guytalk-20' },
+
+  { slug: 'dior-sauvage-edt', category: 'self-care',
+    productSearch: 'Dior Sauvage Eau de Toilette fragrance bottle official product photo',
+    preferredDomains: ['dior.com', 'sephora.com'],
+    currentUrl: 'https://www.amazon.com/s?k=Dior+Sauvage+EDT&tag=guytalk-20' },
+
+  { slug: 'creed-aventus', category: 'self-care',
+    productSearch: 'Creed Aventus cologne bottle official product photo',
+    preferredDomains: ['creedboutique.com', 'sephora.com'],
+    currentUrl: 'https://www.amazon.com/s?k=Creed+Aventus&tag=guytalk-20' },
+
+  { slug: 'cetaphil-daily-facial-cleanser', category: 'self-care',
+    productSearch: 'Cetaphil Daily Facial Cleanser bottle official product photo',
+    preferredDomains: ['cetaphil.com', 'amazon.com'],
+    currentUrl: 'https://www.amazon.com/s?k=Cetaphil+Daily+Facial+Cleanser&tag=guytalk-20' },
 ];
 
 // ─── HTML file map ───────────────────────────────────────────────────────────
@@ -239,6 +305,7 @@ const HTML_FILES = {
   'watches':        path.join(ROOT, 'guide/watches/index.html'),
   'cars':           path.join(ROOT, 'guide/cars/index.html'),
   'style':          path.join(ROOT, 'guide/style/index.html'),
+  'self-care':      path.join(ROOT, 'guide/self-care/index.html'),
 };
 
 // Also patch the hub (guide/index.html) for style picks that appear there

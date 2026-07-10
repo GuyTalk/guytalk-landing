@@ -25,6 +25,7 @@
 
 const fs   = require('fs');
 const path = require('path');
+const { fetchYahooQuote: fetchYahooQuoteShared } = require('./lib/yahoo');
 
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports';
 const CURRENT_YEAR = new Date().getUTCFullYear();
@@ -1028,21 +1029,8 @@ async function fetchMarketNews() {
 
 // Fetch one security's price + daily change from Yahoo Finance chart API.
 // Works without auth for index symbols (^GSPC, ^DJI, etc.) and crypto.
-async function fetchYahooQuote(yahooSymbol) {
-  const yj = await json(
-    `https://query1.finance.yahoo.com/v8/finance/chart/${yahooSymbol}?interval=1d&range=2d`
-  );
-  const result = yj?.chart?.result?.[0];
-  if (!result) return null;
-  const meta = result.meta || {};
-  const closes = (result.indicators?.quote?.[0]?.close || []).filter((v) => v != null);
-  const value = meta.regularMarketPrice ?? closes[closes.length - 1] ?? null;
-  const prev  = meta.previousClose ?? meta.chartPreviousClose ?? closes[closes.length - 2] ?? null;
-  if (value == null || prev == null) return null;
-  const change        = value - prev;
-  const changePercent = prev ? (change / prev) * 100 : 0;
-  return { value: Number(value), change: Number(change), changePercent: Number(changePercent) };
-}
+// Shared with api/talk.js so the Rundown and the Markets tiles never disagree.
+const fetchYahooQuote = (yahooSymbol) => fetchYahooQuoteShared(json, yahooSymbol);
 
 async function fetchMarkets(finnhubKey) {
   // Main index + crypto + commodities tiles

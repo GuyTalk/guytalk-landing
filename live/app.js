@@ -1582,7 +1582,15 @@ function FeaturedGolfCard(g) {
     })();
     const hlLabel = featured.eventLink ? 'Watch on ESPN →' : 'Watch highlights →';
 
-    const champCard = (!others.length && featured.state === 'post') ? ChampionHighlightCard(featured, tag) : '';
+    // "No other games + this one finished" is only a safe proxy for "the title
+    // is decided" in a nightly slate (NBA/NHL/MLB) — it's wrong for single-
+    // elimination tournaments like the World Cup, where a quiet quarterfinal/
+    // semifinal day also has exactly one tracked match. Require ESPN's own
+    // round label to actually say "Final"/"Finals" (not Semifinal/Quarterfinal/
+    // Final Four) before showing the champions banner.
+    const hl = featured.headline || '';
+    const isFinalRound = /\bfinals?\b/i.test(hl) && !/final\s*four/i.test(hl);
+    const champCard = (!others.length && featured.state === 'post' && isFinalRound) ? ChampionHighlightCard(featured, tag) : '';
     const useWide = others.length > 4;
     const leftOthers = useWide ? [] : others;
     const wideOthers = useWide ? others : [];

@@ -58,15 +58,19 @@ const FIN_ADVICE = /\b(price targets?|buying opportunity|under-?valued|over-?val
 const adviceFree = (s) => (s && FIN_ADVICE.test(s) ? '' : s);
 
 // Compact market snapshot (top movers) to give The Rundown real market context.
+// Real indices/futures via Yahoo Finance — same symbols and same fetcher as the
+// Markets tab (api/lib/yahoo.js) — not ETF proxies. ETFs like USO/GLD diverge
+// from the underlying (futures-roll costs, fund fees), which used to make the
+// Rundown's oil/gold figures disagree with the Markets tiles a few pixels away.
+const { fetchYahooQuote } = require('./lib/yahoo');
 const MKT = [
-  { l: 'S&P 500', s: 'SPY' }, { l: 'Nasdaq', s: 'QQQ' }, { l: 'Dow', s: 'DIA' },
-  { l: 'Bitcoin', s: 'BINANCE:BTCUSDT' }, { l: 'Gold', s: 'GLD' }, { l: 'Oil', s: 'USO' },
+  { l: 'S&P 500', s: '%5EGSPC' }, { l: 'Nasdaq', s: '%5EIXIC' }, { l: 'Dow', s: '%5EDJI' },
+  { l: 'Bitcoin', s: 'BTC-USD' }, { l: 'Gold', s: 'GC%3DF' }, { l: 'Oil', s: 'CL%3DF' },
 ];
-async function marketContext(key) {
-  if (!key) return '';
+async function marketContext() {
   const rows = await Promise.all(MKT.map(async (m) => {
-    const d = await json(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(m.s)}&token=${key}`);
-    return d && d.dp != null ? { l: m.l, dp: Number(d.dp) } : null;
+    const q = await fetchYahooQuote(json, m.s);
+    return q ? { l: m.l, dp: q.changePercent } : null;
   }));
   const have = rows.filter(Boolean).sort((a, b) => Math.abs(b.dp) - Math.abs(a.dp)).slice(0, 4);
   return have.map((r) => `${r.l} ${r.dp >= 0 ? '+' : ''}${r.dp.toFixed(1)}%`).join(', ');
@@ -245,7 +249,7 @@ module.exports = async function handler(req, res) {
     const [espn, newsapi, marketLine] = await Promise.all([
       fetchEspnNews(),
       fetchNewsApi(process.env.NEWS_API_KEY),
-      marketContext(process.env.FINNHUB_API_KEY),
+      marketContext(),
     ]);
 
     let trending = buildTrending(espn, newsapi);

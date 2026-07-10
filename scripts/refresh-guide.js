@@ -18,7 +18,7 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 //   bi    — refresh every 2 weeks
 //   slow  — refresh every 4 weeks (staples/classics, low churn)
 // Week-of-year modulo determines whether slow/bi categories run this pass.
-const ROTATION = { style: 'fast', watches: 'slow', 'bourbon-cigars': 'slow', cars: 'slow', fitness: 'fast', accessories: 'fast', golf: 'fast', other: 'bi' };
+const ROTATION = { style: 'fast', watches: 'slow', 'bourbon-cigars': 'slow', cars: 'slow', fitness: 'fast', accessories: 'fast', golf: 'fast', other: 'bi', 'self-care': 'bi' };
 
 const CATEGORIES = [
   {
@@ -135,6 +135,25 @@ const CATEGORIES = [
       'YETI Rambler 20oz Tumbler ~$38',
       'Apple AirTag 4-Pack ~$100',
       'Solo Stove Bonfire 2.0 ~$350',
+    ],
+  },
+  {
+    id: 'self-care',
+    name: 'Self-Care',
+    currentPicks: [
+      'CeraVe Eye Repair Cream ~$15',
+      'CeraVe Facial Moisturizing Lotion AM/PM ~$12',
+      "Kiehl's Facial Fuel Moisturizer ~$38",
+      'Dove Men+Care Body Wash ~$6',
+      'Olay Men Face Wash ~$5',
+      'Baxter of California Clay Pomade ~$22',
+      'Bevel Shaving Cream ~$15',
+      'Kérastase Bain Energisant Shampoo ~$28',
+      'Bevel Beard Oil ~$18',
+      'Le Labo Santal 33 Cologne ~$240',
+      'Dior Sauvage EDT Cologne ~$110',
+      'Creed Aventus Cologne ~$380',
+      'Cetaphil Daily Facial Cleanser ~$8',
     ],
   },
 ];
