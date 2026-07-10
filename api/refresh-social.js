@@ -69,9 +69,9 @@ Respond ONLY with a valid JSON array (no markdown, no code fences):
 Rules:
 - PRIORITIZE posts from the last 6 hours; fall back to last 24h if needed
 - Never invent a quote — only verifiable real statements
-- Each must have a real named person/account
 - Return 4-5 items; 3 minimum if you cannot find enough
 - Rank by cultural impact — what are guys actually talking about right now?
+- If you cannot verify ANY real posts (e.g. X search results are unreliable or stale), respond with an empty JSON array \`[]\`. Never respond with prose, an explanation, or a refusal — ONLY ever a JSON array, even when it's empty.
 `,
   });
 
@@ -86,8 +86,15 @@ Rules:
   } catch (_) {
     // Try extracting first [...] block
     const m = clean.match(/\[[\s\S]*\]/);
-    if (m) moments = JSON.parse(m[0]);
-    else throw new Error('Could not parse social moments JSON');
+    if (m) {
+      moments = JSON.parse(m[0]);
+    } else {
+      // Model refused/explained in prose instead of returning JSON (X search is
+      // unreliable for real-time content) — fail open with 0 moments rather than
+      // 500ing the whole cron. See guytalk_incident_071026 memory.
+      console.warn('[refresh-social] model returned non-JSON prose instead of an array:', text.slice(0, 200));
+      moments = [];
+    }
   }
 
   return moments.filter(
@@ -126,6 +133,11 @@ module.exports = async function handler(req, res) {
 
   try {
     const moments = await fetchSocialMoments();
+    if (!moments.length) {
+      // Nothing verifiable this cycle — leave the existing live-social.json alone
+      // rather than overwriting good data with an empty list.
+      return res.json({ ok: true, count: 0, skipped: true, fetchedAt: new Date().toISOString() });
+    }
     await commitFile(moments);
     return res.json({ ok: true, count: moments.length, fetchedAt: new Date().toISOString() });
   } catch (err) {
