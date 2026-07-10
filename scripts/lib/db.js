@@ -547,7 +547,7 @@ const RECS = [
     url: 'https://www.masterclass.com',
     cta: 'Try MasterClass →',
     brand: 'MasterClass',
-    imageUrl: null,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/MasterClass_logo_2020_%28pink%29.svg/960px-MasterClass_logo_2020_%28pink%29.svg.png',
   },
   {
     title: 'Weber Kettle Premium 22" — the only grill most guys actually need.',

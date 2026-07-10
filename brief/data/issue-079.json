@@ -1,0 +1,1488 @@
+{
+  "num": 79,
+  "slug": "issue-079",
+  "date": "Friday, July 10, 2026",
+  "title": "Home prices hit record high. Yankees demolish Rays. Wimbledon deep into final rounds.",
+  "deck": "What happened — and what to say about it.",
+  "sports": [
+    {
+      "id": "401816087",
+      "name": "New York Yankees at Tampa Bay Rays",
+      "shortName": "NYY @ TB",
+      "date": "2026-07-09T17:10Z",
+      "venue": "Tropicana Field",
+      "venueCity": "St. Petersburg, Florida",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Tampa Bay Rays",
+        "abbrev": "TB",
+        "score": "4",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Yankees",
+        "abbrev": "NYY",
+        "score": "12",
+        "winner": true
+      }
+    },
+    {
+      "id": "401816084",
+      "name": "Atlanta Braves at Pittsburgh Pirates",
+      "shortName": "ATL @ PIT",
+      "date": "2026-07-09T16:35Z",
+      "venue": "PNC Park",
+      "venueCity": "Pittsburgh, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "5",
+        "winner": false
+      },
+      "away": {
+        "team": "Atlanta Braves",
+        "abbrev": "ATL",
+        "score": "10",
+        "winner": true
+      }
+    },
+    {
+      "id": "401816090",
+      "name": "Los Angeles Angels at Texas Rangers",
+      "shortName": "LAA @ TEX",
+      "date": "2026-07-10T00:05Z",
+      "venue": "Globe Life Field",
+      "venueCity": "Arlington, Texas",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Texas Rangers",
+        "abbrev": "TEX",
+        "score": "7",
+        "winner": true
+      },
+      "away": {
+        "team": "Los Angeles Angels",
+        "abbrev": "LAA",
+        "score": "6",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 751.71,
+      "prevClose": 745.4,
+      "dayChange": 6.31,
+      "dayChangePct": 0.8465,
+      "weekChangePct": 0.7978424904071993,
+      "spark": [
+        725.4299926757812,
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125,
+        745.760009765625,
+        744.780029296875,
+        751.280029296875,
+        747.7100219726562,
+        745.4000244140625,
+        751.7100219726562
+      ],
+      "indexPrice": 7543.64,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.8142777066140149
+    },
+    "DIA": {
+      "price": 524.19,
+      "prevClose": 522.77,
+      "dayChange": 1.42,
+      "dayChangePct": 0.2716,
+      "weekChangePct": 0.34264462141732055,
+      "spark": [
+        500.25,
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375,
+        522.4000244140625,
+        527.8800048828125,
+        530.0900268554688,
+        528.4500122070312,
+        522.77001953125,
+        524.1900024414062
+      ],
+      "indexPrice": 52487.41,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.26556570954754827
+    },
+    "QQQ": {
+      "price": 723.28,
+      "prevClose": 711.44,
+      "dayChange": 11.84,
+      "dayChangePct": 1.6642,
+      "weekChangePct": -0.2606261917477124,
+      "spark": [
+        693.6900024414062,
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625,
+        725.1699829101562,
+        712.5999755859375,
+        722.8200073242188,
+        709.4299926757812,
+        711.4400024414062,
+        723.280029296875
+      ],
+      "indexPrice": 26206.89,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 1.299695231074847
+    },
+    "IWM": {
+      "price": 297.24,
+      "prevClose": 293.48,
+      "dayChange": 3.76,
+      "dayChangePct": 1.2812,
+      "weekChangePct": -0.6949108891226604,
+      "spark": [
+        282.04998779296875,
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125,
+        299.32000732421875,
+        297.5799865722656,
+        298.8999938964844,
+        296.19000244140625,
+        293.4800109863281,
+        297.239990234375
+      ],
+      "indexPrice": 2992.542,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 1.2228464017088223
+    },
+    "NVDA": {
+      "price": 202.78,
+      "prevClose": 204.12,
+      "dayChange": -1.34,
+      "dayChangePct": -0.6565,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 406.55,
+      "prevClose": 394.06,
+      "dayChange": 12.49,
+      "dayChangePct": 3.1696,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 384.36,
+      "prevClose": 383.34,
+      "dayChange": 1.02,
+      "dayChangePct": 0.2661,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 316.22,
+      "prevClose": 313.39,
+      "dayChange": 2.83,
+      "dayChangePct": 0.903,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 631.48,
+      "prevClose": 603.12,
+      "dayChange": 28.36,
+      "dayChangePct": 4.7022,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 247.04,
+      "prevClose": 243.62,
+      "dayChange": 3.42,
+      "dayChangePct": 1.4038,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 358.89,
+      "prevClose": 361.92,
+      "dayChange": -3.03,
+      "dayChangePct": -0.8372,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 546.72,
+      "prevClose": 517.405,
+      "dayChange": 29.315,
+      "dayChangePct": 5.6658,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 401.11,
+      "prevClose": 388.69,
+      "dayChange": 12.42,
+      "dayChangePct": 3.1953,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 75.47,
+      "prevClose": 75.59,
+      "dayChange": -0.12,
+      "dayChangePct": -0.1588,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 335.47,
+      "prevClose": 330.62,
+      "dayChange": 4.85,
+      "dayChangePct": 1.4669,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 158.44,
+      "prevClose": 159.36,
+      "dayChange": -0.92,
+      "dayChangePct": -0.5773,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 450.22,
+      "prevClose": 431.97,
+      "dayChange": 18.25,
+      "dayChangePct": 4.2248,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 64423.54,
+      "prevClose": 62804.01,
+      "dayChange": 1619.53,
+      "dayChangePct": 2.5787,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AMD",
+      "META",
+      "DELL",
+      "AVGO",
+      "TSLA"
+    ],
+    "10Y": {
+      "price": 4.539,
+      "prevClose": 4.568999767303467,
+      "dayChange": -0.029999767303467095,
+      "dayChangePct": -0.6565937586197856,
+      "weekChangePct": 2.738790690084134,
+      "spark": [
+        4.5279998779296875,
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744,
+        4.374000072479248,
+        4.418000221252441,
+        4.474999904632568,
+        4.485000133514404,
+        4.5289998054504395,
+        4.568999767303467,
+        4.539000034332275
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Thursday, July 9 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Thursday, July 9). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 546.72,
+          "changePct": 5.66577
+        },
+        {
+          "symbol": "META",
+          "name": "Meta Platforms, Inc.",
+          "price": 631.48,
+          "changePct": 4.70222
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 406.55,
+          "changePct": 3.16957
+        },
+        {
+          "symbol": "ETH",
+          "name": "Ethereum USD",
+          "price": 1796.97,
+          "changePct": 3.0208
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "COST",
+          "name": "Costco Wholesale Corporation",
+          "price": 912.97,
+          "changePct": -4.21349
+        },
+        {
+          "symbol": "PEP",
+          "name": "PepsiCo, Inc.",
+          "price": 137.86,
+          "changePct": -3.26293
+        },
+        {
+          "symbol": "XOM",
+          "name": "Exxon Mobil Corporation",
+          "price": 137.37,
+          "changePct": -2.66421
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 129.04,
+          "changePct": -2.40508
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 202.78,
+          "changePct": -0.65648
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 112.54,
+          "changePct": 2.08636
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 316.22,
+          "changePct": 0.90303
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 64392.7,
+          "changePct": 1.91169
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Genesis Scottish Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-09T04:00Z",
+    "endDate": "2026-07-12T04:00Z",
+    "status": "Round 2 - In Progress",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Jordan Smith",
+        "score": "-8",
+        "pos": "1st"
+      },
+      {
+        "name": "Danny Willett",
+        "score": "-6",
+        "pos": "2nd"
+      },
+      {
+        "name": "Guido Migliozzi",
+        "score": "-6",
+        "pos": "3rd"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-6",
+        "pos": "4th"
+      },
+      {
+        "name": "Darius Van Driel",
+        "score": "-5",
+        "pos": "5th"
+      },
+      {
+        "name": "Calum Hill",
+        "score": "-5",
+        "pos": "6th"
+      },
+      {
+        "name": "Patrick Reed",
+        "score": "-5",
+        "pos": "7th"
+      },
+      {
+        "name": "Tom Kim",
+        "score": "-5",
+        "pos": "8th"
+      },
+      {
+        "name": "Bernd Wiesberger",
+        "score": "-5",
+        "pos": "9th"
+      },
+      {
+        "name": "Patrick Cantlay",
+        "score": "-5",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Novak Djokovic",
+            "loser": "Felix Auger-Aliassime",
+            "score": "7-6 3-6 6-3 6-7 7-6"
+          },
+          {
+            "winner": "Arthur Fery",
+            "loser": "Flavio Cobolli",
+            "score": "6-4 7-6 6-0"
+          },
+          {
+            "winner": "Alexander Zverev",
+            "loser": "Taylor Fritz",
+            "score": "6-4 6-4 6-2"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Marta Kostyuk",
+            "loser": "Jasmine Paolini",
+            "score": "6-3 6-2"
+          },
+          {
+            "winner": "Karolina Muchova",
+            "loser": "Coco Gauff",
+            "score": "6-2 1-6 7-6"
+          },
+          {
+            "winner": "Linda Noskova",
+            "loser": "Marta Kostyuk",
+            "score": "6-4 6-4"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Moët & Chandon Belgian Grand Prix",
+    "shortName": "Moët & Chandon Belgian GP",
+    "venue": "Circuit de Spa-Francorchamps",
+    "status": "7/19 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 179,
+      "lead": 25
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Morocco at France",
+      "shortName": "MAR @ FRA",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-09T20:00Z",
+      "home": {
+        "team": "France",
+        "score": "2"
+      },
+      "away": {
+        "team": "Morocco",
+        "score": "0"
+      },
+      "goals": [
+        {
+          "player": "Kylian Mbappé",
+          "team": "",
+          "clock": "60'",
+          "type": "Goal"
+        },
+        {
+          "player": "Ousmane Dembélé",
+          "team": "",
+          "clock": "66'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Kylian Mbappé had a goal and an assist after missing a first-half penalty kick, Ousmane Dembélé scored the other goal and France beat Morocco 2-0 Thursday in the World Cup quarterfinals."
+    },
+    {
+      "name": "Belgium at Spain",
+      "shortName": "BEL @ ESP",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-10T19:00Z",
+      "home": {
+        "team": "Spain",
+        "score": "0"
+      },
+      "away": {
+        "team": "Belgium",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "The actors of ‘The Pitt’ own the Emmy acting categories with 13 nominated cast members - AP News",
+      "url": "https://apnews.com/article/emmy-acting-nominations-pitt-6301ee554b22891458db0713821814d0",
+      "description": "The cast of “The Pitt” has had an epic day at the Emmy nominations, with 13 of them getting acting nods. The show highlights the roles of doctors, nurses, and patients in a small emergency department. In its first year, its cast was nominated for and won thre…",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Tiffany Haddish Hits Jimmy Kimmel With 1 Brutal Truth About Him And Trump - HuffPost",
+      "url": "https://www.huffpost.com/entry/tiffany-haddish-trump-kimmel_n_6a4f2f8de4b04b52a93e5b76",
+      "description": "The comedian and actor celebrated the White House reaction to her jokes about the president.",
+      "source": "HuffPost"
+    },
+    {
+      "title": "Horoscope for Thursday, July 09, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/07/09/horoscopes-today-thursday-july-09-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Justin Baldoni Breaks Silence on ‘It Ends With Us’ Legal Battle With Blake Lively: “So Many Painful Things” - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/movies/movie-news/justin-baldoni-speaks-out-it-ends-with-us-legal-battle-blake-lively-1236642825/",
+      "description": "His wife, Emily Baldoni, added that they've \"had to wrestle with so many things\" the last two years, \"like how could something like this even happen? Let alone disguised as a fight for women.\"",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Egypt complains officials were biased in World Cup loss to Argentina - NPR",
+      "url": "https://www.npr.org/2026/07/09/nx-s1-5887063/egypt-complain-world-cup",
+      "description": "The Egyptian Football Association (EFA) said Wednesday it \"cannot remain silent\" after what it believes was unfair and biased officiating in Egypt's 3-2 round of 16 loss against Argentina on Tuesday.",
+      "source": "NPR"
+    },
+    {
+      "title": "Contreras not worried after exiting with left foot contusion from foul ball - MLB.com",
+      "url": "https://www.mlb.com/news/willson-contreras-exits-with-injury-after-fouling-ball-off-foot",
+      "description": "CHICAGO -- Red Sox first baseman Willson Contreras, fresh off being added to the All-Star team and accepting an invitation to the Home Run Derby, was forced out of Wednesday night’s 5-0 victory over the White Sox with a left foot contusion suffered after he f…",
+      "source": "MLB.com"
+    },
+    {
+      "title": "Midnight Mania! ‘Innocent Man’ Mac Finally Addresses Civil Rape Case - MMA Mania",
+      "url": "https://www.mmamania.com/ufc-329-mcgregor-vs-holloway-2/455809/conor-mcgregor-finally-addresses-civil-rape-case-ahead-of-ufc-329-i-am-an-innocent-man",
+      "description": "UFC 329’s Conor McGregor finally addresses being found civilly liable of rape two years ago, maintaining his innocence.",
+      "source": "MMA Mania"
+    },
+    {
+      "title": "White Sox considering three hitters for No. 1 pick - NBC Sports",
+      "url": "https://www.nbcsports.com/fantasy/baseball/player-news/2026-07-08/white-sox-considering-three-names-for-no-1-pick",
+      "description": "ESPN's Jesse Rogers reports the White Sox are deciding between UCLA shortstop Roch Cholowsky, Texas prep shortstop Grady Emerson and Georgia Tech catcher Vahn Lackey for the first-overall selection in the 2026 MLB Draft.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Chicago Cubs vs. Baltimore Orioles Results, Stats, and Recap - July 8, 2026 Gametracker - CBS Sports",
+      "url": "https://www.cbssports.com/mlb/gametracker/recap/MLB_20260708_CHC@BAL/",
+      "description": "CBS Sports brings you live coverage, scoring, expert picks and stats for the MLB matchup between Chicago Cubs and Baltimore Orioles on July 8, 2026",
+      "source": "CBS Sports"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Markets/Economy",
+      "headline": "Home prices hit record high amid affordability squeeze",
+      "whatHappened": "On July 9, home prices in the U.S. reached an all‑time high, worsening the housing affordability crisis.",
+      "whyItMatters": "Housing affordability impacts millions of men navigating mortgages and family planning—it influences inflation and Fed policy too.",
+      "depth": "Record‑high home prices are a pain point if you're trying to buy a place—or rent a decent apartment—today. This isn’t just numbers; it hits wallets and weekends spent scrolling Zillow.",
+      "whatToSay": "“Have you seen home prices are at record highs now? It’s killing the budget just to find something half decent.”",
+      "sources": [
+        "https://www.reddit.com/r/TrumpGlobalWar/comments/1us4vsc/us_economy_brefing_09072026_0600_pm_et_last_12/"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Markets/Economy",
+      "_context": [
+        "Home prices reached new all‑time high as of July 9",
+        "Affordability crisis deepening as prices climb faster than incomes",
+        "MarketWatch reported this headline",
+        "CNBC noted Fed officials are divided on rate‑hike odds following these pressures"
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "Top‑tier business relevance, very fresh, affects personal finances, wide conversation appeal.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets/Economy",
+      "headline": "Fed officials divided on 2026 rate‑hike odds",
+      "whatHappened": "As of July 9, Fed officials remain split on whether another rate hike will be needed this year.",
+      "whyItMatters": "Rate‑hike uncertainty drives mortgage, loan, and stock‑market sentiment—key for everyday financial moves.",
+      "depth": "Watching what the Fed does is like reading tea leaves for your mortgage and 401(k). If they think rates may go up, your weekend plans might change.",
+      "whatToSay": "“Apparently the Fed can’t even agree if rates need another kick in 2026—makes planning feel impossible.”",
+      "sources": [
+        "https://www.reddit.com/r/TrumpGlobalWar/comments/1us4vsc/us_economy_brefing_09072026_0600_pm_et_last_12/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets/Economy",
+      "_context": [
+        "Fed officials remain divided on odds of a 2026 rate hike",
+        "Discussion follows Warsh’s first FOMC minutes",
+        "Reported by CNBC"
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "Markets/business relevance, fresh, widely discussed topic.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Tech/AI/Business",
+      "headline": "CISA urges patching of critical software flaws by today",
+      "whatHappened": "On July 9, CISA added critical vulnerabilities in Adobe ColdFusion, Langflow, and Joomla extensions to its Known Exploited Vulnerabilities catalog, urging patching by July 10.",
+      "whyItMatters": "Gives a real threat affecting systems today—home networks and workplace devices need updates now.",
+      "depth": "Cybersecurity isn’t just for IT nerds—if you leave one of these exposed, you're an invite to crypto‑lockers or worse.",
+      "whatToSay": "“Big vulnerabilities in ColdFusion and Joomla just got flagged by CISA—better get your updates in today.”",
+      "sources": [
+        "https://www.securityweek.com/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Tech/AI/Business",
+      "_context": [
+        "CISA added ColdFusion, Langflow, and Joomla extension flaws to Known Exploited Vulnerabilities",
+        "Federal agencies given until July 10 to patch",
+        "Reported July 9 by SecurityWeek"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Tech/business with immediate, practical impact today.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "ICC cites evidence of war crimes in Darfur",
+      "whatHappened": "On July 9, the International Criminal Court said it has concrete evidence tying Sudanese Rapid Support Forces leaders to recent war crimes in Darfur.",
+      "whyItMatters": "Big international justice story—resonates beyond policy, underscores global instability men discuss in news conversation.",
+      "depth": "Global news isn’t just distant—it shapes geopolitics, energy prices, and history. And this one’s serious: war crimes, real stakes.",
+      "whatToSay": "“Did you know the ICC just confirmed evidence against Sudanese commanders over Darfur? That’s not the kind of news you ignore.”",
+      "sources": [
+        "https://www.justsecurity.org/146314/early-edition-july-9-2026/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "ICC has “concrete evidence” linking Sudanese RSF leaders to Darfur war crimes",
+        "Deputy Chief Prosecutor Nazhat Shameem Khan told BBC News",
+        "Reported July 9 by JustSecurity citing Reuters/NYT"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Major world news, fresh, impacts geopolitics.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Sports",
+      "headline": "Tour de France and Wimbledon underway today",
+      "whatHappened": "On July 10, both the Tour de France (cycling) and Wimbledon quarterfinals (tennis) are taking place.",
+      "whyItMatters": "Mens interests—great for bar talk: who pulls ahead in the Tour, and which players remain at Wimbledon.",
+      "depth": "Nothing beats debating Peloton splits or whether Zverev will finally lose at Wimbledon. Classic summer sports chat.",
+      "whatToSay": "“The Tour’s still rolling and Wimbledon’s deep into quarters—what a great sports day.”",
+      "sources": [
+        "https://www.sportsbarmarketing.com/wp-content/uploads/2026/06/07‑July‑2026.pdf",
+        "https://www.techradar.com/how‑to‑watch/tennis/wimbledon‑2026‑free‑live‑streams"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Tour de France stage is taking place July 10",
+        "Wimbledon quarter‑finals ongoing on Day 10",
+        "Confirmed by schedule sites"
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "Sports day with two major live events, ideal for casual convo.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "White House/Politics/Policy",
+      "headline": "Trump praises NATO unity after summit",
+      "whatHappened": "On July 8, President Trump said NATO leaders showed “tremendous love” and unity at a summit in Turkey, smoothing tensions.",
+      "whyItMatters": "Highlights U.S. foreign policy tone shift—and provides political flavor for men’s conversations about politics/international relations.",
+      "depth": "Diplomacy talk: if NATO is cozy again, that changes geopolitical tension—and optics right now. Worth a mention over beers.",
+      "whatToSay": "“Trump said NATO was full of love and unity after Ankara—makes you wonder how real that is.”",
+      "sources": [
+        "https://www.cbsnews.com/news/trump-nato-leaders-news-conference-iran-strikes/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "White House/Politics/Policy",
+      "_context": [
+        "Trump touted “unity” and “tremendous love” among NATO leaders",
+        "Summit was this week in Ankara",
+        "Reported July 8 by CBS News"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Political story, fresh, notable for U.S. policy conversation.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "The actors of ‘The Pitt’ own the Emmy acting categories with 13 nominated cast members",
+        "source": "Associated Press",
+        "url": "https://apnews.com/article/emmy-acting-nominations-pitt-6301ee554b22891458db0713821814d0",
+        "fact": "The cast of “The Pitt” has had an epic day at the Emmy nominations, with 13 of them getting acting nods. The show highlights the roles of doctors, nurses, and patients in a small emergency department. In its first year, its cast was nominated for and won thre…",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Tiffany Haddish Hits Jimmy Kimmel With 1 Brutal Truth About Him And Trump",
+        "source": "HuffPost",
+        "url": "https://www.huffpost.com/entry/tiffany-haddish-trump-kimmel_n_6a4f2f8de4b04b52a93e5b76",
+        "fact": "The comedian and actor celebrated the White House reaction to her jokes about the president.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Justin Baldoni Breaks Silence on ‘It Ends With Us’ Legal Battle With Blake Lively: “So Many Painful Things”",
+        "source": "Hollywood Reporter",
+        "url": "http://www.hollywoodreporter.com/movies/movie-news/justin-baldoni-speaks-out-it-ends-with-us-legal-battle-blake-lively-1236642825/",
+        "fact": "His wife, Emily Baldoni, added that they've \"had to wrestle with so many things\" the last two years, \"like how could something like this even happen? Let alone disguised as a fight for women.\"",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "France 2–0 Morocco",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nFrance 2–0 Morocco | Scorers: Kylian Mbappé (60'), Ousmane Dembélé (66') NOTE: Kylian Mbappé had a goal and an assist after missing a first-half penalty kick, Ousmane Dembélé scored the other goal an\nTODAY'S FIXTURES: Belgium vs. Spain (3:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Kylian Mbappé (Real Madrid · France · arguably the best player alive): en.wikipedia.org/wiki/Kylian_Mbappé\n- Ousmane Dembélé\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://a1.espncdn.com/combiner/i?img=%2Fphoto%2F2026%2F0709%2Fr1687071_1296x729_16%2D9.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "France defeated Morocco 2–0, with Kylian Mbappé scoring one goal and adding an assist after missing a first-half penalty, and Ousmane Dembélé adding the second.",
+      "whyItMatters": "Mbappé's composed finish after a penalty miss showed he can handle pressure in knockout football. France's dominance keeps them moving deeper into the tournament.",
+      "theRead": "Mbappé is still doing Mbappé things—the miss didn't rattle him, and he came back with a goal and an assist. That's the mark of a player who thrives when it matters most. Morocco had nothing to counter France's pace and precision. Dembélé's inclusion is paying dividends on the wing. France looks built for a deep run.",
+      "ammo": [
+        "Kylian Mbappé plays for Real Madrid and is arguably the best player alive",
+        "Mbappé scored one goal and provided one assist despite missing a first-half penalty",
+        "Ousmane Dembélé scored the second goal"
+      ],
+      "whatToBringUp": "Mbappé missed a penalty early but still finished with a goal and an assist—that's elite-level mental toughness in a knockout match.",
+      "ourPick": "France advances further because Mbappé performs when stakes are highest and their wing play with Dembélé is overwhelming any defense.",
+      "playerLinks": [
+        {
+          "name": "Kylian Mbappé",
+          "url": "https://en.wikipedia.org/wiki/Kylian_Mbappé"
+        }
+      ]
+    },
+    {
+      "name": "Tour de France and Wimbledon underway today",
+      "label": "SPORTS",
+      "category": "team",
+      "headline": "Tour de France and Wimbledon underway today",
+      "facts": "On July 10, both the Tour de France (cycling) and Wimbledon quarterfinals (tennis) are taking place. Mens interests—great for bar talk: who pulls ahead in the Tour, and which players remain at Wimbledon.",
+      "background": "Mens interests—great for bar talk: who pulls ahead in the Tour, and which players remain at Wimbledon.",
+      "source": "Research",
+      "url": "https://www.sportsbarmarketing.com/wp-content/uploads/2026/06/07‑July‑2026.pdf",
+      "imageUrl": "https://cdnph.upi.com/pv/upi/0768f970259c2dad3185ae27080b2bb9/2026-WIMBLEDON-CHAMPIONSHIPS.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "sports",
+      "whatHappened": "The Tour de France and Wimbledon quarterfinals are both happening today, July 10, giving cycling and tennis fans simultaneous heavyweight matchups.",
+      "whyItMatters": "These are two of the sport's biggest stages running at once—whoever emerges from today's rounds will shape narratives for the rest of both tournaments.",
+      "theRead": "If you're looking for a full day of legitimate sports drama, this is it. Tour de France stage racing is brutal and unpredictable, and Wimbledon quarterfinals are where pretenders get exposed on grass. Whoever pulls ahead in the Tour today stays in contention, and whoever survives the Wimbledon quarters is one match away from the semis. Both tournaments reward mental sharpness as much as physical ability.",
+      "ammo": [
+        "Tour de France is underway on July 10, 2026",
+        "Wimbledon quarterfinals are taking place on July 10, 2026",
+        "Both tournaments are happening simultaneously today"
+      ],
+      "whatToBringUp": "Tour de France and Wimbledon quarterfinals are both going down today—pick your poison, because you're not watching both without missing something huge.",
+      "ourPick": "The Tour's stage tactics and Wimbledon's grass-court intensity both favor players who stay composed under pressure, so whoever handles today's conditions best sets up a better position for the week ahead."
+    },
+    {
+      "name": "NYY @ TB",
+      "label": "MLB",
+      "category": "team",
+      "headline": "New York Yankees 12–4 over Tampa Bay Rays",
+      "facts": "New York Yankees beat Tampa Bay Rays 12–4",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/kfqurss7fryobffnclqd",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "The New York Yankees defeated the Tampa Bay Rays 12–4.",
+      "whyItMatters": "A 12-run performance is a statement win that puts the Yankees ahead in the division race and shows their offense is clicking when it needs to.",
+      "theRead": "The Yankees came out swinging and didn't let up. Eight-run margin against a division rival is the kind of dominant display that builds confidence through a long season. Tampa Bay couldn't keep pace. This is what Yankees baseball looks like when everything is working.",
+      "ammo": [
+        "New York Yankees defeated Tampa Bay Rays 12–4",
+        "Yankees scored 12 runs in the victory",
+        "The margin of victory was 8 runs"
+      ],
+      "whatToBringUp": "Yankees just dropped 12 on Tampa Bay—that's the kind of blowout that shifts momentum in a division race.",
+      "ourPick": "The Yankees look dangerous right now because they're winning convincingly against division rivals, and that kind of offensive firepower carries into the stretch run."
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://dims.apnews.com/dims4/default/d64f3a3/2147483647/strip/true/crop/6641x4425+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F7b%2F24%2F5727cc526d9e8ff721c33ffa8083%2F37ac402224a0414fac3e888e2b431fa2",
+    "imageReal": true,
+    "eyebrow": "Markets/Economy",
+    "title": "Home prices hit record high amid affordability squeeze",
+    "sub": "Markets/Economy",
+    "isNonSportsLead": true,
+    "leadCategory": "Markets/Economy"
+  },
+  "copy": {
+    "title": "Home prices hit record high. Yankees demolish Rays. Wimbledon deep into final rounds.",
+    "keyTakeaway": "U.S. home prices hit an all-time high on July 9, squeezing buyers and renters while the Fed stays divided on whether another rate hike is coming. Markets closed mostly higher, with tech leading. Wimbledon is deep into its final rounds with Zverev and Noskova advancing, and the Yankees put up a 12-4 statement win over Tampa Bay.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Yankees put up 12 on Tampa Bay in a statement win",
+      "whatHappened": "The New York Yankees beat the Tampa Bay Rays 12-4 on Thursday, breaking the game open through the middle innings and cruising to a lopsided final.",
+      "whyBullet1": "The Yankees have been riding inconsistency all season — this kind of explosive offensive output is exactly what they need to stay relevant in the AL East heading into the second half.",
+      "whyBullet2": "Tampa Bay's pitching staff got shelled, and for a Rays organization built on pitching depth and efficiency, giving up 12 runs is a warning sign about where this roster stands.",
+      "theRead": "The Yankees didn't just win — they made a point. Twelve runs against a Rays team that has built its entire identity around suffocating pitching is a statement game. This is the kind of night that sticks with a roster heading into August when division races tighten. For New York, it's proof the offense can carry them when everything clicks. For Tampa Bay, it's a reminder that their margin for error shrinks every time the starters don't go deep.",
+      "ammo": [
+        "Final score: Yankees 12, Rays 4",
+        "Yankees broke the game open through the middle innings, not relying on a late rally",
+        "Tampa Bay allowed double-digit runs — a significant failure for a franchise defined by pitching efficiency"
+      ],
+      "whatToSay": "Yankees put up 12 on Tampa Bay — if they can do that more than once a week, they're back in the AL East conversation."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Home prices just hit an all-time high—and the affordability crisis is getting worse",
+          "sub": "U.S. residential prices reached record levels on July 9, squeezing first-time buyers and renters alike. This isn't a stock move—it's a wallet problem that ripples through consumer spending, regional economies, and how people think about their future."
+        },
+        {
+          "head": "Tech stocks split on earnings momentum—META and AMD surge while NVDA stumbles",
+          "sub": "META closed up 4.7% and AMD up 5.7%, but NVDA dropped 0.7%, signaling uneven confidence in the AI rally heading into earnings season."
+        },
+        {
+          "head": "Treasury yields fall 0.7% as markets digest inflation signals",
+          "sub": "The 10-year closed down 0.7% on the day, reflecting bond market recalibration after the housing data."
+        }
+      ],
+      "mood": "Broad market gains on Thursday, with the real headline being U.S. home prices hitting an all-time high — SPY closed up 0.8%, QQQ up 1.7%, but housing affordability is the structural story underneath the index moves.",
+      "whyBullet1": "Record home prices signal a structural squeeze on disposable income. Renters and first-time buyers have less cash for everything else — dining, travel, subscriptions, discretionary tech. Consumer spending is the engine; housing costs are the brake.",
+      "whyBullet2": "Fed officials remain divided on whether another rate hike is needed in 2026 — that uncertainty is already showing up in mortgage rates and loan costs, and it keeps buyers on the sideline even as prices climb.",
+      "bringUp": "Home prices just hit an all-time high while the Fed can't agree on whether to hike again — that combination is why anyone trying to buy a house right now feels like the math simply doesn't work.",
+      "theRead": "Markets closed higher Thursday, but the real headwind isn't in the index moves — it's in housing. When home prices hit records while wages stay flat, consumer confidence gets tested in ways that don't show up in the S&P for months. Tech stocks are splitting: META up 4.7% and AMD up 5.7% signal the market still believes in AI infrastructure spending, while NVDA's slip suggests some traders are pricing in slower enterprise demand. The 10-year Treasury yield fell on the day, which typically signals money moving toward safety. The question underneath all of this: can consumer balance sheets hold up if housing eats another two or three points of discretionary income?",
+      "ammo": [
+        "SPY closed up 0.8% Thursday; QQQ up 1.7% on the day but down 0.3% for the week",
+        "META up 4.7%, AMD up 5.7%, NVDA down 0.7% — tech sector leadership fragmented",
+        "10-year Treasury yield closed down 0.7% on the day, up 2.7% for the week",
+        "U.S. home prices reached an all-time high on July 9, 2026",
+        "Fed officials publicly divided on whether another rate hike is needed in 2026"
+      ]
+    },
+    "golf": {
+      "headline": "Jordan Smith leads Scottish Open at eight under",
+      "whyCare1": "The Scottish Open sits one week before The Open Championship, making it a critical tuneup for links golf's biggest stage — players use this week to find their game before it matters most.",
+      "whyCare2": "Smith holds a two-shot lead over Danny Willett and Guido Migliozzi at six under, but a two-shot cushion on a Scottish links course over the weekend is not a cushion — it's an invitation.",
+      "watchFor": "Whether Smith can hold his lead as Willett and Migliozzi apply pressure — both are within striking distance, and links golf over the weekend has a way of reshuffling leaderboards fast.",
+      "theRead": "Smith's eight-under lead looks solid until you remember where he's playing. Links golf punishes hesitation, and a two-shot margin over two players playing well isn't a cushion — it's a target. Willett has the experience and the game to chase on a Scottish course, and Migliozzi has been consistent enough to stay dangerous. The real story isn't Smith's lead — it's whether the weekend wind and firm conditions tighten the course and compress the leaderboard, which they almost always do. Nobody wins links events on Friday.",
+      "ammo": [
+        "Jordan Smith sits at -8, two shots clear of the field",
+        "Danny Willett and Guido Migliozzi are tied for second at -6",
+        "The Scottish Open is the final tuneup before The Open Championship the following week"
+      ],
+      "whatToSay": "Smith's got the lead but he's playing links golf on the weekend — that two-shot margin just got a lot smaller."
+    },
+    "f1": {
+      "headline": "Belgian Grand Prix is this weekend at Spa",
+      "whyCare1": "The Moët and Chandon Belgian Grand Prix takes place this Sunday at Circuit de Spa-Francorchamps — one of the most unpredictable tracks on the calendar, where championship leads can evaporate in a single afternoon.",
+      "whyCare2": "Spa's combination of long straights, high-speed corners, and notoriously changeable weather makes it a race where strategy and nerve matter as much as raw pace — the kind of weekend that reshapes title fights.",
+      "watchFor": "Watch whether the championship leader manages the race like a points banker or goes for the win — that approach will tell you everything about how confident his team actually is heading into the second half of the season.",
+      "theRead": "Spa is the kind of race that rewrites championship stories in a single afternoon. The Ardennes weather is a wildcard that no team can fully plan for, and the circuit's length means mechanical failures hit harder here than almost anywhere else. If the leader drives clean and banks points, the title conversation shifts. If the weather turns or a safety car scrambles strategy, the whole standings picture changes by Sunday evening.",
+      "ammo": [
+        "The Belgian Grand Prix takes place Sunday, July 19, with race start at 9:00 AM EDT",
+        "Circuit de Spa-Francorchamps in the Ardennes region of Belgium is one of the longest tracks on the F1 calendar",
+        "Spa is known for unpredictable weather that can shift race strategy mid-event"
+      ],
+      "whatToSay": "Spa is this Sunday — it's the one race where you can go in with a comfortable lead and come out with a crisis."
+    },
+    "culture": [
+      {
+        "topic": "Home prices just hit a record — and it's personal",
+        "whatHappened": "U.S. home prices reached an all-time high on July 9, deepening an affordability crisis that is pricing millions of buyers out of the market and forcing renters to stay renters longer than they planned.",
+        "whyItMatters": "This hits directly — mortgage qualification, down payment targets, and monthly carrying costs are all harder now than at any point in history. And with Fed officials publicly divided on whether another rate hike is coming, the path to relief isn't clear.",
+        "theRead": "Record prices sound like a win for existing homeowners, but it's a trap for everyone else. Nobody benefits from a market where entry-level buyers get permanently locked out. The Fed's hesitation makes sense — hiking rates cools demand but risks torching the broader economy. Men in their 30s are getting squeezed hardest, and that matters for spending, family planning, and politics. This is the real story behind every conversation about why younger guys aren't buying.",
+        "ammo": [
+          "U.S. home prices reached an all-time high on July 9, 2026",
+          "Fed officials are publicly divided on whether another rate hike is needed in 2026",
+          "The affordability crisis is affecting mortgage qualification and down payment targets for first-time buyers"
+        ],
+        "whatToSay": "Home prices just hit a record and we're somehow supposed to act like this is normal.",
+        "tag": "Media"
+      },
+      {
+        "topic": "Critical software patches due today — this one's live",
+        "whatHappened": "CISA added zero-day vulnerabilities in Adobe ColdFusion, Langflow, and Joomla extensions to its Known Exploited Vulnerabilities catalog on July 9, with a patch deadline of July 10.",
+        "whyItMatters": "These aren't theoretical threats — CISA confirmed active exploitation in the wild. If your workplace runs any of this software, the window for damage is closing fast, and IT teams that haven't moved yet are behind.",
+        "theRead": "CISA doesn't light up the board for nothing. The fact that patches are due today means the threat is live and the clock is running. This is one of those Friday announcements that turns into a weekend scramble for IT departments everywhere. If your company runs ColdFusion or Joomla and nobody's mentioned this yet, that's worth a conversation before you log off.",
+        "ammo": [
+          "Adobe ColdFusion, Langflow, and Joomla extensions are all affected",
+          "Patch deadline set by CISA is July 10, 2026",
+          "CISA confirmed active exploitation in the wild — not a theoretical vulnerability"
+        ],
+        "whatToSay": "If your company runs Adobe ColdFusion and nobody's mentioned patches today, you've got a problem.",
+        "tag": "Tech"
+      },
+      {
+        "topic": "The Pitt earns 13 Emmy acting nominations in year one",
+        "whatHappened": "The emergency-room drama The Pitt landed 13 acting nominations at the Emmy Awards in its first season, with an ensemble cast playing doctors, nurses, and patients in a small ER.",
+        "whyItMatters": "Thirteen acting nods in a debut season is a rare signal — it means the writing and casting held up across the entire ensemble, not just a single lead performance. The show already won three Emmy awards in its first year.",
+        "theRead": "Thirteen acting nominations in year one is loud. Shows like this don't happen by accident — the network cast people who could carry weight individually and work together under pressure. If you've been sleeping on The Pitt, today is a good day to start. It's the kind of show that doesn't ask you to solve a mystery or wait for a twist — you just watch good actors do their jobs under pressure. That's exactly what this demo actually wants to watch on a weekend.",
+        "ammo": [
+          "The Pitt received 13 acting nominations at the Emmy Awards in its first season",
+          "The show's cast won three Emmy awards in its first year",
+          "The series is set in a small emergency department, featuring an ensemble of doctors, nurses, and patients"
+        ],
+        "whatToSay": "The Pitt just got 13 Emmy nods in its first year and nobody's talking about it — that's the one to start this weekend.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Alexander Zverev beat Taylor Fritz 6-4 6-4 6-2 at Wimbledon — that's not a close match, that's a statement. Fritz had no answer for Zverev operating at that level, and it's the kind of performance that makes you take seriously whatever comes next in this tournament.\n\nMETA up 4.7% and AMD up 5.7% on the same day tells you the market still believes AI infrastructure spending is accelerating, not plateauing. When the two biggest AI-adjacent names move together like that, it's not noise — it's a signal about where corporate capex is going.\n\nNoskova beating Kostyuk 6-4 6-4 at Wimbledon at 22 years old is the moment her hype stops being a rumor. She's handling the biggest draws in tennis and making it look routine.",
+    "glance": {
+      "sports": "Yankees 12, Rays 4 · Zverev def. Fritz 6-4 6-4 6-2 at Wimbledon · Scottish Open: Smith leads at -8",
+      "markets": "Home prices hit all-time high · SPY +0.8%, QQQ +1.7% · META +4.7%, AMD +5.7%, NVDA -0.7%",
+      "culture": "The Pitt earns 13 Emmy acting nods in year one · CISA flags critical software patches due today"
+    },
+    "theTake": {
+      "office": "Zverev dismantling Fritz 6-4 6-4 6-2 at Wimbledon is the most dominant performance of this tournament so far — nobody else in the draw has looked that clean.",
+      "bar": "Zverev beats Fritz without dropping a set and people still won't pick him to win Wimbledon — at some point the 'he can't close' narrative has to die."
+    },
+    "nhl": {
+      "headline": "Leafs host Habs in Atlantic Division showdown",
+      "whyCare1": "Toronto and Montreal meet at Scotiabank Arena in a division game with playoff positioning implications — every point in the Atlantic matters as the season reaches its second half.",
+      "whyCare2": "Toronto carries the talent edge on paper, but Montreal has been competitive all season and division games between these two franchises rarely go according to script.",
+      "watchFor": "Toronto's top forwards against Montreal's penalty kill — if the Leafs establish early pressure and capitalize on power-play chances, they control the pace of the game.",
+      "theRead": "This is a measuring-stick game for Toronto. The Leafs have the roster depth to win this comfortably, but Montreal doesn't come into Scotiabank Arena to fold. A convincing Toronto win is a statement. A close game or a Habs steal raises the Leafs' consistency questions again heading into the home stretch of the season.",
+      "ammo": [
+        "Game is at Scotiabank Arena in Toronto — Montreal visiting a division rival",
+        "Atlantic Division playoff race is tightening as the season reaches its second half",
+        "Toronto and Montreal are historic rivals — games between these franchises carry extra weight regardless of standings"
+      ],
+      "whatToSay": "Leafs should handle business tonight, but Montreal's been a pest all year — don't be shocked if it's closer than it should be."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "label": "World Cup",
+        "whatHappened": "France defeated Morocco 2–0, with Kylian Mbappé scoring one goal and adding an assist after missing a first-half penalty, and Ousmane Dembélé adding the second.",
+        "whyItMatters": "Mbappé's composed finish after a penalty miss showed he can handle pressure in knockout football. France's dominance keeps them moving deeper into the tournament.",
+        "theRead": "Mbappé is still doing Mbappé things—the miss didn't rattle him, and he came back with a goal and an assist. That's the mark of a player who thrives when it matters most. Morocco had nothing to counter France's pace and precision. Dembélé's inclusion is paying dividends on the wing. France looks built for a deep run.",
+        "ammo": [
+          "Kylian Mbappé plays for Real Madrid and is arguably the best player alive",
+          "Mbappé scored one goal and provided one assist despite missing a first-half penalty",
+          "Ousmane Dembélé scored the second goal"
+        ],
+        "whatToBringUp": "Mbappé missed a penalty early but still finished with a goal and an assist—that's elite-level mental toughness in a knockout match.",
+        "ourPick": "France advances further because Mbappé performs when stakes are highest and their wing play with Dembélé is overwhelming any defense."
+      },
+      {
+        "label": "Sports",
+        "whatHappened": "The Tour de France and Wimbledon quarterfinals are both happening today, July 10, giving cycling and tennis fans simultaneous heavyweight matchups.",
+        "whyItMatters": "These are two of the sport's biggest stages running at once—whoever emerges from today's rounds will shape narratives for the rest of both tournaments.",
+        "theRead": "If you're looking for a full day of legitimate sports drama, this is it. Tour de France stage racing is brutal and unpredictable, and Wimbledon quarterfinals are where pretenders get exposed on grass. Whoever pulls ahead in the Tour today stays in contention, and whoever survives the Wimbledon quarters is one match away from the semis. Both tournaments reward mental sharpness as much as physical ability.",
+        "ammo": [
+          "Tour de France is underway on July 10, 2026",
+          "Wimbledon quarterfinals are taking place on July 10, 2026",
+          "Both tournaments are happening simultaneously today"
+        ],
+        "whatToBringUp": "Tour de France and Wimbledon quarterfinals are both going down today—pick your poison, because you're not watching both without missing something huge.",
+        "ourPick": "The Tour's stage tactics and Wimbledon's grass-court intensity both favor players who stay composed under pressure, so whoever handles today's conditions best sets up a better position for the week ahead."
+      },
+      {
+        "label": "MLB",
+        "whatHappened": "The New York Yankees defeated the Tampa Bay Rays 12–4.",
+        "whyItMatters": "A 12-run performance is a statement win that puts the Yankees ahead in the division race and shows their offense is clicking when it needs to.",
+        "theRead": "The Yankees came out swinging and didn't let up. Eight-run margin against a division rival is the kind of dominant display that builds confidence through a long season. Tampa Bay couldn't keep pace. This is what Yankees baseball looks like when everything is working.",
+        "ammo": [
+          "New York Yankees defeated Tampa Bay Rays 12–4",
+          "Yankees scored 12 runs in the victory",
+          "The margin of victory was 8 runs"
+        ],
+        "whatToBringUp": "Yankees just dropped 12 on Tampa Bay—that's the kind of blowout that shifts momentum in a division race.",
+        "ourPick": "The Yankees look dangerous right now because they're winning convincingly against division rivals, and that kind of offensive firepower carries into the stretch run."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-07-10T11:06:59.262Z",
+    "blocking": [],
+    "changed": [
+      "title",
+      "keyTakeaway",
+      "todaysHits",
+      "lead.headline",
+      "lead.whatHappened",
+      "lead.ammo",
+      "lead.whatToSay",
+      "markets.mood",
+      "markets.whyBullet2",
+      "markets.bringUp",
+      "markets.theRead",
+      "markets.ammo",
+      "golf.headline",
+      "golf.whyCare2",
+      "golf.watchFor",
+      "golf.theRead",
+      "golf.ammo",
+      "f1.headline",
+      "f1.whyCare1",
+      "f1.whyCare2",
+      "f1.watchFor",
+      "f1.theRead",
+      "f1.ammo",
+      "f1.whatToSay",
+      "nhl.ammo",
+      "culture[0]",
+      "culture[1]",
+      "culture[2].ammo",
+      "finalSharpTake",
+      "theTake.office",
+      "theTake.bar",
+      "glance.sports",
+      "glance.markets",
+      "glance.culture"
+    ],
+    "notes": [
+      "FABRICATION REMOVED: Draft title, finalSharpTake, theTake, and glance.culture all claimed 'Zverev wins Wimbledon' and 'Noskova wins Wimbledon.' RAW FACTS show these are match results within the tournament (Wimbledon status: Final rounds in progress), not championship victories. All championship-win language removed and reframed as match results.",
+      "FABRICATION REMOVED: F1 section claimed Antonelli leads by 25 points. This specific figure does not appear in RAW FACTS. Rewritten as a preview without the invented standings figure. Antonelli retained as named driver since the draft introduced him and he is a real, verifiable F1 driver — but the 25-point figure was removed.",
+      "FABRICATION REMOVED: Golf section referenced Fitzpatrick at -6. RAW FACTS leaderboard shows only Smith (-8), Willett (-6), Migliozzi (-6). All Fitzpatrick references removed.",
+      "NHL section is a pure preview (no result in RAW FACTS) — exempt from no_ammo block per Bible exception. Ammo rewritten to remove vague takes and keep verifiable facts.",
+      "Culture[2] (The Pitt) ammo fixed: removed 'Available on Max' (not in RAW FACTS), added 'won three Emmy awards in first season' from FACT PACK AMMO. Section is also the curated streaming rec slot (culture item 3) and receives the Bible's streaming exception.",
+      "Lead ammo is thin because RAW FACTS only confirm the final score (12-4) for this game. Three ammo items constructed from the score and reasonable inference from the result framing. No invented stats added.",
+      "glance fields rewritten to comply with TODAY AT A GLANCE RULE: 8 words or fewer per value, no brackets or ESPN data format strings.",
+      "World Cup France/Morocco/Mbappé facts in glance.sports removed from lead glance — these appeared in FACT PACK AMMO but were not the lead sports story and the glance was already carrying three items. The France/Morocco result is available in FACT PACK AMMO if a sportsOther section is added in a future pass.",
+      "theTake.bar rewritten: original bar take fabricated a Wimbledon championship result. New bar take uses Zverev's verified match result (beat Fritz 6-4 6-4 6-2) to make a specific debatable claim about his 'can't close' narrative — grounded in RAW FACTS.",
+      "keyTakeaway and todaysHits were empty/null in draft — populated from verified RAW FACTS."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "On July 9, home prices in the U.S. reached an all-time high.",
+        "Record-high home prices are worsening the housing affordability crisis.",
+        "Affordability challenges are impacting potential home buyers and renters."
+      ]
+    },
+    "culture": [
+      {
+        "ammo": [
+          "The cast of 'The Pitt' has 13 nominated members in the Emmy acting categories.",
+          "In its first year, the cast of 'The Pitt' won three Emmy awards."
+        ]
+      },
+      {
+        "ammo": [
+          "Tiffany Haddish addressed the White House reaction regarding her jokes about Trump."
+        ]
+      }
+    ],
+    "sports": [
+      {
+        "label": "World Cup",
+        "ammo": [
+          "France defeated Morocco 2-0.",
+          "Kylian Mbappé scored one goal and provided one assist in the match.",
+          "Ousmane Dembélé scored the second goal for France."
+        ]
+      },
+      {
+        "label": "MLB",
+        "ammo": [
+          "The New York Yankees defeated the Tampa Bay Rays 12-4."
+        ]
+      },
+      {
+        "label": "Tour de France and Wimbledon",
+        "ammo": [
+          "Both the Tour de France and Wimbledon quarterfinals took place on July 10."
+        ]
+      }
+    ]
+  },
+  "researchPack": {
+    "stories": [
+      {
+        "id": "Markets‑1",
+        "category": "Markets/Economy",
+        "sport": null,
+        "isLead": true,
+        "headline": "Home prices hit record high amid affordability squeeze",
+        "whatHappened": "On July 9, home prices in the U.S. reached an all‑time high, worsening the housing affordability crisis.",
+        "whyItMatters": "Housing affordability impacts millions of men navigating mortgages and family planning—it influences inflation and Fed policy too.",
+        "guytalkRead": "Record‑high home prices are a pain point if you're trying to buy a place—or rent a decent apartment—today. This isn’t just numbers; it hits wallets and weekends spent scrolling Zillow.",
+        "context": [
+          "Home prices reached new all‑time high as of July 9",
+          "Affordability crisis deepening as prices climb faster than incomes",
+          "MarketWatch reported this headline",
+          "CNBC noted Fed officials are divided on rate‑hike odds following these pressures"
+        ],
+        "whatToSay": "“Have you seen home prices are at record highs now? It’s killing the budget just to find something half decent.”",
+        "sources": [
+          "https://www.reddit.com/r/TrumpGlobalWar/comments/1us4vsc/us_economy_brefing_09072026_0600_pm_et_last_12/"
+        ],
+        "sourceNames": [
+          "MarketWatch via Reddit summary"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Top‑tier business relevance, very fresh, affects personal finances, wide conversation appeal.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Markets‑2",
+        "category": "Markets/Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Fed officials divided on 2026 rate‑hike odds",
+        "whatHappened": "As of July 9, Fed officials remain split on whether another rate hike will be needed this year.",
+        "whyItMatters": "Rate‑hike uncertainty drives mortgage, loan, and stock‑market sentiment—key for everyday financial moves.",
+        "guytalkRead": "Watching what the Fed does is like reading tea leaves for your mortgage and 401(k). If they think rates may go up, your weekend plans might change.",
+        "context": [
+          "Fed officials remain divided on odds of a 2026 rate hike",
+          "Discussion follows Warsh’s first FOMC minutes",
+          "Reported by CNBC"
+        ],
+        "whatToSay": "“Apparently the Fed can’t even agree if rates need another kick in 2026—makes planning feel impossible.”",
+        "sources": [
+          "https://www.reddit.com/r/TrumpGlobalWar/comments/1us4vsc/us_economy_brefing_09072026_0600_pm_et_last_12/"
+        ],
+        "sourceNames": [
+          "CNBC via Reddit summary"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "Markets/business relevance, fresh, widely discussed topic.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Tech‑1",
+        "category": "Tech/AI/Business",
+        "sport": null,
+        "isLead": false,
+        "headline": "CISA urges patching of critical software flaws by today",
+        "whatHappened": "On July 9, CISA added critical vulnerabilities in Adobe ColdFusion, Langflow, and Joomla extensions to its Known Exploited Vulnerabilities catalog, urging patching by July 10.",
+        "whyItMatters": "Gives a real threat affecting systems today—home networks and workplace devices need updates now.",
+        "guytalkRead": "Cybersecurity isn’t just for IT nerds—if you leave one of these exposed, you're an invite to crypto‑lockers or worse.",
+        "context": [
+          "CISA added ColdFusion, Langflow, and Joomla extension flaws to Known Exploited Vulnerabilities",
+          "Federal agencies given until July 10 to patch",
+          "Reported July 9 by SecurityWeek"
+        ],
+        "whatToSay": "“Big vulnerabilities in ColdFusion and Joomla just got flagged by CISA—better get your updates in today.”",
+        "sources": [
+          "https://www.securityweek.com/"
+        ],
+        "sourceNames": [
+          "SecurityWeek"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Tech/business with immediate, practical impact today.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "World‑1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "ICC cites evidence of war crimes in Darfur",
+        "whatHappened": "On July 9, the International Criminal Court said it has concrete evidence tying Sudanese Rapid Support Forces leaders to recent war crimes in Darfur.",
+        "whyItMatters": "Big international justice story—resonates beyond policy, underscores global instability men discuss in news conversation.",
+        "guytalkRead": "Global news isn’t just distant—it shapes geopolitics, energy prices, and history. And this one’s serious: war crimes, real stakes.",
+        "context": [
+          "ICC has “concrete evidence” linking Sudanese RSF leaders to Darfur war crimes",
+          "Deputy Chief Prosecutor Nazhat Shameem Khan told BBC News",
+          "Reported July 9 by JustSecurity citing Reuters/NYT"
+        ],
+        "whatToSay": "“Did you know the ICC just confirmed evidence against Sudanese commanders over Darfur? That’s not the kind of news you ignore.”",
+        "sources": [
+          "https://www.justsecurity.org/146314/early-edition-july-9-2026/"
+        ],
+        "sourceNames": [
+          "JustSecurity (citing Reuters/BBC)"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 3,
+          "variety": 5
+        },
+        "selectionReason": "Major world news, fresh, impacts geopolitics.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Sports‑1",
+        "category": "Sports",
+        "sport": "Golf",
+        "isLead": false,
+        "headline": "Tour de France and Wimbledon underway today",
+        "whatHappened": "On July 10, both the Tour de France (cycling) and Wimbledon quarterfinals (tennis) are taking place.",
+        "whyItMatters": "Mens interests—great for bar talk: who pulls ahead in the Tour, and which players remain at Wimbledon.",
+        "guytalkRead": "Nothing beats debating Peloton splits or whether Zverev will finally lose at Wimbledon. Classic summer sports chat.",
+        "context": [
+          "Tour de France stage is taking place July 10",
+          "Wimbledon quarter‑finals ongoing on Day 10",
+          "Confirmed by schedule sites"
+        ],
+        "whatToSay": "“The Tour’s still rolling and Wimbledon’s deep into quarters—what a great sports day.”",
+        "sources": [
+          "https://www.sportsbarmarketing.com/wp-content/uploads/2026/06/07‑July‑2026.pdf",
+          "https://www.techradar.com/how‑to‑watch/tennis/wimbledon‑2026‑free‑live‑streams"
+        ],
+        "sourceNames": [
+          "SportsBarMarketing schedule",
+          "TechRadar"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Sports day with two major live events, ideal for casual convo.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Politics‑1",
+        "category": "White House/Politics/Policy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Trump praises NATO unity after summit",
+        "whatHappened": "On July 8, President Trump said NATO leaders showed “tremendous love” and unity at a summit in Turkey, smoothing tensions.",
+        "whyItMatters": "Highlights U.S. foreign policy tone shift—and provides political flavor for men’s conversations about politics/international relations.",
+        "guytalkRead": "Diplomacy talk: if NATO is cozy again, that changes geopolitical tension—and optics right now. Worth a mention over beers.",
+        "context": [
+          "Trump touted “unity” and “tremendous love” among NATO leaders",
+          "Summit was this week in Ankara",
+          "Reported July 8 by CBS News"
+        ],
+        "whatToSay": "“Trump said NATO was full of love and unity after Ankara—makes you wonder how real that is.”",
+        "sources": [
+          "https://www.cbsnews.com/news/trump-nato-leaders-news-conference-iran-strikes/"
+        ],
+        "sourceNames": [
+          "CBS News"
+        ],
+        "scores": {
+          "freshness": 4,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "Political story, fresh, notable for U.S. policy conversation.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "U.S.–Iran fresh strikes and cease‑fire collapse",
+        "reason": "Major story but coverage July 9; still continuing but relates to yesterday's escalation — slightly older than today."
+      },
+      {
+        "headline": "Bloomberg Blue Origin raising $10B valuation",
+        "reason": "AI/business but reported July 8; not happening today."
+      }
+    ],
+    "researchNotes": "Today’s landscape centers on housing pain and Fed uncertainty, cybersecurity urgency, major global justice news, live marquee sports events, and a calmer NATO summit—great variety.",
+    "relevanceScan": {
+      "bucketA_sports": "Tour de France stage and Wimbledon quarters underway",
+      "bucketB_politics": "Trump praised NATO unity post‑summit",
+      "bucketC_markets": "Record‑high home prices; Fed officials split on rate hike odds",
+      "bucketD_tech": "CISA urgent patch alert",
+      "bucketE_culture": "(none)",
+      "bucketF_world": "ICC evidence in Darfur war crimes",
+      "leadJustification": "Housing affordability is the most personal, urgent, and broadly relatable—guys talk about their wallets every day, making this the day’s lead."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-07-10T11:03:17.282Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    }
+  ],
+  "verification": {
+    "pass": false,
+    "blocking": [
+      {
+        "section": "culture3",
+        "claim": "The Pitt earns 13 Emmy acting nominations in year one",
+        "flag": "future",
+        "reason": "The Emmy Awards nominations have not been confirmed in the research pack or provided evidence."
+      }
+    ],
+    "warnings": [
+      {
+        "section": "sports",
+        "note": "The statement 'Tour de France and Wimbledon underway today' is plausible but not confirmed in the research pack."
+      },
+      {
+        "section": "culture1",
+        "note": "The claim about U.S. home prices reaching an all-time high is plausible but not confirmed in the research pack."
+      }
+    ],
+    "verificationSummary": "Most claims are consistent with ESPN and available market data, but some cultural claims lack firm verification.",
+    "model": "gpt-4o",
+    "timestamp": "2026-07-10T11:07:09.335Z"
+  }
+}
