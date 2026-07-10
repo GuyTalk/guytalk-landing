@@ -62,7 +62,7 @@ const adviceFree = (s) => (s && FIN_ADVICE.test(s) ? '' : s);
 // Markets tab (api/lib/yahoo.js) — not ETF proxies. ETFs like USO/GLD diverge
 // from the underlying (futures-roll costs, fund fees), which used to make the
 // Rundown's oil/gold figures disagree with the Markets tiles a few pixels away.
-const { fetchYahooQuote } = require('./lib/yahoo');
+const { fetchYahooQuote } = require('../scripts/lib/yahoo');
 const MKT = [
   { l: 'S&P 500', s: '%5EGSPC' }, { l: 'Nasdaq', s: '%5EIXIC' }, { l: 'Dow', s: '%5EDJI' },
   { l: 'Bitcoin', s: 'BTC-USD' }, { l: 'Gold', s: 'GC%3DF' }, { l: 'Oil', s: 'CL%3DF' },

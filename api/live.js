@@ -25,7 +25,7 @@
 
 const fs   = require('fs');
 const path = require('path');
-const { fetchYahooQuote: fetchYahooQuoteShared } = require('./lib/yahoo');
+const { fetchYahooQuote: fetchYahooQuoteShared } = require('../scripts/lib/yahoo');
 
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports';
 const CURRENT_YEAR = new Date().getUTCFullYear();

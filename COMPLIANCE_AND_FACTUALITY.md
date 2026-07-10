@@ -21,7 +21,7 @@ and suggest conversation — it may never invent facts.
 | Formula 1 (standings) | Jolpica/Ergast API (`api.jolpi.ca`) | Sourced data | Yes |
 | Golf | ESPN golf API | Sourced data | Yes (≤60s) |
 | Scoreboard (MLB/NFL/NBA/NHL/CFB/CBB) | ESPN public scoreboard API | Sourced data | Yes (≤60s) |
-| Markets | Finnhub (`/quote`) | Sourced data | Yes (≤60s) |
+| Markets | Yahoo Finance chart API (real indices/futures, not ETF proxies) | Sourced data | Yes (≤60s) |
 | Trending Stories | ESPN news API + NewsAPI | Sourced headlines + links | Yes (≤15m) |
 | Trending "why it matters" | Claude (Anthropic) | **AI interpretation** (grounded) | Yes (≤15m) |
 | The Rundown | Claude (Anthropic) | **AI summary** (grounded) | Yes (≤15m) |
