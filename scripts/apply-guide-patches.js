@@ -105,7 +105,7 @@ function newPickCardHtml(cat, pick) {
   return `      <div class="pick-card">
   <div class="pick-card-img">
     <img src="/assets/guide/${cat}/${slug}.jpg" alt="${escHtml(brand)} ${escHtml(name)}" loading="lazy"
-         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\\'pick-card-img-ph\\'><div class=\\'pick-card-img-ph-initial\\'>${escHtml(initial)}</div><div class=\\'pick-card-img-ph-label\\'>${escHtml(brand)}</div></div>'">
+         onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\\'pick-card-img-ph\\'><div class=\\'pick-card-img-ph-initial\\'>${escJsQuoted(initial)}</div><div class=\\'pick-card-img-ph-label\\'>${escJsQuoted(brand)}</div></div>'">
   </div>
   <div class="pick-card-body">
     <div class="pick-card-tag"><span class="gtag gtag-blue">${escHtml(tag)}</span></div>
@@ -122,6 +122,16 @@ function newPickCardHtml(cat, pick) {
 
 function escHtml(s) {
   return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// The onerror fallback is HTML written inside a JS string that's itself inside
+// an HTML attribute — apostrophes there need a backslash (matching the \' the
+// template already uses for class='...') or they close the JS string early and
+// silently break the fallback (e.g. "Kiehl's" -> broken image, not the letter
+// placeholder). escHtml() alone does not cover this — always use this for any
+// brand/label text placed inside that onerror string.
+function escJsQuoted(s) {
+  return escHtml(s).replace(/'/g, "\\'");
 }
 
 // Reverse of escHtml — used when pulling text OUT of existing HTML into JSON/
