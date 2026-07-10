@@ -273,7 +273,10 @@ module.exports = async function handler(req, res) {
 
     const social = loadLiveSocial();
 
-    res.setHeader('Cache-Control', 's-maxage=900, stale-while-revalidate=1800');
+    // Don't pin a transient AI failure in cache for 30min — retry sooner.
+    res.setHeader('Cache-Control', rundown
+      ? 's-maxage=900, stale-while-revalidate=1800'
+      : 's-maxage=120, stale-while-revalidate=180');
     return res.json({
       updatedAt: new Date().toISOString(),
       sources: {
