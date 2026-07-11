@@ -206,6 +206,7 @@ function main() {
   console.log('');
 
   let passed = 0, failed = 0;
+  let hardFail = false; // set true only for direct contradictions of trusted data (market feed / ESPN) — see verification block below
   function run(label, pass, detail) {
     if (check(label, pass, detail)) passed++; else failed++;
   }
@@ -254,11 +255,27 @@ function main() {
         : 'Verification skipped — ' + (vfy.reason || 'OPENAI_API_KEY missing or crashed')
     );
   } else if (!vfy.pass) {
-    // Fail-open (2026-07-09): the verifier's blocking flags have been mostly false positives
-    // (rounding differences, claims it itself says match the feed) and were hard-killing the
-    // pipeline before Jake ever saw a review email most days. Never hard-block on this — surface
-    // as a loud warning in the review email instead so a human makes the call.
-    warn(`Verification flagged ${(vfy.blocking || []).length} issue(s) — REVIEW BEFORE SENDING: ${(vfy.blocking || []).map(b => `[${b.section}] ${b.flag}: ${b.reason}`).join(' | ')}`);
+    // Fail-open (2026-07-09) demoted ALL verifier blocks to warnings, including direct
+    // numeric contradictions against our own market feed/ESPN data — that's how issue
+    // #080 shipped a fabricated "S&P +10%" stat for review. Re-tightened (2026-07-11):
+    // hard-fail only on flags that check against data we already trust as ground truth.
+    // Flags like unverified_major/invented/stale depend on the verifier's own knowledge
+    // of near-future events, which we've seen produce false positives (e.g. it couldn't
+    // confirm a real, feed-backed Wimbledon final) — those stay warn-and-stage.
+    const HARD_FAIL_FLAGS = new Set(['contradicts_market_feed', 'contradicts_espn', 'contradicts_established_fact', 'cross_section_contradiction']);
+    const hardBlocks = (vfy.blocking || []).filter(b => HARD_FAIL_FLAGS.has(b.flag));
+    const softBlocks  = (vfy.blocking || []).filter(b => !HARD_FAIL_FLAGS.has(b.flag));
+    if (hardBlocks.length) {
+      run(
+        'OpenAI verification: no direct contradictions of trusted data',
+        false,
+        hardBlocks.map(b => `[${b.section}] ${b.flag}: ${b.reason}`).join(' | ')
+      );
+      hardFail = true;
+    }
+    if (softBlocks.length) {
+      warn(`Verification flagged ${softBlocks.length} unconfirmed claim(s) — REVIEW BEFORE SENDING: ${softBlocks.map(b => `[${b.section}] ${b.flag}: ${b.reason}`).join(' | ')}`);
+    }
   } else {
     // Verification passed. In feed-only mode, surface warnings more loudly.
     const label = researchMode === 'feed-only'
@@ -731,6 +748,11 @@ function main() {
   // ── Summary ─────────────────────────────────────────────────────────────────
   console.log(`\n${'─'.repeat(50)}`);
   console.log(`  ${passed} passed · ${failed} failed\n`);
+
+  if (hardFail) {
+    console.log('  ❌ Brief contradicts trusted data (market feed / ESPN) — fix before sending.\n');
+    process.exit(1);
+  }
 
   if (failed === 0) {
     if (researchMode === 'feed-only') {

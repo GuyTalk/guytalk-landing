@@ -63,7 +63,7 @@ function cleanImageUrl(url) {
 // a stadium/arena building, an aerial/exterior, a logo, a map, or a trophy on a
 // stand. We'd rather show no image than a building (Fix 6). Decoded + matched
 // against the URL path (e.g. Wikimedia "PNC_Arena_Raleigh.JPG").
-const IRRELEVANT_RE = /(arena|stadium|ballpark|ground|building|exterior|aerial|drone|panorama|skyline|map|logo|crest|emblem|wordmark|signage|entrance|facade|fa%C3%A7ade|trophy|cup_?\(|venue|microphone|broadcast|announcer|anchor|studio|press[_-]?conf|presser|podium[_-]?mic|headshot|mugshot)/i;
+const IRRELEVANT_RE = /(arena|stadium|ballpark|ground|building|exterior|aerial|drone|panorama|skyline|map|logo|crest|emblem|wordmark|signage|entrance|facade|fa%C3%A7ade|trophy|cup_?\(|venue|microphone|broadcast|announcer|anchor|studio|press[_-]?conf|presser|podium[_-]?mic|headshot|mugshot|silhouette)/i;
 
 // Domains that reliably serve watermarked agency thumbnails, news site mastheads,
 // or generic logo overlays instead of actual event photos.

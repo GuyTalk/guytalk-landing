@@ -558,6 +558,14 @@ const RECS = [
     imageUrl: 'https://dw-images.weber.com/navigation/default/charcoal-grills/FY26_NPD_Kettle_MegaMenu_Image_207x165.png?w=800&auto=compress,format',
     guideUrl: 'https://www.guytalkmedia.com/guide/',
   },
+  {
+    title: 'Leatherman Sidekick — the multi-tool that lives in your glovebox for a decade.',
+    body: `14 tools in a stainless frame that fits in one hand: pliers, wire cutters, a real knife blade, a saw, screwdrivers, scissors. Leatherman has been building these in Portland since 1983, and the Sidekick is the one they aim at people who don't already own one. The honest comparison: a $20 gas-station multi-tool will bend the pliers on the first real job. This one doesn't. The flaw: at 7 ounces it's noticeably heavier than the pocket-sized Skeletool if you're carrying it daily rather than keeping it in a car or a drawer. For the price, nothing else survives being actually used for years.`,
+    url: 'https://www.leatherman.com/products/sidekick',
+    cta: 'Shop Leatherman →',
+    brand: 'Leatherman',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Leatherman_sidekick-ausgeklappt.jpg/250px-Leatherman_sidekick-ausgeklappt.jpg',
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

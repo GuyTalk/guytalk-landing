@@ -26,6 +26,7 @@ const MAX_SPORTS        = parseInt(process.env.RESEARCH_MAX_SPORTS        || '3'
 const { isExcluded, scoreImportance } = require('./editorial-config');
 const { extractOgImage, isLiveImage, resolveAthleteImage, SECTION_FALLBACKS } = require('./images');
 const { PLAYERS } = require('./db');
+const { addWarning } = require('./warnings');
 
 function extractJsonArray(text) {
   if (!text) return null;
@@ -663,6 +664,10 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
     // Static fallback when search is unavailable or returned nothing.
     if (!img) {
       img = SECTION_FALLBACKS[s._sport] || null;
+      // No web-search hit AND no static fallback configured for this sport — the
+      // card will render with no picture. Surface this so it's visible before
+      // approval instead of only showing up as a blank card in the preview.
+      if (!img) addWarning(`image:${s.label || s.name || s._sport || 'sport'}`, 'failed', 'no web-search image found and no static fallback configured');
     }
 
     // Skip if URL was used in the previous issue

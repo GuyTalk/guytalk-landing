@@ -99,6 +99,22 @@ async function verifyBrief({ issueData, researchPack }) {
     const top3 = issueData.golf.leaders.slice(0, 5).map(l => `${l.name} ${l.score}`).join(', ');
     espnFacts.push(`ESPN Golf: ${issueData.golf.name} — Top: ${top3} (${issueData.golf.statusState})`);
   }
+  // Tennis structured data — without this, a correct completed-match claim (e.g.
+  // "Sinner beat Djokovic at Wimbledon") has no evidence to match against and gets
+  // falsely flagged as an unverified major claim.
+  //
+  // IMPORTANT: ESPN's event-level `status` field (e.g. "Final") means the TOURNAMENT
+  // has reached its final round — it does NOT mean the championship match has been
+  // played. `results` is just the last 3 completed singles matches across the whole
+  // draw (see fetchers.js `results.slice(-3)`), so once the semifinals wrap this will
+  // show semifinal results while the actual final is still upcoming. Never label the
+  // last entry "Final:" — that previously caused the verifier to wrongly "confirm" a
+  // fabricated claim that a semifinal winner had won the tournament.
+  (issueData.tennis?.tours || []).forEach(t => {
+    if (!t.results?.length) return;
+    const recent = t.results.map(r => `${r.winner} def. ${r.loser} ${r.score}`).join('; ');
+    espnFacts.push(`ESPN Tennis: ${t.name} (${t.tour}) — tournament round status: "${t.status}"; most recent completed match(es) in the draw (may be semifinal(s), not necessarily the championship): ${recent}`);
+  });
   // World Cup structured data — completed matches with goal-by-goal scorers. Without
   // this, condensed-section claims (e.g. "Messi scored in the 83rd") get falsely
   // flagged as unverified new claims because the verifier had no evidence for them.

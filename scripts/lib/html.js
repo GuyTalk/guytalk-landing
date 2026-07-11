@@ -1471,10 +1471,19 @@ ${itemsHtml}
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// The Rec — rotates by issue number
+// The Rec — rotates by issue number. The rotation is a pure modulo cycle (no
+// history check), so re-running the generator for the same issue number always
+// reproduces the same pick — by design for reproducibility, but it means a manual
+// override is the only way to swap the pick for a specific issue during review
+// (e.g. Jake asking for a different rec on the same issue number after a regen).
 // ─────────────────────────────────────────────────────────────────────────────
+const REC_OVERRIDE_BY_ISSUE = {
+  80: 'Leatherman', // 2026-07-11 — Jake asked for a different pick after two Weber drafts
+};
+
 function buildRec({ num }) {
-  const rec = RECS[(num + 3) % RECS.length];
+  const overrideBrand = REC_OVERRIDE_BY_ISSUE[num];
+  const rec = (overrideBrand && RECS.find(r => r.brand === overrideBrand)) || RECS[(num + 3) % RECS.length];
 
   const recImg = rec.imageUrl
     ? `<div class="rec-img"><img src="${esc(rec.imageUrl)}" alt="${esc(rec.brand || rec.title)}" loading="lazy" onerror="this.closest('.rec-img').classList.add('rec-img-failed');this.remove()"><span class="rec-img-ph">${esc(rec.brand || '')}</span></div>`

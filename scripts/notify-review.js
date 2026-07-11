@@ -121,6 +121,8 @@ async function main() {
   }
   (data.editor?.blocking || []).forEach(b =>
     flags.push(`[${b.section}] ${b.reason}`));
+  (data.generationWarnings || []).forEach(w =>
+    flags.push(`[${w.section}] ${w.kind}${w.detail ? `: ${w.detail}` : ''}`));
 
   const flagsHtml = flags.length ? `<div style="background:#FEF3E2;border:1px solid #F5C563;border-radius:8px;padding:12px 14px;margin-bottom:16px;">
     <p style="margin:0 0 6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#92400E;">⚠ Flagged — check before sending</p>
