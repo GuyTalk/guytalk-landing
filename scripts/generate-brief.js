@@ -129,6 +129,7 @@ function loadPreviousBriefs(n = 3) {
         nhlGame:    d.nhl?.final?.note || d.nhl?.final?.shortName || '',
         nhlFinal:   !!(d.nhl?.final),
         dynamicLabels: (d.dynamicSports || []).map(s => (s.label || '').toLowerCase()),
+        recBrand:   d.recPick?.brand || '',
       };
     } catch (_) { return null; }
   }).filter(Boolean);
@@ -995,7 +996,7 @@ async function main() {
 
       const stripLabel = (b) => { if (!b) return b; const { label, ...rest } = b; return rest; };
 
-      dynamicSports = dynamicSports.map((s, i) => {
+      dynamicSports = await Promise.all(dynamicSports.map(async (s, i) => {
         const sportLabel = norm(s.label || s.name);
         let beat = null;
         // 1) Prefer an exact label match
@@ -1016,7 +1017,18 @@ async function main() {
           }
         }
         const merged = { ...s, ...stripLabel(beat || {}) };
-        // Auto-generate player links from known players mentioned in facts/headline
+        // Players to Know — fresh web search for this specific matchup first (starters
+        // + one breakout/bench player, each with a real current stat), so the section
+        // doesn't just recycle whichever names happen to already be in the static
+        // PLAYERS roster and happen to appear verbatim in the facts text. Falls back
+        // to the old static-roster scan if the search is unavailable or finds nothing.
+        if (!merged.playerLinks?.length && merged.headline) {
+          try {
+            const { searchPlayersToKnow } = require('./lib/imageSearch');
+            const found = await searchPlayersToKnow({ label: merged.label || merged.name, headline: merged.headline });
+            if (found?.length) merged.playerLinks = found.map(p => ({ name: p.name, url: p.url || '#', note: p.note }));
+          } catch (_) {}
+        }
         if (!merged.playerLinks?.length) {
           const links = buildPlayerLinksFromFacts(merged.facts, merged.headline);
           if (links.length) merged.playerLinks = links;
@@ -1055,7 +1067,7 @@ async function main() {
           }
         }
         return merged;
-      });
+      }));
       // Search for YouTube highlight videos — one per sport, in parallel
       try {
         const { searchWebVideo, buildSportVideoQuery } = require('./lib/imageSearch');
@@ -1149,6 +1161,24 @@ async function main() {
   filterCultureToEntertainment(copy);
   dynamicSports = injectCompletedGolf(dynamicSports, golf, copy, sectionStories);
 
+  // ── The Rec — fresh web search each issue, not a rotation from a fixed list ─
+  // Jake: "biggest offender" — find something people are actually talking about
+  // this week (new drop, viral podcast, current-event tie-in), matched to the
+  // week's theme. Bounded/no-retry; falls open to null so buildRec() in html.js
+  // keeps using the static RECS rotation if the search fails or is unavailable.
+  let recPick = null;
+  try {
+    const { searchRecPick } = require('./lib/imageSearch');
+    const theme = [copy?.title, copy?.finalSharpTake, ...(topStories || []).slice(0, 3).map(t => t.headline || t.title)]
+      .filter(Boolean).join(' | ');
+    const avoidBrands = loadPreviousBriefs(8).map(p => p.recBrand).filter(Boolean);
+    recPick = await searchRecPick({ theme, avoidBrands });
+    if (recPick) console.log(`   ✓ The Rec: fresh pick — ${recPick.brand}`);
+    else console.log(`   ⚠  The Rec: search unavailable/failed — falling back to static rotation`);
+  } catch (err) {
+    console.log(`   ⚠  The Rec search crashed: ${err.message} — falling back to static rotation`);
+  }
+
   // ── Assemble issue data object ─────────────────────────────────────────────
   const issueData = {
     num:     issueNum,
@@ -1175,6 +1205,7 @@ async function main() {
     // Hero banner = the ranked #1 story (Fix 1's Lead), with a validated/relevant
     // image or the brand fallback graphic — never the structured-feed marquee game.
     heroOverride: await buildSmartHeroOverride(dynamicSports, topStories),
+    recPick,
     copy,
     editor:  editorMeta,
     factPack: factPack || null,

@@ -194,6 +194,153 @@ function buildLeadImageQuery(heroOverride) {
 }
 
 /**
+ * Search for fresh "Players to Know" for a specific game/matchup — starters
+ * plus one breakout/bench player, each with a real current stat or recent
+ * performance note. Replaces the old approach of scanning facts text for
+ * substring matches against a small static roster (db.js PLAYERS), which is
+ * why "Players to Know" barely changed issue to issue — it could only ever
+ * surface a name that was both already hardcoded AND happened to appear
+ * verbatim in that day's facts text.
+ *
+ * @param {object} opts
+ * @param {string} opts.label     Sport/section label, e.g. "World Cup", "MLB"
+ * @param {string} opts.headline  The section headline (names the teams/matchup)
+ * @returns {Promise<Array<{name:string, note:string, url:string}>|null>}
+ */
+async function searchPlayersToKnow({ label, headline } = {}) {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!label || !headline || !apiKey) return null;
+
+  let OpenAI;
+  try { OpenAI = require('openai'); } catch (_) { return null; }
+  const client = new (OpenAI.default || OpenAI)({ apiKey, maxRetries: 0 });
+  if (typeof client.responses?.create !== 'function') return null;
+
+  const prompt = `Search for who to know in today's ${label} story: "${headline}"
+
+Find 2-3 real, current players worth knowing for this specific matchup/story — starters plus, if relevant, one breakout or bench player. For EACH one give a real, specific, verifiable stat or recent-performance note (goals/points this tournament, a streak, a milestone, a notable recent game) — never invent one. If you can't verify a stat for a player, don't include them.
+
+Return ONLY valid JSON (no markdown fences), an array of up to 3 objects:
+[{"name":"Full Name","note":"one short clause with a real stat or performance note","url":"a real profile/bio URL you found, or empty string"}]`;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), SEARCH_TIMEOUT_MS);
+
+  try {
+    const response = await client.responses.create({
+      model: SEARCH_MODEL,
+      tools: [{ type: 'web_search', search_context_size: 'medium' }],
+      tool_choice: 'required',
+      input: [{ role: 'user', content: prompt }],
+    }, { signal: controller.signal });
+
+    const text = response.output_text || (response.output || [])
+      .filter(b => b.type === 'message')
+      .flatMap(b => Array.isArray(b.content) ? b.content : [])
+      .filter(c => c?.type === 'output_text' || c?.type === 'text')
+      .map(c => c.text || '')
+      .join('');
+
+    const cleaned = text.replace(/```json\s*/gi, '').replace(/```/g, '');
+    const start = cleaned.indexOf('['), end = cleaned.lastIndexOf(']');
+    if (start < 0 || end <= start) return null;
+
+    const parsed = JSON.parse(cleaned.slice(start, end + 1));
+    if (!Array.isArray(parsed) || !parsed.length) return null;
+
+    const players = parsed
+      .filter(p => p && p.name && p.note)
+      .slice(0, 3)
+      .map(p => ({ name: String(p.name), note: String(p.note), url: String(p.url || '') }));
+
+    if (players.length) console.log(`   🔎 playersToKnow hit (${players.length}): ${players.map(p => p.name).join(', ')}`);
+    return players.length ? players : null;
+  } catch (err) {
+    const isTimeout = err.name === 'AbortError' || err.code === 'ERR_ABORTED' || err.message?.includes('aborted');
+    console.error(`[playersToKnow] "${label} — ${headline.slice(0, 40)}": ${isTimeout ? `timed out after ${SEARCH_TIMEOUT_MS / 1000}s` : err.message}`);
+    return null;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+/**
+ * Search for a fresh "The Rec" pick — something people are actually talking
+ * about this week (new drop, viral podcast, current-event tie-in), instead of
+ * cycling the static RECS catalog. Bounded, no retry, fails open to null so
+ * the caller can fall back to the old rotation.
+ */
+async function searchRecPick({ theme, avoidBrands = [] } = {}) {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) return null;
+
+  let OpenAI;
+  try { OpenAI = require('openai'); } catch (_) { return null; }
+  const client = new (OpenAI.default || OpenAI)({ apiKey, maxRetries: 0 });
+  if (typeof client.responses?.create !== 'function') return null;
+
+  const avoidLine = avoidBrands.length
+    ? `\nDo NOT recommend any of these — already featured recently: ${avoidBrands.join(', ')}.`
+    : '';
+
+  const prompt = `You write "The Rec" for GuyTalk, a daily brief for men — one product/app/show/book recommendation people are actually talking about RIGHT NOW.
+
+This week's brief covered: ${theme || 'general news, sports, and markets'}
+
+Search the web for something genuinely trending this week — a new MasterClass or course drop, a viral podcast episode, new gear everyone's reviewing, a buzzy streaming release, a current-event tie-in product. It should feel current, not evergreen. Prefer something a guy could plausibly buy or start today.${avoidLine}
+
+Return ONLY valid JSON (no markdown fences), one object:
+{"brand":"Brand/product name","title":"One punchy sentence — what it is and the hook","body":"3-5 sentences in GuyTalk's voice: what it actually is, why it's worth it right now, and one honest flaw/trade-off. No hype-only copy.","url":"the real product/official URL you found","cta":"Short link text like 'Try X →' or 'Shop X →'"}`;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), SEARCH_TIMEOUT_MS);
+
+  try {
+    const response = await client.responses.create({
+      model: SEARCH_MODEL,
+      tools: [{ type: 'web_search', search_context_size: 'medium' }],
+      tool_choice: 'required',
+      input: [{ role: 'user', content: prompt }],
+    }, { signal: controller.signal });
+
+    const text = response.output_text || (response.output || [])
+      .filter(b => b.type === 'message')
+      .flatMap(b => Array.isArray(b.content) ? b.content : [])
+      .filter(c => c?.type === 'output_text' || c?.type === 'text')
+      .map(c => c.text || '')
+      .join('');
+
+    const cleaned = text.replace(/```json\s*/gi, '').replace(/```/g, '');
+    const start = cleaned.indexOf('{'), end = cleaned.lastIndexOf('}');
+    if (start < 0 || end <= start) return null;
+
+    const parsed = JSON.parse(cleaned.slice(start, end + 1));
+    if (!parsed || !parsed.brand || !parsed.title || !parsed.body || !parsed.url) return null;
+
+    // Try to find a real hero image for the pick; fail open (no image is fine,
+    // buildRec renders a text-only fallback card).
+    const imageUrl = await searchWebImage(`${parsed.brand} ${parsed.title} official product photo`, { fallback: null });
+
+    const pick = {
+      brand: String(parsed.brand),
+      title: String(parsed.title),
+      body:  String(parsed.body),
+      url:   String(parsed.url),
+      cta:   String(parsed.cta || `Check out ${parsed.brand} →`),
+      imageUrl: imageUrl || null,
+    };
+    console.log(`   🔎 recPick hit: ${pick.brand} — ${pick.title.slice(0, 60)}`);
+    return pick;
+  } catch (err) {
+    const isTimeout = err.name === 'AbortError' || err.code === 'ERR_ABORTED' || err.message?.includes('aborted');
+    console.error(`[recPick] "${(theme || '').slice(0, 40)}": ${isTimeout ? `timed out after ${SEARCH_TIMEOUT_MS / 1000}s` : err.message}`);
+    return null;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+/**
  * Search YouTube for highlight/recap video of a sports event.
  * Returns a youtube.com/watch?v=... URL or null.
  */
@@ -287,4 +434,4 @@ function buildSportVideoQuery(s) {
   return null;
 }
 
-module.exports = { searchWebImage, buildSportImageQuery, buildLeadImageQuery, searchWebVideo, buildSportVideoQuery };
+module.exports = { searchWebImage, buildSportImageQuery, buildLeadImageQuery, searchWebVideo, buildSportVideoQuery, searchPlayersToKnow, searchRecPick };

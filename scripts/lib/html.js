@@ -400,6 +400,12 @@ function buildSportsCard(s, isLead) {
   if (whatHappened)  rows.push(`      <div class="ctx-row"><div class="ctx-label">What happened</div><div class="ctx-text">${esc(whatHappened)}</div></div>`);
   if (whyItMatters)  rows.push(`      <div class="ctx-row"><div class="ctx-label">Why it matters</div><div class="ctx-text">${esc(whyItMatters)}</div></div>`);
 
+  // Big moments — 2-3 concrete plays/stats/storylines unique to this matchup
+  const bigMoments = Array.isArray(s.bigMoments) ? s.bigMoments.filter(Boolean) : [];
+  if (bigMoments.length) {
+    rows.push(`      <div class="ctx-row"><div class="ctx-label">Big moments</div><ul class="ammo-list">${bigMoments.map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>`);
+  }
+
   // The GuyTalk Read — featured insight
   if (s.theRead) rows.push(`      <div class="ctx-row"><div class="ctx-label">The GuyTalk Read</div><div class="ctx-text">${esc(s.theRead)}</div></div>`);
 
@@ -411,11 +417,12 @@ function buildSportsCard(s, isLead) {
 
   if (whatToBringUp) rows.push(`      <div class="ctx-row"><div class="ctx-label">What to say</div><div class="ctx-say"><div class="ctx-text">"${esc(whatToBringUp)}"</div></div></div>`);
 
-  // Players to Know — name + bio
+  // Players to Know — name + a fresh stat/note (from searchPlayersToKnow), or
+  // the static PLAYERS bio when the entry came from the old roster-scan fallback.
   if (Array.isArray(s.playerLinks) && s.playerLinks.length) {
     const { PLAYERS } = require('./db');
     const items = s.playerLinks.map(p => {
-      const bio = (PLAYERS[p.name] || {}).bio || '';
+      const bio = p.note || (PLAYERS[p.name] || {}).bio || '';
       return `          <li class="pbio-item"><a href="${esc(p.url)}" target="_blank" rel="noopener" class="pbio-name">${esc(p.name)}</a>${bio ? `<span class="pbio-bio">${esc(bio)}</span>` : ''}</li>`;
     }).join('\n');
     rows.push(`      <div class="ctx-row"><div class="ctx-label">Players to know</div><ul class="pbio-list">\n${items}\n        </ul></div>`);
@@ -1481,9 +1488,14 @@ const REC_OVERRIDE_BY_ISSUE = {
   80: 'Leatherman', // 2026-07-11 — Jake asked for a different pick after two Weber drafts
 };
 
-function buildRec({ num }) {
+function buildRec({ num, recPick }) {
   const overrideBrand = REC_OVERRIDE_BY_ISSUE[num];
-  const rec = (overrideBrand && RECS.find(r => r.brand === overrideBrand)) || RECS[(num + 3) % RECS.length];
+  // Fresh web-searched pick takes priority (see generate-brief.js's searchRecPick) —
+  // no rotation from the static catalog when a real, current pick was found.
+  // Manual override / static rotation remain the fallback when the search failed.
+  const rec = recPick
+    || (overrideBrand && RECS.find(r => r.brand === overrideBrand))
+    || RECS[(num + 3) % RECS.length];
 
   const recImg = rec.imageUrl
     ? `<div class="rec-img"><img src="${esc(rec.imageUrl)}" alt="${esc(rec.brand || rec.title)}" loading="lazy" onerror="this.closest('.rec-img').classList.add('rec-img-failed');this.remove()"><span class="rec-img-ph">${esc(rec.brand || '')}</span></div>`
