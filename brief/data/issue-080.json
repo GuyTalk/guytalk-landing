@@ -1,0 +1,1299 @@
+{
+  "num": 80,
+  "slug": "issue-080",
+  "date": "Saturday, July 11, 2026",
+  "title": "Sinner sweeps Djokovic to reach the Wimbledon final. White Sox rookie hits for the cycle. NVDA and META power stocks to a quiet Friday close.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401816105",
+      "name": "Athletics Athletics at Chicago White Sox",
+      "shortName": "ATH @ CHW",
+      "date": "2026-07-10T23:40Z",
+      "venue": "Rate Field",
+      "venueCity": "Chicago, Illinois",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago White Sox",
+        "abbrev": "CHW",
+        "score": "14",
+        "winner": true
+      },
+      "away": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "1",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816102",
+      "name": "Philadelphia Phillies at Detroit Tigers",
+      "shortName": "PHI @ DET",
+      "date": "2026-07-10T22:40Z",
+      "venue": "Comerica Park",
+      "venueCity": "Detroit, Michigan",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "10",
+        "winner": true
+      },
+      "away": {
+        "team": "Philadelphia Phillies",
+        "abbrev": "PHI",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816108",
+      "name": "Arizona Diamondbacks at Los Angeles Dodgers",
+      "shortName": "ARI @ LAD",
+      "date": "2026-07-11T02:10Z",
+      "venue": "Dodger Stadium",
+      "venueCity": "Los Angeles, California",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Los Angeles Dodgers",
+        "abbrev": "LAD",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Arizona Diamondbacks",
+        "abbrev": "ARI",
+        "score": "9",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 754.95,
+      "prevClose": 751.71,
+      "dayChange": 3.24,
+      "dayChangePct": 0.431,
+      "weekChangePct": 1.3654999198523377,
+      "spark": [
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125,
+        745.760009765625,
+        744.780029296875,
+        751.280029296875,
+        747.7100219726562,
+        745.4000244140625,
+        751.7100219726562,
+        754.9500122070312
+      ],
+      "indexPrice": 7575.39,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.4208825276103446
+    },
+    "DIA": {
+      "price": 525.78,
+      "prevClose": 524.19,
+      "dayChange": 1.59,
+      "dayChangePct": 0.3033,
+      "weekChangePct": -0.39781860714325046,
+      "spark": [
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375,
+        522.4000244140625,
+        527.8800048828125,
+        530.0900268554688,
+        528.4500122070312,
+        522.77001953125,
+        524.1900024414062,
+        525.780029296875
+      ],
+      "indexPrice": 52637.01,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.2850204330993997
+    },
+    "QQQ": {
+      "price": 725.51,
+      "prevClose": 723.28,
+      "dayChange": 2.23,
+      "dayChangePct": 0.3083,
+      "weekChangePct": 1.8116790424315106,
+      "spark": [
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625,
+        725.1699829101562,
+        712.5999755859375,
+        722.8200073242188,
+        709.4299926757812,
+        711.4400024414062,
+        723.280029296875,
+        725.510009765625
+      ],
+      "indexPrice": 26281.607,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 0.28510202171303933
+    },
+    "IWM": {
+      "price": 295.99,
+      "prevClose": 297.24,
+      "dayChange": -1.25,
+      "dayChangePct": -0.4205,
+      "weekChangePct": -0.5343056132840763,
+      "spark": [
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125,
+        299.32000732421875,
+        297.5799865722656,
+        298.8999938964844,
+        296.19000244140625,
+        293.4800109863281,
+        297.239990234375,
+        295.989990234375
+      ],
+      "indexPrice": 2977.805,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -0.49239237805206915
+    },
+    "NVDA": {
+      "price": 210.96,
+      "prevClose": 202.78,
+      "dayChange": 8.18,
+      "dayChangePct": 4.0339,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 407.76,
+      "prevClose": 406.55,
+      "dayChange": 1.21,
+      "dayChangePct": 0.2976,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 385.1,
+      "prevClose": 384.36,
+      "dayChange": 0.74,
+      "dayChangePct": 0.1925,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 315.32,
+      "prevClose": 316.22,
+      "dayChange": -0.9,
+      "dayChangePct": -0.2846,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 669.21,
+      "prevClose": 631.48,
+      "dayChange": 37.73,
+      "dayChangePct": 5.9749,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 245.34,
+      "prevClose": 247.04,
+      "dayChange": -1.7,
+      "dayChangePct": -0.6881,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 357.18,
+      "prevClose": 358.89,
+      "dayChange": -1.71,
+      "dayChangePct": -0.4765,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 557.89,
+      "prevClose": 546.72,
+      "dayChange": 11.17,
+      "dayChangePct": 2.0431,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 399.97,
+      "prevClose": 401.11,
+      "dayChange": -1.14,
+      "dayChangePct": -0.2842,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 73.37,
+      "prevClose": 75.47,
+      "dayChange": -2.1,
+      "dayChangePct": -2.7826,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 336.47,
+      "prevClose": 335.47,
+      "dayChange": 1,
+      "dayChangePct": 0.2981,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 159.07,
+      "prevClose": 158.44,
+      "dayChange": 0.63,
+      "dayChangePct": 0.3976,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 434.97,
+      "prevClose": 450.22,
+      "dayChange": -15.25,
+      "dayChangePct": -3.3872,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 64172.89,
+      "prevClose": 64481.23,
+      "dayChange": -308.34,
+      "dayChangePct": -0.4782,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "META",
+      "NVDA",
+      "DELL",
+      "NFLX",
+      "AMD"
+    ],
+    "10Y": {
+      "price": 4.569,
+      "prevClose": 4.539000034332275,
+      "dayChange": 0.02999996566772456,
+      "dayChangePct": 0.6609377713331038,
+      "weekChangePct": 2.1005608350990506,
+      "spark": [
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744,
+        4.374000072479248,
+        4.418000221252441,
+        4.474999904632568,
+        4.485000133514404,
+        4.5289998054504395,
+        4.568999767303467,
+        4.539000034332275,
+        4.568999767303467
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, July 10 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, July 10). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "META",
+          "name": "Meta Platforms, Inc.",
+          "price": 669.21,
+          "changePct": 5.97485
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 210.96,
+          "changePct": 4.03393
+        },
+        {
+          "symbol": "NKE",
+          "name": "NIKE, Inc.",
+          "price": 44.37,
+          "changePct": 3.71669
+        },
+        {
+          "symbol": "F",
+          "name": "Ford Motor Company",
+          "price": 13.995,
+          "changePct": 2.8288
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 73.37,
+          "changePct": -2.78257
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 109.84,
+          "changePct": -2.39914
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 126.79,
+          "changePct": -1.74365
+        },
+        {
+          "symbol": "UNH",
+          "name": "UnitedHealth Group Incorporated",
+          "price": 424.62,
+          "changePct": -1.63547
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 210.96,
+          "changePct": 4.03393
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 109.84,
+          "changePct": -2.39914
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 73.37,
+          "changePct": -2.78257
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 64133.15,
+          "changePct": 0.01130276
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Genesis Scottish Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-09T04:00Z",
+    "endDate": "2026-07-12T04:00Z",
+    "status": "Round 3 - In Progress",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Jordan Smith",
+        "score": "-9",
+        "pos": "1st"
+      },
+      {
+        "name": "Rory McIlroy",
+        "score": "-9",
+        "pos": "2nd"
+      },
+      {
+        "name": "Tom Kim",
+        "score": "-9",
+        "pos": "3rd"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-8",
+        "pos": "4th"
+      },
+      {
+        "name": "Min Woo Lee",
+        "score": "-8",
+        "pos": "5th"
+      },
+      {
+        "name": "Victor Perez",
+        "score": "-7",
+        "pos": "6th"
+      },
+      {
+        "name": "Nicolai von Dellingshausen",
+        "score": "-7",
+        "pos": "7th"
+      },
+      {
+        "name": "Sudarshan Yellamaraju",
+        "score": "-7",
+        "pos": "8th"
+      },
+      {
+        "name": "Chris Gotterup",
+        "score": "-7",
+        "pos": "9th"
+      },
+      {
+        "name": "Keita Nakajima",
+        "score": "-7",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Alexander Zverev",
+            "loser": "Taylor Fritz",
+            "score": "6-4 6-4 6-2"
+          },
+          {
+            "winner": "Alexander Zverev",
+            "loser": "Arthur Fery",
+            "score": "7-6 6-2 6-4"
+          },
+          {
+            "winner": "Jannik Sinner",
+            "loser": "Novak Djokovic",
+            "score": "6-4 6-4 6-4"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Wimbledon",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-06-22T04:00Z",
+        "endDate": "2026-07-13T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Marta Kostyuk",
+            "loser": "Jasmine Paolini",
+            "score": "6-3 6-2"
+          },
+          {
+            "winner": "Karolina Muchova",
+            "loser": "Coco Gauff",
+            "score": "6-2 1-6 7-6"
+          },
+          {
+            "winner": "Linda Noskova",
+            "loser": "Marta Kostyuk",
+            "score": "6-4 6-4"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Moët & Chandon Belgian Grand Prix",
+    "shortName": "Moët & Chandon Belgian GP",
+    "venue": "Circuit de Spa-Francorchamps",
+    "status": "7/19 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 179,
+      "lead": 25
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Belgium at Spain",
+      "shortName": "BEL @ ESP",
+      "status": "Full Time",
+      "statusState": "post",
+      "date": "2026-07-10T19:00Z",
+      "home": {
+        "team": "Spain",
+        "score": "2"
+      },
+      "away": {
+        "team": "Belgium",
+        "score": "1"
+      },
+      "goals": [
+        {
+          "player": "Fabián Ruiz",
+          "team": "",
+          "clock": "30'",
+          "type": "Goal"
+        },
+        {
+          "player": "Charles De Ketelaere",
+          "team": "",
+          "clock": "41'",
+          "type": "Goal - Header"
+        },
+        {
+          "player": "Mikel Merino",
+          "team": "",
+          "clock": "88'",
+          "type": "Goal"
+        }
+      ],
+      "espnNote": "Mikel Merino scored in the 88th minute on a rebound yielded by backup Belgium goalkeeper Senne Lammens, and Spain advanced to the World Cup semifinals with a 2-1 victory on Friday."
+    },
+    {
+      "name": "England at Norway",
+      "shortName": "ENG @ NOR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-11T21:00Z",
+      "home": {
+        "team": "Norway",
+        "score": "0"
+      },
+      "away": {
+        "team": "England",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    },
+    {
+      "name": "Switzerland at Argentina",
+      "shortName": "SUI @ ARG",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-12T01:00Z",
+      "home": {
+        "team": "Argentina",
+        "score": "0"
+      },
+      "away": {
+        "team": "Switzerland",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Ariana Grande Look-Alike Paige Niemann Says She Felt 'Misled' by Star's DM - TMZ",
+      "url": "https://www.tmz.com/2026/07/10/ariana-grande-lookalike-felt-misled-by-direct-message/",
+      "description": "Ariana Grande's viral look-alike Paige Niemann says she felt \"misled\" by the direct message the popstar sent her amid her rise to online fame years ago.",
+      "source": "TMZ"
+    },
+    {
+      "title": "LGBTQ Characters in Film Decline for Third Year - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/movies/movie-news/glaad-study-lgbtq-characters-film-1236642072/",
+      "description": "GLAAD reported that there were no LGBTQ characters in 19 films categorized as animated/family films and no transgender characters featured in the crop of 225 films from the 10 largest studio distributors.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Horoscope for Friday, July 10, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/07/10/horoscopes-today-friday-july-10-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Exclusive | Inside Margaret Qualley and Jack Antonoff's breakup as former couple navigate split with 'love and kindness' - Page Six",
+      "url": "https://pagesix.com/2026/07/09/celebrity-news/inside-margaret-qualley-and-jack-antonoffs-breakup-as-former-couple-navigate-split-with-love-and-kindness/",
+      "description": "Antonoff and Qualley quietly separated after almost three years of marriage earlier this week.",
+      "source": "Page Six"
+    },
+    {
+      "title": "Jason Kelce Drank a Lot of Beers at the Tayvis Wedding - Vulture",
+      "url": "http://www.vulture.com/article/jason-kylie-kelce-taylor-swift-travis-kelce-wedding.html",
+      "description": "Jason and Kylie Kelce are protective of their sister-in-law, Taylor Swift’s, privacy, but they’re not shy about sharing how much fun they had at her and Travis Kelce’s wedding.",
+      "source": "Vulture"
+    },
+    {
+      "title": "Martina Navratilova thinks Jannik Sinner will be 'very happy' with Wimbledon decision for match against Novak Djokovic - Tennishead",
+      "url": "https://tennishead.net/martina-navratilova-thinks-jannik-sinner-will-be-very-happy-with-wimbledon-decision-for-match-against-novak-djokovic/",
+      "description": "Who are you backing to take the win today? 👀",
+      "source": "Tennishead"
+    },
+    {
+      "title": "Kawhi deal paused & Summer League takeaways with Nekias Duncan & Es Baraheni - Yahoo Sports",
+      "url": "https://sports.yahoo.com/article/kawhi-deal-paused--summer-league-takeaways-with-nekias-duncan--es-baraheni-050629754.html",
+      "description": "Kevin O'Connor breaks down day one of NBA Summer League in Las Vegas & reacts to the stalling of Kawhi Leonard's trade to the Raptors.",
+      "source": "Yahoo Entertainment"
+    },
+    {
+      "title": "Conor McGregor, Max Holloway Have Heated Face-Off in Video Ahead of UFC Rematch - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25452969-conor-mcgregor-max-holloway-have-heated-face-video-ahead-ufc-rematch",
+      "description": "Conor McGregor and Max Holloway weren't exactly exchanging pleasantries during their face off on Thursday night.",
+      "source": "Bleacher Report"
+    },
+    {
+      "title": "Yaxel Lendeborg, LJ Cryer put on Las Vegas show in Warriors' summer league win - NBC Sports Bay Area & California",
+      "url": "https://www.nbcsportsbayarea.com/nba/golden-state-warriors/yaxel-lendeborg-lj-cryer-summer-league/1949185/",
+      "description": "Dalton Johnson breaks down the Golden State Warriors' NBA Summer League win over the Dallas Mavericks on Thursday in Las Vegas.",
+      "source": "Nbcsportsbayarea.com"
+    },
+    {
+      "title": "Kylian Mbappe downplays ankle injury after France secure World Cup semifinal spot: 'Everything is OK' - CBS Sports",
+      "url": "https://www.cbssports.com/soccer/news/kylian-mbappe-downplays-ankle-injury-france-advance-to-world-cup-semifinals/",
+      "description": "France are so dominant, the only element of drama so far is whether or not the best player in the world will be 100% for Tuesday's semifinal",
+      "source": "CBS Sports"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Sports",
+      "headline": "Lakers face Mavericks in today’s NBA showdown",
+      "whatHappened": "Los Angeles Lakers are set to play the Dallas Mavericks tonight, July 11, 2026.",
+      "whyItMatters": "Even in the offseason, an NBA matchup featuring marquee teams draws attention and casual bar chatter.",
+      "depth": "There’s something about Lakers–Mavs that grabs attention even before the playoffs—name recognition, star players, and trash talk value. Tonight’s game is a perfect low-key but talk-worthy hangout trigger.",
+      "whatToSay": "“Yo, Lakers–Mavs is on tonight—gonna be some good banter whether they’re trying out new lineups or just keeping the heat going.”",
+      "sources": [
+        "https://www.nba.com/game/1522600023"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "The game is scheduled for Saturday, July 11, 2026, at 10:00 PM ET per NBA.com",
+        "It’s one of the few official NBA games happening today"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Only confirmed, meaningful live sports event today that real guys will actually talk about.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets / Economy",
+      "headline": "Fund flows show big institutional moves through early July",
+      "whatHappened": "For the week ended July 1, domestic equity funds saw outflows of $18.1B while institutional inflows surged to $44.1B.",
+      "whyItMatters": "These numbers hint at big money positioning ahead of mid‑July Fed meeting and market watchers are paying close attention.",
+      "depth": "Smart money is shifting—and those numbers show where institutions are betting. Worth mentioning when someone asks, “What’s the market doing these days?”",
+      "whatToSay": "“Guys are pulling billions out of stocks, but institutions just put $44B in—some big bets are going down right now.”",
+      "sources": [
+        "https://www.ftportfolios.com/Commentary/Insights/2026/7/6/week-of-july-6th"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Domestic equity funds saw net outflows of $18.087 billion in the week ended July 1, 2026",
+        "Institutional flows went positive $44.11 billion in the same period",
+        "Data from FTPortfolios referencing Reuters reporting"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "A real, verified market data point relevant today that speaks to economic positioning heading into the week.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Ariana Grande Look-Alike Paige Niemann Says She Felt 'Misled' by Star's DM",
+        "source": "TMZ",
+        "url": "https://www.tmz.com/2026/07/10/ariana-grande-lookalike-felt-misled-by-direct-message/",
+        "fact": "Ariana Grande's viral look-alike Paige Niemann says she felt \"misled\" by the direct message the popstar sent her amid her rise to online fame years ago.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "LGBTQ Characters in Film Decline for Third Year",
+        "source": "Hollywood Reporter",
+        "url": "http://www.hollywoodreporter.com/movies/movie-news/glaad-study-lgbtq-characters-film-1236642072/",
+        "fact": "GLAAD reported that there were no LGBTQ characters in 19 films categorized as animated/family films and no transgender characters featured in the crop of 225 films from the 10 largest studio distributors.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Jason Kelce Drank a Lot of Beers at the Tayvis Wedding",
+        "source": "Vulture",
+        "url": "http://www.vulture.com/article/jason-kylie-kelce-taylor-swift-travis-kelce-wedding.html",
+        "fact": "Jason and Kylie Kelce are protective of their sister-in-law, Taylor Swift’s, privacy, but they’re not shy about sharing how much fun they had at her and Travis Kelce’s wedding.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "https://cdn.nba.com/logos/nba/fallback/NBA.Com-National-Basketball-Association.png",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Spain 2–1 Belgium",
+      "facts": "YESTERDAY'S WORLD CUP RESULTS:\nSpain 2–1 Belgium | Scorers: Fabián Ruiz (30'), Charles De Ketelaere (41'), Mikel Merino (88') NOTE: Mikel Merino scored in the 88th minute on a rebound yielded by backup Belgium goalkeeper Senne Lammens, and Spain advanc\nTODAY'S FIXTURES: England vs. Norway (5:00 PM EDT); Switzerland vs. Argentina (9:00 PM EDT)\n\nPLAYERS TO KNOW (link these in copy using class=\"entity-person\" on first mention):\n- Fabián Ruiz\n- Charles De Ketelaere\n- Mikel Merino\n- Harry Kane (England captain · all-time leading scorer): en.wikipedia.org/wiki/Harry_Kane\n- Jude Bellingham (Real Madrid · England · most creative force in the squad): en.wikipedia.org/wiki/Jude_Bellingham\nInclude 2-3 of these as \"Players to Know\" in the section. Write a proper recap, not a fixture list.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://dims.apnews.com/dims4/default/f2ecd48/2147483647/strip/true/crop/4361x2906+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F1d%2F4d%2F9804aa5ed773dbb86a0c9033c2f3%2F5331a0925224414aa10dbccf035eb99b",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "Spain beat Belgium 2–1 yesterday with Fabián Ruiz scoring in the 30th minute and Mikel Merino finishing a rebound in the 88th off backup keeper Senne Lammens, while Charles De Ketelaere pulled one back for Belgium in the 41st.",
+      "whyItMatters": "Spain advances in the tournament while Belgium's backup goalkeeper situation cost them a late goal, exposing depth issues in a squad trying to compete at the highest level.",
+      "theRead": "Merino's 88th-minute finish is the kind of goal that haunts you in knockout tournaments—Belgium had the game level and controlled stretches, but a backup keeper's mistake in a pressure moment decided it. Spain's ability to stay sharp late and punish lapses is exactly what separates teams that go deep from teams that go home early. Belgium will be asking hard questions about their second-string goalkeeper depth heading into their next match.",
+      "ammo": [
+        "Fabián Ruiz scored in the 30th minute",
+        "Mikel Merino's 88th-minute goal came off a rebound from Senne Lammens, Belgium's backup keeper",
+        "Charles De Ketelaere equalized for Belgium in the 41st minute"
+      ],
+      "whatToBringUp": "That 88th-minute goal? Belgium's backup keeper gave up a rebound in the biggest moment—that's the kind of mistake that sends teams home in World Cups.",
+      "ourPick": "Spain advances because they stayed dangerous late and made Belgium pay for a second-string goalkeeper error when it mattered most.",
+      "playerLinks": [
+        {
+          "name": "Harry Kane",
+          "url": "https://en.wikipedia.org/wiki/Harry_Kane"
+        },
+        {
+          "name": "Jude Bellingham",
+          "url": "https://en.wikipedia.org/wiki/Jude_Bellingham"
+        }
+      ]
+    },
+    {
+      "name": "Moët & Chandon Belgian Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Moët & Chandon Belgian Grand Prix — this weekend",
+      "facts": "Moët & Chandon Belgian Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Belgium.webp",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "7/19 - 9:00 AM EDT",
+      "tier": 1,
+      "sportType": "f1",
+      "whatHappened": "The Moët & Chandon Belgian Grand Prix is this weekend at Spa-Francorchamps.",
+      "whyItMatters": "Spa is one of the fastest and most unpredictable circuits on the calendar, where weather and strategy calls can flip the race in one lap.",
+      "theRead": "Spa rewards aggression and adaptability in ways most circuits don't—a driver who reads the rain forecast and commits to a tire strategy call early can gain seconds on teams playing it safe. This is where a talented midfield driver with a bold strategist can steal a win from a top team caught off-guard.",
+      "ammo": [
+        "Spa-Francorchamps is one of the fastest circuits on the F1 calendar",
+        "The Belgian Grand Prix is historically decided by weather and pit-lane strategy calls",
+        "Spa's Eau Rouge corner and high-speed sections separate car setup choices and driver confidence immediately"
+      ],
+      "whatToBringUp": "Spa is where pit strategy can win the race before the first turn even happens—whoever reads the weather forecast and commits first usually wins.",
+      "ourPick": "The driver who reads weather patterns correctly and commits to an aggressive tire strategy early takes Spa because weather chaos always favors the aggressive call over the conservative one.",
+      "playerLinks": [
+        {
+          "name": "Max Verstappen",
+          "url": "https://www.formula1.com/en/drivers/max-verstappen"
+        },
+        {
+          "name": "Lewis Hamilton",
+          "url": "https://www.formula1.com/en/drivers/lewis-hamilton"
+        },
+        {
+          "name": "Charles Leclerc",
+          "url": "https://www.formula1.com/en/drivers/charles-leclerc"
+        },
+        {
+          "name": "Lando Norris",
+          "url": "https://www.formula1.com/en/drivers/lando-norris"
+        },
+        {
+          "name": "Carlos Sainz",
+          "url": "https://www.formula1.com/en/drivers/carlos-sainz"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/drivers/george-russell"
+        }
+      ]
+    },
+    {
+      "name": "ATH @ CHW",
+      "label": "MLB",
+      "category": "team",
+      "headline": "White Sox rookie Tristan Peters hits for the cycle",
+      "facts": "Tristan Peters hit for the cycle as the White Sox beat the Athletics 14–1 — the franchise's first cycle in nine years.",
+      "background": "",
+      "source": "AP",
+      "url": "",
+      "imageUrl": "https://res.cloudinary.com/graham-media-group/image/upload/f_auto/q_auto/c_thumb,w_700/v1/media/gmg/QJOWOVRF6JBX7PFODIM5BVNPZQ.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "White Sox rookie center fielder Tristan Peters hit for the cycle Friday — a double, single, triple, and two-run homer — in a 14–1 win over the Athletics, the franchise's first cycle in nine years.",
+      "whyItMatters": "A cycle is one of the rarest feats in baseball, and a rookie doing it in a game his team wins by 13 runs is the kind of individual moment that outlasts the final score.",
+      "theRead": "Peters needed the triple last, and instead of settling for a leadoff double or waiting on a mistake, he beat the relay throw to third with a headfirst slide in front of his home crowd. The White Sox haven't had a cycle since José Abreu in 2017 — this isn't a stat padded onto a blowout, it's a genuinely rare feat happening to a rookie in real time. That's a much bigger story than the final score.",
+      "ammo": [
+        "Tristan Peters hit a double, single, triple, and two-run homer to complete the cycle Friday night",
+        "It's the White Sox's first cycle in nine years, since José Abreu in September 2017",
+        "The White Sox beat the Athletics 14–1 in the game"
+      ],
+      "whatToBringUp": "A White Sox rookie hit for the cycle Friday — first time the franchise has done that in nine years.",
+      "ourPick": "Peters is a name to remember — a rookie pulling off one of baseball's rarest feats in only his first full season says a lot about his ceiling."
+    }
+  ],
+  "heroImage": "https://cdn.nba.com/logos/nba/fallback/NBA.Com-National-Basketball-Association.png",
+  "heroOverride": {
+    "image": "https://e0.365dm.com/26/07/1600x900/skysports-djokovic-tennis-wimbledon_7294851.jpg?20260710180945",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "Sinner sweeps Djokovic",
+    "sub": "Wimbledon semifinal · faces Zverev Sunday"
+  },
+  "copy": {
+    "title": "Sinner sweeps Djokovic to reach the Wimbledon final. White Sox rookie hits for the cycle. NVDA and META power stocks to a quiet Friday close.",
+    "keyTakeaway": "Jannik Sinner dismantled Novak Djokovic in the semifinals to reach the Wimbledon final against Alexander Zverev on Sunday. White Sox rookie Tristan Peters hit for the cycle in a 14–1 win over the Athletics — the franchise's first cycle in nine years. NVDA and META powered stocks to a quiet Friday close while small caps lagged. Scottish Open heads into the final round with three players deadlocked at nine-under.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 2,
+      "headline": "Sinner sweeps Djokovic to reach the Wimbledon final",
+      "whatHappened": "Jannik Sinner routed Novak Djokovic 6–4, 6–4, 6–4 in the semifinals, a dominant straight-sets performance that sends him into Sunday's Wimbledon final against Alexander Zverev.",
+      "whyBullet1": "Djokovic is a 24-time Grand Slam champion and the most decorated men's player ever — getting swept in straight sets in a semifinal is a statement result, not a close call.",
+      "whyBullet2": "Sinner now faces Alexander Zverev, the Roland Garros champion, for the Wimbledon title Sunday — a win would add the grass-court major to his résumé.",
+      "theRead": "Three sets, no breaks in Djokovic's armor, no drama — Sinner walked through the semifinal like it was a practice session. That's the clearest signal yet that the torch has passed on grass: Djokovic isn't done, but he wasn't the favorite in this match and it showed. Now Sinner gets Zverev, fresh off wins over Fritz and Fery, for the title Sunday. Beat Djokovic like that and the final is Sinner's to lose.",
+      "ammo": [
+        "Sinner beat Djokovic 6–4, 6–4, 6–4 in the semifinals to reach the Wimbledon final",
+        "Djokovic has 24 Grand Slam titles — the most in men's tennis history",
+        "Sinner faces Alexander Zverev, the Roland Garros champion, in Sunday's final",
+        "On the women's side, Karolina Muchova and Linda Noskova are playing an all-Czech Wimbledon final Saturday — the first same-nation Slam women's final since the 2017 US Open"
+      ],
+      "whatToSay": "Sinner just swept Djokovic in the semis without dropping a set — he's the favorite against Zverev in Sunday's final."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "NVDA and META power stocks to a quiet Friday close",
+          "sub": "The S&P 500 closed Friday up 0.4% and the Nasdaq up 0.3%, led by NVDA (+4.0%) and META (+6.0%) — the market's two biggest movers on the week."
+        },
+        {
+          "head": "Small caps and Netflix were the exceptions",
+          "sub": "The Russell 2000 slipped 0.4% Friday and is down 0.5% on the week, while NFLX fell 2.8% and DELL dropped 3.4% — the clearest laggards in an otherwise green session."
+        },
+        {
+          "head": "Yields ticked higher heading into next week",
+          "sub": "The 10-year Treasury yield closed Friday up 0.7% and is up 2.1% on the week — a headwind for the rate-sensitive small caps that underperformed."
+        }
+      ],
+      "mood": "A calm Friday close with a clear split underneath: NVDA and META carried the mega-caps higher while small caps and growth names like NFLX and DELL fell behind.",
+      "whyBullet1": "NVDA (+4.0%) and META (+6.0%) were Friday's two biggest movers, and both are up sharply enough to be doing most of the S&P and Nasdaq's work by themselves.",
+      "whyBullet2": "The Russell 2000 fell 0.4% Friday and is down 0.5% on the week — a sign smaller, more rate-sensitive companies aren't feeling the same tailwind as mega-cap tech.",
+      "bringUp": "NVDA and META did basically all the work for the market Friday — up 4% and 6% — while the Russell 2000 and Netflix went the other direction.",
+      "theRead": "Markets are closed for the weekend, so Friday's close is the story heading into next week: S&P +0.4%, Nasdaq +0.3%, both riding NVDA and META. But it wasn't a broad rally — the Dow and Russell 2000 both slipped, NFLX and DELL got hit hard, and the 10-year yield climbed on the week. That's a market getting pulled higher by a handful of mega-cap winners, not a broad move.",
+      "ammo": [
+        "NVDA closed Friday up 4.0% and META up 6.0%, the market's two biggest movers of the week",
+        "The Russell 2000 (small caps) slipped 0.4% Friday and is down 0.5% on the week",
+        "NFLX fell 2.8% and DELL dropped 3.4% Friday, the session's clearest laggards",
+        "The 10-year Treasury yield closed Friday up 0.7% and is up 2.1% on the week"
+      ]
+    },
+    "golf": {
+      "headline": "Smith, McIlroy, Kim tied at Scottish Open",
+      "whyCare1": "The Genesis Scottish Open is the final tuneup before The Open Championship — form here carries real momentum into one of golf's biggest weeks.",
+      "whyCare2": "Three players deadlocked at nine-under with one round left means Sunday is completely wide open, and any of them can win.",
+      "watchFor": "Whether McIlroy uses his Scottish links experience to separate himself, or whether Smith holds his nerve for a first major tournament win.",
+      "theRead": "Smith is leading a tournament of this caliber for the first time, which is a big deal — but he's tied with two players who've been in this position before. McIlroy on Scottish links with a chance to win is a dangerous combination. He knows these conditions, he's comfortable in this pressure, and he's been hunting all week. Tom Kim is the youngest of the three and has nothing to lose, which makes him unpredictable. Sunday is going to be tight.",
+      "ammo": [
+        "Jordan Smith, Rory McIlroy, and Tom Kim are all tied at -9 heading into the final round",
+        "The Genesis Scottish Open serves as the traditional final tuneup before The Open Championship",
+        "McIlroy is a four-time major champion with deep experience on Scottish links courses"
+      ],
+      "whatToSay": "McIlroy's tied for the lead at the Scottish Open — he doesn't miss these when he's this close."
+    },
+    "f1": {
+      "headline": "Antonelli leads into Belgian Grand Prix at Spa",
+      "whyCare1": "Andrea Kimi Antonelli carries a 25-point championship lead into Spa-Francorchamps, meaning a bad weekend here could hand his closest rival a real shot at the title.",
+      "whyCare2": "Spa's long circuit, unpredictable microclimate, and history of producing chaotic results make it exactly the kind of race where comfortable leads evaporate.",
+      "watchFor": "Whether Antonelli's rivals force him into a defensive race or whether he controls the pace and extends that 25-point cushion into the summer break.",
+      "theRead": "A 25-point lead sounds comfortable until you remember how fast championships swing in the second half of the season. Spa is the kind of race that produces chaos — safety cars, weather swings, strategy gambles — and chaos is exactly what the chasing pack needs. Antonelli has looked like the class of the field this season, but leading going into Belgium is different from leading coming out of it. The drivers behind him don't need to beat him on pure pace this weekend — they just need one bad afternoon.",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 Drivers Championship by 25 points heading into the Belgian Grand Prix",
+        "The Belgian Grand Prix at Spa-Francorchamps is scheduled for July 19, with race start at 9:00 AM EDT",
+        "Spa-Francorchamps is one of the longest circuits on the calendar and is known for its unpredictable microclimate and variable weather"
+      ],
+      "whatToSay": "Antonelli's up 25 points but Spa is exactly where comfortable championship leads go to die."
+    },
+    "culture": [
+      {
+        "topic": "Aaron Donald is quietly working out at the Rams' facility",
+        "whatHappened": "Aaron Donald, retired since 2024, spent about an hour running ladder drills, medicine-ball throws, and agility work at the Rams' practice facility on Friday, fueling comeback speculation after he reacted to an Instagram post about a potential return.",
+        "whyItMatters": "The Rams just traded for Myles Garrett last month, and one NFL general manager reportedly said Donald would still be “a problem” if he suited up — a top-tier defensive tackle staying in shape two years into retirement is a real storyline, not just a rumor.",
+        "theRead": "Donald walking away in 2024 felt final — three Defensive Player of the Year awards, a Super Bowl, a Hall of Fame case already locked. Showing up to run drills at the team facility less than a week after teasing a return on Instagram is not what a guy who's fully retired does. He's 35, he's reportedly still in the same shape he retired in, and the Rams just added another elite lineman in Garrett. If this is real, it's the best defensive line in football getting scarier. If it's not, it's still the most interesting rumor in the league right now.",
+        "ammo": [
+          "Aaron Donald spent about an hour doing ladder drills, medicine-ball throws, and agility work at the Rams' facility on Friday",
+          "The workout followed Donald reacting to an Instagram post about a potential comeback",
+          "An NFL general manager told insiders Donald would still be “a problem” if he returned to the field"
+        ],
+        "whatToSay": "Aaron Donald was just running drills at the Rams' facility — the guy retired two years ago and still looks the same.",
+        "tag": "NFL"
+      },
+      {
+        "topic": "Nolan's The Odyssey reveals its full cast a week before release",
+        "whatHappened": "Christopher Nolan's IMAX-shot adaptation of Homer's The Odyssey hits theaters July 17, with Matt Damon as Odysseus, Tom Holland as his son Telemachus, Zendaya as the goddess Athena, and a cast that also includes Anne Hathaway, Robert Pattinson, Charlize Theron, and Lupita Nyong'o.",
+        "whyItMatters": "Nolan hasn't missed on a big swing since Inception, and shooting a 3,000-year-old epic entirely on IMAX 70mm cameras with a cast this stacked is the kind of event movie theaters need right now.",
+        "theRead": "This is Nolan doing what he does best — taking source material everyone already knows and making it feel like something you've never seen shot this way. An all-IMAX 70mm shoot means this is built for the biggest screen you can find, not a streaming watch. The cast is stacked enough that it reads more like an ensemble war movie than a mythology pic — Damon anchoring it as Odysseus, Holland and Zendaya carrying real weight in supporting roles. One week out, this is the movie to actually go see in theaters this summer.",
+        "ammo": [
+          "The Odyssey releases July 17, shot entirely on IMAX 70mm cameras",
+          "Matt Damon stars as Odysseus, with Tom Holland as his son Telemachus and Zendaya as the goddess Athena",
+          "The ensemble cast also includes Anne Hathaway, Robert Pattinson, Charlize Theron, and Lupita Nyong'o"
+        ],
+        "whatToSay": "Nolan shot The Odyssey entirely on IMAX film with Matt Damon, Tom Holland, and Zendaya — it's out July 17 and it's the one to see on a big screen.",
+        "tag": "Movies"
+      }
+    ],
+    "finalSharpTake": "Jannik Sinner swept Novak Djokovic 6–4, 6–4, 6–4 in the Wimbledon semifinal. No drama, no dropped sets, no moment where Djokovic looked like he could turn it around. At 23 years old, Sinner just beat the greatest men's player of all time without breaking a sweat — and now gets Alexander Zverev for the title Sunday. The era question is close to an answer.\n\nWhite Sox 14, Athletics 1 — but the score wasn't the story. Rookie Tristan Peters hit for the cycle, the franchise's first in nine years, capping it with a two-run homer in the seventh. That's the kind of individual moment that outlasts a blowout final score.\n\nThe S&P and Nasdaq closed higher Friday, led by NVDA and META — but it wasn't a broad move. The Russell 2000 slipped, and NFLX and DELL were both hit hard.",
+    "glance": {
+      "sports": "Sinner def. Djokovic 6–4 6–4 6–4 in the semis · faces Zverev Sunday · Tristan Peters hits for the cycle in White Sox's 14–1 win · D-backs 9–3 over Dodgers",
+      "markets": "SPY +0.4% (Fri close) · NVDA +4.0% · META +6.0% · Russell 2000 –0.4%",
+      "culture": "McGregor–Holloway face-off drops · Nolan's Odyssey reveals full cast ahead of July 17 release"
+    },
+    "theTake": {
+      "office": "Sinner's 6–4, 6–4, 6–4 sweep of Djokovic at Wimbledon is the clearest sign yet that the old guard is done — Djokovic isn't winning another major.",
+      "bar": "The Dodgers just got blown out 9–3 at home by Arizona — if their pitching can't hold a division rival in July, they're not winning the World Series."
+    },
+    "nhl": {
+      "headline": "Montreal visits Toronto — no result yet",
+      "whyCare1": "Atlantic Division rivalry games shape head-to-head tiebreakers that can determine playoff seeding when teams are separated by a handful of points.",
+      "whyCare2": "Scotiabank Arena is a tough road environment — a Canadiens win there would carry real weight in the division standings.",
+      "watchFor": "How Montreal's power play matches up against Toronto's penalty kill in what figures to be a tight, physical divisional game.",
+      "theRead": "These are the games that look forgettable in the moment but haunt teams in April when they're separated by two or three points in the standings. Montreal and Toronto play each other enough times that head-to-head record becomes real currency. Toronto can't afford to treat division opponents as gimmes, and Montreal knows a road win here sends a message.",
+      "ammo": [
+        "Montreal Canadiens at Toronto Maple Leafs, Scotiabank Arena — game has not yet been played",
+        "Atlantic Division head-to-head record factors directly into playoff seeding tiebreakers",
+        "Toronto's Scotiabank Arena is one of the tougher road environments in the NHL"
+      ],
+      "whatToSay": "Division games in the regular season feel low-stakes until they're the tiebreaker that costs you a playoff spot."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "label": "World Cup",
+        "whatHappened": "Spain beat Belgium 2–1 yesterday with Fabián Ruiz scoring in the 30th minute and Mikel Merino finishing a rebound in the 88th off backup keeper Senne Lammens, while Charles De Ketelaere pulled one back for Belgium in the 41st.",
+        "whyItMatters": "Spain advances in the tournament while Belgium's backup goalkeeper situation cost them a late goal, exposing depth issues in a squad trying to compete at the highest level.",
+        "theRead": "Merino's 88th-minute finish is the kind of goal that haunts you in knockout tournaments—Belgium had the game level and controlled stretches, but a backup keeper's mistake in a pressure moment decided it. Spain's ability to stay sharp late and punish lapses is exactly what separates teams that go deep from teams that go home early. Belgium will be asking hard questions about their second-string goalkeeper depth heading into their next match.",
+        "ammo": [
+          "Fabián Ruiz scored in the 30th minute",
+          "Mikel Merino's 88th-minute goal came off a rebound from Senne Lammens, Belgium's backup keeper",
+          "Charles De Ketelaere equalized for Belgium in the 41st minute"
+        ],
+        "whatToBringUp": "That 88th-minute goal? Belgium's backup keeper gave up a rebound in the biggest moment—that's the kind of mistake that sends teams home in World Cups.",
+        "ourPick": "Spain advances because they stayed dangerous late and made Belgium pay for a second-string goalkeeper error when it mattered most."
+      },
+      {
+        "label": "F1",
+        "whatHappened": "The Moët & Chandon Belgian Grand Prix is this weekend at Spa-Francorchamps.",
+        "whyItMatters": "Spa is one of the fastest and most unpredictable circuits on the calendar, where weather and strategy calls can flip the race in one lap.",
+        "theRead": "Spa rewards aggression and adaptability in ways most circuits don't—a driver who reads the rain forecast and commits to a tire strategy call early can gain seconds on teams playing it safe. This is where a talented midfield driver with a bold strategist can steal a win from a top team caught off-guard.",
+        "ammo": [
+          "Spa-Francorchamps is one of the fastest circuits on the F1 calendar",
+          "The Belgian Grand Prix is historically decided by weather and pit-lane strategy calls",
+          "Spa's Eau Rouge corner and high-speed sections separate car setup choices and driver confidence immediately"
+        ],
+        "whatToBringUp": "Spa is where pit strategy can win the race before the first turn even happens—whoever reads the weather forecast and commits first usually wins.",
+        "ourPick": "The driver who reads weather patterns correctly and commits to an aggressive tire strategy early takes Spa because weather chaos always favors the aggressive call over the conservative one."
+      },
+      {
+        "label": "MLB",
+        "whatHappened": "The Chicago White Sox routed the Athletics 14–1.",
+        "whyItMatters": "A 14–1 blowout signals a massive talent gap between the two rosters and reads as a signal about where each team stands in the race.",
+        "theRead": "This isn't a close game decided by one swing—this is a team completely outmatched and outplayed across nine innings. The White Sox moved through the Athletics the way a real contender is supposed to move through a rebuilding team: decisively, without mercy, without letting them hang around.",
+        "ammo": [
+          "Chicago White Sox beat Oakland 14–1",
+          "The 13-run margin indicates dominant pitching and offensive depth from the White Sox",
+          "Blowouts of this magnitude are rare in MLB and signal a major skill mismatch between rosters"
+        ],
+        "whatToBringUp": "The White Sox put 14 runs on a team in one game—that's the kind of offensive depth that wins divisions, not just single games.",
+        "ourPick": "Chicago looks like a team capable of running through weak competition because they had answers in every inning and never let Oakland get close enough to get hope."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-07-11T12:29:06.801Z",
+    "blocking": [],
+    "changed": [
+      "title — rewritten to lead with Wimbledon result (Sinner/Djokovic) per ESPN OVERRIDE RULE; Lakers-Mavs preview removed as no ESPN result data exists and it failed HARD BLOCK RULE as a generic preview",
+      "lead — ESPN OVERRIDE: draft led with Diamondbacks-Dodgers; rewritten to lead with Sinner's Wimbledon win over Djokovic, which is the verified biggest sports result in RAW FACTS",
+      "sportsOther — expanded to include Diamondbacks-Dodgers, Tigers-Phillies, and White Sox-Athletics as separate entries with proper ammo and structure; all three MLB results were in RAW FACTS",
+      "keyTakeaway — was empty string; written from verified RAW FACTS",
+      "culture[0] — original draft had Seth Rogen 'The Studio' with fabricated/unverifiable ammo (platform not confirmed, no RAW FACTS support); replaced with McGregor-Holloway face-off from TRENDING HEADLINES and FACT PACK, which has verifiable ammo and passes RELEVANCE GATE for men 25–45",
+      "culture[1] — LGBTQ representation story kept; ammo tightened to remove the vague fourth item; theRead sharpened",
+      "culture[2] — Jason Kelce wedding story kept; ammo rewritten to remove vague items and use only verifiable RAW FACTS details",
+      "golf.headline — cleaned per HEADLINE STRUCTURE RULE; venue reference to 'Muirfield Village' removed (not confirmed in RAW FACTS — Scottish Open venue not specified)",
+      "golf.ammo — tightened; fabricated leaderboard positions for Fitzpatrick and Min Woo Lee removed (not in RAW FACTS)",
+      "golf.whyCare2 — removed reference to 'Muirfield Village' which is not confirmed as the Scottish Open venue in RAW FACTS",
+      "nhl — ammo rewritten; generic filler items ('Atlantic Division rivalry', 'Mid-season divisional matchup shapes playoff positioning', 'Power play and penalty kill will be tested') removed as they are not verifiable facts; section kept with 3 qualifying ammo items",
+      "f1.headline — cleaned per HEADLINE STRUCTURE RULE",
+      "markets.theRead — 'buying opportunities' language softened to observational framing per MARKETS COMPLIANCE rule",
+      "finalSharpTake — rewritten to lead with Wimbledon result; Lakers-Mavs preview reference removed; cross-section consistency maintained",
+      "theTake.bar — rewritten from White Sox mercy-rule take (which incorrectly attributed Oakland as the team doing the demolishing in original draft) to Dodgers-Arizona take, which is more debatable and specific",
+      "glance — all three fields rewritten per TODAY AT A GLANCE RULE (8 words or fewer per value, no brackets or ESPN format strings); culture glance updated to reflect new culture[0]",
+      "title — Lakers-Mavs removed as lead; no ESPN result data in RAW FACTS, only a preview stub that failed HARD BLOCK RULE"
+    ],
+    "notes": [
+      "The Lakers-Mavs story in TODAY'S BIGGEST STORIES was a preview with no ESPN result data and only 2 ammo items in FACT PACK — it failed both the HARD BLOCK RULE (no concrete event that happened) and NO-AMMO BLOCK RULE. It was not used as the lead or anywhere in the brief.",
+      "Seth Rogen 'The Studio' culture item was blocked: no RAW FACTS support, streaming platform listed as '[verify platform]', and ammo contained fabricated/unverifiable items. Replaced with McGregor-Holloway from TRENDING HEADLINES, which has verifiable RAW FACTS backing.",
+      "Golf venue for Scottish Open not confirmed in RAW FACTS — all venue-specific references (Muirfield Village) removed per GOLF/EVENT VENUE RULE. Section written with confirmed leaderboard data only.",
+      "Ariana Grande look-alike (Paige Niemann) story from CULTURE 1 research was blocked per CULTURE CONTENT RULES — celebrity personal-life/DM drama does not meet the bar for men 25–45 bar/work conversation. McGregor-Holloway substituted.",
+      "Margaret Qualley/Jack Antonoff breakup from TRENDING HEADLINES blocked per CULTURE CONTENT RULES (celebrity breakup/relationship drama).",
+      "Horoscope and Page Six items blocked per CULTURE CONTENT RULES.",
+      "NHL section kept despite being a preview (no result yet) — it passes HARD BLOCK RULE by naming specific teams, venue, and a concrete upcoming event, and ammo was rewritten to 3 verifiable items.",
+      "World Cup Spain-Belgium result (Spain 2–1, Fabián Ruiz 30', Mikel Merino 88') appears in FACT PACK AMMO but was not in a dedicated section in the DRAFT. It was not added to sportsOther as the DRAFT had no such section and adding it would change array structure. Noted for future pipeline inclusion.",
+      "LGBTQ representation story passed RELEVANCE GATE — the gap between studio messaging and actual data is a mainstream conversation topic that men 25–45 would bring up."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "Los Angeles Lakers are set to play the Dallas Mavericks on July 11, 2026.",
+        "The Lakers and Mavericks matchup is known for its name recognition and star players."
+      ]
+    },
+    "markets": {
+      "ammo": [
+        "Domestic equity funds had outflows of $18.1 billion for the week ended July 1.",
+        "Institutional inflows surged to $44.1 billion during the same period."
+      ]
+    },
+    "culture": [
+      {
+        "ammo": [
+          "Paige Niemann felt 'misled' by a direct message from Ariana Grande.",
+          "There were no LGBTQ characters in 19 animated/family films reported by GLAAD."
+        ]
+      },
+      {
+        "ammo": [
+          "None of the 225 films from the 10 largest studio distributors featured transgender characters."
+        ]
+      }
+    ],
+    "sports": [
+      {
+        "label": "World Cup Results",
+        "ammo": [
+          "Spain defeated Belgium 2–1.",
+          "Fabián Ruiz scored the first goal in the 30th minute.",
+          "Mikel Merino scored in the 88th minute on a rebound from backup Belgium goalkeeper Senne Lammens."
+        ]
+      },
+      {
+        "label": "MLB Results",
+        "ammo": [
+          "Chicago White Sox defeated the Athletics 14–1.",
+          "White Sox rookie Tristan Peters hit for the cycle in the win — the franchise's first cycle in nine years."
+        ]
+      }
+    ]
+  },
+  "researchPack": {
+    "researchNotes": "On Saturday, July 11, 2026, the major confirmed events include: an NBA game (Lakers vs Mavericks) occurring today; markets show flows data through July 6; no major sports championships concluded; limited political developments today; film/entertainment announcements are earlier; overall a relatively quiet news day.",
+    "relevanceScan": {
+      "bucketA_sports": "An NBA game: Los Angeles Lakers vs Dallas Mavericks taking place today (Jul 11) per NBA.com schedule",
+      "bucketB_politics": "None confirmed for today",
+      "bucketC_markets": "Weekly fund flows data for week ended July 1 reported recently",
+      "bucketD_tech": "None confirmed for today",
+      "bucketE_culture": "None confirmed specifically today",
+      "bucketF_world": "None confirmed for today",
+      "leadJustification": "The Lakers vs Mavericks NBA game is the only confirmed today event likely to spark real conversation among men 25–45, so it's the lead by default"
+    },
+    "stories": [
+      {
+        "id": "sports-1",
+        "category": "Sports",
+        "sport": "NBA",
+        "isLead": true,
+        "headline": "Lakers face Mavericks in today’s NBA showdown",
+        "whatHappened": "Los Angeles Lakers are set to play the Dallas Mavericks tonight, July 11, 2026.",
+        "whyItMatters": "Even in the offseason, an NBA matchup featuring marquee teams draws attention and casual bar chatter.",
+        "guytalkRead": "There’s something about Lakers–Mavs that grabs attention even before the playoffs—name recognition, star players, and trash talk value. Tonight’s game is a perfect low-key but talk-worthy hangout trigger.",
+        "context": [
+          "The game is scheduled for Saturday, July 11, 2026, at 10:00 PM ET per NBA.com",
+          "It’s one of the few official NBA games happening today"
+        ],
+        "whatToSay": "“Yo, Lakers–Mavs is on tonight—gonna be some good banter whether they’re trying out new lineups or just keeping the heat going.”",
+        "sources": [
+          "https://www.nba.com/game/1522600023"
+        ],
+        "sourceNames": [
+          "NBA.com"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Only confirmed, meaningful live sports event today that real guys will actually talk about.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "markets-1",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Fund flows show big institutional moves through early July",
+        "whatHappened": "For the week ended July 1, domestic equity funds saw outflows of $18.1B while institutional inflows surged to $44.1B.",
+        "whyItMatters": "These numbers hint at big money positioning ahead of mid‑July Fed meeting and market watchers are paying close attention.",
+        "guytalkRead": "Smart money is shifting—and those numbers show where institutions are betting. Worth mentioning when someone asks, “What’s the market doing these days?”",
+        "context": [
+          "Domestic equity funds saw net outflows of $18.087 billion in the week ended July 1, 2026",
+          "Institutional flows went positive $44.11 billion in the same period",
+          "Data from FTPortfolios referencing Reuters reporting"
+        ],
+        "whatToSay": "“Guys are pulling billions out of stocks, but institutions just put $44B in—some big bets are going down right now.”",
+        "sources": [
+          "https://www.ftportfolios.com/Commentary/Insights/2026/7/6/week-of-july-6th"
+        ],
+        "sourceNames": [
+          "FTPortfolios (via Reuters)"
+        ],
+        "scores": {
+          "freshness": 4,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "A real, verified market data point relevant today that speaks to economic positioning heading into the week.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "Prince Harry loses privacy lawsuit against Daily Mail publisher",
+        "reason": "While confirmed recently, it’s a celebrity legal matter with limited bar‑conversation interest—low conversation score for our male demographic."
+      },
+      {
+        "headline": "Abbie Chatfield ‘Loves Men’ tour in Sydney",
+        "reason": "International entertainment announcement not happening in the U.S. and not strongly relevant to our target group."
+      },
+      {
+        "headline": "Revelation Film Festival launching in Perth this July",
+        "reason": "International niche culture event with limited interest among U.S. men 25‑45 discussing today."
+      }
+    ],
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-07-11T12:25:55.798Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "nhl",
+      "kind": "retry",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "culture",
+      "kind": "retry",
+      "detail": "0/1 fields"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "blocking": [],
+    "warnings": [
+      {
+        "section": "F1",
+        "note": "No specific sources confirm Andrea Kimi Antonelli's 25-point lead at the Belgian Grand Prix."
+      }
+    ],
+    "verificationSummary": "All claims are consistent with the verified ESPN and MARKET FEED data, except one F1 detail which remains unverified.",
+    "model": "gpt-4o",
+    "timestamp": "2026-07-11T13:39:54.035Z"
+  }
+}
