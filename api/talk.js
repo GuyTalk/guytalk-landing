@@ -76,6 +76,27 @@ async function marketContext() {
   return have.map((r) => `${r.l} ${r.dp >= 0 ? '+' : ''}${r.dp.toFixed(1)}%`).join(', ');
 }
 
+// The Rundown was quoting stale Friday-close % moves as if they were happening
+// live ("markets are mixed this morning") on weekends/holidays, when equities
+// aren't trading at all. US cash equities session: 9:30am-4pm ET, Mon-Fri
+// (holidays not modeled — weekend is the common case Jake hit). Computed off
+// America/New_York wall-clock so this is correct regardless of server TZ.
+function usEquitySessionState() {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false,
+  }).formatToParts(new Date());
+  const get = (t) => parts.find((p) => p.type === t)?.value;
+  const weekday = get('weekday');
+  const hour = parseInt(get('hour'), 10);
+  const minute = parseInt(get('minute'), 10);
+  const minutesNow = hour * 60 + minute;
+
+  if (weekday === 'Sat' || weekday === 'Sun') return 'closed-weekend';
+  if (minutesNow < 9 * 60 + 30) return 'closed-premarket';
+  if (minutesNow >= 16 * 60) return 'closed-afterhours';
+  return 'open';
+}
+
 /* ----------------------------------------------------------- Trending (live) */
 
 async function fetchEspnNews() {
@@ -142,7 +163,7 @@ function buildTrending(espn, newsapi) {
 /* ------------------------------------------- Talking points (AI or derived) */
 
 // One grounded Claude call → { rundown, trending-why, talking points }.
-async function buildAI(trending, marketLine, key) {
+async function buildAI(trending, marketLine, marketSession, key) {
   const Anthropic = require('@anthropic-ai/sdk');
   const client = new Anthropic({ apiKey: key });
 
@@ -162,8 +183,14 @@ async function buildAI(trending, marketLine, key) {
     '3. FINANCIAL: GuyTalk is informational only. For markets, describe ONLY what moved and by how ' +
     'much using the exact numbers given. NEVER give investment advice or buy/sell/hold guidance, ' +
     'price targets, valuations, or tell anyone what to do with money. Observe and explain, never advise.\n' +
-    '4. Be confident and casual; never hedge or say "some say". Stay grounded.\n\n' +
-    '\n5. CONTENT STANDARD — every item must clear this bar:\n' +
+    '4. Be confident and casual; never hedge or say "some say". Stay grounded.\n' +
+    `5. MARKET SESSION STATE right now is "${marketSession}". If it is anything other than "open", ` +
+    'US equity markets are NOT trading and the numbers given are from the last close — NEVER describe ' +
+    'them as happening "this morning" or "right now", and NEVER say markets are "mixed"/"up"/"down" as ' +
+    'if live. Say markets are closed (name the reason — weekend, after-hours, pre-market) and reference ' +
+    'the prior session\'s close instead, e.g. "Markets are closed for the weekend — Friday\'s close had ' +
+    'the S&P up 0.4%." Only describe live/intraday movement when the session is "open".\n\n' +
+    '\n6. CONTENT STANDARD — every item must clear this bar:\n' +
     '   • "why it matters" / "matters" = the CONSEQUENCE or stakes, NOT a restate of the headline. ' +
     'Say what it changes, sets up, or means going forward. Bad: "Team X won." Good: "The win moves Team X into the final and ends Team Y\'s season."\n' +
     '   • "stat" = the single most interesting CONCRETE detail from the story — a record, streak, margin, ' +
@@ -179,7 +206,7 @@ async function buildAI(trending, marketLine, key) {
     'talking = the 4 most conversation-driving topics, each with topic, a consequence-driven "matters", a concrete "stat" (or "" if none in the inputs), and one short quotable "say" line (in quotes) built on the real detail. Opinions ok; invented facts are not.';
 
   const user =
-    `Markets right now: ${marketLine || 'n/a'}\n\nToday's real stories:\n${stories}\n\n` +
+    `Market session: ${marketSession}\nMarket moves (last session close if not "open"): ${marketLine || 'n/a'}\n\nToday's real stories:\n${stories}\n\n` +
     'Return the JSON object.';
 
   const msg = await client.messages.create({
@@ -259,7 +286,7 @@ module.exports = async function handler(req, res) {
 
     if (process.env.ANTHROPIC_API_KEY && trending.length) {
       try {
-        const ai = await buildAI(trending, marketLine, process.env.ANTHROPIC_API_KEY);
+        const ai = await buildAI(trending, marketLine, usEquitySessionState(), process.env.ANTHROPIC_API_KEY);
         if (ai.trending?.length) trending = ai.trending;   // now carries AI "why"
         talkingAbout = ai.talking || [];
         rundown = ai.rundown || '';

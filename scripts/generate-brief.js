@@ -696,6 +696,18 @@ async function main() {
     ? (researchPack.searchModel?.includes('anthropic') ? 'anthropic-search' : 'openai-search')
     : 'feed-only';
 
+  // Feed-only mode is the "feels the same" problem: static Players-to-Know pool,
+  // generic ESPN/NewsAPI content, no fresh angles. Don't retry and don't silently
+  // ship it on a real (scheduled/dispatch) run — fail cleanly and alert Jake so he
+  // can supply fresher input, instead of publishing a degraded brief. Preview runs
+  // are exempt since nothing gets published from --preview.
+  if (researchMode === 'feed-only' && !isPreview) {
+    console.log('\n❌ Both OpenAI and Anthropic web-search research failed — aborting.');
+    console.log('   Feed-only mode is disabled for real runs; no degraded brief will be generated.');
+    console.log('   Run scripts/notify-research-failure.js to alert Jake, or re-run this workflow.\n');
+    process.exit(1);
+  }
+
   // topStories: prefer research pack; in feed-only mode filter NewsAPI to Tier-1 sources only.
   const topStoriesRaw = topStoriesResult.status === 'fulfilled' ? (topStoriesResult.value || []) : [];
   const topStories = researchPack

@@ -22,6 +22,12 @@ function getRunMeta() {
 // the link serves the previous issue.
 function stageToPending() {
   try {
+    // Refresh the homepage "Today's Brief" section + /brief/ redirect to point at
+    // the latest issue before staging. The automated GH Actions workflow always
+    // runs this between generate-brief.js and the commit; a manual/hand-corrected
+    // fix-up (running this script directly) skipped it, so a hand-fixed issue could
+    // ship to subscribers while the homepage still linked to the previous issue.
+    try { execSync('node scripts/update-homepage.js', { cwd: ROOT, stdio: 'inherit' }); } catch (_) {}
     execSync('git add brief/ assets/og-cards assets/social-cards assets/tiktok-cards briefs/ index.html', { cwd: ROOT, stdio: 'pipe' });
     try {
       execSync('git commit -m "Brief: stage for review"', { cwd: ROOT, stdio: 'pipe' });

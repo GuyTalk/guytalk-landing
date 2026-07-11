@@ -43,7 +43,8 @@ jobs:
         run: npm ci
 
       - name: Generate brief
-        run: node scripts/generate-brief.js
+        timeout-minutes: 25
+        run: node scripts/generate-brief.js || (node scripts/notify-research-failure.js; exit 1)
 
       - name: QA check
         run: node scripts/qa-brief.js || (node scripts/notify-qa-failure.js; exit 1)

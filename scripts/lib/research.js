@@ -15,6 +15,13 @@
  *   RESEARCH_MAX_SPORTS        — max sports sections (default: 3)
  *
  * Fail-open: any error returns [] / {} so generation never blocks.
+ *
+ * Every Anthropic client here sets timeout: 5min + maxRetries: 0. Without an
+ * explicit timeout, the SDK default (~10min) times MAX_CONTINUATIONS+1 calls
+ * per runSearch() could compound past 30 minutes on a single slow/hung
+ * research fetch — this is what previously caused multi-hour brief-generation
+ * hangs. No SDK-level retries either — a failed call should fail fast, not
+ * silently re-attempt and burn more of the budget.
  */
 
 const SYNTH_MODEL   = process.env.ANTHROPIC_RESEARCH_MODEL || 'claude-sonnet-4-6';
@@ -138,7 +145,7 @@ async function fetchTopStories({ dateLabel } = {}) {
   let Anthropic;
   try { Anthropic = require('@anthropic-ai/sdk'); }
   catch { console.log('   ⚠  Research skipped — @anthropic-ai/sdk not installed'); return []; }
-  const client = new (Anthropic.default || Anthropic)({ apiKey });
+  const client = new (Anthropic.default || Anthropic)({ apiKey, timeout: 5 * 60 * 1000, maxRetries: 0 });
 
   // Step 2 — Haiku ranks + formats (no web_search, text-only)
   const bulletList = headlines.slice(0, 20).map(
@@ -209,7 +216,7 @@ Return ONLY: {"depth":"2-4 concrete sentences covering all three points"}`,
 async function fetchTopStoriesViaSearch({ today, apiKey }) {
   let Anthropic;
   try { Anthropic = require('@anthropic-ai/sdk'); } catch { return []; }
-  const client = new (Anthropic.default || Anthropic)({ apiKey });
+  const client = new (Anthropic.default || Anthropic)({ apiKey, timeout: 5 * 60 * 1000, maxRetries: 0 });
 
   const prompt = `You are the lead editor of GuyTalk, a daily brief for men 25-45. Today is ${today}.
 
@@ -697,7 +704,7 @@ async function fetchAnthropicResearchPack({ date, recentIssues = [] } = {}) {
 
   let Anthropic;
   try { Anthropic = require('@anthropic-ai/sdk'); } catch { return null; }
-  const client = new (Anthropic.default || Anthropic)({ apiKey });
+  const client = new (Anthropic.default || Anthropic)({ apiKey, timeout: 5 * 60 * 1000, maxRetries: 0 });
 
   const todayStr = date || new Date().toLocaleDateString('en-US', {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',

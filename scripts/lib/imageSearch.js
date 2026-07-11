@@ -13,8 +13,15 @@
  */
 
 const { extractOgImage, isLiveImage, looksIrrelevant, resolveWikimedia, cleanImageUrl, IMAGE_EXT_RE } = require('./images');
+const { addWarning } = require('./warnings');
 
 const SEARCH_MODEL = process.env.OPENAI_RESEARCH_MODEL || 'gpt-4.1';
+
+// Hard timeout well under the "5 min" ceiling — a hung web_search call must
+// not stall the whole generation run. No SDK retries either: on failure we
+// flag the brief for Jake to supply an image manually rather than burning
+// more time/credit re-attempting.
+const SEARCH_TIMEOUT_MS = 45_000;
 
 /**
  * Search for a contextually relevant action/news photo.
@@ -31,7 +38,7 @@ async function searchWebImage(query, { fallback = null } = {}) {
   let OpenAI;
   try { OpenAI = require('openai'); } catch (_) { return fallback; }
 
-  const client = new (OpenAI.default || OpenAI)({ apiKey });
+  const client = new (OpenAI.default || OpenAI)({ apiKey, maxRetries: 0 });
   if (typeof client.responses?.create !== 'function') return fallback;
 
   const prompt = `Search for recent news coverage of: "${query}"
@@ -41,13 +48,16 @@ I need articles whose lead photo is an ON-FIELD / IN-GAME ACTION shot of the ath
 STRONGLY AVOID articles whose main image is a broadcaster/anchor, a microphone, a studio set, a stadium exterior, a team logo, a headshot, or a press conference. Prefer game-action wire photos (AP, Getty, Reuters) from the actual event.
 Just search and summarize what you found — I'll use the source URLs.`;
 
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), SEARCH_TIMEOUT_MS);
+
   try {
     const response = await client.responses.create({
       model: SEARCH_MODEL,
       tools: [{ type: 'web_search', search_context_size: 'medium' }],
       tool_choice: 'required',
       input: [{ role: 'user', content: prompt }],
-    });
+    }, { signal: controller.signal });
 
     // Extract citation URLs from annotations — this is the proven extraction pattern.
     const citedUrls = [];
@@ -98,10 +108,15 @@ Just search and summarize what you found — I'll use the source URLs.`;
     }
 
     console.log(`   ⚠  imageSearch: no valid image for "${query.slice(0, 60)}"`);
+    addWarning(`image:${query.slice(0, 40)}`, 'failed', 'web image search found no usable photo — needs a manual image from Jake');
     return fallback;
   } catch (err) {
-    console.error(`[imageSearch] "${query.slice(0, 60)}": ${err.message}`);
+    const isTimeout = err.name === 'AbortError' || err.code === 'ERR_ABORTED' || err.message?.includes('aborted');
+    console.error(`[imageSearch] "${query.slice(0, 60)}": ${isTimeout ? `timed out after ${SEARCH_TIMEOUT_MS / 1000}s` : err.message}`);
+    addWarning(`image:${query.slice(0, 40)}`, 'failed', isTimeout ? 'image search timed out — needs a manual image from Jake' : `image search failed (${err.message}) — needs a manual image from Jake`);
     return fallback;
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 
@@ -188,12 +203,15 @@ async function searchWebVideo(query, { fallback = null } = {}) {
 
   let OpenAI;
   try { OpenAI = require('openai'); } catch (_) { return fallback; }
-  const client = new (OpenAI.default || OpenAI)({ apiKey });
+  const client = new (OpenAI.default || OpenAI)({ apiKey, maxRetries: 0 });
   if (typeof client.responses?.create !== 'function') return fallback;
 
   const prompt = `Find a YouTube highlight or recap video for: "${query}"
 
 I need the direct YouTube URL (youtube.com/watch?v=...) for an actual video — not a search results page. Look for official league channels, ESPN, or broadcast highlight clips.`;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), SEARCH_TIMEOUT_MS);
 
   try {
     const response = await client.responses.create({
@@ -201,7 +219,7 @@ I need the direct YouTube URL (youtube.com/watch?v=...) for an actual video — 
       tools: [{ type: 'web_search', search_context_size: 'low' }],
       tool_choice: 'required',
       input: [{ role: 'user', content: prompt }],
-    });
+    }, { signal: controller.signal });
 
     const text = (response.output_text || (response.output || [])
       .filter(b => b.type === 'message')
@@ -236,8 +254,11 @@ I need the direct YouTube URL (youtube.com/watch?v=...) for an actual video — 
 
     return fallback;
   } catch (err) {
-    console.error(`[searchWebVideo] "${query.slice(0, 60)}": ${err.message}`);
+    const isTimeout = err.name === 'AbortError' || err.code === 'ERR_ABORTED' || err.message?.includes('aborted');
+    console.error(`[searchWebVideo] "${query.slice(0, 60)}": ${isTimeout ? `timed out after ${SEARCH_TIMEOUT_MS / 1000}s` : err.message}`);
     return fallback;
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 

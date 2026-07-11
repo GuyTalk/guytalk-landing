@@ -33,7 +33,7 @@ async function fetchOpenAIResearch({ date, recentIssues = [] } = {}) {
   try { OpenAI = require('openai'); }
   catch (_) { console.log('   ⚠  openai package not installed'); return null; }
 
-  const client = new (OpenAI.default || OpenAI)({ apiKey });
+  const client = new (OpenAI.default || OpenAI)({ apiKey, maxRetries: 0 });
 
   if (typeof client.responses?.create !== 'function') {
     console.log('   ⚠  Responses API not available in SDK v' + require('openai/package.json').version);
