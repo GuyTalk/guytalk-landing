@@ -272,18 +272,27 @@ function buildRundown(issue) {
   const copy = issue.copy || {};
 
   // Narrative: use AI-provided copy.rundownNarrative when set; else assemble
-  // from the top market story + sports lead + culture lead.
+  // in editorial-importance order — whatever is actually leading the brief
+  // (a non-sports hero story, e.g. breaking news) goes first, then the sports
+  // lead, then markets, then culture. Markets must never front-run a bigger
+  // story just because it's cheapest to assemble.
   const narrative = (() => {
     if (copy.rundownNarrative) return copy.rundownNarrative;
     const parts = [];
-    const moodHead = (Array.isArray(copy.markets?.headlines) && copy.markets.headlines[0]?.head)
-      || copy.markets?.mood || '';
-    if (moodHead) parts.push(moodHead.replace(/\.$/, '') + '.');
+    const hero = issue.heroOverride;
+    if (hero?.isNonSportsLead && hero.title) {
+      parts.push(hero.title.replace(/\.$/, '') + '.');
+    }
     const sportsLead = (issue.dynamicSports || [])[0];
     if (sportsLead?.headline) parts.push(sportsLead.headline.replace(/\[.*$/g, '').trim().replace(/\.$/, '') + '.');
+    if (!hero?.isNonSportsLead) {
+      const moodHead = (Array.isArray(copy.markets?.headlines) && copy.markets.headlines[0]?.head)
+        || copy.markets?.mood || '';
+      if (moodHead) parts.push(moodHead.replace(/\.$/, '') + '.');
+    }
     const cultureHead = copy.culture?.[0]?.head;
     if (cultureHead) parts.push(cultureHead.replace(/\.$/, '') + '.');
-    return parts.filter(Boolean).join(' ');
+    return parts.filter(Boolean).slice(0, 3).join(' ');
   })();
 
   // Sports bullet — dynamic sports leads, F1 result, golf preview headline

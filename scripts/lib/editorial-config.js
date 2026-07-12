@@ -118,6 +118,7 @@ const IMPORTANCE_TIERS = [
       /\brivalry\b/i,
       /\bworld cup\b/i,
       /\bfifa\b/i,
+      /\bmain event\b/i, // a completed UFC/boxing main event is marquee by definition
     ],
   },
   {

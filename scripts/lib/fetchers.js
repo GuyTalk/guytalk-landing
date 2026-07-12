@@ -111,6 +111,69 @@ async function fetchNHL() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// ESPN: UFC — most recent completed card's main event + full fight card, or the
+// next scheduled card if nothing has happened yet. Cards run Fri/Sat night US
+// time and can straddle a UTC day boundary, so check yesterday then today.
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchUFC() {
+  const get = async (ds) => {
+    try {
+      const url = `https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard${ds ? `?dates=${ds}` : ''}`;
+      const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+      if (!res.ok) return [];
+      const data = await res.json();
+      return data.events || [];
+    } catch (_) { return []; }
+  };
+  const d = new Date(); d.setDate(d.getDate() - 1);
+  const ds = d.toISOString().slice(0, 10).replace(/-/g, '');
+  const events = [...(await get(ds)), ...(await get())];
+  const ev = events.find(e => e.status?.type?.state === 'post') || events.find(e => e.status?.type?.state === 'pre');
+  if (!ev) return null;
+
+  const isPost = ev.status?.type?.state === 'post';
+  const comps = (ev.competitions || []).slice().sort((a, b) => new Date(a.date) - new Date(b.date));
+  // Main event is scheduled last (the headliner walks out last).
+  const mainComp = comps[comps.length - 1];
+  if (!mainComp) return null;
+
+  const toFight = (c) => {
+    const fighters = (c.competitors || []).slice().sort((a, b) => (a.order || 9) - (b.order || 9));
+    const winner = fighters.find(f => f.winner === true);
+    const loser  = fighters.find(f => f.winner === false);
+    if (!winner || !loser) return null;
+    const scheduledRounds = c.format?.regulation?.periods || null;
+    const round = c.status?.period ?? null;
+    // Went the full scheduled distance = decision. Otherwise it finished early
+    // (KO/TKO/submission) — ESPN's feed doesn't expose the exact method.
+    const wentToDecision = !!(scheduledRounds && round && round >= scheduledRounds);
+    return {
+      weightClass: c.type?.text || c.type?.abbreviation || '',
+      winner: winner.athlete?.displayName || null,
+      loser: loser.athlete?.displayName || null,
+      round, time: c.status?.displayClock || null,
+      scheduledRounds, wentToDecision,
+    };
+  };
+
+  const mainEvent = isPost ? toFight(mainComp) : null;
+  const card = isPost ? comps.slice(0, -1).map(toFight).filter(Boolean) : [];
+  const venue = mainComp.venue || comps[0]?.venue || {};
+
+  return {
+    name: ev.name || ev.shortName || 'UFC',
+    shortName: ev.shortName || ev.name || 'UFC',
+    date: ev.date || null,
+    venue: venue.fullName || '',
+    venueCity: [venue.address?.city, venue.address?.state].filter(Boolean).join(', '),
+    statusState: isPost ? 'post' : 'pre',
+    status: ev.status?.type?.description || (isPost ? 'Final' : 'Upcoming'),
+    mainEvent,
+    card,
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // ESPN: game highlights meta — featured image + recap URL for any sport
 // Returns { imageUrl, recapUrl, headlineText } or null
 // ─────────────────────────────────────────────────────────────────────────────
@@ -797,4 +860,4 @@ async function fetchTrending() {
   return items;
 }
 
-module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending };
+module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchUFC, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending };

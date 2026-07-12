@@ -655,6 +655,8 @@ BACKGROUND FACT (required when given): when a story has a BACKGROUND fact, "whyI
 
 BIG MOMENTS (required whenever the facts support it): pull 2-3 SPECIFIC, concrete details unique to THIS matchup — a particular play, a scoring sequence, a stat anomaly, a streak snapped/extended, a record, a milestone. These must be things a reader could actually bring up ("did you catch that..."), not a restatement of the final score or a generic "it was a good game." Pull ONLY from the facts given — every entry must trace to something in the facts. If the facts genuinely don't support 2-3 distinct concrete details (a thin preview with no play-by-play), return fewer, or an empty array — never invent one to hit a count.
 
+MULTI-MATCH STORIES (World Cup and any story whose facts list more than one completed result): never blend multiple matches into one vague sentence. Name each match explicitly (e.g. "Argentina beat Switzerland 3-1" / "England beat Norway 2-1") rather than folding a second game in as an aside. For the featured match, "whatHappened" must include the scoring timeline from the facts — who scored first, when the other side equalized, and how the winning goal came (extra time, stoppage time, penalty) — so the reader knows when each goal happened and by how much a team was ahead or behind, not just the final score. If a second match is genuinely secondary, cover it in "bigMoments" or "ammo" as its own clearly labeled fact, not merged into the main sentence.
+
 Stories (in this exact order):
 ${dynSportsList}
 

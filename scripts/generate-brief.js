@@ -6,7 +6,7 @@ require('dotenv').config({ path: '.env.local' });
 const fs   = require('fs');
 const path = require('path');
 
-const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending } = require('./lib/fetchers');
+const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchUFC, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending } = require('./lib/fetchers');
 const { generateCopy, generateF1Only }                      = require('./lib/copy');
 const { editBrief }                                         = require('./lib/editor');
 const { buildHtml }                                         = require('./lib/html');
@@ -429,7 +429,7 @@ function filterCultureToEntertainment(copy) {
 // Build a plain-text "raw facts" block for the editorial pass.
 // The editor may ONLY use these facts — it edits wording, never invents data.
 // ─────────────────────────────────────────────────────────────────────────────
-function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending, topStories, sectionStories }) {
+function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, ufc, upcoming, boxScores, trending, topStories, sectionStories }) {
   const lines = [];
 
   if (sports?.length) {
@@ -517,6 +517,17 @@ function buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, u
       lines.push(`NHL: ${g.note || 'game'} — ${w.team} ${w.score}–${l.score} ${l.team}${g.seriesNote ? ` [Series: ${g.seriesNote}]` : ''}${loc ? ` at ${loc}` : ''}`);
     } else {
       lines.push(`NHL UPCOMING: ${g.note || g.shortName} — ${g.away.team} at ${g.home.team}${g.seriesNote ? ` [Series: ${g.seriesNote}]` : ''}${loc ? ` at ${loc}` : ''}. NO result yet.`);
+    }
+  }
+
+  if (ufc?.name) {
+    if (ufc.statusState === 'post' && ufc.mainEvent) {
+      const me = ufc.mainEvent;
+      const decisionNote = me.wentToDecision ? `via decision after ${me.scheduledRounds} rounds` : `in round ${me.round}${me.time ? ` (${me.time})` : ''}`;
+      const cardNote = ufc.card.length ? ` Other card results: ${ufc.card.map(c => `${c.winner} def. ${c.loser} (${c.weightClass})`).join('; ')}.` : '';
+      lines.push(`UFC: ${ufc.name} — FINISHED. Main event (${me.weightClass}): ${me.winner} def. ${me.loser} ${decisionNote}.${cardNote}`);
+    } else {
+      lines.push(`UFC UPCOMING: ${ufc.name} — no results yet.`);
     }
   }
 
@@ -633,7 +644,7 @@ async function main() {
   // OpenAI research runs in parallel with ESPN feeds — it is the PRIMARY story
   // discovery layer. fetchTopStories() (NewsAPI → Haiku) runs only as fallback.
   const prev3ForResearch = loadPreviousBriefs(3);
-  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult, screenersResult, nhlResult, tennisResult, topStoriesResult, openAIResearchResult] = await Promise.allSettled([
+  const [sportsResult, marketsResult, golfResult, trendingResult, f1Result, wcResult, upcomingResult, screenersResult, nhlResult, ufcResult, tennisResult, topStoriesResult, openAIResearchResult] = await Promise.allSettled([
     fetchNBA(),
     fetchMarkets(),
     fetchGolf(),
@@ -643,6 +654,7 @@ async function main() {
     fetchNBAUpcoming(),
     fetchMarketScreeners(),
     fetchNHL(),
+    fetchUFC(),
     fetchTennis(),
     fetchTopStories(),   // fallback: NewsAPI → Haiku ranking (used when OpenAI research fails)
     fetchOpenAIResearch({ date, recentIssues: prev3ForResearch }),  // PRIMARY research layer
@@ -653,6 +665,8 @@ async function main() {
   const screeners  = screenersResult.status === 'fulfilled' ? screenersResult.value : null;
   let nhl          = nhlResult.status === 'fulfilled' ? nhlResult.value : null;
   if (nhl) console.log(`   ✓ NHL: ${nhl.final ? nhl.final.shortName + ' (Final)' : ''}${nhl.next ? ` next: ${nhl.next.shortName}` : ''}`);
+  let ufc          = ufcResult.status === 'fulfilled' ? ufcResult.value : null;
+  if (ufc) console.log(`   ✓ UFC: ${ufc.name} (${ufc.statusState === 'post' ? 'Final' : 'upcoming'})`);
   // Attach market-wide screeners (FMP) to the markets object so they're saved
   // with the issue and rendered. Falls back to watchlist movers if no FMP key.
   if (markets && screeners) {
@@ -846,7 +860,7 @@ async function main() {
     const leadSubject = (topStories.find(s => s.isLead) || topStories[0])?.headline || null;
     const [secRes, dynRes] = await Promise.allSettled([
       fetchSectionStories({ dateLabel: date, leadSubject, issueNum, prevImageUrls, golf, topStories }),
-      fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls, prevBriefs: prev3, topStories }),
+      fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls, prevBriefs: prev3, topStories }),
     ]);
     sectionStories = secRes.status === 'fulfilled' ? (secRes.value || {}) : {};
 
@@ -1106,7 +1120,7 @@ async function main() {
   if (copy) {
     console.log('\n🧐 Editorial pass — Claude enforcing the GuyTalk Editorial Bible...');
     try {
-      const facts = buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, upcoming, boxScores, trending, topStories, sectionStories });
+      const facts = buildFactsContext({ sports, markets, golf, tennis, f1, worldCup, nhl, ufc, upcoming, boxScores, trending, topStories, sectionStories });
       const factsWithPack = factPack
         ? facts + '\n\nFACT PACK AMMO (structured, verified — use to check and sharpen ammo arrays in the copy):\n' +
           Object.entries(factPack)

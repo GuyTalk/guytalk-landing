@@ -133,7 +133,8 @@ function buildSportImageQuery(s) {
      /\bmlb\b|baseball/.test(label) ? 'mlb' :
      /\bnba\b|basketball/.test(label) ? 'nba' :
      /\bnhl\b|hockey/.test(label) ? 'nhl' :
-     /tennis/.test(label) ? 'tennis' : '');
+     /tennis/.test(label) ? 'tennis' :
+     /\bufc\b|mma/.test(label) ? 'ufc' : '');
   const name    = s.name    || '';
   const hl      = s.headline || '';
 
@@ -168,6 +169,13 @@ function buildSportImageQuery(s) {
   if (sport === 'nba') return 'NBA basketball playoff action photo 2026';
   if (sport === 'nhl') return 'NHL Stanley Cup hockey action photo 2026';
   if (sport === 'tennis') return `${name} tennis action photo 2026`;
+  if (sport === 'ufc') {
+    const winnerM = hl.match(/^([A-Za-z .]+?)\s+def\.?\s+/i);
+    const winner = winnerM ? winnerM[1].trim() : '';
+    return winner
+      ? `${winner} ${name} fight action photo site:ufc.com OR site:mmafighting.com OR site:espn.com`
+      : `${name} UFC fight action photo octagon site:ufc.com OR site:mmafighting.com`;
+  }
   return `${name} sports action photo`;
 }
 

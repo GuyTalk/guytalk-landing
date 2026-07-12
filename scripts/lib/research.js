@@ -346,7 +346,7 @@ function lookupPlayer(name) {
   return hit ? hit[1] : null; // { sport, id, slug }
 }
 
-async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls = [], prevBriefs = [], topStories = [] } = {}) {
+async function fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls = [], prevBriefs = [], topStories = [] } = {}) {
   const empty = { lead: null, sports: [] };
   const candidates = [];
 
@@ -419,6 +419,27 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
       headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
       when: !isPost && f1.status ? f1.status : null,
       _score: imp, _isFinal: isPost, _sport: 'f1', _f1Winner: winner,
+    });
+  }
+
+  // ── UFC ───────────────────────────────────────────────────────────────────
+  if (ufc?.name) {
+    const isPost = ufc.statusState === 'post' && !!ufc.mainEvent;
+    const me = ufc.mainEvent;
+    const decisionNote = (f) => f.wentToDecision
+      ? `via decision after ${f.scheduledRounds} rounds`
+      : `in round ${f.round}${f.time ? ` (${f.time})` : ''}`;
+    const headline = isPost
+      ? `${me.winner} def. ${me.loser} ${decisionNote(me)}`
+      : `${ufc.name} — this weekend`;
+    const facts = isPost
+      ? `MAIN EVENT (${me.weightClass}): ${me.winner} defeated ${me.loser} ${decisionNote(me)}.${ufc.card.length ? ` Also on the card: ${ufc.card.map(c => `${c.winner} def. ${c.loser} (${c.weightClass})`).join('; ')}.` : ''}`
+      : `${ufc.name} upcoming — no results yet.`;
+    const { score: imp } = scoreImportance({ name: ufc.name, headline, facts, isFinalResult: isPost });
+    candidates.push({
+      name: ufc.name, label: 'UFC', category: 'individual',
+      headline, facts, background: '', source: 'ESPN', url: '', imageUrl: null, videoUrl: null, isLead: false,
+      _score: imp, _isFinal: isPost, _sport: 'ufc',
     });
   }
 
@@ -579,7 +600,7 @@ async function fetchDynamicSports({ sports, nhl, f1, golf, tennis, worldCup, upc
   // Picks up combat sports and other sports without ESPN structured feeds from
   // the OpenAI research pack. Only adds a sport if it isn't already in candidates.
   if (Array.isArray(topStories) && topStories.length) {
-    const FEED_COVERED = new Set(['nba', 'mlb', 'nhl', 'f1', 'golf', 'tennis', 'world cup', 'soccer', 'fifa', 'mls']);
+    const FEED_COVERED = new Set(['nba', 'mlb', 'nhl', 'f1', 'ufc', 'golf', 'tennis', 'world cup', 'soccer', 'fifa', 'mls']);
     const added = new Set(candidates.map(c => (c.label || '').toLowerCase()));
     for (const s of topStories) {
       const cat = (s._category || s.category || '').toLowerCase();
