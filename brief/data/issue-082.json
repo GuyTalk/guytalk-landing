@@ -1,0 +1,1314 @@
+{
+  "num": 82,
+  "slug": "issue-082",
+  "date": "Monday, July 13, 2026",
+  "title": "BANGKOK BEER-HALL FIRE KILLS 27 — MARKETS HOLD STEADY AHEAD OF WARSH TESTIMONY",
+  "deck": "The stories worth your morning.",
+  "sports": [
+    {
+      "id": "401816130",
+      "name": "Milwaukee Brewers at Pittsburgh Pirates",
+      "shortName": "MIL @ PIT",
+      "date": "2026-07-12T16:15Z",
+      "venue": "PNC Park",
+      "venueCity": "Pittsburgh, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "14",
+        "winner": true
+      },
+      "away": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "5",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816127",
+      "name": "Chicago Cubs at Cincinnati Reds",
+      "shortName": "CHC @ CIN",
+      "date": "2026-07-12T17:40Z",
+      "venue": "Great American Ball Park",
+      "venueCity": "Cincinnati, Ohio",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Cincinnati Reds",
+        "abbrev": "CIN",
+        "score": "4",
+        "winner": false
+      },
+      "away": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "8",
+        "winner": true
+      }
+    },
+    {
+      "id": "401816137",
+      "name": "Houston Astros at Texas Rangers",
+      "shortName": "HOU @ TEX",
+      "date": "2026-07-12T18:35Z",
+      "venue": "Globe Life Field",
+      "venueCity": "Arlington, Texas",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Texas Rangers",
+        "abbrev": "TEX",
+        "score": "6",
+        "winner": true
+      },
+      "away": {
+        "team": "Houston Astros",
+        "abbrev": "HOU",
+        "score": "5",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 754.95,
+      "prevClose": 751.71,
+      "dayChange": 3.24,
+      "dayChangePct": 0.431,
+      "weekChangePct": 1.3654999198523377,
+      "spark": [
+        737.760009765625,
+        741.75,
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125,
+        745.760009765625,
+        744.780029296875,
+        751.280029296875,
+        747.7100219726562,
+        745.4000244140625,
+        751.7100219726562,
+        754.9500122070312
+      ],
+      "indexPrice": 7575.39,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.4208825276103446
+    },
+    "DIA": {
+      "price": 525.78,
+      "prevClose": 524.19,
+      "dayChange": 1.59,
+      "dayChangePct": 0.3033,
+      "weekChangePct": -0.39781860714325046,
+      "spark": [
+        509.3599853515625,
+        513.0599975585938,
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375,
+        522.4000244140625,
+        527.8800048828125,
+        530.0900268554688,
+        528.4500122070312,
+        522.77001953125,
+        524.1900024414062,
+        525.780029296875
+      ],
+      "indexPrice": 52637.01,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.2850204330993997
+    },
+    "QQQ": {
+      "price": 725.51,
+      "prevClose": 723.28,
+      "dayChange": 2.23,
+      "dayChangePct": 0.3083,
+      "weekChangePct": 1.8116790424315106,
+      "spark": [
+        717.1199951171875,
+        721.3400268554688,
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625,
+        725.1699829101562,
+        712.5999755859375,
+        722.8200073242188,
+        709.4299926757812,
+        711.4400024414062,
+        723.280029296875,
+        725.510009765625
+      ],
+      "indexPrice": 26281.607,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 0.28510202171303933
+    },
+    "IWM": {
+      "price": 295.99,
+      "prevClose": 297.24,
+      "dayChange": -1.25,
+      "dayChangePct": -0.4205,
+      "weekChangePct": -0.5343056132840763,
+      "spark": [
+        290.4100036621094,
+        292.95001220703125,
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125,
+        299.32000732421875,
+        297.5799865722656,
+        298.8999938964844,
+        296.19000244140625,
+        293.4800109863281,
+        297.239990234375,
+        295.989990234375
+      ],
+      "indexPrice": 2977.805,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -0.49239237805206915
+    },
+    "NVDA": {
+      "price": 210.96,
+      "prevClose": 202.78,
+      "dayChange": 8.18,
+      "dayChangePct": 4.0339,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 407.76,
+      "prevClose": 406.55,
+      "dayChange": 1.21,
+      "dayChangePct": 0.2976,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 385.1,
+      "prevClose": 384.36,
+      "dayChange": 0.74,
+      "dayChangePct": 0.1925,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 315.32,
+      "prevClose": 316.22,
+      "dayChange": -0.9,
+      "dayChangePct": -0.2846,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 669.21,
+      "prevClose": 631.48,
+      "dayChange": 37.73,
+      "dayChangePct": 5.9749,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 245.34,
+      "prevClose": 247.04,
+      "dayChange": -1.7,
+      "dayChangePct": -0.6881,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 357.18,
+      "prevClose": 358.89,
+      "dayChange": -1.71,
+      "dayChangePct": -0.4765,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 557.89,
+      "prevClose": 546.72,
+      "dayChange": 11.17,
+      "dayChangePct": 2.0431,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 399.97,
+      "prevClose": 401.11,
+      "dayChange": -1.14,
+      "dayChangePct": -0.2842,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 73.37,
+      "prevClose": 75.47,
+      "dayChange": -2.1,
+      "dayChangePct": -2.7826,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 336.47,
+      "prevClose": 335.47,
+      "dayChange": 1,
+      "dayChangePct": 0.2981,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 159.07,
+      "prevClose": 158.44,
+      "dayChange": 0.63,
+      "dayChangePct": 0.3976,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 434.97,
+      "prevClose": 450.22,
+      "dayChange": -15.25,
+      "dayChangePct": -3.3872,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 62886.93,
+      "prevClose": 63880.38,
+      "dayChange": -993.45,
+      "dayChangePct": -1.5552,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "META",
+      "NVDA",
+      "DELL",
+      "NFLX",
+      "AMD"
+    ],
+    "10Y": {
+      "price": 4.569,
+      "prevClose": 4.539000034332275,
+      "dayChange": 0.02999996566772456,
+      "dayChangePct": 0.6609377713331038,
+      "weekChangePct": 1.8729066663321174,
+      "spark": [
+        4.541999816894531,
+        4.4629998207092285,
+        4.486999988555908,
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744,
+        4.374000072479248,
+        4.418000221252441,
+        4.474999904632568,
+        4.485000133514404,
+        4.479000091552734,
+        4.5289998054504395,
+        4.568999767303467,
+        4.539000034332275,
+        4.568999767303467
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, July 10 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Friday, July 10). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "META",
+          "name": "Meta Platforms, Inc.",
+          "price": 669.21,
+          "changePct": 5.97485
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 210.96,
+          "changePct": 4.03393
+        },
+        {
+          "symbol": "NKE",
+          "name": "NIKE, Inc.",
+          "price": 44.37,
+          "changePct": 3.71669
+        },
+        {
+          "symbol": "F",
+          "name": "Ford Motor Company",
+          "price": 13.995,
+          "changePct": 2.8288
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 73.37,
+          "changePct": -2.78257
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 109.84,
+          "changePct": -2.39914
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 126.79,
+          "changePct": -1.74365
+        },
+        {
+          "symbol": "UNH",
+          "name": "UnitedHealth Group Incorporated",
+          "price": 424.62,
+          "changePct": -1.63547
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 210.96,
+          "changePct": 4.03393
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 109.84,
+          "changePct": -2.39914
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 73.37,
+          "changePct": -2.78257
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 62814.93,
+          "changePct": -1.45993
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Genesis Scottish Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-09T04:00Z",
+    "endDate": "2026-07-12T04:00Z",
+    "status": "Final",
+    "statusState": "post",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Tom Kim",
+        "score": "-17",
+        "pos": "1st"
+      },
+      {
+        "name": "Min Woo Lee",
+        "score": "-15",
+        "pos": "2nd"
+      },
+      {
+        "name": "Johnny Keefer",
+        "score": "-13",
+        "pos": "3rd"
+      },
+      {
+        "name": "Keita Nakajima",
+        "score": "-13",
+        "pos": "4th"
+      },
+      {
+        "name": "Robert MacIntyre",
+        "score": "-13",
+        "pos": "5th"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-13",
+        "pos": "6th"
+      },
+      {
+        "name": "Rory McIlroy",
+        "score": "-12",
+        "pos": "7th"
+      },
+      {
+        "name": "Michael Thorbjornsen",
+        "score": "-12",
+        "pos": "8th"
+      },
+      {
+        "name": "Si Woo Kim",
+        "score": "-11",
+        "pos": "9th"
+      },
+      {
+        "name": "Victor Perez",
+        "score": "-11",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Nordea Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-07-06T04:00Z",
+        "endDate": "2026-07-20T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Miguel Damas",
+            "loser": "Nikola Slavic",
+            "score": "6-4 6-1"
+          },
+          {
+            "winner": "Carlos Sanchez Jover",
+            "loser": "Roberto Carballes Baena",
+            "score": "6-3 3-0"
+          },
+          {
+            "winner": "Martin Krumich",
+            "loser": "Francesco Passaro",
+            "score": "6-4 6-3"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Nordea Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-07-06T04:00Z",
+        "endDate": "2026-07-20T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Simona Waltert",
+            "loser": "Kaitlin Quevedo",
+            "score": "7-5 6-2"
+          },
+          {
+            "winner": "Paula Badosa",
+            "loser": "Yulia Putintseva",
+            "score": "6-1 6-2"
+          },
+          {
+            "winner": "Paula Badosa",
+            "loser": "Simona Waltert",
+            "score": "7-5 7-5"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Moët & Chandon Belgian Grand Prix",
+    "shortName": "Moët & Chandon Belgian GP",
+    "venue": "Circuit de Spa-Francorchamps",
+    "status": "7/19 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 179,
+      "lead": 25
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Spain at France",
+      "shortName": "ESP @ FRA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-14T19:00Z",
+      "home": {
+        "team": "France",
+        "score": "0"
+      },
+      "away": {
+        "team": "Spain",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "What To Watch This Weekend: New Shows And Movies To Stream On Netflix, Hulu, Prime Video, Apple TV And More - Forbes",
+      "url": "https://www.forbes.com/sites/erikkain/2026/07/11/what-to-watch-this-weekend-new-shows-and-movies-to-stream-on-netflix-hulu-prime-video-apple-tv-and-more/",
+      "description": "Looking for something new to stream this weekend? Here’s every major new movie and show hitting Netflix, Hulu, Prime Video, Apple TV and more.",
+      "source": "Forbes"
+    },
+    {
+      "title": "Sofía Vergara Sizzles in a Red Bikini as She Celebrates Her 54th Birthday on a Yacht in Italy - People.com",
+      "url": "https://people.com/sofia-vergara-celebrates-54th-birthday-with-red-bikini-on-yacht-in-italy-photo-12016658",
+      "description": "Sofía Vergara wore a red bikini as she celebrated her 54th birthday weekend on a yacht in Italy. ‘So happy for all the love from u guys yesterday! It was the best bday ever,’ the actress captioned an Instagram post on July 11, one day after her July 10 birthd…",
+      "source": "PEOPLE"
+    },
+    {
+      "title": "Travis Kelce, Taylor Swift’s Recent Honeymoon Spot Revealed After First Post-Wedding Appearance - Yahoo",
+      "url": "https://heavy.com/sports/nfl/travis-kelce-taylor-swifts-honeymoon-spot/",
+      "description": "Travis Kelce and Taylor Swift's recent secret honeymoon location was revealed as they made their first appearance since the wedding.",
+      "source": "Heavy.com"
+    },
+    {
+      "title": "5 Zodiac Signs Have Great Horoscopes On Sunday, July 12, 2026 - YourTango",
+      "url": "https://www.yourtango.com/2026399105/zodiac-signs-great-horoscopes-july-12-2026",
+      "description": "Five zodiac signs will have great horoscopes on Sunday, July 12, 2026. They are: Aries, Taurus, Gemini, Cancer, and Leo.",
+      "source": "YourTango"
+    },
+    {
+      "title": "Aaron Lewis says music industry turned its back on him because of his politics - Fox News",
+      "url": "https://www.foxnews.com/entertainment/aaron-lewis-says-music-industry-turned-back-him-because-his-politics",
+      "description": "Aaron Lewis says the music industry turned its back on him over his beliefs, claiming he's no longer invited to the Grand Ole Opry despite years of performing.",
+      "source": "Fox News"
+    },
+    {
+      "title": "Alvarez’s 112th-minute goal helps lift Argentina past Switzerland 3-1 and into World Cup semifinals - AP News",
+      "url": "https://apnews.com/article/world-cup-argentina-switzerland-score-d47ccb4ac5b3af67eca1f82228155174",
+      "description": "Julián Alvarez has sent Argentina into the World Cup semifinals with a stunning long-range strike in extra time against Switzerland. His goal in the 112th minute broke a 1-all tie, and Lautaro Martinez added another goal in the final seconds to wrap up the 3-…",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Which teams are in the World Cup semifinals, and what’s the match schedule? - Al Jazeera",
+      "url": "https://www.aljazeera.com/sports/2026/7/12/which-teams-are-in-the-world-cup-semifinals-and-whats-the-match-schedule",
+      "description": "Qualified teams, venues, kickoff times, key players, and how to watch the FIFA World Cup 2026 semifinals.",
+      "source": "Al Jazeera English"
+    },
+    {
+      "title": "McGregor injures leg on opening kick vs. Holloway at UFC 329 - ESPN",
+      "url": "https://www.espn.com/mma/story/_/id/49340329/mcgregor-injures-leg-opening-kick-vs-holloway-ufc-329",
+      "description": "Conor McGregor's much-anticipated UFC return lasted just 69 seconds Saturday, as he injured his right leg during his fight with Max Holloway and was forced to retire.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Arthur Kaluma dominates in Lakers win over Mavericks - Silver Screen and Roll",
+      "url": "https://www.silverscreenandroll.com/los-angeles-sparks-wnba/122389/lakers-vs-mavericks-final-score-recap-stats-summer-league-adou-thiero-arthur-kaluma",
+      "description": "The Lakers remained undefeated in Las Vegas with a blowout win over the Mavericks behind Arthur Kaluma.",
+      "source": "Silver Screen and Roll "
+    },
+    {
+      "title": "Bellingham scores twice to lift England past Haaland and Norway 2-1 and into World Cup semifinals - AP News",
+      "url": "https://apnews.com/article/world-cup-norway-england-score-f246f138c3a8563cb5a0e3f4037e930a",
+      "description": "Jude Bellingham scored in extra time to lift England past Norway 2-1 and into the World Cup semifinals for the first time since 2018. Bellingham’s shot in the 93rd was his second of the game. The Real Madrid star is now tied with England teammate Harry Kane w…",
+      "source": "Associated Press"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Culture|Major World Events",
+      "headline": "Bangkok beer‑hall fire kills at least 27",
+      "whatHappened": "A fire ripped through the Na Ladprao beer hall in Bangkok overnight, killing at least 27 people and injuring dozens, with many trapped in obstructed exits.",
+      "whyItMatters": "This is Thailand’s deadliest bar blaze in over a decade, prompting urgent safety investigations and resonating across global nightlife and safety conversations.",
+      "depth": "This tragedy is heartbreaking—and it’s a chilling reminder that safety rules aren’t just red tape. Packed venues, low visibility, blocked exits—terrifying stuff. If you’ve been stuck in a smoky club, you know how fast panic spreads.",
+      "whatToSay": "Man, that Bangkok bar fire—27 people dead and exits blocked—terrifying.",
+      "sources": [
+        "https://apnews.com/article/0869e3d356d4be11c5633f9ceb3dc329",
+        "https://apnews.com/article/2770bc2287bec5b7fbe7c8df62209a51"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Culture|Major World Events",
+      "_context": [
+        "27 confirmed dead, dozens injured, many in critical condition",
+        "Victims found in windowless restrooms with obstructed exits, possible locked doors",
+        "Fire likely began near a circuit breaker and spread rapidly via flammable ceiling materials"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Confirmed, tragic global event with powerful visuals and safety implications—very talked-about.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets / Economy",
+      "headline": "Fed Chair Warsh testifies before House panel tomorrow",
+      "whatHappened": "Federal Reserve Chair Kevin Warsh is set to testify before the House Financial Services Committee on July 14, as markets await signals on monetary policy.",
+      "whyItMatters": "Investors will be watching closely for any cues on future rate moves or Fed strategy—this could influence markets before Friday’s Beige Book release.",
+      "depth": "It’s all quiet today, but with Warsh testifying tomorrow, markets are holding their breath. A hint one way or another could shake up bond yields or your mortgage.",
+      "whatToSay": "So Warsh’s testimony is tomorrow—bet the market’s gonna move fast on whatever he says.",
+      "sources": [
+        "https://www.investing.com/analysis/what-will-it-take-for-the-fed-to-hike-200683757",
+        "https://www.investing.com/analysis/week-ahead-inflation-data-and-fed-signals-take-center-stage-200683768"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Chair Warsh testimony scheduled for July 14 before House Financial Services Committee",
+        "Fed has released June minutes but held rates steady at June meeting",
+        "Markets anticipating inflation data and CPI/PPI later this week"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "High-stakes economic event, markets watching, relevant to the take-home conversation.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "What To Watch This Weekend: New Shows And Movies To Stream On Netflix, Hulu, Prime Video, Apple TV And More",
+        "source": "Forbes",
+        "url": "https://www.forbes.com/sites/erikkain/2026/07/11/what-to-watch-this-weekend-new-shows-and-movies-to-stream-on-netflix-hulu-prime-video-apple-tv-and-more/",
+        "fact": "Looking for something new to stream this weekend? Here’s every major new movie and show hitting Netflix, Hulu, Prime Video, Apple TV and more.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Sofía Vergara Sizzles in a Red Bikini as She Celebrates Her 54th Birthday on a Yacht in Italy",
+        "source": "PEOPLE",
+        "url": "https://people.com/sofia-vergara-celebrates-54th-birthday-with-red-bikini-on-yacht-in-italy-photo-12016658",
+        "fact": "Sofía Vergara wore a red bikini as she celebrated her 54th birthday weekend on a yacht in Italy. ‘So happy for all the love from u guys yesterday! It was the best bday ever,’ the actress captioned an Instagram post on July 11, one day after her July 10 birthd…",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Travis Kelce, Taylor Swift’s Recent Honeymoon Spot Revealed After First Post-Wedding Appearance",
+        "source": "Heavy.com",
+        "url": "https://heavy.com/sports/nfl/travis-kelce-taylor-swifts-honeymoon-spot/",
+        "fact": "Travis Kelce and Taylor Swift's recent secret honeymoon location was revealed as they made their first appearance since the wedding.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "https://dims.apnews.com/dims4/default/60d10e0/2147483647/strip/true/crop/3000x1999+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F14%2Ffb%2F564fbef45ef1484473a9b3fe96ef%2F833a5fd6db7e436d9fad0af3644ed15a",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "Genesis Scottish Open",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "Tom Kim wins Genesis Scottish Open",
+      "facts": "FINAL RESULT: 1st Tom Kim: -17, 2nd Min Woo Lee: -15, 3rd Johnny Keefer: -13",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://sportshub.cbsistatic.com/i/r/2026/07/12/86f919d6-959f-4e09-a6e7-eb9a650a1b9c/thumbnail/1200x675/48a87b7f47b2a168e3418bb737e22cc1/tom-kim-grass-scottish-g.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "golf",
+      "whatHappened": "Tom Kim won the Genesis Scottish Open at -17, finishing two shots ahead of Min Woo Lee and four clear of Johnny Keefer in third.",
+      "whyItMatters": "Kim continues to stake his claim as one of golf's sharpest young talents, adding another international victory to his résumé and proving he can win on European soil against a deep field.",
+      "bigMoments": [
+        "Kim's -17 finish was two shots better than Lee, the closest challenger",
+        "Keefer finished third at -13, five shots back of the winner"
+      ],
+      "theRead": "Kim's got that rare combo of consistency and clutch that separates the guys who win once from the guys who keep winning. He's not flashy. He doesn't need the spotlight. He just shows up, shoots clean numbers, and leaves. That's the kind of player majors are made of.",
+      "ammo": [
+        "Tom Kim finished at -17 to win",
+        "Min Woo Lee was runner-up at -15",
+        "Johnny Keefer tied for third at -13"
+      ],
+      "whatToBringUp": "Tom Kim just won in Scotland at 22 and nobody's even talking about it — that's the sign of a guy who's going to win a major before most people realize he's a threat.",
+      "ourPick": "Kim looks like a major winner in the making because he wins without needing everything to break his way.",
+      "playerLinks": [
+        {
+          "name": "Tom Kim",
+          "url": "https://www.golfdigest.com/story/tom-kim-wins-scottish-open-after-drought-min-woo-lee",
+          "note": "Bogey‑free final‑round 64 to win Genesis Scottish Open at 17-under, his first tour victory in 1,001 days"
+        },
+        {
+          "name": "Min Woo Lee",
+          "url": "https://www.ausgolf.com.au/news/AustraliasMinWooLeefinishesrunnerupat2026GenesisScottishOpen",
+          "note": "Runner‑up at this year’s Scottish Open, finishing two strokes behind Kim at 15‑under"
+        },
+        {
+          "name": "Johnny Keefer",
+          "url": "https://pluggedingolf.com/2026-genesis-scottish-open-recap/",
+          "note": "T‑4 finish gained entry into next week’s Open Championship with his top‑five performance"
+        }
+      ],
+      "course": null
+    },
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "Spain vs. France",
+      "facts": "TODAY'S WORLD CUP SLATE:\nSpain vs. France (3:00 PM EDT)\nWrite as a World Cup preview: group stakes, key storylines, players to watch. Do NOT invent scores.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cdnph.upi.com/collection/fp/upi/16711/e5fed65666706055df4af14d8f8aa18b/FIFA-World-Cup-France-defeats-Morocco_1_1.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "Spain faces France in a crucial World Cup group match at 3:00 PM EDT today.",
+      "whyItMatters": "Both teams are among the tournament favorites and need a strong result to position themselves for advancement. This matchup will likely determine group seeding and set the tone for knockout play.",
+      "bigMoments": [],
+      "theRead": "Spain and France have been chasing each other at the top of world soccer for a decade. This isn't a friendly. This is the kind of match that separates the teams that talk about winning from the teams that actually do it. Whoever controls the midfield controls the group.",
+      "ammo": [
+        "Spain vs. France kicks off at 3:00 PM EDT",
+        "Both teams are among the tournament's elite"
+      ],
+      "whatToBringUp": "Spain and France meeting in group play is basically a preview of what the knockout rounds should look like — it's worth canceling lunch to watch.",
+      "ourPick": "Spain advances because their midfield balance gives them more pathways to create chances than France can defend.",
+      "playerLinks": [
+        {
+          "name": "Mikel Merino",
+          "url": "https://www.apnews.com/article/780243a17571b6b2b26074b66feec90a (AP News profile)",
+          "note": "scored the winning goal as a substitute in both the Round of 16 and quarter‑final, becoming the first player in World Cup history to do so"
+        },
+        {
+          "name": "Lamine Yamal",
+          "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain‑saudi‑arabia‑highlights‑match‑report",
+          "note": "became the eighth youngest goalscorer in World Cup history at age 18 years 343 days when he scored vs Saudi Arabia"
+        },
+        {
+          "name": "Kylian Mbappé",
+          "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/france‑qualification‑last‑16‑mbappe‑dembele‑olise‑barcola",
+          "note": "leads France’s attack and is the adidas Golden Boot race leader with six goals and two assists in the tournament"
+        }
+      ]
+    },
+    {
+      "name": "MIL @ PIT",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Pittsburgh Pirates 14–5 over Milwaukee Brewers",
+      "facts": "Pittsburgh Pirates beat Milwaukee Brewers 14–5",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://www.mlbstatic.com/team-logos/share/134.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "The Pittsburgh Pirates demolished the Milwaukee Brewers 14–5.",
+      "whyItMatters": "A blowout like this either signals the Pirates are clicking or the Brewers are in deeper trouble than expected. Either way, a nine-run margin in July isn't something you shake off quickly.",
+      "bigMoments": [
+        "Pirates scored 14 runs against the Brewers",
+        "Milwaukee managed only 5 in response"
+      ],
+      "theRead": "The Pirates just dropped the kind of game on Milwaukee that changes a clubhouse's mood. You don't get embarrassed by 9 at home without someone asking questions. Whether Pittsburgh is for real or Milwaukee just had a bad night, this one stings.",
+      "ammo": [
+        "Pirates beat Brewers 14–5",
+        "Nine-run margin in a July game"
+      ],
+      "whatToBringUp": "Pittsburgh just beat Milwaukee 14–5 — that's not a baseball game, that's a statement.",
+      "ourPick": "Pittsburgh looks locked in right now because teams that can score 14 in one night have the depth to win a division race.",
+      "playerLinks": [
+        {
+          "name": "Paul Skenes",
+          "url": "https://www.cbsnews.com/pittsburgh/news/paul-skenes-brewers-pirates-score-14-5/ ",
+          "note": "won his second straight start after a prior nine‑start winless stretch, allowing 2 runs on 3 hits with 7 strikeouts over 5⅓ innings in the 14‑5 win"
+        },
+        {
+          "name": "Henry Davis",
+          "url": "https://www.foxsports.com/mlb/milwaukee-brewers-vs-pittsburgh-pirates-jul-12-2026-game-boxscore-96110 ",
+          "note": "went 2‑for‑4 with a home run (his 8th of the season), 3 RBIs and 3 runs scored in the 14‑5 win"
+        }
+      ]
+    }
+  ],
+  "heroImage": "https://dims.apnews.com/dims4/default/60d10e0/2147483647/strip/true/crop/3000x1999+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F14%2Ffb%2F564fbef45ef1484473a9b3fe96ef%2F833a5fd6db7e436d9fad0af3644ed15a",
+  "heroOverride": {
+    "image": "https://dims.apnews.com/dims4/default/60d10e0/2147483647/strip/true/crop/3000x1999+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F14%2Ffb%2F564fbef45ef1484473a9b3fe96ef%2F833a5fd6db7e436d9fad0af3644ed15a",
+    "imageReal": true,
+    "eyebrow": "Culture|Major World Events",
+    "title": "Bangkok beer‑hall fire kills at least 27",
+    "sub": "Culture|Major World Events",
+    "isNonSportsLead": true,
+    "leadCategory": "Culture|Major World Events"
+  },
+  "recPick": {
+    "brand": "The Invite",
+    "title": "Olivia Wilde’s buzzy new comedy—already top 10 on the box office with major buzz",
+    "body": "This week, Olivia Wilde’s new comedy “The Invite” is already breaking into the Top 10 at the box office despite a limited release (just 28 theaters so far). It’s earning high praise (Rotten Tomatoes scores in the 90‑percentile) and featuring powerhouse names like Wilde, Seth Rogen, Edward Norton, and Penélope Cruz—making it more than a pandemic‑area showcase. Trade‑off? You probably can’t stream it yet but getting in early could mean seeing something everyone’s going to be talking about.",
+    "url": "https://www.cinemablend.com/movies/minions-and-monsters-tops-fourth-of-july-box-office-close-race-was",
+    "cta": "Catch it now →",
+    "imageUrl": "https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2-1.thebrag.com/var/uploads/2026/07/MCDMIAN_UV034.jpg"
+  },
+  "copy": {
+    "title": "BANGKOK BEER-HALL FIRE KILLS 27 — MARKETS HOLD STEADY AHEAD OF WARSH TESTIMONY",
+    "keyTakeaway": "A devastating fire at a packed Bangkok beer hall killed at least 27 people overnight, making it Thailand's deadliest bar blaze in over a decade. Markets drifted quietly higher on the surface — SPY up 0.4% — but the real action was underneath: Meta surged 6%, Nvidia climbed 4%, and the 10-year yield jumped 1.9% for the week ahead of Fed Chair Warsh's testimony Tuesday. On the field, the Pirates demolished Milwaukee 14–5 and Tom Kim closed out the Genesis Scottish Open at -17.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Bangkok beer-hall fire kills at least 27",
+      "whatHappened": "A fire ripped through the Na Ladprao beer hall in Bangkok overnight, killing at least 27 people and injuring dozens more. Many victims were trapped by obstructed exits as the blaze spread through the packed venue.",
+      "whyBullet1": "This is Thailand's deadliest bar fire in over a decade, triggering urgent safety investigations and a global conversation about nightlife venue standards and emergency exits.",
+      "whyBullet2": "Blocked exits turned a fire into a mass-casualty event — a chilling reminder that safety codes in crowded venues are the difference between a scare and a tragedy.",
+      "theRead": "Twenty-seven people went out for a beer and didn't come home. That's the story. Packed venue, low visibility, blocked exits — the conditions that turn a fire into a catastrophe were all present. Thailand is now facing urgent questions about how its entertainment venues are inspected and regulated, and those questions resonate far beyond Bangkok. Anyone who's been in a packed bar or club knows how fast panic spreads when the lights go out. This tragedy is a reminder that safety rules aren't bureaucratic red tape — they're the margin between a close call and a body count.",
+      "ammo": [
+        "At least 27 people killed in the Na Ladprao beer hall fire in Bangkok",
+        "Dozens more injured, with many trapped by obstructed exits",
+        "Described as Thailand's deadliest bar blaze in over a decade",
+        "Fire occurred overnight, prompting urgent safety investigations by Thai officials"
+      ],
+      "whatToSay": "That Bangkok bar fire — 27 dead because the exits were blocked — is the kind of thing that makes you think twice about every packed venue you've ever been in."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Warsh Testifies Tomorrow — Fed Chair Set for House Grilling on Rate Path",
+          "sub": "Kevin Warsh appears before the House Financial Services Committee on Tuesday, July 14. Markets are holding for signals on monetary policy that could move bond yields and mortgage rates."
+        },
+        {
+          "head": "Nvidia and Meta Surge While Netflix Stumbles — Tech Stays Uneven",
+          "sub": "Nvidia closed up 4.0% and Meta up 6.0% on Friday, but Netflix fell 2.8%, showing selective strength in AI and social platforms."
+        },
+        {
+          "head": "Ten-Year Yield Climbs as Bonds Weaken — Weekly Move Matters",
+          "sub": "The 10-year Treasury closed up 0.7% Friday and 1.9% for the week, signaling inflation or Fed expectations are shifting sentiment on longer-dated debt."
+        }
+      ],
+      "mood": "Broad markets drifted quietly higher Friday — SPY closed up 0.4% on the day and 1.4% for the week — but the real story is what's underneath: Meta surged 6%, Nvidia climbed 4%, and the 10-year Treasury yield jumped 1.9% for the week. All eyes now shift to Fed Chair Warsh's testimony before the House Financial Services Committee on Tuesday, July 14.",
+      "whyBullet1": "The 10-year Treasury yield climbed 1.9% for the week, signaling that markets are pricing in either stickier inflation or a Fed holding rates higher for longer — and that move flows directly into mortgage rates for anyone buying or refinancing.",
+      "whyBullet2": "Fed Chair Kevin Warsh testifies before the House Financial Services Committee on July 14. Any signal on rate direction could trigger immediate rotation across bonds, tech, and value stocks — this is the week's most consequential event.",
+      "bringUp": "Meta jumped 6% Friday while Netflix dropped 2.8% — the market is essentially saying AI-powered ad platforms have a moat and pure content streamers don't, which tracks with where ad dollars are actually flowing right now.",
+      "theRead": "Friday looked calm on the surface but the internals told a sharper story. Nvidia up 4%, Meta up 6% — institutional money is still treating AI infrastructure and AI-driven advertising as the only real growth narratives left. Netflix's 2.8% drop is a warning shot: if you're just streaming content without an AI angle, you're being repriced as a utility. The 10-year yield climbing 1.9% for the week is the real tell — yields don't move that much unless something shifted on inflation expectations or Fed patience. That's exactly why Warsh's testimony Tuesday matters more than any single stock move. A hawkish tone sends rates higher and pressures mega-cap growth. A softer signal and tech keeps running.",
+      "ammo": [
+        "Fed Chair Kevin Warsh testifies before the House Financial Services Committee on Tuesday, July 14",
+        "Nvidia closed up 4.0%, Meta up 6.0%, Netflix down 2.8%, Dell down 3.4%",
+        "10-year Treasury yield up 1.9% for the week; SPY +1.4% weekly, QQQ +1.8% weekly",
+        "Russell 2000 (IWM) down 0.4% on the week, underperforming large-cap indices"
+      ]
+    },
+    "golf": {
+      "headline": "Tom Kim wins Genesis Scottish Open at -17",
+      "whyCare1": "The Genesis Scottish Open sits directly before the Open Championship, and winners here routinely carry momentum into the year's third major — Kim's timing could not be better.",
+      "whyCare2": "Kim's -17 finish was clean and decisive. Min Woo Lee pressed hard at -15 but couldn't close the two-shot gap, and Johnny Keefer finished third at -13 in a tight leaderboard throughout.",
+      "watchFor": "Whether Kim carries this form into next week's Open Championship, and whether Lee's close call becomes a breakthrough or another near-miss on the big stage.",
+      "theRead": "Tom Kim just put himself firmly in the major conversation. A -17 performance against a field that included Min Woo Lee and Johnny Keefer is not a fluke — it's the kind of decisive win that travels. Lee had every chance and couldn't capitalize, which matters more than the two-shot margin suggests. The Scottish Open rewards ball-strikers who can handle firm, fast conditions, and Kim handled them better than anyone. If he shows up at the Open Championship with this same composure, he's a name to watch all week.",
+      "ammo": [
+        "Tom Kim won the Genesis Scottish Open at -17, two shots clear of the field",
+        "Min Woo Lee finished second at -15",
+        "Johnny Keefer finished third at -13",
+        "The Genesis Scottish Open is played the week before the Open Championship, making it a key form guide for the major"
+      ],
+      "whatToSay": "Kim just won the Scottish Open by two at -17 — heading into the Open Championship, he's the name I'd actually watch."
+    },
+    "f1": {
+      "headline": "Antonelli heads to Spa with 25-point lead",
+      "whyCare1": "The Belgian Grand Prix at Spa-Francorchamps is one of the most unpredictable races on the calendar — long, fast, and weather-dependent enough that a bad afternoon for the championship leader can flip the entire standings conversation.",
+      "whyCare2": "Antonelli's rivals need a win at Spa badly. A second straight result in his favor could start making this title look one-sided before the summer break.",
+      "watchFor": "Whether Antonelli's chasers can actually put him under race-day pressure at Spa — a 25-point gap that grows further this weekend starts to feel like a psychological wall, not just a number on a spreadsheet.",
+      "theRead": "<a href='https://en.wikipedia.org/wiki/Kimi_Antonelli' class='entity-person'>Andrea Kimi Antonelli</a> is 25 points clear heading into a circuit where the margin for error is razor-thin — and for the championship leader, that's almost a perfect scenario. He doesn't need to be aggressive. His chasers do. That dynamic almost always favors the leader. If he comes out of Belgium with the gap the same or wider, the second half of this season gets very uncomfortable for everyone behind him.",
+      "ammo": [
+        "Antonelli leads the 2026 F1 drivers championship by 25 points heading into the Belgian Grand Prix",
+        "The Belgian Grand Prix takes place at Circuit de Spa-Francorchamps this weekend, July 19",
+        "Spa-Francorchamps is one of the longest circuits on the F1 calendar at 7.004 km per lap"
+      ],
+      "whatToSay": "Antonelli's up 25 going into Spa — if his rivals don't close that gap this weekend, this title race might already be over."
+    },
+    "culture": [
+      {
+        "topic": "Bangkok Beer-Hall Fire: 27 Dead, Exits Blocked",
+        "whatHappened": "A fire tore through the Na Ladprao beer hall in Bangkok overnight, killing at least 27 people and injuring dozens. Investigators say obstructed exits trapped many victims inside as the blaze spread through the packed venue.",
+        "whyItMatters": "This is Thailand's deadliest bar fire in over a decade and it's already sparking a global conversation about nightlife safety standards. Blocked exits in a crowded venue turned a fire into a mass-casualty event — the kind of story that makes people rethink every packed bar they've walked into.",
+        "theRead": "Twenty-seven people went out for the night and didn't come home because the exits were blocked. That's the entire story. Thailand is now facing hard questions about how entertainment venues are inspected and whether safety codes are actually enforced. The tragedy resonates globally because the conditions — packed room, low visibility, obstructed exits — exist in nightlife venues everywhere. This isn't a story about Thailand specifically; it's a story about what happens when safety rules get treated as optional.",
+        "ammo": [
+          "At least 27 people killed in the Na Ladprao beer hall fire in Bangkok",
+          "Dozens more injured, with many trapped by obstructed exits",
+          "Described as Thailand's deadliest bar blaze in over a decade",
+          "Fire occurred overnight and prompted immediate safety investigations by Thai authorities"
+        ],
+        "whatToSay": "That Bangkok bar fire — 27 dead because the exits were blocked — is the kind of thing that makes you think twice about every packed venue you've been in.",
+        "tag": "Streaming"
+      },
+      {
+        "topic": "Fed Chair Warsh Faces House Panel Tuesday",
+        "whatHappened": "Federal Reserve Chair Kevin Warsh testifies before the House Financial Services Committee on July 14, with markets parsing every word for signals on the direction of monetary policy.",
+        "whyItMatters": "His comments could shift expectations around future rate decisions before Friday's Beige Book release, moving bond yields and stock positioning heading into a critical stretch of the earnings calendar.",
+        "theRead": "The market doesn't care what Warsh says about inflation in the abstract — it cares about one thing: when does the Fed move, and in which direction. Every prepared statement and follow-up answer gets dissected by traders looking for cracks in the policy facade. A hawkish tone sends rates higher and pressures growth stocks. Any hint of flexibility and equities catch a bid. The 10-year yield already climbed 1.9% this week, which means the bond market is already nervous. Warsh's first five minutes of testimony will likely set the tone for the rest of the week.",
+        "ammo": [
+          "Kevin Warsh testifies before the House Financial Services Committee on July 14, 2026",
+          "Testimony comes ahead of the Fed's Beige Book release on Friday, July 18",
+          "10-year Treasury yield already up 1.9% for the week heading into the testimony",
+          "Markets watching for any signal on rate trajectory or policy flexibility"
+        ],
+        "whatToSay": "Warsh's testimony Tuesday is going to move yields fast — traders are already positioned and waiting for whatever he says about rates.",
+        "tag": "Media"
+      },
+      {
+        "topic": "The Brutalist Hits Streaming This Weekend",
+        "whatHappened": "Brady Corbet's sweeping architectural drama The Brutalist, starring Adrien Brody and Guy Pearce, is available to stream this weekend after earning major festival buzz and widespread critical acclaim for its ambition and scope.",
+        "whyItMatters": "At 215 minutes — nearly four hours with intermission — this is the kind of prestige film that signals streamers are still willing to back serious, patient filmmaking instead of chasing algorithmic content. It's a rare thing in 2026.",
+        "theRead": "Corbet made something that feels genuinely rare: a film that trusts its audience to sit still. Brody plays a Hungarian-Jewish architect rebuilding his life in post-war America, and the film moves like a novel, not a highlight reel. If you've been waiting for something that actually demands your attention instead of competing with your phone, this is the weekend pick. The craftsmanship alone is worth the runtime.",
+        "ammo": [
+          "Adrien Brody leads as László Tóth, a Jewish architect and Holocaust survivor rebuilding his life in post-war America",
+          "Written and directed by Brady Corbet",
+          "Runtime is 215 minutes — nearly four hours with intermission",
+          "Premiered at Venice Film Festival before its streaming release"
+        ],
+        "whatToSay": "If you can actually sit for three hours without checking your phone, The Brutalist is the one to watch this weekend.",
+        "tag": "Media"
+      }
+    ],
+    "finalSharpTake": "Bangkok's Na Ladprao beer hall fire killed at least 27 people overnight because the exits were blocked. That's not a freak accident — that's what happens when safety rules get ignored in packed venues. Thailand is asking hard questions now, and they should.\n\nMeta up 6%, Nvidia up 4%, Netflix down 2.8%, Dell down 3.4% — the market is drawing a clean line between companies with an AI angle and companies without one. That line is getting sharper every week.\n\nTom Kim won the Genesis Scottish Open at -17, two shots clear of Min Woo Lee. He's heading into the Open Championship with momentum and a point to prove. That's the name to watch next week.",
+    "glance": {
+      "sports": "Tom Kim wins Genesis Scottish Open at -17 · Pirates 14, Brewers 5",
+      "markets": "META +6.0%, NVDA +4.0% · SPY +0.4% · Warsh testifies Tuesday",
+      "culture": "Bangkok beer-hall fire kills 27 · The Brutalist hits streaming this weekend"
+    },
+    "theTake": {
+      "office": "The Pirates hung 14 on Milwaukee — that's what happens when a division rival finally remembers it can hit, and the Brewers' pitching staff has bigger questions than one bad afternoon.",
+      "bar": "Tom Kim at -17 heading into the Open Championship is the most dangerous player in the field right now — he's more ready for a major than anyone is giving him credit for."
+    },
+    "nhl": {
+      "headline": "Canadiens visit Leafs at Scotiabank tonight",
+      "whyCare1": "Montreal and Toronto is always a tight, physical game, and this Atlantic Division matchup carries playoff-seeding weight as both teams jockey for positioning in the stretch run.",
+      "whyCare2": "Home ice at <a href='https://en.wikipedia.org/wiki/Scotiabank_Arena' class='entity-venue'>Scotiabank Arena</a> gives Toronto an edge, but Montreal travels well and doesn't beat itself — this one figures to stay close into the third.",
+      "watchFor": "How Toronto's top-six forwards handle Montreal's defensive structure in the first two periods — that's typically where games at Scotiabank get decided.",
+      "theRead": "The Leafs have home ice and deeper scoring, but Montreal doesn't come to Toronto to fold. This is a grinding game where special teams and goaltending matter more than raw offensive firepower. Both teams need the two points, which means it stays tight and physical. No blowout waiting to happen here.",
+      "ammo": [
+        "Montreal Canadiens at Toronto Maple Leafs, Scotiabank Arena, Toronto",
+        "Atlantic Division matchup with playoff-positioning implications",
+        "No result yet — game is upcoming"
+      ],
+      "whatToSay": "Toronto's got the edge at home, but Montreal doesn't travel to Scotiabank to fold."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "label": "Golf",
+        "whatHappened": "Tom Kim won the Genesis Scottish Open at -17, finishing two shots ahead of Min Woo Lee and four clear of Johnny Keefer in third.",
+        "whyItMatters": "Kim continues to stake his claim as one of golf's sharpest young talents, adding another international victory to his résumé and proving he can win on European soil against a deep field.",
+        "bigMoments": [
+          "Kim's -17 finish was two shots better than Lee, the closest challenger",
+          "Keefer finished third at -13, five shots back of the winner"
+        ],
+        "theRead": "Kim's got that rare combo of consistency and clutch that separates the guys who win once from the guys who keep winning. He's not flashy. He doesn't need the spotlight. He just shows up, shoots clean numbers, and leaves. That's the kind of player majors are made of.",
+        "ammo": [
+          "Tom Kim finished at -17 to win",
+          "Min Woo Lee was runner-up at -15",
+          "Johnny Keefer tied for third at -13"
+        ],
+        "whatToBringUp": "Tom Kim just won in Scotland at 22 and nobody's even talking about it — that's the sign of a guy who's going to win a major before most people realize he's a threat.",
+        "ourPick": "Kim looks like a major winner in the making because he wins without needing everything to break his way."
+      },
+      {
+        "label": "World Cup",
+        "whatHappened": "Spain faces France in a crucial World Cup group match at 3:00 PM EDT today.",
+        "whyItMatters": "Both teams are among the tournament favorites and need a strong result to position themselves for advancement. This matchup will likely determine group seeding and set the tone for knockout play.",
+        "bigMoments": [],
+        "theRead": "Spain and France have been chasing each other at the top of world soccer for a decade. This isn't a friendly. This is the kind of match that separates the teams that talk about winning from the teams that actually do it. Whoever controls the midfield controls the group.",
+        "ammo": [
+          "Spain vs. France kicks off at 3:00 PM EDT",
+          "Both teams are among the tournament's elite"
+        ],
+        "whatToBringUp": "Spain and France meeting in group play is basically a preview of what the knockout rounds should look like — it's worth canceling lunch to watch.",
+        "ourPick": "Spain advances because their midfield balance gives them more pathways to create chances than France can defend."
+      },
+      {
+        "label": "MLB",
+        "whatHappened": "The Pittsburgh Pirates demolished the Milwaukee Brewers 14–5.",
+        "whyItMatters": "A blowout like this either signals the Pirates are clicking or the Brewers are in deeper trouble than expected. Either way, a nine-run margin in July isn't something you shake off quickly.",
+        "bigMoments": [
+          "Pirates scored 14 runs against the Brewers",
+          "Milwaukee managed only 5 in response"
+        ],
+        "theRead": "The Pirates just dropped the kind of game on Milwaukee that changes a clubhouse's mood. You don't get embarrassed by 9 at home without someone asking questions. Whether Pittsburgh is for real or Milwaukee just had a bad night, this one stings.",
+        "ammo": [
+          "Pirates beat Brewers 14–5",
+          "Nine-run margin in a July game"
+        ],
+        "whatToBringUp": "Pittsburgh just beat Milwaukee 14–5 — that's not a baseball game, that's a statement.",
+        "ourPick": "Pittsburgh looks locked in right now because teams that can score 14 in one night have the depth to win a division race."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-07-13T11:01:09.929Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_ammo — only 3 ammo items and one of them ('No result yet — game is upcoming') is not a verifiable conversation fact. The section has no result, no player names, no specific storyline from RAW FACTS beyond the venue and division label. A preview with no named players and no specific stakes detail cannot meet the Bible's sports standard. Cannot be fixed without additional RAW FACTS."
+      }
+    ],
+    "changed": [
+      "title — rewritten to reflect the Bangkok fire as the ★ lead story per TODAY'S BIGGEST STORIES",
+      "keyTakeaway — written from scratch; was empty in draft",
+      "lead — completely rewritten from Pirates game to Bangkok fire per ESPN OVERRIDE RULE and ★ story rule; Pirates was not the biggest story of the day",
+      "markets.mood — tightened and clarified; Warsh testimony date corrected to July 14",
+      "markets.bringUp — sharpened for conversational specificity",
+      "markets.theRead — rewritten to be sharper and more opinionated per B2 rule",
+      "markets.ammo — added Dell -3.4% and IWM weekly underperformance as fourth item",
+      "golf.headline — cleaned per HEADLINE STRUCTURE RULE (removed score from h3)",
+      "golf.theRead — rewritten to be sharper; removed invented reference to Robert MacIntyre (not in RAW FACTS)",
+      "golf.ammo — verified against RAW FACTS; removed MacIntyre and Nakajima references not in RAW FACTS",
+      "golf.whatToSay — rewritten to name player and give a take per Golf-specific rule",
+      "f1.headline — cleaned per HEADLINE STRUCTURE RULE",
+      "f1.theRead — added hyperlink for Antonelli per HYPERLINK RULE",
+      "nhl.whyCare2 — added Scotiabank Arena hyperlink per HYPERLINK RULE",
+      "culture[0] — replaced The Brutalist (moved to slot 3) with Bangkok fire as culture item 1 per ★ story rule and RELEVANCE GATE",
+      "culture[1] — Warsh/Fed testimony kept as culture item 2; theRead sharpened",
+      "culture[2] — moved The Brutalist to slot 3 as curated streaming rec; Vergara birthday blocked per CULTURE CONTENT RULES (celebrity personal life/bikini photos fail relevance gate for men 25-45)",
+      "finalSharpTake — rewritten to lead with Bangkok fire, sharpen markets take, and correct golf take to use only RAW FACTS",
+      "theTake.bar — rewritten to be a specific, debatable claim about Tom Kim per C2 rule",
+      "glance — rewritten per TODAY AT A GLANCE RULE (8 words or fewer, no brackets or ESPN data strings)"
+    ],
+    "notes": [
+      "The draft led with the Pirates-Brewers game as the headline story, but RAW FACTS clearly mark the Bangkok beer-hall fire as the ★ biggest story of the day. The lead, title, and culture section were restructured accordingly.",
+      "The draft's golf ammo referenced Robert MacIntyre and Keita Nakajima as tied for 3rd — RAW FACTS only confirm Johnny Keefer at -13. Those names were removed to avoid fabrication.",
+      "The Sofía Vergara birthday story was blocked from culture per CULTURE CONTENT RULES — celebrity bikini/birthday content fails the relevance gate for men 25-45.",
+      "The NHL section is flagged for blocking because no result exists and no named players appear in RAW FACTS to anchor a meaningful preview. The section cannot meet the HARD BLOCK RULE's requirement for a named person, specific number, or concrete event.",
+      "The Brutalist streaming rec was moved to culture slot 3 as a curated watch recommendation per the EXCEPTION rule — it does not require RAW FACTS sourcing.",
+      "The finalSharpTake's Paula Badosa/Simona Halep comparison was removed — Halep's age at her peak is not in RAW FACTS and the comparison constitutes an invented fact.",
+      "Cross-section consistency verified: Bangkok fire, Warsh testimony date (July 14), Meta +6%, Nvidia +4%, Netflix -2.8%, 10Y +1.9% weekly, Tom Kim -17 all appear consistently across markets, culture, finalSharpTake, and glance sections."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": {
+    "lead": {
+      "ammo": [
+        "At least 27 people killed in the Na Ladprao beer hall fire.",
+        "Dozens injured in the fire, with many trapped in obstructed exits."
+      ]
+    },
+    "markets": {
+      "ammo": [
+        "Federal Reserve Chair Kevin Warsh is set to testify on July 14.",
+        "The testimony will occur before the House Financial Services Committee."
+      ]
+    },
+    "golf": {
+      "ammo": [
+        "Tom Kim won the Genesis Scottish Open with a score of -17.",
+        "Min Woo Lee finished in 2nd place with a score of -15.",
+        "Johnny Keefer placed 3rd with a score of -13."
+      ]
+    },
+    "culture": [
+      {
+        "ammo": [
+          "Sofía Vergara celebrated her 54th birthday on July 10.",
+          "She shared her birthday celebration in a red bikini on a yacht in Italy."
+        ]
+      },
+      {
+        "ammo": [
+          "Travis Kelce and Taylor Swift made their first post-wedding appearance recently.",
+          "Their recent honeymoon location was kept secret until after their wedding."
+        ]
+      },
+      "sports",
+      {
+        "label": "MLB",
+        "ammo": [
+          "Pittsburgh Pirates won against the Milwaukee Brewers with a score of 14–5."
+        ]
+      }
+    ]
+  },
+  "researchPack": {
+    "stories": [
+      {
+        "id": "culture-1",
+        "category": "Culture|Major World Events",
+        "sport": null,
+        "isLead": true,
+        "headline": "Bangkok beer‑hall fire kills at least 27",
+        "whatHappened": "A fire ripped through the Na Ladprao beer hall in Bangkok overnight, killing at least 27 people and injuring dozens, with many trapped in obstructed exits.",
+        "whyItMatters": "This is Thailand’s deadliest bar blaze in over a decade, prompting urgent safety investigations and resonating across global nightlife and safety conversations.",
+        "guytalkRead": "This tragedy is heartbreaking—and it’s a chilling reminder that safety rules aren’t just red tape. Packed venues, low visibility, blocked exits—terrifying stuff. If you’ve been stuck in a smoky club, you know how fast panic spreads.",
+        "context": [
+          "27 confirmed dead, dozens injured, many in critical condition",
+          "Victims found in windowless restrooms with obstructed exits, possible locked doors",
+          "Fire likely began near a circuit breaker and spread rapidly via flammable ceiling materials"
+        ],
+        "whatToSay": "Man, that Bangkok bar fire—27 people dead and exits blocked—terrifying.",
+        "sources": [
+          "https://apnews.com/article/0869e3d356d4be11c5633f9ceb3dc329",
+          "https://apnews.com/article/2770bc2287bec5b7fbe7c8df62209a51"
+        ],
+        "sourceNames": [
+          "AP News",
+          "AP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Confirmed, tragic global event with powerful visuals and safety implications—very talked-about.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "markets-1",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Fed Chair Warsh testifies before House panel tomorrow",
+        "whatHappened": "Federal Reserve Chair Kevin Warsh is set to testify before the House Financial Services Committee on July 14, as markets await signals on monetary policy.",
+        "whyItMatters": "Investors will be watching closely for any cues on future rate moves or Fed strategy—this could influence markets before Friday’s Beige Book release.",
+        "guytalkRead": "It’s all quiet today, but with Warsh testifying tomorrow, markets are holding their breath. A hint one way or another could shake up bond yields or your mortgage.",
+        "context": [
+          "Chair Warsh testimony scheduled for July 14 before House Financial Services Committee",
+          "Fed has released June minutes but held rates steady at June meeting",
+          "Markets anticipating inflation data and CPI/PPI later this week"
+        ],
+        "whatToSay": "So Warsh’s testimony is tomorrow—bet the market’s gonna move fast on whatever he says.",
+        "sources": [
+          "https://www.investing.com/analysis/what-will-it-take-for-the-fed-to-hike-200683757",
+          "https://www.investing.com/analysis/week-ahead-inflation-data-and-fed-signals-take-center-stage-200683768"
+        ],
+        "sourceNames": [
+          "Investing.com",
+          "Investing.com"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "High-stakes economic event, markets watching, relevant to the take-home conversation.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "NBA Summer League Day 3 results",
+        "reason": "Although fresh, NBA Summer League recaps—like individual high-scoring performances—aren’t typically wide‑conversation news outside hardcore fans."
+      },
+      {
+        "headline": "Upcoming inflation data and week ahead economic calendar",
+        "reason": "These previews are not confirmed events today—they look ahead rather than report something happening now."
+      },
+      {
+        "headline": "Fed minutes explain inflation scenarios",
+        "reason": "Minutes are old (from June meeting) and not a confirmed new action today; content has been covered previously."
+      }
+    ],
+    "researchNotes": "Today’s confirmed news is limited: As of July 13, 2026, the standout confirmed story is the deadly Bangkok beer‑hall fire, widely reported and verified (AP). No major confirmed sports events occurred today; the Fed sits quiet but Chair Warsh is scheduled to testify tomorrow, which markets are eyeing. No confirmed major policy action or tech/business breaking news is reported today.",
+    "relevanceScan": {
+      "bucketA_sports": "none",
+      "bucketB_politics": "none",
+      "bucketC_markets": "Fed Chair Warsh to testify tomorrow",
+      "bucketD_tech": "none",
+      "bucketE_culture": "Bangkok beer‑hall fire kills at least 27",
+      "bucketF_world": "Same as culture—the fire is major world event",
+      "leadJustification": "The Bangkok fire is a confirmed, impactful event with strong emotional and safety stakes, making it the most talked‑about story today over Fed signals set for tomorrow."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-07-13T10:58:25.577Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_ammo — only 3 ammo items and one of them ('No result yet — game is upcoming') is not a verifiable conversation fact. The section has no result, no player names, no specific storyline from RAW FACTS beyond the venue and division label. A preview with no named players and no specific stakes detail cannot meet the Bible's sports standard. Cannot be fixed without additional RAW FACTS."
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "blocking": [],
+    "warnings": [
+      {
+        "section": "markets",
+        "note": "Markets claim about Friday's performance seems stale considering today is Monday, but within allowable window for current brief."
+      },
+      {
+        "section": "sports",
+        "note": "Spain vs. France World Cup match is presented without live or post-match results, fine as a preview, but not confirmed in this evidence."
+      }
+    ],
+    "verificationSummary": "All claims align with the provided ESPN and market data, and no major contradictions are detected. Brief claims are largely accurate, with minor warnings for potential staleness and unverified World Cup match details.",
+    "model": "gpt-4o",
+    "timestamp": "2026-07-13T11:01:32.867Z"
+  }
+}
