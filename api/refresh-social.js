@@ -43,15 +43,16 @@ async function fetchSocialMoments() {
     model: 'gpt-4.1',
     tools: [{ type: 'web_search' }],
     tool_choice: 'required',
-    input: `Today is ${today}. Search X (Twitter) and news sites for the 4-5 most viral posts, tweets, or public statements from the LAST 6 HOURS that men 25-45 are talking about. Prioritize by virality — what is actually trending or blowing up right now.
+    input: `Today is ${today}. Search X (Twitter) and news sites for the 4-5 most viral posts, tweets, or public statements from the LAST 24 HOURS that men 25-45 are talking about. Prioritize by virality — what is actually trending or blowing up right now.
+
+Note: X's own posts are largely unindexed by general web search, so you will rarely find a raw tweet URL directly. That's expected — news sites (ESPN, The Athletic, Front Office Sports, Axios, Bloomberg, Deadspin, etc.) routinely cover and quote viral X posts within hours. Treat a credible news article that reports/quotes a real post or public statement as sufficient verification — you do not need to find the tweet itself.
 
 Search specifically for:
-- Viral tweets from CEOs, executives, athletes, coaches, public figures (high retweet/like counts)
+- Viral tweets/posts from CEOs, executives, athletes, coaches, public figures — sourced either directly or via news coverage that quotes them
 - Trending topics on X right now and the post that sparked them
 - Athletes posting breaking news (trades, signings, injuries) directly on X
 - Outrageous or surprising things a public figure just said publicly
-- Viral moments in sports, business, finance, tech, or culture from today
-- Any X post that has gone viral in the last few hours (100k+ likes, major media pickup)
+- Viral moments in sports, business, finance, tech, or culture from the last day
 
 Respond ONLY with a valid JSON array (no markdown, no code fences):
 [
@@ -59,19 +60,20 @@ Respond ONLY with a valid JSON array (no markdown, no code fences):
     "platform": "X",
     "author": "Full Name",
     "handle": "@handle",
-    "quote": "The actual quote or as close a paraphrase as possible (max 200 chars, keep it punchy)",
+    "quote": "The actual quote if you have it, otherwise a clear paraphrase of what they said/posted (max 200 chars, keep it punchy)",
+    "isParaphrase": true or false — true if "quote" is your paraphrase rather than their exact words,
     "why": "One sharp sentence: why this is blowing up / what it actually means.",
-    "url": "Direct link to tweet or best news coverage of it",
+    "url": "Direct link to the tweet if you have it, otherwise the best news coverage of it",
     "timestamp": "ISO 8601 time if known, else today's date"
   }
 ]
 
 Rules:
-- PRIORITIZE posts from the last 6 hours; fall back to last 24h if needed
-- Never invent a quote — only verifiable real statements
+- PRIORITIZE posts from the last 6 hours; widen to 24h, then 48h, before giving up on a slot
+- Never invent WHO said something or WHAT happened — every item must trace to a real, findable public statement or post. But you do not need the exact original wording; a paraphrase grounded in real news coverage is fine (mark isParaphrase: true)
 - Return 4-5 items; 3 minimum if you cannot find enough
 - Rank by cultural impact — what are guys actually talking about right now?
-- If you cannot verify ANY real posts (e.g. X search results are unreliable or stale), respond with an empty JSON array \`[]\`. Never respond with prose, an explanation, or a refusal — ONLY ever a JSON array, even when it's empty.
+- Only respond with an empty JSON array \`[]\` if you truly cannot find ANY real, sourced social/culture moment in the last 48 hours — this should be rare. Never respond with prose, an explanation, or a refusal — ONLY ever a JSON array, even when it's empty.
 `,
   });
 

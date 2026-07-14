@@ -1406,13 +1406,19 @@ async function fetchRecentChampions() {
 
 /* -------------------------------------------------------- yesterday's results */
 
-// Fetches completed games from yesterday via ESPN ?dates= param.
+// Fetches completed games from the last few days via ESPN's ?dates= range param.
 // Returns the same league-array shape as fetchScoreboards(), but only completed
-// (state='post') games — so the Recap section can show "Last Night" results.
+// (state='post') games from the most recent date each league actually played —
+// so the Recap section can show "Last Night" results even across an off-day
+// (MLB All-Star break, a World Cup rest day between rounds, etc.), not just
+// literally yesterday.
 async function fetchYesterdayScores() {
-  const d = new Date();
-  d.setDate(d.getDate() - 1);
-  const yyyymmdd = d.toISOString().slice(0, 10).replace(/-/g, '');
+  const end = new Date();
+  end.setDate(end.getDate() - 1);
+  const start = new Date();
+  start.setDate(start.getDate() - 4);
+  const fmt = (d) => d.toISOString().slice(0, 10).replace(/-/g, '');
+  const range = `${fmt(start)}-${fmt(end)}`;
 
   // Only the leagues that play frequently enough to have last-night results
   const YESTERDAY_LEAGUES = SCOREBOARD_LEAGUES.filter(lg =>
@@ -1421,12 +1427,20 @@ async function fetchYesterdayScores() {
 
   const results = await Promise.all(
     YESTERDAY_LEAGUES.map(async (lg) => {
-      const data = await json(`${ESPN}/${lg.sport}/${lg.league}/scoreboard?dates=${yyyymmdd}`);
+      const data = await json(`${ESPN}/${lg.sport}/${lg.league}/scoreboard?dates=${range}`);
       const games = (data?.events || [])
         .map((e) => parseGame(e, lg))
         .filter((g) => g && g.state === 'post');
-      games.sort((a, b) => b.importance - a.importance);
-      return { key: lg.key, label: lg.label, games: games.slice(0, 6) };
+      if (!games.length) return { key: lg.key, label: lg.label, games: [] };
+      // Keep only the most recent date this league had completed games —
+      // "Last Night" should mean the last night it actually played.
+      const latestDay = games.reduce((max, g) => {
+        const day = (g.startDate || '').slice(0, 10);
+        return day > max ? day : max;
+      }, '');
+      const recent = games.filter((g) => (g.startDate || '').slice(0, 10) === latestDay);
+      recent.sort((a, b) => b.importance - a.importance);
+      return { key: lg.key, label: lg.label, games: recent.slice(0, 6) };
     })
   );
 

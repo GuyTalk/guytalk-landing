@@ -1680,7 +1680,9 @@ function FeaturedGolfCard(g) {
       return gDate >= new Date(Date.now() - 86400000).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
     };
     const wcLeague = (board) => (board || []).find(lg => lg.key === 'worldcup');
-    const todayGames = (wcLeague(scoreboard)?.games || []).filter(g => (g.state === 'in' || g.state === 'post') && isRecent(g));
+    // Include 'pre' (scheduled) games too — otherwise a day with only an
+    // upcoming match (e.g. today's Spain vs France semifinal) shows as empty.
+    const todayGames = (wcLeague(scoreboard)?.games || []).filter(g => isRecent(g));
     const lastNightGames = (wcLeague(yesterdayScores)?.games || []).filter(g => g.state === 'post');
     const games = [...todayGames];
     // Merge in yesterday's games that aren't already in today's data
@@ -1699,9 +1701,11 @@ function FeaturedGolfCard(g) {
   function renderSoccer(scoreboard) {
     // Excludes worldcup — that has its own dedicated section above
     const SOCCER_KEYS = ['mls', 'epl', 'ucl', 'concacaf'];
+    // Include 'pre' (scheduled) games too — otherwise a day with only upcoming
+    // fixtures (no live/finished games yet) shows as empty.
     const games = (scoreboard || [])
       .filter(lg => SOCCER_KEYS.includes(lg.key))
-      .flatMap(lg => lg.games.filter(g => g.state === 'in' || g.state === 'post'));
+      .flatMap(lg => lg.games.filter(g => g.state === 'in' || g.state === 'post' || g.state === 'pre'));
     _renderLeague({ elId: 'soccerWrap', badgeId: 'badge-soccer', metaId: 'meta-soccer', games,
       contextFn: soccerContext, wymFn: soccerWhatYouMissed, tag: 'Soccer', emptyMsg: 'No soccer league matches right now.' });
   }
@@ -1795,6 +1799,20 @@ function FeaturedGolfCard(g) {
       return;
     }
 
+    // "Last Night" is only accurate when the games are literally from
+    // yesterday — during an off-day (All-Star break, a World Cup rest day
+    // between rounds) the fetch reaches back further, so label by the actual
+    // date instead of hardcoding a stale "Last Night".
+    function lastNightLabel(games) {
+      const dateStr = games[0]?.startDate;
+      if (!dateStr) return 'Last Night';
+      const gameDayET = new Date(dateStr).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+      const yesterdayET = new Date(Date.now() - 86400000).toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+      if (gameDayET === yesterdayET) return 'Last Night';
+      const weekday = new Date(dateStr).toLocaleDateString('en-US', { timeZone: 'America/New_York', weekday: 'long' });
+      return `${weekday}'s Results`;
+    }
+
     function renderGameGroup(games, groupLabel) {
       if (!games.length) return '';
       const featured = games[0];
@@ -1813,7 +1831,7 @@ function FeaturedGolfCard(g) {
     }
 
     el.innerHTML =
-      renderGameGroup(lastNight, 'Last Night') +
+      renderGameGroup(lastNight, lastNightLabel(lastNight)) +
       renderGameGroup(todayGames, "Today's Results");
   }
 
@@ -2146,7 +2164,7 @@ function FeaturedGolfCard(g) {
     <span class="social-author">${esc(m.author)}</span>
     <span class="social-handle">${esc(m.handle || '')}</span>
   </div>
-  <p class="social-quote">${esc(m.quote)}</p>
+  <p class="social-quote">${m.isParaphrase ? '<span class="social-paraphrase-tag">Paraphrased</span> ' : ''}${esc(m.quote)}</p>
   <p class="social-why"><b>Why it matters:</b> ${esc(m.why)}</p>
   ${m.url && m.url.includes('/status/') ? `<a class="social-link" href="${esc(m.url)}" target="_blank" rel="noopener">See post →</a>` : (m.handle ? `<a class="social-link" href="https://x.com/search?q=${encodeURIComponent((m.quote||'').slice(0,50))}" target="_blank" rel="noopener">Search on X →</a>` : '')}
 </div>`;
