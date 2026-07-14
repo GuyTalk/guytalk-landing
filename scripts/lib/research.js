@@ -393,8 +393,12 @@ async function fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup
       // so copy writers don't invent "first in franchise history" (they won in 2006).
       const isSCFinal  = note?.includes('Stanley Cup Final') || seriesPart.includes('wins series');
       const carNote    = isSCFinal && w.team?.toLowerCase().includes('carolina') ? ' [CAR last won in 2006 — this is their 2nd title]' : '';
+      const leaders    = boxScores?.[g.id];
+      const leadersStr = leaders?.length
+        ? ` | Standout performances: ${leaders.map(p => `${p.name} (${p.team}): ${p.line}`).join('; ')}`
+        : '';
       headline = `${w.team} ${w.score}–${l.score}${seriesPart}${notePart}${carNote}`;
-      facts    = `${w.team} beat ${l.team} ${w.score}–${l.score}${seriesPart}${notePart}${carNote}`;
+      facts    = `${w.team} beat ${l.team} ${w.score}–${l.score}${seriesPart}${notePart}${carNote}${leadersStr}`;
     } else {
       headline = `${g.away?.team} at ${g.home?.team}${seriesPart}${notePart}`;
       facts    = headline;
@@ -480,7 +484,7 @@ async function fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup
     if (slam?.results?.length) {
       const r        = slam.results[slam.results.length - 1];
       const headline = `${r.winner} at ${slam.name}`;
-      const facts    = slam.results.map(r2 => `${r2.winner} d. ${r2.loser}`).join('; ');
+      const facts    = slam.results.map(r2 => `${r2.winner} d. ${r2.loser}${r2.score ? ` ${r2.score}` : ''}`).join('; ');
       const { score: imp } = scoreImportance({ name: `Grand Slam ${slam.name}`, headline, facts, isFinalResult: false });
       candidates.push({
         name: slam.name, label: 'Tennis', category: 'individual',

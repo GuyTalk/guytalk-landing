@@ -1,0 +1,23 @@
+VERIFIED FACT SHEET — issue-079 — 2026-07-10T11:07:05.116Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] New York Yankees 12–4 Tampa Bay Rays (Final)
+  [SPORT] Atlanta Braves 10–5 Pittsburgh Pirates (Final)
+  [SPORT] Texas Rangers 7–6 Los Angeles Angels (Final)
+  [GOLF] Genesis Scottish Open | venue: see established facts | status: in
+  [F1] Moët & Chandon Belgian Grand Prix | P1: ? (?)
+  [MARKETS] SPY +0.85% | DIA 0.27% | QQQ 1.66%
+
+SOURCE: OpenAI web research
+  [conf:3/5] Home prices hit record high amid affordability squeeze — MarketWatch via Reddit summary
+  [conf:3/5] Fed officials divided on 2026 rate‑hike odds — CNBC via Reddit summary
+  [conf:4/5] CISA urges patching of critical software flaws by today — SecurityWeek
+  [conf:4/5] ICC cites evidence of war crimes in Darfur — JustSecurity (citing Reuters/BBC)
+  [conf:3/5] Tour de France and Wimbledon underway today — SportsBarMarketing schedule, TechRadar
+  [conf:4/5] Trump praises NATO unity after summit — CBS News
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

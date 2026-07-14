@@ -111,6 +111,47 @@ async function fetchNHL() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// ESPN: NHL box score — goal scorers/assists for a completed game
+// Returns top performers, each with a pre-formatted `line` string ("1G 1A").
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchNHLBoxScore(gameId) {
+  try {
+    const url = `https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary?event=${gameId}`;
+    const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+    if (!res.ok) return null;
+    const data = await res.json();
+
+    const performers = [];
+    (data.boxscore?.players || []).forEach(teamStats => {
+      const teamName = teamStats.team?.shortDisplayName || teamStats.team?.displayName || '';
+      (teamStats.statistics || []).forEach(statGroup => {
+        const labels = statGroup.labels || [];
+        const isGoalie = labels.includes('GA') && labels.includes('SV');
+        if (isGoalie) return;
+        const gIdx = labels.indexOf('G');
+        const aIdx = labels.indexOf('A');
+        if (gIdx < 0) return;
+        (statGroup.athletes || []).forEach(a => {
+          const stats = a.stats || [];
+          const name = a.athlete?.displayName || '';
+          const g = parseInt(stats[gIdx]) || 0;
+          const ast = aIdx >= 0 ? (parseInt(stats[aIdx]) || 0) : 0;
+          if (!name || (g < 1 && ast < 2)) return;
+          const parts = [g > 0 ? `${g}G` : null, ast > 0 ? `${ast}A` : null].filter(Boolean);
+          performers.push({ name, team: teamName, line: parts.join(' '), _rank: g * 2 + ast });
+        });
+      });
+    });
+
+    performers.sort((a, b) => b._rank - a._rank);
+    performers.forEach(p => delete p._rank);
+    return performers.length ? performers.slice(0, 6) : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // ESPN: UFC — most recent completed card's main event + full fight card, or the
 // next scheduled card if nothing has happened yet. Cards run Fri/Sat night US
 // time and can straddle a UTC day boundary, so check yesterday then today.
@@ -914,4 +955,4 @@ async function fetchTrending() {
   return items;
 }
 
-module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchMLBBoxScore, fetchNHL, fetchUFC, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending };
+module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchMLBBoxScore, fetchNHL, fetchNHLBoxScore, fetchUFC, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending };

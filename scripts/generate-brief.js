@@ -7,7 +7,7 @@ const fs   = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchMLBBoxScore, fetchNHL, fetchUFC, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending } = require('./lib/fetchers');
+const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchMLBBoxScore, fetchNHL, fetchNHLBoxScore, fetchUFC, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending } = require('./lib/fetchers');
 const { generateCopy, generateF1Only }                      = require('./lib/copy');
 const { editBrief }                                         = require('./lib/editor');
 const { buildHtml }                                         = require('./lib/html');
@@ -822,6 +822,16 @@ async function main() {
         if (meta) gameMetas[game.id] = meta;
       } catch (_) {}
     }
+  }
+
+  if (nhl?.final?.id) {
+    try {
+      const leaders = await fetchNHLBoxScore(nhl.final.id);
+      if (leaders?.length) {
+        boxScores[nhl.final.id] = leaders;
+        console.log(`   ✓ Box score: ${nhl.final.shortName} — ${leaders[0].name} ${leaders[0].line}`);
+      }
+    } catch (_) {}
   }
 
   if (markets)             console.log(`   ✓ Markets: ${Object.keys(markets).filter(k => markets[k]?.price).length} tickers`);

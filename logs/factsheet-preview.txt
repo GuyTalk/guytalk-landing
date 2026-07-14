@@ -1,0 +1,25 @@
+VERIFIED FACT SHEET — preview — 2026-07-11T14:36:10.513Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] Chicago White Sox 14–1 Athletics (Final)
+  [SPORT] Detroit Tigers 10–2 Philadelphia Phillies (Final)
+  [SPORT] Arizona Diamondbacks 9–3 Los Angeles Dodgers (Final)
+  [GOLF] Genesis Scottish Open | venue: see established facts | status: in
+  [F1] Moët & Chandon Belgian Grand Prix | P1: ? (?)
+  [MARKETS] SPY +0.43% | DIA 0.30% | QQQ 0.31%
+
+SOURCE: OpenAI web research
+  [conf:5/5] Iran Plots to Kill Trump as Mojtaba Khamenei Issues New Warning — NBC News
+  [conf:5/5] Housing Affordability Bill Becomes Law Without Trump's Signature — NBC News
+  [conf:5/5] World Cup Quarterfinals Today: Norway-England and Argentina-Switzerland — Yahoo Sports
+  [conf:5/5] Wimbledon Men's Final Set: Sinner vs. Zverev Sunday — CBS Sports, Outlook India
+  [conf:5/5] S&P 500 Notches Weekly Gain; Big Bank Earnings Start Tuesday — CNBC, Motley Fool
+  [conf:5/5] Meta's AI Chip Plans Fuel Best Week Since Early 2024 — CNBC
+  [conf:5/5] Oil Demand Set for First Annual Drop Since COVID, IEA Says — CNBC
+  [conf:5/5] Maine Democrats Scramble After Senate Candidate Platner Drops Out — NBC News, NPR
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================

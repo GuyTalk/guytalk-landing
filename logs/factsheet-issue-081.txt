@@ -1,0 +1,20 @@
+VERIFIED FACT SHEET — issue-081 — 2026-07-12T15:00:37.084Z
+========================================================================
+SOURCE: ESPN structured data (ground truth)
+  [SPORT] San Diego Padres 8–7 Toronto Blue Jays (Final)
+  [SPORT] Pittsburgh Pirates 7–6 Milwaukee Brewers (Final)
+  [SPORT] Houston Astros 9–3 Texas Rangers (Final)
+  [GOLF] Genesis Scottish Open | venue: see established facts | status: in
+  [F1] Moët & Chandon Belgian Grand Prix | P1: ? (?)
+  [MARKETS] SPY +0.43% | DIA 0.30% | QQQ 0.31%
+
+SOURCE: OpenAI web research
+  [conf:5/5] Sen. Lindsey Graham dies at 71 after brief illness — AP News, CBS News, Reuters via Investing.com
+  [conf:5/5] Bellingham nets twice as England past Norway into World Cup semis — AP News
+  [conf:5/5] Apple sues OpenAI over alleged trade‑secret theft — Reuters, Washington Post
+
+SECTIONS USING VERIFIED FACTS:
+  Markets, Lead, F1, Golf, Culture (must all agree on shared events)
+  Condensed: Final Sharp Take, Today at a Glance, Email Preview, Social Copy
+  Rule: condensed sections must reuse facts from above — never introduce new claims
+========================================================================
