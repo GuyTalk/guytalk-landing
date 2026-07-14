@@ -246,6 +246,60 @@ async function fetchNBABoxScore(gameId) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// ESPN: MLB box score — batter/pitcher stat lines for a completed game
+// Returns top performers (HR/RBI hitters, high-strikeout pitchers), each with
+// a pre-formatted `line` string ("2-for-5, 2 HR, 4 RBI" / "7.0 IP, 9 K").
+// ─────────────────────────────────────────────────────────────────────────────
+async function fetchMLBBoxScore(gameId) {
+  try {
+    const url = `https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/summary?event=${gameId}`;
+    const res = await fetch(url, { headers: { 'User-Agent': 'GuyTalk/1.0' } });
+    if (!res.ok) return null;
+    const data = await res.json();
+
+    const performers = [];
+    (data.boxscore?.players || []).forEach(teamStats => {
+      const teamName = teamStats.team?.shortDisplayName || teamStats.team?.displayName || '';
+      (teamStats.statistics || []).forEach(statGroup => {
+        const labels = statGroup.labels || [];
+        const isPitching = labels.includes('IP') && labels.includes('ER');
+        (statGroup.athletes || []).forEach(a => {
+          const stats = a.stats || [];
+          const name = a.athlete?.displayName || '';
+          if (!name) return;
+          if (isPitching) {
+            const ipIdx = labels.indexOf('IP');
+            const kIdx  = labels.indexOf('K');
+            const k  = parseInt(stats[kIdx]) || 0;
+            const ip = stats[ipIdx] || '0';
+            if (k >= 6) {
+              performers.push({ name, team: teamName, line: `${ip} IP, ${k} K`, _rank: k });
+            }
+          } else {
+            const habIdx = labels.indexOf('H-AB');
+            const hrIdx  = labels.indexOf('HR');
+            const rbiIdx = labels.indexOf('RBI');
+            const hr  = hrIdx  >= 0 ? (parseInt(stats[hrIdx])  || 0) : 0;
+            const rbi = rbiIdx >= 0 ? (parseInt(stats[rbiIdx]) || 0) : 0;
+            if (hr >= 1 || rbi >= 3) {
+              const hab = habIdx >= 0 ? stats[habIdx] : '';
+              const parts = [hab ? `${hab} at the plate` : null, hr > 0 ? `${hr} HR` : null, `${rbi} RBI`].filter(Boolean);
+              performers.push({ name, team: teamName, line: parts.join(', '), _rank: hr * 3 + rbi });
+            }
+          }
+        });
+      });
+    });
+
+    performers.sort((a, b) => b._rank - a._rank);
+    performers.forEach(p => delete p._rank);
+    return performers.length ? performers.slice(0, 6) : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // ESPN: MLB scores for yesterday (fallback when no NBA)
 // Returns top 3 highest-scoring games
 // ─────────────────────────────────────────────────────────────────────────────
@@ -860,4 +914,4 @@ async function fetchTrending() {
   return items;
 }
 
-module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchUFC, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending };
+module.exports = { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchMLBBoxScore, fetchNHL, fetchUFC, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending };

@@ -346,7 +346,7 @@ function lookupPlayer(name) {
   return hit ? hit[1] : null; // { sport, id, slug }
 }
 
-async function fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls = [], prevBriefs = [], topStories = [] } = {}) {
+async function fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls = [], prevBriefs = [], topStories = [], boxScores = {} } = {}) {
   const empty = { lead: null, sports: [] };
   const candidates = [];
 
@@ -362,8 +362,12 @@ async function fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup
     const headline   = isPost
       ? `${w.team} ${w.score}–${l.score} over ${l.team}${seriesPart}`
       : `${g.away.team} vs. ${g.home.team} tonight${seriesPart}`;
+    const leaders = isPost ? boxScores?.[g.id] : null;
+    const leadersStr = leaders?.length
+      ? ` | Standout performances: ${leaders.map(p => `${p.name} (${p.team}): ${p.line || `${p.pts}pts`}`).join('; ')}`
+      : '';
     const facts      = isPost
-      ? `${w.team} beat ${l.team} ${w.score}–${l.score}${seriesPart}`
+      ? `${w.team} beat ${l.team} ${w.score}–${l.score}${seriesPart}${leadersStr}`
       : `${g.away.team} vs. ${g.home.team}${seriesPart}`;
     const { score: imp } = scoreImportance({ name: `${sportLabel} ${note}`, headline, facts, isFinalResult: isPost });
     candidates.push({
@@ -602,12 +606,35 @@ async function fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup
   if (Array.isArray(topStories) && topStories.length) {
     const FEED_COVERED = new Set(['nba', 'mlb', 'nhl', 'f1', 'ufc', 'golf', 'tennis', 'world cup', 'soccer', 'fifa', 'mls']);
     const added = new Set(candidates.map(c => (c.label || '').toLowerCase()));
+    // Crude word-overlap check so we don't tack a rehash of the same game onto
+    // a candidate as a fake "also happening" shoutout.
+    const wordSet = (t) => new Set(String(t || '').toLowerCase().match(/[a-z0-9]+/g) || []);
+    const overlapRatio = (a, b) => {
+      const wa = wordSet(a), wb = wordSet(b);
+      if (!wa.size || !wb.size) return 0;
+      let shared = 0;
+      for (const w of wa) if (wb.has(w)) shared++;
+      return shared / Math.min(wa.size, wb.size);
+    };
     for (const s of topStories) {
       const cat = (s._category || s.category || '').toLowerCase();
       const spt = (s.sport || '').toLowerCase();
       const isSports = cat === 'sports' || cat === 'ufc' || cat === 'boxing' || cat === 'nfl';
       if (!isSports || !s.headline) continue;
-      if (FEED_COVERED.has(spt) || FEED_COVERED.has(cat)) continue;
+      if (FEED_COVERED.has(spt) || FEED_COVERED.has(cat)) {
+        // Same sport we already cover via a structured feed — if this is a
+        // genuinely different event (not just another report on the same game),
+        // give it a quick shoutout inside that candidate's facts instead of a
+        // full separate card, so the copy prompt can mention it in passing
+        // (e.g. Home Run Derby alongside a covered MLB game).
+        const match = candidates.find(c => (c._sport || '').toLowerCase() === (spt || cat));
+        if (match && !match._shoutoutAdded && overlapRatio(match.headline, s.headline) < 0.4) {
+          const shoutout = [s.headline, s.whatHappened].filter(Boolean).join(' — ');
+          match.facts = `${match.facts} | ALSO TODAY IN ${(spt || cat).toUpperCase()}: ${shoutout}`;
+          match._shoutoutAdded = true;
+        }
+        continue;
+      }
       const label = (spt || cat).toUpperCase();
       if (added.has(label.toLowerCase())) continue;
       added.add(label.toLowerCase());
@@ -704,7 +731,7 @@ async function fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup
     // search, QA audit) can call buildSportImageQuery without re-deriving it.
     if (s._sport) s.sportType = s._sport;
     // Clean internal bookkeeping fields
-    delete s._score; delete s._isFinal; delete s._sport; delete s._golfLeader; delete s._f1Winner;
+    delete s._score; delete s._isFinal; delete s._sport; delete s._golfLeader; delete s._f1Winner; delete s._shoutoutAdded;
   }));
 
   top[0].isLead = true;

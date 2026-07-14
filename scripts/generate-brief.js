@@ -7,7 +7,7 @@ const fs   = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchUFC, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending } = require('./lib/fetchers');
+const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchMLBBoxScore, fetchNHL, fetchUFC, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending } = require('./lib/fetchers');
 const { generateCopy, generateF1Only }                      = require('./lib/copy');
 const { editBrief }                                         = require('./lib/editor');
 const { buildHtml }                                         = require('./lib/html');
@@ -787,20 +787,6 @@ async function main() {
   let gameMetas = {};
   if (sports?.length) {
     console.log(`   ✓ NBA: ${sports.length} game(s) — ${sports.map(g => g.shortName).join(', ')}`);
-    for (const game of sports.slice(0, 2)) {
-      const sport = game.sport?.toLowerCase() || 'nba';
-      try {
-        if (sport === 'nba') {
-          const leaders = await fetchNBABoxScore(game.id);
-          if (leaders?.length) {
-            boxScores[game.id] = leaders;
-            console.log(`   ✓ Box score: ${game.shortName} — ${leaders[0].name} ${leaders[0].pts}pts`);
-          }
-        }
-        const meta = await fetchGameMeta(game.id, sport);
-        if (meta) gameMetas[game.id] = meta;
-      } catch (_) {}
-    }
   } else {
     console.log(`   ⚠  NBA: no games yesterday — trying MLB...`);
     try {
@@ -813,6 +799,28 @@ async function main() {
       }
     } catch (e) {
       console.log(`   ⚠  MLB fetch failed: ${e.message}`);
+    }
+  }
+  if (sports?.length) {
+    for (const game of sports.slice(0, 2)) {
+      const sport = game.sport?.toLowerCase() || 'nba';
+      try {
+        if (sport === 'nba') {
+          const leaders = await fetchNBABoxScore(game.id);
+          if (leaders?.length) {
+            boxScores[game.id] = leaders;
+            console.log(`   ✓ Box score: ${game.shortName} — ${leaders[0].name} ${leaders[0].pts}pts`);
+          }
+        } else if (sport === 'mlb') {
+          const leaders = await fetchMLBBoxScore(game.id);
+          if (leaders?.length) {
+            boxScores[game.id] = leaders;
+            console.log(`   ✓ Box score: ${game.shortName} — ${leaders[0].name} ${leaders[0].line}`);
+          }
+        }
+        const meta = await fetchGameMeta(game.id, sport);
+        if (meta) gameMetas[game.id] = meta;
+      } catch (_) {}
     }
   }
 
@@ -884,7 +892,7 @@ async function main() {
     const leadSubject = (topStories.find(s => s.isLead) || topStories[0])?.headline || null;
     const [secRes, dynRes] = await Promise.allSettled([
       fetchSectionStories({ dateLabel: date, leadSubject, issueNum, prevImageUrls, golf, topStories }),
-      fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls, prevBriefs: prev3, topStories }),
+      fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup, upcoming, issueNum, prevImageUrls, prevBriefs: prev3, topStories, boxScores }),
     ]);
     sectionStories = secRes.status === 'fulfilled' ? (secRes.value || {}) : {};
 

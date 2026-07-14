@@ -182,7 +182,7 @@ async function generateCopy({ sports, markets, golf, tennis, trending, topStorie
 
   const mainGameLeaders = mainGame && boxScores?.[mainGame.id]
     ? boxScores[mainGame.id].map(p =>
-        `${p.name} (${p.team}): ${p.pts}pts${p.reb ? ` ${p.reb}reb` : ''}${p.ast ? ` ${p.ast}ast` : ''}`
+        p.line ? `${p.name} (${p.team}): ${p.line}` : `${p.name} (${p.team}): ${p.pts}pts${p.reb ? ` ${p.reb}reb` : ''}${p.ast ? ` ${p.ast}ast` : ''}`
       ).join(', ')
     : null;
 
@@ -654,6 +654,10 @@ NOVEL/RARE EVENT CONTEXT: if a story is clearly a first-ever, an unusual venue, 
 BACKGROUND FACT (required when given): when a story has a BACKGROUND fact, "whyItMatters" MUST use at least one concrete background fact (the drought, streak, record, first career win, or stakes), written so someone who doesn't follow the sport gets why it's a big deal. One strong fact, GuyTalk voice — not a history lesson. Never invent a background fact that isn't given.
 
 BIG MOMENTS (required whenever the facts support it): pull 2-3 SPECIFIC, concrete details unique to THIS matchup — a particular play, a scoring sequence, a stat anomaly, a streak snapped/extended, a record, a milestone. These must be things a reader could actually bring up ("did you catch that..."), not a restatement of the final score or a generic "it was a good game." Pull ONLY from the facts given — every entry must trace to something in the facts. If the facts genuinely don't support 2-3 distinct concrete details (a thin preview with no play-by-play), return fewer, or an empty array — never invent one to hit a count.
+
+STANDOUT PERFORMANCES: if the facts include a "Standout performances:" line (individual stat lines — HR/RBI, points/rebounds/assists, strikeouts), that IS the most vivid detail available — lead with it in whatHappened/bigMoments/ammo instead of the bare final score. A specific line like "Henry Davis went 2-for-4 with a homer and 3 RBI" beats "Pirates beat Brewers 14-5" every time.
+
+ALSO TODAY (quick shoutout): if the facts include an "ALSO TODAY IN [SPORT]:" aside, that's a second notable event in the same sport happening today that isn't the featured story. Give it one brief, clearly-separate mention — in "bigMoments" or as an extra "ammo" item — so a reader knows it's happening, without blending it into the main story's whatHappened/theRead.
 
 MULTI-MATCH STORIES (World Cup and any story whose facts list more than one completed result): never blend multiple matches into one vague sentence. Name each match explicitly (e.g. "Argentina beat Switzerland 3-1" / "England beat Norway 2-1") rather than folding a second game in as an aside. For the featured match, "whatHappened" must include the scoring timeline from the facts — who scored first, when the other side equalized, and how the winning goal came (extra time, stoppage time, penalty) — so the reader knows when each goal happened and by how much a team was ahead or behind, not just the final score. If a second match is genuinely secondary, cover it in "bigMoments" or "ammo" as its own clearly labeled fact, not merged into the main sentence.
 

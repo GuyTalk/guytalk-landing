@@ -76,6 +76,8 @@ async function fetchFactPack({ topStories, dynamicSports, sectionStories }) {
 
   const prompt = `You are a fact researcher for GuyTalk, a men's daily brief. For each section below, extract 3–5 tight, verifiable ammo facts — specific numbers, stats, streaks, firsts, contract values, ages, payouts, purse sizes, rankings — that a guy can drop in conversation. Facts only: no takes, no opinions, no vague observations. Use only data present in the section text.
 
+PRIORITIZE THE MOST VIVID DETAIL AVAILABLE: if the section text includes an individual stat line (a player's hits/HR/RBI, strikeouts, points/rebounds/assists, a streak, a record), lead ammo[0] with that exact detail — not a restatement of the final score. A specific stat line ("Henry Davis: 2-4, 1 HR, 3 RBI") beats a generic score ("Pirates beat Brewers 14-5") every time. Only fall back to the score/result if no individual stat data is present.
+
 ${sectionLines.join('\n')}
 
 Return ONLY valid JSON (no markdown, no code fences). Include a key for each section you have data for; omit sections with no data:
