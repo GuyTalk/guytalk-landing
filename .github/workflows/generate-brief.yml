@@ -2,7 +2,7 @@ name: Generate Daily Brief
 
 on:
   schedule:
-    - cron: '0 11 * * *'   # 7am ET daily
+    - cron: '0 9 * * *'   # 5am ET target — scheduled GH Actions cron routinely fires 30-120min late, so this buffers toward a 7am ET read
   workflow_dispatch: {}
 
 permissions:
@@ -43,21 +43,40 @@ jobs:
         run: npm ci
 
       - name: Generate brief
+        id: generate
         timeout-minutes: 25
-        run: node scripts/generate-brief.js || (node scripts/notify-research-failure.js; exit 1)
+        run: |
+          set +e
+          node scripts/generate-brief.js
+          code=$?
+          set -e
+          if [ "$code" -eq 42 ]; then
+            echo "Today's issue already exists on pending — skipping the rest of this run."
+            echo "skipped=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "skipped=false" >> "$GITHUB_OUTPUT"
+          if [ "$code" -ne 0 ]; then
+            node scripts/notify-research-failure.js
+            exit 1
+          fi
 
       - name: QA check
+        if: steps.generate.outputs.skipped != 'true'
         run: node scripts/qa-brief.js || (node scripts/notify-qa-failure.js; exit 1)
 
       - name: Update homepage
+        if: steps.generate.outputs.skipped != 'true'
         run: node scripts/update-homepage.js
 
       - name: Configure git
+        if: steps.generate.outputs.skipped != 'true'
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "GuyTalk Brief Bot"
 
       - name: Commit and push to pending
+        if: steps.generate.outputs.skipped != 'true'
         run: |
           git add brief/ assets/ briefs/ index.html
           if git diff --staged --quiet; then
@@ -70,4 +89,5 @@ jobs:
           git push origin HEAD:pending --force-with-lease
 
       - name: Send review notification
+        if: steps.generate.outputs.skipped != 'true'
         run: node scripts/notify-review.js

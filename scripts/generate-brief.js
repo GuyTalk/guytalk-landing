@@ -5,6 +5,7 @@ require('dotenv').config({ path: '.env.local' });
 
 const fs   = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const { fetchNBA, fetchNBAUpcoming, fetchNBABoxScore, fetchNHL, fetchUFC, fetchGameMeta, fetchMLB, fetchF1, fetchWorldCup, fetchMarkets, fetchMarketScreeners, fetchGolf, fetchTennis, fetchTrending } = require('./lib/fetchers');
 const { generateCopy, generateF1Only }                      = require('./lib/copy');
@@ -73,6 +74,23 @@ function getNextIssueNum() {
     .filter(d => /^issue-\d{3}$/.test(d))
     .map(d => parseInt(d.replace('issue-', ''), 10));
   return dirs.length ? Math.max(...dirs) + 1 : 1;
+}
+
+// Guards against the scheduled cron and a manual dispatch both firing the same
+// day: each run is a from-scratch regeneration that force-pushes to `pending`,
+// so a second run silently clobbers any edits/approval made after the first
+// (this happened for real on 2026-07-14 — a manual run's image fixes were wiped
+// by the scheduled run firing later that morning). If `slug` already exists on
+// `pending` dated today, skip instead of overwriting it.
+function alreadyGeneratedTodayOnPending(slug, date) {
+  try {
+    execSync('git fetch origin pending', { cwd: ROOT, stdio: 'ignore' });
+    const raw = execSync(`git show origin/pending:brief/data/${slug}.json`, { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] }).toString();
+    const existing = JSON.parse(raw);
+    return existing.date === date;
+  } catch (_) {
+    return false; // no matching issue on pending yet, or git/network unavailable — proceed
+  }
 }
 
 function formatDate(d) {
@@ -637,6 +655,12 @@ async function main() {
   console.log(`  ${isPreview ? 'Preview' : `Issue #${pad(issueNum)}`} · ${date}`);
   console.log(`${line('═')}\n`);
   if (isPreview) console.log('  ⚡ Preview mode — saves to brief/preview/ only. Nothing published.\n');
+
+  if (!isPreview && !process.argv.includes('--force') && alreadyGeneratedTodayOnPending(slug, date)) {
+    console.log(`  ⏭  ${slug} already generated today (${date}) on \`pending\` — skipping so this run doesn't overwrite a reviewed/edited brief.`);
+    console.log('     Pass --force to regenerate anyway.\n');
+    process.exit(42); // distinct "skipped" code — the workflow treats this as a no-op, not a failure
+  }
 
   // ── Fetch data ─────────────────────────────────────────────────────────────
   console.log('📡 Fetching data...');
