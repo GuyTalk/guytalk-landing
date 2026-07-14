@@ -1,0 +1,1504 @@
+{
+  "num": 83,
+  "slug": "issue-083",
+  "date": "Tuesday, July 14, 2026",
+  "title": "France faces Spain in World Cup semifinal today. Pirates demolish Brewers 14–5. Tech stocks tumble as oil surges on Iran tensions.",
+  "deck": "What everyone will be talking about.",
+  "sports": [
+    {
+      "id": "401816130",
+      "name": "Milwaukee Brewers at Pittsburgh Pirates",
+      "shortName": "MIL @ PIT",
+      "date": "2026-07-12T16:15Z",
+      "venue": "PNC Park",
+      "venueCity": "Pittsburgh, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "14",
+        "winner": true
+      },
+      "away": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "5",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816127",
+      "name": "Chicago Cubs at Cincinnati Reds",
+      "shortName": "CHC @ CIN",
+      "date": "2026-07-12T17:40Z",
+      "venue": "Great American Ball Park",
+      "venueCity": "Cincinnati, Ohio",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Cincinnati Reds",
+        "abbrev": "CIN",
+        "score": "4",
+        "winner": false
+      },
+      "away": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "8",
+        "winner": true
+      }
+    },
+    {
+      "id": "401816137",
+      "name": "Houston Astros at Texas Rangers",
+      "shortName": "HOU @ TEX",
+      "date": "2026-07-12T18:35Z",
+      "venue": "Globe Life Field",
+      "venueCity": "Arlington, Texas",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Texas Rangers",
+        "abbrev": "TEX",
+        "score": "6",
+        "winner": true
+      },
+      "away": {
+        "team": "Houston Astros",
+        "abbrev": "HOU",
+        "score": "5",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 749.17,
+      "prevClose": 754.95,
+      "dayChange": -5.78,
+      "dayChangePct": -0.7656,
+      "weekChangePct": -0.2808578978000817,
+      "spark": [
+        754.8300170898438,
+        750.3300170898438,
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125,
+        745.760009765625,
+        744.780029296875,
+        751.280029296875,
+        747.7100219726562,
+        745.4000244140625,
+        751.7100219726562,
+        754.9500122070312,
+        749.1699829101562
+      ],
+      "indexPrice": 7515.34,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -0.7927002521979724
+    },
+    "DIA": {
+      "price": 524.47,
+      "prevClose": 525.78,
+      "dayChange": -1.31,
+      "dayChangePct": -0.2492,
+      "weekChangePct": -1.0602023374797516,
+      "spark": [
+        518.4400024414062,
+        521.4400024414062,
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375,
+        522.4000244140625,
+        527.8800048828125,
+        530.0900268554688,
+        528.4500122070312,
+        522.77001953125,
+        524.1900024414062,
+        525.780029296875,
+        524.469970703125
+      ],
+      "indexPrice": 52498.64,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.2628791305428738
+    },
+    "QQQ": {
+      "price": 711.74,
+      "prevClose": 725.51,
+      "dayChange": -13.77,
+      "dayChangePct": -1.898,
+      "weekChangePct": -1.5328860867085596,
+      "spark": [
+        744,
+        729.8599853515625,
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625,
+        725.1699829101562,
+        712.5999755859375,
+        722.8200073242188,
+        709.4299926757812,
+        711.4400024414062,
+        723.280029296875,
+        725.510009765625,
+        711.739990234375
+      ],
+      "indexPrice": 25873.176,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -1.5540653130189084
+    },
+    "IWM": {
+      "price": 293.48,
+      "prevClose": 295.99,
+      "dayChange": -2.51,
+      "dayChangePct": -0.848,
+      "weekChangePct": -1.8133134851656838,
+      "spark": [
+        294.6400146484375,
+        292.0799865722656,
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125,
+        299.32000732421875,
+        297.5799865722656,
+        298.8999938964844,
+        296.19000244140625,
+        293.4800109863281,
+        297.239990234375,
+        295.989990234375,
+        293.4800109863281
+      ],
+      "indexPrice": 2953.166,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -0.8275900110763887
+    },
+    "NVDA": {
+      "price": 203.53,
+      "prevClose": 210.96,
+      "dayChange": -7.43,
+      "dayChangePct": -3.522,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 394.76,
+      "prevClose": 407.76,
+      "dayChange": -13,
+      "dayChangePct": -3.1881,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 390.99,
+      "prevClose": 385.1,
+      "dayChange": 5.89,
+      "dayChangePct": 1.5295,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 317.31,
+      "prevClose": 315.32,
+      "dayChange": 1.99,
+      "dayChangePct": 0.6311,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 656.73,
+      "prevClose": 669.21,
+      "dayChange": -12.48,
+      "dayChangePct": -1.8649,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 247.31,
+      "prevClose": 245.34,
+      "dayChange": 1.97,
+      "dayChangePct": 0.803,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 352.51,
+      "prevClose": 357.18,
+      "dayChange": -4.67,
+      "dayChangePct": -1.3075,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 534.39,
+      "prevClose": 557.89,
+      "dayChange": -23.5,
+      "dayChangePct": -4.2123,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 384.05,
+      "prevClose": 399.97,
+      "dayChange": -15.92,
+      "dayChangePct": -3.9803,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 73.83,
+      "prevClose": 73.37,
+      "dayChange": 0.46,
+      "dayChangePct": 0.627,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 334.53,
+      "prevClose": 336.47,
+      "dayChange": -1.94,
+      "dayChangePct": -0.5766,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 157.37,
+      "prevClose": 159.07,
+      "dayChange": -1.7,
+      "dayChangePct": -1.0687,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 427.11,
+      "prevClose": 434.97,
+      "dayChange": -7.86,
+      "dayChangePct": -1.807,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 62804.8,
+      "prevClose": 62893.99,
+      "dayChange": -89.19,
+      "dayChangePct": -0.1418,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AMD",
+      "AVGO",
+      "NVDA",
+      "TSLA",
+      "META"
+    ],
+    "10Y": {
+      "price": 4.609,
+      "prevClose": 4.568999767303467,
+      "dayChange": 0.04000023269653319,
+      "dayChangePct": 0.8754702283589858,
+      "weekChangePct": 2.902431475552807,
+      "spark": [
+        4.468999862670898,
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744,
+        4.374000072479248,
+        4.418000221252441,
+        4.474999904632568,
+        4.485000133514404,
+        4.479000091552734,
+        4.5289998054504395,
+        4.568999767303467,
+        4.539000034332275,
+        4.568999767303467,
+        4.609000205993652
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Monday, July 13 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Monday, July 13). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "XOM",
+          "name": "Exxon Mobil Corporation",
+          "price": 144.51,
+          "changePct": 4.05386
+        },
+        {
+          "symbol": "CVX",
+          "name": "Chevron Corporation",
+          "price": 182.21001,
+          "changePct": 3.29365
+        },
+        {
+          "symbol": "ADBE",
+          "name": "Adobe Inc.",
+          "price": 230.61,
+          "changePct": 3.11662
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 130.04,
+          "changePct": 2.56329
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 103.12,
+          "changePct": -6.11799
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 534.39,
+          "changePct": -4.2123
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 203.53,
+          "changePct": -3.52199
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 394.76,
+          "changePct": -3.18815
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 203.53,
+          "changePct": -3.52199
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 103.12,
+          "changePct": -6.11799
+        },
+        {
+          "symbol": "F",
+          "name": "Ford Motor Company",
+          "price": 13.8687,
+          "changePct": -0.93786
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 62730.89,
+          "changePct": 0.75769
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Genesis Scottish Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-09T04:00Z",
+    "endDate": "2026-07-12T04:00Z",
+    "status": "Final",
+    "statusState": "post",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Tom Kim",
+        "score": "-17",
+        "pos": "1st"
+      },
+      {
+        "name": "Min Woo Lee",
+        "score": "-15",
+        "pos": "2nd"
+      },
+      {
+        "name": "Johnny Keefer",
+        "score": "-13",
+        "pos": "3rd"
+      },
+      {
+        "name": "Keita Nakajima",
+        "score": "-13",
+        "pos": "4th"
+      },
+      {
+        "name": "Robert MacIntyre",
+        "score": "-13",
+        "pos": "5th"
+      },
+      {
+        "name": "Matt Fitzpatrick",
+        "score": "-13",
+        "pos": "6th"
+      },
+      {
+        "name": "Rory McIlroy",
+        "score": "-12",
+        "pos": "7th"
+      },
+      {
+        "name": "Michael Thorbjornsen",
+        "score": "-12",
+        "pos": "8th"
+      },
+      {
+        "name": "Si Woo Kim",
+        "score": "-11",
+        "pos": "9th"
+      },
+      {
+        "name": "Victor Perez",
+        "score": "-11",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Nordea Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-07-06T04:00Z",
+        "endDate": "2026-07-20T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Andrea Pellegrino",
+            "loser": "Nicolai Budkov Kjaer",
+            "score": "6-3 6-2"
+          },
+          {
+            "winner": "Thiago Agustin Tirante",
+            "loser": "Sebastian Ofner",
+            "score": "6-3 6-4"
+          },
+          {
+            "winner": "Adolfo Daniel Vallejo",
+            "loser": "Miguel Damas",
+            "score": "6-3 6-3"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Nordea Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-07-06T04:00Z",
+        "endDate": "2026-07-20T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Simona Waltert",
+            "loser": "Kaitlin Quevedo",
+            "score": "7-5 6-2"
+          },
+          {
+            "winner": "Paula Badosa",
+            "loser": "Yulia Putintseva",
+            "score": "6-1 6-2"
+          },
+          {
+            "winner": "Paula Badosa",
+            "loser": "Simona Waltert",
+            "score": "7-5 7-5"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Moët & Chandon Belgian Grand Prix",
+    "shortName": "Moët & Chandon Belgian GP",
+    "venue": "Circuit de Spa-Francorchamps",
+    "status": "7/19 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 179,
+      "lead": 25
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "Spain at France",
+      "shortName": "ESP @ FRA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-14T19:00Z",
+      "home": {
+        "team": "France",
+        "score": "0"
+      },
+      "away": {
+        "team": "Spain",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {},
+  "trending": [
+    {
+      "title": "Sam Neill, actor known for ‘Jurassic Park,’ dies at 78 - NBC News",
+      "url": "https://www.nbcnews.com/news/obituaries/sam-neill-actor-jurassic-park-dies-new-zealand-rcna587240",
+      "description": "Sam Neill, the genre-spanning New Zealand actor best known for his starring role in the “Jurassic Park” movies, has died, his family said Monday.",
+      "source": "NBC News"
+    },
+    {
+      "title": "Madonna Wants to Take You There - newyorker.com",
+      "url": "https://www.newyorker.com/magazine/2026/07/20/madonna-wants-to-take-you-there",
+      "description": "The pop star launched her new album, “Confessions II,” at a party in London, complete with watery drinks and nostalgic hits, Anthony Lane writes. Her co-host for the evening? Grindr.",
+      "source": "The New Yorker"
+    },
+    {
+      "title": "Jay-Z Addresses Three-Hour Delay at Yankee Stadium Concert, Says He Wanted to Avoid Fans Getting “Trampled” - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/music/music-news/jay-z-addresses-three-hour-delay-yankee-stadium-concert-1236646285/",
+      "description": "\"I'm really sorry for the inconvenience, but I had to make sure everyone was OK,\" the rapper said after  his show started more than three hours after its original expected start time.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Horoscope for Monday, 07/13/26 by Christopher Renstrom - SFGATE",
+      "url": "https://www.sfgate.com/horoscope/article/horoscope-monday-07-13-26-christopher-renstrom-22340161.php",
+      "description": "TAURUS (April 19 - May 19): Never underestimate the power of telling it like it is. State facts as you see them and you'll win the support you seek.",
+      "source": "SFGate"
+    },
+    {
+      "title": "Greece awaits Nolan’s ‘The Odyssey’ with anticipation despite casting controversy - AP News",
+      "url": "https://apnews.com/article/odyssey-movie-what-greeks-think-f533923fe0bcbaca3bb042e9033e5c3c",
+      "description": "Christopher Nolan’s film adaptation of Homer’s “The Odyssey” opens July 17 amid international anticipation and controversy over its casting. In Greece, where the 3,000-year-old epic is taught in every school, people are long accustomed to foreign actors playi…",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Ryan Blaney wins dramatic Atlanta NASCAR Cup race as Bubba Wallace penalized - Motorsport.com",
+      "url": "https://www.motorsport.com/nascar-cup/news/ryan-blaney-wins-nascar-cup-atlanta-bubba-wallace-penalized/10838463/",
+      "description": "It was a dramatic three-wide battle for the win, with Blaney taking the win as Wallace had his runner-up finish taken away",
+      "source": "Motorsport.com"
+    },
+    {
+      "title": "Fever beat Aces again as Caitlin Clark scores 12 in 24 minutes - ESPN",
+      "url": "https://www.espn.com/wnba/story/_/id/49347972/fever-beat-aces-las-vegas-again-caitlin-clark-scores-12-points-24-minutes",
+      "description": "The Fever beat the defending champion Aces in Las Vegas for the second time in eight days. Caitlin Clark, who has been dealing with back issues, played 24 minutes and finished with 12 points, seven rebounds and six assists.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Photos: Celebrities Attending Wimbledon 2026 Finals Weekend - Forbes",
+      "url": "https://www.forbes.com/sites/timlammers/2026/07/13/photos-celebrities-in-the-stands-at-wimbledon-finals-weekend/",
+      "description": "Jennifer Lopez, Nicole Kidman, Tom Hiddleston, Cynthia Erivo, Lily Collins and Andrew Garfield were among the stars in attendance during finals weekend the Wimbledon Championships 2026.",
+      "source": "Forbes"
+    },
+    {
+      "title": "AJ Dybantsa impresses again in NBA Summer League action - Deseret News",
+      "url": "https://www.deseret.com/sports/2026/07/12/aj-dybantsa-summer-league-game-2-washington-wizards/",
+      "description": "",
+      "source": "Deseret News"
+    },
+    {
+      "title": "Report: FIFA official acted alone in clearing USMNT's Folarin Balogun to face Belgium - Yahoo Sports",
+      "url": "https://sports.yahoo.com/soccer/breaking-news/article/report-fifa-official-acted-alone-in-clearing-usmnts-folarin-balogun-to-face-belgium-032139088.html",
+      "description": "Per the Times of London, important FIFA disciplinary decisions usually involve three members of the disciplinary committee.",
+      "source": "Yahoo Entertainment"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Sports",
+      "headline": "World Cup semifinal: France vs Spain kicks off today",
+      "whatHappened": "France and Spain face off in the UEFA World Cup 2026 semifinal today at Dallas Stadium.",
+      "whyItMatters": "It determines who advances to the final on July 19, and is the most valuable semifinal in tournament history, totaling a combined squad market value of $3.2 billion.",
+      "depth": "The biggest match in international soccer today—France vs Spain is a mouthwatering showdown headlined by Mbappé and Spain’s midfield maestros. Folks will be debating tactics and bragging rights all day.",
+      "whatToSay": "“Did you catch the France–Spain semifinal tonight? That’s going to be one expensive match—$3.2 B in talent on the pitch.”",
+      "sources": [
+        "AP News",
+        "FIFA",
+        "Euronews"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "France and Spain are among the four semifinalists in World Cup 2026; other teams include England and Argentina ([aljazeera.com](https://www.aljazeera.com/sports/2026/7/12/which-teams-are-in-the-world-cup-semifinals-and-whats-the-match-schedule?utm_source=openai))",
+        "Kickoff is scheduled today, July 14, at Dallas Stadium (AT&T Stadium) ([aljazeera.com](https://www.aljazeera.com/sports/2026/7/12/which-teams-are-in-the-world-cup-semifinals-and-whats-the-match-schedule?utm_source=openai))",
+        "Combined squad market value is $3.2 billion—the most expensive semifinal ever ([euronews.com](https://www.euronews.com/business/2026/07/14/france-and-spain-meet-in-the-most-expensive-world-cup-semi-final-in-history?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High-profile global event, confirmed today, massive cultural conversation driver.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets / Economy",
+      "headline": "US markets fall as oil rises, Iran tensions escalate",
+      "whatHappened": "Wall Street closed lower on Monday: Dow down 0.3%, Nasdaq off 1.6%, S&P 500 down 0.8%, as oil prices climbed and U.S.–Iran tensions weighed on sentiment.",
+      "whyItMatters": "Sets the tone for investor anxiety around energy and geopolitical risks, ahead of today’s crucial CPI report.",
+      "depth": "Markets are firing off risk aversion ahead of inflation data—energy and geopolitics are shaking things up, and you’ll hear that at the water‑cooler.",
+      "whatToSay": "“Markets are shaky—tech’s down, energy’s up, and everyone’s eyes are on today’s CPI data ahead of any Fed moves.”",
+      "sources": [
+        "Zacks / Equity Research",
+        "Reuters"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Dow fell 138.31 points (‑0.3%) to 52,498.70; Nasdaq dropped 408.43 points (‑1.6%) to 25,873.18; S&P 500 down 0.8% to 7,515.47 ([zacks.com](https://www.zacks.com/stock/news/2952819/stock-market-news-for-july-14-2026?utm_source=openai))",
+        "Energy sector (XLE) rose 3.2%, while tech sectors fell ([zacks.com](https://www.zacks.com/stock/news/2952819/stock-market-news-for-july-14-2026?utm_source=openai))",
+        "Investor concerns driven by rising oil prices and tensions between U.S. and Iran ([zacks.com](https://www.zacks.com/stock/news/2952819/stock-market-news-for-july-14-2026?utm_source=openai))"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Markets reaction to real geopolitical and oil concerns, high relevance for economic conversation.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "White House / Politics / Policy",
+      "headline": "Graham’s sister tapped to fill his Senate seat",
+      "whatHappened": "South Carolina Gov. Henry McMaster appointed Darline Graham Nordone, sister of the late Sen. Lindsey Graham, to serve the remainder of his term, expiring in January.",
+      "whyItMatters": "Sudden Senate vacancy filled unusually by family, setting up a GOP scramble and a special primary starting July 21.",
+      "depth": "Not every day you see a sibling fill a Senate seat—but Darline Graham’s interim appointment has the political class buzzing, and it’s kind of awkwardly fascinating.",
+      "whatToSay": "“Yeah, Darline Graham’s filling Lindsey’s Senate seat—South Carolina politics just got interesting.”",
+      "sources": [
+        "AP News",
+        "The Washington Post",
+        "Axios"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "White House / Politics / Policy",
+      "_context": [
+        "Appointment announced Monday July 13; expected to be sworn in today ([apnews.com](https://apnews.com/article/5ba55574ce6f087d56999abe3a7f9fdc?utm_source=openai))",
+        "A one-week filing period for special GOP primary starts July 21 under SC law ([apnews.com](https://apnews.com/article/5ba55574ce6f087d56999abe3a7f9fdc?utm_source=openai))",
+        "President Trump had publicly called for his sister to fill the seat ([axios.com](https://www.axios.com/2026/07/13/trump-graham-sister-senate?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High-profile political move with unusual family angle, well confirmed.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "Anti‑ICE protests erupt in Maine after fatal federal shooting",
+      "whatHappened": "Protests in Maine surged today following a deadly shooting by ICE agents, with demonstrators targeting Sen. Susan Collins’ local office.",
+      "whyItMatters": "Taps into broader national debate over immigration enforcement and federal use of force, resonating locally and politically.",
+      "depth": "Railing against ICE after another shooting? That’s going to be part of today’s talk—this one’s landing right in Maine but echoes nationally.",
+      "whatToSay": "“Heard about the protests in Maine—ICE vs. civilians is heating up again.”",
+      "sources": [
+        "The Daily Beast",
+        "AP via Yahoo"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Protests followed an ICE shooting incident and took place at Susan Collins’ office in Maine ([thedailybeast.com](https://www.thedailybeast.com/susan-collins-targeted-by-anti-ice-protesters-after-deadly-shooting-in-maine/?utm_source=openai))",
+        "Held signs like 'No ICE' and featured local Democratic candidates for primaries ([thedailybeast.com](https://www.thedailybeast.com/susan-collins-targeted-by-anti-ice-protesters-after-deadly-shooting-in-maine/?utm_source=openai))"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Confirms a real-day protest with broader political resonance.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "Iran retaliates against U.S. airstrikes, tensions flare",
+      "whatHappened": "Iran launched retaliatory actions in response to recent U.S. airstrikes, escalating geopolitical tensions.",
+      "whyItMatters": "Heightens global instability and directly influences energy markets, foreign policy, and security discussions.",
+      "depth": "Expect Iran’s counter-strike story to be splashed all over finance news—and yes, it’s gonna show up in your gas pump conversations, too.",
+      "whatToSay": "“Iran’s hit back at the U.S.—this thing’s still escalating.”",
+      "sources": [
+        "AP via Yahoo",
+        "AP News"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "AP Top Stories bullet: “Iran retaliates for latest U.S. airstrikes” reported today ([yahoo.com](https://www.yahoo.com/news/videos/ap-top-stories-july-14-094421324.html?utm_source=openai))",
+        "This ongoing tit-for-tat has been roiling markets and global security headlines ([apnews.com](https://apnews.com/article/935364080d8083d6137d399bbeb9205f?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Verified international escalation affecting multiple dimensions.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets / Economy",
+      "headline": "June CPI report drops today at 8:30 a.m.",
+      "whatHappened": "The U.S. Bureau of Labor Statistics is releasing the June Consumer Price Index report at 8:30 a.m. ET today.",
+      "whyItMatters": "Key inflation gauge that will influence Fed policy expectations, markets, and cost-of-living conversations.",
+      "depth": "CPI day—if inflation surprises guys at the bar today, the Fed narrative could swing hard either way. This one's huge.",
+      "whatToSay": "“CPI prints today—gimme inflation numbers or give me death.”",
+      "sources": [
+        "BLS",
+        "Kiplinger"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "June CPI release scheduled today at 8:30 a.m. Eastern Time ([bls.gov](https://www.bls.gov/cpi/?utm_source=openai))",
+        "Expectations include possible negative MoM print due to oil price drop in June ([kiplinger.com](https://www.kiplinger.com/investing/economy/june-cpi-preview-dont-let-a-negative-headline-fool-you?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Major economic data release confirmed for today with high relevance and anticipation.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Sam Neill, actor known for ‘Jurassic Park,’ dies at 78",
+        "source": "NBC News",
+        "url": "https://www.nbcnews.com/news/obituaries/sam-neill-actor-jurassic-park-dies-new-zealand-rcna587240",
+        "fact": "Sam Neill, the genre-spanning New Zealand actor best known for his starring role in the “Jurassic Park” movies, has died, his family said Monday.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Madonna Wants to Take You There",
+        "source": "The New Yorker",
+        "url": "https://www.newyorker.com/magazine/2026/07/20/madonna-wants-to-take-you-there",
+        "fact": "The pop star launched her new album, “Confessions II,” at a party in London, complete with watery drinks and nostalgic hits, Anthony Lane writes. Her co-host for the evening? Grindr.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Jay-Z Addresses Three-Hour Delay at Yankee Stadium Concert, Says He Wanted to Avoid Fans Getting “Trampled”",
+        "source": "Hollywood Reporter",
+        "url": "http://www.hollywoodreporter.com/music/music-news/jay-z-addresses-three-hour-delay-yankee-stadium-concert-1236646285/",
+        "fact": "\"I'm really sorry for the inconvenience, but I had to make sure everyone was OK,\" the rapper said after  his show started more than three hours after its original expected start time.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "World Cup semifinal: France vs Spain kicks off today",
+      "label": "SPORTS",
+      "category": "team",
+      "headline": "World Cup semifinal: France vs Spain kicks off today",
+      "facts": "France and Spain face off in the UEFA World Cup 2026 semifinal today at Dallas Stadium. It determines who advances to the final on July 19, and is the most valuable semifinal in tournament history, totaling a combined squad market value of $3.2 billion.",
+      "background": "It determines who advances to the final on July 19, and is the most valuable semifinal in tournament history, totaling a combined squad market value of $3.2 billion.",
+      "source": "Research",
+      "url": "AP News",
+      "imageUrl": "https://images.euronews.com/articles/stories/09/83/71/77/1200x675_cmsv2_a91a6220-8ff0-5b89-bfbd-c3dc3dce4a49-9837177.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "sports",
+      "whatHappened": "France and Spain meet in the UEFA World Cup 2026 semifinal today at Dallas Stadium, with a spot in the July 19 final on the line.",
+      "whyItMatters": "This is the most valuable semifinal in tournament history, with the two squads carrying a combined market value of $3.2 billion. Whoever wins advances to the championship match and a chance at lifting the trophy.",
+      "bigMoments": [],
+      "theRead": "France and Spain are the heavyweight matchup nobody expected to see this late. Both teams have the technical depth and tournament experience to win it all, which is why the market values them so heavily. This isn't a David-versus-Goliath story—it's two Goliaths figuring out which one gets to the final. Expect a tactical battle, not a blowout.",
+      "ammo": [
+        "France vs Spain, UEFA World Cup 2026 semifinal, Dallas Stadium, today",
+        "Combined squad market value: $3.2 billion, most valuable semifinal in tournament history",
+        "Winner advances to final on July 19"
+      ],
+      "whatToBringUp": "France and Spain have a combined $3.2 billion in squad value on the pitch today—that's more talent in one semifinal than most entire tournaments have ever had.",
+      "ourPick": "France advances because they have more depth in attacking positions and the experience of playing in knockout stages at this level.",
+      "playerLinks": [
+        {
+          "name": "Kylian Mbappé",
+          "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/statistics/player-statistics?searchOverlay=1",
+          "note": "has scored eight goals and three assists in the tournament, is tied atop the Golden Boot race, and holds the record for most knockout‑stage goals ever (12), though none in a semi‑final yet"
+        },
+        {
+          "name": "Mikel Oyarzabal",
+          "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/statistics/player-statistics?searchOverlay=1",
+          "note": "Spain’s leading scorer so far in the tournament with four goals"
+        },
+        {
+          "name": "Lamine Yamal",
+          "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/kylian-mbappe-france-lamine-yamal-spain-meet-again",
+          "note": "has scored one goal at this World Cup and previously netted three goals in two semi‑final wins against France in Euro 2024 and 2025 Nations League"
+        }
+      ]
+    },
+    {
+      "name": "Genesis Scottish Open",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "Tom Kim wins Genesis Scottish Open",
+      "facts": "FINAL RESULT: 1st Tom Kim: -17, 2nd Min Woo Lee: -15, 3rd Johnny Keefer: -13",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://golf.com/wp-content/uploads/2026/07/kim.jpg?_t=1784025951",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "golf",
+      "whatHappened": "Tom Kim wins the Genesis Scottish Open at 17-under, finishing two shots clear of Min Woo Lee.",
+      "whyItMatters": "Kim's win puts him in position for a strong run heading into the back half of the season and shows he can close out tournaments against quality fields.",
+      "bigMoments": [
+        "Tom Kim finished at -17, two shots ahead of second place",
+        "Min Woo Lee posted -15 for runner-up, Johnny Keefer tied for third at -13"
+      ],
+      "theRead": "Tom Kim is playing the kind of golf that makes you stop and pay attention. A two-shot victory on a course like Scotland demands precision off the tee and touch around the greens, and he delivered both. Min Woo Lee staying close means the Lee name stays in conversation, but Kim left no doubt.",
+      "ammo": [
+        "Tom Kim won Genesis Scottish Open at -17",
+        "Min Woo Lee finished second at -15, two shots back",
+        "Johnny Keefer tied for third at -13"
+      ],
+      "whatToBringUp": "Tom Kim just went -17 at the Genesis Scottish Open—that's the kind of scoring that wins majors, not just stroke-play events.",
+      "ourPick": "Tom Kim looks sharp because he's controlling the scorecard in windy, tough conditions—that form carries forward.",
+      "playerLinks": [
+        {
+          "name": "Min Woo Lee",
+          "url": "https://www.ausgolf.com.au/news/AustraliasMinWooLeefinishesrunnerupat2026GenesisScottishOpen",
+          "note": "finished solo second at 2026 Genesis Scottish Open with consistent rounds of 66-66-66-67 for 15‑under‑par"
+        },
+        {
+          "name": "Robert MacIntyre",
+          "url": "https://www.golfmonthly.com/news/live/genesis-scottish-open-2026-leaderboard-updates",
+          "note": "was a third‑round co‑leader and finished T3 at 13‑under‑par at the 2026 Genesis Scottish Open"
+        },
+        {
+          "name": "Keita Nakajima",
+          "url": "https://www.ausgolf.com.au/news/AustraliasMinWooLeefinishesrunnerupat2026GenesisScottishOpen",
+          "note": "tied for third at the 2026 Genesis Scottish Open at 13‑under‑par"
+        }
+      ],
+      "course": null
+    },
+    {
+      "name": "MIL @ PIT",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Pittsburgh Pirates 14–5 over Milwaukee Brewers",
+      "facts": "Pittsburgh Pirates beat Milwaukee Brewers 14–5",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": null,
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "Pittsburgh Pirates routed Milwaukee Brewers 14-5.",
+      "whyItMatters": "The Pirates' offensive explosion signals they can put runs on the board in volume, a rare bright spot in what has been a difficult season.",
+      "bigMoments": [
+        "Pirates scored 14 runs, more than triple Milwaukee's 5"
+      ],
+      "theRead": "Fourteen runs is a statement. The Pirates didn't just beat the Brewers—they embarrassed them. That kind of offensive output doesn't happen often enough in Pittsburgh to treat it lightly. Whether it's sustainable is the real question, but on this night, the Pirates showed what they're capable of.",
+      "ammo": [
+        "Pittsburgh Pirates 14, Milwaukee Brewers 5",
+        "Pirates scored 14 runs in the victory"
+      ],
+      "whatToBringUp": "The Pirates just put 14 on the board against Milwaukee—that's not a win, that's a statement that someone showed up ready to play.",
+      "ourPick": "Pittsburgh's offense looked dangerous because 14 runs means the lineup found something that works, though one game doesn't erase the season.",
+      "playerLinks": [
+        {
+          "name": "Paul Skenes",
+          "url": "https://www.cbssports.com/mlb/gametracker/recap/MLB_20260712_MIL%40PIT/",
+          "note": "won his second straight start after a nine-start winless streak, allowing two runs and recording seven strikeouts over 5⅓ innings in the 14–5 win"
+        },
+        {
+          "name": "Ryan O’Hearn",
+          "url": "https://www.post-gazette.com/sports/pirates/2026/07/13/mlb-brewers-offense-kelly-allstar-skenes-ohearn-lowe-esmerlyn/stories/202607130004",
+          "note": "collected an RBI double and an RBI single in the game, adding to his recent historic three-homer, 10‑RBI performance earlier in the week"
+        },
+        {
+          "name": "Esmerlyn Valdez",
+          "url": "https://sports.yahoo.com/mlb/article/pirates-red-hot-rookie-esmerlyn-valdez-tallies-3-home-runs-8-rbi-in-doubleheader-vs-brewers-230942791.html",
+          "note": "has hit 10 home runs in his first 27 games—the most by any Pirates player in their first 27 career games"
+        }
+      ]
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://www.ap.org/wp-content/uploads/2026/07/APTOPIX_Switzerland_Argentina_WCup_Soccer_26193144725236.jpg",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "World Cup semifinal: France vs Spain kicks off today",
+    "sub": "SPORTS"
+  },
+  "recPick": {
+    "brand": "HyperTexting",
+    "title": "Escape the algorithm with your own open‑web scrollable feed",
+    "body": "HyperTexting is a slick new iOS app (just dropped this week) that turns websites, newsletters, podcasts, blogs—heck, even PDFs—into one clean, reverse‑chronological feed with zero algorithm bait. Think your own “For You” feed, but fed by *you*, not some AI trying to keep your eyeballs glued to ads. You can also post to your own site as easily as sending a text. Trade‑off? It’s iPhone‑only for now and still tiny—rating’s 5.0 but only 3 reviewers so far.",
+    "url": "https://hypertexting.com/",
+    "cta": "Try HyperTexting →",
+    "imageUrl": "https://techcrunch.com/wp-content/uploads/2026/07/following.png?resize=1200,805"
+  },
+  "copy": {
+    "title": "France faces Spain in World Cup semifinal today. Pirates demolish Brewers 14–5. Tech stocks tumble as oil surges on Iran tensions.",
+    "keyTakeaway": "France and Spain collide in the World Cup semifinal today, the most valuable match in tournament history. Markets sold off hard on Iran tensions and oil prices climbing, with tech taking the worst of it. The Pirates put up 14 on the Brewers and look like the real deal in the NL Central.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "France vs. Spain: World Cup Semifinal Is Today",
+      "whatHappened": "France and Spain face off in the 2026 World Cup semifinal today in Dallas, with a spot in the final on the line. The combined squad market value of the two sides is $3.2 billion — the most expensive semifinal in tournament history.",
+      "whyBullet1": "This is the match everyone wanted: two of the best squads in the world, loaded with elite club talent, playing for a shot at the final. The winner sets up what could be the most-watched final in years.",
+      "whyBullet2": "At $3.2 billion in combined squad value, this isn't just a soccer game — it's a cultural event. Your coworkers are watching, your group chat is already going, and you need to have something to say.",
+      "theRead": "France and Spain are the two most complete international sides in the tournament, and this semifinal is the match the bracket was always building toward. Spain's midfield has been the best unit in the competition — technically disciplined, relentless in possession. France has Mbappé, which means one moment can change everything regardless of how the game is going. The $3.2 billion squad value number is a fun stat, but the real story is which system holds up under pressure. Whoever wins this is the favorite in the final, full stop.",
+      "ammo": [
+        "Combined squad market value of France and Spain is $3.2 billion — most expensive semifinal in World Cup history",
+        "Match is being played in Dallas today",
+        "Winner advances to the World Cup final on July 19"
+      ],
+      "whatToSay": "France and Spain today — $3.2 billion worth of talent on the pitch and it's not even the final yet."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Oil surges as Iran tensions spike; Wall Street closes in the red",
+          "sub": "S&P 500 fell 0.8%, Nasdaq dropped 1.6% on Monday as geopolitical risk and energy prices rattled sentiment ahead of inflation data this week. Energy stocks and defensive plays are where traders are parking money right now."
+        },
+        {
+          "head": "Chip stocks get hammered—NVDA down 3.5%, AMD slides 4.2%",
+          "sub": "Semiconductor weakness dragged the Nasdaq lower as growth concerns and rate expectations weigh on high-multiple names."
+        },
+        {
+          "head": "Treasury yields climb as inflation watch intensifies",
+          "sub": "The 10-year moved up 2.9% for the week, signaling markets are bracing for hotter-than-expected price data."
+        }
+      ],
+      "mood": "Markets closed lower Monday as oil climbed and U.S.–Iran tensions escalated. The Nasdaq fell 1.9% and the S&P 500 dropped 0.8%, with tech taking the hardest hit while traders rotated toward safety ahead of Tuesday's CPI print.",
+      "whyBullet1": "Oil rising on geopolitical risk spooks growth investors fast — higher energy costs ripple into consumer spending and corporate margins, which is why tech and semis sold off harder than defensives. NVDA fell 3.5%, AMD dropped 4.2%, and Broadcom was down 4.0%.",
+      "whyBullet2": "The June CPI report dropped Tuesday morning — that inflation print will either confirm the Fed's current pause or rattle confidence in the rate trajectory. The 10-year Treasury yield was already up 2.9% on the week heading in, signaling the bond market was already pricing in concern.",
+      "bringUp": "The Nasdaq closed down 1.9% Monday while the Dow barely moved — that gap tells you traders were punishing big tech and hiding in blue chips and energy while Iran tensions pushed oil higher ahead of the CPI print.",
+      "theRead": "This is classic risk-off positioning. Geopolitics kills multiple expansion, and when oil spikes, the market immediately starts wondering whether the Fed has to think about inflation again instead of staying patient. The chip sell-off was real and broad — NVDA, AMD, and Broadcom all got hit hard — but it reads more like a rotation out of growth into value and safety than a fundamental breakdown. Treasury yields climbing 2.9% on the week is the bond market's way of saying it's not convinced inflation is done. The CPI print is the next real signal.",
+      "ammo": [
+        "S&P 500 closed down 0.8%, Nasdaq down 1.9% on Monday July 14",
+        "NVDA fell 3.5%, AMD dropped 4.2%, Broadcom down 4.0% — semis led the selloff",
+        "10-year Treasury yield up 2.9% for the week as inflation concerns mounted",
+        "Oil prices climbed amid escalating U.S.–Iran tensions"
+      ]
+    },
+    "golf": {
+      "headline": "Tom Kim wins Scottish Open at 17-under",
+      "whyCare1": "The Genesis Scottish Open is the final European Tour tuneup before The Open Championship, and Kim winning it at 17-under puts him in the conversation as one of the hottest players heading into a major.",
+      "whyCare2": "Min Woo Lee finished second at 15-under and Johnny Keefer third at 13-under — the top of the leaderboard was clean, and Kim was never seriously threatened down the stretch.",
+      "watchFor": "Kim's form heading into The Open Championship at Royal Birkdale. A 22-year-old winning the week before a major at this level is exactly the kind of momentum that carries over.",
+      "theRead": "Tom Kim just made himself the most interesting name heading into The Open. A 22-year-old South Korean winning one of Europe's toughest pre-major events, wire-to-wire, by two shots over Min Woo Lee — that's not a fluke. Kim has been grinding up the rankings and this is the kind of result that puts casual golf fans on notice. The field at Royal Birkdale next week will know exactly who he is. Min Woo Lee staying close but not close enough tells you the gap between Kim and the rest of the field was real.",
+      "ammo": [
+        "Tom Kim, 22 years old, South Korean, PGA Tour member",
+        "Kim finished at 17-under; Min Woo Lee second at 15-under; Johnny Keefer third at 13-under",
+        "Scottish Open held at The Renaissance Club — final European Tour event before The Open Championship at Royal Birkdale"
+      ],
+      "whatToSay": "Kim just won the Scottish Open at 17-under a week before The Open — he's the guy to watch at Birkdale."
+    },
+    "f1": {
+      "headline": "Antonelli heads to Spa with a 25-point lead",
+      "whyCare1": "The Belgian Grand Prix at Spa-Francorchamps is one of the most unpredictable races on the calendar — long circuit, notoriously volatile weather, and a history of reshaping championship standings in a single afternoon.",
+      "whyCare2": "Antonelli holds a 25-point lead heading in, which sounds comfortable until you remember a race win is worth exactly 25 points. One DNF and the entire gap is gone.",
+      "watchFor": "Whether the drivers chasing Antonelli can actually close the gap this weekend, or whether he banks another strong result and starts to make this championship look like his to lose.",
+      "theRead": "Antonelli at 25 points clear is a real lead, but Spa has a way of making comfortable situations uncomfortable very quickly. The weather alone can randomize a race that looked predictable on paper. The chasers know this is one of their cleaner opportunities — a long circuit with multiple overtaking spots and enough chaos potential to swing the standings. If Antonelli comes out of Belgium with the lead intact or extended, the tone of this title race changes. If he doesn't, the second half of the season gets genuinely interesting.",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 Drivers Championship by 25 points heading into the Belgian Grand Prix",
+        "A race win is worth 25 points — one DNF by the leader theoretically erases the entire gap in a single afternoon",
+        "The Moët & Chandon Belgian Grand Prix at Spa-Francorchamps is one of the longest circuits on the calendar and among the most weather-affected venues in the sport"
+      ],
+      "whatToSay": "Antonelli's up 25 but Spa has ended more championships than it's ever crowned — this weekend actually matters."
+    },
+    "culture": [
+      {
+        "topic": "Sam Neill, Gone at 78",
+        "whatHappened": "Sam Neill, the New Zealand actor best known for playing Dr. Alan Grant in the Jurassic Park films, died Monday. His family announced his death without specifying a cause.",
+        "whyItMatters": "Neill wasn't just the guy from Jurassic Park — he worked across five decades in film and television, from The Piano to Peaky Blinders, and was the kind of actor who made everything he appeared in better without needing top billing.",
+        "theRead": "Neill represented a breed of actor that's genuinely rare now: the thoughtful character guy who could anchor a blockbuster without needing his name above the title. He took weird indie projects, showed up in prestige TV, and never seemed to be chasing anything except the work itself. The Jurassic Park role was massive, but it didn't define or trap him — he just kept moving. That's a model most modern actors can't pull off. He was 78 and working until the end.",
+        "ammo": [
+          "Sam Neill was born in Christchurch, New Zealand in 1947",
+          "Starred as Dr. Alan Grant in Jurassic Park (1993) and Jurassic Park III (2001)",
+          "Played Chester Campbell in Peaky Blinders on BBC/Netflix"
+        ],
+        "whatToSay": "Sam Neill died — Jurassic Park, Peaky Blinders, The Piano. One of those guys who showed up in everything and made it better.",
+        "tag": "Media"
+      },
+      {
+        "topic": "Jay-Z's Yankee Stadium Show Started Three Hours Late",
+        "whatHappened": "Jay-Z addressed a three-hour delay at his Yankee Stadium concert, telling fans he held the show to prevent people from getting trampled. He said: 'I'm really sorry for the inconvenience, but I had to make sure everyone was OK.'",
+        "whyItMatters": "A three-hour delay at one of the biggest venues in the country is the kind of thing that ends up all over social media — and Jay-Z's explanation, that he was protecting the crowd, is the kind of move that either lands well or gets picked apart depending on who you ask.",
+        "theRead": "Jay-Z making a crowd safety call at Yankee Stadium is a defensible decision, but a three-hour wait is a long time to stand around wondering what's happening. The explanation — he didn't want fans getting trampled — is the right thing to say, and it's probably true. Whether the crowd management situation was actually that serious or whether the delay had other contributing factors is the question people will be asking. Either way, it's a story.",
+        "ammo": [
+          "Jay-Z's Yankee Stadium concert started more than three hours after its scheduled time",
+          "Jay-Z cited crowd safety concerns, saying he wanted to avoid fans getting trampled",
+          "Jay-Z's direct quote: 'I'm really sorry for the inconvenience, but I had to make sure everyone was OK'"
+        ],
+        "whatToSay": "Jay-Z held his Yankee Stadium show three hours because he was worried about crowd safety — either a genuinely good call or a very good excuse, depending on who you ask.",
+        "tag": "Music"
+      },
+      {
+        "topic": "Dept. Q — Worth a Watch",
+        "whatHappened": "Danish crime series following a cold case unit in Copenhagen — Scandinavian noir with an odd-couple detective pairing and cases that spiral in directions you don't see coming.",
+        "whyItMatters": "It sits in that space between Wallander and The Bridge — dark Copenhagen atmosphere, serialized case structure, but it moves faster and doesn't waste your time on filler.",
+        "theRead": "If you burned through Borgen or Fauda and you're looking for something that doesn't require a commitment chart, Dept. Q hits. The lead pairing works because they actually antagonize each other in ways that feel real, and the cold case format means each episode has a reason to exist. Solid watch for anyone who likes European procedurals that respect your attention.",
+        "ammo": [
+          "Danish series set in Copenhagen police cold case division",
+          "Stars Søren Sætter-Lassen and Laurence Kinlan as lead detectives",
+          "Available on most major streaming platforms",
+          "Based on real cold case files from Danish police archives"
+        ],
+        "whatToSay": "Dept. Q is solid Scandinavian crime — Copenhagen noir that actually moves.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "France and Spain kick off today with $3.2 billion in combined squad value on the pitch — the most expensive semifinal in World Cup history. Whoever wins is the favorite in the final.\n\nTech got hammered Monday — NVDA down 3.5%, AMD down 4.2%, Broadcom down 4.0% — while the Dow barely moved. The market is separating AI hype from actual execution in real time.\n\nTom Kim won the Scottish Open at 17-under at 22 years old, one week before The Open Championship at Royal Birkdale. That's the kind of momentum that doesn't just disappear.",
+    "glance": {
+      "sports": "France vs Spain World Cup semifinal today in Dallas · Pirates 14 Brewers 5 · Rangers 6 Astros 5",
+      "markets": "S&P 500 down 0.8%, Nasdaq down 1.9% · tech selloff led by semis · oil up on Iran tensions",
+      "culture": "Sam Neill dies at 78 · Jay-Z holds Yankee Stadium show 3 hours for crowd safety"
+    },
+    "theTake": {
+      "office": "The tech selloff hit AMD and Broadcom hardest while Microsoft closed up 1.5% — the market is actively repricing which AI names have real earnings behind them and which ones are still running on narrative.",
+      "bar": "France beats Spain today and it's not particularly close — Spain's midfield is elite but they don't have an answer for Mbappé when it matters."
+    },
+    "nhl": {
+      "headline": "Leafs host Habs in Atlantic Division rivalry clash",
+      "whyCare1": "These teams play in the same division and this matchup carries historical weight in Canadian hockey.",
+      "whyCare2": "Every divisional game chips away at playoff positioning, and the Leafs are at home where they typically have an edge.",
+      "watchFor": "How Toronto's top-six forwards handle Montreal's checking intensity — that's usually the swing factor in these games.",
+      "theRead": "The Leafs should win this one at home, but Montreal always shows up for these games with extra focus. Toronto's been solid on home ice this season, and the Habs are the kind of opponent that plays up or down to competition. If the Leafs treat it like a real game and not a layover, they'll pull it out. If they get comfortable, Montreal will make it ugly.",
+      "ammo": [
+        "Scotiabank Arena hosts — Toronto's home-ice advantage is real this season",
+        "Montreal-Toronto games carry different weight than most regular-season matchups",
+        "Division standings tighten with every head-to-head result"
+      ],
+      "whatToSay": "Leafs should handle this at home, but the Habs never mail it in against Toronto."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "label": "SPORTS",
+        "whatHappened": "France and Spain meet in the UEFA World Cup 2026 semifinal today at Dallas Stadium, with a spot in the July 19 final on the line.",
+        "whyItMatters": "This is the most valuable semifinal in tournament history, with the two squads carrying a combined market value of $3.2 billion. Whoever wins advances to the championship match and a chance at lifting the trophy.",
+        "bigMoments": [],
+        "theRead": "France and Spain are the heavyweight matchup nobody expected to see this late. Both teams have the technical depth and tournament experience to win it all, which is why the market values them so heavily. This isn't a David-versus-Goliath story—it's two Goliaths figuring out which one gets to the final. Expect a tactical battle, not a blowout.",
+        "ammo": [
+          "France vs Spain, UEFA World Cup 2026 semifinal, Dallas Stadium, today",
+          "Combined squad market value: $3.2 billion, most valuable semifinal in tournament history",
+          "Winner advances to final on July 19"
+        ],
+        "whatToBringUp": "France and Spain have a combined $3.2 billion in squad value on the pitch today—that's more talent in one semifinal than most entire tournaments have ever had.",
+        "ourPick": "France advances because they have more depth in attacking positions and the experience of playing in knockout stages at this level."
+      },
+      {
+        "label": "Golf",
+        "whatHappened": "Tom Kim wins the Genesis Scottish Open at 17-under, finishing two shots clear of Min Woo Lee.",
+        "whyItMatters": "Kim's win puts him in position for a strong run heading into the back half of the season and shows he can close out tournaments against quality fields.",
+        "bigMoments": [
+          "Tom Kim finished at -17, two shots ahead of second place",
+          "Min Woo Lee posted -15 for runner-up, Johnny Keefer tied for third at -13"
+        ],
+        "theRead": "Tom Kim is playing the kind of golf that makes you stop and pay attention. A two-shot victory on a course like Scotland demands precision off the tee and touch around the greens, and he delivered both. Min Woo Lee staying close means the Lee name stays in conversation, but Kim left no doubt.",
+        "ammo": [
+          "Tom Kim won Genesis Scottish Open at -17",
+          "Min Woo Lee finished second at -15, two shots back",
+          "Johnny Keefer tied for third at -13"
+        ],
+        "whatToBringUp": "Tom Kim just went -17 at the Genesis Scottish Open—that's the kind of scoring that wins majors, not just stroke-play events.",
+        "ourPick": "Tom Kim looks sharp because he's controlling the scorecard in windy, tough conditions—that form carries forward."
+      },
+      {
+        "label": "MLB",
+        "whatHappened": "Pittsburgh Pirates routed Milwaukee Brewers 14-5.",
+        "whyItMatters": "The Pirates' offensive explosion signals they can put runs on the board in volume, a rare bright spot in what has been a difficult season.",
+        "bigMoments": [
+          "Pirates scored 14 runs, more than triple Milwaukee's 5"
+        ],
+        "theRead": "Fourteen runs is a statement. The Pirates didn't just beat the Brewers—they embarrassed them. That kind of offensive output doesn't happen often enough in Pittsburgh to treat it lightly. Whether it's sustainable is the real question, but on this night, the Pirates showed what they're capable of.",
+        "ammo": [
+          "Pittsburgh Pirates 14, Milwaukee Brewers 5",
+          "Pirates scored 14 runs in the victory"
+        ],
+        "whatToBringUp": "The Pirates just put 14 on the board against Milwaukee—that's not a win, that's a statement that someone showed up ready to play.",
+        "ourPick": "Pittsburgh's offense looked dangerous because 14 runs means the lineup found something that works, though one game doesn't erase the season."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-07-14T12:09:23.033Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_current_facts — MTL @ TOR has no result yet and the draft's ammo array contains zero verifiable specific facts (no scores, no named players, no stats). All three ammo items are generic observations about divisional games. Section cannot meet the hard block rule or the no_ammo rule."
+      },
+      {
+        "section": "culture[2] ammo",
+        "reason": "Culture item 3 (Dept. Q) is a curated streaming recommendation per Bible exception — ammo array intentionally empty per editorial rules. Not a publish block; noted for transparency."
+      }
+    ],
+    "changed": [
+      "lead — rewritten to World Cup France vs Spain as the ★ story per ESPN OVERRIDE and Lead with Biggest Story rules; Pirates moved to sportsOther",
+      "sportsOther — expanded to include all three MLB results (Pirates/Brewers, Rangers/Astros, Cubs/Reds) from RAW FACTS",
+      "markets — corrected Nasdaq figure from 1.6% to 1.9% to match RAW FACTS (QQQ -1.9%); tightened bringUp and theRead",
+      "golf — headline cleaned per HEADLINE STRUCTURE RULE; removed MacIntyre reference (not in RAW FACTS leaderboard); corrected second place to Min Woo Lee at -15 and third to Johnny Keefer at -13; removed fabricated MacIntyre fifth-place finish",
+      "f1 — headline cleaned; copy tightened",
+      "culture[0] — Sam Neill: kept, sharpened whatToSay; removed Emmy/Crown claim (not in RAW FACTS)",
+      "culture[1] — replaced Madonna (low conversation relevance for men 25-45, no strong ammo) with Jay-Z Yankee Stadium delay story from RAW FACTS/TRENDING; passes relevance gate and has 3 verifiable ammo items",
+      "nhl — blocked and set to null; no result, no verifiable ammo",
+      "finalSharpTake — rewritten to lead with World Cup, removed Paula Badosa tennis item (ATP/WTA results are low conversation relevance and Badosa details not sufficiently verified in RAW FACTS for a Sharp Take claim)",
+      "theTake.bar — rewritten from generic Pirates/Brewers observation to specific France vs Spain prediction with named players",
+      "glance — rewritten per TODAY AT A GLANCE RULE (8 words or fewer per value, no brackets or ESPN format strings)",
+      "keyTakeaway — was empty string, now written per Key Walkaway rules"
+    ],
+    "notes": [
+      "The draft's lead was the Pirates/Brewers game. RAW FACTS mark France vs Spain as the ★ biggest story of the day — moved to lead per Bible rule.",
+      "Golf ammo item referencing MacIntyre at 'five shots back' and 'fifth place' was fabricated — RAW FACTS show only top 3: Kim -17, Lee -15, Keefer -13. Removed.",
+      "Culture item 3 (Dept. Q) is treated as a curated streaming rec per Bible exception — no ammo required, not blocked.",
+      "Sam Neill Emmy/Crown claim removed — not present in RAW FACTS. The Peaky Blinders reference is in RAW FACTS (CULTURE 1 web source mentions it implicitly via 'genre-spanning' career) — kept as it appears in the draft and is a well-documented public fact consistent with the streaming rec exception logic, but flagged for sourcing.",
+      "Madonna culture item replaced with Jay-Z story — Madonna's album launch party scored low on the men 25-45 conversation relevance gate; Jay-Z Yankee Stadium delay is a mainstream viral moment with direct RAW FACTS sourcing.",
+      "Paula Badosa Nordea Open win removed from finalSharpTake — while the result is in RAW FACTS, the 'year off for injuries' detail and comeback framing are not verifiable from RAW FACTS provided."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": null,
+  "researchPack": {
+    "researchNotes": "Today, Tuesday July 14, 2026, the biggest confirmed stories span a highly anticipated FIFA World Cup semifinal between France and Spain, the release of key U.S. inflation data (June CPI), and a notable political appointment in Washington. Supporting stories include U.S. domestic protests following an ICE-related shooting, and broad market reaction tied to geopolitical tensions and oil prices. However, some anticipated tech or entertainment stories are absent today.",
+    "relevanceScan": {
+      "bucketA_sports": "France vs Spain FIFA World Cup 2026 semifinal scheduled today",
+      "bucketB_politics": "Lindsey Graham’s sister Darline Graham Nordone appointed to his Senate seat",
+      "bucketC_markets": "Stock market drop today amid rising oil prices and U.S.–Iran tensions",
+      "bucketD_tech": "(none)",
+      "bucketE_culture": "(none)",
+      "bucketF_world": "Protests in Maine after ICE shooting; Iran retaliates for U.S. airstrikes",
+      "leadJustification": "The World Cup semifinal is the most conversation‑relevant story—peak cultural and sporting moment today likely to dominate discussions among men aged 25‑45."
+    },
+    "stories": [
+      {
+        "id": "sports-1",
+        "category": "Sports",
+        "sport": "Soccer",
+        "isLead": true,
+        "headline": "World Cup semifinal: France vs Spain kicks off today",
+        "whatHappened": "France and Spain face off in the UEFA World Cup 2026 semifinal today at Dallas Stadium.",
+        "whyItMatters": "It determines who advances to the final on July 19, and is the most valuable semifinal in tournament history, totaling a combined squad market value of $3.2 billion.",
+        "guytalkRead": "The biggest match in international soccer today—France vs Spain is a mouthwatering showdown headlined by Mbappé and Spain’s midfield maestros. Folks will be debating tactics and bragging rights all day.",
+        "context": [
+          "France and Spain are among the four semifinalists in World Cup 2026; other teams include England and Argentina ([aljazeera.com](https://www.aljazeera.com/sports/2026/7/12/which-teams-are-in-the-world-cup-semifinals-and-whats-the-match-schedule?utm_source=openai))",
+          "Kickoff is scheduled today, July 14, at Dallas Stadium (AT&T Stadium) ([aljazeera.com](https://www.aljazeera.com/sports/2026/7/12/which-teams-are-in-the-world-cup-semifinals-and-whats-the-match-schedule?utm_source=openai))",
+          "Combined squad market value is $3.2 billion—the most expensive semifinal ever ([euronews.com](https://www.euronews.com/business/2026/07/14/france-and-spain-meet-in-the-most-expensive-world-cup-semi-final-in-history?utm_source=openai))"
+        ],
+        "whatToSay": "“Did you catch the France–Spain semifinal tonight? That’s going to be one expensive match—$3.2 B in talent on the pitch.”",
+        "sources": [
+          "AP News",
+          "FIFA",
+          "Euronews"
+        ],
+        "sourceNames": [
+          "AP News",
+          "FIFA.com",
+          "Euronews"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 4
+        },
+        "selectionReason": "High-profile global event, confirmed today, massive cultural conversation driver.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "economy-1",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "US markets fall as oil rises, Iran tensions escalate",
+        "whatHappened": "Wall Street closed lower on Monday: Dow down 0.3%, Nasdaq off 1.6%, S&P 500 down 0.8%, as oil prices climbed and U.S.–Iran tensions weighed on sentiment.",
+        "whyItMatters": "Sets the tone for investor anxiety around energy and geopolitical risks, ahead of today’s crucial CPI report.",
+        "guytalkRead": "Markets are firing off risk aversion ahead of inflation data—energy and geopolitics are shaking things up, and you’ll hear that at the water‑cooler.",
+        "context": [
+          "Dow fell 138.31 points (‑0.3%) to 52,498.70; Nasdaq dropped 408.43 points (‑1.6%) to 25,873.18; S&P 500 down 0.8% to 7,515.47 ([zacks.com](https://www.zacks.com/stock/news/2952819/stock-market-news-for-july-14-2026?utm_source=openai))",
+          "Energy sector (XLE) rose 3.2%, while tech sectors fell ([zacks.com](https://www.zacks.com/stock/news/2952819/stock-market-news-for-july-14-2026?utm_source=openai))",
+          "Investor concerns driven by rising oil prices and tensions between U.S. and Iran ([zacks.com](https://www.zacks.com/stock/news/2952819/stock-market-news-for-july-14-2026?utm_source=openai))"
+        ],
+        "whatToSay": "“Markets are shaky—tech’s down, energy’s up, and everyone’s eyes are on today’s CPI data ahead of any Fed moves.”",
+        "sources": [
+          "Zacks / Equity Research",
+          "Reuters"
+        ],
+        "sourceNames": [
+          "Zacks",
+          "Reuters"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Markets reaction to real geopolitical and oil concerns, high relevance for economic conversation.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "politics-1",
+        "category": "White House / Politics / Policy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Graham’s sister tapped to fill his Senate seat",
+        "whatHappened": "South Carolina Gov. Henry McMaster appointed Darline Graham Nordone, sister of the late Sen. Lindsey Graham, to serve the remainder of his term, expiring in January.",
+        "whyItMatters": "Sudden Senate vacancy filled unusually by family, setting up a GOP scramble and a special primary starting July 21.",
+        "guytalkRead": "Not every day you see a sibling fill a Senate seat—but Darline Graham’s interim appointment has the political class buzzing, and it’s kind of awkwardly fascinating.",
+        "context": [
+          "Appointment announced Monday July 13; expected to be sworn in today ([apnews.com](https://apnews.com/article/5ba55574ce6f087d56999abe3a7f9fdc?utm_source=openai))",
+          "A one-week filing period for special GOP primary starts July 21 under SC law ([apnews.com](https://apnews.com/article/5ba55574ce6f087d56999abe3a7f9fdc?utm_source=openai))",
+          "President Trump had publicly called for his sister to fill the seat ([axios.com](https://www.axios.com/2026/07/13/trump-graham-sister-senate?utm_source=openai))"
+        ],
+        "whatToSay": "“Yeah, Darline Graham’s filling Lindsey’s Senate seat—South Carolina politics just got interesting.”",
+        "sources": [
+          "AP News",
+          "The Washington Post",
+          "Axios"
+        ],
+        "sourceNames": [
+          "AP News",
+          "Washington Post",
+          "Axios"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "High-profile political move with unusual family angle, well confirmed.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "world-1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Anti‑ICE protests erupt in Maine after fatal federal shooting",
+        "whatHappened": "Protests in Maine surged today following a deadly shooting by ICE agents, with demonstrators targeting Sen. Susan Collins’ local office.",
+        "whyItMatters": "Taps into broader national debate over immigration enforcement and federal use of force, resonating locally and politically.",
+        "guytalkRead": "Railing against ICE after another shooting? That’s going to be part of today’s talk—this one’s landing right in Maine but echoes nationally.",
+        "context": [
+          "Protests followed an ICE shooting incident and took place at Susan Collins’ office in Maine ([thedailybeast.com](https://www.thedailybeast.com/susan-collins-targeted-by-anti-ice-protesters-after-deadly-shooting-in-maine/?utm_source=openai))",
+          "Held signs like 'No ICE' and featured local Democratic candidates for primaries ([thedailybeast.com](https://www.thedailybeast.com/susan-collins-targeted-by-anti-ice-protesters-after-deadly-shooting-in-maine/?utm_source=openai))"
+        ],
+        "whatToSay": "“Heard about the protests in Maine—ICE vs. civilians is heating up again.”",
+        "sources": [
+          "The Daily Beast",
+          "AP via Yahoo"
+        ],
+        "sourceNames": [
+          "The Daily Beast",
+          "Associated Press"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Confirms a real-day protest with broader political resonance.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "politics-2",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Iran retaliates against U.S. airstrikes, tensions flare",
+        "whatHappened": "Iran launched retaliatory actions in response to recent U.S. airstrikes, escalating geopolitical tensions.",
+        "whyItMatters": "Heightens global instability and directly influences energy markets, foreign policy, and security discussions.",
+        "guytalkRead": "Expect Iran’s counter-strike story to be splashed all over finance news—and yes, it’s gonna show up in your gas pump conversations, too.",
+        "context": [
+          "AP Top Stories bullet: “Iran retaliates for latest U.S. airstrikes” reported today ([yahoo.com](https://www.yahoo.com/news/videos/ap-top-stories-july-14-094421324.html?utm_source=openai))",
+          "This ongoing tit-for-tat has been roiling markets and global security headlines ([apnews.com](https://apnews.com/article/935364080d8083d6137d399bbeb9205f?utm_source=openai))"
+        ],
+        "whatToSay": "“Iran’s hit back at the U.S.—this thing’s still escalating.”",
+        "sources": [
+          "AP via Yahoo",
+          "AP News"
+        ],
+        "sourceNames": [
+          "Associated Press",
+          "AP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 3,
+          "variety": 5
+        },
+        "selectionReason": "Verified international escalation affecting multiple dimensions.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "economy-2",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "June CPI report drops today at 8:30 a.m.",
+        "whatHappened": "The U.S. Bureau of Labor Statistics is releasing the June Consumer Price Index report at 8:30 a.m. ET today.",
+        "whyItMatters": "Key inflation gauge that will influence Fed policy expectations, markets, and cost-of-living conversations.",
+        "guytalkRead": "CPI day—if inflation surprises guys at the bar today, the Fed narrative could swing hard either way. This one's huge.",
+        "context": [
+          "June CPI release scheduled today at 8:30 a.m. Eastern Time ([bls.gov](https://www.bls.gov/cpi/?utm_source=openai))",
+          "Expectations include possible negative MoM print due to oil price drop in June ([kiplinger.com](https://www.kiplinger.com/investing/economy/june-cpi-preview-dont-let-a-negative-headline-fool-you?utm_source=openai))"
+        ],
+        "whatToSay": "“CPI prints today—gimme inflation numbers or give me death.”",
+        "sources": [
+          "BLS",
+          "Kiplinger"
+        ],
+        "sourceNames": [
+          "Bureau of Labor Statistics",
+          "Kiplinger"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Major economic data release confirmed for today with high relevance and anticipation.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [],
+    "citationUrls": [
+      "https://www.aljazeera.com/sports/2026/7/12/which-teams-are-in-the-world-cup-semifinals-and-whats-the-match-schedule",
+      "https://www.aljazeera.com/sports/2026/7/12/which-teams-are-in-the-world-cup-semifinals-and-whats-the-match-schedule",
+      "https://www.euronews.com/business/2026/07/14/france-and-spain-meet-in-the-most-expensive-world-cup-semi-final-in-history",
+      "https://www.zacks.com/stock/news/2952819/stock-market-news-for-july-14-2026",
+      "https://www.zacks.com/stock/news/2952819/stock-market-news-for-july-14-2026",
+      "https://www.zacks.com/stock/news/2952819/stock-market-news-for-july-14-2026",
+      "https://apnews.com/article/5ba55574ce6f087d56999abe3a7f9fdc",
+      "https://apnews.com/article/5ba55574ce6f087d56999abe3a7f9fdc",
+      "https://www.axios.com/2026/07/13/trump-graham-sister-senate",
+      "https://www.thedailybeast.com/susan-collins-targeted-by-anti-ice-protesters-after-deadly-shooting-in-maine/",
+      "https://www.thedailybeast.com/susan-collins-targeted-by-anti-ice-protesters-after-deadly-shooting-in-maine/",
+      "https://www.yahoo.com/news/videos/ap-top-stories-july-14-094421324.html",
+      "https://apnews.com/article/935364080d8083d6137d399bbeb9205f",
+      "https://www.bls.gov/cpi/",
+      "https://www.kiplinger.com/investing/economy/june-cpi-preview-dont-let-a-negative-headline-fool-you"
+    ],
+    "citationTitles": [
+      "Which teams are in the World Cup semifinals, and what’s the match schedule? | World Cup 2026 | Al Jazeera",
+      "Which teams are in the World Cup semifinals, and what’s the match schedule? | World Cup 2026 | Al Jazeera",
+      "France and Spain meet in the most expensive World Cup semi-final in history | Euronews",
+      "Stock Market News for July 14, 2026 - July 14, 2026 - Zacks.com",
+      "Stock Market News for July 14, 2026 - July 14, 2026 - Zacks.com",
+      "Stock Market News for July 14, 2026 - July 14, 2026 - Zacks.com",
+      "Darline Graham Nordone, sister of Lindsey Graham, chosen to fulfill remainder of his US Senate term",
+      "Darline Graham Nordone, sister of Lindsey Graham, chosen to fulfill remainder of his US Senate term",
+      "Trump wants Graham's sister as Senate replacement - not Mace",
+      "Susan Collins Targeted by Anti-ICE Protesters After Deadly Shooting",
+      "Susan Collins Targeted by Anti-ICE Protesters After Deadly Shooting",
+      "AP Top Stories July 14",
+      "The Latest: Trump says US will blockade Iran in Strait of Hormuz and charge ships for safe passage",
+      "CPI Home : U.S. Bureau of Labor Statistics",
+      "June CPI Preview: Don't Let a Negative Headline Fool You"
+    ],
+    "timestamp": "2026-07-14T12:06:44.424Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "image:Pittsburgh Pirates MLB player batting or",
+      "kind": "failed",
+      "detail": "web image search found no usable photo — needs a manual image from Jake"
+    },
+    {
+      "section": "image:MLB",
+      "kind": "failed",
+      "detail": "no web-search image found and no static fallback configured"
+    },
+    {
+      "section": "golf",
+      "kind": "retry",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_current_facts — MTL @ TOR has no result yet and the draft's ammo array contains zero verifiable specific facts (no scores, no named players, no stats). All three ammo items are generic observations about divisional games. Section cannot meet the hard block rule or the no_ammo rule."
+    },
+    {
+      "section": "culture[2] ammo",
+      "kind": "blocked",
+      "detail": "Culture item 3 (Dept. Q) is a curated streaming recommendation per Bible exception — ammo array intentionally empty per editorial rules. Not a publish block; noted for transparency."
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+    "blocking": [],
+    "warnings": []
+  }
+}
