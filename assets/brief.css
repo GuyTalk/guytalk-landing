@@ -624,12 +624,19 @@ em { font-style: italic; }
   background-color: #0F1724; background-size: cover; background-position: center;
   display: flex; align-items: flex-end;
   box-shadow: 0 8px 30px rgba(15,23,36,0.16);
+  isolation: isolate;
 }
 .brief-hero-banner::before {
-  content: ''; position: absolute; inset: 0;
+  content: ''; position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(to top, rgba(8,12,20,0.92) 0%, rgba(8,12,20,0.55) 45%, rgba(8,12,20,0.35) 100%);
 }
-.bhb-inner { position: relative; z-index: 1; padding: 24px 26px; width: 100%; }
+/* Feature hero (non-sports lead) renders its photo as a real <img> with an
+   onerror fallback, not a CSS background-image — hotlink-protected wire CDNs
+   (AP/Reuters/Getty) can return 403 by the time a reader's browser loads the
+   page even after passing validation at generation time, and a failed CSS
+   background-image just silently shows nothing. */
+.bhb-bg { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.bhb-inner { position: relative; z-index: 2; padding: 24px 26px; width: 100%; }
 .bhb-eyebrow {
   font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 11px;
   letter-spacing: 0.18em; text-transform: uppercase; color: #6B9FFF; margin-bottom: 10px;

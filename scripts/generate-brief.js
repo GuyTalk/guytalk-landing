@@ -348,7 +348,7 @@ async function buildSmartHeroOverride(dynamicSports, topStories) {
       const { searchWebImage, buildLeadImageQuery } = require('./lib/imageSearch');
       const query = buildLeadImageQuery({ title: researchLead.headline, eyebrow: researchLead.category });
       if (query) {
-        heroImg = await searchWebImage(query, { fallback: null });
+        heroImg = await searchWebImage(query, { fallback: null, kind: 'news' });
         imageReal = !!heroImg;
       }
     } catch (_) {}

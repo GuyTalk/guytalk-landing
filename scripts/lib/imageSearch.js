@@ -29,9 +29,13 @@ const SEARCH_TIMEOUT_MS = 45_000;
  * @param {string} query   Plain-language description, e.g. "England Croatia World Cup 2026 match photo"
  * @param {object} opts
  * @param {string|null} opts.fallback  URL to return if search fails
+ * @param {'sports'|'news'} opts.kind  'sports' (default) asks for an on-field action shot —
+ *   wrong for geopolitics/markets/politics leads, where nothing will ever match "athletes
+ *   competing" and the search silently returns nothing every time. 'news' asks for a real
+ *   editorial/wire photo of the actual story instead.
  * @returns {Promise<string|null>}
  */
-async function searchWebImage(query, { fallback = null } = {}) {
+async function searchWebImage(query, { fallback = null, kind = 'sports' } = {}) {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) return fallback;
 
@@ -41,7 +45,14 @@ async function searchWebImage(query, { fallback = null } = {}) {
   const client = new (OpenAI.default || OpenAI)({ apiKey, maxRetries: 0 });
   if (typeof client.responses?.create !== 'function') return fallback;
 
-  const prompt = `Search for recent news coverage of: "${query}"
+  const prompt = kind === 'news'
+    ? `Search for recent news coverage of: "${query}"
+
+Find the most recent articles (today or yesterday) from major news outlets.
+I need articles whose lead photo is a real editorial/wire photo directly depicting this specific story (e.g. the actual location, event, people, or aftermath involved) — from AP, Reuters, Getty, AFP, or a major outlet (Al Jazeera, BBC, ESPN, AP News).
+STRONGLY AVOID a generic stock photo, a flag/map graphic, a studio anchor shot, a logo, or an unrelated file photo. If nothing genuinely depicts this specific story, say so — don't settle for a loosely-related image.
+Just search and summarize what you found — I'll use the source URLs.`
+    : `Search for recent news coverage of: "${query}"
 
 Find the most recent articles (today or yesterday) from major sports/news outlets.
 I need articles whose lead photo is an ON-FIELD / IN-GAME ACTION shot of the athletes competing (batting, pitching, shooting, tackling, driving, playing).
@@ -194,6 +205,9 @@ function buildLeadImageQuery(heroOverride) {
   }
   if (/market|stocks?|nasdaq|s&p|dow/.test(lower)) {
     return `stock market news photo Wall Street 2026`;
+  }
+  if (/strike|airstrike|missile|naval|blockade|military|troops|invasion|ceasefire|war\b/.test(lower)) {
+    return `${title.slice(0, 60)} AP Reuters wire photo 2026`;
   }
   if (/white house|president|executive/.test(lower)) {
     return `White House president news photo 2026`;

@@ -507,14 +507,22 @@ function buildHtml(issue, relatedIssues) {
 
   // Editorial section order — computed early so sidebar nav + jump links + body all agree.
   // Order follows the day's actual biggest story: a genuine culture/tech story leads
-  // with Culture; other non-sports leads (markets/business/politics/world) lead with
-  // Markets; otherwise Sports leads. This gives three possible orderings, not two,
-  // and matches the "biggest story leads — not always sports" editorial principle.
-  const isMarketsLead = !!issue.heroOverride?.isNonSportsLead;
+  // with Culture; a genuine markets/business story leads with Markets; any OTHER
+  // non-sports lead (politics, world events, current events — anything with no
+  // section of its own) gets its own "World Events" section and leads with that;
+  // otherwise Sports leads. This gives four possible orderings, not two or three —
+  // critically, a non-market/non-culture lead no longer gets silently funneled into
+  // the Markets bucket (which would have no actual content about it).
+  const isNonSportsLead = !!issue.heroOverride?.isNonSportsLead;
   const leadCat = String(issue.heroOverride?.leadCategory || '').toLowerCase();
-  const isCultureLead = isMarketsLead &&
+  const isCultureLead = isNonSportsLead &&
     ['culture', 'tech', 'gaming', 'music', 'streaming', 'entertainment'].includes(leadCat);
+  const isMarketsLead = isNonSportsLead && !isCultureLead && /market|business/.test(leadCat);
+  const isWorldLead = isNonSportsLead && !isCultureLead && !isMarketsLead;
+  // "World" alone reads ambiguous next to "World Cup" elsewhere on the page.
+  const bodyOrderLabel = (k) => k === 'world' ? 'World Events' : k.charAt(0).toUpperCase() + k.slice(1);
   const bodyOrder = isCultureLead ? ['culture', 'sports', 'markets']
+    : isWorldLead ? ['world', 'sports', 'markets', 'culture']
     : isMarketsLead ? ['markets', 'sports', 'culture']
     : ['sports', 'markets', 'culture'];
 
@@ -586,7 +594,7 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
 <nav class="brief-sidenav" aria-label="On this page">
   ${navLink('top', 'Top')}
   ${bodyOrder.map(k => {
-    const label = k.charAt(0).toUpperCase() + k.slice(1);
+    const label = bodyOrderLabel(k);
     return navLink(k, label, 'bsn-parent');
   }).join('\n  ')}
   ${navLink('sharp-take', 'Sharp Take')}
@@ -621,8 +629,16 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
   const hAway = heroGame ? espnLogo(heroGame.away.abbrev, heroSport) : null;
   const hHome = heroGame ? espnLogo(heroGame.home.abbrev, heroSport) : null;
   const ho = issue.heroOverride;
+  // ho is a truthy object even when the image search came up empty (imageReal:
+  // false, image:null) — checking `ho` alone (not `ho.image`) rendered a hero
+  // card with `background-image:url('')`, i.e. no picture at all. Rendered as a
+  // real <img> (not a CSS background-image) with an onerror fallback to the
+  // generic default hero graphic, so a hotlink-blocked wire-service CDN (AP/
+  // Reuters/Getty can 403 a validated URL by the time a reader's browser loads
+  // it) degrades to a placeholder instead of silently showing nothing.
   const heroImgHtml = ho
-    ? `<div class="brief-hero-banner brief-hero-banner--feature" style="background-image:url('${esc(ho.image)}')">
+    ? `<div class="brief-hero-banner brief-hero-banner--feature">
+  <img class="bhb-bg" src="${esc(ho.image || '/assets/hero/default.jpg')}" alt="" loading="eager" onerror="this.onerror=null;this.src='/assets/hero/default.jpg'">
   <div class="bhb-inner">
     ${ho.eyebrow ? `<div class="bhb-eyebrow">${esc(ho.eyebrow)}</div>` : ''}
     ${ho.title ? `<div class="bhb-feature-title">${esc(ho.title)}</div>` : ''}
@@ -649,8 +665,9 @@ ${children.map(([cid, clabel]) => '      ' + navLink(cid, clabel, 'bsn-sub')).jo
   const _sportsSection  = `<div class="umbrella-head" id="sports"><span class="umbrella-kicker">The Rundown</span><h2 class="umbrella-title">Sports</h2></div>\n\n${buildSportsBody(issue)}`;
   const _marketsSection = `<div class="umbrella-head" id="markets"><h2 class="umbrella-title">Markets</h2></div>\n\n${buildMarkets(issue)}`;
   const _cultureSection = `<div class="umbrella-head" id="culture"><h2 class="umbrella-title">Culture</h2></div>\n\n${buildCulture(issue)}`;
+  const _worldSection   = `<div class="umbrella-head" id="world"><h2 class="umbrella-title">World Events</h2></div>\n\n${buildWorldEvents(issue)}`;
   const _quickHitsHtml  = buildQuickHits(issue);
-  const _sectionMap = { sports: _sportsSection, markets: _marketsSection, culture: _cultureSection };
+  const _sectionMap = { sports: _sportsSection, markets: _marketsSection, culture: _cultureSection, world: _worldSection };
 
   const _liveCta = `<a href="/live/" class="brief-live-cta">
   <span class="blc-dot"></span>
@@ -749,10 +766,10 @@ posthog.init('phc_t9vvXWz7JWBsWkHmmNXCb2KMF79puQomJnJvREWKQbq8',{api_host:'https
       <span class="sep">·</span>
       <span>ISSUE ${label}</span>
       <span class="sep">·</span>
-      <span>${bodyOrder.map(k => k.toUpperCase()).join(' · ')}</span>
+      <span>${bodyOrder.map(k => bodyOrderLabel(k).toUpperCase()).join(' · ')}</span>
     </div>
     <nav class="section-jump" aria-label="Jump to section">
-      ${bodyOrder.map(k => `<a href="#${k}" class="sj-link${k === bodyOrder[0] ? ' sj-lead' : ''}">${k.charAt(0).toUpperCase() + k.slice(1)}</a>`).join('\n      ')}
+      ${bodyOrder.map(k => `<a href="#${k}" class="sj-link${k === bodyOrder[0] ? ' sj-lead' : ''}">${bodyOrderLabel(k)}</a>`).join('\n      ')}
     </nav>${subjumpHtml}
   </div>
 </div>
@@ -2384,6 +2401,43 @@ function buildCulture({ copy }) {
     <ul class="culture-list">
 ${itemsHtml}
     </ul>
+  </section>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WORLD EVENTS — renders when the day's #1 story is neither sports, markets,
+// nor culture (politics, geopolitics, major world news). Without this section
+// that lead story only ever appeared in the hero banner and headline — never
+// with any actual body copy — which is exactly the "header promises a story
+// the brief never covers" bug flagged on issue #084. Sourced entirely from the
+// research pack's own lead story (whatHappened/whyItMatters/guytalkRead/context
+// already generated during research — no extra LLM call needed).
+// ─────────────────────────────────────────────────────────────────────────────
+function buildWorldEvents(issue) {
+  if (!issue.heroOverride?.isNonSportsLead) return '';
+  const stories = Array.isArray(issue.topStories) ? issue.topStories : [];
+  const lead = stories.find(s => s.isLead);
+  if (!lead) return '';
+
+  const whatHappened = lead.whatHappened || '';
+  const whyItMatters = lead.whyItMatters || '';
+  const theRead = lead.depth || '';
+  // _context items carry a trailing "([source.com](url))" citation from the
+  // research pack — strip it for display; it's internal sourcing, not copy.
+  const ammo = Array.isArray(lead._context)
+    ? lead._context.filter(Boolean).map(c => String(c).replace(/\s*\(\[[^\]]+\]\([^)]*\)\)\s*$/, '').trim())
+    : [];
+  const whatToSay = lead.whatToSay || '';
+  if (!whatHappened && !whyItMatters && !theRead) return '';
+
+  return `  <section class="brief-section" id="world">
+    <div class="section-label sl-markets">World Events</div>
+    <div class="culture-item-top" style="margin-bottom:6px;"><span class="culture-head">${esc(lead.headline || issue.heroOverride.title || '')}</span></div>
+    ${whatHappened ? `<p class="culture-line"><strong>What happened:</strong> ${esc(stripHtmlTags(whatHappened))}</p>` : ''}
+    ${whyItMatters ? `<p class="culture-line"><strong>Why it matters:</strong> ${esc(stripHtmlTags(whyItMatters))}</p>` : ''}
+    ${theRead ? `<p class="culture-line"><strong>The GuyTalk Read:</strong> ${esc(stripHtmlTags(theRead))}</p>` : ''}
+    ${ammo.length ? `<ul class="ammo-list">${ammo.map(a => `<li>${esc(stripHtmlTags(a))}</li>`).join('')}</ul>` : ''}
+    ${whatToSay ? `<p class="culture-line"><strong>What to say:</strong> ${esc(stripHtmlTags(whatToSay))}</p>` : ''}
   </section>`;
 }
 
