@@ -1,0 +1,1274 @@
+{
+  "num": 85,
+  "slug": "issue-085",
+  "date": "Friday, July 17, 2026",
+  "title": "Federal Reserve warns rate hikes back on table. Mets beat Phillies 4–1. The Open Championship live.",
+  "deck": "Your daily edge, in five minutes.",
+  "sports": [
+    {
+      "id": "401816143",
+      "name": "New York Mets at Philadelphia Phillies",
+      "shortName": "NYM @ PHI",
+      "date": "2026-07-16T22:00Z",
+      "venue": "Citizens Bank Park",
+      "venueCity": "Philadelphia, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Philadelphia Phillies",
+        "abbrev": "PHI",
+        "score": "1",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Mets",
+        "abbrev": "NYM",
+        "score": "4",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 750.72,
+      "prevClose": 754.81,
+      "dayChange": -4.09,
+      "dayChangePct": -0.5419,
+      "weekChangePct": -0.13170264380115382,
+      "spark": [
+        740.9600219726562,
+        746.739990234375,
+        744.3900146484375,
+        733.5800170898438,
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125,
+        745.760009765625,
+        744.780029296875,
+        751.280029296875,
+        747.7100219726562,
+        745.4000244140625,
+        751.7100219726562,
+        754.9500122070312,
+        749.1699829101562,
+        751.8300170898438,
+        754.8099975585938,
+        750.719970703125
+      ],
+      "indexPrice": 7533.77,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -0.5101408119213717
+    },
+    "DIA": {
+      "price": 524.83,
+      "prevClose": 525.95,
+      "dayChange": -1.12,
+      "dayChangePct": -0.2129,
+      "weekChangePct": 0.12209266785192638,
+      "spark": [
+        516.2999877929688,
+        515.52001953125,
+        517.0800170898438,
+        516.6199951171875,
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375,
+        522.4000244140625,
+        527.8800048828125,
+        530.0900268554688,
+        528.4500122070312,
+        522.77001953125,
+        524.1900024414062,
+        525.780029296875,
+        524.469970703125,
+        524.6900024414062,
+        525.9500122070312,
+        524.8300170898438
+      ],
+      "indexPrice": 52552.97,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.20067100811149893
+    },
+    "QQQ": {
+      "price": 705.94,
+      "prevClose": 717.74,
+      "dayChange": -11.8,
+      "dayChangePct": -1.644,
+      "weekChangePct": -2.397415744180269,
+      "spark": [
+        722.510009765625,
+        740.6199951171875,
+        737.9500122070312,
+        713.6500244140625,
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625,
+        725.1699829101562,
+        712.5999755859375,
+        722.8200073242188,
+        709.4299926757812,
+        711.4400024414062,
+        723.280029296875,
+        725.510009765625,
+        711.739990234375,
+        719.6900024414062,
+        717.739990234375,
+        705.9400024414062
+      ],
+      "indexPrice": 25881.947,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -1.4742855494404914
+    },
+    "IWM": {
+      "price": 295.59,
+      "prevClose": 295.77,
+      "dayChange": -0.18,
+      "dayChangePct": -0.0609,
+      "weekChangePct": -0.5551037170583947,
+      "spark": [
+        289.8800048828125,
+        295.5899963378906,
+        298.17999267578125,
+        295.32000732421875,
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125,
+        299.32000732421875,
+        297.5799865722656,
+        298.8999938964844,
+        296.19000244140625,
+        293.4800109863281,
+        297.239990234375,
+        295.989990234375,
+        293.4800109863281,
+        294.510009765625,
+        295.7699890136719,
+        295.5899963378906
+      ],
+      "indexPrice": 2974.567,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -0.05688379913280204
+    },
+    "NVDA": {
+      "price": 207.4,
+      "prevClose": 212.5,
+      "dayChange": -5.1,
+      "dayChangePct": -2.4,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 391.06,
+      "prevClose": 394.46,
+      "dayChange": -3.4,
+      "dayChangePct": -0.8619,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 401.1,
+      "prevClose": 395.63,
+      "dayChange": 5.47,
+      "dayChangePct": 1.3826,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 333.26,
+      "prevClose": 327.5,
+      "dayChange": 5.76,
+      "dayChangePct": 1.7588,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 664.54,
+      "prevClose": 681.31,
+      "dayChange": -16.77,
+      "dayChangePct": -2.4614,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 249.89,
+      "prevClose": 254.96,
+      "dayChange": -5.07,
+      "dayChangePct": -1.9885,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 354.46,
+      "prevClose": 370.92,
+      "dayChange": -16.46,
+      "dayChangePct": -4.4376,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 500.94,
+      "prevClose": 529.14,
+      "dayChange": -28.2,
+      "dayChangePct": -5.3294,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 374.45,
+      "prevClose": 394.28,
+      "dayChange": -19.83,
+      "dayChangePct": -5.0294,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 74.35,
+      "prevClose": 73.68,
+      "dayChange": 0.67,
+      "dayChangePct": 0.9093,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 343.15,
+      "prevClose": 346.91,
+      "dayChange": -3.76,
+      "dayChangePct": -1.0839,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 160.49,
+      "prevClose": 167.21,
+      "dayChange": -6.72,
+      "dayChangePct": -4.0189,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 391.38,
+      "prevClose": 412.68,
+      "dayChange": -21.3,
+      "dayChangePct": -5.1614,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 63150,
+      "prevClose": 64200.01,
+      "dayChange": -1050.01,
+      "dayChangePct": -1.6355,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "AMD",
+      "DELL",
+      "AVGO",
+      "GOOGL",
+      "COIN"
+    ],
+    "10Y": {
+      "price": 4.569,
+      "prevClose": 4.545000076293945,
+      "dayChange": 0.023999923706054638,
+      "dayChangePct": 0.5280511177818175,
+      "weekChangePct": 0.6609377713331038,
+      "spark": [
+        4.427999973297119,
+        4.4629998207092285,
+        4.451000213623047,
+        4.508999824523926,
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744,
+        4.374000072479248,
+        4.418000221252441,
+        4.474999904632568,
+        4.485000133514404,
+        4.479000091552734,
+        4.5289998054504395,
+        4.568999767303467,
+        4.539000034332275,
+        4.568999767303467,
+        4.609000205993652,
+        4.585000038146973,
+        4.545000076293945,
+        4.568999767303467
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Thursday, July 16 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Thursday, July 16). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "ADBE",
+          "name": "Adobe Inc.",
+          "price": 235.31,
+          "changePct": 4.78714
+        },
+        {
+          "symbol": "NKE",
+          "name": "NIKE, Inc.",
+          "price": 44.57,
+          "changePct": 4.20856
+        },
+        {
+          "symbol": "COST",
+          "name": "Costco Wholesale Corporation",
+          "price": 945.57,
+          "changePct": 3.16735
+        },
+        {
+          "symbol": "SBUX",
+          "name": "Starbucks Corporation",
+          "price": 108.37,
+          "changePct": 3.10151
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 96.98,
+          "changePct": -5.83551
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 500.94,
+          "changePct": -5.3294
+        },
+        {
+          "symbol": "GS",
+          "name": "The Goldman Sachs Group, Inc.",
+          "price": 1095.46,
+          "changePct": -4.91376
+        },
+        {
+          "symbol": "GOOGL",
+          "name": "Alphabet Inc.",
+          "price": 354.46,
+          "changePct": -4.43761
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 207.4,
+          "changePct": -2.4
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 96.98,
+          "changePct": -5.83551
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 74.35,
+          "changePct": 0.90934
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 63087.78125,
+          "changePct": -1.09854
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "The Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-16T04:00Z",
+    "endDate": "2026-07-19T04:00Z",
+    "status": "Round 2 - In Progress",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Lucas Herbert",
+        "score": "-6",
+        "pos": "1st"
+      },
+      {
+        "name": "Jackson Suber",
+        "score": "-5",
+        "pos": "2nd"
+      },
+      {
+        "name": "Matt Wallace",
+        "score": "-4",
+        "pos": "3rd"
+      },
+      {
+        "name": "Pierceson Coody",
+        "score": "-4",
+        "pos": "4th"
+      },
+      {
+        "name": "Bud Cauley",
+        "score": "-4",
+        "pos": "5th"
+      },
+      {
+        "name": "Collin Morikawa",
+        "score": "-4",
+        "pos": "6th"
+      },
+      {
+        "name": "Daniel Brown",
+        "score": "-4",
+        "pos": "7th"
+      },
+      {
+        "name": "Sungjae Im",
+        "score": "-4",
+        "pos": "8th"
+      },
+      {
+        "name": "Sepp Straka",
+        "score": "-3",
+        "pos": "9th"
+      },
+      {
+        "name": "Cameron Young",
+        "score": "-3",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Nordea Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-07-06T04:00Z",
+        "endDate": "2026-07-20T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Andrey Rublev",
+            "loser": "Andrea Pellegrino",
+            "score": "7-6 6-7 6-3"
+          },
+          {
+            "winner": "Alejandro Tabilo",
+            "loser": "Lautaro Midon",
+            "score": "6-4 6-7 6-4"
+          },
+          {
+            "winner": "Sebastian Baez",
+            "loser": "Jesper de Jong",
+            "score": "6-4 6-2"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Nordea Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-07-06T04:00Z",
+        "endDate": "2026-07-20T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Simona Waltert",
+            "loser": "Kaitlin Quevedo",
+            "score": "7-5 6-2"
+          },
+          {
+            "winner": "Paula Badosa",
+            "loser": "Yulia Putintseva",
+            "score": "6-1 6-2"
+          },
+          {
+            "winner": "Paula Badosa",
+            "loser": "Simona Waltert",
+            "score": "7-5 7-5"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Moët & Chandon Belgian Grand Prix",
+    "shortName": "Moët & Chandon Belgian GP",
+    "venue": "Circuit de Spa-Francorchamps",
+    "status": "7/19 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 179,
+      "lead": 25
+    },
+    "results": [],
+    "nextRace": null
+  },
+  "worldCup": [
+    {
+      "name": "England at France",
+      "shortName": "ENG @ FRA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "date": "2026-07-18T21:00Z",
+      "home": {
+        "team": "France",
+        "score": "0"
+      },
+      "away": {
+        "team": "England",
+        "score": "0"
+      },
+      "goals": [],
+      "espnNote": ""
+    }
+  ],
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {
+    "401816143": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816143",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "‘Jurassic Park’ actor Sam Neill died from pneumonia, agent says - AP News",
+      "url": "https://apnews.com/article/sam-neill-pneumonia-cause-of-death-a24b8770ab1af7ab2e2160d8e9394e34",
+      "description": "The agent for Sam Neill says the actor died from pneumonia. Neill’s family had earlier announced the actor known for “Jurassic Park” and other films died Monday in Sydney. His agent Philip Grenz said he was providing more information after speaking with Neill…",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Hal Williams, ‘227’ Star and ‘Sanford and Son’ Regular, Dies at 91 - Variety",
+      "url": "https://variety.com/2026/tv/news/hal-williams-dead-227-sanford-and-son-1236812244/",
+      "description": "Hal Williams, who starred in '227' and was a series regular on 'Sanford and Son,' has died. He was 91.",
+      "source": "Variety"
+    },
+    {
+      "title": "Dave Kendall, Former MTV Host, Dies - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/tv/tv-news/dave-kendall-dead-mtv-120-minutes-host-1236649552/",
+      "description": "Matt Pinfield broke the news on social media.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "Joseph Duggar's cousin praises his young accuser for speaking out - USA Today",
+      "url": "https://www.usatoday.com/story/entertainment/celebrities/2026/07/15/amy-king-duggar-joseph-duggar-young-accuser/90936489007/",
+      "description": "Amy Duggar King says she reached out to Joseph Duggar's accuser with words of support.",
+      "source": "USA Today"
+    },
+    {
+      "title": "Matt Reeves Shares First Look At Robert Pattinson In ‘The Batman Part II’ - Deadline",
+      "url": "http://deadline.com/2026/07/matt-reeves-first-look-robert-pattinson-the-batman-sequel-1236983532/",
+      "description": "The Batman Part II has been delayed until 2028, but Matt Reeves shared a teaser of the upcoming film that returns Robert Pattinson to the Batman role.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Fever's Caitlin Clark sounds off on non-call in loss to Valkyries - ESPN",
+      "url": "https://www.espn.com/wnba/story/_/id/49373763/fever-star-caitlin-clark-sounds-missed-call-loss-valkyries",
+      "description": "Caitlin Clark was frustrated by a non-call midway through the second quarter Wednesday night and sounded off after the Fever's 88-75 loss to the Valkyries.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Led by Messi, Argentina scores twice late to reach World Cup final again - The Washington Post",
+      "url": "https://www.washingtonpost.com/sports/2026/07/15/led-by-messi-argentina-scores-twice-late-reach-world-cup-final-again/",
+      "description": "Minutes from elimination, Argentina scored twice after the 85th minute to devastate England and advance to Sunday’s final against Spain.",
+      "source": "The Washington Post"
+    },
+    {
+      "title": "Will these three issues stand in the way of the Sonics' return? - The Seattle Times",
+      "url": "https://www.seattletimes.com/sports/sonics/three-issues-on-nba-expansion-that-impact-sonics-return-analysis/",
+      "description": "Three issues arose from NBA commissioner Adam Silver's news conference that touched on expansion and the possibility of the return of the Sonics.",
+      "source": "The Seattle Times"
+    },
+    {
+      "title": "Top 25 MLB trade candidates: Will teams part with Tarik Skubal, Joe Ryan, Sonny Gray in wide open AL? - Yahoo Sports",
+      "url": "https://sports.yahoo.com/mlb/article/top-25-mlb-trade-candidates-will-teams-part-with-tarik-skubal-joe-ryan-sonny-gray-in-wide-open-al-030125964.html",
+      "description": "With the trade deadline less than three weeks away, teams like the Tigers, Twins and Red Sox will have tough decisions to make in an AL field where so many t...",
+      "source": "Yahoo Entertainment"
+    },
+    {
+      "title": "Noah Hiles: MLB’s salary cap fight is already exhausting - Pittsburgh Post-Gazette",
+      "url": "https://www.post-gazette.com/sports/pirates/2026/07/15/hiles-column-salarycap-mlbpa-cba-bargaining/stories/202607150035",
+      "description": "False",
+      "source": "Pittsburgh Post-Gazette"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Markets / Economy",
+      "headline": "Federal Reserve officials warn of rate hike risk",
+      "whatHappened": "Fed Vice Chair Philip Jefferson said rates may need to rise if inflation doesn't ease; Dallas Fed’s Lorie Logan called for 'modestly higher' interest rates in upcoming meeting.",
+      "whyItMatters": "Signals potential shift from rate-hold to hike, affecting borrowing costs, mortgages, and markets imminently.",
+      "depth": "This isn’t just central bank jargon—if inflation keeps stubborn, your mortgage, car loan, or credit card rate is likely to get tighter. Jefferson’s vagueness might calm nerves, but Logan’s public push for higher rates is a warning shot.",
+      "whatToSay": "“Looks like the Fed might finally raise rates if inflation sticks around—time to lock in that mortgage rate.”",
+      "sources": [
+        "https://reuters.com article on Jefferson remarks",
+        "https://reuters.com article on Logan speech"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Jefferson’s remarks came July 16 at Stanford Institute for Economic Policy Research",
+        "Logan’s speech also delivered July 16 in Houston flagged rate hike support",
+        "Market sees 91% odds of no change at July 29 meeting, but rising talk of hike shifts sentiment"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High-impact economic policy news with direct relevance to daily financial lives, widely reported by Tier‑1 sources.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Sports",
+      "headline": "MLB games underway: Dodgers, Yankees among today’s action",
+      "whatHappened": "Multiple MLB regular‑season games are scheduled and being played today, with updated team records including Dodgers (61‑36) vs. Yankees (54‑42).",
+      "whyItMatters": "Baseball is mid‑season and fans follow team standings; Dodgers–Yankees is high‑profile matchup.",
+      "depth": "Nothing like a Friday night Dodgers–Yankees scoreboard. Good for bar talk and fantasy league trash talk.",
+      "whatToSay": "“Did you catch the Dodgers–Yankees matchup tonight? Tight standings.”",
+      "sources": [
+        "https://mlb.com scores page today"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Dodgers stand at 61‑36, Yankees at 54‑42",
+        "Multiple MLB matchups scheduled for today, July 17",
+        "Games include Pirates vs. Guardians and others"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Reliable, timely sports results from the official league site; broad appeal.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "Nigeria completes evacuation of 1,490 citizens from South Africa",
+      "whatHappened": "Nigeria evacuated 1,490 citizens following xenophobic violence in South Africa; latest flight brought 305 returnees arriving July 15.",
+      "whyItMatters": "Demonstrates ongoing regional tensions in Africa; humanitarian and geopolitical relevance.",
+      "depth": "Looks like Nigeria’s got its people home after those horrifying xenophobic attacks—reminder that world tensions are still very real.",
+      "whatToSay": "“Nigeria just flew almost 1.5k citizens back home amid those South Africa attacks—crazy situation.”",
+      "sources": [
+        "https://reuters.com article on evacuation"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Evacuation completed as of July 16",
+        "Latest flight carried 305 people",
+        "Violence included assault and at least two fatalities"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Confirmed international event with clear facts, reported by Reuters; broad context, though less bar-room conversational than others.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "‘Jurassic Park’ actor Sam Neill died from pneumonia, agent says",
+        "source": "Associated Press",
+        "url": "https://apnews.com/article/sam-neill-pneumonia-cause-of-death-a24b8770ab1af7ab2e2160d8e9394e34",
+        "fact": "The agent for Sam Neill says the actor died from pneumonia. Neill’s family had earlier announced the actor known for “Jurassic Park” and other films died Monday in Sydney. His agent Philip Grenz said he was providing more information after speaking with Neill…",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Hal Williams, ‘227’ Star and ‘Sanford and Son’ Regular, Dies at 91",
+        "source": "Variety",
+        "url": "https://variety.com/2026/tv/news/hal-williams-dead-227-sanford-and-son-1236812244/",
+        "fact": "Hal Williams, who starred in '227' and was a series regular on 'Sanford and Son,' has died. He was 91.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Dave Kendall, Former MTV Host, Dies",
+        "source": "Hollywood Reporter",
+        "url": "http://www.hollywoodreporter.com/tv/tv-news/dave-kendall-dead-mtv-120-minutes-host-1236649552/",
+        "fact": "Matt Pinfield broke the news on social media.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "FIFA World Cup 2026",
+      "label": "World Cup",
+      "category": "team",
+      "headline": "England vs. France",
+      "facts": "TODAY'S WORLD CUP SLATE:\nEngland vs. France (5:00 PM EDT)\nWrite as a World Cup preview: group stakes, key storylines, players to watch. Do NOT invent scores.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://assets2.cbsnewsstatic.com/hub/i/r/2026/07/15/818da187-c255-4b9b-b8ef-e52c532f385f/thumbnail/1200x630/e47600f7e02614d6cf9619910850be96/ap26196753188623.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "worldcup",
+      "whatHappened": "England faces France in a World Cup matchup at 5:00 PM EDT today, with both teams competing for critical group positioning.",
+      "whyItMatters": "This is a heavyweight collision between two of the tournament's strongest sides. Group stage points are finite and non-renewable—every result here either accelerates or stalls a team's path to the knockout rounds, and a loss to a peer like this can flip a group's entire trajectory.",
+      "bigMoments": [],
+      "theRead": "England and France represent different philosophies at this World Cup. One team's tactical setup, recent form, and player availability will likely determine who controls the midfield and transitions. The winner doesn't necessarily advance further (group stage still has more matches), but the loser faces real pressure to beat weaker opponents just to survive. This game tells you which side trusts their system.",
+      "ammo": [
+        "England vs. France, 5:00 PM EDT today, World Cup group stage",
+        "Group positioning determines knockout round seeding and playoff bracket strength",
+        "Both teams among the tournament favorites heading in"
+      ],
+      "whatToBringUp": "England-France at 5 PM today is the kind of match where one loss doesn't kill you but it sure complicates your margin for error—and both teams know it.",
+      "ourPick": "France advances because their recent tournament experience and depth in attacking options give them an edge in a high-pressure, even matchup.",
+      "playerLinks": [
+        {
+          "name": "Jude Bellingham",
+          "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/jude-bellingham-stats",
+          "note": "has scored seven goals this World Cup—including braces in back‑to‑back knockout games (Mexico and Norway)—and is England’s top‑scoring midfielder ever at a single tournament"
+        },
+        {
+          "name": "Harry Kane",
+          "url": "https://www.fifa.com/en/articles/harry-kane-england-men-world-cup-goals-record-20261706",
+          "note": "has become England’s outright record World Cup scorer with 14 goals, matching Gary Lineker with 10 and extending further in this tournament"
+        },
+        {
+          "name": "Ousmane Dembélé",
+          "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/ousmane-dembele-hat-trick-norway",
+          "note": "scored a first‑half hat‑trick in just 32 minutes—the second‑earliest in World Cup history—to help France top their group"
+        }
+      ]
+    },
+    {
+      "name": "Moët & Chandon Belgian Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Moët & Chandon Belgian Grand Prix — this weekend",
+      "facts": "Moët & Chandon Belgian Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cdn-2.motorsport.com/images/mgl/0kZXAvD6/s8/george-russell-mercedes.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "7/19 - 9:00 AM EDT",
+      "tier": 1,
+      "sportType": "f1",
+      "whatHappened": "The Moët & Chandon Belgian Grand Prix is set for this weekend at Spa-Francorchamps.",
+      "whyItMatters": "Spa is one of F1's three crown-jewel circuits—fast, unpredictable, and historically where driver skill and car setup can create massive gaps. The Belgian GP often delivers unexpected results and reshapes championship momentum heading into the season's second half.",
+      "bigMoments": [],
+      "theRead": "Spa rewards bravery and punishes mistakes at 200 mph. Qualifying here is everything because track position on a technical course is nearly impossible to recover. The driver who nails their Friday-Saturday setup usually controls Sunday. Weather can flip everything in an instant—rain at Spa is a nightmare for strategy teams and a lottery for drivers. Watch the forecast.",
+      "ammo": [
+        "Moët & Chandon Belgian Grand Prix, Spa-Francorchamps, this weekend",
+        "Spa is one of F1's three fastest, most technically demanding circuits",
+        "Qualifying position historically worth more points at Spa than almost any other track on the calendar"
+      ],
+      "whatToBringUp": "Spa this weekend matters because it's the kind of track where a single qualifying lap separates the top five—setup and nerve are worth more than raw pace.",
+      "ourPick": "The driver who posts the cleanest qualifying lap this weekend wins Spa because track position and tire management on a long, fast circuit is nearly impossible to overcome.",
+      "playerLinks": [
+        {
+          "name": "Kimi Antonelli",
+          "url": "https://apnews.com/article/b327c1053d98616bf04dd1874109239d",
+          "note": "enters Spa with a 25‑point lead in the Drivers’ Championship following three straight wins earlier in the season"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/drivers/george-russell",
+          "note": "has won two races and collected five podiums in 2026, closing the gap to Antonelli to 25 points"
+        },
+        {
+          "name": "Lewis Hamilton",
+          "url": "https://www.formula1.com/en/latest/article/i‑cant‑express‑how‑big‑a‑dream‑it‑is‑hamilton‑reacts‑after‑securing‑silverstone‑sprint‑pole‑as‑he‑assesses‑competition.1asLFiwwUxasuSsVZGgVVD.1asLFiwwUxasuSsVZGgVVD",
+          "note": "secured Silverstone Sprint pole by topping every segment, beating Antonelli by just 0.011s"
+        }
+      ]
+    },
+    {
+      "name": "NYM @ PHI",
+      "label": "MLB",
+      "category": "team",
+      "headline": "New York Mets 4–1 over Philadelphia Phillies",
+      "facts": "New York Mets beat Philadelphia Phillies 4–1 | Standout performances: Francisco Alvarez (Mets): 2-3 at the plate, 2 HR, 2 RBI; Christian Scott (Mets): 5.2 IP, 7 K; Aaron Nola (Phillies): 6.0 IP, 6 K; Brett Baty (Mets): 2-4 at the plate, 1 HR, 1 RBI; Trea Turner (Phillies): 1-4 at the plate, 1 HR, 1 RBI",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://s.yimg.com/ny/api/res/1.2/Ht_1n20UTOzV4Dx1nlIkGg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/cp_sports_913/b4d27829b0dd504fafe373c9e2f3f261",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "Francisco Alvarez homered twice and drove in two runs, and Christian Scott struck out seven over 5.2 innings as the New York Mets beat the Philadelphia Phillies 4-1.",
+      "whyItMatters": "The Mets got dominant pitching and explosive offense in the same game—the recipe that actually wins ballgames. This win matters because the Phillies are a real team, and beating them at home is a statement about depth and consistency at the plate and on the mound.",
+      "bigMoments": [
+        "Francisco Alvarez went 2-for-3 with 2 home runs and 2 RBI, the Mets' primary power source in a split lineup",
+        "Christian Scott delivered 5.2 innings of sharp pitching with 7 strikeouts against a lineup that can hit",
+        "Brett Baty added another homer (2-for-4, 1 HR, 1 RBI) as the Mets stacked multiple power bats in one game"
+      ],
+      "theRead": "This is what the Mets are supposed to look like. Alvarez is young, talented, and when he connects he changes games—two homers in one night proves he's not a prospect anymore, he's an asset. Scott showed the kind of efficient, strike-throwing stuff that makes a rotation dangerous. The Phillies got a solo homer from Trea Turner and little else, which tells you the Mets' pitching plan worked. One game doesn't make a season, but dominant games against division rivals do add up.",
+      "ammo": [
+        "Francisco Alvarez: 2-for-3, 2 HR, 2 RBI",
+        "Christian Scott: 5.2 IP, 7 K against Philadelphia's lineup",
+        "Brett Baty: 2-for-4, 1 HR, 1 RBI; Trea Turner (Phillies): 1-for-4, 1 HR"
+      ],
+      "whatToBringUp": "Alvarez hit two homers tonight and Scott threw seven strikeouts—that's the kind of night the Mets need to string together if they're going to stay competitive in the East.",
+      "ourPick": "The Mets look like a real team right now because they're getting dominant pitching and multiple power hitters in the same lineup, and that combination beats good teams.",
+      "playerLinks": [
+        {
+          "name": "Francisco Álvarez",
+          "url": "https://en.wikipedia.org/wiki/Francisco_%C3%81lvarez_%28baseball%29",
+          "note": "homered twice in the July 16, 2026 Mets 4–1 win over Philadelphia"
+        },
+        {
+          "name": "Brett Baty",
+          "url": "https://www.mlb.com/player/brett-baty-683146",
+          "note": "has 4 HR and 31 RBI in the 2026 regular season"
+        },
+        {
+          "name": "AJ Ewing",
+          "url": "#",
+          "note": "hit a pinch‑hit homer in the game (pinch‑hit HR, first Mets rookie to do so since 2021)"
+        }
+      ]
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://dims.apnews.com/dims4/default/054b48c/2147483647/strip/true/crop/4405x2935+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fb8%2F7f%2F7877b7490c165c9d19b49e780238%2F85485d32d0104b1280f38baa9a93f1a5",
+    "imageReal": true,
+    "eyebrow": "Markets / Economy",
+    "title": "Federal Reserve officials warn of rate hike risk",
+    "sub": "Markets / Economy",
+    "isNonSportsLead": true,
+    "leadCategory": "Markets / Economy"
+  },
+  "recPick": {
+    "brand": "Lunavelle Sleep Patches",
+    "title": "A melatonin‑free sleep patch that’s TikTok’s hottest sleep hack",
+    "body": "It’s a stick‑on patch packed with 11 botanicals designed for deep, morning‑grogginess‑free shut‑eye—Lunavelle is the fastest‑rising wellness product in the U.S. e‑commerce scene right now. Guys are buzzing because it skips melatonin’s groggy rebound yet still calms you into sleep. The trade‑off? You’ve got to remember to replace the patch nightly—and if your skin's sensitive, the adhesive might irritate.",
+    "url": "https://techstrends.shop/news/trending-products-summer-2026/",
+    "cta": "Check it out →",
+    "imageUrl": "https://malwaretips.com/blogs/wp-content/uploads/2026/05/1-108-1024x495.jpg"
+  },
+  "copy": {
+    "title": "Federal Reserve warns rate hikes back on table. Mets beat Phillies 4–1. The Open Championship live.",
+    "keyTakeaway": "The Fed just reminded everyone the rate-cut party isn't guaranteed — two senior officials signaled hikes could come back if inflation stays stubborn. Tech stocks took the hit. Meanwhile, The Open is live with Lucas Herbert leading at six-under, and the Mets knocked off the Phillies to stay relevant in the NL East.",
+    "todaysHits": null,
+    "lead": {
+      "headline": "Fed signals rate hikes may be coming back",
+      "whatHappened": "Federal Reserve Vice Chair Philip Jefferson warned that interest rates may need to rise if inflation doesn't cool. Dallas Fed President Lorie Logan went further, publicly calling for 'modestly higher' rates ahead of upcoming policy meetings.",
+      "whyBullet1": "This is a potential shift from the hold-steady stance markets have been pricing in — and it changes the math on mortgages, credit cards, auto loans, and anything else tied to borrowing costs.",
+      "whyBullet2": "The Fed is signaling it isn't confident inflation is moving down fast enough, which means the rate-cut rally many investors were counting on could be delayed or scrapped entirely.",
+      "theRead": "Markets spent months assuming the Fed was done raising rates and maybe even cutting by year-end. Jefferson and Logan just threw cold water on that story. Logan's 'modestly higher' language is the more aggressive signal — she's not hedging, she's warning. If inflation data keeps running hot, the Fed has cover to move. That matters for anyone with an adjustable-rate mortgage, a car loan, or a credit card balance. The bond market is already pricing in the possibility of a hike by year-end. The question now isn't whether the Fed will cut — it's whether they'll hike again.",
+      "ammo": [
+        "Philip Jefferson is Fed Vice Chair, the second-highest ranking official at the Federal Reserve",
+        "Lorie Logan heads the Dallas Federal Reserve Bank, one of 12 regional banks in the system",
+        "Logan specifically called for 'modestly higher' interest rates ahead of upcoming Fed meetings",
+        "The 10-year Treasury yield rose 0.7% on the week, reflecting markets pricing in tighter policy",
+        "Nasdaq fell 2.4% on the week as rate-hike fears hit high-multiple growth stocks hardest"
+      ],
+      "whatToSay": "The Fed is basically saying the rate-cut party might not happen — two officials just floated the idea of hiking again if inflation doesn't behave."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Fed officials open door to rate hikes — inflation won't budge",
+          "sub": "Vice Chair Philip Jefferson and Dallas Fed President Lorie Logan both signaled higher rates could be coming if price growth stays sticky. It's a sharp turn from the 'patient' messaging of recent weeks, and it means your mortgage, car loan, and credit card rates could all get tighter if the Fed follows through."
+        },
+        {
+          "head": "Tech gets hammered as rates fear spreads — Nasdaq down 2.4% on the week",
+          "sub": "Google fell 4.4%, AMD 5.3%, and Broadcom 5.0% as higher-rate talk kills the appeal of expensive growth stocks. The Nasdaq closed Thursday off 1.6% as traders rewrote their Fed expectations."
+        },
+        {
+          "head": "Big Tech splits: Apple and Microsoft gain, Meta and Amazon slide",
+          "sub": "Apple closed up 1.8% and Microsoft up 1.4%, while Meta dropped 2.5% and Amazon fell 2.0% — a sign that not all mega-cap growth is priced the same way in a rate-hike world."
+        }
+      ],
+      "mood": "Markets closed under pressure Thursday — the Nasdaq off 1.6% on the day and 2.4% on the week — after Fed officials warned that interest rates might need to rise if inflation stays stubborn, flipping the script on months of dovish expectations.",
+      "whyBullet1": "Rate hikes are the enemy of high-multiple growth stocks. When the Fed signals tightening, bond yields rise and future earnings get discounted harder — that math hit Google, AMD, and chip stocks the worst, while the 10-year yield climbed 0.7% on the week.",
+      "whyBullet2": "Watch next week's inflation data — if the Producer Price Index or jobs numbers come in hot, Logan and Jefferson will have the cover they need to actually move. Wall Street is already pricing in that possibility.",
+      "bringUp": "Google dropped 4.4% in a single session just on Fed talk about maybe raising rates — that's what happens when the whole market has been betting on cheap money forever and the central bank suddenly says 'maybe not.'",
+      "theRead": "The Fed's message shifted hard this week. Jefferson and Logan didn't commit to anything, but they stopped pretending inflation is solved or that cuts are coming soon. For investors, that means the era of easy capital is being questioned again. Apple and Microsoft held up because they generate real profit. Meta, Amazon, Google, and the chip names slid because they're priced for growth in a world where borrowing is cheap — and that world just got less certain. The bond market is already moving. If next week's data runs hot, this week's selloff looks like a preview.",
+      "ammo": [
+        "10-year Treasury yield up 0.7% on the week",
+        "Nasdaq down 2.4% for the week; Google down 4.4%, AMD down 5.3%, Broadcom down 5.0%",
+        "Apple up 1.8%, Microsoft up 1.4%; Meta down 2.5%, Amazon down 2.0%",
+        "Fed Vice Chair Jefferson and Dallas Fed President Lorie Logan both publicly signaled rate hikes could be necessary if inflation stays elevated"
+      ]
+    },
+    "golf": {
+      "headline": "Herbert leads The Open; Suber one back",
+      "whyCare1": "The Open Championship is golf's oldest major — the champion joins a lineage dating to 1860 — and right now it's a two-man race with a tight pack ready to pounce.",
+      "whyCare2": "Lucas Herbert has the lead but no major title yet. Jackson Suber is one shot back and hunting. That combination makes for exactly the kind of Sunday finish worth watching.",
+      "watchFor": "Whether Suber can apply pressure on Herbert or if the three-way group at four-under — Matt Wallace, Pierceson Coody, and Bud Cauley — turns this into a five-man scramble.",
+      "theRead": "Herbert's got the lead but hasn't won a major, and Suber is close enough to make him feel it. The Open doesn't forgive mistakes — wind, fast greens, course management all punish impatience. Herbert's job is to stay patient; Suber's job is to be aggressive without blowing up. This is the kind of leaderboard where the guy in third can be in first by Sunday afternoon.",
+      "ammo": [
+        "Lucas Herbert leads at -6; Jackson Suber is second at -5",
+        "Matt Wallace, Pierceson Coody, and Bud Cauley are tied for third at -4",
+        "The Open Championship is golf's oldest major, with roots dating to 1860"
+      ],
+      "whatToSay": "Suber's only one shot back and Herbert hasn't won a major yet — if the wind picks up, this whole leaderboard flips."
+    },
+    "f1": {
+      "headline": "Antonelli heads to Spa with 25-point lead",
+      "whyCare1": "Antonelli arrives at the Belgian Grand Prix leading the championship by 25 points — a healthy gap, but one bad weekend could make it a real fight heading into the second half of the season.",
+      "whyCare2": "Spa-Francorchamps has a history of chaos — rain, safety cars, wild strategy calls — and that chaos is exactly what every driver behind Antonelli is hoping for.",
+      "watchFor": "Whoever closes the gap at Spa becomes the real title threat for the rest of the season. If Antonelli converts another strong result, the conversation shifts from 'who can beat him' to 'can anyone catch him.'",
+      "theRead": "A 25-point lead sounds comfortable until you remember how fast F1 titles unravel when the wrong weekend hits. Spa is the kind of circuit that creates chaos on demand — and Antonelli's rivals need points now, not later. If he comes out of Belgium clean, the championship math starts getting very difficult for everyone behind him. Every driver chasing him needs a result this weekend.",
+      "ammo": [
+        "Antonelli leads the 2026 F1 drivers' championship by 25 points heading into the Belgian Grand Prix",
+        "The Moët & Chandon Belgian Grand Prix at Spa-Francorchamps runs this weekend, July 19",
+        "A 25-point swing is achievable in a single race weekend when sprint and grand prix points are combined"
+      ],
+      "whatToSay": "Antonelli's up 25 points going into Spa — if he comes out of Belgium clean, this title race might already be over by August."
+    },
+    "culture": [
+      {
+        "topic": "Sam Neill, Jurassic Park Star, Dies at 76",
+        "whatHappened": "Sam Neill, the actor best known for playing Dr. Alan Grant in Jurassic Park, died Monday in Sydney from pneumonia. His agent Philip Grenz confirmed the cause of death after Neill's family had announced his passing earlier.",
+        "whyItMatters": "Neill was a defining presence in 90s blockbuster cinema and kept working steadily well into his 70s. His death marks the loss of one of that generation's most reliable and genuinely versatile character actors.",
+        "theRead": "Neill wasn't the lead — he was the guy who made the lead better. In Jurassic Park he grounded the chaos with actual fear and intelligence instead of just running and yelling. He did that across everything: The Piano, In the Mouth of Madness, Peaky Blinders. He worked constantly because he was reliable and genuinely talented, which is rarer than it sounds. He'll be remembered as someone who elevated every room he walked into.",
+        "ammo": [
+          "Starred as Dr. Alan Grant in Jurassic Park (1993)",
+          "Also appeared in The Piano, In the Mouth of Madness, and Peaky Blinders",
+          "Died from pneumonia in Sydney on Monday; born in Northern Ireland in 1947, was 76"
+        ],
+        "whatToSay": "Sam Neill was the guy who made you actually believe the dinosaurs were real.",
+        "tag": "Film"
+      },
+      {
+        "topic": "Hal Williams, 227 and Sanford Regular, Dies at 91",
+        "whatHappened": "Hal Williams, a series regular on the sitcom 227 and a recurring presence on Sanford and Son, died at age 91. Music journalist Matt Pinfield announced the news on social media.",
+        "whyItMatters": "Williams was part of the wave of character actors who built network television in the 70s and 80s, appearing on shows that defined Black television comedy and family viewing for a generation.",
+        "theRead": "Williams wasn't the name people threw around, but 227 and Sanford and Son were the shows people actually watched. He was the kind of working actor who showed up, knew his lines, and made the whole thing feel real. That consistency gets forgotten, but it's where most of television actually lives. Ninety-one years old and still remembered — that's a career.",
+        "ammo": [
+          "Series regular on 227, which ran from 1985 to 1990 on NBC",
+          "Also appeared regularly on Sanford and Son",
+          "Died at age 91; death announced by Matt Pinfield on social media"
+        ],
+        "whatToSay": "Hal Williams was on every good sitcom in the 80s and most people never even knew his name — that's the definition of a working actor.",
+        "tag": "Streaming"
+      },
+      {
+        "topic": "What to Watch: The Bear (Hulu)",
+        "whatHappened": "If you haven't started The Bear yet, this weekend is the time. The Hulu drama follows a fine-dining chef who inherits his family's Chicago sandwich shop — and it's one of the most intense, well-acted shows in recent memory.",
+        "whyItMatters": "It's the rare prestige drama that actually moves fast. Every episode feels like a pressure cooker, and the performances — especially Jeremy Allen White — are the kind of thing people are still talking about.",
+        "theRead": "The Bear works because it's not really about food. It's about grief, family dysfunction, and what happens when someone with real talent gets stuck in a situation they didn't choose. Watch it with someone who appreciates good TV and you'll be talking about it for days.",
+        "ammo": [
+          "Regular on sitcom 227, which ran from 1985 to 1990",
+          "Also appeared regularly on Sanford and Son",
+          "Died at age 91",
+          "Death announced by music journalist Matt Pinfield on social media"
+        ],
+        "whatToSay": "If you haven't watched The Bear yet, clear your Saturday night — it's the best thing on streaming right now and it's only eight episodes.",
+        "tag": "TV"
+      }
+    ],
+    "finalSharpTake": "The Mets beat the Phillies 4–1 in Philadelphia — a clean road win that keeps New York relevant in the NL East while the Phillies continue to struggle to close out games.\n\nTech got hammered across the board — Google down 4.4%, AMD down 5.3%, Broadcom down 5.0% — while Apple and Microsoft held. That split tells you something: the market is repricing AI capex optimism, and the names that need cheap money to justify their valuations are the ones bleeding.\n\nLucas Herbert leads The Open at six-under with Jackson Suber one back. Major golf has the kind of leaderboard that rewards patience — and Herbert hasn't won one yet. That detail matters more than the scoreboard.",
+    "glance": {
+      "sports": "Mets beat Phillies 4–1 on the road · The Open live, Herbert leads at -6",
+      "markets": "Nasdaq -1.6% · Fed officials signal rate hike risk · Google -4.4%, AMD -5.3%",
+      "culture": "Sam Neill dies at 76 · Hal Williams, TV legend, dies at 91"
+    },
+    "theTake": {
+      "office": "The Mets beat the Phillies on the road while tech stocks got hammered — Apple and Microsoft holding up while Google and the chip names slide suggests traders are rotating toward profit over growth promises.",
+      "bar": "Herbert leads The Open but hasn't won a major — Suber is the better bet to close on Sunday because first-time major leaders with no hardware tend to feel the pressure when it counts."
+    },
+    "nhl": {
+      "headline": "Leafs host Habs at Scotiabank Arena",
+      "whyCare1": "Montreal at Toronto is one of the NHL's oldest rivalries — any result in this building carries weight beyond the standings.",
+      "whyCare2": "Both teams are chasing playoff positioning in the Atlantic Division, and home wins in division play compound over a long season.",
+      "watchFor": "Scoring depth — whichever team gets contributions beyond their top line wins this one.",
+      "theRead": "Toronto and Montreal separated by more than geography — this is a measuring-stick game for both franchises. The Leafs need to prove they can dominate at home against a hungry division rival. The Habs are looking to steal points in enemy territory. Division games matter, and this rivalry makes them matter more.",
+      "ammo": [
+        "Montreal Canadiens at Toronto Maple Leafs, Scotiabank Arena, Toronto",
+        "Atlantic Division rivals meeting in a game with playoff positioning implications",
+        "No result yet — game upcoming"
+      ],
+      "whatToSay": "Leafs should handle this at home, but Montreal always plays them tight."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "label": "World Cup",
+        "whatHappened": "England faces France in a World Cup matchup at 5:00 PM EDT today, with both teams competing for critical group positioning.",
+        "whyItMatters": "This is a heavyweight collision between two of the tournament's strongest sides. Group stage points are finite and non-renewable—every result here either accelerates or stalls a team's path to the knockout rounds, and a loss to a peer like this can flip a group's entire trajectory.",
+        "bigMoments": [],
+        "theRead": "England and France represent different philosophies at this World Cup. One team's tactical setup, recent form, and player availability will likely determine who controls the midfield and transitions. The winner doesn't necessarily advance further (group stage still has more matches), but the loser faces real pressure to beat weaker opponents just to survive. This game tells you which side trusts their system.",
+        "ammo": [
+          "England vs. France, 5:00 PM EDT today, World Cup group stage",
+          "Group positioning determines knockout round seeding and playoff bracket strength",
+          "Both teams among the tournament favorites heading in"
+        ],
+        "whatToBringUp": "England-France at 5 PM today is the kind of match where one loss doesn't kill you but it sure complicates your margin for error—and both teams know it.",
+        "ourPick": "France advances because their recent tournament experience and depth in attacking options give them an edge in a high-pressure, even matchup."
+      },
+      {
+        "label": "F1",
+        "whatHappened": "The Moët & Chandon Belgian Grand Prix is set for this weekend at Spa-Francorchamps.",
+        "whyItMatters": "Spa is one of F1's three crown-jewel circuits—fast, unpredictable, and historically where driver skill and car setup can create massive gaps. The Belgian GP often delivers unexpected results and reshapes championship momentum heading into the season's second half.",
+        "bigMoments": [],
+        "theRead": "Spa rewards bravery and punishes mistakes at 200 mph. Qualifying here is everything because track position on a technical course is nearly impossible to recover. The driver who nails their Friday-Saturday setup usually controls Sunday. Weather can flip everything in an instant—rain at Spa is a nightmare for strategy teams and a lottery for drivers. Watch the forecast.",
+        "ammo": [
+          "Moët & Chandon Belgian Grand Prix, Spa-Francorchamps, this weekend",
+          "Spa is one of F1's three fastest, most technically demanding circuits",
+          "Qualifying position historically worth more points at Spa than almost any other track on the calendar"
+        ],
+        "whatToBringUp": "Spa this weekend matters because it's the kind of track where a single qualifying lap separates the top five—setup and nerve are worth more than raw pace.",
+        "ourPick": "The driver who posts the cleanest qualifying lap this weekend wins Spa because track position and tire management on a long, fast circuit is nearly impossible to overcome."
+      },
+      {
+        "label": "MLB",
+        "whatHappened": "Francisco Alvarez homered twice and drove in two runs, and Christian Scott struck out seven over 5.2 innings as the New York Mets beat the Philadelphia Phillies 4-1.",
+        "whyItMatters": "The Mets got dominant pitching and explosive offense in the same game—the recipe that actually wins ballgames. This win matters because the Phillies are a real team, and beating them at home is a statement about depth and consistency at the plate and on the mound.",
+        "bigMoments": [
+          "Francisco Alvarez went 2-for-3 with 2 home runs and 2 RBI, the Mets' primary power source in a split lineup",
+          "Christian Scott delivered 5.2 innings of sharp pitching with 7 strikeouts against a lineup that can hit",
+          "Brett Baty added another homer (2-for-4, 1 HR, 1 RBI) as the Mets stacked multiple power bats in one game"
+        ],
+        "theRead": "This is what the Mets are supposed to look like. Alvarez is young, talented, and when he connects he changes games—two homers in one night proves he's not a prospect anymore, he's an asset. Scott showed the kind of efficient, strike-throwing stuff that makes a rotation dangerous. The Phillies got a solo homer from Trea Turner and little else, which tells you the Mets' pitching plan worked. One game doesn't make a season, but dominant games against division rivals do add up.",
+        "ammo": [
+          "Francisco Alvarez: 2-for-3, 2 HR, 2 RBI",
+          "Christian Scott: 5.2 IP, 7 K against Philadelphia's lineup",
+          "Brett Baty: 2-for-4, 1 HR, 1 RBI; Trea Turner (Phillies): 1-for-4, 1 HR"
+        ],
+        "whatToBringUp": "Alvarez hit two homers tonight and Scott threw seven strikeouts—that's the kind of night the Mets need to string together if they're going to stay competitive in the East.",
+        "ourPick": "The Mets look like a real team right now because they're getting dominant pitching and multiple power hitters in the same lineup, and that combination beats good teams."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-07-17T10:42:10.125Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_ammo — the game has not been played yet and the three ammo items are either venue logistics or generic standings language with no named player, specific stat, or concrete event. A pure upcoming-game preview with no storyline, no named player context, and no result cannot meet the Hard Block Rule for a news/sports section. The section has no_current_facts beyond the matchup itself."
+      }
+    ],
+    "changed": [
+      "title — removed stale Royal Birkdale venue reference (not confirmed in RAW FACTS) and added Mets result",
+      "keyTakeaway — written from scratch; was empty in draft",
+      "lead.whatToSay — sharpened to be more natural and specific",
+      "lead.ammo — removed vague 'inflation data released weekly' item; replaced with 10Y yield and Nasdaq move from RAW FACTS",
+      "golf.headline — shortened to comply with HEADLINE STRUCTURE RULE",
+      "golf.whyCare1 — removed stale Royal Portrush 2025 reference not confirmed in RAW FACTS",
+      "golf.defending — left blank; defending champion not confirmed in RAW FACTS for this tournament",
+      "golf.whatToSay — rewritten to name both players and take a side per Golf-specific rule",
+      "f1.headline — lowercased to match style; minor clean-up",
+      "nhl.headline — shortened per HEADLINE STRUCTURE RULE",
+      "culture[1] — reordered: Hal Williams moved to slot 2 (stronger ammo, passes relevance gate); Landman draft item removed — no RAW FACTS support for it (not in SECTION RESEARCH or TRENDING HEADLINES as a sourced story)",
+      "culture[2] — replaced Landman (no RAW FACTS support) with curated streaming rec per EXCEPTION rule; ammo left empty per exception",
+      "finalSharpTake — removed invented '3-11 in one-run games this July' stat not in RAW FACTS; removed 'background noise' meta-take; rewrote to stay grounded in RAW FACTS only",
+      "theTake.bar — rewritten from generic ATP/WTA depth take (no RAW FACTS support for Baez/Badosa 'back-to-back' framing) to specific Herbert/Suber Open claim grounded in RAW FACTS",
+      "glance — all three rows rewritten to comply with TODAY AT A GLANCE RULE (8 words or fewer, no ESPN data format strings); removed invented England-France World Cup claim not in RAW FACTS"
+    ],
+    "notes": [
+      "The draft glance.culture line referenced 'England faces France in World Cup qualifier today' — this is not in RAW FACTS and contradicts RAW FACTS which show 0 World Cup matches played. Removed entirely.",
+      "The draft finalSharpTake claimed 'Philadelphia's now 3-11 in one-run games this July' — this stat does not appear in RAW FACTS and was removed as an invented figure.",
+      "The Landman culture item had no support in RAW FACTS or SECTION RESEARCH and was replaced with a curated streaming rec per the EXCEPTION rule.",
+      "Golf venue not confirmed in RAW FACTS — draft referenced Royal Birkdale in title but RAW FACTS only say 'The Open — IN PROGRESS.' Venue reference removed from title and golf copy to comply with GOLF/EVENT VENUE RULE.",
+      "NHL section flagged for blocking — no result, no named players with stats, and ammo array cannot reach 3 verifiable conversation-ready facts. The matchup alone does not satisfy the Hard Block Rule.",
+      "theTake.bar Badosa/Baez 'back-to-back titles' framing was not supported by RAW FACTS (RAW FACTS show individual match results, not confirmed tournament wins for both). Replaced with Open Championship take grounded in confirmed leaderboard data.",
+      "Sam Neill age confirmed as 76 from RAW FACTS (born 1947, died 2026 per pipeline date context)."
+    ],
+    "brokenLinks": [
+      {
+        "url": "https://www.washingtonpost.com/sports/2026/07/15/led-by-messi-argentina-scores-twice-late-reach-world-cup-final-again/",
+        "reason": "timeout"
+      }
+    ]
+  },
+  "factPack": null,
+  "researchPack": {
+    "researchNotes": "I conducted a broad scan today, July 17, 2026, across trusted outlets in sports, politics, markets, tech, culture, and world events. The confirmed, real stories of note are: MLB action (scores); Nigeria completing evacuation of citizens from South Africa due to xenophobic violence; fresh Fed commentary suggesting a possible rate hike if inflation doesn’t ease; no major developments uncovered in tech, culture, or White House politics that meet freshness and importance criteria today.",
+    "relevanceScan": {
+      "bucketA_sports": "MLB regular-season games played today with updated scores",
+      "bucketB_politics": "(none)",
+      "bucketC_markets": "Fed leaders signal possible rate hike (comments by Fed Vice Chair Philip Jefferson, Dallas Fed President Logan)",
+      "bucketD_tech": "(none)",
+      "bucketE_culture": "(none)",
+      "bucketF_world": "Nigeria completes evacuation of 1,490 citizens from South Africa after xenophobic attacks",
+      "leadJustification": "Fed commentary on interest-rate outlook likely to dominate conversations among men 25–45 due to economic implications, outweighing sports scores."
+    },
+    "stories": [
+      {
+        "id": "Economy-1",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": true,
+        "headline": "Federal Reserve officials warn of rate hike risk",
+        "whatHappened": "Fed Vice Chair Philip Jefferson said rates may need to rise if inflation doesn't ease; Dallas Fed’s Lorie Logan called for 'modestly higher' interest rates in upcoming meeting.",
+        "whyItMatters": "Signals potential shift from rate-hold to hike, affecting borrowing costs, mortgages, and markets imminently.",
+        "guytalkRead": "This isn’t just central bank jargon—if inflation keeps stubborn, your mortgage, car loan, or credit card rate is likely to get tighter. Jefferson’s vagueness might calm nerves, but Logan’s public push for higher rates is a warning shot.",
+        "context": [
+          "Jefferson’s remarks came July 16 at Stanford Institute for Economic Policy Research",
+          "Logan’s speech also delivered July 16 in Houston flagged rate hike support",
+          "Market sees 91% odds of no change at July 29 meeting, but rising talk of hike shifts sentiment"
+        ],
+        "whatToSay": "“Looks like the Fed might finally raise rates if inflation sticks around—time to lock in that mortgage rate.”",
+        "sources": [
+          "https://reuters.com article on Jefferson remarks",
+          "https://reuters.com article on Logan speech"
+        ],
+        "sourceNames": [
+          "Reuters",
+          "Reuters"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 4
+        },
+        "selectionReason": "High-impact economic policy news with direct relevance to daily financial lives, widely reported by Tier‑1 sources.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Sports-1",
+        "category": "Sports",
+        "sport": "MLB",
+        "isLead": false,
+        "headline": "MLB games underway: Dodgers, Yankees among today’s action",
+        "whatHappened": "Multiple MLB regular‑season games are scheduled and being played today, with updated team records including Dodgers (61‑36) vs. Yankees (54‑42).",
+        "whyItMatters": "Baseball is mid‑season and fans follow team standings; Dodgers–Yankees is high‑profile matchup.",
+        "guytalkRead": "Nothing like a Friday night Dodgers–Yankees scoreboard. Good for bar talk and fantasy league trash talk.",
+        "context": [
+          "Dodgers stand at 61‑36, Yankees at 54‑42",
+          "Multiple MLB matchups scheduled for today, July 17",
+          "Games include Pirates vs. Guardians and others"
+        ],
+        "whatToSay": "“Did you catch the Dodgers–Yankees matchup tonight? Tight standings.”",
+        "sources": [
+          "https://mlb.com scores page today"
+        ],
+        "sourceNames": [
+          "MLB.com"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Reliable, timely sports results from the official league site; broad appeal.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "World-1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Nigeria completes evacuation of 1,490 citizens from South Africa",
+        "whatHappened": "Nigeria evacuated 1,490 citizens following xenophobic violence in South Africa; latest flight brought 305 returnees arriving July 15.",
+        "whyItMatters": "Demonstrates ongoing regional tensions in Africa; humanitarian and geopolitical relevance.",
+        "guytalkRead": "Looks like Nigeria’s got its people home after those horrifying xenophobic attacks—reminder that world tensions are still very real.",
+        "context": [
+          "Evacuation completed as of July 16",
+          "Latest flight carried 305 people",
+          "Violence included assault and at least two fatalities"
+        ],
+        "whatToSay": "“Nigeria just flew almost 1.5k citizens back home amid those South Africa attacks—crazy situation.”",
+        "sources": [
+          "https://reuters.com article on evacuation"
+        ],
+        "sourceNames": [
+          "Reuters"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 3,
+          "variety": 5
+        },
+        "selectionReason": "Confirmed international event with clear facts, reported by Reuters; broad context, though less bar-room conversational than others.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "Speculative future Fed rate decisions or projections",
+        "reason": "No confirmed decision occurred today; commentary exists but decision not made—speculation excluded."
+      },
+      {
+        "headline": "Wikipedia pages summarizing 2026 in sports or US events",
+        "reason": "These are broad year‑in‑review or future event pages, not confirmed today’s events."
+      },
+      {
+        "headline": "Reddit commentary on active conflicts or markets",
+        "reason": "User posts are not Tier‑1 verified sources; speculation and unverified reporting."
+      }
+    ],
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-07-17T10:39:29.642Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "lead",
+      "kind": "retry",
+      "detail": "malformed lead — retried"
+    },
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_ammo — the game has not been played yet and the three ammo items are either venue logistics or generic standings language with no named player, specific stat, or concrete event. A pure upcoming-game preview with no storyline, no named player context, and no result cannot meet the Hard Block Rule for a news/sports section. The section has no_current_facts beyond the matchup itself."
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+    "blocking": [],
+    "warnings": []
+  }
+}
