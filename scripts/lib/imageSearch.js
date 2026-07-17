@@ -150,9 +150,16 @@ function buildSportImageQuery(s) {
   const hl      = s.headline || '';
 
   if (sport === 'worldcup') {
-    // Try to extract home team from headline like "England 4–2 Croatia"
-    const m = hl.match(/^([A-Za-z ]+?)\s+\d/);
-    const teams = m ? m[1].trim() : '';
+    // Extract team names from either a completed-result headline ("England 4–2
+    // Croatia") or a preview headline ("France vs. England") — without this,
+    // preview headlines fall through to a team-less generic query, which has
+    // returned action photos of the WRONG teams/players (e.g. Messi for an
+    // England-France match neither of them are even in).
+    const resultM  = hl.match(/^([A-Za-z ]+?)\s+\d/);
+    const previewM = hl.match(/^([A-Za-z ]+?)\s+vs\.?\s+([A-Za-z ]+?)$/i);
+    const teams = resultM ? resultM[1].trim()
+      : previewM ? `${previewM[1].trim()} ${previewM[2].trim()}`
+      : '';
     return teams
       ? `FIFA World Cup 2026 ${teams} match action photo soccer`
       : 'FIFA World Cup 2026 soccer match action photo players';

@@ -392,7 +392,7 @@ async function fetchF1() {
     const liveSession = comps.find((c) => stateOf(c) === 'in');
     const raceIsLive = liveSession && (liveSession === race || liveSession.type?.abbreviation === 'Race');
 
-    let board = null, statusState = 'pre', statusDesc = 'Upcoming';
+    let board = null, statusState = 'pre', statusDesc = 'Upcoming', daysAway = null;
     if (raceIsLive) {
       board = race; statusState = 'in';
       statusDesc = race.status?.type?.description || 'Race in progress';
@@ -403,6 +403,7 @@ async function fetchF1() {
       // Upcoming (or only practice/qualifying complete) — do NOT present as results.
       board = null; statusState = 'pre';
       statusDesc = race?.status?.type?.shortDetail || ev.status?.type?.description || 'Upcoming';
+      if (race?.date) daysAway = Math.max(0, Math.round((new Date(race.date).getTime() - Date.now()) / 86400000));
     }
 
     const results = board
@@ -486,6 +487,7 @@ async function fetchF1() {
       champLeader,
       results,
       nextRace,
+      daysAway,
     };
   } catch (_) {
     return null;
@@ -495,6 +497,22 @@ async function fetchF1() {
 // ─────────────────────────────────────────────────────────────────────────────
 // ESPN: FIFA World Cup scoreboard (active during tournament)
 // ─────────────────────────────────────────────────────────────────────────────
+// FIFA's ESPN season.slug for the match round (e.g. 'group-stage', 'round-of-16',
+// 'quarterfinal', 'semifinal', '3rd-place-match', 'final') — human label for copy.
+function worldCupStageLabel(slug) {
+  if (!slug) return '';
+  const map = {
+    'group-stage': 'Group Stage',
+    'round-of-32': 'Round of 32',
+    'round-of-16': 'Round of 16',
+    'quarterfinal': 'Quarterfinal',
+    'semifinal': 'Semifinal',
+    '3rd-place-match': 'Third-Place Match',
+    'final': 'Final',
+  };
+  return map[slug] || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
 async function fetchWorldCup() {
   try {
     const BASE = 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard';
@@ -516,6 +534,7 @@ async function fetchWorldCup() {
           }))
           .filter(g => g.player);
         const headline = comp?.notes?.[0]?.headline || comp?.headlines?.[0]?.description || '';
+        const stageSlug = ev.season?.slug || '';
         return {
           name: ev.name,
           shortName: ev.shortName || ev.name,
@@ -526,28 +545,44 @@ async function fetchWorldCup() {
           away: { team: away.team?.displayName || '', score: away.score || '' },
           goals,
           espnNote: headline,
+          stageSlug,
+          stage: worldCupStageLabel(stageSlug),
+          isKnockout: !!stageSlug && stageSlug !== 'group-stage',
         };
       });
     }
 
-    // Fetch today's AND yesterday's scoreboards so the brief can recap completed games
+    // Fetch yesterday's, today's, and tomorrow's scoreboards explicitly — ESPN's
+    // unqualified "today" call actually returns the next matchday with games,
+    // which can be tomorrow on a rest day, and silently mislabeling that as
+    // "today" produces false "X PM EDT today" copy. Explicit dates fix that.
     const today     = new Date();
     const yesterday = new Date(today); yesterday.setDate(yesterday.getDate() - 1);
+    const tomorrow  = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1);
     const fmt = (d) => d.toISOString().slice(0, 10).replace(/-/g, '');
 
-    const [todayRes, yestRes] = await Promise.all([
-      fetch(BASE, { headers: { 'User-Agent': 'GuyTalk/1.0' } }),
+    const [todayRes, yestRes, tomRes] = await Promise.all([
+      fetch(`${BASE}?dates=${fmt(today)}`,     { headers: { 'User-Agent': 'GuyTalk/1.0' } }),
       fetch(`${BASE}?dates=${fmt(yesterday)}`, { headers: { 'User-Agent': 'GuyTalk/1.0' } }),
+      fetch(`${BASE}?dates=${fmt(tomorrow)}`,  { headers: { 'User-Agent': 'GuyTalk/1.0' } }),
     ]);
 
-    const todayEvents    = todayRes.ok    ? parseEvents((await todayRes.json()).events    || []) : [];
-    const yesterdayEvents = yestRes.ok   ? parseEvents((await yestRes.json()).events     || []) : [];
+    const todayEvents     = todayRes.ok ? parseEvents((await todayRes.json()).events || []) : [];
+    const yesterdayEvents = yestRes.ok  ? parseEvents((await yestRes.json()).events  || []) : [];
+    const tomorrowEvents  = tomRes.ok   ? parseEvents((await tomRes.json()).events   || []) : [];
 
     // Completed games from yesterday are the most actionable — put them first
-    const completed  = yesterdayEvents.filter(e => e.statusState === 'post');
-    const scheduled  = todayEvents.filter(e => e.statusState === 'pre' || e.statusState === 'in');
+    const completed = yesterdayEvents.filter(e => e.statusState === 'post');
+    const scheduled = todayEvents.filter(e => e.statusState === 'pre' || e.statusState === 'in')
+      .map(e => ({ ...e, dayLabel: 'today' }));
 
-    const all = [...completed, ...scheduled].slice(0, 8);
+    // Only fall back to tomorrow's slate as a preview if there's truly nothing
+    // to recap or preview for today — and label it honestly as tomorrow.
+    const upcoming = (!completed.length && !scheduled.length)
+      ? tomorrowEvents.filter(e => e.statusState === 'pre').map(e => ({ ...e, dayLabel: 'tomorrow' }))
+      : [];
+
+    const all = [...completed, ...scheduled, ...upcoming].slice(0, 8);
     return all.length ? all : null;
   } catch (_) {
     return null;

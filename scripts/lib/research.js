@@ -585,15 +585,29 @@ async function fetchDynamicSports({ sports, nhl, f1, ufc, golf, tennis, worldCup
 
         facts = `YESTERDAY'S WORLD CUP RESULTS:\n${recapLines}${upcomingLines}${playersBlock}`;
       } else {
-        // No completed results — preview today's slate with group context
-        const allMatches = scheduled;
+        // No completed results — preview the featured match's actual slate/day
+        const allMatches = scheduled.length ? scheduled : worldCup.filter(m => m.dayLabel === featured.dayLabel);
+        const dayWord = featured.dayLabel === 'tomorrow' ? 'tomorrow' : 'today';
         headline = allMatches.length > 1
-          ? `FIFA World Cup 2026 — ${allMatches.length} matches today`
+          ? `FIFA World Cup 2026 — ${allMatches.length} matches ${dayWord}`
           : `${featured.away.team} vs. ${featured.home.team}`;
-        facts = `TODAY'S WORLD CUP SLATE:\n${allMatches.map(m => {
+
+        // Stage-aware stakes framing — a knockout/3rd-place/final match has
+        // nothing to do with "group stakes," and saying so produced nonsense
+        // copy (e.g. "group positioning" language for a 3rd-place playoff).
+        let stakesInstruction = 'Write as a World Cup preview: group stakes, key storylines, players to watch.';
+        if (featured.stageSlug === '3rd-place-match') {
+          stakesInstruction = `This is the THIRD-PLACE PLAYOFF (${featured.stage}) between the two semifinal losers — it decides 3rd/4th place only and has NO bearing on the tournament winner, group standings, or knockout seeding. Write about pride, consolation, and legacy (possibly a player's last World Cup appearance) — never mention "group stakes" or "knockout seeding."`;
+        } else if (featured.stageSlug === 'final') {
+          stakesInstruction = `This is the WORLD CUP FINAL — the championship match. Write about the stakes: the trophy, tournament legacy, and coronation of a champion. Do not mention "group stakes."`;
+        } else if (featured.isKnockout) {
+          stakesInstruction = `This is a KNOCKOUT-STAGE match (${featured.stage}) — the loser is eliminated from the tournament immediately. Write about elimination stakes, not group standings.`;
+        }
+
+        facts = `${dayWord.toUpperCase()}'S WORLD CUP SLATE:\n${allMatches.map(m => {
           const t = m.date ? new Date(m.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) : '';
-          return `${m.away.team} vs. ${m.home.team}${t ? ` (${t} EDT)` : ''}`;
-        }).join('\n')}\nWrite as a World Cup preview: group stakes, key storylines, players to watch. Do NOT invent scores.`;
+          return `${m.away.team} vs. ${m.home.team}${t ? ` (${t} EDT ${dayWord})` : ''}${m.stage ? ` [${m.stage}]` : ''}`;
+        }).join('\n')}\n${stakesInstruction} Do NOT invent scores.`;
       }
       const { score: imp } = scoreImportance({ name: 'World Cup FIFA 2026 championship soccer', headline, facts, isFinalResult: isPost });
       candidates.push({

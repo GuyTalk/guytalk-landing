@@ -148,6 +148,7 @@ function loadPreviousBriefs(n = 3) {
         nhlFinal:   !!(d.nhl?.final),
         dynamicLabels: (d.dynamicSports || []).map(s => (s.label || '').toLowerCase()),
         recBrand:   d.recPick?.brand || '',
+        cultureTopics: Array.isArray(d.copy?.culture) ? d.copy.culture.map(c => c.topic).filter(Boolean) : [],
       };
     } catch (_) { return null; }
   }).filter(Boolean);
@@ -891,6 +892,18 @@ async function main() {
         daysAway: f1.nextRace.daysAway,
       };
     }
+
+    // Variety guard — an upcoming race that's still several days out and has
+    // already been previewed in prior briefs gets stale fast ("this weekend"
+    // for a week straight). Drop it for one issue once it's run 2+ times in a
+    // row, unless it's now imminent (<=1 day away), where continued hype is fine.
+    const f1PreStreak = f1?.name && f1.statusState === 'pre'
+      ? prev3.filter(p => p.f1Event === f1.name && p.f1State === 'pre').length
+      : 0;
+    if (f1PreStreak >= 2 && !(f1.daysAway != null && f1.daysAway <= 1)) {
+      console.log(`   ↪ F1: ${f1.name} previewed ${f1PreStreak} briefs running — dropping for variety`);
+      f1 = null;
+    }
     const streamingPick = STREAMING_PICKS[issueNum % STREAMING_PICKS.length];
 
     // ── Web research — dynamic sports discovery + culture/hero, in parallel ─────
@@ -1006,7 +1019,7 @@ async function main() {
       console.log(`   ⚠  culture has ${cultureCount} item(s), need 2 — retrying culture section...`);
       addWarning('culture', 'retry', `only ${cultureCount} item(s)`);
       const { generateCultureOnly } = require('./lib/copy');
-      const retriedCulture = await generateCultureOnly({ topStories, sectionStories, streamingPick, factPack });
+      const retriedCulture = await generateCultureOnly({ topStories, sectionStories, streamingPick, factPack, prev3 });
       if (Array.isArray(retriedCulture) && retriedCulture.length >= 2) {
         copy.culture = retriedCulture;
         console.log(`   ✓ Culture retry succeeded: ${retriedCulture.length} item(s)`);

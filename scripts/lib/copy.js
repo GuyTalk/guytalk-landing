@@ -312,6 +312,13 @@ async function generateCopy({ sports, markets, golf, tennis, trending, topStorie
 REPETITION GUARD — avoid these angles used in recent issues:
 ${prev3.map((b, i) => `${i + 1} day(s) ago — Lead angle: "${b.sportsThesis || b.lead || ''}" | Bring-up: "${b.marketsBringUp || b.bringUp || ''}"`).join('\n')}${coveredLine}` : '';
 
+  // Culture repetition guard — obituaries and other culture stories keep getting
+  // re-covered days later because follow-up articles are still circulating.
+  const prevCultureTopics = [...new Set((prev3 || []).flatMap(b => b.cultureTopics || []))];
+  const cultureRepGuard = prevCultureTopics.length
+    ? `\nALREADY COVERED in recent issues — do NOT repeat these people/topics even if new articles about them are still circulating: ${prevCultureTopics.join(', ')}.`
+    : '';
+
   // Golf preview leans on factual recall (course, defending champ) — use the
   // stronger model for it; live recaps stay on Haiku.
   const golfStarted = golf?.statusState === 'post' || golf?.statusState === 'in';
@@ -524,6 +531,8 @@ HARD EXCLUDES — these do NOT belong in culture, ever:
 
 RELEVANCE GATE — every item must pass: "Would a normal 30-year-old man actually bring this up at work or a bar today?" If the answer is probably not, skip it.
 
+OBITUARY LIMIT — at most ONE "dies at"/obituary item per issue. If the web facts surface two deaths, run only the more significant one and fill the other slot(s) with a movie/TV/gaming/tech/music story. Two obituaries side by side reads morbid, not newsy.
+${cultureRepGuard}
 SELECTION: Return EXACTLY 2-3 items. You MUST return at least 2. If the web-researched stories below are sparse, supplement with verified cultural events you know happened recently (a major streaming release, gaming launch, tech announcement, music news, sports business story). Never pad with celebrity gossip — but always hit at least 2 items. Never return null or an empty array.
 
 THE LEAD ITEM (first object) gets full depth:
@@ -777,7 +786,7 @@ CRITICAL: Return ONLY a single JSON object on one line. NOT an array. NOT markdo
 /**
  * Retry just the culture section when generateCopy() returned fewer than 2 items.
  */
-async function generateCultureOnly({ topStories, sectionStories, streamingPick, factPack }) {
+async function generateCultureOnly({ topStories, sectionStories, streamingPick, factPack, prev3 }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return null;
   let Anthropic;
@@ -795,11 +804,17 @@ async function generateCultureOnly({ topStories, sectionStories, streamingPick, 
 
   const webFacts = (sectionStories?.culture || []).map(c => c.fact || c.headline).filter(Boolean).join(' | ');
 
+  const prevCultureTopics = [...new Set((prev3 || []).flatMap(b => b.cultureTopics || []))];
+  const cultureRepGuard = prevCultureTopics.length
+    ? `\nALREADY COVERED in recent issues — do NOT repeat these people/topics: ${prevCultureTopics.join(', ')}.`
+    : '';
+
   const prompt = `${BRAND_VOICE}
 
 Write the Culture section for today's GuyTalk. Return a JSON ARRAY of EXACTLY 2-3 objects. You MUST return at least 2 — never null, never empty.
 Each object covers one story men 25-45 are actually talking about — entertainment, streaming, tech, gaming, sports business. NOT politics. NOT sports scores.
-
+OBITUARY LIMIT: at most ONE "dies at"/obituary item per issue.
+${cultureRepGuard}
 TODAY'S STORIES:
 ${storyLines || '(no feed stories today — see instruction below)'}
 ${webFacts ? `WEB-VERIFIED FACTS: ${webFacts}` : ''}
