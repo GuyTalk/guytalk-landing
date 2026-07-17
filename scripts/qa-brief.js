@@ -604,6 +604,42 @@ function main() {
     if (!contaminated) run('Sport content: all sections match their headlines', true);
   }
 
+  // 10f. CULTURE CONTENT CROSS-CONTAMINATION — catches the model copy-pasting one
+  // culture item's ammo facts into another (e.g. a streaming rec's "What to Know"
+  // showing a different item's obituary facts verbatim).
+  console.log('\n  [Culture Content Cross-Contamination]');
+  {
+    const wordSet = (t) => new Set(String(t || '').toLowerCase().match(/[a-z0-9]+/g) || []);
+    const overlapRatio = (a, b) => {
+      const wa = wordSet(a), wb = wordSet(b);
+      if (!wa.size || !wb.size) return 0;
+      let shared = 0;
+      for (const w of wa) if (wb.has(w)) shared++;
+      return shared / Math.min(wa.size, wb.size);
+    };
+    let cultureContaminated = false;
+    const cultureItems = copy?.culture || [];
+    for (let i = 0; i < cultureItems.length; i++) {
+      const a = cultureItems[i];
+      const aAmmo = (a?.ammo || []).join(' ');
+      if (!aAmmo) continue;
+      for (let j = i + 1; j < cultureItems.length; j++) {
+        const b = cultureItems[j];
+        const bAmmo = (b?.ammo || []).join(' ');
+        if (!bAmmo) continue;
+        if (overlapRatio(aAmmo, bAmmo) >= 0.6) {
+          cultureContaminated = true;
+          run(
+            `Culture content: "${a?.topic || `item ${i+1}`}" ammo is distinct from "${b?.topic || `item ${j+1}`}"`,
+            false,
+            `Ammo facts overlap heavily — likely copy-pasted from another item. "${a?.topic}" ammo: ${JSON.stringify(a?.ammo)}`
+          );
+        }
+      }
+    }
+    if (!cultureContaminated) run('Culture content: no cross-contaminated ammo between items', true);
+  }
+
   // 11. THE RUNDOWN module — verify narrative sources exist (warn only, fallbacks in html.js)
   const hasRundownNarrative = !!(copy?.rundownNarrative);
   const hasRundownFallbacks = !!(

@@ -555,7 +555,7 @@ SOURCE PRIORITY:
 2. BROADER TODAY'S STORIES below (only culture-tagged items — skip any Politics/Markets/Current Events/World)
 3. Only if both are empty: a well-known June 2026 culture story you are confident is real; never invent specifics
 
-${streamingPick ? `One item SHOULD be a watch rec for "${streamingPick.head.replace('Watch this: ', '')}": {"topic":"${streamingPick.head.replace('Watch this: ', '')}","whatHappened":"${streamingPick.body.split('.')[0]}.","whyItMatters":"One sentence on vibe/genre — no invented details.","theRead":"2-3 sentences on why it's worth a guy's time — genre, tone, who it's for. No invented facts.","whatToSay":"One natural rec line.","tag":"Streaming"}` : 'One item can be a streaming/watch rec (action, thriller, crime, prestige drama only — no animated/kids/family). theRead = genre, tone, who it\'s for. No invented facts.'}
+${streamingPick ? `One item SHOULD be a watch rec for "${streamingPick.head.replace('Watch this: ', '')}": {"topic":"${streamingPick.head.replace('Watch this: ', '')}","whatHappened":"${streamingPick.body.split('.')[0]}.","whyItMatters":"One sentence on vibe/genre — no invented details.","theRead":"2-3 sentences on why it's worth a guy's time — genre, tone, who it's for. No invented facts.","ammo":[],"whatToSay":"One natural rec line.","tag":"Streaming"} — IMPORTANT: this item's "ammo" MUST be an empty array []. Do NOT invent facts for it and do NOT reuse/reword ammo facts from a different item above it.` : 'One item can be a streaming/watch rec (action, thriller, crime, prestige drama only — no animated/kids/family). theRead = genre, tone, who it\'s for. No invented facts. This item\'s "ammo" MUST be an empty array [] — never reuse another item\'s facts.'}
 
 WEB-RESEARCHED CULTURE FACTS: ${cultureWeb.length ? cultureWeb.map((c, i) => `${i + 1}. ${c}`).join(' | ') : '(none)'}
 BROADER TODAY'S STORIES (culture-only — skip any Politics/Markets/World/Current Events items): ${topStoriesText || '(none)'}`,
@@ -714,7 +714,17 @@ Return ONLY a valid JSON array — one object per story, in the SAME order, no m
     markets:        marketsData,
     golf:           golfData,
     f1:             f1Data,
-    culture:        Array.isArray(cultureArr) ? cultureArr : null,
+    // Defensive net: the model is told the streaming-rec item's ammo must be []
+    // (no real facts are given for it), but it has been observed ignoring that
+    // and copy-pasting a nearby item's ammo verbatim instead — force it empty
+    // here regardless of what the model returned.
+    culture: Array.isArray(cultureArr) ? cultureArr.map(c => {
+      const pickTitle = streamingPick ? streamingPick.head.replace('Watch this: ', '').toLowerCase() : '';
+      if (pickTitle && (c?.topic || '').toLowerCase().includes(pickTitle) && Array.isArray(c.ammo) && c.ammo.length) {
+        return { ...c, ammo: [] };
+      }
+      return c;
+    }) : null,
     finalSharpTake: (() => {
       const raw = get(finalTakeR);
       const parsed = parseJson(raw);
@@ -819,7 +829,7 @@ TODAY'S STORIES:
 ${storyLines || '(no feed stories today — see instruction below)'}
 ${webFacts ? `WEB-VERIFIED FACTS: ${webFacts}` : ''}
 ${!storyLines ? `FALLBACK: Since feed data is unavailable, use your knowledge of recent real events (past 2 weeks) — a major streaming show premiere, gaming news, tech launch, music release, sports business story, viral moment men 25-45 would discuss. Use only events you are confident actually happened; be specific (name the show/game/artist/company). You must produce 2 items.` : ''}
-${streamingPick ? `INCLUDE a streaming rec for "${streamingPick.head.replace('Watch this: ', '')}": tag="Streaming"` : ''}
+${streamingPick ? `INCLUDE a streaming rec for "${streamingPick.head.replace('Watch this: ', '')}": tag="Streaming". This item's "ammo" MUST be an empty array [] — do not invent facts or reuse another item's facts.` : ''}
 
 CRITICAL: Return ONLY a JSON array — no markdown, no extra text:
 [{"topic":"Max 8 words.","whatHappened":"1-2 sentences.","whyItMatters":"1-2 sentences.","theRead":"2-3 sentences. GuyTalk voice — take a side.","ammo":["fact1","fact2","fact3"],"whatToSay":"One casual line.","tag":"One of: AI, Streaming, Film, TV, Music, Gaming, Tech, Media, Sports Biz — pick the ONE that fits the story's real subject. A show/movie is Streaming/Film/TV, an AI story is AI, a lawsuit/press/royals story is Media. NEVER use Sports Biz for a non-sports story."}]`;
