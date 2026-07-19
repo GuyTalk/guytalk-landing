@@ -2360,7 +2360,7 @@ function resolveCultureTag(item) {
   if (has(/\bfilm\b|\bmovie\b|feature film|box office|theaters|in theaters|cinema|sequel|franchise reboot|casting/) ) return 'Film';
   if (has(/video game|\bxbox\b|playstation|\bps5\b|nintendo|\bsteam\b|esports|\bgaming\b|game studio|game pass/)) return 'Gaming';
   if (has(/\balbum\b|\btour\b|\bsong\b|billboard|grammy|spotify|concert|\bsingle\b|\brapper\b|hip.hop|pop star|setlist/)) return 'Music';
-  if (has(/lawsuit|court|judge|verdict|tabloid|phone.hacking|defamation|publisher|prince harry|\broyal\b|sussex|press|paparazzi|settlement|legal battle/)) return 'Media';
+  if (has(/lawsuit|court|judge|verdict|tabloid|phone.hacking|defamation|publisher|prince harry|\broyal\b|sussex|press|paparazzi|settlement|legal battle|\bslap\b|altercation|scuffle|confrontation|viral (clip|moment|video)|\bwwe\b|feud/)) return 'Media';
   if (has(/iphone|android|gadget|\bapp\b|startup|software|hardware|smartphone|wearable|\bchip\b|\btech\b|silicon valley/)) return 'Tech';
   if (has(/(trade|contract|signing|franchise|broadcast rights|sponsorship|media rights|salary cap)/) && has(/\bnba\b|\bnfl\b|\bmlb\b|\bnhl\b|espn|league|athlete|\bteam\b|stadium/)) return 'Sports Biz';
   // Last resort: trust a sane AI tag if it isn't the notorious mislabel
@@ -2392,6 +2392,7 @@ function buildCulture({ copy }) {
           ${item.theRead      ? `<p class="culture-line"><strong>The GuyTalk Read:</strong> ${esc(stripHtmlTags(item.theRead))}</p>`    : ''}
           ${Array.isArray(item.ammo) && item.ammo.filter(Boolean).length ? `<ul class="ammo-list">${item.ammo.filter(Boolean).map(a => `<li>${esc(stripHtmlTags(a))}</li>`).join('')}</ul>` : ''}
           ${item.whatToSay    ? `<p class="culture-line"><strong>What to say:</strong> ${esc(stripHtmlTags(item.whatToSay))}</p>`       : ''}
+          ${item.videoUrl     ? `<a class="watch-moment" href="${esc(item.videoUrl)}" target="_blank" rel="noopener">Watch the moment →</a>` : ''}
         </div>
       </li>`;
   }).join('\n');
