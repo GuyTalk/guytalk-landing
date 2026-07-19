@@ -339,6 +339,17 @@ function ContextCard(rows, live, tag) {
   </div>`;
 }
 
+/** storylineToRows — maps a server-generated AI storyline ({whyItMatters,
+ *  biggestMoment, whatToSay, hotTake, ...}) onto ContextCard's row shape. */
+function storylineToRows(s) {
+  return [
+    { label: 'Why it matters', text: s.whyItMatters },
+    s.biggestMoment && { label: 'Key stat', key: true, text: s.biggestMoment },
+    s.whatToSay && { label: 'What to say', say: true, text: `"${String(s.whatToSay).replace(/^"|"$/g, '')}"` },
+    s.hotTake && { label: 'Hot take', take: true, text: s.hotTake },
+  ].filter((r) => r && r.text);
+}
+
 /** HighlightLink — standalone "Watch highlights" button for light-bg sections. */
 function HighlightLink(href, label) {
   if (!href) return '';
@@ -421,7 +432,7 @@ function ScoreboardCard(g) {
   const statusBit = g.state === 'in'
     ? `<span class="pill pill-live"><span class="nav-live-dot"></span>Live</span> ${esc(g.statusText)}`
     : esc(g.statusText);
-  const showBreakdown = g.state === 'post';
+  const showBreakdown = g.state === 'post' || g.state === 'in';
   const foot = showBreakdown
     ? `${statusBit} · <span class="sc-breakdown-hint">GuyTalk breakdown →</span>`
     : (gameUrl
@@ -439,6 +450,7 @@ function ScoreboardCard(g) {
     `data-away-score="${esc(String(g.away?.score ?? ''))}"`,
     `data-league="${esc(league)}"`,
     `data-headline="${esc(headline.replace(/"/g,'&quot;'))}"`,
+    `data-state="${esc(g.state || '')}"`,
   ].join(' ');
 
   return `<div class="sc-card" ${showBreakdown ? dataAttrs + ' role="button" tabindex="0"' : ''}>
@@ -617,6 +629,7 @@ function f1Context(f1) {
     : null;
 
   if (f1.phase === 'live') {
+    if (f1.storyline) return storylineToRows(f1.storyline);
     const p0 = p[0], p1 = p[1];
     return [
       { label: 'Why it matters', text: p0
@@ -708,6 +721,7 @@ function golfScoreNum(s) {
 }
 
 function golfContext(g) {
+  if (g.state === 'in' && g.storyline) return storylineToRows(g.storyline);
   const lb = g.leaderboard || [];
   const ev = shortEvent(g.event);
   const lead = lb[0], second = lb[1];
@@ -2722,6 +2736,7 @@ function FeaturedGolfCard(g) {
       const as_      = card.dataset.awayScore || '';
       const league   = card.dataset.league   || '';
       const headline = card.dataset.headline || '';
+      const state    = card.dataset.state    || 'post';
       if (!home || !away) return;
 
       titleEl.textContent = `${away} vs ${home}`;
@@ -2730,7 +2745,7 @@ function FeaturedGolfCard(g) {
       document.body.style.overflow = 'hidden';
 
       try {
-        const params = new URLSearchParams({ action: 'game-context', sport, home, away, homeScore: hs, awayScore: as_, league, headline });
+        const params = new URLSearchParams({ action: 'game-context', sport, home, away, homeScore: hs, awayScore: as_, league, headline, state });
         const resp = await fetch(`/api/live?${params}`);
         if (!resp.ok) throw new Error('api error');
         const d = await resp.json();

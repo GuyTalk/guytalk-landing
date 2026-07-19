@@ -120,6 +120,66 @@ function cleanCommentary(c) {
 // Key: sport|homeAbbr|awayAbbr|homeScore|awayScore
 const _cmtCache = new Map();
 
+// Shared OpenAI web_search → JSON helper. Returns null on any failure (no key,
+// require fails, timeout, unparseable) so every call site can fall back to its
+// own template with zero risk of throwing.
+async function openaiSearchJSON(prompt, { timeoutMs = 7000, maxOutputTokens = 800, searchContextSize = 'low' } = {}) {
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  if (!OPENAI_API_KEY) return null;
+  let OpenAI;
+  try { OpenAI = require('openai'); } catch (_) { return null; }
+  const client = new (OpenAI.default || OpenAI)({ apiKey: OPENAI_API_KEY });
+  try {
+    const controller = new AbortController();
+    const tid = setTimeout(() => controller.abort(), timeoutMs);
+    let response;
+    try {
+      response = await client.responses.create({
+        model: 'gpt-4.1',
+        tools: [{ type: 'web_search', search_context_size: searchContextSize }],
+        tool_choice: 'required',
+        max_output_tokens: maxOutputTokens,
+        input: prompt,
+      }, { signal: controller.signal });
+    } finally { clearTimeout(tid); }
+    let text = response.output_text || '';
+    if (!text && Array.isArray(response.output)) {
+      text = response.output.filter(b => b.type === 'message')
+        .flatMap(b => b.content || [])
+        .filter(c => c.type === 'output_text' || c.type === 'text')
+        .map(c => c.text || '').join('');
+    }
+    text = text.replace(/```json\s*/gi, '').replace(/```/g, '');
+    const s = text.indexOf('{'), e = text.lastIndexOf('}');
+    if (s < 0 || e < 0) return null;
+    return cleanCommentary(JSON.parse(text.slice(s, e + 1)));
+  } catch (_) { return null; }
+}
+
+// Live-storyline cache — time-bucketed (not state-hashed like _gcCache below),
+// because a live leaderboard/score changes every few minutes and would nearly
+// always cache-miss on an exact-state key. Bucketing by wall clock instead
+// bounds OpenAI call volume to roughly one per bucket per event, regardless of
+// traffic, while still refreshing on a fixed cadence.
+const _liveStoryCache = new Map();
+const LIVE_STORY_TTL_MS = 10 * 60 * 1000;
+async function getLiveStoryline(sport, eventKey, buildPrompt) {
+  const bucket = Math.floor(Date.now() / LIVE_STORY_TTL_MS);
+  const cacheKey = `${sport}|${eventKey}|${bucket}`;
+  if (_liveStoryCache.has(cacheKey)) return _liveStoryCache.get(cacheKey);
+  const data = await openaiSearchJSON(buildPrompt(), { timeoutMs: 7000, maxOutputTokens: 800, searchContextSize: 'low' });
+  if (data) {
+    _liveStoryCache.set(cacheKey, data);
+    if (_liveStoryCache.size > 40) _liveStoryCache.delete(_liveStoryCache.keys().next().value);
+  }
+  return data;
+}
+// Races a promise against a hard ceiling so a slow OpenAI call can never push
+// the whole /api/live handler past Vercel's 15s maxDuration.
+function raceOrNull(promise, ms) {
+  return Promise.race([promise, new Promise((resolve) => setTimeout(resolve, ms))]);
+}
+
 // Switch commentary generation to OpenAI web_search so facts are grounded in
 // live search results — prevents hallucinations like "Brazil can't afford slip-ups"
 // when they're already eliminated.
@@ -1168,6 +1228,49 @@ async function fetchLeagueNews(sport, league, limit = 4) {
 
 /* ----------------------------------------------------------------- Live Now */
 
+// Live-event storyline prompts. These deliberately BAN restating the raw
+// leaderboard/position as the whole insight — Jake's feedback was that
+// "Lucas Herbert leads at -8" is a scoreboard fact, not a talking point.
+// Real conversation fodder (penalties/controversy/history/streaks) requires
+// an actual web search, which is why this can't be template logic.
+function golfLiveStorylinePrompt(golf) {
+  const top = golf.leaderboard?.[0], second = golf.leaderboard?.[1];
+  return `You are GuyTalk's golf editor covering ${golf.event}, LIVE and in progress (${golf.statusText || ''}).
+Leaderboard right now: ${top ? `${top.name} at ${top.score}` : 'unclear'}${second ? `, ${second.name} at ${second.score} (2nd)` : ''}.
+
+BANNED as the entire insight: simply restating "${top?.name || 'the leader'} leads at ${top?.score || ''}" — that's a scoreboard fact, not a storyline.
+
+Search the web right now for:
+- "${golf.event} penalty ruling controversy 2026"
+- "${top?.name || ''} ${golf.event} history past results"
+- "${top?.name || ''} last PGA Tour win" and "${top?.name || ''} career wins majors"
+- "${golf.event} 2026 biggest storyline"
+
+Prioritize, in this order: (1) any rules controversy/penalty/incident this week, (2) whether the current leader has ever won THIS tournament before and when their last win of any kind was, (3) a streak or record at stake, (4) a rivalry or chase-pack storyline. Use ONLY what you find — if nothing substantive turns up, say so plainly in keyTakeaway rather than inventing history.
+
+Return ONLY valid JSON:
+{"whyItMatters":"2-3 sentences on the real storyline, not the leaderboard","hotTake":"specific, opinionated","whatToSay":"one-liner with a concrete fact","biggestMoment":"the most talked-about incident/shot/ruling so far","keyTakeaway":"what this means for the leader's résumé or the tournament","contextFacts":["fact1","fact2","fact3"],"source":"openai-search"}`;
+}
+
+function f1LiveStorylinePrompt(f1) {
+  const p1 = f1.positions?.[0], p2 = f1.positions?.[1];
+  return `You are GuyTalk's F1 editor covering ${f1.event}, LIVE right now (${f1.sessionLabel || ''}).
+Current order: ${p1 ? `${p1.driver} leads` : 'unclear'}${p2 ? `, ${p2.driver} 2nd` : ''}.
+
+BANNED as the entire insight: simply restating "${p1?.driver || 'the leader'} leads" — that's a scoreboard fact, not a storyline.
+
+Search the web right now for:
+- "${f1.event} 2026 penalty investigation stewards"
+- "${p1?.driver || ''} ${f1.event} history past results"
+- "${p1?.driver || ''} championship battle 2026"
+- "${f1.event} 2026 biggest storyline"
+
+Prioritize, in this order: (1) any penalty/stewards investigation/incident this session, (2) whether the current leader has ever won at THIS circuit before and their recent form, (3) a streak or championship implication at stake, (4) a rivalry or midfield battle storyline. Use ONLY what you find — if nothing substantive turns up, say so plainly in keyTakeaway rather than inventing history.
+
+Return ONLY valid JSON:
+{"whyItMatters":"2-3 sentences on the real storyline, not the running order","hotTake":"specific, opinionated","whatToSay":"one-liner with a concrete fact","biggestMoment":"the most talked-about incident/overtake/penalty so far","keyTakeaway":"what this means for the championship or this driver's résumé","contextFacts":["fact1","fact2","fact3"],"source":"openai-search"}`;
+}
+
 // Derive 2-3 conversation-ready talking points from a game's available facts.
 // All data comes directly from ESPN — no guessing.
 function gameTalkingPoints(game) {
@@ -1231,11 +1334,15 @@ function deriveLiveNow({ scoreboard, f1, golf, mma }) {
   }
 
   if (f1 && f1.phase === 'live') {
-    const f1Pts = [];
-    if (f1.positions[0]) f1Pts.push(`${f1.positions[0].driver} leads from ${f1.positions[1] ? f1.positions[1].driver : 'the field'}`);
-    if (f1.driverStandings?.[0]) {
-      const cLeader = f1.driverStandings[0];
-      f1Pts.push(`${cLeader.name} leads championship with ${cLeader.points} pts`);
+    const f1Pts = f1.storyline
+      ? [f1.storyline.whatToSay, f1.storyline.biggestMoment].filter(Boolean)
+      : [];
+    if (!f1Pts.length) {
+      if (f1.positions[0]) f1Pts.push(`${f1.positions[0].driver} leads from ${f1.positions[1] ? f1.positions[1].driver : 'the field'}`);
+      if (f1.driverStandings?.[0]) {
+        const cLeader = f1.driverStandings[0];
+        f1Pts.push(`${cLeader.name} leads championship with ${cLeader.points} pts`);
+      }
     }
     cards.push({
       kind: 'f1', importance: 100, title: f1.event, status: 'live',
@@ -1250,10 +1357,14 @@ function deriveLiveNow({ scoreboard, f1, golf, mma }) {
   if (golf && golf.state === 'in') {
     const top = golf.leaderboard[0];
     const second = golf.leaderboard[1];
-    const golfPts = [];
-    if (top) golfPts.push(`${top.name} leads at ${top.score}`);
-    if (second && golf.isMajor) golfPts.push(`${second.name} in second at ${second.score} — in the hunt`);
-    if (golf.isMajor) golfPts.push(`Major championship — ${golf.event}`);
+    const golfPts = golf.storyline
+      ? [golf.storyline.whatToSay, golf.storyline.biggestMoment].filter(Boolean)
+      : [];
+    if (!golfPts.length) {
+      if (top) golfPts.push(`${top.name} leads at ${top.score}`);
+      if (second && golf.isMajor) golfPts.push(`${second.name} in second at ${second.score} — in the hunt`);
+      if (golf.isMajor) golfPts.push(`Major championship — ${golf.event}`);
+    }
     cards.push({
       kind: 'golf', importance: 85 + (golf.isMajor ? 10 : 0), title: golf.event, status: 'live',
       statusText: `Golf · ${golf.statusText}`,
@@ -1458,15 +1569,19 @@ async function handleGameContext(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
   const { sport = '', home = '', away = '', homeScore = '', awayScore = '',
-          league = '', headline = '' } = req.query || {};
+          league = '', headline = '', state = 'post' } = req.query || {};
   if (!home || !away) return res.status(400).json({ error: 'home and away required' });
-  const cacheKey = `${sport}|${home}|${away}|${homeScore}|${awayScore}`;
+  const live = state === 'in';
+  // Cache key includes state — a live snapshot score can coincidentally equal
+  // a later final score of the same value, which would otherwise serve a
+  // stale/wrong-framing breakdown (live vs. final phrasing) for that score.
+  const cacheKey = `${sport}|${home}|${away}|${homeScore}|${awayScore}|${state}`;
   if (_gcCache.has(cacheKey)) return res.status(200).json(_gcCache.get(cacheKey));
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-  if (!OPENAI_API_KEY) return res.status(200).json(gcFallback(home, away, homeScore, awayScore, league));
+  if (!OPENAI_API_KEY) return res.status(200).json(gcFallback(home, away, homeScore, awayScore, league, live));
   let OpenAI;
   try { OpenAI = require('openai'); } catch (_) {
-    return res.status(200).json(gcFallback(home, away, homeScore, awayScore, league));
+    return res.status(200).json(gcFallback(home, away, homeScore, awayScore, league, live));
   }
   const client = new (OpenAI.default || OpenAI)({ apiKey: OPENAI_API_KEY });
   const sportLabel = sport === 'worldcup' ? 'FIFA World Cup 2026' :
@@ -1474,7 +1589,9 @@ async function handleGameContext(req, res) {
     sport === 'nhl' ? 'NHL' : sport === 'mls' ? 'MLS' :
     sport === 'epl' ? 'Premier League' : (league || sport.toUpperCase());
   const loser = Number(homeScore) < Number(awayScore) ? home : away;
-  const prompt = `You are GuyTalk's sports editor. A reader tapped for a breakdown of this game.\n\nGAME: ${home} ${homeScore}–${awayScore} ${away} (${sportLabel})${headline ? `\nESPN: "${headline}"` : ''}\n\nSTEP 1 — Search the web RIGHT NOW for the actual match details. Search:\n- "${home} ${away} ${sportLabel} 2026 goals scorers"\n- "${loser} eliminated ${sportLabel.includes('World Cup') ? 'World Cup 2026' : 'standings'}"\n\nSTEP 2 — Generate using ONLY what you found. BANNED: "most dangerous team", "can't afford slip-ups". If a team is eliminated say so explicitly.\n\nReturn ONLY valid JSON:\n{"whyItMatters":"2-3 sentences. Real standings impact. State elimination if relevant.","hotTake":"Specific player/moment. Opinionated.","whatToSay":"One-liner with a number or minute.","biggestMoment":"Scorer, minute, context.","keyTakeaway":"Current standings reality.","contextFacts":["fact1","fact2","fact3"],"source":"openai-search"}`;
+  const prompt = live
+    ? `You are GuyTalk's sports editor. A reader tapped for a breakdown of this game while it's STILL IN PROGRESS — do not declare a winner or treat the score as final.\n\nGAME (live, current score): ${home} ${homeScore}–${awayScore} ${away} (${sportLabel})${headline ? `\nESPN: "${headline}"` : ''}\n\nBANNED as the entire insight: simply restating the current score — that's a scoreboard fact, not a storyline.\n\nSTEP 1 — Search the web RIGHT NOW for what's actually happening in this game as it plays out. Search:\n- "${home} ${away} ${sportLabel} 2026 live scoring plays"\n- "${home} ${away} ${sportLabel} 2026 injury ejection controversy"\n- "${home} ${away} ${sportLabel} 2026 standings implications"\n\nSTEP 2 — Generate using ONLY what you found. Frame everything as still-developing ("as it stands", "right now", "if this holds"). BANNED: "most dangerous team", "can't afford slip-ups", declaring either team the winner.\n\nReturn ONLY valid JSON:\n{"whyItMatters":"2-3 sentences on the real in-game storyline, not just the score","hotTake":"Specific player/moment. Opinionated.","whatToSay":"One-liner with a concrete fact from right now.","biggestMoment":"The most talked-about play/incident so far this game.","keyTakeaway":"What this means if the current score holds — no winner declared.","contextFacts":["fact1","fact2","fact3"],"source":"openai-search"}`
+    : `You are GuyTalk's sports editor. A reader tapped for a breakdown of this game.\n\nGAME: ${home} ${homeScore}–${awayScore} ${away} (${sportLabel})${headline ? `\nESPN: "${headline}"` : ''}\n\nSTEP 1 — Search the web RIGHT NOW for the actual match details. Search:\n- "${home} ${away} ${sportLabel} 2026 goals scorers"\n- "${loser} eliminated ${sportLabel.includes('World Cup') ? 'World Cup 2026' : 'standings'}"\n\nSTEP 2 — Generate using ONLY what you found. BANNED: "most dangerous team", "can't afford slip-ups". If a team is eliminated say so explicitly.\n\nReturn ONLY valid JSON:\n{"whyItMatters":"2-3 sentences. Real standings impact. State elimination if relevant.","hotTake":"Specific player/moment. Opinionated.","whatToSay":"One-liner with a number or minute.","biggestMoment":"Scorer, minute, context.","keyTakeaway":"Current standings reality.","contextFacts":["fact1","fact2","fact3"],"source":"openai-search"}`;
   try {
     const controller = new AbortController();
     const tid = setTimeout(() => controller.abort(), 25000);
@@ -1502,15 +1619,26 @@ async function handleGameContext(req, res) {
     _gcCache.set(cacheKey, data);
     return res.status(200).json(data);
   } catch (_) {
-    return res.status(200).json(gcFallback(home, away, homeScore, awayScore, league));
+    return res.status(200).json(gcFallback(home, away, homeScore, awayScore, league, live));
   }
 }
 
-function gcFallback(home, away, homeScore, awayScore, league) {
+function gcFallback(home, away, homeScore, awayScore, league, live) {
+  const score = `${homeScore}–${awayScore}`;
+  if (live) {
+    return {
+      whyItMatters: `${home} and ${away} are playing right now, ${score}${league ? ` (${league})` : ''}.`,
+      hotTake: `Still plenty of game left to swing this.`,
+      whatToSay: `"${home} ${score} ${away} — check back for how it finishes."`,
+      biggestMoment: `Check the live boxscore for the latest scoring plays.`,
+      keyTakeaway: `Nothing's decided yet — the score could still move.`,
+      contextFacts: [`Live: ${home} ${score} ${away}`],
+      source: 'fallback',
+    };
+  }
   const homeN = Number(homeScore), awayN = Number(awayScore);
   const winner = homeN > awayN ? home : (awayN > homeN ? away : null);
   const loser  = homeN > awayN ? away : (awayN > homeN ? home : null);
-  const score  = `${homeScore}–${awayScore}`;
   return {
     whyItMatters: winner ? `${winner} beat ${loser} ${score}${league ? ' (' + league + ')' : ''}.` : `${home} and ${away} drew ${score}.`,
     hotTake: winner ? `${winner} earned this result.` : `A draw that suits neither side.`,
@@ -1554,6 +1682,25 @@ module.exports = async function handler(req, res) {
       generateGameCommentary(mlbGames, 'mlb'),
       generateGameCommentary(nbaGames, 'nba'),
     ]);
+
+    // Live storyline enrichment for the "Live Now" event(s) — best-effort,
+    // hard-capped at 8s so a slow OpenAI call can never push this handler past
+    // Vercel's 15s maxDuration. Attaches golf.storyline/f1.storyline; every
+    // downstream consumer falls back to its existing template if this is absent.
+    const liveStorylineJobs = [];
+    if (golf && golf.state === 'in') {
+      liveStorylineJobs.push(
+        getLiveStoryline('golf', golf.event, () => golfLiveStorylinePrompt(golf))
+          .then((d) => { if (d) golf.storyline = d; })
+      );
+    }
+    if (f1 && f1.phase === 'live') {
+      liveStorylineJobs.push(
+        getLiveStoryline('f1', f1.event, () => f1LiveStorylinePrompt(f1))
+          .then((d) => { if (d) f1.storyline = d; })
+      );
+    }
+    if (liveStorylineJobs.length) await raceOrNull(Promise.allSettled(liveStorylineJobs), 8000);
 
     const liveNow = deriveLiveNow({ scoreboard, f1, golf, mma });
     const culture = loadLiveCulture();   // NewsAPI entertainment headlines (refresh-culture cron)
