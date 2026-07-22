@@ -1515,6 +1515,47 @@ async function fetchRecentChampions() {
   return found.length ? found : null;
 }
 
+// Looks back up to 30 days for the FIFA World Cup final. Unlike the NBA/NHL/MLB
+// series above, a knockout final can't be detected via notes[0].headline (ESPN
+// leaves that blank for soccer) — but ESPN tags the event itself via
+// season.slug === 'final', which is unambiguous. Needed so the World Cup
+// section shows the champion once the tournament ends instead of going empty.
+async function fetchWorldCupChampion() {
+  try {
+    const end   = new Date();
+    const start = new Date();
+    start.setDate(start.getDate() - 30);
+    const fmtDate = (d) => d.toISOString().slice(0, 10).replace(/-/g, '');
+    const data  = await json(`${ESPN}/soccer/fifa.world/scoreboard?limit=80&dates=${fmtDate(start)}-${fmtDate(end)}`);
+    const event = (data?.events || []).find(e =>
+      e.season?.slug === 'final' && e?.competitions?.[0]?.status?.type?.state === 'post');
+    if (!event) return null;
+
+    const comp = event.competitions[0];
+    const competitors = comp.competitors || [];
+    const winner = competitors.find(c => c.winner);
+    const loser  = competitors.find(c => c !== winner);
+    if (!winner) return null;
+
+    const teamObj   = winner.team || {};
+    const loserName = loser?.team?.displayName || loser?.team?.name || '';
+    const score     = `${winner.score}–${loser?.score ?? ''}`;
+    return {
+      key: 'worldcup', label: 'World Cup',
+      winner: {
+        name:  teamObj.displayName || teamObj.name || '',
+        abbr:  (teamObj.abbreviation || '').toUpperCase(),
+        logo:  teamObj.logo || '',
+        color: teamObj.color ? `#${teamObj.color}` : '#2B6FFF',
+        link:  (teamObj.links || []).find(l => /^https/.test(l.href || ''))?.href || '',
+      },
+      headline:   comp.altGameNote || 'FIFA World Cup Final',
+      seriesText: loserName ? `Beat ${loserName} ${score} in the Final` : `Final: ${score}`,
+      eventLink:  espnLink(event.links),
+    };
+  } catch (_) { return null; }
+}
+
 /* -------------------------------------------------------- yesterday's results */
 
 // Fetches completed games from the last few days via ESPN's ?dates= range param.
@@ -1660,15 +1701,17 @@ module.exports = async function handler(req, res) {
 
   try {
     const marketClosed = isMarketHoliday();
-    const [scoreboard, yesterdayScores, f1, golf, tennis, mma, markets, nbaNews, nhlNews, mlbNews, recentChampions, marketNews, stockMovers] = await Promise.all([
+    const [scoreboard, yesterdayScores, f1, golf, tennis, mma, markets, nbaNews, nhlNews, mlbNews, recentChampionsRaw, worldCupChampion, marketNews, stockMovers] = await Promise.all([
       fetchScoreboards(), fetchYesterdayScores(), fetchF1(), fetchGolf(), fetchTennis(), fetchMMA(), fetchMarkets(finnhubKey),
       fetchLeagueNews('basketball', 'nba'),
       fetchLeagueNews('hockey', 'nhl'),
       fetchLeagueNews('baseball', 'mlb'),
       fetchRecentChampions(),
+      fetchWorldCupChampion(),
       fetchMarketNews(),
       fetchStockMovers(),
     ]);
+    const recentChampions = [...(recentChampionsRaw || []), ...(worldCupChampion ? [worldCupChampion] : [])];
 
     // AI commentary for top completed games — best-effort, non-blocking.
     // Attaches g.commentary = {whyItMatters, hotTake, whatToSay, biggestMoment, keyTakeaway}

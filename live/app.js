@@ -1683,9 +1683,10 @@ function FeaturedGolfCard(g) {
   }
 
   // World Cup gets its own dedicated section at the top of Soccer
-  function renderWorldCup(scoreboard, yesterdayScores) {
+  function renderWorldCup(scoreboard, yesterdayScores, recentChampions) {
     const el = $('worldcupWrap');
     if (!el) return;
+    const wcChamp = (recentChampions || []).find(c => c.key === 'worldcup');
     const todayET = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
     const isRecent = (g) => {
       if (!g.startDate) return true;
@@ -1705,6 +1706,17 @@ function FeaturedGolfCard(g) {
       const ord = { in: 0, post: 1, pre: 2 };
       return ((ord[a.state] ?? 3) - (ord[b.state] ?? 3)) || ((b.importance || 0) - (a.importance || 0));
     });
+    // Once the final is decided, there's no more live/upcoming World Cup play —
+    // the section should permanently show the champion, not a stale "recap" of
+    // the final match (which would otherwise keep surfacing via yesterdayScores'
+    // multi-day lookback for several days after the tournament ends).
+    const hasLiveOrUpcoming = games.some(g => g.state === 'in' || g.state === 'pre');
+    if (wcChamp && !hasLiveOrUpcoming) {
+      setBadge('badge-worldcup', null);
+      setMeta('meta-worldcup', 'ESPN', new Date().toISOString());
+      el.innerHTML = `<div style="grid-column:1/-1">${RecentChampCard(wcChamp)}</div>`;
+      return;
+    }
     setBadge('badge-worldcup', games.length ? (games.some(g => g.state === 'in') ? 'live' : 'live') : null);
     setMeta('meta-worldcup', games.length ? 'ESPN' : '', new Date().toISOString());
     if (!games.length) { el.innerHTML = emptyBox('No World Cup matches right now.'); return; }
@@ -1883,6 +1895,8 @@ function FeaturedGolfCard(g) {
 
     // Fallback: if scoreboard is empty or didn't detect champions (series already over),
     // use recentChampions which looks back 14 days. Dedup by league key.
+    // World Cup is excluded here — it gets its own champion card inside the
+    // dedicated World Cup section instead (see renderWorldCup).
     if (recentChampions && recentChampions.length) {
       const existingKeys = new Set(CHAMP_LEAGUES
         .filter(({ key, tag }) => {
@@ -1891,7 +1905,7 @@ function FeaturedGolfCard(g) {
         })
         .map(l => l.key));
       recentChampions.forEach(champ => {
-        if (!existingKeys.has(champ.key)) {
+        if (champ.key !== 'worldcup' && !existingKeys.has(champ.key)) {
           const card = RecentChampCard(champ);
           if (card) cards.push(card);
         }
@@ -2266,7 +2280,7 @@ function FeaturedGolfCard(g) {
     renderNBA(p.scoreboard, p.nbaNews);
     renderMLB(p.scoreboard, p.mlbNews);
     renderNHL(p.scoreboard, p.nhlNews);
-    renderWorldCup(p.scoreboard, p.yesterdayScores);
+    renderWorldCup(p.scoreboard, p.yesterdayScores, p.recentChampions);
     renderSoccer(p.scoreboard);
     renderMarkets(p.markets, p.marketNews, p.stockMovers, p.marketClosed, p.marketSectors, p.earningsCalendar);
     observeChampCards();
