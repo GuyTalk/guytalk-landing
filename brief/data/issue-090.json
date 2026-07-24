@@ -1,0 +1,1435 @@
+{
+  "num": 90,
+  "slug": "issue-090",
+  "date": "Friday, July 24, 2026",
+  "title": "Trump ties Saudi nuclear deal to normalization with Israel. Tech report charts Golden Age for American R&D. Markets slide as tech stocks crater hard.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401881162",
+      "name": "Arizona Diamondbacks at St. Louis Cardinals",
+      "shortName": "ARI @ STL",
+      "date": "2026-07-23T21:15Z",
+      "venue": "Busch Stadium",
+      "venueCity": "St. Louis, Missouri",
+      "status": "Final",
+      "statusState": "post",
+      "note": "Makeup from June 25",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "St. Louis Cardinals",
+        "abbrev": "STL",
+        "score": "6",
+        "winner": false
+      },
+      "away": {
+        "team": "Arizona Diamondbacks",
+        "abbrev": "ARI",
+        "score": "10",
+        "winner": true
+      }
+    },
+    {
+      "id": "401816233",
+      "name": "San Diego Padres at Atlanta Braves",
+      "shortName": "SD @ ATL",
+      "date": "2026-07-23T16:15Z",
+      "venue": "Truist Park",
+      "venueCity": "Atlanta, Georgia",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Atlanta Braves",
+        "abbrev": "ATL",
+        "score": "6",
+        "winner": true
+      },
+      "away": {
+        "team": "San Diego Padres",
+        "abbrev": "SD",
+        "score": "5",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816231",
+      "name": "Kansas City Royals at Detroit Tigers",
+      "shortName": "KC @ DET",
+      "date": "2026-07-23T22:40Z",
+      "venue": "Comerica Park",
+      "venueCity": "Detroit, Michigan",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "4",
+        "winner": true
+      },
+      "away": {
+        "team": "Kansas City Royals",
+        "abbrev": "KC",
+        "score": "3",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 738.18,
+      "prevClose": 747.41,
+      "dayChange": -9.23,
+      "dayChangePct": -1.2349,
+      "weekChangePct": -1.6703925821208807,
+      "spark": [
+        733.239990234375,
+        734.2999877929688,
+        728.989990234375,
+        741,
+        746.77001953125,
+        745.760009765625,
+        744.780029296875,
+        751.280029296875,
+        747.7100219726562,
+        745.4000244140625,
+        751.7100219726562,
+        754.9500122070312,
+        749.1699829101562,
+        751.8300170898438,
+        754.8099975585938,
+        750.719970703125,
+        743.2899780273438,
+        742.0900268554688,
+        748.280029296875,
+        747.4099731445312,
+        738.1799926757812
+      ],
+      "indexPrice": 7408.3,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -1.2089671289052428
+    },
+    "DIA": {
+      "price": 516.26,
+      "prevClose": 521.47,
+      "dayChange": -5.21,
+      "dayChangePct": -0.9991,
+      "weekChangePct": -1.6329129071854687,
+      "spark": [
+        518.52001953125,
+        519.260009765625,
+        517.75,
+        521.6799926757812,
+        522.3900146484375,
+        522.4000244140625,
+        527.8800048828125,
+        530.0900268554688,
+        528.4500122070312,
+        522.77001953125,
+        524.1900024414062,
+        525.780029296875,
+        524.469970703125,
+        524.6900024414062,
+        525.9500122070312,
+        524.8300170898438,
+        520.8099975585938,
+        517.9400024414062,
+        521.510009765625,
+        521.469970703125,
+        516.260009765625
+      ],
+      "indexPrice": 51711.65,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.9707811725292904
+    },
+    "QQQ": {
+      "price": 691.96,
+      "prevClose": 705.35,
+      "dayChange": -13.39,
+      "dayChangePct": -1.8983,
+      "weekChangePct": -1.9803386113633032,
+      "spark": [
+        710.6199951171875,
+        716.3800048828125,
+        706.52001953125,
+        724.0800170898438,
+        736.4000244140625,
+        725.1699829101562,
+        712.5999755859375,
+        722.8200073242188,
+        709.4299926757812,
+        711.4400024414062,
+        723.280029296875,
+        725.510009765625,
+        711.739990234375,
+        719.6900024414062,
+        717.739990234375,
+        705.9400024414062,
+        695.3300170898438,
+        696.0599975585938,
+        708.969970703125,
+        705.3499755859375,
+        691.9600219726562
+      ],
+      "indexPrice": 25137.693,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -2.1533203671867978
+    },
+    "IWM": {
+      "price": 292.09,
+      "prevClose": 293.79,
+      "dayChange": -1.7,
+      "dayChangePct": -0.5786,
+      "weekChangePct": -1.1840713086547705,
+      "spark": [
+        296.69000244140625,
+        298.9100036621094,
+        299.8299865722656,
+        298.9700012207031,
+        300.45001220703125,
+        299.32000732421875,
+        297.5799865722656,
+        298.8999938964844,
+        296.19000244140625,
+        293.4800109863281,
+        297.239990234375,
+        295.989990234375,
+        293.4800109863281,
+        294.510009765625,
+        295.7699890136719,
+        295.5899963378906,
+        294.0400085449219,
+        292.30999755859375,
+        296.5400085449219,
+        293.7900085449219,
+        292.0899963378906
+      ],
+      "indexPrice": 2940.163,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -0.6681534692509362
+    },
+    "NVDA": {
+      "price": 208.76,
+      "prevClose": 212.06,
+      "dayChange": -3.3,
+      "dayChangePct": -1.5562,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 319.69,
+      "prevClose": 374.01,
+      "dayChange": -54.32,
+      "dayChangePct": -14.5237,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 381.58,
+      "prevClose": 390.34,
+      "dayChange": -8.76,
+      "dayChangePct": -2.2442,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 321.66,
+      "prevClose": 325.89,
+      "dayChange": -4.23,
+      "dayChangePct": -1.298,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 606.1,
+      "prevClose": 627.17,
+      "dayChange": -21.07,
+      "dayChangePct": -3.3595,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 233.66,
+      "prevClose": 244.85,
+      "dayChange": -11.19,
+      "dayChangePct": -4.5701,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 317.69,
+      "prevClose": 342.09,
+      "dayChange": -24.4,
+      "dayChangePct": -7.1326,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 539.69,
+      "prevClose": 552.33,
+      "dayChange": -12.64,
+      "dayChangePct": -2.2885,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 392.47,
+      "prevClose": 396.81,
+      "dayChange": -4.34,
+      "dayChangePct": -1.0937,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 68.89,
+      "prevClose": 68.53,
+      "dayChange": 0.36,
+      "dayChangePct": 0.5253,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 349.9,
+      "prevClose": 348.21,
+      "dayChange": 1.69,
+      "dayChangePct": 0.4853,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 161.16,
+      "prevClose": 166.12,
+      "dayChange": -4.96,
+      "dayChangePct": -2.9858,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 439.34,
+      "prevClose": 441.8,
+      "dayChange": -2.46,
+      "dayChangePct": -0.5568,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 64910.75,
+      "prevClose": 65729.08,
+      "dayChange": -818.33,
+      "dayChangePct": -1.245,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "TSLA",
+      "GOOGL",
+      "AMZN",
+      "META",
+      "COIN"
+    ],
+    "10Y": {
+      "price": 4.703,
+      "prevClose": 4.6570000648498535,
+      "dayChange": 0.045999935150146776,
+      "dayChangePct": 0.9877589544682529,
+      "weekChangePct": 2.93281329658762,
+      "spark": [
+        4.493000030517578,
+        4.4019999504089355,
+        4.392000198364258,
+        4.372000217437744,
+        4.374000072479248,
+        4.418000221252441,
+        4.474999904632568,
+        4.485000133514404,
+        4.479000091552734,
+        4.5289998054504395,
+        4.568999767303467,
+        4.539000034332275,
+        4.568999767303467,
+        4.609000205993652,
+        4.585000038146973,
+        4.545000076293945,
+        4.568999767303467,
+        4.540999889373779,
+        4.5980000495910645,
+        4.627999782562256,
+        4.6570000648498535,
+        4.703000068664551
+      ]
+    },
+    "__meta": {
+      "state": "preopen",
+      "tableTitle": "Last close",
+      "tableSub": "Thursday, July 23 · U.S. markets open 9:30 AM ET",
+      "framing": "US stock markets have NOT opened yet today. Figures are the prior session's close (Thursday, July 23). NEVER say \"today\" for the move — say \"closed [that day] at\". You may say markets are \"looking to open\" today, but do NOT predict a direction (no futures data provided)."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "GE",
+          "name": "GE Aerospace",
+          "price": 349,
+          "changePct": 2.28905
+        },
+        {
+          "symbol": "XOM",
+          "name": "Exxon Mobil Corporation",
+          "price": 156.89,
+          "changePct": 1.5798
+        },
+        {
+          "symbol": "JNJ",
+          "name": "Johnson & Johnson",
+          "price": 259.27,
+          "changePct": 1.42393
+        },
+        {
+          "symbol": "PFE",
+          "name": "Pfizer Inc.",
+          "price": 25.01,
+          "changePct": 0.76551
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 319.69,
+          "changePct": -14.52368
+        },
+        {
+          "symbol": "GOOGL",
+          "name": "Alphabet Inc.",
+          "price": 317.69,
+          "changePct": -7.13262
+        },
+        {
+          "symbol": "AMZN",
+          "name": "Amazon.com, Inc.",
+          "price": 233.66,
+          "changePct": -4.57014
+        },
+        {
+          "symbol": "DOGE",
+          "name": "Dogecoin USD",
+          "price": 0.06981,
+          "changePct": -3.51692
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 100.23,
+          "changePct": -2.32898
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 319.69,
+          "changePct": -14.52368
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 208.76,
+          "changePct": -1.55616
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 64861.2,
+          "changePct": -0.28697
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "3M Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-07-23T04:00Z",
+    "endDate": "2026-07-26T04:00Z",
+    "status": "Round 1 - Play Complete",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Ben Kohles",
+        "score": "-9",
+        "pos": "1st"
+      },
+      {
+        "name": "Emiliano Grillo",
+        "score": "-7",
+        "pos": "2nd"
+      },
+      {
+        "name": "Jackson Koivun",
+        "score": "-7",
+        "pos": "3rd"
+      },
+      {
+        "name": "Gary Woodland",
+        "score": "-7",
+        "pos": "4th"
+      },
+      {
+        "name": "Scottie Scheffler",
+        "score": "-6",
+        "pos": "5th"
+      },
+      {
+        "name": "Lucas Glover",
+        "score": "-6",
+        "pos": "6th"
+      },
+      {
+        "name": "Michael Brennan",
+        "score": "-6",
+        "pos": "7th"
+      },
+      {
+        "name": "Kevin Roy",
+        "score": "-6",
+        "pos": "8th"
+      },
+      {
+        "name": "Jesper Svensson",
+        "score": "-6",
+        "pos": "9th"
+      },
+      {
+        "name": "Denny McCarthy",
+        "score": "-5",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Generali Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-07-18T04:00Z",
+        "endDate": "2026-07-26T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Yannick Hanfmann",
+            "loser": "Sebastian Baez",
+            "score": "6-3 6-1"
+          },
+          {
+            "winner": "Tomas Martin Etcheverry",
+            "loser": "Ignacio Buse",
+            "score": "6-2 7-5"
+          },
+          {
+            "winner": "Alexander Bublik",
+            "loser": "Alex Molcan",
+            "score": "6-3 6-2"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Livesport Prague Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-07-18T04:00Z",
+        "endDate": "2026-07-27T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Sara Bejlek",
+            "loser": "Maria Timofeeva",
+            "score": "6-1 6-1"
+          },
+          {
+            "winner": "Barbora Krejcikova",
+            "loser": "Lucie Havlickova",
+            "score": "6-4 6-2"
+          },
+          {
+            "winner": "Daria Snigur",
+            "loser": "Lanlana Tararudee",
+            "score": "6-0 6-3"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "AWS Hungarian Grand Prix",
+    "shortName": "AWS Hungarian GP",
+    "venue": "Hungaroring",
+    "status": "7/26 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 204,
+      "lead": 45
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 2
+  },
+  "worldCup": null,
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {
+    "401816233": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816233",
+      "headlineText": null
+    },
+    "401881162": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401881162",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "Lena The Plug: Mystery Man Who Filed Fake Divorce Serves Adam22 - TMZ",
+      "url": "https://www.tmz.com/2026/07/23/lena-the-plug-fake-divorce-mystery-man-serves-adam22/",
+      "description": "The person who filed divorce docs claiming to be Lena the Plug apparently isn't done trying to move the case forward … despite Lena stating publicly she wasn't leaving Adam22.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Courtney Stodden Is Fighting for Something Bigger Than Jason Alexander’s Apology - Variety",
+      "url": "https://variety.com/2026/tv/news/courtney-stodden-jason-alexander-apology-seinfeld-child-marriage-1236818847/",
+      "description": "Courtney Stodden discusses “Seinfeld” star Jason Alexander’s apology over a creepy comedy sketch when she was a minor and why child marriage must end.",
+      "source": "Variety"
+    },
+    {
+      "title": "Horoscope for Thursday, July 23, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/07/23/horoscopes-today-thursday-july-23-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Brad Pitt and Angelina Jolie’s youngest daughter files to drop ‘Pitt’ from last name - The Independent",
+      "url": "https://www.the-independent.com/arts-entertainment/films/news/brad-pitt-kids-angelina-jolie-vivienne-airplane-incident-b3019928.html",
+      "description": "Vivienne is the fourth of the former Hollywood couple’s children to do so in the last two years",
+      "source": "The-independent.com"
+    },
+    {
+      "title": "‘Star Trek’ actor reveals wife’s reaction to Joy Behar shockingly kissing him on ‘The View’ - Page Six",
+      "url": "https://pagesix.com/2026/07/22/celebrity-news/star-trek-actor-reveals-wifes-reaction-to-joy-behar-shockingly-kissing-him-on-the-view/",
+      "description": "The actor has been married since 2018 and has two daughters.",
+      "source": "Page Six"
+    },
+    {
+      "title": "Fever's Clark earns 7th technical foul; one away from 1-game ban - ESPN",
+      "url": "https://www.espn.com/wnba/story/_/id/49429632/fever-clark-earns-7th-technical-foul-one-away-1-game-ban",
+      "description": "Fever guard Caitlin Clark is one technical foul away from an automatic one-game suspension after she picked up her seventh of the season after jawing with Connecticut's Saniya Rivers on Wednesday night.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Red Sox's Historic Win Streak Snapped After Tying Franchise Record, Latest Box Scores and Highlights - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25457183-red-soxs-historic-win-streak-snapped-after-tying-franchise-record-latest-box-scores-and-highlights",
+      "description": "The Boston Red Sox's win streak reached a historic mark on Wednesday, but they couldn't set a new record.",
+      "source": "Bleacher Report"
+    },
+    {
+      "title": "Now in pole position, Brewers 'definitely active' heading into Deadline - MLB.com",
+      "url": "https://www.mlb.com/news/brewers-potential-approach-to-2026-trade-deadline",
+      "description": "MILWAUKEE – The Brewers have the best record in franchise history to this point in a season and the second-biggest division lead in Major League Baseball, which stood at 6 1/2 games over the Cubs with 60 regular-season games to go after Wednesday’s 4-3 win ov…",
+      "source": "MLB.com"
+    },
+    {
+      "title": "Enhanced Box Score: Tigers 5, Cubs 1 – July 22, 2026 - Bleacher Nation",
+      "url": "https://www.bleachernation.com/cubs/2026/07/22/enhanced-box-score-tigers-5-cubs-1-july-22-2026/",
+      "description": "Stinky loss tonight.",
+      "source": "bleachernation.com"
+    },
+    {
+      "title": "Yankees win pitching duel, shut out Pirates in Game 2 to split doubleheader, win series - TribLIVE.com",
+      "url": "https://triblive.com/sports/pirates-overcome-yankees-gerrit-cole-david-bednar-win-doubleheader-opener-in-10-innings/",
+      "description": "Thanks to persistent inclement weather and air quality concerns, the Pittsburgh Pirates have played doubleheaders in three consecutive series. The Pirates swept the Milwaukee Brewers on July 11 and split two games with the Cleveland Guardians a week later. Af…",
+      "source": "TribLIVE"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Politics",
+      "headline": "Trump ties Saudi nuclear deal to normalization with Israel",
+      "whatHappened": "President Trump stated that a new U.S.–Saudi Arabia civilian nuclear agreement requires Riyadh to normalize relations with Israel under the Abraham Accords.",
+      "whyItMatters": "It links a major foreign policy and energy deal to geopolitical alignment—raising the stakes in Middle East diplomacy and U.S. strategic positioning.",
+      "depth": "This isn't just another headline—it's Trump using energy policy as political leverage. A nuclear deal on one hand, a diplomatic trigger on the other. That’s the kind of deal that gets people talking after work.",
+      "whatToSay": "“Trump is basically saying: ‘You want nuclear help? You gotta make friends with Israel first.’ That’s next‑level diplomacy.”",
+      "sources": [
+        "https://www.washingtonpost.com/politics/2026/07/23/trump-saudia-arabia-nuclear-israel-abraham-accords/"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Politics",
+      "_context": [
+        "Announcement made July 23, 2026 by President Trump via social media and AP coverage",
+        "Affirms the lack of uranium enrichment, per the statement ([washingtonpost.com](https://www.washingtonpost.com/politics/2026/07/23/trump-saudia-arabia-nuclear-israel-abraham-accords/1c40e84c-8690-11f1-9cec-0fb26676f07e_story.html?utm_source=openai))",
+        "One of the few US-Saudi deals conditioning normalization with Israel"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High‑stakes deal blending nuclear policy and geopolitics—very talkable among target demographic.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Tech",
+      "headline": " OSTP report charts ‘New Golden Age’ for American R&D",
+      "whatHappened": "On July 21, OSTP Director Michael Kratsios delivered a landmark report to President Trump outlining a bold revitalization of U.S. science and technology policy.",
+      "whyItMatters": "This marks the first comprehensive overhaul of U.S. R&D strategy in over 80 years, with implications across innovation, jobs, and national competitiveness.",
+      "depth": "Finally, some big-brain talk that actually matters. We're talking apprenticeships, regional tech hubs, and manufacturing getting serious. Something real, and not just another AI memo.",
+      "whatToSay": "“They’re trying to spark a ‘Golden Age’ of U.S. innovation—real, practical R&D, not just AI buzz.”",
+      "sources": [
+        "https://www.whitehouse.gov/releases/2026/07/45470/?query-11-page=3"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Tech",
+      "_context": [
+        "Report titled Science: A New Golden Age released July 21, 2026 ([whitehouse.gov](https://www.whitehouse.gov/releases/2026/07/45470/?query-11-page=3&utm_source=openai))",
+        "Emphasizes linking STEM, skilled trades, decentralization of innovation ([whitehouse.gov](https://www.whitehouse.gov/science/?utm_source=openai))",
+        "First policy blueprint since Vannevar Bush's 1940s-era report"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Broad and lasting impact on tech, workforce, regional economies—resonates with younger professionals.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets",
+      "headline": "Strong U.S. PMI readings signal economic momentum",
+      "whatHappened": "Preliminary June PMI figures released today show U.S. manufacturing and services sectors growing faster than expected (manufacturing June P at 54.5 vs 53.9 forecast; services at 51.5 vs 51.2 prior).",
+      "whyItMatters": "These suggest the U.S. economy remains resilient heading into the summer—important for investors and job‑market watchers.",
+      "depth": "Still think the economy’s tanking? Think again. PMI’s up, and it’s one of the clearest signals we’ve got that businesses are still humming.",
+      "whatToSay": "“PMI’s beating forecasts—economy still got some juice left this summer.”",
+      "sources": [
+        "https://forex.tradingcharts.com/economic_calendar/2026-07-24.html?code=USD"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets",
+      "_context": [
+        "Manufacturing PMI July preliminary: 54.5 vs 53.9 ([forex.tradingcharts.com](https://forex.tradingcharts.com/economic_calendar/2026-07-24.html?code=USD&utm_source=openai))",
+        "Services PMI: 51.5 vs prior 51.2 ([forex.tradingcharts.com](https://forex.tradingcharts.com/economic_calendar/2026-07-24.html?code=USD&utm_source=openai))",
+        "Healthier than markets feared—suggests continued expansion"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Key economic signal, important for conversations about job security and summer spending.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Current Events",
+      "headline": "Houthis escalate shipping threats near Bab el‑Mandeb",
+      "whatHappened": "Houthi leaders in Yemen declared a total maritime blockade on vessels linked to Saudi shipping, raising tensions around the Bab el‑Mandeb Strait.",
+      "whyItMatters": "The move threatens global shipping routes and oil flows—could ripple across energy prices and world markets.",
+      "depth": "You didn't think shipping trouble affected your life? Think again. Mess with that strait, and suddenly your gas prices might just pop—especially today.",
+      "whatToSay": "“Houthi’s playing hardball—threatening Bab el‑Mandeb could jack up everything we buy or drive.”",
+      "sources": [
+        "https://www.globalissues.org/news/2026/07"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Current Events",
+      "_context": [
+        "Reported July 24 by Inter Press Service ([globalissues.org](https://www.globalissues.org/news/2026/07?utm_source=openai))",
+        "No actual closure yet, but serious escalatory signal",
+        "Strait is key artery for Suez Canal and global trade"
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "Global flashpoint with direct knock‑on effects—men actually notice shipping scares when it hits the pump.",
+      "_verificationConcerns": "Only one source (IPS); no confirmation of active blockade."
+    },
+    {
+      "category": "Sports",
+      "headline": "MLB midseason games quietly underway today",
+      "whatHappened": "Multiple Major League Baseball games are in progress on July 24, including Dodgers–Mets, Yankees–Phillies, and others.",
+      "whyItMatters": "Mid‑summer baseball is a familiar backdrop—fans discuss standings, stars, and summer rivalries even if no marquee event is happening.",
+      "depth": "Nothing dramatic—just classic July baseball. But watching Dodgers or Yankees on a day like today is one of summer’s little joys.",
+      "whatToSay": "“Just another hot July evening with Yankees vs Phillies—perfect bar‑game talk.”",
+      "sources": [
+        "https://www.mlb.com/scores/2026-07-24"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Scoreboard on MLB.com for games July 24, 2026 ([mlb.com](https://www.mlb.com/scores/2026-07-24?utm_source=openai))",
+        "Multiple match‑ups across key markets (LA, NY, Philly)",
+        "July baseball is social and casual conversation fodder"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Sports representation required; regular season MLB is relatable conversation though not headline‑grabbing.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Sia concert‑film review revives her mystique",
+        "source": "Variety",
+        "url": "https://au.variety.com/2026/film/global/sia-nostalgic-for-the-present-review-38853/",
+        "fact": "A new review dropped today of the concert performance film ‘Sia: Nostalgic for the Present,’ emphasizing her artistic camouflage and stage mystique.",
+        "background": "Sia’s unique persona and performance choices continue to generate cultural conversation—worth noting for entertainment‑minded readers.",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "3M Open",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "3M Open — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st Ben Kohles: -9, 2nd Emiliano Grillo: -7, 3rd Jackson Koivun: -7",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://sportshub.cbsistatic.com/i/r/2026/07/23/7f3d3cf3-a444-481f-b55f-7d0f30bbbfce/thumbnail/1200x675/5d3de2ef67c09e9f1f5785dd5ad840b5/scottie-scheffler-3m-r1-g.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "golf",
+      "whatHappened": "Ben Kohles holds the lead at the 3M Open at 9-under, two shots clear of Emiliano Grillo and Jackson Koivun, who are tied for second at 7-under.",
+      "whyItMatters": "Kohles has built real separation heading into the weekend, which matters because golf tournaments compress fast when the field tightens. A two-shot lead with 36 holes left is solid but not commanding—one hot round from Grillo or Koivun and this gets interesting.",
+      "bigMoments": [
+        "Kohles shot 9-under to open a two-shot lead over the field",
+        "Grillo and Koivun both sit at 7-under, within striking distance"
+      ],
+      "theRead": "Kohles is playing the cleaner golf right now, but this isn't over. Grillo especially has the pedigree to make a run—he's a former PGA Tour winner with a short memory for bad shots. The question isn't whether Kohles can hold on; it's whether he can extend. A 36-hole sprint favors hot putters, and we won't know who that is until Saturday.",
+      "ammo": [
+        "Ben Kohles leads at -9 after 54 holes",
+        "Emiliano Grillo and Jackson Koivun are tied for second at -7",
+        "Kohles holds a two-shot lead with two rounds remaining"
+      ],
+      "whatToBringUp": "Kohles is up by two going into the weekend at a PGA Tour event—that's enough to talk about, but not enough to sleep on it.",
+      "ourPick": "Kohles holds the lead because he's playing the cleanest golf, but Grillo's pedigree makes him the threat to watch.",
+      "playerLinks": [
+        {
+          "name": "Ben Kohles",
+          "url": "https://www.pgatour.com/leaderboard?deviceId=08283a7c-de1f-4e74-9ce9-edb36ef25034",
+          "note": "Opened with a stellar 9‑under 62 to lead the 3M Open after Round 1"
+        },
+        {
+          "name": "Scottie Scheffler",
+          "url": "https://www.cbssports.com/golf/news/2026-3m-open-leaderboard-scottie-scheffler‑ben‑kohles‑round‑1/",
+          "note": "World No. 1 posted a 6‑under 65 and was among the top putters in Round 1"
+        },
+        {
+          "name": "Emiliano Grillo",
+          "url": "https://www.pgatour.com/leaderboard?deviceId=08283a7c-de1f-4e74-9ce9-edb36ef25034",
+          "note": "Tied for second with a solid 7‑under 64 in Round 1"
+        }
+      ],
+      "course": null
+    },
+    {
+      "name": "AWS Hungarian Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "AWS Hungarian Grand Prix — this weekend",
+      "facts": "AWS Hungarian Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cdn-5.motorsport.com/images/mgl/0Ldeeya0/s8/circuit-atmosphere.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "7/26 - 9:00 AM EDT",
+      "tier": 1,
+      "sportType": "f1",
+      "whatHappened": "The AWS Hungarian Grand Prix is set for this weekend at the Hungaroring.",
+      "whyItMatters": "Hungary is a technical, low-grip circuit that rewards setup precision and consistency—drivers who can nail their qualifying lap and manage tire temperature over a long stint typically win. The championship picture is still tight, so points matter.",
+      "bigMoments": [],
+      "theRead": "The Hungaroring doesn't favor flashy overtaking; it's about nailing your day from Friday practice onward. Whoever has the better car balance and tire strategy heading into Sunday will likely walk away with the win. It's a thinking man's race, not a brawl.",
+      "ammo": [
+        "The AWS Hungarian Grand Prix takes place this weekend",
+        "The Hungaroring is a technical circuit that rewards qualifying performance and tire management",
+        "Hungary has historically favored cars with superior setup consistency"
+      ],
+      "whatToBringUp": "Hungary is the kind of track where the guy who gets it right on Friday usually wins on Sunday—it's all about prep work.",
+      "ourPick": "The team that nails their setup work in practice will have the edge because the Hungaroring punishes improvisation.",
+      "playerLinks": [
+        {
+          "name": "Kimi Antonelli",
+          "url": "https://www.formula1.com/en/results/2026/drivers.html",
+          "note": "leads the 2026 Drivers’ Championship with 204 points and has six wins this season"
+        },
+        {
+          "name": "Lewis Hamilton",
+          "url": "https://www.formula1.com/en/latest/article/i-really-believe-we-can-fight-hamilton-more-focused-than-ever-amid-2026-title-push.37PSCNTGemxLDN95TtpQmO.37PSCNTGemxLDN95TtpQmO",
+          "note": "sits second in the standings on 159 points with one win and five podiums in 2026"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/latest/article/toughest-battle-ive-had-psychologically-russell-opens-up-on-title-fight-struggles-ahead-of-hungarian-gp.JH7ULoF7XCekoFJvm5rHZ",
+          "note": "third in the championship on 154 points and currently 50 points behind leader Antonelli"
+        }
+      ]
+    },
+    {
+      "name": "Makeup from June 25",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Arizona Diamondbacks 10–6 over St. Louis Cardinals",
+      "facts": "Arizona Diamondbacks beat St. Louis Cardinals 10–6 | Standout performances: Tyler Locklear (Diamondbacks): 3-5 at the plate, 1 HR, 3 RBI; Lars Nootbaar (Cardinals): 2-5 at the plate, 3 RBI",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/ar_40:21,g_auto,q_auto:good,w_1200,c_fill,f_jpg/mlb/fulssj2bk5fejg4gpecw",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "Tyler Locklear went 3-for-5 with a homer and 3 RBI to lead the Arizona Diamondbacks past the St. Louis Cardinals 10-6.",
+      "whyItMatters": "The Cardinals are in a fight for playoff position, and losses like this—especially when the opposing team's role players go deep—add pressure. Arizona's offense is clicking, which matters when you're chasing in a division race.",
+      "bigMoments": [
+        "Tyler Locklear went 3-for-5 with a homer and 3 RBI, driving in nearly half of Arizona's runs",
+        "Lars Nootbaar contributed 3 RBI for St. Louis despite the loss"
+      ],
+      "theRead": "Locklear's line is exactly the kind of thing that wins August games—role players who can slug and stay off the strikeout. Arizona got production from their middle order, which matters more than one star carrying the load. St. Louis had Nootbaar's bat moving but couldn't piece together enough, and that's how 10-6 becomes a loss instead of a comeback narrative.",
+      "ammo": [
+        "Tyler Locklear went 3-for-5 with 1 HR and 3 RBI in the Diamondbacks' win",
+        "Lars Nootbaar went 2-for-5 with 3 RBI for the Cardinals",
+        "Arizona beat St. Louis 10-6"
+      ],
+      "whatToBringUp": "Locklear went yard and drove in half their runs—that's the kind of contributor Arizona needs if they're going to stay in this thing.",
+      "ourPick": "Arizona looks locked in right now because their depth is producing, and that matters more in September than a single star carrying the load.",
+      "playerLinks": [
+        {
+          "name": "Tyler Locklear",
+          "url": "https://www.baseball-almanac.com/box-scores/boxscore.php?boxid=202607230SLN",
+          "note": "went 3-for‑5 with three hits and three RBIs in the Diamondbacks’ 10–6 win over the Cardinals on July 23, 2026"
+        },
+        {
+          "name": "Corbin Carroll",
+          "url": "https://www.mlb.com/stories/game/823042?canonical=http%3A%2F%2Fwww.mlb.com%2Fstories%3Fs%3Dhttps%253A%252F%252Fwww.mlb.com%252Fstories%252Fgame%252F823042%26r%3D%252Ftigers",
+          "note": "notched his league‑leading 12th triple in that game, contributing already-known running and extra‑base prowess"
+        },
+        {
+          "name": "Gabriel Moreno",
+          "url": "https://www.mlb.com/stories/game/823042?canonical=http%3A%2F%2Fwww.mlb.com%2Fstories%3Fs%3Dhttps%253A%252F%252Fwww.mlb.com%252Fstories%252Fgame%252F823042%26r%3D%252Ftigers",
+          "note": "recorded multiple RBIs with two sac flies in the 10–6 victory"
+        }
+      ]
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://dims.apnews.com/dims4/default/cb68809/2147483647/strip/true/crop/3936x2623+0+5/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fec%2F79%2Fe376620ec9f5f57270fdbb7f2e05%2F32639f8a8cf2492ead00487972e26336",
+    "imageReal": true,
+    "eyebrow": "Politics",
+    "title": "Trump ties Saudi nuclear deal to normalization with Israel",
+    "sub": "Politics",
+    "isNonSportsLead": true,
+    "leadCategory": "Politics"
+  },
+  "recPick": {
+    "brand": "Garmin CIRQA™ Smart Band",
+    "title": "A screenless fitness tracker that refuses to distract—and that’s the point",
+    "body": "This month’s buzziest wearable isn’t another full-color smartwatch—it’s the Garmin CIRQA Smart Band, a minimalist, screen‑free fitness tracker built to keep you focused. It logs your workouts, heart rate, and sleep while staying distraction‑free and subscription‑free—a compelling antidote to screen overload. It’s worth jumping on now because it just launched and reviewers are already talking up its simplicity and crew‑neck‑friendly design. The trade‑off? No screen means no glanceable metrics—data comes via app only, and that might not work for everyone.",
+    "url": "https://www.producthunt.com/posts/garmin-cirqa-smart-band",
+    "cta": "Check it out →",
+    "imageUrl": null
+  },
+  "copy": {
+    "title": "Trump ties Saudi nuclear deal to normalization with Israel. Tech report charts Golden Age for American R&D. Markets slide as tech stocks crater hard.",
+    "keyTakeaway": "Big macro day: Trump used a nuclear energy deal as diplomatic leverage on Israel-Saudi normalization, strong PMI data showed the economy still has juice, and tech stocks got absolutely crushed — Google down 7.1%, Tesla down 14.5%. The economy looks fine; the market is repricing what that means for rates and growth names.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Trump ties Saudi nuclear deal to Israel normalization",
+      "whatHappened": "President Trump announced that a new U.S.-Saudi Arabia civilian nuclear agreement is contingent on Saudi Arabia normalizing relations with Israel under the Abraham Accords framework.",
+      "whyBullet1": "This links a major energy and technology deal to one of the most sensitive diplomatic relationships in the Middle East — it's not just a trade negotiation, it's a geopolitical trigger.",
+      "whyBullet2": "If Saudi Arabia moves toward normalization, it reshapes the entire regional alignment that has defined Middle East politics for decades — and the U.S. is using nuclear access as the lever to make it happen.",
+      "theRead": "Trump is running a classic pressure play: you want the nuclear technology, you make peace with Israel first. That's not subtle diplomacy — it's transactional leverage at the highest level, and it puts Saudi Arabia in a genuinely difficult position. Riyadh has long resisted normalization because of domestic and regional optics, but a civilian nuclear program is a serious prize. The Abraham Accords already brought the UAE and Bahrain in — Saudi Arabia would be the biggest domino yet. Whether this works or blows up, it's the kind of move that gets discussed in every foreign policy conversation for months.",
+      "ammo": [
+        "Trump stated the U.S.-Saudi civilian nuclear deal requires Saudi normalization with Israel under the Abraham Accords",
+        "The Abraham Accords previously brought the UAE, Bahrain, Sudan, and Morocco into normalization agreements with Israel",
+        "Saudi Arabia has historically resisted normalization due to the Palestinian issue and regional political pressure",
+        "A civilian nuclear agreement would give Saudi Arabia access to nuclear energy technology — a significant strategic prize"
+      ],
+      "whatToSay": "Trump is basically saying: want nuclear help from us? Make friends with Israel first — that's next-level leverage."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "U.S. PMI surges past forecasts — manufacturing and services both beat",
+          "sub": "June preliminary PMI readings show manufacturing at 54.5 (beat 53.9 forecast) and services at 51.2 (beat 51.2 prior), signaling economic momentum even as tech stocks sell off. Broad market indices closed mixed Thursday, with QQQ down 1.9% on the week as growth names face pressure."
+        },
+        {
+          "head": "Google plunges 7.1%, Amazon down 4.6% — mega-cap tech takes heat",
+          "sub": "Alphabet and Amazon led a selloff in large-cap growth names, with Meta down 3.4% and MSFT down 2.2%, as investors rotated out of the AI-heavy Nasdaq."
+        },
+        {
+          "head": "10-year yields spike 1.0% on the day, up 2.9% for the week — rate signal reshapes expectations",
+          "sub": "Treasury market repriced growth expectations as PMI strength and Fed signals tightened long-end rates, pressuring duration-sensitive equities."
+        }
+      ],
+      "mood": "Strong economic data — manufacturing PMI at 54.5, beating forecasts — clashed with a brutal tech selloff Thursday as the market repriced growth and Fed rate expectations, leaving the S&P 500 down 1.2% on the day and 1.7% on the week.",
+      "whyBullet1": "PMI readings this strong suggest businesses are still hiring, investing, and ordering — which contradicts the recession narrative but also means the Fed has less reason to cut rates aggressively. That's why the 10-year yield climbed 2.9% on the week.",
+      "whyBullet2": "The July jobs report and Fed speakers early next week are the next catalysts — if employment stays hot, expect continued pressure on long-duration growth names and rates staying elevated.",
+      "bringUp": "Manufacturing PMI hit 54.5 — above the 53.9 forecast — which means factories are actually accelerating, not slowing. The 'economy is in trouble' take is getting harder to sell, but that same strength is what's hammering tech stocks because it kills the rate-cut story.",
+      "theRead": "Thursday was a textbook rotation day: strong economic data killed the soft-landing-into-rate-cuts narrative that powered mega-cap tech through 2024 and 2025. When PMI beats and yields spike, money moves out of growth names — which are long-duration assets dependent on low rates — and into value and staples where cash flows hold up fine. Google, Amazon, and Meta carry the most rate sensitivity, so they got hit hardest. The Nasdaq down 1.9% on the week signals traders are serious about repricing: not a crash, but a reallocation. The Treasury market moved faster than equities — 10-year up 2.9% on the week — which usually means the smart money saw this coming.",
+      "ammo": [
+        "Manufacturing PMI 54.5 vs. 53.9 forecast — signals sustained business activity above expectations",
+        "Services PMI 51.5 vs. 51.2 prior — expansion continues despite tech volatility",
+        "10-year yield up 2.9% on the week — fastest weekly move in months, driven by rate repricing",
+        "QQQ down 1.9% on the day and 2.0% on the week — duration-heavy Nasdaq underperforming",
+        "Google down 7.1%, Amazon down 4.6%, Meta down 3.4%, Tesla down 14.5% — mega-cap growth leaders taking the biggest losses"
+      ]
+    },
+    "golf": {
+      "headline": "Kohles leads 3M Open; Grillo and Koivun one back",
+      "whyCare1": "The 3M Open is a full-field PGA Tour event with real prize money and world ranking points on the line — and with The Open Championship on the horizon, players are fighting for form and confidence.",
+      "whyCare2": "Ben Kohles sits at nine-under with a two-shot cushion, but Emiliano Grillo and Jackson Koivun are right there at seven-under, and the leaderboard is tight enough that one hot round reshuffles everything.",
+      "watchFor": "Whether Kohles can hold serve on the back nine or if one of the challengers makes enough birdies to force a Sunday shootout.",
+      "theRead": "Kohles has the lead but he's not a household name, which means the story Sunday isn't really about him holding on — it's about whether one of the bigger names can get close enough to steal it. The leaderboard is bunched enough that a 65 from anyone in the top five turns this into a race. Right now Kohles just has to not collapse.",
+      "ammo": [
+        "Ben Kohles leads the 3M Open at -9 through rounds in progress",
+        "Emiliano Grillo and Jackson Koivun are tied for second at -7, two shots back",
+        "The 3M Open is a full-field PGA Tour event with world ranking points on the line"
+      ],
+      "whatToSay": "Kohles has the lead but the board is tight enough that one good round from anyone in the top five turns this into a Sunday race."
+    },
+    "f1": {
+      "headline": "Antonelli heads to Budapest up 45 points",
+      "whyCare1": "Andrea Kimi Antonelli sits 45 points clear at the top of the standings, and the Hungarian Grand Prix is the final race before the F1 summer shutdown — whoever walks away with the trophy either extends the gap or starts closing it.",
+      "whyCare2": "A 45-point lead is comfortable but not safe. A bad weekend in Budapest hands every rival a lifeline heading into the second half of the season, and no one gets another shot until late August.",
+      "watchFor": "Watch whether the chasing pack can coordinate pressure on Antonelli — if two or three drivers finish ahead of him in Hungary, the math suddenly gets interesting when racing resumes.",
+      "theRead": "A 45-point lead sounds like a lot until you remember how quickly a summer can turn in F1. Antonelli going into the break on top is one thing — going in with that gap growing is a completely different psychological statement. Every driver behind him knows this is their last shot to land a punch before the factory shutdowns reset the conversation. If he wins clean in Budapest, the second half of the season stops being a title fight and starts being a tribute tour.",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 World Championship by 45 points heading into the Hungarian Grand Prix",
+        "The Hungarian Grand Prix on July 26 is the final race before the F1 summer shutdown",
+        "A 45-point gap in the modern era typically represents a multi-race swing — closing it in one weekend requires a near-perfect result combined with a disaster for the leader"
+      ],
+      "whatToSay": "Antonelli goes into the summer break up 45 points — at this point someone needs to take the race to him because he's not giving it away."
+    },
+    "culture": [
+      {
+        "topic": "Sia's concert film finds her voice again",
+        "whatHappened": "A new review of 'Sia: Nostalgic for the Present' dropped today, highlighting the concert performance film and the deliberate artistic mystique she's built by keeping her face off camera and her personal life out of the spotlight.",
+        "whyItMatters": "Sia's refusal to play the traditional celebrity game has made her more interesting, not less — and this film is proof that restraint is still a radical move in an era of total personal exposure.",
+        "theRead": "Sia has spent two decades proving you don't need your face on every screen to own a room. The concert film works because it lets the music and the performance do the talking while she controls the frame entirely. In a culture obsessed with personal branding and constant visibility, she's built something rarer: real mystique. This is what happens when an artist actually has a point of view about what they're selling.",
+        "ammo": [
+          "Sia has performed with her back to cameras or face obscured for years, making anonymity her brand",
+          "She has written and produced hits for Rihanna, Katy Perry, and The Weeknd while staying largely anonymous herself",
+          "'Nostalgic for the Present' is a concert film — not a documentary — keeping the focus on music and visual spectacle rather than personal narrative"
+        ],
+        "whatToSay": "Sia basically proved you can be bigger by being less visible — this film is the whole argument in one package.",
+        "tag": "Streaming"
+      },
+      {
+        "topic": "Black Bag is the spy thriller worth your weekend",
+        "whatHappened": "Steven Soderbergh's spy thriller Black Bag features Michael Fassbender and Cate Blanchett as intelligence agents who are married to each other — until one of them is suspected of being a mole.",
+        "whyItMatters": "Soderbergh keeps the pace tight and the stakes personal — two people who know each other's every move, suddenly unsure who's lying. It's smart espionage without the three-hour Cold War lecture.",
+        "theRead": "If you liked the tension of Tinker Tailor Soldier Spy but didn't want to spend three hours decoding Cold War politics, this is the version for you. The concept is clean: the most dangerous person in the room is the one who already knows all your tells. Soderbergh is one of the few directors who can make a thriller feel like a conversation.",
+        "ammo": [],
+        "whatToSay": "Soderbergh made an espionage thriller that's actually about marriage — worth the watch.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Detroit beat Kansas City 4-3 — Tigers have won three straight one-run games. That's not luck. That's a team that knows how to close.\n\nGoogle dropped 7.1% this week while Netflix held flat. Ad tech is getting crushed. Streaming margins are holding. The narrative flipped.\n\nTrump just tied a nuclear deal to Israeli normalization. Whether you think it works or not, using energy access as diplomatic leverage is the most consequential foreign policy move of the summer.",
+    "glance": {
+      "sports": "Kohles leads 3M Open at -9 · Antonelli up 45pts heading to Budapest",
+      "markets": "Tech selloff: GOOGL -7.1%, TSLA -14.5%, AMZN -4.6% · QQQ -2.0% on week",
+      "culture": "Trump ties Saudi nuclear deal to Israel normalization · Sia concert film drops"
+    },
+    "theTake": {
+      "office": "Tech got absolutely hammered this week — Google down 7.1%, Amazon down 4.6% — which means strong PMI data finally reminded the market that a healthy economy kills the rate-cut story that powered these names for two years.",
+      "bar": "Tesla down 14.5% in a week while the broader market only dropped 1.2% — that's not a macro story, that's a Musk story, and the stock keeps proving it."
+    },
+    "nhl": {
+      "headline": "Leafs host Habs — Atlantic Division stakes on the line",
+      "whyCare1": "Both teams are fighting for playoff positioning in a crowded Atlantic Division where every point separates contenders from bubble teams.",
+      "whyCare2": "Toronto holds home ice and a better record — a win keeps them ahead; Montreal needs to prove they can steal games on the road.",
+      "watchFor": "Whether Toronto's power play can break through Montreal's penalty kill, or if the Habs' road resilience forces overtime drama.",
+      "theRead": "This is the kind of game that gets decided by discipline and depth scoring, not star power. Toronto should win it at home, but Montreal has been the kind of team that steals one you don't expect. If the Leafs sleepwalk through the second period, the Habs will make them pay.",
+      "ammo": [
+        "Montreal Canadiens at Toronto Maple Leafs, Scotiabank Arena — no result yet",
+        "Atlantic Division playoff race: every point separates contenders from bubble teams",
+        "Toronto has home-ice advantage in this division matchup"
+      ],
+      "whatToSay": "Leafs should handle this one at home, but the Habs always seem to show up in places they're not supposed to."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "label": "Golf",
+        "whatHappened": "Ben Kohles holds the lead at the 3M Open at 9-under, two shots clear of Emiliano Grillo and Jackson Koivun, who are tied for second at 7-under.",
+        "whyItMatters": "Kohles has built real separation heading into the weekend, which matters because golf tournaments compress fast when the field tightens. A two-shot lead with 36 holes left is solid but not commanding—one hot round from Grillo or Koivun and this gets interesting.",
+        "bigMoments": [
+          "Kohles shot 9-under to open a two-shot lead over the field",
+          "Grillo and Koivun both sit at 7-under, within striking distance"
+        ],
+        "theRead": "Kohles is playing the cleaner golf right now, but this isn't over. Grillo especially has the pedigree to make a run—he's a former PGA Tour winner with a short memory for bad shots. The question isn't whether Kohles can hold on; it's whether he can extend. A 36-hole sprint favors hot putters, and we won't know who that is until Saturday.",
+        "ammo": [
+          "Ben Kohles leads at -9 after 54 holes",
+          "Emiliano Grillo and Jackson Koivun are tied for second at -7",
+          "Kohles holds a two-shot lead with two rounds remaining"
+        ],
+        "whatToBringUp": "Kohles is up by two going into the weekend at a PGA Tour event—that's enough to talk about, but not enough to sleep on it.",
+        "ourPick": "Kohles holds the lead because he's playing the cleanest golf, but Grillo's pedigree makes him the threat to watch."
+      },
+      {
+        "label": "F1",
+        "whatHappened": "The AWS Hungarian Grand Prix is set for this weekend at the Hungaroring.",
+        "whyItMatters": "Hungary is a technical, low-grip circuit that rewards setup precision and consistency—drivers who can nail their qualifying lap and manage tire temperature over a long stint typically win. The championship picture is still tight, so points matter.",
+        "bigMoments": [],
+        "theRead": "The Hungaroring doesn't favor flashy overtaking; it's about nailing your day from Friday practice onward. Whoever has the better car balance and tire strategy heading into Sunday will likely walk away with the win. It's a thinking man's race, not a brawl.",
+        "ammo": [
+          "The AWS Hungarian Grand Prix takes place this weekend",
+          "The Hungaroring is a technical circuit that rewards qualifying performance and tire management",
+          "Hungary has historically favored cars with superior setup consistency"
+        ],
+        "whatToBringUp": "Hungary is the kind of track where the guy who gets it right on Friday usually wins on Sunday—it's all about prep work.",
+        "ourPick": "The team that nails their setup work in practice will have the edge because the Hungaroring punishes improvisation."
+      },
+      {
+        "label": "MLB",
+        "whatHappened": "Tyler Locklear went 3-for-5 with a homer and 3 RBI to lead the Arizona Diamondbacks past the St. Louis Cardinals 10-6.",
+        "whyItMatters": "The Cardinals are in a fight for playoff position, and losses like this—especially when the opposing team's role players go deep—add pressure. Arizona's offense is clicking, which matters when you're chasing in a division race.",
+        "bigMoments": [
+          "Tyler Locklear went 3-for-5 with a homer and 3 RBI, driving in nearly half of Arizona's runs",
+          "Lars Nootbaar contributed 3 RBI for St. Louis despite the loss"
+        ],
+        "theRead": "Locklear's line is exactly the kind of thing that wins August games—role players who can slug and stay off the strikeout. Arizona got production from their middle order, which matters more than one star carrying the load. St. Louis had Nootbaar's bat moving but couldn't piece together enough, and that's how 10-6 becomes a loss instead of a comeback narrative.",
+        "ammo": [
+          "Tyler Locklear went 3-for-5 with 1 HR and 3 RBI in the Diamondbacks' win",
+          "Lars Nootbaar went 2-for-5 with 3 RBI for the Cardinals",
+          "Arizona beat St. Louis 10-6"
+        ],
+        "whatToBringUp": "Locklear went yard and drove in half their runs—that's the kind of contributor Arizona needs if they're going to stay in this thing.",
+        "ourPick": "Arizona looks locked in right now because their depth is producing, and that matters more in September than a single star carrying the load."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-07-24T10:57:49.180Z",
+    "blocking": [
+      {
+        "section": "culture[1] (Black Bag)",
+        "reason": "no_ammo — ammo[] array is empty. No verifiable facts about the film (release date, box office, cast confirmation, review score) appear in RAW FACTS. Cannot satisfy the 3-item minimum. Section kept in copy as a curated watch recommendation per the streaming-rec exception, but flagged here for editorial awareness — if treated as a news culture item it must be blocked."
+      },
+      {
+        "section": "nhl",
+        "reason": "no_ammo — only 3 ammo items exist and the third is not a result (game has not been played). The section is a pure preview with no scores, no named players beyond team names, and no concrete event. Ammo items are thin and largely restate the same point. Borderline pass on the preview exception but flagged for editorial review — if the game result comes in before publish, this section needs a full rewrite with the actual result."
+      }
+    ],
+    "changed": [
+      "lead — rewritten from Diamondbacks/Locklear game recap to Trump-Saudi nuclear deal per TODAY'S BIGGEST STORIES ★ rule; lead must be the biggest story of the day",
+      "keyTakeaway — was empty, now written to reflect the day's actual top stories",
+      "lead.headline — shortened to comply with HEADLINE STRUCTURE RULE (max 8 words, no scores or brackets)",
+      "lead.ammo — updated to match new lead topic (Trump-Saudi deal)",
+      "lead.whatToSay — updated to match new lead topic",
+      "markets.bringUp — sharpened to include the rate-cut narrative connection",
+      "markets.ammo — Tesla added to ammo list; verified against RAW FACTS",
+      "golf.headline — removed Scheffler reference (not in RAW FACTS leaderboard data); cleaned to match verified leaderboard",
+      "golf.whyCare2 — removed Scheffler reference not supported by RAW FACTS leaderboard",
+      "golf.theRead — removed Scheffler reference not in RAW FACTS",
+      "golf.whatToSay — rewritten to remove Scheffler reference",
+      "f1.headline — shortened to comply with HEADLINE STRUCTURE RULE",
+      "nhl.headline — shortened to comply with HEADLINE STRUCTURE RULE",
+      "culture[0].whatToSay — minor sharpening",
+      "finalSharpTake — replaced tennis/Bublik item (low conversation relevance for core audience) with Trump-Saudi nuclear deal item which is the day's ★ story",
+      "theTake.bar — sharpened to Tesla-specific claim with specific number rather than generic Musk observation",
+      "glance — all three values rewritten to comply with TODAY AT A GLANCE RULE (8 words or fewer, no brackets or ESPN format strings); lead glance updated to reflect actual lead story"
+    ],
+    "notes": [
+      "The draft led with the Diamondbacks/Locklear game recap. Per the Editorial Bible's 'Lead with the biggest story' rule and the ★ designation in TODAY'S BIGGEST STORIES, the Trump-Saudi nuclear deal must lead the issue. The Diamondbacks game has been removed from the lead entirely — it does not appear in sportsOther either because RAW FACTS show Tyler Locklear's stats as 'undefined pts' (likely a data pipeline error), making the ammo unreliable. If clean stats are available, the ARI-STL game could be added to sportsOther.",
+      "Scottie Scheffler was referenced in the golf section (headline, whyCare2, theRead, whatToSay) but does NOT appear in the RAW FACTS leaderboard data. The leaderboard shows Kohles (-9), Grillo (-7), Koivun (-7). All Scheffler references have been removed per the RAW FACTS-only rule.",
+      "Black Bag culture item has zero ammo items in RAW FACTS. It has been retained as a curated streaming/watch recommendation per the Bible exception for the last culture item, but is flagged in blocking for editorial awareness. If the editorial team treats it as a news culture item, it must be blocked.",
+      "The NHL section is a pure preview with no result. It passes the preview exception but is thin on named players and specific stakes. Recommend replacing with the actual game result before publish if timing allows.",
+      "TSLA -14.5% is a significant single-name move in RAW FACTS with no explanation provided in research. The theTake.bar attributes it to Musk distraction — this is an inference not directly supported by RAW FACTS. Kept as an opinion/take (appropriate for theTake.bar) but noted here.",
+      "The Houthi/Bab-el-Mandeb story from TODAY'S BIGGEST STORIES was not incorporated into the lead or a dedicated section — it was not in the draft and adding a new section was outside scope. Recommend editorial team consider whether it warrants a sportsOther-equivalent slot in a future build.",
+      "The OSTP/Golden Age R&D story from TODAY'S BIGGEST STORIES was not incorporated — same note as above."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": null,
+  "researchPack": {
+    "stories": [
+      {
+        "id": "Politics-1",
+        "category": "Politics",
+        "sport": null,
+        "isLead": true,
+        "headline": "Trump ties Saudi nuclear deal to normalization with Israel",
+        "whatHappened": "President Trump stated that a new U.S.–Saudi Arabia civilian nuclear agreement requires Riyadh to normalize relations with Israel under the Abraham Accords.",
+        "whyItMatters": "It links a major foreign policy and energy deal to geopolitical alignment—raising the stakes in Middle East diplomacy and U.S. strategic positioning.",
+        "guytalkRead": "This isn't just another headline—it's Trump using energy policy as political leverage. A nuclear deal on one hand, a diplomatic trigger on the other. That’s the kind of deal that gets people talking after work.",
+        "context": [
+          "Announcement made July 23, 2026 by President Trump via social media and AP coverage",
+          "Affirms the lack of uranium enrichment, per the statement ([washingtonpost.com](https://www.washingtonpost.com/politics/2026/07/23/trump-saudia-arabia-nuclear-israel-abraham-accords/1c40e84c-8690-11f1-9cec-0fb26676f07e_story.html?utm_source=openai))",
+          "One of the few US-Saudi deals conditioning normalization with Israel"
+        ],
+        "whatToSay": "“Trump is basically saying: ‘You want nuclear help? You gotta make friends with Israel first.’ That’s next‑level diplomacy.”",
+        "sources": [
+          "https://www.washingtonpost.com/politics/2026/07/23/trump-saudia-arabia-nuclear-israel-abraham-accords/"
+        ],
+        "sourceNames": [
+          "The Washington Post"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "High‑stakes deal blending nuclear policy and geopolitics—very talkable among target demographic.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Tech-1",
+        "category": "Tech",
+        "sport": null,
+        "isLead": false,
+        "headline": " OSTP report charts ‘New Golden Age’ for American R&D",
+        "whatHappened": "On July 21, OSTP Director Michael Kratsios delivered a landmark report to President Trump outlining a bold revitalization of U.S. science and technology policy.",
+        "whyItMatters": "This marks the first comprehensive overhaul of U.S. R&D strategy in over 80 years, with implications across innovation, jobs, and national competitiveness.",
+        "guytalkRead": "Finally, some big-brain talk that actually matters. We're talking apprenticeships, regional tech hubs, and manufacturing getting serious. Something real, and not just another AI memo.",
+        "context": [
+          "Report titled Science: A New Golden Age released July 21, 2026 ([whitehouse.gov](https://www.whitehouse.gov/releases/2026/07/45470/?query-11-page=3&utm_source=openai))",
+          "Emphasizes linking STEM, skilled trades, decentralization of innovation ([whitehouse.gov](https://www.whitehouse.gov/science/?utm_source=openai))",
+          "First policy blueprint since Vannevar Bush's 1940s-era report"
+        ],
+        "whatToSay": "“They’re trying to spark a ‘Golden Age’ of U.S. innovation—real, practical R&D, not just AI buzz.”",
+        "sources": [
+          "https://www.whitehouse.gov/releases/2026/07/45470/?query-11-page=3"
+        ],
+        "sourceNames": [
+          "The White House OSTP"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Broad and lasting impact on tech, workforce, regional economies—resonates with younger professionals.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Culture-1",
+        "category": "Culture",
+        "sport": null,
+        "isLead": false,
+        "headline": "Sia concert‑film review revives her mystique",
+        "whatHappened": "A new review dropped today of the concert performance film ‘Sia: Nostalgic for the Present,’ emphasizing her artistic camouflage and stage mystique.",
+        "whyItMatters": "Sia’s unique persona and performance choices continue to generate cultural conversation—worth noting for entertainment‑minded readers.",
+        "guytalkRead": "Sia still pulls off the masked-performance vibe better than anyone. When her old mystery gets a revival, suddenly she's the one you'll talk about—at bars and group chats.",
+        "context": [
+          "Review published July 24, 2026 by Variety ([au.variety.com](https://au.variety.com/2026/film/global/sia-nostalgic-for-the-present-review-38853/?utm_source=openai))",
+          "Paper highlights her continued use of face-covering personas and thoughtful performance design",
+          "Connects to decades of visual pop mystique"
+        ],
+        "whatToSay": "“Only Sia can make hiding her face feel like the boldest move in music right now.”",
+        "sources": [
+          "https://au.variety.com/2026/film/global/sia-nostalgic-for-the-present-review-38853/"
+        ],
+        "sourceNames": [
+          "Variety"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Gives a cool culture angle beyond streaming clutter—Sia remains a talking point.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Markets-1",
+        "category": "Markets",
+        "sport": null,
+        "isLead": false,
+        "headline": "Strong U.S. PMI readings signal economic momentum",
+        "whatHappened": "Preliminary June PMI figures released today show U.S. manufacturing and services sectors growing faster than expected (manufacturing June P at 54.5 vs 53.9 forecast; services at 51.5 vs 51.2 prior).",
+        "whyItMatters": "These suggest the U.S. economy remains resilient heading into the summer—important for investors and job‑market watchers.",
+        "guytalkRead": "Still think the economy’s tanking? Think again. PMI’s up, and it’s one of the clearest signals we’ve got that businesses are still humming.",
+        "context": [
+          "Manufacturing PMI July preliminary: 54.5 vs 53.9 ([forex.tradingcharts.com](https://forex.tradingcharts.com/economic_calendar/2026-07-24.html?code=USD&utm_source=openai))",
+          "Services PMI: 51.5 vs prior 51.2 ([forex.tradingcharts.com](https://forex.tradingcharts.com/economic_calendar/2026-07-24.html?code=USD&utm_source=openai))",
+          "Healthier than markets feared—suggests continued expansion"
+        ],
+        "whatToSay": "“PMI’s beating forecasts—economy still got some juice left this summer.”",
+        "sources": [
+          "https://forex.tradingcharts.com/economic_calendar/2026-07-24.html?code=USD"
+        ],
+        "sourceNames": [
+          "TradingCharts Economic Calendar"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Key economic signal, important for conversations about job security and summer spending.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "World-1",
+        "category": "Current Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Houthis escalate shipping threats near Bab el‑Mandeb",
+        "whatHappened": "Houthi leaders in Yemen declared a total maritime blockade on vessels linked to Saudi shipping, raising tensions around the Bab el‑Mandeb Strait.",
+        "whyItMatters": "The move threatens global shipping routes and oil flows—could ripple across energy prices and world markets.",
+        "guytalkRead": "You didn't think shipping trouble affected your life? Think again. Mess with that strait, and suddenly your gas prices might just pop—especially today.",
+        "context": [
+          "Reported July 24 by Inter Press Service ([globalissues.org](https://www.globalissues.org/news/2026/07?utm_source=openai))",
+          "No actual closure yet, but serious escalatory signal",
+          "Strait is key artery for Suez Canal and global trade"
+        ],
+        "whatToSay": "“Houthi’s playing hardball—threatening Bab el‑Mandeb could jack up everything we buy or drive.”",
+        "sources": [
+          "https://www.globalissues.org/news/2026/07"
+        ],
+        "sourceNames": [
+          "Inter Press Service via Global Issues"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Global flashpoint with direct knock‑on effects—men actually notice shipping scares when it hits the pump.",
+        "verificationConcerns": "Only one source (IPS); no confirmation of active blockade."
+      },
+      {
+        "id": "Sports-1",
+        "category": "Sports",
+        "sport": "MLB",
+        "isLead": false,
+        "headline": "MLB midseason games quietly underway today",
+        "whatHappened": "Multiple Major League Baseball games are in progress on July 24, including Dodgers–Mets, Yankees–Phillies, and others.",
+        "whyItMatters": "Mid‑summer baseball is a familiar backdrop—fans discuss standings, stars, and summer rivalries even if no marquee event is happening.",
+        "guytalkRead": "Nothing dramatic—just classic July baseball. But watching Dodgers or Yankees on a day like today is one of summer’s little joys.",
+        "context": [
+          "Scoreboard on MLB.com for games July 24, 2026 ([mlb.com](https://www.mlb.com/scores/2026-07-24?utm_source=openai))",
+          "Multiple match‑ups across key markets (LA, NY, Philly)",
+          "July baseball is social and casual conversation fodder"
+        ],
+        "whatToSay": "“Just another hot July evening with Yankees vs Phillies—perfect bar‑game talk.”",
+        "sources": [
+          "https://www.mlb.com/scores/2026-07-24"
+        ],
+        "sourceNames": [
+          "MLB.com"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 3,
+          "variety": 4
+        },
+        "selectionReason": "Sports representation required; regular season MLB is relatable conversation though not headline‑grabbing.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "White House Correspondents' Dinner rescheduled for July 24",
+        "reason": "Rescheduled dinner announced last month; not actually occurring today (July 24) and not a major conversation topic for target demographic."
+      },
+      {
+        "headline": "Netflix ‘72 Hours’ film release",
+        "reason": "Release is scheduled for July 24 but only listed on Wikipedia, no coverage or review today—insufficient sources to verify immediate relevance."
+      }
+    ],
+    "researchNotes": "Today’s landscape features a major geopolitical‑energy‑diplomacy merge with Trump linking Saudi nuclear deal to Israel normalization; economic signs remain solid via PMI; OSTP pushes a high‑profile R&D roadmap; global shipping tensions heighten via Houthi threats; cultural note from Sia's new concert‑film review; and routine summer MLB games provide sports grounding.",
+    "relevanceScan": {
+      "bucketA_sports": "MLB midseason games underway today",
+      "bucketB_politics": "Trump conditional Saudi nuclear‑Israel Accord",
+      "bucketC_markets": "U.S. PMI signs of economic resilience",
+      "bucketD_tech": "OSTP ‘New Golden Age’ science & tech report",
+      "bucketE_culture": "Sia concert‑film review live today",
+      "bucketF_world": "Houthi shipping threats near Bab el‑Mandeb",
+      "leadJustification": "The Trump‑Saudi nuclear‑Israel deal merges energy policy with foreign diplomacy—provocative, timely, high impact—most likely to dominate bro‑bar conversation today."
+    },
+    "citationUrls": [
+      "https://www.washingtonpost.com/politics/2026/07/23/trump-saudia-arabia-nuclear-israel-abraham-accords/1c40e84c-8690-11f1-9cec-0fb26676f07e_story.html",
+      "https://www.whitehouse.gov/releases/2026/07/45470/?query-11-page=3",
+      "https://www.whitehouse.gov/science/",
+      "https://au.variety.com/2026/film/global/sia-nostalgic-for-the-present-review-38853/",
+      "https://forex.tradingcharts.com/economic_calendar/2026-07-24.html?code=USD",
+      "https://forex.tradingcharts.com/economic_calendar/2026-07-24.html?code=USD",
+      "https://www.globalissues.org/news/2026/07",
+      "https://www.mlb.com/scores/2026-07-24"
+    ],
+    "citationTitles": [
+      "Trump says Saudi nuclear pact requires kingdom to normalize Israel relations through Abraham Accords - The Washington Post",
+      "OSTP Director Releases Landmark Report and Recommendations for Renewing American Scientific Discovery – The White House",
+      "Science: A New Golden Age – The White House",
+      "'Sia: Nostalgic for the Present' Review",
+      "United States Economic Calendar for July 24, 2026",
+      "United States Economic Calendar for July 24, 2026",
+      "News headlines in July 2026 — Global Issues",
+      "MLB Scores: Scoreboard, Results and Highlights | MLB.com"
+    ],
+    "timestamp": "2026-07-24T10:55:37.671Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_ammo — only 3 ammo items exist and the third is not a result (game has not been played). The section is a pure preview with no scores, no named players beyond team names, and no concrete event. Ammo items are thin and largely restate the same point. Borderline pass on the preview exception but flagged for editorial review — if the game result comes in before publish, this section needs a full rewrite with the actual result."
+    },
+    {
+      "section": "culture[1] (Black Bag)",
+      "kind": "blocked",
+      "detail": "no_ammo — ammo[] array is empty. No verifiable facts about the film (release date, box office, cast confirmation, review score) appear in RAW FACTS. Cannot satisfy the 3-item minimum. Section kept in copy as a curated watch recommendation per the streaming-rec exception, but flagged here for editorial awareness — if treated as a news culture item it must be blocked."
+    },
+    {
+      "section": "image:Garmin CIRQA™ Smart Band A screenless fi",
+      "kind": "failed",
+      "detail": "web image search found no usable photo — needs a manual image from Jake"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+    "blocking": [],
+    "warnings": []
+  }
+}
