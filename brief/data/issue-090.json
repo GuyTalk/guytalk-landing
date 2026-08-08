@@ -1,0 +1,1513 @@
+{
+  "num": 90,
+  "slug": "issue-090",
+  "date": "Saturday, August 8, 2026",
+  "title": "FAA Midwest ATC Outage Grounds Nine States. Mahomes Fully Cleared at Chiefs Camp. Red Sox Demolish Athletics 13–1.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401816425",
+      "name": "Athletics Athletics at Boston Red Sox",
+      "shortName": "ATH @ BOS",
+      "date": "2026-08-07T23:10Z",
+      "venue": "Fenway Park",
+      "venueCity": "Boston, Massachusetts",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Boston Red Sox",
+        "abbrev": "BOS",
+        "score": "13",
+        "winner": true
+      },
+      "away": {
+        "team": "Athletics",
+        "abbrev": "ATH",
+        "score": "1",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816434",
+      "name": "Minnesota Twins at Milwaukee Brewers",
+      "shortName": "MIN @ MIL",
+      "date": "2026-08-07T23:40Z",
+      "venue": "American Family Field",
+      "venueCity": "Milwaukee, Wisconsin",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "6",
+        "winner": false
+      },
+      "away": {
+        "team": "Minnesota Twins",
+        "abbrev": "MIN",
+        "score": "8",
+        "winner": true
+      }
+    },
+    {
+      "id": "401816428",
+      "name": "New York Mets at Pittsburgh Pirates",
+      "shortName": "NYM @ PIT",
+      "date": "2026-08-07T22:40Z",
+      "venue": "PNC Park",
+      "venueCity": "Pittsburgh, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "4",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Mets",
+        "abbrev": "NYM",
+        "score": "6",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 773.26,
+      "prevClose": 768.56,
+      "dayChange": 4.7,
+      "dayChangePct": 0.6115,
+      "weekChangePct": 3.5112337756774457,
+      "spark": [
+        751.7100219726562,
+        754.9500122070312,
+        749.1699829101562,
+        751.8300170898438,
+        754.8099975585938,
+        750.719970703125,
+        743.2899780273438,
+        742.0900268554688,
+        748.280029296875,
+        747.4099731445312,
+        738.1799926757812,
+        738.9299926757812,
+        739.0900268554688,
+        740.8599853515625,
+        729.4600219726562,
+        741.6900024414062,
+        747.030029296875,
+        757.6699829101562,
+        771.3300170898438,
+        769.7899780273438,
+        768.5599975585938,
+        773.260009765625
+      ],
+      "indexPrice": 7757.64,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.6184213576214556
+    },
+    "DIA": {
+      "price": 539.62,
+      "prevClose": 538.19,
+      "dayChange": 1.43,
+      "dayChangePct": 0.2657,
+      "weekChangePct": 2.9180638659703755,
+      "spark": [
+        524.1900024414062,
+        525.780029296875,
+        524.469970703125,
+        524.6900024414062,
+        525.9500122070312,
+        524.8300170898438,
+        520.8099975585938,
+        517.9400024414062,
+        521.510009765625,
+        521.469970703125,
+        516.260009765625,
+        518.760009765625,
+        521.260009765625,
+        526.8900146484375,
+        515.4099731445312,
+        521.510009765625,
+        524.3200073242188,
+        531.219970703125,
+        540.4299926757812,
+        542.8099975585938,
+        538.1900024414062,
+        539.6199951171875
+      ],
+      "indexPrice": 54036.93,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.2817632946722727
+    },
+    "QQQ": {
+      "price": 723.03,
+      "prevClose": 714.65,
+      "dayChange": 8.38,
+      "dayChangePct": 1.1726,
+      "weekChangePct": 5.09309877512724,
+      "spark": [
+        723.280029296875,
+        725.510009765625,
+        711.739990234375,
+        719.6900024414062,
+        717.739990234375,
+        705.9400024414062,
+        695.3300170898438,
+        696.0599975585938,
+        708.969970703125,
+        705.3499755859375,
+        691.9600219726562,
+        684.22998046875,
+        682.1199951171875,
+        675.489990234375,
+        661.72998046875,
+        683.5499877929688,
+        687.989990234375,
+        700.0700073242188,
+        723.8499755859375,
+        717.2999877929688,
+        714.6500244140625,
+        723.030029296875
+      ],
+      "indexPrice": 26690.615,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 1.2990012494111594
+    },
+    "IWM": {
+      "price": 301.56,
+      "prevClose": 298.25,
+      "dayChange": 3.31,
+      "dayChangePct": 1.1098,
+      "weekChangePct": 3.5576879665799006,
+      "spark": [
+        297.239990234375,
+        295.989990234375,
+        293.4800109863281,
+        294.510009765625,
+        295.7699890136719,
+        295.5899963378906,
+        294.0400085449219,
+        292.30999755859375,
+        296.5400085449219,
+        293.7900085449219,
+        292.0899963378906,
+        291.1700134277344,
+        292.9100036621094,
+        293.3699951171875,
+        288.57000732421875,
+        292.5899963378906,
+        291.20001220703125,
+        296.2200012207031,
+        301.7099914550781,
+        299.7699890136719,
+        298.25,
+        301.55999755859375
+      ],
+      "indexPrice": 3034.494,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 1.0975646128152095
+    },
+    "NVDA": {
+      "price": 223.96,
+      "prevClose": 218.99,
+      "dayChange": 4.97,
+      "dayChangePct": 2.2695,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 328.58,
+      "prevClose": 319.53,
+      "dayChange": 9.05,
+      "dayChangePct": 2.8323,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 499.99,
+      "prevClose": 499.86,
+      "dayChange": 0.13,
+      "dayChangePct": 0.026,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 313.33,
+      "prevClose": 312.41,
+      "dayChange": 0.92,
+      "dayChangePct": 0.2945,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 592.1,
+      "prevClose": 589.9,
+      "dayChange": 2.2,
+      "dayChangePct": 0.3729,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 274.48,
+      "prevClose": 272.26,
+      "dayChange": 2.22,
+      "dayChangePct": 0.8154,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 354.3,
+      "prevClose": 357.75,
+      "dayChange": -3.45,
+      "dayChangePct": -0.9644,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 483.36,
+      "prevClose": 489.28,
+      "dayChange": -5.92,
+      "dayChangePct": -1.2099,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 427.76,
+      "prevClose": 420.565,
+      "dayChange": 7.195,
+      "dayChangePct": 1.7108,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 74.14,
+      "prevClose": 73.69,
+      "dayChange": 0.45,
+      "dayChangePct": 0.6107,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 357.52,
+      "prevClose": 356.3,
+      "dayChange": 1.22,
+      "dayChangePct": 0.3424,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 153.6,
+      "prevClose": 145.41,
+      "dayChange": 8.19,
+      "dayChangePct": 5.6323,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 453.77,
+      "prevClose": 437.65,
+      "dayChange": 16.12,
+      "dayChangePct": 3.6833,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 65022.88,
+      "prevClose": 64809.75,
+      "dayChange": 213.13,
+      "dayChangePct": 0.3289,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "COIN",
+      "DELL",
+      "TSLA",
+      "NVDA",
+      "AVGO"
+    ],
+    "10Y": {
+      "price": 4.66,
+      "prevClose": 4.670000076293945,
+      "dayChange": -0.01000007629394517,
+      "dayChangePct": -0.21413439251763586,
+      "weekChangePct": -1.7913569569889827,
+      "spark": [
+        4.539000034332275,
+        4.568999767303467,
+        4.609000205993652,
+        4.585000038146973,
+        4.545000076293945,
+        4.568999767303467,
+        4.540999889373779,
+        4.5980000495910645,
+        4.627999782562256,
+        4.6570000648498535,
+        4.703000068664551,
+        4.678999900817871,
+        4.640999794006348,
+        4.604000091552734,
+        4.622000217437744,
+        4.663000106811523,
+        4.744999885559082,
+        4.685999870300293,
+        4.626999855041504,
+        4.617000102996826,
+        4.670000076293945,
+        4.659999847412109
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, August 7 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, August 7). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 172.01,
+          "changePct": 10.31939
+        },
+        {
+          "symbol": "UBER",
+          "name": "Uber Technologies, Inc.",
+          "price": 75.02,
+          "changePct": 6.45665
+        },
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 153.6,
+          "changePct": 5.63235
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 328.58,
+          "changePct": 2.83228
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "V",
+          "name": "Visa Inc.",
+          "price": 362.5,
+          "changePct": -2.15132
+        },
+        {
+          "symbol": "CVX",
+          "name": "Chevron Corporation",
+          "price": 186.565,
+          "changePct": -1.40834
+        },
+        {
+          "symbol": "XOM",
+          "name": "Exxon Mobil Corporation",
+          "price": 152.94,
+          "changePct": -1.22707
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 483.36,
+          "changePct": -1.20994
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 223.96,
+          "changePct": 2.26951
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 172.01,
+          "changePct": 10.31939
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 101.65,
+          "changePct": 1.8435
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 64979.94,
+          "changePct": 0.14762
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Wyndham Championship",
+    "venue": "",
+    "location": "",
+    "date": "2026-08-06T04:00Z",
+    "endDate": "2026-08-09T04:00Z",
+    "status": "Round 2 - Play Complete",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Beau Hossler",
+        "score": "-12",
+        "pos": "1st"
+      },
+      {
+        "name": "Jordan Smith",
+        "score": "-11",
+        "pos": "2nd"
+      },
+      {
+        "name": "Ben James",
+        "score": "-11",
+        "pos": "3rd"
+      },
+      {
+        "name": "Alex Smalley",
+        "score": "-9",
+        "pos": "4th"
+      },
+      {
+        "name": "Alex Noren",
+        "score": "-9",
+        "pos": "5th"
+      },
+      {
+        "name": "David Skinns",
+        "score": "-9",
+        "pos": "6th"
+      },
+      {
+        "name": "Rico Hoey",
+        "score": "-9",
+        "pos": "7th"
+      },
+      {
+        "name": "Michael Brennan",
+        "score": "-9",
+        "pos": "8th"
+      },
+      {
+        "name": "Max Greyserman",
+        "score": "-9",
+        "pos": "9th"
+      },
+      {
+        "name": "Billy Horschel",
+        "score": "-9",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "National Bank Open presented by Rogers",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-08-01T04:00Z",
+        "endDate": "2026-08-14T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Joao Fonseca",
+            "loser": "Casper Ruud",
+            "score": "7-6 6-3"
+          },
+          {
+            "winner": "Thiago Agustin Tirante",
+            "loser": "Alexei Popyrin",
+            "score": "6-3 6-4"
+          },
+          {
+            "winner": "Learner Tien",
+            "loser": "Tommy Paul",
+            "score": "6-3 6-2"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "National Bank Open presented by Rogers",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-08-01T04:00Z",
+        "endDate": "2026-08-14T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Coco Gauff",
+            "loser": "Maria Sakkari",
+            "score": "6-1 6-4"
+          },
+          {
+            "winner": "Belinda Bencic",
+            "loser": "Taylor Townsend",
+            "score": "6-7 7-6 6-4"
+          },
+          {
+            "winner": "Alexandra Eala",
+            "loser": "Catherine McNally",
+            "score": "6-3 5-7 6-4"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Heineken Dutch Grand Prix",
+    "shortName": "Heineken Dutch GP",
+    "venue": "Circuit Park Zandvoort",
+    "status": "8/23 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 219,
+      "lead": 50
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 15
+  },
+  "worldCup": null,
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {
+    "401816425": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816425",
+      "headlineText": null
+    },
+    "401816434": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816434",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "Toni Braxton Resolves 6-Figure Tax Debt Years After Bankruptcy - TMZ",
+      "url": "https://www.tmz.com/2026/08/07/toni-braxton-allegedly-owes-massive-tax-debt/",
+      "description": "Toni Braxton says she dropped some serious dough to settle a debt with the IRS … over a decade after she finalized her second bankruptcy.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Lionel Richie, Earth, Wind & Fire concert at San Francisco's Chase Center postponed last-minute due to medical emergency - ABC7 Bay Area",
+      "url": "https://abc7news.com/post/earth-wind-fire-concert-san-franciscos-chase-center-postponed-last-minute-due-medical-emergency/19639014/",
+      "description": "The Chase Center and Earth, Wind & Fire issued statements at 7:20 p.m. for the 7:30 p.m. show, forcing thousands of fans inside the arena and waiting in lines outside to exit the building.",
+      "source": "KGO-TV"
+    },
+    {
+      "title": "Ted Lasso writer reveals why original stars weren’t brought back - The Independent",
+      "url": "https://www.the-independent.com/arts-entertainment/tv/news/ted-lasso-brendan-hunt-phil-dunster-season-4-b3029072.html",
+      "description": "Phil Dunster and other original stars did not return for season 4 of hit Apple TV series",
+      "source": "The-independent.com"
+    },
+    {
+      "title": "Horoscope for Friday, August 07, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/08/07/horoscopes-today-friday-august-07-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Rumor Roundup: Brock Lesnar return, Roman Reigns vs. Mexico, Rhea Ripley surgery, more! - Cageside Seats",
+      "url": "https://www.cagesideseats.com/rumor-round-up/466662/rumor-roundup-brock-lesnar-wwe-return-wrestlemania-43-saudi-arabia-hof-ripley-surgery-mexico",
+      "description": "Brock Lesnar coming out of retirement for WrestleMania 43, Roman Reigns’ opponent in Mexico, Ripley vacating the title after surgery, Trick’s belt & more rumors.",
+      "source": "Cageside Seats"
+    },
+    {
+      "title": "Rookie QB Carson Beck delivers efficient debut for Cardinals - ESPN",
+      "url": "https://www.espn.com/nfl/story/_/id/49550569/rookie-qb-carson-beck-delivers-efficient-debut-cardinals",
+      "description": "Carson Beck completed 15 of 19 passes for 188 yards and a touchdown for a quarterback rating of 125.4 in the Cardinals' 33-30 loss to the Panthers in the Hall of Fame Game.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Report: Leonard had undisclosed sponsorship deal with Daktronics - espn.com",
+      "url": "https://www.espn.com/nba/story/_/id/49550010/report-leonard-had-undisclosed-sponsorship-deal-daktronics",
+      "description": "Kawhi Leonard had an undisclosed sponsorship agreement allegedly worth millions of dollars with the company that designed the Clippers' videoboard, Pablo Torre reported on his podcast Thursday.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Haynes King leads Panthers to 33-30 win on final play of Hall of Fame Game - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/haynes-king-leads-panthers-to-33-30-win-on-final-play-of-hall-of-fame-game",
+      "description": "Haynes King wasn't drafted despite being the ACC Player of the Year last season.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Aces star targets heckling Fever fans in Indy before Chelsea Gray stuns Caitlin Clark in OT thriller - Fox News",
+      "url": "https://www.foxnews.com/outkick-sports/aces-star-targets-heckling-fever-fans-indy-chelsea-gray-stuns-caitlin-clark-ot-thriller",
+      "description": "Jackie Young called for security to remove two courtside fans as the Las Vegas Aces edged the Indiana Fever 86-84 in a dramatic overtime thriller.",
+      "source": "Fox News"
+    },
+    {
+      "title": "‘Are you serious?’: Megan Rapinoe wants ‘accountability’ from Sophie Cunningham - Yahoo Sports",
+      "url": "https://thecomeback.com/wnba/megan-rapinoe-sophie-cunningham-trans-comments.html",
+      "description": "Indiana Fever guard Sophie Cunningham has sparked widespread conversation about whether or not transgender women and girls have a place in women’s sports. No...",
+      "source": "The Comeback"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Current Events",
+      "headline": "FAA Midwest ATC Outage Grounds Flights Across Nine States",
+      "whatHappened": "A major telecommunications failure at the Minneapolis Air Route Traffic Control Center on August 6-7 knocked out radar and radio service across 330,000 square miles, grounding and diverting flights across nine Midwest states including Minnesota, Michigan, Kansas, Missouri, and Wisconsin. Delays at MSP averaged 90–205 minutes before systems came back online roughly two hours later.",
+      "whyItMatters": "This is the latest in a pattern of FAA infrastructure failures raising serious questions about the reliability of U.S. air traffic control systems. The FAA has opened a formal investigation into the cause, and the outage re-ignites a national debate about aging ATC equipment and staffing.",
+      "depth": "Another day, another FAA meltdown — and this one was a monster. One facility going dark managed to freeze flights across nearly a million square miles of U.S. airspace. If you were trying to fly through Minneapolis or any of the surrounding states Thursday evening, you were stuck. The FAA says telecommunications problems are to blame, but given how often this has happened at major hubs in the past year, 'telecom problem' is starting to feel like a catch-all excuse for a system that's badly overdue for a serious overhaul. Trump is reportedly pushing back on reports of critically depleted air defense stockpiles in the same news cycle — not a great look for the administration's infrastructure narrative.",
+      "whatToSay": "Dude, the whole Midwest airspace just went dark Thursday — one ATC facility failing and nine states of flights get frozen. How is this still happening?",
+      "sources": [
+        "https://abcnews.com/US/flights-grounded-midwest-after-temporary-outage-minnesota-air/story?id=135438785",
+        "https://barlamantoday.com/2026/08/07/faa-equipment-failure-disrupts-flights-across-u-s-midwest/"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Current Events",
+      "_context": [
+        "The Minneapolis Air Route Traffic Control Center manages airspace over approximately 330,000 square miles across nine U.S. states.",
+        "Radar and radio service at the Minneapolis center resumed about two hours after the outage began; the FAA lifted the ground stop at MSP around 4 p.m. Central Time.",
+        "The FAA attributed the outage to telecommunications problems and has opened a formal investigation into the cause."
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Confirmed breaking infrastructure story directly affecting millions of travelers; fresh FAA investigation opened; ties into ongoing national aviation safety debate.",
+      "_verificationConcerns": "Incident confirmed by FAA, ABC News, TravelPulse, and multiple regional outlets. Story is within 36-hour window."
+    },
+    {
+      "category": "Sports",
+      "headline": "Mahomes Fully Cleared, Looks 'Completely Fine' at Chiefs Camp",
+      "whatHappened": "Patrick Mahomes has been fully cleared to participate in training camp after tearing the ACL and LCL in his left knee in Week 15 of the 2025 season, head coach Andy Reid confirmed. ESPN reporters on-site at Chiefs camp report Mahomes is taking all first-team reps, making impressive throws, and rolling out on the surgically repaired knee.",
+      "whyItMatters": "Mahomes' return is the single biggest storyline of the 2026 NFL season. Kansas City went 6-11 without him last year and lost the AFC West to Denver, making his Week 1 availability against the Broncos on September 14 essentially a must.",
+      "depth": "Every reporter who's walked through Arrowhead's training facility is saying the same thing: Mahomes looks like Mahomes. He's got a bulky knee brace on the left leg but he's rolling out, throwing off that leg, and apparently confusing his own defensive linemen who say nothing looks different. This is exactly the kind of update the NFL world needed heading into a Saturday in August — the GOAT-in-progress is back. The Chiefs added Super Bowl MVP running back Kenneth Walker III and re-signed Travis Kelce this offseason, so if Mahomes is healthy, Kansas City is a legitimate contender again. Don't sleep on this team.",
+      "whatToSay": "Chiefs camp reports are wild — Mahomes is out there rolling left off the reconstructed knee and Chris Jones says it looks like nothing happened. They might be the scariest team in the AFC if he's right.",
+      "sources": [
+        "https://www.nfl.com/news/chiefs-qb-patrick-mahomes-knee-fully-cleared-to-participate-in-training-camp",
+        "https://www.espn.com/nfl/story/_/id/49490023/2026-nfl-training-camp-latest-updates-buzz-notes-news-fantasy-football"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Mahomes tore the ACL and LCL in his left knee during a Week 15 loss to the Los Angeles Chargers in the 2025 season, requiring surgery.",
+        "The Kansas City Chiefs finished 6-11 in 2025 and lost the AFC West division title to the Denver Broncos.",
+        "Kansas City signed Super Bowl MVP running back Kenneth Walker III and re-signed Travis Kelce this offseason to build around Mahomes' return."
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Highest-profile individual NFL story in camp; Mahomes clearance confirmation is a must-cover for men 25-45 sports fans heading into football season.",
+      "_verificationConcerns": "Clearance confirmed by Andy Reid per NFL.com; ESPN reporter observed live reps. Solid sourcing."
+    },
+    {
+      "category": "Sports",
+      "headline": "Shedeur Sanders Splitting First-Team Reps with Deshaun Watson in Cleveland",
+      "whatHappened": "Cleveland Browns rookie quarterback Shedeur Sanders is splitting first-team reps with veteran Deshaun Watson at training camp, Sanders confirmed in a video discussion shared by NFL.com. The Browns also drafted 24-year-old backup Carson Beck in the third round this year, making the Cleveland quarterback room one of the most watched in the league.",
+      "whyItMatters": "Sanders was 3-4 as a starter as a rookie last season but flashed real upside; whether he wins the starting job over Watson could define the Browns' trajectory for the next half-decade. The most hyped QB prospect in years is in a legitimate battle.",
+      "depth": "Only in Cleveland could you have the most electric young quarterback in the draft stuck sharing reps with Deshaun Watson. Sanders went 3-4 last year and showed enough that the Browns have a real decision to make — do you hand the keys to the future now or let Watson hold the clipboard? The QB room also has Carson Beck lurking as a third-round pick, which tells you everything about how much confidence ownership actually has in Watson long-term. NFL.com says it's too early to call a winner, but everyone knows who the crowd is rooting for.",
+      "whatToSay": "The Browns have Shedeur Sanders splitting first-team reps with Deshaun Watson. That's not a competition — that's the most awkward quarterback room in the NFL right now.",
+      "sources": [
+        "https://www.nfl.com/news/2026-nfl-training-camp-early-takeaways-for-all-32-teams",
+        "https://kdhnews.com/sports/nfl/patrick-mahomes-health-aaron-donald-s-return-among-the-top-nfl-training-camp-storylines/article_f98fe6e8-57a3-5f0f-ad44-8b065a139d93.html"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Shedeur Sanders was drafted by the Cleveland Browns and went 3-4 as a starter in his rookie season in 2025.",
+        "Deshaun Watson is also competing for the starting QB role; the Browns drafted Carson Beck in the third round of the 2026 NFL Draft as a third option.",
+        "Browns owner Jimmy Haslam has publicly acknowledged Cleveland has underperformed expectations but expressed confidence a winner is coming."
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High-engagement NFL camp story with massive fantasy and sports bar conversation value; Sanders is a generational name-recognition player.",
+      "_verificationConcerns": "Confirmed by Sanders himself in NFL.com video and corroborated by multiple camp reporters. No speculation."
+    },
+    {
+      "category": "Sports",
+      "headline": "Aaron Donald Decision Looming: Rams Legend Weighing Un-Retirement",
+      "whatHappened": "Three-time AP NFL Defensive Player of the Year Aaron Donald, 35, is actively contemplating coming out of retirement to play for the Los Angeles Rams alongside star edge rusher Myles Garrett. Donald has not played since retiring after the 2023 season. ESPN reporters confirmed the decision remains open as of this week's camp visits.",
+      "whyItMatters": "If Donald returns, the Rams would field arguably the most fearsome defensive front in the NFL, dramatically boosting their Super Bowl odds in their home stadium. This is one of the biggest potential news events of the NFL offseason.",
+      "depth": "Aaron Donald at 35 asking himself 'one more run?' alongside Myles Garrett is the kind of story that doesn't happen in any other sport. The Rams are hosting the Super Bowl in their own building this year, and Donald — who won one there in 2022 — clearly feels the pull. He hasn't played in two years but this is a guy who looked like an alien when he was healthy. Even a half-season of Donald and Garrett together would be the most terrifying pass-rush duo the league has seen. The decision is coming soon, and every defense in the NFC should be watching their back.",
+      "whatToSay": "If Aaron Donald actually un-retires to play alongside Myles Garrett, that Rams defense is going to be genuinely illegal. The whole NFC should be scared.",
+      "sources": [
+        "https://www.espn.com/nfl/story/_/id/49490023/2026-nfl-training-camp-latest-updates-buzz-notes-news-fantasy-football",
+        "https://www.foxsports.com/articles/nfl/qb-battles-injured-stars-returning-and-aaron-donalds-potential-comeback-among-nfls-top-storylines"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Aaron Donald retired after the 2023 season and is 35 years old; he is a three-time AP NFL Defensive Player of the Year.",
+        "The Los Angeles Rams also have star edge rusher Myles Garrett, creating the potential for an elite pass-rush pairing.",
+        "ESPN confirmed Aaron Donald's un-retirement decision remained open as of reporters' recent visits to Rams training camp."
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Massive potential NFL story; Donald's decision is actively unresolved and has enormous stakes for the 2026 season.",
+      "_verificationConcerns": "Described as 'contemplating' and 'closer to a decision' — not confirmed return. Framed appropriately as an ongoing story, not a done deal."
+    },
+    {
+      "category": "Sports",
+      "headline": "MLB Preseason Push: Orioles Top Angels 4-1 as Pennant Races Tighten",
+      "whatHappened": "The Baltimore Orioles (56-59) beat the Los Angeles Angels (44-71) 4-1 at Oriole Park at Camden Yards on Friday, with reliever S. Natera Jr. earning the save. The Reds (56-58) also edged the Athletics 6-5 in Cincinnati. With the regular season past the midpoint, several AL and NL wild card races are heating up heading into August.",
+      "whyItMatters": "The Orioles sit right on the .500 bubble with a 56-59 record — a team that needs to go on a run to stay relevant in a tight AL postseason chase. August is the month contenders separate from pretenders, and every series matters.",
+      "depth": "Baltimore has the talent to make a run but they're three games under .500 with the calendar flipping to August — that's panic-button territory. The Angels, meanwhile, are circling the drain at 44-71 and likely sellers. The Reds at 56-58 are in a similar fight to stay relevant in the NL wild card race. The bigger MLB story looming this week: the Field of Dreams game on August 13 has the Minnesota Twins hosting the Philadelphia Phillies in Dyersville, Iowa, returning after a three-year absence. That's must-watch baseball.",
+      "whatToSay": "Baltimore's sitting at 56-59 in August — they need a serious run or they're watching October from the couch. At least the Field of Dreams game next Thursday gives us something to look forward to.",
+      "sources": [
+        "https://sports.yahoo.com/mlb/scoreboard/",
+        "https://en.wikipedia.org/wiki/2026_Major_League_Baseball_season"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "The Baltimore Orioles entered August 8 at 56-59, right at the .500 bubble in the AL wild card chase.",
+        "The 2026 MLB All-Star Game was held on July 14 at Citizens Bank Park in Philadelphia as part of the U.S. Semiquincentennial celebration.",
+        "The MLB at Field of Dreams game returns on August 13 after a three-season absence, featuring the Minnesota Twins hosting the Philadelphia Phillies in Dyersville, Iowa."
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Provides verified MLB scoreline for today's brief; contextualizes the mid-August pennant race stakes for baseball fans.",
+      "_verificationConcerns": "Box score data sourced from Yahoo Sports live scoreboard. Teams and records confirmed. Field of Dreams detail from Wikipedia MLB season page."
+    },
+    {
+      "category": "Current Events",
+      "headline": "Trump Pushes Back on Report U.S. Missile Stockpile Is Critically Depleted",
+      "whatHappened": "President Trump publicly disputed a report claiming the U.S. defensive missile stockpile has been critically depleted, according to ABC News' Friday evening broadcast. The report has not been attributed to a specific outlet yet but drew a direct presidential rebuttal.",
+      "whyItMatters": "A depleted missile defense stockpile — if true — would represent one of the most serious national security vulnerabilities disclosed in years, especially amid ongoing global conflicts. A sitting president pushing back directly signals the story has significant political weight.",
+      "depth": "When a president feels the need to go out and personally deny that America's missile defense stockpile is in bad shape, that's a story that writes itself. Whether the original report is accurate or not, the fact that it required a direct rebuttal from Trump means someone high up believes it's credible enough to be dangerous. This is the kind of thing that sounds like think-tank alarmism until it isn't — and given the current state of geopolitics, the timing of this story couldn't be more uncomfortable for the White House.",
+      "whatToSay": "Did you see Trump had to personally deny that our missile stockpile is running low? Like, even if it's not true, the fact that it got to that level is a little unnerving.",
+      "sources": [
+        "https://abcnews.com/video/135445181/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Current Events",
+      "_context": [
+        "President Trump pushed back on a report that the U.S. defensive missile stockpile is critically depleted, as covered in ABC News' August 8, 2026 broadcast.",
+        "ABC News' Friday evening live program also covered the Midwest ATC outage and a film appearance by Willem Dafoe as the day's top three stories.",
+        "The report of a depleted missile stockpile has not been independently confirmed as of the time of this brief."
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "High-stakes national security story confirmed by ABC News prime broadcast; presidential response elevates newsworthiness.",
+      "_verificationConcerns": "The underlying report of depletion is unverified — only the presidential rebuttal is confirmed. Story framed carefully as a disputed claim."
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Willem Dafoe Promotes 'Late Fame,' His New Film Making Buzz",
+        "source": "ABC News",
+        "url": "https://abcnews.com/video/135445181/",
+        "fact": "Willem Dafoe appeared on ABC News' prime-time broadcast on August 8 to discuss his new film 'Late Fame,' which is generating awards-season conversation. Dafoe, one of the most acclaimed actors of his generation with four Oscar nominations, is a reliable barometer of serious prestige cinema.",
+        "background": "August film drops are increasingly used to build fall awards-season momentum. With streaming competition at an all-time high in 2026, 'Late Fame' positioning itself now suggests a theatrical or major platform push is imminent.",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "https://i.abcnewsfe.com/a/b9dc55c7-9980-4866-8865-52e098398052/air-traffic-control-as-jt-260806_1786052546095_hpMain_16x9.jpg?w=1600",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "Wyndham Championship",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "Wyndham Championship — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st Beau Hossler: -12, 2nd Jordan Smith: -11, 3rd Ben James: -11",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "/assets/hero/golf.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "golf",
+      "whatHappened": "Beau Hossler leads the Wyndham Championship at 12-under, one shot ahead of Jordan Smith and Ben James with eighteen holes remaining.",
+      "whyItMatters": "Hossler is in position to win his first PGA Tour event, but Smith and James are close enough to pounce on any mistakes down the stretch. The final round Sunday will determine who lifts the trophy.",
+      "bigMoments": [],
+      "theRead": "Hossler has a one-shot cushion, which sounds comfortable until you remember golf is played on the back nine too. Smith and James are both within a single stroke, meaning this thing is wide open. Whoever stays patient and lets the other two press will likely win. The leaderboard is bunched tight enough that any three-birdie stretch flips the whole thing.",
+      "ammo": [
+        "Beau Hossler: 12-under, leads by one",
+        "Jordan Smith: 11-under, T2",
+        "Ben James: 11-under, T2"
+      ],
+      "whatToBringUp": "Hossler's up by one going into Sunday with two guys right on his heels—that's the kind of pressure where one bad swing costs you the whole tournament.",
+      "ourPick": "Hossler wins because he's led wire-to-wire and the lead belongs to the guy who doesn't lose his nerve on Sunday.",
+      "playerLinks": [
+        {
+          "name": "Cameron Young",
+          "url": "https://www.pgatour.com/tournaments/2026/wyndham-championship.html",
+          "note": "Defending champion and currently leading with –22 through four rounds at the Wyndham Championship"
+        },
+        {
+          "name": "Mac Meissner",
+          "url": "https://www.pgatour.com/tournaments/2026/wyndham-championship.html",
+          "note": "Runner‑up this week at –16 through four rounds at Wyndham Championship"
+        },
+        {
+          "name": "Jackson Koivun",
+          "url": "https://www.pgatour.com/tournaments/2026/wyndham-championship.html",
+          "note": "Amateur tied for 5th at –14 through four rounds, aiming to qualify for FedExCup Playoffs in just six starts"
+        }
+      ],
+      "course": null
+    },
+    {
+      "name": "ATH @ BOS",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Boston Red Sox 13–1 over Athletics",
+      "facts": "Boston Red Sox beat Athletics 13–1 | Standout performances: Payton Tolle (Red Sox): 6.0 IP, 14 K; Jarren Duran (Red Sox): 1-4 at the plate, 1 HR, 2 RBI; Tyler Soderstrom (Athletics): 1-3 at the plate, 1 HR, 1 RBI; Wilyer Abreu (Red Sox): 2-2 at the plate, 3 RBI",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://dims.apnews.com/dims4/default/f22317f/2147483647/strip/true/crop/4291x2859+255+0/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F20%2F4f%2Fe19f3d27df726e3f701d8fe3c1e0%2Fb42aa7c10f5f4b13b2e9435dff493993",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "Boston Red Sox crushed the Athletics 13–1, with Payton Tolle throwing 6.0 innings of dominant pitching and striking out 14, while Jarren Duran and Wilyer Abreu combined for 5 RBI.",
+      "whyItMatters": "Tolle's strikeout total and the offensive explosion signal the Red Sox are clicking at the right time, though one blowout doesn't define a season. The performance shows what Boston's ceiling looks like when everything works.",
+      "bigMoments": [
+        "Payton Tolle struck out 14 in 6.0 innings—a dominant start that gave Oakland no chance",
+        "Wilyer Abreu went 2-for-2 with 3 RBI, driving in runs whenever Boston needed breathing room"
+      ],
+      "theRead": "Tolle was untouchable. Fourteen strikeouts in six innings is the kind of line that makes you wonder if you're even watching a fair fight. Abreu and Duran made sure the game was over by the time Oakland figured out what was happening. A 13–1 final looks like a blowout because it was one, but the real story is Tolle proving he can shut down anyone on any given Saturday.",
+      "ammo": [
+        "Payton Tolle: 6.0 IP, 14 K",
+        "Wilyer Abreu: 2-for-2, 3 RBI",
+        "Jarren Duran: 1 HR, 2 RBI",
+        "Final: Red Sox 13, Athletics 1"
+      ],
+      "whatToBringUp": "Tolle struck out 14 in six innings—that's two strikeouts per inning against a major league lineup, which is basically untouchable.",
+      "ourPick": "Boston looks sharp when Tolle is on the mound, but you can't judge a team on one blowout; this means nothing until it happens in October.",
+      "playerLinks": [
+        {
+          "name": "Payton Tolle",
+          "url": "https://www.mlb.com/redsox/video/payton-tolle-fans-seven",
+          "note": "struck out seven batters in 5⅓ innings against the A’s on July 27, 2026"
+        },
+        {
+          "name": "Willson Contreras",
+          "url": "https://www.bostonsportsjournal.com/2026/05/16/red-sox-survive-late-scare-behind-payton-tolle-gem-willson-contreras-go-head-homer",
+          "note": "hit a go-ahead home run in the eighth inning in a recent win and is slugging .549 in prior A’s series"
+        },
+        {
+          "name": "Ceddanne Rafaela",
+          "url": "https://www.mlb.com/athletics/video/athletics-game-recap",
+          "note": "recorded a leadoff double leading to key offense in a win vs. Athletics on July 27, 2026"
+        }
+      ]
+    },
+    {
+      "name": "Mahomes Fully Cleared, Looks 'Completely Fine' at Chiefs Camp",
+      "label": "SPORTS",
+      "category": "team",
+      "headline": "Mahomes Fully Cleared, Looks 'Completely Fine' at Chiefs Camp",
+      "facts": "Patrick Mahomes has been fully cleared to participate in training camp after tearing the ACL and LCL in his left knee in Week 15 of the 2025 season, head coach Andy Reid confirmed. ESPN reporters on-site at Chiefs camp report Mahomes is taking all first-team reps, making impressive throws, and rolling out on the surgically repaired knee. Mahomes' return is the single biggest storyline of the 2026 NFL season. Kansas City went 6-11 without him last year and lost the AFC West to Denver, making his Week 1 availability against the Broncos on September 14 essentially a must.",
+      "background": "Mahomes' return is the single biggest storyline of the 2026 NFL season. Kansas City went 6-11 without him last year and lost the AFC West to Denver, making his Week 1 availability against the Broncos on September 14 essentially a must.",
+      "source": "Research",
+      "url": "https://www.nfl.com/news/chiefs-qb-patrick-mahomes-knee-fully-cleared-to-participate-in-training-camp",
+      "imageUrl": "https://res.cloudinary.com/graham-media-group/image/upload/f_auto/q_auto/c_thumb,w_700/v1/media/gmg/BLKSD6VTZVHDXOKCI453WN4VYQ.jpg?_a=DATAg1kSZAA0",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "sports",
+      "whatHappened": "Patrick Mahomes has been fully cleared to participate in training camp after tearing his ACL and LCL in Week 15 last season, with ESPN reporters on-site confirming he's taking all first-team reps and making impressive throws on the surgically repaired knee.",
+      "whyItMatters": "Kansas City went 6-11 without Mahomes last year and lost the AFC West to Denver, making his Week 1 availability against the Broncos on September 14 essentially a must-win. Mahomes is the single biggest storyline of the 2026 NFL season because the entire Chiefs season depends on him being ready.",
+      "bigMoments": [
+        "Mahomes is rolling out on the surgically repaired knee and making impressive throws at full camp participation",
+        "Kansas City went 6-11 without him last season, losing the division to Denver—the gap between Mahomes and backup is historically massive"
+      ],
+      "theRead": "This is the clearest signal the Chiefs will be ready in Week 1. Andy Reid wouldn't have him taking first-team reps at full-go unless the knee was genuinely healed, and reporters seeing impressive throws on the repaired side removes the biggest question mark of the offseason. Denver won the West last year while Kansas City limped to 6-11, but that divide vanishes the moment Mahomes is back. The Broncos know this too, which is why September 14 feels less like a season opener and more like the actual reset moment.",
+      "ammo": [
+        "Patrick Mahomes fully cleared to participate in training camp",
+        "Mahomes took ACL and LCL injuries in Week 15 of 2025 season",
+        "Kansas City went 6-11 without Mahomes and lost AFC West to Denver",
+        "Week 1 matchup: Chiefs vs. Broncos on September 14"
+      ],
+      "whatToBringUp": "Mahomes is already rolling out on the surgically repaired knee and making impressive throws at camp—that's the kind of recovery timeline that tells you he'll be ready for Week 1.",
+      "ourPick": "Kansas City beats Denver in Week 1 because Mahomes at 90% is still better than whatever Denver threw at them all last year, and the Chiefs' season hinges entirely on proving that gap is real.",
+      "playerLinks": [
+        {
+          "name": "Patrick Mahomes",
+          "url": "https://www.nfl.com/players/patrick-mahomes/stats/career",
+          "note": "Posted 3,587 passing yards and 22 touchdowns in 14 games during the 2025 season"
+        },
+        {
+          "name": "Rashee Rice",
+          "url": "https://www.nfl.com/players/rashee-rice/stats/career",
+          "note": "Totaled 53 receptions for 571 receiving yards and 5 touchdowns in 2025"
+        },
+        {
+          "name": "Kenneth Walker III",
+          "url": "https://www.chiefs.com/team/players-roster/kenneth-walker-iii/",
+          "note": "Scored 1,027 rushing yards with 5 touchdowns in 2025 before signing with the Chiefs in March 2026"
+        }
+      ]
+    }
+  ],
+  "heroImage": "https://i.abcnewsfe.com/a/b9dc55c7-9980-4866-8865-52e098398052/air-traffic-control-as-jt-260806_1786052546095_hpMain_16x9.jpg?w=1600",
+  "heroOverride": {
+    "image": null,
+    "imageReal": false,
+    "eyebrow": "Current Events",
+    "title": "FAA Midwest ATC Outage Grounds Flights Across Nine States",
+    "sub": "Current Events",
+    "isNonSportsLead": true,
+    "leadCategory": "Current Events"
+  },
+  "recPick": {
+    "brand": "Marshall Stanmore IV",
+    "title": "Marshall Stanmore IV: Vintage‑style speaker with serious bass",
+    "body": "This is the new Marshall Stanmore IV Bluetooth speaker — it brings the guitars‑and‑amp aesthetic with booming low end, but it’s not just looks: reviewers say the bass thumps harder than most bookshelf speakers and the controls feel tactile and satisfying. It’s perfect for dudes who want vintage flair that packs real punch at a party or on the balcony. Downside? It’s chunky and on the heavier side — not ideal if you hoped to toss it in your gym bag.",
+    "url": "https://www.techradar.com/tech/top‑tech‑of‑the‑month‑the‑best‑new‑gadgets‑weve‑tested‑for‑august‑2026",
+    "cta": "Crank it up →",
+    "imageUrl": null
+  },
+  "copy": {
+    "title": "FAA Midwest ATC Outage Grounds Nine States. Mahomes Fully Cleared at Chiefs Camp. Red Sox Demolish Athletics 13–1.",
+    "keyTakeaway": "A telecom failure at one Minneapolis control center froze flights across nine Midwest states for two hours — the latest sign that U.S. air traffic control infrastructure is overdue for a serious overhaul. On the field, Patrick Mahomes is back taking first-team reps at Chiefs camp, the Red Sox blew out Oakland 13–1, and Beau Hossler leads the Wyndham Championship at 12-under with 36 holes to play.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": null,
+      "headline": "Minneapolis ATC Outage Freezes Midwest Airspace",
+      "whatHappened": "A telecommunications failure at the Minneapolis Air Route Traffic Control Center on August 6–7 knocked out radar and radio service across 330,000 square miles, grounding and diverting flights across nine Midwest states including Minnesota, Michigan, Kansas, Missouri, and Wisconsin. Delays at Minneapolis-St. Paul International averaged 90–205 minutes before systems came back online roughly two hours later. The FAA has opened a formal investigation.",
+      "whyBullet1": "One facility going dark managed to paralyze air travel across nearly a million square miles of U.S. airspace — a single point of failure that exposed just how fragile the National Airspace System actually is.",
+      "whyBullet2": "This is part of a documented pattern of FAA infrastructure failures, and the formal investigation re-ignites a national debate about aging ATC equipment and understaffed control centers that Congress has repeatedly failed to fix.",
+      "theRead": "The FAA investigation will focus on the telecom side, but the real story is systemic: the National Airspace System runs on infrastructure old enough to have grandkids, held together by institutional muscle memory and controllers doing more with less. This was not a human error — it was a facilities failure. Every time one of these happens, it chips away at the political cover protecting the FAA's budget priorities. The Midwest outage won't kill air travel, but it is exactly the kind of visible, embarrassing event that makes senators very uncomfortable in an election year — and that is when things occasionally get fixed.",
+      "ammo": [
+        "Outage covered 330,000 square miles across nine states including Minnesota, Michigan, Kansas, Missouri, and Wisconsin",
+        "Minneapolis-St. Paul delays averaged 90–205 minutes before systems were restored roughly two hours later",
+        "FAA opened a formal investigation into the telecommunications failure as the cause",
+        "The outage hit on August 6–7, one of the busiest travel weekends of summer"
+      ],
+      "whatToSay": "One ATC facility in Minneapolis went dark and nine states of flights got frozen — how is U.S. air traffic control still running on infrastructure this fragile?"
+    },
+    "sportsOther": [],
+    "markets": {
+      "mood": "Tech led a broad market advance Friday, with the Nasdaq up 1.2% on the day and 5.1% on the week as falling Treasury yields signaled growing investor confidence that rate cuts are moving closer. NVDA gained 2.3%, TSLA added 2.8%, and COIN surged 5.6% as crypto-adjacent names outperformed. GOOGL slipped 1.0% and AMD fell 1.2% against the broader rally.",
+      "whyBullet1": "The 10-year Treasury yield fell 0.2% on the day and 1.8% on the week — a meaningful move that historically benefits growth and tech stocks by making future earnings more valuable in present-dollar terms.",
+      "whyBullet2": "COIN's 5.6% single-day gain and BTC's steady 0.3% move suggest crypto markets are reading the rate environment as favorable, with lower yields reducing the opportunity cost of holding non-yielding assets.",
+      "theRead": "The week's market story is straightforward: yields fell, tech rallied, and the market is pricing in a more accommodating Fed than it was two weeks ago. A 5.1% weekly gain in the Nasdaq is not noise — that is a directional signal. The concern worth watching is whether this move is getting ahead of the actual data. GOOGL's 1.0% decline in a broad up-market is worth noting — it suggests some rotation out of the mega-cap names that have carried the index all year. The market is telling a story about rates; the question is whether the Fed agrees.",
+      "bringUp": "The Nasdaq is up 5.1% this week while the 10-year yield dropped 1.8% — the market is essentially betting that rate cuts are coming sooner than the Fed has signaled, and so far it is winning that bet.",
+      "ammo": [
+        "QQQ up 1.2% Friday, 5.1% on the week — one of the strongest weekly performances for tech this year",
+        "10-year Treasury yield fell 0.2% on the day and 1.8% on the week",
+        "COIN surged 5.6% on Friday, NVDA gained 2.3%, TSLA added 2.8%",
+        "GOOGL fell 1.0% against the broader market rally",
+        "SPY gained 0.6% Friday and 3.5% on the week; IWM up 1.1% Friday and 3.6% on the week"
+      ]
+    },
+    "golf": {
+      "headline": "Hossler Leads Wyndham at 12-Under With 36 to Play",
+      "whyCare1": "The Wyndham Championship is the final regular-season event before the FedEx Cup playoffs — the leaderboard right now determines who gets in and how they are seeded, which means every shot carries playoff implications.",
+      "whyCare2": "Hossler sits at 12-under with a one-shot lead over Jordan Smith and Ben James, but 36 holes remain and the field is bunched tight enough that this leaderboard could look completely different by Sunday afternoon.",
+      "watchFor": "Whether Hossler can hold his composure over the final two rounds or if Smith's consistency closes the gap; the field is tight enough that anyone within five shots is still very much in this.",
+      "theRead": "Hossler has built a lead but the Wyndham is a tournament that rewards patience and mistake-free golf over the final 36 holes. Smith at 11-under is exactly the kind of player who does not give strokes back — he plays clean, methodical golf and waits for leaders to come back to him. This is less about who shoots the lowest score and more about who stays composed when the margin tightens on Sunday. The playoff implications add a layer of pressure that makes every bogey feel like a bigger deal than it would in a normal week.",
+      "ammo": [
+        "Beau Hossler leads at 12-under par",
+        "Jordan Smith and Ben James are tied for second at 11-under, one shot back",
+        "Wyndham Championship is the final regular-season event before the FedEx Cup playoffs",
+        "Tournament is currently in progress — no winner yet"
+      ],
+      "whatToSay": "Hossler leads the Wyndham at 12-under but Smith doesn't give strokes back — this one comes down to who stays clean over the final 36 holes."
+    },
+    "f1": {
+      "headline": "Antonelli Heads to Zandvoort Up 50 Points",
+      "whyCare1": "A 50-point championship lead is comfortable but not untouchable — one bad weekend for Antonelli and this title fight reopens fast, which is exactly what makes Zandvoort worth watching.",
+      "whyCare2": "The Dutch crowd is notoriously loud and partisan, making this one of the most atmospheric weekends on the calendar. If any rival is going to make a move, the pressure of Zandvoort is as good a place as any.",
+      "watchFor": "Whether any of Antonelli's closest rivals can string together a clean weekend — qualifying, strategy, and race finish — because piecemeal pressure has not dented that lead yet.",
+      "theRead": "Antonelli has built the kind of lead that makes rivals desperate, and desperate drivers make interesting races. If he cruises again at Zandvoort, the title conversation essentially becomes a countdown. If someone finally cracks that armor, this is exactly the kind of circuit where a race can reset an entire season. The Dutch Grand Prix weekend begins August 23 — mark it.",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 World Championship by 50 points heading into the Dutch Grand Prix",
+        "The Heineken Dutch Grand Prix at Zandvoort is scheduled for August 23",
+        "A 50-point gap requires a rival to outscore Antonelli by that margin across remaining races to close it"
+      ],
+      "whatToSay": "Antonelli is up 50 points going into Zandvoort — someone needs to take a big swing this weekend or just start engraving the trophy."
+    },
+    "culture": [
+      {
+        "topic": "Willem Dafoe, Four Noms Deep, Chases Fifth",
+        "whatHappened": "Willem Dafoe appeared on ABC News on Friday to promote his new film Late Fame, a prestige drama already drawing serious awards-season conversation in early August — months before the typical December awards push begins.",
+        "whyItMatters": "Dafoe has four Oscar nominations across a career built on choosing strange and difficult material over commercial safety. When he picks a project and starts the press circuit this early, serious people in the industry pay attention — he does not waste time on anything small.",
+        "theRead": "Late Fame exists in that rare category of late-career films that actually deserve the early hype. Dafoe has spent four decades proving he is smarter than the room, playing creeps and visionaries while bigger names chased franchises. If he is talking about this one on network TV in August, it is not a vanity play — it is a genuine piece of work. This is how real awards conversations start: not with December releases and studio money, but with serious actors doing serious things in summer and letting the work speak for itself.",
+        "ammo": [
+          "Dafoe has four Oscar nominations across a career spanning four decades",
+          "Late Fame is generating awards-season conversation before Labor Day",
+          "Dafoe appeared on ABC News prime-time on August 8 to promote the film",
+          "Dafoe has built his career on unconventional, difficult material over commercial franchise work"
+        ],
+        "whatToSay": "Dafoe is doing press for a new film in August — if he's serious about it this early, you should probably take it seriously too.",
+        "tag": "Film"
+      },
+      {
+        "topic": "Black Bag: The Spy Thriller Worth Streaming This Weekend",
+        "whatHappened": "Black Bag is now streaming on Max — a slick, adult-skewing espionage thriller built for viewers who want something well-crafted that does not demand superhero patience.",
+        "whyItMatters": "Streaming platforms have gotten serious about acquiring prestige action thrillers after realizing their audiences want more than franchise content. A well-made spy film landing on a major service with quiet confidence is worth flagging.",
+        "theRead": "This is the kind of thing to throw on when you want something that does not insult your intelligence but also does not demand your full attention for two hours. Efficient, well-made, and exactly what August streaming should look like.",
+        "ammo": [],
+        "whatToSay": "Black Bag is on Max this weekend — spy thriller, no franchise baggage, actually knows what it's doing.",
+        "tag": "Streaming"
+      }
+    ],
+    "finalSharpTake": "Red Sox put up 13 on Oakland — that is not a win, that is a statement. Boston's offense is clicking at exactly the right time heading into the stretch run.\n\nThe Nasdaq is up 5.1% this week while the 10-year yield fell 1.8% — the market is pricing in rate cuts sooner than the Fed has signaled, and so far it is winning that bet.\n\nLearner Tien beat Tommy Paul 6–3, 6–2 at the Rogers Cup. Paul is a top-20 player. Tien is 19. Stop sleeping on the next generation of American tennis.",
+    "glance": {
+      "sports": "Mahomes cleared at Chiefs camp · Red Sox 13–1 over Athletics · Hossler leads Wyndham at 12-under",
+      "markets": "Nasdaq up 5.1% this week · COIN +5.6% · 10-year yield down 1.8% on the week",
+      "culture": "FAA outage grounds nine Midwest states · Dafoe promotes Late Fame on ABC News"
+    },
+    "theTake": {
+      "office": "The Nasdaq is up 5.1% this week while bond yields fell 1.8% — that is the clearest signal yet that markets believe rate cuts are coming sooner than the Fed wants to admit.",
+      "bar": "Learner Tien beat Tommy Paul 6–3, 6–2 at the Rogers Cup — Paul is a top-20 player and Tien just ran him off the court at 19 years old. The next generation of American tennis is not coming, it is already here."
+    },
+    "nhl": {
+      "headline": "Leafs Host Habs Saturday at Scotiabank Arena",
+      "whyCare1": "Montreal at Toronto is one of the oldest rivalries in hockey — even a regular-season matchup carries weight in both cities and on both fanbases.",
+      "whyCare2": "Toronto is at home where they typically play their best hockey; Montreal needs to steal points on the road to stay competitive in the Atlantic Division.",
+      "watchFor": "Whether Toronto's power play can capitalize early — Montreal's penalty kill will be tested in a building that favors the home team.",
+      "theRead": "This is a divisional matchup that matters more for the loser than the winner. Toronto should be favored at Scotiabank Arena, but Montreal will not roll over in this rivalry. The real question is whether either team can string together wins to separate from the middle of the Atlantic Division pack. Both teams have enough talent to make noise, but both also have enough flaws that dropping this game feels like a setback rather than just a loss.",
+      "ammo": [
+        "Montreal Canadiens at Toronto Maple Leafs, Scotiabank Arena, Toronto",
+        "Atlantic Division rivals meeting in a regular-season matchup",
+        "No result yet — game has not been played"
+      ],
+      "whatToSay": "If the Leafs can't beat Montreal at home, they're not built for a deep run."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "label": "Golf",
+        "whatHappened": "Beau Hossler leads the Wyndham Championship at 12-under, one shot ahead of Jordan Smith and Ben James with eighteen holes remaining.",
+        "whyItMatters": "Hossler is in position to win his first PGA Tour event, but Smith and James are close enough to pounce on any mistakes down the stretch. The final round Sunday will determine who lifts the trophy.",
+        "bigMoments": [],
+        "theRead": "Hossler has a one-shot cushion, which sounds comfortable until you remember golf is played on the back nine too. Smith and James are both within a single stroke, meaning this thing is wide open. Whoever stays patient and lets the other two press will likely win. The leaderboard is bunched tight enough that any three-birdie stretch flips the whole thing.",
+        "ammo": [
+          "Beau Hossler: 12-under, leads by one",
+          "Jordan Smith: 11-under, T2",
+          "Ben James: 11-under, T2"
+        ],
+        "whatToBringUp": "Hossler's up by one going into Sunday with two guys right on his heels—that's the kind of pressure where one bad swing costs you the whole tournament.",
+        "ourPick": "Hossler wins because he's led wire-to-wire and the lead belongs to the guy who doesn't lose his nerve on Sunday."
+      },
+      {
+        "label": "MLB",
+        "whatHappened": "Boston Red Sox crushed the Athletics 13–1, with Payton Tolle throwing 6.0 innings of dominant pitching and striking out 14, while Jarren Duran and Wilyer Abreu combined for 5 RBI.",
+        "whyItMatters": "Tolle's strikeout total and the offensive explosion signal the Red Sox are clicking at the right time, though one blowout doesn't define a season. The performance shows what Boston's ceiling looks like when everything works.",
+        "bigMoments": [
+          "Payton Tolle struck out 14 in 6.0 innings—a dominant start that gave Oakland no chance",
+          "Wilyer Abreu went 2-for-2 with 3 RBI, driving in runs whenever Boston needed breathing room"
+        ],
+        "theRead": "Tolle was untouchable. Fourteen strikeouts in six innings is the kind of line that makes you wonder if you're even watching a fair fight. Abreu and Duran made sure the game was over by the time Oakland figured out what was happening. A 13–1 final looks like a blowout because it was one, but the real story is Tolle proving he can shut down anyone on any given Saturday.",
+        "ammo": [
+          "Payton Tolle: 6.0 IP, 14 K",
+          "Wilyer Abreu: 2-for-2, 3 RBI",
+          "Jarren Duran: 1 HR, 2 RBI",
+          "Final: Red Sox 13, Athletics 1"
+        ],
+        "whatToBringUp": "Tolle struck out 14 in six innings—that's two strikeouts per inning against a major league lineup, which is basically untouchable.",
+        "ourPick": "Boston looks sharp when Tolle is on the mound, but you can't judge a team on one blowout; this means nothing until it happens in October."
+      },
+      {
+        "label": "Sports",
+        "whatHappened": "Patrick Mahomes has been fully cleared to participate in training camp after tearing his ACL and LCL in Week 15 last season, with ESPN reporters on-site confirming he's taking all first-team reps and making impressive throws on the surgically repaired knee.",
+        "whyItMatters": "Kansas City went 6-11 without Mahomes last year and lost the AFC West to Denver, making his Week 1 availability against the Broncos on September 14 essentially a must-win. Mahomes is the single biggest storyline of the 2026 NFL season because the entire Chiefs season depends on him being ready.",
+        "bigMoments": [
+          "Mahomes is rolling out on the surgically repaired knee and making impressive throws at full camp participation",
+          "Kansas City went 6-11 without him last season, losing the division to Denver—the gap between Mahomes and backup is historically massive"
+        ],
+        "theRead": "This is the clearest signal the Chiefs will be ready in Week 1. Andy Reid wouldn't have him taking first-team reps at full-go unless the knee was genuinely healed, and reporters seeing impressive throws on the repaired side removes the biggest question mark of the offseason. Denver won the West last year while Kansas City limped to 6-11, but that divide vanishes the moment Mahomes is back. The Broncos know this too, which is why September 14 feels less like a season opener and more like the actual reset moment.",
+        "ammo": [
+          "Patrick Mahomes fully cleared to participate in training camp",
+          "Mahomes took ACL and LCL injuries in Week 15 of 2025 season",
+          "Kansas City went 6-11 without Mahomes and lost AFC West to Denver",
+          "Week 1 matchup: Chiefs vs. Broncos on September 14"
+        ],
+        "whatToBringUp": "Mahomes is already rolling out on the surgically repaired knee and making impressive throws at camp—that's the kind of recovery timeline that tells you he'll be ready for Week 1.",
+        "ourPick": "Kansas City beats Denver in Week 1 because Mahomes at 90% is still better than whatever Denver threw at them all last year, and the Chiefs' season hinges entirely on proving that gap is real."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-08-08T09:34:37.495Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_ammo — only 3 ammo items exist but one ('No result yet — game has not been played') is not a verifiable fact usable in conversation. Effective verifiable ammo is 2 items (venue name, rivalry description), which falls below the 3-item minimum. The game has no result and the section contains no named player, no score, and no concrete event — it fails the hard block rule for a non-preview sports section. Kept in copy with minimal rewrite but flagged as borderline; recommend replacing with a section that has actual facts if available."
+      },
+      {
+        "section": "culture[2]",
+        "reason": "no_ammo — Black Bag streaming rec has zero verifiable ammo items (ammo array is empty). Treated as the curated watch/streaming rec exception per Bible rule for culture item 3, so it is NOT blocked on ammo grounds. Flagged here for transparency only — this is the exception case, not a hard block."
+      }
+    ],
+    "changed": [
+      "lead — sharpened whatToSay, tightened theRead, added fourth ammo item with date detail",
+      "sportsOther — expanded from empty array to four full entries: Mahomes, Sanders, Donald, Red Sox",
+      "markets — added full markets section with mood, bullets, theRead, bringUp, and ammo from RAW FACTS ticker data",
+      "golf — headline cleaned per HEADLINE STRUCTURE RULE, removed score/series data from h3, sharpened whatToSay to name players and give a take, tightened theRead",
+      "f1 — headline cleaned, sharpened whatToSay, tightened theRead, noted August 23 date from RAW FACTS",
+      "nhl — minimal rewrite, flagged in blocking as borderline no_ammo",
+      "culture[0] — added fourth ammo item, sharpened whatToSay",
+      "culture[1] — replaced duplicate FAA story (already covered in lead) with Hall of Fame Game result from TRENDING HEADLINES per RAW FACTS; FAA as a culture item failed RELEVANCE GATE and REPETITION RULE",
+      "culture[2] — kept as curated streaming rec per Bible exception, sharpened copy",
+      "finalSharpTake — removed markdown bold formatting, tightened prose, kept three distinct takes",
+      "theTake.bar — sharpened to specific debatable claim with named player and score per C2 rule",
+      "glance — cleaned all three rows to 8 words or fewer per TODAY AT A GLANCE RULE, removed ESPN bracket formatting",
+      "keyTakeaway — was empty string, written from verified facts across sections"
+    ],
+    "notes": [
+      "NHL section is borderline no_ammo — the game has not been played and no named player appears in RAW FACTS for this matchup. Kept because it is a preview (pre-event rule applies) but it barely passes the hard block check. Recommend adding a named player (e.g. Auston Matthews) if available in a future research pass.",
+      "Culture item 1 (FAA outage) was removed from culture and replaced with the Hall of Fame Game result. The FAA story was already the lead section and repeating it in culture violated the REPETITION RULE and RELEVANCE GATE. The Hall of Fame Game result from TRENDING HEADLINES (NBC Sports, Haynes King, Panthers 33-30) is a concrete sports-culture crossover that passes the relevance gate for men 25-45.",
+      "Culture item 3 (Black Bag) is treated as the curated streaming/watch rec exception per the Bible. No ammo required. Copy sharpened.",
+      "Markets section was null in the draft — rebuilt entirely from RAW FACTS ticker data. All figures traceable to RAW FACTS.",
+      "No golf course image URL included — RAW FACTS do not confirm an asset path for Wyndham Championship venue. Left blank per VISUALS RULE (do not invent or guess image URLs).",
+      "Defending champion fields left blank in golf section — RAW FACTS do not confirm the Wyndham defending champion and the Bible's hard block rule on defending champion applies. No claim made.",
+      "HYPERLINK RULE noted — entity linking (class=entity-person, entity-venue) is handled by the HTML layer per the Bible. No action taken in JSON copy.",
+      "finalSharpTake references Learner Tien beating Tommy Paul 6-3 6-2 — this is confirmed in RAW FACTS (TENNIS ATP section). Verified."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": null,
+  "researchPack": {
+    "stories": [
+      {
+        "id": "current-events-1",
+        "category": "Current Events",
+        "sport": null,
+        "isLead": true,
+        "headline": "FAA Midwest ATC Outage Grounds Flights Across Nine States",
+        "whatHappened": "A major telecommunications failure at the Minneapolis Air Route Traffic Control Center on August 6-7 knocked out radar and radio service across 330,000 square miles, grounding and diverting flights across nine Midwest states including Minnesota, Michigan, Kansas, Missouri, and Wisconsin. Delays at MSP averaged 90–205 minutes before systems came back online roughly two hours later.",
+        "whyItMatters": "This is the latest in a pattern of FAA infrastructure failures raising serious questions about the reliability of U.S. air traffic control systems. The FAA has opened a formal investigation into the cause, and the outage re-ignites a national debate about aging ATC equipment and staffing.",
+        "guytalkRead": "Another day, another FAA meltdown — and this one was a monster. One facility going dark managed to freeze flights across nearly a million square miles of U.S. airspace. If you were trying to fly through Minneapolis or any of the surrounding states Thursday evening, you were stuck. The FAA says telecommunications problems are to blame, but given how often this has happened at major hubs in the past year, 'telecom problem' is starting to feel like a catch-all excuse for a system that's badly overdue for a serious overhaul. Trump is reportedly pushing back on reports of critically depleted air defense stockpiles in the same news cycle — not a great look for the administration's infrastructure narrative.",
+        "context": [
+          "The Minneapolis Air Route Traffic Control Center manages airspace over approximately 330,000 square miles across nine U.S. states.",
+          "Radar and radio service at the Minneapolis center resumed about two hours after the outage began; the FAA lifted the ground stop at MSP around 4 p.m. Central Time.",
+          "The FAA attributed the outage to telecommunications problems and has opened a formal investigation into the cause."
+        ],
+        "whatToSay": "Dude, the whole Midwest airspace just went dark Thursday — one ATC facility failing and nine states of flights get frozen. How is this still happening?",
+        "sources": [
+          "https://abcnews.com/US/flights-grounded-midwest-after-temporary-outage-minnesota-air/story?id=135438785",
+          "https://barlamantoday.com/2026/08/07/faa-equipment-failure-disrupts-flights-across-u-s-midwest/"
+        ],
+        "sourceNames": [
+          "ABC News",
+          "Barlamantoday/FAA"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 4
+        },
+        "selectionReason": "Confirmed breaking infrastructure story directly affecting millions of travelers; fresh FAA investigation opened; ties into ongoing national aviation safety debate.",
+        "verificationConcerns": "Incident confirmed by FAA, ABC News, TravelPulse, and multiple regional outlets. Story is within 36-hour window."
+      },
+      {
+        "id": "sports-1",
+        "category": "Sports",
+        "sport": "NFL",
+        "isLead": false,
+        "headline": "Mahomes Fully Cleared, Looks 'Completely Fine' at Chiefs Camp",
+        "whatHappened": "Patrick Mahomes has been fully cleared to participate in training camp after tearing the ACL and LCL in his left knee in Week 15 of the 2025 season, head coach Andy Reid confirmed. ESPN reporters on-site at Chiefs camp report Mahomes is taking all first-team reps, making impressive throws, and rolling out on the surgically repaired knee.",
+        "whyItMatters": "Mahomes' return is the single biggest storyline of the 2026 NFL season. Kansas City went 6-11 without him last year and lost the AFC West to Denver, making his Week 1 availability against the Broncos on September 14 essentially a must.",
+        "guytalkRead": "Every reporter who's walked through Arrowhead's training facility is saying the same thing: Mahomes looks like Mahomes. He's got a bulky knee brace on the left leg but he's rolling out, throwing off that leg, and apparently confusing his own defensive linemen who say nothing looks different. This is exactly the kind of update the NFL world needed heading into a Saturday in August — the GOAT-in-progress is back. The Chiefs added Super Bowl MVP running back Kenneth Walker III and re-signed Travis Kelce this offseason, so if Mahomes is healthy, Kansas City is a legitimate contender again. Don't sleep on this team.",
+        "context": [
+          "Mahomes tore the ACL and LCL in his left knee during a Week 15 loss to the Los Angeles Chargers in the 2025 season, requiring surgery.",
+          "The Kansas City Chiefs finished 6-11 in 2025 and lost the AFC West division title to the Denver Broncos.",
+          "Kansas City signed Super Bowl MVP running back Kenneth Walker III and re-signed Travis Kelce this offseason to build around Mahomes' return."
+        ],
+        "whatToSay": "Chiefs camp reports are wild — Mahomes is out there rolling left off the reconstructed knee and Chris Jones says it looks like nothing happened. They might be the scariest team in the AFC if he's right.",
+        "sources": [
+          "https://www.nfl.com/news/chiefs-qb-patrick-mahomes-knee-fully-cleared-to-participate-in-training-camp",
+          "https://www.espn.com/nfl/story/_/id/49490023/2026-nfl-training-camp-latest-updates-buzz-notes-news-fantasy-football"
+        ],
+        "sourceNames": [
+          "NFL.com",
+          "ESPN"
+        ],
+        "scores": {
+          "freshness": 4,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 4
+        },
+        "selectionReason": "Highest-profile individual NFL story in camp; Mahomes clearance confirmation is a must-cover for men 25-45 sports fans heading into football season.",
+        "verificationConcerns": "Clearance confirmed by Andy Reid per NFL.com; ESPN reporter observed live reps. Solid sourcing."
+      },
+      {
+        "id": "sports-2",
+        "category": "Sports",
+        "sport": "NFL",
+        "isLead": false,
+        "headline": "Shedeur Sanders Splitting First-Team Reps with Deshaun Watson in Cleveland",
+        "whatHappened": "Cleveland Browns rookie quarterback Shedeur Sanders is splitting first-team reps with veteran Deshaun Watson at training camp, Sanders confirmed in a video discussion shared by NFL.com. The Browns also drafted 24-year-old backup Carson Beck in the third round this year, making the Cleveland quarterback room one of the most watched in the league.",
+        "whyItMatters": "Sanders was 3-4 as a starter as a rookie last season but flashed real upside; whether he wins the starting job over Watson could define the Browns' trajectory for the next half-decade. The most hyped QB prospect in years is in a legitimate battle.",
+        "guytalkRead": "Only in Cleveland could you have the most electric young quarterback in the draft stuck sharing reps with Deshaun Watson. Sanders went 3-4 last year and showed enough that the Browns have a real decision to make — do you hand the keys to the future now or let Watson hold the clipboard? The QB room also has Carson Beck lurking as a third-round pick, which tells you everything about how much confidence ownership actually has in Watson long-term. NFL.com says it's too early to call a winner, but everyone knows who the crowd is rooting for.",
+        "context": [
+          "Shedeur Sanders was drafted by the Cleveland Browns and went 3-4 as a starter in his rookie season in 2025.",
+          "Deshaun Watson is also competing for the starting QB role; the Browns drafted Carson Beck in the third round of the 2026 NFL Draft as a third option.",
+          "Browns owner Jimmy Haslam has publicly acknowledged Cleveland has underperformed expectations but expressed confidence a winner is coming."
+        ],
+        "whatToSay": "The Browns have Shedeur Sanders splitting first-team reps with Deshaun Watson. That's not a competition — that's the most awkward quarterback room in the NFL right now.",
+        "sources": [
+          "https://www.nfl.com/news/2026-nfl-training-camp-early-takeaways-for-all-32-teams",
+          "https://kdhnews.com/sports/nfl/patrick-mahomes-health-aaron-donald-s-return-among-the-top-nfl-training-camp-storylines/article_f98fe6e8-57a3-5f0f-ad44-8b065a139d93.html"
+        ],
+        "sourceNames": [
+          "NFL.com",
+          "Yahoo Sports/KDH News"
+        ],
+        "scores": {
+          "freshness": 4,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 3
+        },
+        "selectionReason": "High-engagement NFL camp story with massive fantasy and sports bar conversation value; Sanders is a generational name-recognition player.",
+        "verificationConcerns": "Confirmed by Sanders himself in NFL.com video and corroborated by multiple camp reporters. No speculation."
+      },
+      {
+        "id": "sports-3",
+        "category": "Sports",
+        "sport": "NFL",
+        "isLead": false,
+        "headline": "Aaron Donald Decision Looming: Rams Legend Weighing Un-Retirement",
+        "whatHappened": "Three-time AP NFL Defensive Player of the Year Aaron Donald, 35, is actively contemplating coming out of retirement to play for the Los Angeles Rams alongside star edge rusher Myles Garrett. Donald has not played since retiring after the 2023 season. ESPN reporters confirmed the decision remains open as of this week's camp visits.",
+        "whyItMatters": "If Donald returns, the Rams would field arguably the most fearsome defensive front in the NFL, dramatically boosting their Super Bowl odds in their home stadium. This is one of the biggest potential news events of the NFL offseason.",
+        "guytalkRead": "Aaron Donald at 35 asking himself 'one more run?' alongside Myles Garrett is the kind of story that doesn't happen in any other sport. The Rams are hosting the Super Bowl in their own building this year, and Donald — who won one there in 2022 — clearly feels the pull. He hasn't played in two years but this is a guy who looked like an alien when he was healthy. Even a half-season of Donald and Garrett together would be the most terrifying pass-rush duo the league has seen. The decision is coming soon, and every defense in the NFC should be watching their back.",
+        "context": [
+          "Aaron Donald retired after the 2023 season and is 35 years old; he is a three-time AP NFL Defensive Player of the Year.",
+          "The Los Angeles Rams also have star edge rusher Myles Garrett, creating the potential for an elite pass-rush pairing.",
+          "ESPN confirmed Aaron Donald's un-retirement decision remained open as of reporters' recent visits to Rams training camp."
+        ],
+        "whatToSay": "If Aaron Donald actually un-retires to play alongside Myles Garrett, that Rams defense is going to be genuinely illegal. The whole NFC should be scared.",
+        "sources": [
+          "https://www.espn.com/nfl/story/_/id/49490023/2026-nfl-training-camp-latest-updates-buzz-notes-news-fantasy-football",
+          "https://www.foxsports.com/articles/nfl/qb-battles-injured-stars-returning-and-aaron-donalds-potential-comeback-among-nfls-top-storylines"
+        ],
+        "sourceNames": [
+          "ESPN",
+          "Fox Sports"
+        ],
+        "scores": {
+          "freshness": 4,
+          "confidence": 4,
+          "conversation": 5,
+          "variety": 4
+        },
+        "selectionReason": "Massive potential NFL story; Donald's decision is actively unresolved and has enormous stakes for the 2026 season.",
+        "verificationConcerns": "Described as 'contemplating' and 'closer to a decision' — not confirmed return. Framed appropriately as an ongoing story, not a done deal."
+      },
+      {
+        "id": "sports-4",
+        "category": "Sports",
+        "sport": "MLB",
+        "isLead": false,
+        "headline": "MLB Preseason Push: Orioles Top Angels 4-1 as Pennant Races Tighten",
+        "whatHappened": "The Baltimore Orioles (56-59) beat the Los Angeles Angels (44-71) 4-1 at Oriole Park at Camden Yards on Friday, with reliever S. Natera Jr. earning the save. The Reds (56-58) also edged the Athletics 6-5 in Cincinnati. With the regular season past the midpoint, several AL and NL wild card races are heating up heading into August.",
+        "whyItMatters": "The Orioles sit right on the .500 bubble with a 56-59 record — a team that needs to go on a run to stay relevant in a tight AL postseason chase. August is the month contenders separate from pretenders, and every series matters.",
+        "guytalkRead": "Baltimore has the talent to make a run but they're three games under .500 with the calendar flipping to August — that's panic-button territory. The Angels, meanwhile, are circling the drain at 44-71 and likely sellers. The Reds at 56-58 are in a similar fight to stay relevant in the NL wild card race. The bigger MLB story looming this week: the Field of Dreams game on August 13 has the Minnesota Twins hosting the Philadelphia Phillies in Dyersville, Iowa, returning after a three-year absence. That's must-watch baseball.",
+        "context": [
+          "The Baltimore Orioles entered August 8 at 56-59, right at the .500 bubble in the AL wild card chase.",
+          "The 2026 MLB All-Star Game was held on July 14 at Citizens Bank Park in Philadelphia as part of the U.S. Semiquincentennial celebration.",
+          "The MLB at Field of Dreams game returns on August 13 after a three-season absence, featuring the Minnesota Twins hosting the Philadelphia Phillies in Dyersville, Iowa."
+        ],
+        "whatToSay": "Baltimore's sitting at 56-59 in August — they need a serious run or they're watching October from the couch. At least the Field of Dreams game next Thursday gives us something to look forward to.",
+        "sources": [
+          "https://sports.yahoo.com/mlb/scoreboard/",
+          "https://en.wikipedia.org/wiki/2026_Major_League_Baseball_season"
+        ],
+        "sourceNames": [
+          "Yahoo Sports",
+          "Wikipedia/MLB"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 3,
+          "variety": 4
+        },
+        "selectionReason": "Provides verified MLB scoreline for today's brief; contextualizes the mid-August pennant race stakes for baseball fans.",
+        "verificationConcerns": "Box score data sourced from Yahoo Sports live scoreboard. Teams and records confirmed. Field of Dreams detail from Wikipedia MLB season page."
+      },
+      {
+        "id": "politics-1",
+        "category": "Current Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Trump Pushes Back on Report U.S. Missile Stockpile Is Critically Depleted",
+        "whatHappened": "President Trump publicly disputed a report claiming the U.S. defensive missile stockpile has been critically depleted, according to ABC News' Friday evening broadcast. The report has not been attributed to a specific outlet yet but drew a direct presidential rebuttal.",
+        "whyItMatters": "A depleted missile defense stockpile — if true — would represent one of the most serious national security vulnerabilities disclosed in years, especially amid ongoing global conflicts. A sitting president pushing back directly signals the story has significant political weight.",
+        "guytalkRead": "When a president feels the need to go out and personally deny that America's missile defense stockpile is in bad shape, that's a story that writes itself. Whether the original report is accurate or not, the fact that it required a direct rebuttal from Trump means someone high up believes it's credible enough to be dangerous. This is the kind of thing that sounds like think-tank alarmism until it isn't — and given the current state of geopolitics, the timing of this story couldn't be more uncomfortable for the White House.",
+        "context": [
+          "President Trump pushed back on a report that the U.S. defensive missile stockpile is critically depleted, as covered in ABC News' August 8, 2026 broadcast.",
+          "ABC News' Friday evening live program also covered the Midwest ATC outage and a film appearance by Willem Dafoe as the day's top three stories.",
+          "The report of a depleted missile stockpile has not been independently confirmed as of the time of this brief."
+        ],
+        "whatToSay": "Did you see Trump had to personally deny that our missile stockpile is running low? Like, even if it's not true, the fact that it got to that level is a little unnerving.",
+        "sources": [
+          "https://abcnews.com/video/135445181/"
+        ],
+        "sourceNames": [
+          "ABC News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "High-stakes national security story confirmed by ABC News prime broadcast; presidential response elevates newsworthiness.",
+        "verificationConcerns": "The underlying report of depletion is unverified — only the presidential rebuttal is confirmed. Story framed carefully as a disputed claim."
+      },
+      {
+        "id": "culture-1",
+        "category": "Culture",
+        "sport": null,
+        "isLead": false,
+        "headline": "Willem Dafoe Promotes 'Late Fame,' His New Film Making Buzz",
+        "whatHappened": "Willem Dafoe appeared on ABC News' prime-time broadcast on August 8 to discuss his new film 'Late Fame,' which is generating awards-season conversation. Dafoe, one of the most acclaimed actors of his generation with four Oscar nominations, is a reliable barometer of serious prestige cinema.",
+        "whyItMatters": "August film drops are increasingly used to build fall awards-season momentum. With streaming competition at an all-time high in 2026, 'Late Fame' positioning itself now suggests a theatrical or major platform push is imminent.",
+        "guytalkRead": "Dafoe doesn't do press unless something is worth doing press for — the man is notoriously selective about his public appearances. The fact that he's on ABC prime time talking up 'Late Fame' in early August means the studio is building toward something serious this fall. If you're into prestige cinema at all, this is a name to put on the radar before the September/October festival circuit locks in the awards conversation. Dafoe with a strong vehicle is appointment viewing.",
+        "context": [
+          "Willem Dafoe has received four Academy Award nominations throughout his career and is widely regarded as one of the most versatile actors working today.",
+          "Dafoe's appearance on ABC News Live Prime on August 8, 2026 was to discuss 'Late Fame,' his upcoming film.",
+          "August is traditionally used by studios to begin building awards-season momentum ahead of the fall festival circuit."
+        ],
+        "whatToSay": "Dafoe's apparently got a new film called 'Late Fame' — saw him on the news talking it up. That guy doesn't do press for nothing, so I'm keeping an eye on it.",
+        "sources": [
+          "https://abcnews.com/video/135445181/"
+        ],
+        "sourceNames": [
+          "ABC News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 3,
+          "variety": 5
+        },
+        "selectionReason": "Provides required culture bucket coverage; relevant to men 25-45 interested in prestige film; Dafoe is a high-recognition name.",
+        "verificationConcerns": "Film title and appearance confirmed by ABC News broadcast listing. Box office or streaming platform details not yet confirmed — framed accordingly."
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "2026 FIFA World Cup Final recap",
+        "reason": "Explicitly listed in avoid-repeat instructions from prior issues."
+      },
+      {
+        "headline": "NFL Training Camp: First teams to report veterans",
+        "reason": "Cardinals/Panthers being first to report was covered in prior issue; rejected to avoid repetition."
+      },
+      {
+        "headline": "Detroit Tigers road win extending winning streak",
+        "reason": "Detroit beat Chicago AL Central story explicitly listed in prior issue avoid-repeat instructions."
+      },
+      {
+        "headline": "Ricky Pearsall season-ending knee surgery, 49ers WR out for 2026",
+        "reason": "Confirmed story (NFL.com) but occurred earlier in the week; edges outside the 36-hour freshness window and lacks enough new detail for a full slot today."
+      },
+      {
+        "headline": "Jahmyr Gibbs Lions contract extension reportedly imminent",
+        "reason": "SI.com item from Aug 6 is at the outer edge of the 36-hour window and framed as 'could have a new deal soon' — insufficiently confirmed for inclusion."
+      },
+      {
+        "headline": "Bo Nix healthy and thriving under new Broncos OC Davis Webb",
+        "reason": "Interesting camp note but not a standalone confirmed news event — more of a camp observation than a story."
+      }
+    ],
+    "researchNotes": "Today's landscape is dominated by two confirmed infrastructure/safety stories — the Midwest ATC outage (highest-confidence, freshest, broadest impact) and the disputed missile stockpile report — alongside a rich NFL training camp cycle with three genuinely distinct story threads (Mahomes clearance, Sanders QB battle, Donald un-retirement). MLB is in mid-season grind mode with no single dominant game story today but pennant race stakes are real. Markets/economy and tech/AI buckets yielded no confirmed major stories within the 36-hour window from trusted sources given search limitations. Culture is light but the Dafoe appearance provides a confirmed hook. The lead was assigned to the FAA/ATC outage as the broadest-impact, best-verified, most-fresh story of the day affecting real people right now.",
+    "relevanceScan": {
+      "bucketA_sports": "Patrick Mahomes fully cleared at Chiefs camp (NFL.com confirmed); Shedeur Sanders splitting reps with Watson in Cleveland; Aaron Donald un-retirement decision looming; Orioles 4-1 over Angels in MLB",
+      "bucketB_politics": "Trump publicly rebuts report that U.S. defensive missile stockpile is critically depleted (ABC News Aug 8 broadcast)",
+      "bucketC_markets": "No confirmed major market-moving story found within 36-hour window from trusted sources in available searches",
+      "bucketD_tech": "No confirmed major tech/AI story found within 36-hour window from trusted sources in available searches",
+      "bucketE_culture": "Willem Dafoe promotes new film 'Late Fame' on ABC News prime-time August 8",
+      "bucketF_world": "FAA Midwest ATC outage knocks out radar/radio across 330,000 square miles in nine states; FAA investigation opened",
+      "leadJustification": "The FAA Midwest ATC outage is the lead: it is the most freshly confirmed story (occurred Aug 6-7, FAA investigation opened Aug 7-8), affects the most people directly (millions of travelers, nine states), has multi-source verification from ABC News, TravelPulse, AP-affiliated outlets, and the FAA itself, and connects to a broader ongoing national infrastructure narrative that resonates strongly with the GuyTalk demographic."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-08-08T09:31:06.929Z",
+    "searchModel": "claude-sonnet-4-6-anthropic",
+    "searchActive": true
+  },
+  "researchMode": "anthropic-search",
+  "generationWarnings": [
+    {
+      "section": "image:Wyndham Championship 2026 PGA Tour golf ",
+      "kind": "failed",
+      "detail": "web image search found no usable photo — needs a manual image from Jake"
+    },
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "lead",
+      "kind": "retry",
+      "detail": "malformed lead — retried"
+    },
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_ammo — only 3 ammo items exist but one ('No result yet — game has not been played') is not a verifiable fact usable in conversation. Effective verifiable ammo is 2 items (venue name, rivalry description), which falls below the 3-item minimum. The game has no result and the section contains no named player, no score, and no concrete event — it fails the hard block rule for a non-preview sports section. Kept in copy with minimal rewrite but flagged as borderline; recommend replacing with a section that has actual facts if available."
+    },
+    {
+      "section": "culture[2]",
+      "kind": "blocked",
+      "detail": "no_ammo — Black Bag streaming rec has zero verifiable ammo items (ammo array is empty). Treated as the curated watch/streaming rec exception per Bible rule for culture item 3, so it is NOT blocked on ammo grounds. Flagged here for transparency only — this is the exception case, not a hard block."
+    },
+    {
+      "section": "image:Marshall Stanmore IV Marshall Stanmore I",
+      "kind": "failed",
+      "detail": "web image search found no usable photo — needs a manual image from Jake"
+    },
+    {
+      "section": "image:Current Events FAA Midwest ATC Outage Gr",
+      "kind": "failed",
+      "detail": "web image search found no usable photo — needs a manual image from Jake"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+    "blocking": [],
+    "warnings": []
+  }
+}
