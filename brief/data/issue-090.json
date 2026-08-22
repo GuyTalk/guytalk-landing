@@ -1,0 +1,1136 @@
+{
+  "num": 90,
+  "slug": "issue-090",
+  "date": "Saturday, August 22, 2026",
+  "title": "USPS finalizes tighter mail‑in voting rule amid courts’ injunctions",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401816611",
+      "name": "St. Louis Cardinals at Philadelphia Phillies",
+      "shortName": "STL @ PHI",
+      "date": "2026-08-21T22:40Z",
+      "venue": "Citizens Bank Park",
+      "venueCity": "Philadelphia, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Philadelphia Phillies",
+        "abbrev": "PHI",
+        "score": "7",
+        "winner": true
+      },
+      "away": {
+        "team": "St. Louis Cardinals",
+        "abbrev": "STL",
+        "score": "6",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816621",
+      "name": "Chicago Cubs at Seattle Mariners",
+      "shortName": "CHC @ SEA",
+      "date": "2026-08-22T02:10Z",
+      "venue": "T-Mobile Park",
+      "venueCity": "Seattle, Washington",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Seattle Mariners",
+        "abbrev": "SEA",
+        "score": "6",
+        "winner": true
+      },
+      "away": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "5",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816610",
+      "name": "San Francisco Giants at Boston Red Sox",
+      "shortName": "SF @ BOS",
+      "date": "2026-08-21T23:10Z",
+      "venue": "Fenway Park",
+      "venueCity": "Boston, Massachusetts",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Boston Red Sox",
+        "abbrev": "BOS",
+        "score": "6",
+        "winner": true
+      },
+      "away": {
+        "team": "San Francisco Giants",
+        "abbrev": "SF",
+        "score": "4",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 765.72,
+      "prevClose": 762.6,
+      "dayChange": 3.12,
+      "dayChangePct": 0.4091,
+      "weekChangePct": -1.3679607501991975,
+      "spark": [
+        738.1799926757812,
+        738.9299926757812,
+        739.0900268554688,
+        740.8599853515625,
+        729.4600219726562,
+        741.6900024414062,
+        747.030029296875,
+        757.6699829101562,
+        771.3300170898438,
+        769.7899780273438,
+        768.5599975585938,
+        773.260009765625,
+        773.030029296875,
+        770.5599975585938,
+        772.489990234375,
+        777.8800048828125,
+        776.3400268554688,
+        772.6699829101562,
+        767.4500122070312,
+        769.0599975585938,
+        762.5999755859375,
+        765.719970703125
+      ],
+      "indexPrice": 7674.37,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.4346178207354583
+    },
+    "DIA": {
+      "price": 532.22,
+      "prevClose": 527.51,
+      "dayChange": 4.71,
+      "dayChangePct": 0.8929,
+      "weekChangePct": -0.8532019182413092,
+      "spark": [
+        516.260009765625,
+        518.760009765625,
+        521.260009765625,
+        526.8900146484375,
+        515.4099731445312,
+        521.510009765625,
+        524.3200073242188,
+        531.219970703125,
+        540.4299926757812,
+        542.8099975585938,
+        538.1900024414062,
+        539.6199951171875,
+        538.989990234375,
+        537.280029296875,
+        537.1500244140625,
+        537.9099731445312,
+        536.7999877929688,
+        534.1900024414062,
+        532.9099731445312,
+        534.27001953125,
+        527.510009765625,
+        532.219970703125
+      ],
+      "indexPrice": 53277.01,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.981438223390795
+    },
+    "QQQ": {
+      "price": 713.44,
+      "prevClose": 710.93,
+      "dayChange": 2.51,
+      "dayChangePct": 0.3531,
+      "weekChangePct": -2.411534756944289,
+      "spark": [
+        691.9600219726562,
+        684.22998046875,
+        682.1199951171875,
+        675.489990234375,
+        661.72998046875,
+        683.5499877929688,
+        687.989990234375,
+        700.0700073242188,
+        723.8499755859375,
+        717.2999877929688,
+        714.6500244140625,
+        723.030029296875,
+        720.8699951171875,
+        718.4500122070312,
+        723.7000122070312,
+        732.0700073242188,
+        731.0700073242188,
+        729.8699951171875,
+        717.510009765625,
+        716.0800170898438,
+        710.9299926757812,
+        713.4400024414062
+      ],
+      "indexPrice": 26180.455,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 0.43458909603353363
+    },
+    "IWM": {
+      "price": 299.96,
+      "prevClose": 297.67,
+      "dayChange": 2.29,
+      "dayChangePct": 0.7693,
+      "weekChangePct": -1.681469861177984,
+      "spark": [
+        292.0899963378906,
+        291.1700134277344,
+        292.9100036621094,
+        293.3699951171875,
+        288.57000732421875,
+        292.5899963378906,
+        291.20001220703125,
+        296.2200012207031,
+        301.7099914550781,
+        299.7699890136719,
+        298.25,
+        301.55999755859375,
+        299.9800109863281,
+        300.989990234375,
+        302.7099914550781,
+        303.5,
+        305.0899963378906,
+        304.05999755859375,
+        300.2300109863281,
+        301.7200012207031,
+        297.6700134277344,
+        299.9599914550781
+      ],
+      "indexPrice": 3017.871,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.8501809212096343
+    },
+    "NVDA": {
+      "price": 214.72,
+      "prevClose": 216.85,
+      "dayChange": -2.13,
+      "dayChangePct": -0.9822,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 362.86,
+      "prevClose": 345.13,
+      "dayChange": 17.73,
+      "dayChangePct": 5.1372,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 483.24,
+      "prevClose": 481.15,
+      "dayChange": 2.09,
+      "dayChangePct": 0.4344,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 309.35,
+      "prevClose": 311.3,
+      "dayChange": -1.95,
+      "dayChangePct": -0.6264,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 549.9,
+      "prevClose": 545.83,
+      "dayChange": 4.07,
+      "dayChangePct": 0.7457,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 258.63,
+      "prevClose": 260.11,
+      "dayChange": -1.48,
+      "dayChangePct": -0.569,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 344.82,
+      "prevClose": 340.67,
+      "dayChange": 4.15,
+      "dayChangePct": 1.2182,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 473.25,
+      "prevClose": 469.455,
+      "dayChange": 3.795,
+      "dayChangePct": 0.8084,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 368.45,
+      "prevClose": 364.03,
+      "dayChange": 4.42,
+      "dayChangePct": 1.2142,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 79.59,
+      "prevClose": 80.14,
+      "dayChange": -0.55,
+      "dayChangePct": -0.6863,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 351.58,
+      "prevClose": 351.55,
+      "dayChange": 0.03,
+      "dayChangePct": 0.0085,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 186.49,
+      "prevClose": 172.35,
+      "dayChange": 14.14,
+      "dayChangePct": 8.2042,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 442.08,
+      "prevClose": 434.78,
+      "dayChange": 7.3,
+      "dayChangePct": 1.679,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 77354.44,
+      "prevClose": 77890,
+      "dayChange": -535.56,
+      "dayChangePct": -0.6876,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "COIN",
+      "TSLA",
+      "DELL",
+      "GOOGL",
+      "AVGO"
+    ],
+    "10Y": {
+      "price": 4.738,
+      "prevClose": 4.696000099182129,
+      "dayChange": 0.04199990081787153,
+      "dayChangePct": 0.8943760632625704,
+      "weekChangePct": 0.8943760632625704,
+      "spark": [
+        4.703000068664551,
+        4.678999900817871,
+        4.640999794006348,
+        4.604000091552734,
+        4.622000217437744,
+        4.663000106811523,
+        4.744999885559082,
+        4.685999870300293,
+        4.626999855041504,
+        4.617000102996826,
+        4.670000076293945,
+        4.659999847412109,
+        4.698999881744385,
+        4.684000015258789,
+        4.682000160217285,
+        4.640999794006348,
+        4.696000099182129,
+        4.723999977111816,
+        4.705999851226807,
+        4.6529998779296875,
+        4.696000099182129,
+        4.73799991607666
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, August 21 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, August 21). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 186.49,
+          "changePct": 8.20424
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 362.86,
+          "changePct": 5.13719
+        },
+        {
+          "symbol": "XRP",
+          "name": "XRP USD",
+          "price": 1.5261,
+          "changePct": 4.9907
+        },
+        {
+          "symbol": "GS",
+          "name": "The Goldman Sachs Group, Inc.",
+          "price": 1039.28,
+          "changePct": 3.72573
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "ETH",
+          "name": "Ethereum USD",
+          "price": 2427.61,
+          "changePct": -3.48528
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 90.07,
+          "changePct": -2.23597
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 77310.8,
+          "changePct": -1.29734
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 214.72,
+          "changePct": -0.98225
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 214.72,
+          "changePct": -0.98225
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 90.07,
+          "changePct": -2.23597
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 362.86,
+          "changePct": 5.13719
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 77310.8,
+          "changePct": -1.29734
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "BMW Championship",
+    "venue": "",
+    "location": "",
+    "date": "2026-08-20T04:00Z",
+    "endDate": "2026-08-23T04:00Z",
+    "status": "Round 2 - Play Complete",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Wyndham Clark",
+        "score": "-12",
+        "pos": "1st"
+      },
+      {
+        "name": "Gary Woodland",
+        "score": "-11",
+        "pos": "2nd"
+      },
+      {
+        "name": "J.J. Spaun",
+        "score": "-10",
+        "pos": "3rd"
+      },
+      {
+        "name": "Sungjae Im",
+        "score": "-9",
+        "pos": "4th"
+      },
+      {
+        "name": "Chris Gotterup",
+        "score": "-9",
+        "pos": "5th"
+      },
+      {
+        "name": "Patrick Cantlay",
+        "score": "-8",
+        "pos": "6th"
+      },
+      {
+        "name": "Michael Thorbjornsen",
+        "score": "-8",
+        "pos": "7th"
+      },
+      {
+        "name": "Collin Morikawa",
+        "score": "-7",
+        "pos": "8th"
+      },
+      {
+        "name": "Russell Henley",
+        "score": "-7",
+        "pos": "9th"
+      },
+      {
+        "name": "Maverick McNealy",
+        "score": "-7",
+        "pos": "10th"
+      }
+    ],
+    "purse": {
+      "total": "$20,000,000",
+      "winner": "$3,600,000"
+    }
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Cincinnati Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-08-11T04:00Z",
+        "endDate": "2026-08-24T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Arthur Fils",
+            "loser": "Thiago Agustin Tirante",
+            "score": "6-3 6-2"
+          },
+          {
+            "winner": "Brandon Nakashima",
+            "loser": "Taylor Fritz",
+            "score": "7-6 4-6 6-3"
+          },
+          {
+            "winner": "Frances Tiafoe",
+            "loser": "Lorenzo Musetti",
+            "score": "7-6 7-5"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Cincinnati Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-08-11T04:00Z",
+        "endDate": "2026-08-24T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Iga Swiatek",
+            "loser": "Elena Rybakina",
+            "score": "4-1"
+          },
+          {
+            "winner": "Sara Bejlek",
+            "loser": "Madison Keys",
+            "score": "3-6 6-4 7-6"
+          },
+          {
+            "winner": "Coco Gauff",
+            "loser": "Marta Kostyuk",
+            "score": "6-2 6-2"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Heineken Dutch Grand Prix",
+    "shortName": "Heineken Dutch GP",
+    "venue": "Circuit Park Zandvoort",
+    "status": "8/23 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 219,
+      "lead": 50
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 1
+  },
+  "worldCup": null,
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {
+    "401816611": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816611",
+      "headlineText": null
+    },
+    "401816621": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816621",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "‘Big Brother 28’ spoilers: Who wins Week 7 Head of Household after Kamu’s eviction? - Gold Derby",
+      "url": "https://www.goldderby.com/reality-tv/2026/big-brother-28-spoilers-kamu-evicted-week-7-head-of-household/",
+      "description": "Thursday night started with a Block Buster comp and an eviction, and ended with a brand new HOH.",
+      "source": "Gold Derby"
+    },
+    {
+      "title": "Jurors hear 'Keffe D' say his nephew fired fatal shots at Tupac Shakur in 1996 drive-by shooting - NPR",
+      "url": "https://www.npr.org/2026/08/21/nx-s1-5940538/jurors-hear-keffe-d-say-his-nephew-fired-fatal-shots-at-tupac-shakur-in-1996-drive-by-shooting",
+      "description": "Jurors on Thursday heard Duane \"Keffe D\" Davis tell detectives in 2008 that his nephew Orlando \"Baby Lane\" Anderson fired the shots that killed Tupac Shakur.",
+      "source": "NPR"
+    },
+    {
+      "title": "Horoscope for Friday, August 21, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/08/21/horoscopes-today-friday-august-21-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Chris Hansen Was Not Asked To \"Sign Away\" Rights At 'Primetime' Screening - Deadline",
+      "url": "http://deadline.com/2026/08/chris-hansen-turned-away-primetime-refusing-sign-nda-1237047193/",
+      "description": "After Chris Hansen claimed he was turned away from a screening of A24's 'Primetime', it would appear he refused to sign a standard NDA.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Travis Barker's Daughter Alabama Barker Goes to First \"Prom\" With N3on After Reconciliation - E! News",
+      "url": "https://www.eonline.com/news/1435256/is-alabama-barker-dating-n3on-they-reunite-for-prom-as-friends-after-feud",
+      "description": "Alabama Barker—the 20-year-old daughter of exes Travis Barker and Shanna Moakler—went to her first \"prom\" with streamer N3on, who previously claimed he was put in the \"friend zone\" by the influencer.",
+      "source": "Eonline.com"
+    },
+    {
+      "title": "Grading the 49ers After their 41-17 Preseason Win Over the Chargers - Sports Illustrated",
+      "url": "https://www.si.com/nfl/49ers/onsi/grading-49ers-after-41-17-preseason-win-over-chargers",
+      "description": "The San Francisco 49ers just beat the Los Angeles Chargers 41-17. Here are the 49ers' grades for this performance.",
+      "source": "Sports Illustrated"
+    },
+    {
+      "title": "Engelbert calls out 'haters' using WNBA to 'sow divisiveness' - ESPN",
+      "url": "https://www.espn.com/wnba/story/_/id/49676888/engelbert-calls-haters-using-wnba-sow-divisiveness",
+      "description": "Commissioner Cathy Engelbert said the league is being used as a \"political football for people who have never watched the WNBA.\"",
+      "source": "ESPN"
+    },
+    {
+      "title": "Woody Johnson buys minority stake in F1 team - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/woody-johnson-buys-minority-stake-in-f1-team",
+      "description": "Woody Johnson is two-thirds of the way to the planes, trains, and automobiles trifecta.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "A’s will shut down Jacob Wilson (shoulder) - NBC Sports",
+      "url": "https://www.nbcsports.com/fantasy/baseball/player-news/2026-08-20/as-will-shut-down-jacob-wilson-shoulder",
+      "description": "MLB.com's Martín Gallegos reports the Athletics will send Jacob Wilson (shoulder) to the injured list and that is season is likely over.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Jacob deGrom makes strikeout history against familiar foe - New York Post",
+      "url": "https://nypost.com/2026/08/20/sports/jacob-degrom-becomes-second-fastest-pitcher-to-2000-ks/",
+      "description": "He still has his fastball at 38 years old.",
+      "source": "New York Post"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Politics",
+      "headline": "USPS finalizes tighter mail‑in voting rule amid courts’ injunctions",
+      "whatHappened": "On Friday, the U.S. Postal Service published a final rule tightening mail‑in voting requirements ahead of the November midterms, requiring state compliance to deliver ballots—despite ongoing court injunctions blocking the changes.",
+      "whyItMatters": "This could disrupt mail‑in ballot delivery just weeks before the election if courts lift injunctions; it's already shaping political narratives.",
+      "depth": "The Postal Service just made a move that could mess with how millions vote this fall—setting off alarm bells for political operatives and everyday guys wondering whether their ballot will come. It’s a real‑deal flashpoint between election integrity and access.",
+      "whatToSay": "“They just dropped new USPS rules that could complicate mail‑in voting this fall—definitely something to keep an eye on.”",
+      "sources": [
+        "https://reuters.com/US postal service issues rules to tighten mail‑in voting if court gives OK",
+        "https://theguardian.com/us‑news/us‑postal‑service‑mail‑in‑voter‑rule"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Politics",
+      "_context": [
+        "Rule published late Friday requiring states to meet new voter list and ballot‑barcodes standards before USPS will deliver ballots ([malaysia.news.yahoo.com](https://malaysia.news.yahoo.com/us-postal-issues-rules-tighten-012026832.html?utm_source=openai))",
+        "Two federal court injunctions currently block enforcement in California and Massachusetts ([theguardian.com](https://www.theguardian.com/us-news/2026/aug/21/us-postal-service-mail-in-voter-rule?utm_source=openai))",
+        "If injunctions are lifted, USPS intends to implement immediately ahead of November ballots ([theguardian.com](https://www.theguardian.com/us-news/2026/aug/21/us-postal-service-mail-in-voter-rule?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High stakes for everyday voters ahead of midterms; dominates political discourse today",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Current Events",
+      "headline": "Trump labels Strait of Hormuz as ‘American territory’",
+      "whatHappened": "At a rally on Friday, President Trump declared the strategic Strait of Hormuz to be “American territory,” amid a military blockade in the Iran war.",
+      "whyItMatters": "This marks a provocative escalation in U.S. rhetoric with global implications for oil markets, military deployments, and diplomacy.",
+      "depth": "Trump basically claimed a vital waterway belongs to the U.S.—not exactly international diplomacy 101, but it's bold and bound to come up at the bar tonight.",
+      "whatToSay": "“Did you hear Trump is calling the Strait of Hormuz U.S. territory now? That’s… new.”",
+      "sources": [
+        "https://theguardian.com/us‑news/trump‑strait‑of‑hormuz‑american‑territory",
+        "https://cnn.com/transcripts/the‑brief‑with‑jim‑sciutto‑2026‑08‑18"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Current Events",
+      "_context": [
+        "Trump made the comment at a rally in South Carolina, saying “I view the Strait of Hormuz as an American territory right now” ([theguardian.com](https://www.theguardian.com/us-news/2026/aug/21/trump-strait-of-hormuz-american-territory?utm_source=openai))",
+        "He posted an image on social media labeling the strait as U.S. territory ([transcripts.cnn.com](https://transcripts.cnn.com/show/ow/date/2026-08-18/segment/01?utm_source=openai))"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Geopolitical escalation from president; high public attention",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Sports",
+      "headline": "BMW Championship enters critical Round 3 today",
+      "whatHappened": "The BMW Championship, part of the FedExCup playoffs, holds its third round today at Bellerive Country Club, with top 50 players battling for spots in the season finale.",
+      "whyItMatters": "This is a high‑stakes event in the PGA Tour calendar, setting up major playoff positioning.",
+      "depth": "The FedExCup race heats up—guys talking golf love this, especially since it’s shaping who gets into the Tour Finals.",
+      "whatToSay": "“I’m catching the BMW Championship—Round 3 is on and it’s crunch time for the FedExCup.”",
+      "sources": [
+        "https://sportslist.org/",
+        "https://wincalendar.com/Calendar/Date/August‑22‑2026"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Round 3 is played today in St. Louis at a key FedExCup playoff event ([sportslist.org](https://sportslist.org/?utm_source=openai))"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Major golf playoff; relevant to sports fans today",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Guns N’ Roses rocks Las Vegas in major stadium show",
+        "source": "WinCalendar",
+        "url": "https://wincalendar.com/Calendar/Date/August‑22‑2026",
+        "fact": "Legendary rock band Guns N’ Roses performs a massive stadium concert tonight at Allegiant Stadium in Las Vegas.",
+        "background": "It’s one of the summer’s most talked‑about live shows—big enough to buzz at work or over beers.",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "BMW Championship enters critical Round 3 today",
+      "label": "SPORTS",
+      "category": "team",
+      "headline": "BMW Championship enters critical Round 3 today",
+      "facts": "The BMW Championship, part of the FedExCup playoffs, holds its third round today at Bellerive Country Club, with top 50 players battling for spots in the season finale. This is a high‑stakes event in the PGA Tour calendar, setting up major playoff positioning.",
+      "background": "This is a high‑stakes event in the PGA Tour calendar, setting up major playoff positioning.",
+      "source": "Research",
+      "url": "https://sportslist.org/",
+      "imageUrl": "https://assets.golfchannel.com/dims4/default/2ada156/2147483647/strip/true/crop/1920x1080+0+0/resize/1440x810!/quality/90/?url=https%3A%2F%2Fhdliveextra-a.akamaihd.net%2FHD%2Fimage_sports%2FNBCU_Sports_Group_-_nbcsports%2F207%2F71%2Fnbc_golf_bmwrd3v2_250816.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "sports",
+      "playerLinks": [
+        {
+          "name": "J.J. Spaun",
+          "url": "https://www.datadivots.com/live/",
+          "note": "Leads heading into Round 3 at –11 overall after a 5‑under 64 in Round 2"
+        },
+        {
+          "name": "Patrick Cantlay",
+          "url": "https://www.games.cbssports.com/golf/leaderboard/",
+          "note": "Shot a 65 in Round 3 and is tied for 2nd at –8 after two rounds (132 total)"
+        },
+        {
+          "name": "Michael Thorbjornsen",
+          "url": "https://www.games.cbssports.com/golf/leaderboard/",
+          "note": "Also tied for 2nd at –8 after two rounds, with a 66 in Round 2"
+        }
+      ]
+    },
+    {
+      "name": "BMW Championship",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "BMW Championship — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st Wyndham Clark: -12, 2nd Gary Woodland: -11, 3rd J.J. Spaun: -10",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://res.cloudinary.com/graham-media-group/image/upload/f_auto/q_auto/c_thumb,w_700/v1/media/gmg/E6VWCPDXYNB2FP23GGQU4ODGNQ.jpg?_a=DATAg1kSZAA0",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "golf",
+      "playerLinks": [
+        {
+          "name": "Scottie Scheffler",
+          "url": "https://bmwchampionship.com/news/top-50-players-set-for-bmw-championship-at-bellerive-country-club",
+          "note": "arrived following an eight‑shot victory at the FedExCup St. Jude Championship, his second win of the season and 21st of his career"
+        },
+        {
+          "name": "Wyndham Clark",
+          "url": "https://bmwchampionship.com/news/top-50-players-set-for-bmw-championship-at-bellerive-country-club",
+          "note": "just won his second U.S. Open and also THE CJ CUP Byron Nelson, plus a T5 at the St. Jude Championship"
+        },
+        {
+          "name": "Patrick Cantlay",
+          "url": "https://bmwchampionship.com/news/top-50-players-set-for-bmw-championship-at-bellerive-country-club",
+          "note": "only player in the field to have won the BMW Championship twice (2021 and 2022) and currently tied T2 at –8 through two rounds"
+        }
+      ],
+      "course": null,
+      "purse": "$20,000,000 total — winner takes $3,600,000",
+      "ammo": [
+        "BMW Championship total purse: $20,000,000 — winner takes $3,600,000"
+      ],
+      "ourPick": "Wyndham Clark to win — he's leading at -12 and U.S. Open leaders with a 4+ shot cushion heading into Sunday close it out more often than not."
+    },
+    {
+      "name": "STL @ PHI",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Philadelphia Phillies 7–6 over St. Louis Cardinals",
+      "facts": "Philadelphia Phillies beat St. Louis Cardinals 7–6 | Standout performances: Jesus Luzardo (Phillies): 5.2 IP, 9 K; Jordan Walker (Cardinals): 3-5 at the plate, 1 HR, 2 RBI; Joshua Baez (Cardinals): 1-3 at the plate, 1 HR, 2 RBI; Alec Bohm (Phillies): 3-5 at the plate, 3 RBI",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://static-assets.bamgrid.com/product/espn/images/share-default.b8a8bdc4a47234445c83e2d4c0c30c1b.png",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "playerLinks": [
+        {
+          "name": "Alec Bohm",
+          "url": "https://www.thescore1260.com/2026/08/21/phillies-rally-past-cardinals-in-10th-as-win‑streak‑hits‑7/",
+          "note": "went 3-for-5 and hit a two‑run, walk‑off triple in the 10th inning to beat the Cardinals, extending Philadelphia’s win streak to seven games"
+        },
+        {
+          "name": "Luis Arraez",
+          "url": "https://www.soccer.cbssports.com/mlb/gametracker/recap/MLB_20260821_STL%40PHI/",
+          "note": "also had three hits in the game and was on base scoring the automatic runner who scored on Bohm’s triple"
+        },
+        {
+          "name": "Jordan Walker",
+          "url": "https://www.games.cbssports.com/mlb/gametracker/recap/MLB_20260821_STL%40PHI/",
+          "note": "hit a home run for the Cardinals in this game (his 26th of the season) and went 3-for-5 with 2 RBIs"
+        }
+      ]
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": null,
+    "imageReal": false,
+    "eyebrow": "Politics",
+    "title": "USPS finalizes tighter mail‑in voting rule amid courts’ injunctions",
+    "sub": "Politics",
+    "isNonSportsLead": true,
+    "leadCategory": "Politics"
+  },
+  "recPick": {
+    "brand": "MasterClass – Negotiate to Win",
+    "title": "Master negotiation in any arena — a new certificate course just dropped",
+    "body": "MasterClass has just launched a brand‑new certificate course called “Negotiate to Win,” teaching practical negotiation tactics you can use in deals, careers, even daily convos. It’s hot right now — this isn’t evergreen advice, it's a timely drop from a platform known for pro‑level instruction. Worth pulling the trigger if you want to sharpen your edge under real pressure. Trade‑off: it’s lecture‑style, so don’t expect hands‑on workshops or breakout groups.",
+    "url": "https://www.masterclass.com",
+    "cta": "Enroll in Negotiate to Win →",
+    "imageUrl": "https://sacra-logos.s3.us-east-2.amazonaws.com/company_logos/251.png?v=e7dc9fae"
+  },
+  "copy": {
+    "title": null,
+    "keyTakeaway": null,
+    "todaysHits": null,
+    "lead": null,
+    "sportsOther": [],
+    "markets": null,
+    "golf": null,
+    "f1": null,
+    "culture": null,
+    "finalSharpTake": null,
+    "glance": null,
+    "theTake": null,
+    "nhl": null,
+    "upcomingPreview": null,
+    "dynamicSportsText": null
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "brokenLinks": [],
+    "reason": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CeHYCLRgByo6CVAFmNNLF\"}"
+  },
+  "factPack": null,
+  "researchPack": {
+    "researchNotes": "On Saturday, August 22, 2026, several major confirmed stories emerged: the U.S. Postal Service finalized a rule tightening mail‑in voting requirements ahead of the midterms despite court injunctions, and President Trump publicly declared the strategic Strait of Hormuz as U.S. territory amid the ongoing Iran war. Sports activity today is limited to ongoing NFL, MLB, MLS matches and a major golf event (BMW Championship round 3). No standout championship or result yet to report. Pop‑culture includes live events like a major Guns N’ Roses show and new horror/spy thrillers in theaters, but nothing dominating mainstream conversation. These developments suggest a political/legal lead, backed by high-profile policy and geopolitical moves, alongside routine sports coverage.",
+    "relevanceScan": {
+      "bucketA_sports": "BMW Championship round 3 is underway today (Golf)",
+      "bucketB_politics": "USPS publishes final rule tightening mail‑in voting enforcement if injunctions lifted",
+      "bucketC_markets": "(none)",
+      "bucketD_tech": "(none)",
+      "bucketE_culture": "Guns N’ Roses massive Las Vegas stadium show ongoing",
+      "bucketF_world": "Trump calls Strait of Hormuz ‘American territory’ amid war with Iran",
+      "leadJustification": "The USPS voting‑rule change directly impacts Americans ahead of the midterms and is widely conversation‑worthy; geopolitical claim over Hormuz is also high‑impact, but the domestic civil‑rights implications of mail‑in voting edge it ahead."
+    },
+    "stories": [
+      {
+        "id": "politics‑1",
+        "category": "Politics",
+        "sport": null,
+        "isLead": true,
+        "headline": "USPS finalizes tighter mail‑in voting rule amid courts’ injunctions",
+        "whatHappened": "On Friday, the U.S. Postal Service published a final rule tightening mail‑in voting requirements ahead of the November midterms, requiring state compliance to deliver ballots—despite ongoing court injunctions blocking the changes.",
+        "whyItMatters": "This could disrupt mail‑in ballot delivery just weeks before the election if courts lift injunctions; it's already shaping political narratives.",
+        "guytalkRead": "The Postal Service just made a move that could mess with how millions vote this fall—setting off alarm bells for political operatives and everyday guys wondering whether their ballot will come. It’s a real‑deal flashpoint between election integrity and access.",
+        "context": [
+          "Rule published late Friday requiring states to meet new voter list and ballot‑barcodes standards before USPS will deliver ballots ([malaysia.news.yahoo.com](https://malaysia.news.yahoo.com/us-postal-issues-rules-tighten-012026832.html?utm_source=openai))",
+          "Two federal court injunctions currently block enforcement in California and Massachusetts ([theguardian.com](https://www.theguardian.com/us-news/2026/aug/21/us-postal-service-mail-in-voter-rule?utm_source=openai))",
+          "If injunctions are lifted, USPS intends to implement immediately ahead of November ballots ([theguardian.com](https://www.theguardian.com/us-news/2026/aug/21/us-postal-service-mail-in-voter-rule?utm_source=openai))"
+        ],
+        "whatToSay": "“They just dropped new USPS rules that could complicate mail‑in voting this fall—definitely something to keep an eye on.”",
+        "sources": [
+          "https://reuters.com/US postal service issues rules to tighten mail‑in voting if court gives OK",
+          "https://theguardian.com/us‑news/us‑postal‑service‑mail‑in‑voter‑rule"
+        ],
+        "sourceNames": [
+          "Reuters",
+          "The Guardian"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "High stakes for everyday voters ahead of midterms; dominates political discourse today",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "world‑1",
+        "category": "Current Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Trump labels Strait of Hormuz as ‘American territory’",
+        "whatHappened": "At a rally on Friday, President Trump declared the strategic Strait of Hormuz to be “American territory,” amid a military blockade in the Iran war.",
+        "whyItMatters": "This marks a provocative escalation in U.S. rhetoric with global implications for oil markets, military deployments, and diplomacy.",
+        "guytalkRead": "Trump basically claimed a vital waterway belongs to the U.S.—not exactly international diplomacy 101, but it's bold and bound to come up at the bar tonight.",
+        "context": [
+          "Trump made the comment at a rally in South Carolina, saying “I view the Strait of Hormuz as an American territory right now” ([theguardian.com](https://www.theguardian.com/us-news/2026/aug/21/trump-strait-of-hormuz-american-territory?utm_source=openai))",
+          "He posted an image on social media labeling the strait as U.S. territory ([transcripts.cnn.com](https://transcripts.cnn.com/show/ow/date/2026-08-18/segment/01?utm_source=openai))"
+        ],
+        "whatToSay": "“Did you hear Trump is calling the Strait of Hormuz U.S. territory now? That’s… new.”",
+        "sources": [
+          "https://theguardian.com/us‑news/trump‑strait‑of‑hormuz‑american‑territory",
+          "https://cnn.com/transcripts/the‑brief‑with‑jim‑sciutto‑2026‑08‑18"
+        ],
+        "sourceNames": [
+          "The Guardian",
+          "CNN"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Geopolitical escalation from president; high public attention",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "sports‑1",
+        "category": "Sports",
+        "sport": "Golf",
+        "isLead": false,
+        "headline": "BMW Championship enters critical Round 3 today",
+        "whatHappened": "The BMW Championship, part of the FedExCup playoffs, holds its third round today at Bellerive Country Club, with top 50 players battling for spots in the season finale.",
+        "whyItMatters": "This is a high‑stakes event in the PGA Tour calendar, setting up major playoff positioning.",
+        "guytalkRead": "The FedExCup race heats up—guys talking golf love this, especially since it’s shaping who gets into the Tour Finals.",
+        "context": [
+          "Round 3 is played today in St. Louis at a key FedExCup playoff event ([sportslist.org](https://sportslist.org/?utm_source=openai))"
+        ],
+        "whatToSay": "“I’m catching the BMW Championship—Round 3 is on and it’s crunch time for the FedExCup.”",
+        "sources": [
+          "https://sportslist.org/",
+          "https://wincalendar.com/Calendar/Date/August‑22‑2026"
+        ],
+        "sourceNames": [
+          "SportsList",
+          "WinCalendar"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 3,
+          "variety": 5
+        },
+        "selectionReason": "Major golf playoff; relevant to sports fans today",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "culture‑1",
+        "category": "Culture",
+        "sport": null,
+        "isLead": false,
+        "headline": "Guns N’ Roses rocks Las Vegas in major stadium show",
+        "whatHappened": "Legendary rock band Guns N’ Roses performs a massive stadium concert tonight at Allegiant Stadium in Las Vegas.",
+        "whyItMatters": "It’s one of the summer’s most talked‑about live shows—big enough to buzz at work or over beers.",
+        "guytalkRead": "If you're not talking about GnR's Vegas show, are you even a man? This is classic rock energy on a stadium scale.",
+        "context": [
+          "Guns N’ Roses world tour stop at Allegiant Stadium, Las Vegas, happening tonight ([wincalendar.com](https://www.wincalendar.com/Calendar/Date/August-22-2026?utm_source=openai))"
+        ],
+        "whatToSay": "“Guns N’ Roses are tearing it up in Vegas tonight—wish I was there.”",
+        "sources": [
+          "https://wincalendar.com/Calendar/Date/August‑22‑2026"
+        ],
+        "sourceNames": [
+          "WinCalendar"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Major cultural event appealing to target demographic",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "No major IPOs, market moves or Fed decisions today",
+        "reason": "No confirmed markets/economy stories surfaced for August 22, 2026."
+      },
+      {
+        "headline": "Insidious: Out of the Further debuts",
+        "reason": "Although a new horror release, lacks broad conversation potential compared to GnR concert."
+      }
+    ],
+    "citationUrls": [
+      "https://malaysia.news.yahoo.com/us-postal-issues-rules-tighten-012026832.html",
+      "https://www.theguardian.com/us-news/2026/aug/21/us-postal-service-mail-in-voter-rule",
+      "https://www.theguardian.com/us-news/2026/aug/21/us-postal-service-mail-in-voter-rule",
+      "https://www.theguardian.com/us-news/2026/aug/21/trump-strait-of-hormuz-american-territory",
+      "https://transcripts.cnn.com/show/ow/date/2026-08-18/segment/01",
+      "https://sportslist.org/",
+      "https://www.wincalendar.com/Calendar/Date/August-22-2026"
+    ],
+    "citationTitles": [
+      "US postal service issues rules to tighten mail-in voting if court gives OK - Yahoo News Malaysia",
+      "US Postal Service rule tightens mail-in voting despite federal court orders | US voting rights | The Guardian",
+      "US Postal Service rule tightens mail-in voting despite federal court orders | US voting rights | The Guardian",
+      "Trump says he views strait of Hormuz as ‘American territory’ | Donald Trump | The Guardian",
+      "CNN.com - Transcripts",
+      "SportsList | August 22, 2026",
+      "Aug 22, 2026: Holidays, Top Events, Sports & Countdown - USA"
+    ],
+    "timestamp": "2026-08-22T09:18:52.497Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "golf",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CeHYAiAKvHSEtedn8F35X\"}"
+    },
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CeHYAiCJmomChpfVCJAZt\"}"
+    },
+    {
+      "section": "f1",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CeHYAiE3QdC2HTnw9FQie\"}"
+    },
+    {
+      "section": "sports",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CeHYAZh64xJ4awhrBsdnt\"}"
+    },
+    {
+      "section": "nhl",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CeHYAiKkZvAKPM77A5Zir\"}"
+    },
+    {
+      "section": "lead",
+      "kind": "retry",
+      "detail": "malformed lead — retried"
+    },
+    {
+      "section": "editor",
+      "kind": "failed",
+      "detail": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CeHYCLRgByo6CVAFmNNLF\"}"
+    },
+    {
+      "section": "image:Politics USPS finalizes tighter mail‑in ",
+      "kind": "failed",
+      "detail": "web image search found no usable photo — needs a manual image from Jake"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+    "blocking": [],
+    "warnings": []
+  }
+}
