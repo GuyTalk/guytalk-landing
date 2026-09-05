@@ -1,0 +1,1210 @@
+{
+  "num": 90,
+  "slug": "issue-090",
+  "date": "Saturday, September 5, 2026",
+  "title": "NHTSA audits Tesla’s Cybercab deployment",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401816802",
+      "name": "Milwaukee Brewers at Cincinnati Reds",
+      "shortName": "MIL @ CIN",
+      "date": "2026-09-04T22:10Z",
+      "venue": "Great American Ball Park",
+      "venueCity": "Cincinnati, Ohio",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Cincinnati Reds",
+        "abbrev": "CIN",
+        "score": "7",
+        "winner": false
+      },
+      "away": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "10",
+        "winner": true
+      }
+    },
+    {
+      "id": "401816803",
+      "name": "San Francisco Giants at New York Mets",
+      "shortName": "SF @ NYM",
+      "date": "2026-09-04T23:10Z",
+      "venue": "Citi Field",
+      "venueCity": "Queens, New York",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "New York Mets",
+        "abbrev": "NYM",
+        "score": "10",
+        "winner": true
+      },
+      "away": {
+        "team": "San Francisco Giants",
+        "abbrev": "SF",
+        "score": "6",
+        "winner": false
+      }
+    },
+    {
+      "id": "401877193",
+      "name": "Detroit Tigers at Cleveland Guardians",
+      "shortName": "DET @ CLE",
+      "date": "2026-09-04T18:10Z",
+      "venue": "Progressive Field",
+      "venueCity": "Cleveland, Ohio",
+      "status": "Final",
+      "statusState": "post",
+      "note": "Makeup from June 14",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Cleveland Guardians",
+        "abbrev": "CLE",
+        "score": "7",
+        "winner": true
+      },
+      "away": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "6",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 770.19,
+      "prevClose": 773.17,
+      "dayChange": -2.98,
+      "dayChangePct": -0.3854,
+      "weekChangePct": 0.10918625342423535,
+      "spark": [
+        768.5599975585938,
+        773.260009765625,
+        773.030029296875,
+        770.5599975585938,
+        772.489990234375,
+        777.8800048828125,
+        776.3400268554688,
+        772.6699829101562,
+        767.4500122070312,
+        769.0599975585938,
+        762.5999755859375,
+        765.719970703125,
+        763.469970703125,
+        765.9099731445312,
+        766.0800170898438,
+        771.0999755859375,
+        769.3499755859375,
+        767.0499877929688,
+        761.780029296875,
+        765.1599731445312,
+        773.1699829101562,
+        770.1900024414062
+      ],
+      "indexPrice": 7718.6,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -0.37572342129824937
+    },
+    "DIA": {
+      "price": 534.08,
+      "prevClose": 536.93,
+      "dayChange": -2.85,
+      "dayChangePct": -0.5308,
+      "weekChangePct": -0.1831565736674962,
+      "spark": [
+        538.1900024414062,
+        539.6199951171875,
+        538.989990234375,
+        537.280029296875,
+        537.1500244140625,
+        537.9099731445312,
+        536.7999877929688,
+        534.1900024414062,
+        532.9099731445312,
+        534.27001953125,
+        527.510009765625,
+        532.219970703125,
+        533.6500244140625,
+        535.239990234375,
+        534.22998046875,
+        535.219970703125,
+        535.0599975585938,
+        531.5700073242188,
+        527.75,
+        530.6199951171875,
+        536.9299926757812,
+        534.0800170898438
+      ],
+      "indexPrice": 53414.25,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.5063868068759638
+    },
+    "QQQ": {
+      "price": 718.96,
+      "prevClose": 717.67,
+      "dayChange": 1.29,
+      "dayChangePct": 0.1797,
+      "weekChangePct": 0.35314090002981424,
+      "spark": [
+        714.6500244140625,
+        723.030029296875,
+        720.8699951171875,
+        718.4500122070312,
+        723.7000122070312,
+        732.0700073242188,
+        731.0700073242188,
+        729.8699951171875,
+        717.510009765625,
+        716.0800170898438,
+        710.9299926757812,
+        713.4400024414062,
+        706.3200073242188,
+        710.719970703125,
+        711.3699951171875,
+        721.1099853515625,
+        716.4299926757812,
+        716.760009765625,
+        707.6400146484375,
+        709.239990234375,
+        717.6699829101562,
+        718.9600219726562
+      ],
+      "indexPrice": 26506.99,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -0.2899126216595161
+    },
+    "IWM": {
+      "price": 296.01,
+      "prevClose": 295.19,
+      "dayChange": 0.82,
+      "dayChangePct": 0.2778,
+      "weekChangePct": 0.08791208791208484,
+      "spark": [
+        298.25,
+        301.55999755859375,
+        299.9800109863281,
+        300.989990234375,
+        302.7099914550781,
+        303.5,
+        305.0899963378906,
+        304.05999755859375,
+        300.2300109863281,
+        301.7200012207031,
+        297.6700134277344,
+        299.9599914550781,
+        297.9700012207031,
+        299.2300109863281,
+        298.92999267578125,
+        299.80999755859375,
+        295.75,
+        293.92999267578125,
+        290.57000732421875,
+        294.010009765625,
+        295.19000244140625,
+        296.010009765625
+      ],
+      "indexPrice": 2975.648,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.24856163422474856
+    },
+    "NVDA": {
+      "price": 230.36,
+      "prevClose": 228.45,
+      "dayChange": 1.91,
+      "dayChangePct": 0.8361,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 354.08,
+      "prevClose": 376.365,
+      "dayChange": -22.285,
+      "dayChangePct": -5.9211,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 499.7,
+      "prevClose": 510.12,
+      "dayChange": -10.42,
+      "dayChangePct": -2.0427,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 319.97,
+      "prevClose": 328.21,
+      "dayChange": -8.24,
+      "dayChangePct": -2.5106,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 616.77,
+      "prevClose": 610.68,
+      "dayChange": 6.09,
+      "dayChangePct": 0.9972,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 258.51,
+      "prevClose": 258.9,
+      "dayChange": -0.39,
+      "dayChangePct": -0.1506,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 338.46,
+      "prevClose": 342.48,
+      "dayChange": -4.02,
+      "dayChangePct": -1.1738,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 477.57,
+      "prevClose": 456.16,
+      "dayChange": 21.41,
+      "dayChangePct": 4.6935,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 357.895,
+      "prevClose": 357.16,
+      "dayChange": 0.735,
+      "dayChangePct": 0.2058,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 78.25,
+      "prevClose": 82.67,
+      "dayChange": -4.42,
+      "dayChangePct": -5.3466,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 358.64,
+      "prevClose": 362.06,
+      "dayChange": -3.42,
+      "dayChangePct": -0.9446,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 184.64,
+      "prevClose": 192.7,
+      "dayChange": -8.06,
+      "dayChangePct": -4.1827,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 524.14,
+      "prevClose": 516.39,
+      "dayChange": 7.75,
+      "dayChangePct": 1.5008,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 79662.47,
+      "prevClose": 81214,
+      "dayChange": -1551.53,
+      "dayChangePct": -1.9104,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "TSLA",
+      "NFLX",
+      "AMD",
+      "COIN",
+      "AAPL"
+    ],
+    "10Y": {
+      "price": 4.784,
+      "prevClose": 4.76200008392334,
+      "dayChange": 0.021999916076659964,
+      "dayChangePct": 0.4619889896880171,
+      "weekChangePct": 1.3559367087546152,
+      "spark": [
+        4.670000076293945,
+        4.659999847412109,
+        4.698999881744385,
+        4.684000015258789,
+        4.682000160217285,
+        4.640999794006348,
+        4.696000099182129,
+        4.723999977111816,
+        4.705999851226807,
+        4.6529998779296875,
+        4.696000099182129,
+        4.73799991607666,
+        4.703999996185303,
+        4.638999938964844,
+        4.664000034332275,
+        4.671999931335449,
+        4.71999979019165,
+        4.757999897003174,
+        4.796000003814697,
+        4.796000003814697,
+        4.76200008392334,
+        4.783999919891357
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, September 4 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, September 4). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 477.57,
+          "changePct": 4.69353
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 95.8,
+          "changePct": 4.50529
+        },
+        {
+          "symbol": "DOGE",
+          "name": "Dogecoin USD",
+          "price": 0.0863,
+          "changePct": 1.75341
+        },
+        {
+          "symbol": "F",
+          "name": "Ford Motor Company",
+          "price": 14.62,
+          "changePct": 1.45732
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "ADBE",
+          "name": "Adobe Inc.",
+          "price": 266.51,
+          "changePct": -6.73316
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 354.08,
+          "changePct": -5.92111
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 78.25,
+          "changePct": -5.34656
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 174.33,
+          "changePct": -4.49241
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 230.36,
+          "changePct": 0.83607
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 95.8,
+          "changePct": 4.50529
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 354.08,
+          "changePct": -5.92111
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 79669.79,
+          "changePct": -0.00820821
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Biltmore Championship Asheville",
+    "venue": "",
+    "location": "",
+    "date": "2026-09-17T04:00Z",
+    "endDate": "2026-09-20T04:00Z",
+    "status": "Thu, September 16th at 12:00 AM EDT",
+    "statusState": "pre",
+    "hasStarted": false,
+    "leaders": []
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "US Open",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-08-24T04:00Z",
+        "endDate": "2026-09-14T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Alex Michelsen",
+            "loser": "Daniel Merida",
+            "score": "7-6 6-4 6-3"
+          },
+          {
+            "winner": "Frances Tiafoe",
+            "loser": "Valentin Vacherot",
+            "score": "6-4 6-2 6-4"
+          },
+          {
+            "winner": "Ben Shelton",
+            "loser": "Denis Shapovalov",
+            "score": "7-6 6-7 6-3 6-4"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "US Open",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-08-24T04:00Z",
+        "endDate": "2026-09-14T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Emma Navarro",
+            "loser": "Karolina Muchova",
+            "score": "6-3 7-5"
+          },
+          {
+            "winner": "Linda Noskova",
+            "loser": "Ann Li",
+            "score": "6-2 6-7 6-2"
+          },
+          {
+            "winner": "Anna Kalinskaya",
+            "loser": "Elina Svitolina",
+            "score": "6-3 2-6 6-3"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Pirelli Italian Grand Prix",
+    "shortName": "Pirelli Italian GP",
+    "venue": "Autodromo Nazionale Monza",
+    "status": "9/6 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 242,
+      "lead": 59
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 1
+  },
+  "worldCup": null,
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {
+    "401816802": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816802",
+      "headlineText": null
+    },
+    "401816803": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816803",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "Hayden Panettiere's BF Seen Wobbly, Spitting In Bar During Wild Barney's Beanery Arrest - tmz.com",
+      "url": "https://www.tmz.com/2026/09/04/brian-hickerson-seemingly-spits-near-cops-at-barneys-beanery-before-arrest/",
+      "description": "Hayden Panettiere's boyfriend, Brian Hickerson, seemed barely conscious after cops helped him get up from the floor in a bar ... before placing him in handcuffs during his 2025 arrest.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Biggest bombshells from Alix Earle’s Netflix show: ‘manipulative’ Alex Cooper and more - Page Six",
+      "url": "https://pagesix.com/2026/09/04/entertainment/bombshells-from-alix-earles-netflix-show-manipulative-alex-cooper-and-more/",
+      "description": "The influencer’s new reality show, “Earle Meets World,” is streaming now on Netflix.",
+      "source": "Page Six"
+    },
+    {
+      "title": "Dave Bautista Shows Off Physical Transformation Ahead of ‘God of War’ Series - The Hollywood Reporter",
+      "url": "http://www.hollywoodreporter.com/tv/tv-news/dave-bautista-physical-transformation-kratos-god-of-war-1236690417/",
+      "description": "The actor is playing Kratos in Prime Video's live-action adaptation.",
+      "source": "Hollywood Reporter"
+    },
+    {
+      "title": "'Criminal' Boss Ed Brubaker Sued ,Accused Of Sexual & Racial Harassment - Deadline",
+      "url": "http://deadline.com/2026/09/ed-brubaker-sued-sex-harassment-criminal-1237067742/",
+      "description": "What may or may not have gone down on Prime Video's upcoming Criminal looks set to end up in a California courtroom.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Big Brother Decides Its First Season 28 Juror In Week 8 Eviction — Did An Icon Get The Boot? - TVLine",
+      "url": "https://www.tvline.com/2250846/big-brother-recap-lala-evicted-latrice-first-juror-season-28/",
+      "description": "The Big Brother 28 jury officially has its first member — did Lala, Taylor, or Devens leave the house on Thursday night?",
+      "source": "TVLine"
+    },
+    {
+      "title": "F1 LIVE: Italian Grand Prix 2026 2026 times, results, radio & updates - BBC",
+      "url": "https://www.bbc.com/sport/formula1/live/cn4vxd0xp3jt",
+      "description": "Follow live text updates and listen to BBC Radio 5 Sports Extra commentary of Italian Grand Prix first practice.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Louisiana judge rules against NCAA, clearing path for former NFL players to join LSU roster - AP News",
+      "url": "https://apnews.com/article/ncaa-eligibility-kiffin-lsu-sec-ff59236793bdefab677ceb728599aa84",
+      "description": "LSU coach Lane Kiffin’s chances of fielding former NFL players improved Thursday night when a Louisiana judge issued a preliminary injunction against the NCAA in a high-profile eligibility case. East Baton Rouge Parish Judge William Jorden issued his ruling t…",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Shilo Sanders' creditor collapses at bankruptcy trial, taken to hospital - USA Today",
+      "url": "https://www.usatoday.com/story/sports/ncaaf/2026/09/03/shilo-sanders-bankruptcy-trial-john-darjean-collapses-hospital-deoin-sanders-colorado-football/91602938007/",
+      "description": "The man owed $12 million by Deion Sanders' son Shilo collapsed at Sanders' bankruptcy trial Thursday, Sept. 3 in Denver and was taken to the hospital.",
+      "source": "USA Today"
+    },
+    {
+      "title": "Julio Rodríguez makes MLB history as Mariners fall 7-4 to A’s - KOMO",
+      "url": "https://komonews.com/sports/mariners/julio-rodriguez-makes-mlb-history-as-mariners-fall-7-4-to-athletics-major-league-baseball-mlb-t-mobile-park-cal-",
+      "description": "Zack Gelof hit a solo homer for the A's in the first, but the Mariners responded with a three-run bottom half of the inning.",
+      "source": "KOMO News"
+    },
+    {
+      "title": "Kanter Freedom files suit against Sky, Wintrust Arena owners - ESPN",
+      "url": "https://www.espn.com/wnba/story/_/id/49821028/kanter-freedom-files-suit-sky-wintrust-arena-owners",
+      "description": "Enes Kanter Freedom is suing the Chicago Sky and the owners of Wintrust Arena, alleging in a 15-page complaint filed Thursday that his First Amendment rights were violated when he was removed from a Sky home game last month.",
+      "source": "ESPN"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Tech / AI / Business",
+      "headline": "NHTSA audits Tesla’s Cybercab deployment",
+      "whatHappened": "On September 4, the U.S. National Highway Traffic Safety Administration formally opened an audit into Tesla’s self‑certification of its Cybercab robotaxi deployed in Austin.",
+      "whyItMatters": "This audit could shape regulation of purpose‑built autonomous vehicles lacking traditional controls, affecting how quickly robotaxis scale in the U.S.",
+      "depth": "Tesla’s Cybercab hitting the streets without steering wheels or pedals finally triggered a regulator — and that could slow down the driverless revolution before it takes off.",
+      "whatToSay": "“Did you hear the feds are auditing Tesla’s wheel‑less robotaxi?”",
+      "sources": [
+        "https://teccurrent.com/articles/daily-brief-2026-09-05/"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Tech / AI / Business",
+      "_context": [
+        "The Cybercab lacks conventional controls like steering wheel, pedals, mirrors",
+        "Audit opened September 4 by NHTSA",
+        "Focus on Tesla’s self‑certification process"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Fresh, high‑confidence tech story with broad interest among men 25‑45 and regulatory implications.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Tech / AI / Business",
+      "headline": "Gimlet Labs scores $300M Series B at $3B valuation",
+      "whatHappened": "On September 4, Gimlet Labs raised $300 million in Series B funding, valuing the company at $3 billion.",
+      "whyItMatters": "This underscores the growing importance of heterogeneous AI inference infrastructure and betting on orchestration across different hardware.",
+      "depth": "Startups building AI‑inference hardware stacks are pulling in massive capital — audio guys should care because we’re all running inference somewhere.",
+      "whatToSay": "“Gimlet just raised $300 million to run AI across multiple chips — interesting infrastructure play.”",
+      "sources": [
+        "https://teccurrent.com/articles/daily-brief-2026-09-05/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Tech / AI / Business",
+      "_context": [
+        "Series B raised $300 million on September 4",
+        "Valuation at $3 billion",
+        "Backing from Andreessen Horowitz, Arm, Microsoft M12, others"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Strong tech/business story showing AI infrastructure trend, though less likely to dominate bar talk than Cybercab.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Culture / Entertainment",
+      "headline": "‘The Paper’ Season 2 and Bloc Party’s new album arrive",
+      "whatHappened": "Streaming and music offerings this week include the second season of “The Paper” and a new album from Bloc Party.",
+      "whyItMatters": "New seasons and albums provide fresh cultural content that men 25‑45 are likely to discuss.",
+      "depth": "Finally some new streaming and tunes worth following — especially if you’re into smart drama and indie rock.",
+      "whatToSay": "“You seen ‘The Paper’ Season 2 dropped? And Bloc Party has a new album too.”",
+      "sources": [
+        "https://apnews.com/article/fb3d9fd9de075e87db013d004b607143"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Culture / Entertainment",
+      "_context": [
+        "AP Entertainment picks for week include Season 2 of “The Paper” and Bloc Party album",
+        "Published September 4 by AP"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Fresh streaming/music releases that are mainstream enough to talk about.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Politics",
+      "headline": "Melania Trump to skip GOP convention in Dallas",
+      "whatHappened": "First Lady Melania Trump announced she will not accompany President Trump to the September 9‑10 Republican midterm convention in Dallas.",
+      "whyItMatters": "Her absence at a major upcoming political event raises questions about optics, campaign dynamics and intra‑party messaging.",
+      "depth": "Melania snubbing the convention is unusual — whether it’s cold feet or optics control, it’ll be a hot topic in political takes.",
+      "whatToSay": "“Melania’s skipping the Dallas convention — big signal, or just convenience?”",
+      "sources": [
+        "https://www.thedailybeast.com/melania-tmp-rudelivers-stunning-snub-to-desperate-donald-trump/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Politics",
+      "_context": [
+        "Melania won’t attend GOP midterm convention Sept 9‑10",
+        "Reported by Washington Examiner and The Daily Beast",
+        "Announced September 5"
+      ],
+      "_confidenceScore": 3,
+      "_selectionReason": "Confirmed today, mainstream‑relevant political story with bar conversation potential.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets / Economy",
+      "headline": "Dow drops 272 points amid inflation pressure",
+      "whatHappened": "On September 4, the Dow Jones fell 271.86 points (0.5%) to 53,414.25 amid concerns inflation may give the Fed leeway to raise rates.",
+      "whyItMatters": "A meaningful dip in major index tied to inflation concerns affects retirement accounts, portfolios and broader economic sentiment.",
+      "depth": "The Dow dropped again — inflation remains sticky, and if the Fed hikes more, we’re all feeling it in mortgages and gas.",
+      "whatToSay": "“Dow tumbled ~270 points as inflation talks heat up — rate cut’s not a sure thing.”",
+      "sources": [
+        "https://apnews.com/article/ebc11cfa2cf8baf4491bf3d4199c1d74"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Dow fell 271.86 points to 53,414.25 on Sept 4",
+        "Pushes debate on Fed raising rates further",
+        "Reported by AP News"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Fresh markets story that directly impacts wallets and conversation.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "China tightens media controls after Himalayan flood",
+      "whatHappened": "Following a glacier collapse–triggered flood that devastated Himalayan villages on August 26, Chinese authorities have tightened internet controls and blocked foreign media coverage.",
+      "whyItMatters": "The disaster’s impact and China’s information clampdown reflect broader geopolitical and humanitarian concerns.",
+      "depth": "A flood kills villages and China clamps down on coverage — big story for disaster, censorship, and what we actually get to know.",
+      "whatToSay": "“A glacier collapse wiped out Himalayan villages — and Beijing’s now throttling the coverage.”",
+      "sources": [
+        "https://www.lemonde.fr/en/international/article/2026/09/04/after-himalayan-floods-china-enforces-strict-information-controls-on-tibet_6757139_4.html"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Glacier collapse caused flood around August 26 in Himalayan region",
+        "China restricted foreign media and online posts about the disaster",
+        "Reported September 3‑4"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Important international event combining human tragedy and censorship — relevant and conversation-worthy.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Hayden Panettiere's BF Seen Wobbly, Spitting In Bar During Wild Barney's Beanery Arrest",
+        "source": "TMZ",
+        "url": "https://www.tmz.com/2026/09/04/brian-hickerson-seemingly-spits-near-cops-at-barneys-beanery-before-arrest/",
+        "fact": "Hayden Panettiere's boyfriend, Brian Hickerson, seemed barely conscious after cops helped him get up from the floor in a bar ... before placing him in handcuffs during his 2025 arrest.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Biggest bombshells from Alix Earle’s Netflix show: ‘manipulative’ Alex Cooper and more",
+        "source": "Page Six",
+        "url": "https://pagesix.com/2026/09/04/entertainment/bombshells-from-alix-earles-netflix-show-manipulative-alex-cooper-and-more/",
+        "fact": "The influencer’s new reality show, “Earle Meets World,” is streaming now on Netflix.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Dave Bautista Shows Off Physical Transformation Ahead of ‘God of War’ Series",
+        "source": "Hollywood Reporter",
+        "url": "http://www.hollywoodreporter.com/tv/tv-news/dave-bautista-physical-transformation-kratos-god-of-war-1236690417/",
+        "fact": "The actor is playing Kratos in Prime Video's live-action adaptation.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "https://teccurrent.com/article-images/news.webp",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "Biltmore Championship Asheville",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "Biltmore Championship Asheville — this week",
+      "facts": "PREVIEW ONLY — tournament has not started. No scores or leaders exist yet. Write as a preview: course, favorites, what to watch.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://www.biltmorechampionship.com/news/2026/09/04/media_1ef5e6766435feee44364dc00060bb89482075daf.jpg?width=1200&#x26;format=pjpg&#x26;optimize=medium",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "golf",
+      "playerLinks": [
+        {
+          "name": "Carson Bertagnole",
+          "url": "https://goheels.com/sports/mens-golf/roster/carson-bertagnole/28390",
+          "note": "As a sophomore at UNC, he averaged a 70.19 scoring average (5 rounds under par per round) and fired two rounds of 61 in summer 2026—including tying the Northeast Amateur record and setting the Southern Amateur course record with a 9-under 61, plus he made his PGA Tour debut at the 2026 Puerto Rico Open (T101) making the cut"
+        },
+        {
+          "name": "Brendan Valdes",
+          "url": "https://www.pgatour.com/player/65110/brendan-valdes/stats",
+          "note": "Making his sixth career PGA Tour start after being granted a sponsor exemption; he made the cut in both previous 2026 starts this season (T41 at John Deere Classic and T20 at 3M Open)"
+        },
+        {
+          "name": "Tyler Watts",
+          "url": "https://www.biltmorechampionship.com/news/2026/09/04/biltmore-championship-asheville-announces-sponsor-exemptions-for-inaugural-event",
+          "note": "The No. 3 ranked amateur (OWGR) is making his third PGA Tour start and first of 2026, having made the cut in both earlier starts last fall (T53 at Procore Championship and T58 at Butterfield Bermuda Championship)"
+        }
+      ],
+      "course": null
+    },
+    {
+      "name": "US Open",
+      "label": "Tennis",
+      "category": "individual",
+      "headline": "Ben Shelton at US Open",
+      "facts": "Alex Michelsen d. Daniel Merida 7-6 6-4 6-3; Frances Tiafoe d. Valentin Vacherot 6-4 6-2 6-4; Ben Shelton d. Denis Shapovalov 7-6 6-7 6-3 6-4",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": null,
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "tennis",
+      "playerLinks": [
+        {
+          "name": "Ben Shelton",
+          "url": "https://www.usopen.org/amp/en_US/news/articles/2026-09-01/2026_us_open_ben_shelton_vs_hubert_hurkacz_-_round_2_key_match_preview.html",
+          "note": "has won four titles in 2026 on three different surfaces (clay in Munich, grass in Stuttgart, hard in Dallas and Canada)"
+        },
+        {
+          "name": "Hubert Hurkacz",
+          "url": "https://www.usopen.org/amp/en_US/news/articles/2026-09-01/2026_us_open_ben_shelton_vs_hubert_hurkacz_-_round_2_key_match_preview.html",
+          "note": "is fourth on the ATP Tour’s 2026 ace leaderboard with 506 aces, averaging almost 16 per match"
+        },
+        {
+          "name": "Denis Shapovalov",
+          "url": "https://www.usopen.org/amp/en_US/news/articles/2026-09-03/denis_shapovalov_ben_shelton_prepare_for_lefty_big-hitting_battle_at_2026_us_open.html",
+          "note": "Shelton leads head‑to‑head 4‑0 and three of their four matches have gone to deciding sets with multiple tiebreaks"
+        }
+      ],
+      "course": null
+    },
+    {
+      "name": "MIL @ CIN",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Milwaukee Brewers 10–7 over Cincinnati Reds",
+      "facts": "Milwaukee Brewers beat Cincinnati Reds 10–7 | Standout performances: Eugenio Suarez (Reds): 1-3 at the plate, 1 HR, 3 RBI; Matt McLain (Reds): 1-4 at the plate, 1 HR, 2 RBI; Cooper Pratt (Brewers): 1-4 at the plate, 4 RBI; Brice Turang (Brewers): 3-4 at the plate, 3 RBI",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://dims.apnews.com/dims4/default/439a3c0/2147483647/strip/true/crop/8021x5345+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F71%2Fec%2F3b64f5d74059f823b9ae8358b872%2Fa9544528c3e84fad8bd368502bb26c23",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "playerLinks": [
+        {
+          "name": "Cooper Pratt",
+          "url": "https://www.mlb.com/player/cooper-pratt-806198",
+          "note": "drove in a season-high four runs vs. the Reds in the 10–7 win with a bases-loaded triple and a groundout"
+        },
+        {
+          "name": "Brice Turang",
+          "url": "https://www.milb.com/player/brice-turang-668930",
+          "note": "hit a two-run double in the same game that helped the Brewers pull away in the 10–7 win over Cincinnati"
+        },
+        {
+          "name": "William Contreras",
+          "url": "https://www.mlb.com/brewers/player/william-contreras-661388",
+          "note": "had 2 hits and drove in 1 run in that game (4 AB, 2 H, 1 RBI)"
+        }
+      ]
+    }
+  ],
+  "heroImage": "https://teccurrent.com/article-images/news.webp",
+  "heroOverride": {
+    "image": "https://s7d2.scene7.com/is/image/TWCNews/Tesla_Cybercab_4958_",
+    "imageReal": true,
+    "eyebrow": "Tech / AI / Business",
+    "title": "NHTSA audits Tesla’s Cybercab deployment",
+    "sub": "Tech / AI / Business",
+    "isNonSportsLead": true,
+    "leadCategory": "Tech / AI / Business"
+  },
+  "recPick": {
+    "brand": "MasterClass",
+    "title": "MasterClass launches “Understanding GLP‑1s and Weight Loss” — the science you should actually know right now",
+    "body": "A brand‑new MasterClass just went live on September 3, 2026: “Understanding GLP‑1s and Weight Loss,” offering a legit crash course on the medications dominating wellness headlines. It’s worth your time if you’re trying to navigate the buzz around GLP‑1 prescriptions with clarity—straight from experts, not wellness influencers. The main trade‑off? It’s pitched at the curious—not clinicians—so it won’t replace a doctor’s advice. Plus, MasterClass isn’t cheap, especially if you’re already past their Labor Day discount window.",
+    "url": "https://www.prnewswire.com/news/MasterClass-Launches-Understanding-GLP-1s-and-Weight-Loss-the-Guidance-That-Should-Come-With-Every-GLP-1-Prescription‑301845879.html",
+    "cta": "Explore the course →",
+    "imageUrl": "https://mmx.prnewswire.com/media/MS1980509/Dr-Rocio-Salas-Whalen.jpg?id=OA2926071&p=facebook"
+  },
+  "copy": {
+    "title": null,
+    "keyTakeaway": null,
+    "todaysHits": null,
+    "lead": null,
+    "sportsOther": [],
+    "markets": null,
+    "golf": null,
+    "f1": null,
+    "culture": null,
+    "finalSharpTake": null,
+    "glance": null,
+    "theTake": null,
+    "nhl": null,
+    "upcomingPreview": null,
+    "dynamicSportsText": null
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "brokenLinks": [],
+    "reason": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CekGudy18kxThEhXjaU8B\"}"
+  },
+  "factPack": null,
+  "researchPack": {
+    "stories": [
+      {
+        "id": "Tech-1",
+        "category": "Tech / AI / Business",
+        "sport": null,
+        "isLead": true,
+        "headline": "NHTSA audits Tesla’s Cybercab deployment",
+        "whatHappened": "On September 4, the U.S. National Highway Traffic Safety Administration formally opened an audit into Tesla’s self‑certification of its Cybercab robotaxi deployed in Austin.",
+        "whyItMatters": "This audit could shape regulation of purpose‑built autonomous vehicles lacking traditional controls, affecting how quickly robotaxis scale in the U.S.",
+        "guytalkRead": "Tesla’s Cybercab hitting the streets without steering wheels or pedals finally triggered a regulator — and that could slow down the driverless revolution before it takes off.",
+        "context": [
+          "The Cybercab lacks conventional controls like steering wheel, pedals, mirrors",
+          "Audit opened September 4 by NHTSA",
+          "Focus on Tesla’s self‑certification process"
+        ],
+        "whatToSay": "“Did you hear the feds are auditing Tesla’s wheel‑less robotaxi?”",
+        "sources": [
+          "https://teccurrent.com/articles/daily-brief-2026-09-05/"
+        ],
+        "sourceNames": [
+          "Tech Current"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Fresh, high‑confidence tech story with broad interest among men 25‑45 and regulatory implications.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Tech-2",
+        "category": "Tech / AI / Business",
+        "sport": null,
+        "isLead": false,
+        "headline": "Gimlet Labs scores $300M Series B at $3B valuation",
+        "whatHappened": "On September 4, Gimlet Labs raised $300 million in Series B funding, valuing the company at $3 billion.",
+        "whyItMatters": "This underscores the growing importance of heterogeneous AI inference infrastructure and betting on orchestration across different hardware.",
+        "guytalkRead": "Startups building AI‑inference hardware stacks are pulling in massive capital — audio guys should care because we’re all running inference somewhere.",
+        "context": [
+          "Series B raised $300 million on September 4",
+          "Valuation at $3 billion",
+          "Backing from Andreessen Horowitz, Arm, Microsoft M12, others"
+        ],
+        "whatToSay": "“Gimlet just raised $300 million to run AI across multiple chips — interesting infrastructure play.”",
+        "sources": [
+          "https://teccurrent.com/articles/daily-brief-2026-09-05/"
+        ],
+        "sourceNames": [
+          "Tech Current"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 3,
+          "variety": 4
+        },
+        "selectionReason": "Strong tech/business story showing AI infrastructure trend, though less likely to dominate bar talk than Cybercab.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Culture-1",
+        "category": "Culture / Entertainment",
+        "sport": null,
+        "isLead": false,
+        "headline": "‘The Paper’ Season 2 and Bloc Party’s new album arrive",
+        "whatHappened": "Streaming and music offerings this week include the second season of “The Paper” and a new album from Bloc Party.",
+        "whyItMatters": "New seasons and albums provide fresh cultural content that men 25‑45 are likely to discuss.",
+        "guytalkRead": "Finally some new streaming and tunes worth following — especially if you’re into smart drama and indie rock.",
+        "context": [
+          "AP Entertainment picks for week include Season 2 of “The Paper” and Bloc Party album",
+          "Published September 4 by AP"
+        ],
+        "whatToSay": "“You seen ‘The Paper’ Season 2 dropped? And Bloc Party has a new album too.”",
+        "sources": [
+          "https://apnews.com/article/fb3d9fd9de075e87db013d004b607143"
+        ],
+        "sourceNames": [
+          "AP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Fresh streaming/music releases that are mainstream enough to talk about.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Politics-1",
+        "category": "Politics",
+        "sport": null,
+        "isLead": false,
+        "headline": "Melania Trump to skip GOP convention in Dallas",
+        "whatHappened": "First Lady Melania Trump announced she will not accompany President Trump to the September 9‑10 Republican midterm convention in Dallas.",
+        "whyItMatters": "Her absence at a major upcoming political event raises questions about optics, campaign dynamics and intra‑party messaging.",
+        "guytalkRead": "Melania snubbing the convention is unusual — whether it’s cold feet or optics control, it’ll be a hot topic in political takes.",
+        "context": [
+          "Melania won’t attend GOP midterm convention Sept 9‑10",
+          "Reported by Washington Examiner and The Daily Beast",
+          "Announced September 5"
+        ],
+        "whatToSay": "“Melania’s skipping the Dallas convention — big signal, or just convenience?”",
+        "sources": [
+          "https://www.thedailybeast.com/melania-tmp-rudelivers-stunning-snub-to-desperate-donald-trump/"
+        ],
+        "sourceNames": [
+          "The Daily Beast"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 3,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Confirmed today, mainstream‑relevant political story with bar conversation potential.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Markets-1",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Dow drops 272 points amid inflation pressure",
+        "whatHappened": "On September 4, the Dow Jones fell 271.86 points (0.5%) to 53,414.25 amid concerns inflation may give the Fed leeway to raise rates.",
+        "whyItMatters": "A meaningful dip in major index tied to inflation concerns affects retirement accounts, portfolios and broader economic sentiment.",
+        "guytalkRead": "The Dow dropped again — inflation remains sticky, and if the Fed hikes more, we’re all feeling it in mortgages and gas.",
+        "context": [
+          "Dow fell 271.86 points to 53,414.25 on Sept 4",
+          "Pushes debate on Fed raising rates further",
+          "Reported by AP News"
+        ],
+        "whatToSay": "“Dow tumbled ~270 points as inflation talks heat up — rate cut’s not a sure thing.”",
+        "sources": [
+          "https://apnews.com/article/ebc11cfa2cf8baf4491bf3d4199c1d74"
+        ],
+        "sourceNames": [
+          "AP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Fresh markets story that directly impacts wallets and conversation.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "World-1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "China tightens media controls after Himalayan flood",
+        "whatHappened": "Following a glacier collapse–triggered flood that devastated Himalayan villages on August 26, Chinese authorities have tightened internet controls and blocked foreign media coverage.",
+        "whyItMatters": "The disaster’s impact and China’s information clampdown reflect broader geopolitical and humanitarian concerns.",
+        "guytalkRead": "A flood kills villages and China clamps down on coverage — big story for disaster, censorship, and what we actually get to know.",
+        "context": [
+          "Glacier collapse caused flood around August 26 in Himalayan region",
+          "China restricted foreign media and online posts about the disaster",
+          "Reported September 3‑4"
+        ],
+        "whatToSay": "“A glacier collapse wiped out Himalayan villages — and Beijing’s now throttling the coverage.”",
+        "sources": [
+          "https://www.lemonde.fr/en/international/article/2026/09/04/after-himalayan-floods-china-enforces-strict-information-controls-on-tibet_6757139_4.html"
+        ],
+        "sourceNames": [
+          "Le Monde via English"
+        ],
+        "scores": {
+          "freshness": 4,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Important international event combining human tragedy and censorship — relevant and conversation-worthy.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "NBA or MLB results today",
+        "reason": "No confirmed specific results found for September 5 games; schedule available but no outcomes, so not confirmed."
+      },
+      {
+        "headline": "Fambot AI chief of staff launch",
+        "reason": "Product news on September 4 but too niche for mass conversation among men 25‑45."
+      },
+      {
+        "headline": "ISRO GSLV‑F17 launch briefing",
+        "reason": "Space launch news not confirmed today, and more niche audience interest."
+      }
+    ],
+    "researchNotes": "Today’s headlines are dominated by tech regulation (Tesla Cybercab audit), AI infrastructure funding (Gimlet Labs), markets (Dow drop amid inflation), political optics (Melania skipping RNC midterm convention), streaming/music releases (‘The Paper’ S2, Bloc Party album), and international disaster news (Himalayan flood + media control). No major sports scores confirmed today. Tech and markets offer high‑impact, fresh talking points.",
+    "relevanceScan": {
+      "bucketA_sports": "none",
+      "bucketB_politics": "Melania Trump skipping GOP convention",
+      "bucketC_markets": "Dow drops 271.86 points amid inflation fears",
+      "bucketD_tech": "NHTSA audits Tesla Cybercab; Gimlet Labs funding",
+      "bucketE_culture": "‘The Paper’ S2 and Bloc Party album",
+      "bucketF_world": "China tightens media controls after Himalayan flood"
+    },
+    "leadJustification": "The Tesla Cybercab audit leads because it’s fresh (Sept 4 confirmation), high confidence from Tech Current, conversation‑relevant (“guy talk”), and a big regulatory milestone – more impactful than market dip or pop‑culture news.",
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-09-05T12:14:27.887Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "image:US Open tennis action photo 2026",
+      "kind": "failed",
+      "detail": "web image search found no usable photo — needs a manual image from Jake"
+    },
+    {
+      "section": "image:Tennis",
+      "kind": "failed",
+      "detail": "no web-search image found and no static fallback configured"
+    },
+    {
+      "section": "golf",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CekGspvkS6n13jtWRoaTR\"}"
+    },
+    {
+      "section": "nhl",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CekGspzDwd6TKbHQ7kLVp\"}"
+    },
+    {
+      "section": "sports",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CekGsgQnn2Q55kdDwYTuw\"}"
+    },
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CekGsq1Tzhxe9AeUYcSQY\"}"
+    },
+    {
+      "section": "f1",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CekGsqYDZN7jBaZGetcwU\"}"
+    },
+    {
+      "section": "lead",
+      "kind": "retry",
+      "detail": "malformed lead — retried"
+    },
+    {
+      "section": "editor",
+      "kind": "failed",
+      "detail": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CekGudy18kxThEhXjaU8B\"}"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+    "blocking": [],
+    "warnings": []
+  }
+}
