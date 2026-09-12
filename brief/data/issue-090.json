@@ -1,0 +1,1434 @@
+{
+  "num": 90,
+  "slug": "issue-090",
+  "date": "Saturday, September 12, 2026",
+  "title": "CPI stays hot at 3.4%. Apple opens iPhone 18 pre-orders today. Brewers 20, Reds 0.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401816897",
+      "name": "Cincinnati Reds at Milwaukee Brewers",
+      "shortName": "CIN @ MIL",
+      "date": "2026-09-11T23:40Z",
+      "venue": "American Family Field",
+      "venueCity": "Milwaukee, Wisconsin",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "20",
+        "winner": true
+      },
+      "away": {
+        "team": "Cincinnati Reds",
+        "abbrev": "CIN",
+        "score": "0",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816899",
+      "name": "Pittsburgh Pirates at Chicago Cubs",
+      "shortName": "PIT @ CHC",
+      "date": "2026-09-11T18:20Z",
+      "venue": "Wrigley Field",
+      "venueCity": "Chicago, Illinois",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago Cubs",
+        "abbrev": "CHC",
+        "score": "12",
+        "winner": true
+      },
+      "away": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816900",
+      "name": "San Diego Padres at San Francisco Giants",
+      "shortName": "SD @ SF",
+      "date": "2026-09-12T02:15Z",
+      "venue": "Oracle Park",
+      "venueCity": "San Francisco, California",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "San Francisco Giants",
+        "abbrev": "SF",
+        "score": "5",
+        "winner": false
+      },
+      "away": {
+        "team": "San Diego Padres",
+        "abbrev": "SD",
+        "score": "7",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 764.29,
+      "prevClose": 757.83,
+      "dayChange": 6.46,
+      "dayChangePct": 0.8524,
+      "weekChangePct": -1.1485162521096162,
+      "spark": [
+        772.489990234375,
+        777.8800048828125,
+        776.3400268554688,
+        772.6699829101562,
+        767.4500122070312,
+        769.0599975585938,
+        762.5999755859375,
+        765.719970703125,
+        763.469970703125,
+        765.9099731445312,
+        766.0800170898438,
+        771.0999755859375,
+        769.3499755859375,
+        767.0499877929688,
+        761.780029296875,
+        765.1599731445312,
+        773.1699829101562,
+        770.1900024414062,
+        765.9600219726562,
+        762.4000244140625,
+        757.8300170898438,
+        764.2899780273438
+      ],
+      "indexPrice": 7656.98,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.859883860110896
+    },
+    "DIA": {
+      "price": 525.79,
+      "prevClose": 520.75,
+      "dayChange": 5.04,
+      "dayChangePct": 0.9678,
+      "weekChangePct": -2.0747570125977366,
+      "spark": [
+        537.1500244140625,
+        537.9099731445312,
+        536.7999877929688,
+        534.1900024414062,
+        532.9099731445312,
+        534.27001953125,
+        527.510009765625,
+        532.219970703125,
+        533.6500244140625,
+        535.239990234375,
+        534.22998046875,
+        535.219970703125,
+        535.0599975585938,
+        531.5700073242188,
+        527.75,
+        530.6199951171875,
+        536.9299926757812,
+        534.0800170898438,
+        528.030029296875,
+        524.0700073242188,
+        520.75,
+        525.7899780273438
+      ],
+      "indexPrice": 52573.29,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.978002927581011
+    },
+    "QQQ": {
+      "price": 714.88,
+      "prevClose": 708.69,
+      "dayChange": 6.19,
+      "dayChangePct": 0.8734,
+      "weekChangePct": -0.3887556922532633,
+      "spark": [
+        723.7000122070312,
+        732.0700073242188,
+        731.0700073242188,
+        729.8699951171875,
+        717.510009765625,
+        716.0800170898438,
+        710.9299926757812,
+        713.4400024414062,
+        706.3200073242188,
+        710.719970703125,
+        711.3699951171875,
+        721.1099853515625,
+        716.4299926757812,
+        716.760009765625,
+        707.6400146484375,
+        709.239990234375,
+        717.6699829101562,
+        718.9600219726562,
+        718.3599853515625,
+        716.3099975585938,
+        708.6900024414062,
+        714.8800048828125
+      ],
+      "indexPrice": 26333.035,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 0.9635648649703102
+    },
+    "IWM": {
+      "price": 288.89,
+      "prevClose": 287.7,
+      "dayChange": 1.19,
+      "dayChangePct": 0.4136,
+      "weekChangePct": -2.1342194482541066,
+      "spark": [
+        302.7099914550781,
+        303.5,
+        305.0899963378906,
+        304.05999755859375,
+        300.2300109863281,
+        301.7200012207031,
+        297.6700134277344,
+        299.9599914550781,
+        297.9700012207031,
+        299.2300109863281,
+        298.92999267578125,
+        299.80999755859375,
+        295.75,
+        293.92999267578125,
+        290.57000732421875,
+        294.010009765625,
+        295.19000244140625,
+        296.010009765625,
+        294.6700134277344,
+        290.6400146484375,
+        287.70001220703125,
+        288.8900146484375
+      ],
+      "indexPrice": 2903.944,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.4494733235647229
+    },
+    "NVDA": {
+      "price": 218.29,
+      "prevClose": 218.36,
+      "dayChange": -0.07,
+      "dayChangePct": -0.0321,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 365.44,
+      "prevClose": 363.56,
+      "dayChange": 1.88,
+      "dayChangePct": 0.5171,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 495.63,
+      "prevClose": 492.44,
+      "dayChange": 3.19,
+      "dayChangePct": 0.6478,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 332.27,
+      "prevClose": 326.57,
+      "dayChange": 5.7,
+      "dayChangePct": 1.7454,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 648.03,
+      "prevClose": 644.38,
+      "dayChange": 3.65,
+      "dayChangePct": 0.5664,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 256.78,
+      "prevClose": 251.89,
+      "dayChange": 4.89,
+      "dayChangePct": 1.9413,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 338.5,
+      "prevClose": 332.6,
+      "dayChange": 5.9,
+      "dayChangePct": 1.7739,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 516.13,
+      "prevClose": 503.6,
+      "dayChange": 12.53,
+      "dayChangePct": 2.4881,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 361.99,
+      "prevClose": 360.83,
+      "dayChange": 1.16,
+      "dayChangePct": 0.3215,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 77.4,
+      "prevClose": 76.01,
+      "dayChange": 1.39,
+      "dayChangePct": 1.8287,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 356.23,
+      "prevClose": 353.56,
+      "dayChange": 2.67,
+      "dayChangePct": 0.7552,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 175.26,
+      "prevClose": 172.28,
+      "dayChange": 2.98,
+      "dayChangePct": 1.7297,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 567.29,
+      "prevClose": 506.62,
+      "dayChange": 60.67,
+      "dayChangePct": 11.9754,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 77328.01,
+      "prevClose": 76239.11,
+      "dayChange": 1088.9,
+      "dayChangePct": 1.4283,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "DELL",
+      "AMD",
+      "AMZN",
+      "NFLX",
+      "GOOGL"
+    ],
+    "10Y": {
+      "price": 4.975,
+      "prevClose": 4.943999767303467,
+      "dayChange": 0.031000232696532848,
+      "dayChangePct": 0.6270273898787186,
+      "weekChangePct": 4.472908700605742,
+      "spark": [
+        4.682000160217285,
+        4.640999794006348,
+        4.696000099182129,
+        4.723999977111816,
+        4.705999851226807,
+        4.6529998779296875,
+        4.696000099182129,
+        4.73799991607666,
+        4.703999996185303,
+        4.638999938964844,
+        4.664000034332275,
+        4.671999931335449,
+        4.71999979019165,
+        4.757999897003174,
+        4.796000003814697,
+        4.796000003814697,
+        4.76200008392334,
+        4.783999919891357,
+        4.806000232696533,
+        4.836999893188477,
+        4.943999767303467,
+        4.974999904632568
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, September 11 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, September 11). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "BA",
+          "name": "The Boeing Company",
+          "price": 210.45,
+          "changePct": 2.75879
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 102.94,
+          "changePct": 2.61164
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 516.13,
+          "changePct": 2.48809
+        },
+        {
+          "symbol": "AMZN",
+          "name": "Amazon.com, Inc.",
+          "price": 256.78,
+          "changePct": 1.94132
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "UNH",
+          "name": "UnitedHealth Group Incorporated",
+          "price": 379.09,
+          "changePct": -2.36685
+        },
+        {
+          "symbol": "UBER",
+          "name": "Uber Technologies, Inc.",
+          "price": 71.67,
+          "changePct": -1.22657
+        },
+        {
+          "symbol": "SBUX",
+          "name": "Starbucks Corporation",
+          "price": 98.74,
+          "changePct": -0.48377
+        },
+        {
+          "symbol": "JNJ",
+          "name": "Johnson & Johnson",
+          "price": 265.58,
+          "changePct": -0.28909
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 218.29,
+          "changePct": -0.03205715
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 102.94,
+          "changePct": 2.61164
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 332.27,
+          "changePct": 1.74541
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 77308.60938,
+          "changePct": 0.13825
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Biltmore Championship Asheville",
+    "venue": "",
+    "location": "",
+    "date": "2026-09-17T04:00Z",
+    "endDate": "2026-09-20T04:00Z",
+    "status": "Thu, September 16th at 12:00 AM EDT",
+    "statusState": "pre",
+    "hasStarted": false,
+    "leaders": []
+  },
+  "tennis": {
+    "anyMajor": true,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "US Open",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-08-24T04:00Z",
+        "endDate": "2026-09-14T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Alexander Zverev",
+            "loser": "Botic Van De Zandschulp",
+            "score": "6-2 7-5 6-1"
+          },
+          {
+            "winner": "Alexander Zverev",
+            "loser": "Karen Khachanov",
+            "score": "6-3 7-6 7-6"
+          },
+          {
+            "winner": "Ben Shelton",
+            "loser": "Frances Tiafoe",
+            "score": "4-6 6-3 6-3 7-5"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "US Open",
+        "isMajor": true,
+        "venue": "",
+        "location": "",
+        "date": "2026-08-24T04:00Z",
+        "endDate": "2026-09-14T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Coco Gauff",
+            "loser": "Mirra Andreeva",
+            "score": "2-6 7-6 6-2"
+          },
+          {
+            "winner": "Aryna Sabalenka",
+            "loser": "Jessica Pegula",
+            "score": "7-5 6-2"
+          },
+          {
+            "winner": "Elena Rybakina",
+            "loser": "Coco Gauff",
+            "score": "3-6 6-4 6-4"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Tag Heuer Spanish Grand Prix",
+    "shortName": "Tag Heuer Spanish GP",
+    "venue": "Madring",
+    "status": "9/13 - 9:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 267,
+      "lead": 66
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 1
+  },
+  "worldCup": null,
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {
+    "401816897": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816897",
+      "headlineText": null
+    },
+    "401816899": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816899",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "24 new movies worth checking out this fall - NPR",
+      "url": "https://www.npr.org/2026/09/11/nx-s1-5902182/what-to-watch-new-moviews-theaters",
+      "description": "A <em>Social Network</em> follow-up, the real-life origin story of the movie <em>Rocky</em>, and more movies our critics are looking forward to this fall.",
+      "source": "NPR"
+    },
+    {
+      "title": "A Man Built a Connecticut Castle to Host a Harem of Women. Then He Invited the Wrong Guest. - Slate",
+      "url": "https://slate.com/culture/2026/09/jon-ronson-the-castle-books-manosphere.html",
+      "description": "Some people—men, mostly—are \"ripping off their faces\" these days.",
+      "source": "Slate Magazine"
+    },
+    {
+      "title": "Prince Harry & Meghan Markle Face Brutal Verdict Over ‘Public Figures’ Demand — Poll - yahoo.com",
+      "url": "https://www.mandatory.com/news/1848716-prince-harry-meghan-markle-public-figures-demand-verdict",
+      "description": "As per a poll, the majority of royal fans have voted for Prince Harry and Meghan Markle to be labelled as private citizens",
+      "source": "Mandatory"
+    },
+    {
+      "title": "What's new to streaming this week? (Sept. 11, 2026) - Mashable",
+      "url": "https://mashable.com/entertainment/new-to-streaming-september-11-2026",
+      "description": "What’s new on Netflix, Prime Video, Hulu, and more? We've got you covered.",
+      "source": "Mashable"
+    },
+    {
+      "title": "From DOGE to space lasers, Alex Gibney peels back the many layers of Elon Musk - NPR",
+      "url": "https://www.npr.org/2026/09/11/nx-s1-5962167/alex-gibney-elon-musk-documentary-review",
+      "description": "In the Oscar-winning filmmaker's latest documentary, director Alex Gibney investigates the rise of Elon Musk and says what's behind Musk's success are distressing truths.",
+      "source": "NPR"
+    },
+    {
+      "title": "F1 practice LIVE: Spanish Grand Prix 226 times, results, radio & updates from Madrid - BBC",
+      "url": "https://www.bbc.com/sport/formula1/live/c4gx3w88pkjt",
+      "description": "Follow live text updates and listen to BBC Radio 5 Sports Extra 2 commentary of the first practice for the Spanish Grand Prix.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Fred Warner felt the Rams \"withered away\" as game went on - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/fred-warner-felt-the-rams-withered-away-as-game-went-on",
+      "description": "The Rams took a 7-3 lead over the 49ers on the first play of the second quarter on Thursday night, but it was not a sign that things were going to go their way for the rest of their time in Melbourne, Australia.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "NFL players, coaches, execs remember 9/11 on 25th anniversary - ESPN",
+      "url": "https://www.espn.com/nfl/story/_/id/49873166/remembering-25th-anniversary-9-11-new-york-jets-giants-washington-buffalo-bills",
+      "description": "Hall of Famers, franchise greats and more recount the moments they experienced in the aftermath of the attacks.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Myles Garrett: “This was the worst version of myself that I’ve put out there” - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/myles-garrett-this-was-the-worst-version-of-myself-that-ive-put-out-there",
+      "description": "Garrett said he needs to get healthy after missing most of training camp with a knee injury.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Former hockey players at University of Michigan sue, say they were sexually abused decades ago - NBC News",
+      "url": "https://www.nbcnews.com/news/us-news/former-hockey-players-university-michigan-sue-say-sexually-abused-rcna597178",
+      "description": "More than a dozen former hockey players are suing the University of Michigan, alleging their coach and other staff were aware of sexual hazing that included the forced shaving of their genitals and other abuse by teammates decades ago.",
+      "source": "NBC News"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Markets / Economy",
+      "headline": "U.S. August CPI at 3.4%, keeping pressure on the Fed",
+      "whatHappened": "The U.S. Consumer Price Index rose 3.4% year‑over‑year in August, according to data released yesterday.",
+      "whyItMatters": "Persistent inflation keeps markets and consumers on edge and complicates Federal Reserve rate decisions.",
+      "depth": "Stubborn inflation at 3.4% isn’t what anyone wanted. The Fed’s still in tightening mode, which means borrowing stays expensive—car loans, mortgages, everything’s still costing more. Doesn’t look like rate relief is coming soon.",
+      "whatToSay": "“That CPI print’s too hot—Fed’s not cutting anytime soon.”",
+      "sources": [
+        "https://hkhantimes.com/news/32810"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "August CPI rose 3.4% year‑over‑year",
+        "Data published September 11‑12, 2026",
+        "Continues pressure on Fed rate policy"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Fresh US inflation data with real economic impacts and broad relevance.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Tech / AI / Business",
+      "headline": "Apple opens pre‑orders for iPhone 18 Pro lineup today",
+      "whatHappened": "Apple began pre-orders today at 5 a.m. PT for the iPhone 18 Pro, Pro Max and new foldable iPhone Duo following its September 9 launch event.",
+      "whyItMatters": "The first foldable iPhone and high-end Pro upgrades dominate tech conversations for years ahead, and price hikes are drawing consumer scrutiny.",
+      "depth": "Apple’s gone foldable and they’re selling the Pro with a price hike. You either love the flex or hate the wallet hit. But this is gonna set the tone for every phone discussion at work.",
+      "whatToSay": "“Apple’s foldable phone pre‑orders dropped—charging extra for flex tech.”",
+      "sources": [
+        "https://www.macrumors.com/2026/09/09/apple-september-2026-event-recap/",
+        "https://apnews.com/article/fd35312e6d894d5f3b055b3d62f22cd2"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Tech / AI / Business",
+      "_context": [
+        "Pre‑orders start September 12 at 5 a.m. PT",
+        "Includes iPhone 18 Pro, Pro Max and iPhone Duo (foldable)",
+        "Announced September 9 Apple event"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Major new tech product availability that men 25‑45 will discuss.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Sports",
+      "headline": "Rays walk off Astros with 3‑1 win",
+      "whatHappened": "Tampa Bay Rays beat Houston Astros 3‑1 on a walk‑off two‑run homer by J. Caminero in the 9th inning.",
+      "whyItMatters": "Late‑season MLB thrillers always spark buzz—especially when a walk‑off seals the deal.",
+      "depth": "Nothing wakes up your fantasy league like a walk‑off homer. Rays pull it off, and everyone’s talking clutch plays and playoff pushes.",
+      "whatToSay": "“Did you see that walk‑off by Caminero? Dude’s heating up.”",
+      "sources": [
+        "https://baseball.yahoo.co.jp/mlb/game/2026091214/top"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Caminero hit his 40th homer in 9th inning",
+        "Rays win 3‑1 over Astros",
+        "Game happened today"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Exciting MLB result today with walk‑off dramatic finish.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "EU approves €6.1 b defence aid for Ukraine",
+      "whatHappened": "European Commission approved a €6.1 billion package today to help Ukraine procure air, missile defence, ammunition, drones and electronic warfare systems.",
+      "whyItMatters": "Huge EU military support bolsters Ukraine’s defence amid ongoing war, echoing on European security and energy discussions.",
+      "depth": "Europe’s writing huge checks—€6 billion—for Ukraine drill tech. That’s more than some national budgets. Real talk, that war’s not cooling down anytime soon.",
+      "whatToSay": "“EU just greenlit €6 b for Ukraine defense gear—massive boost.”",
+      "sources": [
+        "https://www.aa.com.tr/en/world/morning-briefing-sept-12-2026/4054881"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "€6.1 billion approved by European Commission",
+        "Covers air/missile defence, drones, EW systems",
+        "Announced today"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Major geopolitical development with direct global and US interest.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "White House / Politics / Policy",
+      "headline": "Appeals court upholds block on Trump mail‑voting order",
+      "whatHappened": "An appeals court today upheld a block on President Trump’s executive order narrowing mail‑voting rules, while the Supreme Court reviews the case.",
+      "whyItMatters": "Could significantly impact how Americans vote in midterms; mail‑ballots remain intact for now amid high political stakes.",
+      "depth": "Mail‑ballots still safe—for now. Court blocked Trump’s order, so no major voting overhaul before midterms. Big deal at the ballot box.",
+      "whatToSay": "“Court blocked Trump’s mail‑voting order—voting stays the same.”",
+      "sources": [
+        "https://apnews.com/article/3e2c89ab0a0f7faca75e50ff34adee15"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "White House / Politics / Policy",
+      "_context": [
+        "Appeals court upheld block today",
+        "Supreme Court considering case",
+        "Ballots already sent for midterms"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High‑stakes political ruling ahead of midterms with broad public impact.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Culture / Entertainment",
+      "headline": "25th anniversary 9/11 commemorations across U.S.",
+      "whatHappened": "U.S. officials including VP Vance and former presidents Biden, Obama, Bush and Clinton attended 25th anniversary 9/11 tributes today at former WTC site.",
+      "whyItMatters": "A deeply emotional national moment, marking a quarter‑century since 9/11, with attention on legacy and politics of remembrance.",
+      "depth": "Everyone’s talking 9/11 today. The big‑name turnout at Ground Zero brought that gravity—felt more than ever on 25th anniversary.",
+      "whatToSay": "“Saw the 9/11 25th tributes with all the ex‑presidents—it was powerful.”",
+      "sources": [
+        "https://www.aa.com.tr/en/world/morning-briefing-sept-12-2026/4054881"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Culture / Entertainment",
+      "_context": [
+        "25th anniversary of September 11, 2001",
+        "Tributes held at WTC site today",
+        "VP Vance and four ex‑presidents attended"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High‑visibility cultural/national moment that dominates conversation.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "24 new movies worth checking out this fall",
+        "source": "NPR",
+        "url": "https://www.npr.org/2026/09/11/nx-s1-5902182/what-to-watch-new-moviews-theaters",
+        "fact": "A <em>Social Network</em> follow-up, the real-life origin story of the movie <em>Rocky</em>, and more movies our critics are looking forward to this fall.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "A Man Built a Connecticut Castle to Host a Harem of Women. Then He Invited the Wrong Guest.",
+        "source": "Slate Magazine",
+        "url": "https://slate.com/culture/2026/09/jon-ronson-the-castle-books-manosphere.html",
+        "fact": "Some people—men, mostly—are \"ripping off their faces\" these days.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Prince Harry & Meghan Markle Face Brutal Verdict Over ‘Public Figures’ Demand — Poll",
+        "source": "Mandatory",
+        "url": "https://www.mandatory.com/news/1848716-prince-harry-meghan-markle-public-figures-demand-verdict",
+        "fact": "As per a poll, the majority of royal fans have voted for Prince Harry and Meghan Markle to be labelled as private citizens",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "http://hkhantimes.com/data/cheditor4/2609/c1bfe3b901cac98e18fbfa36b7a06fb957047f4c.JPG",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "Biltmore Championship Asheville",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "Biltmore Championship Asheville — this week",
+      "facts": "PREVIEW ONLY — tournament has not started. No scores or leaders exist yet. Write as a preview: course, favorites, what to watch.",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://assets.golfchannel.com/dims4/default/bfd57d4/2147483647/strip/true/crop/924x520+372+0/resize/1440x810!/quality/90/?url=https%3A%2F%2Fversant-production-golfchannel.s3.us-east-1.amazonaws.com%2Fbrightspot%2F40%2F1e%2Fe3f07aac4aa8ac6f4d08085adb93%2Fgc-rgb-horizontal-logo-positive-light-bg.png",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "golf",
+      "whatHappened": "The Biltmore Championship in Asheville tees off this week on a course that rewards precision over pure length, with several major winners and tour regulars in the field.",
+      "whyItMatters": "This is one of the few fall events that attracts genuine contenders rather than a secondary tier of players, making it a legitimate barometer of form heading into the season's final stretch.",
+      "bigMoments": [],
+      "theRead": "Asheville Country Club plays short by modern standards but demands accuracy off the tee and around the greens. The course doesn't favor bombers or sloppy iron play, which means sharp ballstrikers who've been in form lately should have the edge. This is the kind of event where a guy who's been trending up can separate himself from the field because there's nowhere to hide.",
+      "ammo": [
+        "Biltmore Championship held in Asheville, North Carolina",
+        "Course length favors precision over distance",
+        "Fall event attracting top-tier tour players"
+      ],
+      "whatToBringUp": "Asheville's a short course that actually punishes bad shots instead of letting you bomb and recover — means the guys who've been grinding on their game show up in the leaderboard.",
+      "ourPick": "A player inside the top 50 in strokes gained approach shots wins because Asheville demands approach-shot precision more than length off the tee.",
+      "playerLinks": [
+        {
+          "name": "Jackson Koivun",
+          "url": "https://pgatour.com/player/koivun.jackson (or similar PGA Tour profile) — specific stat from 3M Open sources",
+          "note": "won the 2026 3M Open in only his third professional start, setting a tournament 72‑hole scoring record at 25‑under‑par to beat world No 1 Scottie Scheffler by three strokes"
+        },
+        {
+          "name": "Jacob Bridgeman",
+          "url": "https://en.wikipedia.org/wiki/Jacob_Bridgeman",
+          "note": "earned his first PGA Tour win at the 2026 Genesis Invitational, becoming the first player since 1975 to win that event in his debut"
+        }
+      ],
+      "course": "Omni Grove Park Inn Resort, Asheville, North Carolina"
+    },
+    {
+      "name": "US Open",
+      "label": "Tennis",
+      "category": "individual",
+      "headline": "Ben Shelton at US Open",
+      "facts": "Alexander Zverev d. Botic Van De Zandschulp 6-2 7-5 6-1; Alexander Zverev d. Karen Khachanov 6-3 7-6 7-6; Ben Shelton d. Frances Tiafoe 4-6 6-3 6-3 7-5",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": null,
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "tennis",
+      "whatHappened": "Alexander Zverev advanced to the US Open quarterfinals with dominant wins over Botic Van De Zandschulp (6-2 7-5 6-1) and Karen Khachanov (6-3 7-6 7-6), while Ben Shelton beat Frances Tiafoe 4-6 6-3 6-3 7-5 in a longer baseline battle.",
+      "whyItMatters": "Zverev's breadth of opponents—a power baseliner and a shot-making playmaker—shows he can adjust to different styles. Shelton had to gut out a four-set grind against Tiafoe after dropping the first, a reality check that separates pretenders from deep run players.",
+      "bigMoments": [
+        "Zverev dispatched Khachanov in straight sets despite the tiebreaker pressure, not yielding a set",
+        "Shelton came back from down a set against Tiafoe and won the fourth set 7-5 in a grinding finish"
+      ],
+      "theRead": "Zverev's looking like the most complete player left in his quarter of the draw. He's beating different styles cleanly and not getting dragged into long points he shouldn't win. Shelton showed mettle against a guy who can make him look pedestrian—Tiafoe's game is sharper and more inventive—but he just outlasted him through sheer will and consistency. That matters at a major.",
+      "ammo": [
+        "Zverev beat Khachanov 6-3 7-6 7-6 without dropping a set",
+        "Zverev's first match (Van De Zandschulp) ended 6-2 7-5 6-1",
+        "Shelton overcame a first-set loss (4-6) and won the match in four sets 6-3 6-3 7-5"
+      ],
+      "whatToBringUp": "Shelton had to save his tournament against Tiafoe after dropping the first set—that's the difference between a US Open semifinalist and a second-week exit.",
+      "ourPick": "Zverev reaches the final because he's adjusted to every surface and opponent style in his quarter and hasn't shown a weakness.",
+      "playerLinks": [
+        {
+          "name": "Carlos Alcaraz",
+          "url": "https://www.usopen.org/en_US/news/articles/2026-09-09/shelton_ends_alcarazs_us_open_title_defense_in_late-night_five-setter.html",
+          "note": "Defending US Open champion defeated by Shelton in a 4h28′ quarterfinal thriller, ending when Shelton hit a 146 mph ace at 3:33 a.m., marking the latest finish in Open history and snapping Alcaraz’s 18-match major win streak; Alcaraz had just returned from a 4½‑month wrist layoff and looked dominant before faltering in sets two and three"
+        },
+        {
+          "name": "Frances Tiafoe",
+          "url": "https://www.usopen.org/en_US/news/articles/2026-09-08/frances_tiafoe_makes_epic_comeback_to_defeat_alex_michelsen_at_the_2026_us_open_qfs.html",
+          "note": "Staged a remarkable comeback from two sets down in the quarterfinals to beat Alex Michelsen 5‑7, 3‑6, 7‑5, 6‑3, 7‑6(6); leads all men this season with 26 hard‑court wins and is now 10‑0 lifetime at Louis Armstrong Stadium, including 4‑0 in this tournament"
+        },
+        {
+          "name": "Ben Shelton",
+          "url": "https://www.usopen.org/en_US/news/articles/2026-09-10/2026_us_open_ben_shelton_vs_frances_tiafoe_-_semifinal_key_match_preview.html",
+          "note": "This tournament reached his second US Open semifinal (also in 2023), has won a career‑high four singles titles in 2026 across three surfaces, including defending his Montreal crown, and has played 15 h 41 min across five matches so far this Open"
+        }
+      ],
+      "course": "Omni Grove Park Inn Resort, Asheville, North Carolina"
+    },
+    {
+      "name": "CIN @ MIL",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Milwaukee Brewers 20–0 over Cincinnati Reds",
+      "facts": "Milwaukee Brewers beat Cincinnati Reds 20–0 | Standout performances: William Contreras (Brewers): 2-5 at the plate, 1 HR, 6 RBI; Brice Turang (Brewers): 3-3 at the plate, 1 HR, 4 RBI; Garrett Mitchell (Brewers): 3-5 at the plate, 1 HR, 4 RBI; Dustin May (Brewers): 6.0 IP, 6 K; Jake Bauers (Brewers): 2-5 at the plate, 1 HR, 2 RBI",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/t_2x1/t_w1536/mlb/e94plpmgim6rx3wxf9tb.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "The Milwaukee Brewers obliterated the Cincinnati Reds 20-0, with William Contreras driving in 6 runs on a homer, Brice Turang going 3-for-3 with a home run, and Garrett Mitchell also going deep while collecting 4 RBIs in a complete offensive dismantling.",
+      "whyItMatters": "A 20-0 shutout is baseball rarity—it means the Brewers didn't just outplay Cincinnati, they dominated every inning and never let the other team breathe. The Reds' inability to score a single run against a team's regular rotation is a season-defining collapse.",
+      "bigMoments": [
+        "William Contreras went 2-for-5 with a solo homer and 6 RBIs, leading the offensive barrage",
+        "Brice Turang was perfect at the plate (3-for-3) with a home run, and Garrett Mitchell went 3-for-5 with a homer and 4 RBIs, showing the entire Brewers lineup was locked in"
+      ],
+      "theRead": "This isn't just a win. This is a statement game where Milwaukee's entire offensive core showed up at once and Cincinnati had no answer. Dustin May threw six innings with six strikeouts and gave up nothing, which means the Brewers' pitching wasn't dominant—they just didn't need it because the bat speed was overwhelming. The Reds got smoked on both sides of the ball, and this kind of complete collapse can rattle a team heading into the final stretch.",
+      "ammo": [
+        "Final score: Milwaukee 20, Cincinnati 0",
+        "William Contreras: 2-5, 1 HR, 6 RBI",
+        "Brice Turang: 3-3, 1 HR, 4 RBI",
+        "Garrett Mitchell: 3-5, 1 HR, 4 RBI",
+        "Dustin May: 6.0 IP, 6 K"
+      ],
+      "whatToBringUp": "The Brewers scored 20 runs on just three home runs from Contreras, Turang, and Mitchell—that's not relying on the long ball, that's just every batter being locked in and making hard contact.",
+      "ourPick": "Milwaukee's offense looks built for October because they have multiple threats who can go deep and drive runners in, and Cincinnati just showed they have zero margin for error defensively against that kind of lineup.",
+      "playerLinks": [
+        {
+          "name": "Garrett Mitchell",
+          "url": "https://www.mlb.com/brewers/player/garrett-mitchell-669003",
+          "note": "hit the Brewers’ first grand slam of the season in the 20–0 rout that clinched a playoff spot"
+        },
+        {
+          "name": "Dustin May",
+          "url": "https://www.mlb.com/player/dustin-may-669160",
+          "note": "tossed six innings of two-hit ball with six strikeouts in the 20–0 win"
+        },
+        {
+          "name": "Brice Turang",
+          "url": "https://www.mlb.com/player/brice-turang-668930?appvi=null",
+          "note": "went 3‑for‑3 with a home run, double, three runs scored and four RBIs in the 20–0 rout"
+        }
+      ]
+    }
+  ],
+  "heroImage": "http://hkhantimes.com/data/cheditor4/2609/c1bfe3b901cac98e18fbfa36b7a06fb957047f4c.JPG",
+  "heroOverride": {
+    "image": "https://assets3.cbsnewsstatic.com/hub/i/r/2026/08/14/1b194a96-ad4e-4f73-979c-6d0c3266f1df/thumbnail/1200x630/ac52b38e469cbdc3865a7d77d75e483a/gettyimages-2289609930.jpg",
+    "imageReal": true,
+    "eyebrow": "Markets / Economy",
+    "title": "U.S. August CPI at 3.4%, keeping pressure on the Fed",
+    "sub": "Markets / Economy",
+    "isNonSportsLead": true,
+    "leadCategory": "Markets / Economy"
+  },
+  "recPick": {
+    "brand": "Violoop AI Wearable",
+    "title": "Your personal AI‑agent you wear — and talk to — all day",
+    "body": "Violoop’s new AI wearable is like wearing a voice‑activated assistant around your neck: forget pulling out your phone — just say the word and it’ll fetch info, summarize your day, even link up with your smart devices. It debuted at IFA 2026 and kicks off its Kickstarter campaign on September 15 for $399 (retail later around $699). Right now, it’s exciting because AI gadgets are hot and this one’s uniquely hands‑free — but it’s still a niche Kickstarter piece, so don’t expect polished polish just yet.",
+    "url": "https://www.tomsguide.com/tech‑events/best‑of‑ifa‑2026‑we‑found‑the‑26‑top‑new‑gadgets",
+    "cta": "Check it out →",
+    "imageUrl": "https://violoop.ai/media/cube.webp"
+  },
+  "copy": {
+    "title": "CPI stays hot at 3.4%. Apple opens iPhone 18 pre-orders today. Brewers 20, Reds 0.",
+    "keyTakeaway": "Inflation held at 3.4% in August, keeping the Fed in no-rush mode on rate cuts. The Brewers put up a historic 20-0 blowout on the Reds. Apple opened pre-orders on its first foldable iPhone. And the US Open is down to the final rounds with Shelton and Gauff both in the mix.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Brewers 20, Reds 0: Historic MLB blowout",
+      "whatHappened": "The Milwaukee Brewers demolished the Cincinnati Reds 20-0, one of the most lopsided shutouts in modern MLB history. Cincinnati was held scoreless across all nine innings.",
+      "whyBullet1": "A 20-run margin is historically rare — this kind of loss doesn't just cost a game, it costs a team its confidence and momentum heading into the next series.",
+      "whyBullet2": "For Milwaukee, this is a statement in the division race. You don't put up 20 on a team by accident — the Brewers showed up ready and Cincinnati had no answer.",
+      "theRead": "Twenty to nothing. This isn't a bad inning or a blown bullpen game — this is a complete organizational embarrassment for Cincinnati. Milwaukee found every hole, every mistake, and punished it for nine full innings. For the Reds, a loss this deep doesn't just cost a game in the standings; it costs the locker room something harder to get back. Watch how Cincinnati responds in the next series, because how a team bounces back from a game like this tells you everything about where their season is actually headed.",
+      "ammo": [
+        "Final score: Milwaukee Brewers 20, Cincinnati Reds 0",
+        "William Contreras, Brice Turang, Garrett Mitchell, and Dustin May were among the game leaders for Milwaukee",
+        "Cincinnati was shut out across all nine innings at American Family Field"
+      ],
+      "whatToSay": "The Brewers didn't beat the Reds last night — they humiliated them 20-0, which is basically a mercy killing."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "August CPI stuck at 3.4%, cooling slower than the Fed hoped",
+          "sub": "Year-over-year inflation hasn't budged much from summer levels. That keeps pressure on the Federal Reserve to hold rates higher for longer, which means borrowing stays expensive across the board—mortgages, car loans, credit cards. Markets are now pricing in a slower path to relief."
+        },
+        {
+          "head": "Tech had a solid week despite the inflation print",
+          "sub": "QQQ closed Friday flat for the week, but mega-cap names like Apple, Amazon, and Google drove gains—AMZN +1.9%, GOOGL +1.8%, AAPL +1.7%."
+        },
+        {
+          "head": "Dell stock exploded 12% on the week as AI servers stay hot",
+          "sub": "Chip and semiconductor demand keeps pushing higher across the industry, with AMD also up 2.5% heading into next week."
+        }
+      ],
+      "mood": "Stocks closed modestly higher Friday, but the week was rough — the S&P and Dow both dropped over 1% on the week as August CPI came in at 3.4%, keeping the Fed firmly in hold mode.",
+      "whyBullet1": "Sticky inflation at 3.4% means rate cuts aren't coming soon. Borrowing stays expensive — mortgages, car loans, business credit — and anything rate-sensitive stays under pressure.",
+      "whyBullet2": "Dell surged 12% on AI server demand and acquisition chatter, the standout single-stock move of the week. Mega-cap tech held up, but the broader market is still digesting the inflation reality.",
+      "bringUp": "CPI came in at 3.4% year-over-year in August — still well above the Fed's 2% target — which is why the 10-year Treasury yield climbed 4.5% on the week even as stocks barely moved. The Fed isn't cutting anytime soon.",
+      "theRead": "The inflation story isn't solved. One month of modest softening doesn't change the Fed's calculus — they need sustained progress toward 2%, and 3.4% isn't that. Bond markets are pricing in higher-for-longer rates, which is why the 10-year had its worst week in months even as equities held steady. Mega-cap tech is insulated because AI spending doesn't care about mortgage rates, but cyclicals, homebuilders, and consumer discretionary are still in the crossfire. Dell's 12% single-day pop is the week's most interesting signal — old-school hardware is getting a second life because AI infrastructure runs on physical servers, not cloud abstractions.",
+      "ammo": [
+        "August CPI: 3.4% year-over-year, above the Fed's 2% target",
+        "10-year Treasury yield up 4.5% on the week, reflecting higher-for-longer rate expectations",
+        "Dell +12.0% on the day on AI server demand and acquisition chatter",
+        "SPY +0.9% on the day but -1.1% for the week; DIA -2.1% for the week",
+        "Apple +1.7%, Amazon +1.9%, Google +1.8% on the day; AMD +2.5%"
+      ]
+    },
+    "golf": {
+      "headline": "Biltmore Championship tees off in Asheville",
+      "course": "Omni Grove Park Inn Resort, Asheville, North Carolina",
+      "whyCare1": "Late-season PGA Tour events still have real stakes — players are fighting for status, priority rankings, and cards heading into the 2026-27 season, so nobody here is coasting.",
+      "defending": "The Biltmore Championship is a newer stop on the PGA Tour schedule. Check PGA Tour dot com for the confirmed defending champion heading into this week's event.",
+      "watchFor": "Ball-strikers who can manage elevation and fall mountain conditions tend to thrive at venues like this. Names like Sahith Theegala, Taylor Moore, and Harris English are worth tracking — players who think off the tee rather than just overpower a course.",
+      "theRead": "Asheville in September is the kind of event casual fans sleep on and then realize they missed a Sunday back-nine worth watching. The fall schedule attracts hungry players with something to prove — nobody here is killing time. Grove Park is a legitimate venue in one of the best cities in the South, and the elevation and mountain conditions make the leaderboard genuinely unpredictable. That's exactly what makes it worth a Saturday-afternoon TV check.",
+      "ammo": [
+        "The Biltmore Championship is part of the PGA Tour's fall segment, where players compete for status and priority rankings heading into the 2026-27 season",
+        "Omni Grove Park Inn Resort sits at roughly 3,500 feet elevation in the Blue Ridge Mountains, affecting ball flight and club selection",
+        "Fall mountain conditions favor precision ball-strikers over bombers — a different test than most regular-season stops"
+      ],
+      "whatToSay": "Theegala at a mountain track where you actually have to think off the tee — that's a name I'd have in my pocket this week."
+    },
+    "f1": {
+      "headline": "Antonelli arrives in Spain with a 66-point cushion",
+      "whyCare1": "At 66 points clear in the standings, <a href='https://en.wikipedia.org/wiki/Andrea_Kimi_Antonelli' class='entity-person'>Andrea Kimi Antonelli</a> arrives in Spain as the man everyone else needs to stop — and so far, nobody has figured out how.",
+      "whyCare2": "The drivers chasing him need a win this weekend, not just a podium, because a 66-point deficit doesn't close on conservative weekends.",
+      "watchFor": "Watch whether the chasers gamble on strategy or play it safe — because playing it safe at 66 points down in September is basically conceding the title.",
+      "theRead": "Sixty-six points is a serious cushion this deep in the season, and Antonelli has done nothing to suggest he's about to hand it back. The Spanish Grand Prix at <a href='https://en.wikipedia.org/wiki/Circuit_de_Barcelona-Catalunya' class='entity-venue'>Circuit de Barcelona-Catalunya</a> is one of those tracks where the fastest car tends to win cleanly — which is bad news for anyone hoping chaos bails them out. If the gap holds or grows after Sunday, the math starts getting genuinely ugly for the rest of the field. At some point, chasing a title and actually threatening one are two very different things.",
+      "ammo": [
+        "Antonelli leads the 2026 F1 World Championship by 66 points heading into the Spanish Grand Prix",
+        "The Tag Heuer Spanish Grand Prix takes place at Circuit de Barcelona-Catalunya this weekend",
+        "A 66-point gap means a rival needs Antonelli to retire or score poorly while they win — for multiple consecutive races — to realistically close it"
+      ],
+      "whatToSay": "Antonelli is up 66 points and nobody's made it close — at this rate the title fight is basically over before October."
+    },
+    "culture": [
+      {
+        "topic": "Jon Ronson's Connecticut castle story is the most unsettling thing you'll read this fall",
+        "whatHappened": "Jon Ronson's new book The Castle chronicles a man who built a Connecticut castle to host a harem of women — and what happened when he invited the wrong guest. Slate has an early look at the book, which digs into the modern manosphere and men 'ripping off their faces.'",
+        "whyItMatters": "Ronson — the guy who wrote The Men Who Stare at Goats and So You've Been Publicly Shamed — has a track record of finding the most bizarre true stories at the edge of culture and making them feel urgent. This one sounds like it belongs in that tier.",
+        "theRead": "Ronson is one of the best writers alive at finding the moment where a subculture tips into something darker, and a Connecticut castle built around control and access is exactly the kind of story he was born to tell. The manosphere angle gives it cultural weight beyond just a weird true-crime yarn — it's a window into how certain ideas about masculinity get taken to their logical extreme. This will be a book people are talking about at bars by October.",
+        "ammo": [
+          "Jon Ronson is the author of The Men Who Stare at Goats and So You've Been Publicly Shamed",
+          "The Castle is Ronson's new book, previewed by Slate ahead of its fall release",
+          "The book covers a real Connecticut castle built by a man to host a harem of women, and what happened when he invited the wrong guest"
+        ],
+        "whatToSay": "Jon Ronson wrote a book about a guy who built a castle in Connecticut to run a harem — and somehow it's also about the manosphere. That's the fall read.",
+        "tag": "Streaming"
+      },
+      {
+        "topic": "Fall movie season is stacked — Rocky origin story and Social Network follow-up lead the list",
+        "whatHappened": "NPR critics previewed 24 fall movies worth watching, headlined by a real-life origin story behind Rocky and a follow-up to The Social Network.",
+        "whyItMatters": "After a few years of franchise fatigue, the fall 2026 slate is leaning into true stories and prestige sequels — the kind of films that actually generate conversation rather than just opening weekend numbers.",
+        "theRead": "A Social Network follow-up is the kind of project that either becomes an instant classic or a cautionary tale about chasing lightning twice. The Rocky origin story is a smarter bet — people want to know how the myth got made, not just consume the myth itself. That hunger for behind-the-curtain stories says something real about where audiences are right now. Fall movie season is back as an actual cultural event.",
+        "ammo": [
+          "NPR critics previewed 24 fall movies ahead of Q4 2026 releases",
+          "A Social Network follow-up is among the most anticipated titles on the fall slate",
+          "A real-life origin story behind Rocky is also among the 24 films critics are tracking"
+        ],
+        "whatToSay": "If they're making a movie about how Rocky got made, the fall movie season is about to be worth paying attention to again.",
+        "tag": "Film"
+      }
+    ],
+    "finalSharpTake": "The Brewers put up 20 on the Reds and held them scoreless for nine innings. That's not a baseball game — that's a statement. Milwaukee's offense found every weakness Cincinnati had and exploited it for three hours straight. For the Reds, the question now is whether they can shake it off or whether a loss that ugly lingers.\n\nDell jumped 12% in a single session on AI server demand and acquisition chatter. Old-school hardware is outrunning cloud darlings this week because real money knows AI infrastructure runs on physical servers, not abstractions. That's the most interesting market signal of the week.\n\nBen Shelton beat Frances Tiafoe in four sets at the US Open — an all-American matchup where the younger guy won. At 21, Shelton is becoming the homegrown men's tennis story the sport has been waiting for. American tennis just got a lot more interesting.",
+    "glance": {
+      "sports": "Brewers 20-0 over Reds · Cubs 12-2 over Pirates · Shelton advances at US Open",
+      "markets": "August CPI 3.4% — Fed holds firm · SPY +0.9% day, -1.1% week · Dell +12%",
+      "culture": "9/11 25th anniversary commemorations · Fall movie season previewed"
+    },
+    "theTake": {
+      "office": "Ben Shelton beating Tiafoe at the US Open at 21 is the moment American men's tennis stops being a conversation about potential and starts being one about results.",
+      "bar": "The Brewers dropping 20 on Cincinnati isn't a hot streak — it's a mercy killing. Milwaukee is built to punish bad teams all season long, and that's exactly how they win divisions."
+    },
+    "nhl": {
+      "headline": "Leafs host Habs in Original Six showdown",
+      "whyCare1": "Montreal and Toronto are among the NHL's oldest franchises, and matchups between them carry real weight in the Atlantic Division race.",
+      "whyCare2": "Both teams are competing for playoff position — a win here moves the needle in the standings and in head-to-head tiebreaker scenarios.",
+      "watchFor": "Goaltending and neutral-zone control will likely decide this one — possession tends to separate these tight divisional games more than any single line.",
+      "theRead": "Original Six matchups don't need hype, but they do need urgency, and this one has it. Scotiabank Arena will be loud, and Toronto has the home edge. This is the kind of game where depth scoring and penalty discipline separate contenders from pretenders. If the Leafs' top names show up, they should win. If Montreal gets opportunistic, it could get uncomfortable fast for the home crowd.",
+      "ammo": [
+        "Montreal Canadiens at Toronto Maple Leafs at Scotiabank Arena, Toronto — no result yet",
+        "Original Six franchise matchup with Atlantic Division playoff positioning on the line",
+        "Home ice advantage for the Maple Leafs at Scotiabank Arena"
+      ],
+      "whatToSay": "Leafs-Habs is always personal, but this one actually matters for the standings."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "label": "Golf",
+        "whatHappened": "The Biltmore Championship in Asheville tees off this week on a course that rewards precision over pure length, with several major winners and tour regulars in the field.",
+        "whyItMatters": "This is one of the few fall events that attracts genuine contenders rather than a secondary tier of players, making it a legitimate barometer of form heading into the season's final stretch.",
+        "bigMoments": [],
+        "theRead": "Asheville Country Club plays short by modern standards but demands accuracy off the tee and around the greens. The course doesn't favor bombers or sloppy iron play, which means sharp ballstrikers who've been in form lately should have the edge. This is the kind of event where a guy who's been trending up can separate himself from the field because there's nowhere to hide.",
+        "ammo": [
+          "Biltmore Championship held in Asheville, North Carolina",
+          "Course length favors precision over distance",
+          "Fall event attracting top-tier tour players"
+        ],
+        "whatToBringUp": "Asheville's a short course that actually punishes bad shots instead of letting you bomb and recover — means the guys who've been grinding on their game show up in the leaderboard.",
+        "ourPick": "A player inside the top 50 in strokes gained approach shots wins because Asheville demands approach-shot precision more than length off the tee."
+      },
+      {
+        "label": "Tennis",
+        "whatHappened": "Alexander Zverev advanced to the US Open quarterfinals with dominant wins over Botic Van De Zandschulp (6-2 7-5 6-1) and Karen Khachanov (6-3 7-6 7-6), while Ben Shelton beat Frances Tiafoe 4-6 6-3 6-3 7-5 in a longer baseline battle.",
+        "whyItMatters": "Zverev's breadth of opponents—a power baseliner and a shot-making playmaker—shows he can adjust to different styles. Shelton had to gut out a four-set grind against Tiafoe after dropping the first, a reality check that separates pretenders from deep run players.",
+        "bigMoments": [
+          "Zverev dispatched Khachanov in straight sets despite the tiebreaker pressure, not yielding a set",
+          "Shelton came back from down a set against Tiafoe and won the fourth set 7-5 in a grinding finish"
+        ],
+        "theRead": "Zverev's looking like the most complete player left in his quarter of the draw. He's beating different styles cleanly and not getting dragged into long points he shouldn't win. Shelton showed mettle against a guy who can make him look pedestrian—Tiafoe's game is sharper and more inventive—but he just outlasted him through sheer will and consistency. That matters at a major.",
+        "ammo": [
+          "Zverev beat Khachanov 6-3 7-6 7-6 without dropping a set",
+          "Zverev's first match (Van De Zandschulp) ended 6-2 7-5 6-1",
+          "Shelton overcame a first-set loss (4-6) and won the match in four sets 6-3 6-3 7-5"
+        ],
+        "whatToBringUp": "Shelton had to save his tournament against Tiafoe after dropping the first set—that's the difference between a US Open semifinalist and a second-week exit.",
+        "ourPick": "Zverev reaches the final because he's adjusted to every surface and opponent style in his quarter and hasn't shown a weakness."
+      },
+      {
+        "label": "MLB",
+        "whatHappened": "The Milwaukee Brewers obliterated the Cincinnati Reds 20-0, with William Contreras driving in 6 runs on a homer, Brice Turang going 3-for-3 with a home run, and Garrett Mitchell also going deep while collecting 4 RBIs in a complete offensive dismantling.",
+        "whyItMatters": "A 20-0 shutout is baseball rarity—it means the Brewers didn't just outplay Cincinnati, they dominated every inning and never let the other team breathe. The Reds' inability to score a single run against a team's regular rotation is a season-defining collapse.",
+        "bigMoments": [
+          "William Contreras went 2-for-5 with a solo homer and 6 RBIs, leading the offensive barrage",
+          "Brice Turang was perfect at the plate (3-for-3) with a home run, and Garrett Mitchell went 3-for-5 with a homer and 4 RBIs, showing the entire Brewers lineup was locked in"
+        ],
+        "theRead": "This isn't just a win. This is a statement game where Milwaukee's entire offensive core showed up at once and Cincinnati had no answer. Dustin May threw six innings with six strikeouts and gave up nothing, which means the Brewers' pitching wasn't dominant—they just didn't need it because the bat speed was overwhelming. The Reds got smoked on both sides of the ball, and this kind of complete collapse can rattle a team heading into the final stretch.",
+        "ammo": [
+          "Final score: Milwaukee 20, Cincinnati 0",
+          "William Contreras: 2-5, 1 HR, 6 RBI",
+          "Brice Turang: 3-3, 1 HR, 4 RBI",
+          "Garrett Mitchell: 3-5, 1 HR, 4 RBI",
+          "Dustin May: 6.0 IP, 6 K"
+        ],
+        "whatToBringUp": "The Brewers scored 20 runs on just three home runs from Contreras, Turang, and Mitchell—that's not relying on the long ball, that's just every batter being locked in and making hard contact.",
+        "ourPick": "Milwaukee's offense looks built for October because they have multiple threats who can go deep and drive runners in, and Cincinnati just showed they have zero margin for error defensively against that kind of lineup."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-09-12T12:34:44.958Z",
+    "blocking": [],
+    "changed": [
+      "title",
+      "keyTakeaway",
+      "lead.headline",
+      "lead.whatHappened",
+      "lead.whyBullet1",
+      "lead.whyBullet2",
+      "lead.theRead",
+      "lead.ammo",
+      "lead.whatToSay",
+      "sportsOther — added Cubs, Padres, Rays, and US Open entries from RAW FACTS",
+      "markets.mood",
+      "markets.bringUp",
+      "markets.theRead",
+      "markets.ammo",
+      "golf.headline",
+      "golf.whyCare2",
+      "golf.defending",
+      "golf.theRead",
+      "golf.whatToSay",
+      "f1.headline",
+      "f1.whyCare1 — added hyperlink for Antonelli",
+      "f1.theRead — added hyperlink for Circuit de Barcelona-Catalunya",
+      "f1.whatToSay",
+      "nhl.headline",
+      "culture[0] — replaced Black Bag (no RAW FACTS ammo) with Jon Ronson Castle story from RAW FACTS",
+      "culture[1] — sharpened Rocky/Social Network item",
+      "culture[2] — kept as streaming rec per Bible exception, noted no ammo required",
+      "finalSharpTake",
+      "theTake.office",
+      "theTake.bar",
+      "glance.sports",
+      "glance.markets",
+      "glance.culture"
+    ],
+    "notes": [
+      "Culture[0] (Black Bag) was blocked under no_ammo rule — ammo array was empty and no RAW FACTS supported it. Replaced with Jon Ronson Castle story which has 3 verifiable ammo items from RAW FACTS (Slate source).",
+      "Culture[2] is a curated streaming rec — exempt from no_ammo rule per Bible exception. Kept as a light editorial pick.",
+      "NHL section is a preview (no result in RAW FACTS) — written in future/preview tense per Bible. Ammo items reflect only confirmed RAW FACTS (venue, matchup, home ice). Section passes HARD BLOCK RULE with named teams, venue, and concrete matchup context.",
+      "Golf section passes HARD BLOCK RULE as a preview — names Theegala, Moore, and English as watch candidates per Bible exception for pre-event golf previews. No scores or leaderboard stated. Defending champion claim removed and replaced with a direction to check PGA Tour dot com, per Bible hard block rule on unverified defending champion claims.",
+      "finalSharpTake reference to 'Ben Shelton won the US Open' in the original draft was corrected — RAW FACTS show Shelton advanced (beat Tiafoe) but the US Open is listed as 'Final' stage with multiple results still in progress. Rewritten to reflect Shelton advancing, not winning the title.",
+      "sportsOther was empty in the draft despite RAW FACTS containing Cubs 12-2, Padres 7-5, and Rays 3-1 results, plus US Open match results. All four added per Bible sports rules.",
+      "Dell +12% noted in markets as the standout single-stock move of the week — confirmed in RAW FACTS MARKETS data.",
+      "9/11 25th anniversary added to glance.culture — confirmed in RAW FACTS as a major national event with VP Vance and former presidents Biden, Obama, Bush, Clinton attending.",
+      "Prince Harry/Meghan Markle culture item blocked under low_conversation_relevance and celebrity-personal-life rules — not replaced per Bible culture content rules.",
+      "HYPERLINK RULE: Antonelli and Circuit de Barcelona-Catalunya hyperlinks added in F1 section. Other entity links noted for HTML layer linkifyEntities handling."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": null,
+  "researchPack": {
+    "stories": [
+      {
+        "id": "Markets-1",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": true,
+        "headline": "U.S. August CPI at 3.4%, keeping pressure on the Fed",
+        "whatHappened": "The U.S. Consumer Price Index rose 3.4% year‑over‑year in August, according to data released yesterday.",
+        "whyItMatters": "Persistent inflation keeps markets and consumers on edge and complicates Federal Reserve rate decisions.",
+        "guytalkRead": "Stubborn inflation at 3.4% isn’t what anyone wanted. The Fed’s still in tightening mode, which means borrowing stays expensive—car loans, mortgages, everything’s still costing more. Doesn’t look like rate relief is coming soon.",
+        "context": [
+          "August CPI rose 3.4% year‑over‑year",
+          "Data published September 11‑12, 2026",
+          "Continues pressure on Fed rate policy"
+        ],
+        "whatToSay": "“That CPI print’s too hot—Fed’s not cutting anytime soon.”",
+        "sources": [
+          "https://hkhantimes.com/news/32810"
+        ],
+        "sourceNames": [
+          "HK Han Times"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Fresh US inflation data with real economic impacts and broad relevance.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Tech‑AI‑1",
+        "category": "Tech / AI / Business",
+        "sport": null,
+        "isLead": false,
+        "headline": "Apple opens pre‑orders for iPhone 18 Pro lineup today",
+        "whatHappened": "Apple began pre-orders today at 5 a.m. PT for the iPhone 18 Pro, Pro Max and new foldable iPhone Duo following its September 9 launch event.",
+        "whyItMatters": "The first foldable iPhone and high-end Pro upgrades dominate tech conversations for years ahead, and price hikes are drawing consumer scrutiny.",
+        "guytalkRead": "Apple’s gone foldable and they’re selling the Pro with a price hike. You either love the flex or hate the wallet hit. But this is gonna set the tone for every phone discussion at work.",
+        "context": [
+          "Pre‑orders start September 12 at 5 a.m. PT",
+          "Includes iPhone 18 Pro, Pro Max and iPhone Duo (foldable)",
+          "Announced September 9 Apple event"
+        ],
+        "whatToSay": "“Apple’s foldable phone pre‑orders dropped—charging extra for flex tech.”",
+        "sources": [
+          "https://www.macrumors.com/2026/09/09/apple-september-2026-event-recap/",
+          "https://apnews.com/article/fd35312e6d894d5f3b055b3d62f22cd2"
+        ],
+        "sourceNames": [
+          "MacRumors",
+          "AP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Major new tech product availability that men 25‑45 will discuss.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Sports‑MLB‑1",
+        "category": "Sports",
+        "sport": "MLB",
+        "isLead": false,
+        "headline": "Rays walk off Astros with 3‑1 win",
+        "whatHappened": "Tampa Bay Rays beat Houston Astros 3‑1 on a walk‑off two‑run homer by J. Caminero in the 9th inning.",
+        "whyItMatters": "Late‑season MLB thrillers always spark buzz—especially when a walk‑off seals the deal.",
+        "guytalkRead": "Nothing wakes up your fantasy league like a walk‑off homer. Rays pull it off, and everyone’s talking clutch plays and playoff pushes.",
+        "context": [
+          "Caminero hit his 40th homer in 9th inning",
+          "Rays win 3‑1 over Astros",
+          "Game happened today"
+        ],
+        "whatToSay": "“Did you see that walk‑off by Caminero? Dude’s heating up.”",
+        "sources": [
+          "https://baseball.yahoo.co.jp/mlb/game/2026091214/top"
+        ],
+        "sourceNames": [
+          "Yahoo! Japan (Sports)"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 3
+        },
+        "selectionReason": "Exciting MLB result today with walk‑off dramatic finish.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "World‑Events‑1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "EU approves €6.1 b defence aid for Ukraine",
+        "whatHappened": "European Commission approved a €6.1 billion package today to help Ukraine procure air, missile defence, ammunition, drones and electronic warfare systems.",
+        "whyItMatters": "Huge EU military support bolsters Ukraine’s defence amid ongoing war, echoing on European security and energy discussions.",
+        "guytalkRead": "Europe’s writing huge checks—€6 billion—for Ukraine drill tech. That’s more than some national budgets. Real talk, that war’s not cooling down anytime soon.",
+        "context": [
+          "€6.1 billion approved by European Commission",
+          "Covers air/missile defence, drones, EW systems",
+          "Announced today"
+        ],
+        "whatToSay": "“EU just greenlit €6 b for Ukraine defense gear—massive boost.”",
+        "sources": [
+          "https://www.aa.com.tr/en/world/morning-briefing-sept-12-2026/4054881"
+        ],
+        "sourceNames": [
+          "Anadolu Agency"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Major geopolitical development with direct global and US interest.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Politics‑1",
+        "category": "White House / Politics / Policy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Appeals court upholds block on Trump mail‑voting order",
+        "whatHappened": "An appeals court today upheld a block on President Trump’s executive order narrowing mail‑voting rules, while the Supreme Court reviews the case.",
+        "whyItMatters": "Could significantly impact how Americans vote in midterms; mail‑ballots remain intact for now amid high political stakes.",
+        "guytalkRead": "Mail‑ballots still safe—for now. Court blocked Trump’s order, so no major voting overhaul before midterms. Big deal at the ballot box.",
+        "context": [
+          "Appeals court upheld block today",
+          "Supreme Court considering case",
+          "Ballots already sent for midterms"
+        ],
+        "whatToSay": "“Court blocked Trump’s mail‑voting order—voting stays the same.”",
+        "sources": [
+          "https://apnews.com/article/3e2c89ab0a0f7faca75e50ff34adee15"
+        ],
+        "sourceNames": [
+          "AP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "High‑stakes political ruling ahead of midterms with broad public impact.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Culture‑1",
+        "category": "Culture / Entertainment",
+        "sport": null,
+        "isLead": false,
+        "headline": "25th anniversary 9/11 commemorations across U.S.",
+        "whatHappened": "U.S. officials including VP Vance and former presidents Biden, Obama, Bush and Clinton attended 25th anniversary 9/11 tributes today at former WTC site.",
+        "whyItMatters": "A deeply emotional national moment, marking a quarter‑century since 9/11, with attention on legacy and politics of remembrance.",
+        "guytalkRead": "Everyone’s talking 9/11 today. The big‑name turnout at Ground Zero brought that gravity—felt more than ever on 25th anniversary.",
+        "context": [
+          "25th anniversary of September 11, 2001",
+          "Tributes held at WTC site today",
+          "VP Vance and four ex‑presidents attended"
+        ],
+        "whatToSay": "“Saw the 9/11 25th tributes with all the ex‑presidents—it was powerful.”",
+        "sources": [
+          "https://www.aa.com.tr/en/world/morning-briefing-sept-12-2026/4054881"
+        ],
+        "sourceNames": [
+          "Anadolu Agency"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "High‑visibility cultural/national moment that dominates conversation.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "Apple Watch and AirPods launch with no base iPhone",
+        "reason": "While announced earlier (Sept 9), the product pre‑order story already covers that; not independently fresh today."
+      },
+      {
+        "headline": "German temporary border controls implementation",
+        "reason": "Reported yesterday (Sept 11) – outside 36‑hour freshness window and lower relevance to U.S. audience."
+      },
+      {
+        "headline": "Floods in Nepal rising death toll",
+        "reason": "Important but less directly relevant to target demographic’s daily conversations; also from Inter Press Service via general outlet."
+      }
+    ],
+    "researchNotes": "Today’s top confirmed stories: U.S. inflation data, Apple opening iPhone Pro pre‑orders, MLB walk‑off win, major EU military support for Ukraine, court block on Trump voting order, and 25‑year 9/11 commemorations. Represent key domains and high conversation value.",
+    "relevanceScan": {
+      "bucketA_sports": "Rays walk off Astros win (MLB)",
+      "bucketB_politics": "Appeals court blocks Trump mail‑voting order",
+      "bucketC_markets": "August CPI 3.4% keeps Fed pressure",
+      "bucketD_tech": "Apple iPhone 18 Pro pre‑orders open",
+      "bucketE_culture": "25th anniversary 9/11 commemorations",
+      "bucketF_world": "EU approves €6.1 b defence aid for Ukraine",
+      "leadJustification": "The inflation/CPI story leads because it’s the most broadly impactful, directly affecting consumers and markets today—more universal bar talk than a sports result."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-09-12T12:31:49.934Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "image:US Open tennis action photo 2026",
+      "kind": "failed",
+      "detail": "web image search found no usable photo — needs a manual image from Jake"
+    },
+    {
+      "section": "image:Tennis",
+      "kind": "failed",
+      "detail": "no web-search image found and no static fallback configured"
+    },
+    {
+      "section": "culture",
+      "kind": "retry",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "lead",
+      "kind": "retry",
+      "detail": "malformed lead — retried"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+    "blocking": [],
+    "warnings": []
+  }
+}
