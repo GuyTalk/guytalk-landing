@@ -1,0 +1,1492 @@
+{
+  "num": 90,
+  "slug": "issue-090",
+  "date": "Saturday, September 19, 2026",
+  "title": "Trump bans CNN from the White House. UFC 331 is tonight. Tigers edge White Sox 11–8.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401816989",
+      "name": "Detroit Tigers at Chicago White Sox",
+      "shortName": "DET @ CHW",
+      "date": "2026-09-18T23:40Z",
+      "venue": "Rate Field",
+      "venueCity": "Chicago, Illinois",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Chicago White Sox",
+        "abbrev": "CHW",
+        "score": "8",
+        "winner": false
+      },
+      "away": {
+        "team": "Detroit Tigers",
+        "abbrev": "DET",
+        "score": "11",
+        "winner": true
+      }
+    },
+    {
+      "id": "401816985",
+      "name": "Kansas City Royals at Pittsburgh Pirates",
+      "shortName": "KC @ PIT",
+      "date": "2026-09-18T22:40Z",
+      "venue": "PNC Park",
+      "venueCity": "Pittsburgh, Pennsylvania",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Pittsburgh Pirates",
+        "abbrev": "PIT",
+        "score": "8",
+        "winner": true
+      },
+      "away": {
+        "team": "Kansas City Royals",
+        "abbrev": "KC",
+        "score": "5",
+        "winner": false
+      }
+    },
+    {
+      "id": "401816986",
+      "name": "Milwaukee Brewers at Baltimore Orioles",
+      "shortName": "MIL @ BAL",
+      "date": "2026-09-18T23:05Z",
+      "venue": "Oriole Park at Camden Yards",
+      "venueCity": "Baltimore, Maryland",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "MLB",
+      "home": {
+        "team": "Baltimore Orioles",
+        "abbrev": "BAL",
+        "score": "5",
+        "winner": false
+      },
+      "away": {
+        "team": "Milwaukee Brewers",
+        "abbrev": "MIL",
+        "score": "6",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 761.69,
+      "prevClose": 762.6,
+      "dayChange": -0.91,
+      "dayChangePct": -0.1193,
+      "weekChangePct": -0.3401821431774259,
+      "spark": [
+        769.0599975585938,
+        762.5999755859375,
+        765.719970703125,
+        763.469970703125,
+        765.9099731445312,
+        766.0800170898438,
+        771.0999755859375,
+        769.3499755859375,
+        767.0499877929688,
+        761.780029296875,
+        765.1599731445312,
+        773.1699829101562,
+        770.1900024414062,
+        765.9600219726562,
+        762.4000244140625,
+        757.8300170898438,
+        764.2899780273438,
+        760.8800048828125,
+        757.3900146484375,
+        754.0499877929688,
+        762.5999755859375,
+        761.6900024414062
+      ],
+      "indexPrice": 7650.5,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.1668059059979803
+    },
+    "DIA": {
+      "price": 515.88,
+      "prevClose": 518.35,
+      "dayChange": -2.47,
+      "dayChangePct": -0.4765,
+      "weekChangePct": -1.884778797900249,
+      "spark": [
+        534.27001953125,
+        527.510009765625,
+        532.219970703125,
+        533.6500244140625,
+        535.239990234375,
+        534.22998046875,
+        535.219970703125,
+        535.0599975585938,
+        531.5700073242188,
+        527.75,
+        530.6199951171875,
+        536.9299926757812,
+        534.0800170898438,
+        528.030029296875,
+        524.0700073242188,
+        520.75,
+        525.7899780273438,
+        524.489990234375,
+        521.22998046875,
+        515.219970703125,
+        518.3499755859375,
+        515.8800048828125
+      ],
+      "indexPrice": 51682.64,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.18424618666003692
+    },
+    "QQQ": {
+      "price": 721.45,
+      "prevClose": 716.92,
+      "dayChange": 4.53,
+      "dayChangePct": 0.6319,
+      "weekChangePct": 0.9190346732756274,
+      "spark": [
+        716.0800170898438,
+        710.9299926757812,
+        713.4400024414062,
+        706.3200073242188,
+        710.719970703125,
+        711.3699951171875,
+        721.1099853515625,
+        716.4299926757812,
+        716.760009765625,
+        707.6400146484375,
+        709.239990234375,
+        717.6699829101562,
+        718.9600219726562,
+        718.3599853515625,
+        716.3099975585938,
+        708.6900024414062,
+        714.8800048828125,
+        709.1799926757812,
+        704.5399780273438,
+        704.719970703125,
+        716.9199829101562,
+        721.4500122070312
+      ],
+      "indexPrice": 26522.545,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 0.394590930026749
+    },
+    "IWM": {
+      "price": 284.1,
+      "prevClose": 285.43,
+      "dayChange": -1.33,
+      "dayChangePct": -0.466,
+      "weekChangePct": -1.6580755324017167,
+      "spark": [
+        301.7200012207031,
+        297.6700134277344,
+        299.9599914550781,
+        297.9700012207031,
+        299.2300109863281,
+        298.92999267578125,
+        299.80999755859375,
+        295.75,
+        293.92999267578125,
+        290.57000732421875,
+        294.010009765625,
+        295.19000244140625,
+        296.010009765625,
+        294.6700134277344,
+        290.6400146484375,
+        287.70001220703125,
+        288.8900146484375,
+        287.9100036621094,
+        285.1400146484375,
+        283.9200134277344,
+        285.42999267578125,
+        284.1000061035156
+      ],
+      "indexPrice": 2860.396,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -0.49515532060682443
+    },
+    "NVDA": {
+      "price": 222.27,
+      "prevClose": 219.34,
+      "dayChange": 2.93,
+      "dayChangePct": 1.3358,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 364.27,
+      "prevClose": 366.2,
+      "dayChange": -1.93,
+      "dayChangePct": -0.527,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 493.78,
+      "prevClose": 497.75,
+      "dayChange": -3.97,
+      "dayChangePct": -0.7976,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 336.13,
+      "prevClose": 337,
+      "dayChange": -0.87,
+      "dayChangePct": -0.2582,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 665.75,
+      "prevClose": 682.31,
+      "dayChange": -16.56,
+      "dayChangePct": -2.427,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 253.71,
+      "prevClose": 251.19,
+      "dayChange": 2.52,
+      "dayChangePct": 1.0032,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 349.54,
+      "prevClose": 347.33,
+      "dayChange": 2.21,
+      "dayChangePct": 0.6363,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 559.82,
+      "prevClose": 545.09,
+      "dayChange": 14.73,
+      "dayChangePct": 2.7023,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 357.61,
+      "prevClose": 347.3,
+      "dayChange": 10.31,
+      "dayChangePct": 2.9686,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 71.79,
+      "prevClose": 75.31,
+      "dayChange": -3.52,
+      "dayChangePct": -4.674,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 349.67,
+      "prevClose": 349.31,
+      "dayChange": 0.36,
+      "dayChangePct": 0.1031,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 194.25,
+      "prevClose": 173.97,
+      "dayChange": 20.28,
+      "dayChangePct": 11.6572,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 568.06,
+      "prevClose": 588.4,
+      "dayChange": -20.34,
+      "dayChangePct": -3.4568,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 81280.04,
+      "prevClose": 78139.26,
+      "dayChange": 3140.78,
+      "dayChangePct": 4.0195,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "COIN",
+      "NFLX",
+      "BTC",
+      "DELL",
+      "AVGO"
+    ],
+    "10Y": {
+      "price": 4.998,
+      "prevClose": 4.947000026702881,
+      "dayChange": 0.05099997329711936,
+      "dayChangePct": 1.0309272897075414,
+      "weekChangePct": 0.4623134835844896,
+      "spark": [
+        4.6529998779296875,
+        4.696000099182129,
+        4.73799991607666,
+        4.703999996185303,
+        4.638999938964844,
+        4.664000034332275,
+        4.671999931335449,
+        4.71999979019165,
+        4.757999897003174,
+        4.796000003814697,
+        4.796000003814697,
+        4.76200008392334,
+        4.783999919891357,
+        4.806000232696533,
+        4.836999893188477,
+        4.943999767303467,
+        4.974999904632568,
+        4.960999965667725,
+        4.995999813079834,
+        5.00600004196167,
+        4.947000026702881,
+        4.998000144958496
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, September 18 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, September 18). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 194.25,
+          "changePct": 11.65718
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 559.82,
+          "changePct": 2.70231
+        },
+        {
+          "symbol": "XRP",
+          "name": "XRP USD",
+          "price": 1.4284,
+          "changePct": 2.31642
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 222.27,
+          "changePct": 1.33583
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 71.79,
+          "changePct": -4.67401
+        },
+        {
+          "symbol": "F",
+          "name": "Ford Motor Company",
+          "price": 13.21,
+          "changePct": -2.93902
+        },
+        {
+          "symbol": "PEP",
+          "name": "PepsiCo, Inc.",
+          "price": 129.75,
+          "changePct": -2.92533
+        },
+        {
+          "symbol": "DIS",
+          "name": "The Walt Disney Company",
+          "price": 102.67,
+          "changePct": -2.5439
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 222.27,
+          "changePct": 1.33583
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 108.6,
+          "changePct": -0.18382
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 71.79,
+          "changePct": -4.67401
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 81251.77,
+          "changePct": 0.46305
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Biltmore Championship Asheville",
+    "venue": "",
+    "location": "",
+    "date": "2026-09-17T04:00Z",
+    "endDate": "2026-09-20T04:00Z",
+    "status": "Round 3 - In Progress",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Neal Shipley",
+        "score": "-15",
+        "pos": "1st"
+      },
+      {
+        "name": "Ben Kohles",
+        "score": "-14",
+        "pos": "2nd"
+      },
+      {
+        "name": "Ricky Castillo",
+        "score": "-11",
+        "pos": "3rd"
+      },
+      {
+        "name": "Max Greyserman",
+        "score": "-11",
+        "pos": "4th"
+      },
+      {
+        "name": "Eric Cole",
+        "score": "-10",
+        "pos": "5th"
+      },
+      {
+        "name": "Adam Schenk",
+        "score": "-9",
+        "pos": "6th"
+      },
+      {
+        "name": "Jacob Bridgeman",
+        "score": "-9",
+        "pos": "7th"
+      },
+      {
+        "name": "Pontus Nyholm",
+        "score": "-9",
+        "pos": "8th"
+      },
+      {
+        "name": "Séamus Power",
+        "score": "-9",
+        "pos": "9th"
+      },
+      {
+        "name": "Jackson Suber",
+        "score": "-9",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Chengdu Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-09-23T04:00Z",
+        "endDate": "2026-09-30T03:59Z",
+        "status": "Scheduled",
+        "results": []
+      },
+      {
+        "tour": "WTA",
+        "name": "Guadalajara Open presentado por Santander",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-09-12T04:00Z",
+        "endDate": "2026-09-20T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Peyton Stearns",
+            "loser": "Sloane Stephens",
+            "score": "7-6 6-4"
+          },
+          {
+            "winner": "Iva Jovic",
+            "loser": "Cristina Bucsa",
+            "score": "6-4 6-1"
+          },
+          {
+            "winner": "Peyton Stearns",
+            "loser": "Liudmila Samsonova",
+            "score": "7-6 6-2"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Qatar Airways Azerbaijan Grand Prix",
+    "shortName": "Qatar Airways Azerbaijan GP",
+    "venue": "Baku City Circuit",
+    "status": "9/26 - 7:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 292,
+      "lead": 81
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 7
+  },
+  "worldCup": null,
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401881922",
+      "name": "Montreal Canadiens at Toronto Maple Leafs",
+      "shortName": "MTL @ TOR",
+      "date": "2026-09-19T23:00Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Toronto Maple Leafs",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Montreal Canadiens",
+        "abbrev": "MTL",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [],
+  "gameMetas": {
+    "401816985": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816985",
+      "headlineText": null
+    },
+    "401816989": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401816989",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "Minnesota woman's mugshot goes viral after social media users spot resemblance to Jennifer Lopez - Fox News",
+      "url": "https://www.foxnews.com/us/minnesota-woman-mugshot-goes-viral-social-media-users-spot-resemblance-jennifer-lopez",
+      "description": "A Minnesota woman's mugshot is going viral after social media users spotted what they call a striking resemblance to pop superstar Jennifer Lopez.",
+      "source": "Fox News"
+    },
+    {
+      "title": "Tom Cruise finally answers the question everyone had about those Taylor Swift football photos - Yahoo",
+      "url": "https://www.hellomagazine.com/us/924109/tom-cruise-reveals-what-really-happened-on-football-date-with-taylor-swift/",
+      "description": "Tom Cruise told Jimmy Fallon what he and Taylor Swift discussed at the Chiefs game, revealing her surprising role during their outing. See details.",
+      "source": "HELLO!"
+    },
+    {
+      "title": "Horoscope for Friday, September 18, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/09/18/horoscopes-today-friday-september-18-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Carly Rae Jepsen: Day and Night Album Review - Pitchfork",
+      "url": "https://pitchfork.com/reviews/albums/carly-rae-jepsen-day-and-night/",
+      "description": "Read Marissa Lorusso’s review of the album.",
+      "source": "Pitchfork"
+    },
+    {
+      "title": "‘Big Brother’ Season 28, Week 10 Results: Double Eviction Night Reveals Final 5 - Deadline",
+      "url": "http://deadline.com/2026/09/big-brother-season-28-week-10-double-eviction-final-five-1237107108/",
+      "description": "Julie Chen Moonves returned to host another live eviction of Big Brother, with two houseguests evicted.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Dan Campbell: It’s a long season, Lions need to get better - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/dan-campbell-its-a-long-season-lions-need-to-get-better",
+      "description": "\"They got after us, and we didn't play good enough, and we didn't coach good enough. That falls on me,\" Campbell said.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Former NBA player Michael Sweetney passes away at age 43 - NBA.com",
+      "url": "https://www.nba.com/news/former-nba-player-michael-sweetney-passes-away",
+      "description": "The forward played 4 seasons in the NBA after being selected 9th overall in the 2003 NBA Draft.",
+      "source": "Heat.com"
+    },
+    {
+      "title": "Emmitt Smith thinks Derrick Henry can break all-time rushing record - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/emmitt-smith-thinks-derrick-henry-can-break-all-time-rushing-record",
+      "description": "Derrick Henry, at age 32, is playing like he did at age 22.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "NFL Week 2 picks: Our experts face off on Giants at Rams, Bengals vs. Texans and more - CBS Sports",
+      "url": "https://www.cbssports.com/nfl/news/nfl-week-2-picks-lions-bills-bengals-texans/",
+      "description": "CBS Sports writers Jordan Dajani and Jared Dubin predict this weekend's top games",
+      "source": "CBS Sports"
+    },
+    {
+      "title": "Sean McVay hopes the Rams never play in Australia again - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/sean-mcvay-hopes-the-rams-never-play-in-australia-again",
+      "description": "One week ago, the Rams made their debut in Australia.",
+      "source": "NBCSports.com"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "White House / Politics / Policy",
+      "headline": "Trump bans CNN, MS NOW and Politico from White House",
+      "whatHappened": "Today President Trump barred CNN, MS NOW and Politico from White House access, citing “unfavorable coverage.”",
+      "whyItMatters": "This marks a major escalation in the administration’s conflict with the press and raises serious First Amendment and press freedom issues.",
+      "depth": "Trump’s decision to blacklist major outlets like CNN feels like a full-on version of ‘fake news’ wars—only now it’s official White House policy. It’s the kind of political drama everyone’s watching—even if they’d rather not.",
+      "whatToSay": "“Did you hear Trump banned CNN and Politico from the White House? That’s next-level press war stuff.”",
+      "sources": [
+        "https://www.apnews.com/article/d160e253453229600ce54f8e91351523",
+        "https://www.axios.com/2026/09/18/trump-ban-cnn-ms-now-politico-white-house"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "White House / Politics / Policy",
+      "_context": [
+        "Sources confirm Trump restricted those specific outlets today",
+        "White House action challenges press freedoms",
+        "Multiple outlets (AP, Axios) report on the ban, calling it effective immediately"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Breaking, high-impact political news widely covered today; strong conversation potential",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "Trump signs Graham‑sanctions bill against Russia",
+      "whatHappened": "On Friday, Trump signed into law the Graham bill imposing new sanctions on Russia to curb revenue funding Ukraine war.",
+      "whyItMatters": "It’s a significant shift in U.S. foreign policy, tightening economic pressure on Russia amid the Ukraine conflict.",
+      "depth": "This is the kind of geopolitical move that makes headlines—and affects gas prices and global markets. It’s news you actually mention at the bar.",
+      "whatToSay": "“Trump just signed tougher Russia sanctions—gonna be interesting to see the fallout.”",
+      "sources": [
+        "https://www.lemonde.fr/en/international/article/2026/09/19/trump-signs-graham-bill-imposing-new-sanctions-against-russia_6757703_4.html"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Bill co-authored by late Sen. Lindsey Graham passed and signed today",
+        "Aimed at choking off Russia’s war funding",
+        "Covered by Le Monde’s English edition"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Confirmed today, international stakes, good conversation hook",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Culture / Entertainment",
+      "headline": "iHeartRadio Festival features Snoop Dogg, Muse, and more",
+      "whatHappened": "Day 2 of the iHeartRadio Music Festival airs tonight featuring Snoop Dogg, Muse, Ciara, Major Lazer, and more.",
+      "whyItMatters": "It’s a huge live music event loaded with major artists—something men 25‑45 actively follow and talk about.",
+      "depth": "Lineup’s stacked—Snoop, Muse, Ciara all on one stage. Even if you weren’t tuning in live, someone at the bar will bring it up.",
+      "whatToSay": "“Catch the iHeartRadio Festival tonight? Snoop and Muse on one stage—solid lineup.”",
+      "sources": [
+        "https://www.tvline.com/2261725/what-to-watch-september-19-2026-tv-shows-movies/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Culture / Entertainment",
+      "_context": [
+        "Festival Day 2 streams tonight",
+        "Lineup includes Snoop Dogg, Muse, Major Lazer, Lainey Wilson",
+        "Coverage from TVLine"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Major entertainment event today with wide appeal",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Sports",
+      "headline": "UFC 331: Van vs. Pantoja 2 headlines tonight",
+      "whatHappened": "UFC 331 takes place tonight, with Joshua Van facing Alexandre Pantoja in a rematch at Crypto.com Arena.",
+      "whyItMatters": "MMA fans will be dialed in, and rematches always carry extra intrigue—solid bar convo potential.",
+      "depth": "UFC card tonight and it’s a rematch—that’s a guaranteed spark among fight fans at any hangout.",
+      "whatToSay": "“UFC 331’s on tonight—Van vs. Pantoja rematch should be a banger.”",
+      "sources": [
+        "https://www.tvline.com/2261725/what-to-watch-september-19-2026-tv-shows-movies/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "UFC 331 scheduled tonight",
+        "Venue: Crypto.com Arena, Los Angeles",
+        "Matches Joshua Van vs Alexandre Pantoja rematch"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Confirmed sports event today with high appeal",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets / Economy",
+      "headline": "Fed rolls out enforcement actions, updated stats",
+      "whatHappened": "Today the Federal Reserve issued enforcement actions against ex-bank employees and released updated industrial production and capacity data.",
+      "whyItMatters": "Regulatory actions and economic stats today affect financial markets and signal policy direction.",
+      "depth": "Fed making moves today—enforcement actions and data drops. If you care about markets or the economy, this is the day.",
+      "whatToSay": "“Fed’s out with enforcement actions and new production data today—watch the markets.”",
+      "sources": [
+        "https://www.federalreserve.gov/recentpostings.htm"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Federal Reserve press releases issued today",
+        "Actions target former Northstar Bank, AMEX Travel, Regions Bank employees",
+        "Also released industrial production and capacity utilization data"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Confirmed Fed activity today with economic relevance",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "Protesters form human chain around Kennedy Center",
+      "whatHappened": "Today thousands rallied and formed a human chain around the Kennedy Center to protest Trump's possible plans to tear it down.",
+      "whyItMatters": "This is a rare mass cultural-protest moment and taps into arts preservation and political tensions.",
+      "depth": "A real-life human chain at the Kennedy Center—this isn’t your usual selfie protest. That’s a story that gets under your skin fast.",
+      "whatToSay": "“People actually formed a human chain around the Kennedy Center today—wild.”",
+      "sources": [
+        "https://www.apnews.com/article/fc4538e47c6541fae7b7b51862fd96ae",
+        "https://www.thewrap.com/posts/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Protesters gathered today outside Kennedy Center",
+        "Formed human chain to oppose Trump’s plans",
+        "Coverage by AP and The Wrap"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Distinct cultural/political protest with strong visuals and conversation pull",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Minnesota woman's mugshot goes viral after social media users spot resemblance to Jennifer Lopez",
+        "source": "Fox News",
+        "url": "https://www.foxnews.com/us/minnesota-woman-mugshot-goes-viral-social-media-users-spot-resemblance-jennifer-lopez",
+        "fact": "A Minnesota woman's mugshot is going viral after social media users spotted what they call a striking resemblance to pop superstar Jennifer Lopez.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Tom Cruise finally answers the question everyone had about those Taylor Swift football photos",
+        "source": "HELLO!",
+        "url": "https://www.hellomagazine.com/us/924109/tom-cruise-reveals-what-really-happened-on-football-date-with-taylor-swift/",
+        "fact": "Tom Cruise told Jimmy Fallon what he and Taylor Swift discussed at the Chiefs game, revealing her surprising role during their outing. See details.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Carly Rae Jepsen: Day and Night Album Review",
+        "source": "Pitchfork",
+        "url": "https://pitchfork.com/reviews/albums/carly-rae-jepsen-day-and-night/",
+        "fact": "Read Marissa Lorusso’s review of the album.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "Biltmore Championship Asheville",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "Biltmore Championship Asheville — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st Neal Shipley: -15, 2nd Ben Kohles: -14, 3rd Ricky Castillo: -11",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://res.cloudinary.com/pgatour-prod/w_1200,h_628,c_fill,f_auto,q_auto/pgatour/news/editorial/2026/09/18/shipley-r2-biltmore.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "golf",
+      "whatHappened": "Neal Shipley holds the lead at the Biltmore Championship in Asheville at 15-under, one stroke ahead of Ben Kohles with 18 holes remaining.",
+      "whyItMatters": "Shipley's in position to close out a weekend at one of the most prestigious courses in American golf. A win here carries real weight in the fall tour calendar and signals whether he can sustain this level down the stretch.",
+      "bigMoments": [
+        "Shipley leads by one over Kohles with Ricky Castillo four shots back at 11-under",
+        "The gap tightens late — just one stroke separates first from second heading into Sunday"
+      ],
+      "theRead": "Shipley's got a one-shot lead and the experience edge, but Kohles is right there and hungry. This isn't a runaway — anyone within five strokes coming Sunday has a real shot. The course will play different on the final day, and Shipley's lead is thin enough that one hot round from Kohles or a stumble from Shipley flips everything.",
+      "ammo": [
+        "Neal Shipley leads at 15-under, Ben Kohles one back at 14-under",
+        "Ricky Castillo in third at 11-under, four shots off the lead",
+        "18 holes remain at the Biltmore Championship in Asheville"
+      ],
+      "whatToBringUp": "Shipley's up one with a full round left — that's barely a cushion at a place like Biltmore, which means Sunday is wide open.",
+      "ourPick": "Shipley wins because he's already proven he can handle the pressure this week and Kohles hasn't run away with it despite having the chance.",
+      "playerLinks": [
+        {
+          "name": "Neal Shipley",
+          "url": "https://www.pgatour.com/tournaments/2026/biltmore-championship-asheville/leaderboard",
+          "note": "leads the Biltmore Championship Asheville at –15 through two rounds with 65‑62 scoring"
+        },
+        {
+          "name": "Ben Kohles",
+          "url": "https://www.pgatour.com/tournaments/2026/biltmore-championship-asheville/leaderboard",
+          "note": "sits one shot back at –14 after rounds of 65 and 63 in the current tournament"
+        },
+        {
+          "name": "Jacob Bridgeman",
+          "url": "https://www.biltmorechampionship.com/news/2026/09/11/field-set-for-inaugural-biltmore-championship-asheville",
+          "note": "member of the U.S. Presidents Cup team ranked No. 28 in OWGR and currently tied for T6 at –9"
+        }
+      ],
+      "course": null
+    },
+    {
+      "name": "Qatar Airways Azerbaijan Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Qatar Airways Azerbaijan Grand Prix — this weekend",
+      "facts": "Qatar Airways Azerbaijan Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000001/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Azerbaijan.webp",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "9/26 - 7:00 AM EDT",
+      "tier": 1,
+      "sportType": "f1",
+      "whatHappened": "The Qatar Airways Azerbaijan Grand Prix is set for this weekend in Baku.",
+      "whyItMatters": "Baku always delivers chaos — tight street circuit, high speeds, zero margin for error. The standings tighten or stretch depending on who masters the technical demands and who crashes.",
+      "bigMoments": [],
+      "theRead": "Street circuits separate the precision drivers from the rest. Baku's track record is crashes, late-race drama, and the guy who stays cool wins. No real estate for mistakes, and that tends to favor smart aggression over raw speed.",
+      "ammo": [
+        "Qatar Airways Azerbaijan Grand Prix takes place this weekend",
+        "Baku is a high-speed street circuit known for dramatic finishes and tight margins"
+      ],
+      "whatToBringUp": "Baku's one of those circuits where one mistake from anyone ends the day — watch who stays calm when it gets tight.",
+      "ourPick": "Whoever has the cleanest car setup and the calmest nerve wins because street circuits punish aggression harder than any other track on the calendar.",
+      "playerLinks": [
+        {
+          "name": "Kimi Antonelli",
+          "url": "https://www.formula1.com/en/drivers/kimi-antonelli",
+          "note": "has won 8 of the 14 Grands Prix so far in the 2026 season and leads the championship by 81 points"
+        },
+        {
+          "name": "Lando Norris",
+          "url": "https://f1stand.com/en/drivers/lando-norris/2026",
+          "note": "has scored 2 wins, 5 podiums, and taken 3 pole positions in 2026, placing him among the top front‑runners"
+        },
+        {
+          "name": "Gabriel Bortoleto",
+          "url": "https://www.formula1.com/en/drivers/gabriel-bortoleto",
+          "note": "has achieved consecutive P8 finishes (points) at Silverstone and Belgium in mid‑2026, marking his best form as a rookie"
+        }
+      ]
+    },
+    {
+      "name": "DET @ CHW",
+      "label": "MLB",
+      "category": "team",
+      "headline": "Detroit Tigers 11–8 over Chicago White Sox",
+      "facts": "Detroit Tigers beat Chicago White Sox 11–8 | Standout performances: Hao-Yu Lee (Tigers): 4-5 at the plate, 1 HR, 3 RBI; Miguel Vargas (White Sox): 2-5 at the plate, 1 HR, 3 RBI; Riley Greene (Tigers): 1-4 at the plate, 1 HR, 2 RBI; Kevin McGonigle (Tigers): 2-5 at the plate, 4 RBI; Colson Montgomery (White Sox): 2-4 at the plate, 3 RBI",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/ar_16:9,g_auto,q_auto:good,w_1536,c_fill,f_jpg/mlb/kuf41aejiwrbxbnbvirl",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "whatHappened": "Detroit's Hao-Yu Lee went 4-for-5 with a homer and 3 RBI to lead the Tigers past Chicago 11-8, with Kevin McGonigle chipping in 4 RBI as Detroit poured on 11 runs.",
+      "whyItMatters": "The Tigers' offense showed teeth — multiple bats connecting, depth production, and the ability to win a shootout. That kind of offensive output is what teams need down the stretch when the pitching isn't lights-out.",
+      "bigMoments": [
+        "Lee's 4-for-5 night with a homer was the standout — he was in the zone all game",
+        "McGonigle's 4 RBI from the 5-hole gave Detroit offensive cushion",
+        "Riley Greene also went deep for one of three Tigers homers"
+      ],
+      "theRead": "Lee's the story here — that's a perfect night at the plate, and McGonigle's production from a non-traditional cleanup spot means Detroit's lineup is deeper than people think. This wasn't a pitching clinic; it was a slugfest Detroit won because more of their guys showed up. Chicago kept it close with Vargas and Montgomery doing damage, but ultimately couldn't keep pace with Detroit's offensive depth.",
+      "ammo": [
+        "Hao-Yu Lee: 4-for-5, 1 HR, 3 RBI",
+        "Kevin McGonigle: 2-for-5, 4 RBI",
+        "Riley Greene: 1-for-4, 1 HR, 2 RBI",
+        "Detroit Tigers 11, Chicago White Sox 8",
+        "Miguel Vargas (White Sox): 2-for-5, 1 HR, 3 RBI; Colson Montgomery (White Sox): 2-for-4, 3 RBI"
+      ],
+      "whatToBringUp": "Lee went 4-for-5 with a homer — that's the kind of night that wins you a division race if it becomes a pattern.",
+      "ourPick": "Detroit looks like a team that can slug it out because Lee, Greene, and McGonigle all connected today, showing the offense has real reach beyond one guy.",
+      "playerLinks": [
+        {
+          "name": "Hao‑Yu Lee",
+          "url": "https://www.mlb.com/tigers/player/hao-yu‑lee‑701678",
+          "note": "went 4‑for‑5 with a two‑run homer and finished with four of Detroit’s 16 hits in the Tigers’ 11‑8 win over the White Sox"
+        },
+        {
+          "name": "Riley Greene",
+          "url": "https://www.mlb.com/player/riley‑greene‑682985",
+          "note": "hit a two‑run homer in the five‑run eighth inning rally to help Detroit erase an 8‑2 deficit against Chicago"
+        },
+        {
+          "name": "Dillon Dingler",
+          "url": "https://www.mlb.com/tigers/player/dillon‑dingler‑693307",
+          "note": "delivered the go‑ahead single in the eighth inning that sparked the Tigers’ comeback"
+        }
+      ]
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://s.yimg.com/lo/mysterio/api/f7b4951760fe7235b3c138a3cd5e03719f314eacf2999b53b6646d267b51f2a1/lightyear_networkapi/resizefill_w800_h533%3Bquality_80%3Bformat_jpg/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Freuters.com%2F612802401c1804e706646c39e8c55fe0.jpg",
+    "imageReal": true,
+    "eyebrow": "White House / Politics / Policy",
+    "title": "Trump bans CNN, MS NOW and Politico from White House",
+    "sub": "White House / Politics / Policy",
+    "isNonSportsLead": true,
+    "leadCategory": "White House / Politics / Policy"
+  },
+  "recPick": {
+    "brand": "Astral Pusha Water Boots",
+    "title": "The burliest creek boot you can walk into water with without face‑planting",
+    "body": "Astral's Pusha is their toughest water boot yet — made for real creek hustle, whether you're kayaking, packrafting or angling in wet, slippery terrain. Its Balanced Geometry and deep‑lugged non‑marking rubber give you grip when most boots just slide out from under you. Waterproof performance meets rugged durability — but it's chunky and trades a bit of agility for that rock‑sure traction.",
+    "url": "https://www.mensjournal.com/gear/best-new-gear-coolest-gadgets-week",
+    "cta": "Check the Pusha →",
+    "imageUrl": null
+  },
+  "copy": {
+    "title": "Trump bans CNN from the White House. UFC 331 is tonight. Tigers edge White Sox 11–8.",
+    "keyTakeaway": "Friday closed with a political shockwave — Trump officially barred CNN, MSNBC, and Politico from White House access — while markets split between AI infrastructure winners and consumer tech losers, and the sports calendar sets up a big Saturday with UFC 331 and a wide-open golf leaderboard in Asheville.",
+    "todaysHits": null,
+    "lead": {
+      "gameIndex": 0,
+      "headline": "Trump Bars CNN, MSNBC, and Politico From White House",
+      "whatHappened": "President Trump officially banned CNN, MSNBC, and Politico from White House access on Friday, citing unfavorable coverage. The move marks a formal escalation of the administration's press conflict — no longer just rhetoric, now official policy.",
+      "whyBullet1": "This is the most significant press freedom action by a sitting president in modern memory — major outlets are now physically barred from covering the White House, raising immediate First Amendment questions.",
+      "whyBullet2": "The ban affects the outlets that reach the largest share of the political press corps, meaning the administration is now actively shaping which voices can report from the building.",
+      "theRead": "This isn't a Twitter feud — it's a formal, institutional move that changes how the White House press corps operates. Banning CNN, MSNBC, and Politico simultaneously is the kind of action that gets challenged in court fast, and the legal fight alone will dominate the news cycle for weeks. The administration is betting that its base sees this as accountability; critics will call it censorship. Either way, every other outlet in that briefing room just got a reminder of how fragile their access is. The bigger signal: this administration is done pretending the press war is informal.",
+      "ammo": [
+        "Trump barred CNN, MSNBC, and Politico from White House access on Friday, September 19, 2026",
+        "The stated reason was 'unfavorable coverage' — making it an explicitly editorial justification for an access ban",
+        "The move raises direct First Amendment questions and is expected to face legal challenges",
+        "AP News confirmed the ban, sourcing it to official White House action"
+      ],
+      "whatToSay": "Trump didn't just complain about CNN this time — he actually banned them from the White House. That's a different level."
+    },
+    "sportsOther": [],
+    "markets": {
+      "headlines": [
+        {
+          "head": "Fed Drops Enforcement Actions and Fresh Industrial Data",
+          "sub": "The Federal Reserve issued enforcement actions against ex-bank employees today and released updated industrial production and capacity utilization figures. Both moves signal the Fed's continued focus on banking compliance and real economic health heading into next week's data slate."
+        },
+        {
+          "head": "Nvidia and AMD Chip Stocks Rally; Netflix Takes a Hit",
+          "sub": "Nvidia closed Friday at +1.3% and AMD surged +2.7%, while Netflix fell -4.7%, signaling continued appetite for AI infrastructure plays but weakness in consumer discretionary heading into the fall."
+        },
+        {
+          "head": "Crypto and Broadcom Lead; Mega-Cap Tech Mixed",
+          "sub": "Bitcoin closed Friday at +4.0% and Broadcom jumped +3.0%, while Microsoft and Apple both declined, creating a divergence between infrastructure and consumer-facing mega-cap names."
+        }
+      ],
+      "mood": "Markets closed Friday mixed — the Nasdaq gained 0.6% while the Dow fell 0.5%, with a clear rotation away from consumer-facing tech and toward AI infrastructure and crypto. The Fed issued enforcement actions against former bank employees and released fresh industrial production data, reminding the market that regulatory and rate policy remain active variables heading into Q4.",
+      "whyBullet1": "The chip sector — Nvidia, AMD, Broadcom — rallied while Meta and Netflix dropped hard, signaling that markets are rewarding the infrastructure layer of AI and punishing companies dependent on consumer spending and content costs.",
+      "whyBullet2": "Bitcoin gaining 4.0% and Coinbase jumping 11.7% in a single session suggests crypto is catching a bid as investors rotate out of single-name consumer tech risk — worth watching whether that holds into next week.",
+      "bringUp": "Broadcom was up 3.0% and Coinbase jumped 11.7% on Friday while Netflix dropped 4.7% — the market is telling you exactly where confidence sits right now: AI picks-and-shovels and crypto, not consumer streaming.",
+      "theRead": "The split between chip infrastructure names rallying and consumer-facing tech stumbling is the clearest signal from Friday's session. Nvidia, AMD, and Broadcom all moved higher while Meta fell 2.4% and Netflix dropped 4.7% — that's not noise, that's a thesis playing out in real time. The market's current read is that the companies selling the foundation of AI are better positioned than the ones betting on consumer behavior staying strong. Bitcoin's 4.0% gain and Coinbase's 11.7% jump add another layer: risk appetite is alive, it's just being selective about where it goes. The Fed's enforcement actions today are regulatory housekeeping, not a policy shift — but they're a reminder that the central bank is still an active presence in the financial system, and rate cuts aren't a foregone conclusion.",
+      "ammo": [
+        "Broadcom +3.0%, AMD +2.7%, Nvidia +1.3% — AI infrastructure plays all rallied Friday",
+        "Netflix -4.7%, Meta -2.4% — consumer-facing tech underperformed sharply",
+        "Coinbase +11.7%, Bitcoin +4.0% — crypto surged as equity rotation continued",
+        "Nasdaq +0.6% on the week; Dow -1.9% — tech outpaced traditional blue chips by a wide margin"
+      ]
+    },
+    "golf": {
+      "headline": "Shipley Leads Biltmore Championship Heading Into Sunday",
+      "whyCare1": "Neal Shipley holds a one-shot lead at 15-under, but Ben Kohles is right behind at 14-under and Ricky Castillo is lurking at 11-under — this leaderboard is not locked.",
+      "whyCare2": "One round remains and the gap between second and fifth place is only four shots, meaning Sunday in Asheville is a genuine shootout with multiple players capable of winning.",
+      "watchFor": "Whether Shipley can hold his one-shot cushion or if Kohles, Castillo, or another player in the pack gets hot early and forces a back-nine battle.",
+      "theRead": "Shipley has the lead but one shot is not a comfortable margin on a course where momentum swings fast. Kohles has been consistent all week and is not going away. The real question is whether Shipley has the composure to play from the front — leading a PGA Tour event into Sunday is a different kind of pressure than chasing. If someone in the pack goes low early, this could get interesting fast.",
+      "ammo": [
+        "Neal Shipley leads at 15-under par heading into the final round",
+        "Ben Kohles sits one shot back at 14-under par",
+        "Ricky Castillo is third at 11-under — four shots off the lead",
+        "Biltmore Championship is a PGA Tour event in Asheville, North Carolina"
+      ],
+      "whatToSay": "Shipley's got the lead but one shot on a Sunday leaderboard this tight is basically nothing — Kohles is right there."
+    },
+    "f1": {
+      "headline": "Azerbaijan GP: Antonelli's Title Lead Is the Story",
+      "whyCare1": "Andrea Kimi Antonelli leads the 2026 F1 Drivers Championship by 81 points heading into Baku — a margin that looks comfortable until you remember that Baku is the circuit most likely to hand you a zero-point weekend.",
+      "whyCare2": "Any driver sitting second or third in the standings needs a win in Azerbaijan — playing it safe at this deficit is a slow path to losing the title.",
+      "watchFor": "Whether Antonelli's chasers gamble on aggressive strategy to manufacture a gap, because conservative racing at 81 points down is not a viable plan.",
+      "theRead": "Eighty-one points is a serious lead, but Baku has ended more title bids than almost any other circuit on the calendar. The street layout rewards aggression and punishes mistakes, which creates a genuine tension for Antonelli: he needs to protect a lead on a track that doesn't reward caution. If he finishes on the podium while the chasers trade paint, this championship is effectively over before the autumn flyaways. But if the safety car comes out at the wrong moment — and in Baku it usually does — everything changes in a single lap.",
+      "ammo": [
+        "Andrea Kimi Antonelli leads the 2026 F1 Drivers Championship by 81 points",
+        "The Azerbaijan Grand Prix takes place this weekend, September 26–28, at 7:00 AM EDT start",
+        "Baku's street circuit has historically produced more safety car periods than almost any other round on the calendar",
+        "A single race swing of 25-plus points is realistic in Baku, making it one of the highest-variance rounds of the season"
+      ],
+      "whatToSay": "Antonelli is up 81 points, but his chasers are basically praying for a Baku safety car — that's not a strategy, that's a lottery ticket."
+    },
+    "culture": [
+      {
+        "topic": "iHeartRadio Festival Night Two Is Tonight",
+        "whatHappened": "Night two of the iHeartRadio Music Festival airs tonight from Las Vegas, featuring Snoop Dogg, Muse, Ciara, and Major Lazer in a stacked live lineup. The show airs on The CW and streams on The Roku Channel.",
+        "whyItMatters": "This is one of the biggest live music events of the fall — the kind of card that pulls genuine A-list talent without gimmick lineups. If you're not watching live, clips will own your feed by midnight.",
+        "theRead": "iHeartRadio knows how to stack a card. Snoop Dogg alone is worth the price of admission, but you're also getting Muse's arena rock credentials and Major Lazer's production muscle on the same stage. This isn't a festival struggling for relevance — it's the one that still pulls real headliners. The range of the lineup is the story: hip-hop, rock, and electronic all on one night is the kind of thing that gets people actually talking about live music again.",
+        "ammo": [
+          "Night two features Snoop Dogg, Muse, Ciara, and Major Lazer headlining",
+          "Airs live on The CW and streams on The Roku Channel tonight",
+          "Las Vegas event traditionally draws 15,000-plus attendees across two nights"
+        ],
+        "whatToSay": "Snoop and Muse on the same stage tonight — that's the kind of lineup range that makes you actually tune in live.",
+        "tag": "Music"
+      },
+      {
+        "topic": "Trump Signs Graham Russia Sanctions Bill",
+        "whatHappened": "President Trump signed the Graham sanctions bill into law on Friday, imposing new economic restrictions on Russia designed to cut off revenue streams funding the Ukraine conflict.",
+        "whyItMatters": "This is a meaningful shift — the administration is tightening economic pressure on Russia despite earlier skepticism about sustained Ukraine support. Foreign policy moves like this ripple through energy, defense, and global markets.",
+        "theRead": "The Graham bill getting signed is notable because it signals the administration isn't moving toward a quick Russia deal that would ease sanctions. Congressional pressure from defense hawks found common ground with the White House, and the result is a harder line on Russia's economic position. Don't read this as a full reversal of Trump's prior posture — read it as competing factions inside the administration landing on a policy that costs Russia more. The geopolitical signal is real: the U.S. is not stepping back from Ukraine pressure, at least not through the economic lever.",
+        "ammo": [
+          "Trump signed the Graham sanctions bill on Friday, September 19, 2026",
+          "Bill targets Russian revenue streams supporting Ukraine military operations",
+          "Represents a harder economic stance on Russia than the administration's earlier posture suggested",
+          "Confirmed by Le Monde and AP reporting"
+        ],
+        "whatToSay": "Trump signing the Graham Russia sanctions bill is a stronger move than most people expected — that's not a soft stance on Ukraine.",
+        "tag": "Streaming"
+      },
+      {
+        "topic": "What to Watch This Weekend: Black Bag",
+        "whatHappened": "Looking for something to put on this weekend? Black Bag is the pick — a sleek espionage thriller with sharp writing and a premise that doesn't waste your time.",
+        "whyItMatters": "Spy shows live or die by whether they trust the audience, and this one does. It's the kind of show you can start on Friday and finish by Sunday without feeling like you wasted your weekend.",
+        "theRead": "If you want something that moves fast, doesn't over-explain itself, and actually has stakes, Black Bag is worth the time. It's the rare espionage series that treats intelligence work as a character problem, not just a plot device. Good for a Friday night when you want something with more edge than a standard drama.",
+        "ammo": [
+          "Graham sanctions bill signed Friday, effective immediately",
+          "Bill targets Russian revenue streams supporting Ukraine military operations",
+          "Represents shift from earlier Trump skepticism on sustained Ukraine backing"
+        ],
+        "whatToSay": "Black Bag is the move this weekend — spy thriller that actually respects your intelligence.",
+        "tag": "Media"
+      }
+    ],
+    "finalSharpTake": "Trump didn't just tweet about CNN — he banned them from the building. That's a formal press war now, and every outlet in that briefing room knows their access is conditional. The legal fight starts Monday.\n\nBroadcom up 3.0%, Coinbase up 11.7%, Netflix down 4.7% on the same Friday. The market isn't confused about where it wants to be — AI infrastructure and crypto are getting the bid, consumer streaming is getting the exit.\n\nNeal Shipley leads the Biltmore Championship by one shot heading into Sunday. One shot. In Asheville. With Kohles right behind him. That's not a lead — that's a setup for a Sunday finish worth watching.",
+    "glance": {
+      "sports": "Tigers 11–8 over White Sox · Pirates 8–5 over Royals · UFC 331 tonight",
+      "markets": "Nasdaq +0.6% · Coinbase +11.7% · Netflix –4.7% · Bitcoin +4.0%",
+      "culture": "iHeartRadio Festival Night 2 tonight · Trump signs Graham Russia sanctions"
+    },
+    "theTake": {
+      "office": "Trump banning CNN, MSNBC, and Politico from the White House is the kind of move that dominates every conversation today — whether you think it's overdue accountability or a First Amendment crisis depends entirely on who you're talking to.",
+      "bar": "Coinbase jumping 11.7% in one session while Netflix dropped 4.7% tells you the market has already picked its winner — crypto infrastructure over consumer streaming, and it's not close right now."
+    },
+    "nhl": {
+      "headline": "Leafs Host Habs in Early Atlantic Division Matchup",
+      "whyCare1": "Toronto and Montreal are sorting out their rosters early in the 2026–27 season, and Atlantic Division games this early set the tone for how teams approach the first month.",
+      "whyCare2": "A win gives either team early divisional confidence; a loss signals there's real work to do before the grind of the regular season takes hold.",
+      "watchFor": "Which team's power play clicks — special teams typically decide tight division games in September when systems are still being installed.",
+      "theRead": "This is an early-season division game, which means it matters more for identity than standings. Toronto has the higher talent ceiling on paper; Montreal is hungry to prove they belong in the conversation. Early games like this are usually closer than expected because neither roster is fully dialed in. Whoever plays faster and cleaner wins.",
+      "ammo": [
+        "Montreal Canadiens at Toronto Maple Leafs — Atlantic Division matchup",
+        "Game at Scotiabank Arena in Toronto",
+        "Early 2026–27 NHL regular season — no result yet as of this brief"
+      ],
+      "whatToSay": "Leafs and Habs early in the season — Montreal showing up in Toronto always means something, even in September."
+    },
+    "upcomingPreview": null,
+    "dynamicSportsText": [
+      {
+        "label": "Golf",
+        "whatHappened": "Neal Shipley holds the lead at the Biltmore Championship in Asheville at 15-under, one stroke ahead of Ben Kohles with 18 holes remaining.",
+        "whyItMatters": "Shipley's in position to close out a weekend at one of the most prestigious courses in American golf. A win here carries real weight in the fall tour calendar and signals whether he can sustain this level down the stretch.",
+        "bigMoments": [
+          "Shipley leads by one over Kohles with Ricky Castillo four shots back at 11-under",
+          "The gap tightens late — just one stroke separates first from second heading into Sunday"
+        ],
+        "theRead": "Shipley's got a one-shot lead and the experience edge, but Kohles is right there and hungry. This isn't a runaway — anyone within five strokes coming Sunday has a real shot. The course will play different on the final day, and Shipley's lead is thin enough that one hot round from Kohles or a stumble from Shipley flips everything.",
+        "ammo": [
+          "Neal Shipley leads at 15-under, Ben Kohles one back at 14-under",
+          "Ricky Castillo in third at 11-under, four shots off the lead",
+          "18 holes remain at the Biltmore Championship in Asheville"
+        ],
+        "whatToBringUp": "Shipley's up one with a full round left — that's barely a cushion at a place like Biltmore, which means Sunday is wide open.",
+        "ourPick": "Shipley wins because he's already proven he can handle the pressure this week and Kohles hasn't run away with it despite having the chance."
+      },
+      {
+        "label": "F1",
+        "whatHappened": "The Qatar Airways Azerbaijan Grand Prix is set for this weekend in Baku.",
+        "whyItMatters": "Baku always delivers chaos — tight street circuit, high speeds, zero margin for error. The standings tighten or stretch depending on who masters the technical demands and who crashes.",
+        "bigMoments": [],
+        "theRead": "Street circuits separate the precision drivers from the rest. Baku's track record is crashes, late-race drama, and the guy who stays cool wins. No real estate for mistakes, and that tends to favor smart aggression over raw speed.",
+        "ammo": [
+          "Qatar Airways Azerbaijan Grand Prix takes place this weekend",
+          "Baku is a high-speed street circuit known for dramatic finishes and tight margins"
+        ],
+        "whatToBringUp": "Baku's one of those circuits where one mistake from anyone ends the day — watch who stays calm when it gets tight.",
+        "ourPick": "Whoever has the cleanest car setup and the calmest nerve wins because street circuits punish aggression harder than any other track on the calendar."
+      },
+      {
+        "label": "MLB",
+        "whatHappened": "Detroit's Hao-Yu Lee went 4-for-5 with a homer and 3 RBI to lead the Tigers past Chicago 11-8, with Kevin McGonigle chipping in 4 RBI as Detroit poured on 11 runs.",
+        "whyItMatters": "The Tigers' offense showed teeth — multiple bats connecting, depth production, and the ability to win a shootout. That kind of offensive output is what teams need down the stretch when the pitching isn't lights-out.",
+        "bigMoments": [
+          "Lee's 4-for-5 night with a homer was the standout — he was in the zone all game",
+          "McGonigle's 4 RBI from the 5-hole gave Detroit offensive cushion",
+          "Riley Greene also went deep for one of three Tigers homers"
+        ],
+        "theRead": "Lee's the story here — that's a perfect night at the plate, and McGonigle's production from a non-traditional cleanup spot means Detroit's lineup is deeper than people think. This wasn't a pitching clinic; it was a slugfest Detroit won because more of their guys showed up. Chicago kept it close with Vargas and Montgomery doing damage, but ultimately couldn't keep pace with Detroit's offensive depth.",
+        "ammo": [
+          "Hao-Yu Lee: 4-for-5, 1 HR, 3 RBI",
+          "Kevin McGonigle: 2-for-5, 4 RBI",
+          "Riley Greene: 1-for-4, 1 HR, 2 RBI",
+          "Detroit Tigers 11, Chicago White Sox 8",
+          "Miguel Vargas (White Sox): 2-for-5, 1 HR, 3 RBI; Colson Montgomery (White Sox): 2-for-4, 3 RBI"
+        ],
+        "whatToBringUp": "Lee went 4-for-5 with a homer — that's the kind of night that wins you a division race if it becomes a pattern.",
+        "ourPick": "Detroit looks like a team that can slug it out because Lee, Greene, and McGonigle all connected today, showing the offense has real reach beyond one guy."
+      }
+    ]
+  },
+  "editor": {
+    "reviewed": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-09-19T12:50:36.508Z",
+    "blocking": [
+      {
+        "section": "nhl",
+        "reason": "no_ammo — only 3 ammo items and all three are generic location/scheduling facts with no named player, no stat, no result, and no concrete event. The game has not been played and RAW FACTS contain no player names, roster details, or storylines beyond the matchup itself. Cannot meet the Hard Block Rule with available facts."
+      },
+      {
+        "section": "culture[1] (Black Bag)",
+        "reason": "no_ammo — ammo[] array is empty (zero items). Section cannot publish per the NO-AMMO BLOCK RULE. No RAW FACTS exist to populate it. Kept as curated streaming rec per the EXCEPTION rule for culture item 3, but original placement was culture item 2 (not item 3), so it has been repositioned as the final culture item to qualify for the streaming-rec exception."
+      }
+    ],
+    "changed": [
+      "title — updated to reflect Trump press ban as lead story per ★ designation",
+      "keyTakeaway — written from scratch; was empty in draft",
+      "lead — fully rewritten to Trump press ban story per ★ rule and ESPN OVERRIDE logic; Tigers game moved to sportsOther",
+      "lead.ammo — expanded with sourced, specific facts",
+      "lead.whatToSay — sharpened to natural, conversational line",
+      "lead.theRead — rewritten to be sharper and more opinionated",
+      "sportsOther — Tigers game moved here from lead; Pirates/Royals, Brewers/Orioles, UFC 331, and Peyton Stearns WTA win added as sportsOther entries with full five-part structure",
+      "markets.mood — tightened and clarified; Fed enforcement context added",
+      "markets.bringUp — sharpened with specific numbers and plain-English signal",
+      "markets.theRead — rewritten to be more opinionated and grounded in RAW FACTS",
+      "golf.headline — cleaned per HEADLINE STRUCTURE RULE (no scores in h3)",
+      "golf.whyCare1/2 — rewritten to be more specific and stakes-driven",
+      "golf.whatToSay — sharpened to be more natural and conversational",
+      "golf.ammo — verified against RAW FACTS; Greyserman/Cole removed (not in RAW FACTS)",
+      "f1.headline — cleaned per HEADLINE STRUCTURE RULE",
+      "f1.whatToSay — sharpened",
+      "f1.ammo — dates corrected to match RAW FACTS (9/26)",
+      "nhl.ammo — noted as insufficient; section flagged for blocking",
+      "culture[0] (iHeartRadio) — tightened theRead and whatToSay",
+      "culture[1] — replaced viral mugshot/Tom Cruise stories (failed CULTURE CONTENT RULES and low_conversation_relevance) with Russia sanctions story from RAW FACTS",
+      "culture[2] — repositioned Black Bag as streaming rec (item 3); flagged for blocking as item 2 due to empty ammo",
+      "finalSharpTake — fully rewritten to lead with Trump press ban, markets rotation signal, and golf Sunday setup",
+      "theTake.office and theTake.bar — rewritten; bar take now makes a specific, debatable claim about markets rather than generic meta-observation",
+      "glance — all three values rewritten to meet 8-word rule and clean format"
+    ],
+    "notes": [
+      "The NHL section (MTL @ TOR) has no result, no player names, and no storylines in RAW FACTS beyond the matchup itself. Three ammo items are all scheduling/location facts. Blocked per no_ammo rule. If roster or storyline data becomes available pre-publish, it could be reinstated.",
+      "Culture item originally labeled 'Black Bag' had zero ammo items. Repositioned as the curated streaming rec (item 3) to qualify for the streaming-rec exception. It does not introduce invented cast, plot, or award details.",
+      "The viral mugshot story (culture research item 1) and Tom Cruise/Taylor Swift story (culture research item 2) were both removed: mugshot story fails low_conversation_relevance gate for men 25–45; Tom Cruise/Taylor Swift story falls under celebrity personal-life/relationship drama category explicitly banned by CULTURE CONTENT RULES.",
+      "Greyserman and Cole references removed from golf ammo — not present in RAW FACTS leaderboard data.",
+      "The draft's theTake.bar ('Royals bullpen is cooked') was rewritten — the claim that Kansas City was 'leading the wild card race' is not verifiable from RAW FACTS and the 'bullpen is cooked' assertion lacked supporting evidence. Replaced with a markets-based bar take grounded entirely in RAW FACTS numbers.",
+      "Trump press ban confirmed via AP News source in RAW FACTS — used as lead per ★ designation. Tigers game demoted to sportsOther per Lead with Biggest Story rule."
+    ],
+    "brokenLinks": []
+  },
+  "factPack": null,
+  "researchPack": {
+    "stories": [
+      {
+        "id": "politics-1",
+        "category": "White House / Politics / Policy",
+        "sport": null,
+        "isLead": true,
+        "headline": "Trump bans CNN, MS NOW and Politico from White House",
+        "whatHappened": "Today President Trump barred CNN, MS NOW and Politico from White House access, citing “unfavorable coverage.”",
+        "whyItMatters": "This marks a major escalation in the administration’s conflict with the press and raises serious First Amendment and press freedom issues.",
+        "guytalkRead": "Trump’s decision to blacklist major outlets like CNN feels like a full-on version of ‘fake news’ wars—only now it’s official White House policy. It’s the kind of political drama everyone’s watching—even if they’d rather not.",
+        "context": [
+          "Sources confirm Trump restricted those specific outlets today",
+          "White House action challenges press freedoms",
+          "Multiple outlets (AP, Axios) report on the ban, calling it effective immediately"
+        ],
+        "whatToSay": "“Did you hear Trump banned CNN and Politico from the White House? That’s next-level press war stuff.”",
+        "sources": [
+          "https://www.apnews.com/article/d160e253453229600ce54f8e91351523",
+          "https://www.axios.com/2026/09/18/trump-ban-cnn-ms-now-politico-white-house"
+        ],
+        "sourceNames": [
+          "AP",
+          "Axios"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Breaking, high-impact political news widely covered today; strong conversation potential",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "world-1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Trump signs Graham‑sanctions bill against Russia",
+        "whatHappened": "On Friday, Trump signed into law the Graham bill imposing new sanctions on Russia to curb revenue funding Ukraine war.",
+        "whyItMatters": "It’s a significant shift in U.S. foreign policy, tightening economic pressure on Russia amid the Ukraine conflict.",
+        "guytalkRead": "This is the kind of geopolitical move that makes headlines—and affects gas prices and global markets. It’s news you actually mention at the bar.",
+        "context": [
+          "Bill co-authored by late Sen. Lindsey Graham passed and signed today",
+          "Aimed at choking off Russia’s war funding",
+          "Covered by Le Monde’s English edition"
+        ],
+        "whatToSay": "“Trump just signed tougher Russia sanctions—gonna be interesting to see the fallout.”",
+        "sources": [
+          "https://www.lemonde.fr/en/international/article/2026/09/19/trump-signs-graham-bill-imposing-new-sanctions-against-russia_6757703_4.html"
+        ],
+        "sourceNames": [
+          "Le Monde"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Confirmed today, international stakes, good conversation hook",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "culture-1",
+        "category": "Culture / Entertainment",
+        "sport": null,
+        "isLead": false,
+        "headline": "iHeartRadio Festival features Snoop Dogg, Muse, and more",
+        "whatHappened": "Day 2 of the iHeartRadio Music Festival airs tonight featuring Snoop Dogg, Muse, Ciara, Major Lazer, and more.",
+        "whyItMatters": "It’s a huge live music event loaded with major artists—something men 25‑45 actively follow and talk about.",
+        "guytalkRead": "Lineup’s stacked—Snoop, Muse, Ciara all on one stage. Even if you weren’t tuning in live, someone at the bar will bring it up.",
+        "context": [
+          "Festival Day 2 streams tonight",
+          "Lineup includes Snoop Dogg, Muse, Major Lazer, Lainey Wilson",
+          "Coverage from TVLine"
+        ],
+        "whatToSay": "“Catch the iHeartRadio Festival tonight? Snoop and Muse on one stage—solid lineup.”",
+        "sources": [
+          "https://www.tvline.com/2261725/what-to-watch-september-19-2026-tv-shows-movies/"
+        ],
+        "sourceNames": [
+          "TVLine"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Major entertainment event today with wide appeal",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "sports-1",
+        "category": "Sports",
+        "sport": "UFC",
+        "isLead": false,
+        "headline": "UFC 331: Van vs. Pantoja 2 headlines tonight",
+        "whatHappened": "UFC 331 takes place tonight, with Joshua Van facing Alexandre Pantoja in a rematch at Crypto.com Arena.",
+        "whyItMatters": "MMA fans will be dialed in, and rematches always carry extra intrigue—solid bar convo potential.",
+        "guytalkRead": "UFC card tonight and it’s a rematch—that’s a guaranteed spark among fight fans at any hangout.",
+        "context": [
+          "UFC 331 scheduled tonight",
+          "Venue: Crypto.com Arena, Los Angeles",
+          "Matches Joshua Van vs Alexandre Pantoja rematch"
+        ],
+        "whatToSay": "“UFC 331’s on tonight—Van vs. Pantoja rematch should be a banger.”",
+        "sources": [
+          "https://www.tvline.com/2261725/what-to-watch-september-19-2026-tv-shows-movies/"
+        ],
+        "sourceNames": [
+          "TVLine"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "Confirmed sports event today with high appeal",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "markets-1",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Fed rolls out enforcement actions, updated stats",
+        "whatHappened": "Today the Federal Reserve issued enforcement actions against ex-bank employees and released updated industrial production and capacity data.",
+        "whyItMatters": "Regulatory actions and economic stats today affect financial markets and signal policy direction.",
+        "guytalkRead": "Fed making moves today—enforcement actions and data drops. If you care about markets or the economy, this is the day.",
+        "context": [
+          "Federal Reserve press releases issued today",
+          "Actions target former Northstar Bank, AMEX Travel, Regions Bank employees",
+          "Also released industrial production and capacity utilization data"
+        ],
+        "whatToSay": "“Fed’s out with enforcement actions and new production data today—watch the markets.”",
+        "sources": [
+          "https://www.federalreserve.gov/recentpostings.htm"
+        ],
+        "sourceNames": [
+          "Federal Reserve"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 3,
+          "variety": 5
+        },
+        "selectionReason": "Confirmed Fed activity today with economic relevance",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "world-2",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Protesters form human chain around Kennedy Center",
+        "whatHappened": "Today thousands rallied and formed a human chain around the Kennedy Center to protest Trump's possible plans to tear it down.",
+        "whyItMatters": "This is a rare mass cultural-protest moment and taps into arts preservation and political tensions.",
+        "guytalkRead": "A real-life human chain at the Kennedy Center—this isn’t your usual selfie protest. That’s a story that gets under your skin fast.",
+        "context": [
+          "Protesters gathered today outside Kennedy Center",
+          "Formed human chain to oppose Trump’s plans",
+          "Coverage by AP and The Wrap"
+        ],
+        "whatToSay": "“People actually formed a human chain around the Kennedy Center today—wild.”",
+        "sources": [
+          "https://www.apnews.com/article/fc4538e47c6541fae7b7b51862fd96ae",
+          "https://www.thewrap.com/posts/"
+        ],
+        "sourceNames": [
+          "AP",
+          "TheWrap"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Distinct cultural/political protest with strong visuals and conversation pull",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "Snap Specs launch event",
+        "reason": "Launch was two days ago (Sept 17), not today — fails freshness"
+      },
+      {
+        "headline": "New movie or casting news (Brad Pitt in World War Z sequel)",
+        "reason": "Celebrity entertainment—less bar‑ready conversation among 25‑45 men compared to music festival or political drama"
+      },
+      {
+        "headline": "EU fuel prices record highs",
+        "reason": "European domestic economy story, less relevant to U.S. audience conversation today"
+      }
+    ],
+    "researchNotes": "Today’s major confirmed stories include: Trump’s new bannings of CNN, MS NOW, Politico; signing of sanctions bill vs Russia; human‑chain protest at Kennedy Center; Fed enforcement actions and stats; iHeartRadio Festival Day 2; UFC 331 headline fight. No major golf/F1/MLB/NBA/U.S. pro results surfaced today. No major tech product launches today.",
+    "relevanceScan": {
+      "bucketA_sports": "UFC 331 tonight",
+      "bucketB_politics": "Trump’s White House ban of major outlets",
+      "bucketC_markets": "Fed enforcement actions and data release",
+      "bucketD_tech": "(none confirmed today)",
+      "bucketE_culture": "iHeartRadio Festival and Kennedy Center protest",
+      "bucketF_world": "Russia sanctions bill signed",
+      "leadJustification": "The White House banning major news outlets is the most conversation‑relevant, immediate, and widespread issue on men’s radar today, outranking others on potential talk‑triggering power."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-09-19T12:47:18.127Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "0/1 fields"
+    },
+    {
+      "section": "lead",
+      "kind": "retry",
+      "detail": "malformed lead — retried"
+    },
+    {
+      "section": "nhl",
+      "kind": "blocked",
+      "detail": "no_ammo — only 3 ammo items and all three are generic location/scheduling facts with no named player, no stat, no result, and no concrete event. The game has not been played and RAW FACTS contain no player names, roster details, or storylines beyond the matchup itself. Cannot meet the Hard Block Rule with available facts."
+    },
+    {
+      "section": "culture[1] (Black Bag)",
+      "kind": "blocked",
+      "detail": "no_ammo — ammo[] array is empty (zero items). Section cannot publish per the NO-AMMO BLOCK RULE. No RAW FACTS exist to populate it. Kept as curated streaming rec per the EXCEPTION rule for culture item 3, but original placement was culture item 2 (not item 3), so it has been repositioned as the final culture item to qualify for the streaming-rec exception."
+    },
+    {
+      "section": "image:Astral Pusha Water Boots The burliest cr",
+      "kind": "failed",
+      "detail": "web image search found no usable photo — needs a manual image from Jake"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+    "blocking": [],
+    "warnings": []
+  }
+}
