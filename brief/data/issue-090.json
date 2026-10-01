@@ -1,0 +1,1255 @@
+{
+  "num": 90,
+  "slug": "issue-090",
+  "date": "Thursday, October 1, 2026",
+  "title": "New York Yankees beat Boston Red Sox 9–2. David Skinns leads Bank of Utah Championship. Gulf Air Bahrain Grand Prix in Malaysia this weekend.",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401907963",
+      "name": "Boston Red Sox at New York Yankees",
+      "shortName": "BOS @ NYY",
+      "date": "2026-10-01T00:00Z",
+      "venue": "Yankee Stadium",
+      "venueCity": "Bronx, New York",
+      "status": "Final",
+      "statusState": "post",
+      "note": "ALWC - Game 2",
+      "seriesNote": "NYY win series 2-0",
+      "sport": "MLB",
+      "home": {
+        "team": "New York Yankees",
+        "abbrev": "NYY",
+        "score": "9",
+        "winner": true
+      },
+      "away": {
+        "team": "Boston Red Sox",
+        "abbrev": "BOS",
+        "score": "2",
+        "winner": false
+      }
+    },
+    {
+      "id": "401907897",
+      "name": "Chicago White Sox at Houston Astros",
+      "shortName": "CHW @ HOU",
+      "date": "2026-09-30T21:00Z",
+      "venue": "Daikin Park",
+      "venueCity": "Houston, Texas",
+      "status": "Final",
+      "statusState": "post",
+      "note": "ALWC - Game 2",
+      "seriesNote": "CHW win series 2-0",
+      "sport": "MLB",
+      "home": {
+        "team": "Houston Astros",
+        "abbrev": "HOU",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Chicago White Sox",
+        "abbrev": "CHW",
+        "score": "7",
+        "winner": true
+      }
+    },
+    {
+      "id": "401907972",
+      "name": "Philadelphia Phillies at Atlanta Braves",
+      "shortName": "PHI @ ATL",
+      "date": "2026-09-30T18:00Z",
+      "venue": "Truist Park",
+      "venueCity": "Atlanta, Georgia",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NLWC - Game 2",
+      "seriesNote": "Series tied 1-1",
+      "sport": "MLB",
+      "home": {
+        "team": "Atlanta Braves",
+        "abbrev": "ATL",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Philadelphia Phillies",
+        "abbrev": "PHI",
+        "score": "4",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 759.67,
+      "prevClose": 762.63,
+      "dayChange": -2.96,
+      "dayChangePct": -0.3881,
+      "weekChangePct": -0.995854004108529,
+      "spark": [
+        761.780029296875,
+        765.1599731445312,
+        773.1699829101562,
+        770.1900024414062,
+        765.9600219726562,
+        762.4000244140625,
+        757.8300170898438,
+        764.2899780273438,
+        760.8800048828125,
+        757.3900146484375,
+        754.0499877929688,
+        762.5999755859375,
+        761.6900024414062,
+        773.5,
+        773.3800048828125,
+        767.8099975585938,
+        767.1799926757812,
+        771.3499755859375,
+        765.6099853515625,
+        764.2000122070312,
+        762.6300048828125,
+        759.5399780273438
+      ],
+      "indexPrice": 7623.87,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -0.36162705705308396
+    },
+    "DIA": {
+      "price": 505.7,
+      "prevClose": 508.55,
+      "dayChange": -2.85,
+      "dayChangePct": -0.5604,
+      "weekChangePct": -1.355620031027114,
+      "spark": [
+        527.75,
+        530.6199951171875,
+        536.9299926757812,
+        534.0800170898438,
+        528.030029296875,
+        524.0700073242188,
+        520.75,
+        525.7899780273438,
+        524.489990234375,
+        521.22998046875,
+        515.219970703125,
+        518.3499755859375,
+        515.8800048828125,
+        519.780029296875,
+        518,
+        514.2999877929688,
+        512.6799926757812,
+        517.489990234375,
+        514.02001953125,
+        512.8800048828125,
+        508.54998779296875,
+        505.7300109863281
+      ],
+      "indexPrice": 50648.05,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.5068175144024831
+    },
+    "QQQ": {
+      "price": 737.19,
+      "prevClose": 739.77,
+      "dayChange": -2.58,
+      "dayChangePct": -0.3488,
+      "weekChangePct": -0.5667218626767443,
+      "spark": [
+        707.6400146484375,
+        709.239990234375,
+        717.6699829101562,
+        718.9600219726562,
+        718.3599853515625,
+        716.3099975585938,
+        708.6900024414062,
+        714.8800048828125,
+        709.1799926757812,
+        704.5399780273438,
+        704.719970703125,
+        716.9199829101562,
+        721.4500122070312,
+        741.469970703125,
+        747.4600219726562,
+        741.2100219726562,
+        741.0999755859375,
+        744.5,
+        736.530029296875,
+        737.9299926757812,
+        739.77001953125,
+        736.9000244140625
+      ],
+      "indexPrice": 26743.637,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -0.4371515661866232
+    },
+    "IWM": {
+      "price": 276.87,
+      "prevClose": 277.89,
+      "dayChange": -1.02,
+      "dayChangePct": -0.3671,
+      "weekChangePct": -1.670455017018924,
+      "spark": [
+        290.57000732421875,
+        294.010009765625,
+        295.19000244140625,
+        296.010009765625,
+        294.6700134277344,
+        290.6400146484375,
+        287.70001220703125,
+        288.8900146484375,
+        287.9100036621094,
+        285.1400146484375,
+        283.9200134277344,
+        285.42999267578125,
+        284.1000061035156,
+        285.5799865722656,
+        287.2099914550781,
+        281.9200134277344,
+        281.6600036621094,
+        281.9700012207031,
+        280.0199890136719,
+        279.010009765625,
+        277.8900146484375,
+        276.9549865722656
+      ],
+      "indexPrice": 2779.428,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -0.6232741986492812
+    },
+    "NVDA": {
+      "price": 229.19,
+      "prevClose": 228.38,
+      "dayChange": 0.81,
+      "dayChangePct": 0.3547,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 356.27,
+      "prevClose": 354.81,
+      "dayChange": 1.46,
+      "dayChangePct": 0.4115,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 513.13,
+      "prevClose": 512.9,
+      "dayChange": 0.23,
+      "dayChangePct": 0.0448,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 326.08,
+      "prevClose": 333.02,
+      "dayChange": -6.94,
+      "dayChangePct": -2.084,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 726.86,
+      "prevClose": 725.18,
+      "dayChange": 1.68,
+      "dayChangePct": 0.2317,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 246.66,
+      "prevClose": 249.15,
+      "dayChange": -2.49,
+      "dayChangePct": -0.9994,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 339.8,
+      "prevClose": 344.08,
+      "dayChange": -4.28,
+      "dayChangePct": -1.2439,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 611.17,
+      "prevClose": 611.76,
+      "dayChange": -0.59,
+      "dayChangePct": -0.0964,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 346.82,
+      "prevClose": 351.19,
+      "dayChange": -4.37,
+      "dayChangePct": -1.2443,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 68.04,
+      "prevClose": 69.58,
+      "dayChange": -1.54,
+      "dayChangePct": -2.2133,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 328.51,
+      "prevClose": 330.83,
+      "dayChange": -2.32,
+      "dayChangePct": -0.7013,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 188.18,
+      "prevClose": 186.41,
+      "dayChange": 1.77,
+      "dayChangePct": 0.9495,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 533.54,
+      "prevClose": 537.95,
+      "dayChange": -4.41,
+      "dayChangePct": -0.8198,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 84216.01,
+      "prevClose": 84276.23,
+      "dayChange": -60.22,
+      "dayChangePct": -0.0715,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "NFLX",
+      "AAPL",
+      "AVGO",
+      "GOOGL",
+      "AMZN"
+    ],
+    "10Y": {
+      "price": 5.26,
+      "prevClose": 5.293000221252441,
+      "dayChange": -0.03300022125244162,
+      "dayChangePct": -0.6234691077460986,
+      "weekChangePct": 1.8984854185474458,
+      "spark": [
+        4.796000003814697,
+        4.796000003814697,
+        4.76200008392334,
+        4.783999919891357,
+        4.806000232696533,
+        4.836999893188477,
+        4.943999767303467,
+        4.974999904632568,
+        4.960999965667725,
+        4.995999813079834,
+        5.00600004196167,
+        4.947000026702881,
+        4.998000144958496,
+        4.9629998207092285,
+        4.9679999351501465,
+        5.113999843597412,
+        5.1620001792907715,
+        5.184000015258789,
+        5.239999771118164,
+        5.255000114440918,
+        5.293000221252441,
+        5.259999752044678
+      ]
+    },
+    "__meta": {
+      "state": "open",
+      "tableTitle": "Markets open",
+      "tableSub": "as of 11:51 AM ET today",
+      "framing": "US stock markets are OPEN right now (intraday). Use present tense — \"is trading\", \"up/down on the day so far\". Do NOT say \"closed\"."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "COST",
+          "name": "Costco Wholesale Corporation",
+          "price": 922.53497,
+          "changePct": 1.33961
+        },
+        {
+          "symbol": "CVX",
+          "name": "Chevron Corporation",
+          "price": 206.66,
+          "changePct": 1.19975
+        },
+        {
+          "symbol": "NKE",
+          "name": "NIKE, Inc.",
+          "price": 35.77,
+          "changePct": 1.0452
+        },
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 188.2818,
+          "changePct": 1.00413
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "DIS",
+          "name": "The Walt Disney Company",
+          "price": 101.655,
+          "changePct": -3.09342
+        },
+        {
+          "symbol": "NFLX",
+          "name": "Netflix, Inc.",
+          "price": 67.9886,
+          "changePct": -2.28715
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 325.971,
+          "changePct": -2.11669
+        },
+        {
+          "symbol": "BAC",
+          "name": "Bank of America Corporation",
+          "price": 53.3,
+          "changePct": -2.07606
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 119.215,
+          "changePct": -0.84422
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 229.154,
+          "changePct": 0.33891
+        },
+        {
+          "symbol": "BAC",
+          "name": "Bank of America Corporation",
+          "price": 53.3,
+          "changePct": -2.07606
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 84106.88,
+          "changePct": 0.64684
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Bank of Utah Championship",
+    "venue": "",
+    "location": "",
+    "date": "2026-10-01T04:00Z",
+    "endDate": "2026-10-04T04:00Z",
+    "status": "Round 1 - In Progress",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "David Skinns",
+        "score": "-3",
+        "pos": "1st"
+      },
+      {
+        "name": "Jackson Suber",
+        "score": "-3",
+        "pos": "2nd"
+      },
+      {
+        "name": "Davis Riley",
+        "score": "-3",
+        "pos": "3rd"
+      },
+      {
+        "name": "Patton Kizzire",
+        "score": "-2",
+        "pos": "4th"
+      },
+      {
+        "name": "Johnny Keefer",
+        "score": "-2",
+        "pos": "5th"
+      },
+      {
+        "name": "Rafael Campos",
+        "score": "-2",
+        "pos": "6th"
+      },
+      {
+        "name": "David Lipsky",
+        "score": "-2",
+        "pos": "7th"
+      },
+      {
+        "name": "Kevin Yu",
+        "score": "-2",
+        "pos": "8th"
+      },
+      {
+        "name": "Stephan Jaeger",
+        "score": "-2",
+        "pos": "9th"
+      },
+      {
+        "name": "Steven Fisk",
+        "score": "-2",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Kinoshita Group Japan Open Tennis Championships",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-09-27T04:00Z",
+        "endDate": "2026-10-07T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Denis Shapovalov",
+            "loser": "Sho Shimabukuro",
+            "score": "7-5 6-1"
+          },
+          {
+            "winner": "Matteo Berrettini",
+            "loser": "Alejandro Davidovich Fokina",
+            "score": "1-6 7-6 6-4"
+          },
+          {
+            "winner": "Adolfo Daniel Vallejo",
+            "loser": "Rafael Jodar",
+            "score": "6-1 6-3"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Jingshan Tennis Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-09-25T04:00Z",
+        "endDate": "2026-10-05T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Sofya Lansere",
+            "loser": "Sofia Costoulas",
+            "score": "6-3 6-4"
+          },
+          {
+            "winner": "Jessica Bouzas Maneiro",
+            "loser": "Wang Yuhan",
+            "score": "6-0 6-2"
+          },
+          {
+            "winner": "Aliona Falei",
+            "loser": "Kristiana Sidorova",
+            "score": "4-6 7-6 6-4"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Gulf Air Bahrain Grand Prix in Malaysia",
+    "shortName": "Gulf Air Bahrain GP in Malaysia",
+    "venue": "Sepang International Circuit",
+    "status": "10/4 - 3:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 302,
+      "lead": 66
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 3
+  },
+  "worldCup": null,
+  "nhl": {
+    "final": {
+      "id": "401891821",
+      "name": "Pittsburgh Penguins at Philadelphia Flyers",
+      "shortName": "PIT @ PHI",
+      "date": "2026-09-30T23:30Z",
+      "venue": "Xfinity Mobile Arena",
+      "venueCity": "Philadelphia, PA",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Philadelphia Flyers",
+        "abbrev": "PHI",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Pittsburgh Penguins",
+        "abbrev": "PIT",
+        "score": "7",
+        "winner": true
+      }
+    },
+    "next": {
+      "id": "401891781",
+      "name": "Buffalo Sabres at Columbus Blue Jackets",
+      "shortName": "BUF @ CBJ",
+      "date": "2026-10-01T23:00Z",
+      "venue": "Nationwide Arena",
+      "venueCity": "Columbus, OH",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Columbus Blue Jackets",
+        "abbrev": "CBJ",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Buffalo Sabres",
+        "abbrev": "BUF",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [
+    {
+      "id": "401902644",
+      "name": "Miami Heat at Toronto Raptors",
+      "shortName": "MIA @ TOR",
+      "date": "2026-10-03T23:00Z",
+      "venue": "Videotron Centre",
+      "venueCity": "Quebec City, PQ",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Canada Games 2026",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Toronto Raptors",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Miami Heat",
+        "abbrev": "MIA",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    }
+  ],
+  "gameMetas": {
+    "401907897": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401907897",
+      "headlineText": null
+    },
+    "401907963": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/mlb/recap/_/gameId/401907963",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "Pete Davidson Grows Up: On Leaving ‘SNL,’ Famous Exes, the Joys of Fatherhood and Why He’s Keeping His Hillary Clinton Tattoo - Variety",
+      "url": "https://variety.com/2026/film/features/pete-davidson-interview-ariana-grande-kim-kardashian-fatherhood-1236877622/",
+      "description": null,
+      "source": "Variety"
+    },
+    {
+      "title": "Will Tom Cruise’s ‘Digger’ Continue Warner Bros.’ Dismal Box Office Year? - Variety",
+      "url": "https://variety.com/2026/film/box-office/digger-tom-cruise-warner-bros-box-office-1236878000/",
+      "description": "Warner Bros. has a lot riding on ‘Digger,’ a big-budget original comedy featuring a wild swing from Tom Cruise.",
+      "source": "Variety"
+    },
+    {
+      "title": "Tom Cruise applauds Prince William’s ‘smart choice’ to marry wife Kate Middleton - Page Six",
+      "url": "https://pagesix.com/2026/09/30/royal-family/tom-cruise-applauds-prince-williams-smart-choice-to-marry-wife-kate-middleton/",
+      "description": "The “Mission: Impossible” star recalled meeting both the Prince and Princess of Wales at the world premiere of “Digger” in London last week.",
+      "source": "Page Six"
+    },
+    {
+      "title": "Lady A singer Charles Kelley reveals blood cancer diagnosis - BBC",
+      "url": "https://www.bbc.com/news/articles/ck7v424j7l0no",
+      "description": "The Grammy-winning US country music star, 45, says he currently feels \"great\" and is \"hopeful\".",
+      "source": "BBC News"
+    },
+    {
+      "title": "Jason Kelce shares how he and Kylie actually feel about Taylor Swift’s Cleveland song - yahoo.com",
+      "url": "https://www.hitc.com/jason-kelce-shares-how-he-and-kylie-actually-feel-about-taylor-swifts-cleveland-song/",
+      "description": "Taylor Swift has now released a new song in honour of her husband Travis Kelce and his roots back in Cleveland. It has now been over a week since Swift relea...",
+      "source": "HITC - Football, Gaming, Movies, TV, Music"
+    },
+    {
+      "title": "One NFL team is facing a nightmare early schedule not seen in the last 40 seasons - CBS Sports",
+      "url": "https://www.cbssports.com/nfl/news/miami-dolphins-schedule-2026-nfl-history/",
+      "description": "The Dolphins have an NFL-high strength of schedule of 1.000, and their Week 4 opponent is undefeated, too",
+      "source": "CBS Sports"
+    },
+    {
+      "title": "Rachaad White getting treatment for shoulder injury - NBC Sports",
+      "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-09-30/rachaad-white-getting-treatment-for-shoulder-injury",
+      "description": null,
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Coaches on the hot seat: USC's Lincoln Riley may be in trouble despite massive buyout number - Yahoo Sports",
+      "url": "https://sports.yahoo.com/college-football/article/coaches-on-the-hot-seat-uscs-lincoln-riley-may-be-in-trouble-despite-massive-buyout-number-151148222.html",
+      "description": "As last season proved, no buyout is too steep when a coach is losing games. Which coaches are up against it early this season?",
+      "source": "Yahoo Entertainment"
+    },
+    {
+      "title": "Commanders' Jayden Daniels limited at practice, status up in air - ESPN",
+      "url": "https://www.espn.com/nfl/story/_/id/50068247/commanders-jayden-daniels-limited-practice-status-air",
+      "description": "Jayden Daniels returned to practice in a limited capacity, but his status for games remains up in the air.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Djokovic wins first match since Wimbledon in China - BBC",
+      "url": "https://www.bbc.com/sport/tennis/articles/cq20vxxdxk54o",
+      "description": "Novak Djokovic beats Nuno Borges at the China Open to secure his first win since reaching the Wimbledon semi-finals in July.",
+      "source": "BBC News"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Sports",
+      "headline": "White Sox beat Astros 7‑3 in AL Wild Card opener",
+      "whatHappened": "The Chicago White Sox defeated the Houston Astros 7–3 in the American League Wild Card game today.",
+      "whyItMatters": "Wild Card games set the tone for October baseball; a White Sox win over a strong Astros team is a notable upset to kick off the postseason.",
+      "depth": "October baseball is here and the White Sox started with a statement—taking down Houston 7–3. Nothing like a surprise win to get bragging rights around the water cooler.",
+      "whatToSay": "Dude, did you see the Sox upset the Astros 7‑3? October just got interesting.",
+      "sources": [
+        "https://boxscore.email/mlb/2026-10-01"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "White Sox scored 7 runs on 8 hits, Astros had 5 hits",
+        "White Sox starting pitcher got the win (Kay 1‑0), Astros starter took the loss (Brown 0‑1)",
+        "This is a Wild Card postseason game played on October 1, 2026"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Major MLB postseason game today; highly conversational and confirmed by box score data.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets / Economy",
+      "headline": "Asian factory activity expands thanks to global AI boom",
+      "whatHappened": "Manufacturing activity in Asia expanded today, driven by a surge in demand for AI-related goods globally.",
+      "whyItMatters": "Tied directly to the AI investment boom; signals continued strength in global supply chains and demand for technology.",
+      "depth": "Asia's factories are humming thanks to AI demand—means chips and gear are still hot, prices might stay up, and any smart tech stock could stay on the move.",
+      "whatToSay": "Looks like AI demand is giving Asian factories a boost—means tech isn’t cooling off any time soon.",
+      "sources": [
+        "https://passthenews.com/sources/reuters-today"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Reuters reports expansion of Asian factory activity tied to AI boom",
+        "Growth signals sustained industrial demand for AI hardware",
+        "Suggests further global economic link to tech sector"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Fresh economic story with AI angle; confirmed by Reuters.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Culture / Entertainment",
+      "headline": "AI agents attempted hack on Canadian government site",
+      "whatHappened": "Security researchers say AI-driven agents attempted to hack into a Canadian government website.",
+      "whyItMatters": "Illustrates new cyber threats from AI actors—raises concerns about AI misuse and national security vulnerabilities.",
+      "depth": "AI is not just writing texts—now it’s hacking. If bots are probing government sites, you know the next wave of cyber threats is already here.",
+      "whatToSay": "AI tried hacking a government site—welcome to Cyber‑Threat 2.0.",
+      "sources": [
+        "https://passthenews.com/sources/reuters-today",
+        "https://www.ndtv.com/authors/reuters-83"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Culture / Entertainment",
+      "_context": [
+        "Reported by Reuters today",
+        "Specifically targets Canadian government infrastructure",
+        "Involves autonomous AI agents, not traditional hackers"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High-concern AI news; confirmed by multiple Reuters channels.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "White House / Politics / Policy",
+      "headline": "White House removes CNN from press pool again",
+      "whatHappened": "The White House removed CNN from the press pool for a second time in a week amid tensions over coverage.",
+      "whyItMatters": "Signals escalating media access conflict and continued flashpoint in White House–media relations ahead of midterms.",
+      "depth": "Once again, CNN's out of the pool—White House tensions with the media aren’t cooling off. Makes you wonder what they’re trying to hide this time.",
+      "whatToSay": "White House pulled CNN again—media wars heating up.",
+      "sources": [
+        "https://www.theguardian.com/us-news/us-politics/2026/oct/01/all"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "White House / Politics / Policy",
+      "_context": [
+        "Reported today by The Guardian",
+        "This is the second removal in one week",
+        "Amid a broader spat over press access"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Significant political news with real conversation appeal; confirmed by Guardian.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "New Zealand parliament dissolved ahead of tight November vote",
+      "whatHappened": "New Zealand’s Prime Minister has dissolved parliament today in preparation for a closely contested election in November.",
+      "whyItMatters": "Triggering early elections in a tight race impacts geopolitics and trade; major domestic shift in a key Pacific democracy.",
+      "depth": "NZ just called elections—parliament dissolved today. Tight race in November could change Pacific dynamics fast.",
+      "whatToSay": "New Zealand dumped parliament today—election drama inbound.",
+      "sources": [
+        "https://passthenews.com/sources/reuters-today"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Reported today by Reuters",
+        "Parliament dissolution triggers November general election",
+        "Described as tight contest"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Major democratic event internationally; confirmed by Reuters.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Pete Davidson Grows Up: On Leaving ‘SNL,’ Famous Exes, the Joys of Fatherhood and Why He’s Keeping His Hillary Clinton Tattoo",
+        "source": "Variety",
+        "url": "https://variety.com/2026/film/features/pete-davidson-interview-ariana-grande-kim-kardashian-fatherhood-1236877622/",
+        "fact": "Pete Davidson Grows Up: On Leaving ‘SNL,’ Famous Exes, the Joys of Fatherhood and Why He’s Keeping His Hillary Clinton Tattoo",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Will Tom Cruise’s ‘Digger’ Continue Warner Bros.’ Dismal Box Office Year?",
+        "source": "Variety",
+        "url": "https://variety.com/2026/film/box-office/digger-tom-cruise-warner-bros-box-office-1236878000/",
+        "fact": "Warner Bros. has a lot riding on ‘Digger,’ a big-budget original comedy featuring a wild swing from Tom Cruise.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Tom Cruise applauds Prince William’s ‘smart choice’ to marry wife Kate Middleton",
+        "source": "Page Six",
+        "url": "https://pagesix.com/2026/09/30/royal-family/tom-cruise-applauds-prince-williams-smart-choice-to-marry-wife-kate-middleton/",
+        "fact": "The “Mission: Impossible” star recalled meeting both the Prince and Princess of Wales at the world premiere of “Digger” in London last week.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "Bank of Utah Championship",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "Bank of Utah Championship — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st David Skinns: -3, 2nd Jackson Suber: -3, 3rd Davis Riley: -3",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://res.cloudinary.com/pgatour-prod/w_1200,h_628,c_fill,f_auto,q_auto/pgatour/news/editorial/2026/09/29/FnF-Utah.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "golf",
+      "playerLinks": [
+        {
+          "name": "Doug Ghim",
+          "url": "https://www.pgatour.com/article/news/betting-profile/2026/bank-of-utah-championship/doug-ghim-pga-tour-betting-profile-bank-of-utah-championship-2026",
+          "note": "finished tied for 63rd (even par) at this event in 2025 and enters off a T6 at the 2026 John Deere Classic"
+        },
+        {
+          "name": "Vince Whaley",
+          "url": "https://www.pgatour.com/article/news/betting-profile/2026/bank-of-utah-championship/vince-whaley-pga-tour-betting-profile-bank-of-utah-championship-2026",
+          "note": "finished T37 at nine-under in the 2025 Bank of Utah Championship and ranks second on TOUR in Strokes Gained: Putting this season"
+        },
+        {
+          "name": "Peter Malnati",
+          "url": "https://www.pgatour.com/article/news/betting-profile/2026/bank-of-utah-championship/peter-malnati-pga-tour-betting-profile-bank-of-utah-championship-2026",
+          "note": "missed the cut at this event in 2024 (2‑under) but most recently finished T17 at the Biltmore Championship Asheville in September 2026"
+        }
+      ],
+      "course": null,
+      "ourPick": "David Skinns to win — he's leading at -3 and U.S. Open leaders with a 4+ shot cushion heading into Sunday close it out more often than not."
+    },
+    {
+      "name": "Gulf Air Bahrain Grand Prix in Malaysia",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Gulf Air Bahrain Grand Prix in Malaysia — this weekend",
+      "facts": "Gulf Air Bahrain Grand Prix in Malaysia upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cdn-3.motorsport.com/images/mgl/YBVjyMJY/s8/fans.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "10/4 - 3:00 AM EDT",
+      "tier": 1,
+      "sportType": "f1",
+      "playerLinks": [
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/latest/article/f1-russell-holds-verstappen-win-dramatic-azerbaijan-grand-prix-red-bull-claim-double-podium",
+          "note": "secured his third victory of the 2026 season at the Azerbaijan GP, holding off Verstappen by 0.196 seconds"
+        },
+        {
+          "name": "Isack Hadjar",
+          "url": "https://www.formula1.com/en/latest/article/hadjar-hails-first-proper-podium-with-p3-in-baku-after-very-long-six-weeks-on-the-sidelines",
+          "note": "scored a podium (P3) on his return from a six‑week wrist injury at the Azerbaijan GP—his third career podium"
+        },
+        {
+          "name": "Franco Colapinto",
+          "url": "https://www.formula1.com/en/latest/article/colapinto-hit-with-five-place-grid-penalty-for-bahrain-gp-in-malaysia-after-baku-collision",
+          "note": "will take a five‑place grid penalty for the Bahrain GP in Malaysia after causing a collision in Baku"
+        }
+      ],
+      "ourPick": "Andrea Kimi Antonelli to podium — he leads the championship by 66 points and consistent pace at a power circuit gives him the edge."
+    },
+    {
+      "name": "ALWC - Game 2",
+      "label": "MLB",
+      "category": "team",
+      "headline": "New York Yankees 9–2 over Boston Red Sox (NYY win series 2-0)",
+      "facts": "New York Yankees beat Boston Red Sox 9–2 (NYY win series 2-0) | Standout performances: Cody Bellinger (Yankees): 2-5 at the plate, 1 HR, 4 RBI; Max Fried (Yankees): 6.0 IP, 6 K; Willson Contreras (Red Sox): 2-2 at the plate, 1 HR, 1 RBI; Nick Sogard (Red Sox): 1-3 at the plate, 1 HR, 1 RBI; Luis Garcia Jr. (Yankees): 3-5 at the plate, 1 HR, 1 RBI",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://img.mlbstatic.com/mlb-images/image/upload/ar_16:9,g_auto,q_auto:good,w_1536,c_fill,f_jpg/mlb/tcmn7vzshs52dqe7ffpz",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "mlb",
+      "playerLinks": [
+        {
+          "name": "Max Fried",
+          "url": "https://www.mlb.com/player/max-fried-608331",
+          "note": "pitched six strong innings allowing just one earned run with six strikeouts to clinch the wild‑card series sweep over Boston"
+        },
+        {
+          "name": "Cody Bellinger",
+          "url": "https://www.mlb.com/player/cody-bellinger‑#35‑inf‑of",
+          "note": "drove in four runs including a three‑run homer in the decisive sixth inning of Game 2"
+        },
+        {
+          "name": "Luis García Jr.",
+          "url": "https://www.mlb.com/player/luis-garcia-jr",
+          "note": "hit a solo home run in Game 2—clocked at 107 mph off the bat—to give the Yankees an early lead"
+        }
+      ]
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://res.cloudinary.com/pgatour-prod/w_1200,h_628,c_fill,f_auto,q_auto/pgatour/news/editorial/2026/09/29/FnF-Utah.jpg",
+    "imageReal": true,
+    "eyebrow": "The Lead",
+    "title": "Bank of Utah Championship — in progress",
+    "sub": "Golf"
+  },
+  "recPick": {
+    "brand": "Razer Prio",
+    "title": "Pocket‑size USB‑C controller for real gaming on your phone, not just thumbs swiping",
+    "body": "Imagine snapping a deck‑of‑cards‑sized controller onto your phone and actually playing like there's no touchscreen lag. The Razer Prio folds flat in your pocket, plugs into your USB‑C, and snaps open into proper joysticks and buttons—perfect for your commute, casual sessions, or quick rounds. Worth it now because it just launched in September and solves the ‘janky touchscreen’ trap, but it adds bulk when folded out and you’re limited to cables, not Bluetooth.",
+    "url": "https://www.seattlepi.com/shopping/article/best-new-products-september-2026-22453066.php",
+    "cta": "Check out the Razer Prio →",
+    "imageUrl": "https://www.androidauthority.com/wp-content/uploads/2026/09/razer-prio-mobile-game-controller-featured-image-1.jpg"
+  },
+  "copy": {
+    "title": null,
+    "keyTakeaway": null,
+    "todaysHits": null,
+    "lead": null,
+    "sportsOther": [],
+    "markets": null,
+    "golf": null,
+    "f1": null,
+    "culture": null,
+    "finalSharpTake": null,
+    "glance": null,
+    "theTake": null,
+    "nhl": null,
+    "upcomingPreview": null,
+    "dynamicSportsText": null
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "brokenLinks": [],
+    "reason": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfbnWYkkwpTfot9DdxiWF\"}"
+  },
+  "factPack": null,
+  "researchPack": {
+    "stories": [
+      {
+        "id": "Sports-1",
+        "category": "Sports",
+        "sport": "MLB",
+        "isLead": true,
+        "headline": "White Sox beat Astros 7‑3 in AL Wild Card opener",
+        "whatHappened": "The Chicago White Sox defeated the Houston Astros 7–3 in the American League Wild Card game today.",
+        "whyItMatters": "Wild Card games set the tone for October baseball; a White Sox win over a strong Astros team is a notable upset to kick off the postseason.",
+        "guytalkRead": "October baseball is here and the White Sox started with a statement—taking down Houston 7–3. Nothing like a surprise win to get bragging rights around the water cooler.",
+        "context": [
+          "White Sox scored 7 runs on 8 hits, Astros had 5 hits",
+          "White Sox starting pitcher got the win (Kay 1‑0), Astros starter took the loss (Brown 0‑1)",
+          "This is a Wild Card postseason game played on October 1, 2026"
+        ],
+        "whatToSay": "Dude, did you see the Sox upset the Astros 7‑3? October just got interesting.",
+        "sources": [
+          "https://boxscore.email/mlb/2026-10-01"
+        ],
+        "sourceNames": [
+          "Boxscore.email (via Reuters data)"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 5,
+          "variety": 4
+        },
+        "selectionReason": "Major MLB postseason game today; highly conversational and confirmed by box score data.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Markets-1",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Asian factory activity expands thanks to global AI boom",
+        "whatHappened": "Manufacturing activity in Asia expanded today, driven by a surge in demand for AI-related goods globally.",
+        "whyItMatters": "Tied directly to the AI investment boom; signals continued strength in global supply chains and demand for technology.",
+        "guytalkRead": "Asia's factories are humming thanks to AI demand—means chips and gear are still hot, prices might stay up, and any smart tech stock could stay on the move.",
+        "context": [
+          "Reuters reports expansion of Asian factory activity tied to AI boom",
+          "Growth signals sustained industrial demand for AI hardware",
+          "Suggests further global economic link to tech sector"
+        ],
+        "whatToSay": "Looks like AI demand is giving Asian factories a boost—means tech isn’t cooling off any time soon.",
+        "sources": [
+          "https://passthenews.com/sources/reuters-today"
+        ],
+        "sourceNames": [
+          "Reuters (via Pass the News)"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Fresh economic story with AI angle; confirmed by Reuters.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Culture-1",
+        "category": "Culture / Entertainment",
+        "sport": null,
+        "isLead": false,
+        "headline": "AI agents attempted hack on Canadian government site",
+        "whatHappened": "Security researchers say AI-driven agents attempted to hack into a Canadian government website.",
+        "whyItMatters": "Illustrates new cyber threats from AI actors—raises concerns about AI misuse and national security vulnerabilities.",
+        "guytalkRead": "AI is not just writing texts—now it’s hacking. If bots are probing government sites, you know the next wave of cyber threats is already here.",
+        "context": [
+          "Reported by Reuters today",
+          "Specifically targets Canadian government infrastructure",
+          "Involves autonomous AI agents, not traditional hackers"
+        ],
+        "whatToSay": "AI tried hacking a government site—welcome to Cyber‑Threat 2.0.",
+        "sources": [
+          "https://passthenews.com/sources/reuters-today",
+          "https://www.ndtv.com/authors/reuters-83"
+        ],
+        "sourceNames": [
+          "Reuters (via Pass the News)",
+          "Reuters (via NDTV)"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "High-concern AI news; confirmed by multiple Reuters channels.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Politics-1",
+        "category": "White House / Politics / Policy",
+        "sport": null,
+        "isLead": false,
+        "headline": "White House removes CNN from press pool again",
+        "whatHappened": "The White House removed CNN from the press pool for a second time in a week amid tensions over coverage.",
+        "whyItMatters": "Signals escalating media access conflict and continued flashpoint in White House–media relations ahead of midterms.",
+        "guytalkRead": "Once again, CNN's out of the pool—White House tensions with the media aren’t cooling off. Makes you wonder what they’re trying to hide this time.",
+        "context": [
+          "Reported today by The Guardian",
+          "This is the second removal in one week",
+          "Amid a broader spat over press access"
+        ],
+        "whatToSay": "White House pulled CNN again—media wars heating up.",
+        "sources": [
+          "https://www.theguardian.com/us-news/us-politics/2026/oct/01/all"
+        ],
+        "sourceNames": [
+          "The Guardian"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Significant political news with real conversation appeal; confirmed by Guardian.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "World-1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "New Zealand parliament dissolved ahead of tight November vote",
+        "whatHappened": "New Zealand’s Prime Minister has dissolved parliament today in preparation for a closely contested election in November.",
+        "whyItMatters": "Triggering early elections in a tight race impacts geopolitics and trade; major domestic shift in a key Pacific democracy.",
+        "guytalkRead": "NZ just called elections—parliament dissolved today. Tight race in November could change Pacific dynamics fast.",
+        "context": [
+          "Reported today by Reuters",
+          "Parliament dissolution triggers November general election",
+          "Described as tight contest"
+        ],
+        "whatToSay": "New Zealand dumped parliament today—election drama inbound.",
+        "sources": [
+          "https://passthenews.com/sources/reuters-today"
+        ],
+        "sourceNames": [
+          "Reuters (via Pass the News)"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 3,
+          "variety": 5
+        },
+        "selectionReason": "Major democratic event internationally; confirmed by Reuters.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "Senate confirms Keith Sonderling as labor secretary",
+        "reason": "While confirmed today, conversation score low—men 25–45 unlikely to casually bring this up at a bar."
+      },
+      {
+        "headline": "Bipartisan bill seeks to ban cellphones in schools",
+        "reason": "Policy story but not highly conversational for target audience."
+      }
+    ],
+    "researchNotes": "Today’s coverage shows a clear MLB Wild Card upset with White Sox over Astros, new AI‑related cyber threat with AI agents hacking a Canadian gov site, Asia factory growth tied to AI boom, internal press tension with White House removing CNN again, and global politics with NZ dissolving parliament for a tight November vote.",
+    "relevanceScan": {
+      "bucketA_sports": "White Sox beat Astros in AL Wild Card",
+      "bucketB_politics": "White House removes CNN from press pool again",
+      "bucketC_markets": "Asian factory activity expands thanks to global AI boom",
+      "bucketD_tech": "AI agents attempted hack on Canadian government site",
+      "bucketE_culture": "—",
+      "bucketF_world": "New Zealand parliament dissolved ahead of tight November vote",
+      "leadJustification": "The White Sox postseason upset is the most naturally conversational and significant for the target demographic—sports opening of October baseball stands out more than policy or world news in casual conversation contexts."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-10-01T15:51:47.390Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "golf",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfbnUrbzyPevVkoyrTJgP\"}"
+    },
+    {
+      "section": "nhl",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfbnUreiwBd8pW7sP616a\"}"
+    },
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfbnUrjhF2x4qmM6XG8FA\"}"
+    },
+    {
+      "section": "sports",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfbnUiBVMQdnmL3pLSprK\"}"
+    },
+    {
+      "section": "f1",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfbnUrtcUccFYzWWcfGhe\"}"
+    },
+    {
+      "section": "lead",
+      "kind": "retry",
+      "detail": "malformed lead — retried"
+    },
+    {
+      "section": "editor",
+      "kind": "failed",
+      "detail": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CfbnWYkkwpTfot9DdxiWF\"}"
+    },
+    {
+      "section": "image:Bank of Utah Championship 2026 PGA Tour ",
+      "kind": "failed",
+      "detail": "web image search found no usable photo — needs a manual image from Jake"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+    "blocking": [],
+    "warnings": []
+  }
+}
