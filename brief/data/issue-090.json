@@ -1,0 +1,1544 @@
+{
+  "num": 90,
+  "slug": "issue-090",
+  "date": "Saturday, October 10, 2026",
+  "title": "Wall Street closes record‑setting week on a high note",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401898395",
+      "name": "Houston Rockets at Dallas Mavericks",
+      "shortName": "HOU VS DAL",
+      "date": "2026-10-09T12:00Z",
+      "venue": "Venetian Arena",
+      "venueCity": "",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA China Game",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Dallas Mavericks",
+        "abbrev": "DAL",
+        "score": "117",
+        "winner": false
+      },
+      "away": {
+        "team": "Houston Rockets",
+        "abbrev": "HOU",
+        "score": "135",
+        "winner": true
+      }
+    },
+    {
+      "id": "401908940",
+      "name": "Memphis Grizzlies at Chicago Bulls",
+      "shortName": "MEM @ CHI",
+      "date": "2026-10-10T00:00Z",
+      "venue": "United Center",
+      "venueCity": "Chicago, IL",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Chicago Bulls",
+        "abbrev": "CHI",
+        "score": "100",
+        "winner": false
+      },
+      "away": {
+        "team": "Memphis Grizzlies",
+        "abbrev": "MEM",
+        "score": "104",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 778.57,
+      "prevClose": 773.93,
+      "dayChange": 4.64,
+      "dayChangePct": 0.5995,
+      "weekChangePct": 1.1602808042200954,
+      "spark": [
+        757.8300170898438,
+        764.2899780273438,
+        760.8800048828125,
+        757.3900146484375,
+        754.0499877929688,
+        762.5999755859375,
+        761.6900024414062,
+        773.5,
+        773.3800048828125,
+        767.8099975585938,
+        767.1799926757812,
+        771.3499755859375,
+        765.6099853515625,
+        764.2000122070312,
+        762.6300048828125,
+        763.989990234375,
+        769.6400146484375,
+        774.8300170898438,
+        779.0900268554688,
+        777.219970703125,
+        773.9299926757812,
+        778.5700073242188
+      ],
+      "indexPrice": 7811.54,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": 0.5946940970129949
+    },
+    "DIA": {
+      "price": 516.11,
+      "prevClose": 511.65,
+      "dayChange": 4.46,
+      "dayChangePct": 0.8717,
+      "weekChangePct": 0.9802374949433458,
+      "spark": [
+        520.75,
+        525.7899780273438,
+        524.489990234375,
+        521.22998046875,
+        515.219970703125,
+        518.3499755859375,
+        515.8800048828125,
+        519.780029296875,
+        518,
+        514.2999877929688,
+        512.6799926757812,
+        517.489990234375,
+        514.02001953125,
+        512.8800048828125,
+        508.54998779296875,
+        508.6199951171875,
+        511.1000061035156,
+        512.1099853515625,
+        514.5599975585938,
+        511.0199890136719,
+        511.6499938964844,
+        516.1099853515625
+      ],
+      "indexPrice": 51654.95,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": 0.8262655066982779
+    },
+    "QQQ": {
+      "price": 751.27,
+      "prevClose": 747.58,
+      "dayChange": 3.69,
+      "dayChangePct": 0.4936,
+      "weekChangePct": 0.2254573056412832,
+      "spark": [
+        708.6900024414062,
+        714.8800048828125,
+        709.1799926757812,
+        704.5399780273438,
+        704.719970703125,
+        716.9199829101562,
+        721.4500122070312,
+        741.469970703125,
+        747.4600219726562,
+        741.2100219726562,
+        741.0999755859375,
+        744.5,
+        736.530029296875,
+        737.9299926757812,
+        739.77001953125,
+        742.030029296875,
+        749.5800170898438,
+        756.2000122070312,
+        759.6599731445312,
+        757.72998046875,
+        747.5800170898438,
+        751.27001953125
+      ],
+      "indexPrice": 27366.17,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": 0.6355606087485455
+    },
+    "IWM": {
+      "price": 278.94,
+      "prevClose": 277.57,
+      "dayChange": 1.37,
+      "dayChangePct": 0.4936,
+      "weekChangePct": -0.9164496711977995,
+      "spark": [
+        287.70001220703125,
+        288.8900146484375,
+        287.9100036621094,
+        285.1400146484375,
+        283.9200134277344,
+        285.42999267578125,
+        284.1000061035156,
+        285.5799865722656,
+        287.2099914550781,
+        281.9200134277344,
+        281.6600036621094,
+        281.9700012207031,
+        280.0199890136719,
+        279.010009765625,
+        277.8900146484375,
+        279.0199890136719,
+        281.5199890136719,
+        283.3800048828125,
+        281.3399963378906,
+        277.70001220703125,
+        277.57000732421875,
+        278.94000244140625
+      ],
+      "indexPrice": 2806.9814,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": 0.459947022024764
+    },
+    "NVDA": {
+      "price": 229.28,
+      "prevClose": 230.48,
+      "dayChange": -1.2,
+      "dayChangePct": -0.5207,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 382.7,
+      "prevClose": 375,
+      "dayChange": 7.7,
+      "dayChangePct": 2.0533,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 535.07,
+      "prevClose": 522.61,
+      "dayChange": 12.46,
+      "dayChangePct": 2.3842,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 336.64,
+      "prevClose": 340.42,
+      "dayChange": -3.78,
+      "dayChangePct": -1.1104,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 718.67,
+      "prevClose": 720.89,
+      "dayChange": -2.22,
+      "dayChangePct": -0.308,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 262.43,
+      "prevClose": 254.06,
+      "dayChange": 8.37,
+      "dayChangePct": 3.2945,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 351.66,
+      "prevClose": 348.29,
+      "dayChange": 3.37,
+      "dayChangePct": 0.9676,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 608.1,
+      "prevClose": 620.68,
+      "dayChange": -12.58,
+      "dayChangePct": -2.0268,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 361.54,
+      "prevClose": 360.14,
+      "dayChange": 1.4,
+      "dayChangePct": 0.3887,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 70.3,
+      "prevClose": 71.57,
+      "dayChange": -1.27,
+      "dayChangePct": -1.7745,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 332.99,
+      "prevClose": 331.42,
+      "dayChange": 1.57,
+      "dayChangePct": 0.4737,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 179.39,
+      "prevClose": 172,
+      "dayChange": 7.39,
+      "dayChangePct": 4.2965,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 586.06,
+      "prevClose": 574.55,
+      "dayChange": 11.51,
+      "dayChangePct": 2.0033,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 83004,
+      "prevClose": 83034.55,
+      "dayChange": -30.55,
+      "dayChangePct": -0.0368,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "COIN",
+      "AMZN",
+      "MSFT",
+      "TSLA",
+      "AMD"
+    ],
+    "10Y": {
+      "price": 5.244,
+      "prevClose": 5.230999946594238,
+      "dayChange": 0.013000053405761491,
+      "dayChangePct": 0.2485194712002525,
+      "weekChangePct": -0.6253543816383489,
+      "spark": [
+        4.943999767303467,
+        4.974999904632568,
+        4.960999965667725,
+        4.995999813079834,
+        5.00600004196167,
+        4.947000026702881,
+        4.998000144958496,
+        4.9629998207092285,
+        4.9679999351501465,
+        5.113999843597412,
+        5.1620001792907715,
+        5.184000015258789,
+        5.239999771118164,
+        5.255000114440918,
+        5.293000221252441,
+        5.236999988555908,
+        5.2769999504089355,
+        5.310999870300293,
+        5.269000053405762,
+        5.2769999504089355,
+        5.230999946594238,
+        5.24399995803833
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, October 9 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, October 9). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 209.05,
+          "changePct": 5.16652
+        },
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 179.39,
+          "changePct": 4.29651
+        },
+        {
+          "symbol": "AMZN",
+          "name": "Amazon.com, Inc.",
+          "price": 262.43,
+          "changePct": 3.2945
+        },
+        {
+          "symbol": "V",
+          "name": "Visa Inc.",
+          "price": 385.45,
+          "changePct": 2.75926
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "SBUX",
+          "name": "Starbucks Corporation",
+          "price": 90.75,
+          "changePct": -2.6392
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 104.7,
+          "changePct": -2.22264
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 608.1,
+          "changePct": -2.02681
+        },
+        {
+          "symbol": "PEP",
+          "name": "PepsiCo, Inc.",
+          "price": 125.97,
+          "changePct": -1.84666
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 229.28,
+          "changePct": -0.52065
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 104.7,
+          "changePct": -2.22264
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 382.7,
+          "changePct": 2.05333
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 82917.41,
+          "changePct": 0.43901
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "Baycurrent Classic",
+    "venue": "",
+    "location": "",
+    "date": "2026-10-08T04:00Z",
+    "endDate": "2026-10-11T04:00Z",
+    "status": "Round 3 - Play Complete",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Michael Brennan",
+        "score": "-13",
+        "pos": "1st"
+      },
+      {
+        "name": "Zach Bauchou",
+        "score": "-13",
+        "pos": "2nd"
+      },
+      {
+        "name": "Jacob Bridgeman",
+        "score": "-13",
+        "pos": "3rd"
+      },
+      {
+        "name": "Adam Scott",
+        "score": "-12",
+        "pos": "4th"
+      },
+      {
+        "name": "Jordan Smith",
+        "score": "-12",
+        "pos": "5th"
+      },
+      {
+        "name": "Stephan Jaeger",
+        "score": "-12",
+        "pos": "6th"
+      },
+      {
+        "name": "Justin Thomas",
+        "score": "-12",
+        "pos": "7th"
+      },
+      {
+        "name": "Keith Mitchell",
+        "score": "-12",
+        "pos": "8th"
+      },
+      {
+        "name": "Ryan Gerard",
+        "score": "-10",
+        "pos": "9th"
+      },
+      {
+        "name": "Mac Meissner",
+        "score": "-10",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "China Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-09-27T04:00Z",
+        "endDate": "2026-10-12T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Alex de Minaur",
+            "loser": "Hubert Hurkacz",
+            "score": "6-4 3-2"
+          },
+          {
+            "winner": "Novak Djokovic",
+            "loser": "Daniil Medvedev",
+            "score": "7-5 5-3"
+          },
+          {
+            "winner": "Novak Djokovic",
+            "loser": "Alex de Minaur",
+            "score": "7-6 0-1"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "China Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-09-27T04:00Z",
+        "endDate": "2026-10-12T03:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Elise Mertens",
+            "loser": "Iga Swiatek",
+            "score": "7-6 6-3"
+          },
+          {
+            "winner": "Mirra Andreeva",
+            "loser": "Nikola Bartunkova",
+            "score": "6-2 6-2"
+          },
+          {
+            "winner": "Zheng Qinwen",
+            "loser": "Elise Mertens",
+            "score": "7-5 6-2"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Singapore Airlines Singapore Grand Prix",
+    "shortName": "Singapore Airlines Singapore GP",
+    "venue": "Marina Bay Street Circuit",
+    "status": "10/11 - 8:00 AM EDT",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 320,
+      "lead": 84
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 1
+  },
+  "worldCup": null,
+  "nhl": {
+    "final": {
+      "id": "401892465",
+      "name": "Seattle Kraken at Detroit Red Wings",
+      "shortName": "SEA @ DET",
+      "date": "2026-10-09T23:00Z",
+      "venue": "Little Caesars Arena",
+      "venueCity": "Detroit, MI",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Detroit Red Wings",
+        "abbrev": "DET",
+        "score": "3",
+        "winner": false
+      },
+      "away": {
+        "team": "Seattle Kraken",
+        "abbrev": "SEA",
+        "score": "6",
+        "winner": true
+      }
+    },
+    "next": null
+  },
+  "upcoming": [
+    {
+      "id": "401902645",
+      "name": "LA Clippers at Toronto Raptors",
+      "shortName": "LAC @ TOR",
+      "date": "2026-10-10T22:30Z",
+      "venue": "Rogers Arena",
+      "venueCity": "Vancouver, BC",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Canada Games 2026",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Toronto Raptors",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "LA Clippers",
+        "abbrev": "LAC",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401898396",
+      "name": "Atlanta Hawks at Indiana Pacers",
+      "shortName": "ATL @ IND",
+      "date": "2026-10-10T23:00Z",
+      "venue": "Gainbridge Fieldhouse",
+      "venueCity": "Indianapolis, IN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Indiana Pacers",
+        "abbrev": "IND",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Atlanta Hawks",
+        "abbrev": "ATL",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401906510",
+      "name": "Detroit Pistons at Washington Wizards",
+      "shortName": "DET @ WSH",
+      "date": "2026-10-10T23:00Z",
+      "venue": "Capital One Arena",
+      "venueCity": "Washington, DC",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Washington Wizards",
+        "abbrev": "WSH",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Detroit Pistons",
+        "abbrev": "DET",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401898397",
+      "name": "Minnesota Timberwolves at Miami Heat",
+      "shortName": "MIN @ MIA",
+      "date": "2026-10-11T00:00Z",
+      "venue": "Kaseya Center",
+      "venueCity": "Miami, FL",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Miami Heat",
+        "abbrev": "MIA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Minnesota Timberwolves",
+        "abbrev": "MIN",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401898398",
+      "name": "Philadelphia 76ers at Boston Celtics",
+      "shortName": "PHI @ BOS",
+      "date": "2026-10-11T00:00Z",
+      "venue": "TD Garden",
+      "venueCity": "Boston, MA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Boston Celtics",
+        "abbrev": "BOS",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Philadelphia 76ers",
+        "abbrev": "PHI",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401898399",
+      "name": "Sacramento Kings at Golden State Warriors",
+      "shortName": "SAC @ GS",
+      "date": "2026-10-11T00:30Z",
+      "venue": "Chase Center",
+      "venueCity": "San Francisco, CA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Golden State Warriors",
+        "abbrev": "GS",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Sacramento Kings",
+        "abbrev": "SAC",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401898720",
+      "name": "San Antonio Spurs at Phoenix Suns",
+      "shortName": "SA @ PHX",
+      "date": "2026-10-11T02:30Z",
+      "venue": "Mortgage Matchup Center",
+      "venueCity": "Phoenix, AZ",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Phoenix Suns",
+        "abbrev": "PHX",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401898400",
+      "name": "Dallas Mavericks at Houston Rockets",
+      "shortName": "DAL VS HOU",
+      "date": "2026-10-11T10:00Z",
+      "venue": "Venetian Arena",
+      "venueCity": "",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA China Game",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Houston Rockets",
+        "abbrev": "HOU",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Dallas Mavericks",
+        "abbrev": "DAL",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401898401",
+      "name": "Orlando Magic at Cleveland Cavaliers",
+      "shortName": "ORL @ CLE",
+      "date": "2026-10-11T22:30Z",
+      "venue": "Rocket Arena",
+      "venueCity": "Cleveland, OH",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Cleveland Cavaliers",
+        "abbrev": "CLE",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Orlando Magic",
+        "abbrev": "ORL",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401901821",
+      "name": "Milwaukee Bucks at Charlotte Hornets",
+      "shortName": "MIL @ CHA",
+      "date": "2026-10-11T23:00Z",
+      "venue": "Spectrum Center",
+      "venueCity": "Charlotte, NC",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Charlotte Hornets",
+        "abbrev": "CHA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Milwaukee Bucks",
+        "abbrev": "MIL",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401908941",
+      "name": "Chicago Bulls at Denver Nuggets",
+      "shortName": "CHI @ DEN",
+      "date": "2026-10-12T01:00Z",
+      "venue": "Ball Arena",
+      "venueCity": "Denver, CO",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Denver Nuggets",
+        "abbrev": "DEN",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Chicago Bulls",
+        "abbrev": "CHI",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401914130",
+      "name": "London Lions at Portland Trail Blazers",
+      "shortName": "LON @ POR",
+      "date": "2026-10-12T20:00Z",
+      "venue": "Moda Center",
+      "venueCity": "Portland, OR",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Portland Trail Blazers",
+        "abbrev": "POR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "London Lions",
+        "abbrev": "LON",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401898402",
+      "name": "Oklahoma City Thunder at Atlanta Hawks",
+      "shortName": "OKC @ ATL",
+      "date": "2026-10-12T23:00Z",
+      "venue": "State Farm Arena",
+      "venueCity": "Atlanta, GA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Atlanta Hawks",
+        "abbrev": "ATL",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Oklahoma City Thunder",
+        "abbrev": "OKC",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401901824",
+      "name": "Brooklyn Nets at Washington Wizards",
+      "shortName": "BKN @ WSH",
+      "date": "2026-10-12T23:00Z",
+      "venue": "Capital One Arena",
+      "venueCity": "Washington, DC",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Washington Wizards",
+        "abbrev": "WSH",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Brooklyn Nets",
+        "abbrev": "BKN",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401914124",
+      "name": "Minnesota Timberwolves at New York Knicks",
+      "shortName": "MIN @ NY",
+      "date": "2026-10-12T23:30Z",
+      "venue": "Madison Square Garden",
+      "venueCity": "New York, NY",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Minnesota Timberwolves",
+        "abbrev": "MIN",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401898721",
+      "name": "San Antonio Spurs at Utah Jazz",
+      "shortName": "SA @ UTAH",
+      "date": "2026-10-13T01:00Z",
+      "venue": "Delta Center",
+      "venueCity": "Salt Lake City, UT",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Utah Jazz",
+        "abbrev": "UTAH",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    }
+  ],
+  "gameMetas": {
+    "401898395": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/nba/recap/_/gameId/401898395",
+      "headlineText": null
+    },
+    "401908940": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/nba/recap/_/gameId/401908940",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "Crazy Rich Asians TV show to reunite Constance Wu and Henry Golding - BBC",
+      "url": "https://www.bbc.com/news/articles/cm5yne8k6zw8o",
+      "description": "The show will pick up after the hit 2018 film, and will also star Michelle Yeoh and Ronny Chieng.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Splendid sequel series Avatar: Seven Havens restores the balance, if only for now. - A.V. Club",
+      "url": "https://www.avclub.com/avatar-seven-havens-review-paramount-plus",
+      "description": "Splendid sequel series Avatar: Seven Havens restores the balance, if only for now.",
+      "source": "The A.V. Club"
+    },
+    {
+      "title": "'RHOP' Alum Mia Thornton Facing Potential Jail Time Over Alleged Stolen Furniture - TMZ",
+      "url": "https://www.tmz.com/2026/10/09/mia-thornton-felony-charge-over-alleged-stolen-furniture/",
+      "description": "Former \"Real Housewives of Potomac\" star Mia Thornton is facing jail time after being hit with a felony charge stemming from her 2025 arrest for allegedly stealing furniture ... TMZ has learned.",
+      "source": "TMZ"
+    },
+    {
+      "title": "Slow Horses star responds after character killed off: ‘I’m not alright about it’ - The Independent",
+      "url": "https://www.the-independent.com/arts-entertainment/tv/news/slow-horses-coe-death-season-6-tom-brooke-b3063886.html",
+      "description": "***Spoilers ahead for season six, episode four***",
+      "source": "The-independent.com"
+    },
+    {
+      "title": "Ted Lasso star explains surprise finale twist as season 5 future looms - The Independent",
+      "url": "https://www.the-independent.com/arts-entertainment/tv/news/ted-lasso-season-5-brendan-hunt-4-finale-b3063883.html",
+      "description": "Series ends fourth season with shock demotion for Ted and major career move for Roy",
+      "source": "The-independent.com"
+    },
+    {
+      "title": "Jerry Jones 'extraordinarily disappointed' after Cowboys loss to Buccaneers - NFL.com",
+      "url": "https://www.nfl.com/news/jerry-jones-extraordinarily-disappointed-after-cowboys-loss-to-buccaneers",
+      "description": "The Dallas Cowboys lost 24-16 to the previously winless Tampa Bay Buccaneers, falling to 2-3 to start the season.",
+      "source": "NFL News"
+    },
+    {
+      "title": "Dak Prescott did not appreciate stadium worker calling Cowboys’ loss “embarrassing” - NBC Sports",
+      "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/dak-prescott-did-not-appreciate-stadium-worker-calling-cowboys-loss-embarrassing",
+      "description": "\"Feel free to speak your mind. Just speak it. Don't coward away from the reaction that you're going to get,\" Prescott said of his exchange with the worker in the tunnel after the game.",
+      "source": "NBCSports.com"
+    },
+    {
+      "title": "Manchester City charges: Enzo Maresca says 'titles absolutely not tainted' - BBC",
+      "url": "https://www.bbc.com/sport/football/articles/cmzxjdvv784xo",
+      "description": "Manchester City manager Enzo Maresca says the club's titles are \"absolutely not\" tainted after they were found guilty of the majority of the 115 charges brought against them by the Premier League.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Friday Insider: Tying a bow on Joey Porter Jr. ... Notes on Penguins' first weeks ... Henry Davis' off-field value - DK Pittsburgh Sports",
+      "url": "https://www.dkpittsburghsports.com/team/steelers/feed/topic/friday-insider-100926-joey-porter-jr-steelers-penguins-pirates-news-nfl-nhl-mlb-cah",
+      "description": "PITTSBURGH -- With the Joey Porter Jr. saga now over in Pittsburgh, Chris Halicke reports everything that led to a trade the Steelers truly did not want to make.",
+      "source": "DKPittsburghSports.com"
+    },
+    {
+      "title": "What happened in sole Singapore GP F1 practice session - The Race",
+      "url": "https://www.the-race.com/formula-1/f1-2026-singapore-gp-practice-russell-fastest/",
+      "description": "George Russell's older-spec Mercedes topped the only practice session of F1's 2026 Singapore GP weekend",
+      "source": "The-race.com"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Markets / Economy",
+      "headline": "Wall Street closes record‑setting week on a high note",
+      "whatHappened": "U.S. stocks rose on Friday, capping off a record‑setting week with gains, even as other financial markets remained unsettled.",
+      "whyItMatters": "Markets are sitting at new highs heading into this weekend ahead of the critical November midterms—and traders will be watching whether this momentum holds.",
+      "depth": "The markets dancing to new highs is the kind of thing everyone at the bar is whispering about—rates, central banks, midterms—they’re all baked in. Friday’s rally just gives you bragging rights.",
+      "whatToSay": "“Stocks had a perfect Friday send‑off—record highs heading into midterms, but those bond yields are still giving me headaches.”",
+      "sources": [
+        "https://apnews.com/article/dafbd0c4037ee10e2a9e305f3cfa8e70"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "U.S. stock indexes ended a record‑setting week with gains Friday",
+        "10‑year Treasury yield climbed to 5.24%, its highest since 2002",
+        "Markets remain unsettled despite stock strength, with mixed signals from bonds and commodities"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Best business story of the day with record‑setting stock action and high relevance to guys concerned about markets heading into midterms.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "7.7‑magnitude quake shakes Panama, damages buildings",
+      "whatHappened": "A powerful 7.7‑magnitude earthquake struck Panama today, damaging buildings and triggering a tsunami alert though no wave damage reported.",
+      "whyItMatters": "Natural disasters this big are rare in Central America—this one could disrupt regional commerce and affect Panama Canal operations.",
+      "depth": "Guys maybe don’t wake up chatting earthquakes—but with the canal and global trade, it’s one of those rare events where it actually matters to our supply chains and your weekend beer price.",
+      "whatToSay": "“Hope Panama bounces back quick—7.7 quake’s no joke, and the canal being fine is big for global trade.”",
+      "sources": [
+        "https://www.lemonde.fr/en/international/article/2026/10/10/trump-and-putin-sign-diesel-deal-angering-ukraine-and-its-allies_6758450_4.html",
+        "https://www.lemonde.fr/archives-du-monde/10-10-2026/"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Magnitude 7.7 earthquake hits near rural Herrera province",
+        "President José Raúl Mulino described roads as “totally collapsed”",
+        "Canal operations remain normal despite structural damage"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High‑impact natural disaster with global implications; confirmed today by top news outlets.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "White House / Politics / Policy",
+      "headline": "Republicans defensive over Alaska fisherman’s return to House race",
+      "whatHappened": "A small‑town Alaska fisherman entering a U.S. House race has put Republicans on the defensive as they fight to keep their majority.",
+      "whyItMatters": "It underscores how unpredictable candidates can change the dynamics in tight midterm battles, especially in swing states.",
+      "depth": "Talking politics at the bar, this is the good stuff: underdog fisherman, unexpected shake‑up—real-life drama, not pundit babble.",
+      "whatToSay": "“Only in 2026: a small‑town Alaskan fisherman could blow a hole in GOP’s House game plan.”",
+      "sources": [
+        "https://apnews.com/article/854ce4b80a07d5c05ddfd01756fa19bd"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "White House / Politics / Policy",
+      "_context": [
+        "Alaska fisherman candidate is drawing attention in House majority battle",
+        "His campaign is turning the tide on Republican defense strategy",
+        "Story published today by AP News"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Fresh, real midterm election drama with a quirky twist that actually plays at the water cooler.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "Trump secures diesel deal with Putin amid price surge",
+      "whatHappened": "President Trump announced a deal with Vladimir Putin for Russia to supply 300,000 tons of diesel immediately and 500,000 tons in November to reduce fuel prices.",
+      "whyItMatters": "It has major geopolitical implications, angering Ukraine and allies while directly targeting U.S. energy costs ahead of midterms.",
+      "depth": "This is big—fuel prices, politics, Russia deal—a total bar‑room mic drop moment today.",
+      "whatToSay": "“Trump cut a diesel deal with Putin—talk about making global energy politics local.”",
+      "sources": [
+        "https://www.lemonde.fr/en/international/article/2026/10/10/trump-and-putin-sign-diesel-deal-angering-ukraine-and-its-allies_6758450_4.html"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Deal announced on Truth Social Friday night",
+        "300,000 tons immediately, 500,000 tons in November",
+        "Ukraine and allies reacted angrily"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Massive geopolitical and economic story tied to energy policy and midterm campaign—it’s the kind of headline that dominates Saturday talk.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Crazy Rich Asians TV show to reunite Constance Wu and Henry Golding",
+        "source": "BBC News",
+        "url": "https://www.bbc.com/news/articles/cm5yne8k6zw8o",
+        "fact": "The show will pick up after the hit 2018 film, and will also star Michelle Yeoh and Ronny Chieng.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Splendid sequel series Avatar: Seven Havens restores the balance, if only for now.",
+        "source": "The A.V. Club",
+        "url": "https://www.avclub.com/avatar-seven-havens-review-paramount-plus",
+        "fact": "Splendid sequel series Avatar: Seven Havens restores the balance, if only for now.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "'RHOP' Alum Mia Thornton Facing Potential Jail Time Over Alleged Stolen Furniture",
+        "source": "TMZ",
+        "url": "https://www.tmz.com/2026/10/09/mia-thornton-felony-charge-over-alleged-stolen-furniture/",
+        "fact": "Former \"Real Housewives of Potomac\" star Mia Thornton is facing jail time after being hit with a felony charge stemming from her 2025 arrest for allegedly stealing furniture ... TMZ has learned.",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "Singapore Airlines Singapore Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Singapore Airlines Singapore Grand Prix — this weekend",
+      "facts": "Singapore Airlines Singapore Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/fom-website/2026/Singapore/GettyImages-2299496793.webp",
+      "videoUrl": null,
+      "isLead": true,
+      "when": "10/11 - 8:00 AM EDT",
+      "tier": 1,
+      "sportType": "f1",
+      "playerLinks": [
+        {
+          "name": "Max Verstappen",
+          "url": "https://www.formula1.com/en/racing/2026/singapore.html",
+          "note": "claimed sprint pole at Singapore, and is set to start his 250th Grand Prix this weekend"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/racing/2026/singapore.html",
+          "note": "set fastest time in Free Practice 1 at Marina Bay (1:32.274)"
+        },
+        {
+          "name": "Andrea Kimi Antonelli",
+          "url": "https://www.tenthz.com/weekend/2026/17",
+          "note": "scored 96 points over the last 5 rounds, including strong win and podium rates"
+        }
+      ],
+      "ourPick": "Andrea Kimi Antonelli to podium — he leads the championship by 84 points and consistent pace at a power circuit gives him the edge."
+    },
+    {
+      "name": "NBA China Game",
+      "label": "NBA",
+      "category": "team",
+      "headline": "Houston Rockets 135–117 over Dallas Mavericks",
+      "facts": "Houston Rockets beat Dallas Mavericks 135–117 | Standout performances: Tari Eason (Rockets): 20pts; Cooper Flagg (Mavericks): 19pts; Fred VanVleet (Rockets): 17pts; Alperen Sengun (Rockets): 16pts; Reed Sheppard (Rockets): 16pts; Naji Marshall (Mavericks): 16pts",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://bc.gmg.io/image/upload/c_thumb,q_auto,w_700,f_jpg/media/gmg/5QTLYK3CABFDZOCJJMMIJRNOSA.jpg?api_key=click2houston_85fdeb57f8cd3635",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "nba",
+      "playerLinks": [
+        {
+          "name": "Tari Eason",
+          "url": "#",
+          "note": "recorded a 20‑point triple‑double with 20 points, 10 rebounds and 10 assists in the preseason opener"
+        },
+        {
+          "name": "Alperen Şengün",
+          "url": "#",
+          "note": "posted 16 points, 10 rebounds and a team‑high 10 assists in the 135‑117 preseason win"
+        },
+        {
+          "name": "Fred VanVleet",
+          "url": "#",
+          "note": "contributed 17 points and 7 assists, helping facilitate Houston’s 36‑assist team performance"
+        }
+      ]
+    },
+    {
+      "name": "SEA @ DET",
+      "label": "NHL",
+      "category": "team",
+      "headline": "Seattle Kraken 6–3 [SEA @ DET]",
+      "facts": "Seattle Kraken beat Detroit Red Wings 6–3 [SEA @ DET] | Standout performances: Frederick Gaudreau (Kraken): 2G; Ben Meyers (Kraken): 1G 2A; Berkly Catton (Kraken): 1G 1A; Michael Brandsegg-Nygard (Red Wings): 1G 1A; Mackie Samoskevich (Kraken): 1G; Ryan Winterton (Kraken): 2A",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://www.sportsnet.ca/wp-content/uploads/2026/06/Untitled-design-33.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "nhl",
+      "playerLinks": [
+        {
+          "name": "Frédérick Gaudreau",
+          "url": "https://www.nhl.com/news/seattle-kraken-detroit-red-wings-game-recap-october-9-2026",
+          "note": "scored two goals—including both in a four‑goal second period that sparked the comeback win"
+        },
+        {
+          "name": "Ben Meyers",
+          "url": "https://www.nhl.com/news/seattle-kraken-detroit-red-wings-game-recap-october-9-2026",
+          "note": "had a goal and two assists for a three‑point night"
+        },
+        {
+          "name": "Vince Dunn",
+          "url": "https://www.nhl.com/news/seattle-kraken-detroit-red-wings-game-recap-october-9-2026",
+          "note": "scored a power‑play goal in the third period"
+        }
+      ]
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": null,
+    "imageReal": false,
+    "eyebrow": "Markets / Economy",
+    "title": "Wall Street closes record‑setting week on a high note",
+    "sub": "Markets / Economy",
+    "isNonSportsLead": true,
+    "leadCategory": "Markets / Economy"
+  },
+  "recPick": {
+    "brand": "Garmin Enduro 4",
+    "title": "The ultra‑long‑battery solar GPS watch built for endurance dudes",
+    "body": "This week, Garmin quietly dropped the Enduro 4—their most rugged, long‑last GPS smartwatch yet, boasting up to 320 hours of activity battery life and way more RAM than before. If you're training for ultramarathons, multi‑day hikes, or just hate charging, this is a rare flex in low‑maintenance tech. Trade‑off? It’s nearly $900 and built for hardcore durability, not sleek everyday style.",
+    "url": "https://www.menshealth.com/technology-gear/a74079972/mh-gear-report-october-2026/",
+    "cta": "Check out the Enduro 4 →",
+    "imageUrl": "https://s.yimg.com/lo/mysterio/api/1e0bc226ea71456f2753489c70aff0e923bc496a02d29cae1e4f682493069c16/lightyear_networkapi/resizefill_w1200_h675%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fmansfield-news-journal%2F857e264c90cd52c3590598c0b6827005.jpg"
+  },
+  "copy": {
+    "title": null,
+    "keyTakeaway": null,
+    "todaysHits": null,
+    "lead": null,
+    "sportsOther": [],
+    "markets": null,
+    "golf": null,
+    "f1": null,
+    "culture": null,
+    "finalSharpTake": null,
+    "glance": null,
+    "theTake": null,
+    "nhl": null,
+    "upcomingPreview": null,
+    "dynamicSportsText": null
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "brokenLinks": [],
+    "reason": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CftkWaw4hZfF28a1m7wSZ\"}"
+  },
+  "factPack": null,
+  "researchPack": {
+    "stories": [
+      {
+        "id": "markets-1",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": true,
+        "headline": "Wall Street closes record‑setting week on a high note",
+        "whatHappened": "U.S. stocks rose on Friday, capping off a record‑setting week with gains, even as other financial markets remained unsettled.",
+        "whyItMatters": "Markets are sitting at new highs heading into this weekend ahead of the critical November midterms—and traders will be watching whether this momentum holds.",
+        "guytalkRead": "The markets dancing to new highs is the kind of thing everyone at the bar is whispering about—rates, central banks, midterms—they’re all baked in. Friday’s rally just gives you bragging rights.",
+        "context": [
+          "U.S. stock indexes ended a record‑setting week with gains Friday",
+          "10‑year Treasury yield climbed to 5.24%, its highest since 2002",
+          "Markets remain unsettled despite stock strength, with mixed signals from bonds and commodities"
+        ],
+        "whatToSay": "“Stocks had a perfect Friday send‑off—record highs heading into midterms, but those bond yields are still giving me headaches.”",
+        "sources": [
+          "https://apnews.com/article/dafbd0c4037ee10e2a9e305f3cfa8e70"
+        ],
+        "sourceNames": [
+          "AP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Best business story of the day with record‑setting stock action and high relevance to guys concerned about markets heading into midterms.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "world-1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "7.7‑magnitude quake shakes Panama, damages buildings",
+        "whatHappened": "A powerful 7.7‑magnitude earthquake struck Panama today, damaging buildings and triggering a tsunami alert though no wave damage reported.",
+        "whyItMatters": "Natural disasters this big are rare in Central America—this one could disrupt regional commerce and affect Panama Canal operations.",
+        "guytalkRead": "Guys maybe don’t wake up chatting earthquakes—but with the canal and global trade, it’s one of those rare events where it actually matters to our supply chains and your weekend beer price.",
+        "context": [
+          "Magnitude 7.7 earthquake hits near rural Herrera province",
+          "President José Raúl Mulino described roads as “totally collapsed”",
+          "Canal operations remain normal despite structural damage"
+        ],
+        "whatToSay": "“Hope Panama bounces back quick—7.7 quake’s no joke, and the canal being fine is big for global trade.”",
+        "sources": [
+          "https://www.lemonde.fr/en/international/article/2026/10/10/trump-and-putin-sign-diesel-deal-angering-ukraine-and-its-allies_6758450_4.html",
+          "https://www.lemonde.fr/archives-du-monde/10-10-2026/"
+        ],
+        "sourceNames": [
+          "Le Monde",
+          "Le Monde"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "High‑impact natural disaster with global implications; confirmed today by top news outlets.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "politics-1",
+        "category": "White House / Politics / Policy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Republicans defensive over Alaska fisherman’s return to House race",
+        "whatHappened": "A small‑town Alaska fisherman entering a U.S. House race has put Republicans on the defensive as they fight to keep their majority.",
+        "whyItMatters": "It underscores how unpredictable candidates can change the dynamics in tight midterm battles, especially in swing states.",
+        "guytalkRead": "Talking politics at the bar, this is the good stuff: underdog fisherman, unexpected shake‑up—real-life drama, not pundit babble.",
+        "context": [
+          "Alaska fisherman candidate is drawing attention in House majority battle",
+          "His campaign is turning the tide on Republican defense strategy",
+          "Story published today by AP News"
+        ],
+        "whatToSay": "“Only in 2026: a small‑town Alaskan fisherman could blow a hole in GOP’s House game plan.”",
+        "sources": [
+          "https://apnews.com/article/854ce4b80a07d5c05ddfd01756fa19bd"
+        ],
+        "sourceNames": [
+          "AP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 4
+        },
+        "selectionReason": "Fresh, real midterm election drama with a quirky twist that actually plays at the water cooler.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "business-world-1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Trump secures diesel deal with Putin amid price surge",
+        "whatHappened": "President Trump announced a deal with Vladimir Putin for Russia to supply 300,000 tons of diesel immediately and 500,000 tons in November to reduce fuel prices.",
+        "whyItMatters": "It has major geopolitical implications, angering Ukraine and allies while directly targeting U.S. energy costs ahead of midterms.",
+        "guytalkRead": "This is big—fuel prices, politics, Russia deal—a total bar‑room mic drop moment today.",
+        "context": [
+          "Deal announced on Truth Social Friday night",
+          "300,000 tons immediately, 500,000 tons in November",
+          "Ukraine and allies reacted angrily"
+        ],
+        "whatToSay": "“Trump cut a diesel deal with Putin—talk about making global energy politics local.”",
+        "sources": [
+          "https://www.lemonde.fr/en/international/article/2026/10/10/trump-and-putin-sign-diesel-deal-angering-ukraine-and-its-allies_6758450_4.html"
+        ],
+        "sourceNames": [
+          "Le Monde"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 4
+        },
+        "selectionReason": "Massive geopolitical and economic story tied to energy policy and midterm campaign—it’s the kind of headline that dominates Saturday talk.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "Singapore Grand Prix continues today",
+        "reason": "Ongoing race not yet producing confirmed results or major development—no standout event to report."
+      },
+      {
+        "headline": "BFI London Film Festival coverage",
+        "reason": "While culturally relevant, no major news development today; more festival programming than breaking news."
+      }
+    ],
+    "researchNotes": "Today (Saturday, October 10, 2026) brought key confirmed events across markets (record stock week finish), a major natural disaster (Panama quake), high‑stakes politics (Alaska House race, Trump‑Putin diesel deal), but limited standout sports results yet. Major sports events like Singapore F1 and Ironman World Championship are in progress but without definitive outcomes reported yet.",
+    "relevanceScan": {
+      "bucketA_sports": "none (no confirmed major result reported today)",
+      "bucketB_politics": "Small‑town Alaska fisherman entering House race puts GOP defensive",
+      "bucketC_markets": "Wall Street finishes record‑setting week with gains",
+      "bucketD_tech": "(none separately reported today)",
+      "bucketE_culture": "(none - festival activities not confirmed major news)",
+      "bucketF_world": "Panama 7.7‑magnitude quake; Trump‑Putin diesel deal",
+      "leadJustification": "Stock markets hitting record highs today combine freshness, confidence, conversation, and broad relevance—outstrips even geopolitical or disaster stories in normal‑everyday relevance for our GuyTalk audience."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-10-10T14:55:39.619Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "golf",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CftkV6M5F8XuGZZVUdXZu\"}"
+    },
+    {
+      "section": "f1",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CftkV6R38TmKpudaWrhhE\"}"
+    },
+    {
+      "section": "sports",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CftkUwvot1F18NRhVSaxJ\"}"
+    },
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CftkV6R2tRQUnqu3xQaMC\"}"
+    },
+    {
+      "section": "nhl",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CftkV6Wk2hwK4FbimvMrM\"}"
+    },
+    {
+      "section": "lead",
+      "kind": "retry",
+      "detail": "malformed lead — retried"
+    },
+    {
+      "section": "editor",
+      "kind": "failed",
+      "detail": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CftkWaw4hZfF28a1m7wSZ\"}"
+    },
+    {
+      "section": "image:Markets / Economy Wall Street closes rec",
+      "kind": "failed",
+      "detail": "web image search found no usable photo — needs a manual image from Jake"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+    "blocking": [],
+    "warnings": []
+  }
+}
