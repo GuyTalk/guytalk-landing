@@ -1,0 +1,1786 @@
+{
+  "num": 90,
+  "slug": "issue-090",
+  "date": "Friday, October 30, 2026",
+  "title": "Tech stocks slide drags S&P 500 down 1.4%",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401909893",
+      "name": "Cleveland Cavaliers at Atlanta Hawks",
+      "shortName": "CLE @ ATL",
+      "date": "2026-10-30T00:00Z",
+      "venue": "State Farm Arena",
+      "venueCity": "Atlanta, GA",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Atlanta Hawks",
+        "abbrev": "ATL",
+        "score": "114",
+        "winner": true
+      },
+      "away": {
+        "team": "Cleveland Cavaliers",
+        "abbrev": "CLE",
+        "score": "111",
+        "winner": false
+      }
+    },
+    {
+      "id": "401909894",
+      "name": "Sacramento Kings at New Orleans Pelicans",
+      "shortName": "SAC @ NO",
+      "date": "2026-10-30T00:00Z",
+      "venue": "Smoothie King Center",
+      "venueCity": "New Orleans, LA",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "New Orleans Pelicans",
+        "abbrev": "NO",
+        "score": "132",
+        "winner": true
+      },
+      "away": {
+        "team": "Sacramento Kings",
+        "abbrev": "SAC",
+        "score": "120",
+        "winner": false
+      }
+    },
+    {
+      "id": "401909895",
+      "name": "Memphis Grizzlies at Portland Trail Blazers",
+      "shortName": "MEM @ POR",
+      "date": "2026-10-30T02:00Z",
+      "venue": "Moda Center",
+      "venueCity": "Portland, OR",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Portland Trail Blazers",
+        "abbrev": "POR",
+        "score": "103",
+        "winner": false
+      },
+      "away": {
+        "team": "Memphis Grizzlies",
+        "abbrev": "MEM",
+        "score": "124",
+        "winner": true
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 758.69,
+      "prevClose": 769.36,
+      "dayChange": -10.67,
+      "dayChangePct": -1.3869,
+      "weekChangePct": -0.19079315749588155,
+      "spark": [
+        763.989990234375,
+        769.6400146484375,
+        774.8300170898438,
+        779.0900268554688,
+        777.219970703125,
+        773.9299926757812,
+        778.5700073242188,
+        778.0999755859375,
+        778.010009765625,
+        769.5999755859375,
+        771.7899780273438,
+        763.25,
+        766.47998046875,
+        769.0499877929688,
+        773.0900268554688,
+        763.9600219726562,
+        759.969970703125,
+        765.3699951171875,
+        769.6599731445312,
+        772.3099975585938,
+        769.3599853515625,
+        758.52001953125
+      ],
+      "indexPrice": 7608.6,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -1.447985590612415
+    },
+    "DIA": {
+      "price": 519.67,
+      "prevClose": 522.73,
+      "dayChange": -3.06,
+      "dayChangePct": -0.5854,
+      "weekChangePct": -0.34524332701249294,
+      "spark": [
+        508.6199951171875,
+        511.1000061035156,
+        512.1099853515625,
+        514.5599975585938,
+        511.0199890136719,
+        511.6499938964844,
+        516.1099853515625,
+        517.9099731445312,
+        516.2100219726562,
+        515.6300048828125,
+        521.1799926757812,
+        519.0999755859375,
+        518.9199829101562,
+        524.3599853515625,
+        527.7000122070312,
+        527.8900146484375,
+        521.3699951171875,
+        522.969970703125,
+        523.280029296875,
+        524.6799926757812,
+        522.72998046875,
+        519.5700073242188
+      ],
+      "indexPrice": 52025.1,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -0.6065018644081105
+    },
+    "QQQ": {
+      "price": 695.08,
+      "prevClose": 715.34,
+      "dayChange": -20.26,
+      "dayChangePct": -2.8322,
+      "weekChangePct": -1.3415707107510708,
+      "spark": [
+        742.030029296875,
+        749.5800170898438,
+        756.2000122070312,
+        759.6599731445312,
+        757.72998046875,
+        747.5800170898438,
+        751.27001953125,
+        746.0399780273438,
+        743.5700073242188,
+        728.9500122070312,
+        728,
+        709.7999877929688,
+        718.3599853515625,
+        717.6300048828125,
+        725.2000122070312,
+        704.469970703125,
+        704.4000244140625,
+        712.2000122070312,
+        721.25,
+        725.6099853515625,
+        715.3400268554688,
+        694.9500122070312
+      ],
+      "indexPrice": 25583.098,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -2.29760977764868
+    },
+    "IWM": {
+      "price": 279.89,
+      "prevClose": 284.01,
+      "dayChange": -4.12,
+      "dayChangePct": -1.4507,
+      "weekChangePct": 1.4397098821396292,
+      "spark": [
+        279.0199890136719,
+        281.5199890136719,
+        283.3800048828125,
+        281.3399963378906,
+        277.70001220703125,
+        277.57000732421875,
+        278.94000244140625,
+        277.8999938964844,
+        276.70001220703125,
+        271.3699951171875,
+        275.0799865722656,
+        270.44000244140625,
+        271.2799987792969,
+        275.7799987792969,
+        276.4800109863281,
+        276.6700134277344,
+        275.75,
+        276.989990234375,
+        280.17999267578125,
+        281.2900085449219,
+        284.010009765625,
+        279.7200012207031
+      ],
+      "indexPrice": 2819.3062,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -1.3959671208266502
+    },
+    "NVDA": {
+      "price": 206.37,
+      "prevClose": 213.66,
+      "dayChange": -7.29,
+      "dayChangePct": -3.412,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 401.47,
+      "prevClose": 403.3,
+      "dayChange": -1.83,
+      "dayChangePct": -0.4538,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 522.12,
+      "prevClose": 530.14,
+      "dayChange": -8.02,
+      "dayChangePct": -1.5128,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 348.31,
+      "prevClose": 348.91,
+      "dayChange": -0.6,
+      "dayChangePct": -0.172,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 623.2,
+      "prevClose": 624.52,
+      "dayChange": -1.32,
+      "dayChangePct": -0.2114,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 241.15,
+      "prevClose": 243.79,
+      "dayChange": -2.64,
+      "dayChangePct": -1.0829,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 282.63,
+      "prevClose": 283.82,
+      "dayChange": -1.19,
+      "dayChangePct": -0.4193,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 512.91,
+      "prevClose": 566.42,
+      "dayChange": -53.51,
+      "dayChangePct": -9.4471,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 327.01,
+      "prevClose": 345,
+      "dayChange": -17.99,
+      "dayChangePct": -5.2145,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 62.45,
+      "prevClose": 62.05,
+      "dayChange": 0.4,
+      "dayChangePct": 0.6446,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 338.88,
+      "prevClose": 343.58,
+      "dayChange": -4.7,
+      "dayChangePct": -1.3679,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 140.31,
+      "prevClose": 160.59,
+      "dayChange": -20.28,
+      "dayChangePct": -12.6284,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 428.62,
+      "prevClose": 475.51,
+      "dayChange": -46.89,
+      "dayChangePct": -9.861,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 77654.01,
+      "prevClose": 81518.59,
+      "dayChange": -3864.58,
+      "dayChangePct": -4.7407,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "COIN",
+      "DELL",
+      "AMD",
+      "AVGO",
+      "BTC"
+    ],
+    "10Y": {
+      "price": 4.947,
+      "prevClose": 4.988999843597412,
+      "dayChange": -0.041999843597412045,
+      "dayChangePct": -0.8418489660069275,
+      "weekChangePct": -0.8219710658878441,
+      "spark": [
+        5.236999988555908,
+        5.2769999504089355,
+        5.310999870300293,
+        5.269000053405762,
+        5.2769999504089355,
+        5.230999946594238,
+        5.24399995803833,
+        5.239999771118164,
+        5.2170000076293945,
+        5.190000057220459,
+        5.089000225067139,
+        5.0980000495910645,
+        5.136000156402588,
+        5.117000102996826,
+        5.145999908447266,
+        4.953000068664551,
+        4.98799991607666,
+        4.986000061035156,
+        4.993000030517578,
+        5.045000076293945,
+        4.988999843597412,
+        4.947000026702881
+      ]
+    },
+    "__meta": {
+      "state": "open",
+      "tableTitle": "Markets open",
+      "tableSub": "as of 11:26 AM ET today",
+      "framing": "US stock markets are OPEN right now (intraday). Use present tense — \"is trading\", \"up/down on the day so far\". Do NOT say \"closed\"."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "PEP",
+          "name": "PepsiCo, Inc.",
+          "price": 137.69,
+          "changePct": 2.91502
+        },
+        {
+          "symbol": "WMT",
+          "name": "Walmart Inc.",
+          "price": 123.4922,
+          "changePct": 1.84924
+        },
+        {
+          "symbol": "COST",
+          "name": "Costco Wholesale Corporation",
+          "price": 1012.905,
+          "changePct": 1.83941
+        },
+        {
+          "symbol": "KO",
+          "name": "The Coca-Cola Company",
+          "price": 94.46,
+          "changePct": 1.76686
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 66.1186,
+          "changePct": -28.1866
+        },
+        {
+          "symbol": "COIN",
+          "name": "Coinbase Global, Inc.",
+          "price": 140.12,
+          "changePct": -12.74675
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 512.88,
+          "changePct": -9.45235
+        },
+        {
+          "symbol": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "price": 186.4873,
+          "changePct": -5.05687
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 66.1186,
+          "changePct": -28.1866
+        },
+        {
+          "symbol": "AMZN",
+          "name": "Amazon.com, Inc.",
+          "price": 240.835,
+          "changePct": -1.21211
+        },
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 206.24,
+          "changePct": -3.47281
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 77472.15,
+          "changePct": -0.41036
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "VidantaWorld Mexico Open",
+    "venue": "",
+    "location": "",
+    "date": "2026-10-29T04:00Z",
+    "endDate": "2026-11-01T04:00Z",
+    "status": "Round 2 - In Progress",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Alvaro Ortiz",
+        "score": "-8",
+        "pos": "1st"
+      },
+      {
+        "name": "Matthieu Pavon",
+        "score": "-8",
+        "pos": "2nd"
+      },
+      {
+        "name": "Max Greyserman",
+        "score": "-8",
+        "pos": "3rd"
+      },
+      {
+        "name": "Kensei Hirata",
+        "score": "-8",
+        "pos": "4th"
+      },
+      {
+        "name": "Max McGreevy",
+        "score": "-7",
+        "pos": "5th"
+      },
+      {
+        "name": "Jackson Suber",
+        "score": "-7",
+        "pos": "6th"
+      },
+      {
+        "name": "Karl Vilips",
+        "score": "-7",
+        "pos": "7th"
+      },
+      {
+        "name": "Garrick Higgo",
+        "score": "-7",
+        "pos": "8th"
+      },
+      {
+        "name": "Jeffrey Kang",
+        "score": "-7",
+        "pos": "9th"
+      },
+      {
+        "name": "Adrien Dumont de Chassart",
+        "score": "-7",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Erste Bank Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-10-24T04:00Z",
+        "endDate": "2026-11-02T04:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Alexander Zverev",
+            "loser": "Tallon Griekspoor",
+            "score": "6-4 7-5"
+          },
+          {
+            "winner": "Matteo Berrettini",
+            "loser": "Flavio Cobolli",
+            "score": "5-2"
+          },
+          {
+            "winner": "Daniil Medvedev",
+            "loser": "Adrian Mannarino",
+            "score": "6-2 6-3"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "Guangzhou Open",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-10-23T04:00Z",
+        "endDate": "2026-11-02T04:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Kaitlin Quevedo",
+            "loser": "Jil Teichmann",
+            "score": "7-6 6-3"
+          },
+          {
+            "winner": "Xinran Sun",
+            "loser": "Claire Liu",
+            "score": "7-5 7-6"
+          },
+          {
+            "winner": "Lilli Tagger",
+            "loser": "Shi Han",
+            "score": "6-4 3-6 7-5"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Mexico City Grand Prix",
+    "shortName": "Mexico City GP",
+    "venue": "Autodromo Hermanos Rodriguez",
+    "status": "11/1 - 3:00 PM EST",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 365,
+      "lead": 123
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 2
+  },
+  "worldCup": null,
+  "nhl": {
+    "final": {
+      "id": "401892601",
+      "name": "Winnipeg Jets at Tampa Bay Lightning",
+      "shortName": "WPG @ TB",
+      "date": "2026-10-29T23:00Z",
+      "venue": "Benchmark International Arena",
+      "venueCity": "Tampa, FL",
+      "status": "Final",
+      "statusState": "post",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Tampa Bay Lightning",
+        "abbrev": "TB",
+        "score": "6",
+        "winner": true
+      },
+      "away": {
+        "team": "Winnipeg Jets",
+        "abbrev": "WPG",
+        "score": "4",
+        "winner": false
+      }
+    },
+    "next": {
+      "id": "401892611",
+      "name": "New Jersey Devils at Vegas Golden Knights",
+      "shortName": "NJ @ VGK",
+      "date": "2026-10-30T22:00Z",
+      "venue": "T-Mobile Arena",
+      "venueCity": "Las Vegas, NV",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Vegas Golden Knights",
+        "abbrev": "VGK",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New Jersey Devils",
+        "abbrev": "NJ",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [
+    {
+      "id": "401909277",
+      "name": "Charlotte Hornets at Washington Wizards",
+      "shortName": "CHA @ WSH",
+      "date": "2026-10-30T23:00Z",
+      "venue": "Capital One Arena",
+      "venueCity": "Washington, DC",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Washington Wizards",
+        "abbrev": "WSH",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Charlotte Hornets",
+        "abbrev": "CHA",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401909278",
+      "name": "Chicago Bulls at Boston Celtics",
+      "shortName": "CHI @ BOS",
+      "date": "2026-10-30T23:30Z",
+      "venue": "TD Garden",
+      "venueCity": "Boston, MA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Boston Celtics",
+        "abbrev": "BOS",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Chicago Bulls",
+        "abbrev": "CHI",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401909279",
+      "name": "Detroit Pistons at Brooklyn Nets",
+      "shortName": "DET @ BKN",
+      "date": "2026-10-30T23:30Z",
+      "venue": "Barclays Center",
+      "venueCity": "Brooklyn, NY",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Brooklyn Nets",
+        "abbrev": "BKN",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Detroit Pistons",
+        "abbrev": "DET",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401909280",
+      "name": "New York Knicks at Philadelphia 76ers",
+      "shortName": "NY @ PHI",
+      "date": "2026-10-30T23:30Z",
+      "venue": "Xfinity Mobile Arena",
+      "venueCity": "Philadelphia, PA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Philadelphia 76ers",
+        "abbrev": "PHI",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401909281",
+      "name": "Orlando Magic at Toronto Raptors",
+      "shortName": "ORL @ TOR",
+      "date": "2026-10-30T23:30Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Toronto Raptors",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Orlando Magic",
+        "abbrev": "ORL",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401909282",
+      "name": "Indiana Pacers at Miami Heat",
+      "shortName": "IND @ MIA",
+      "date": "2026-10-31T00:00Z",
+      "venue": "Kaseya Center",
+      "venueCity": "Miami, FL",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Miami Heat",
+        "abbrev": "MIA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Indiana Pacers",
+        "abbrev": "IND",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401909283",
+      "name": "Houston Rockets at Dallas Mavericks",
+      "shortName": "HOU @ DAL",
+      "date": "2026-10-31T00:00Z",
+      "venue": "American Airlines Center",
+      "venueCity": "Dallas, TX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Dallas Mavericks",
+        "abbrev": "DAL",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Houston Rockets",
+        "abbrev": "HOU",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401909284",
+      "name": "LA Clippers at Minnesota Timberwolves",
+      "shortName": "LAC @ MIN",
+      "date": "2026-10-31T00:00Z",
+      "venue": "Target Center",
+      "venueCity": "Minneapolis, MN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Minnesota Timberwolves",
+        "abbrev": "MIN",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "LA Clippers",
+        "abbrev": "LAC",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401909285",
+      "name": "Los Angeles Lakers at Golden State Warriors",
+      "shortName": "LAL @ GS",
+      "date": "2026-10-31T02:00Z",
+      "venue": "Chase Center",
+      "venueCity": "San Francisco, CA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Golden State Warriors",
+        "abbrev": "GS",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Los Angeles Lakers",
+        "abbrev": "LAL",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401909286",
+      "name": "Denver Nuggets at Phoenix Suns",
+      "shortName": "DEN @ PHX",
+      "date": "2026-10-31T02:00Z",
+      "venue": "Mortgage Matchup Center",
+      "venueCity": "Phoenix, AZ",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Phoenix Suns",
+        "abbrev": "PHX",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Denver Nuggets",
+        "abbrev": "DEN",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401909896",
+      "name": "Portland Trail Blazers at Utah Jazz",
+      "shortName": "POR @ UTAH",
+      "date": "2026-10-31T19:00Z",
+      "venue": "Delta Center",
+      "venueCity": "Salt Lake City, UT",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Utah Jazz",
+        "abbrev": "UTAH",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Portland Trail Blazers",
+        "abbrev": "POR",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401909897",
+      "name": "Philadelphia 76ers at Charlotte Hornets",
+      "shortName": "PHI @ CHA",
+      "date": "2026-10-31T22:00Z",
+      "venue": "Spectrum Center",
+      "venueCity": "Charlotte, NC",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Charlotte Hornets",
+        "abbrev": "CHA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Philadelphia 76ers",
+        "abbrev": "PHI",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401909898",
+      "name": "Atlanta Hawks at New Orleans Pelicans",
+      "shortName": "ATL @ NO",
+      "date": "2026-10-31T23:00Z",
+      "venue": "Smoothie King Center",
+      "venueCity": "New Orleans, LA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "New Orleans Pelicans",
+        "abbrev": "NO",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Atlanta Hawks",
+        "abbrev": "ATL",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401909899",
+      "name": "Sacramento Kings at Memphis Grizzlies",
+      "shortName": "SAC @ MEM",
+      "date": "2026-11-01T00:00Z",
+      "venue": "FedExForum",
+      "venueCity": "Memphis, TN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Memphis Grizzlies",
+        "abbrev": "MEM",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Sacramento Kings",
+        "abbrev": "SAC",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401909900",
+      "name": "Cleveland Cavaliers at Milwaukee Bucks",
+      "shortName": "CLE @ MIL",
+      "date": "2026-11-01T00:00Z",
+      "venue": "Fiserv Forum",
+      "venueCity": "Milwaukee, WI",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Milwaukee Bucks",
+        "abbrev": "MIL",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Cleveland Cavaliers",
+        "abbrev": "CLE",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401909901",
+      "name": "Minnesota Timberwolves at San Antonio Spurs",
+      "shortName": "MIN @ SA",
+      "date": "2026-11-01T00:00Z",
+      "venue": "Frost Bank Center",
+      "venueCity": "San Antonio, TX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Minnesota Timberwolves",
+        "abbrev": "MIN",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401909902",
+      "name": "Oklahoma City Thunder at Houston Rockets",
+      "shortName": "OKC @ HOU",
+      "date": "2026-11-01T00:30Z",
+      "venue": "Toyota Center (Houston)",
+      "venueCity": "Houston, TX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Houston Rockets",
+        "abbrev": "HOU",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Oklahoma City Thunder",
+        "abbrev": "OKC",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401909903",
+      "name": "Boston Celtics at Orlando Magic",
+      "shortName": "BOS @ ORL",
+      "date": "2026-11-01T20:30Z",
+      "venue": "Kia Center",
+      "venueCity": "Orlando, FL",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Orlando Magic",
+        "abbrev": "ORL",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Boston Celtics",
+        "abbrev": "BOS",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401909904",
+      "name": "Brooklyn Nets at Indiana Pacers",
+      "shortName": "BKN @ IND",
+      "date": "2026-11-01T22:00Z",
+      "venue": "Gainbridge Fieldhouse",
+      "venueCity": "Indianapolis, IN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Indiana Pacers",
+        "abbrev": "IND",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Brooklyn Nets",
+        "abbrev": "BKN",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401909905",
+      "name": "LA Clippers at Golden State Warriors",
+      "shortName": "LAC @ GS",
+      "date": "2026-11-02T01:30Z",
+      "venue": "Chase Center",
+      "venueCity": "San Francisco, CA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Golden State Warriors",
+        "abbrev": "GS",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "LA Clippers",
+        "abbrev": "LAC",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401909906",
+      "name": "Toronto Raptors at Los Angeles Lakers",
+      "shortName": "TOR @ LAL",
+      "date": "2026-11-02T02:00Z",
+      "venue": "crypto.com Arena",
+      "venueCity": "Los Angeles, CA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Los Angeles Lakers",
+        "abbrev": "LAL",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Toronto Raptors",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    }
+  ],
+  "gameMetas": {
+    "401909893": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/nba/recap/_/gameId/401909893",
+      "headlineText": null
+    },
+    "401909894": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/nba/recap/_/gameId/401909894",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "Dax Shepard gave Kate Hudson '111%' of his flirt game while she was married - USA Today",
+      "url": "https://www.usatoday.com/story/entertainment/celebrities/2026/10/28/dax-shepard-kate-hudson-flirting-married-chris-robinson/92485826007/",
+      "description": "Dax Shepard recalled giving Kate Hudson \"111% of any charm I have\" while she was still married to Black Crowes singer Chris Robinson.",
+      "source": "USA Today"
+    },
+    {
+      "title": "Designers’ notes: Crafting the new House Orlock miniatures - Warhammer Community",
+      "url": "https://www.warhammer-community.com/articles/59guawoo/designers-notes-crafting-the-new-house-orlock-miniatures",
+      "description": "The Necromunda team talks about creating the new models.",
+      "source": "Warhammer-community.com"
+    },
+    {
+      "title": "Philippine police obtain warrant to search Thomas Markle's devices - BBC",
+      "url": "https://www.bbc.com/news/articles/cm0j06y3pn75o",
+      "description": "Images of child sexual abuse allegedly belonging to Meghan's father had reportedly been found in his former home in the Philippines.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Anonymous celeb accused of sexual misconduct threatens third suicide attempt if named - Page Six",
+      "url": "https://pagesix.com/2026/10/29/celebrity-news/anonymous-celeb-accused-of-sexual-misconduct-threatens-third-suicide-attempt-if-named/",
+      "description": "On Tuesday, the celebrity’s lawyer revealed that he attempted suicide a second time shortly after being released from the hospital following his first attempt.",
+      "source": "Page Six"
+    },
+    {
+      "title": "Russell Brand's wife tells his rape trial he is 'kind and a wonderful father' - BBC",
+      "url": "https://www.bbc.com/news/articles/cky93127nyepo",
+      "description": "Laura Brand tells the jury at his trial she feels \"very seen by him\" and \"I love him very much\".",
+      "source": "BBC News"
+    },
+    {
+      "title": "The 2026-27 Offseason Begins - MLB Trade Rumors",
+      "url": "https://www.mlbtraderumors.com/2026/10/the-2026-27-offseason-begins.html",
+      "description": "It is time for the offseason! Here are the important dates you need to know.",
+      "source": "MLB Trade Rumors"
+    },
+    {
+      "title": "Three keys for the Valkyries and Dream in Game 6 of the WNBA Finals - ESPN",
+      "url": "https://www.espn.com/wnba/story/_/id/50310203/2026-wnba-finals-valkyries-dream-game-6-live-updates",
+      "description": "When Golden State and Atlanta play Thursday, a champion will be crowned or the WNBA Finals will be forced to Game 7.",
+      "source": "ESPN"
+    },
+    {
+      "title": "Brewers' Pat Murphy Appears to Rip Yankees in Trending Video From World Series Celebration - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25526808-brewers-pat-murphy-appears-rip-yankees-trending-video-world-series-celebration",
+      "description": "Milwaukee Brewers manager Pat Murphy has never been shy about offering a take before winning a World Series, so it's no surprise his filter is even less engaged after his team captured their first-ever championship on Wednesday.",
+      "source": "Bleacher Report"
+    },
+    {
+      "title": "NFL Week 8 picks: Our experts face off on Panthers at Packers, Ravens at Bills and more - CBS Sports",
+      "url": "https://www.cbssports.com/nfl/news/nfl-week-8-picks-experts-face-off-panthers-packers-ravens-bills/",
+      "description": "CBS Sports writers Jordan Dajani and Jared Dubin predict this weekend's top games",
+      "source": "CBS Sports"
+    },
+    {
+      "title": "Week 9 has the ACC in the spotlight and backup QBs taking over the Big Ten - ESPN",
+      "url": "https://www.espn.com/college-football/story/_/page/gamedaykickoff102926/week-9-top-games-upsets-preview",
+      "description": "It's fitting the ACC is finally in the spotlight after wild weeks in the SEC and Big 12.",
+      "source": "ESPN"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Sports",
+      "headline": "Atlanta Dream force Game 7 in WNBA Finals",
+      "whatHappened": "Atlanta Dream won Game 6 of the WNBA Finals 80–69, led by Angel Reese and Allisha Gray each scoring 20+ points.",
+      "whyItMatters": "It sets up a winner‑take‑all Game 7, rare in WNBA history and a high‑stakes moment in women’s pro sports.",
+      "depth": "A Game 7 in the WNBA Finals? That’s must‑see TV, and anyone ignoring Angel Reese’s double‑double is seriously missing out. This is peak bar‑room chatter energy.",
+      "whatToSay": "“Did you catch the Dream force a Game 7 in the WNBA Finals? Reese is on another level.”",
+      "sources": [
+        "https://herwaysportsmedia.substack.com/p/whats-happened-30th-october-2026"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Finals tied 3‑3 after Game 6",
+        "Angel Reese posted a double‑double",
+        "Allisha Gray and Rhyne Howard each scored 20+ points"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Significant sports moment—Game 7 in a major final; fresh today; fills sports bucket.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets",
+      "headline": "Tech stocks slide drags S&P 500 down 1.4%",
+      "whatHappened": "The S&P 500 fell 1.4% today, wiping out October gains as tech stock sell‑off intensifies; Treasury yields eased as investors sought safer assets.",
+      "whyItMatters": "Tech weakness rattles markets broadly, signaling investor nerves and shifting risk appetite just ahead of weekend—and may dominate Monday’s office talk.",
+      "depth": "A 1.4% drop on the S&P has everyone refreshing their brokerage app. The tech rout isn’t just Wall Street—it hits your 401(k.), and that’s conversation‑fuel at the bar next week.",
+      "whatToSay": "“Tech’s tanking today—S&P down over 1%. My 401(k. is screaming for a bar tab.”",
+      "sources": [
+        "https://apnews.com/article/16c266731fdf64178f38070af2b42497"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Markets",
+      "_context": [
+        "S&P 500 down 1.4%",
+        "Selling concentrated in tech stocks",
+        "Treasury yields fell as investors shifted to safety"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High‑impact markets story; broad relevance; fresh; multiple reliable outlets.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Tech",
+      "headline": "Binance hit by record $6.3 bn cryptocurrency hack",
+      "whatHappened": "Binance suffered a hack estimated at $6.3 billion—an industry‑record loss; blockchain analysis linked theft to North Korea’s Bureau 121.",
+      "whyItMatters": "Massive crypto hack shakes confidence in exchanges and serves as a geopolitical warning about state‑sponsored cybercrime.",
+      "depth": "A $6 billion hack? That’s not GameStop meme‑money—it’s straight out of a cyber‑thriller. If you’re buying crypto, this is the nightmare every guy's phone should be alerting him about.",
+      "whatToSay": "“Dude, Binance just lost $6 billion in a hack—reportedly tied to North Korea. That’s not your average crypto glitch.”",
+      "sources": [
+        "https://worldinsummary.com/editions/2026-10-30/",
+        "https://en.wikipedia.org/wiki/2026_in_the_United_States"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Tech",
+      "_context": [
+        "Hack estimated at $6.3 billion",
+        "Linked to North Korea’s Bureau 121",
+        "Work prompts investigation by FBI and Secret Service"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Huge tech‑business/security story; major relevance beyond crypto niche.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Current Events",
+      "headline": "Judge blocks DOJ effort to sequester 20 k ballots in California",
+      "whatHappened": "A federal judge denied the Justice Department’s request to sequester 20,000 ballots in California tied to alleged non‑citizens, warning it could disrupt elections.",
+      "whyItMatters": "It’s a high‑stakes election‑administration dispute that could shape how future challenges to voter rolls are handled—and matters for election integrity conversation.",
+      "depth": "That’s the kind of news that hits the group chat—and not in a boring way. A court just said the feds can’t hang onto ballots—it’s legal drama with real impact heading into 2028.",
+      "whatToSay": "“A federal judge nixed the DOJ’s bid to hold 20 k ballots in California—election rules still matter.”",
+      "sources": [
+        "https://www.muellershewrote.com/p/headlines-for-october-30-2026"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Current Events",
+      "_context": [
+        "DOJ requested sequestration of 20,000 California ballots",
+        "Judge ruled it could disrupt election processing",
+        "Case raises stakes on election integrity and federal overreach"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Important political/legal story; fresh; real‑world stakes; fits Politics bucket.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "Russian drone kills 14 at Dnipro rail station in Ukraine",
+      "whatHappened": "A Russian drone struck a crowded rail platform in Dnipro, Ukraine, killing 14 passengers, drawing outrage across Europe.",
+      "whyItMatters": "It’s a brutal escalation in the war in Europe and underscores the fragility of regional stability; dominates world‑news headlines today.",
+      "depth": "This kind of headline reminds you there’s heavy stuff happening—but it's still the bar conversation you pause for and nod about. War sucks, and Dnipro just got hit hard.",
+      "whatToSay": "“Russia just hit a Dnipro rail station—14 people killed. That conflict is still raging.”",
+      "sources": [
+        "https://www.theguardian.com/world/2026/oct/30/all"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "14 killed by Russian drone at Dnipro station",
+        "EU leaders condemned the attack",
+        "Happened during an ongoing fragile ceasefire"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Major world‑news conflict; urgent; fits world events bucket.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Patrick Stewart dies at 86",
+        "source": "AP via Yahoo News",
+        "url": "https://www.yahoo.com/news/videos/ap-top-stories-october-30-091826359.html",
+        "fact": "Patrick Stewart, the iconic Star Trek and X‑Men actor, died today at age 86.",
+        "background": "He’s a beloved pop‑culture figure across generations—his passing is big conversation fuel for anyone who watched him on TV or movies.",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "no_data": true
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "VidantaWorld Mexico Open",
+      "label": "Golf",
+      "category": "individual",
+      "headline": "VidantaWorld Mexico Open — in progress",
+      "facts": "LEADERBOARD (IN PROGRESS — no winner yet): 1st Alvaro Ortiz: -8, 2nd Matthieu Pavon: -8, 3rd Max Greyserman: -8",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://livesport-ott-images.ssl.cdn.cra.cz/r1200xfq60/22e42387-3a73-4349-ad19-da2bd087ca22.jpeg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "golf",
+      "playerLinks": [
+        {
+          "name": "Karl Vilips",
+          "url": "https://www.pgatour.com/player/54304/karl-vilips/overview",
+          "note": "opened with a career‑low 62 to take the first‑round lead at −9 overall in the VidantaWorld Mexico Open"
+        },
+        {
+          "name": "Ben Griffin",
+          "url": "https://www.golf‑rankings.com/player/ben‑griffin",
+          "note": "through round 1/2 is tied for third at −7 and is world No. 28"
+        },
+        {
+          "name": "Adrien Dumont de Chassart",
+          "url": "#",
+          "note": "in second round is tied for third at −7 with under‑par scores in 5 of his last 6 rounds"
+        }
+      ],
+      "course": null,
+      "ourPick": "Alvaro Ortiz to win — he's leading at -8 and U.S. Open leaders with a 4+ shot cushion heading into Sunday close it out more often than not."
+    },
+    {
+      "name": "Mexico City Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Mexico City Grand Prix — this weekend",
+      "facts": "Mexico City Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://media.formula1.com/image/upload/t_16by9North/c_lfill,w_2048/q_auto/v1740000001/trackside-images/2025/F1_Grand_Prix_of_Mexico/2243486284.webp",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "11/1 - 3:00 PM EST",
+      "tier": 1,
+      "sportType": "f1",
+      "playerLinks": [
+        {
+          "name": "Kimi Antonelli",
+          "url": "https://en.wikipedia.org/wiki/Kimi_Antonelli",
+          "note": "entered the Mexico City GP on the brink of the title, having won the United States GP last week and amassed nine victories (50% win rate) and 15 podiums (83.3% podium rate) so far in 2026"
+        },
+        {
+          "name": "Lando Norris",
+          "url": "https://www.formula1.com/en/results/2026/races/1297/united-states/race-result",
+          "note": "climbed from P8 to finish P5 at the United States GP in Austin last week, scoring 10 points for McLaren"
+        },
+        {
+          "name": "Sergio Pérez",
+          "url": "https://www.formula1.com/en/latest/article/why-sergio-perez-means-so-much-to-mexico-as-he-celebrates-his-300th-grand-prix",
+          "note": "celebrating his 300th Grand Prix this weekend at his home race in Mexico City"
+        }
+      ],
+      "ourPick": "Andrea Kimi Antonelli to podium — he leads the championship by 123 points and consistent pace at a power circuit gives him the edge."
+    },
+    {
+      "name": "CLE @ ATL",
+      "label": "NBA",
+      "category": "team",
+      "headline": "Atlanta Hawks 114–111 over Cleveland Cavaliers",
+      "facts": "Atlanta Hawks beat Cleveland Cavaliers 114–111 | Standout performances: Onyeka Okongwu (Hawks): 29pts; Nickeil Alexander-Walker (Hawks): 25pts; James Harden (Cavaliers): 24pts; Donovan Mitchell (Cavaliers): 22pts; Aaron Wiggins (Hawks): 20pts; Jalen Johnson (Hawks): 17pts",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://bc.gmg.io/image/upload/c_thumb,q_auto,w_700,f_jpg/media/gmg/DMNJULFEV5E7XBF7XWXON46GDM.jpg?api_key=clickorlando_488cff2bcc157b2e",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "nba",
+      "playerLinks": [
+        {
+          "name": "Onyeka Okongwu",
+          "url": "https://www.basketball-reference.com/players/o/okongon01.html",
+          "note": "posted a season‑high 29 points and 12 rebounds in the Hawks’ 114‑111 win over Cleveland on October 29, 2026"
+        },
+        {
+          "name": "James Harden",
+          "url": "https://www.nba.com/player/201935/james-harden",
+          "note": "dropped 24 points (7‑14 FG, 3‑8 3‑point, 7‑9 FT) in Cleveland’s 111‑114 loss at Atlanta"
+        },
+        {
+          "name": "Nickeil Alexander‑Walker",
+          "url": "https://www.basketball-reference.com/players/a/alexani01.html",
+          "note": "enters matchup averaging roughly 19.6 points per game in 2026‑27 and is coming off strong recent performances"
+        }
+      ]
+    }
+  ],
+  "heroImage": null,
+  "heroOverride": {
+    "image": "https://bc.gmg.io/image/upload/c_thumb,q_auto,w_700,f_jpg/media/gmg/LOVUQMU5RFFM3CD4NH5T4DVMTU.jpg?api_key=news4jax_3f10b25586458189",
+    "imageReal": true,
+    "eyebrow": "Markets",
+    "title": "Tech stocks slide drags S&P 500 down 1.4%",
+    "sub": "Markets",
+    "isNonSportsLead": true,
+    "leadCategory": "Markets"
+  },
+  "recPick": {
+    "brand": "Logitech MX Master 4 Developer Edition",
+    "title": "A pro‑level mouse with a hacker‑ready skin and full freeway of productivity features",
+    "body": "This just‑announced special‑edition MX Master 4 is the same top‑tier productivity mouse you know—ultra‑precise scroll, customizable buttons, haptic feedback—but with a sharp, circuit‑inspired design built for devs. Launching this week with shipping starting October 30, 2026, it’s worth grabbing if your mouse doubles as an extension of your brain. Trade‑off? It’s purely cosmetic—no new features beyond the standard MX Master 4, so skip it if you already own the mouse and don’t care about the looks.",
+    "url": "https://www.logitech.com/products/mx-master-4-developer-edition",
+    "cta": "Pre‑order it →",
+    "imageUrl": "https://s.yimg.com/lo/mysterio/api/1647b6ff8b436c0a006ea80b87dc522c42b4a35105a2c3c6f81ec522f67f551c/lightyear_networkapi/resizefill_w912_h513%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Ffastball_on_si_articles_220%2Fb7c1b229705faf267352ab8aea205dd4.jpg"
+  },
+  "copy": {
+    "title": null,
+    "keyTakeaway": null,
+    "todaysHits": null,
+    "lead": null,
+    "sportsOther": [],
+    "markets": null,
+    "golf": null,
+    "f1": null,
+    "culture": null,
+    "finalSharpTake": null,
+    "glance": null,
+    "theTake": null,
+    "nhl": null,
+    "upcomingPreview": null,
+    "dynamicSportsText": null
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "brokenLinks": [],
+    "reason": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CgYf4XcTyjA7ydsAhzpAi\"}"
+  },
+  "factPack": null,
+  "researchPack": {
+    "stories": [
+      {
+        "id": "sports-1",
+        "category": "Sports",
+        "sport": "WNBA",
+        "isLead": false,
+        "headline": "Atlanta Dream force Game 7 in WNBA Finals",
+        "whatHappened": "Atlanta Dream won Game 6 of the WNBA Finals 80–69, led by Angel Reese and Allisha Gray each scoring 20+ points.",
+        "whyItMatters": "It sets up a winner‑take‑all Game 7, rare in WNBA history and a high‑stakes moment in women’s pro sports.",
+        "guytalkRead": "A Game 7 in the WNBA Finals? That’s must‑see TV, and anyone ignoring Angel Reese’s double‑double is seriously missing out. This is peak bar‑room chatter energy.",
+        "context": [
+          "Finals tied 3‑3 after Game 6",
+          "Angel Reese posted a double‑double",
+          "Allisha Gray and Rhyne Howard each scored 20+ points"
+        ],
+        "whatToSay": "“Did you catch the Dream force a Game 7 in the WNBA Finals? Reese is on another level.”",
+        "sources": [
+          "https://herwaysportsmedia.substack.com/p/whats-happened-30th-october-2026"
+        ],
+        "sourceNames": [
+          "HER WAY Sports Media"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 3,
+          "variety": 5
+        },
+        "selectionReason": "Significant sports moment—Game 7 in a major final; fresh today; fills sports bucket.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "markets-1",
+        "category": "Markets",
+        "sport": null,
+        "isLead": true,
+        "headline": "Tech stocks slide drags S&P 500 down 1.4%",
+        "whatHappened": "The S&P 500 fell 1.4% today, wiping out October gains as tech stock sell‑off intensifies; Treasury yields eased as investors sought safer assets.",
+        "whyItMatters": "Tech weakness rattles markets broadly, signaling investor nerves and shifting risk appetite just ahead of weekend—and may dominate Monday’s office talk.",
+        "guytalkRead": "A 1.4% drop on the S&P has everyone refreshing their brokerage app. The tech rout isn’t just Wall Street—it hits your 401(k.), and that’s conversation‑fuel at the bar next week.",
+        "context": [
+          "S&P 500 down 1.4%",
+          "Selling concentrated in tech stocks",
+          "Treasury yields fell as investors shifted to safety"
+        ],
+        "whatToSay": "“Tech’s tanking today—S&P down over 1%. My 401(k. is screaming for a bar tab.”",
+        "sources": [
+          "https://apnews.com/article/16c266731fdf64178f38070af2b42497"
+        ],
+        "sourceNames": [
+          "AP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "High‑impact markets story; broad relevance; fresh; multiple reliable outlets.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "tech-1",
+        "category": "Tech",
+        "sport": null,
+        "isLead": false,
+        "headline": "Binance hit by record $6.3 bn cryptocurrency hack",
+        "whatHappened": "Binance suffered a hack estimated at $6.3 billion—an industry‑record loss; blockchain analysis linked theft to North Korea’s Bureau 121.",
+        "whyItMatters": "Massive crypto hack shakes confidence in exchanges and serves as a geopolitical warning about state‑sponsored cybercrime.",
+        "guytalkRead": "A $6 billion hack? That’s not GameStop meme‑money—it’s straight out of a cyber‑thriller. If you’re buying crypto, this is the nightmare every guy's phone should be alerting him about.",
+        "context": [
+          "Hack estimated at $6.3 billion",
+          "Linked to North Korea’s Bureau 121",
+          "Work prompts investigation by FBI and Secret Service"
+        ],
+        "whatToSay": "“Dude, Binance just lost $6 billion in a hack—reportedly tied to North Korea. That’s not your average crypto glitch.”",
+        "sources": [
+          "https://worldinsummary.com/editions/2026-10-30/",
+          "https://en.wikipedia.org/wiki/2026_in_the_United_States"
+        ],
+        "sourceNames": [
+          "World In Summary",
+          "Wikipedia"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Huge tech‑business/security story; major relevance beyond crypto niche.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "politics-1",
+        "category": "Current Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Judge blocks DOJ effort to sequester 20 k ballots in California",
+        "whatHappened": "A federal judge denied the Justice Department’s request to sequester 20,000 ballots in California tied to alleged non‑citizens, warning it could disrupt elections.",
+        "whyItMatters": "It’s a high‑stakes election‑administration dispute that could shape how future challenges to voter rolls are handled—and matters for election integrity conversation.",
+        "guytalkRead": "That’s the kind of news that hits the group chat—and not in a boring way. A court just said the feds can’t hang onto ballots—it’s legal drama with real impact heading into 2028.",
+        "context": [
+          "DOJ requested sequestration of 20,000 California ballots",
+          "Judge ruled it could disrupt election processing",
+          "Case raises stakes on election integrity and federal overreach"
+        ],
+        "whatToSay": "“A federal judge nixed the DOJ’s bid to hold 20 k ballots in California—election rules still matter.”",
+        "sources": [
+          "https://www.muellershewrote.com/p/headlines-for-october-30-2026"
+        ],
+        "sourceNames": [
+          "The Daily Beans via Politico"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Important political/legal story; fresh; real‑world stakes; fits Politics bucket.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "culture-1",
+        "category": "Culture",
+        "sport": null,
+        "isLead": false,
+        "headline": "Patrick Stewart dies at 86",
+        "whatHappened": "Patrick Stewart, the iconic Star Trek and X‑Men actor, died today at age 86.",
+        "whyItMatters": "He’s a beloved pop‑culture figure across generations—his passing is big conversation fuel for anyone who watched him on TV or movies.",
+        "guytalkRead": "Patrick Stewart passing? That’s the kind of news that flips the vibe in the bar—instant respect and nostalgia for a legend. RIP to the captain we all grew up with.",
+        "context": [
+          "Star Trek and X‑Men icon",
+          "Died at age 86",
+          "Reported across major news outlets"
+        ],
+        "whatToSay": "“Patrick Stewart passed away today. Man, he was the captain of our childhood.”",
+        "sources": [
+          "https://www.yahoo.com/news/videos/ap-top-stories-october-30-091826359.html"
+        ],
+        "sourceNames": [
+          "AP via Yahoo News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Major culture death; high emotional impact; broad male interest.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "world-1",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Russian drone kills 14 at Dnipro rail station in Ukraine",
+        "whatHappened": "A Russian drone struck a crowded rail platform in Dnipro, Ukraine, killing 14 passengers, drawing outrage across Europe.",
+        "whyItMatters": "It’s a brutal escalation in the war in Europe and underscores the fragility of regional stability; dominates world‑news headlines today.",
+        "guytalkRead": "This kind of headline reminds you there’s heavy stuff happening—but it's still the bar conversation you pause for and nod about. War sucks, and Dnipro just got hit hard.",
+        "context": [
+          "14 killed by Russian drone at Dnipro station",
+          "EU leaders condemned the attack",
+          "Happened during an ongoing fragile ceasefire"
+        ],
+        "whatToSay": "“Russia just hit a Dnipro rail station—14 people killed. That conflict is still raging.”",
+        "sources": [
+          "https://www.theguardian.com/world/2026/oct/30/all"
+        ],
+        "sourceNames": [
+          "The Guardian"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Major world‑news conflict; urgent; fits world events bucket.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "French economy flirts with recession as GDP unexpectedly falls",
+        "reason": "Relevant but outside our core guy‑talk focus; more niche macro than men‑at‑bar conversation."
+      },
+      {
+        "headline": "Trump cancels Kansas rally for virtual events",
+        "reason": "Campaign logistics less conversation‑worthy than ballot judge block story."
+      }
+    ],
+    "researchNotes": "Today’s big themes: major market drop driven by tech sell‑off; election legal drama; massive crypto hack; WNBA Finals reaches Game 7; global war tragedy in Ukraine; passing of culture icon Patrick Stewart.",
+    "relevanceScan": {
+      "bucketA_sports": "Atlanta Dream force Game 7 in WNBA Finals",
+      "bucketB_politics": "Judge blocks DOJ effort to sequester ballots in California",
+      "bucketC_markets": "Tech stocks slide drags S&P 500 down 1.4%",
+      "bucketD_tech": "Binance suffers record $6.3 bn hack",
+      "bucketE_culture": "Patrick Stewart dies at 86",
+      "bucketF_world": "Russian drone kills 14 at Dnipro station",
+      "leadJustification": "Market story has the mix of freshness, broad confidence, and casual‑bar‑chat weight that will dominate conversation—especially with retirement accounts and weekend watch."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-10-30T15:26:50.095Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "golf",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CgYf2tosNzEU8qRduu9u2\"}"
+    },
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CgYf2tpNgYkJ8D1AqTTD8\"}"
+    },
+    {
+      "section": "f1",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CgYf2tqsBfTQ69cNycq8z\"}"
+    },
+    {
+      "section": "sports",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CgYf2kKQReekYTSF5WpvJ\"}"
+    },
+    {
+      "section": "nhl",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CgYf2u2XS7wjjCyKA5CJp\"}"
+    },
+    {
+      "section": "lead",
+      "kind": "retry",
+      "detail": "malformed lead — retried"
+    },
+    {
+      "section": "editor",
+      "kind": "failed",
+      "detail": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011CgYf4XcTyjA7ydsAhzpAi\"}"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+    "blocking": [],
+    "warnings": []
+  }
+}
