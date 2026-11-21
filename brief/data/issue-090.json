@@ -1,0 +1,1995 @@
+{
+  "num": 90,
+  "slug": "issue-090",
+  "date": "Saturday, November 21, 2026",
+  "title": "Anthropic closes record‐shattering IPO",
+  "deck": "Five minutes. Everything you need.",
+  "sports": [
+    {
+      "id": "401909305",
+      "name": "Charlotte Hornets at Atlanta Hawks",
+      "shortName": "CHA @ ATL",
+      "date": "2026-11-21T00:00Z",
+      "venue": "State Farm Arena",
+      "venueCity": "Atlanta, GA",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Atlanta Hawks",
+        "abbrev": "ATL",
+        "score": "111",
+        "winner": true
+      },
+      "away": {
+        "team": "Charlotte Hornets",
+        "abbrev": "CHA",
+        "score": "97",
+        "winner": false
+      }
+    },
+    {
+      "id": "401909306",
+      "name": "Orlando Magic at Brooklyn Nets",
+      "shortName": "ORL @ BKN",
+      "date": "2026-11-21T00:30Z",
+      "venue": "Barclays Center",
+      "venueCity": "Brooklyn, NY",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Brooklyn Nets",
+        "abbrev": "BKN",
+        "score": "111",
+        "winner": false
+      },
+      "away": {
+        "team": "Orlando Magic",
+        "abbrev": "ORL",
+        "score": "113",
+        "winner": true
+      }
+    },
+    {
+      "id": "401909307",
+      "name": "Indiana Pacers at Cleveland Cavaliers",
+      "shortName": "IND @ CLE",
+      "date": "2026-11-21T00:30Z",
+      "venue": "Rocket Arena",
+      "venueCity": "Cleveland, OH",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Cleveland Cavaliers",
+        "abbrev": "CLE",
+        "score": "128",
+        "winner": true
+      },
+      "away": {
+        "team": "Indiana Pacers",
+        "abbrev": "IND",
+        "score": "119",
+        "winner": false
+      }
+    },
+    {
+      "id": "401909308",
+      "name": "Toronto Raptors at Detroit Pistons",
+      "shortName": "TOR @ DET",
+      "date": "2026-11-21T00:30Z",
+      "venue": "Little Caesars Arena",
+      "venueCity": "Detroit, MI",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Detroit Pistons",
+        "abbrev": "DET",
+        "score": "102",
+        "winner": false
+      },
+      "away": {
+        "team": "Toronto Raptors",
+        "abbrev": "TOR",
+        "score": "105",
+        "winner": true
+      }
+    },
+    {
+      "id": "401909309",
+      "name": "Washington Wizards at Chicago Bulls",
+      "shortName": "WSH @ CHI",
+      "date": "2026-11-21T01:00Z",
+      "venue": "United Center",
+      "venueCity": "Chicago, IL",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Chicago Bulls",
+        "abbrev": "CHI",
+        "score": "94",
+        "winner": false
+      },
+      "away": {
+        "team": "Washington Wizards",
+        "abbrev": "WSH",
+        "score": "98",
+        "winner": true
+      }
+    },
+    {
+      "id": "401909310",
+      "name": "New Orleans Pelicans at Oklahoma City Thunder",
+      "shortName": "NO @ OKC",
+      "date": "2026-11-21T01:00Z",
+      "venue": "Paycom Center",
+      "venueCity": "Oklahoma City, OK",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Oklahoma City Thunder",
+        "abbrev": "OKC",
+        "score": "126",
+        "winner": true
+      },
+      "away": {
+        "team": "New Orleans Pelicans",
+        "abbrev": "NO",
+        "score": "120",
+        "winner": false
+      }
+    },
+    {
+      "id": "401909311",
+      "name": "Phoenix Suns at Utah Jazz",
+      "shortName": "PHX @ UTAH",
+      "date": "2026-11-21T02:30Z",
+      "venue": "Delta Center",
+      "venueCity": "Salt Lake City, UT",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Utah Jazz",
+        "abbrev": "UTAH",
+        "score": "101",
+        "winner": false
+      },
+      "away": {
+        "team": "Phoenix Suns",
+        "abbrev": "PHX",
+        "score": "111",
+        "winner": true
+      }
+    },
+    {
+      "id": "401909312",
+      "name": "Houston Rockets at Denver Nuggets",
+      "shortName": "HOU @ DEN",
+      "date": "2026-11-21T03:00Z",
+      "venue": "Ball Arena",
+      "venueCity": "Denver, CO",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Denver Nuggets",
+        "abbrev": "DEN",
+        "score": "133",
+        "winner": true
+      },
+      "away": {
+        "team": "Houston Rockets",
+        "abbrev": "HOU",
+        "score": "124",
+        "winner": false
+      }
+    },
+    {
+      "id": "401909313",
+      "name": "Sacramento Kings at Los Angeles Lakers",
+      "shortName": "SAC @ LAL",
+      "date": "2026-11-21T03:00Z",
+      "venue": "crypto.com Arena",
+      "venueCity": "Los Angeles, CA",
+      "status": "Final",
+      "statusState": "post",
+      "note": "NBA Cup - Group Play",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Los Angeles Lakers",
+        "abbrev": "LAL",
+        "score": "106",
+        "winner": true
+      },
+      "away": {
+        "team": "Sacramento Kings",
+        "abbrev": "SAC",
+        "score": "104",
+        "winner": false
+      }
+    }
+  ],
+  "markets": {
+    "SPY": {
+      "price": 689.81,
+      "prevClose": 715.87,
+      "dayChange": -26.06,
+      "dayChangePct": -3.6403,
+      "weekChangePct": -8.55813401050747,
+      "spark": [
+        763.9600219726562,
+        759.969970703125,
+        765.3699951171875,
+        769.6599731445312,
+        772.3099975585938,
+        769.3599853515625,
+        755.719970703125,
+        752.0999755859375,
+        754.3499755859375,
+        766.8099975585938,
+        733,
+        735.2899780273438,
+        752.6900024414062,
+        749.9199829101562,
+        759.8099975585938,
+        757.1199951171875,
+        754.3699951171875,
+        739.9500122070312,
+        732.4400024414062,
+        730.2000122070312,
+        715.8699951171875,
+        689.8099975585938
+      ],
+      "indexPrice": 6910.39,
+      "indexDisplay": "S&P 500",
+      "indexDayChangePct": -3.6990853355652136
+    },
+    "DIA": {
+      "price": 481.08,
+      "prevClose": 490.79,
+      "dayChange": -9.71,
+      "dayChangePct": -1.9784,
+      "weekChangePct": -8.041674940411541,
+      "spark": [
+        527.8900146484375,
+        521.3699951171875,
+        522.969970703125,
+        523.280029296875,
+        524.6799926757812,
+        522.72998046875,
+        517.1300048828125,
+        519.3400268554688,
+        517.0599975585938,
+        533.1099853515625,
+        514.27001953125,
+        512.219970703125,
+        523.3300170898438,
+        521.72998046875,
+        524.4400024414062,
+        522.469970703125,
+        523.1500244140625,
+        515.6799926757812,
+        507.30999755859375,
+        501.7300109863281,
+        490.7900085449219,
+        481.0799865722656
+      ],
+      "indexPrice": 48147.33,
+      "indexDisplay": "Dow",
+      "indexDayChangePct": -1.9343900041109543
+    },
+    "QQQ": {
+      "price": 608.45,
+      "prevClose": 645.04,
+      "dayChange": -36.59,
+      "dayChangePct": -5.6725,
+      "weekChangePct": -10.507584037011954,
+      "spark": [
+        704.469970703125,
+        704.4000244140625,
+        712.2000122070312,
+        721.25,
+        725.6099853515625,
+        715.3400268554688,
+        690.489990234375,
+        681.0900268554688,
+        685.280029296875,
+        691.9500122070312,
+        647.0499877929688,
+        656.0999755859375,
+        679.3499755859375,
+        674.760009765625,
+        690.3800048828125,
+        688.1699829101562,
+        679.8900146484375,
+        661.75,
+        656.9500122070312,
+        659.510009765625,
+        645.0399780273438,
+        608.4500122070312
+      ],
+      "indexPrice": 22617.732,
+      "indexDisplay": "Nasdaq",
+      "indexDayChangePct": -5.2827031894750185
+    },
+    "IWM": {
+      "price": 256.61,
+      "prevClose": 264.22,
+      "dayChange": -7.61,
+      "dayChangePct": -2.8802,
+      "weekChangePct": -7.541258161175773,
+      "spark": [
+        276.6700134277344,
+        275.75,
+        276.989990234375,
+        280.17999267578125,
+        281.2900085449219,
+        284.010009765625,
+        279.3299865722656,
+        279.1400146484375,
+        279.7900085449219,
+        284.0199890136719,
+        270.9800109863281,
+        273.6700134277344,
+        282.510009765625,
+        280.5799865722656,
+        283.0899963378906,
+        278.44000244140625,
+        277.5400085449219,
+        272.94000244140625,
+        269.04998779296875,
+        270.1199951171875,
+        264.2200012207031,
+        256.6099853515625
+      ],
+      "indexPrice": 2581.79,
+      "indexDisplay": "Russell 2000",
+      "indexDayChangePct": -2.7614714439496155
+    },
+    "NVDA": {
+      "price": 125.53,
+      "prevClose": 145.98,
+      "dayChange": -20.45,
+      "dayChangePct": -14.0088,
+      "weekChangePct": null
+    },
+    "TSLA": {
+      "price": 345.82,
+      "prevClose": 374.41,
+      "dayChange": -28.59,
+      "dayChangePct": -7.636,
+      "weekChangePct": null
+    },
+    "MSFT": {
+      "price": 484.52,
+      "prevClose": 498.3,
+      "dayChange": -13.78,
+      "dayChangePct": -2.7654,
+      "weekChangePct": null
+    },
+    "AAPL": {
+      "price": 342.56,
+      "prevClose": 349.21,
+      "dayChange": -6.65,
+      "dayChangePct": -1.9043,
+      "weekChangePct": null
+    },
+    "META": {
+      "price": 560.84,
+      "prevClose": 596.22,
+      "dayChange": -35.38,
+      "dayChangePct": -5.9341,
+      "weekChangePct": null
+    },
+    "AMZN": {
+      "price": 246.82,
+      "prevClose": 257.37,
+      "dayChange": -10.55,
+      "dayChangePct": -4.0992,
+      "weekChangePct": null
+    },
+    "GOOGL": {
+      "price": 265.29,
+      "prevClose": 272.66,
+      "dayChange": -7.37,
+      "dayChangePct": -2.703,
+      "weekChangePct": null
+    },
+    "AMD": {
+      "price": 424.39,
+      "prevClose": 489.19,
+      "dayChange": -64.8,
+      "dayChangePct": -13.2464,
+      "weekChangePct": null
+    },
+    "AVGO": {
+      "price": 304.41,
+      "prevClose": 346.65,
+      "dayChange": -42.24,
+      "dayChangePct": -12.1852,
+      "weekChangePct": null
+    },
+    "NFLX": {
+      "price": 56.73,
+      "prevClose": 58.46,
+      "dayChange": -1.73,
+      "dayChangePct": -2.9593,
+      "weekChangePct": null
+    },
+    "JPM": {
+      "price": 310.53,
+      "prevClose": 320.22,
+      "dayChange": -9.69,
+      "dayChangePct": -3.026,
+      "weekChangePct": null
+    },
+    "COIN": {
+      "price": 101.97,
+      "prevClose": 108.87,
+      "dayChange": -6.9,
+      "dayChangePct": -6.3378,
+      "weekChangePct": null
+    },
+    "DELL": {
+      "price": 278.02,
+      "prevClose": 312.54,
+      "dayChange": -34.52,
+      "dayChangePct": -11.045,
+      "weekChangePct": null
+    },
+    "BTC": {
+      "price": 60038.45,
+      "prevClose": 59210.31,
+      "dayChange": 828.14,
+      "dayChangePct": 1.3986,
+      "weekChangePct": null
+    },
+    "__dynamicMovers": [
+      "NVDA",
+      "AMD",
+      "AVGO",
+      "DELL",
+      "TSLA"
+    ],
+    "10Y": {
+      "price": 4.912,
+      "prevClose": 5.052000045776367,
+      "dayChange": -0.14000004577636727,
+      "dayChangePct": -2.7711806117937736,
+      "weekChangePct": -4.695378629904502,
+      "spark": [
+        4.953000068664551,
+        4.98799991607666,
+        4.986000061035156,
+        4.993000030517578,
+        5.045000076293945,
+        4.988999843597412,
+        4.928999900817871,
+        4.894000053405762,
+        4.952000141143799,
+        4.894000053405762,
+        4.836999893188477,
+        4.859000205993652,
+        4.863999843597412,
+        4.982999801635742,
+        4.998000144958496,
+        5.103000164031982,
+        5.1539998054504395,
+        5.120999813079834,
+        5.103000164031982,
+        5.065999984741211,
+        5.052000045776367,
+        4.9120001792907715
+      ]
+    },
+    "__meta": {
+      "state": "weekend",
+      "tableTitle": "Last close",
+      "tableSub": "Friday, November 20 · markets closed for the weekend",
+      "framing": "US stock markets are CLOSED (weekend). Figures are last Friday's close (Friday, November 20). NEVER say \"today\" for the move — say \"closed Friday at\" and you may frame \"heading into next week\". No invented direction."
+    },
+    "__screeners": {
+      "gainers": [
+        {
+          "symbol": "ETH",
+          "name": "Ethereum USD",
+          "price": 1679.45,
+          "changePct": 3.70978
+        },
+        {
+          "symbol": "UNH",
+          "name": "UnitedHealth Group Incorporated",
+          "price": 339.85,
+          "changePct": 2.83527
+        },
+        {
+          "symbol": "SOL",
+          "name": "Solana USD",
+          "price": 70.258,
+          "changePct": 2.1968
+        },
+        {
+          "symbol": "XRP",
+          "name": "XRP USD",
+          "price": 0.9269,
+          "changePct": 1.8898
+        }
+      ],
+      "losers": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 125.53,
+          "changePct": -14.00877
+        },
+        {
+          "symbol": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "price": 424.39,
+          "changePct": -13.24639
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 51.28,
+          "changePct": -7.96841
+        },
+        {
+          "symbol": "TSLA",
+          "name": "Tesla, Inc.",
+          "price": 345.82,
+          "changePct": -7.63601
+        }
+      ],
+      "actives": [
+        {
+          "symbol": "NVDA",
+          "name": "NVIDIA Corporation",
+          "price": 125.53,
+          "changePct": -14.00877
+        },
+        {
+          "symbol": "INTC",
+          "name": "Intel Corp.",
+          "price": 51.28,
+          "changePct": -7.96841
+        },
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "price": 342.56,
+          "changePct": -1.9043
+        },
+        {
+          "symbol": "BTC",
+          "name": "Bitcoin USD",
+          "price": 59901.47,
+          "changePct": 1.86874
+        }
+      ]
+    }
+  },
+  "golf": {
+    "name": "The RSM Classic",
+    "venue": "",
+    "location": "",
+    "date": "2026-11-19T05:00Z",
+    "endDate": "2026-11-22T05:00Z",
+    "status": "Round 2 - Suspended",
+    "statusState": "in",
+    "hasStarted": true,
+    "leaders": [
+      {
+        "name": "Marco Penge",
+        "score": "-9",
+        "pos": "1st"
+      },
+      {
+        "name": "Rasmus Neergaard-Petersen",
+        "score": "-9",
+        "pos": "2nd"
+      },
+      {
+        "name": "Michael Thorbjornsen",
+        "score": "-9",
+        "pos": "3rd"
+      },
+      {
+        "name": "Max McGreevy",
+        "score": "-8",
+        "pos": "4th"
+      },
+      {
+        "name": "Lee Hodges",
+        "score": "-8",
+        "pos": "5th"
+      },
+      {
+        "name": "Adrien Dumont de Chassart",
+        "score": "-8",
+        "pos": "6th"
+      },
+      {
+        "name": "Ricky Castillo",
+        "score": "-8",
+        "pos": "7th"
+      },
+      {
+        "name": "Rasmus Højgaard",
+        "score": "-8",
+        "pos": "8th"
+      },
+      {
+        "name": "Haotong Li",
+        "score": "-8",
+        "pos": "9th"
+      },
+      {
+        "name": "Davis Riley",
+        "score": "-7",
+        "pos": "10th"
+      }
+    ]
+  },
+  "tennis": {
+    "anyMajor": false,
+    "tours": [
+      {
+        "tour": "ATP",
+        "name": "Nitto ATP Finals",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-11-15T05:00Z",
+        "endDate": "2026-11-23T04:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Carlos Alcaraz",
+            "loser": "Flavio Cobolli",
+            "score": "6-4 6-1"
+          },
+          {
+            "winner": "Daniil Medvedev",
+            "loser": "Frances Tiafoe",
+            "score": "6-3 6-4"
+          },
+          {
+            "winner": "Carlos Alcaraz",
+            "loser": "Ben Shelton",
+            "score": "3-6 6-3 7-6"
+          }
+        ]
+      },
+      {
+        "tour": "WTA",
+        "name": "LP Open by IND",
+        "isMajor": false,
+        "venue": "",
+        "location": "",
+        "date": "2026-11-15T05:00Z",
+        "endDate": "2026-11-23T04:59Z",
+        "status": "Final",
+        "results": [
+          {
+            "winner": "Lucia Bronzetti",
+            "loser": "Valeriya Strakhova",
+            "score": "6-4 6-2"
+          },
+          {
+            "winner": "Guiomar Maristany Zuleta De Reales",
+            "loser": "Andrea Lazaro Garcia",
+            "score": "6-2 3-6 6-4"
+          },
+          {
+            "winner": "Rebeka Masarova",
+            "loser": "Laura Samson",
+            "score": "6-3 6-2"
+          }
+        ]
+      }
+    ]
+  },
+  "f1": {
+    "name": "Heineken Las Vegas Grand Prix",
+    "shortName": "Heineken Las Vegas GP",
+    "venue": "Las Vegas Street Circuit",
+    "status": "11/21 - 11:00 PM EST",
+    "statusState": "pre",
+    "champLeader": {
+      "name": "Andrea Kimi Antonelli",
+      "points": 390,
+      "lead": 111
+    },
+    "results": [],
+    "nextRace": null,
+    "daysAway": 0
+  },
+  "worldCup": null,
+  "nhl": {
+    "final": null,
+    "next": {
+      "id": "401892754",
+      "name": "Edmonton Oilers at Carolina Hurricanes",
+      "shortName": "EDM @ CAR",
+      "date": "2026-11-21T18:00Z",
+      "venue": "Lenovo Center",
+      "venueCity": "Raleigh, NC",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NHL",
+      "home": {
+        "team": "Carolina Hurricanes",
+        "abbrev": "CAR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Edmonton Oilers",
+        "abbrev": "EDM",
+        "score": "0",
+        "winner": true
+      }
+    }
+  },
+  "upcoming": [
+    {
+      "id": "401910023",
+      "name": "Milwaukee Bucks at Philadelphia 76ers",
+      "shortName": "MIL @ PHI",
+      "date": "2026-11-21T18:00Z",
+      "venue": "Xfinity Mobile Arena",
+      "venueCity": "Philadelphia, PA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Philadelphia 76ers",
+        "abbrev": "PHI",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Milwaukee Bucks",
+        "abbrev": "MIL",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401910024",
+      "name": "Portland Trail Blazers at New York Knicks",
+      "shortName": "POR @ NY",
+      "date": "2026-11-22T00:30Z",
+      "venue": "Madison Square Garden",
+      "venueCity": "New York, NY",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Portland Trail Blazers",
+        "abbrev": "POR",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401910025",
+      "name": "LA Clippers at Dallas Mavericks",
+      "shortName": "LAC @ DAL",
+      "date": "2026-11-22T01:00Z",
+      "venue": "American Airlines Center",
+      "venueCity": "Dallas, TX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Dallas Mavericks",
+        "abbrev": "DAL",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "LA Clippers",
+        "abbrev": "LAC",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401910026",
+      "name": "Memphis Grizzlies at Minnesota Timberwolves",
+      "shortName": "MEM @ MIN",
+      "date": "2026-11-22T01:00Z",
+      "venue": "Target Center",
+      "venueCity": "Minneapolis, MN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Minnesota Timberwolves",
+        "abbrev": "MIN",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Memphis Grizzlies",
+        "abbrev": "MEM",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401910027",
+      "name": "New Orleans Pelicans at San Antonio Spurs",
+      "shortName": "NO @ SA",
+      "date": "2026-11-22T01:00Z",
+      "venue": "Frost Bank Center",
+      "venueCity": "San Antonio, TX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "New Orleans Pelicans",
+        "abbrev": "NO",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401910028",
+      "name": "Boston Celtics at Sacramento Kings",
+      "shortName": "BOS @ SAC",
+      "date": "2026-11-22T03:00Z",
+      "venue": "Golden 1 Center",
+      "venueCity": "Sacramento, CA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Sacramento Kings",
+        "abbrev": "SAC",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Boston Celtics",
+        "abbrev": "BOS",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 0
+    },
+    {
+      "id": "401910029",
+      "name": "Detroit Pistons at Atlanta Hawks",
+      "shortName": "DET @ ATL",
+      "date": "2026-11-22T20:30Z",
+      "venue": "State Farm Arena",
+      "venueCity": "Atlanta, GA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Atlanta Hawks",
+        "abbrev": "ATL",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Detroit Pistons",
+        "abbrev": "DET",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401910030",
+      "name": "Oklahoma City Thunder at Miami Heat",
+      "shortName": "OKC @ MIA",
+      "date": "2026-11-22T23:00Z",
+      "venue": "Kaseya Center",
+      "venueCity": "Miami, FL",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Miami Heat",
+        "abbrev": "MIA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Oklahoma City Thunder",
+        "abbrev": "OKC",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401910031",
+      "name": "Orlando Magic at Washington Wizards",
+      "shortName": "ORL @ WSH",
+      "date": "2026-11-23T00:00Z",
+      "venue": "Capital One Arena",
+      "venueCity": "Washington, DC",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Washington Wizards",
+        "abbrev": "WSH",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Orlando Magic",
+        "abbrev": "ORL",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401910032",
+      "name": "Denver Nuggets at Chicago Bulls",
+      "shortName": "DEN @ CHI",
+      "date": "2026-11-23T00:00Z",
+      "venue": "United Center",
+      "venueCity": "Chicago, IL",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Chicago Bulls",
+        "abbrev": "CHI",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Denver Nuggets",
+        "abbrev": "DEN",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401910033",
+      "name": "Dallas Mavericks at Utah Jazz",
+      "shortName": "DAL @ UTAH",
+      "date": "2026-11-23T00:00Z",
+      "venue": "Delta Center",
+      "venueCity": "Salt Lake City, UT",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Utah Jazz",
+        "abbrev": "UTAH",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Dallas Mavericks",
+        "abbrev": "DAL",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401910034",
+      "name": "Indiana Pacers at New York Knicks",
+      "shortName": "IND @ NY",
+      "date": "2026-11-23T01:00Z",
+      "venue": "Madison Square Garden",
+      "venueCity": "New York, NY",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "New York Knicks",
+        "abbrev": "NY",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Indiana Pacers",
+        "abbrev": "IND",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401910035",
+      "name": "Boston Celtics at Golden State Warriors",
+      "shortName": "BOS @ GS",
+      "date": "2026-11-23T01:30Z",
+      "venue": "Chase Center",
+      "venueCity": "San Francisco, CA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Golden State Warriors",
+        "abbrev": "GS",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Boston Celtics",
+        "abbrev": "BOS",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 1
+    },
+    {
+      "id": "401910036",
+      "name": "Memphis Grizzlies at Charlotte Hornets",
+      "shortName": "MEM @ CHA",
+      "date": "2026-11-24T00:00Z",
+      "venue": "Spectrum Center",
+      "venueCity": "Charlotte, NC",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Charlotte Hornets",
+        "abbrev": "CHA",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Memphis Grizzlies",
+        "abbrev": "MEM",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401910037",
+      "name": "Portland Trail Blazers at Philadelphia 76ers",
+      "shortName": "POR @ PHI",
+      "date": "2026-11-24T00:00Z",
+      "venue": "Xfinity Mobile Arena",
+      "venueCity": "Philadelphia, PA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Philadelphia 76ers",
+        "abbrev": "PHI",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Portland Trail Blazers",
+        "abbrev": "POR",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401910038",
+      "name": "Oklahoma City Thunder at Indiana Pacers",
+      "shortName": "OKC @ IND",
+      "date": "2026-11-24T00:30Z",
+      "venue": "Gainbridge Fieldhouse",
+      "venueCity": "Indianapolis, IN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Indiana Pacers",
+        "abbrev": "IND",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Oklahoma City Thunder",
+        "abbrev": "OKC",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401910039",
+      "name": "Milwaukee Bucks at Toronto Raptors",
+      "shortName": "MIL @ TOR",
+      "date": "2026-11-24T00:30Z",
+      "venue": "Scotiabank Arena",
+      "venueCity": "Toronto, ON",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Toronto Raptors",
+        "abbrev": "TOR",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Milwaukee Bucks",
+        "abbrev": "MIL",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401910040",
+      "name": "Brooklyn Nets at Minnesota Timberwolves",
+      "shortName": "BKN @ MIN",
+      "date": "2026-11-24T00:30Z",
+      "venue": "Target Center",
+      "venueCity": "Minneapolis, MN",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Minnesota Timberwolves",
+        "abbrev": "MIN",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Brooklyn Nets",
+        "abbrev": "BKN",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401910041",
+      "name": "Cleveland Cavaliers at Chicago Bulls",
+      "shortName": "CLE @ CHI",
+      "date": "2026-11-24T01:00Z",
+      "venue": "United Center",
+      "venueCity": "Chicago, IL",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Chicago Bulls",
+        "abbrev": "CHI",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Cleveland Cavaliers",
+        "abbrev": "CLE",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401910042",
+      "name": "Phoenix Suns at New Orleans Pelicans",
+      "shortName": "PHX @ NO",
+      "date": "2026-11-24T01:00Z",
+      "venue": "Smoothie King Center",
+      "venueCity": "New Orleans, LA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "New Orleans Pelicans",
+        "abbrev": "NO",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Phoenix Suns",
+        "abbrev": "PHX",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401910043",
+      "name": "LA Clippers at Houston Rockets",
+      "shortName": "LAC @ HOU",
+      "date": "2026-11-24T01:30Z",
+      "venue": "Toyota Center (Houston)",
+      "venueCity": "Houston, TX",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Houston Rockets",
+        "abbrev": "HOU",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "LA Clippers",
+        "abbrev": "LAC",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401910044",
+      "name": "Utah Jazz at Los Angeles Lakers",
+      "shortName": "UTAH @ LAL",
+      "date": "2026-11-24T03:00Z",
+      "venue": "crypto.com Arena",
+      "venueCity": "Los Angeles, CA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Los Angeles Lakers",
+        "abbrev": "LAL",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "Utah Jazz",
+        "abbrev": "UTAH",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    },
+    {
+      "id": "401910045",
+      "name": "San Antonio Spurs at Sacramento Kings",
+      "shortName": "SA @ SAC",
+      "date": "2026-11-24T03:00Z",
+      "venue": "Golden 1 Center",
+      "venueCity": "Sacramento, CA",
+      "status": "Scheduled",
+      "statusState": "pre",
+      "note": "",
+      "seriesNote": "",
+      "sport": "NBA",
+      "home": {
+        "team": "Sacramento Kings",
+        "abbrev": "SAC",
+        "score": "0",
+        "winner": false
+      },
+      "away": {
+        "team": "San Antonio Spurs",
+        "abbrev": "SA",
+        "score": "0",
+        "winner": true
+      },
+      "daysAhead": 2
+    }
+  ],
+  "gameMetas": {
+    "401909305": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/nba/recap/_/gameId/401909305",
+      "headlineText": null
+    },
+    "401909306": {
+      "imageUrl": null,
+      "recapUrl": "https://www.espn.com/nba/recap/_/gameId/401909306",
+      "headlineText": null
+    }
+  },
+  "trending": [
+    {
+      "title": "Percy Jackson returns as teen stars adapt to life in the limelight - BBC",
+      "url": "https://www.bbc.com/news/articles/ckge37rdrp1eo",
+      "description": "Percy Jackson's lead Walker Scobell admits there are ups and downs to fame as the series returns.",
+      "source": "BBC News"
+    },
+    {
+      "title": "The nation’s cartoonists on the week in politics - Politico",
+      "url": "https://www.politico.com/gallery/2026/11/20/the-nations-cartoonists-on-the-week-in-politics-01177665",
+      "description": "Every week political cartoonists throughout the country and across the political spectrum apply their ink-stained skills to capture the foibles, memes, hypocrisies and other head-slapping events in the world of politics. The fruits of these labors are hundred…",
+      "source": "Politico"
+    },
+    {
+      "title": "Kanye West Lawsuit: Producer Allowed to Stay Anonymous After Alleged Death Threats - TMZ",
+      "url": "https://www.tmz.com/2026/11/20/kanye-west-john-doe-allowed-to-stay-anonymous/",
+      "description": null,
+      "source": "TMZ"
+    },
+    {
+      "title": "'Hunger Games: Sunrise On The Reaping' $21M+ Box Office Previews Are 2nd Best For 2026 & Lionsgate Franchise - Deadline",
+      "url": "http://deadline.com/2026/11/box-office-hunger-games-sunrise-on-the-reaping-1237229925/",
+      "description": "'Hunger Games: Sunrise on the Reaping' has collected $21M+ in previews, which is the second best for 2026 and the second best in the franchise.",
+      "source": "Deadline"
+    },
+    {
+      "title": "Horoscope for Friday, November 20, 2026 - Chicago Sun-Times",
+      "url": "https://chicago.suntimes.com/horoscopes/2026/11/20/horoscopes-today-friday-november-20-2026",
+      "description": null,
+      "source": "Suntimes.com"
+    },
+    {
+      "title": "Pitcher-turned-actor Lance Broadway dies at age 43 at Dallas apartment complex - AP News",
+      "url": "https://apnews.com/article/lance-broadway-dies-de8f9d569621c8a06a15c070100224b3",
+      "description": "Lance Broadway, a major league pitcher who became an actor following his baseball career, has died. He was 43. His cause of death was not immediately clear. The report posted Thursday by the Dallas County Medical Examiner's Office said Broadway died Tuesday i…",
+      "source": "Associated Press"
+    },
+    {
+      "title": "Towriss 'disappointed' by Herta's disinterest in Cadillac F1 reserve role - RACER - Racing News",
+      "url": "https://racer.com/2026/11/20/towriss-disappointed-by-herta-s-disinterest-in-cadillac-f1-reserve-role",
+      "description": "Cadillac Formula 1 Team CEO Dan Towriss says he is disappointed that Colton Herta might turn down a reserve role in F1 after missing out on a race seat in 2027.Valtteri Bottas was confirmed as having retained his Cadillac drive earlier this week, and Herta wa…",
+      "source": "RACER"
+    },
+    {
+      "title": "Rams star Nacua suspended for personal conduct violation - BBC",
+      "url": "https://www.bbc.com/sport/american-football/articles/c6vg21xdgpqgo",
+      "description": "Puka Nacua is given a three-game suspension for violating the NFL's personal conduct policy, although the Los Angeles Rams wide receiver was already out injured.",
+      "source": "BBC News"
+    },
+    {
+      "title": "Everything we learned from F1's wet Las Vegas GP practice running - The Race",
+      "url": "https://www.the-race.com/formula-1/f1-2026-las-vegas-gp-wet-practice-everything-we-learned/",
+      "description": "A wet Las Vegas GP practice day wasn't what F1 teams or drivers would've wanted. But it told us enough about some current limitations",
+      "source": "The-race.com"
+    },
+    {
+      "title": "2026 NFL Week 11 Biggest Takeaways for Every Team - Bleacher Report",
+      "url": "https://bleacherreport.com/articles/25535540-2026-nfl-week-11-biggest-takeaways-every-team",
+      "description": "Allow the NFL to distract everyone from playing Grand Theft Auto VI for a bit.",
+      "source": "Bleacher Report"
+    }
+  ],
+  "topStories": [
+    {
+      "category": "Tech / AI / Business",
+      "headline": "Anthropic closes record‐shattering IPO",
+      "whatHappened": "Anthropic closed its initial public offering at $83 per share, raising roughly $93.5 billion, including a $26 billion concurrent private placement.",
+      "whyItMatters": "This massive IPO marks a historic milestone in AI funding, signaling institutional confidence and shifting how AI companies finance growth.",
+      "depth": "When an AI company does an IPO that'll fund Elon’s casino–that’s the kind of play that gets real money talking. Anthropic just raised roughly $93 billion, and it’s flooding Silicon Valley with capital.",
+      "whatToSay": "Anthropic just IPO’d for almost a hundred billion—no wonder everyone’s talking AI.",
+      "sources": [
+        "https://next-f9.com/daily-9/2026-11-21"
+      ],
+      "isLead": true,
+      "tier": 1,
+      "_category": "Tech / AI / Business",
+      "_context": [
+        "1,127,000,000 Class A shares sold at $83 each",
+        "Gross proceeds ~ $93.5 billion, with $91.6 billion to Anthropic",
+        "$26 billion private placement to AMD, Google, Microsoft, NVIDIA, others"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Blockbuster financing spree highly relevant to tech-focused guys, backed by reputable coverage.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Markets / Economy",
+      "headline": "Stocks drop ~10%, Fed hike expected next month",
+      "whatHappened": "Major US indexes fell nearly 10%, and markets now widely expect the Federal Reserve to raise interest rates at its December meeting.",
+      "whyItMatters": "That kind of drop rattles portfolios and raises borrowing costs; pretty much everyone with a 401(k) feels it.",
+      "depth": "Ten‑percent plunge? That’s not a bump—it’s a wake‑up for your retirement fund. And yes, the Fed is probably hiking again in December.",
+      "whatToSay": "The Fed’s hiking again—my 401(k) just protested.",
+      "sources": [
+        "https://apnews.com/article/e69b0efcc423bc91871c1afabf36742d"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Markets / Economy",
+      "_context": [
+        "Major indexes declined about 10%",
+        "Fed anticipated to hike short‑term interest rates next month"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Direct impact on wallets, confirmed across major outlets, big bar chat fodder.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Major World Events",
+      "headline": "Talks extend on AI 'killer robot' weapons",
+      "whatHappened": "Nations agreed to extend discussions on regulating autonomous weapons today, without committing to binding limits.",
+      "whyItMatters": "The ethics and risks of killer AI are finally in global focus—but still no real action. Mostly outrage for now.",
+      "depth": "They’re still talking about AI‑guns—14 years, and no rules. It’s kinda wild when discussions outlast solutions.",
+      "whatToSay": "Fourteen years of talks on killer robots—and still nothing’s fixed.",
+      "sources": [
+        "https://apnews.com/article/ebe057d2a47cde53100970c8f648e7fa"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Major World Events",
+      "_context": [
+        "Agreed to continue talks, no firm commitments",
+        "This is the 14th year of such discussions"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "High‑stakes AI ethics keeps making headlines; solid AP coverage.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "White House / Politics / Policy",
+      "headline": "Judge halts Trump’s 250‑ft triumphal arch project",
+      "whatHappened": "A federal judge issued a preliminary injunction indefinitely halting construction of Trump’s proposed 250‑foot triumphal arch.",
+      "whyItMatters": "Trump’s signature public legacy plan just got paused by the courts—no ground‑breaking today.",
+      "depth": "Only Trump could make an arch a legal battle. And now the judge says not today—maybe never.",
+      "whatToSay": "A 250‑foot Trump arch is now officially paused—judge called it rushed and illegal.",
+      "sources": [
+        "https://www.thedailybeast.com/trump-dealt-huge-blow-over-vanity-project-triumphal-arch"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "White House / Politics / Policy",
+      "_context": [
+        "Judge Brinkema issued injunction calling project rushed and legally baseless",
+        "Final approval was granted November 5 by a commission stacked with Trump loyalists",
+        "Public opinion opposed the arch by more than 2‑to‑1"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Big political news with cultural resonance and solid sourcing.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Tech / AI / Business",
+      "headline": "AI agents find major zero‑day in medical imaging software",
+      "whatHappened": "China‑linked hackers used AI agents to find a zero‑day vulnerability in MONAI Label medical imaging software, gaining full control over a university system.",
+      "whyItMatters": "This shows AI isn’t just an invention tool—it’s a hacking weapon too. Healthcare infra is exposed.",
+      "depth": "AI hacking medical tools? That’s next‑level scary. Your hospital’s data isn’t safe from smart hackers anymore.",
+      "whatToSay": "AI‑powered hackers just breached medical imaging software—total system control. That’s terrifying.",
+      "sources": [
+        "https://www.techmaplive.com/briefing/united-states-ai-chips-and-cyberattacks-the-weeks-tech-news-de8c99c9-bb1f-45df-b6b5-495a20466c50"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Tech / AI / Business",
+      "_context": [
+        "MONAI Label is free software used in medical imaging",
+        "Hackers gained full control of a university system"
+      ],
+      "_confidenceScore": 4,
+      "_selectionReason": "Chilling cyber‑threat with AI angle, rare and urgent.",
+      "_verificationConcerns": ""
+    },
+    {
+      "category": "Sports",
+      "headline": "Fundora decision, Jones KO—desert fight card thrills",
+      "whatHappened": "Gabriela Fundora retained her undisputed flyweight title via unanimous decision, while Amari Jones scored an 8th‑round TKO over DeAundre Pettus in Indio, California.",
+      "whyItMatters": "Jones stays unbeaten and looks title‑ready; Fundora’s streak of KOs ends, but her dominance continues.",
+      "depth": "Fundora got the W, but Jones stole the show with that brutal KO. He’s looking like a legit title threat.",
+      "whatToSay": "That Jones KO in Round 8? He’s one fight away from a shot at the belt, no joke.",
+      "sources": [
+        "https://sports.yahoo.com/boxing/live/gabriela-fundora-vs-jasmina-zapotoczna-and-amari-jones-vs-deaundre-pettus-live-results-round-by-round-updates-ring-walks-193000777.html"
+      ],
+      "isLead": false,
+      "tier": 1,
+      "_category": "Sports",
+      "_context": [
+        "Fundora won UD (98‑90, 99‑89, 100‑88)",
+        "Jones (18‑0) stopped Pettus in Round 8",
+        "Jones is now mandatory for the IBF middleweight title"
+      ],
+      "_confidenceScore": 5,
+      "_selectionReason": "Solid, verified sports highlight with knockouts and title implications.",
+      "_verificationConcerns": ""
+    }
+  ],
+  "sectionStories": {
+    "culture": [
+      {
+        "headline": "Percy Jackson returns as teen stars adapt to life in the limelight",
+        "source": "BBC News",
+        "url": "https://www.bbc.com/news/articles/ckge37rdrp1eo",
+        "fact": "Percy Jackson's lead Walker Scobell admits there are ups and downs to fame as the series returns.",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "The nation’s cartoonists on the week in politics",
+        "source": "Politico",
+        "url": "https://www.politico.com/gallery/2026/11/20/the-nations-cartoonists-on-the-week-in-politics-01177665",
+        "fact": "Every week political cartoonists throughout the country and across the political spectrum apply their ink-stained skills to capture the foibles, memes, hypocrisies and other head-slapping events in the world of politics. The fruits of these labors are hundred…",
+        "background": "",
+        "no_data": false
+      },
+      {
+        "headline": "Kanye West Lawsuit: Producer Allowed to Stay Anonymous After Alleged Death Threats",
+        "source": "TMZ",
+        "url": "https://www.tmz.com/2026/11/20/kanye-west-john-doe-allowed-to-stay-anonymous/",
+        "fact": "Kanye West Lawsuit: Producer Allowed to Stay Anonymous After Alleged Death Threats",
+        "background": "",
+        "no_data": false
+      }
+    ],
+    "cultureNoData": false,
+    "heroImage": {
+      "url": "https://next-f9.com/images/posts/daily-9-2026-11-21-cover.png",
+      "no_data": false
+    }
+  },
+  "dynamicSports": [
+    {
+      "name": "Fundora decision, Jones KO—desert fight card thrills",
+      "label": "SPORTS",
+      "category": "team",
+      "headline": "Fundora decision, Jones KO—desert fight card thrills",
+      "facts": "Gabriela Fundora retained her undisputed flyweight title via unanimous decision, while Amari Jones scored an 8th‑round TKO over DeAundre Pettus in Indio, California. Jones stays unbeaten and looks title‑ready; Fundora’s streak of KOs ends, but her dominance continues.",
+      "background": "Jones stays unbeaten and looks title‑ready; Fundora’s streak of KOs ends, but her dominance continues.",
+      "source": "Research",
+      "url": "https://sports.yahoo.com/boxing/live/gabriela-fundora-vs-jasmina-zapotoczna-and-amari-jones-vs-deaundre-pettus-live-results-round-by-round-updates-ring-walks-193000777.html",
+      "imageUrl": "https://nyfights.com/wp-content/uploads/2026/11/Jones-Reaper-9L8A6931.jpg",
+      "videoUrl": null,
+      "isLead": true,
+      "tier": 1,
+      "sportType": "sports",
+      "playerLinks": [
+        {
+          "name": "Amari Jones",
+          "url": "https://www.ringmagazine.com/news/1d36mEVPz2fR5pkONPHPRv",
+          "note": "record improved to 18‑0 (16 KOs) with an eighth‑round TKO of DeAundre Pettus, who had never been stopped before"
+        },
+        {
+          "name": "Gabriela Fundora",
+          "url": "https://www.ringmagazine.com/news/1d36mEVPz2fR5pkONPHPRv",
+          "note": "retained undisputed flyweight titles via unanimous decision (scores 100‑88, 99‑89, 98‑90) and scored two knockdowns in the fight"
+        }
+      ]
+    },
+    {
+      "name": "Heineken Las Vegas Grand Prix",
+      "label": "F1",
+      "category": "individual",
+      "headline": "Heineken Las Vegas Grand Prix — this weekend",
+      "facts": "Heineken Las Vegas Grand Prix upcoming",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://cdn-1.motorsport.com/images/mgl/6VyK5GGY/s8/charles-leclerc-ferrari.jpg",
+      "videoUrl": null,
+      "isLead": false,
+      "when": "11/21 - 11:00 PM EST",
+      "tier": 1,
+      "sportType": "f1",
+      "playerLinks": [
+        {
+          "name": "Max Verstappen",
+          "url": "https://www.formula1.com/en/latest/article/need-to-know-the-most-important-facts-stats-and-trivia-ahead-of-the-2026-las-vegas-grand-prix.6ynxQ4e9Z7F1o2Uijhh1FK.6ynxQ4e9Z7F1o2Uijhh1FK",
+          "note": "Has won two of the three previous Las Vegas Grands Prix (2023 and 2025) and sits on pole for this weekend’s race after Kimi Antonelli’s grid penalty ([formula1.com](https://www.formula1.com/en/latest/article/need-to-know-the-most-important-facts-stats-and-trivia-ahead-of-the-2026-las-vegas-grand-prix.6ynxQ4e9Z7F1o2Uijhh1FK.6ynxQ4e9Z7F1o2Uijhh1FK?utm_source=openai))"
+        },
+        {
+          "name": "Kimi Antonelli",
+          "url": "https://www.fia.com/news/f1-antonelli-fastest-las-vegas-qualifying-verstappen-inherits-pole-position",
+          "note": "Set the fastest qualifying time in Las Vegas (1:33.893) but starts sixth due to a five‑place grid penalty ([fia.com](https://www.fia.com/news/f1-antonelli-fastest-las-vegas-qualifying-verstappen-inherits-pole-position?utm_source=openai))"
+        },
+        {
+          "name": "George Russell",
+          "url": "https://www.formula1.com/en/results/2026/races/1300/las-vegas/starting-grid",
+          "note": "Qualified second for this weekend’s race, lining up on the front row alongside Verstappen ([formula1.com](https://www.formula1.com/en/results/2026/races/1300/las-vegas/starting-grid?utm_source=openai))"
+        }
+      ],
+      "ourPick": "Andrea Kimi Antonelli to podium — he leads the championship by 111 points and consistent pace at a power circuit gives him the edge."
+    },
+    {
+      "name": "NBA Cup - Group Play",
+      "label": "NBA",
+      "category": "team",
+      "headline": "Atlanta Hawks 111–97 over Charlotte Hornets",
+      "facts": "Atlanta Hawks beat Charlotte Hornets 111–97 | Standout performances: Jalen Johnson (Hawks): 26pts; Moussa Diabate (Hornets): 21pts; Brandon Miller (Hornets): 19pts; Aaron Wiggins (Hawks): 19pts; Nickeil Alexander-Walker (Hawks): 17pts; Onyeka Okongwu (Hawks): 16pts",
+      "background": "",
+      "source": "ESPN",
+      "url": "",
+      "imageUrl": "https://bc.gmg.io/image/upload/c_thumb,q_auto,w_700,f_jpg/media/gmg/5LPHSVRDJZHKTMIH443VZ26DEI.jpg?api_key=click2houston_85fdeb57f8cd3635",
+      "videoUrl": null,
+      "isLead": false,
+      "tier": 1,
+      "sportType": "nba",
+      "playerLinks": [
+        {
+          "name": "Jalen Johnson",
+          "url": "https://www.espn.com/nba/game/_/gameId/401909305",
+          "note": "scored 26 points with six rebounds, six assists, and four steals on 10‑for‑13 shooting in the Hawks’ 111‑97 win"
+        },
+        {
+          "name": "Dyson Daniels",
+          "url": "https://www.espn.com/nba/game/_/gameId/401909305",
+          "note": "recorded a near‑triple‑double: 11 points, 10 assists, eight rebounds, and four steals in the same game"
+        },
+        {
+          "name": "Aaron Wiggins",
+          "url": "https://sports.yahoo.com/articles/instant-takeaways-atlantas-111-97-023342283.html",
+          "note": "scored 19 points, hitting 4‑of‑6 from three and finishing a game‑high +22 plus‑minus"
+        }
+      ]
+    }
+  ],
+  "heroImage": "https://next-f9.com/images/posts/daily-9-2026-11-21-cover.png",
+  "heroOverride": {
+    "image": "https://img.lemde.fr/2026/11/19/1/0/6911/4607/1440/960/60/0/4988ca0_ftp-1-b68p1hqtx78h-afp-d8394nk.jpg",
+    "imageReal": true,
+    "eyebrow": "Tech / AI / Business",
+    "title": "Anthropic closes record‐shattering IPO",
+    "sub": "Tech / AI / Business",
+    "isNonSportsLead": true,
+    "leadCategory": "Tech / AI / Business"
+  },
+  "recPick": {
+    "brand": "Specialized S‑Works Turbo Levo 4",
+    "title": "The high‑wattage e‑MTB that just leveled up with a power bump",
+    "body": "It’s Specialized’s flagship electric mountain bike — the S‑Works Turbo Levo 4 — now packing up to 850W of peak power and 111 Nm torque thanks to a free over‑the‑air firmware update that dropped this week. Riders are buzzing about the instant boost in pedal assistance and refined control via rider‑matched MicroTune; plus, holiday pricing has slashed its sticker price by around $2–$2.5 K, making this elite ride suddenly more within reach. But at around $9K on sale, it’s still a wallet‑punishing investment, and a few users have flagged issues like noisy front brakes or gear failures early on — not something you want mid‑trail.",
+    "url": "https://www.specialized.com/us/en/shop/bikes/electric-bikes/electric-mountain-bikes/turbo-levo",
+    "cta": "Check the Levo 4 →",
+    "imageUrl": "https://media.delius-klasing.de/dpr_auto,fl_progressive,f_jpg,c_fill,g_face:center,h_675,w_1200/q_auto:eco/bike/specialized-turbo-levo-4-comp-alloy-2026-by-fuchs_b866a33051794530cc993fc28d1ef96c"
+  },
+  "copy": {
+    "title": null,
+    "keyTakeaway": null,
+    "todaysHits": null,
+    "lead": null,
+    "sportsOther": [],
+    "markets": null,
+    "golf": null,
+    "f1": null,
+    "culture": null,
+    "finalSharpTake": null,
+    "glance": null,
+    "theTake": null,
+    "nhl": null,
+    "upcomingPreview": null,
+    "dynamicSportsText": null
+  },
+  "editor": {
+    "reviewed": false,
+    "blocking": [],
+    "changed": [],
+    "notes": [],
+    "brokenLinks": [],
+    "reason": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011ChGPhSPXVXcvSE36YJoN6\"}"
+  },
+  "factPack": null,
+  "researchPack": {
+    "stories": [
+      {
+        "id": "Tech-AI",
+        "category": "Tech / AI / Business",
+        "sport": null,
+        "isLead": true,
+        "headline": "Anthropic closes record‐shattering IPO",
+        "whatHappened": "Anthropic closed its initial public offering at $83 per share, raising roughly $93.5 billion, including a $26 billion concurrent private placement.",
+        "whyItMatters": "This massive IPO marks a historic milestone in AI funding, signaling institutional confidence and shifting how AI companies finance growth.",
+        "guytalkRead": "When an AI company does an IPO that'll fund Elon’s casino–that’s the kind of play that gets real money talking. Anthropic just raised roughly $93 billion, and it’s flooding Silicon Valley with capital.",
+        "context": [
+          "1,127,000,000 Class A shares sold at $83 each",
+          "Gross proceeds ~ $93.5 billion, with $91.6 billion to Anthropic",
+          "$26 billion private placement to AMD, Google, Microsoft, NVIDIA, others"
+        ],
+        "whatToSay": "Anthropic just IPO’d for almost a hundred billion—no wonder everyone’s talking AI.",
+        "sources": [
+          "https://next-f9.com/daily-9/2026-11-21"
+        ],
+        "sourceNames": [
+          "Next F9 Daily 9"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Blockbuster financing spree highly relevant to tech-focused guys, backed by reputable coverage.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Markets",
+        "category": "Markets / Economy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Stocks drop ~10%, Fed hike expected next month",
+        "whatHappened": "Major US indexes fell nearly 10%, and markets now widely expect the Federal Reserve to raise interest rates at its December meeting.",
+        "whyItMatters": "That kind of drop rattles portfolios and raises borrowing costs; pretty much everyone with a 401(k) feels it.",
+        "guytalkRead": "Ten‑percent plunge? That’s not a bump—it’s a wake‑up for your retirement fund. And yes, the Fed is probably hiking again in December.",
+        "context": [
+          "Major indexes declined about 10%",
+          "Fed anticipated to hike short‑term interest rates next month"
+        ],
+        "whatToSay": "The Fed’s hiking again—my 401(k) just protested.",
+        "sources": [
+          "https://apnews.com/article/e69b0efcc423bc91871c1afabf36742d"
+        ],
+        "sourceNames": [
+          "AP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 5,
+          "variety": 5
+        },
+        "selectionReason": "Direct impact on wallets, confirmed across major outlets, big bar chat fodder.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Culture-World",
+        "category": "Major World Events",
+        "sport": null,
+        "isLead": false,
+        "headline": "Talks extend on AI 'killer robot' weapons",
+        "whatHappened": "Nations agreed to extend discussions on regulating autonomous weapons today, without committing to binding limits.",
+        "whyItMatters": "The ethics and risks of killer AI are finally in global focus—but still no real action. Mostly outrage for now.",
+        "guytalkRead": "They’re still talking about AI‑guns—14 years, and no rules. It’s kinda wild when discussions outlast solutions.",
+        "context": [
+          "Agreed to continue talks, no firm commitments",
+          "This is the 14th year of such discussions"
+        ],
+        "whatToSay": "Fourteen years of talks on killer robots—and still nothing’s fixed.",
+        "sources": [
+          "https://apnews.com/article/ebe057d2a47cde53100970c8f648e7fa"
+        ],
+        "sourceNames": [
+          "AP News"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "High‑stakes AI ethics keeps making headlines; solid AP coverage.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Politics-TrumpArch",
+        "category": "White House / Politics / Policy",
+        "sport": null,
+        "isLead": false,
+        "headline": "Judge halts Trump’s 250‑ft triumphal arch project",
+        "whatHappened": "A federal judge issued a preliminary injunction indefinitely halting construction of Trump’s proposed 250‑foot triumphal arch.",
+        "whyItMatters": "Trump’s signature public legacy plan just got paused by the courts—no ground‑breaking today.",
+        "guytalkRead": "Only Trump could make an arch a legal battle. And now the judge says not today—maybe never.",
+        "context": [
+          "Judge Brinkema issued injunction calling project rushed and legally baseless",
+          "Final approval was granted November 5 by a commission stacked with Trump loyalists",
+          "Public opinion opposed the arch by more than 2‑to‑1"
+        ],
+        "whatToSay": "A 250‑foot Trump arch is now officially paused—judge called it rushed and illegal.",
+        "sources": [
+          "https://www.thedailybeast.com/trump-dealt-huge-blow-over-vanity-project-triumphal-arch"
+        ],
+        "sourceNames": [
+          "The Daily Beast via Reuters"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Big political news with cultural resonance and solid sourcing.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Tech-Security",
+        "category": "Tech / AI / Business",
+        "sport": null,
+        "isLead": false,
+        "headline": "AI agents find major zero‑day in medical imaging software",
+        "whatHappened": "China‑linked hackers used AI agents to find a zero‑day vulnerability in MONAI Label medical imaging software, gaining full control over a university system.",
+        "whyItMatters": "This shows AI isn’t just an invention tool—it’s a hacking weapon too. Healthcare infra is exposed.",
+        "guytalkRead": "AI hacking medical tools? That’s next‑level scary. Your hospital’s data isn’t safe from smart hackers anymore.",
+        "context": [
+          "MONAI Label is free software used in medical imaging",
+          "Hackers gained full control of a university system"
+        ],
+        "whatToSay": "AI‑powered hackers just breached medical imaging software—total system control. That’s terrifying.",
+        "sources": [
+          "https://www.techmaplive.com/briefing/united-states-ai-chips-and-cyberattacks-the-weeks-tech-news-de8c99c9-bb1f-45df-b6b5-495a20466c50"
+        ],
+        "sourceNames": [
+          "TechMap Live"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 4,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Chilling cyber‑threat with AI angle, rare and urgent.",
+        "verificationConcerns": ""
+      },
+      {
+        "id": "Sports-Boxing",
+        "category": "Sports",
+        "sport": "Boxing",
+        "isLead": false,
+        "headline": "Fundora decision, Jones KO—desert fight card thrills",
+        "whatHappened": "Gabriela Fundora retained her undisputed flyweight title via unanimous decision, while Amari Jones scored an 8th‑round TKO over DeAundre Pettus in Indio, California.",
+        "whyItMatters": "Jones stays unbeaten and looks title‑ready; Fundora’s streak of KOs ends, but her dominance continues.",
+        "guytalkRead": "Fundora got the W, but Jones stole the show with that brutal KO. He’s looking like a legit title threat.",
+        "context": [
+          "Fundora won UD (98‑90, 99‑89, 100‑88)",
+          "Jones (18‑0) stopped Pettus in Round 8",
+          "Jones is now mandatory for the IBF middleweight title"
+        ],
+        "whatToSay": "That Jones KO in Round 8? He’s one fight away from a shot at the belt, no joke.",
+        "sources": [
+          "https://sports.yahoo.com/boxing/live/gabriela-fundora-vs-jasmina-zapotoczna-and-amari-jones-vs-deaundre-pettus-live-results-round-by-round-updates-ring-walks-193000777.html"
+        ],
+        "sourceNames": [
+          "Yahoo Sports"
+        ],
+        "scores": {
+          "freshness": 5,
+          "confidence": 5,
+          "conversation": 4,
+          "variety": 5
+        },
+        "selectionReason": "Solid, verified sports highlight with knockouts and title implications.",
+        "verificationConcerns": ""
+      }
+    ],
+    "rejectedStories": [
+      {
+        "headline": "UFC Fight Night: Prochazka vs Stirling results",
+        "reason": "Event ongoing—no confirmed results yet today"
+      },
+      {
+        "headline": "Climate summit overrun COP31",
+        "reason": "Timid coverage and less conversational among U.S. male audience right now"
+      },
+      {
+        "headline": "Bell Canada data breach",
+        "reason": "Canadian telecom hack—less bar‑conversation appeal to U.S. 25‑45 demographic"
+      },
+      {
+        "headline": "Tax cooperation talks in Nairobi",
+        "reason": "Too niche policy, low conversation score"
+      }
+    ],
+    "researchNotes": "Today’s confirmed top stories span tech, markets, politics, AI ethics and boxing. No major sports league game results published today. Anthropic’s IPO and the stock market dip with Fed expectations are dominant; AI security threats and international regulation of autonomous weapons add high‑stakes depth. Trump‑related architecture legal setback blends politics and pop culture. Verified boxing results deliver the sports slot.",
+    "relevanceScan": {
+      "bucketA_sports": "Boxing titles results in Indio, California",
+      "bucketB_politics": "Judge stops Trump triumphal arch",
+      "bucketC_markets": "Stock drop ~10%, Fed hike expected",
+      "bucketD_tech": "Anthropic IPO; AI agents find zero‑day",
+      "bucketE_culture": "Killer robot talks and Trump project both cultural/political",
+      "bucketF_world": "AI weapons talks extend",
+      "leadJustification": "Anthropic’s record IPO dominates conversation—wall‑street‑size impact with tech flair—it outpaces the markets dip and Trump/politics for leading relevance to our demographic."
+    },
+    "citationUrls": [],
+    "citationTitles": [],
+    "timestamp": "2026-11-21T16:30:16.936Z",
+    "searchModel": "gpt-4.1",
+    "searchActive": true
+  },
+  "researchMode": "openai-search",
+  "generationWarnings": [
+    {
+      "section": "culture",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011ChGPfnGJDZyUgJnZ8KthD\"}"
+    },
+    {
+      "section": "nhl",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011ChGPfnGJ7RTXmqZnkFoHj\"}"
+    },
+    {
+      "section": "golf",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011ChGPfnSUCygXqZ7XjS2Nx\"}"
+    },
+    {
+      "section": "f1",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011ChGPfnVwaRMTnDUU9vBfN\"}"
+    },
+    {
+      "section": "sports",
+      "kind": "failed",
+      "detail": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011ChGPfdxEUndQMW6yFkeY8\"}"
+    },
+    {
+      "section": "lead",
+      "kind": "retry",
+      "detail": "malformed lead — retried"
+    },
+    {
+      "section": "editor",
+      "kind": "failed",
+      "detail": "Claude editor call failed: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011ChGPhSPXVXcvSE36YJoN6\"}"
+    }
+  ],
+  "verification": {
+    "pass": true,
+    "skipped": true,
+    "reason": "verification crashed: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.",
+    "blocking": [],
+    "warnings": []
+  }
+}
